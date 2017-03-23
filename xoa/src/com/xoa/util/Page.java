@@ -1,4 +1,4 @@
-package com.xtdoa.base.util;
+package com.xoa.util;
 import java.util.ArrayList;  
 import java.util.List;  
   

@@ -1,4 +1,4 @@
-package com.xtdoa.base.util;
+package com.xoa.util;
 
 import java.io.IOException;
 import java.nio.file.Files;

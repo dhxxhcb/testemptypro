@@ -1,4 +1,4 @@
-package com.xtdoa.base.model;
+package com.xoa.model;
 
 import java.io.Serializable;
 

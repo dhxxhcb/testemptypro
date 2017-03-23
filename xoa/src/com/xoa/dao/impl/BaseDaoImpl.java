@@ -1,4 +1,4 @@
-package com.xtdoa.base.dao.impl;
+package com.xoa.dao.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -15,7 +15,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.xtdoa.base.dao.BaseDao;
+import com.xoa.dao.BaseDao;
 
 /**
  * 公共类

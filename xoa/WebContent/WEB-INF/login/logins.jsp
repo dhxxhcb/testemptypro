@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<form action="login" method="post">
+	<form action="logins" method="post">
 		userName:<input type="text" name="username"><br /> 
 		passWord:<input	type="password" name="password"><br /> 
 			<input type="submit" value="登陆">

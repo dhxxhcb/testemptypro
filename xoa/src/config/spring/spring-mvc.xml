@@ -14,10 +14,9 @@
     <!-- 开启注解 -->
     <mvc:annotation-driven/>
     <!-- 静态资源(js/image/css)的访问 -->
-    <mvc:resources location="/js/" mapping="/js/**"/>
-    <mvc:resources location="/css/" mapping="/css/**"/>
-    <mvc:resources location="/images/" mapping="/images/**"/>
-    <mvc:resources location="/My97DatePicker/" mapping="/My97DatePicker/**"/>
+    <mvc:resources location="/ui/js/" mapping="/js/**"/>
+    <mvc:resources location="/ui/css/" mapping="/css/**"/>
+    <mvc:resources location="/ui/img/" mapping="/img/**"/>
 
 
     <!-- 定义视图解析器 -->
@@ -25,7 +24,7 @@
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass"
                   value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 

@@ -1,4 +1,4 @@
-package com.xtdoa.base.service;
+package com.xoa.service;
 
 public interface UserService {
 

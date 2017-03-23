@@ -1,4 +1,4 @@
-package com.xtdoa.base.controller;
+package com.xoa.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.xtdoa.base.service.UserService;
+import com.xoa.service.UserService;
 
 
 
@@ -28,10 +28,10 @@ public class IndexController {
 	 * 登录窗口
 	 * @return 登录窗口
 	 */
-	@RequestMapping("/login") //登录窗口
+	@RequestMapping("/logins") //登录窗口
 	public String login() {
 		loger.info("进入登录页面！");
-		return "login";
+		return "login/logins";
 	}
 	
 	/**
@@ -45,12 +45,10 @@ public class IndexController {
 	}
 	
 	
-	@RequestMapping(value="/login",method=RequestMethod.POST)
+	@RequestMapping(value="/logins",method=RequestMethod.POST)
 	public ModelAndView loginsuccess(@RequestParam("username") String username, @RequestParam("password") String password,
             HttpServletRequest request) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
-//		String userName = request.getParameter("username");
-//		String passWord = request.getParameter("password");
 		loger.info("用户名："+username+"\t 密码："+password);
 		if("admin".trim().equals(username) && "admin".trim().equals(password)){
 			loger.info("成功登录");
@@ -58,7 +56,7 @@ public class IndexController {
 			modelAndView.setViewName("redirect:/mainemp");
 		}else{
 			loger.info("登录失败");
-			modelAndView.setViewName("redirect:/login");
+			modelAndView.setViewName("redirect:/logins");
 		}
 		return modelAndView;
 	}

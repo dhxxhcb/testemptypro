@@ -1,12 +1,12 @@
-package com.xtdoa.base.service.impl;
+package com.xoa.service.impl;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.xtdoa.base.dao.BaseDao;
-import com.xtdoa.base.model.User;
-import com.xtdoa.base.service.UserService;
+import com.xoa.dao.BaseDao;
+import com.xoa.model.User;
+import com.xoa.service.UserService;
 
 
 @Service
