@@ -30,7 +30,7 @@ public class IndexController {
 	 */
 	@RequestMapping("/logins") //登录窗口
 	public String login() {
-		loger.info("进入登录页面！");
+		loger.info("进入登录页面！fdasfdsa");
 		return "login/logins";
 	}
 	
