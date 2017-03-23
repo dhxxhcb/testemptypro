@@ -35,8 +35,8 @@ public class IndexController {
 	}
 	
 	/**
-	 * 登录窗口
-	 * @return 登录窗口
+	 * 成功进入
+	 * @return 成功进入
 	 */
 	@RequestMapping("/mainemp") //登录窗口
 	public String loginSuccess() {
