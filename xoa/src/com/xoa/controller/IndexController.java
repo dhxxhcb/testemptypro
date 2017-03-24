@@ -28,10 +28,10 @@ public class IndexController {
 	 * 登录窗口
 	 * @return 登录窗口
 	 */
-	@RequestMapping("/login") //登录窗口
+	@RequestMapping("/logins") //登录窗口
 	public String login() {
 		loger.info("进入登录页面！");
-		return "login";
+		return "logins";
 	}
 	
 	/**
