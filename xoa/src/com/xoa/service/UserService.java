@@ -8,5 +8,5 @@ public interface UserService {
 	 * @param passWord
 	 * @return
 	 */
-	public boolean isUserLogin(String userName, String passWord);
+//	public boolean isUserLogin(String userName, String passWord);
 }

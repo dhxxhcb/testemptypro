@@ -28,16 +28,15 @@ public class IndexController {
 	 * 登录窗口
 	 * @return 登录窗口
 	 */
-	@RequestMapping("/logins") //登录窗口
+	@RequestMapping("/login") //登录窗口
 	public String login() {
-		loger.info("进入登录页面打发打发！");
-		loger.info("进入登录页面！zhouer");
-		return "login/logins";
+		loger.info("进入登录页面！");
+		return "login";
 	}
 	
 	/**
-	 * 成功进入
-	 * @return 成功进入
+	 * 登录窗口
+	 * @return 登录窗口
 	 */
 	@RequestMapping("/mainemp") //登录窗口
 	public String loginSuccess() {
@@ -46,7 +45,7 @@ public class IndexController {
 	}
 	
 	
-	@RequestMapping(value="/logins",method=RequestMethod.POST)
+	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public ModelAndView loginsuccess(@RequestParam("username") String username, @RequestParam("password") String password,
             HttpServletRequest request) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
@@ -57,7 +56,7 @@ public class IndexController {
 			modelAndView.setViewName("redirect:/mainemp");
 		}else{
 			loger.info("登录失败");
-			modelAndView.setViewName("redirect:/logins");
+			modelAndView.setViewName("redirect:/login");
 		}
 		return modelAndView;
 	}
