@@ -1,7 +1,7 @@
-package com.xoa.dao;
+package com.xoa.dao.email;
 
-import com.xoa.model.EmailBody;
-import com.xoa.model.EmailBodyWithBLOBs;
+import com.xoa.model.email.EmailBody;
+import com.xoa.model.email.EmailBodyWithBLOBs;
 
 public interface EmailBodyMapper {
     int deleteByPrimaryKey(Integer bodyId);

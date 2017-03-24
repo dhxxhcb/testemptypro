@@ -1,4 +1,4 @@
-package com.xoa.model;
+package com.xoa.model.email;
 
 public class Email {
     private Integer emailId;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.EmailTagMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.EmailTag" >
+<mapper namespace="com.xoa.dao.email.EmailTagMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.email.EmailTag" >
     <id column="TAG_ID" property="tagId" jdbcType="INTEGER" />
     <result column="TAG_NO" property="tagNo" jdbcType="VARCHAR" />
     <result column="TAG_NAME" property="tagName" jdbcType="VARCHAR" />
@@ -20,13 +20,13 @@
     delete from email_tag
     where TAG_ID = #{tagId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.EmailTag" >
+  <insert id="insert" parameterType="com.xoa.model.email.EmailTag" >
     insert into email_tag (TAG_ID, TAG_NO, TAG_NAME, 
       KEYWORDS)
     values (#{tagId,jdbcType=INTEGER}, #{tagNo,jdbcType=VARCHAR}, #{tagName,jdbcType=VARCHAR}, 
       #{keywords,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.EmailTag" >
+  <insert id="insertSelective" parameterType="com.xoa.model.email.EmailTag" >
     insert into email_tag
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="tagId != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.EmailTag" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailTag" >
     update email_tag
     <set >
       <if test="tagNo != null" >
@@ -72,7 +72,7 @@
     </set>
     where TAG_ID = #{tagId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.EmailTag" >
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.email.EmailTag" >
     update email_tag
     set TAG_NO = #{tagNo,jdbcType=VARCHAR},
       TAG_NAME = #{tagName,jdbcType=VARCHAR},

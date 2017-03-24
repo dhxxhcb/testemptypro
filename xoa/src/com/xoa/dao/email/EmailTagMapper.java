@@ -1,6 +1,6 @@
-package com.xoa.dao;
+package com.xoa.dao.email;
 
-import com.xoa.model.EmailTag;
+import com.xoa.model.email.EmailTag;
 
 public interface EmailTagMapper {
     int deleteByPrimaryKey(Integer tagId);

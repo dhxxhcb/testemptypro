@@ -1,7 +1,9 @@
-package com.xoa.dao;
+package com.xoa.dao.worldnews;
 
-import com.xoa.model.News;
-import com.xoa.model.NewsWithBLOBs;
+import java.util.List;
+
+import com.xoa.model.worldnews.News;
+import com.xoa.model.worldnews.NewsWithBLOBs;
 
 public interface NewsMapper {
     int deleteByPrimaryKey(Integer newsId);
@@ -9,12 +11,16 @@ public interface NewsMapper {
     int insert(NewsWithBLOBs record);
 
     int insertSelective(NewsWithBLOBs record);
-
-    NewsWithBLOBs selectByPrimaryKey(Integer newsId);
-
+    
     int updateByPrimaryKeySelective(NewsWithBLOBs record);
 
     int updateByPrimaryKeyWithBLOBs(NewsWithBLOBs record);
 
     int updateByPrimaryKey(News record);
+    
+    /**
+     * 新闻信息查询并返回
+     * @return
+     */
+    List<News> showNews();
 }

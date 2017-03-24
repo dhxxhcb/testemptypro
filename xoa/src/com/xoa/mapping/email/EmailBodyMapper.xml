@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.EmailBodyMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.EmailBody" >
+<mapper namespace="com.xoa.dao.email.EmailBodyMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.email.EmailBody" >
     <id column="BODY_ID" property="bodyId" jdbcType="INTEGER" />
     <result column="FROM_ID" property="fromId" jdbcType="VARCHAR" />
     <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
     <result column="SECRET_LEVEL" property="secretLevel" jdbcType="INTEGER" />
     <result column="AUDIT_MAN" property="auditMan" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.EmailBodyWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.email.EmailBodyWithBLOBs" extends="BaseResultMap" >
     <result column="TO_ID2" property="toId2" jdbcType="LONGVARCHAR" />
     <result column="COPY_TO_ID" property="copyToId" jdbcType="LONGVARCHAR" />
     <result column="SECRET_TO_ID" property="secretToId" jdbcType="LONGVARCHAR" />
@@ -60,7 +60,7 @@
     delete from email_body
     where BODY_ID = #{bodyId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.EmailBodyWithBLOBs" >
+  <insert id="insert" parameterType="com.xoa.model.email.EmailBodyWithBLOBs" >
     insert into email_body (BODY_ID, FROM_ID, SUBJECT, 
       SEND_TIME, SEND_FLAG, SMS_REMIND, 
       IMPORTANT, SIZE, FROM_WEBMAIL_ID, 
@@ -86,7 +86,7 @@
       #{auditRemark,jdbcType=LONGVARCHAR}, #{copyToWebmail,jdbcType=LONGVARCHAR}, #{secretToWebmail,jdbcType=LONGVARCHAR}, 
       #{praise,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.EmailBodyWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.xoa.model.email.EmailBodyWithBLOBs" >
     insert into email_body
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="bodyId != null" >
@@ -291,7 +291,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.EmailBodyWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBodyWithBLOBs" >
     update email_body
     <set >
       <if test="fromId != null" >
@@ -393,7 +393,7 @@
     </set>
     where BODY_ID = #{bodyId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.EmailBodyWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.email.EmailBodyWithBLOBs" >
     update email_body
     set FROM_ID = #{fromId,jdbcType=VARCHAR},
       SUBJECT = #{subject,jdbcType=VARCHAR},
@@ -429,7 +429,7 @@
       PRAISE = #{praise,jdbcType=LONGVARCHAR}
     where BODY_ID = #{bodyId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.EmailBody" >
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.email.EmailBody" >
     update email_body
     set FROM_ID = #{fromId,jdbcType=VARCHAR},
       SUBJECT = #{subject,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.NewsMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.News" >
+<mapper namespace="com.xoa.dao.worldnews.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.worldnews.News" >
     <id column="NEWS_ID" property="newsId" jdbcType="INTEGER" />
     <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
     <result column="PROVIDER" property="provider" jdbcType="VARCHAR" />
@@ -18,7 +18,7 @@
     <result column="KEYWORD" property="keyword" jdbcType="VARCHAR" />
     <result column="TOP_DAYS" property="topDays" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.NewsWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.worldnews.NewsWithBLOBs" extends="BaseResultMap" >
     <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
     <result column="ATTACHMENT_ID" property="attachmentId" jdbcType="LONGVARCHAR" />
     <result column="ATTACHMENT_NAME" property="attachmentName" jdbcType="LONGVARCHAR" />
@@ -45,11 +45,24 @@
     from news
     where NEWS_ID = #{newsId,jdbcType=INTEGER}
   </select>
+
+  <select id="showNews" resultMap="BaseResultMap" parameterType="com.xoa.model.worldnews.News">
+  SELECT NEWS_ID, SUBJECT, PROVIDER, 
+      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
+      FORMAT, TYPE_ID, PUBLISH, 
+      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
+      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
+      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
+      TO_ID, PRIV_ID, USER_ID, 
+      READERS, COMPRESS_CONTENT, SUMMARY
+      FROM news
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from news
     where NEWS_ID = #{newsId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.NewsWithBLOBs" >
+  <insert id="insert" parameterType="com.xoa.model.worldnews.NewsWithBLOBs" >
     insert into news (NEWS_ID, SUBJECT, PROVIDER, 
       NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
       FORMAT, TYPE_ID, PUBLISH, 
@@ -69,7 +82,7 @@
       #{readers,jdbcType=LONGVARCHAR}, #{compressContent,jdbcType=LONGVARBINARY}, #{summary,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.NewsWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.xoa.model.worldnews.NewsWithBLOBs" >
     insert into news
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="newsId != null" >
@@ -220,7 +233,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.NewsWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.worldnews.NewsWithBLOBs" >
     update news
     <set >
       <if test="subject != null" >
@@ -295,7 +308,7 @@
     </set>
     where NEWS_ID = #{newsId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.NewsWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.worldnews.NewsWithBLOBs" >
     update news
     set SUBJECT = #{subject,jdbcType=VARCHAR},
       PROVIDER = #{provider,jdbcType=VARCHAR},
@@ -322,7 +335,7 @@
       SUMMARY = #{summary,jdbcType=LONGVARCHAR}
     where NEWS_ID = #{newsId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.News" >
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.worldnews.News" >
     update news
     set SUBJECT = #{subject,jdbcType=VARCHAR},
       PROVIDER = #{provider,jdbcType=VARCHAR},

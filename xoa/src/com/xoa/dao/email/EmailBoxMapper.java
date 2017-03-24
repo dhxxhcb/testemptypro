@@ -1,6 +1,6 @@
-package com.xoa.dao;
+package com.xoa.dao.email;
 
-import com.xoa.model.EmailBox;
+import com.xoa.model.email.EmailBox;
 
 public interface EmailBoxMapper {
     int deleteByPrimaryKey(Integer boxId);

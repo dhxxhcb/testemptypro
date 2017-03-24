@@ -1,4 +1,4 @@
-package com.xoa.model;
+package com.xoa.model.worldnews;
 
 import java.util.Date;
 
@@ -171,79 +171,155 @@ public class News {
     public String getAnonymityYn() {
         return anonymityYn;
     }
-
+    
+    /**
+     * 评论类型(0-实名评论,1-匿名评论,2-禁止评论)
+     * @param anonymityYn
+     */
     public void setAnonymityYn(String anonymityYn) {
         this.anonymityYn = anonymityYn == null ? null : anonymityYn.trim();
     }
 
+    /**
+     * 新闻格式(0-普通格式,1-MHT格式,2-超链接)
+     * @return
+     */
     public String getFormat() {
         return format;
     }
-
+    
+    /**
+     * 新闻格式(0-普通格式,1-MHT格式,2-超链接)
+     * @param format
+     */
     public void setFormat(String format) {
         this.format = format == null ? null : format.trim();
     }
-
+    
+    /**
+     * 新闻类型
+     * @return
+     */
     public String getTypeId() {
         return typeId;
     }
-
+    
+    /**
+     * 新闻类型
+     * @param typeId
+     */
     public void setTypeId(String typeId) {
         this.typeId = typeId == null ? null : typeId.trim();
     }
-
+    
+    /**
+     * 发布标识(0-未发布,1-已发布,2-已终止)
+     * @return
+     */
     public String getPublish() {
         return publish;
     }
-
+    
+    /**
+     * 发布标识(0-未发布,1-已发布,2-已终止)
+     * @param publish
+     */
     public void setPublish(String publish) {
         this.publish = publish == null ? null : publish.trim();
     }
-
+    
+    /**
+     * 是否置顶(0-否,1-是)
+     * @return
+     */
     public String getTop() {
         return top;
     }
-
+    
+    /**
+     * 是否置顶(0-否,1-是)
+     * @param top
+     */
     public void setTop(String top) {
         this.top = top == null ? null : top.trim();
     }
-
+    
+    /**
+     * 最后编辑人
+     * @return
+     */
     public String getLastEditor() {
         return lastEditor;
     }
-
+    
+    /**
+     * 最后编辑人
+     * @param lastEditor
+     */
     public void setLastEditor(String lastEditor) {
         this.lastEditor = lastEditor == null ? null : lastEditor.trim();
     }
-
+    
+    /**
+     * 最后编辑时间
+     * @return
+     */
     public Date getLastEditTime() {
         return lastEditTime;
     }
-
+    
+    /**
+     * 最后编辑时间
+     * @param lastEditTime
+     */
     public void setLastEditTime(Date lastEditTime) {
         this.lastEditTime = lastEditTime;
     }
-
+    
+    /**
+     * 新闻标题颜色
+     * @return
+     */
     public String getSubjectColor() {
         return subjectColor;
     }
-
+    
+    /**
+     * 新闻标题颜色
+     * @param subjectColor
+     */
     public void setSubjectColor(String subjectColor) {
         this.subjectColor = subjectColor == null ? null : subjectColor.trim();
     }
 
+    /**
+     * 内容关键词
+     * @return
+     */
     public String getKeyword() {
         return keyword;
     }
 
+    /**
+     * 内容关键词
+     * @param keyword
+     */
     public void setKeyword(String keyword) {
         this.keyword = keyword == null ? null : keyword.trim();
     }
-
+    
+    /**
+     * 限制新闻置顶时间
+     * @return
+     */
     public String getTopDays() {
         return topDays;
     }
-
+    
+    /**
+     * 限制新闻置顶时间
+     * @param topDays
+     */
     public void setTopDays(String topDays) {
         this.topDays = topDays == null ? null : topDays.trim();
     }

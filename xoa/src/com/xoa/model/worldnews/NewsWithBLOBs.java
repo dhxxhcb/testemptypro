@@ -1,4 +1,4 @@
-package com.xoa.model;
+package com.xoa.model.worldnews;
 
 public class NewsWithBLOBs extends News {
     private String content;
