@@ -1,4 +1,4 @@
-package com.xoa.model;
+package com.xoa.model.menu;
 
 public class SysMenu {
     private String menuId;

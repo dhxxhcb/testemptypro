@@ -1,6 +1,6 @@
-package com.xoa.dao;
+package com.xoa.dao.unitmanagement;
 
-import com.xoa.model.UnitManageWithBLOBs;
+import com.xoa.model.unitmanagement.UnitManageWithBLOBs;
 
 public interface UnitManageMapper {
     int insert(UnitManageWithBLOBs record);

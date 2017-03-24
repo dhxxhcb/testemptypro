@@ -1,6 +1,6 @@
-package com.xoa.dao;
+package com.xoa.dao.menu;
 
-import com.xoa.model.SysMenu;
+import com.xoa.model.menu.SysMenu;
 
 public interface SysMenuMapper {
     int deleteByPrimaryKey(String menuId);

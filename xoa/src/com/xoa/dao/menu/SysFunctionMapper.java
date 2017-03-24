@@ -1,6 +1,6 @@
-package com.xoa.dao;
+package com.xoa.dao.menu;
 
-import com.xoa.model.SysFunction;
+import com.xoa.model.menu.SysFunction;
 
 public interface SysFunctionMapper {
     int deleteByPrimaryKey(Integer funcId);

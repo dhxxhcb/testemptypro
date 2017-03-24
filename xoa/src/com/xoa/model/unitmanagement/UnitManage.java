@@ -1,4 +1,4 @@
-package com.xoa.model;
+package com.xoa.model.unitmanagement;
 
 public class UnitManage {
     private String unitName;

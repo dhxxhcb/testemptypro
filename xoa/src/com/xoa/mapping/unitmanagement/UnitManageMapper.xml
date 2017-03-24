@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.UnitManageMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.UnitManage" >
+<mapper namespace="com.xoa.dao.unitmanagement.UnitManageMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.unitmanagement.UnitManage" >
     <result column="UNIT_NAME" property="unitName" jdbcType="CHAR" />
     <result column="TEL_NO" property="telNo" jdbcType="CHAR" />
     <result column="FAX_NO" property="faxNo" jdbcType="CHAR" />
@@ -12,7 +12,7 @@
     <result column="BANK_NAME" property="bankName" jdbcType="CHAR" />
     <result column="BANK_NO" property="bankNo" jdbcType="CHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.UnitManageWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.unitmanagement.UnitManageWithBLOBs" extends="BaseResultMap" >
     <result column="ATTACHMENT_ID" property="attachmentId" jdbcType="LONGVARCHAR" />
     <result column="ATTACHMENT_NAME" property="attachmentName" jdbcType="LONGVARCHAR" />
     <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
@@ -20,7 +20,7 @@
   <sql id="Blob_Column_List" >
     ATTACHMENT_ID, ATTACHMENT_NAME, CONTENT
   </sql>
-  <insert id="insert" parameterType="com.xoa.model.UnitManageWithBLOBs" >
+  <insert id="insert" parameterType="com.xoa.model.unitmanagement.UnitManageWithBLOBs" >
     insert into unit (UNIT_NAME, TEL_NO, FAX_NO, 
       POST_NO, ADDRESS, URL, EMAIL, 
       BANK_NAME, BANK_NO, ATTACHMENT_ID, 
@@ -30,7 +30,7 @@
       #{bankName,jdbcType=CHAR}, #{bankNo,jdbcType=CHAR}, #{attachmentId,jdbcType=LONGVARCHAR}, 
       #{attachmentName,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.UnitManageWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.xoa.model.unitmanagement.UnitManageWithBLOBs" >
     insert into unit
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="unitName != null" >

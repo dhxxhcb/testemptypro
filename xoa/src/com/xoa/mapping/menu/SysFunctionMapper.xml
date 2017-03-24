@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.SysFunctionMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.SysFunction" >
+<mapper namespace="com.xoa.dao.menu.SysFunctionMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.menu.SysFunction" >
     <id column="FUNC_ID" property="funcId" jdbcType="INTEGER" />
     <result column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
     <result column="FUNC_NAME" property="funcName" jdbcType="VARCHAR" />
@@ -21,13 +21,13 @@
     delete from sys_function
     where FUNC_ID = #{funcId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.SysFunction" >
+  <insert id="insert" parameterType="com.xoa.model.menu.SysFunction" >
     insert into sys_function (FUNC_ID, MENU_ID, FUNC_NAME, 
       FUNC_CODE, FUNC_EXT)
     values (#{funcId,jdbcType=INTEGER}, #{menuId,jdbcType=VARCHAR}, #{funcName,jdbcType=VARCHAR}, 
       #{funcCode,jdbcType=VARCHAR}, #{funcExt,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.SysFunction" >
+  <insert id="insertSelective" parameterType="com.xoa.model.menu.SysFunction" >
     insert into sys_function
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="funcId != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.SysFunction" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.menu.SysFunction" >
     update sys_function
     <set >
       <if test="menuId != null" >
@@ -82,7 +82,7 @@
     </set>
     where FUNC_ID = #{funcId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.SysFunction" >
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.menu.SysFunction" >
     update sys_function
     set MENU_ID = #{menuId,jdbcType=VARCHAR},
       FUNC_NAME = #{funcName,jdbcType=VARCHAR},

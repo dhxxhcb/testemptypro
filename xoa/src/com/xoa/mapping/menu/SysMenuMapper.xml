@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.SysMenuMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.SysMenu" >
+<mapper namespace="com.xoa.dao.menu.SysMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.menu.SysMenu" >
     <id column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
     <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" />
     <result column="IMAGE" property="image" jdbcType="VARCHAR" />
@@ -20,13 +20,13 @@
     delete from sys_menu
     where MENU_ID = #{menuId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.SysMenu" >
+  <insert id="insert" parameterType="com.xoa.model.menu.SysMenu" >
     insert into sys_menu (MENU_ID, MENU_NAME, IMAGE, 
       MENU_EXT)
     values (#{menuId,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
       #{menuExt,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.SysMenu" >
+  <insert id="insertSelective" parameterType="com.xoa.model.menu.SysMenu" >
     insert into sys_menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="menuId != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.SysMenu" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.menu.SysMenu" >
     update sys_menu
     <set >
       <if test="menuName != null" >
@@ -72,7 +72,7 @@
     </set>
     where MENU_ID = #{menuId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.SysMenu" >
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.menu.SysMenu" >
     update sys_menu
     set MENU_NAME = #{menuName,jdbcType=VARCHAR},
       IMAGE = #{image,jdbcType=VARCHAR},

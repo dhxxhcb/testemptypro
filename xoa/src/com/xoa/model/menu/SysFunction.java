@@ -1,4 +1,4 @@
-package com.xoa.model;
+package com.xoa.model.menu;
 
 public class SysFunction {
     private Integer funcId;
