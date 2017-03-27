@@ -1,82 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.menu.SysMenuMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.menu.SysMenu" >
+  <resultMap id="menuResultMap" type="com.xoa.model.menu.SysMenu" >
     <id column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
     <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" />
     <result column="IMAGE" property="image" jdbcType="VARCHAR" />
     <result column="MENU_EXT" property="menuExt" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    MENU_ID, MENU_NAME, IMAGE, MENU_EXT
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from sys_menu
-    where MENU_ID = #{menuId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from sys_menu
-    where MENU_ID = #{menuId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.xoa.model.menu.SysMenu" >
-    insert into sys_menu (MENU_ID, MENU_NAME, IMAGE, 
-      MENU_EXT)
-    values (#{menuId,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
-      #{menuExt,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.menu.SysMenu" >
-    insert into sys_menu
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="menuId != null" >
-        MENU_ID,
-      </if>
-      <if test="menuName != null" >
-        MENU_NAME,
-      </if>
-      <if test="image != null" >
-        IMAGE,
-      </if>
-      <if test="menuExt != null" >
-        MENU_EXT,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="menuId != null" >
-        #{menuId,jdbcType=VARCHAR},
-      </if>
-      <if test="menuName != null" >
-        #{menuName,jdbcType=VARCHAR},
-      </if>
-      <if test="image != null" >
-        #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="menuExt != null" >
-        #{menuExt,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.menu.SysMenu" >
-    update sys_menu
-    <set >
-      <if test="menuName != null" >
-        MENU_NAME = #{menuName,jdbcType=VARCHAR},
-      </if>
-      <if test="image != null" >
-        IMAGE = #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="menuExt != null" >
-        MENU_EXT = #{menuExt,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where MENU_ID = #{menuId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.menu.SysMenu" >
-    update sys_menu
-    set MENU_NAME = #{menuName,jdbcType=VARCHAR},
-      IMAGE = #{image,jdbcType=VARCHAR},
-      MENU_EXT = #{menuExt,jdbcType=VARCHAR}
-    where MENU_ID = #{menuId,jdbcType=VARCHAR}
-  </update>
+  
+  
+   <select id="getDatagrid" resultMap="menuResultMap">
+		select MENU_ID,MENU_NAME,IMAGE,MENU_EXT from sys_menu 
+	</select>
 </mapper>
