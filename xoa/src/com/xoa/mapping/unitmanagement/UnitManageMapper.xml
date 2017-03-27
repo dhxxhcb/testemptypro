@@ -11,27 +11,23 @@
     <result column="EMAIL" property="email" jdbcType="CHAR" />
     <result column="BANK_NAME" property="bankName" jdbcType="CHAR" />
     <result column="BANK_NO" property="bankNo" jdbcType="CHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.unitmanagement.UnitManageWithBLOBs" extends="BaseResultMap" >
     <result column="ATTACHMENT_ID" property="attachmentId" jdbcType="LONGVARCHAR" />
     <result column="ATTACHMENT_NAME" property="attachmentName" jdbcType="LONGVARCHAR" />
     <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
+ <!--  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.unitmanagement.UnitManageWithBLOBs" extends="BaseResultMap" >
+    <result column="ATTACHMENT_ID" property="attachmentId" jdbcType="LONGVARCHAR" />
+    <result column="ATTACHMENT_NAME" property="attachmentName" jdbcType="LONGVARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap> -->
   <sql id="Blob_Column_List" >
     ATTACHMENT_ID, ATTACHMENT_NAME, CONTENT
   </sql>
-  <insert id="insert" parameterType="com.xoa.model.unitmanagement.UnitManageWithBLOBs" >
-    insert into unit (UNIT_NAME, TEL_NO, FAX_NO, 
-      POST_NO, ADDRESS, URL, EMAIL, 
-      BANK_NAME, BANK_NO, ATTACHMENT_ID, 
-      ATTACHMENT_NAME, CONTENT)
-    values (#{unitName,jdbcType=CHAR}, #{telNo,jdbcType=CHAR}, #{faxNo,jdbcType=CHAR}, 
-      #{postNo,jdbcType=CHAR}, #{address,jdbcType=CHAR}, #{url,jdbcType=CHAR}, #{email,jdbcType=CHAR}, 
-      #{bankName,jdbcType=CHAR}, #{bankNo,jdbcType=CHAR}, #{attachmentId,jdbcType=LONGVARCHAR}, 
-      #{attachmentName,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.unitmanagement.UnitManageWithBLOBs" >
-    insert into unit
+ <select id="showUnitManage" resultMap="BaseResultMap" parameterType="com.xoa.model.unitmanagement.UnitManage">
+     SELECT UNIT_NAME,TEL_NO,FAX_NO,POST_NO,ADDRESS,URL,EMAIL,BANK_NAME,BANK_NO,ATTACHMENT_ID,ATTACHMENT_NAME,CONTENT FROM unit
+  </select>
+   <insert id="addUnitManage" parameterType="com.xoa.model.unitmanagement.UnitManage" >
+      insert into unit
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="unitName != null" >
         UNIT_NAME,
