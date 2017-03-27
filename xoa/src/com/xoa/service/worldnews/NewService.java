@@ -1,8 +1,7 @@
 package com.xoa.service.worldnews;
 
-import java.util.List;
-
 import com.xoa.model.worldnews.News;
+import com.xoa.util.ToJson;
 
 public interface NewService {
 	
@@ -11,6 +10,6 @@ public interface NewService {
 	 * 新闻信息查询展示
 	 * @return
 	 */
-	public List<News> showNews();
+	public ToJson<News> showNews();
 
 }
