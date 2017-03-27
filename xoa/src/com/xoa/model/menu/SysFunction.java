@@ -1,4 +1,7 @@
 package com.xoa.model.menu;
+
+import java.util.List;
+
 /**
  * 子类菜单实体类
  * @author wyq
@@ -25,7 +28,17 @@ public class SysFunction {
 	 * 国际版多语言菜单名称
 	 */
     private String funcExt;
-    /**
+    
+    private List<SysFunction> functionList;
+    
+    
+    public List<SysFunction> getFunctionList() {
+		return functionList;
+	}
+	public void setFunctionList(List<SysFunction> functionList) {
+		this.functionList = functionList;
+	}
+	/**
 	 * 子类菜单ID
 	 */
     public Integer getFuncId() {
