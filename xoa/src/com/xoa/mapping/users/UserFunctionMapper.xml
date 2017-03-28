@@ -8,7 +8,7 @@
   </resultMap>
   
   
-   <select id="getMenuByUserId" resultMap="userResultMap">
-		SELECT u.uid,u.user_id,u.user_func_id_str from user_function u,user y WHERE u.uid=#{uid}
+   <select id="getMenuByUserId" resultMap="userResultMap" parameterType="int">
+		SELECT user_func_id_str from user_function WHERE uid=#{uid}
 	</select>
 </mapper>

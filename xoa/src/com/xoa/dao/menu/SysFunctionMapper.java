@@ -9,4 +9,6 @@ public interface SysFunctionMapper {
 	 public List<SysFunction> getDatagrid(String menuId);
 	
 	 public List<SysFunction> childMenu(String id);
+	 
+	 public List<SysFunction> getAll();
 }
