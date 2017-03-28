@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.xoa.controller.news.NewsController;
+import com.xoa.controller.worldnews.NewsController;
 import com.xoa.model.unitmanagement.UnitManage;
 import com.xoa.service.unitmanagement.UnitManageService;
 

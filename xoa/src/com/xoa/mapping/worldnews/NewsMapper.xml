@@ -2,33 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.worldnews.NewsMapper" >
   <resultMap id="BaseResultMap" type="com.xoa.model.worldnews.News" >
-    <id column="NEWS_ID" property="newsId" jdbcType="INTEGER" />
-    <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
-    <result column="PROVIDER" property="provider" jdbcType="VARCHAR" />
-    <result column="NEWS_TIME" property="newsTime" jdbcType="TIMESTAMP" />
-    <result column="CLICK_COUNT" property="clickCount" jdbcType="INTEGER" />
-    <result column="ANONYMITY_YN" property="anonymityYn" jdbcType="VARCHAR" />
-    <result column="FORMAT" property="format" jdbcType="VARCHAR" />
-    <result column="TYPE_ID" property="typeId" jdbcType="VARCHAR" />
-    <result column="PUBLISH" property="publish" jdbcType="CHAR" />
-    <result column="TOP" property="top" jdbcType="VARCHAR" />
-    <result column="LAST_EDITOR" property="lastEditor" jdbcType="VARCHAR" />
-    <result column="LAST_EDIT_TIME" property="lastEditTime" jdbcType="TIMESTAMP" />
-    <result column="SUBJECT_COLOR" property="subjectColor" jdbcType="VARCHAR" />
-    <result column="KEYWORD" property="keyword" jdbcType="VARCHAR" />
-    <result column="TOP_DAYS" property="topDays" jdbcType="VARCHAR" />
+    <id column="NEWS_ID" property="newsId" javaType="int" />
+    <result column="SUBJECT" property="subject" javaType="String"/>
+    <result column="PROVIDER" property="provider" javaType="String"/>
+    <result column="NEWS_TIME" property="newsTime" javaType="Date" />
+    <result column="CLICK_COUNT" property="clickCount" javaType="int" />
+    <result column="ANONYMITY_YN" property="anonymityYn" javaType="int" />
+    <result column="FORMAT" property="format" javaType="String" />
+    <result column="TYPE_ID" property="typeId" javaType="String" />
+    <result column="PUBLISH" property="publish" javaType="String" />
+    <result column="TOP" property="top" javaType="String"/>
+    <result column="LAST_EDITOR" property="lastEditor" javaType="String"/>
+    <result column="LAST_EDIT_TIME" property="lastEditTime" javaType="Date" />
+    <result column="SUBJECT_COLOR" property="subjectColor" javaType="String" />
+    <result column="KEYWORD" property="keyword" javaType="String"/>
+    <result column="TOP_DAYS" property="topDays" javaType="String" />
+    <result column="CONTENT" property="content" javaType="String" />
+    <result column="ATTACHMENT_ID" property="attachmentId" javaType="String"/>
+    <result column="ATTACHMENT_NAME" property="attachmentName" javaType="String" />
+    <result column="TO_ID" property="toId" javaType="String" />
+    <result column="PRIV_ID" property="privId" javaType="String" />
+    <result column="USER_ID" property="userId" javaType="String" />
+    <result column="READERS" property="readers" javaType="String"/>
+    <result column="COMPRESS_CONTENT" property="compressContent" javaType="byte" />
+    <result column="SUMMARY" property="summary" javaType="String" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.worldnews.NewsWithBLOBs" extends="BaseResultMap" >
-    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
-    <result column="ATTACHMENT_ID" property="attachmentId" jdbcType="LONGVARCHAR" />
-    <result column="ATTACHMENT_NAME" property="attachmentName" jdbcType="LONGVARCHAR" />
-    <result column="TO_ID" property="toId" jdbcType="LONGVARCHAR" />
-    <result column="PRIV_ID" property="privId" jdbcType="LONGVARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="LONGVARCHAR" />
-    <result column="READERS" property="readers" jdbcType="LONGVARCHAR" />
-    <result column="COMPRESS_CONTENT" property="compressContent" jdbcType="LONGVARBINARY" />
-    <result column="SUMMARY" property="summary" jdbcType="LONGVARCHAR" />
-  </resultMap>
+ <!--  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.worldnews.NewsWithBLOBs" extends="BaseResultMap" >
+  </resultMap> -->
   <sql id="Base_Column_List" >
     NEWS_ID, SUBJECT, PROVIDER, NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, FORMAT, TYPE_ID, 
     PUBLISH, TOP, LAST_EDITOR, LAST_EDIT_TIME, SUBJECT_COLOR, KEYWORD, TOP_DAYS
@@ -37,7 +37,7 @@
     CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, TO_ID, PRIV_ID, USER_ID, READERS, COMPRESS_CONTENT, 
     SUMMARY
   </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     ,
@@ -46,7 +46,7 @@
     where NEWS_ID = #{newsId,jdbcType=INTEGER}
   </select>
 
-  <select id="showNews" resultMap="BaseResultMap" parameterType="com.xoa.model.worldnews.News">
+ <!--  <select id="showNews" resultMap="BaseResultMap" parameterType="com.xoa.model.worldnews.News">
   SELECT NEWS_ID, SUBJECT, PROVIDER, 
       NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
       FORMAT, TYPE_ID, PUBLISH, 
@@ -56,13 +56,85 @@
       TO_ID, PRIV_ID, USER_ID, 
       READERS, COMPRESS_CONTENT, SUMMARY
       FROM news
-  </select>
+  </select> -->
   
+  <!-- 条件  -->
+  <select id="showNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
+  SELECT NEWS_ID, SUBJECT, PROVIDER, 
+      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
+      FORMAT, TYPE_ID, PUBLISH, 
+      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
+      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
+      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
+      TO_ID, PRIV_ID, USER_ID, 
+      READERS, COMPRESS_CONTENT, SUMMARY
+      FROM news WHERE
+      <if test="typeId != null and typeId != ''">
+      TYPE_ID = #{typeId} 
+      </if>
+      <if test="newsTime != null and newsTime != ''">
+      AND NEWS_TIME = #{newsTime} 
+      </if>
+       <if test="start!=null and pagesize!=null">  
+        limit #{start jdbcType=INTEGER},#{pagesize jdbcType=INTEGER}  
+    </if>
+    ORDER BY NEWS_ID DESC  
+</select> 
+
+<!-- 条件总计数 -->
+<select id="showCountNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
+  SELECT NEWS_ID, SUBJECT, PROVIDER, 
+      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
+      FORMAT, TYPE_ID, PUBLISH, 
+      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
+      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
+      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
+      TO_ID, PRIV_ID, USER_ID, 
+      READERS, COMPRESS_CONTENT, SUMMARY
+      FROM news WHERE
+      <if test="typeId != null and typeId != ''">
+      TYPE_ID = #{typeId} 
+      </if>
+      <if test="newsTime != null and newsTime != ''">
+      AND NEWS_TIME = #{newsTime} 
+      </if>
+</select> 
+
+<select id="showAllNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
+    SELECT NEWS_ID, SUBJECT, PROVIDER, 
+      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
+      FORMAT, TYPE_ID, PUBLISH, 
+      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
+      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
+      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
+      TO_ID, PRIV_ID, USER_ID, 
+      READERS, COMPRESS_CONTENT, SUMMARY
+      FROM news 
+       <if test="start!=null and pagesize!=null">  
+        limit #{start jdbcType=INTEGER},#{pagesize jdbcType=INTEGER}  
+    </if>
+      ORDER BY NEWS_ID DESC
+</select>
+
+<select id="showAllCountNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
+  SELECT NEWS_ID, SUBJECT, PROVIDER, 
+      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
+      FORMAT, TYPE_ID, PUBLISH, 
+      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
+      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
+      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
+      TO_ID, PRIV_ID, USER_ID, 
+      READERS, COMPRESS_CONTENT, SUMMARY
+      FROM news
+</select> 
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from news
     where NEWS_ID = #{newsId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.worldnews.NewsWithBLOBs" >
+  <insert id="insert" parameterType="com.xoa.model.worldnews.News" >
     insert into news (NEWS_ID, SUBJECT, PROVIDER, 
       NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
       FORMAT, TYPE_ID, PUBLISH, 
@@ -82,7 +154,7 @@
       #{readers,jdbcType=LONGVARCHAR}, #{compressContent,jdbcType=LONGVARBINARY}, #{summary,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.worldnews.NewsWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.xoa.model.worldnews.News" >
     insert into news
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="newsId != null" >
@@ -233,7 +305,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.worldnews.NewsWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.worldnews.News" >
     update news
     <set >
       <if test="subject != null" >
@@ -308,7 +380,7 @@
     </set>
     where NEWS_ID = #{newsId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.worldnews.NewsWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.worldnews.News" >
     update news
     set SUBJECT = #{subject,jdbcType=VARCHAR},
       PROVIDER = #{provider,jdbcType=VARCHAR},

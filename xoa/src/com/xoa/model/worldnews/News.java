@@ -1,5 +1,6 @@
 package com.xoa.model.worldnews;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,8 +8,10 @@ import java.util.Date;
  * @author zy
  * @version 1.0
  */
-public class News {
+public class News implements Serializable {
 	
+	private static final long serialVersionUID = 6368734497100640940L;
+
 	/**
 	 * 主键ID
 	 */
@@ -83,6 +86,53 @@ public class News {
      * 限制新闻置顶时间
      */
     private String topDays;
+    
+    /**
+     * 新闻内容
+     */
+    private String content;
+
+    /**
+     * 附件ID串
+     */
+    private String attachmentId;
+
+    /**
+     * 附件名称串
+     */
+    private String attachmentName;
+
+    /**
+     * 发布部门
+     */
+    private String toId;
+
+    /**
+     * 发布角色
+     */
+    private String privId;
+
+    /**
+     * 发布人员
+     */
+    private String userId;
+    
+    /**
+     * 阅读人员ID串
+     */
+    private String readers;
+
+    /**
+     * 压缩后的新闻内容
+     */
+    private byte[] compressContent;
+
+    /**
+     * 新闻内容简介
+     */
+    private String summary;
+
+    
 
     /**
      *  主键ID
@@ -323,4 +373,150 @@ public class News {
     public void setTopDays(String topDays) {
         this.topDays = topDays == null ? null : topDays.trim();
     }
+
+    /**
+     * 新闻内容
+     * @return
+     */
+	public String getContent() {
+		return content;
+	}
+	
+	/**
+	 * 新闻内容
+	 * @param content
+	 */
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
+	/**
+	 * 附件ID串
+	 * @return
+	 */
+	public String getAttachmentId() {
+		return attachmentId;
+	}
+	
+	/**
+	 * 附件ID串
+	 * @param attachmentId
+	 */
+	public void setAttachmentId(String attachmentId) {
+		this.attachmentId = attachmentId;
+	}
+
+	/**
+	 * 附件名称串
+	 * @return
+	 */
+	public String getAttachmentName() {
+		return attachmentName;
+	}
+	
+	/**
+	 * 附件名称串
+	 * @param attachmentName
+	 */
+	public void setAttachmentName(String attachmentName) {
+		this.attachmentName = attachmentName;
+	}
+	
+	/**
+	 * 发布部门
+	 * @return
+	 */
+	public String getToId() {
+		return toId;
+	}
+	
+	/**
+	 * 发布部门
+	 * @param toId
+	 */
+	public void setToId(String toId) {
+		this.toId = toId;
+	}
+	
+	/**
+	 * 发布角色
+	 * @return
+	 */
+	public String getPrivId() {
+		return privId;
+	}
+	
+	/**
+	 * 发布角色
+	 * @param privId
+	 */
+	public void setPrivId(String privId) {
+		this.privId = privId;
+	}
+	
+	/**
+	 * 发布人员
+	 * @return
+	 */
+	public String getUserId() {
+		return userId;
+	}
+	
+	/**
+	 * 发布人员
+	 * @param userId
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
+	/**
+	 * 阅读人员ID串
+	 * @return
+	 */
+	public String getReaders() {
+		return readers;
+	}
+	
+	/**
+	 * 阅读人员ID串
+	 * @param readers
+	 */
+	public void setReaders(String readers) {
+		this.readers = readers;
+	}
+	
+	/**
+	 * 压缩后的新闻内容
+	 * @return
+	 */
+	public byte[] getCompressContent() {
+		return compressContent;
+	}
+	
+	/**
+	 * 压缩后的新闻内容
+	 * @param compressContent
+	 */
+	public void setCompressContent(byte[] compressContent) {
+		this.compressContent = compressContent;
+	}
+	
+	/**
+	 * 新闻内容简介
+	 * @return
+	 */
+	public String getSummary() {
+		return summary;
+	}
+	
+	/**
+	 * 新闻内容简介
+	 * @param summary
+	 */
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+    
+    
 }

@@ -1,28 +1,29 @@
-package com.xoa.controller.news;
+package com.xoa.controller.worldnews;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.worldnews.NewService;
+import com.xoa.util.Page;
 import com.xoa.util.ToJson;
 
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.portlet.ModelAndView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 
 
 @Controller
@@ -35,6 +36,8 @@ public class NewsController {
 	/**
 	 * 信息展示 返回json demo
 	 * @return 
+	 * @throws ServletRequestBindingException 
+	 * @throws ParseException 
 	 */
 //	@RequestMapping(value="/shownew")
 //	public @ResponseBody Map<String, String> showNew() {
@@ -50,12 +53,27 @@ public class NewsController {
 //	}
 	
 	@RequestMapping(value="/shownew",produces={"application/json;charset=UTF-8"})
-	public @ResponseBody String showNew(){
-		ToJson<News> toJson = newService.showNews();
-		loger.info("结果信息："+ JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
-	Map<String, String> map = new HashMap<String, String>();
-	map.put("showNews", JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
-		return JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss");
+	public @ResponseBody String showNew(HttpServletRequest request,HttpServletResponse response) throws ServletRequestBindingException, ParseException{
+//	public void doSerch(HttpServletRequest request,HttpServletResponse response){
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		 Integer currentPage = ServletRequestUtils.getIntParameter(request, "currentPage", 0);  
+//	     Integer pageSize = ServletRequestUtils.getIntParameter(request, "pageSize", 5);
+//	     String newsTims = ServletRequestUtils.getStringParameter(request, "newsTimes");
+//	     String typeId = ServletRequestUtils.getStringParameter(request, "typeId");
+		
+		 Integer currentPage = 0;  
+	     Integer pageSize = 5;
+	     String newsTims = null;
+	     String typeId = null;
+	     Date date ;
+	     if(newsTims != null ){
+	    	 date = sdf.parse(newsTims);
+	     }else{
+	    	 date = null;
+	     }
+		Page<News> page = newService.showNews(typeId, date, currentPage, pageSize);
+//		loger.info("结果信息："+ JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
+		return JSON.toJSONStringWithDateFormat(page, "yyyy-MM-dd HH:mm:ss");
 	}
 	
 	
