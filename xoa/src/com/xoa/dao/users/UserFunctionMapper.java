@@ -11,6 +11,6 @@ public interface UserFunctionMapper {
 	
 	public List<UserFunction> getDatagrid();
 	
-	public List<SysFunction>  getMenuByUserId(@Param("uid") int uid);
+	public UserFunction  getMenuByUserId(@Param("uid") int uid);
 
 }

@@ -8,7 +8,7 @@
   </resultMap>
   
   
-   <select id="getDatagrid" resultMap="userResultMap">
-		SELECT uid,user_id,user_func_id_str from user_function
+   <select id="getMenuByUserId" resultMap="userResultMap">
+		SELECT u.uid,u.user_id,u.user_func_id_str from user_function u,user y WHERE u.uid=#{uid}
 	</select>
 </mapper>
