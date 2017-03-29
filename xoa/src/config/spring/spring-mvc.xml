@@ -27,18 +27,19 @@
 	</mvc:annotation-driven>
 
 
-	<!-- 静态资源(js/image/css)的访问 -->
+	<!-- 静态资源(js/image/css/fonts/flash)的访问 -->
 	<mvc:resources location="/ui/js/" mapping="/js/**" />
 	<mvc:resources location="/ui/css/" mapping="/css/**" />
 	<mvc:resources location="/ui/img/" mapping="/img/**" />
-
+	<mvc:resources location="/ui/fonts/" mapping="/fonts/**" />
+	<mvc:resources location="/ui/flash/" mapping="/flash/**" />
 
 	<!-- 定义视图解析器 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/login/" />
+		<property name="prefix" value="/WEB-INF/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 

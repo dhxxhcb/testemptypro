@@ -28,20 +28,20 @@ public class IndexController {
 	 * 登录窗口
 	 * @return 登录窗口
 	 */
-	@RequestMapping("/logins") //登录窗口
+	@RequestMapping("/login") //登录窗口
 	public String login() {
 		loger.info("进入登录页面！");
-		return "logins";
+		return "login/logins";
 	}
 	
 	/**
 	 * 登录窗口
 	 * @return 登录窗口
 	 */
-	@RequestMapping("/mainemp") //登录窗口
+	@RequestMapping("/main") //登录窗口
 	public String loginSuccess() {
 		loger.info("成功登录！");
-		return "login/mainemp";
+		return "app/xoamain";
 	}
 	
 	
@@ -53,7 +53,7 @@ public class IndexController {
 		if("admin".trim().equals(username) && "admin".trim().equals(password)){
 			loger.info("成功登录");
 			request.setAttribute("userName", username);
-			modelAndView.setViewName("redirect:/mainemp");
+			modelAndView.setViewName("redirect:/main");
 		}else{
 			loger.info("登录失败");
 			modelAndView.setViewName("redirect:/login");

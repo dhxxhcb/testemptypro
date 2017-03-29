@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%--<%response.setHeader("Refresh","0.3;URL=login.do");%>--%>
-     <%response.sendRedirect("logins.do");%>
+     <%response.sendRedirect("login.do");%>
 <title>新通达OA</title>
 </head>
 <body>
