@@ -24,7 +24,7 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public ToJson<SysMenu> getAll() {
-		ToJson<SysMenu> toJson = new ToJson<>(0,"显示结果");
+		ToJson<SysMenu> toJson = new ToJson<SysMenu>(0,"显示结果");
 		List<SysMenu> list=sysMenuMapper.getDatagrid();
 		      toJson.setObj(list);
 		return toJson;
@@ -32,7 +32,7 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public ToJson<SysFunction> getDadMenu(String menuId,String id) {
-		ToJson<SysFunction> toJson=new ToJson<>(0,"显示结果");
+		ToJson<SysFunction> toJson=new ToJson<SysFunction>(0,"显示结果");
 		List<SysFunction> list=sysFunctionMapper.getDatagrid(menuId);
 		List<SysFunction> list1=sysFunctionMapper.childMenu(id);
 		if (list1.size()>0) {
