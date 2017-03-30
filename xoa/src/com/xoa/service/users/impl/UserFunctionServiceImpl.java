@@ -45,8 +45,6 @@ public class UserFunctionServiceImpl implements UserFunctionService {
 			}
 			
 		}
-		
-
 		toJson.setObj(list1);
 		return toJson;
 	}

@@ -36,7 +36,7 @@ public class MenuController {
 		ToJson<SysMenu> toJson = menuService.getAll();
 		loger.info("结果信息："+ JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("showNews", JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
+		map.put("showmenus", JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
 		return JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss");
 	}
 
