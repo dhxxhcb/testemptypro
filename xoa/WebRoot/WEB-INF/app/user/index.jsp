@@ -39,7 +39,7 @@
 }
 </style>
 <script Language="JavaScript">
-jQuery.noConflict();
+/* jQuery.noConflict();
 
 function refreshPriv(){
     var user_priv_str = jQuery("#USER_PRIV0").val() + "," + jQuery("#PRIV_ID").val();
@@ -66,9 +66,9 @@ function refreshPriv(){
             jQuery("#USER_PRIV_TYPE").val(data.user_priv_type);
         }
     });
-}
+} */
 
-(function($){
+/* (function($){
     $(function(){
         jQuery("[name='orgClear']").click(function(){
             var timer = null;
@@ -93,15 +93,15 @@ function refreshPriv(){
             }
         });
     })
-})(jQuery);
-
+})(jQuery); */
+/* 
 function select_main_priv(id)
 {
     var tt = jQuery("#USER_PRIV1").find('option:selected').text();
     jQuery("#user_priv").val(tt); 
     jQuery("#USER_PRIVS").val(id);  
-}
-function CheckForm()
+} */
+/* function CheckForm()
 {
     if(document.form1.BYNAME.value=="")
     {
@@ -109,19 +109,19 @@ function CheckForm()
         return (false);
     }
     
-    if(document.form1.USER_PRIV.value=="")
+   /*  if(document.form1.USER_PRIV.value=="")
     { 
         alert("角色不能为空！");
         return (false);
-    }
+    } */
     
-    if(document.form1.USER_NAME.value=="")
+   /*  if(document.form1.USER_NAME.value=="")
     { 
         alert("真实姓名不能为空！");
         return (false);
-    }
+    } */
     
-    if(document.form1.THEME.value=="")
+  /*  if(document.form1.THEME.value=="")
     { 
         alert("界面主题不能为空！");
         return (false);
@@ -187,7 +187,7 @@ function select_dept_other()
         dept_other.style.display='';
     else
         dept_other.style.display="none";
-}
+} */
 /* function check_user(id)
 {
     if(id=="")
@@ -204,7 +204,7 @@ function check_user_name(id)
     user_name_msg.innerHTML="<img src='img/loading_16.gif' align='absMiddle'> 检查中，请稍候……";
     _get("check_user.php","USER_NAME="+encodeURI(id), show_msg_name);
 } */
-function show_msg_name(req)
+/* function show_msg_name(req)
 {
     if(req.status==200)
     {
@@ -257,8 +257,21 @@ function check_userNo()
 function IsNumber(str)
 {
     return str.match(/^[0-9]*$/)!=null;
-}
+} */
 </script>
+
+<!-- <script>
+	function addUser(){
+		$("#form1").form("submit",{
+			url:"user/addUser",
+			success:function(data){
+				$.messager.alert("提示信息","添加成功","info");
+				$("#addUser_div").dialog("close");
+				$("#user_table").datagrid("load",{});
+			}
+		}); 
+	}
+</script> -->
 <body class="bodycolor">
 <body class="bodycolor" onload="document.form1.BYNAME.focus();"
 	style="position:relative">
@@ -270,8 +283,9 @@ function IsNumber(str)
 			</span></td>
 		</tr>
 	</table>
-
-	<form action="user/addUser"   method="post" name="form1" id="form1"
+	<table id="user_table"></table>
+<div id="addUser_div">
+	<form action="user/addUser" method="post" name="form1" id="form1"
 		onSubmit="CheckForm();">
 		<table class="TableBlock" width="95%" align="center">
 			<tr>
@@ -280,16 +294,16 @@ function IsNumber(str)
 			</tr>
 			<tr>
 				<td nowrap class="TableData" width="120">用户名：</td>
-				<td nowrap class="TableData"><input type="text" name="BYNAME"
+				<td nowrap class="TableData"><input type="text" name="BYNAME" id="BYNAME"
 					class="BigInput" size="10" maxlength="20"
-					onBlur="check_user(this.value)">&nbsp;<span id="byname_msg"></span>
+					>&nbsp;<span id="byname_msg"></span>
 				</td>
 			</tr>
 			<tr>
 				<td nowrap class="TableData">真实姓名：</td>
 				<td nowrap class="TableData"><input type="text"
-					name="USER_NAME" class="BigInput" size="10" maxlength="30"
-					onBlur="check_user_name(this.value)">&nbsp;<span
+					name="USER_NAME" class="BigInput" size="10" maxlength="30" id="USER_NAME"
+					>&nbsp;<span
 					id="user_name_msg"></span></td>
 			</tr>
 			<tr>
@@ -601,5 +615,6 @@ function IsNumber(str)
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 </html>
