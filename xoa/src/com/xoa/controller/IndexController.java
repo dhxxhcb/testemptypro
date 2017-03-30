@@ -31,7 +31,7 @@ public class IndexController {
 	@RequestMapping("/login") //登录窗口
 	public String login() {
 		loger.info("进入登录页面！");
-		return "login/logins";
+		return "login/1001/login2";
 	}
 	
 	/**

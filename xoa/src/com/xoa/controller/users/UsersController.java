@@ -22,15 +22,6 @@ public class UsersController {
 	@Resource
 	private UsersService usersService;
 	
-	@ResponseBody
-	@RequestMapping(value = "/user/addUser",method = RequestMethod.POST)
-	public String getUserAll(){
-		
-		
-		return null;
-	}
-	
-	
 
 	/**
 	 * 新增用户

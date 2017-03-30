@@ -54,14 +54,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="right">
 				<ul>
 					<li class="total">
-						<a href="login">
+						<a href="javascript:;">
 							<span class="round"></span>
 							<span class="bord">|</span>
 							<span class="txt">北京集团总部</span>
 						</a>
 					</li>
 					<li class="div_li one">
-						<a href="javascript:;">
+						<a href="login">
 							<span class="round"></span>
 							<span class="bord">|</span>
 							<span class="txt">北京分公司登录</span>

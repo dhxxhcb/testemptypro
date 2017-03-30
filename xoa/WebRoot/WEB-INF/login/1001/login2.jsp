@@ -35,22 +35,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   	<body>
+  	<form action="login" method="post" name="form1">
 		<div class="content">
 			<div class="entry">
 				<div class="div_img"><img src="img/logo.png"/></div>
 				<p>北京分公司网络办公智能平台</p>
 				<div class="txt">
-					<img src="ui/img/account.png" alt="用户名" />
-					<input type="text" name="txt" placeholder="用户名" />
+					<img src="img/account.png" alt="用户名" />
+					<input type="text" name="username" placeholder="用户名" />
 				</div>
 				<div class="txt">
 					<img src="img/password.png" alt="密码" />
 					<input type="password" name="password" placeholder="密码" />
 				</div>
 				<div class="div_log">
-					<a href="javascript:;">登录</a>
+					<a href="javascript:document.form1.submit();">登录</a>
 				</div>
 			</div>
 		</div>
+		</form>
 	</body>
 </html>
