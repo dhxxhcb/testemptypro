@@ -32,36 +32,21 @@ public class UserFunctionServiceImpl implements UserFunctionService {
 		List<SysFunction> sFunList=sysFunctionMapper.getAll();
 		UserFunction uFun=userFunctionMapper.getMenuByUserId(uid);
 		strArray=uFun.getUserFunCidStr().split(",");
-//		Iterator<SysFunction> it=sFunList.iterator();
 		List<SysFunction> list1 = new ArrayList<SysFunction>();
 		System.out.println(strArray.length);
 		for (int j = 0; j < strArray.length; j++) {
 			for (int i=j; i<sFunList.size(); i++) {  
 				System.out.println(sFunList.get(j).getFuncId());
 				if (sFunList.get(i).getFuncId().toString().equals(strArray[j])) {
-//					System.out.println(sFunList.get(j).getFuncId());
 					System.out.println("相等"+sFunList.get(i).getFuncId());
 					list1.add(sFunList.get(i));
-//					sFunList.remove(i);
 					break; 
 				}
-//				else {
-//					list1.add(sFunList.get(j));
-//				}
 			}
-			/*System.out.println(strArray[j]);*/
 			
 		}
 		
-//		while (it.hasNext()) {
-//			SysFunction sysFunction=it.next();
-//			//System.out.println(sysFunction.getFuncId());
-//			if (sysFunction.getFuncId()==0) {
-//				it.remove();
-//			}
-//			
-//		}
-		
+
 		toJson.setObj(list1);
 		return toJson;
 	}
