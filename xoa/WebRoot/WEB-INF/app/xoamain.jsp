@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -600,22 +602,19 @@ a.fmPanel span {
 					data-toggle="tooltip" data-original-title="下载移动版"><a
 					href="javascript:;" id="code" class="nav-item iconfont">&#xe682;</a>
 					<div class="code-wrap">
-						<a href="#"><img src="img/ios_code.png">
-						</a>
+						<a href="#"><img src="img/ios_code.png"> </a>
 						<p>iOS版</p>
 						<hr>
-						<a href="#"><img src="img/android_code.png">
-						</a>
+						<a href="#"><img src="img/android_code.png"> </a>
 						<p>Android版</p>
 						<hr>
-						<a href="#"><img src="img/ding_code.jpg">
-						</a>
+						<a href="#"><img src="img/ding_code.jpg"> </a>
 						<p>下载钉钉</p>
 						<hr>
-						<a href="#"><img src="img/wechat.jpg">
-						</a>
+						<a href="#"><img src="img/wechat.jpg"> </a>
 						<p>通达OA公众号</p>
-					</div></li>
+					</div>
+				</li>
 				<li id="info_avater" class="navin" data-placement="left"
 					data-toggle="tooltip" title="" data-original-title="我的OA账号"
 					data-step="6"
@@ -657,7 +656,8 @@ a.fmPanel span {
 							<a href="javascript:;" id="person_info" hidefocus="hidefocus">控制面板</a>
 							<a href="javascript:;" id="logout" hidefocus="hidefocus">注销</a>
 						</div>
-					</div></li>
+					</div>
+				</li>
 				<li class="navin" data-step="7"
 					data-intro="<b style='display:block'>7、搜索</b>通过“搜索”，可以快速搜索用户、菜单、工作流、通讯簿、日程安排和在线帮助。"
 					data-position="left"><a href="javascript:;" id="searchbar"
@@ -681,7 +681,8 @@ a.fmPanel span {
 					data-position="left"><a href="javascript:;" id="theme"
 					class="nav-item iconfont" data-placement="bottom"
 					data-toggle="tooltip" title="" data-original-title="换肤"
-					style="font-size: 24px;">&#xe60f;</a></li>
+					style="font-size: 24px;">&#xe60f;</a>
+				</li>
 				<li class="navin" data-step="11"
 					data-intro="<b style='display:block'>11、通知中心</b>“通知中心”为您提供今日消息、事务提醒，增强网页微讯交流，支持文件分享与群发。"
 					data-position="left"><a href="javascript:;" id="eastbar"
@@ -728,12 +729,12 @@ a.fmPanel span {
 					data-position="right" style="height: 414.333px;">
 					<li data-submenu-id="second-menu-shortcut">
 						<div id="mshortcut" hidefocus="hidefocus" class="first-menu-item">
-							<i class="iconfont"></i><span class="first-menu-title">快捷菜单</span>
+							<i class="iconfont"></i><span class="first-menu-title"><fmt:message code="main.menu" /></span>
 						</div>
 						<div id="second-menu-shortcut" class="second-panel"
 							style="display: none; top: -22px; left: 200px;">
 							<h4>
-								快捷菜单<a href="javascript:;"
+								<fmt:message code="main.menu" /><a href="javascript:;"
 									onclick="window.createTab('fshortcut', func_array['fshortcut'][0], func_array['fshortcut'][1], func_array['fshortcut'][4]);"
 									class="set-shortcut" id="set-shortcut"><i class="iconfont"></i>
 								</a>
@@ -741,71 +742,62 @@ a.fmPanel span {
 							<ul id="second-menulist-shortcut" class="second-menu clearfix">
 								<li class=""><a id="f1" class="second-menu-item"
 									title="电子邮件" href="javascript:;"
-									onclick="createTab(1,'电子邮件','email','');" hidefocus="hidefocus">电子邮件</a>
+									onclick="createTab(1,'电子邮件','email','');" hidefocus="hidefocus"><fmt:message code="main.email" /></a>
 								</li>
 								<li class=""><a id="f4" class="second-menu-item"
 									title="公告通知" href="javascript:;"
 									onclick="createTab(4,'公告通知','notify/show','');"
-									hidefocus="hidefocus">公告通知</a>
-								</li>
+									hidefocus="hidefocus"><fmt:message code="main.inform" /></a></li>
 								<li class=""><a id="f147" class="second-menu-item"
 									title="新闻" href="javascript:;"
 									onclick="createTab(147,'新闻','news/show','');"
-									hidefocus="hidefocus">新闻</a>
-								</li>
+									hidefocus="hidefocus"><fmt:message code="main.news" /></a></li>
 								<li class=""><a id="f8" class="second-menu-item"
 									title="日程安排" href="javascript:;"
 									onclick="createTab(8,'日程安排','calendar','');"
-									hidefocus="hidefocus">日程安排</a>
-								</li>
+									hidefocus="hidefocus"><fmt:message code="main.schedule" /></a></li>
 								<li class=""><a id="f130" class="second-menu-item"
 									title="新建工作" href="javascript:;"
 									onclick="createTab(130,'新建工作','workflow/new','');"
-									hidefocus="hidefocus">新建工作</a>
-								</li>
+									hidefocus="hidefocus"><fmt:message code="main.newwork" /></a></li>
 								<li class=""><a id="f5" class="second-menu-item"
 									title="我的工作" href="javascript:;"
 									onclick="createTab(5,'我的工作','workflow/list','');"
-									hidefocus="hidefocus">我的工作</a>
-								</li>
+									hidefocus="hidefocus"><fmt:message code="main.mywork" /></a></li>
 								<li class=""><a id="f131" class="second-menu-item"
 									title="工作查询" href="javascript:;"
 									onclick="createTab(131,'工作查询','workflow/query','');"
-									hidefocus="hidefocus">工作查询</a>
-								</li>
+									hidefocus="hidefocus"><fmt:message code="main.query" /></a></li>
 								<li class=""><a id="f9" class="second-menu-item"
 									title="工作日志" href="javascript:;"
 									onclick="createTab(9,'工作日志','diary/show','');"
-									hidefocus="hidefocus">工作日志</a>
-								</li>
+									hidefocus="hidefocus">工作日志</a></li>
 								<li class=""><a id="f16" class="second-menu-item"
 									title="个人文件柜" href="javascript:;"
 									onclick="createTab(16,'个人文件柜','file_folder/index2.php','');"
-									hidefocus="hidefocus">个人文件柜</a>
-								</li>
+									hidefocus="hidefocus">个人文件柜</a></li>
 								<li class=""><a id="f15" class="second-menu-item"
 									title="公共文件柜" href="javascript:;"
 									onclick="createTab(15,'公共文件柜','knowledge_management','');"
-									hidefocus="hidefocus">公共文件柜</a>
-								</li>
+									hidefocus="hidefocus">公共文件柜</a></li>
 								<li class=""><a id="f76" class="second-menu-item"
 									title="网络硬盘" href="javascript:;"
 									onclick="createTab(76,'网络硬盘','netdisk','');"
-									hidefocus="hidefocus">网络硬盘</a>
-								</li>
+									hidefocus="hidefocus">网络硬盘</a></li>
 								<li class=""><a id="f62" class="second-menu-item"
 									title="讨论区" href="javascript:;"
 									onclick="createTab(62,'讨论区','bbs','');" hidefocus="hidefocus">讨论区</a>
 								</li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-01">
 						<div id="m01" hidefocus="hidefocus" class="first-menu-item">
-							<i class="iconfont"></i><span class="first-menu-title">个人事务</span>
+							<i class="iconfont"></i><span class="first-menu-title"><fmt:message code="main.affairs" /></span>
 						</div>
 						<div id="second-menu-01" class="second-panel"
 							style="display: none; top: -22px; left: 200px;">
-							<h4>个人事务</h4>
+							<h4><fmt:message code="main.affairs" /></h4>
 							<ul id="second-menulist-01" class="second-menu clearfix">
 								<li class=""><a id="f1" class="second-menu-item"
 									title="电子邮件" href="javascript:;"
@@ -818,1033 +810,854 @@ a.fmPanel span {
 								<li class=""><a id="f42" class="second-menu-item"
 									title="手机短信" href="javascript:;"
 									onclick="createTab(42,'手机短信','mobile_sms','');"
-									hidefocus="hidefocus">手机短信</a>
-								</li>
+									hidefocus="hidefocus">手机短信</a></li>
 								<li class=""><a id="f643" class="second-menu-item"
 									title="邮件审批" href="javascript:;"
 									onclick="createTab(643,'邮件审批','email/audit/','');"
-									hidefocus="hidefocus">邮件审批</a>
-								</li>
+									hidefocus="hidefocus">邮件审批</a></li>
 								<li class=""><a id="f644" class="second-menu-item"
 									title="邮件审批日志" href="javascript:;"
 									onclick="createTab(644,'邮件审批日志','email/audit_log/','');"
-									hidefocus="hidefocus">邮件审批日志</a>
-								</li>
+									hidefocus="hidefocus">邮件审批日志</a></li>
 								<li class=""><a id="f634" class="second-menu-item"
 									title="智协同" href="javascript:;"
 									onclick="createTab(634,'智协同','itask','');"
-									hidefocus="hidefocus">智协同</a>
-								</li>
+									hidefocus="hidefocus">智协同</a></li>
 								<li class=""><a id="f4" class="second-menu-item"
 									title="公告通知" href="javascript:;"
 									onclick="createTab(4,'公告通知','notify/show','');"
-									hidefocus="hidefocus">公告通知</a>
-								</li>
+									hidefocus="hidefocus">公告通知</a></li>
 								<li class=""><a id="f147" class="second-menu-item"
 									title="新闻" href="javascript:;"
 									onclick="createTab(147,'新闻','news/show','');"
-									hidefocus="hidefocus">新闻</a>
-								</li>
+									hidefocus="hidefocus">新闻</a></li>
 								<li class=""><a id="f148" class="second-menu-item"
 									title="投票" href="javascript:;"
 									onclick="createTab(148,'投票','vote/show','');"
-									hidefocus="hidefocus">投票</a>
-								</li>
+									hidefocus="hidefocus">投票</a></li>
 								<li class=""><a id="f7" class="second-menu-item"
 									title="个人考勤" href="javascript:;"
 									onclick="createTab(7,'个人考勤','attendance/personal','');"
-									hidefocus="hidefocus">个人考勤</a>
-								</li>
+									hidefocus="hidefocus">个人考勤</a></li>
 								<li class=""><a id="f8" class="second-menu-item"
 									title="日程安排" href="javascript:;"
 									onclick="createTab(8,'日程安排','calendar','');"
-									hidefocus="hidefocus">日程安排</a>
-								</li>
+									hidefocus="hidefocus">日程安排</a></li>
 								<li class=""><a id="f9" class="second-menu-item"
 									title="工作日志" href="javascript:;"
 									onclick="createTab(9,'工作日志','diary/show','');"
-									hidefocus="hidefocus">工作日志</a>
-								</li>
+									hidefocus="hidefocus">工作日志</a></li>
 								<li class=""><a id="f10" class="second-menu-item"
 									title="通讯簿" href="javascript:;"
 									onclick="createTab(10,'通讯簿','address/private','');"
-									hidefocus="hidefocus">通讯簿</a>
-								</li>
+									hidefocus="hidefocus">通讯簿</a></li>
 								<li class=""><a id="f16" class="second-menu-item"
 									title="个人文件柜" href="javascript:;"
 									onclick="createTab(16,'个人文件柜','file_folder/index2.php','');"
-									hidefocus="hidefocus">个人文件柜</a>
-								</li>
+									hidefocus="hidefocus">个人文件柜</a></li>
 								<li class=""><a id="f11" class="second-menu-item"
 									title="控制面板" href="javascript:;"
 									onclick="createTab(11,'控制面板','person_info','');"
-									hidefocus="hidefocus">控制面板</a>
-								</li>
+									hidefocus="hidefocus">控制面板</a></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-10">
 						<div id="m10" hidefocus="hidefocus" class="first-menu-item">
-							<i class="iconfont"></i><span class="first-menu-title">工作流</span>
+							<i class="iconfont"></i><span class="first-menu-title"><fmt:message code="main.workflow" /></span>
 						</div>
 						<div id="second-menu-10" class="second-panel"
 							style="display: none;">
-							<h4>工作流</h4>
+							<h4><fmt:message code="main.workflow" /></h4>
 							<ul id="second-menulist-10" class="second-menu clearfix">
 								<li class=""><a id="f130" class="second-menu-item"
 									title="新建工作" href="javascript:;"
 									onclick="createTab(130,'新建工作','workflow/new','');"
-									hidefocus="hidefocus">新建工作</a>
-								</li>
+									hidefocus="hidefocus">新建工作</a></li>
 								<li class=""><a id="f5" class="second-menu-item"
 									title="我的工作" href="javascript:;"
 									onclick="createTab(5,'我的工作','workflow/list','');"
-									hidefocus="hidefocus">我的工作</a>
-								</li>
+									hidefocus="hidefocus">我的工作</a></li>
 								<li class=""><a id="f131" class="second-menu-item"
 									title="工作查询" href="javascript:;"
 									onclick="createTab(131,'工作查询','workflow/query','');"
-									hidefocus="hidefocus">工作查询</a>
-								</li>
+									hidefocus="hidefocus">工作查询</a></li>
 								<li class=""><a id="f132" class="second-menu-item"
 									title="工作监控" href="javascript:;"
 									onclick="createTab(132,'工作监控','workflow/manage','');"
-									hidefocus="hidefocus">工作监控</a>
-								</li>
+									hidefocus="hidefocus">工作监控</a></li>
 								<li class=""><a id="f256" class="second-menu-item"
 									title="数据报表" href="javascript:;"
 									onclick="createTab(256,'数据报表','workflow/report','');"
-									hidefocus="hidefocus">数据报表</a>
-								</li>
+									hidefocus="hidefocus">数据报表</a></li>
 								<li class=""><a id="f229" class="second-menu-item"
 									title="超时统计分析" href="javascript:;"
 									onclick="createTab(229,'超时统计分析','workflow/timeout_stat','');"
-									hidefocus="hidefocus">超时统计分析</a>
-								</li>
+									hidefocus="hidefocus">超时统计分析</a></li>
 								<li class=""><a id="f182" class="second-menu-item"
 									title="工作委托" href="javascript:;"
 									onclick="createTab(182,'工作委托','workflow/rule','');"
-									hidefocus="hidefocus">工作委托</a>
-								</li>
+									hidefocus="hidefocus">工作委托</a></li>
 								<li class=""><a id="f183" class="second-menu-item"
 									title="工作销毁" href="javascript:;"
 									onclick="createTab(183,'工作销毁','workflow/destroy','');"
-									hidefocus="hidefocus">工作销毁</a>
-								</li>
+									hidefocus="hidefocus">工作销毁</a></li>
 								<li class=""><a id="f194" class="second-menu-item"
 									title="流程日志查询" href="javascript:;"
 									onclick="createTab(194,'流程日志查询','workflow/logs','');"
-									hidefocus="hidefocus">流程日志查询</a>
-								</li>
+									hidefocus="hidefocus">流程日志查询</a></li>
 								<li class=""><a id="f637" class="second-menu-item"
 									title="数据归档" href="javascript:;"
 									onclick="createTab(637,'数据归档','workflow/archive','');"
-									hidefocus="hidefocus">数据归档</a>
-								</li>
+									hidefocus="hidefocus">数据归档</a></li>
 								<li class="expand"><a id="f134" class="second-menu-item"
 									title="工作流设置" href="javascript:;" onclick=""
 									hidefocus="hidefocus">工作流设置</a>
-								<ul id="third-menulist-f134" class="third-menu">
+									<ul id="third-menulist-f134" class="third-menu">
 										<li><a id="f37" class="third-menu-item"
 											href="javascript:;" title="设计表单"
 											onclick="createTab(37,'设计表单','system/workflow/flow_form','');"
-											hidefocus="hidefocus">设计表单</a>
-										</li>
+											hidefocus="hidefocus">设计表单</a></li>
 										<li><a id="f135" class="third-menu-item"
 											href="javascript:;" title="设计流程"
 											onclick="createTab(135,'设计流程','system/workflow/flow_guide','');"
-											hidefocus="hidefocus">设计流程</a>
-										</li>
+											hidefocus="hidefocus">设计流程</a></li>
 										<li><a id="f136" class="third-menu-item"
 											href="javascript:;" title="分类设置"
 											onclick="createTab(136,'分类设置','system/workflow/flow_sort','');"
-											hidefocus="hidefocus">分类设置</a>
-										</li>
+											hidefocus="hidefocus">分类设置</a></li>
 										<li><a id="f226" class="third-menu-item"
 											href="javascript:;" title="参数设置"
 											onclick="createTab(226,'参数设置','system/workflow/config','');"
-											hidefocus="hidefocus">参数设置</a>
-										</li>
+											hidefocus="hidefocus">参数设置</a></li>
 										<li><a id="f253" class="third-menu-item"
 											href="javascript:;" title="业务引擎设置"
 											onclick="createTab(253,'业务引擎设置','system/workflow/flow_hook','');"
-											hidefocus="hidefocus">业务引擎设置</a>
-										</li>
+											hidefocus="hidefocus">业务引擎设置</a></li>
 										<li><a id="f254" class="third-menu-item"
 											href="javascript:;" title="报表设置"
 											onclick="createTab(254,'报表设置','system/workflow/flow_report','');"
-											hidefocus="hidefocus">报表设置</a>
-										</li>
+											hidefocus="hidefocus">报表设置</a></li>
 										<li><a id="f255" class="third-menu-item"
 											href="javascript:;" title="数据源管理"
 											onclick="createTab(255,'数据源管理','system/workflow/flow_data','');"
-											hidefocus="hidefocus">数据源管理</a>
-										</li>
+											hidefocus="hidefocus">数据源管理</a></li>
 										<li><a id="f536" class="third-menu-item"
 											href="javascript:;" title="管理日志"
 											onclick="createTab(536,'管理日志','system/workflow/flow_log','');"
-											hidefocus="hidefocus">管理日志</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">管理日志</a></li>
+									</ul></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-20">
 						<div id="m20" hidefocus="hidefocus" class="first-menu-item">
-							<i class="iconfont"></i><span class="first-menu-title">行政办公</span>
+							<i class="iconfont"></i><span class="first-menu-title"><fmt:message code="main.office" /></span>
 						</div>
 						<div id="second-menu-20" class="second-panel"
 							style="display: none;">
-							<h4>行政办公</h4>
+							<h4><fmt:message code="main.office" /></h4>
 							<ul id="second-menulist-20" class="second-menu clearfix">
 								<li class=""><a id="f24" class="second-menu-item"
 									title="公告通知管理" href="javascript:;"
 									onclick="createTab(24,'公告通知管理','notify/manage','');"
-									hidefocus="hidefocus">公告通知管理</a>
-								</li>
+									hidefocus="hidefocus">公告通知管理</a></li>
 								<li class=""><a id="f196" class="second-menu-item"
 									title="公告通知审批" href="javascript:;"
 									onclick="createTab(196,'公告通知审批','notify/auditing','');"
-									hidefocus="hidefocus">公告通知审批</a>
-								</li>
+									hidefocus="hidefocus">公告通知审批</a></li>
 								<li class=""><a id="f105" class="second-menu-item"
 									title="新闻管理" href="javascript:;"
 									onclick="createTab(105,'新闻管理','news/manage','');"
-									hidefocus="hidefocus">新闻管理</a>
-								</li>
+									hidefocus="hidefocus">新闻管理</a></li>
 								<li class=""><a id="f119" class="second-menu-item"
 									title="投票管理" href="javascript:;"
 									onclick="createTab(119,'投票管理','vote/manage','');"
-									hidefocus="hidefocus">投票管理</a>
-								</li>
+									hidefocus="hidefocus">投票管理</a></li>
 								<li class=""><a id="f80" class="second-menu-item"
 									title="日程安排查询" href="javascript:;"
 									onclick="createTab(80,'日程安排查询','calendar/info','');"
-									hidefocus="hidefocus">日程安排查询</a>
-								</li>
+									hidefocus="hidefocus">日程安排查询</a></li>
 								<li class=""><a id="f218" class="second-menu-item"
 									title="词语过滤管理" href="javascript:;"
 									onclick="createTab(218,'词语过滤管理','system/censor_words','');"
-									hidefocus="hidefocus">词语过滤管理</a>
-								</li>
+									hidefocus="hidefocus">词语过滤管理</a></li>
 								<li class=""><a id="f219" class="second-menu-item"
 									title="信息过滤审核" href="javascript:;"
 									onclick="createTab(219,'信息过滤审核','system/censor_check','');"
-									hidefocus="hidefocus">信息过滤审核</a>
-								</li>
+									hidefocus="hidefocus">信息过滤审核</a></li>
 								<li class="expand"><a id="f96" class="second-menu-item"
 									title="工作计划" href="javascript:;" onclick=""
 									hidefocus="hidefocus">工作计划</a>
-								<ul id="third-menulist-f96" class="third-menu">
+									<ul id="third-menulist-f96" class="third-menu">
 										<li><a id="f97" class="third-menu-item"
 											href="javascript:;" title="工作计划查询"
 											onclick="createTab(97,'工作计划查询','work_plan/show','');"
-											hidefocus="hidefocus">工作计划查询</a>
-										</li>
+											hidefocus="hidefocus">工作计划查询</a></li>
 										<li><a id="f98" class="third-menu-item"
 											href="javascript:;" title="工作计划管理"
 											onclick="createTab(98,'工作计划管理','work_plan/manage','');"
-											hidefocus="hidefocus">工作计划管理</a>
-										</li>
+											hidefocus="hidefocus">工作计划管理</a></li>
 										<li><a id="f114" class="third-menu-item"
 											href="javascript:;" title="工作计划类型设置"
 											onclick="createTab(114,'工作计划类型设置','work_plan/type','');"
-											hidefocus="hidefocus">工作计划类型设置</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">工作计划类型设置</a></li>
+									</ul></li>
 								<li class="expand"><a id="f126" class="second-menu-item"
 									title="办公用品" href="javascript:;" onclick=""
 									hidefocus="hidefocus">办公用品</a>
-								<ul id="third-menulist-f126" class="third-menu">
+									<ul id="third-menulist-f126" class="third-menu">
 										<li><a id="f179" class="third-menu-item"
 											href="javascript:;" title="办公用品申领"
 											onclick="createTab(179,'办公用品申领','office_product/apply','');"
-											hidefocus="hidefocus">办公用品申领</a>
-										</li>
+											hidefocus="hidefocus">办公用品申领</a></li>
 										<li><a id="f607" class="third-menu-item"
 											href="javascript:;" title="办公用品审批"
 											onclick="createTab(607,'办公用品审批','office_product/dept_approval','');"
-											hidefocus="hidefocus">办公用品审批</a>
-										</li>
+											hidefocus="hidefocus">办公用品审批</a></li>
 										<li><a id="f539" class="third-menu-item"
 											href="javascript:;" title="办公用品发放"
 											onclick="createTab(539,'办公用品发放','office_product/grant','');"
-											hidefocus="hidefocus">办公用品发放</a>
-										</li>
+											hidefocus="hidefocus">办公用品发放</a></li>
 										<li><a id="f251" class="third-menu-item"
 											href="javascript:;" title="办公用品报表"
 											onclick="createTab(251,'办公用品报表','office_product/report','');"
-											hidefocus="hidefocus">办公用品报表</a>
-										</li>
+											hidefocus="hidefocus">办公用品报表</a></li>
 										<li><a id="f127" class="third-menu-item"
 											href="javascript:;" title="办公用品信息管理"
 											onclick="createTab(127,'办公用品信息管理','office_product/product_manage','');"
-											hidefocus="hidefocus">办公用品信息管理</a>
-										</li>
+											hidefocus="hidefocus">办公用品信息管理</a></li>
 										<li><a id="f238" class="third-menu-item"
 											href="javascript:;" title="办公用品库管理"
 											onclick="createTab(238,'办公用品库管理','office_product/depository_manage','');"
-											hidefocus="hidefocus">办公用品库管理</a>
-										</li>
+											hidefocus="hidefocus">办公用品库管理</a></li>
 										<li><a id="f128" class="third-menu-item"
 											href="javascript:;" title="办公用品库存管理"
 											onclick="createTab(128,'办公用品库存管理','office_product/inventory_manage','');"
-											hidefocus="hidefocus">办公用品库存管理</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">办公用品库存管理</a></li>
+									</ul></li>
 								<li class="expand"><a id="f85" class="second-menu-item"
 									title="会议申请与安排" href="javascript:;" onclick=""
 									hidefocus="hidefocus">会议申请与安排</a>
-								<ul id="third-menulist-f85" class="third-menu">
+									<ul id="third-menulist-f85" class="third-menu">
 										<li><a id="f86" class="third-menu-item"
 											href="javascript:;" title="会议申请"
 											onclick="createTab(86,'会议申请','meeting/apply','');"
-											hidefocus="hidefocus">会议申请</a>
-										</li>
+											hidefocus="hidefocus">会议申请</a></li>
 										<li><a id="f87" class="third-menu-item"
 											href="javascript:;" title="会议查询"
 											onclick="createTab(87,'会议查询','meeting/query','');"
-											hidefocus="hidefocus">会议查询</a>
-										</li>
+											hidefocus="hidefocus">会议查询</a></li>
 										<li><a id="f88" class="third-menu-item"
 											href="javascript:;" title="会议管理"
 											onclick="createTab(88,'会议管理','meeting/manage','');"
-											hidefocus="hidefocus">会议管理</a>
-										</li>
+											hidefocus="hidefocus">会议管理</a></li>
 										<li><a id="f89" class="third-menu-item"
 											href="javascript:;" title="会议室设置"
 											onclick="createTab(89,'会议室设置','meeting/meeting_room','');"
-											hidefocus="hidefocus">会议室设置</a>
-										</li>
+											hidefocus="hidefocus">会议室设置</a></li>
 										<li><a id="f137" class="third-menu-item"
 											href="javascript:;" title="管理员设置"
 											onclick="createTab(137,'管理员设置','meeting/operator','');"
-											hidefocus="hidefocus">管理员设置</a>
-										</li>
+											hidefocus="hidefocus">管理员设置</a></li>
 										<li><a id="f138" class="third-menu-item"
 											href="javascript:;" title="会议纪要"
 											onclick="createTab(138,'会议纪要','meeting/summary','');"
-											hidefocus="hidefocus">会议纪要</a>
-										</li>
+											hidefocus="hidefocus">会议纪要</a></li>
 										<li><a id="f222" class="third-menu-item"
 											href="javascript:;" title="会议室设备管理"
 											onclick="createTab(222,'会议室设备管理','meeting/equipment','');"
-											hidefocus="hidefocus">会议室设备管理</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">会议室设备管理</a></li>
+									</ul></li>
 								<li class="expand"><a id="f90" class="second-menu-item"
 									title="车辆申请与安排" href="javascript:;" onclick=""
 									hidefocus="hidefocus">车辆申请与安排</a>
-								<ul id="third-menulist-f90" class="third-menu">
+									<ul id="third-menulist-f90" class="third-menu">
 										<li><a id="f91" class="third-menu-item"
 											href="javascript:;" title="车辆使用申请"
 											onclick="createTab(91,'车辆使用申请','vehicle','');"
-											hidefocus="hidefocus">车辆使用申请</a>
-										</li>
+											hidefocus="hidefocus">车辆使用申请</a></li>
 										<li><a id="f92" class="third-menu-item"
 											href="javascript:;" title="车辆使用查询"
 											onclick="createTab(92,'车辆使用查询','vehicle/query','');"
-											hidefocus="hidefocus">车辆使用查询</a>
-										</li>
+											hidefocus="hidefocus">车辆使用查询</a></li>
 										<li><a id="f152" class="third-menu-item"
 											href="javascript:;" title="部门审批管理"
 											onclick="createTab(152,'部门审批管理','vehicle/dept_manage','');"
-											hidefocus="hidefocus">部门审批管理</a>
-										</li>
+											hidefocus="hidefocus">部门审批管理</a></li>
 										<li><a id="f93" class="third-menu-item"
 											href="javascript:;" title="车辆使用管理"
 											onclick="createTab(93,'车辆使用管理','vehicle/checkup','');"
-											hidefocus="hidefocus">车辆使用管理</a>
-										</li>
+											hidefocus="hidefocus">车辆使用管理</a></li>
 										<li><a id="f94" class="third-menu-item"
 											href="javascript:;" title="车辆维护管理"
 											onclick="createTab(94,'车辆维护管理','vehicle/maintenance','');"
-											hidefocus="hidefocus">车辆维护管理</a>
-										</li>
+											hidefocus="hidefocus">车辆维护管理</a></li>
 										<li><a id="f95" class="third-menu-item"
 											href="javascript:;" title="车辆信息管理"
 											onclick="createTab(95,'车辆信息管理','vehicle/manage','');"
-											hidefocus="hidefocus">车辆信息管理</a>
-										</li>
+											hidefocus="hidefocus">车辆信息管理</a></li>
 										<li><a id="f118" class="third-menu-item"
 											href="javascript:;" title="调度人员管理"
 											onclick="createTab(118,'调度人员管理','vehicle/operator','');"
-											hidefocus="hidefocus">调度人员管理</a>
-										</li>
+											hidefocus="hidefocus">调度人员管理</a></li>
 										<li><a id="f237" class="third-menu-item"
 											href="javascript:;" title="油耗统计"
 											onclick="createTab(237,'油耗统计','vehicle/oil_cost','');"
-											hidefocus="hidefocus">油耗统计</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">油耗统计</a></li>
+									</ul></li>
 								<li class="expand"><a id="f108" class="second-menu-item"
 									title="固定资产" href="javascript:;" onclick=""
 									hidefocus="hidefocus">固定资产</a>
-								<ul id="third-menulist-f108" class="third-menu">
+									<ul id="third-menulist-f108" class="third-menu">
 										<li><a id="f109" class="third-menu-item"
 											href="javascript:;" title="参数设置"
 											onclick="createTab(109,'参数设置','asset/config','');"
-											hidefocus="hidefocus">参数设置</a>
-										</li>
+											hidefocus="hidefocus">参数设置</a></li>
 										<li><a id="f110" class="third-menu-item"
 											href="javascript:;" title="固定资产管理"
 											onclick="createTab(110,'固定资产管理','asset/manage','');"
-											hidefocus="hidefocus">固定资产管理</a>
-										</li>
+											hidefocus="hidefocus">固定资产管理</a></li>
 										<li><a id="f112" class="third-menu-item"
 											href="javascript:;" title="固定资产查询"
 											onclick="createTab(112,'固定资产查询','asset/query','');"
-											hidefocus="hidefocus">固定资产查询</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">固定资产查询</a></li>
+									</ul></li>
 								<li class="expand"><a id="f51" class="second-menu-item"
 									title="图书管理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">图书管理</a>
-								<ul id="third-menulist-f51" class="third-menu">
+									<ul id="third-menulist-f51" class="third-menu">
 										<li><a id="f53" class="third-menu-item"
 											href="javascript:;" title="图书录入"
 											onclick="createTab(53,'图书录入','book/manage','');"
-											hidefocus="hidefocus">图书录入</a>
-										</li>
+											hidefocus="hidefocus">图书录入</a></li>
 										<li><a id="f54" class="third-menu-item"
 											href="javascript:;" title="图书查询"
 											onclick="createTab(54,'图书查询','book/query','');"
-											hidefocus="hidefocus">图书查询</a>
-										</li>
+											hidefocus="hidefocus">图书查询</a></li>
 										<li><a id="f153" class="third-menu-item"
 											href="javascript:;" title="借还书管理"
 											onclick="createTab(153,'借还书管理','book/borrow_manage','');"
-											hidefocus="hidefocus">借还书管理</a>
-										</li>
+											hidefocus="hidefocus">借还书管理</a></li>
 										<li><a id="f217" class="third-menu-item"
 											href="javascript:;" title="图书管理设置"
 											onclick="createTab(217,'图书管理设置','book/book_set','');"
-											hidefocus="hidefocus">图书管理设置</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">图书管理设置</a></li>
+									</ul></li>
 								<li class="expand"><a id="f150" class="second-menu-item"
 									title="资源申请与管理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">资源申请与管理</a>
-								<ul id="third-menulist-f150" class="third-menu">
+									<ul id="third-menulist-f150" class="third-menu">
 										<li><a id="f239" class="third-menu-item"
 											href="javascript:;" title="资源申请与管理"
 											onclick="createTab(239,'资源申请与管理','source/manage','');"
-											hidefocus="hidefocus">资源申请与管理</a>
-										</li>
+											hidefocus="hidefocus">资源申请与管理</a></li>
 										<li><a id="f240" class="third-menu-item"
 											href="javascript:;" title="周期性资源安排"
 											onclick="createTab(240,'周期性资源安排','source/cyclesource','');"
-											hidefocus="hidefocus">周期性资源安排</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">周期性资源安排</a></li>
+									</ul></li>
 								<li class="expand"><a id="f43" class="second-menu-item"
 									title="组织机构信息" href="javascript:;" onclick=""
 									hidefocus="hidefocus">组织机构信息</a>
-								<ul id="third-menulist-f43" class="third-menu">
+									<ul id="third-menulist-f43" class="third-menu">
 										<li><a id="f17" class="third-menu-item"
 											href="javascript:;" title="单位信息查询"
 											onclick="createTab(17,'单位信息查询','info/unit','');"
-											hidefocus="hidefocus">单位信息查询</a>
-										</li>
+											hidefocus="hidefocus">单位信息查询</a></li>
 										<li><a id="f18" class="third-menu-item"
 											href="javascript:;" title="部门信息查询"
 											onclick="createTab(18,'部门信息查询','info/dept','');"
-											hidefocus="hidefocus">部门信息查询</a>
-										</li>
+											hidefocus="hidefocus">部门信息查询</a></li>
 										<li><a id="f19" class="third-menu-item"
 											href="javascript:;" title="用户信息查询"
 											onclick="createTab(19,'用户信息查询','info/user','');"
-											hidefocus="hidefocus">用户信息查询</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">用户信息查询</a></li>
+									</ul></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-30">
 						<div id="m30" hidefocus="hidefocus" class="first-menu-item">
-							<i class="iconfont"></i><span class="first-menu-title">知识管理</span>
+							<i class="iconfont"></i><span class="first-menu-title"><fmt:message code="main.management" /></span>
 						</div>
 						<div id="second-menu-30" class="second-panel"
 							style="display: none;">
-							<h4>知识管理</h4>
+							<h4><fmt:message code="main.management" /></h4>
 							<ul id="second-menulist-30" class="second-menu clearfix">
 								<li class=""><a id="f15" class="second-menu-item"
 									title="公共文件柜" href="javascript:;"
 									onclick="createTab(15,'公共文件柜','knowledge_management','');"
-									hidefocus="hidefocus">公共文件柜</a>
-								</li>
+									hidefocus="hidefocus">公共文件柜</a></li>
 								<li class=""><a id="f36" class="second-menu-item"
 									title="公共文件柜设置" href="javascript:;"
 									onclick="createTab(36,'公共文件柜设置','system/file_folder','');"
-									hidefocus="hidefocus">公共文件柜设置</a>
-								</li>
+									hidefocus="hidefocus">公共文件柜设置</a></li>
 								<li class=""><a id="f70" class="second-menu-item"
 									title="安全文档中心" href="javascript:;"
 									onclick="createTab(70,'安全文档中心','safe_doc','');"
-									hidefocus="hidefocus">安全文档中心</a>
-								</li>
+									hidefocus="hidefocus">安全文档中心</a></li>
 								<li class=""><a id="f76" class="second-menu-item"
 									title="网络硬盘" href="javascript:;"
 									onclick="createTab(76,'网络硬盘','netdisk','');"
-									hidefocus="hidefocus">网络硬盘</a>
-								</li>
+									hidefocus="hidefocus">网络硬盘</a></li>
 								<li class=""><a id="f77" class="second-menu-item"
 									title="网络硬盘设置" href="javascript:;"
 									onclick="createTab(77,'网络硬盘设置','system/netdisk','');"
-									hidefocus="hidefocus">网络硬盘设置</a>
-								</li>
+									hidefocus="hidefocus">网络硬盘设置</a></li>
 								<li class=""><a id="f115" class="second-menu-item"
 									title="图片浏览" href="javascript:;"
 									onclick="createTab(115,'图片浏览','picture','');"
-									hidefocus="hidefocus">图片浏览</a>
-								</li>
+									hidefocus="hidefocus">图片浏览</a></li>
 								<li class=""><a id="f116" class="second-menu-item"
 									title="图片浏览设置" href="javascript:;"
 									onclick="createTab(116,'图片浏览设置','system/picture','');"
-									hidefocus="hidefocus">图片浏览设置</a>
-								</li>
+									hidefocus="hidefocus">图片浏览设置</a></li>
 								<li class=""><a id="f185" class="second-menu-item"
 									title="OA知道" href="javascript:;"
 									onclick="createTab(185,'OA知道','zhidao','');"
-									hidefocus="hidefocus">OA知道</a>
-								</li>
+									hidefocus="hidefocus">OA知道</a></li>
 								<li class=""><a id="f235" class="second-menu-item"
 									title="维基百科" href="javascript:;"
 									onclick="createTab(235,'维基百科','wiki','');"
-									hidefocus="hidefocus">维基百科</a>
-								</li>
+									hidefocus="hidefocus">维基百科</a></li>
 								<li class=""><a id="f535" class="second-menu-item"
 									title="文档检索中心" href="javascript:;"
 									onclick="createTab(535,'文档检索中心','index','');"
-									hidefocus="hidefocus">文档检索中心</a>
-								</li>
+									hidefocus="hidefocus">文档检索中心</a></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-40">
 						<div id="m40" hidefocus="hidefocus" class="first-menu-item">
-							<i class="iconfont"></i><span class="first-menu-title">智能门户</span>
+							<i class="iconfont"></i><span class="first-menu-title"><fmt:message code="main.portal" /></span>
 						</div>
 						<div id="second-menu-40" class="second-panel"
 							style="display: none; top: -22px; left: 200px;">
-							<h4>智能门户</h4>
+							<h4><fmt:message code="main.portal" /></h4>
 							<ul id="second-menulist-40" class="second-menu clearfix">
 								<li class=""><a id="f59" class="second-menu-item"
 									title="我的门户" href="javascript:;"
 									onclick="createTab(59,'我的门户','portal','');"
-									hidefocus="hidefocus">我的门户</a>
-								</li>
+									hidefocus="hidefocus">我的门户</a></li>
 								<li class=""><a id="f133" class="second-menu-item"
 									title="门户管理" href="javascript:;"
 									onclick="createTab(133,'门户管理','system/portal/setting','');"
-									hidefocus="hidefocus">门户管理</a>
-								</li>
+									hidefocus="hidefocus">门户管理</a></li>
 								<li class=""><a id="f64" class="second-menu-item"
 									title="门户模版管理" href="javascript:;"
 									onclick="createTab(64,'门户模版管理','system/portal/template','');"
-									hidefocus="hidefocus">门户模版管理</a>
-								</li>
+									hidefocus="hidefocus">门户模版管理</a></li>
 								<li class=""><a id="f257" class="second-menu-item"
 									title="门户内容管理" href="javascript:;"
 									onclick="createTab(257,'门户内容管理','system/portal/content','');"
-									hidefocus="hidefocus">门户内容管理</a>
-								</li>
+									hidefocus="hidefocus">门户内容管理</a></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-45">
 						<div id="m45" hidefocus="hidefocus" class="first-menu-item">
-							<i class="iconfont"></i><span class="first-menu-title">管理中心</span>
+							<i class="iconfont"></i><span class="first-menu-title"><fmt:message code="main.center" /></span>
 						</div>
 						<div id="second-menu-45" class="second-panel"
 							style="display: none;">
-							<h4>管理中心</h4>
+							<h4><fmt:message code="main.center" /></h4>
 							<ul id="second-menulist-45" class="second-menu clearfix">
 								<li class=""><a id="f2" class="second-menu-item"
 									title="管理中心门户" href="javascript:;"
 									onclick="createTab(2,'管理中心门户','management_center/portal','');"
-									hidefocus="hidefocus">管理中心门户</a>
-								</li>
+									hidefocus="hidefocus">管理中心门户</a></li>
 								<li class=""><a id="f74" class="second-menu-item"
 									title="管理驾驶舱" href="javascript:;"
 									onclick="createTab(74,'管理驾驶舱','management_center/cockpit','');"
-									hidefocus="hidefocus">管理驾驶舱</a>
-								</li>
+									hidefocus="hidefocus">管理驾驶舱</a></li>
 								<li class="expand"><a id="f12" class="second-menu-item"
 									title="管理中心设置" href="javascript:;" onclick=""
 									hidefocus="hidefocus">管理中心设置</a>
-								<ul id="third-menulist-f12" class="third-menu">
+									<ul id="third-menulist-f12" class="third-menu">
 										<li><a id="f68" class="third-menu-item"
 											href="javascript:;" title="全局设置"
 											onclick="createTab(68,'全局设置','management_center/setting/global','');"
-											hidefocus="hidefocus">全局设置</a>
-										</li>
+											hidefocus="hidefocus">全局设置</a></li>
 										<li><a id="f66" class="third-menu-item"
 											href="javascript:;" title="分类设置"
 											onclick="createTab(66,'分类设置','management_center/setting/class','');"
-											hidefocus="hidefocus">分类设置</a>
-										</li>
+											hidefocus="hidefocus">分类设置</a></li>
 										<li><a id="f67" class="third-menu-item"
 											href="javascript:;" title="权限设置"
 											onclick="createTab(67,'权限设置','management_center/setting/priv','');"
-											hidefocus="hidefocus">权限设置</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">权限设置</a></li>
+									</ul></li>
 								<li class="expand"><a id="f13" class="second-menu-item"
 									title="BI设计中心" href="javascript:;" onclick=""
 									hidefocus="hidefocus">BI设计中心</a>
-								<ul id="third-menulist-f13" class="third-menu">
+									<ul id="third-menulist-f13" class="third-menu">
 										<li><a id="f14" class="third-menu-item"
 											href="javascript:;" title="智能报表BI设计"
 											onclick="createTab(14,'智能报表BI设计','bi_design/reportshop','');"
-											hidefocus="hidefocus">智能报表BI设计</a>
-										</li>
+											hidefocus="hidefocus">智能报表BI设计</a></li>
 										<li><a id="f40" class="third-menu-item"
 											href="javascript:;" title="工作流BI设计"
 											onclick="createTab(40,'工作流BI设计','bi_design/workflow','');"
-											hidefocus="hidefocus">工作流BI设计</a>
-										</li>
+											hidefocus="hidefocus">工作流BI设计</a></li>
 										<li><a id="f41" class="third-menu-item"
 											href="javascript:;" title="OA业务BI设计"
 											onclick="createTab(41,'OA业务BI设计','bi_design/oa','');"
-											hidefocus="hidefocus">OA业务BI设计</a>
-										</li>
+											hidefocus="hidefocus">OA业务BI设计</a></li>
 										<li><a id="f44" class="third-menu-item"
 											href="javascript:;" title="外部业务BI设计"
 											onclick="createTab(44,'外部业务BI设计','bi_design/external','');"
-											hidefocus="hidefocus">外部业务BI设计</a>
-										</li>
+											hidefocus="hidefocus">外部业务BI设计</a></li>
 										<li><a id="f75" class="third-menu-item"
 											href="javascript:;" title="管理驾驶舱设置"
 											onclick="createTab(75,'管理驾驶舱设置','bi_design/cockpit','');"
-											hidefocus="hidefocus">管理驾驶舱设置</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">管理驾驶舱设置</a></li>
+									</ul></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-50">
 						<div id="m50" hidefocus="hidefocus" class="first-menu-item">
-							<i class="iconfont"></i><span class="first-menu-title">人力资源</span>
+							<i class="iconfont"></i><span class="first-menu-title"><fmt:message code="main.resources" /></span>
 						</div>
 						<div id="second-menu-50" class="second-panel"
 							style="display: none;">
-							<h4>人力资源</h4>
+							<h4><fmt:message code="main.resources" /></h4>
 							<ul id="second-menulist-50" class="second-menu clearfix">
 								<li class=""><a id="f511" class="second-menu-item"
 									title="员工自助查询" href="javascript:;"
 									onclick="createTab(511,'员工自助查询','hr/self_find','');"
-									hidefocus="hidefocus">员工自助查询</a>
-								</li>
+									hidefocus="hidefocus">员工自助查询</a></li>
 								<li class="expand"><a id="f27" class="second-menu-item"
 									title="人事管理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">人事管理</a>
-								<ul id="third-menulist-f27" class="third-menu">
+									<ul id="third-menulist-f27" class="third-menu">
 										<li><a id="f60" class="third-menu-item"
 											href="javascript:;" title="人事档案"
 											onclick="createTab(60,'人事档案','hr/manage/staff_info','');"
-											hidefocus="hidefocus">人事档案</a>
-										</li>
+											hidefocus="hidefocus">人事档案</a></li>
 										<li><a id="f61" class="third-menu-item"
 											href="javascript:;" title="档案查询"
 											onclick="createTab(61,'档案查询','hr/manage/query','');"
-											hidefocus="hidefocus">档案查询</a>
-										</li>
+											hidefocus="hidefocus">档案查询</a></li>
 										<li><a id="f481" class="third-menu-item"
 											href="javascript:;" title="合同管理"
 											onclick="createTab(481,'合同管理','hr/manage/staff_contract','');"
-											hidefocus="hidefocus">合同管理</a>
-										</li>
+											hidefocus="hidefocus">合同管理</a></li>
 										<li><a id="f482" class="third-menu-item"
 											href="javascript:;" title="奖惩管理"
 											onclick="createTab(482,'奖惩管理','hr/manage/staff_incentive','');"
-											hidefocus="hidefocus">奖惩管理</a>
-										</li>
+											hidefocus="hidefocus">奖惩管理</a></li>
 										<li><a id="f483" class="third-menu-item"
 											href="javascript:;" title="证照管理"
 											onclick="createTab(483,'证照管理','hr/manage/staff_license','');"
-											hidefocus="hidefocus">证照管理</a>
-										</li>
+											hidefocus="hidefocus">证照管理</a></li>
 										<li><a id="f484" class="third-menu-item"
 											href="javascript:;" title="学习经历"
 											onclick="createTab(484,'学习经历','hr/manage/staff_learn_experience','');"
-											hidefocus="hidefocus">学习经历</a>
-										</li>
+											hidefocus="hidefocus">学习经历</a></li>
 										<li><a id="f485" class="third-menu-item"
 											href="javascript:;" title="工作经历"
 											onclick="createTab(485,'工作经历','hr/manage/staff_work_experience','');"
-											hidefocus="hidefocus">工作经历</a>
-										</li>
+											hidefocus="hidefocus">工作经历</a></li>
 										<li><a id="f486" class="third-menu-item"
 											href="javascript:;" title="劳动技能"
 											onclick="createTab(486,'劳动技能','hr/manage/staff_labor_skills','');"
-											hidefocus="hidefocus">劳动技能</a>
-										</li>
+											hidefocus="hidefocus">劳动技能</a></li>
 										<li><a id="f487" class="third-menu-item"
 											href="javascript:;" title="社会关系"
 											onclick="createTab(487,'社会关系','hr/manage/staff_relatives','');"
-											hidefocus="hidefocus">社会关系</a>
-										</li>
+											hidefocus="hidefocus">社会关系</a></li>
 										<li><a id="f488" class="third-menu-item"
 											href="javascript:;" title="人事调动"
 											onclick="createTab(488,'人事调动','hr/manage/staff_transfer','');"
-											hidefocus="hidefocus">人事调动</a>
-										</li>
+											hidefocus="hidefocus">人事调动</a></li>
 										<li><a id="f489" class="third-menu-item"
 											href="javascript:;" title="离职管理"
 											onclick="createTab(489,'离职管理','hr/manage/staff_leave','');"
-											hidefocus="hidefocus">离职管理</a>
-										</li>
+											hidefocus="hidefocus">离职管理</a></li>
 										<li><a id="f490" class="third-menu-item"
 											href="javascript:;" title="复职管理"
 											onclick="createTab(490,'复职管理','hr/manage/staff_reinstatement','');"
-											hidefocus="hidefocus">复职管理</a>
-										</li>
+											hidefocus="hidefocus">复职管理</a></li>
 										<li><a id="f491" class="third-menu-item"
 											href="javascript:;" title="职称评定"
 											onclick="createTab(491,'职称评定','hr/manage/staff_title_evaluation','');"
-											hidefocus="hidefocus">职称评定</a>
-										</li>
+											hidefocus="hidefocus">职称评定</a></li>
 										<li><a id="f492" class="third-menu-item"
 											href="javascript:;" title="员工关怀"
 											onclick="createTab(492,'员工关怀','hr/manage/staff_care','');"
-											hidefocus="hidefocus">员工关怀</a>
-										</li>
+											hidefocus="hidefocus">员工关怀</a></li>
 										<li><a id="f120" class="third-menu-item"
 											href="javascript:;" title="人事分析"
 											onclick="createTab(120,'人事分析','hr/manage/staff_analysis','');"
-											hidefocus="hidefocus">人事分析</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">人事分析</a></li>
+									</ul></li>
 								<li class="expand"><a id="f494" class="second-menu-item"
 									title="招聘管理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">招聘管理</a>
-								<ul id="third-menulist-f494" class="third-menu">
+									<ul id="third-menulist-f494" class="third-menu">
 										<li><a id="f495" class="third-menu-item"
 											href="javascript:;" title="招聘需求"
 											onclick="createTab(495,'招聘需求','hr/recruit/requirements','');"
-											hidefocus="hidefocus">招聘需求</a>
-										</li>
+											hidefocus="hidefocus">招聘需求</a></li>
 										<li><a id="f496" class="third-menu-item"
 											href="javascript:;" title="招聘计划"
 											onclick="createTab(496,'招聘计划','hr/recruit/plan','');"
-											hidefocus="hidefocus">招聘计划</a>
-										</li>
+											hidefocus="hidefocus">招聘计划</a></li>
 										<li><a id="f497" class="third-menu-item"
 											href="javascript:;" title="招聘计划审批"
 											onclick="createTab(497,'招聘计划审批','hr/recruit/plan_approval','');"
-											hidefocus="hidefocus">招聘计划审批</a>
-										</li>
+											hidefocus="hidefocus">招聘计划审批</a></li>
 										<li><a id="f498" class="third-menu-item"
 											href="javascript:;" title="人才库"
 											onclick="createTab(498,'人才库','hr/recruit/hr_pool','');"
-											hidefocus="hidefocus">人才库</a>
-										</li>
+											hidefocus="hidefocus">人才库</a></li>
 										<li><a id="f499" class="third-menu-item"
 											href="javascript:;" title="招聘筛选"
 											onclick="createTab(499,'招聘筛选','hr/recruit/filter','');"
-											hidefocus="hidefocus">招聘筛选</a>
-										</li>
+											hidefocus="hidefocus">招聘筛选</a></li>
 										<li><a id="f500" class="third-menu-item"
 											href="javascript:;" title="招聘录用"
 											onclick="createTab(500,'招聘录用','hr/recruit/recruitment','');"
-											hidefocus="hidefocus">招聘录用</a>
-										</li>
+											hidefocus="hidefocus">招聘录用</a></li>
 										<li><a id="f501" class="third-menu-item"
 											href="javascript:;" title="人才分析"
 											onclick="createTab(501,'人才分析','hr/recruit/analysis','');"
-											hidefocus="hidefocus">人才分析</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">人才分析</a></li>
+									</ul></li>
 								<li class="expand"><a id="f502" class="second-menu-item"
 									title="培训管理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">培训管理</a>
-								<ul id="third-menulist-f502" class="third-menu">
+									<ul id="third-menulist-f502" class="third-menu">
 										<li><a id="f503" class="third-menu-item"
 											href="javascript:;" title="培训计划"
 											onclick="createTab(503,'培训计划','hr/training/plan','');"
-											hidefocus="hidefocus">培训计划</a>
-										</li>
+											hidefocus="hidefocus">培训计划</a></li>
 										<li><a id="f505" class="third-menu-item"
 											href="javascript:;" title="培训计划审批"
 											onclick="createTab(505,'培训计划审批','hr/training/approval/','');"
-											hidefocus="hidefocus">培训计划审批</a>
-										</li>
+											hidefocus="hidefocus">培训计划审批</a></li>
 										<li><a id="f504" class="third-menu-item"
 											href="javascript:;" title="培训记录"
 											onclick="createTab(504,'培训记录','hr/training/record','');"
-											hidefocus="hidefocus">培训记录</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">培训记录</a></li>
+									</ul></li>
 								<li class="expand"><a id="f26" class="second-menu-item"
 									title="考勤管理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">考勤管理</a>
-								<ul id="third-menulist-f26" class="third-menu">
+									<ul id="third-menulist-f26" class="third-menu">
 										<li><a id="f506" class="third-menu-item"
 											href="javascript:;" title="考勤审批"
 											onclick="createTab(506,'考勤审批','attendance/manage/confirm/','');"
-											hidefocus="hidefocus">考勤审批</a>
-										</li>
+											hidefocus="hidefocus">考勤审批</a></li>
 										<li><a id="f507" class="third-menu-item"
 											href="javascript:;" title="考勤记录"
 											onclick="createTab(507,'考勤记录','attendance/manage/user_manage','');"
-											hidefocus="hidefocus">考勤记录</a>
-										</li>
+											hidefocus="hidefocus">考勤记录</a></li>
 										<li><a id="f508" class="third-menu-item"
 											href="javascript:;" title="考勤统计"
 											onclick="createTab(508,'考勤统计','attendance/manage/query','');"
-											hidefocus="hidefocus">考勤统计</a>
-										</li>
+											hidefocus="hidefocus">考勤统计</a></li>
 										<li><a id="f515" class="third-menu-item"
 											href="javascript:;" title="值班排班管理"
 											onclick="createTab(515,'值班排班管理','attendance/manage/on_duty','');"
-											hidefocus="hidefocus">值班排班管理</a>
-										</li>
+											hidefocus="hidefocus">值班排班管理</a></li>
 										<li><a id="f537" class="third-menu-item"
 											href="javascript:;" title="查岗质询登记"
 											onclick="createTab(537,'查岗质询登记','attendance/manage/ask_duty','');"
-											hidefocus="hidefocus">查岗质询登记</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">查岗质询登记</a></li>
+									</ul></li>
 								<li class="expand"><a id="f122" class="second-menu-item"
 									title="绩效考核" href="javascript:;" onclick=""
 									hidefocus="hidefocus">绩效考核</a>
-								<ul id="third-menulist-f122" class="third-menu">
+									<ul id="third-menulist-f122" class="third-menu">
 										<li><a id="f123" class="third-menu-item"
 											href="javascript:;" title="考核项目设定"
 											onclick="createTab(123,'考核项目设定','score/group','');"
-											hidefocus="hidefocus">考核项目设定</a>
-										</li>
+											hidefocus="hidefocus">考核项目设定</a></li>
 										<li><a id="f124" class="third-menu-item"
 											href="javascript:;" title="考核任务管理"
 											onclick="createTab(124,'考核任务管理','score/flow','');"
-											hidefocus="hidefocus">考核任务管理</a>
-										</li>
+											hidefocus="hidefocus">考核任务管理</a></li>
 										<li><a id="f628" class="third-menu-item"
 											href="javascript:;" title="被考核人自评"
 											onclick="createTab(628,'被考核人自评','score/self_assessment','');"
-											hidefocus="hidefocus">被考核人自评</a>
-										</li>
+											hidefocus="hidefocus">被考核人自评</a></li>
 										<li><a id="f125" class="third-menu-item"
 											href="javascript:;" title="进行考核"
 											onclick="createTab(125,'进行考核','score/submit','');"
-											hidefocus="hidefocus">进行考核</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">进行考核</a></li>
+									</ul></li>
 								<li class="expand"><a id="f630" class="second-menu-item"
 									title="积分管理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">积分管理</a>
-								<ul id="third-menulist-f630" class="third-menu">
+									<ul id="third-menulist-f630" class="third-menu">
 										<li><a id="f631" class="third-menu-item"
 											href="javascript:;" title="积分录入"
 											onclick="createTab(631,'积分录入','hr/integral/input','');"
-											hidefocus="hidefocus">积分录入</a>
-										</li>
+											hidefocus="hidefocus">积分录入</a></li>
 										<li><a id="f632" class="third-menu-item"
 											href="javascript:;" title="积分查询"
 											onclick="createTab(632,'积分查询','hr/integral/query','');"
-											hidefocus="hidefocus">积分查询</a>
-										</li>
+											hidefocus="hidefocus">积分查询</a></li>
 										<li><a id="f633" class="third-menu-item"
 											href="javascript:;" title="积分项设置"
 											onclick="createTab(633,'积分项设置','hr/integral/item_setting','');"
-											hidefocus="hidefocus">积分项设置</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">积分项设置</a></li>
+									</ul></li>
 								<li class="expand"><a id="f55" class="second-menu-item"
 									title="薪酬管理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">薪酬管理</a>
-								<ul id="third-menulist-f55" class="third-menu">
+									<ul id="third-menulist-f55" class="third-menu">
 										<li><a id="f514" class="third-menu-item"
 											href="javascript:;" title="薪酬项目及保险设置"
 											onclick="createTab(514,'薪酬项目及保险设置','hr/salary/insurance_para','');"
-											hidefocus="hidefocus">薪酬项目及保险设置</a>
-										</li>
+											hidefocus="hidefocus">薪酬项目及保险设置</a></li>
 										<li><a id="f509" class="third-menu-item"
 											href="javascript:;" title="薪酬基数设置"
 											onclick="createTab(509,'薪酬基数设置','hr/salary/staff_insurance','');"
-											hidefocus="hidefocus">薪酬基数设置</a>
-										</li>
+											hidefocus="hidefocus">薪酬基数设置</a></li>
 										<li><a id="f29" class="third-menu-item"
 											href="javascript:;" title="工资流程管理"
 											onclick="createTab(29,'工资流程管理','hr/salary/manage','');"
-											hidefocus="hidefocus">工资流程管理</a>
-										</li>
+											hidefocus="hidefocus">工资流程管理</a></li>
 										<li><a id="f28" class="third-menu-item"
 											href="javascript:;" title="财务工资录入"
 											onclick="createTab(28,'财务工资录入','hr/salary/submit','');"
-											hidefocus="hidefocus">财务工资录入</a>
-										</li>
+											hidefocus="hidefocus">财务工资录入</a></li>
 										<li><a id="f129" class="third-menu-item"
 											href="javascript:;" title="部门工资上报"
 											onclick="createTab(129,'部门工资上报','hr/salary/report','');"
-											hidefocus="hidefocus">部门工资上报</a>
-										</li>
+											hidefocus="hidefocus">部门工资上报</a></li>
 										<li><a id="f510" class="third-menu-item"
 											href="javascript:;" title="福利管理"
 											onclick="createTab(510,'福利管理','hr/salary/welfare_manage','');"
-											hidefocus="hidefocus">福利管理</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">福利管理</a></li>
+									</ul></li>
 								<li class="expand"><a id="f224" class="second-menu-item"
 									title="人力资源设置" href="javascript:;" onclick=""
 									hidefocus="hidefocus">人力资源设置</a>
-								<ul id="third-menulist-f224" class="third-menu">
+									<ul id="third-menulist-f224" class="third-menu">
 										<li><a id="f39" class="third-menu-item"
 											href="javascript:;" title="考勤设置"
 											onclick="createTab(39,'考勤设置','hr/setting/attendance','');"
-											hidefocus="hidefocus">考勤设置</a>
-										</li>
+											hidefocus="hidefocus">考勤设置</a></li>
 										<li><a id="f512" class="third-menu-item"
 											href="javascript:;" title="人力资源管理员"
 											onclick="createTab(512,'人力资源管理员','hr/setting/hr_manager','');"
-											hidefocus="hidefocus">人力资源管理员</a>
-										</li>
+											hidefocus="hidefocus">人力资源管理员</a></li>
 										<li><a id="f513" class="third-menu-item"
 											href="javascript:;" title="HRMS代码设置"
 											onclick="createTab(513,'HRMS代码设置','hr/setting/hr_code','');"
-											hidefocus="hidefocus">HRMS代码设置</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">HRMS代码设置</a></li>
+									</ul></li>
 								<li class="expand"><a id="f252" class="second-menu-item"
 									title="在线考试" href="javascript:;" onclick=""
 									hidefocus="hidefocus">在线考试</a>
-								<ul id="third-menulist-f252" class="third-menu">
+									<ul id="third-menulist-f252" class="third-menu">
 										<li><a id="f230" class="third-menu-item"
 											href="javascript:;" title="题库管理"
 											onclick="createTab(230,'题库管理','exam_manage/set_manage','');"
-											hidefocus="hidefocus">题库管理</a>
-										</li>
+											hidefocus="hidefocus">题库管理</a></li>
 										<li><a id="f231" class="third-menu-item"
 											href="javascript:;" title="试题管理"
 											onclick="createTab(231,'试题管理','exam_manage/quiz_manage/','');"
-											hidefocus="hidefocus">试题管理</a>
-										</li>
+											hidefocus="hidefocus">试题管理</a></li>
 										<li><a id="f232" class="third-menu-item"
 											href="javascript:;" title="试卷管理"
 											onclick="createTab(232,'试卷管理','exam_manage/paper_manage/','');"
-											hidefocus="hidefocus">试卷管理</a>
-										</li>
+											hidefocus="hidefocus">试卷管理</a></li>
 										<li><a id="f629" class="third-menu-item"
 											href="javascript:;" title="主观题阅卷"
 											onclick="createTab(629,'主观题阅卷','exam_manage/subject_score/','');"
-											hidefocus="hidefocus">主观题阅卷</a>
-										</li>
+											hidefocus="hidefocus">主观题阅卷</a></li>
 										<li><a id="f233" class="third-menu-item"
 											href="javascript:;" title="考试信息管理"
 											onclick="createTab(233,'考试信息管理','exam_manage/info_pub/','');"
-											hidefocus="hidefocus">考试信息管理</a>
-										</li>
+											hidefocus="hidefocus">考试信息管理</a></li>
 										<li><a id="f234" class="third-menu-item"
 											href="javascript:;" title="参加考试"
 											onclick="createTab(234,'参加考试','exam_manage/exam_online','');"
-											hidefocus="hidefocus">参加考试</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">参加考试</a></li>
+									</ul></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-65">
 						<div id="m65" hidefocus="hidefocus" class="first-menu-item">
-							<i class="iconfont"></i><span class="first-menu-title">公文管理</span>
+							<i class="iconfont"></i><span class="first-menu-title"><fmt:message code="main.document" /></span>
 						</div>
 						<div id="second-menu-65" class="second-panel"
 							style="display: none;">
-							<h4>公文管理</h4>
+							<h4><fmt:message code="main.document" /></h4>
 							<ul id="second-menulist-65" class="second-menu clearfix">
 								<li class="expand"><a id="f461" class="second-menu-item"
 									title="发文管理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">发文管理</a>
-								<ul id="third-menulist-f461" class="third-menu">
+									<ul id="third-menulist-f461" class="third-menu">
 										<li><a id="f462" class="third-menu-item"
 											href="javascript:;" title="发文拟稿"
 											onclick="createTab(462,'发文拟稿','document/index.php/send/draft','');"
-											hidefocus="hidefocus">发文拟稿</a>
-										</li>
+											hidefocus="hidefocus">发文拟稿</a></li>
 										<li><a id="f463" class="third-menu-item"
 											href="javascript:;" title="发文核稿"
 											onclick="createTab(463,'发文核稿','document/index.php/send/approve','');"
-											hidefocus="hidefocus">发文核稿</a>
-										</li>
+											hidefocus="hidefocus">发文核稿</a></li>
 										<li><a id="f464" class="third-menu-item"
 											href="javascript:;" title="套红盖章"
 											onclick="createTab(464,'套红盖章','document/index.php/send/seal','');"
-											hidefocus="hidefocus">套红盖章</a>
-										</li>
+											hidefocus="hidefocus">套红盖章</a></li>
 										<li><a id="f465" class="third-menu-item"
 											href="javascript:;" title="发文列表"
 											onclick="createTab(465,'发文列表','document/index.php/send/sendlist','');"
-											hidefocus="hidefocus">发文列表</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">发文列表</a></li>
+									</ul></li>
 								<li class="expand"><a id="f466" class="second-menu-item"
 									title="收文管理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">收文管理</a>
-								<ul id="third-menulist-f466" class="third-menu">
+									<ul id="third-menulist-f466" class="third-menu">
 										<li><a id="f467" class="third-menu-item"
 											href="javascript:;" title="收文登记"
 											onclick="createTab(467,'收文登记','document/index.php/recv/register','');"
-											hidefocus="hidefocus">收文登记</a>
-										</li>
+											hidefocus="hidefocus">收文登记</a></li>
 										<li><a id="f468" class="third-menu-item"
 											href="javascript:;" title="领导批阅"
 											onclick="createTab(468,'领导批阅','document/index.php/recv/approve','');"
-											hidefocus="hidefocus">领导批阅</a>
-										</li>
+											hidefocus="hidefocus">领导批阅</a></li>
 										<li><a id="f469" class="third-menu-item"
 											href="javascript:;" title="收文分发"
 											onclick="createTab(469,'收文分发','document/index.php/recv/outgiving','');"
-											hidefocus="hidefocus">收文分发</a>
-										</li>
+											hidefocus="hidefocus">收文分发</a></li>
 										<li><a id="f470" class="third-menu-item"
 											href="javascript:;" title="收文阅读"
 											onclick="createTab(470,'收文阅读','document/index.php/recv/read','');"
-											hidefocus="hidefocus">收文阅读</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">收文阅读</a></li>
+									</ul></li>
 								<li class="expand"><a id="f471" class="second-menu-item"
 									title="基础设置" href="javascript:;" onclick=""
 									hidefocus="hidefocus">基础设置</a>
-								<ul id="third-menulist-f471" class="third-menu">
+									<ul id="third-menulist-f471" class="third-menu">
 										<li><a id="f472" class="third-menu-item"
 											href="javascript:;" title="参数设置"
 											onclick="createTab(472,'参数设置','document/index.php/setting/config','');"
-											hidefocus="hidefocus">参数设置</a>
-										</li>
+											hidefocus="hidefocus">参数设置</a></li>
 										<li><a id="f473" class="third-menu-item"
 											href="javascript:;" title="主题词管理"
 											onclick="createTab(473,'主题词管理','document/index.php/setting/keywords','');"
-											hidefocus="hidefocus">主题词管理</a>
-										</li>
+											hidefocus="hidefocus">主题词管理</a></li>
 										<li><a id="f474" class="third-menu-item"
 											href="javascript:;" title="公文类型设置"
 											onclick="createTab(474,'公文类型设置','document/index.php/setting/type','');"
-											hidefocus="hidefocus">公文类型设置</a>
-										</li>
+											hidefocus="hidefocus">公文类型设置</a></li>
 										<li><a id="f475" class="third-menu-item"
 											href="javascript:;" title="收文权限设置"
 											onclick="createTab(475,'收文权限设置','document/index.php/setting/priv','');"
-											hidefocus="hidefocus">收文权限设置</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">收文权限设置</a></li>
+									</ul></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-70">
 						<div id="m70" hidefocus="hidefocus" class="first-menu-item">
 							<i class="iconfont"></i><span class="first-menu-title">档案管理</span>
@@ -1856,57 +1669,48 @@ a.fmPanel span {
 								<li class=""><a id="f200" class="second-menu-item"
 									title="卷库管理" href="javascript:;"
 									onclick="createTab(200,'卷库管理','roll_manage/roll_room','');"
-									hidefocus="hidefocus">卷库管理</a>
-								</li>
+									hidefocus="hidefocus">卷库管理</a></li>
 								<li class=""><a id="f202" class="second-menu-item"
 									title="案卷管理" href="javascript:;"
 									onclick="createTab(202,'案卷管理','roll_manage','');"
-									hidefocus="hidefocus">案卷管理</a>
-								</li>
+									hidefocus="hidefocus">案卷管理</a></li>
 								<li class=""><a id="f201" class="second-menu-item"
 									title="文件管理" href="javascript:;"
 									onclick="createTab(201,'文件管理','roll_manage/roll_file','');"
-									hidefocus="hidefocus">文件管理</a>
-								</li>
+									hidefocus="hidefocus">文件管理</a></li>
 								<li class=""><a id="f209" class="second-menu-item"
 									title="档案销毁" href="javascript:;"
 									onclick="createTab(209,'档案销毁','roll_manage/destory','');"
-									hidefocus="hidefocus">档案销毁</a>
-								</li>
+									hidefocus="hidefocus">档案销毁</a></li>
 								<li class="expand"><a id="f203" class="second-menu-item"
 									title="案卷借阅" href="javascript:;" onclick=""
 									hidefocus="hidefocus">案卷借阅</a>
-								<ul id="third-menulist-f203" class="third-menu">
+									<ul id="third-menulist-f203" class="third-menu">
 										<li><a id="f204" class="third-menu-item"
 											href="javascript:;" title="案卷借阅"
 											onclick="createTab(204,'案卷借阅','roll_manage/roll_lend','');"
-											hidefocus="hidefocus">案卷借阅</a>
-										</li>
+											hidefocus="hidefocus">案卷借阅</a></li>
 										<li><a id="f205" class="third-menu-item"
 											href="javascript:;" title="借阅审批"
 											onclick="createTab(205,'借阅审批','roll_manage/roll_lend/confirm.php','');"
-											hidefocus="hidefocus">借阅审批</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">借阅审批</a></li>
+									</ul></li>
 								<li class="expand"><a id="f206" class="second-menu-item"
 									title="档案统计" href="javascript:;" onclick=""
 									hidefocus="hidefocus">档案统计</a>
-								<ul id="third-menulist-f206" class="third-menu">
+									<ul id="third-menulist-f206" class="third-menu">
 										<li><a id="f207" class="third-menu-item"
 											href="javascript:;" title="借阅统计"
 											onclick="createTab(207,'借阅统计','roll_manage/roll_statistic/lend.php','');"
-											hidefocus="hidefocus">借阅统计</a>
-										</li>
+											hidefocus="hidefocus">借阅统计</a></li>
 										<li><a id="f208" class="third-menu-item"
 											href="javascript:;" title="案卷统计"
 											onclick="createTab(208,'案卷统计','roll_manage/roll_statistic/roll.php','');"
-											hidefocus="hidefocus">案卷统计</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">案卷统计</a></li>
+									</ul></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-90">
 						<div id="m90" hidefocus="hidefocus" class="first-menu-item">
 							<i class="iconfont"></i><span class="first-menu-title">项目管理</span>
@@ -1918,61 +1722,51 @@ a.fmPanel span {
 								<li class=""><a id="f65" class="second-menu-item"
 									title="我的项目" href="javascript:;"
 									onclick="createTab(65,'我的项目','project/portal','');"
-									hidefocus="hidefocus">我的项目</a>
-								</li>
+									hidefocus="hidefocus">我的项目</a></li>
 								<li class=""><a id="f187" class="second-menu-item"
 									title="我的任务" href="javascript:;"
 									onclick="createTab(187,'我的任务','project/task','');"
-									hidefocus="hidefocus">我的任务</a>
-								</li>
+									hidefocus="hidefocus">我的任务</a></li>
 								<li class=""><a id="f186" class="second-menu-item"
 									title="项目查询" href="javascript:;"
 									onclick="createTab(186,'项目查询','project/proj','');"
-									hidefocus="hidefocus">项目查询</a>
-								</li>
+									hidefocus="hidefocus">项目查询</a></li>
 								<li class=""><a id="f188" class="second-menu-item"
 									title="项目审批" href="javascript:;"
 									onclick="createTab(188,'项目审批','project/approve','');"
-									hidefocus="hidefocus">项目审批</a>
-								</li>
+									hidefocus="hidefocus">项目审批</a></li>
 								<li class=""><a id="f189" class="second-menu-item"
 									title="项目文档" href="javascript:;"
 									onclick="createTab(189,'项目文档','project/file','');"
-									hidefocus="hidefocus">项目文档</a>
-								</li>
+									hidefocus="hidefocus">项目文档</a></li>
 								<li class=""><a id="f190" class="second-menu-item"
 									title="项目问题" href="javascript:;"
 									onclick="createTab(190,'项目问题','project/bug','');"
-									hidefocus="hidefocus">项目问题</a>
-								</li>
+									hidefocus="hidefocus">项目问题</a></li>
 								<li class="expand"><a id="f191" class="second-menu-item"
 									title="基础数据设置" href="javascript:;" onclick=""
 									hidefocus="hidefocus">基础数据设置</a>
-								<ul id="third-menulist-f191" class="third-menu">
+									<ul id="third-menulist-f191" class="third-menu">
 										<li><a id="f606" class="third-menu-item"
 											href="javascript:;" title="项目自定义设置"
 											onclick="createTab(606,'项目自定义设置','project/setting/cust/sys','');"
-											hidefocus="hidefocus">项目自定义设置</a>
-										</li>
+											hidefocus="hidefocus">项目自定义设置</a></li>
 										<li><a id="f192" class="third-menu-item"
 											href="javascript:;" title="项目权限设置"
 											onclick="createTab(192,'项目权限设置','project/setting/priv','');"
-											hidefocus="hidefocus">项目权限设置</a>
-										</li>
+											hidefocus="hidefocus">项目权限设置</a></li>
 										<li><a id="f193" class="third-menu-item"
 											href="javascript:;" title="项目代码设置"
 											onclick="createTab(193,'项目代码设置','project/setting/code','');"
-											hidefocus="hidefocus">项目代码设置</a>
-										</li>
+											hidefocus="hidefocus">项目代码设置</a></li>
 										<li><a id="f221" class="third-menu-item"
 											href="javascript:;" title="项目模板管理"
 											onclick="createTab(221,'项目模板管理','project/setting/template','');"
-											hidefocus="hidefocus">项目模板管理</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">项目模板管理</a></li>
+									</ul></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-a0">
 						<div id="ma0" hidefocus="hidefocus" class="first-menu-item">
 							<i class="iconfont"></i><span class="first-menu-title">ERP应用</span>
@@ -1984,15 +1778,14 @@ a.fmPanel span {
 								<li class=""><a id="f550" class="second-menu-item"
 									title="应用中心" href="javascript:;"
 									onclick="createTab(550,'应用中心','reportshop/workshop','');"
-									hidefocus="hidefocus">应用中心</a>
-								</li>
+									hidefocus="hidefocus">应用中心</a></li>
 								<li class=""><a id="f551" class="second-menu-item"
 									title="管理平台" href="javascript:;"
 									onclick="createTab(551,'管理平台','reportshop/design/report','');"
-									hidefocus="hidefocus">管理平台</a>
-								</li>
+									hidefocus="hidefocus">管理平台</a></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-b0">
 						<div id="mb0" hidefocus="hidefocus" class="first-menu-item">
 							<i class="iconfont"></i><span class="first-menu-title">交流园地</span>
@@ -2016,15 +1809,14 @@ a.fmPanel span {
 								<li class=""><a id="f34" class="second-menu-item"
 									title="讨论区设置" href="javascript:;"
 									onclick="createTab(34,'讨论区设置','system/bbs','');"
-									hidefocus="hidefocus">讨论区设置</a>
-								</li>
+									hidefocus="hidefocus">讨论区设置</a></li>
 								<li class=""><a id="f532" class="second-menu-item"
 									title="专业视频会议" href="javascript:;"
 									onclick="createTab(532,'专业视频会议','gbtmeet','');"
-									hidefocus="hidefocus">专业视频会议</a>
-								</li>
+									hidefocus="hidefocus">专业视频会议</a></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-e0">
 						<div id="me0" hidefocus="hidefocus" class="first-menu-item">
 							<i class="iconfont"></i><span class="first-menu-title">T10超能云中心平台</span>
@@ -2036,58 +1828,49 @@ a.fmPanel span {
 								<li class="expand"><a id="f548" class="second-menu-item"
 									title="平台设置" href="javascript:;" onclick=""
 									hidefocus="hidefocus">平台设置</a>
-								<ul id="third-menulist-f548" class="third-menu">
+									<ul id="third-menulist-f548" class="third-menu">
 										<li><a id="f640" class="third-menu-item"
 											href="javascript:;" title="参数设置"
 											onclick="createTab(640,'参数设置','ext_data/admin/setting','');"
-											hidefocus="hidefocus">参数设置</a>
-										</li>
+											hidefocus="hidefocus">参数设置</a></li>
 										<li><a id="f641" class="third-menu-item"
 											href="javascript:;" title="流程模型同步"
 											onclick="createTab(641,'流程模型同步','ext_data/admin/model','');"
-											hidefocus="hidefocus">流程模型同步</a>
-										</li>
+											hidefocus="hidefocus">流程模型同步</a></li>
 										<li><a id="f642" class="third-menu-item"
 											href="javascript:;" title="交换历史记录"
 											onclick="createTab(642,'交换历史记录','ext_data/admin/logs','');"
-											hidefocus="hidefocus">交换历史记录</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">交换历史记录</a></li>
+									</ul></li>
 								<li class="expand"><a id="f549" class="second-menu-item"
 									title="信息接收与发布" href="javascript:;" onclick=""
 									hidefocus="hidefocus">信息接收与发布</a>
-								<ul id="third-menulist-f549" class="third-menu">
+									<ul id="third-menulist-f549" class="third-menu">
 										<li><a id="f601" class="third-menu-item"
 											href="javascript:;" title="信息接收"
 											onclick="createTab(601,'信息接收','ext_data/info/recv','');"
-											hidefocus="hidefocus">信息接收</a>
-										</li>
+											hidefocus="hidefocus">信息接收</a></li>
 										<li><a id="f600" class="third-menu-item"
 											href="javascript:;" title="信息发布"
 											onclick="createTab(600,'信息发布','ext_data/info/send','');"
-											hidefocus="hidefocus">信息发布</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">信息发布</a></li>
+									</ul></li>
 								<li class="expand"><a id="f602" class="second-menu-item"
 									title="工作接收与处理" href="javascript:;" onclick=""
 									hidefocus="hidefocus">工作接收与处理</a>
-								<ul id="third-menulist-f602" class="third-menu">
+									<ul id="third-menulist-f602" class="third-menu">
 										<li><a id="f603" class="third-menu-item"
 											href="javascript:;" title="待办工作"
 											onclick="createTab(603,'待办工作','ext_data/workflow/my','');"
-											hidefocus="hidefocus">待办工作</a>
-										</li>
+											hidefocus="hidefocus">待办工作</a></li>
 										<li><a id="f604" class="third-menu-item"
 											href="javascript:;" title="权限与规则设置"
 											onclick="createTab(604,'权限与规则设置','ext_data/workflow/rule','');"
-											hidefocus="hidefocus">权限与规则设置</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">权限与规则设置</a></li>
+									</ul></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-y0">
 						<div id="my0" hidefocus="hidefocus" class="first-menu-item">
 							<i class="iconfont"></i><span class="first-menu-title">附件程序</span>
@@ -2099,26 +1882,23 @@ a.fmPanel span {
 								<li class=""><a id="f227" class="second-menu-item"
 									title="即时通讯" href="javascript:;"
 									onclick="createTab(227,'即时通讯','im/show','');"
-									hidefocus="hidefocus">即时通讯</a>
-								</li>
+									hidefocus="hidefocus">即时通讯</a></li>
 								<li class="expand"><a id="f46" class="second-menu-item"
 									title="实用信息" href="javascript:;" onclick=""
 									hidefocus="hidefocus">实用信息</a>
-								<ul id="third-menulist-f46" class="third-menu">
+									<ul id="third-menulist-f46" class="third-menu">
 										<li><a id="f21" class="third-menu-item"
 											href="javascript:;" title="电话区号查询"
 											onclick="createTab(21,'电话区号查询','info/tel_no','');"
-											hidefocus="hidefocus">电话区号查询</a>
-										</li>
+											hidefocus="hidefocus">电话区号查询</a></li>
 										<li><a id="f22" class="third-menu-item"
 											href="javascript:;" title="邮政编码查询"
 											onclick="createTab(22,'邮政编码查询','info/post_no','');"
-											hidefocus="hidefocus">邮政编码查询</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">邮政编码查询</a></li>
+									</ul></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-z0">
 						<div id="mz0" hidefocus="hidefocus" class="first-menu-item">
 							<i class="iconfont"></i><span class="first-menu-title">系统管理</span>
@@ -2130,213 +1910,173 @@ a.fmPanel span {
 								<li class=""><a id="f69" class="second-menu-item"
 									title="功能管理中心" href="javascript:;"
 									onclick="createTab(69,'功能管理中心','system/module_center','');"
-									hidefocus="hidefocus">功能管理中心</a>
-								</li>
+									hidefocus="hidefocus">功能管理中心</a></li>
 								<li class=""><a id="f71" class="second-menu-item"
 									title="企业号管理" href="javascript:;"
 									onclick="createTab(71,'企业号管理','system/qyapp','');"
-									hidefocus="hidefocus">企业号管理</a>
-								</li>
+									hidefocus="hidefocus">企业号管理</a></li>
 								<li class=""><a id="f72" class="second-menu-item"
 									title="APP应用商店设置" href="javascript:;"
 									onclick="createTab(72,'APP应用商店设置','system/app','');"
-									hidefocus="hidefocus">APP应用商店设置</a>
-								</li>
+									hidefocus="hidefocus">APP应用商店设置</a></li>
 								<li class=""><a id="f223" class="second-menu-item"
 									title="印章管理" href="javascript:;"
 									onclick="createTab(223,'印章管理','system/seal_manage','');"
-									hidefocus="hidefocus">印章管理</a>
-								</li>
+									hidefocus="hidefocus">印章管理</a></li>
 								<li class=""><a id="f639" class="second-menu-item"
 									title="手机签章管理" href="javascript:;"
 									onclick="createTab(639,'手机签章管理','system/mobile_seal','');"
-									hidefocus="hidefocus">手机签章管理</a>
-								</li>
+									hidefocus="hidefocus">手机签章管理</a></li>
 								<li class=""><a id="f225" class="second-menu-item"
 									title="定时任务管理" href="javascript:;"
 									onclick="createTab(225,'定时任务管理','system/task','');"
-									hidefocus="hidefocus">定时任务管理</a>
-								</li>
+									hidefocus="hidefocus">定时任务管理</a></li>
 								<li class=""><a id="f236" class="second-menu-item"
 									title="紧急通知设置" href="javascript:;"
 									onclick="createTab(236,'紧急通知设置','system/urgent_notify','');"
-									hidefocus="hidefocus">紧急通知设置</a>
-								</li>
+									hidefocus="hidefocus">紧急通知设置</a></li>
 								<li class=""><a id="f78" class="second-menu-item"
 									title="界面设置" href="javascript:;"
 									onclick="createTab(78,'界面设置','system/interface','');"
-									hidefocus="hidefocus">界面设置</a>
-								</li>
+									hidefocus="hidefocus">界面设置</a></li>
 								<li class=""><a id="f178" class="second-menu-item"
 									title="状态栏设置" href="javascript:;"
 									onclick="createTab(178,'状态栏设置','system/status_text','');"
-									hidefocus="hidefocus">状态栏设置</a>
-								</li>
+									hidefocus="hidefocus">状态栏设置</a></li>
 								<li class=""><a id="f104" class="second-menu-item"
 									title="菜单设置" href="javascript:;"
 									onclick="createTab(104,'菜单设置','system/menu','');"
-									hidefocus="hidefocus">菜单设置</a>
-								</li>
+									hidefocus="hidefocus">菜单设置</a></li>
 								<li class=""><a id="f121" class="second-menu-item"
 									title="系统代码设置" href="javascript:;"
 									onclick="createTab(121,'系统代码设置','system/code','');"
-									hidefocus="hidefocus">系统代码设置</a>
-								</li>
+									hidefocus="hidefocus">系统代码设置</a></li>
 								<li class=""><a id="f149" class="second-menu-item"
 									title="自定义字段设置" href="javascript:;"
 									onclick="createTab(149,'自定义字段设置','system/field','');"
-									hidefocus="hidefocus">自定义字段设置</a>
-								</li>
+									hidefocus="hidefocus">自定义字段设置</a></li>
 								<li class=""><a id="f84" class="second-menu-item"
 									title="数据库管理" href="javascript:;"
 									onclick="createTab(84,'数据库管理','system/database','');"
-									hidefocus="hidefocus">数据库管理</a>
-								</li>
+									hidefocus="hidefocus">数据库管理</a></li>
 								<li class=""><a id="f99" class="second-menu-item"
 									title="系统日志管理" href="javascript:;"
 									onclick="createTab(99,'系统日志管理','system/log','');"
-									hidefocus="hidefocus">系统日志管理</a>
-								</li>
+									hidefocus="hidefocus">系统日志管理</a></li>
 								<li class=""><a id="f100" class="second-menu-item"
 									title="系统资源管理" href="javascript:;"
 									onclick="createTab(100,'系统资源管理','system/res_manage','');"
-									hidefocus="hidefocus">系统资源管理</a>
-								</li>
+									hidefocus="hidefocus">系统资源管理</a></li>
 								<li class=""><a id="f533" class="second-menu-item"
 									title="附件管理" href="javascript:;"
 									onclick="createTab(533,'附件管理','system/attachment','');"
-									hidefocus="hidefocus">附件管理</a>
-								</li>
+									hidefocus="hidefocus">附件管理</a></li>
 								<li class=""><a id="f101" class="second-menu-item"
 									title="系统访问控制" href="javascript:;"
 									onclick="createTab(101,'系统访问控制','system/access_control','');"
-									hidefocus="hidefocus">系统访问控制</a>
-								</li>
+									hidefocus="hidefocus">系统访问控制</a></li>
 								<li class=""><a id="f113" class="second-menu-item"
 									title="系统参数设置" href="javascript:;"
 									onclick="createTab(113,'系统参数设置','system/security','');"
-									hidefocus="hidefocus">系统参数设置</a>
-								</li>
+									hidefocus="hidefocus">系统参数设置</a></li>
 								<li class=""><a id="f198" class="second-menu-item"
 									title="系统接口设置" href="javascript:;"
 									onclick="createTab(198,'系统接口设置','system/ext_user','');"
-									hidefocus="hidefocus">系统接口设置</a>
-								</li>
+									hidefocus="hidefocus">系统接口设置</a></li>
 								<li class=""><a id="f540" class="second-menu-item"
 									title="服务器监控" href="javascript:;"
 									onclick="createTab(540,'服务器监控','system/monitor','');"
-									hidefocus="hidefocus">服务器监控</a>
-								</li>
+									hidefocus="hidefocus">服务器监控</a></li>
 								<li class=""><a id="f626" class="second-menu-item"
 									title="三员安全管理" href="javascript:;"
 									onclick="createTab(626,'三员安全管理','system/secure_rule','');"
-									hidefocus="hidefocus">三员安全管理</a>
-								</li>
+									hidefocus="hidefocus">三员安全管理</a></li>
 								<li class=""><a id="f638" class="second-menu-item"
 									title="T-ERPLinker数据源管理" href="javascript:;"
 									onclick="createTab(638,'T-ERPLinker数据源管理','system/t-erplinker/data_source','');"
-									hidefocus="hidefocus">T-ERPLinker数据源管理</a>
-								</li>
+									hidefocus="hidefocus">T-ERPLinker数据源管理</a></li>
 								<li class=""><a id="f38" class="second-menu-item"
 									title="系统信息" href="javascript:;"
 									onclick="createTab(38,'系统信息','system/reg_view','');"
-									hidefocus="hidefocus">系统信息</a>
-								</li>
+									hidefocus="hidefocus">系统信息</a></li>
 								<li class="expand"><a id="f56" class="second-menu-item"
 									title="组织机构设置" href="javascript:;" onclick=""
 									hidefocus="hidefocus">组织机构设置</a>
-								<ul id="third-menulist-f56" class="third-menu">
+									<ul id="third-menulist-f56" class="third-menu">
 										<li><a id="f30" class="third-menu-item"
 											href="javascript:;" title="单位管理"
 											onclick="createTab(30,'单位管理','system/unit','');"
-											hidefocus="hidefocus">单位管理</a>
-										</li>
+											hidefocus="hidefocus">单位管理</a></li>
 										<li><a id="f31" class="third-menu-item"
 											href="javascript:;" title="部门管理"
 											onclick="createTab(31,'部门管理','system/dept','');"
-											hidefocus="hidefocus">部门管理</a>
-										</li>
+											hidefocus="hidefocus">部门管理</a></li>
 										<li><a id="f33" class="third-menu-item"
 											href="javascript:;" title="用户管理"
 											onclick="createTab(33,'用户管理','system/user','');"
-											hidefocus="hidefocus">用户管理</a>
-										</li>
+											hidefocus="hidefocus">用户管理</a></li>
 										<li><a id="f32" class="third-menu-item"
 											href="javascript:;" title="角色与权限管理"
 											onclick="createTab(32,'角色与权限管理','system/user_priv','');"
-											hidefocus="hidefocus">角色与权限管理</a>
-										</li>
+											hidefocus="hidefocus">角色与权限管理</a></li>
 										<li><a id="f605" class="third-menu-item"
 											href="javascript:;" title="外部机构管理"
 											onclick="createTab(605,'外部机构管理','system/ext_dept','');"
-											hidefocus="hidefocus">外部机构管理</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">外部机构管理</a></li>
+									</ul></li>
 								<li class="expand"><a id="f57" class="second-menu-item"
 									title="行政办公设置" href="javascript:;" onclick=""
 									hidefocus="hidefocus">行政办公设置</a>
-								<ul id="third-menulist-f57" class="third-menu">
+									<ul id="third-menulist-f57" class="third-menu">
 										<li><a id="f609" class="third-menu-item"
 											href="javascript:;" title="日程安排设置"
 											onclick="createTab(609,'日程安排设置','system/calendar','');"
-											hidefocus="hidefocus">日程安排设置</a>
-										</li>
+											hidefocus="hidefocus">日程安排设置</a></li>
 										<li><a id="f103" class="third-menu-item"
 											href="javascript:;" title="公共网址设置"
 											onclick="createTab(103,'公共网址设置','system/url','');"
-											hidefocus="hidefocus">公共网址设置</a>
-										</li>
+											hidefocus="hidefocus">公共网址设置</a></li>
 										<li><a id="f146" class="third-menu-item"
 											href="javascript:;" title="工作日志设置"
 											onclick="createTab(146,'工作日志设置','system/diary','');"
-											hidefocus="hidefocus">工作日志设置</a>
-										</li>
+											hidefocus="hidefocus">工作日志设置</a></li>
 										<li><a id="f107" class="third-menu-item"
 											href="javascript:;" title="公共通讯簿设置"
 											onclick="createTab(107,'公共通讯簿设置','system/address','');"
-											hidefocus="hidefocus">公共通讯簿设置</a>
-										</li>
+											hidefocus="hidefocus">公共通讯簿设置</a></li>
 										<li><a id="f197" class="third-menu-item"
 											href="javascript:;" title="公告通知设置"
 											onclick="createTab(197,'公告通知设置','system/notify','');"
-											hidefocus="hidefocus">公告通知设置</a>
-										</li>
+											hidefocus="hidefocus">公告通知设置</a></li>
 										<li><a id="f228" class="third-menu-item"
 											href="javascript:;" title="模板管理"
 											onclick="createTab(228,'模板管理','system/model','');"
-											hidefocus="hidefocus">模板管理</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">模板管理</a></li>
+									</ul></li>
 								<li class="expand"><a id="f58" class="second-menu-item"
 									title="信息交流设置" href="javascript:;" onclick=""
 									hidefocus="hidefocus">信息交流设置</a>
-								<ul id="third-menulist-f58" class="third-menu">
+									<ul id="third-menulist-f58" class="third-menu">
 										<li><a id="f538" class="third-menu-item"
 											href="javascript:;" title="电子邮件设置"
 											onclick="createTab(538,'电子邮件设置','system/email','');"
-											hidefocus="hidefocus">电子邮件设置</a>
-										</li>
+											hidefocus="hidefocus">电子邮件设置</a></li>
 										<li><a id="f151" class="third-menu-item"
 											href="javascript:;" title="短信提醒设置"
 											onclick="createTab(151,'短信提醒设置','system/remind','');"
-											hidefocus="hidefocus">短信提醒设置</a>
-										</li>
+											hidefocus="hidefocus">短信提醒设置</a></li>
 										<li><a id="f6" class="third-menu-item"
 											href="javascript:;" title="手机短信设置"
 											onclick="createTab(6,'手机短信设置','system/mobile_sms','');"
-											hidefocus="hidefocus">手机短信设置</a>
-										</li>
+											hidefocus="hidefocus">手机短信设置</a></li>
 										<li><a id="f534" class="third-menu-item"
 											href="javascript:;" title="即时通讯管理"
 											onclick="createTab(534,'即时通讯管理','system/im','');"
-											hidefocus="hidefocus">即时通讯管理</a>
-										</li>
-									</ul>
-								</li>
+											hidefocus="hidefocus">即时通讯管理</a></li>
+									</ul></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 				</ul>
 				<div class="menu-scroll scroll-down" style="display: block;"></div>
 			</div>
@@ -2350,15 +2090,13 @@ a.fmPanel span {
 					data-placement="top" data-toggle="tooltip" title=""
 					data-original-title="我的门户" data-step="3"
 					data-intro="<b style='display:block'>3、我的门户</b>点击打开“门户列表”区域，选择您想打开的门户。"
-					data-position="top">&#xe60e;</a>
-				</li>
+					data-position="top">&#xe60e;</a></li>
 				<li class="ft-link ft-link-icon"><a href="/module/help"
 					class="iconfont" hidefocus="hidefocus" data-placement="top"
 					data-toggle="tooltip" title="" data-original-title="在线帮助"
 					target="_blank" data-step="4"
 					data-intro="<b style='display:block'>4、在线帮助</b>“通达OA在线帮助”汇集了常见的用户问题，帮助用户快速掌握软件各项功能的使用。"
-					data-position="top">&#xe61b;</a>
-				</li>
+					data-position="top">&#xe61b;</a></li>
 				<li class="ft-link"><a href="javascript:;"
 					style="height: 22px !important;font-size: 18px;"
 					class="west-handle" data-step="5"
@@ -2368,8 +2106,7 @@ a.fmPanel span {
 						data-original-title="图标模式">&#xe636;</i><i
 						class="iconfont right_arrow" data-placement="top"
 						data-toggle="tooltip" title="" data-original-title="图标+文字模式">&#xe637;</i>
-				</a>
-				</li>
+				</a></li>
 			</ul>
 		</div>
 	</div>
@@ -2395,14 +2132,11 @@ a.fmPanel span {
 	<div id="east" class="east">
 		<ul class="nav nav-tabs">
 			<li class="nav-pill active" panelType="today"><a
-				href="javascript:;" class="pill-bg">今日</a>
-			</li>
+				href="javascript:;" class="pill-bg">今日</a></li>
 			<li class="nav-pill" panelType="msg"><a href="javascript:;"
-				class="pill-bg">消息</a>
-			</li>
+				class="pill-bg">消息</a></li>
 			<li class="nav-pill" panelType="org"><a href="javascript:;"
-				class="pill-bg">组织</a>
-			</li>
+				class="pill-bg">组织</a></li>
 		</ul>
 		<div class="tab-content" id="east-tab">
 			<div class="tab-pane pane-today active">
@@ -2513,8 +2247,7 @@ a.fmPanel span {
 							<div class="input-append send-header">
 								<input id="search" type="text"> <span
 									class="send-inner-icon"><i
-									class="iconfont send-info-size">&#xe603;</i>
-								</span>
+									class="iconfont send-info-size">&#xe603;</i> </span>
 								<button tyle="button" class="send-info-btn btn" id="adduser">
 									<i class="iconfont send-info-size">&#xe602;</i>
 								</button>
@@ -2573,8 +2306,7 @@ a.fmPanel span {
 			</div>
 		</div>
 		<a href="javascript:;" class="east-handle"><i
-			class="iconfont left_arrow">&#xe637;</i>
-		</a>
+			class="iconfont left_arrow">&#xe637;</i> </a>
 		<div class="chat-wrapper" id="chat-wrapper">
 			<div class="chat_side">
 				<!--<div id="smsbox_scroll_up" style="display: none;"></div>-->
@@ -2641,10 +2373,9 @@ a.fmPanel span {
 		<div class="search-box">
 			<span class="search-input"><input id="search-input"
 				type="text" autocomplete="off"
-				placeholder="搜索用户、菜单、工作流、通讯簿、日程、帮助...">
-			</span> <span class="search-btn"><input id="search-btn" type="submit"
-				value="搜索" search-type="user">
-			</span>
+				placeholder="搜索用户、菜单、工作流、通讯簿、日程、帮助..."> </span> <span
+				class="search-btn"><input id="search-btn" type="submit"
+				value="搜索" search-type="user"> </span>
 		</div>
 
 		<!-- 搜索结果返回区 -->
@@ -2652,24 +2383,17 @@ a.fmPanel span {
 			<!-- 搜索结果切换tab -->
 			<ul class="search-results-tabs">
 				<li class="user-tab active" search-type="user" searched=""><span>用户</span><span
-					class="search-counter search-counter-user">(0)</span>
-				</li>
+					class="search-counter search-counter-user">(0)</span></li>
 				<li class="menu-tab" search-type="menu" searched=""><span>菜单</span><span
-					class="search-counter search-counter-menu">(0)</span>
-				</li>
+					class="search-counter search-counter-menu">(0)</span></li>
 				<li class="workflow-tab" search-type="workflow" searched=""><span>工作流</span><span
-					class="search-counter search-counter-workflow">(0)</span>
-				</li>
+					class="search-counter search-counter-workflow">(0)</span></li>
 				<li class="contacts-tab" search-type="contacts" searched=""><span>通讯簿</span><span
-					class="search-counter search-counter-contacts">(0)</span>
-				</li>
+					class="search-counter search-counter-contacts">(0)</span></li>
 				<li class="calendar-tab" search-type="calendar" searched=""><span>日程安排</span><span
-					class="search-counter search-counter-calendar">(0)</span>
-				</li>
+					class="search-counter search-counter-calendar">(0)</span></li>
 				<li class="helper-tab" search-type="helper"><span><a
-						href="/module/help" target="_blank">在线帮助</a>
-				</span>
-				</li>
+						href="/module/help" target="_blank">在线帮助</a> </span></li>
 			</ul>
 			<!-- 陈列所有结果 -->
 			<div class="search-results-container" id="search-results-container">
