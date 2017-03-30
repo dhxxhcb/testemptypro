@@ -24,12 +24,18 @@ public class IndexController {
 //	private UserService userService;
 
 	
+	@RequestMapping("/index") //登录窗口
+	public String login() {
+		loger.info("成功登录！");
+		return "login/index";
+	}
+	
 	/**
-	 * 登录窗口
+	 * 分公司登录窗口
 	 * @return 登录窗口
 	 */
-	@RequestMapping("/login") //登录窗口
-	public String login() {
+	@RequestMapping("/login1001") //登录窗口
+	public String logins() {
 		loger.info("进入登录页面！");
 		return "login/1001/login2";
 	}

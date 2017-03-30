@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="content">
 			<div class="entry">
 				<div class="div_img"><img src="img/logo.png"/></div>
-				<p>北京分公司网络办公智能平台</p>
+				<p><fmt:message code="title.beijing" /></p>
 				<div class="txt">
 					<img src="img/account.png" alt="用户名" />
 					<input type="text" name="username" placeholder="<fmt:message code="userName" />" />
@@ -54,9 +54,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="div_log">
 					<a href="javascript:document.form1.submit();"><fmt:message code="loging" /></a>
 				</div>
-				<fmt:message code="language"/>: <a href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
+				<!-- <fmt:message code="language"/>: <a href="login?lang=zh_CN"><fmt:message code="language.cn" /></a>
 					  &nbsp;&nbsp;
-					  <a href="?lang=en_US"><fmt:message code="language.en" /></a>
+					  <a href="login?lang=en_US"><fmt:message code="language.en" /></a> -->
 			</div>
 		</div>
 		</form>
