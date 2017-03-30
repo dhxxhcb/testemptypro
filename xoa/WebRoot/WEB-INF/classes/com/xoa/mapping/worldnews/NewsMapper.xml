@@ -7,7 +7,7 @@
     <result column="PROVIDER" property="provider" javaType="String"/>
     <result column="NEWS_TIME" property="newsTime" javaType="Date" />
     <result column="CLICK_COUNT" property="clickCount" javaType="int" />
-    <result column="ANONYMITY_YN" property="anonymityYn" javaType="String" />
+    <result column="ANONYMITY_YN" property="anonymityYn" javaType="int" />
     <result column="FORMAT" property="format" javaType="String" />
     <result column="TYPE_ID" property="typeId" javaType="String" />
     <result column="PUBLISH" property="publish" javaType="String" />
