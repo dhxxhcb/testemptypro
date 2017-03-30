@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -52,47 +55,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<div class="right">
+			语言: <a href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
+					  &nbsp;&nbsp;
+					  <a href="?lang=en_US"><fmt:message code="language.en" /></a>
 				<ul>
 					<li class="total">
 						<a href="javascript:;">
 							<span class="round"></span>
 							<span class="bord">|</span>
-							<span class="txt">北京集团总部</span>
+							<span class="txt">
+							<fmt:message code="headQuarters" />
+							</span>
 						</a>
 					</li>
 					<li class="div_li one">
 						<a href="login">
 							<span class="round"></span>
 							<span class="bord">|</span>
-							<span class="txt">北京分公司登录</span>
+							<span class="txt">
+							<fmt:message code="branchOfficeOne" />
+							</span>
 						</a>
 					</li>
 					<li class="div_li tow">
 						<a href="javascript:;">
 							<span class="round"></span>
 							<span class="bord">|</span>
-							<span class="txt">杭州分公司登录</span>
+							<span class="txt">
+							<fmt:message code="branchOfficeTwo"/></span>
 						</a>
 					</li>
 					<li class="div_li three">
 						<a href="javascript:;">
 							<span class="round"></span>
 							<span class="bord">|</span>
-							<span class="txt">上海分公司登录</span>
+							<span class="txt">
+							<fmt:message code="branchOfficeThree"/>
+							</span>
 						</a>
 					</li>
 					<li class="div_li four">
 						<a href="javascript:;">
 							<span class="round"></span>
 							<span class="bord">|</span>
-							<span class="txt">广东分公司登录</span>
+							<span class="txt">
+							<fmt:message code="branchOfficeFore"/>
+							</span>
 						</a>
 					</li>
 					<li class="div_im">
 						<img src="img/lianxian.png" alt="" />
 					</li>
 				</ul>
-				
 			</div>
 		</div>
 	</body>

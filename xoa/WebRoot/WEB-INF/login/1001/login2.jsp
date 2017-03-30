@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -42,15 +45,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<p>北京分公司网络办公智能平台</p>
 				<div class="txt">
 					<img src="img/account.png" alt="用户名" />
-					<input type="text" name="username" placeholder="用户名" />
+					<input type="text" name="username" placeholder="<fmt:message code="userName" />" />
 				</div>
 				<div class="txt">
 					<img src="img/password.png" alt="密码" />
-					<input type="password" name="password" placeholder="密码" />
+					<input type="password" name="password" placeholder='<fmt:message code="passWord"/>' />
 				</div>
 				<div class="div_log">
-					<a href="javascript:document.form1.submit();">登录</a>
+					<a href="javascript:document.form1.submit();"><fmt:message code="loging" /></a>
 				</div>
+				<fmt:message code="language"/>: <a href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
+					  &nbsp;&nbsp;
+					  <a href="?lang=en_US"><fmt:message code="language.en" /></a>
 			</div>
 		</div>
 		</form>
