@@ -653,8 +653,8 @@ a.fmPanel span {
 							</div>
 						</div>
 						<div class="person-info-body">
-							<a href="javascript:;" id="person_info" hidefocus="hidefocus">控制面板</a>
-							<a href="javascript:;" id="logout" hidefocus="hidefocus">注销</a>
+							<a href="javascript:;" id="person_info" hidefocus="hidefocus"><fmt:message code="mian.panel" /></a>
+							<a href="javascript:;" id="logout" hidefocus="hidefocus"><fmt:message code="main.cancellation" /></a>
 						</div>
 					</div>
 				</li>
@@ -705,7 +705,7 @@ a.fmPanel span {
 	</div>
 	<div id="funcbar" class="funcbar">
 		<div id='funcmenu_switcher'>
-			<span>导航菜单</span> <i class="funcmenu_switcher" data-step="1"
+			<span><fmt:message code="main.nmenu" /></span> <i class="funcmenu_switcher" data-step="1"
 				data-intro="<b style='display:block'>1、导航菜单按钮的使用</b>您已进入到通达OA主操作界面，您可以点击“导航菜单”按钮，控制主菜单显隐。"
 				data-position="right"></i>
 		</div>
