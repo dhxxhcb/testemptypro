@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<div class="right">
-			语言: <a href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
+			<fmt:message code="language" />: <a href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
 					  &nbsp;&nbsp;
 					  <a href="?lang=en_US"><fmt:message code="language.en" /></a>
 				<ul>
