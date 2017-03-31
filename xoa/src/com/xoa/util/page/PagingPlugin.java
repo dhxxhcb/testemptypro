@@ -31,7 +31,7 @@ import org.apache.ibatis.session.Configuration;
   
 /** 
  * 
- * @author ykzhen2015 
+ * @author zy
  */  
 @Intercepts({  
     @Signature(type = StatementHandler.class,  
@@ -182,7 +182,8 @@ public class PagingPlugin implements Interceptor {
      */  
     private Object preparedSQL(Invocation invocation, MetaObject metaStatementHandler, BoundSql boundSql, int pageNum, int pageSize, String dbType) throws Exception {  
         //获取当前需要执行的SQL  
-        String sql = boundSql.getSql();  
+       System.out.println("preparedSQL:"+dbType);
+    	String sql = boundSql.getSql();  
         String newSql = this.getPageDataSQL(sql, dbType);  
         //修改当前需要执行的SQL  
         metaStatementHandler.setValue("delegate.boundSql.sql", newSql);  
@@ -313,6 +314,7 @@ public class PagingPlugin implements Interceptor {
      * @throws NotSupportedException 
      */  
     private String getTotalSQL(String currSql, String dbType) throws NotSupportedException {  
+    	System.out.println("getTotalSQL:"+dbType);
         if (DB_TYPE_MYSQL.equals(dbType)) {  
             return  "select count(*) as total from (" + currSql + ") $_paging";  
         } else if (DB_TYPE_ORACLE.equals(dbType)) {  
@@ -331,6 +333,7 @@ public class PagingPlugin implements Interceptor {
      * @throws NotSupportedException 
      */  
     private String getPageDataSQL(String currSql, String dbType) throws NotSupportedException {  
+    	System.out.println("getPageDataSQL:"+dbType);
         if (DB_TYPE_MYSQL.equals(dbType)) {  
             return "select * from (" + currSql + ") $_paging_table limit ?, ?";  
         } else if (DB_TYPE_ORACLE.equals(dbType)) {  
@@ -350,6 +353,7 @@ public class PagingPlugin implements Interceptor {
     private void preparePageDataParams(PreparedStatement ps, int pageNum, int pageSize, String dbType) throws Exception {  
         //prepared()方法编译SQL，由于MyBatis上下文没有我们分页参数的信息，所以这里需要设置这两个参数.  
             //获取需要设置的参数个数，由于我们的参数是最后的两个，所以很容易得到其位置  
+    	System.out.println("preparePageDataParams:"+dbType);
             int idx = ps.getParameterMetaData().getParameterCount();  
             if (DB_TYPE_MYSQL.equals(dbType)) {  
                 //最后两个是我们的分页参数.  
@@ -373,11 +377,13 @@ public class PagingPlugin implements Interceptor {
      * @throws Exception 
      */  
     private String getDataSourceType(MappedStatement mappedStatement) throws Exception {  
+    
         Connection conn = null;  
         String dbConnectionStr = null;  
         try {  
             conn = mappedStatement.getConfiguration().getEnvironment().getDataSource().getConnection();  
             dbConnectionStr  = conn.toString();  
+        	System.out.println("getDataSourceType:"+dbConnectionStr);
         } finally {  
             if (conn != null) {  
                 conn.close();  

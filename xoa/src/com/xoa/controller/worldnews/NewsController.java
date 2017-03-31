@@ -36,8 +36,7 @@ public class NewsController {
 	/**
 	 * 信息展示 返回json demo
 	 * @return 
-	 * @throws ServletRequestBindingException 
-	 * @throws ParseException 
+	 * @throws Exception 
 	 */
 //	@RequestMapping(value="/shownew")
 //	public @ResponseBody Map<String, String> showNew() {
@@ -53,7 +52,7 @@ public class NewsController {
 //	}
 	
 	@RequestMapping(value="/shownew",produces={"application/json;charset=UTF-8"})
-	public @ResponseBody String showNew(HttpServletRequest request,HttpServletResponse response) throws ServletRequestBindingException, ParseException{
+	public @ResponseBody String showNew(HttpServletRequest request,HttpServletResponse response) throws Exception{
 //	public void doSerch(HttpServletRequest request,HttpServletResponse response){
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //		 Integer currentPage = ServletRequestUtils.getIntParameter(request, "currentPage", 0);  
@@ -71,7 +70,11 @@ public class NewsController {
 	     }else{
 	    	 date = null;
 	     }
-		Page<News> page = newService.showNews(typeId, date, currentPage, pageSize);
+	     Map<String,Object> maps = new HashMap<String, Object>();
+//	     maps.put("typeId", value)
+	     
+//		Page<News> page = newService.showNews(typeId, date, currentPage, pageSize);
+	    com.xoa.util.page.Page<News> page = newService.selectNews(maps);
 //		loger.info("结果信息："+ JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
 		return JSON.toJSONStringWithDateFormat(page, "yyyy-MM-dd HH:mm:ss");
 	}

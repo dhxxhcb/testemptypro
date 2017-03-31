@@ -2,6 +2,7 @@ package com.xoa.dao.worldnews;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -24,8 +25,10 @@ public interface NewsMapper {
      * 条件新闻信息查询并返回
      * @return
      */
-    List<News> showNews(@Param("typeId") String typeId,@Param("newsTime") Date newsTime,
-    		@Param("start") int start,@Param("pagesize") int pagesize);
+//    List<News> showNews(@Param("typeId") String typeId,@Param("newsTime") Date newsTime,
+//    		@Param("start") int start,@Param("pagesize") int pagesize);
+    
+    	public List<News> selectNews(Map<String,Object> maps);
     
     
     /**

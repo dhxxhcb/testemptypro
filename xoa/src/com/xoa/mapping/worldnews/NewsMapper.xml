@@ -59,7 +59,7 @@
   </select> -->
   
   <!-- 条件  -->
-  <select id="showNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
+  <select id="selectNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
   SELECT NEWS_ID, SUBJECT, PROVIDER, 
       NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
       FORMAT, TYPE_ID, PUBLISH, 
@@ -68,16 +68,15 @@
       CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
       TO_ID, PRIV_ID, USER_ID, 
       READERS, COMPRESS_CONTENT, SUMMARY
-      FROM news WHERE
+      FROM news
+	<where>
       <if test="typeId != null and typeId != ''">
       TYPE_ID = #{typeId} 
       </if>
       <if test="newsTime != null and newsTime != ''">
       AND NEWS_TIME = #{newsTime} 
       </if>
-       <if test="start!=null and pagesize!=null">  
-        limit #{start jdbcType=INTEGER},#{pagesize jdbcType=INTEGER}  
-    </if>
+      </where>
     ORDER BY NEWS_ID DESC  
 </select> 
 
