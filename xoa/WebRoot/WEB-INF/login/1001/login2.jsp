@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			*{margin: 0;padding: 0;}
 			body{font-family: "微软雅黑";}
 			html,body{width:100%;height:100%;}
-			.content{width: 100%;height:100%;background: url(${path}/img/111.png) no-repeat;background-size:cover;position: relative;}
+			.content{width: 100%;height:100%;background: url(img/111.png) no-repeat;background-size:cover;position: relative;}
 			.content .entry{/*width: 360px;*/width: 22.5%;/*height: 430px;*/border-radius: 6px;box-shadow: -1px 1px 3px #ccc;background-color: #fff;position: absolute;top: 20%;left: 37.5%;}
 			.content .entry .div_img{width: 98px;height: 98px;border-radius: 50%;margin: 25px auto;}
 			.content .entry .div_img img{display: block;width: 100%;}
