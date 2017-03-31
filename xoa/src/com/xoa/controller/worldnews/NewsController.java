@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.ParseException;
@@ -71,8 +72,8 @@ public class NewsController {
 	    	 date = null;
 	     }
 	     Map<String,Object> maps = new HashMap<String, Object>();
-//	     maps.put("typeId", value)
-	     
+	     maps.put("typeId", null);
+	     maps.put("newsTime", null);
 //		Page<News> page = newService.showNews(typeId, date, currentPage, pageSize);
 	    com.xoa.util.page.Page<News> page = newService.selectNews(maps);
 //		loger.info("结果信息："+ JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));

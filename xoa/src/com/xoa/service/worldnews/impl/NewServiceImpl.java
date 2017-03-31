@@ -3,6 +3,7 @@ package com.xoa.service.worldnews.impl;
 import com.xoa.dao.worldnews.NewsMapper;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.worldnews.NewService;
+import com.xoa.util.dataSource.DynDatasource;
 import com.xoa.util.page.Page;
 import com.xoa.util.ToJson;
 
@@ -42,15 +43,17 @@ public class NewServiceImpl implements NewService {
 //		return page;
 //	}
 	@Override
+	@DynDatasource
 	public Page<News> selectNews(Map<String, Object> maps) throws Exception{
          Page<News> pageParams = new Page<News>();  
          pageParams.setUseFlag(true);  
          pageParams.setCheckFlag(false);  
          pageParams.setCurrentPage(2);  
          pageParams.setPageSize(5);  
-         maps.put("roleName", "test");  
+//         maps.put("roleName", "test");  
          maps.put("page_drsdsd2233", pageParams);  
          List<News> list = newsMapper.selectNews(maps);
+         
          System.out.println("新闻查询结果："+list.size());
          
          pageParams.setResult(list);
