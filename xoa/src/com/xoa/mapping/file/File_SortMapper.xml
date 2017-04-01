@@ -17,7 +17,7 @@
 		<result column="SIGN_USER" property="sign_user" javaType="string" />
 		<result column="REVIEW" property="review" javaType="string" />
 	</resultMap>
-	<select id="getFile_Sort" resultMap="file_SortResultMap" parameterType="file_SortResultMap">
+	<select id="getFile_Sort" resultMap="file_SortResultMap" parameterType="com.xoa.model.file.File_Sort">
 		select * from file_sort where 1=1 
 		 <if test="sort_id != null and sort_id!=''" >
            and #{sort_id,jdbcType=INTEGER},
