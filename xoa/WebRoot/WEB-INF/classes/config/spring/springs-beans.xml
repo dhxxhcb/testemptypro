@@ -86,7 +86,7 @@
 	   <!-- 配置sql会话工厂：SqlSessionFactoryBean -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
         <property name="dataSource" ref="multipleDataSource" />
-        <property name="configLocation" value="classpath:config/spring/mybatis-config.xml" />
+        <!-- <property name="configLocation" value="classpath:config/spring/mybatis-config.xml" /> -->
         <property name="mapperLocations" value="classpath:com/xoa/mapping/*/*.xml" />
         <!-- <property name="plugins">
             <array>
