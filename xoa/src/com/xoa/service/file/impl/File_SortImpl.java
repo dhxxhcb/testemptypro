@@ -16,17 +16,23 @@ public class File_SortImpl  implements File_SortService{
 	@Resource
 	File_SortMapper file_SortMapper;
 	@Override
-	public ToJson<File_Sort> getFile_Sort() {
+	public ToJson<File_Sort> getFile_Sort(File_Sort file) {
 		ToJson<File_Sort> toJson = new ToJson<File_Sort>(0,"显示结果");
-		List<File_Sort> list=file_SortMapper.getFile_Sort();
-		      toJson.setObj(list);
+		List<File_Sort> list=file_SortMapper.getFile_Sort(file);
+		toJson.setObj(list);
 		return toJson;
 	
 	}
 	@Override
-	public List<File_Sort> getFile_Sorts() {
-		
-		return file_SortMapper.getFile_Sort();
+	public List<File_Sort> getFile_Sorts(File_Sort file) {
+		return file_SortMapper.getFile_Sort(file);
+	}
+	@Override
+	public ToJson<File_Sort> getFile_SortBySort_id(File_Sort file) {
+		ToJson<File_Sort> toJson = new ToJson<File_Sort>(0,"显示结果");
+		List<File_Sort> list=file_SortMapper.getFile_Sort(file);
+		toJson.setObj(list);
+		return toJson;
 	}
 	
 }

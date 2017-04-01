@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.file.File_SortMapper">
 	<resultMap id="file_SortResultMap" type="com.xoa.model.file.File_Sort">
-		<id column="SORT_ID" property="sort_id" jdbcType="INTEGER" />
-		<result column="SORT_PARENT" property="sort_parent" jdbcType="INTEGER" />
+		<id column="SORT_ID" property="sort_id" javaType="int" />
+		<result column="SORT_PARENT" property="sort_parent" javaType="int" />
 		<result column="SORT_NO" property="sort_no" javaType="string" />
 		<result column="SORT_NAME" property="sort_name" javaType="string" />
 		<result column="SORT_TYPE" property="sort_type" javaType="string" />
@@ -17,7 +17,23 @@
 		<result column="SIGN_USER" property="sign_user" javaType="string" />
 		<result column="REVIEW" property="review" javaType="string" />
 	</resultMap>
-	<select id="getFile_Sort" resultMap="file_SortResultMap">
-		select * from file_sort;
+	<select id="getFile_Sort" resultMap="file_SortResultMap" parameterType="file_SortResultMap">
+		select * from file_sort where 1=1 
+		 <if test="sort_id != null and sort_id!=''" >
+           and #{sort_id,jdbcType=INTEGER},
+        </if>
+        <if test="sort_parent != null and sort_parent !=''" >
+           and #{sort_parent,jdbcType=INTEGER},
+        </if>
+         <if test="sort_no != null and sort_no !=''" >
+           and #{sort_no,jdbcType=VARCHAR},
+        </if>
+         <if test="sort_name != null and sort_name !=''" >
+           and #{sort_name,jdbcType=VARCHAR},
+        </if>
+        sort_type
+        <if test="sort_type != null and sort_type !=''" >
+           and #{sort_type,jdbcType=VARCHAR},
+        </if>;
 	</select>
 </mapper>

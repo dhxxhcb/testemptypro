@@ -28,18 +28,27 @@ public class FileController {
     
 	@RequestMapping(value="/showFile",produces={"application/json;charset=UTF-8"})
 	@ResponseBody
-	public String showFile() {
+	public String showFile(File_Sort file) {
 		loger.info("加载文件柜");
-		ToJson<File_Sort> toJson=file_SortService.getFile_Sort();
+		ToJson<File_Sort> toJson=file_SortService.getFile_Sort(file);
 		//Map<String, String> map = new HashMap<String, String>();
 		
 		//map.put("showFile", jsons);
 		return JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss");
 	}
 	@RequestMapping("/showFiles")
-	public ModelAndView showFiles(){
+	public ModelAndView showFiles(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
-		List<File_Sort> list=file_SortService.getFile_Sorts();
+		List<File_Sort> list=file_SortService.getFile_Sorts(file);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("json", list);
+		ModelAndView modelAndView=new ModelAndView("file/showFile",model);
+		return modelAndView;
+	}
+	@RequestMapping("/showFileBySort_id")
+	public ModelAndView showFileBySort_id(File_Sort file){
+		//"redirect:/showFile"   "file/showFile"
+		List<File_Sort> list=file_SortService.getFile_Sorts(file);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("json", list);
 		ModelAndView modelAndView=new ModelAndView("file/showFile",model);
