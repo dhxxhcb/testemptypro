@@ -51,7 +51,7 @@ public class FileController {
 		List<File_Sort> list=file_SortService.getFile_Sorts(file);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("json", list);
-		ModelAndView modelAndView=new ModelAndView("file/",model);
+		ModelAndView modelAndView=new ModelAndView("file/fileSet",model);
 		return modelAndView;
 	}
 }
