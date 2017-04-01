@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.file.File_SortMapper">
+	<resultMap id="file_SortResultMap" type="com.xoa.model.file.File_Sort">
+		<id column="SORT_ID" property="sort_id" jdbcType="INTEGER" />
+		<result column="SORT_PARENT" property="sort_parent" jdbcType="INTEGER" />
+		<result column="SORT_NO" property="sort_no" javaType="string" />
+		<result column="SORT_NAME" property="sort_name" javaType="string" />
+		<result column="SORT_TYPE" property="sort_type" javaType="string" />
+		<result column="USER_ID" property="user_id" javaType="string" />
+		<result column="NEW_USER" property="new_user" javaType="string" />
+		<result column="MANAGE_USER" property="manager_user" javaType="string" />
+		<result column="DEL_USER" property="del_user" javaType="string" />
+		<result column="DOWN_USER" property="down_user" javaType="string" />
+		<result column="SHARE_USER" property="shar_user" javaType="string" />
+		<result column="OWNER" property="owner" javaType="string" />
+		<result column="SIGN_USER" property="sign_user" javaType="string" />
+		<result column="REVIEW" property="review" javaType="string" />
+	</resultMap>
+	<select id="getFile_Sort" resultMap="file_SortResultMap">
+		select * from file_sort;
+	</select>
+</mapper>
