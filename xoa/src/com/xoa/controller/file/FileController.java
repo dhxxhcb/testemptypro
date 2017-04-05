@@ -42,7 +42,7 @@ public class FileController {
 		List<File_Sort> list=file_SortService.getFile_Sorts(file);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("json", list);
-		ModelAndView modelAndView=new ModelAndView("file/showFile",model);
+		ModelAndView modelAndView=new ModelAndView("app/file/showFile",model);
 		return modelAndView;
 	}
 	@RequestMapping("/showFileBySort_id")
@@ -57,18 +57,16 @@ public class FileController {
 	@RequestMapping("/fileAdd")
 	public ModelAndView fileAdd(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
-		List<File_Sort> list=file_SortService.getFile_Sorts(file);
+		int resultAdd=file_SortService.addFile_Sorts(file);
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("json", list);
 		ModelAndView modelAndView=new ModelAndView("redirect:/showFile",model);
 		return modelAndView;
 	}
 	@RequestMapping("/fileUpdate")
 	public ModelAndView fileUpdate(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
-		List<File_Sort> list=file_SortService.getFile_Sorts(file);
+		int resultAdd=file_SortService.updateFile(file);
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("json", list);
 		ModelAndView modelAndView=new ModelAndView("redirect:/showFile",model);
 		return modelAndView;
 	}
