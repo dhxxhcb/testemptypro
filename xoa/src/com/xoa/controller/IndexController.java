@@ -2,7 +2,6 @@ package com.xoa.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -10,13 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.xoa.model.users.Users;
-import com.xoa.service.users.UsersService;
 import com.xoa.service.worldnews.NewService;
-import com.xoa.util.ToJson;
 
 
 
@@ -27,8 +22,7 @@ public class IndexController {
 	private Logger loger = Logger.getLogger(IndexController.class);
 //	@Resource
 //	private UserService userService;
-	@Resource
-	private UsersService usersService;
+
 	
 	@RequestMapping("/index") //登录窗口
 	public String login() {
@@ -56,37 +50,21 @@ public class IndexController {
 		return "app/xoamain";
 	}
 	
-	@RequestMapping(value="/login",method=RequestMethod.POST,produces={"application/json;charset=UTF-8"})
-	public @ResponseBody ToJson<Users> loginsuccess(@RequestParam("username") String username, @RequestParam("password") String password,
-            HttpServletRequest request,HttpServletResponse response) throws Exception{
-		ToJson<Users> json=new ToJson<Users>(0, null);
-		Users user=usersService.findUserByName(username);
-		try {
-			if (user==null) {
-			loger.info("登录用户名不存在");
-			request.getSession().setAttribute("message", "用户名不存在，请重新登录");
-			    json.setObject(user);
-	            json.setMsg("用户登录失败！");
-	            json.setFlag(false);
-			
-			
-		}else {
-			if (user.getByname().equals(username)) {
-				request.getSession().setAttribute("userName", username);
-			}
-			     json.setObject(user);
-	            json.setMsg("用户登录成功！");
-	            json.setFlag(false);
-		   
+	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public ModelAndView loginsuccess(@RequestParam("username") String username, @RequestParam("password") String password,
+            HttpServletRequest request) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		loger.info("用户名："+username+"\t 密码："+password);
+		if("admin".trim().equals(username) && "admin".trim().equals(password)){
+			loger.info("成功登录");
+			request.setAttribute("userName", username);
+			modelAndView.setViewName("redirect:/main");
+		}else{
+			loger.info("登录失败");
+			modelAndView.setViewName("redirect:/login");
 		}
-			
-		} catch (Exception e) {
-			json.setMsg(e.getMessage());
-
-		}
-		
-		return json; 
-		
+		return modelAndView;
 	}
 	
 }
