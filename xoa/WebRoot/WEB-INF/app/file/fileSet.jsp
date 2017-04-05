@@ -27,8 +27,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <form action="" method="get">
    <a href="openWindow('','700','500')" >新建文件夹</a>
    <table id="table">
-    <tr> <td> 排序号  </td> <td>文件夹名称  </td><td>  操作</td></tr>
-    <c:forEach items="" var="">
+    <tr> <td> 排序号  </td> <td>文件夹名称  </td><td> 操作</td></tr>
+    <!--  <c:forEach items="" var=""> -->
     <tr> 
     <td>   </td> 
     <td>   </td>
@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 onclick="openWindow('','700','500')"/>&nbsp;&nbsp;
 				    </td>
 	</tr>
-    </c:forEach>
+   <!-- </c:forEach> -->
    </table>
    </form>
   </body>

@@ -16,4 +16,8 @@ public interface File_SortService {
 	
 	@DynDatasource
 	ToJson<File_Sort> getFile_SortBySort_id(File_Sort file);
+	@DynDatasource
+	int addFile_Sorts(File_Sort file);
+	@DynDatasource
+	int updateFile(File_Sort file);
 }
