@@ -1,5 +1,11 @@
 package com.xoa.controller.enclosure;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Iterator;
 
 import javax.annotation.Resource;
@@ -11,7 +17,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -27,6 +33,11 @@ public class EnclosureController {
 	@Resource
 	private EnclosureService enclosureService;
 	
+	/**
+	 * 单文件上传
+	 * @return 
+	 * @throws Exception 
+	 */
 	@RequestMapping(value = "/upload")  
     public String upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {  
 		String module=com.xoa.util.ModuleEnum.EMAIL.getName();
@@ -39,7 +50,13 @@ public class EnclosureController {
         model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName);
         return "login/logins";  
     }  
-  
+	
+	
+	/**
+	 * 多文件上传
+	 * @return 
+	 * @throws Exception 
+	 */
 	@RequestMapping(value = "/uploadbatch")  
     public String upload(HttpServletRequest request,
 			HttpServletResponse response, ModelMap mmMap) {  
@@ -74,9 +91,50 @@ public class EnclosureController {
               
         }
         return "login/logins";  
-    }  
+	}
+	
+	/**
+	 * 下载
+	 * @return 
+	 * @throws Exception 
+	 */
+	@RequestMapping(value={"/download"},method={RequestMethod.GET})
+	public String download(String filename,HttpServletResponse response,
+	 HttpServletRequest request) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("multipart/form-data");
+		response.setHeader("Content-Disposition", "attachment;fileName="
+				+ filename);
+				try {
+					String path = Thread.currentThread().getContextClassLoader()
+							.getResource("").getPath()
+							+ "download";//这个download目录为啥建立在classes下的
+					InputStream inputStream = new FileInputStream(new File(path
+							+ File.separator + filename));
+
+					OutputStream os = response.getOutputStream();
+					byte[] b = new byte[2048];
+					int length;
+					while ((length = inputStream.read(b)) > 0) {
+						os.write(b, 0, length);
+					}
+
+					 // 这里主要关闭。
+					os.close();
+
+					inputStream.close();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		            //  返回值要注意，要不然就出现下面这句错误！
+		            //java+getOutputStream() has already been called for this response
+				return null;
+	}
 	
 	
 	
 	
-}
+   }
+	

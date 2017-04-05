@@ -1,4 +1,12 @@
 package com.xoa.util;
+/**
+ * 菜单枚举类（用于获取菜单名称与编号）
+  * @author 作者:  zlf
+  * @version 版本： 1.0 
+  * @parameter 
+  * @since 
+  * @return 
+  */
 
 public enum ModuleEnum {
 	EMAIL("email",1),WORKFLOW("workflow",2),FILEFLODER("filefolder",3);
