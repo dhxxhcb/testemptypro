@@ -5,11 +5,12 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
 import com.xoa.dao.users.UsersMapper;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
-
+@Service
 public class UsersServiceImpl implements UsersService {
 	
 	@Resource
