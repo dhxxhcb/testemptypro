@@ -17,6 +17,8 @@
 		<result column="SIGN_USER" property="sign_user" javaType="string" />
 		<result column="REVIEW" property="review" javaType="string" />
 	</resultMap>
+	
+	
 	<select id="getFile_Sort" resultMap="file_SortResultMap" parameterType="com.xoa.model.file.File_Sort">
 		select * from file_sort where  1=1 
 		 <if test="sort_id != null and sort_id!=''" >
@@ -36,8 +38,11 @@
            and sort_type=#{sort_type}
         </if>;
 	</select>
+	
+	
+	
 	<insert id="addFile_Sorts"  parameterType="com.xoa.model.file.File_Sort">
-	insert into file_sort
+	   insert into file_sort
 	 <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="sort_parent != null" >
         sort_parent,
@@ -119,5 +124,8 @@
       </if>
     </trim>
 	</insert>
-	<update id="updateFile_Sorts"></update>
+	
+	<update id="updateFile_Sorts">
+	
+	</update>
 </mapper>
