@@ -13,10 +13,10 @@ import java.lang.annotation.Target;
  *
  */
 @Target({ElementType.METHOD,ElementType.ANNOTATION_TYPE})
-@Documented
 @Retention(RetentionPolicy.RUNTIME)
+@Documented
 public @interface DynDatasource {
 	
-	String sourceName() default "mysqlDataSource";
+	String sourceName() default "mysqlDataSources";
 	
 }

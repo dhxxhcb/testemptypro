@@ -10,11 +10,11 @@ public class DatasourcesUtils {
 	/**
 	 * mysql
 	 */
-	public final static String MYSQL_DATA_SOURCES = "mysqlDataSource";
+	public final static String MYSQL_DATA_SOURCES = "mysqlDataSources";
 	/** 
 	 * oracle
 	 */
-	public final static String ORACLE_DATA_SOURCES = "oracleDataSource";
+	public final static String ORACLE_DATA_SOURCES = "oracleDataSources";
 	
 	private static final ThreadLocal<String> contextHolder= new ThreadLocal<String>();
 	

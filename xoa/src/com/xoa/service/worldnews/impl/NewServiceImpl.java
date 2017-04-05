@@ -4,7 +4,7 @@ import com.xoa.dao.worldnews.NewsMapper;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.dataSource.DynDatasource;
-import com.xoa.util.page.Page;
+import com.xoa.util.page.PageParams;
 import com.xoa.util.ToJson;
 
 
@@ -25,40 +25,18 @@ public class NewServiceImpl implements NewService {
 	@Resource
 	private NewsMapper newsMapper;
 
-//	@Override
-//	public Page<News> showNews(String typeId, Date newsTime, Integer currentPage, Integer pageSize) {
-//		// TODO Auto-generated method stub
-//		Integer pageNum = 0;
-//		if (currentPage > 1) {
-//			pageNum = (currentPage - 1) * pageSize;
-//		}
-//		Page<News> page = new Page<News>(currentPage, pageSize);
-//		if (typeId != null && typeId.length() > 0 || newsTime != null) {
-//			page.setTotalsCount(newsMapper.showCountNews(typeId, newsTime).size());
-//			page.setResult(newsMapper.showNews(typeId, newsTime, pageNum, pageSize));
-//		} else {
-//			page.setTotalsCount(newsMapper.showAllCountNews().size());
-//			page.setResult(newsMapper.showAllNews(pageNum, pageSize));
-//		}
-//		return page;
-//	}
 	@Override
-	@DynDatasource
-	public Page<News> selectNews(Map<String, Object> maps) throws Exception{
-         Page<News> pageParams = new Page<News>();  
+	public List<News> selectNews(Map<String, Object> maps) throws Exception{
+		PageParams pageParams = new PageParams();  
          pageParams.setUseFlag(true);  
          pageParams.setCheckFlag(false);  
-         pageParams.setCurrentPage(2);  
+         pageParams.setPage(1);  
          pageParams.setPageSize(5);  
 //         maps.put("roleName", "test");  
          maps.put("page_drsdsd2233", pageParams);  
          List<News> list = newsMapper.selectNews(maps);
-         
          System.out.println("新闻查询结果："+list.size());
-         
-         pageParams.setResult(list);
-//         pageParams.setResult();
-         return pageParams;
+         return list;
 	}
 
 	

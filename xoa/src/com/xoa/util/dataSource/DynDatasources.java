@@ -12,9 +12,9 @@ public class DynDatasources extends AbstractRoutingDataSource{
 	private Logger loger = Logger.getLogger(DynDatasources.class);
 	
 	@Override
-	protected Object determineCurrentLookupKey() {
+	public Object determineCurrentLookupKey() {
 		String type = DatasourcesUtils.getDataSourceType();
-		loger.debug("类型：s"+type);
+		loger.info("连接池获取数据源类型："+type);
 		System.err.println(type);
 		return	type;
 	}

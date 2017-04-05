@@ -7,7 +7,7 @@
     <result column="PROVIDER" property="provider" javaType="String"/>
     <result column="NEWS_TIME" property="newsTime" javaType="Date" />
     <result column="CLICK_COUNT" property="clickCount" javaType="int" />
-    <result column="ANONYMITY_YN" property="anonymityYn" javaType="int" />
+    <result column="ANONYMITY_YN" property="anonymityYn" javaType="String" />
     <result column="FORMAT" property="format" javaType="String" />
     <result column="TYPE_ID" property="typeId" javaType="String" />
     <result column="PUBLISH" property="publish" javaType="String" />
@@ -24,7 +24,7 @@
     <result column="PRIV_ID" property="privId" javaType="String" />
     <result column="USER_ID" property="userId" javaType="String" />
     <result column="READERS" property="readers" javaType="String"/>
-    <result column="COMPRESS_CONTENT" property="compressContent" javaType="byte" />
+    <result column="COMPRESS_CONTENT" property="compressContent" javaType="String" />
     <result column="SUMMARY" property="summary" javaType="String" />
   </resultMap>
  <!--  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.worldnews.NewsWithBLOBs" extends="BaseResultMap" >
@@ -46,34 +46,22 @@
     where NEWS_ID = #{newsId,jdbcType=INTEGER}
   </select>
 
- <!--  <select id="showNews" resultMap="BaseResultMap" parameterType="com.xoa.model.worldnews.News">
-  SELECT NEWS_ID, SUBJECT, PROVIDER, 
-      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
-      FORMAT, TYPE_ID, PUBLISH, 
-      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
-      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
-      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
-      TO_ID, PRIV_ID, USER_ID, 
-      READERS, COMPRESS_CONTENT, SUMMARY
-      FROM news
-  </select> -->
-  
   <!-- 条件  -->
-  <select id="selectNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
+  <select id="selectNews" parameterType="Map" resultMap="BaseResultMap">  
   SELECT NEWS_ID, SUBJECT, PROVIDER, 
       NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
       FORMAT, TYPE_ID, PUBLISH, 
       TOP, LAST_EDITOR, LAST_EDIT_TIME, 
       SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
       CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
-      TO_ID, PRIV_ID, USER_ID, 
-      READERS, COMPRESS_CONTENT, SUMMARY
+      TO_ID, PRIV_ID, USER_ID, READERS,COMPRESS_CONTENT
+       SUMMARY
       FROM news
 	<where>
       <if test="typeId != null and typeId != ''">
       TYPE_ID = #{typeId} 
       </if>
-      <if test="newsTime != null and newsTime != ''">
+       <if test="newsTime != null and newsTime != ''">
       AND NEWS_TIME = #{newsTime} 
       </if>
       </where>

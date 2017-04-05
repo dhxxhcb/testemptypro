@@ -1,13 +1,11 @@
 package com.xoa.service.worldnews;
 
-import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 
 import com.xoa.model.worldnews.News;
-import com.xoa.util.page.Page;
-import com.xoa.util.ToJson;
+import com.xoa.util.dataSource.DynDatasource;
 
 public interface NewService {
 	
@@ -17,8 +15,7 @@ public interface NewService {
 	 * @return
 	 * @throws Exception 
 	 */
-//	public Page<News> showNews(String typeId,Date newsTime,Integer currentPage, Integer pageSize);
-	public Page<News> selectNews(Map<String, Object> maps) throws Exception;
-//	public ToJson<News> showNews();
+	@DynDatasource
+	public List<News> selectNews(Map<String, Object> maps) throws Exception;
 
 }

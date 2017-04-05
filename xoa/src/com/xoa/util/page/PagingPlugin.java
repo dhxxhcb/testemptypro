@@ -28,6 +28,8 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;  
 import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;  
 import org.apache.ibatis.session.Configuration;  
+
+import com.xoa.util.dataSource.DynDatasources;
   
 /** 
  * 
@@ -47,9 +49,11 @@ public class PagingPlugin implements Interceptor {
     private Boolean defaultUseFlag; //默认是否启用插件  
     private Boolean defaultCheckFlag; //默认是否检测页码参数  
     private Boolean defaultCleanOrderBy; //默认是否清除最后一个order by 后的语句  
+    
+    private DynDatasources dyTypeDate = new DynDatasources();
   
-    private static final String DB_TYPE_MYSQL = "mysql";  
-    private static final String DB_TYPE_ORACLE = "oracle";  
+    private static final String DB_TYPE_MYSQL = "mysqlDataSources";  
+    private static final String DB_TYPE_ORACLE = "oracleDataSources";  
   
     /** 
      * 插件实现方法 
@@ -62,7 +66,8 @@ public class PagingPlugin implements Interceptor {
         String sql = (String) metaStatementHandler.getValue("delegate.boundSql.sql");  
   
         MappedStatement mappedStatement =  (MappedStatement) metaStatementHandler.getValue("delegate.mappedStatement");  
-        String dbType = this.getDataSourceType(mappedStatement);  
+        //获取数据源连接类型
+        String dbType = dyTypeDate.determineCurrentLookupKey().toString();  
   
         //不是select语句.  
         if (!this.checkSelect(sql)) {  
@@ -194,8 +199,6 @@ public class PagingPlugin implements Interceptor {
         return statementObj;  
     }  
   
-  
-  
     /** 
      * 获取总条数. 
      * 
@@ -292,8 +295,9 @@ public class PagingPlugin implements Interceptor {
      */  
     @Override  
     public void setProperties(Properties props) {  
+    	
         String strDefaultPage = props.getProperty("default.page", "1");  
-        String strDefaultPageSize = props.getProperty("default.pageSize", "50");  
+        String strDefaultPageSize = props.getProperty("default.pageSize", "10");  
         String strDefaultUseFlag = props.getProperty("default.useFlag", "false");  
         String strDefaultCheckFlag = props.getProperty("default.checkFlag", "false");  
         String StringDefaultCleanOrderBy = props.getProperty("default.cleanOrderBy", "false");  
@@ -366,7 +370,7 @@ public class PagingPlugin implements Interceptor {
                 throw new NotSupportedException("当前插件未支持此类型数据库");  
             }  
   
-    }  
+    }
   
     /** 
      * 
@@ -376,29 +380,30 @@ public class PagingPlugin implements Interceptor {
      * @return 
      * @throws Exception 
      */  
-    private String getDataSourceType(MappedStatement mappedStatement) throws Exception {  
+//    private String getDataSourceType(MappedStatement mappedStatement) throws Exception {  
+//        Connection conn = null;  
+//        String dbConnectionStr = null;  
+//        try {  
+//            conn = mappedStatement.getConfiguration().getEnvironment().getDataSource().getConnection();  
+//            dbConnectionStr  = conn.toString();  
+//        	System.out.println("getDataSourceType:"+dbConnectionStr);
+//        } finally {  
+//            if (conn != null) {  
+//                conn.close();  
+//            }  
+//        }  
+//        if (null == dbConnectionStr || dbConnectionStr.trim().equals(""))  {  
+//            throw new NotSupportedException("当前插件未能获得数据库连接信息。");  
+//        }  
+//        dbConnectionStr = dbConnectionStr.toLowerCase();  
+//        if (dbConnectionStr.contains(DB_TYPE_MYSQL)) {  
+//            return DB_TYPE_MYSQL;  
+//        } else if (dbConnectionStr.contains(DB_TYPE_ORACLE)) {  
+//            return DB_TYPE_ORACLE;  
+//        } else {  
+//            throw new NotSupportedException("当前插件未支持此类型数据库");  
+//        }  
+//    }  
     
-        Connection conn = null;  
-        String dbConnectionStr = null;  
-        try {  
-            conn = mappedStatement.getConfiguration().getEnvironment().getDataSource().getConnection();  
-            dbConnectionStr  = conn.toString();  
-        	System.out.println("getDataSourceType:"+dbConnectionStr);
-        } finally {  
-            if (conn != null) {  
-                conn.close();  
-            }  
-        }  
-        if (null == dbConnectionStr || dbConnectionStr.trim().equals(""))  {  
-            throw new NotSupportedException("当前插件未能获得数据库连接信息。");  
-        }  
-        dbConnectionStr = dbConnectionStr.toLowerCase();  
-        if (dbConnectionStr.contains(DB_TYPE_MYSQL)) {  
-            return DB_TYPE_MYSQL;  
-        } else if (dbConnectionStr.contains(DB_TYPE_ORACLE)) {  
-            return DB_TYPE_ORACLE;  
-        } else {  
-            throw new NotSupportedException("当前插件未支持此类型数据库");  
-        }  
-    }  
+    
 }

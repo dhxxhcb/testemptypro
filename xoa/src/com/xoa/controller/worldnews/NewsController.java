@@ -3,7 +3,6 @@ package com.xoa.controller.worldnews;
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.worldnews.NewService;
-import com.xoa.util.Page;
 import com.xoa.util.ToJson;
 
 
@@ -20,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -75,7 +75,7 @@ public class NewsController {
 	     maps.put("typeId", null);
 	     maps.put("newsTime", null);
 //		Page<News> page = newService.showNews(typeId, date, currentPage, pageSize);
-	    com.xoa.util.page.Page<News> page = newService.selectNews(maps);
+	    List<News> page = newService.selectNews(maps);
 //		loger.info("结果信息："+ JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
 		return JSON.toJSONStringWithDateFormat(page, "yyyy-MM-dd HH:mm:ss");
 	}
