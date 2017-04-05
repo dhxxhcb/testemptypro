@@ -11,85 +11,112 @@
          http://www.springframework.org/schema/aop 
          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
 	default-lazy-init="true">
+	<!-- 设定Spring 去哪些包中找Annotation -->
 	<context:component-scan base-package="com.xoa.*" />
+
 	<context:property-placeholder location="classpath:jdbc-sql.properties" />
 
 	<!-- mysql -->
-	<bean id="mysqlDataSources" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
-		destroy-method="close">
+	<bean id="mysqlDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="${mysql.driverClassName}" />
 		<property name="jdbcUrl" value="${mysql.url}" />
 		<property name="user" value="${mysql.uname}" />
 		<property name="password" value="${mysql.password}" />
 		<!--连接池中保留的最大连接数。默认值: 15 -->
-		<property name="maxPoolSize" value="${maxPoolSize}" />
+		<property name="maxPoolSize" value="${mysql.maxPoolSize}" />
 		<!-- 连接池中保留的最小连接数，默认为：3 -->
-		<property name="minPoolSize" value="${minPoolSize}" />
+		<property name="minPoolSize" value="${mysql.minPoolSize}" />
 		<!-- 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3 -->
-		<property name="initialPoolSize" value="${initialPoolSize}" />
+		<property name="initialPoolSize" value="${mysql.initialPoolSize}" />
 		<!--最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->
-		<property name="maxIdleTime" value="${maxIdleTime}" />
+		<property name="maxIdleTime" value="${mysql.maxIdleTime}" />
 		<!-- 当连接池连接耗尽时，客户端调用getConnection()后等待获取新连接的时间，超时后将抛出SQLException，如设为0则无限期等待。单位毫秒。默认: 
 			0 -->
-		<property name="checkoutTimeout" value="${checkoutTimeout}" />
+		<property name="checkoutTimeout" value="${mysql.checkoutTimeout}" />
 		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 -->
-		<property name="acquireIncrement" value="${acquireIncrement}" />
+		<property name="acquireIncrement" value="${mysql.acquireIncrement}" />
 		<!--定义在从数据库获取新连接失败后重复尝试的次数。默认值: 30 ；小于等于0表示无限次 -->
-		<property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />
+		<property name="acquireRetryAttempts" value="${mysql.acquireRetryAttempts}" />
 		<!--重新尝试的时间间隔，默认为：1000毫秒 -->
-		<property name="acquireRetryDelay" value="${acquireRetryDelay}" />
+		<property name="acquireRetryDelay" value="${mysql.acquireRetryDelay}" />
 		<!--关闭连接时，是否提交未提交的事务，默认为false，即关闭连接，回滚未提交的事务 -->
-		<property name="autoCommitOnClose" value="${autoCommitOnClose}" />
+		<property name="autoCommitOnClose" value="${mysql.autoCommitOnClose}" />
 	</bean>
-
+	
 	<!-- oracle -->
-	<bean id="oracleDataSources" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
-		destroy-method="close">
+	<bean id="oracleDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="${oracle.driverClassName}" />
 		<property name="jdbcUrl" value="${oracle.url}" />
 		<property name="user" value="${oracle.uname}" />
 		<property name="password" value="${oracle.password}" />
-		<property name="maxPoolSize" value="${maxPoolSize}" />
-		<property name="minPoolSize" value="${minPoolSize}" />
-		<property name="initialPoolSize" value="${initialPoolSize}" />
-		<property name="maxIdleTime" value="${maxIdleTime}" />
-		<property name="checkoutTimeout" value="${checkoutTimeout}" />
-		<property name="acquireIncrement" value="${acquireIncrement}" />
-		<property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />
-		<property name="acquireRetryDelay" value="${acquireRetryDelay}" />
-		<property name="autoCommitOnClose" value="${autoCommitOnClose}" />
+		<!--连接池中保留的最大连接数。默认值: 15 -->
+		<property name="maxPoolSize" value="${oracle.maxPoolSize}" />
+		<!-- 连接池中保留的最小连接数，默认为：3 -->
+		<property name="minPoolSize" value="${oracle.minPoolSize}" />
+		<!-- 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3 -->
+		<property name="initialPoolSize" value="${oracle.initialPoolSize}" />
+		<!--最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->
+		<property name="maxIdleTime" value="${oracle.maxIdleTime}" />
+		<!-- 当连接池连接耗尽时，客户端调用getConnection()后等待获取新连接的时间，超时后将抛出SQLException，如设为0则无限期等待。单位毫秒。默认: 
+			0 -->
+		<property name="checkoutTimeout" value="${oracle.checkoutTimeout}" />
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 -->
+		<property name="acquireIncrement" value="${oracle.acquireIncrement}" />
+		<!--定义在从数据库获取新连接失败后重复尝试的次数。默认值: 30 ；小于等于0表示无限次 -->
+		<property name="acquireRetryAttempts" value="${oracle.acquireRetryAttempts}" />
+		<!--重新尝试的时间间隔，默认为：1000毫秒 -->
+		<property name="acquireRetryDelay" value="${oracle.acquireRetryDelay}" />
+		<!--关闭连接时，是否提交未提交的事务，默认为false，即关闭连接，回滚未提交的事务 -->
+		<property name="autoCommitOnClose" value="${oracle.autoCommitOnClose}" />
 	</bean>
 
-	<bean id="dynDatasources" class="com.xoa.util.dataSource.DynDatasources">
-		<property name="targetDataSources">
-			<map key-type="java.lang.String">
-				<entry key="mysqlDataSources" value-ref="mysqlDataSources" />
-				<entry key="oracleDataSources" value-ref="oracleDataSources" />
-			</map>
-		</property>
-		<!-- 默认为mysql -->
-		<property name="defaultTargetDataSource" ref="mysqlDataSources" />
-	</bean>
+	  <bean id="multipleDataSource" class="com.xoa.util.dataSource.DynDatasources">
+	   <!-- 默认为mysql -->
+        <property name="defaultTargetDataSource" ref="mysqlDataSource"/>
+        <!-- 动态 -->
+        <property name="targetDataSources">
+            <map>
+                <entry key="mySqlDataSource" value-ref="mysqlDataSource"/>
+                <entry key="oracleDataSource" value-ref="oracleDataSource"/>
+            </map>
+        </property>
+       
+    </bean>
 	
-		<!-- 配置sql会话工厂：SqlSessionFactoryBean -->
-	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dynDatasources" />
-		<property name="configLocation" value="classpath:config/spring/mybatis-config.xml" /> 
-		<property name="mapperLocations" value="classpath:com/xoa/mapping/*/*.xml" />
-	</bean>
-	
-	 <bean id="myInspectDatasource" class="com.xoa.util.dataSource.MyInspectDatasource" />
-	<aop:aspectj-autoproxy />
+	   <!-- 配置sql会话工厂：SqlSessionFactoryBean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+        <property name="dataSource" ref="multipleDataSource" />
+        <!-- <property name="configLocation" value="classpath:config/spring/mybatis-config.xml" /> -->
+        <property name="mapperLocations" value="classpath:com/xoa/mapping/*/*.xml" />
+        <!-- <property name="plugins">
+            <array>
+                <bean class="com.common.support.CustomPageHelper" scope="singleton">
+                    <property name="properties">
+                        <value>dialect=mysql</value>
+                    </property>
+                </bean>
+            </array>
+        </property> -->
+    </bean>
+
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.xoa.dao.*" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
-
+	
+	<bean id="myInspectDatasource" class="com.xoa.util.dataSource.MyInspectDatasource"/>
+	<aop:config>
+	    <aop:aspect id="myAspect" ref="myInspectDatasource">
+	        <aop:before method="aspectBefore" pointcut-ref="pointCutHandler"/>
+			<aop:pointcut expression="execution(* com.xoa.service.*.*(..))" id="pointCutHandler" />
+	    </aop:aspect>
+	</aop:config>
+	
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dynDatasources" />
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
