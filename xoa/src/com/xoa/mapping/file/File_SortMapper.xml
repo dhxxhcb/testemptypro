@@ -36,7 +36,7 @@
            and sort_type=#{sort_type}
         </if>;
 	</select>
-	<insert id="addFile_Sorts">
+	<insert id="addFile_Sorts"  parameterType="com.xoa.model.file.File_Sort">
 	insert into file_sort
 	 <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="sort_parent != null" >
@@ -119,4 +119,5 @@
       </if>
     </trim>
 	</insert>
+	<update id="updateFile_Sorts"></update>
 </mapper>
