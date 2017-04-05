@@ -18,22 +18,22 @@
 		<result column="REVIEW" property="review" javaType="string" />
 	</resultMap>
 	<select id="getFile_Sort" resultMap="file_SortResultMap" parameterType="com.xoa.model.file.File_Sort">
-		select * from file_sort where 1=1 
+		select * from file_sort where  1=1 
 		 <if test="sort_id != null and sort_id!=''" >
-           and #{sort_id,jdbcType=INTEGER},
+           and sort_id=#{sort_id},
         </if>
         <if test="sort_parent != null and sort_parent !=''" >
-           and #{sort_parent,jdbcType=INTEGER},
+           and sort_parent=#{sort_parent}
         </if>
          <if test="sort_no != null and sort_no !=''" >
-           and #{sort_no,jdbcType=VARCHAR},
+           and sort_no=#{sort_no}
         </if>
          <if test="sort_name != null and sort_name !=''" >
-           and #{sort_name,jdbcType=VARCHAR},
+           and sort_name=#{sort_name}
         </if>
         sort_type
         <if test="sort_type != null and sort_type !=''" >
-           and #{sort_type,jdbcType=VARCHAR},
+           and sort_type=#{sort_type}
         </if>;
 	</select>
 </mapper>
