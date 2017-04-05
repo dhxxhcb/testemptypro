@@ -29,7 +29,7 @@ public class Ctest {
 		 Map<String,Object> maps = new HashMap<String, Object>();
 	     maps.put("typeId", null);
 	     maps.put("newsTime", null);
-	    List<News> page = newService.selectNews(maps);
+	    List<News> page = newService.selectNews(maps, 1, 5, true);
 		System.out.println(JSON.toJSONStringWithDateFormat(page, "yyyy-MM-dd HH:mm:ss"));
 		
 	}

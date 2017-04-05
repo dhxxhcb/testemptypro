@@ -25,15 +25,22 @@ public class NewServiceImpl implements NewService {
 	@Resource
 	private NewsMapper newsMapper;
 
+	/**
+	 * 
+	 * @param maps map条件参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
-	public List<News> selectNews(Map<String, Object> maps) throws Exception{
+	public List<News> selectNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag) throws Exception{
 		PageParams pageParams = new PageParams();  
-         pageParams.setUseFlag(true);  
-         pageParams.setCheckFlag(false);  
-         pageParams.setPage(1);  
-         pageParams.setPageSize(5);  
-//         maps.put("roleName", "test");  
-         maps.put("page_drsdsd2233", pageParams);  
+         pageParams.setUseFlag(useFlag);  
+         pageParams.setPage(page);  
+         pageParams.setPageSize(pageSize);  
+         maps.put("page", pageParams);  
          List<News> list = newsMapper.selectNews(maps);
          System.out.println("新闻查询结果："+list.size());
          return list;

@@ -20,7 +20,7 @@ public class PageParams {
 	 */
 	private Boolean useFlag;
 	/**
-	 * 是否检测页码的有效性，如果为true，而页码大于最大页数，则抛出异常
+	 * 是否检测页码的有效性，如果为true，而页码大于最大页数，则抛出异常 默认为false
 	 */
 	private Boolean checkFlag;
 	/**
@@ -97,7 +97,11 @@ public class PageParams {
 	 * @param checkFlag
 	 */
 	public void setCheckFlag(Boolean checkFlag) {
+		if(checkFlag == null){
+			this.checkFlag = false;
+		}else{
 		this.checkFlag = checkFlag;
+		}
 	}
 
 	/**

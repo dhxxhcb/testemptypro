@@ -5,7 +5,6 @@ import com.xoa.model.worldnews.News;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.ToJson;
 
-
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -29,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @Scope(value="prototype")
+@RequestMapping("/news")
 public class NewsController {
 	private Logger loger = Logger.getLogger(NewsController.class);
 	@Resource
@@ -51,16 +51,19 @@ public class NewsController {
 ////		return new ModelAndView("news/newsShow", map);
 //		return map;
 //	}
+	/**
+	 * 新闻显示页面
+	 * @return
+	 */
+	@RequestMapping("/clicknews")
+	public String clickNews(){
+		return "/app/news/newsShow";
+	}
+	
 	
 	@RequestMapping(value="/shownew",produces={"application/json;charset=UTF-8"})
 	public @ResponseBody String showNew(HttpServletRequest request,HttpServletResponse response) throws Exception{
-//	public void doSerch(HttpServletRequest request,HttpServletResponse response){
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		 Integer currentPage = ServletRequestUtils.getIntParameter(request, "currentPage", 0);  
-//	     Integer pageSize = ServletRequestUtils.getIntParameter(request, "pageSize", 5);
-//	     String newsTims = ServletRequestUtils.getStringParameter(request, "newsTimes");
-//	     String typeId = ServletRequestUtils.getStringParameter(request, "typeId");
-		
 		 Integer currentPage = 0;  
 	     Integer pageSize = 5;
 	     String newsTims = null;
@@ -71,14 +74,50 @@ public class NewsController {
 	     }else{
 	    	 date = null;
 	     }
-	     Map<String,Object> maps = new HashMap<String, Object>();
-	     maps.put("typeId", null);
-	     maps.put("newsTime", null);
-//		Page<News> page = newService.showNews(typeId, date, currentPage, pageSize);
-	    List<News> page = newService.selectNews(maps);
-//		loger.info("结果信息："+ JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
-		return JSON.toJSONStringWithDateFormat(page, "yyyy-MM-dd HH:mm:ss");
+	     return null;
 	}
+	/**
+	 * 获取页面条件并进行数据封装
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	private void doSearch(HttpServletRequest request, HttpServletResponse response) throws Exception{  
+        Integer currentPage = ServletRequestUtils.getIntParameter(request, "currentPage", 0);  
+        Integer pageSize = ServletRequestUtils.getIntParameter(request, "pageSize", 10);  
+          
+        String empNo = ServletRequestUtils.getStringParameter(request, "empNo");  
+        String displayName = ServletRequestUtils.getStringParameter(request, "displayName");  
+        String login = ServletRequestUtils.getStringParameter(request, "login");  
+        String deptName = ServletRequestUtils.getStringParameter(request, "deptName");  
+        String userCategory = ServletRequestUtils.getStringParameter(request, "userCategory");  
+//        Page<User> page = userService.showPage(empNo, login,deptName, displayName,  userCategory, currentPage, pageSize);
+         loger.info("当前页："+currentPage+"\t\t 当前显示条数："+pageSize+"条件："+displayName);
+        request.setAttribute("empNo", empNo);
+        request.setAttribute("displayName", displayName);
+        request.setAttribute("login", login);
+        request.setAttribute("deptName", deptName);
+        request.setAttribute("userCategory", userCategory);
+//        request.setAttribute("userListDto", page.getResult());  
+//        request.setAttribute("pageEntity", page);  
+    }
+
+    /**
+     * 查询信息展示
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/showNews")  
+    public String ajaxSearchUser(HttpServletRequest request, HttpServletResponse response) throws Exception {  
+          
+        doSearch(request, response);  
+          
+        return "/page/table";  
+    }
+	
+	
 	
 	
 }

@@ -34,13 +34,5 @@ public class File_SortImpl  implements File_SortService{
 		toJson.setObj(list);
 		return toJson;
 	}
-	@Override
-	public int addFile_Sorts(File_Sort file) {
-		return file_SortMapper.addFile_Sorts();
-	}
-	@Override
-	public int updateFile(File_Sort file) {
-		return file_SortMapper.updateFile_Sorts();
-	}
 	
 }
