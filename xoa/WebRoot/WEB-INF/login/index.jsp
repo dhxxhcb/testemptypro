@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.content{width: 100%;height:100%;overflow: hidden;background: url(img/all.png) no-repeat;background-size:cover;}
 			.content .left{width: 55%;min-height:800px;float: left;position: relative;}
 			.content .left .logo{width: 350px;position: absolute;top: 35%;left: 25%;}
-			.content .left .logo img{display: block;width: 100%;height: 100%;}
+			.content .left .logo img{display: block;width: 100%;}
 			
 			.content .right{width: 45%;float: left;}
 			.content .right ul{list-style: none;margin-top: 27%;margin-left: 15%;position: relative;}
