@@ -27,16 +27,6 @@ public class SysMenu {
 
 	private List<SysFunction> functionList;
 	
-	private List<SysMenu> menuList;
-
-
-
-	public List<SysMenu> getMenuList() {
-		return menuList;
-	}
-	public void setMenuList(List<SysMenu> menuList) {
-		this.menuList = menuList;
-	}
 	public List<SysFunction> getFunctionList() {
 		return functionList;
 	}

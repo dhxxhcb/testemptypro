@@ -2,6 +2,9 @@ package com.xoa.model.users;
 
 import java.util.Date;
 
+import com.xoa.model.department.Department;
+import com.xoa.model.role.Role;
+
 public class Users {
 	
 	/**
@@ -296,6 +299,26 @@ public class Users {
 	 */
 	private String userPara;
 	
+	private Department dep;
+
+	private Role role;
+	
+	public Department getDep() {
+		return dep;
+	}
+	/**
+	 * 
+	 * @param dep
+	 */
+	public void setDep(Department dep) {
+		this.dep = dep;
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
 	public Integer getUid() {
 		return uid;
 	}

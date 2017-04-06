@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.service.worldnews.NewService;
@@ -57,7 +58,7 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST,produces={"application/json;charset=UTF-8"})
-	public @ResponseBody ToJson<Users> loginsuccess(@RequestParam("username") String username, @RequestParam("password") String password,
+	public @ResponseBody  String loginsuccess(@RequestParam("username") String username, @RequestParam("password") String password,
             HttpServletRequest request,HttpServletResponse response) throws Exception{
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		Users user=usersService.findUserByName(username);
@@ -84,8 +85,7 @@ public class IndexController {
 			json.setMsg(e.getMessage());
 
 		}
-		
-		return json; 
+		return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss"); 
 		
 	}
 	

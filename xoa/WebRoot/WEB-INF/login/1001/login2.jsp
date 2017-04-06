@@ -120,7 +120,7 @@ html,body {
 	$(function() {
 		$('#loginbtn').click(function() {
 			$.ajax({
-				type : 'post',
+				type : "post",
 				url : "login",
 				data : {
 					username:$("#username").val(),
@@ -128,6 +128,7 @@ html,body {
 				},
 				dataType:'json',
 				success : function(data) {
+				alert(data);
 					if (data.flag == true) {
 						window.location.href = "main";
 					} else {
