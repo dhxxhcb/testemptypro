@@ -310,6 +310,7 @@
 </script>
 <script>
 	jQuery(function() {
+
 		seajs.use([ 'tDesktop', 'backbone' ], function(tDesktop) {
 			var tDesktop = new tDesktop.TDesktop;
 			window.tDesktop = tDesktop;
@@ -451,7 +452,13 @@ a.fmPanel span {
 </style>
 	<script src="js/ispirit.js"></script>
 	<script type="text/javascript">
+			function zhuzy(){
+				window.location.href = "http://192.168.0.17:88/general/system/user/index.php?uid=admin";
+			}
 		(function($) {
+			$("#usermange").on('click',function(){
+				
+			});
 
 			var imageMsg = {
 				init : function() {
@@ -704,7 +711,7 @@ a.fmPanel span {
 		</div>
 	</div>
 	<div id="funcbar" class="funcbar">
-		<div id='funcmenu_switcher'>
+		<div id='funcmenu_switcher'><span ><a onclick="zhuzy();">用户管理</a></span>
 			<span><fmt:message code="main.nmenu" /></span> <i class="funcmenu_switcher" data-step="1"
 				data-intro="<b style='display:block'>1、导航菜单按钮的使用</b>您已进入到通达OA主操作界面，您可以点击“导航菜单”按钮，控制主菜单显隐。"
 				data-position="right"></i>
@@ -1899,6 +1906,10 @@ a.fmPanel span {
 							</ul>
 						</div>
 					</li>
+						<div id="mz0" hidefocus="hidefocus" class="first-menu-item">
+							<i class="iconfont"></i><span class="first-menu-title">用户管理</span>
+						</div>
+					</li>
 					<li data-submenu-id="second-menu-z0">
 						<div id="mz0" hidefocus="hidefocus" class="first-menu-item">
 							<i class="iconfont"></i><span class="first-menu-title">系统管理</span>
@@ -2642,6 +2653,9 @@ a.fmPanel span {
             <a href="calendar/arrange/cal_note.php?CAL_ID=${calId}" target="_blank">${content}</a>
             <div class="calendarTime" >${calTime} — ${endTime}</div>
     </li>
+</script>
+<script type="text/javascript">
+	
 </script>
 </html>
 <div id="overlay"></div>
