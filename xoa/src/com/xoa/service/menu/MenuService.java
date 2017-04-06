@@ -11,10 +11,10 @@ import com.xoa.util.dataSource.DynDatasource;
 public interface MenuService {
 	
 	@DynDatasource
-	public ToJson<SysMenu> getAll();
+	public List<SysMenu> getAll();
 	
 	@DynDatasource
-	public ToJson<SysFunction> getDadMenu(String menuId,String id);
+	public List<SysFunction> getDadMenu(String menuId,String id);
 	
 
 }

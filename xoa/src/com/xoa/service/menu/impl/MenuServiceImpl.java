@@ -10,9 +10,8 @@ import com.xoa.dao.menu.SysFunctionMapper;
 import com.xoa.dao.menu.SysMenuMapper;
 import com.xoa.model.menu.SysFunction;
 import com.xoa.model.menu.SysMenu;
-import com.xoa.model.worldnews.News;
 import com.xoa.service.menu.MenuService;
-import com.xoa.util.ToJson;
+
 
 @Service
 public class MenuServiceImpl implements MenuService {
@@ -23,16 +22,14 @@ public class MenuServiceImpl implements MenuService {
 	private SysFunctionMapper sysFunctionMapper;
 
 	@Override
-	public ToJson<SysMenu> getAll() {
-		ToJson<SysMenu> toJson = new ToJson<SysMenu>(0,"显示结果");
+	public List<SysMenu> getAll() {
 		List<SysMenu> list=sysMenuMapper.getDatagrid();
-		      toJson.setObj(list);
-		return toJson;
+		System.out.println(list.size());
+		return list;
 	}
 
 	@Override
-	public ToJson<SysFunction> getDadMenu(String menuId,String id) {
-		ToJson<SysFunction> toJson=new ToJson<SysFunction>(0,"显示结果");
+	public List<SysFunction> getDadMenu(String menuId,String id) {
 		List<SysFunction> list=sysFunctionMapper.getDatagrid(menuId);
 		List<SysFunction> list1=sysFunctionMapper.childMenu(id);
 		if (list1.size()>0) {
@@ -40,9 +37,7 @@ public class MenuServiceImpl implements MenuService {
 				list.add(sysFunction);
 			}
 		}
-		
-		  toJson.setObj(list);
-		return toJson;
+		return list;
 	}
 
 	
