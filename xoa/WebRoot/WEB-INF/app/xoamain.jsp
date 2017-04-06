@@ -310,7 +310,7 @@
 </script>
 <script>
 	jQuery(function() {
-
+		$.ajax({url:'http://127.0.0.1:8080/xoa/showMenu',type:'get',success:function(data){alert(data.flag)}});
 		seajs.use([ 'tDesktop', 'backbone' ], function(tDesktop) {
 			var tDesktop = new tDesktop.TDesktop;
 			window.tDesktop = tDesktop;
