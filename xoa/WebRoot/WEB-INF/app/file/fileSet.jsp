@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -25,13 +26,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   <body>
    <form action="" method="get">
-   <a href="openWindow('','700','500')" >新建文件夹</a>
+   <a href="openWindow('/fileAdd?','700','500')" >新建文件夹</a>
    <table id="table">
     <tr> <td> 排序号  </td> <td>文件夹名称  </td><td> 操作</td></tr>
-    <!--  <c:forEach items="" var=""> -->
+    <c:forEach items="${parentList}" var="parent">
     <tr> 
-    <td>   </td> 
-    <td>   </td>
+    <td>  ${parent.sort_no}</td> 
+    <td>   ${parent.sort_name }</td>
                     <td>&nbsp;&nbsp; <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="克隆" name="BT_find" 
 						 onclick="openWindow('','700','500')"/>&nbsp;&nbsp;
 						 <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="编辑" name="BT_find" 
@@ -45,8 +46,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="菜单定义指南啊" name="BT_find" 
 						 onclick="openWindow('','700','500')"/>&nbsp;&nbsp;
 				    </td>
+				    <input type="hidden" value="${parent.sort_id }"/>
 	</tr>
-   <!-- </c:forEach> -->
+    </c:forEach>
    </table>
    </form>
   </body>

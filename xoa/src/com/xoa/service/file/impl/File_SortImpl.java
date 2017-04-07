@@ -42,5 +42,9 @@ public class File_SortImpl  implements File_SortService{
 	public int updateFile(File_Sort file) {
 		return file_SortMapper.updateFile_Sorts();
 	}
+	@Override
+	public int checkSort_No() {
+		return file_SortMapper.checkSort_No();
+	}
 	
 }

@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.xoa.model.file.File_Sort;
 import com.xoa.service.file.File_SortService;
 import com.xoa.util.ToJson;
+import net.sf.json.JSONObject;
 
 
 @Controller
@@ -48,19 +49,34 @@ public class FileController {
 	@RequestMapping("/showFileBySort_id")
 	public ModelAndView showFileBySort_id(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
+		System.out.println("parent:"+file.getSort_parent());
 		List<File_Sort> list=file_SortService.getFile_Sorts(file);
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("json", list);
+		model.put("parentList", list);
 		ModelAndView modelAndView=new ModelAndView("app/file/fileSet",model);
 		return modelAndView;
 	}
 	@RequestMapping("/fileAdd")
 	public ModelAndView fileAdd(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
+		Map<String, Object> model =null;
+		ModelAndView modelAndView=null;
+		if(file.getSort_no()==null||file.getSort_no().equals("")){
+			model = new HashMap<String, Object>();
+			modelAndView=new ModelAndView("app/file/fileAdd",model);
+		}
 		int resultAdd=file_SortService.addFile_Sorts(file);
-		Map<String, Object> model = new HashMap<String, Object>();
-		ModelAndView modelAndView=new ModelAndView("redirect:/showFile",model);
 		return modelAndView;
+	}
+	@RequestMapping("/checkfileNoid")
+	public String checkFileNoid(String id){
+		//"redirect:/showFile"   "file/showFile"
+		Map<String, Object> model =new HashMap<String, Object>() ;
+		
+		int i=file_SortService.checkSort_No();
+		model.put("flag", i);
+	     JSONObject jsonObject = JSONObject.fromObject(model);
+		return JSON.toJSONStringWithDateFormat(jsonObject, "yyyy-MM-dd HH:mm:ss");
 	}
 	@RequestMapping("/fileUpdate")
 	public ModelAndView fileUpdate(File_Sort file){

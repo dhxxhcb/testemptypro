@@ -20,4 +20,6 @@ public interface File_SortService {
 	int addFile_Sorts(File_Sort file);
 	@DynDatasource
 	int updateFile(File_Sort file);
+	@DynDatasource
+	int checkSort_No();
 }

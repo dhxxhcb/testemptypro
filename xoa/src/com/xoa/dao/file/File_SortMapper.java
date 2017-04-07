@@ -11,4 +11,6 @@ public interface File_SortMapper {
 	int addFile_Sorts();
 
 	int updateFile_Sorts();
+
+	int checkSort_No();
 }
