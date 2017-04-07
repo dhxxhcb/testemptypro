@@ -63,26 +63,46 @@ public class FileController {
 		ModelAndView modelAndView=null;
 		if(file.getSort_no()==null||file.getSort_no().equals("")){
 			model = new HashMap<String, Object>();
-			modelAndView=new ModelAndView("app/file/fileAdd",model);
+			modelAndView=new ModelAndView("app/file/addFile",model);
+			return modelAndView;
 		}
 		int resultAdd=file_SortService.addFile_Sorts(file);
+		modelAndView=new ModelAndView("redirect:/fileAdd",model);
 		return modelAndView;
 	}
-	@RequestMapping("/checkfileNoid")
-	public String checkFileNoid(String id){
+	
+	@RequestMapping("/fileClone")
+	public ModelAndView fileClone(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
-		Map<String, Object> model =new HashMap<String, Object>() ;
+		Map<String, Object> model = new HashMap<String, Object>();
+		ModelAndView modelAndView=null;
+		modelAndView=new ModelAndView("app/file/",model);
 		
-		int i=file_SortService.checkSort_No();
-		model.put("flag", i);
-	     JSONObject jsonObject = JSONObject.fromObject(model);
-		return JSON.toJSONStringWithDateFormat(jsonObject, "yyyy-MM-dd HH:mm:ss");
+		return modelAndView;
 	}
+//	@RequestMapping("/checkfileNoid")
+//	public String checkFileNoid(String id){
+//		//"redirect:/showFile"   "file/showFile"
+//		Map<String, Object> model =new HashMap<String, Object>() ;
+//		
+//		int i=file_SortService.checkSort_No();
+//		model.put("flag", i);
+//	     JSONObject jsonObject = JSONObject.fromObject(model);
+//		return JSON.toJSONStringWithDateFormat(jsonObject, "yyyy-MM-dd HH:mm:ss");
+//	}
 	@RequestMapping("/fileUpdate")
 	public ModelAndView fileUpdate(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
 		int resultAdd=file_SortService.updateFile(file);
 		Map<String, Object> model = new HashMap<String, Object>();
+		ModelAndView modelAndView=new ModelAndView("redirect:/showFile",model);
+		return modelAndView;
+	}
+	@RequestMapping("/fileDelete")
+	public ModelAndView fileDelete(File_Sort file){
+		//"redirect:/showFile"   "file/showFile"
+		Map<String, Object> model = new HashMap<String, Object>();
+		int  i=file_SortService.fileDeleteBySort_id(file.getSort_id());
 		ModelAndView modelAndView=new ModelAndView("redirect:/showFile",model);
 		return modelAndView;
 	}

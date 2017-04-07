@@ -10,7 +10,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>新建文件夹</title>
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -19,29 +18,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+
     <script type="text/javascript">
-    var fileNoid=documnent.getElementById("#fileNoid");
-    function fileNoidBlur(){
-    var fileNoidString=fileNoid.val();
-    if(Trim(fileNoidString)==""){
-			alert("排序号不能为空");
-		}
-    $.post("/checkfileNoid",{'id':fileNoidString},function(data){
-       if(data.id=="1"){
-       
-       }
-    });
+    function submit(){
+    document.form1.submit();
+    }
+    function close(){
+    window.close();
     }
     </script>
   </head>
-  
   <body>
-  <form id="forma1" action="/fileAdd">
-  <span ></span>
-   排序号:<input id="fileNoid" name="sort_no" type="text" onblur="fileNoidBlur()"/>
-   文件夹名称：<input id="fileNameid" name="sort_name" type="text"/>
-   <input id="qr" type="button" value="确认"/>
-   <input id="fh" type="button" value="返回"/>
+  <h1>新建文件夹</h1>
+  <form id="form1" name="form1" action="${pageContext.request.contextPath }/fileAdd">
+      排序号:    <input id="fileNoid" name="sort_no" type="text"/><br>
+   文件夹名称：<input id="fileNameid" name="sort_name" type="text"/><br>
+   <input id="qr" type="button" value="确认" onclick="submit()"/><br>
+   <input id="fh" type="button" value="返回" onclick="close()"/>
    </form>
   </body>
 </html>
