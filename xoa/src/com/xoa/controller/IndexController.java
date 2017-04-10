@@ -60,7 +60,7 @@ public class IndexController {
 	// 登录窗口
 	public String loginSuccess() {
 		loger.info("成功登录！");
-		return "app/index";
+		return "app/main/index";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
