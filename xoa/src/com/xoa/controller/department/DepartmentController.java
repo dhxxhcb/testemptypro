@@ -27,7 +27,7 @@ public class DepartmentController {
 	private UserFunctionService DepartmentService;
 	
 	 /**
-     * 部门列表-树
+     * 部门列表-树111
      * @return
      */
 	    @RequestMapping(value = "/dep", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
