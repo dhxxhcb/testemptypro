@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +16,6 @@ import com.alibaba.fastjson.JSON;
 import com.xoa.model.file.File_Sort;
 import com.xoa.service.file.File_SortService;
 import com.xoa.util.ToJson;
-import net.sf.json.JSONObject;
 
 
 @Controller
