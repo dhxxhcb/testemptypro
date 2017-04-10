@@ -14,13 +14,8 @@ public interface MenuService {
 	 * @return
 	 */
 	@DynDatasource
-	public List<SysMenu> getAll();
-	/**
-	 * 获取子类级菜单
-	 * @return
-	 */
-	@DynDatasource
-	public List<SysFunction> getDadMenu(String menuId,String id);
+	public List<SysMenu> getAll(int fId);
+	
 	
 
 }

@@ -2,6 +2,8 @@ package com.xoa.service.users;
 
 
 
+import java.util.List;
+
 import com.xoa.model.department.Department;
 import com.xoa.model.menu.SysFunction;
 import com.xoa.model.users.Users;
@@ -13,10 +15,10 @@ public interface UserFunctionService {
 	
 	
 	@DynDatasource
-	public ToJson<SysFunction> getMenu(int uid);
+	public List<SysFunction> getMenu(int uid);
 	
 	@DynDatasource
-	public ToJson<Department> getDep();
+	public List<Department> getDep();
 	
 	@DynDatasource
 	public ToJson<Users> getUser(int uid);

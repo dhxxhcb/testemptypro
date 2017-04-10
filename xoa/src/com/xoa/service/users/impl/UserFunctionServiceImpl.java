@@ -26,39 +26,33 @@ public class UserFunctionServiceImpl implements UserFunctionService {
 	@Resource
 	private DepartmentMapper departmentMapper;
 	@Override
-	public ToJson<SysFunction> getMenu(int uid) {
-		ToJson<SysFunction> toJson=new ToJson<SysFunction>(0,"显示结果");
+	public List<SysFunction> getMenu(int uid) {
 		String[] strArray = null;
 		List<SysFunction> sFunList=sysFunctionMapper.getAll();
 		UserFunction uFun=userFunctionMapper.getMenuByUserId(uid);
 		strArray=uFun.getUserFunCidStr().split(",");
 		List<SysFunction> list1 = new ArrayList<SysFunction>();
-		System.out.println(strArray.length);
 		for (int j = 0; j < strArray.length; j++) {
 			for (int i=j; i<sFunList.size(); i++) {  
-				System.out.println(sFunList.get(j).getFuncId());
-				if (sFunList.get(i).getFuncId().toString().equals(strArray[j])) {
-					System.out.println("相等"+sFunList.get(i).getFuncId());
+				if (sFunList.get(i).getfId().toString().equals(strArray[j])) {
 					list1.add(sFunList.get(i));
 					break; 
 				}
 			}
 			
 		}
-		toJson.setObj(list1);
-		return toJson;
+		return list1;
 	}
 	@Override
-	public ToJson<Department> getDep() {
-		ToJson<Department> toJson=new ToJson<Department>(0,"显示结果");
-		List<Department> dep=departmentMapper.getDatagrid();
-		toJson.setObj(dep);
-		return toJson;
+	public List<Department> getDep() {
+		return departmentMapper.getDatagrid();
 	}
 	@Override
 	public ToJson<Users> getUser(int uid) {
-		ToJson<Users> toJson=new ToJson<Users>(0,"显示结果");
+		return null;
+	/*	ToJson<Users> toJson=new ToJson<Users>(0,"显示结果");
 		List<Users> userList=departmentMapper.getUserAll(uid);
 		toJson.setObj(userList);
-		return toJson;
-	}}
+		return toJson;*/
+	}
+	}
