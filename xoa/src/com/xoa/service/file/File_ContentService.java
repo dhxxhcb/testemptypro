@@ -1,5 +1,8 @@
 package com.xoa.service.file;
 
-public interface File_ContentService {
+import com.xoa.util.dataSource.DynDatasource;
 
+public interface File_ContentService {
+	@DynDatasource
+	int fileContentDeleBySort_id(int sort_id);
 }

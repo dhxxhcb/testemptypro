@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.file.File_Sort;
+import com.xoa.service.file.File_ContentService;
 import com.xoa.service.file.File_SortService;
 import com.xoa.util.ToJson;
 
@@ -23,6 +24,8 @@ public class FileController {
 	
     @Resource
 	File_SortService file_SortService;
+    @Resource
+    File_ContentService file_ContentService;
     
 	@RequestMapping(value="/showFile",produces={"application/json;charset=UTF-8"})
 	@ResponseBody
@@ -78,16 +81,7 @@ public class FileController {
 		
 		return modelAndView;
 	}
-//	@RequestMapping("/checkfileNoid")
-//	public String checkFileNoid(String id){
-//		//"redirect:/showFile"   "file/showFile"
-//		Map<String, Object> model =new HashMap<String, Object>() ;
-//		
-//		int i=file_SortService.checkSort_No();
-//		model.put("flag", i);
-//	     JSONObject jsonObject = JSONObject.fromObject(model);
-//		return JSON.toJSONStringWithDateFormat(jsonObject, "yyyy-MM-dd HH:mm:ss");
-//	}
+	
 	@RequestMapping("/fileEdit")
 	public ModelAndView fileEdit(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
@@ -101,18 +95,44 @@ public class FileController {
 		return modelAndView;
 	}
 	@RequestMapping("/fileUpdate")
-	public void fileUpdate(File_Sort file){
+	public ModelAndView  fileUpdate(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
 		int resultUpdate=file_SortService.updateFile(file);
 		System.out.println("修改文件影响行--------"+resultUpdate);
-		
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("app/file/fileEdit");
+		return modelAndView;
 	}
+	
+	/**
+	 * 删除目录
+	 * @param file
+	 * @return
+	 */
 	@RequestMapping("/fileDelete")
 	public ModelAndView fileDelete(File_Sort file){
-		//"redirect:/showFile"   "file/showFile"
+		//map对象 传值查询子节点数据
+		Map<String, Object> fileParent = new HashMap<String, Object>();
+		fileParent.put("fileParent", file.getSort_id());
+		//子节点数据
+		List<File_Sort> childrenList=file_SortService.getSortChrildren(fileParent);
+		//将父节点数据加入
+		childrenList.add(file);
+		//删除附件
+		for(File_Sort f : childrenList){
+			int tempNo=f.getSort_id();
+			int deleConNo=file_ContentService.fileContentDeleBySort_id(tempNo);
+			System.out.println("删除文件影响行----deleConNo----"+deleConNo);
+		}
+		//删除父节点，子节点
+		for(File_Sort f:childrenList){
+		Map<String, Object> fileSortidMap= new HashMap<String, Object>();
+		fileSortidMap.put("sortid", f.getSort_id());
+		int deleSortNo=file_SortService.fileDeleteBySort_id(fileSortidMap);
+		System.out.println("删除文件影响行----deleSortNo----"+deleSortNo);
+		}
+		
 		Map<String, Object> model = new HashMap<String, Object>();
-		int  i=file_SortService.fileDeleteBySort_id(file.getSort_id());
-		System.out.println("删除文件影响行--------"+i);
 		ModelAndView modelAndView=new ModelAndView("redirect:/showFileBySort_id",model);
 		return modelAndView;
 	}

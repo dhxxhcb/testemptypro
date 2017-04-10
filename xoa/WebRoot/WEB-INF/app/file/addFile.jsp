@@ -20,11 +20,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
     <script type="text/javascript">
-    function submit(){
-    document.form1.submit();
-    }
+    
      function closeCurrentWindow(){
- 		
+ 		  document.form1.submit();
  		window.opener.location.href = window.opener.location.href;     
  		if (window.opener.progressWindow)     
  		{         
@@ -39,8 +37,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form id="form1" name="form1" action="${pageContext.request.contextPath }/fileAdd">
       排序号:    <input id="fileNoid" name="sort_no" type="text"/><br>
    文件夹名称：<input id="fileNameid" name="sort_name" type="text"/><br>
-   <input id="qr" type="button" value="确认" onclick="submit()"/><br>
-   <input id="fh" type="button" value="返回" onclick="closeCurrentWindow()"/>
+  <!--  <input id="qr" type="button" value="" onclick="submit()"/><br> -->
+   <input id="fh" type="button" value="确认" onclick="closeCurrentWindow()"/>
    </form>
   </body>
 </html>

@@ -1,6 +1,7 @@
 package com.xoa.dao.file;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xoa.model.file.File_Sort;
 
@@ -14,5 +15,7 @@ public interface File_SortMapper {
 
 	int checkSort_No();
 
-	void fileDeleteBySort_id(int sort_id);
+	void fileDeleteBySort_id(Map<String, Object> fileParent);
+
+	List<File_Sort> getSortChrildren(Map<String, Object> fileParent);
 }

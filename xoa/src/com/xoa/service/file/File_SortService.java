@@ -1,6 +1,7 @@
 package com.xoa.service.file;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xoa.model.file.File_Sort;
 import com.xoa.util.ToJson;
@@ -23,5 +24,7 @@ public interface File_SortService {
 	@DynDatasource
 	int checkSort_No();
 	@DynDatasource
-	int fileDeleteBySort_id(int sort_id);
+	int fileDeleteBySort_id(Map<String, Object> fileParent);
+	@DynDatasource
+	List<File_Sort> getSortChrildren(Map<String, Object> fileParent);
 }

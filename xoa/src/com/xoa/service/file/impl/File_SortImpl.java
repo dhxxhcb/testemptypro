@@ -1,6 +1,7 @@
 package com.xoa.service.file.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -47,9 +48,14 @@ public class File_SortImpl  implements File_SortService{
 		return file_SortMapper.checkSort_No();
 	}
 	@Override
-	public int fileDeleteBySort_id(int sort_id) {
-		file_SortMapper.fileDeleteBySort_id(sort_id);
+	public int fileDeleteBySort_id(Map<String, Object> fileParent) {
+		file_SortMapper.fileDeleteBySort_id(fileParent);
 		return 0;
+	}
+	
+	@Override
+	public List<File_Sort> getSortChrildren(Map<String, Object> fileParent) {
+		return file_SortMapper.getSortChrildren(fileParent);
 	}
 	
 }
