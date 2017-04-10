@@ -99,6 +99,7 @@ public class EmailBodyServiceImpl implements EmailBodyService{
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);  
         List<EmailBody> list=emailBodyMapper.listSendEmail(maps);
+        System.out.println(list.size());
 		return list;
 	}
 	/**
@@ -112,6 +113,7 @@ public class EmailBodyServiceImpl implements EmailBodyService{
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);  
         List<EmailBody> list = emailBodyMapper.listWastePaperbasket(maps);
+        System.out.println(list.size());
 		return  list;
 	}
 	/**
@@ -132,8 +134,12 @@ public class EmailBodyServiceImpl implements EmailBodyService{
          pageParams.setPageSize(pageSize);  
          maps.put("page", pageParams);  
          List<EmailBody> list = emailBodyMapper.listqueryEmailBody(maps);
-         System.out.println(list.size());
 		return list;
+	}
+
+	@Override
+	public EmailBody queryById(Integer bodyId) {
+		return emailBodyMapper.queryById(bodyId);
 	}
 
 }

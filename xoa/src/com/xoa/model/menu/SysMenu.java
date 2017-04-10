@@ -11,75 +11,81 @@ public class SysMenu {
 	/**
 	 * 菜单ID
 	 */
-	private String menuId;
+	private String id;
 	/**
 	 *菜单名称
 	 */
-	private String menuName;
+	private String name;
 	/**
 	 * 菜单图片名
 	 */
-	private String image;
+	private String img;
 	/**
 	 * 国际版多语言菜单名称
 	 */
-	private String menuExt;
-
-	private List<SysFunction> functionList;
+	private String ext; 
+	private SysFunction function;
 	
-	public List<SysFunction> getFunctionList() {
-		return functionList;
+	public SysFunction getFunction() {
+		return function;
 	}
-	public void setFunctionList(List<SysFunction> functionList) {
-		this.functionList = functionList;
-	}
-	/**
-	 * 菜单ID
-	 */
-	public String getMenuId() {
-		return menuId;
-	}
-	/**
-	 * 菜单ID
-	 */
-	public void setMenuId(String menuId) {
-		this.menuId = menuId == null ? null : menuId.trim();
-	}
-	/**
-	 *菜单名称
-	 */
-	public String getMenuName() {
-		return menuName;
-	}
-	/**
-	 *菜单名称
-	 */
-	public void setMenuName(String menuName) {
-		this.menuName = menuName == null ? null : menuName.trim();
-	} 
-	/**
-	 * 菜单图片名
-	 */
 
-	public String getImage() {
-		return image;
+	public void setFunction(SysFunction function) {
+		this.function = function;
 	}
-	/**
-	 * 菜单图片名
-	 */
-	public void setImage(String image) {
-		this.image = image == null ? null : image.trim();
+
+	private List<SysMenu> menu;
+
+	public List<SysMenu> getMenu() {
+		return menu;
 	}
-	/**
-	 * 国际版多语言菜单名称
-	 */
-	public String getMenuExt() {
-		return menuExt;
+
+	public void setMenu(List<SysMenu> menu) {
+		this.menu = menu;
 	}
-	/**
-	 * 国际版多语言菜单名称
-	 */
-	public void setMenuExt(String menuExt) {
-		this.menuExt = menuExt == null ? null : menuExt.trim();
+
+	private List<SysFunction> child;
+
+	public String getId() {
+		return id;
 	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public String getExt() {
+		return ext;
+	}
+
+	public void setExt(String ext) {
+		this.ext = ext;
+	}
+
+	public List<SysFunction> getChild() {
+		return child;
+	}
+
+	public void setChild(List<SysFunction> child) {
+		this.child = child;
+	}
+
+
+	
 }

@@ -35,7 +35,7 @@ public class MenuController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/showMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	/*@RequestMapping(value = "/showMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String showNew() {
 		loger.info("进入显示信息页面");
@@ -57,11 +57,11 @@ public class MenuController {
 		return JSON.toJSONStringWithDateFormat(menuJson, "yyyy-MM-dd HH:mm:ss");
 	}
 
-	/**
+	*//**
 	 * 获取一级菜单下面的子类菜单
 	 * 
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/showSubclassesMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String showDadMenu(HttpServletRequest request, HttpServletResponse response) {
@@ -86,6 +86,6 @@ public class MenuController {
 				"yyyy-MM-dd HH:mm:ss"));
 
 		return JSON.toJSONStringWithDateFormat(menuJson, "yyyy-MM-dd HH:mm:ss");
-	}
+	}*/
 
 }
