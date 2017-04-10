@@ -28,7 +28,7 @@ public class UserFunctionController {
 	@Resource
 	private UserFunctionService  userFunctionService;
 	
-	@RequestMapping("/showUser2")
+	/*@RequestMapping("/showUser2")
 	@ResponseBody
 	public String show(){
 		ToJson<SysFunction> sysList=userFunctionService.getMenu(63);
@@ -36,8 +36,8 @@ public class UserFunctionController {
 		map.put("showmenus", JSON.toJSONStringWithDateFormat(sysList, "yyyy-MM-dd HH:mm:ss"));
 		return JSON.toJSONStringWithDateFormat(sysList, "yyyy-MM-dd HH:mm:ss");
 		
-	}
-	@RequestMapping("/showUser4")
+	}*/
+	/*@RequestMapping("/showUser4")
 	@ResponseBody
 	public String dep(){
 		ToJson<Department> sysList=userFunctionService.getDep();
@@ -54,6 +54,6 @@ public class UserFunctionController {
 		map.put("showmenus", JSON.toJSONStringWithDateFormat(sysList, "yyyy-MM-dd HH:mm:ss"));
 		return JSON.toJSONStringWithDateFormat(sysList, "yyyy-MM-dd HH:mm:ss");
 		
-	}
+	}*/
 
 }
