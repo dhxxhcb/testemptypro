@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.file.File_SortMapper">
 	<resultMap id="file_SortResultMap" type="com.xoa.model.file.File_Sort">
-		<id column="SORT_ID" property="sort_id" javaType="int" />
-		<result column="SORT_PARENT" property="sort_parent" javaType="int" />
-		<result column="SORT_NO" property="sort_no" javaType="string" />
-		<result column="SORT_NAME" property="sort_name" javaType="string" />
-		<result column="SORT_TYPE" property="sort_type" javaType="string" />
-		<result column="USER_ID" property="user_id" javaType="string" />
-		<result column="NEW_USER" property="new_user" javaType="string" />
-		<result column="MANAGE_USER" property="manager_user" javaType="string" />
-		<result column="DEL_USER" property="del_user" javaType="string" />
-		<result column="DOWN_USER" property="down_user" javaType="string" />
-		<result column="SHARE_USER" property="shar_user" javaType="string" />
-		<result column="OWNER" property="owner" javaType="string" />
-		<result column="SIGN_USER" property="sign_user" javaType="string" />
-		<result column="REVIEW" property="review" javaType="string" />
+		<id column="SORT_ID" property="sort_id" jdbcType="INTEGER"  />
+		<result column="SORT_PARENT" property="sort_parent" jdbcType="INTEGER" />
+		<result column="SORT_NO" property="sort_no" jdbcType="VARCHAR" />
+		<result column="SORT_NAME" property="sort_name" jdbcType="VARCHAR" />
+		<result column="SORT_TYPE" property="sort_type" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="user_id" jdbcType="VARCHAR" />
+		<result column="NEW_USER" property="new_user" jdbcType="VARCHAR" />
+		<result column="MANAGE_USER" property="manager_user" jdbcType="VARCHAR" />
+		<result column="DEL_USER" property="del_user" jdbcType="VARCHAR" />
+		<result column="DOWN_USER" property="down_user" jdbcType="VARCHAR" />
+		<result column="SHARE_USER" property="shar_user" jdbcType="VARCHAR" />
+		<result column="OWNER" property="owner" jdbcType="VARCHAR" />
+		<result column="SIGN_USER" property="sign_user" jdbcType="VARCHAR" />
+		<result column="REVIEW" property="review" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="getFile_Sort" resultMap="file_SortResultMap" parameterType="com.xoa.model.file.File_Sort">
-		select * from file_sort where  1=1 
-		 <if test="sort_id != null and sort_id!=''" >
-           and sort_id=#{sort_id},
+		select  *  from file_sort where  1=1 
+		 <if test="sort_id != null and sort_id !=''" >
+           and sort_id=#{sort_id}
         </if>
-        <if test="sort_parent != null and sort_parent !=''" >
+        <if test="sort_parent != null and sort_parent !='' or sort_parent==0">
            and sort_parent=#{sort_parent}
         </if>
          <if test="sort_no != null and sort_no !=''" >
@@ -35,14 +35,19 @@
            and sort_type=#{sort_type}
         </if>;
 	</select>
+	<!-- ajax  -->
+	<select id="checkSort_No" parameterType="string">
+	select count(*) from file_sort where  SORT_NO=#{sort_no} and SORT_ID='0';
+	</select>
+	
 	<insert id="addFile_Sorts"  parameterType="com.xoa.model.file.File_Sort">
 	insert into file_sort
 	 <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="sort_parent != null" >
+      <if test="sort_parent != null and sort_parent !='' or sort_parent==0" >
         sort_parent,
       </if>
-      <if test="sort_id != null" >
-        sort_id,
+      <if test="sort_no != null" >
+        sort_no,
       </if>
       <if test="sort_name != null" >
         sort_name,
@@ -83,8 +88,8 @@
       <if test="sort_parent != null" >
         #{sort_parent,jdbcType=INTEGER},
       </if>
-      <if test="sort_id != null" >
-        #{sort_id,jdbcType=INTEGER},
+      <if test="sort_no != null" >
+         #{sort_no,jdbcType=VARCHAR},
       </if>
       <if test="sort_name != null" >
         #{sort_name,jdbcType=VARCHAR},
@@ -118,5 +123,20 @@
       </if>
     </trim>
 	</insert>
-	<update id="updateFile_Sorts"></update>
+	<update id="updateFile_Sorts" parameterType="com.xoa.model.file.File_Sort">
+	update file_sort 
+    <set>
+      <if test="sort_no != null" >
+        sort_no = #{keywords,jdbcType=VARCHAR},
+      </if>
+       <if test="sort_name != null" >
+        sort_name = #{keywords,jdbcType=VARCHAR},
+      </if>
+      where sort_id=#{sort_id,jdbcType=INTEGER}
+    </set>
+	</update>
+	
+	<delete id="fileDeleteBySort_id" parameterType="com.xoa.model.file.File_Sort">
+	delete from file_sort where SORT_ID=#{sort_id};
+	</delete>
 </mapper>

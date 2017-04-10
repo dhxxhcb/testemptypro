@@ -36,11 +36,20 @@ public class File_SortImpl  implements File_SortService{
 	}
 	@Override
 	public int addFile_Sorts(File_Sort file) {
-		return file_SortMapper.addFile_Sorts();
+		return file_SortMapper.addFile_Sorts(file);
 	}
 	@Override
 	public int updateFile(File_Sort file) {
-		return file_SortMapper.updateFile_Sorts();
+		return file_SortMapper.updateFile_Sorts(file);
+	}
+	@Override
+	public int checkSort_No() {
+		return file_SortMapper.checkSort_No();
+	}
+	@Override
+	public int fileDeleteBySort_id(int sort_id) {
+		file_SortMapper.fileDeleteBySort_id(sort_id);
+		return 0;
 	}
 	
 }

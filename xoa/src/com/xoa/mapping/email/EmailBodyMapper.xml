@@ -1,455 +1,457 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.email.EmailBodyMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.email.EmailBody" >
-    <id column="BODY_ID" property="bodyId" jdbcType="INTEGER" />
-    <result column="FROM_ID" property="fromId" jdbcType="VARCHAR" />
-    <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
-    <result column="SEND_TIME" property="sendTime" jdbcType="INTEGER" />
-    <result column="SEND_FLAG" property="sendFlag" jdbcType="VARCHAR" />
-    <result column="SMS_REMIND" property="smsRemind" jdbcType="VARCHAR" />
-    <result column="IMPORTANT" property="important" jdbcType="VARCHAR" />
-    <result column="SIZE" property="size" jdbcType="BIGINT" />
-    <result column="FROM_WEBMAIL_ID" property="fromWebmailId" jdbcType="INTEGER" />
-    <result column="FROM_WEBMAIL" property="fromWebmail" jdbcType="VARCHAR" />
-    <result column="WEBMAIL_FLAG" property="webmailFlag" jdbcType="CHAR" />
-    <result column="RECV_FROM_NAME" property="recvFromName" jdbcType="VARCHAR" />
-    <result column="RECV_FROM" property="recvFrom" jdbcType="VARCHAR" />
-    <result column="RECV_TO_ID" property="recvToId" jdbcType="INTEGER" />
-    <result column="RECV_TO" property="recvTo" jdbcType="VARCHAR" />
-    <result column="IS_WEBMAIL" property="isWebmail" jdbcType="CHAR" />
-    <result column="IS_WF" property="isWf" jdbcType="CHAR" />
-    <result column="KEYWORD" property="keyword" jdbcType="VARCHAR" />
-    <result column="SECRET_LEVEL" property="secretLevel" jdbcType="INTEGER" />
-    <result column="AUDIT_MAN" property="auditMan" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.email.EmailBodyWithBLOBs" extends="BaseResultMap" >
-    <result column="TO_ID2" property="toId2" jdbcType="LONGVARCHAR" />
-    <result column="COPY_TO_ID" property="copyToId" jdbcType="LONGVARCHAR" />
-    <result column="SECRET_TO_ID" property="secretToId" jdbcType="LONGVARCHAR" />
-    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
-    <result column="ATTACHMENT_ID" property="attachmentId" jdbcType="LONGVARCHAR" />
-    <result column="ATTACHMENT_NAME" property="attachmentName" jdbcType="LONGVARCHAR" />
-    <result column="TO_WEBMAIL" property="toWebmail" jdbcType="LONGVARCHAR" />
-    <result column="COMPRESS_CONTENT" property="compressContent" jdbcType="LONGVARBINARY" />
-    <result column="WEBMAIL_CONTENT" property="webmailContent" jdbcType="LONGVARBINARY" />
-    <result column="AUDIT_REMARK" property="auditRemark" jdbcType="LONGVARCHAR" />
-    <result column="COPY_TO_WEBMAIL" property="copyToWebmail" jdbcType="LONGVARCHAR" />
-    <result column="SECRET_TO_WEBMAIL" property="secretToWebmail" jdbcType="LONGVARCHAR" />
-    <result column="PRAISE" property="praise" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    BODY_ID, FROM_ID, SUBJECT, SEND_TIME, SEND_FLAG, SMS_REMIND, IMPORTANT, SIZE, FROM_WEBMAIL_ID, 
-    FROM_WEBMAIL, WEBMAIL_FLAG, RECV_FROM_NAME, RECV_FROM, RECV_TO_ID, RECV_TO, IS_WEBMAIL, 
-    IS_WF, KEYWORD, SECRET_LEVEL, AUDIT_MAN
-  </sql>
-  <sql id="Blob_Column_List" >
-    TO_ID2, COPY_TO_ID, SECRET_TO_ID, CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, TO_WEBMAIL, 
-    COMPRESS_CONTENT, WEBMAIL_CONTENT, AUDIT_REMARK, COPY_TO_WEBMAIL, SECRET_TO_WEBMAIL, 
-    PRAISE
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from email_body
-    where BODY_ID = #{bodyId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from email_body
-    where BODY_ID = #{bodyId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.xoa.model.email.EmailBodyWithBLOBs" >
-    insert into email_body (BODY_ID, FROM_ID, SUBJECT, 
-      SEND_TIME, SEND_FLAG, SMS_REMIND, 
-      IMPORTANT, SIZE, FROM_WEBMAIL_ID, 
-      FROM_WEBMAIL, WEBMAIL_FLAG, RECV_FROM_NAME, 
-      RECV_FROM, RECV_TO_ID, RECV_TO, 
-      IS_WEBMAIL, IS_WF, KEYWORD, 
-      SECRET_LEVEL, AUDIT_MAN, TO_ID2, 
-      COPY_TO_ID, SECRET_TO_ID, CONTENT, 
-      ATTACHMENT_ID, ATTACHMENT_NAME, TO_WEBMAIL, 
-      COMPRESS_CONTENT, WEBMAIL_CONTENT, 
-      AUDIT_REMARK, COPY_TO_WEBMAIL, SECRET_TO_WEBMAIL, 
-      PRAISE)
-    values (#{bodyId,jdbcType=INTEGER}, #{fromId,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, 
-      #{sendTime,jdbcType=INTEGER}, #{sendFlag,jdbcType=VARCHAR}, #{smsRemind,jdbcType=VARCHAR}, 
-      #{important,jdbcType=VARCHAR}, #{size,jdbcType=BIGINT}, #{fromWebmailId,jdbcType=INTEGER}, 
-      #{fromWebmail,jdbcType=VARCHAR}, #{webmailFlag,jdbcType=CHAR}, #{recvFromName,jdbcType=VARCHAR}, 
-      #{recvFrom,jdbcType=VARCHAR}, #{recvToId,jdbcType=INTEGER}, #{recvTo,jdbcType=VARCHAR}, 
-      #{isWebmail,jdbcType=CHAR}, #{isWf,jdbcType=CHAR}, #{keyword,jdbcType=VARCHAR}, 
-      #{secretLevel,jdbcType=INTEGER}, #{auditMan,jdbcType=VARCHAR}, #{toId2,jdbcType=LONGVARCHAR}, 
-      #{copyToId,jdbcType=LONGVARCHAR}, #{secretToId,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}, 
-      #{attachmentId,jdbcType=LONGVARCHAR}, #{attachmentName,jdbcType=LONGVARCHAR}, #{toWebmail,jdbcType=LONGVARCHAR}, 
-      #{compressContent,jdbcType=LONGVARBINARY}, #{webmailContent,jdbcType=LONGVARBINARY}, 
-      #{auditRemark,jdbcType=LONGVARCHAR}, #{copyToWebmail,jdbcType=LONGVARCHAR}, #{secretToWebmail,jdbcType=LONGVARCHAR}, 
-      #{praise,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.email.EmailBodyWithBLOBs" >
-    insert into email_body
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="bodyId != null" >
-        BODY_ID,
-      </if>
-      <if test="fromId != null" >
-        FROM_ID,
-      </if>
-      <if test="subject != null" >
-        SUBJECT,
-      </if>
-      <if test="sendTime != null" >
-        SEND_TIME,
-      </if>
-      <if test="sendFlag != null" >
-        SEND_FLAG,
-      </if>
-      <if test="smsRemind != null" >
-        SMS_REMIND,
-      </if>
-      <if test="important != null" >
-        IMPORTANT,
-      </if>
-      <if test="size != null" >
-        SIZE,
-      </if>
-      <if test="fromWebmailId != null" >
-        FROM_WEBMAIL_ID,
-      </if>
-      <if test="fromWebmail != null" >
-        FROM_WEBMAIL,
-      </if>
-      <if test="webmailFlag != null" >
-        WEBMAIL_FLAG,
-      </if>
-      <if test="recvFromName != null" >
-        RECV_FROM_NAME,
-      </if>
-      <if test="recvFrom != null" >
-        RECV_FROM,
-      </if>
-      <if test="recvToId != null" >
-        RECV_TO_ID,
-      </if>
-      <if test="recvTo != null" >
-        RECV_TO,
-      </if>
-      <if test="isWebmail != null" >
-        IS_WEBMAIL,
-      </if>
-      <if test="isWf != null" >
-        IS_WF,
-      </if>
-      <if test="keyword != null" >
-        KEYWORD,
-      </if>
-      <if test="secretLevel != null" >
-        SECRET_LEVEL,
-      </if>
-      <if test="auditMan != null" >
-        AUDIT_MAN,
-      </if>
-      <if test="toId2 != null" >
-        TO_ID2,
-      </if>
-      <if test="copyToId != null" >
-        COPY_TO_ID,
-      </if>
-      <if test="secretToId != null" >
-        SECRET_TO_ID,
-      </if>
-      <if test="content != null" >
-        CONTENT,
-      </if>
-      <if test="attachmentId != null" >
-        ATTACHMENT_ID,
-      </if>
-      <if test="attachmentName != null" >
-        ATTACHMENT_NAME,
-      </if>
-      <if test="toWebmail != null" >
-        TO_WEBMAIL,
-      </if>
-      <if test="compressContent != null" >
-        COMPRESS_CONTENT,
-      </if>
-      <if test="webmailContent != null" >
-        WEBMAIL_CONTENT,
-      </if>
-      <if test="auditRemark != null" >
-        AUDIT_REMARK,
-      </if>
-      <if test="copyToWebmail != null" >
-        COPY_TO_WEBMAIL,
-      </if>
-      <if test="secretToWebmail != null" >
-        SECRET_TO_WEBMAIL,
-      </if>
-      <if test="praise != null" >
-        PRAISE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="bodyId != null" >
-        #{bodyId,jdbcType=INTEGER},
-      </if>
-      <if test="fromId != null" >
-        #{fromId,jdbcType=VARCHAR},
-      </if>
-      <if test="subject != null" >
-        #{subject,jdbcType=VARCHAR},
-      </if>
-      <if test="sendTime != null" >
-        #{sendTime,jdbcType=INTEGER},
-      </if>
-      <if test="sendFlag != null" >
-        #{sendFlag,jdbcType=VARCHAR},
-      </if>
-      <if test="smsRemind != null" >
-        #{smsRemind,jdbcType=VARCHAR},
-      </if>
-      <if test="important != null" >
-        #{important,jdbcType=VARCHAR},
-      </if>
-      <if test="size != null" >
-        #{size,jdbcType=BIGINT},
-      </if>
-      <if test="fromWebmailId != null" >
-        #{fromWebmailId,jdbcType=INTEGER},
-      </if>
-      <if test="fromWebmail != null" >
-        #{fromWebmail,jdbcType=VARCHAR},
-      </if>
-      <if test="webmailFlag != null" >
-        #{webmailFlag,jdbcType=CHAR},
-      </if>
-      <if test="recvFromName != null" >
-        #{recvFromName,jdbcType=VARCHAR},
-      </if>
-      <if test="recvFrom != null" >
-        #{recvFrom,jdbcType=VARCHAR},
-      </if>
-      <if test="recvToId != null" >
-        #{recvToId,jdbcType=INTEGER},
-      </if>
-      <if test="recvTo != null" >
-        #{recvTo,jdbcType=VARCHAR},
-      </if>
-      <if test="isWebmail != null" >
-        #{isWebmail,jdbcType=CHAR},
-      </if>
-      <if test="isWf != null" >
-        #{isWf,jdbcType=CHAR},
-      </if>
-      <if test="keyword != null" >
-        #{keyword,jdbcType=VARCHAR},
-      </if>
-      <if test="secretLevel != null" >
-        #{secretLevel,jdbcType=INTEGER},
-      </if>
-      <if test="auditMan != null" >
-        #{auditMan,jdbcType=VARCHAR},
-      </if>
-      <if test="toId2 != null" >
-        #{toId2,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="copyToId != null" >
-        #{copyToId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="secretToId != null" >
-        #{secretToId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="attachmentId != null" >
-        #{attachmentId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="attachmentName != null" >
-        #{attachmentName,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="toWebmail != null" >
-        #{toWebmail,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="compressContent != null" >
-        #{compressContent,jdbcType=LONGVARBINARY},
-      </if>
-      <if test="webmailContent != null" >
-        #{webmailContent,jdbcType=LONGVARBINARY},
-      </if>
-      <if test="auditRemark != null" >
-        #{auditRemark,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="copyToWebmail != null" >
-        #{copyToWebmail,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="secretToWebmail != null" >
-        #{secretToWebmail,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="praise != null" >
-        #{praise,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBodyWithBLOBs" >
-    update email_body
-    <set >
-      <if test="fromId != null" >
-        FROM_ID = #{fromId,jdbcType=VARCHAR},
-      </if>
-      <if test="subject != null" >
-        SUBJECT = #{subject,jdbcType=VARCHAR},
-      </if>
-      <if test="sendTime != null" >
-        SEND_TIME = #{sendTime,jdbcType=INTEGER},
-      </if>
-      <if test="sendFlag != null" >
-        SEND_FLAG = #{sendFlag,jdbcType=VARCHAR},
-      </if>
-      <if test="smsRemind != null" >
-        SMS_REMIND = #{smsRemind,jdbcType=VARCHAR},
-      </if>
-      <if test="important != null" >
-        IMPORTANT = #{important,jdbcType=VARCHAR},
-      </if>
-      <if test="size != null" >
-        SIZE = #{size,jdbcType=BIGINT},
-      </if>
-      <if test="fromWebmailId != null" >
-        FROM_WEBMAIL_ID = #{fromWebmailId,jdbcType=INTEGER},
-      </if>
-      <if test="fromWebmail != null" >
-        FROM_WEBMAIL = #{fromWebmail,jdbcType=VARCHAR},
-      </if>
-      <if test="webmailFlag != null" >
-        WEBMAIL_FLAG = #{webmailFlag,jdbcType=CHAR},
-      </if>
-      <if test="recvFromName != null" >
-        RECV_FROM_NAME = #{recvFromName,jdbcType=VARCHAR},
-      </if>
-      <if test="recvFrom != null" >
-        RECV_FROM = #{recvFrom,jdbcType=VARCHAR},
-      </if>
-      <if test="recvToId != null" >
-        RECV_TO_ID = #{recvToId,jdbcType=INTEGER},
-      </if>
-      <if test="recvTo != null" >
-        RECV_TO = #{recvTo,jdbcType=VARCHAR},
-      </if>
-      <if test="isWebmail != null" >
-        IS_WEBMAIL = #{isWebmail,jdbcType=CHAR},
-      </if>
-      <if test="isWf != null" >
-        IS_WF = #{isWf,jdbcType=CHAR},
-      </if>
-      <if test="keyword != null" >
-        KEYWORD = #{keyword,jdbcType=VARCHAR},
-      </if>
-      <if test="secretLevel != null" >
-        SECRET_LEVEL = #{secretLevel,jdbcType=INTEGER},
-      </if>
-      <if test="auditMan != null" >
-        AUDIT_MAN = #{auditMan,jdbcType=VARCHAR},
-      </if>
-      <if test="toId2 != null" >
-        TO_ID2 = #{toId2,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="copyToId != null" >
-        COPY_TO_ID = #{copyToId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="secretToId != null" >
-        SECRET_TO_ID = #{secretToId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="content != null" >
-        CONTENT = #{content,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="attachmentId != null" >
-        ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="attachmentName != null" >
-        ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="toWebmail != null" >
-        TO_WEBMAIL = #{toWebmail,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="compressContent != null" >
-        COMPRESS_CONTENT = #{compressContent,jdbcType=LONGVARBINARY},
-      </if>
-      <if test="webmailContent != null" >
-        WEBMAIL_CONTENT = #{webmailContent,jdbcType=LONGVARBINARY},
-      </if>
-      <if test="auditRemark != null" >
-        AUDIT_REMARK = #{auditRemark,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="copyToWebmail != null" >
-        COPY_TO_WEBMAIL = #{copyToWebmail,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="secretToWebmail != null" >
-        SECRET_TO_WEBMAIL = #{secretToWebmail,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="praise != null" >
-        PRAISE = #{praise,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where BODY_ID = #{bodyId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.email.EmailBodyWithBLOBs" >
-    update email_body
-    set FROM_ID = #{fromId,jdbcType=VARCHAR},
-      SUBJECT = #{subject,jdbcType=VARCHAR},
-      SEND_TIME = #{sendTime,jdbcType=INTEGER},
-      SEND_FLAG = #{sendFlag,jdbcType=VARCHAR},
-      SMS_REMIND = #{smsRemind,jdbcType=VARCHAR},
-      IMPORTANT = #{important,jdbcType=VARCHAR},
-      SIZE = #{size,jdbcType=BIGINT},
-      FROM_WEBMAIL_ID = #{fromWebmailId,jdbcType=INTEGER},
-      FROM_WEBMAIL = #{fromWebmail,jdbcType=VARCHAR},
-      WEBMAIL_FLAG = #{webmailFlag,jdbcType=CHAR},
-      RECV_FROM_NAME = #{recvFromName,jdbcType=VARCHAR},
-      RECV_FROM = #{recvFrom,jdbcType=VARCHAR},
-      RECV_TO_ID = #{recvToId,jdbcType=INTEGER},
-      RECV_TO = #{recvTo,jdbcType=VARCHAR},
-      IS_WEBMAIL = #{isWebmail,jdbcType=CHAR},
-      IS_WF = #{isWf,jdbcType=CHAR},
-      KEYWORD = #{keyword,jdbcType=VARCHAR},
-      SECRET_LEVEL = #{secretLevel,jdbcType=INTEGER},
-      AUDIT_MAN = #{auditMan,jdbcType=VARCHAR},
-      TO_ID2 = #{toId2,jdbcType=LONGVARCHAR},
-      COPY_TO_ID = #{copyToId,jdbcType=LONGVARCHAR},
-      SECRET_TO_ID = #{secretToId,jdbcType=LONGVARCHAR},
-      CONTENT = #{content,jdbcType=LONGVARCHAR},
-      ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
-      ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
-      TO_WEBMAIL = #{toWebmail,jdbcType=LONGVARCHAR},
-      COMPRESS_CONTENT = #{compressContent,jdbcType=LONGVARBINARY},
-      WEBMAIL_CONTENT = #{webmailContent,jdbcType=LONGVARBINARY},
-      AUDIT_REMARK = #{auditRemark,jdbcType=LONGVARCHAR},
-      COPY_TO_WEBMAIL = #{copyToWebmail,jdbcType=LONGVARCHAR},
-      SECRET_TO_WEBMAIL = #{secretToWebmail,jdbcType=LONGVARCHAR},
-      PRAISE = #{praise,jdbcType=LONGVARCHAR}
-    where BODY_ID = #{bodyId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.email.EmailBody" >
-    update email_body
-    set FROM_ID = #{fromId,jdbcType=VARCHAR},
-      SUBJECT = #{subject,jdbcType=VARCHAR},
-      SEND_TIME = #{sendTime,jdbcType=INTEGER},
-      SEND_FLAG = #{sendFlag,jdbcType=VARCHAR},
-      SMS_REMIND = #{smsRemind,jdbcType=VARCHAR},
-      IMPORTANT = #{important,jdbcType=VARCHAR},
-      SIZE = #{size,jdbcType=BIGINT},
-      FROM_WEBMAIL_ID = #{fromWebmailId,jdbcType=INTEGER},
-      FROM_WEBMAIL = #{fromWebmail,jdbcType=VARCHAR},
-      WEBMAIL_FLAG = #{webmailFlag,jdbcType=CHAR},
-      RECV_FROM_NAME = #{recvFromName,jdbcType=VARCHAR},
-      RECV_FROM = #{recvFrom,jdbcType=VARCHAR},
-      RECV_TO_ID = #{recvToId,jdbcType=INTEGER},
-      RECV_TO = #{recvTo,jdbcType=VARCHAR},
-      IS_WEBMAIL = #{isWebmail,jdbcType=CHAR},
-      IS_WF = #{isWf,jdbcType=CHAR},
-      KEYWORD = #{keyword,jdbcType=VARCHAR},
-      SECRET_LEVEL = #{secretLevel,jdbcType=INTEGER},
-      AUDIT_MAN = #{auditMan,jdbcType=VARCHAR}
-    where BODY_ID = #{bodyId,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.xoa.dao.email.EmailBodyMapper">
+	<resultMap id="BaseResultMap" type="com.xoa.model.email.EmailBody">
+		<id column="BODY_ID" property="bodyId" javaType="INTEGER" />
+		<result column="FROM_ID" property="fromId" javaType="String" />
+		<result column="SUBJECT" property="subject" javaType="String" />
+		<result column="SEND_TIME" property="sendTime" javaType="INTEGER" />
+		<result column="SEND_FLAG" property="sendFlag" javaType="String" />
+		<result column="SMS_REMIND" property="smsRemind" javaType="String" />
+		<result column="IMPORTANT" property="important" javaType="String" />
+		<result column="SIZE" property="size" javaType="Long" />
+		<result column="FROM_WEBMAIL_ID" property="fromWebmailId"
+			javaType="INTEGER" />
+		<result column="FROM_WEBMAIL" property="fromWebmail" javaType="String" />
+		<result column="WEBMAIL_FLAG" property="webmailFlag" javaType="String" />
+		<result column="RECV_FROM_NAME" property="recvFromName"
+			javaType="String" />
+		<result column="RECV_FROM" property="recvFrom" javaType="String" />
+		<result column="RECV_TO_ID" property="recvToId" javaType="INTEGER" />
+		<result column="RECV_TO" property="recvTo" javaType="String" />
+		<result column="IS_WEBMAIL" property="isWebmail" javaType="String" />
+		<result column="IS_WF" property="isWf" javaType="String" />
+		<result column="KEYWORD" property="keyword" javaType="String" />
+		<result column="SECRET_LEVEL" property="secretLevel" javaType="INTEGER" />
+		<result column="AUDIT_MAN" property="auditMan" javaType="String" />
+		<result column="TO_ID2" property="toId2" javaType="String" />
+		<result column="COPY_TO_ID" property="copyToId" javaType="String" />
+		<result column="SECRET_TO_ID" property="secretToId" javaType="String" />
+		<result column="CONTENT" property="content" javaType="String" />
+		<result column="ATTACHMENT_ID" property="attachmentId"
+			javaType="String" />
+		<result column="ATTACHMENT_NAME" property="attachmentName"
+			javaType="String" />
+		<result column="TO_WEBMAIL" property="toWebmail" javaType="String" />
+		<result column="COMPRESS_CONTENT" property="compressContent"
+			javaType="byte[]" />
+		<result column="WEBMAIL_CONTENT" property="webmailContent"
+			javaType="byte[]" />
+		<result column="AUDIT_REMARK" property="auditRemark" javaType="String" />
+		<result column="COPY_TO_WEBMAIL" property="copyToWebmail"
+			javaType="String" />
+		<result column="SECRET_TO_WEBMAIL" property="secretToWebmail"
+			javaType="String" />
+		<result column="PRAISE" property="praise" javaType="String" />
+		<association property="users" column="BODY_ID"
+			javaType="com.xoa.model.users.Users">
+			<id property="userId" column="USER_ID" />
+			<result property="userName" column="USER_NAME" />
+		</association>
+		<collection property="emailList" ofType="com.xoa.model.email.Email"
+			column="BODY_ID">
+			<id column="EMAIL_ID" property="emailId" javaType="INTEGER" />
+			<result column="TO_ID" property="toId" javaType="String" />
+			<result column="READ_FLAG" property="readFlag" javaType="String" />
+			<result column="DELETE_FLAG" property="deleteFlag" javaType="String" />
+			<result column="BOX_ID" property="boxId" javaType="INTEGER" />
+			<result column="BODY_ID" property="bodyId" javaType="INTEGER" />
+			<result column="RECEIPT" property="receipt" javaType="String" />
+			<result column="IS_F" property="isF" javaType="String" />
+			<result column="IS_R" property="isR" javaType="String" />
+			<result column="SIGN" property="sign" javaType="String" />
+		</collection>
+	</resultMap>
+	<sql id="Base_Column_List">
+		eb.BODY_ID,u.USER_NAME,eb.SUBJECT,eb.KEYWORD,eb.ATTACHMENT_NAME,eb.SEND_TIME,eb.SIZE,e.BOX_ID,e.READ_FLAG,e.DELETE_FLAG,e.SIGN
+	</sql>
+	<sql id="Page_Where_Clause">
+		<if test="startTime != null and startTime != ''">
+			eb.SEND_TIME &gt;= #{startTime}
+		</if>
+		<if test="endTime != null and endTime != ''">
+			AND eb.SEND_TIME &lt;= #{endTime}
+		</if>
+		<if test="readFlag != null and readFlag != ''">
+			AND e.READ_FLAG=#{readFlag}
+		</if>
+		<if test="boxId != null and boxId != ''">
+			AND e.BOX_ID= #{boxId}
+		</if>
+		<if test="userName!=null and userName!='' ">
+			AND u.USER_NAME= #{userName}
+		</if>
+		<if test="sign!=null and sign='' ">
+		    AND e.SIGN=#{sign}
+		</if>
+		<if test="keyword!=null and keyword='' ">
+		    AND eb.KEYWORD LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+		</if>
+	</sql>
+	<select id="listqueryEmailBody" parameterType="Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from email_body as eb
+		LEFT JOIN user as u on eb.FROM_ID=u.USER_ID
+		LEFT JOIN
+		email as e on e.BODY_ID=eb.BODY_ID
+		<where>
+			<include refid="Page_Where_Clause" />
+		</where>
+		group by eb.BODY_ID
+	</select>
+
+	<!--草稿箱查询 -->
+	<select id="listDrafts" resultMap="BaseResultMap" parameterType="Map">
+		select eb.SUBJECT from email_body as eb where SEND_FLAG="0" order by
+		SEND_TIME DESC
+	</select>
+	<!-- 发件箱查询 -->
+	<select id="listSendEmail" parameterType="Map"
+		resultMap="BaseResultMap">
+		select eb.SUBJECT from email as e,email_body as eb where
+		eb.BODY_ID=e.BODY_ID AND
+		SEND_FLAG="1" AND(DELETE_FLAG=""
+		OR
+		DELETE_FLAG="0" OR
+		DELETE_FLAG="2") AND BOX_ID="0" ORDER BY
+		SEND_TIME
+		DESC
+	</select>
+	<!-- 废纸篓查询 -->
+
+	<select id="listWastePaperbasket" resultMap="BaseResultMap"
+		parameterType="Map">
+		SELECT eb.SUBJECT FROM email as e,email_body as eb WHERE
+		e.BODY_ID =
+		eb.BODY_ID AND SEND_FLAG = '0' AND (DELETE_FLAG = '3'
+		OR
+		DELETE_FLAG = '4' ) ORDER BY SEND_TIME DESC
+	</select>
+
+	<!-- 根据id查询一条邮件 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select eb.SUBJECT,eb.CONTENT,eb.SEND_TIME from email_body as eb where
+		eb.email_body=#{bodyId}
+	</select>
+	<!--邮件根据ID删除一条邮件 -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		email_body where BODY_ID = #{bodyId,javaType=INTEGER}
+	</delete>
+
+	<!--保存邮件 -->
+	<insert id="insert" parameterType="com.xoa.model.email.EmailBody">
+		insert into email_body (
+		BODY_ID,
+		FROM_ID,
+		SUBJECT,
+		SEND_TIME,
+		SEND_FLAG,
+		SMS_REMIND,
+		IMPORTANT,
+		SIZE,
+		FROM_WEBMAIL_ID,
+		FROM_WEBMAIL,
+		WEBMAIL_FLAG,
+		RECV_FROM_NAME,
+		RECV_FROM,
+		RECV_TO_ID,
+		RECV_TO,
+		IS_WEBMAIL,
+		IS_WF,
+		KEYWORD,
+		SECRET_LEVEL,
+		AUDIT_MAN,
+		TO_ID2,
+		COPY_TO_ID,
+		SECRET_TO_ID,
+		CONTENT,
+		ATTACHMENT_ID,
+		ATTACHMENT_NAME,
+		TO_WEBMAIL,
+		COMPRESS_CONTENT,
+		WEBMAIL_CONTENT,
+		AUDIT_REMARK,
+		COPY_TO_WEBMAIL,
+		SECRET_TO_WEBMAIL,
+		PRAISE)
+		values(
+		#{bodyId},
+		#{fromId},
+		#{subject},
+		#{sendTime},
+		#{sendFlag},
+		#{smsRemind},
+		#{important},
+		#{size},
+		#{fromWebmailId},
+		#{fromWebmail},
+		#{webmailFlag},
+		#{recvFromName},
+		#{recvFrom},
+		#{recvToId},
+		#{recvTo},
+		#{isWebmail},
+		#{isWf},
+		#{keyword},
+		#{secretLevel},
+		#{auditMan},
+		#{toId2},
+		#{copyToId},
+		#{secretToId},
+		#{content},
+		#{attachmentId},
+		#{attachmentName},
+		#{toWebmail},
+		#{ },
+		#{webmailContent},
+		#{auditRemark},
+		#{copyToWebmail},
+		#{secretToWebmail},
+		#{praise}
+		)
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBody">
+		update email_body
+		<set>
+			<if test="fromId != null">
+				FROM_ID = #{fromId,javaType=String},
+			</if>
+			<if test="subject != null">
+				SUBJECT = #{subject,javaType=String},
+			</if>
+			<if test="sendTime != null">
+				SEND_TIME = #{sendTime,javaType=INTEGER},
+			</if>
+			<if test="sendFlag != null">
+				SEND_FLAG = #{sendFlag,javaType=String},
+			</if>
+			<if test="smsRemind != null">
+				SMS_REMIND = #{smsRemind,javaType=String},
+			</if>
+			<if test="important != null">
+				IMPORTANT = #{important,javaType=String},
+			</if>
+			<if test="size != null">
+				SIZE = #{size,javaType=Long},
+			</if>
+			<if test="fromWebmailId != null">
+				FROM_WEBMAIL_ID = #{fromWebmailId,javaType=INTEGER},
+			</if>
+			<if test="fromWebmail != null">
+				FROM_WEBMAIL = #{fromWebmail,javaType=String},
+			</if>
+			<if test="webmailFlag != null">
+				WEBMAIL_FLAG = #{webmailFlag,javaType=String},
+			</if>
+			<if test="recvFromName != null">
+				RECV_FROM_NAME = #{recvFromName,javaType=String},
+			</if>
+			<if test="recvFrom != null">
+				RECV_FROM = #{recvFrom,javaType=String},
+			</if>
+			<if test="recvToId != null">
+				RECV_TO_ID = #{recvToId,javaType=INTEGER},
+			</if>
+			<if test="recvTo != null">
+				RECV_TO = #{recvTo,javaType=String},
+			</if>
+			<if test="isWebmail != null">
+				IS_WEBMAIL = #{isWebmail,javaType=String},
+			</if>
+			<if test="isWf != null">
+				IS_WF = #{isWf,javaType=String},
+			</if>
+			<if test="keyword != null">
+				KEYWORD = #{keyword,javaType=String},
+			</if>
+			<if test="secretLevel != null">
+				SECRET_LEVEL = #{secretLevel,javaType=INTEGER},
+			</if>
+			<if test="auditMan != null">
+				AUDIT_MAN = #{auditMan,javaType=String},
+			</if>
+			<if test="toId2 != null">
+				TO_ID2 = #{toId2,javaType=String},
+			</if>
+			<if test="copyToId != null">
+				COPY_TO_ID = #{copyToId,javaType=String},
+			</if>
+			<if test="secretToId != null">
+				SECRET_TO_ID = #{secretToId,javaType=String},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content,javaType=String},
+			</if>
+			<if test="attachmentId != null">
+				ATTACHMENT_ID = #{attachmentId,javaType=String},
+			</if>
+			<if test="attachmentName != null">
+				ATTACHMENT_NAME = #{attachmentName,javaType=String},
+			</if>
+			<if test="toWebmail != null">
+				TO_WEBMAIL = #{toWebmail,javaType=String},
+			</if>
+			<if test="compressContent != null">
+				COMPRESS_CONTENT =
+				#{compressContent,javaType=byte[]},
+			</if>
+			<if test="webmailContent != null">
+				WEBMAIL_CONTENT =
+				#{webmailContent,javaType=byte[]},
+			</if>
+			<if test="auditRemark != null">
+				AUDIT_REMARK = #{auditRemark,javaType=String},
+			</if>
+			<if test="copyToWebmail != null">
+				COPY_TO_WEBMAIL = #{copyToWebmail,javaType=String},
+			</if>
+			<if test="secretToWebmail != null">
+				SECRET_TO_WEBMAIL =
+				#{secretToWebmail,javaType=String},
+			</if>
+			<if test="praise != null">
+				PRAISE = #{praise,javaType=String},
+			</if>
+		</set>
+		where BODY_ID = #{bodyId,javaType=INTEGER}
+	</update>
+	<insert id="insertSelective" parameterType="com.xoa.model.email.EmailBody">
+		insert into
+		email_body (BODY_ID, FROM_ID, SUBJECT,
+		SEND_TIME, SEND_FLAG,
+		SMS_REMIND,
+		IMPORTANT, SIZE, FROM_WEBMAIL_ID,
+		FROM_WEBMAIL,
+		WEBMAIL_FLAG, RECV_FROM_NAME,
+		RECV_FROM, RECV_TO_ID, RECV_TO,
+		IS_WEBMAIL, IS_WF, KEYWORD,
+		SECRET_LEVEL, AUDIT_MAN, TO_ID2,
+		COPY_TO_ID, SECRET_TO_ID, CONTENT,
+		ATTACHMENT_ID, ATTACHMENT_NAME,
+		TO_WEBMAIL,
+		COMPRESS_CONTENT, WEBMAIL_CONTENT,
+		AUDIT_REMARK,
+		COPY_TO_WEBMAIL, SECRET_TO_WEBMAIL,
+		PRAISE)
+		values
+		(#{bodyId,javaType=INTEGER}, #{fromId,javaType=String},
+		#{subject,javaType=String},
+		#{sendTime,javaType=INTEGER},
+		#{sendFlag,javaType=String}, #{smsRemind,javaType=String},
+		#{important,javaType=String}, #{size,javaType=Long},
+		#{fromWebmailId,javaType=INTEGER},
+		#{fromWebmail,javaType=String},
+		#{webmailFlag,javaType=String}, #{recvFromName,javaType=String},
+		#{recvFrom,javaType=String}, #{recvToId,javaType=INTEGER},
+		#{recvTo,javaType=String},
+		#{isWebmail,javaType=String},
+		#{isWf,javaType=String}, #{keyword,javaType=String},
+		#{secretLevel,javaType=INTEGER}, #{auditMan,javaType=String},
+		#{toId2,javaType=String},
+		#{copyToId,javaType=String},
+		#{secretToId,javaType=String}, #{content,javaType=String},
+		#{attachmentId,javaType=String},
+		#{attachmentName,javaType=String},
+		#{toWebmail,javaType=String},
+		#{compressContent,javaType=byte[]},
+		#{webmailContent,javaType=byte[]},
+		#{auditRemark,javaType=String},
+		#{copyToWebmail,javaType=String},
+		#{secretToWebmail,javaType=String},
+		#{praise,javaType=String})
+	</insert>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.email.EmailBody">
+		update
+		email_body
+		set FROM_ID = #{fromId,javaType=String},
+		SUBJECT =
+		#{subject,javaType=String},
+		SEND_TIME = #{sendTime,javaType=INTEGER},
+		SEND_FLAG = #{sendFlag,javaType=String},
+		SMS_REMIND =
+		#{smsRemind,javaType=String},
+		IMPORTANT =
+		#{important,javaType=String},
+		SIZE = #{size,javaType=Long},
+		FROM_WEBMAIL_ID = #{fromWebmailId,javaType=INTEGER},
+		FROM_WEBMAIL =
+		#{fromWebmail,javaType=String},
+		WEBMAIL_FLAG =
+		#{webmailFlag,javaType=String},
+		RECV_FROM_NAME =
+		#{recvFromName,javaType=String},
+		RECV_FROM =
+		#{recvFrom,javaType=String},
+		RECV_TO_ID =
+		#{recvToId,javaType=INTEGER},
+		RECV_TO = #{recvTo,javaType=String},
+		IS_WEBMAIL = #{isWebmail,javaType=String},
+		IS_WF = #{isWf,javaType=String},
+		KEYWORD = #{keyword,javaType=String},
+		SECRET_LEVEL =
+		#{secretLevel,javaType=INTEGER},
+		AUDIT_MAN =
+		#{auditMan,javaType=String},
+		TO_ID2 = #{toId2,javaType=String},
+		COPY_TO_ID = #{copyToId,javaType=String},
+		SECRET_TO_ID =
+		#{secretToId,javaType=String},
+		CONTENT =
+		#{content,javaType=String},
+		ATTACHMENT_ID =
+		#{attachmentId,javaType=String},
+		ATTACHMENT_NAME =
+		#{attachmentName,javaType=String},
+		TO_WEBMAIL =
+		#{toWebmail,javaType=String},
+		COMPRESS_CONTENT =
+		#{compressContent,javaType=byte[]},
+		WEBMAIL_CONTENT =
+		#{webmailContent,javaType=byte[]},
+		AUDIT_REMARK =
+		#{auditRemark,javaType=String},
+		COPY_TO_WEBMAIL =
+		#{copyToWebmail,javaType=String},
+		SECRET_TO_WEBMAIL =
+		#{secretToWebmail,javaType=String},
+		PRAISE =
+		#{praise,javaType=String}
+		where BODY_ID =
+		#{bodyId,javaType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.xoa.model.email.EmailBody">
+		update email_body
+		set FROM_ID = #{fromId,javaType=String},
+		SUBJECT =
+		#{subject,javaType=String},
+		SEND_TIME = #{sendTime,javaType=INTEGER},
+		SEND_FLAG = #{sendFlag,javaType=String},
+		SMS_REMIND =
+		#{smsRemind,javaType=String},
+		IMPORTANT =
+		#{important,javaType=String},
+		SIZE = #{size,javaType=Long},
+		FROM_WEBMAIL_ID = #{fromWebmailId,javaType=INTEGER},
+		FROM_WEBMAIL =
+		#{fromWebmail,javaType=String},
+		WEBMAIL_FLAG =
+		#{webmailFlag,javaType=String},
+		RECV_FROM_NAME =
+		#{recvFromName,javaType=String},
+		RECV_FROM =
+		#{recvFrom,javaType=String},
+		RECV_TO_ID =
+		#{recvToId,javaType=INTEGER},
+		RECV_TO = #{recvTo,javaType=String},
+		IS_WEBMAIL = #{isWebmail,javaType=String},
+		IS_WF = #{isWf,javaType=String},
+		KEYWORD = #{keyword,javaType=String},
+		SECRET_LEVEL =
+		#{secretLevel,javaType=INTEGER},
+		AUDIT_MAN =
+		#{auditMan,javaType=String}
+		where BODY_ID = #{bodyId,javaType=INTEGER}
+	</update>
 </mapper>

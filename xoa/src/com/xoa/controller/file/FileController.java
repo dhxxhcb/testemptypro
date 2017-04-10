@@ -3,11 +3,9 @@ package com.xoa.controller.file;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,26 +46,74 @@ public class FileController {
 	@RequestMapping("/showFileBySort_id")
 	public ModelAndView showFileBySort_id(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
+		System.out.println("parent:"+file.getSort_parent());
 		List<File_Sort> list=file_SortService.getFile_Sorts(file);
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("json", list);
+		model.put("parentList", list);
 		ModelAndView modelAndView=new ModelAndView("app/file/fileSet",model);
 		return modelAndView;
 	}
 	@RequestMapping("/fileAdd")
 	public ModelAndView fileAdd(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
+		Map<String, Object> model =null;
+		ModelAndView modelAndView=null;
+		if(file.getSort_no()==null||file.getSort_no().equals("")){
+			model = new HashMap<String, Object>();
+			modelAndView=new ModelAndView("app/file/addFile",model);
+			return modelAndView;
+		}
 		int resultAdd=file_SortService.addFile_Sorts(file);
+		System.out.println("添加文件影响行--------"+resultAdd);
+		modelAndView=new ModelAndView("redirect:/showFiles",model);
+		return modelAndView;
+	}
+	
+	@RequestMapping("/fileClone")
+	public ModelAndView fileClone(File_Sort file){
+		//"redirect:/showFile"   "file/showFile"
 		Map<String, Object> model = new HashMap<String, Object>();
-		ModelAndView modelAndView=new ModelAndView("redirect:/showFile",model);
+		ModelAndView modelAndView=null;
+		modelAndView=new ModelAndView("app/file/",model);
+		
+		return modelAndView;
+	}
+//	@RequestMapping("/checkfileNoid")
+//	public String checkFileNoid(String id){
+//		//"redirect:/showFile"   "file/showFile"
+//		Map<String, Object> model =new HashMap<String, Object>() ;
+//		
+//		int i=file_SortService.checkSort_No();
+//		model.put("flag", i);
+//	     JSONObject jsonObject = JSONObject.fromObject(model);
+//		return JSON.toJSONStringWithDateFormat(jsonObject, "yyyy-MM-dd HH:mm:ss");
+//	}
+	@RequestMapping("/fileEdit")
+	public ModelAndView fileEdit(File_Sort file){
+		//"redirect:/showFile"   "file/showFile"
+		Map<String, Object> fileEdit = new HashMap<String, Object>();
+		List<File_Sort> fileslist=file_SortService.getFile_Sorts(file);
+		File_Sort files=fileslist.get(0);
+		fileEdit.put("sortid", files.getSort_id());
+		fileEdit.put("sortno", files.getSort_no());
+		fileEdit.put("sortname", files.getSort_name());
+		ModelAndView modelAndView=new ModelAndView("app/file/fileEdit",fileEdit);
 		return modelAndView;
 	}
 	@RequestMapping("/fileUpdate")
-	public ModelAndView fileUpdate(File_Sort file){
+	public void fileUpdate(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
-		int resultAdd=file_SortService.updateFile(file);
+		int resultUpdate=file_SortService.updateFile(file);
+		System.out.println("修改文件影响行--------"+resultUpdate);
+		
+	}
+	@RequestMapping("/fileDelete")
+	public ModelAndView fileDelete(File_Sort file){
+		//"redirect:/showFile"   "file/showFile"
 		Map<String, Object> model = new HashMap<String, Object>();
-		ModelAndView modelAndView=new ModelAndView("redirect:/showFile",model);
+		int  i=file_SortService.fileDeleteBySort_id(file.getSort_id());
+		System.out.println("删除文件影响行--------"+i);
+		ModelAndView modelAndView=new ModelAndView("redirect:/showFileBySort_id",model);
 		return modelAndView;
 	}
 }

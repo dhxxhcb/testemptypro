@@ -1,6 +1,13 @@
 package com.xoa.model.email;
 
-public class EmailTag {
+import java.io.Serializable;
+
+public class EmailTag implements Serializable{
+	/**
+	 * 菜单ID
+	 */
+	private static final long serialVersionUID =1076969159692234636L;
+	
     private Integer tagId;
 
     private String tagNo;

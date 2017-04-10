@@ -1,6 +1,12 @@
 package com.xoa.model.email;
 
-public class EmailBox {
+import java.io.Serializable;
+
+public class EmailBox implements Serializable{
+	/**
+	 * 菜单ID
+	 */
+	private static final long serialVersionUID =1076969159692234636L;
     private Integer boxId;
 
     private Integer boxNo;

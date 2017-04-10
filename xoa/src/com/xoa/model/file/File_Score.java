@@ -1,11 +1,26 @@
 package com.xoa.model.file;
 
 public class File_Score {
-	int score_id;//唯一自增ID
-	int file_id;//文件ID
-	String user_id;//打分用户的USER_ID
-	String send_time;//打分时间
-	int fraction;//分数
+	/**
+	 * 唯一自增ID
+	 */
+	int score_id;
+	/**
+	 * 文件ID
+	 */
+	int file_id;
+	/**
+	 * 打分用户的USER_ID
+	 */
+	String user_id;
+	/**
+	 * 打分时间
+	 */
+	String send_time;
+	/**
+	 * 分数
+	 */
+	int fraction;
 	public int getScore_id() {
 		return score_id;
 	}

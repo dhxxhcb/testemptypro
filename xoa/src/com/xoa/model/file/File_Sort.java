@@ -1,20 +1,62 @@
 package com.xoa.model.file;
 
 public class File_Sort {
-	 int sort_id;//自增唯一
-	 int sort_parent;//上级目录ID
-	 String sort_no;//目录排序号
-	 String sort_name; //目录名称
-	 String sort_type;//类型(1-公共文件柜,2-个人文件柜)
-	 String user_id;//有访问权限的用户ID串
-	 String new_user;//有新建权限的用户ID串
-	 String manager_user;//有编辑权限的用户ID串
-	 String del_user;//有删除权限的用户ID串
-	 String down_user;//有下载/打印权限的用户ID串
-	 String shar_user;//个人共享
-	 String owner;//所有者ID串
-	 String sign_user;//有签阅权限的用户ID串
-	 String review;//评论/打分权限
+	/**
+	 * 自增唯一
+	 */
+	 int sort_id;
+	 /**
+	  * 上级目录ID
+	  */
+	 int sort_parent;
+	 /**
+	  * 目录排序号
+	  */
+	 String sort_no;
+	 /**
+	  * 目录名称
+	  */
+	 String sort_name; 
+	 /**
+	  * 类型(1-公共文件柜,2-个人文件柜)
+	  */
+	 String sort_type;
+	 /**
+	  * 有访问权限的用户ID串
+	  */
+	 String user_id;
+	 /**
+	  * 有新建权限的用户ID串
+	  */
+	 String new_user;
+	 /**
+	  * 有编辑权限的用户ID串
+	  */
+	 String manager_user;
+	 /**
+	  * 有删除权限的用户ID串
+	  */
+	 String del_user;
+	 /**
+	  * 有下载/打印权限的用户ID串
+	  */
+	 String down_user;
+	 /**
+	  * 个人共享
+	  */
+	 String shar_user;
+	 /**
+	  * 所有者ID串
+	  */
+	 String owner;
+	 /**
+	  *有签阅权限的用户ID串
+	  */
+	 String sign_user;
+	 /**
+	  * 评论/打分权限
+	  */
+	 String review;
 	 
 	 
 	public int getSort_id() {

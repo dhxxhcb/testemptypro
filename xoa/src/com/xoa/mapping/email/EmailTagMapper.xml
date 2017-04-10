@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.email.EmailTagMapper" >
   <resultMap id="BaseResultMap" type="com.xoa.model.email.EmailTag" >
-    <id column="TAG_ID" property="tagId" jdbcType="INTEGER" />
-    <result column="TAG_NO" property="tagNo" jdbcType="VARCHAR" />
-    <result column="TAG_NAME" property="tagName" jdbcType="VARCHAR" />
-    <result column="KEYWORDS" property="keywords" jdbcType="VARCHAR" />
+    <id column="TAG_ID" property="tagId" javaType="INTEGER" />
+    <result column="TAG_NO" property="tagNo" javaType="String" />
+    <result column="TAG_NAME" property="tagName" javaType="String" />
+    <result column="KEYWORDS" property="keywords" javaType="String" />
   </resultMap>
   <sql id="Base_Column_List" >
     TAG_ID, TAG_NO, TAG_NAME, KEYWORDS
@@ -14,17 +14,17 @@
     select 
     <include refid="Base_Column_List" />
     from email_tag
-    where TAG_ID = #{tagId,jdbcType=INTEGER}
+    where TAG_ID = #{tagId,javaType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from email_tag
-    where TAG_ID = #{tagId,jdbcType=INTEGER}
+    where TAG_ID = #{tagId,javaType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xoa.model.email.EmailTag" >
     insert into email_tag (TAG_ID, TAG_NO, TAG_NAME, 
       KEYWORDS)
-    values (#{tagId,jdbcType=INTEGER}, #{tagNo,jdbcType=VARCHAR}, #{tagName,jdbcType=VARCHAR}, 
-      #{keywords,jdbcType=VARCHAR})
+    values (#{tagId,javaType=INTEGER}, #{tagNo,javaType=String}, #{tagName,javaType=String}, 
+      #{keywords,javaType=String})
   </insert>
   <insert id="insertSelective" parameterType="com.xoa.model.email.EmailTag" >
     insert into email_tag
@@ -44,16 +44,16 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="tagId != null" >
-        #{tagId,jdbcType=INTEGER},
+        #{tagId,javaType=INTEGER},
       </if>
       <if test="tagNo != null" >
-        #{tagNo,jdbcType=VARCHAR},
+        #{tagNo,javaType=String},
       </if>
       <if test="tagName != null" >
-        #{tagName,jdbcType=VARCHAR},
+        #{tagName,javaType=String},
       </if>
       <if test="keywords != null" >
-        #{keywords,jdbcType=VARCHAR},
+        #{keywords,javaType=String},
       </if>
     </trim>
   </insert>
@@ -61,22 +61,22 @@
     update email_tag
     <set >
       <if test="tagNo != null" >
-        TAG_NO = #{tagNo,jdbcType=VARCHAR},
+        TAG_NO = #{tagNo,javaType=String},
       </if>
       <if test="tagName != null" >
-        TAG_NAME = #{tagName,jdbcType=VARCHAR},
+        TAG_NAME = #{tagName,javaType=String},
       </if>
       <if test="keywords != null" >
-        KEYWORDS = #{keywords,jdbcType=VARCHAR},
+        KEYWORDS = #{keywords,javaType=String},
       </if>
     </set>
-    where TAG_ID = #{tagId,jdbcType=INTEGER}
+    where TAG_ID = #{tagId,javaType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xoa.model.email.EmailTag" >
     update email_tag
-    set TAG_NO = #{tagNo,jdbcType=VARCHAR},
-      TAG_NAME = #{tagName,jdbcType=VARCHAR},
-      KEYWORDS = #{keywords,jdbcType=VARCHAR}
-    where TAG_ID = #{tagId,jdbcType=INTEGER}
+    set TAG_NO = #{tagNo,javaType=String},
+      TAG_NAME = #{tagName,javaType=String},
+      KEYWORDS = #{keywords,javaType=String}
+    where TAG_ID = #{tagId,javaType=INTEGER}
   </update>
 </mapper>

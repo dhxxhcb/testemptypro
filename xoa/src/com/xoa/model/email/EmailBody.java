@@ -1,203 +1,716 @@
-package com.xoa.model.email;
+﻿package com.xoa.model.email;
 
-public class EmailBody {
-    private Integer bodyId;
+import java.io.Serializable;
+import java.util.List;
 
-    private String fromId;
+import com.xoa.model.users.Users;
 
-    private String subject;
+public class EmailBody implements Serializable {
+	private static final long serialVersionUID = 1076969159692234636L;
 
-    private Integer sendTime;
+	/**
+	 * 时间段区间查询传入的开始时间
+	 */
+	private Integer startTime;
 
-    private String sendFlag;
+	/**
+	 * 时间段区间查询传入的结束时间
+	 */
+	private Integer endTime;
+	/**
+	 * 一对多（一个用户对应多个邮件）
+	 */
+	private Users users;
+	/**
+	 * 自增唯一ID
+	 */
+	private Integer bodyId;
 
-    private String smsRemind;
+	/**
+	 * 发件人USER_ID
+	 */
+	private String fromId;
 
-    private String important;
+	/**
+	 * 邮件主题
+	 */
+	private String subject;
 
-    private Long size;
+	/**
+	 * 发送时间
+	 */
+	private Integer sendTime;
 
-    private Integer fromWebmailId;
+	/**
+	 * 是否已发送(0-未发送,1-已发送)
+	 */
+	private String sendFlag;
 
-    private String fromWebmail;
+	/**
+	 * 是否使用短信提醒(0-不提醒,1-提醒)
+	 */
+	private String smsRemind;
 
-    private String webmailFlag;
+	/**
+	 * 重要程度(空-一般邮件,1-重要,2-非常重要)
+	 */
+	private String important;
 
-    private String recvFromName;
+	/**
+	 * 邮件大小
+	 */
+	private Long size;
 
-    private String recvFrom;
+	/**
+	 * 从自己的哪个外部邮箱ID对应emailbox中id
+	 */
+	private Integer fromWebmailId;
 
-    private Integer recvToId;
+	/**
+	 * 从自己的哪个外部邮箱向外发送
+	 */
+	private String fromWebmail;
 
-    private String recvTo;
+	/**
+	 * 外部邮件标记(0-未发送,1-正在准备发送,2-发送成功,3-发送失败)
+	 */
+	private String webmailFlag;
 
-    private String isWebmail;
+	/**
+	 * 接收外部邮箱名称
+	 */
+	private String recvFromName;
+	/**
+	 * 接收外部邮箱ID
+	 */
+	private String recvFrom;
+	/**
+	 * 发送外部邮件ID
+	 */
+	private Integer recvToId;
+	/**
+	 * 发送外部邮箱名称
+	 */
+	private String recvTo;
+	/**
+	 * 是否为外部邮件(0-内部邮件,1-外部邮件)
+	 */
+	private String isWebmail;
+	/**
+	 * 是否同时外发(0-不外发,1-勾选向此人发送外部邮件)
+	 */
+	private String isWf;
+	/**
+	 * 内容关键词
+	 */
+	private String keyword;
+	/**
+	 * 邮件密级等级
+	 */
+	private Integer secretLevel;
+	/**
+	 * 审核人USER_ID
+	 * 
+	 */
+	private String auditMan;
 
-    private String isWf;
+	/**
+	 * 收件人USER_ID串
+	 */
+	private String toId2;
 
-    private String keyword;
+	/**
+	 * 抄送人USER_ID串
+	 */
+	private String copyToId;
 
-    private Integer secretLevel;
+	/**
+	 * 密送人USER_ID串
+	 */
+	private String secretToId;
 
-    private String auditMan;
+	/**
+	 * 邮件内容
+	 */
+	private String content;
 
-    public Integer getBodyId() {
-        return bodyId;
-    }
+	/**
+	 * 附件ID串
+	 */
+	private String attachmentId;
 
-    public void setBodyId(Integer bodyId) {
-        this.bodyId = bodyId;
-    }
+	/**
+	 * 附件文件名串
+	 */
+	private String attachmentName;
 
-    public String getFromId() {
-        return fromId;
-    }
+	/**
+	 * 外部收件人邮箱串
+	 */
+	private String toWebmail;
 
-    public void setFromId(String fromId) {
-        this.fromId = fromId == null ? null : fromId.trim();
-    }
+	/**
+	 * 压缩后的邮件内容
+	 */
+	private byte[] compressContent;
 
-    public String getSubject() {
-        return subject;
-    }
+	/**
+	 * 外部邮件内容
+	 */
+	private byte[] webmailContent;
 
-    public void setSubject(String subject) {
-        this.subject = subject == null ? null : subject.trim();
-    }
+	/**
+	 * 审核不通过备注
+	 */
+	private String auditRemark;
+	/**
+	 * 抄送外部邮箱串
+	 */
+	private String copyToWebmail;
+	/**
+	 * 密送外部邮箱串
+	 */
+	private String secretToWebmail;
+	/**
+	 * 点赞人user_id串
+	 */
+	private String praise;
+	/**
+	 * 一对多关联email
+	 */
+	private List<Email> emailList;
 
-    public Integer getSendTime() {
-        return sendTime;
-    }
+	/**
+	 * 一对多关联email
+	 * 
+	 * @return
+	 */
+	public List<Email> getEmailList() {
+		return emailList;
+	}
 
-    public void setSendTime(Integer sendTime) {
-        this.sendTime = sendTime;
-    }
+	/**
+	 * 一对多关联email
+	 * 
+	 * @param emailList
+	 */
+	public void setEmailList(List<Email> emailList) {
+		this.emailList = emailList;
+	}
 
-    public String getSendFlag() {
-        return sendFlag;
-    }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-    public void setSendFlag(String sendFlag) {
-        this.sendFlag = sendFlag == null ? null : sendFlag.trim();
-    }
+	/**
+	 * 收件人USER_ID串
+	 */
+	public String getToId2() {
+		return toId2;
+	}
 
-    public String getSmsRemind() {
-        return smsRemind;
-    }
+	/**
+	 * 收件人USER_ID串
+	 */
+	public void setToId2(String toId2) {
+		this.toId2 = toId2;
+	}
 
-    public void setSmsRemind(String smsRemind) {
-        this.smsRemind = smsRemind == null ? null : smsRemind.trim();
-    }
+	/**
+	 * 抄送人USER_ID串
+	 */
+	public String getCopyToId() {
+		return copyToId;
+	}
 
-    public String getImportant() {
-        return important;
-    }
+	/**
+	 * 抄送人USER_ID串
+	 */
+	public void setCopyToId(String copyToId) {
+		this.copyToId = copyToId;
+	}
 
-    public void setImportant(String important) {
-        this.important = important == null ? null : important.trim();
-    }
+	/**
+	 * 密送人USER_ID串
+	 */
+	public String getSecretToId() {
+		return secretToId;
+	}
 
-    public Long getSize() {
-        return size;
-    }
+	/**
+	 * 密送人USER_ID串
+	 */
+	public void setSecretToId(String secretToId) {
+		this.secretToId = secretToId;
+	}
 
-    public void setSize(Long size) {
-        this.size = size;
-    }
+	/**
+	 * 邮件内容
+	 */
+	public String getContent() {
+		return content;
+	}
 
-    public Integer getFromWebmailId() {
-        return fromWebmailId;
-    }
+	/**
+	 * 一对多（一个用户对应多个邮件）
+	 */
+	public Users getUsers() {
+		return users;
+	}
 
-    public void setFromWebmailId(Integer fromWebmailId) {
-        this.fromWebmailId = fromWebmailId;
-    }
+	/**
+	 * 一对多（一个用户对应多个邮件）
+	 */
+	public void setUsers(Users users) {
+		this.users = users;
+	}
 
-    public String getFromWebmail() {
-        return fromWebmail;
-    }
+	/**
+	 * 时间段区间查询传入的开始时间
+	 */
+	public Integer getStartTime() {
+		return startTime;
+	}
 
-    public void setFromWebmail(String fromWebmail) {
-        this.fromWebmail = fromWebmail == null ? null : fromWebmail.trim();
-    }
+	/**
+	 * 时间段区间查询传入的开始时间
+	 */
+	public void setStartTime(Integer startTime) {
+		this.startTime = startTime;
+	}
 
-    public String getWebmailFlag() {
-        return webmailFlag;
-    }
+	/**
+	 * 时间段区间查询传入的结束时间
+	 */
+	public Integer getEndTime() {
+		return endTime;
+	}
 
-    public void setWebmailFlag(String webmailFlag) {
-        this.webmailFlag = webmailFlag == null ? null : webmailFlag.trim();
-    }
+	/**
+	 * 时间段区间查询传入的结束时间
+	 */
+	public void setEndTime(Integer endTime) {
+		this.endTime = endTime;
+	}
 
-    public String getRecvFromName() {
-        return recvFromName;
-    }
+	/**
+	 * 邮件内容
+	 */
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public void setRecvFromName(String recvFromName) {
-        this.recvFromName = recvFromName == null ? null : recvFromName.trim();
-    }
+	/**
+	 * 附件ID串
+	 */
+	public String getAttachmentId() {
+		return attachmentId;
+	}
 
-    public String getRecvFrom() {
-        return recvFrom;
-    }
+	/**
+	 * 附件ID串
+	 */
+	public void setAttachmentId(String attachmentId) {
+		this.attachmentId = attachmentId;
+	}
 
-    public void setRecvFrom(String recvFrom) {
-        this.recvFrom = recvFrom == null ? null : recvFrom.trim();
-    }
+	/**
+	 * 附件文件名串
+	 */
+	public String getAttachmentName() {
+		return attachmentName;
+	}
 
-    public Integer getRecvToId() {
-        return recvToId;
-    }
+	/**
+	 * 附件文件名串
+	 */
+	public void setAttachmentName(String attachmentName) {
+		this.attachmentName = attachmentName;
+	}
 
-    public void setRecvToId(Integer recvToId) {
-        this.recvToId = recvToId;
-    }
+	/**
+	 * 接收外部邮箱名称
+	 */
+	public void setRecvFromName(String recvFromName) {
+		this.recvFromName = recvFromName;
+	}
 
-    public String getRecvTo() {
-        return recvTo;
-    }
+	/**
+	 * 接收外部邮箱名称
+	 */
+	public String getToWebmail() {
+		return toWebmail;
+	}
 
-    public void setRecvTo(String recvTo) {
-        this.recvTo = recvTo == null ? null : recvTo.trim();
-    }
+	/**
+	 * 外部收件人邮箱串
+	 */
+	public void setToWebmail(String toWebmail) {
+		this.toWebmail = toWebmail;
+	}
 
-    public String getIsWebmail() {
-        return isWebmail;
-    }
+	/**
+	 * 外部收件人邮箱串
+	 */
+	public byte[] getCompressContent() {
+		return compressContent;
+	}
 
-    public void setIsWebmail(String isWebmail) {
-        this.isWebmail = isWebmail == null ? null : isWebmail.trim();
-    }
+	/**
+	 * 压缩后的邮件内容
+	 */
+	public void setCompressContent(byte[] compressContent) {
+		this.compressContent = compressContent;
+	}
 
-    public String getIsWf() {
-        return isWf;
-    }
+	/**
+	 * 压缩后的邮件内容
+	 */
+	public byte[] getWebmailContent() {
+		return webmailContent;
+	}
 
-    public void setIsWf(String isWf) {
-        this.isWf = isWf == null ? null : isWf.trim();
-    }
+	/**
+	 * 外部邮件内容
+	 */
+	public void setWebmailContent(byte[] webmailContent) {
+		this.webmailContent = webmailContent;
+	}
 
-    public String getKeyword() {
-        return keyword;
-    }
+	/**
+	 * 外部邮件内容
+	 */
+	public String getAuditRemark() {
+		return auditRemark;
+	}
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword == null ? null : keyword.trim();
-    }
+	/**
+	 * 审核不通过备注
+	 */
+	public void setAuditRemark(String auditRemark) {
+		this.auditRemark = auditRemark;
+	}
 
-    public Integer getSecretLevel() {
-        return secretLevel;
-    }
+	/**
+	 * 抄送外部邮箱串
+	 */
+	public String getCopyToWebmail() {
+		return copyToWebmail;
+	}
 
-    public void setSecretLevel(Integer secretLevel) {
-        this.secretLevel = secretLevel;
-    }
+	/**
+	 * 抄送外部邮箱串
+	 */
+	public void setCopyToWebmail(String copyToWebmail) {
+		this.copyToWebmail = copyToWebmail;
+	}
 
-    public String getAuditMan() {
-        return auditMan;
-    }
+	/**
+	 * 密送外部邮箱串
+	 */
+	public String getSecretToWebmail() {
+		return secretToWebmail;
+	}
 
-    public void setAuditMan(String auditMan) {
-        this.auditMan = auditMan == null ? null : auditMan.trim();
-    }
+	/**
+	 * 密送外部邮箱串
+	 */
+	public void setSecretToWebmail(String secretToWebmail) {
+		this.secretToWebmail = secretToWebmail;
+	}
+
+	/**
+	 * 点赞人user_id串
+	 */
+	public String getPraise() {
+		return praise;
+	}
+
+	/**
+	 * 点赞人user_id串
+	 */
+	public void setPraise(String praise) {
+		this.praise = praise;
+	}
+
+	/**
+	 * 自增唯一ID
+	 */
+
+	public Integer getBodyId() {
+		return bodyId;
+	}
+
+	/**
+	 * 自增唯一ID
+	 */
+	public void setBodyId(Integer bodyId) {
+		this.bodyId = bodyId;
+	}
+
+	/**
+	 * 自增唯一ID
+	 */
+	public String getFromId() {
+		return fromId;
+	}
+
+	/**
+	 * 发件人USER_ID
+	 */
+	public void setFromId(String fromId) {
+		this.fromId = fromId == null ? null : fromId.trim();
+	}
+
+	/**
+	 * 邮件主题
+	 */
+	public String getSubject() {
+		return subject;
+	}
+
+	/**
+	 * 邮件主题
+	 */
+	public void setSubject(String subject) {
+		this.subject = subject == null ? null : subject.trim();
+	}
+
+	/**
+	 * 发送时间
+	 */
+	public Integer getSendTime() {
+		return sendTime;
+	}
+
+	/**
+	 * 发送时间
+	 */
+	public void setSendTime(Integer sendTime) {
+		this.sendTime = sendTime;
+	}
+
+	/**
+	 * 是否已发送(0-未发送,1-已发送)
+	 */
+	public String getSendFlag() {
+		return sendFlag;
+	}
+
+	/**
+	 * 是否已发送(0-未发送,1-已发送)
+	 */
+	public void setSendFlag(String sendFlag) {
+		this.sendFlag = sendFlag == null ? null : sendFlag.trim();
+	}
+
+	/**
+	 * 是否使用短信提醒(0-不提醒,1-提醒)
+	 */
+	public String getSmsRemind() {
+		return smsRemind;
+	}
+
+	/**
+	 * 是否使用短信提醒(0-不提醒,1-提醒)
+	 */
+	public void setSmsRemind(String smsRemind) {
+		this.smsRemind = smsRemind == null ? null : smsRemind.trim();
+	}
+
+	/**
+	 * 重要程度(空-一般邮件,1-重要,2-非常重要)
+	 */
+	public String getImportant() {
+		return important;
+	}
+
+	/**
+	 * 重要程度(空-一般邮件,1-重要,2-非常重要)
+	 */
+	public void setImportant(String important) {
+		this.important = important == null ? null : important.trim();
+	}
+
+	/**
+	 * 邮件大小
+	 */
+	public Long getSize() {
+		return size;
+	}
+
+	/**
+	 * 邮件大小
+	 */
+	public void setSize(Long size) {
+		this.size = size;
+	}
+
+	/**
+	 * 从自己的哪个外部邮箱ID对应emailbox中id
+	 */
+	public Integer getFromWebmailId() {
+		return fromWebmailId;
+	}
+
+	/**
+	 * 从自己的哪个外部邮箱ID对应emailbox中id
+	 */
+	public void setFromWebmailId(Integer fromWebmailId) {
+		this.fromWebmailId = fromWebmailId;
+	}
+
+	/**
+	 * 从自己的哪个外部邮箱向外发送
+	 */
+	public String getFromWebmail() {
+		return fromWebmail;
+	}
+
+	/**
+	 * 从自己的哪个外部邮箱向外发送
+	 */
+	public void setFromWebmail(String fromWebmail) {
+		this.fromWebmail = fromWebmail == null ? null : fromWebmail.trim();
+	}
+
+	/**
+	 * 外部邮件标记(0-未发送,1-正在准备发送,2-发送成功,3-发送失败)
+	 */
+	public String getWebmailFlag() {
+		return webmailFlag;
+	}
+
+	/**
+	 * 外部邮件标记(0-未发送,1-正在准备发送,2-发送成功,3-发送失败)
+	 */
+	public void setWebmailFlag(String webmailFlag) {
+		this.webmailFlag = webmailFlag == null ? null : webmailFlag.trim();
+	}
+
+	/**
+	 * 接收外部邮箱名称
+	 */
+	public String getRecvFromName() {
+		return recvFromName;
+	}
+
+	/**
+	 * 接收外部邮箱名称
+	 */
+	public void From(String recvFromName) {
+		this.recvFromName = recvFromName == null ? null : recvFromName.trim();
+	}
+
+	/**
+	 * 接收外部邮箱ID
+	 */
+	public String getRecvFrom() {
+		return recvFrom;
+	}
+
+	/**
+	 * 接收外部邮箱ID
+	 */
+	public void setRecvFrom(String recvFrom) {
+		this.recvFrom = recvFrom == null ? null : recvFrom.trim();
+	}
+
+	/**
+	 * 发送外部邮件ID
+	 */
+	public Integer getRecvToId() {
+		return recvToId;
+	}
+
+	/**
+	 * 发送外部邮件ID
+	 */
+	public void setRecvToId(Integer recvToId) {
+		this.recvToId = recvToId;
+	}
+
+	/**
+	 * 发送外部邮箱名称
+	 */
+	public String getRecvTo() {
+		return recvTo;
+	}
+
+	/**
+	 * 发送外部邮箱名称
+	 */
+	public void setRecvTo(String recvTo) {
+		this.recvTo = recvTo == null ? null : recvTo.trim();
+	}
+
+	/**
+	 * 是否为外部邮件(0-内部邮件,1-外部邮件)
+	 */
+	public String getIsWebmail() {
+		return isWebmail;
+	}
+
+	/**
+	 * 是否为外部邮件(0-内部邮件,1-外部邮件)
+	 */
+	public void setIsWebmail(String isWebmail) {
+		this.isWebmail = isWebmail == null ? null : isWebmail.trim();
+	}
+
+	/**
+	 * 是否同时外发(0-不外发,1-勾选向此人发送外部邮件)
+	 */
+	public String getIsWf() {
+		return isWf;
+	}
+
+	/**
+	 * 是否同时外发(0-不外发,1-勾选向此人发送外部邮件)
+	 */
+	public void setIsWf(String isWf) {
+		this.isWf = isWf == null ? null : isWf.trim();
+	}
+
+	/**
+	 * 内容关键词
+	 */
+	public String getKeyword() {
+		return keyword;
+	}
+
+	/**
+	 * 内容关键词
+	 */
+	public void setKeyword(String keyword) {
+		this.keyword = keyword == null ? null : keyword.trim();
+	}
+
+	/**
+	 * 邮件密级等级
+	 */
+	public Integer getSecretLevel() {
+		return secretLevel;
+	}
+
+	/**
+	 * 邮件密级等级
+	 */
+	public void setSecretLevel(Integer secretLevel) {
+		this.secretLevel = secretLevel;
+	}
+
+	/**
+	 * 审核人USER_ID
+	 */
+	public String getAuditMan() {
+		return auditMan;
+	}
+
+	/**
+	 * 审核人USER_ID
+	 */
+	public void setAuditMan(String auditMan) {
+		this.auditMan = auditMan == null ? null : auditMan.trim();
+	}
 }

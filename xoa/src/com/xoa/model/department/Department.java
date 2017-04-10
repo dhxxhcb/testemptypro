@@ -1,5 +1,9 @@
 package com.xoa.model.department;
 
+import java.util.List;
+
+import com.xoa.model.users.Users;
+
 public class Department {
 	/**
 	 * 自增唯一ID
@@ -73,12 +77,22 @@ public class Department {
 	 * 部门职能
 	 */
     private String deptFunc;
-
+    
+    private List<Users> users;
+ 
     public String getManager() {
         return manager;
     }
 
-    public void setManager(String manager) {
+    public List<Users> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<Users> users) {
+		this.users = users;
+	}
+
+	public void setManager(String manager) {
         this.manager = manager == null ? null : manager.trim();
     }
 

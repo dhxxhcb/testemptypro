@@ -1,21 +1,68 @@
 package com.xoa.model.file;
 
 public class File_Content {
-       int content_id;//自增唯一ID
-       int sort_id;//目录ID
-       String subject;//文件名称
-       String content;//文件内容
-       String send_time;//保存时间
-       String attachment_id;//附件ID串 ATTACHMENT_ID
-       String attachment_name;//附件名称串
-       String attachment_desc;//附件描述
-       String user_id;//有访问权限的用户ID串
-       int content_no;//文件排序号
-       String new_person;//文件转发人
-       String readers;//阅读人员
-       String creater;//创建人
-       String logs;//对该文件所做主要操作的日志
+	 /**
+	  * 自增唯一ID
+	  */
+       int content_id;
+       /**
+        * 目录ID
+        */
+       int sort_id;
+       /**
+        * 文件名称
+        */
+       String subject;
+       /**
+        * 文件内容
+        */
+       String content;
+       /**
+        * 保存时间
+        */
+       String send_time;
+       /**
+        * 附件ID串 ATTACHMENT_ID
+        */
+       String attachment_id;
+       /**
+        * 附件名称串
+        */
+       String attachment_name;
+       /**
+        * 附件描述
+        */
+       String attachment_desc;
+       /**
+        * 有访问权限的用户ID串
+        */
+       String user_id;
+       /**
+        * 文件排序号
+        */
+       int content_no;
+       /**
+        * 文件转发人
+        */
+       String new_person;
+       /**
+        * 阅读人员
+        */
+       String readers;
+       /**
+        * 创建人
+        */
+       String creater;
+       /**
+        * 对该文件所做主要操作的日志
+        */
+       String logs;
+       /**
+        * 内容关键词
+        */
+       String keyword;
        
+	
 	public int getContent_id() {
 		return content_id;
 	}
@@ -99,5 +146,11 @@ public class File_Content {
 	}
 	public void setLogs(String logs) {
 		this.logs = logs;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 }

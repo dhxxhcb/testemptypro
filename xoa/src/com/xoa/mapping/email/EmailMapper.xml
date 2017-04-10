@@ -2,25 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.email.EmailMapper" >
   <resultMap id="BaseResultMap" type="com.xoa.model.email.Email" >
-    <result column="EMAIL_ID" property="emailId" jdbcType="INTEGER" />
-    <result column="TO_ID" property="toId" jdbcType="VARCHAR" />
-    <result column="READ_FLAG" property="readFlag" jdbcType="CHAR" />
-    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="CHAR" />
-    <result column="BOX_ID" property="boxId" jdbcType="INTEGER" />
-    <result column="BODY_ID" property="bodyId" jdbcType="INTEGER" />
-    <result column="RECEIPT" property="receipt" jdbcType="CHAR" />
-    <result column="IS_F" property="isF" jdbcType="CHAR" />
-    <result column="IS_R" property="isR" jdbcType="CHAR" />
-    <result column="SIGN" property="sign" jdbcType="CHAR" />
+    <result column="EMAIL_ID" property="emailId" javaType="INTEGER" />
+    <result column="TO_ID" property="toId" javaType="String" />
+    <result column="READ_FLAG" property="readFlag" javaType="String" />
+    <result column="DELETE_FLAG" property="deleteFlag" javaType="String" />
+    <result column="BOX_ID" property="boxId" javaType="INTEGER" />
+    <result column="BODY_ID" property="bodyId" javaType="INTEGER" />
+    <result column="RECEIPT" property="receipt" javaType="String" />
+    <result column="IS_F" property="isF" javaType="String" />
+    <result column="IS_R" property="isR" javaType="String" />
+    <result column="SIGN" property="sign" javaType="String" />
   </resultMap>
+ 
+  	<!-- 发送邮件 -->
   <insert id="insert" parameterType="com.xoa.model.email.Email" >
-    insert into email (EMAIL_ID, TO_ID, READ_FLAG, 
+    insert into email (TO_ID, READ_FLAG, 
       DELETE_FLAG, BOX_ID, BODY_ID, 
       RECEIPT, IS_F, IS_R, SIGN
       )
-    values (#{emailId,jdbcType=INTEGER}, #{toId,jdbcType=VARCHAR}, #{readFlag,jdbcType=CHAR}, 
-      #{deleteFlag,jdbcType=CHAR}, #{boxId,jdbcType=INTEGER}, #{bodyId,jdbcType=INTEGER}, 
-      #{receipt,jdbcType=CHAR}, #{isF,jdbcType=CHAR}, #{isR,jdbcType=CHAR}, #{sign,jdbcType=CHAR}
+    values ( #{toId}, #{readFlag}, 
+      #{deleteFlag}, #{boxId}, #{bodyId}, 
+      #{receipt}, #{isF}, #{isR}, #{sign}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xoa.model.email.Email" >
@@ -59,34 +61,34 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="emailId != null" >
-        #{emailId,jdbcType=INTEGER},
+        #{emailId,javaType=INTEGER},
       </if>
       <if test="toId != null" >
-        #{toId,jdbcType=VARCHAR},
+        #{toId,javaType=String},
       </if>
       <if test="readFlag != null" >
-        #{readFlag,jdbcType=CHAR},
+        #{readFlag,javaType=String},
       </if>
       <if test="deleteFlag != null" >
-        #{deleteFlag,jdbcType=CHAR},
+        #{deleteFlag,javaType=String},
       </if>
       <if test="boxId != null" >
-        #{boxId,jdbcType=INTEGER},
+        #{boxId,javaType=INTEGER},
       </if>
       <if test="bodyId != null" >
-        #{bodyId,jdbcType=INTEGER},
+        #{bodyId,javaType=INTEGER},
       </if>
       <if test="receipt != null" >
-        #{receipt,jdbcType=CHAR},
+        #{receipt,javaType=String},
       </if>
       <if test="isF != null" >
-        #{isF,jdbcType=CHAR},
+        #{isF,javaType=String},
       </if>
       <if test="isR != null" >
-        #{isR,jdbcType=CHAR},
+        #{isR,javaType=String},
       </if>
       <if test="sign != null" >
-        #{sign,jdbcType=CHAR},
+        #{sign,javaType=String},
       </if>
     </trim>
   </insert>

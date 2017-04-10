@@ -1,11 +1,27 @@
 package com.xoa.model.file;
 
 public class File_Comment {
-	 int comment_id;//唯一自增ID
-	 int file_id;//文件ID
-	 String user_id;//点评用户的USER_ID
-	 String content;//点评内容 
-	 String send_time;//点评保存时间
+	/**
+	 * 唯一自增ID
+	 */
+	 int comment_id;
+	 /**
+	  * 文件ID
+	  */
+	 int file_id;
+	 /**
+	  * 点评用户的USER_ID
+	  */
+	 String user_id;
+	 /**
+	  * 点评内容 
+	  */
+	 String content;
+	 /**
+	  * 点评保存时间
+	  */
+	 String send_time;
+	 
 	public int getComment_id() {
 		return comment_id;
 	}
