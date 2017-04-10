@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.email.EmailBoxMapper" >
   <resultMap id="BaseResultMap" type="com.xoa.model.email.EmailBox" >
-    <id column="BOX_ID" property="boxId" jdbcType="INTEGER" />
-    <result column="BOX_NO" property="boxNo" jdbcType="INTEGER" />
-    <result column="BOX_NAME" property="boxName" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
-    <result column="DEFAULT_COUNT" property="defaultCount" jdbcType="VARCHAR" />
+    <id column="BOX_ID" property="boxId" javaType="INTEGER" />
+    <result column="BOX_NO" property="boxNo" javaType="INTEGER" />
+    <result column="BOX_NAME" property="boxName" javaType="String" />
+    <result column="USER_ID" property="userId" javaType="String" />
+    <result column="DEFAULT_COUNT" property="defaultCount" javaType="String" />
   </resultMap>
   <sql id="Base_Column_List" >
     BOX_ID, BOX_NO, BOX_NAME, USER_ID, DEFAULT_COUNT
@@ -15,17 +15,17 @@
     select 
     <include refid="Base_Column_List" />
     from email_box
-    where BOX_ID = #{boxId,jdbcType=INTEGER}
+    where BOX_ID = #{boxId,javaType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from email_box
-    where BOX_ID = #{boxId,jdbcType=INTEGER}
+    where BOX_ID = #{boxId,javaType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xoa.model.email.EmailBox" >
     insert into email_box (BOX_ID, BOX_NO, BOX_NAME, 
       USER_ID, DEFAULT_COUNT)
-    values (#{boxId,jdbcType=INTEGER}, #{boxNo,jdbcType=INTEGER}, #{boxName,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=VARCHAR}, #{defaultCount,jdbcType=VARCHAR})
+    values (#{boxId,javaType=INTEGER}, #{boxNo,javaType=INTEGER}, #{boxName,javaType=String}, 
+      #{userId,javaType=String}, #{defaultCount,javaType=String})
   </insert>
   <insert id="insertSelective" parameterType="com.xoa.model.email.EmailBox" >
     insert into email_box
@@ -48,19 +48,19 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="boxId != null" >
-        #{boxId,jdbcType=INTEGER},
+        #{boxId,javaType=INTEGER},
       </if>
       <if test="boxNo != null" >
-        #{boxNo,jdbcType=INTEGER},
+        #{boxNo,javaType=INTEGER},
       </if>
       <if test="boxName != null" >
-        #{boxName,jdbcType=VARCHAR},
+        #{boxName,javaType=String},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
+        #{userId,javaType=String},
       </if>
       <if test="defaultCount != null" >
-        #{defaultCount,jdbcType=VARCHAR},
+        #{defaultCount,javaType=String},
       </if>
     </trim>
   </insert>
@@ -68,26 +68,26 @@
     update email_box
     <set >
       <if test="boxNo != null" >
-        BOX_NO = #{boxNo,jdbcType=INTEGER},
+        BOX_NO = #{boxNo,javaType=INTEGER},
       </if>
       <if test="boxName != null" >
-        BOX_NAME = #{boxName,jdbcType=VARCHAR},
+        BOX_NAME = #{boxName,javaType=String},
       </if>
       <if test="userId != null" >
-        USER_ID = #{userId,jdbcType=VARCHAR},
+        USER_ID = #{userId,javaType=String},
       </if>
       <if test="defaultCount != null" >
-        DEFAULT_COUNT = #{defaultCount,jdbcType=VARCHAR},
+        DEFAULT_COUNT = #{defaultCount,javaType=String},
       </if>
     </set>
-    where BOX_ID = #{boxId,jdbcType=INTEGER}
+    where BOX_ID = #{boxId,javaType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xoa.model.email.EmailBox" >
     update email_box
-    set BOX_NO = #{boxNo,jdbcType=INTEGER},
-      BOX_NAME = #{boxName,jdbcType=VARCHAR},
-      USER_ID = #{userId,jdbcType=VARCHAR},
-      DEFAULT_COUNT = #{defaultCount,jdbcType=VARCHAR}
-    where BOX_ID = #{boxId,jdbcType=INTEGER}
+    set BOX_NO = #{boxNo,javaType=INTEGER},
+      BOX_NAME = #{boxName,javaType=String},
+      USER_ID = #{userId,javaType=String},
+      DEFAULT_COUNT = #{defaultCount,javaType=String}
+    where BOX_ID = #{boxId,javaType=INTEGER}
   </update>
 </mapper>

@@ -9,8 +9,8 @@ import com.xoa.model.department.Department;
 public interface DepartmentService {
 	
 	
-	  public List<Department> getdeptParent(int deptParent);
-	  public List<Department> getdeptId(int deptId);
+	  /*public List<Department> getdeptParent(int deptParent);
+	  public List<Department> getdeptId(int deptId);*/
 	
 
 }

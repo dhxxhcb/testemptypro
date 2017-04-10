@@ -1,103 +1,243 @@
-package com.xoa.model.email;
+﻿package com.xoa.model.email;
 
-public class Email {
-    private Integer emailId;
+import java.io.Serializable;
 
-    private String toId;
+/**
+ * 收件人实体类
+ * @author gaosubo
+ * @version 1.0
+ */
+public class Email implements Serializable {
+	private static final long serialVersionUID = 1076969159692234636L;
 
-    private String readFlag;
+	/**
+	 * 自增唯一ID
+	 */
+	private Integer emailId;
+	
+	/**
+	 * 收件人USER_ID
+	 */
+	private String toId;
+	
+	/**
+	 * 邮件读取状态(0-未读,1-已读)
+	 */
+	private String readFlag;
+	
+	/**
+	 * 邮件删除状态
+	 */
+	private String deleteFlag;
+	
+	/**
+	 * 邮件箱分类ID
+	 */
+	private Integer boxId;
 
-    private String deleteFlag;
+	/**
+	 * 邮件体ID
+	 */
+	private Integer bodyId;
 
-    private Integer boxId;
+	/**
+	 * 是否请求阅读收条(0-不请求,1-请求)
+	 */
+	private String receipt;
+	
+	/**
+	 * 是否转发(0-未转发,1-已转发)
+	 */
+	private String isF;
+	
+	/**
+	 * 是否回复(0-未回复,1-已回复)
+	 */
+	private String isR;
+	
+	/**
+	 * 星标标记(0-无,1-灰,2-绿,3-黄,4-红)
+	 */
+	private String sign;
+	
+	/**
+	 * 一对多关联 EmailBody
+	 */
+	private EmailBody emailBody;
 
-    private Integer bodyId;
+	/**
+	 * 一对多关联 EmailBody
+	 * @return
+	 */
+	public EmailBody getEmailBody() {
+		return emailBody;
+	}
+	
+	/**
+	 * 一对多关联 EmailBody
+	 * @param emailBody
+	 */
+	public void setEmailBody(EmailBody emailBody) {
+		this.emailBody = emailBody;
+	}
+	
+	/**
+	 * 自增唯一ID
+	 * @return
+	 */
+	public Integer getEmailId() {
+		return emailId;
+	}
+	
+	/**
+	 * 自增唯一ID
+	 * @param emailId
+	 */
+	public void setEmailId(Integer emailId) {
+		this.emailId = emailId;
+	}
+	
+	/**
+	 * 收件人USER_ID
+	 * @return
+	 */
+	public String getToId() {
+		return toId;
+	}
+	
+	/**
+	 * 收件人USER_ID
+	 * @param toId
+	 */
+	public void setToId(String toId) {
+		this.toId = toId == null ? null : toId.trim();
+	}
+	
+	/**
+	 * 邮件读取状态(0-未读,1-已读)
+	 * @return
+	 */
+	public String getReadFlag() {
+		return readFlag;
+	}
 
-    private String receipt;
+	/**
+	 * 邮件读取状态(0-未读,1-已读)
+	 * @param readFlag
+	 */
+	public void setReadFlag(String readFlag) {
+		this.readFlag = readFlag == null ? null : readFlag.trim();
+	}
+	
+	/**
+	 * 邮件删除状态
+	 * @return
+	 */
+	public String getDeleteFlag() {
+		return deleteFlag;
+	}
 
-    private String isF;
+	/**
+	 * 邮件删除状态
+	 * @param deleteFlag
+	 */
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag == null ? null : deleteFlag.trim();
+	}
 
-    private String isR;
+	/**
+	 * 邮件箱分类ID
+	 * @return
+	 */
+	public Integer getBoxId() {
+		return boxId;
+	}
 
-    private String sign;
+	/**
+	 * 邮件箱分类ID
+	 * @param boxId
+	 */
+	public void setBoxId(Integer boxId) {
+		this.boxId = boxId;
+	}
 
-    public Integer getEmailId() {
-        return emailId;
-    }
+	/**
+	 * 邮件体ID
+	 * @return
+	 */
+	public Integer getBodyId() {
+		return bodyId;
+	}
+	
+	/**
+	 * 邮件体ID
+	 * @param bodyId
+	 */
+	public void setBodyId(Integer bodyId) {
+		this.bodyId = bodyId;
+	}
 
-    public void setEmailId(Integer emailId) {
-        this.emailId = emailId;
-    }
+	/**
+	 * 是否请求阅读收条(0-不请求,1-请求)
+	 * @return
+	 */
+	public String getReceipt() {
+		return receipt;
+	}
 
-    public String getToId() {
-        return toId;
-    }
+	/**
+	 * 是否请求阅读收条(0-不请求,1-请求)
+	 * @param receipt
+	 */
+	public void setReceipt(String receipt) {
+		this.receipt = receipt == null ? null : receipt.trim();
+	}
 
-    public void setToId(String toId) {
-        this.toId = toId == null ? null : toId.trim();
-    }
+	/**
+	 * 是否转发(0-未转发,1-已转发)
+	 * @return
+	 */
+	public String getIsF() {
+		return isF;
+	}
+	
+	/**
+	 * 是否转发(0-未转发,1-已转发)
+	 * @param isF
+	 */
+	public void setIsF(String isF) {
+		this.isF = isF == null ? null : isF.trim();
+	}
 
-    public String getReadFlag() {
-        return readFlag;
-    }
+	/**
+	 * 是否回复(0-未回复,1-已回复)
+	 * @return
+	 */
+	public String getIsR() {
+		return isR;
+	}
 
-    public void setReadFlag(String readFlag) {
-        this.readFlag = readFlag == null ? null : readFlag.trim();
-    }
+	/**
+	 * 是否回复(0-未回复,1-已回复)
+	 * @param isR
+	 */
+	public void setIsR(String isR) {
+		this.isR = isR == null ? null : isR.trim();
+	}
 
-    public String getDeleteFlag() {
-        return deleteFlag;
-    }
+	/**
+	 * 星标标记(0-无,1-灰,2-绿,3-黄,4-红)
+	 * @return
+	 */
+	public String getSign() {
+		return sign;
+	}
 
-    public void setDeleteFlag(String deleteFlag) {
-        this.deleteFlag = deleteFlag == null ? null : deleteFlag.trim();
-    }
-
-    public Integer getBoxId() {
-        return boxId;
-    }
-
-    public void setBoxId(Integer boxId) {
-        this.boxId = boxId;
-    }
-
-    public Integer getBodyId() {
-        return bodyId;
-    }
-
-    public void setBodyId(Integer bodyId) {
-        this.bodyId = bodyId;
-    }
-
-    public String getReceipt() {
-        return receipt;
-    }
-
-    public void setReceipt(String receipt) {
-        this.receipt = receipt == null ? null : receipt.trim();
-    }
-
-    public String getIsF() {
-        return isF;
-    }
-
-    public void setIsF(String isF) {
-        this.isF = isF == null ? null : isF.trim();
-    }
-
-    public String getIsR() {
-        return isR;
-    }
-
-    public void setIsR(String isR) {
-        this.isR = isR == null ? null : isR.trim();
-    }
-
-    public String getSign() {
-        return sign;
-    }
-
-    public void setSign(String sign) {
-        this.sign = sign == null ? null : sign.trim();
-    }
+	/**
+	 * 星标标记(0-无,1-灰,2-绿,3-黄,4-红)
+	 * @param sign
+	 */
+	public void setSign(String sign) {
+		this.sign = sign == null ? null : sign.trim();
+	}
 }

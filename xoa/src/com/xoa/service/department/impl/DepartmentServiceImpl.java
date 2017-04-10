@@ -14,7 +14,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Resource
 	private DepartmentMapper departmentMapper;
 	
-	@Override
+	/*@Override
 	public List<Department> getdeptParent(int deptParent) {
 		  
 		return departmentMapper.getdeptParent(deptParent);
@@ -24,6 +24,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public List<Department> getdeptId(int deptId) {
 		// TODO Auto-generated method stub
 		return departmentMapper.getdeptId(deptId);
-	}
+	}*/
 
 }
