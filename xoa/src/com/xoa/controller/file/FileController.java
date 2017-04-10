@@ -3,7 +3,6 @@ package com.xoa.controller.file;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -65,7 +64,8 @@ public class FileController {
 			return modelAndView;
 		}
 		int resultAdd=file_SortService.addFile_Sorts(file);
-		modelAndView=new ModelAndView("redirect:/fileAdd",model);
+		System.out.println("添加文件影响行--------"+resultAdd);
+		modelAndView=new ModelAndView("redirect:/showFiles",model);
 		return modelAndView;
 	}
 	
@@ -88,20 +88,32 @@ public class FileController {
 //	     JSONObject jsonObject = JSONObject.fromObject(model);
 //		return JSON.toJSONStringWithDateFormat(jsonObject, "yyyy-MM-dd HH:mm:ss");
 //	}
-	@RequestMapping("/fileUpdate")
-	public ModelAndView fileUpdate(File_Sort file){
+	@RequestMapping("/fileEdit")
+	public ModelAndView fileEdit(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
-		int resultAdd=file_SortService.updateFile(file);
-		Map<String, Object> model = new HashMap<String, Object>();
-		ModelAndView modelAndView=new ModelAndView("redirect:/showFile",model);
+		Map<String, Object> fileEdit = new HashMap<String, Object>();
+		List<File_Sort> fileslist=file_SortService.getFile_Sorts(file);
+		File_Sort files=fileslist.get(0);
+		fileEdit.put("sortid", files.getSort_id());
+		fileEdit.put("sortno", files.getSort_no());
+		fileEdit.put("sortname", files.getSort_name());
+		ModelAndView modelAndView=new ModelAndView("app/file/fileEdit",fileEdit);
 		return modelAndView;
+	}
+	@RequestMapping("/fileUpdate")
+	public void fileUpdate(File_Sort file){
+		//"redirect:/showFile"   "file/showFile"
+		int resultUpdate=file_SortService.updateFile(file);
+		System.out.println("修改文件影响行--------"+resultUpdate);
+		
 	}
 	@RequestMapping("/fileDelete")
 	public ModelAndView fileDelete(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
 		Map<String, Object> model = new HashMap<String, Object>();
 		int  i=file_SortService.fileDeleteBySort_id(file.getSort_id());
-		ModelAndView modelAndView=new ModelAndView("redirect:/showFile",model);
+		System.out.println("删除文件影响行--------"+i);
+		ModelAndView modelAndView=new ModelAndView("redirect:/showFileBySort_id",model);
 		return modelAndView;
 	}
 }

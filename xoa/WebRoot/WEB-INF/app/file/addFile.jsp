@@ -23,9 +23,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     function submit(){
     document.form1.submit();
     }
-    function close(){
-    window.close();
-    }
+     function closeCurrentWindow(){
+ 		
+ 		window.opener.location.href = window.opener.location.href;     
+ 		if (window.opener.progressWindow)     
+ 		{         
+ 		window.opener.progressWindow.close();     
+ 		}     
+ 		window.close(); 
+ 	} 
     </script>
   </head>
   <body>
@@ -34,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       排序号:    <input id="fileNoid" name="sort_no" type="text"/><br>
    文件夹名称：<input id="fileNameid" name="sort_name" type="text"/><br>
    <input id="qr" type="button" value="确认" onclick="submit()"/><br>
-   <input id="fh" type="button" value="返回" onclick="close()"/>
+   <input id="fh" type="button" value="返回" onclick="closeCurrentWindow()"/>
    </form>
   </body>
 </html>
