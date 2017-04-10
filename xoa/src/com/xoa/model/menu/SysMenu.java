@@ -11,81 +11,75 @@ public class SysMenu {
 	/**
 	 * 菜单ID
 	 */
-	private String id;
+	private String menuId;
 	/**
 	 *菜单名称
 	 */
-	private String name;
+	private String menuName;
 	/**
 	 * 菜单图片名
 	 */
-	private String img;
+	private String image;
 	/**
 	 * 国际版多语言菜单名称
 	 */
-	private String ext; 
-	private SysFunction function;
+	private String menuExt;
+
+	private List<SysFunction> functionList;
 	
-	public SysFunction getFunction() {
-		return function;
+	public List<SysFunction> getFunctionList() {
+		return functionList;
 	}
-
-	public void setFunction(SysFunction function) {
-		this.function = function;
+	public void setFunctionList(List<SysFunction> functionList) {
+		this.functionList = functionList;
 	}
-
-	private List<SysMenu> menu;
-
-	public List<SysMenu> getMenu() {
-		return menu;
+	/**
+	 * 菜单ID
+	 */
+	public String getMenuId() {
+		return menuId;
 	}
-
-	public void setMenu(List<SysMenu> menu) {
-		this.menu = menu;
+	/**
+	 * 菜单ID
+	 */
+	public void setMenuId(String menuId) {
+		this.menuId = menuId == null ? null : menuId.trim();
 	}
-
-	private List<SysFunction> child;
-
-	public String getId() {
-		return id;
+	/**
+	 *菜单名称
+	 */
+	public String getMenuName() {
+		return menuName;
 	}
+	/**
+	 *菜单名称
+	 */
+	public void setMenuName(String menuName) {
+		this.menuName = menuName == null ? null : menuName.trim();
+	} 
+	/**
+	 * 菜单图片名
+	 */
 
-	public void setId(String id) {
-		this.id = id;
+	public String getImage() {
+		return image;
 	}
-
-	public String getName() {
-		return name;
+	/**
+	 * 菜单图片名
+	 */
+	public void setImage(String image) {
+		this.image = image == null ? null : image.trim();
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	/**
+	 * 国际版多语言菜单名称
+	 */
+	public String getMenuExt() {
+		return menuExt;
 	}
-
-	public String getImg() {
-		return img;
+	/**
+	 * 国际版多语言菜单名称
+	 */
+	public void setMenuExt(String menuExt) {
+		this.menuExt = menuExt == null ? null : menuExt.trim();
 	}
-
-	public void setImg(String img) {
-		this.img = img;
-	}
-
-	public String getExt() {
-		return ext;
-	}
-
-	public void setExt(String ext) {
-		this.ext = ext;
-	}
-
-	public List<SysFunction> getChild() {
-		return child;
-	}
-
-	public void setChild(List<SysFunction> child) {
-		this.child = child;
-	}
-
-
-	
 }

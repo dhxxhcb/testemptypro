@@ -1,7 +1,5 @@
 package com.test;
 
-import static org.junit.Assert.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.worldnews.NewService;
 
-@RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类  
+@RunWith(SpringJUnit4ClassRunner.class)     
 @ContextConfiguration(locations = {"classpath:config/spring/springs-beans.xml"}) 
 public class Ctest {
 

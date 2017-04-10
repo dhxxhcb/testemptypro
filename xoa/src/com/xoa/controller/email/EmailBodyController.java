@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -101,22 +102,6 @@ public class EmailBodyController {
 		emailBodyService.deleteByPrimaryKey(bodyId);
 	}
 	
-	
-	/**
-	 * 根据ID查询一条邮件
-	 */
-	@RequestMapping(value = "/queryById", produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody String queryById(HttpServletRequest request, HttpServletResponse response) {
-		EmailBody emailBody=emailBodyService.queryById(1);
-		ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
-		tojson.setObject(emailBody);
-		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(emailBody, "yyyy-MM-dd HH:mm:ss"));
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("queryById", JSON.toJSONStringWithDateFormat(emailBody, "yyyy-MM-dd HH:mm:ss"));
-		return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
-	}
-	
-	
 	/**
 	 * 草稿箱查询
 	 * @throws Exception 
@@ -141,7 +126,7 @@ public class EmailBodyController {
 	public @ResponseBody String selectSendEmail(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		Map<String,Object> maps = new HashMap<String, Object>();
 
-		List<EmailBody> listSendEmail=emailBodyService.listSendEmail(maps, 1, 3, true);
+		List<EmailBody> listSendEmail=emailBodyService.listDrafts(maps, 1, 3, true);
 		ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
 		tojson.setObj(listSendEmail);
 		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listSendEmail, "yyyy-MM-dd HH:mm:ss"));
@@ -221,7 +206,7 @@ public class EmailBodyController {
 		EmailBody eb = new EmailBody();
 		eb.setSubject("邮件标题:呃呃呃");
 		eb.setContent("本邮件为测试邮件不必回复，本邮件为测试邮件不必回复");
-		eb.setToId2("2608877911@qq.com");
+		eb.setToId2("373712896@qq.com");
 		eb.setFromId("17310878569@163.com");
 		eb.setCopyToId("179699220@qq.com");
 		eb.setSecretToId("1665933493@qq.com");

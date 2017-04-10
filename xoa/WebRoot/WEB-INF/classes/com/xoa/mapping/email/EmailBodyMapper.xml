@@ -82,10 +82,10 @@
 			AND u.USER_NAME= #{userName}
 		</if>
 		<if test="sign!=null and sign='' ">
-			AND e.SIGN=#{sign}
+		    AND e.SIGN=#{sign}
 		</if>
 		<if test="keyword!=null and keyword='' ">
-			AND eb.KEYWORD LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+		    AND eb.KEYWORD LIKE CONCAT(CONCAT('%',#{keyword}),'%')
 		</if>
 	</sql>
 	<select id="listqueryEmailBody" parameterType="Map" resultMap="BaseResultMap">
@@ -93,8 +93,7 @@
 		<include refid="Base_Column_List" />
 		from email_body as eb
 		LEFT JOIN user as u on eb.FROM_ID=u.USER_ID
-		LEFT
-		JOIN
+		LEFT JOIN
 		email as e on e.BODY_ID=eb.BODY_ID
 		<where>
 			<include refid="Page_Where_Clause" />
@@ -108,29 +107,32 @@
 		SEND_TIME DESC
 	</select>
 	<!-- 发件箱查询 -->
-	<select id="listSendEmail" parameterType="Map" resultMap="BaseResultMap">
-		select
-		eb.BODY_ID,eb.SUBJECT from email_body as eb, email as e where
+	<select id="listSendEmail" parameterType="Map"
+		resultMap="BaseResultMap">
+		select eb.SUBJECT from email as e,email_body as eb where
 		eb.BODY_ID=e.BODY_ID AND
 		SEND_FLAG="1" AND(DELETE_FLAG=""
 		OR
 		DELETE_FLAG="0" OR
-		DELETE_FLAG="2") AND BOX_ID="0" GROUP BY eb.BODY_ID
+		DELETE_FLAG="2") AND BOX_ID="0" ORDER BY
+		SEND_TIME
+		DESC
 	</select>
 	<!-- 废纸篓查询 -->
 
 	<select id="listWastePaperbasket" resultMap="BaseResultMap"
 		parameterType="Map">
-		SELECT eb.SUBJECT, u.USER_NAME FROM email_body as eb
-		LEFT JOIN email as e on e.BODY_ID =eb.BODY_ID
-		LEFT JOIN user as u on u.USER_ID=eb.FROM_ID
-		where eb.SEND_FLAG = '0' AND e.DELETE_FLAG = '0' AND e.READ_FLAG='1' ORDER BY eb.SEND_TIME DESC
+		SELECT eb.SUBJECT FROM email as e,email_body as eb WHERE
+		e.BODY_ID =
+		eb.BODY_ID AND SEND_FLAG = '0' AND (DELETE_FLAG = '3'
+		OR
+		DELETE_FLAG = '4' ) ORDER BY SEND_TIME DESC
 	</select>
 
 	<!-- 根据id查询一条邮件 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-		select eb.SUBJECT,eb.CONTENT,eb.SEND_TIME,eb.FROM_ID,eb.KEYWORD from email_body as eb where
-		eb.BODY_ID=#{bodyId}
+		select eb.SUBJECT,eb.CONTENT,eb.SEND_TIME from email_body as eb where
+		eb.email_body=#{bodyId}
 	</select>
 	<!--邮件根据ID删除一条邮件 -->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -373,8 +375,7 @@
 		IMPORTANT =
 		#{important,javaType=String},
 		SIZE = #{size,javaType=Long},
-		FROM_WEBMAIL_ID =
-		#{fromWebmailId,javaType=INTEGER},
+		FROM_WEBMAIL_ID = #{fromWebmailId,javaType=INTEGER},
 		FROM_WEBMAIL =
 		#{fromWebmail,javaType=String},
 		WEBMAIL_FLAG =
@@ -386,11 +387,9 @@
 		RECV_TO_ID =
 		#{recvToId,javaType=INTEGER},
 		RECV_TO = #{recvTo,javaType=String},
-		IS_WEBMAIL =
-		#{isWebmail,javaType=String},
+		IS_WEBMAIL = #{isWebmail,javaType=String},
 		IS_WF = #{isWf,javaType=String},
-		KEYWORD =
-		#{keyword,javaType=String},
+		KEYWORD = #{keyword,javaType=String},
 		SECRET_LEVEL =
 		#{secretLevel,javaType=INTEGER},
 		AUDIT_MAN =
@@ -434,8 +433,7 @@
 		IMPORTANT =
 		#{important,javaType=String},
 		SIZE = #{size,javaType=Long},
-		FROM_WEBMAIL_ID =
-		#{fromWebmailId,javaType=INTEGER},
+		FROM_WEBMAIL_ID = #{fromWebmailId,javaType=INTEGER},
 		FROM_WEBMAIL =
 		#{fromWebmail,javaType=String},
 		WEBMAIL_FLAG =
@@ -447,11 +445,9 @@
 		RECV_TO_ID =
 		#{recvToId,javaType=INTEGER},
 		RECV_TO = #{recvTo,javaType=String},
-		IS_WEBMAIL =
-		#{isWebmail,javaType=String},
+		IS_WEBMAIL = #{isWebmail,javaType=String},
 		IS_WF = #{isWf,javaType=String},
-		KEYWORD =
-		#{keyword,javaType=String},
+		KEYWORD = #{keyword,javaType=String},
 		SECRET_LEVEL =
 		#{secretLevel,javaType=INTEGER},
 		AUDIT_MAN =
