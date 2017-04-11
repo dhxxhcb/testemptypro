@@ -267,7 +267,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									er += '<li class="two">'+data[i].child[j].name+'</li>';
 								} 
 
-								str+='<li class="one person"><img class="one_logo" src="'+data[i].img+'"><h1 class="one_name" id="administ">'+data[i].name+'</h1><div><img src="img/main_img/down.png" style="    margin-top: 10%;"></div><ul  style="margin-left:20%;width:100%;"><li class="two">'+er+'<ul style="margin-left:25%;"><li class="three">'+three+'</li></ul></li></ul></li>';
+								str+='<li class="one person"><img class="one_logo" src="'+data[i].img+'"><h1 class="one_name" id="administ">'+data[i].name+'</h1><div style="border-bottom: 2px solid #e3e3e5;"><img src="img/main_img/down.png" style="    margin-top: 10%;"></div><ul  style="margin-left:20%;width:100%;display:none;"><li class="two">'+er+'<ul style="margin-left:25%;display:none;"><li class="three">'+three+'</li></ul></li></ul></li>';
 							}  
 							
 						console.log(three);
