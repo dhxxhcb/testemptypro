@@ -111,12 +111,12 @@ public class EmailUtilController {
 
 	/**
 	 * 根据ID删除一条邮件`
-	 */
+	 *//*
 	@RequestMapping(value = "/deleteEmailBody", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody void deleteEmailBody(HttpServletRequest request, HttpServletResponse response) {
 		Integer bodyId = Integer.parseInt(request.getParameter("bodyId"));
 		emailService.deleteByPrimaryKey(bodyId);
-	}
+	}*/
 	
 	
 	/**

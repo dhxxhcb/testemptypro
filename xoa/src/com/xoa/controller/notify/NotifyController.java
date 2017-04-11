@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -39,26 +40,24 @@ public class NotifyController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/notifyList",method=RequestMethod.GET,produces={"application/json;charset=UTF-8"})
-	public @ResponseBody
-	String notifyList() {
-		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("typeId", 11);
-	/*	maps.put("sendTime", 2017-04-04);*/
-		List<Notify> list = notifyService.selectNotify(maps, 1, 5, false);
-		loger.info("公告查询结果："+JSON.toJSONStringWithDateFormat(list, "yyyy-MM-dd HH:mm:ss"));
-		if (list.size() > 0) {
-			ToJson<Notify> tojson = new ToJson<Notify>(1, "查询成功");
-			tojson.setObj(list);
-			return JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		} else {
-			ToJson<Notify> tojson = new ToJson<Notify>(0, "查询失败");
-			tojson.setObj(list);
-			return JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		}
-	}
+	@RequestMapping(value = "/notifyList",method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	 public @ResponseBody
+	 String notifyList(@RequestParam(value="typeId",required=false)String typeId,@RequestParam(value="sendTime",required=false)String sendTime) {
+	  Map<String, Object> maps = new HashMap<String, Object>();
+	  maps.put("typeId", typeId);
+	  maps.put("sendTime", sendTime);
+	   String returnReslt= null;
+	  try {
+	   List<Notify> list=notifyService.selectNotify(maps, 1, 5, true);
+	   ToJson<Notify> tojson = new ToJson<Notify>(0, "");
+	   tojson.setObj(list);
+	   returnReslt= JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
+	  } catch (Exception e) {
+	   loger.debug("NewsMessage:"+e);
+	   returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1, ""), "yyyy-MM-dd HH:mm:ss");
+	  }
+	  return returnReslt;
+	 }
 
 	// @RequestMapping(value = "/notifyList")
 	// public String notifyList(HttpServletRequest request) {
