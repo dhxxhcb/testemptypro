@@ -24,7 +24,14 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public List<SysMenu> getAll() {
 		List<SysMenu> list=sysMenuMapper.getDatagrid();
-		System.out.println(list.size());
+	  for (SysMenu sysMenu : list) {
+		  List<SysFunction> list1=sysFunctionMapper.getDatagrid(sysMenu.getId());
+		  for (SysFunction sysFunction : list1) {
+			  List<SysFunction> list2=sysFunctionMapper.childMenu(sysFunction.getId());
+			  sysFunction.setChild(list2);
+		}
+		  sysMenu.setChild(list1);
+	}
 		return list;
 	}
 

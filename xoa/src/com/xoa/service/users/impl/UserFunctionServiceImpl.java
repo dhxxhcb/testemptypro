@@ -36,9 +36,9 @@ public class UserFunctionServiceImpl implements UserFunctionService {
 		System.out.println(strArray.length);
 		for (int j = 0; j < strArray.length; j++) {
 			for (int i=j; i<sFunList.size(); i++) {  
-				System.out.println(sFunList.get(j).getFuncId());
-				if (sFunList.get(i).getFuncId().toString().equals(strArray[j])) {
-					System.out.println("相等"+sFunList.get(i).getFuncId());
+				System.out.println(sFunList.get(j).getId());
+				if (sFunList.get(i).getId().toString().equals(strArray[j])) {
+					System.out.println("相等"+sFunList.get(i).getId());
 					list1.add(sFunList.get(i));
 					break; 
 				}

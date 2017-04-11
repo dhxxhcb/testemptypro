@@ -11,91 +11,73 @@ public class SysFunction {
 	/**
 	 * 子类菜单ID
 	 */
-    private Integer funcId;
+    private Integer fId;
     /**
 	 * 子菜单项代码
 	 */
-    private String menuId;
+    private String id;
     /**
 	 * 子菜单名称
 	 */
-    private String funcName;
+    private String name;
     /**
 	 * 子菜单模块路径
 	 */
-    private String funcCode;
+    private String url;
     /**
 	 * 国际版多语言菜单名称
 	 */
-    private String funcExt;
+    private String ext;
     
-    private List<SysFunction> functionList;
-    
-    
-    public List<SysFunction> getFunctionList() {
-		return functionList;
+    private List<SysFunction> child;
+
+	public Integer getfId() {
+		return fId;
 	}
-	public void setFunctionList(List<SysFunction> functionList) {
-		this.functionList = functionList;
+
+	public void setfId(Integer fId) {
+		this.fId = fId;
 	}
-	/**
-	 * 子类菜单ID
-	 */
-    public Integer getFuncId() {
-        return funcId;
-    }
-    /**
-	 * 子类菜单ID
-	 */
-    public void setFuncId(Integer funcId) {
-        this.funcId = funcId;
-    }
-    /**
- 	 * 子菜单项代码
- 	 */
-    public String getMenuId() {
-        return menuId;
-    }
-    /**
- 	 * 子菜单项代码
- 	 */
-    public void setMenuId(String menuId) {
-        this.menuId = menuId == null ? null : menuId.trim();
-    }
-    /**
-   	 * 子菜单名称
-   	 */
-    public String getFuncName() {
-        return funcName;
-    }
-    /**
-   	 * 子菜单名称
-   	 */
-    public void setFuncName(String funcName) {
-        this.funcName = funcName == null ? null : funcName.trim();
-    }
-    /**
-   	 * 子菜单模块路径
-   	 */
-    public String getFuncCode() {
-        return funcCode;
-    }
-    /**
-   	 * 子菜单模块路径
-   	 */
-    public void setFuncCode(String funcCode) {
-        this.funcCode = funcCode == null ? null : funcCode.trim();
-    }
-    /**
-   	 * 国际版多语言菜单名称
-   	 */
-    public String getFuncExt() {
-        return funcExt;
-    }
-    /**
-   	 * 国际版多语言菜单名称
-   	 */
-    public void setFuncExt(String funcExt) {
-        this.funcExt = funcExt == null ? null : funcExt.trim();
-    }
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getExt() {
+		return ext;
+	}
+
+	public void setExt(String ext) {
+		this.ext = ext;
+	}
+
+	public List<SysFunction> getChild() {
+		return child;
+	}
+
+	public void setChild(List<SysFunction> child) {
+		this.child = child;
+	}
+    
+	
 }
