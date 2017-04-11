@@ -43,11 +43,13 @@ public class IndexController {
 	 * 登录窗口
 	 * @return 登录窗口
 	 */
-	@RequestMapping("/main") //登录窗口
+	@RequestMapping("/main")
+	// 登录窗口
 	public String loginSuccess() {
 		loger.info("成功登录！");
-		return "app/xoamain";
+		return "app/main/index";
 	}
+
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST,produces={"application/json;charset=UTF-8"})
 	public @ResponseBody  String loginsuccess(@RequestParam("username") String username, @RequestParam("password") String password,

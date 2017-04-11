@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="head_mid">
 					<ul>
 						<li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li>
-						<li class="gongzuoliu" style="background:#ccd2e0;"><h1>工作流</h1><img class="close" src="img/icon.png"></li>
+						<li class="gongzuoliu" style="background:#ccd2e0;"><h1>工作流</h1><img class="close" src="img/main_img/icon.png"></li>
 					</ul>
 				</div>
 				<div class="head_rig">
@@ -46,8 +46,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</div>
 						<div class="tab_c">
-							<ul class="tab_cone">
-							<!-- 	<div class="person">
+							<ul class="tab_cone" >
+								<!-- <li class="one">
+									<ul>
+										<li class="two">
+											<ul>
+												<li class="three"></li>
+											</ul>
+										</li>
+									</ul>
+								</li> -->
+							
+							<!-- <div class="person">
 									<img class="person_logo" src="img/main_img/ren.png">
 									<h1>个人事务</h1>
 									<img src="img/main_img/down.png" class="person_down">
@@ -72,18 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<h1>行政办公</h1>
 									<img src="img/down.png" class="person_down">	
 								</div>
-								<div class="erji" style="height:106px;display:none;">
-									<div class="person">
-										<img class="person_logo" src="img/xingzheng.png">
-										<h1 style="margin-left:30%;">工作计划</h1>
-										<img src="img/down.png" class="person_down">	
-									</div>
-									<div class="person" id="office">
-										<img class="person_logo" src="img/xingzheng.png">
-										<h1 style="margin-left:30%;">办公用品</h1>
-										<img src="img/down.png" style="margin-left:32%;margin-top: 10%;" class="office_img">	
-									</div>
-								</div>
+								
 								
 								<div class="sanji" style="height:106px;display:none;">
 									<div class="person">
@@ -103,28 +102,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<h1>系统管理</h1>
 									<img src="img/down.png" class="person_down">
 								</div> -->
+								<!-- <div class="erji" style="height:106px;">
+									<div class="person">
+										<img class="person_logo" src="img/xingzheng.png">
+										<h1 style="margin-left:30%;">工作计划</h1>
+										<img src="img/down.png" class="person_down">	
+									</div>
+									<div class="person" id="office">
+										<img class="person_logo" src="img/xingzheng.png">
+										<h1 style="margin-left:30%;">办公用品</h1>
+										<img src="img/down.png" style="margin-left:32%;margin-top: 10%;" class="office_img">	
+									</div>
+								</div> -->
 							</ul>
 							<ul class="tab_ctwo" style="display:none;">
 								
 								<div class="person">
-									<img class="person_logo" src="img/zhishi.png">
+									<img class="person_logo" src="img/main_img/zhishi.png">
 									<h1>知识管理</h1>
-									<img style="" src="img/down.png" class="person_down">
+									<img style="" src="img/main_img/down.png" class="person_down">
 								</div>
 								<div class="person">
-									<img class="person_logo" src="img/renli.png">
+									<img class="person_logo" src="img/main_img/renli.png">
 									<h1>人力资源</h1>
-									<img src="img/down.png" class="person_down">
+									<img src="img/main_img/down.png" class="person_down">
 								</div>
 								<div class="person">
-									<img class="person_logo" src="img/xingzheng.png">
+									<img class="person_logo" src="img/main_img/xingzheng.png">
 									<h1>行政办公</h1>
-									<img src="img/down.png" class="person_down">
+									<img src="img/main_img/down.png" class="person_down">
 								</div>
 								<div class="person">
-									<img class="person_logo" src="img/xiangmu.png">
+									<img class="person_logo" src="img/main_img/xiangmu.png">
 									<h1>项目管理</h1>
-									<img src="img/down.png" class="person_down">
+									<img src="img/main_img/down.png" class="person_down">
 								</div>
 							</ul>
 							
@@ -143,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="img_all">
 						<div class="right_one">
 							<div class="r_one_top">
-								<img src="img/big.png">
+								<img src="img/main_img/big.png">
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
@@ -153,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<!-- 第二个 -->
 						<div class="right_one">
 							<div class="r_one_top">
-								<img src="img/big.png">
+								<img src="img/main_img/big.png">
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
@@ -163,7 +174,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<!-- 第二个 -->
 						<div class="right_one">
 							<div class="r_one_top">
-								<img src="img/big.png">
+								<img src="img/main_img/big.png">
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
@@ -173,7 +184,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<!-- 第二个 -->
 						<div class="right_one">
 							<div class="r_one_top">
-								<img src="img/big.png">
+								<img src="img/main_img/big.png">
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
@@ -183,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<!-- 第二个 -->
 						<div class="right_one">
 							<div class="r_one_top">
-								<img src="img/big.png">
+								<img src="img/main_img/big.png">
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
@@ -193,7 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<!-- 第二个 -->
 						<div class="right_one">
 							<div class="r_one_top">
-								<img src="img/big.png">
+								<img src="img/main_img/big.png">
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
@@ -203,7 +214,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<!-- 第二个 -->
 						<div class="right_one">
 							<div class="r_one_top">
-								<img src="img/big.png">
+								<img src="img/main_img/big.png">
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
@@ -213,7 +224,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- 第二个 -->
 						<div class="right_one">
 							<div class="r_one_top">
-								<img src="img/big.png">
+								<img src="img/main_img/big.png">
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
@@ -233,22 +244,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script>
 		$(function(){
 			$.ajax({
-					url:'http://192.168.1.116:8080/xoa/showMenu',
-					type:'post',			
-					
+					url:'showMenu',
+					type:'get',						
 					dataType:'json',
 					success:function(obj){
-								var data= obj.data;
-								console.log(data);
-								var li='';
-							/* 	for(var i=0;i<data.length;i++){
-								var data2='<div><img src="images/circle.png"></div>';
-								
-								
-								li+='<li nid='+data[i].nid+'><table border="0" cellpadding="" cellspacing=""><tr><td  class="td1">'+data[i].fname+'</td>'+'<td style="color:#138eee;">'+data[i].stime2+'</td></tr>'+'<tr><td>'+data[i].mtitle+'</td>'+'<td class="td2"><img src="images/GG_1.png"><img src="images/GG_2.png" style="margin-left:30px;"></td></tr>'+'<tr><td>'+data[i].message+'</td>'+'<td></td></tr>'+'</table></li>'			
-							} */
-								
-											
+							var data= obj.obj;
+							
+								var li="";
+								var str=''; 
+
+							 for(var i=0;i<data.length;i++){
+
+								var er='';
+								 for(var j=0;j<data[i].child.length;j++){
+								 
+							console.log(data[i].child[j].child); 
+								var three='';
+								 	for(var k=0;k<data[i].child[j].child.length;k++){
+								 		three +='<li class="three">'+data[i].child[j].child[k].name+'</li>' ;
+								 		
+								 	}
+									er += '<li class="two">'+data[i].child[j].name+'</li>';
+								} 
+
+								str+='<li class="one person"><img class="one_logo" src="'+data[i].img+'"><h1 class="one_name" id="administ">'+data[i].name+'</h1><div><img src="img/main_img/down.png" style="    margin-top: 10%;"></div><ul  style="margin-left:20%;width:100%;"><li class="two">'+er+'<ul style="margin-left:25%;"><li class="three">'+three+'</li></ul></li></ul></li>';
+							}  
+							
+						console.log(three);
+						$(".tab_cone").html(str); 
 					}			
 				});
 		})
