@@ -88,7 +88,7 @@ public class EmailBodyController {
 		e.setReceipt("0");
 		e.setSign("0");
 		e.setToId("wew");
-		e.setBodyId(2);
+		e.setBodyId(eb.getBodyId());
 		emailBodyService.insert(eb,e);
 	}
 

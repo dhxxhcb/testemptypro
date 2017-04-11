@@ -36,8 +36,8 @@
         </if>;
 	</select>
 	<!-- ajax  -->
-	<select id="checkSort_No" parameterType="string">
-	select count(*) from file_sort where  SORT_NO=#{sort_no} and SORT_ID='0';
+	<select id="getSortChrildren" parameterType="map" resultMap="file_SortResultMap">
+	select * from file_sort where  SORT_PARENT=#{fileParent};
 	</select>
 	
 	<insert id="addFile_Sorts"  parameterType="com.xoa.model.file.File_Sort">
@@ -126,17 +126,19 @@
 	<update id="updateFile_Sorts" parameterType="com.xoa.model.file.File_Sort">
 	update file_sort 
     <set>
+    <trim  suffixOverrides="," >
       <if test="sort_no != null" >
-        sort_no = #{keywords,jdbcType=VARCHAR},
+        sort_no = #{sort_no,jdbcType=VARCHAR},
       </if>
        <if test="sort_name != null" >
-        sort_name = #{keywords,jdbcType=VARCHAR},
+        sort_name = #{sort_name,jdbcType=VARCHAR},
       </if>
+      </trim>
       where sort_id=#{sort_id,jdbcType=INTEGER}
     </set>
 	</update>
 	
 	<delete id="fileDeleteBySort_id" parameterType="com.xoa.model.file.File_Sort">
-	delete from file_sort where SORT_ID=#{sort_id};
+	delete from file_sort where SORT_ID=#{sortid};
 	</delete>
 </mapper>

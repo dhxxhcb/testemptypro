@@ -51,7 +51,7 @@ public class EmailBodyServiceImpl implements EmailBodyService{
 				email.setEmailBody(emailBody);
 				email.setDeleteFlag(email.getDeleteFlag());
 				email.setBoxId(email.getBoxId());
-				email.setBodyId(email.getBodyId());
+				email.setBodyId(emailBody.getBodyId());
 				emailMapper.insert(email);
 			}
 			
@@ -88,9 +88,16 @@ public class EmailBodyServiceImpl implements EmailBodyService{
 		return list;
 	}
 
-	 /**
-	  * 发件箱查询
-	  */
+	
+	/**
+	 * 发件箱查询
+	 * @param maps map条件参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
 	public List<EmailBody> listSendEmail(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag) throws Exception {
 		PageParams pageParams = new PageParams();  
@@ -99,10 +106,18 @@ public class EmailBodyServiceImpl implements EmailBodyService{
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);  
         List<EmailBody> list=emailBodyMapper.listSendEmail(maps);
+        System.out.println(list.size());
 		return list;
 	}
+	
 	/**
 	 * 废纸篓查询
+	 * @param maps map条件参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
+	 * @return
+	 * @throws Exception
 	 */
 	@Override
 	public List<EmailBody> listWastePaperbasket(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag) throws Exception {
@@ -112,10 +127,11 @@ public class EmailBodyServiceImpl implements EmailBodyService{
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);  
         List<EmailBody> list = emailBodyMapper.listWastePaperbasket(maps);
+        System.out.println(list.size());
 		return  list;
 	}
 	/**
-	 * 
+	 * 条件分页查询
 	 * @param maps map条件参数
 	 * @param page 当前页
 	 * @param pageSize 每页显示条数
@@ -132,8 +148,27 @@ public class EmailBodyServiceImpl implements EmailBodyService{
          pageParams.setPageSize(pageSize);  
          maps.put("page", pageParams);  
          List<EmailBody> list = emailBodyMapper.listqueryEmailBody(maps);
-         System.out.println(list.size());
 		return list;
 	}
+    /**@param bodyId
+     * 根据ID查询一条邮件
+     */
+	@Override
+	public EmailBody queryById(Integer bodyId) {
+		return emailBodyMapper.queryById(bodyId);
+	}
+
+	@Override
+	public List<EmailBody> selectInbox(Map<String, Object> maps, Integer page,
+			Integer pageSize, boolean useFlag) throws Exception {
+		 PageParams pageParams = new PageParams();  
+		 pageParams.setUseFlag(useFlag);  
+         pageParams.setPage(page);  
+         pageParams.setPageSize(pageSize);  
+         maps.put("page", pageParams); 
+         List<EmailBody> list = emailBodyMapper.selectInbox(maps);
+		return list;
+	}
+
 
 }
