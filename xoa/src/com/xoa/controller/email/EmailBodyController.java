@@ -125,7 +125,7 @@ public class EmailBodyController {
 	@RequestMapping(value="/listDrafts", produces={"application/json;charset=UTF-8"})
 	public @ResponseBody String listDrafts(HttpServletRequest request, HttpServletResponse response) throws Exception{
 	    Map<String,Object> maps = new HashMap<String, Object>();
-		List<EmailBody> listSelectDrafts = emailBodyService.listDrafts(maps,1,3,true);
+		List<EmailBody> listSelectDrafts = emailBodyService.listDrafts(maps,1,5,true);
 		ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
 		tojson.setObj(listSelectDrafts);
 		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listSelectDrafts, "yyyy-MM-dd HH:mm:ss"));
@@ -158,7 +158,7 @@ public class EmailBodyController {
 	@RequestMapping(value="/selectSendEmail", produces={"application/json;charset=UTF-8"})
 	public @ResponseBody String selectSendEmail(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		Map<String,Object> maps = new HashMap<String, Object>();
-		List<EmailBody> listSendEmail=emailBodyService.listSendEmail(maps, 1, 5, true);
+		List<EmailBody> listSendEmail=emailBodyService.listSendEmail(maps, 1, 3, true);
 		ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
 		tojson.setObj(listSendEmail);
 		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listSendEmail, "yyyy-MM-dd HH:mm:ss"));
