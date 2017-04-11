@@ -1,10 +1,15 @@
-﻿package com.xoa.model.email;
+package com.xoa.model.email;
 
 import java.io.Serializable;
 import java.util.List;
 
 import com.xoa.model.users.Users;
 
+/**
+ * 发件箱、收件箱内容信息保存
+ * @author gaosubo
+ * @version 1.0
+ */
 public class EmailBody implements Serializable {
 	private static final long serialVersionUID = 1076969159692234636L;
 

@@ -3,19 +3,24 @@ package com.xoa.dao.email;
 import java.util.List;
 import java.util.Map;
 
+import com.xoa.dao.base.BaseMapper;
 import com.xoa.model.email.EmailBody;
+import com.xoa.util.page.PageParams;
 
-public interface EmailBodyMapper {
+public interface EmailBodyMapper extends BaseMapper<EmailBody>{
 
 	public int updateByPrimaryKey(EmailBody record);
 
-	/**
-	 * 保存邮件
-	 * 
-	 * @param emailBody
-	 *            保存实体类参数
-	 */
-	public void insert(EmailBody emailBody);
+//	/**
+//	 * 保存邮件
+//	 * 
+//	 * @param emailBody
+//	 *            保存实体类参数
+//	 */
+//	public void save(EmailBody emailBody);
+//	
+	
+	
 
 	/**
 	 * 根据ID删除一条
