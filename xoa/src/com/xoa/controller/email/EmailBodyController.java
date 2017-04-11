@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,15 +39,17 @@ public class EmailBodyController {
 	 */
 	@RequestMapping(value = "/insertEmailBody", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody void insertEmailBody(HttpServletRequest request, HttpServletResponse response,
-			  EmailBody emailBody,Email email) {
+		EmailBody emailBody,Email email){
+		
 		EmailBody eb=new EmailBody();
-		eb.setFromId("");
+		eb.setBodyId(20);
+		eb.setFromId("wang");
 		eb.setContent("邮件内容");
 	    eb.setToId2("wangyun");
 	    eb.setCopyToId("zhouzhou");
 	    eb.setSecretToId("misongrenid");
-	    eb.setSubject("");
-	    eb.setAttachmentId("");
+	    eb.setSubject("邮件主题");
+	    eb.setAttachmentId("fujian");
 	    Date date=new Date();
 		Integer dt = new Integer((int) (date.getTime()));
 	    eb.setSendTime(dt);
@@ -71,14 +72,14 @@ public class EmailBodyController {
 		eb.setCopyToWebmail("l");
 		eb.setSecretToWebmail("ed");
 		eb.setPraise("ki");
-		eb.setSendFlag("");
-		eb.setSmsRemind("");
-		eb.setImportant("");
+		eb.setSendFlag("erf");
+		eb.setSmsRemind("yh");
+		eb.setImportant("fd");
 		eb.setSize(1l);
-		eb.setWebmailFlag("");
+		eb.setWebmailFlag("1");
 		eb.setWebmailContent(new byte[1024]);
-		eb.setIsWebmail("");
-		eb.setIsWf("");
+		eb.setIsWebmail("r23");
+		eb.setIsWf("34");
 		Email e=new Email();
 		e.setDeleteFlag("");
 		e.setBoxId(0);
@@ -88,10 +89,9 @@ public class EmailBodyController {
 		e.setReceipt("0");
 		e.setSign("0");
 		e.setToId("wew");
-		e.setBodyId(eb.getBodyId());
+//		e.setBodyId(4);
 		emailBodyService.insert(eb,e);
 	}
-
 
 	/**
 	 * 根据ID删除一条邮件`
@@ -101,6 +101,22 @@ public class EmailBodyController {
 		Integer bodyId = Integer.parseInt(request.getParameter("bodyId"));
 		emailBodyService.deleteByPrimaryKey(bodyId);
 	}
+	
+	
+	/**
+	 * 根据ID查询一条邮件
+	 */
+	@RequestMapping(value = "/queryById", produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody String queryById(HttpServletRequest request, HttpServletResponse response) {
+		EmailBody emailBody=emailBodyService.queryById(1);
+		ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
+		tojson.setObject(emailBody);
+		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(emailBody, "yyyy-MM-dd HH:mm:ss"));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("queryById", JSON.toJSONStringWithDateFormat(emailBody, "yyyy-MM-dd HH:mm:ss"));
+		return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
+	}
+	
 	
 	/**
 	 * 草稿箱查询
@@ -119,14 +135,30 @@ public class EmailBodyController {
 	}
 	
 	/**
+	 * 収件箱查询
+	 * @throws Exception 
+	 */
+	@RequestMapping(value="/selectInbox", produces={"application/json;charset=UTF-8"})
+	public @ResponseBody String selectInbox(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	    Map<String,Object> maps = new HashMap<String, Object>();
+		List<EmailBody> listInbox = emailBodyService.selectInbox(maps,1,3,true);
+		ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
+		tojson.setObj(listInbox);
+		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listInbox, "yyyy-MM-dd HH:mm:ss"));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("selectAllEmail", JSON.toJSONStringWithDateFormat(listInbox, "yyyy-MM-dd HH:mm:ss"));
+		return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
+	}
+	
+	
+	/**
 	 * 已发送查询
 	 * @throws Exception 
 	 */
 	@RequestMapping(value="/selectSendEmail", produces={"application/json;charset=UTF-8"})
 	public @ResponseBody String selectSendEmail(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		Map<String,Object> maps = new HashMap<String, Object>();
-
-		List<EmailBody> listSendEmail=emailBodyService.listDrafts(maps, 1, 3, true);
+		List<EmailBody> listSendEmail=emailBodyService.listSendEmail(maps, 1, 5, true);
 		ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
 		tojson.setObj(listSendEmail);
 		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listSendEmail, "yyyy-MM-dd HH:mm:ss"));
@@ -135,11 +167,10 @@ public class EmailBodyController {
 		return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
 	}
 	
-	/**     
+	/**          
      * 废纸篓查询
 	 * @throws Exception 
      */
-	
 	@RequestMapping(value="/listWastePaperbasket", produces={"application/json;charset=UTF-8"})
 	public @ResponseBody String listWastePaperbasket(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		Map<String,Object> maps = new HashMap<String, Object>();
@@ -206,7 +237,7 @@ public class EmailBodyController {
 		EmailBody eb = new EmailBody();
 		eb.setSubject("邮件标题:呃呃呃");
 		eb.setContent("本邮件为测试邮件不必回复，本邮件为测试邮件不必回复");
-		eb.setToId2("373712896@qq.com");
+		eb.setToId2("2608877911@qq.com");
 		eb.setFromId("17310878569@163.com");
 		eb.setCopyToId("179699220@qq.com");
 		eb.setSecretToId("1665933493@qq.com");

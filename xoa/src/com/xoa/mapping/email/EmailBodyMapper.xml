@@ -112,16 +112,13 @@
 	</select>
 	<!-- 发件箱查询 -->
 	<select id="listSendEmail" parameterType="Map" resultMap="BaseResultMap">
-		select
-		eb.SUBJECT,eb.SEND_TIME,u.USER_NAME from email_body as eb
-		LEFT JOIN
-		email as e on eb.BODY_ID=e.BODY_ID
-		LEFT JOIN user as u on
-		u.USER_ID=eb.FROM_ID where SEND_FLAG="1"
+		select eb.SUBJECT,eb.CONTENT,eb.SEND_TIME,u.USER_NAME from email_body as eb
+		LEFT JOIN email as e on eb.BODY_ID=e.BODY_ID
+		LEFT JOIN user as u on u.USER_ID=eb.FROM_ID where SEND_FLAG="1"
 		AND(DELETE_FLAG="" OR
 		DELETE_FLAG="0" OR
 		DELETE_FLAG="2") AND
-		BOX_ID="0" GROUP BY eb.BODY_ID
+		BOX_ID="0" GROUP BY eb.SEND_TIME
 		ORDER BY eb.BODY_ID DESC
 	</select>
 
