@@ -35,7 +35,7 @@ public interface NewsMapper {
 	 * @param newsTime
 	 * @return
 	 */
-	List<News> showCountNews(@Param("typeId") String typeId,
+	public List<News> showCountNews(@Param("typeId") String typeId,
 			@Param("newsTime") Date newsTime);
 
 	/**
@@ -43,7 +43,7 @@ public interface NewsMapper {
 	 * 
 	 * @return
 	 */
-	List<News> showAllNews(@Param("start") int start,
+	public List<News> showAllNews(@Param("start") int start,
 			@Param("pagesize") int pagesize);
 
 	/**
@@ -53,7 +53,7 @@ public interface NewsMapper {
 	 * @param newsTime
 	 * @return
 	 */
-	List<News> showAllCountNews();
+	public List<News> showAllCountNews();
 
 	// List<News> showNews();
 }

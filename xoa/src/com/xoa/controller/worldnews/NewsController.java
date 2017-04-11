@@ -34,23 +34,7 @@ public class NewsController {
 	@Resource
 	private NewService newService;
 
-	/**
-	 * 信息展示 返回json demo
-	 * @return 
-	 * @throws Exception 
-	 */
-//	@RequestMapping(value="/shownew")
-//	public @ResponseBody Map<String, String> showNew() {
-//		loger.info("进入显示信息页面");
-//		ToJson<News> toJson = newService.showNews();
-//		Map<String, String> map = new HashMap<String, String>();
-////		map.put("showNews", JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
-//		map.put("showNews", JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
-////		map.put("showNews", "123");
-//		System.out.println(map.get("showNews"));
-////		return new ModelAndView("news/newsShow", map);
-//		return map;
-//	}
+
 	/**
 	 * 新闻显示页面
 	 * @return
@@ -61,7 +45,7 @@ public class NewsController {
 	}
 	
 	
-	@RequestMapping(value="/shownew",produces={"application/json;charset=UTF-8"})
+	/*@RequestMapping(value="/shownew",produces={"application/json;charset=UTF-8"})
 	public @ResponseBody String showNew(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		 Integer currentPage = 0;  
@@ -75,7 +59,7 @@ public class NewsController {
 	    	 date = null;
 	     }
 	     return null;
-	}
+	}*/
 
 	
 	
