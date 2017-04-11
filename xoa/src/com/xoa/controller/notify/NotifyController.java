@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -38,13 +39,13 @@ public class NotifyController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "notifyList", produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/notifyList",method=RequestMethod.GET,produces={"application/json;charset=UTF-8"})
 	public @ResponseBody
 	String notifyList() {
 		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("typeId", null);
-		maps.put("sendTime", null);
-		List<Notify> list = notifyService.selectNotify(maps, 1, 5, true);
+		maps.put("typeId", 11);
+	/*	maps.put("sendTime", 2017-04-04);*/
+		List<Notify> list = notifyService.selectNotify(maps, 1, 5, false);
 		loger.info("公告查询结果："+JSON.toJSONStringWithDateFormat(list, "yyyy-MM-dd HH:mm:ss"));
 		if (list.size() > 0) {
 			ToJson<Notify> tojson = new ToJson<Notify>(1, "查询成功");

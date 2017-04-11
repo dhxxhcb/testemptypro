@@ -14,8 +14,8 @@
     <result column="SIGN" property="sign" javaType="String" />
   </resultMap>
  
-  	<!-- 发送邮件 -->
-  <insert id="insert" parameterType="com.xoa.model.email.Email" >
+  	<!-- 发送邮件 并保存数据库 -->
+  <insert id="save" parameterType="com.xoa.model.email.Email" >
     insert into email (TO_ID, READ_FLAG, 
       DELETE_FLAG, BOX_ID, BODY_ID, 
       RECEIPT, IS_F, IS_R, SIGN
@@ -25,6 +25,10 @@
       #{receipt}, #{isF}, #{isR}, #{sign}
       )
   </insert>
+  
+  
+  
+  
   <insert id="insertSelective" parameterType="com.xoa.model.email.Email" >
     insert into email
     <trim prefix="(" suffix=")" suffixOverrides="," >

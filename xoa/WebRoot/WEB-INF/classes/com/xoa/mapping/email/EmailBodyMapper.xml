@@ -102,63 +102,8 @@
 		group by eb.BODY_ID
 	</select>
 
-	<!--草稿箱查询 -->
-	<select id="listDrafts" resultMap="BaseResultMap" parameterType="Map">
-		select eb.BODY_ID,eb.SUBJECT,eb.CONTENT,eb.SEND_TIME from email_body as eb
-		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
-		LEFT JOIN user as u on u.USER_ID=eb.FROM_ID
-		where SEND_FLAG="0" GROUP BY eb.BODY_ID order by
-		eb.SEND_TIME DESC
-	</select>
-	<!-- 发件箱查询 -->
-	<select id="listSendEmail" parameterType="Map" resultMap="BaseResultMap">
-		select eb.BODY_ID,eb.SUBJECT,eb.CONTENT,eb.SEND_TIME,u.USER_NAME from email_body as eb
-		LEFT JOIN email as e on eb.BODY_ID=e.BODY_ID
-		LEFT JOIN user as u on u.USER_ID=eb.FROM_ID where SEND_FLAG="1"
-		AND(DELETE_FLAG="" OR
-		DELETE_FLAG="0" OR
-		DELETE_FLAG="2") AND
-		BOX_ID="0" GROUP BY eb.BODY_ID
-		ORDER BY eb.SEND_TIME DESC
-	</select>
-
-	<!-- 废纸篓查询 空值 -->
-	<select id="listWastePaperbasket" resultMap="BaseResultMap"
-		parameterType="Map">
-		SELECT eb.BODY_ID,eb.SUBJECT,eb.CONTENT,eb.SEND_TIME,u.USER_NAME FROM
-		email_body as eb
-		LEFT JOIN email as e on e.BODY_ID =eb.BODY_ID
-		LEFT JOIN
-		user as u on u.USER_ID=eb.FROM_ID
-		where (eb.SEND_FLAG = '0' or eb.SEND_FLAG = '1') AND
-		e.DELETE_FLAG = '0' AND (e.READ_FLAG='0' or e.READ_FLAG='1') GROUP BY eb.BODY_ID ORDER BY eb.SEND_TIME DESC
-	</select>
-	<!--收件箱查询 -->
-	<select id="selectInbox" parameterType="Map" resultMap="BaseResultMap">
-		select
-		eb.BODY_ID,eb.CONTENT,eb.SUBJECT, u.USER_NAME,eb.SEND_TIME from email_body as eb
-		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
-		LEFT JOIN user as u on
-		u.USER_ID=eb.FROM_ID where e.BOX_ID='0' AND (
-		e.IS_R='0' or e.IS_R='1')
-		AND (e.READ_FLAG='0' or e.READ_FLAG='1')
-		GROUP BY eb.BODY_ID ORDER BY
-		eb.BODY_ID DESC
-	</select>
-	<!-- 根据id查询一条邮件 -->
-	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-		select eb.SUBJECT,eb.CONTENT,eb.SEND_TIME,eb.FROM_ID,eb.KEYWORD from
-		email_body as eb where
-		eb.BODY_ID=#{bodyId}
-	</select>
-	<!--邮件根据ID删除一条邮件 -->
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from
-		email_body where BODY_ID = #{bodyId,javaType=INTEGER}
-	</delete>
-
-	<!--保存邮件 -->
-	<insert id="insert" parameterType="com.xoa.model.email.EmailBody">
+	<!-- 发送邮件并保存到数据库 -->
+	<insert id="save" parameterType="com.xoa.model.email.EmailBody">
 		insert into email_body (
 		BODY_ID,
 		FROM_ID,
@@ -229,6 +174,72 @@
 		#{praise}
 		)
 	</insert>
+
+
+
+
+
+	<!--草稿箱查询 -->
+	<select id="listDrafts" resultMap="BaseResultMap" parameterType="Map">
+		select eb.SUBJECT,eb.SEND_TIME,u.USER_NAME from email_body as eb
+		LEFT
+		JOIN email as e on e.BODY_ID=eb.BODY_ID
+		LEFT JOIN user as u on
+		u.USER_ID=eb.FROM_ID
+		where SEND_FLAG="0" GROUP BY eb.BODY_ID order by
+		SEND_TIME DESC
+	</select>
+	<!-- 发件箱查询 -->
+	<select id="listSendEmail" parameterType="Map" resultMap="BaseResultMap">
+		select
+		eb.SUBJECT,eb.SEND_TIME,u.USER_NAME from email_body as eb
+		LEFT JOIN
+		email as e on eb.BODY_ID=e.BODY_ID
+		LEFT JOIN user as u on
+		u.USER_ID=eb.FROM_ID where SEND_FLAG="1"
+		AND(DELETE_FLAG="" OR
+		DELETE_FLAG="0" OR
+		DELETE_FLAG="2") AND
+		BOX_ID="0" GROUP BY eb.BODY_ID
+		ORDER BY eb.BODY_ID DESC
+	</select>
+
+	<!-- 废纸篓查询 空值 -->
+	<select id="listWastePaperbasket" resultMap="BaseResultMap"
+		parameterType="Map">
+		SELECT eb.SUBJECT, u.USER_NAME,eb.SEND_TIME FROM
+		email_body as eb
+		LEFT JOIN email as e on e.BODY_ID =eb.BODY_ID
+		LEFT JOIN
+		user as u on u.USER_ID=eb.FROM_ID
+		where eb.SEND_FLAG = '0' AND
+		e.DELETE_FLAG = '0' AND e.READ_FLAG='1' GROUP BY eb.BODY_ID ORDER BY
+		eb.SEND_TIME DESC
+	</select>
+	<!--收件箱查询 -->
+	<select id="selectInbox" parameterType="Map" resultMap="BaseResultMap">
+		select
+		eb.BODY_ID,eb.SUBJECT, u.USER_NAME,eb.SEND_TIME from email_body as eb
+		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
+		LEFT JOIN user as u on
+		u.USER_ID=eb.FROM_ID where e.BOX_ID='0' AND (
+		e.IS_R='0' or e.IS_R='1')
+		AND (e.READ_FLAG='0' or e.READ_FLAG='1')
+		GROUP BY eb.BODY_ID ORDER BY
+		eb.BODY_ID DESC
+	</select>
+	<!-- 根据id查询一条邮件 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select eb.SUBJECT,eb.CONTENT,eb.SEND_TIME,eb.FROM_ID,eb.KEYWORD from
+		email_body as eb where
+		eb.BODY_ID=#{bodyId}
+	</select>
+	<!--邮件根据ID删除一条邮件 -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		email_body where BODY_ID = #{bodyId,javaType=INTEGER}
+	</delete>
+	
 	<update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBody">
 		update email_body
 		<set>
