@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.menu.SysFunctionMapper">
 	<resultMap id="menuResultMap" type="com.xoa.model.menu.SysFunction">
-		<id column="FUNC_ID" property="funcId"  javaType="int" />
-		<result column="MENU_ID" property="menuId"  javaType="string" />
-		<result column="FUNC_NAME" property="funcName" javaType="string" />
-		<result column="FUNC_CODE" property="funcCode" javaType="string" />
-		<result column="FUNC_EXT" property="funcExt" javaType="string" />
+		<id column="FUNC_ID" property="fId"  javaType="int" />
+		<result column="MENU_ID" property="id"  javaType="string" />
+		<result column="FUNC_NAME" property="name" javaType="string" />
+		<result column="FUNC_CODE" property="url" javaType="string" />
+		<result column="FUNC_EXT" property="ext" javaType="string" />
 	</resultMap>
 	<select id="getDatagrid" resultMap="menuResultMap"
 		parameterType="string">
