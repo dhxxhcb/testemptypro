@@ -32,7 +32,9 @@ $('#tree').tree({
 </script>
 </head>
 <body>
- <ul id="tree" class="easyui-tree">   
+ <ul id="tree" class="easyui-tree">  
+ 
+  
  </ul>
 </body>
 </html>
