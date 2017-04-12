@@ -20,6 +20,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<style type="text/css">
+		body{background-color:#D6E4EF;}
+		h1{font-size:20px;}
+		#newFile{display:block;margin:20px auto;padding:5px 10px;border-radius:5px;}
+		hr{width:100%;border:#fff 1px dashed;border-top:none;margin-bottom:20px;}
+		table{margin:0 auto;border-color:#ddd;width:80%;}
+		table tr td{border-right:#ccc 1px solid;padding:5px 5px;font-size:14px;border-bottom:#ccc 1px solid;background:#fff;}
+		table tr td:last-of-type{border-right:none;text-align:center;}
+		table tr th{background-color:#ddd;padding:5px 5px;font-size:14px;} 
+		a{text-decoration: none;}
+		input{outline: none;border:0;background:#fff;color:#2788ea;}
+		input:hover{color:#0867c5;}
+	</style>
 	<script type="text/javascript">
 function openWindow(sHref,strWidth,strHeight) {
   var strLeft=(screen.availWidth-strWidth)/2;
@@ -43,24 +56,25 @@ function openWindow(sHref,strWidth,strHeight) {
   <h1>文件柜设置</h1>
    <form id="form2" name="form2" method="get">
    <input id="newFile" type="button" onclick="openWindow('${pageContext.request.contextPath }/fileAdd','700','500')" value="新建文件夹"/>
-   <table id="table">
-    <tr> <td> 排序号  </td> <td>文件夹名称  </td><td> 操作</td></tr>
+   <hr>
+   <table id="table" cellspacing="0" cellpadding="0">
+    <tr> <th class="css_td"> 排序号  </th> <th class="css_td">文件夹名称  </th><th class="css_td"> 操作</th></tr>
     <c:forEach items="${parentList}" var="parent">
     <tr> 
     <td>  ${parent.sort_no}</td> 
     <td>  ${parent.sort_name}</td>
-                    <td>&nbsp;&nbsp; <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="克隆" name="BT_find" 
+                    <td>&nbsp;&nbsp; <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="克隆" name="BT_find" 
 						 onclick="openWindow('${pageContext.request.contextPath }/fileClone?sort_no=${parent.sort_no }&sort_name=${parent.sort_name}','700','500')"/>&nbsp;&nbsp;
-						 <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="编辑" name="BT_find" 
+						 <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="编辑" name="BT_find" 
 						 onclick="openWindow('${pageContext.request.contextPath }/fileEdit?sort_id=${parent.sort_id}','700','500')"/>&nbsp;&nbsp;
 						 <a href="${pageContext.request.contextPath}/fileDelete?sort_id=${parent.sort_id}">
-						 <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="删除" name="BT_find" />
+						 <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="删除" name="BT_find" />
 						 </a>&nbsp;&nbsp;
-						 <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="权限设置" name="BT_find" 
+						 <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="权限设置" name="BT_find" 
 						 onclick="openWindow('${pageContext.request.contextPath }/filePermissionSet','700','500')"/>&nbsp;&nbsp;
-						 <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="权限报表" name="BT_find" 
+						 <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="权限报表" name="BT_find" 
 						 onclick="openWindow('${pageContext.request.contextPath }/fileAdd','700','500')"/>&nbsp;&nbsp;
-						 <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="菜单定义指南啊" name="BT_find" 
+						 <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="菜单定义指南" name="BT_find" 
 						 onclick="openWindow('${pageContext.request.contextPath }/fileAdd','700','500')"/>&nbsp;&nbsp;
 				    </td>
 				    <!-- <input id="sort_id" name="sort_id" type="hidden" value="${parent.sort_id }"/>  -->

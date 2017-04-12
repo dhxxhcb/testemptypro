@@ -58,11 +58,11 @@ public class File_SortImpl  implements File_SortService{
 		return file_SortMapper.getSortChrildren(tempNo);
 	}
 	@Override
-	public List<File_Sort> getRootTree(String sortid) {
+	public List<File_Sort> getRootTree(int sortid) {
 		return file_SortMapper.getRootTree(sortid);
 	}
 	@Override
-	public List<File_Sort> getChildTree(String sortid) {
+	public List<File_Sort> getChildTree(int sortid) {
 		return file_SortMapper.getChildTree(sortid);
 	}
 	

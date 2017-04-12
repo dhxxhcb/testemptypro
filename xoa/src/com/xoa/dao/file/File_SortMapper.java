@@ -19,7 +19,7 @@ public interface File_SortMapper {
 
 	List<File_Sort> getSortChrildren(int tempNo);
 
-	List<File_Sort> getRootTree(String sortid);
+	List<File_Sort> getRootTree(int sortid);
 
-	List<File_Sort> getChildTree(String sortid);
+	List<File_Sort> getChildTree(int sortid);
 }

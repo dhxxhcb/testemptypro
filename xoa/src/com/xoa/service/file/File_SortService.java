@@ -28,7 +28,7 @@ public interface File_SortService {
 	@DynDatasource
 	List<File_Sort> getSortChrildren(int tempNo);
 	@DynDatasource
-	List<File_Sort> getRootTree(String sortid);
+	List<File_Sort> getRootTree(int sortid);
 	@DynDatasource
-	List<File_Sort> getChildTree(String sortid);
+	List<File_Sort> getChildTree(int sortid);
 }

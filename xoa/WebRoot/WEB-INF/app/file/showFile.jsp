@@ -12,30 +12,26 @@
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" type="text/css" href="/ui/easyui/easyui.css">
-<link rel="stylesheet" type="text/css" href="/ui/easyui/icon.css">
-<script type="text/javascript" src="/ui/easyui/jquery.min.js"></script>
-<script type="text/javascript" src="/ui/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="/ui/easyui/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
+<link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
+<script type="text/javascript" src="js/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/easyui/easyui-lang-zh_CN.js"></script>
 <!-- <script type="text/javascript" src="/ui/easyui/tree.js"></script> -->
 <script type="text/javascript">
 
-$(document).ready(function(){
+$(function(){
 alert("进来了"); 
 $('#tree').tree({   
-    url: '${pageContext.request.contextPath }/showFile', 
-       
+    url: '/showFile' 
 });  
-
 }); 
 
 </script>
 </head>
 <body>
- <ul id="tree" class="easyui-tree" style="width: 180px;">   
- </ul>
  <br>
- <ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath }/showFile'">
+ <ul class="easyui-tree" data-options="url:'showFile',method:'get',animate:true,dnd:true">
  </ul>
 </body>
 </html>

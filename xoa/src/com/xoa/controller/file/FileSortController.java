@@ -9,6 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
+import com.sun.org.apache.regexp.internal.recompile;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.model.file.File_Content;
@@ -26,6 +28,7 @@ import com.xoa.service.file.File_ContentService;
 import com.xoa.service.file.File_SortService;
 import com.xoa.util.ToJson;
 import com.xoa.util.treeUtil.FileSortTreeUtil;
+import com.xoa.util.treeUtil.HtmlUtil;
 import com.xoa.util.treeUtil.TreeNode;
 
 
@@ -42,25 +45,39 @@ public class FileSortController {
     
 	@RequestMapping(value="/showFile",produces={"application/json;charset=UTF-8"})
 	@ResponseBody
-	public String showFile(File_Sort file) {
-		loger.info("加载文件柜");
-		List<File_Sort> listTree=file_SortService.getFile_Sorts(file);
-		   
-		return "";
-	    //JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss");
+	public void showFile(File_Sort file,HttpServletResponse response) {
+		loger.info("--------showFile-------");
+		List<TreeNode> treeList=treeMenu(file.getSort_id());
+		HtmlUtil.writerJson(response, treeList);
+	}
+	
+	@RequestMapping(value="/fileIndex",produces={"application/json;charset=UTF-8"})
+	public String fileIndex() {
+		loger.info("--------fileIndex-------");
+		return "app/file/showFile";
+	}
+	/**
+	 * 进入文件柜主页面
+	 * @author 杨  胜
+	 * @return
+	 */
+	@RequestMapping(value="/fileHome",produces={"application/json;charset=UTF-8"})
+	public String fileHome() {
+		loger.info("--------fileHome-------");
+		return "app/file/fileHome";
 	}
 	/**
 	 * 构建树形菜单
 	 * 
 	 * @return
 	 */
-	public List<TreeNode> treeMenu(String sortid) {
-		List<File_Sort> rootMenus = file_SortService.getRootTree(sortid);// 根节点
-		List<File_Sort> childMenus=null;
+	public List<TreeNode> treeMenu(int sortid) {
+		List<File_Sort> rootTree = file_SortService.getRootTree(sortid);// 根节点
+		List<File_Sort> childTree=null;
 		//取子节点
-		childMenus= file_SortService.getChildTree(sortid);// 子节点
+		childTree= file_SortService.getChildTree(sortid);// 子节点
 		//构造方法传值
-		FileSortTreeUtil util = new FileSortTreeUtil(rootMenus, childMenus);
+		FileSortTreeUtil util = new FileSortTreeUtil(rootTree, childTree);
 		return util.getTreeNode();
 	}
 	

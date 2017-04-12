@@ -7,11 +7,12 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
+	body{background-color:#D6E4EF;}
 	h1{font-size:18px;text-align:center;}
 	table{margin:0 auto;border-color:#ddd;}
 	table tr td{padding:5px 5px;font-size:14px;border-color:#ddd;}
 	table tr td input:not(#fh){width:80%;}
-	#fh{display:block;margin:0 auto;outline: none;border-radius:3px;border:none;background-color:#999;}
+	#fh{display:block;margin:0 auto;outline: none;border-radius:3px;border:none;background-color:#9be9fc;padding:2px 5px;}
 </style>
 <script type="text/javascript">
 function submit(){
