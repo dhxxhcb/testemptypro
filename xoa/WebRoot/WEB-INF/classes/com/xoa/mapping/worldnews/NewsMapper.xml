@@ -1,415 +1,415 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.worldnews.NewsMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.worldnews.News" >
-    <id column="NEWS_ID" property="newsId" javaType="int" />
-    <result column="SUBJECT" property="subject" javaType="String"/>
-    <result column="PROVIDER" property="provider" javaType="String"/>
-    <result column="NEWS_TIME" property="newsTime" javaType="Date" />
-    <result column="CLICK_COUNT" property="clickCount" javaType="int" />
-    <result column="ANONYMITY_YN" property="anonymityYn" javaType="String" />
-    <result column="FORMAT" property="format" javaType="String" />
-    <result column="TYPE_ID" property="typeId" javaType="String" />
-    <result column="PUBLISH" property="publish" javaType="String" />
-    <result column="TOP" property="top" javaType="String"/>
-    <result column="LAST_EDITOR" property="lastEditor" javaType="String"/>
-    <result column="LAST_EDIT_TIME" property="lastEditTime" javaType="Date" />
-    <result column="SUBJECT_COLOR" property="subjectColor" javaType="String" />
-    <result column="KEYWORD" property="keyword" javaType="String"/>
-    <result column="TOP_DAYS" property="topDays" javaType="String" />
-    <result column="CONTENT" property="content" javaType="String" />
-    <result column="ATTACHMENT_ID" property="attachmentId" javaType="String"/>
-    <result column="ATTACHMENT_NAME" property="attachmentName" javaType="String" />
-    <result column="TO_ID" property="toId" javaType="String" />
-    <result column="PRIV_ID" property="privId" javaType="String" />
-    <result column="USER_ID" property="userId" javaType="String" />
-    <result column="READERS" property="readers" javaType="String"/>
-    <result column="COMPRESS_CONTENT" property="compressContent" javaType="String" />
-    <result column="SUMMARY" property="summary" javaType="String" />
-  </resultMap>
- <!--  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.worldnews.NewsWithBLOBs" extends="BaseResultMap" >
-  </resultMap> -->
-  <sql id="Base_Column_List" >
-    NEWS_ID, SUBJECT, PROVIDER, NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, FORMAT, TYPE_ID, 
-    PUBLISH, TOP, LAST_EDITOR, LAST_EDIT_TIME, SUBJECT_COLOR, KEYWORD, TOP_DAYS
-  </sql>
-  <sql id="Blob_Column_List" >
-    CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, TO_ID, PRIV_ID, USER_ID, READERS, COMPRESS_CONTENT, 
-    SUMMARY
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from news
-    where NEWS_ID = #{newsId,jdbcType=INTEGER}
-  </select>
+<mapper namespace="com.xoa.dao.worldnews.NewsMapper">
+	<resultMap id="BaseResultMap" type="com.xoa.model.worldnews.News">
+		<id column="NEWS_ID" property="newsId" javaType="int" />
+		<result column="SUBJECT" property="subject" javaType="String" />
+		<result column="PROVIDER" property="provider" javaType="String" />
+		<result column="NEWS_TIME" property="newsTime" javaType="Date" />
+		<result column="CLICK_COUNT" property="clickCount" javaType="int" />
+		<result column="ANONYMITY_YN" property="anonymityYn" javaType="String" />
+		<result column="FORMAT" property="format" javaType="String" />
+		<result column="TYPE_ID" property="typeId" javaType="String" />
+		<result column="PUBLISH" property="publish" javaType="String" />
+		<result column="TOP" property="top" javaType="String" />
+		<result column="LAST_EDITOR" property="lastEditor" javaType="String" />
+		<result column="LAST_EDIT_TIME" property="lastEditTime"
+			javaType="Date" />
+		<result column="SUBJECT_COLOR" property="subjectColor"
+			javaType="String" />
+		<result column="KEYWORD" property="keyword" javaType="String" />
+		<result column="TOP_DAYS" property="topDays" javaType="String" />
+		<result column="CONTENT" property="content" javaType="String" />
+		<result column="ATTACHMENT_ID" property="attachmentId"
+			javaType="String" />
+		<result column="ATTACHMENT_NAME" property="attachmentName"
+			javaType="String" />
+		<result column="TO_ID" property="toId" javaType="String" />
+		<result column="PRIV_ID" property="privId" javaType="String" />
+		<result column="USER_ID" property="userId" javaType="String" />
+		<result column="READERS" property="readers" javaType="String" />
+		<result column="COMPRESS_CONTENT" property="compressContent"
+			javaType="String" />
+		<result column="SUMMARY" property="summary" javaType="String" />
+	</resultMap>
+	<!-- 查询信息并返回 列表 -->
+	<select id="selectNews" parameterType="Map" resultMap="BaseResultMap">
+		select n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT FROM news n
+		<where>
+			<if test="format != null and format != ''">
+				FORMAT = #{format}
+			</if>
+			<if test="typeId != null and typeId != ''">
+				AND TYPE_ID = #{typeId}
+			</if>
+			<if test="subject != null and subject != ''">
+				AND SUBJECT like CONCAT('%',#{subject},'%')
+			</if>
+			<if test="newsTime != null and newsTime != '' and lastEditTime = null and lastEditTime = ''">
+				AND NEWS_TIME = #{newsTime} or NEWS_TIME > #{newsTime}
+			</if>
+			<if
+				test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''">
+				AND NEWS_TIME between #{newsTime} and #{lastEditTime}
+			</if>
+			<if test="keyword != null and keyword != ''">
+				AND KEYWORD like CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+		ORDER BY NEWS_ID DESC
 
-  <!-- 条件  -->
-  <select id="selectNews" parameterType="Map" resultMap="BaseResultMap">  
-  SELECT NEWS_ID, SUBJECT, PROVIDER, 
-      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
-      FORMAT, TYPE_ID, PUBLISH, 
-      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
-      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
-      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
-      TO_ID, PRIV_ID, USER_ID, READERS,COMPRESS_CONTENT
-       SUMMARY
-      FROM news
-	<where>
-      <if test="typeId != null and typeId != ''">
-      TYPE_ID = #{typeId} 
-      </if>
-       <if test="newsTime != null and newsTime != ''">
-      AND NEWS_TIME = #{newsTime} 
-      </if>
-      </where>
-    ORDER BY NEWS_ID DESC  
-</select> 
+	</select>
+	<!-- 条件总计数 -->
+	<select id="showCountNews" parameterType="com.xoa.model.worldnews.News"
+		resultMap="BaseResultMap">
+		SELECT NEWS_ID, SUBJECT, PROVIDER,
+		NEWS_TIME, CLICK_COUNT, ANONYMITY_YN,
+		FORMAT, TYPE_ID, PUBLISH,
+		TOP, LAST_EDITOR, LAST_EDIT_TIME,
+		SUBJECT_COLOR, KEYWORD, TOP_DAYS,
+		CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME,
+		TO_ID, PRIV_ID, USER_ID,
+		READERS, COMPRESS_CONTENT, SUMMARY
+		FROM news WHERE
+		<if test="typeId != null and typeId != ''">
+			TYPE_ID = #{typeId}
+		</if>
+		<if test="newsTime != null and newsTime != ''">
+			AND NEWS_TIME = #{newsTime}
+		</if>
+	</select>
 
-<!-- 条件总计数 -->
-<select id="showCountNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
-  SELECT NEWS_ID, SUBJECT, PROVIDER, 
-      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
-      FORMAT, TYPE_ID, PUBLISH, 
-      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
-      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
-      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
-      TO_ID, PRIV_ID, USER_ID, 
-      READERS, COMPRESS_CONTENT, SUMMARY
-      FROM news WHERE
-      <if test="typeId != null and typeId != ''">
-      TYPE_ID = #{typeId} 
-      </if>
-      <if test="newsTime != null and newsTime != ''">
-      AND NEWS_TIME = #{newsTime} 
-      </if>
-</select> 
+	<select id="showAllNews" parameterType="com.xoa.model.worldnews.News"
+		resultMap="BaseResultMap">
+		SELECT NEWS_ID, SUBJECT, PROVIDER,
+		NEWS_TIME, CLICK_COUNT, ANONYMITY_YN,
+		FORMAT, TYPE_ID, PUBLISH,
+		TOP, LAST_EDITOR, LAST_EDIT_TIME,
+		SUBJECT_COLOR, KEYWORD, TOP_DAYS,
+		CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME,
+		TO_ID, PRIV_ID, USER_ID,
+		READERS, COMPRESS_CONTENT, SUMMARY
+		FROM news
+		<if test="start!=null and pagesize!=null">
+			limit #{start jdbcType=INTEGER},#{pagesize jdbcType=INTEGER}
+		</if>
+		ORDER BY NEWS_ID DESC
+	</select>
 
-<select id="showAllNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
-    SELECT NEWS_ID, SUBJECT, PROVIDER, 
-      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
-      FORMAT, TYPE_ID, PUBLISH, 
-      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
-      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
-      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
-      TO_ID, PRIV_ID, USER_ID, 
-      READERS, COMPRESS_CONTENT, SUMMARY
-      FROM news 
-       <if test="start!=null and pagesize!=null">  
-        limit #{start jdbcType=INTEGER},#{pagesize jdbcType=INTEGER}  
-    </if>
-      ORDER BY NEWS_ID DESC
-</select>
-
-<select id="showAllCountNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
-  SELECT NEWS_ID, SUBJECT, PROVIDER, 
-      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
-      FORMAT, TYPE_ID, PUBLISH, 
-      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
-      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
-      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
-      TO_ID, PRIV_ID, USER_ID, 
-      READERS, COMPRESS_CONTENT, SUMMARY
-      FROM news
-</select> 
+	<select id="showAllCountNews" parameterType="com.xoa.model.worldnews.News"
+		resultMap="BaseResultMap">
+		SELECT NEWS_ID, SUBJECT, PROVIDER,
+		NEWS_TIME, CLICK_COUNT, ANONYMITY_YN,
+		FORMAT, TYPE_ID, PUBLISH,
+		TOP, LAST_EDITOR, LAST_EDIT_TIME,
+		SUBJECT_COLOR, KEYWORD, TOP_DAYS,
+		CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME,
+		TO_ID, PRIV_ID, USER_ID,
+		READERS, COMPRESS_CONTENT, SUMMARY
+		FROM news
+	</select>
 
 
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from news
-    where NEWS_ID = #{newsId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.xoa.model.worldnews.News" >
-    insert into news (NEWS_ID, SUBJECT, PROVIDER, 
-      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
-      FORMAT, TYPE_ID, PUBLISH, 
-      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
-      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
-      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
-      TO_ID, PRIV_ID, USER_ID, 
-      READERS, COMPRESS_CONTENT, SUMMARY
-      )
-    values (#{newsId,jdbcType=INTEGER}, #{subject,jdbcType=VARCHAR}, #{provider,jdbcType=VARCHAR}, 
-      #{newsTime,jdbcType=TIMESTAMP}, #{clickCount,jdbcType=INTEGER}, #{anonymityYn,jdbcType=VARCHAR}, 
-      #{format,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, #{publish,jdbcType=CHAR}, 
-      #{top,jdbcType=VARCHAR}, #{lastEditor,jdbcType=VARCHAR}, #{lastEditTime,jdbcType=TIMESTAMP}, 
-      #{subjectColor,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, #{topDays,jdbcType=VARCHAR}, 
-      #{content,jdbcType=LONGVARCHAR}, #{attachmentId,jdbcType=LONGVARCHAR}, #{attachmentName,jdbcType=LONGVARCHAR}, 
-      #{toId,jdbcType=LONGVARCHAR}, #{privId,jdbcType=LONGVARCHAR}, #{userId,jdbcType=LONGVARCHAR}, 
-      #{readers,jdbcType=LONGVARCHAR}, #{compressContent,jdbcType=LONGVARBINARY}, #{summary,jdbcType=LONGVARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.worldnews.News" >
-    insert into news
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="newsId != null" >
-        NEWS_ID,
-      </if>
-      <if test="subject != null" >
-        SUBJECT,
-      </if>
-      <if test="provider != null" >
-        PROVIDER,
-      </if>
-      <if test="newsTime != null" >
-        NEWS_TIME,
-      </if>
-      <if test="clickCount != null" >
-        CLICK_COUNT,
-      </if>
-      <if test="anonymityYn != null" >
-        ANONYMITY_YN,
-      </if>
-      <if test="format != null" >
-        FORMAT,
-      </if>
-      <if test="typeId != null" >
-        TYPE_ID,
-      </if>
-      <if test="publish != null" >
-        PUBLISH,
-      </if>
-      <if test="top != null" >
-        TOP,
-      </if>
-      <if test="lastEditor != null" >
-        LAST_EDITOR,
-      </if>
-      <if test="lastEditTime != null" >
-        LAST_EDIT_TIME,
-      </if>
-      <if test="subjectColor != null" >
-        SUBJECT_COLOR,
-      </if>
-      <if test="keyword != null" >
-        KEYWORD,
-      </if>
-      <if test="topDays != null" >
-        TOP_DAYS,
-      </if>
-      <if test="content != null" >
-        CONTENT,
-      </if>
-      <if test="attachmentId != null" >
-        ATTACHMENT_ID,
-      </if>
-      <if test="attachmentName != null" >
-        ATTACHMENT_NAME,
-      </if>
-      <if test="toId != null" >
-        TO_ID,
-      </if>
-      <if test="privId != null" >
-        PRIV_ID,
-      </if>
-      <if test="userId != null" >
-        USER_ID,
-      </if>
-      <if test="readers != null" >
-        READERS,
-      </if>
-      <if test="compressContent != null" >
-        COMPRESS_CONTENT,
-      </if>
-      <if test="summary != null" >
-        SUMMARY,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="newsId != null" >
-        #{newsId,jdbcType=INTEGER},
-      </if>
-      <if test="subject != null" >
-        #{subject,jdbcType=VARCHAR},
-      </if>
-      <if test="provider != null" >
-        #{provider,jdbcType=VARCHAR},
-      </if>
-      <if test="newsTime != null" >
-        #{newsTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="clickCount != null" >
-        #{clickCount,jdbcType=INTEGER},
-      </if>
-      <if test="anonymityYn != null" >
-        #{anonymityYn,jdbcType=VARCHAR},
-      </if>
-      <if test="format != null" >
-        #{format,jdbcType=VARCHAR},
-      </if>
-      <if test="typeId != null" >
-        #{typeId,jdbcType=VARCHAR},
-      </if>
-      <if test="publish != null" >
-        #{publish,jdbcType=CHAR},
-      </if>
-      <if test="top != null" >
-        #{top,jdbcType=VARCHAR},
-      </if>
-      <if test="lastEditor != null" >
-        #{lastEditor,jdbcType=VARCHAR},
-      </if>
-      <if test="lastEditTime != null" >
-        #{lastEditTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="subjectColor != null" >
-        #{subjectColor,jdbcType=VARCHAR},
-      </if>
-      <if test="keyword != null" >
-        #{keyword,jdbcType=VARCHAR},
-      </if>
-      <if test="topDays != null" >
-        #{topDays,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="attachmentId != null" >
-        #{attachmentId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="attachmentName != null" >
-        #{attachmentName,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="toId != null" >
-        #{toId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="privId != null" >
-        #{privId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="readers != null" >
-        #{readers,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="compressContent != null" >
-        #{compressContent,jdbcType=LONGVARBINARY},
-      </if>
-      <if test="summary != null" >
-        #{summary,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.worldnews.News" >
-    update news
-    <set >
-      <if test="subject != null" >
-        SUBJECT = #{subject,jdbcType=VARCHAR},
-      </if>
-      <if test="provider != null" >
-        PROVIDER = #{provider,jdbcType=VARCHAR},
-      </if>
-      <if test="newsTime != null" >
-        NEWS_TIME = #{newsTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="clickCount != null" >
-        CLICK_COUNT = #{clickCount,jdbcType=INTEGER},
-      </if>
-      <if test="anonymityYn != null" >
-        ANONYMITY_YN = #{anonymityYn,jdbcType=VARCHAR},
-      </if>
-      <if test="format != null" >
-        FORMAT = #{format,jdbcType=VARCHAR},
-      </if>
-      <if test="typeId != null" >
-        TYPE_ID = #{typeId,jdbcType=VARCHAR},
-      </if>
-      <if test="publish != null" >
-        PUBLISH = #{publish,jdbcType=CHAR},
-      </if>
-      <if test="top != null" >
-        TOP = #{top,jdbcType=VARCHAR},
-      </if>
-      <if test="lastEditor != null" >
-        LAST_EDITOR = #{lastEditor,jdbcType=VARCHAR},
-      </if>
-      <if test="lastEditTime != null" >
-        LAST_EDIT_TIME = #{lastEditTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="subjectColor != null" >
-        SUBJECT_COLOR = #{subjectColor,jdbcType=VARCHAR},
-      </if>
-      <if test="keyword != null" >
-        KEYWORD = #{keyword,jdbcType=VARCHAR},
-      </if>
-      <if test="topDays != null" >
-        TOP_DAYS = #{topDays,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        CONTENT = #{content,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="attachmentId != null" >
-        ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="attachmentName != null" >
-        ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="toId != null" >
-        TO_ID = #{toId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="privId != null" >
-        PRIV_ID = #{privId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="userId != null" >
-        USER_ID = #{userId,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="readers != null" >
-        READERS = #{readers,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="compressContent != null" >
-        COMPRESS_CONTENT = #{compressContent,jdbcType=LONGVARBINARY},
-      </if>
-      <if test="summary != null" >
-        SUMMARY = #{summary,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where NEWS_ID = #{newsId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.worldnews.News" >
-    update news
-    set SUBJECT = #{subject,jdbcType=VARCHAR},
-      PROVIDER = #{provider,jdbcType=VARCHAR},
-      NEWS_TIME = #{newsTime,jdbcType=TIMESTAMP},
-      CLICK_COUNT = #{clickCount,jdbcType=INTEGER},
-      ANONYMITY_YN = #{anonymityYn,jdbcType=VARCHAR},
-      FORMAT = #{format,jdbcType=VARCHAR},
-      TYPE_ID = #{typeId,jdbcType=VARCHAR},
-      PUBLISH = #{publish,jdbcType=CHAR},
-      TOP = #{top,jdbcType=VARCHAR},
-      LAST_EDITOR = #{lastEditor,jdbcType=VARCHAR},
-      LAST_EDIT_TIME = #{lastEditTime,jdbcType=TIMESTAMP},
-      SUBJECT_COLOR = #{subjectColor,jdbcType=VARCHAR},
-      KEYWORD = #{keyword,jdbcType=VARCHAR},
-      TOP_DAYS = #{topDays,jdbcType=VARCHAR},
-      CONTENT = #{content,jdbcType=LONGVARCHAR},
-      ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
-      ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
-      TO_ID = #{toId,jdbcType=LONGVARCHAR},
-      PRIV_ID = #{privId,jdbcType=LONGVARCHAR},
-      USER_ID = #{userId,jdbcType=LONGVARCHAR},
-      READERS = #{readers,jdbcType=LONGVARCHAR},
-      COMPRESS_CONTENT = #{compressContent,jdbcType=LONGVARBINARY},
-      SUMMARY = #{summary,jdbcType=LONGVARCHAR}
-    where NEWS_ID = #{newsId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.worldnews.News" >
-    update news
-    set SUBJECT = #{subject,jdbcType=VARCHAR},
-      PROVIDER = #{provider,jdbcType=VARCHAR},
-      NEWS_TIME = #{newsTime,jdbcType=TIMESTAMP},
-      CLICK_COUNT = #{clickCount,jdbcType=INTEGER},
-      ANONYMITY_YN = #{anonymityYn,jdbcType=VARCHAR},
-      FORMAT = #{format,jdbcType=VARCHAR},
-      TYPE_ID = #{typeId,jdbcType=VARCHAR},
-      PUBLISH = #{publish,jdbcType=CHAR},
-      TOP = #{top,jdbcType=VARCHAR},
-      LAST_EDITOR = #{lastEditor,jdbcType=VARCHAR},
-      LAST_EDIT_TIME = #{lastEditTime,jdbcType=TIMESTAMP},
-      SUBJECT_COLOR = #{subjectColor,jdbcType=VARCHAR},
-      KEYWORD = #{keyword,jdbcType=VARCHAR},
-      TOP_DAYS = #{topDays,jdbcType=VARCHAR}
-    where NEWS_ID = #{newsId,jdbcType=INTEGER}
-  </update>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from news
+		where NEWS_ID = #{newsId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.xoa.model.worldnews.News">
+		insert into news (NEWS_ID, SUBJECT, PROVIDER,
+		NEWS_TIME, CLICK_COUNT, ANONYMITY_YN,
+		FORMAT, TYPE_ID, PUBLISH,
+		TOP, LAST_EDITOR, LAST_EDIT_TIME,
+		SUBJECT_COLOR, KEYWORD, TOP_DAYS,
+		CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME,
+		TO_ID, PRIV_ID, USER_ID,
+		READERS, COMPRESS_CONTENT, SUMMARY
+		)
+		values (#{newsId,jdbcType=INTEGER}, #{subject,jdbcType=VARCHAR},
+		#{provider,jdbcType=VARCHAR},
+		#{newsTime,jdbcType=TIMESTAMP}, #{clickCount,jdbcType=INTEGER}, #{anonymityYn,jdbcType=VARCHAR},
+		#{format,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR},
+		#{publish,jdbcType=CHAR},
+		#{top,jdbcType=VARCHAR}, #{lastEditor,jdbcType=VARCHAR}, #{lastEditTime,jdbcType=TIMESTAMP},
+		#{subjectColor,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR},
+		#{topDays,jdbcType=VARCHAR},
+		#{content,jdbcType=LONGVARCHAR}, #{attachmentId,jdbcType=LONGVARCHAR},
+		#{attachmentName,jdbcType=LONGVARCHAR},
+		#{toId,jdbcType=LONGVARCHAR}, #{privId,jdbcType=LONGVARCHAR}, #{userId,jdbcType=LONGVARCHAR},
+		#{readers,jdbcType=LONGVARCHAR},
+		#{compressContent,jdbcType=LONGVARBINARY},
+		#{summary,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.xoa.model.worldnews.News">
+		insert into news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="newsId != null">
+				NEWS_ID,
+			</if>
+			<if test="subject != null">
+				SUBJECT,
+			</if>
+			<if test="provider != null">
+				PROVIDER,
+			</if>
+			<if test="newsTime != null">
+				NEWS_TIME,
+			</if>
+			<if test="clickCount != null">
+				CLICK_COUNT,
+			</if>
+			<if test="anonymityYn != null">
+				ANONYMITY_YN,
+			</if>
+			<if test="format != null">
+				FORMAT,
+			</if>
+			<if test="typeId != null">
+				TYPE_ID,
+			</if>
+			<if test="publish != null">
+				PUBLISH,
+			</if>
+			<if test="top != null">
+				TOP,
+			</if>
+			<if test="lastEditor != null">
+				LAST_EDITOR,
+			</if>
+			<if test="lastEditTime != null">
+				LAST_EDIT_TIME,
+			</if>
+			<if test="subjectColor != null">
+				SUBJECT_COLOR,
+			</if>
+			<if test="keyword != null">
+				KEYWORD,
+			</if>
+			<if test="topDays != null">
+				TOP_DAYS,
+			</if>
+			<if test="content != null">
+				CONTENT,
+			</if>
+			<if test="attachmentId != null">
+				ATTACHMENT_ID,
+			</if>
+			<if test="attachmentName != null">
+				ATTACHMENT_NAME,
+			</if>
+			<if test="toId != null">
+				TO_ID,
+			</if>
+			<if test="privId != null">
+				PRIV_ID,
+			</if>
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="readers != null">
+				READERS,
+			</if>
+			<if test="compressContent != null">
+				COMPRESS_CONTENT,
+			</if>
+			<if test="summary != null">
+				SUMMARY,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="newsId != null">
+				#{newsId,jdbcType=INTEGER},
+			</if>
+			<if test="subject != null">
+				#{subject,jdbcType=VARCHAR},
+			</if>
+			<if test="provider != null">
+				#{provider,jdbcType=VARCHAR},
+			</if>
+			<if test="newsTime != null">
+				#{newsTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="clickCount != null">
+				#{clickCount,jdbcType=INTEGER},
+			</if>
+			<if test="anonymityYn != null">
+				#{anonymityYn,jdbcType=VARCHAR},
+			</if>
+			<if test="format != null">
+				#{format,jdbcType=VARCHAR},
+			</if>
+			<if test="typeId != null">
+				#{typeId,jdbcType=VARCHAR},
+			</if>
+			<if test="publish != null">
+				#{publish,jdbcType=CHAR},
+			</if>
+			<if test="top != null">
+				#{top,jdbcType=VARCHAR},
+			</if>
+			<if test="lastEditor != null">
+				#{lastEditor,jdbcType=VARCHAR},
+			</if>
+			<if test="lastEditTime != null">
+				#{lastEditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="subjectColor != null">
+				#{subjectColor,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword != null">
+				#{keyword,jdbcType=VARCHAR},
+			</if>
+			<if test="topDays != null">
+				#{topDays,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="attachmentId != null">
+				#{attachmentId,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="attachmentName != null">
+				#{attachmentName,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="toId != null">
+				#{toId,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="privId != null">
+				#{privId,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="readers != null">
+				#{readers,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="compressContent != null">
+				#{compressContent,jdbcType=LONGVARBINARY},
+			</if>
+			<if test="summary != null">
+				#{summary,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.worldnews.News">
+		update news
+		<set>
+			<if test="subject != null">
+				SUBJECT = #{subject,jdbcType=VARCHAR},
+			</if>
+			<if test="provider != null">
+				PROVIDER = #{provider,jdbcType=VARCHAR},
+			</if>
+			<if test="newsTime != null">
+				NEWS_TIME = #{newsTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="clickCount != null">
+				CLICK_COUNT = #{clickCount,jdbcType=INTEGER},
+			</if>
+			<if test="anonymityYn != null">
+				ANONYMITY_YN = #{anonymityYn,jdbcType=VARCHAR},
+			</if>
+			<if test="format != null">
+				FORMAT = #{format,jdbcType=VARCHAR},
+			</if>
+			<if test="typeId != null">
+				TYPE_ID = #{typeId,jdbcType=VARCHAR},
+			</if>
+			<if test="publish != null">
+				PUBLISH = #{publish,jdbcType=CHAR},
+			</if>
+			<if test="top != null">
+				TOP = #{top,jdbcType=VARCHAR},
+			</if>
+			<if test="lastEditor != null">
+				LAST_EDITOR = #{lastEditor,jdbcType=VARCHAR},
+			</if>
+			<if test="lastEditTime != null">
+				LAST_EDIT_TIME = #{lastEditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="subjectColor != null">
+				SUBJECT_COLOR = #{subjectColor,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword != null">
+				KEYWORD = #{keyword,jdbcType=VARCHAR},
+			</if>
+			<if test="topDays != null">
+				TOP_DAYS = #{topDays,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="attachmentId != null">
+				ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="attachmentName != null">
+				ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="toId != null">
+				TO_ID = #{toId,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="privId != null">
+				PRIV_ID = #{privId,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="readers != null">
+				READERS = #{readers,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="compressContent != null">
+				COMPRESS_CONTENT = #{compressContent,jdbcType=LONGVARBINARY},
+			</if>
+			<if test="summary != null">
+				SUMMARY = #{summary,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where NEWS_ID = #{newsId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.worldnews.News">
+		update news
+		set SUBJECT = #{subject,jdbcType=VARCHAR},
+		PROVIDER = #{provider,jdbcType=VARCHAR},
+		NEWS_TIME = #{newsTime,jdbcType=TIMESTAMP},
+		CLICK_COUNT = #{clickCount,jdbcType=INTEGER},
+		ANONYMITY_YN = #{anonymityYn,jdbcType=VARCHAR},
+		FORMAT = #{format,jdbcType=VARCHAR},
+		TYPE_ID = #{typeId,jdbcType=VARCHAR},
+		PUBLISH = #{publish,jdbcType=CHAR},
+		TOP = #{top,jdbcType=VARCHAR},
+		LAST_EDITOR = #{lastEditor,jdbcType=VARCHAR},
+		LAST_EDIT_TIME = #{lastEditTime,jdbcType=TIMESTAMP},
+		SUBJECT_COLOR = #{subjectColor,jdbcType=VARCHAR},
+		KEYWORD = #{keyword,jdbcType=VARCHAR},
+		TOP_DAYS = #{topDays,jdbcType=VARCHAR},
+		CONTENT = #{content,jdbcType=LONGVARCHAR},
+		ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
+		ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
+		TO_ID = #{toId,jdbcType=LONGVARCHAR},
+		PRIV_ID = #{privId,jdbcType=LONGVARCHAR},
+		USER_ID = #{userId,jdbcType=LONGVARCHAR},
+		READERS = #{readers,jdbcType=LONGVARCHAR},
+		COMPRESS_CONTENT = #{compressContent,jdbcType=LONGVARBINARY},
+		SUMMARY = #{summary,jdbcType=LONGVARCHAR}
+		where NEWS_ID = #{newsId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.xoa.model.worldnews.News">
+		update news
+		set SUBJECT = #{subject,jdbcType=VARCHAR},
+		PROVIDER = #{provider,jdbcType=VARCHAR},
+		NEWS_TIME = #{newsTime,jdbcType=TIMESTAMP},
+		CLICK_COUNT = #{clickCount,jdbcType=INTEGER},
+		ANONYMITY_YN = #{anonymityYn,jdbcType=VARCHAR},
+		FORMAT = #{format,jdbcType=VARCHAR},
+		TYPE_ID = #{typeId,jdbcType=VARCHAR},
+		PUBLISH = #{publish,jdbcType=CHAR},
+		TOP = #{top,jdbcType=VARCHAR},
+		LAST_EDITOR = #{lastEditor,jdbcType=VARCHAR},
+		LAST_EDIT_TIME = #{lastEditTime,jdbcType=TIMESTAMP},
+		SUBJECT_COLOR = #{subjectColor,jdbcType=VARCHAR},
+		KEYWORD = #{keyword,jdbcType=VARCHAR},
+		TOP_DAYS = #{topDays,jdbcType=VARCHAR}
+		where NEWS_ID = #{newsId,jdbcType=INTEGER}
+	</update>
 </mapper>
