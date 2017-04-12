@@ -209,9 +209,9 @@
 		parameterType="Map">
 		SELECT eb.SUBJECT, u.USER_NAME,eb.SEND_TIME FROM
 		email_body as eb
-		LEFT JOIN email as e on e.BODY_ID =eb.BODY_ID
+		LEFT JOIN email as e on e.BODY_ID =eb.BOD Y_ID
 		LEFT JOIN
-		user as u on u.USER_ID=eb.FROM_ID
+		user as u on u. USER_ID=eb.FROM_ID
 		where eb.SEND_FLAG = '0' AND
 		e.DELETE_FLAG = '0' AND e.READ_FLAG='1' GROUP BY eb.BODY_ID ORDER BY
 		eb.SEND_TIME DESC
@@ -345,147 +345,6 @@
 		</set>
 		where BODY_ID = #{bodyId,javaType=INTEGER}
 	</update>
-	<insert id="insertSelective" parameterType="com.xoa.model.email.EmailBody">
-		insert into
-		email_body (BODY_ID, FROM_ID, SUBJECT,
-		SEND_TIME, SEND_FLAG,
-		SMS_REMIND,
-		IMPORTANT, SIZE, FROM_WEBMAIL_ID,
-		FROM_WEBMAIL,
-		WEBMAIL_FLAG, RECV_FROM_NAME,
-		RECV_FROM, RECV_TO_ID, RECV_TO,
-		IS_WEBMAIL, IS_WF, KEYWORD,
-		SECRET_LEVEL, AUDIT_MAN, TO_ID2,
-		COPY_TO_ID, SECRET_TO_ID, CONTENT,
-		ATTACHMENT_ID, ATTACHMENT_NAME,
-		TO_WEBMAIL,
-		COMPRESS_CONTENT, WEBMAIL_CONTENT,
-		AUDIT_REMARK,
-		COPY_TO_WEBMAIL, SECRET_TO_WEBMAIL,
-		PRAISE)
-		values
-		(#{bodyId,javaType=INTEGER}, #{fromId,javaType=String},
-		#{subject,javaType=String},
-		#{sendTime,javaType=INTEGER},
-		#{sendFlag,javaType=String}, #{smsRemind,javaType=String},
-		#{important,javaType=String}, #{size,javaType=Long},
-		#{fromWebmailId,javaType=INTEGER},
-		#{fromWebmail,javaType=String},
-		#{webmailFlag,javaType=String}, #{recvFromName,javaType=String},
-		#{recvFrom,javaType=String}, #{recvToId,javaType=INTEGER},
-		#{recvTo,javaType=String},
-		#{isWebmail,javaType=String},
-		#{isWf,javaType=String}, #{keyword,javaType=String},
-		#{secretLevel,javaType=INTEGER}, #{auditMan,javaType=String},
-		#{toId2,javaType=String},
-		#{copyToId,javaType=String},
-		#{secretToId,javaType=String}, #{content,javaType=String},
-		#{attachmentId,javaType=String},
-		#{attachmentName,javaType=String},
-		#{toWebmail,javaType=String},
-		#{compressContent,javaType=byte[]},
-		#{webmailContent,javaType=byte[]},
-		#{auditRemark,javaType=String},
-		#{copyToWebmail,javaType=String},
-		#{secretToWebmail,javaType=String},
-		#{praise,javaType=String})
-	</insert>
-	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.email.EmailBody">
-		update
-		email_body
-		set FROM_ID = #{fromId,javaType=String},
-		SUBJECT =
-		#{subject,javaType=String},
-		SEND_TIME = #{sendTime,javaType=INTEGER},
-		SEND_FLAG = #{sendFlag,javaType=String},
-		SMS_REMIND =
-		#{smsRemind,javaType=String},
-		IMPORTANT =
-		#{important,javaType=String},
-		SIZE = #{size,javaType=Long},
-		FROM_WEBMAIL_ID =
-		#{fromWebmailId,javaType=INTEGER},
-		FROM_WEBMAIL =
-		#{fromWebmail,javaType=String},
-		WEBMAIL_FLAG =
-		#{webmailFlag,javaType=String},
-		RECV_FROM_NAME =
-		#{recvFromName,javaType=String},
-		RECV_FROM =
-		#{recvFrom,javaType=String},
-		RECV_TO_ID =
-		#{recvToId,javaType=INTEGER},
-		RECV_TO = #{recvTo,javaType=String},
-		IS_WEBMAIL =
-		#{isWebmail,javaType=String},
-		IS_WF = #{isWf,javaType=String},
-		KEYWORD =
-		#{keyword,javaType=String},
-		SECRET_LEVEL =
-		#{secretLevel,javaType=INTEGER},
-		AUDIT_MAN =
-		#{auditMan,javaType=String},
-		TO_ID2 = #{toId2,javaType=String},
-		COPY_TO_ID = #{copyToId,javaType=String},
-		SECRET_TO_ID =
-		#{secretToId,javaType=String},
-		CONTENT =
-		#{content,javaType=String},
-		ATTACHMENT_ID =
-		#{attachmentId,javaType=String},
-		ATTACHMENT_NAME =
-		#{attachmentName,javaType=String},
-		TO_WEBMAIL =
-		#{toWebmail,javaType=String},
-		COMPRESS_CONTENT =
-		#{compressContent,javaType=byte[]},
-		WEBMAIL_CONTENT =
-		#{webmailContent,javaType=byte[]},
-		AUDIT_REMARK =
-		#{auditRemark,javaType=String},
-		COPY_TO_WEBMAIL =
-		#{copyToWebmail,javaType=String},
-		SECRET_TO_WEBMAIL =
-		#{secretToWebmail,javaType=String},
-		PRAISE =
-		#{praise,javaType=String}
-		where BODY_ID =
-		#{bodyId,javaType=INTEGER}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.xoa.model.email.EmailBody">
-		update email_body
-		set FROM_ID = #{fromId,javaType=String},
-		SUBJECT =
-		#{subject,javaType=String},
-		SEND_TIME = #{sendTime,javaType=INTEGER},
-		SEND_FLAG = #{sendFlag,javaType=String},
-		SMS_REMIND =
-		#{smsRemind,javaType=String},
-		IMPORTANT =
-		#{important,javaType=String},
-		SIZE = #{size,javaType=Long},
-		FROM_WEBMAIL_ID =
-		#{fromWebmailId,javaType=INTEGER},
-		FROM_WEBMAIL =
-		#{fromWebmail,javaType=String},
-		WEBMAIL_FLAG =
-		#{webmailFlag,javaType=String},
-		RECV_FROM_NAME =
-		#{recvFromName,javaType=String},
-		RECV_FROM =
-		#{recvFrom,javaType=String},
-		RECV_TO_ID =
-		#{recvToId,javaType=INTEGER},
-		RECV_TO = #{recvTo,javaType=String},
-		IS_WEBMAIL =
-		#{isWebmail,javaType=String},
-		IS_WF = #{isWf,javaType=String},
-		KEYWORD =
-		#{keyword,javaType=String},
-		SECRET_LEVEL =
-		#{secretLevel,javaType=INTEGER},
-		AUDIT_MAN =
-		#{auditMan,javaType=String}
-		where BODY_ID = #{bodyId,javaType=INTEGER}
-	</update>
+	
+
 </mapper>

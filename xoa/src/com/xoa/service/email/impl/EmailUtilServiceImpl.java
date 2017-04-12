@@ -29,10 +29,9 @@ public class EmailUtilServiceImpl implements EmailUtilService{
 
 	/**
 	 * 创建邮件并发送
-	 * 
-	 * @param emailBody
+	 * @param emailBody   发件箱、收件箱内容信息对象
 	 * 邮件内容实体类
-	 * @param email 
+	 * @param email   收件人实体类
 	 * 邮件状态实体类
 	 */
 	@Override
