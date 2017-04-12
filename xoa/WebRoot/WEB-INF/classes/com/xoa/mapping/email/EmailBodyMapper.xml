@@ -210,7 +210,14 @@
 		emb.COPY_TO_WEBMAIL,
 		emb.SECRET_TO_WEBMAIL,
 		emb.PRAISE,
-		e.DELETE_FLAG
+		e.DELETE_FLAG,
+		e.TO_ID,
+		e.READ_FLAG,
+		e.BOX_ID,
+		e.RECEIPT,
+		e.IS_F,
+		e.IS_R,
+		e.SIGN
 		FROM
 		email_body emb LEFT JOIN email e ON
 		emb.BODY_ID = e.BODY_ID
