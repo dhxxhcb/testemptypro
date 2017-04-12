@@ -45,22 +45,16 @@ public class NotifyController {
 	 */
 	@RequestMapping(value = "/notifyList",method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	 public @ResponseBody
-	 String notifyList(@RequestParam(value="typeId",required=false)String typeId,
-			 @RequestParam(value="sendTime",required=false)String sendTime,
-			 @RequestParam(value="subject",required=false)String subject,
-			 @RequestParam(value="content",required=false)String content,
-			 @RequestParam(value="format",required=false)String format,
-			 @RequestParam(value="page",required=false)String page,
-			 @RequestParam(value="pageSize",required=false)String pageSize) {
+	 String notifyList(String typeId,String sendTime,String subject,String content,String format) {
 	  Map<String, Object> maps = new HashMap<String, Object>();
 	  maps.put("typeId", typeId);
-	  maps.put("sendTime", DateFormat.getDate(sendTime));
+	  maps.put("sendTime", sendTime);
 	  maps.put("subject", subject);
 	  maps.put("content", content);
 	  maps.put("format", format);
 	   String returnReslt= null;
 	  try {
-	   List<Notify> list=notifyService.selectNotify(maps, Integer.valueOf(page), Integer.valueOf(pageSize), true);
+	   List<Notify> list=notifyService.selectNotify(maps, 1, 5, true);
 	   ToJson<Notify> tojson = new ToJson<Notify>(0, "");
 	   tojson.setObj(list);
 	   returnReslt= JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");

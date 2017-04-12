@@ -49,22 +49,15 @@
 <!-- 条件查询 -->
 <select id="selectNotify" resultMap="BaseResultMap" parameterType="Map">
  SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.CONTENT,n.FORMAT,u.USER_NAME from notify n,`user` u WHERE n.USER_ID=u.UID 
+
 <where>
-<if test="typeId != null and typeId != ''"> TYPE_ID = #{typeId} </if>
 
-<if test="sendTime != null and sendTime != '' and lastEditTime =null and lastEditTime  =''">
- and SEND_TIME = #{sendTime} or SEND_TIME > #{sendTime} </if>
+<if test="typeId != null and typeId != ''"> and TYPE_ID = #{typeId} </if>
 
-<if test="sendTime != null and sendTime != '' and lastEditTime !=null and lastEditTime  !=''">
- and SEND_TIME between #{sendTime} and #{sendTime} </if>
+<if test="sendTime != null and sendTime != ''"> and SEND_TIME = #{sendTime} </if>
 
-<if test="subject != null and subject != ''"> and SUBJECT LIKE CONCAT ('%',#{SUBJECT},'%')</if>
-
-<if test="content != null and content != ''"> and CONTENT LIKE CONCAT ('%',#{SUBJECT},'%') </if>
-
-<if test="format != null and format != ''"> and FORMAT = #{format} </if>
 </where>
- order by NOTIFY_ID desc 
+order by NOTIFY_ID desc 
 </select>
 
 	<!-- 根据ID查 -->
@@ -74,7 +67,7 @@
 	</select>
 
 
-	<!-- 增加 -->
+	<!-- 保存 -->
 	<insert id="addNotify" parameterType="com.xoa.model.notify.Notify">
 		insert into notify (FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT,SEND_TIME,BEGIN_DATE,END_DATE,ATTACHMENT_ID,
 		ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,AUDIT_DATE,
@@ -98,7 +91,7 @@
 		#{lastEditor,jdbcType=VARCHAR},#{lastEditTime,jdbcType=DATE},
 		#{subjectColor,jdbcType=VARCHAR},#{summary,jdbcType=LONGVARCHAR},
 		#{keyword,jdbcType=VARCHAR},#{isFw,jdbcType=VARCHAR}
-		);
+		)
 	</insert>
 
 	<!--根据Id修改 -->
