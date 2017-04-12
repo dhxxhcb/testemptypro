@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.DepartmentMapper">
+<mapper namespace="com.xoa.dao.department.DepartmentMapper">
 	<resultMap id="DepResultMap" type="com.xoa.model.department.Department">
 		<id column="DEPT_ID" property="deptId" jdbcType="INTEGER" />
 		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
@@ -29,5 +29,8 @@
 	</select>
 	<select id="getUserAll" resultMap="DepResultMap">
 		SELECT y.* from department u,`user` y where u.DEPT_ID=#{deptId}
+	</select>
+	<select id="getDeptNameById" resultType="java.lang.String">
+		SELECT DEPT_NAME from department where DEPT_ID=#{deptId}
 	</select>
 </mapper>

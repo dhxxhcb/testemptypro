@@ -11,6 +11,8 @@ public interface UsersMapper {
 	public Users findUserByName(@Param("byname") String byname);
 
 	public String getUsernameById(@Param("uid") int uid);
+	
+	public String getUsernameByUserId(int uid);
 
 	public  List<Users> getDatagrid();
 

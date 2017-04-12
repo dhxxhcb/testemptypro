@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xoa.dao.users.UsersMapper;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
@@ -53,6 +54,30 @@ public class UsersServiceImpl implements UsersService {
 	public void deleteUser(int uid) {
 		// TODO Auto-generated method stub
 		usersMapper.deleteUser(uid);
+	}
+
+	@Override
+	public JSONObject getUserNameById(int... user_id_str) {
+		//定义返回的json字符串
+				JSONObject json=new JSONObject();
+				//定义用于拼接用户姓名的字符串
+				StringBuffer sb=new StringBuffer();
+				  for (int i = 0; i < user_id_str.length; i++) {  
+			            if(user_id_str.length==1){
+			            String userName=usersMapper.getUsernameByUserId(user_id_str[i]);
+			            json.put("userName", userName);	 
+			            return json;
+			            }else{
+			            String userName=usersMapper.getUsernameByUserId(user_id_str[i]);
+			            if(i<user_id_str.length-1){
+			            sb.append(userName).append("-");
+			            }else{
+			            sb.append(userName);
+			            }
+				        json.put("userName", sb.toString());	 
+			            } 
+			        }  
+				return json;
 	}
 	
 	

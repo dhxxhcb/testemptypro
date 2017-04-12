@@ -10,5 +10,7 @@ public interface DepartmentMapper {
   public List<Department> getDatagrid();
   
   public List<Users> getUserAll(int deptId);
+  
+  public String getDeptNameById(int deptId);
    
 }
