@@ -41,7 +41,7 @@
 		
 <association javaType="com.xoa.model.users.Users" property="users">
 <id javaType="int" property="uid" column="UID"/>
-<result javaType="string" property="userId" column="USER_ID"/
+<result javaType="string" property="userId" column="USER_ID"/>
 <result javaType="string" property="userName" column="USER_NAME"/>
 </association>
 	</resultMap>
