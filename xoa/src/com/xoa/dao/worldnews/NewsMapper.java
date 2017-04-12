@@ -6,21 +6,10 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.xoa.dao.base.BaseMapper;
 import com.xoa.model.worldnews.News;
 
-public interface NewsMapper {
-	int deleteByPrimaryKey(Integer newsId);
-
-	int insert(News record);
-
-	int insertSelective(News record);
-
-	int updateByPrimaryKeySelective(News record);
-
-	int updateByPrimaryKeyWithBLOBs(News record);
-
-	int updateByPrimaryKey(News record);
-
+public interface NewsMapper extends BaseMapper<News> {
 	/**
 	 * 条件新闻信息查询并返回
 	 * 
@@ -55,5 +44,4 @@ public interface NewsMapper {
 	 */
 	public List<News> showAllCountNews();
 
-	// List<News> showNews();
 }

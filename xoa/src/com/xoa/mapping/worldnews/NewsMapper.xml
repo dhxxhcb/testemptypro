@@ -27,47 +27,29 @@
     <result column="COMPRESS_CONTENT" property="compressContent" javaType="String" />
     <result column="SUMMARY" property="summary" javaType="String" />
   </resultMap>
- <!--  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.worldnews.NewsWithBLOBs" extends="BaseResultMap" >
-  </resultMap> -->
-  <sql id="Base_Column_List" >
-    NEWS_ID, SUBJECT, PROVIDER, NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, FORMAT, TYPE_ID, 
-    PUBLISH, TOP, LAST_EDITOR, LAST_EDIT_TIME, SUBJECT_COLOR, KEYWORD, TOP_DAYS
-  </sql>
-  <sql id="Blob_Column_List" >
-    CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, TO_ID, PRIV_ID, USER_ID, READERS, COMPRESS_CONTENT, 
-    SUMMARY
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from news
-    where NEWS_ID = #{newsId,jdbcType=INTEGER}
-  </select>
-
-  <!-- 条件  -->
-  <select id="selectNews" parameterType="Map" resultMap="BaseResultMap">  
-  SELECT NEWS_ID, SUBJECT, PROVIDER, 
-      NEWS_TIME, CLICK_COUNT, ANONYMITY_YN, 
-      FORMAT, TYPE_ID, PUBLISH, 
-      TOP, LAST_EDITOR, LAST_EDIT_TIME, 
-      SUBJECT_COLOR, KEYWORD, TOP_DAYS, 
-      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
-      TO_ID, PRIV_ID, USER_ID, READERS,COMPRESS_CONTENT
-       SUMMARY
-      FROM news
-	<where>
-      <if test="typeId != null and typeId != ''">
-      TYPE_ID = #{typeId} 
+  <!-- 查询信息并返回 列表-->
+  <select id="selectNews" parameterType="Map" resultMap="BaseResultMap" >
+  select n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT FROM news n 
+  <where>
+      <if test="format != null and format != ''">
+      FORMAT = #{format} 
       </if>
-       <if test="newsTime != null and newsTime != ''">
-      AND NEWS_TIME = #{newsTime} 
+       <if test="typeId != null and typeId != ''">
+      AND TYPE_ID = #{typeId} 
+      </if>
+       <if test="subject != null and subject != ''">
+      AND SUBJECT like  CONCAT('%',#{subject},'%') 
+      </if>
+       <if test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''" >
+      AND NEWS_TIME  between #{newsTime} and #{lastEditTime} 
+      </if>
+       <if test="keyword != null and keyword != ''">
+      AND KEYWORD like CONCAT('%',#{keyword},'%') 
       </if>
       </where>
-    ORDER BY NEWS_ID DESC  
-</select> 
-
+    ORDER BY NEWS_ID DESC 
+  
+  </select>
 <!-- 条件总计数 -->
 <select id="showCountNews" parameterType="com.xoa.model.worldnews.News" resultMap="BaseResultMap">  
   SELECT NEWS_ID, SUBJECT, PROVIDER, 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.ParseException;
@@ -25,44 +26,60 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @Controller
-@Scope(value="prototype")
+@Scope(value = "prototype")
 @RequestMapping("/news")
 public class NewsController {
 	private Logger loger = Logger.getLogger(NewsController.class);
 	@Resource
 	private NewService newService;
 
-
 	/**
 	 * 新闻显示页面
+	 * 
 	 * @return
 	 */
 	@RequestMapping("/clicknews")
-	public String clickNews(){
+	public String clickNews() {
 		return "/app/news/newsShow";
 	}
-	
-	
-	/*@RequestMapping(value="/shownew",produces={"application/json;charset=UTF-8"})
-	public @ResponseBody String showNew(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		 Integer currentPage = 0;  
-	     Integer pageSize = 5;
-	     String newsTims = null;
-	     String typeId = null;
-	     Date date ;
-	     if(newsTims != null ){
-	    	 date = sdf.parse(newsTims);
-	     }else{
-	    	 date = null;
-	     }
-	     return null;
-	}*/
 
-	
-	
-	
-	
+	/**
+	 * 信息展示 返回json demo
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/newsShow", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody
+	String showNews(
+			@RequestParam(value = "format", required = false) String format,
+			@RequestParam(value = "typeId", required = false) String typeId,
+			@RequestParam(value = "subject", required = false) String subject,
+			@RequestParam(value = "newsTime", required = false) String newsTime,
+			@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
+			@RequestParam(value="keyword",required=false)String keyword) {
+		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("format", format);
+		maps.put("typeId", typeId);
+		maps.put("subject", subject);
+		maps.put("newsTime", newsTime);
+		maps.put("lastEditTime", lastEditTime);
+		maps.put("keyword", keyword);
+		String returnReslt = null;
+		try {
+			List<News> list = newService.selectNews(maps, 1, 5, true);
+			ToJson<News> tojson = new ToJson<News>(0, "");
+			tojson.setObj(list);
+			returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+					"yyyy-MM-dd HH:mm:ss");
+		} catch (Exception e) {
+			loger.debug("NewsMessage:" + e);
+			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,
+					""), "yyyy-MM-dd HH:mm:ss");
+		}
+
+		return returnReslt;
+	}
+
 }
