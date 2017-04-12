@@ -34,7 +34,7 @@
 	</resultMap>
 	<!-- 查询信息并返回 列表 -->
 	<select id="selectNews" parameterType="Map" resultMap="BaseResultMap">
-		select n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT FROM news n
+		select `SUBJECT`,TYPE_ID,NEWS_TIME,CLICK_COUNT FROM news 
 		<where>
 			<if test="format != null and format != ''">
 				FORMAT = #{format}
@@ -44,13 +44,6 @@
 			</if>
 			<if test="subject != null and subject != ''">
 				AND SUBJECT like CONCAT('%',#{subject},'%')
-			</if>
-			<if test="newsTime != null and newsTime != '' and lastEditTime = null and lastEditTime = ''">
-				AND NEWS_TIME = #{newsTime} or NEWS_TIME > #{newsTime}
-			</if>
-			<if
-				test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''">
-				AND NEWS_TIME between #{newsTime} and #{lastEditTime}
 			</if>
 			<if test="keyword != null and keyword != ''">
 				AND KEYWORD like CONCAT('%',#{keyword},'%')
