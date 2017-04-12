@@ -36,5 +36,5 @@ public interface BaseMapper<T> {
 	 * @param maps 需传入map条件
 	 * @return list集合  查询结果以list集合显示
 	 */
-	public List<T> selectObjcet(Map<String,T> maps);
+	public List<T> selectObjcet(Map<String,Object> maps);
 }

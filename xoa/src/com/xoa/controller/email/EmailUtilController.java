@@ -1,10 +1,18 @@
 package com.xoa.controller.email;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestBindingException;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -116,14 +124,68 @@ public class EmailUtilController {
 	}
 
 	/**
+	 * 邮件查询 fromId 发件人USER_ID sendFlag 是否已发送(0-未发送,1-已发送) deleteFlag 删除标识符
+	 * startTime 开始时间区间 endTime 结束时间区间 readFlag 是否已读 boxId 邮件箱分类ID sign
+	 * 星标标记(0-无,1-灰,2-绿,3-黄,4-红) keyword 内容关键词
+	 */
+	@RequestMapping(value = "/showEmail", produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody
+	String queryEmail(HttpServletRequest request) throws Exception {
+		Integer page = ServletRequestUtils.getIntParameter(request, "page");
+		Integer pageSize = ServletRequestUtils.getIntParameter(request,
+				"pageSize");
+		boolean useFlag = ServletRequestUtils.getBooleanParameter(request,
+				"useFlag");
+		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("fromId",
+				ServletRequestUtils.getStringParameter(request, "fromId"));
+		maps.put("sendFlag",
+				ServletRequestUtils.getStringParameter(request, "sendFlag"));
+		maps.put("deleteFlag",
+				ServletRequestUtils.getStringParameter(request, "deleteFlag"));
+		String startTime = ServletRequestUtils.getStringParameter(request,
+				"startTime");
+		String endTime = ServletRequestUtils.getStringParameter(request,
+				"endTime");
+		if (startTime != null && startTime != "" && endTime != null
+				&& endTime != "") {
+			maps.put("startTime", DateFormat.getTime(startTime));
+			maps.put("endTime", DateFormat.getTime(endTime));
+		}
+		maps.put("readFlag",
+				ServletRequestUtils.getStringParameter(request, "readFlag"));
+		maps.put("boxId", ServletRequestUtils.getIntParameter(request, "boxId"));
+		maps.put("sign",
+				ServletRequestUtils.getStringParameter(request, "sign"));
+		maps.put("keyword",
+				ServletRequestUtils.getStringParameter(request, "keyword"));
+		List<EmailBody> list = emailService.selectEmail(maps, page, pageSize,
+				useFlag);
+		int listLength = list.size();
+		if (listLength > 0) {
+			ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "查询成功");
+			tojson.setObj(list);
+			return JSON.toJSONStringWithDateFormat(tojson,
+					"yyyy-MM-dd HH:mm:ss");
+		} else {
+			ToJson<EmailBody> tojson = new ToJson<EmailBody>(1, "查询失败");
+			return JSON.toJSONStringWithDateFormat(tojson,
+					"yyyy-MM-dd HH:mm:ss");
+		}
+	}
+
+	/**
 	 * 收件箱
+	 * 
 	 * @return 登录窗口
 	 */
-	@RequestMapping("/inbox") //登录窗口
+	@RequestMapping("/inbox")
+	// 登录窗口
 	public String logins() {
 		loger.info("进入登录页面！");
 		return "app/email/inbox";
 	}
+
 	/**
 	 * 根据ID删除一条邮件`
 	 */

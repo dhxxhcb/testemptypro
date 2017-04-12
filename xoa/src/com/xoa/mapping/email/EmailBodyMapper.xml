@@ -175,7 +175,74 @@
 		)
 	</insert>
 
-
+	<!-- 邮件条件查询 -->
+	<select id="selectObjcet" resultMap="BaseResultMap"
+		parameterType="Map">
+		SELECT
+		emb.BODY_ID,
+		emb.FROM_ID,
+		emb.SUBJECT,
+		emb.SEND_TIME,
+		emb.SEND_FLAG,
+		emb.SMS_REMIND,
+		emb.IMPORTANT,
+		emb.SIZE,
+		emb.FROM_WEBMAIL_ID,
+		emb.FROM_WEBMAIL,
+		emb.WEBMAIL_FLAG,
+		emb.RECV_FROM_NAME,
+		emb.RECV_FROM,
+		emb.RECV_TO_ID,
+		emb.RECV_TO,
+		emb.IS_WEBMAIL,
+		emb.IS_WF,
+		emb.KEYWORD,
+		emb.SECRET_LEVEL,
+		emb.AUDIT_MAN,
+		emb.TO_ID2,
+		emb.COPY_TO_ID,
+		emb.SECRET_TO_ID,
+		emb.CONTENT,
+		emb.ATTACHMENT_ID,
+		emb.ATTACHMENT_NAME,
+		emb.TO_WEBMAIL,
+		emb.AUDIT_REMARK,
+		emb.COPY_TO_WEBMAIL,
+		emb.SECRET_TO_WEBMAIL,
+		emb.PRAISE,
+		e.DELETE_FLAG
+		FROM
+		email_body emb LEFT JOIN email e ON
+		emb.BODY_ID = e.BODY_ID
+		<where>
+			<if test="fromId != null">
+				emb.FROM_ID = #{fromId}
+			</if>
+			<if test="sendFlag!=null">
+				AND emb.SEND_FLAG = #{sendFlag}
+			</if>
+			<if test="deleteFlag != null and deleteFlag!=''">
+				AND e.DELETE_FLAG NOT IN (#{deleteFlag}, '')
+			</if>
+			<if
+				test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+				AND emb.SEND_TIME between #{startTime} and #{endTime}
+			</if>
+			<if test="readFlag!=null">
+				AND e.READ_FLAG=#{readFlag}
+			</if>
+			<if test="boxId != null">
+				AND e.BOX_ID=#{boxId}
+			</if>
+			<if test="sign != null">
+				AND e.SIGN=#{sign}
+			</if>
+			<if test="keyword != null">
+				AND emb.KEYWORD LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</if>
+		</where>
+		order by BODY_ID  DESC;
+	</select>
 
 
 
@@ -210,7 +277,8 @@
 		SELECT eb.SUBJECT, u.USER_NAME,eb.SEND_TIME FROM
 		email_body as eb
 		LEFT JOIN email as e on e.BODY_ID =eb.BOD Y_ID
-		LEFT JOIN
+		LEFT
+		JOIN
 		user as u on u. USER_ID=eb.FROM_ID
 		where eb.SEND_FLAG = '0' AND
 		e.DELETE_FLAG = '0' AND e.READ_FLAG='1' GROUP BY eb.BODY_ID ORDER BY
@@ -239,7 +307,7 @@
 		delete from
 		email_body where BODY_ID = #{bodyId,javaType=INTEGER}
 	</delete>
-	
+
 	<update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBody">
 		update email_body
 		<set>
@@ -345,6 +413,6 @@
 		</set>
 		where BODY_ID = #{bodyId,javaType=INTEGER}
 	</update>
-	
+
 
 </mapper>

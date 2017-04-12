@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.email.EmailBodyMapper;
@@ -20,6 +21,7 @@ import com.xoa.util.page.PageParams;
  */
 @Service
 public class EmailUtilServiceImpl implements EmailUtilService{
+	private Logger logger = Logger.getLogger(EmailUtilServiceImpl.class);
 
 	@Resource
 	private EmailBodyMapper emailBodyMapper;
@@ -57,6 +59,43 @@ public class EmailUtilServiceImpl implements EmailUtilService{
 			
 		}
 	}
+	
+	
+	/**
+	 * 邮件查询
+	 * @param maps 相关条件参数传值
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
+	 * @return 结果集合
+	 * @throws Exception
+	 */
+	@Override
+	public List<EmailBody> selectEmail(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag) throws Exception{
+		logger.info("查询邮件!");
+		PageParams pageParams = new PageParams();  
+        pageParams.setPage(page);  
+        pageParams.setPageSize(pageSize);  
+        pageParams.setUseFlag(useFlag);  
+        maps.put("page", pageParams);  
+        logger.info("邮件查询emailService赋值！");
+        return emailBodyMapper.selectObjcet(maps);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	  /**
 	   *根据ID删除一条
@@ -169,6 +208,5 @@ public class EmailUtilServiceImpl implements EmailUtilService{
          List<EmailBody> list = emailBodyMapper.selectInbox(maps);
 		return list;
 	}
-
 
 }

@@ -19,6 +19,30 @@ public interface EmailUtilService {
 	 */
 	@DynDatasource
 	public void sendEmail(EmailBody emailBody, Email email);
+	
+	
+	/**
+	 * 邮件查询
+	 * @param maps 相关条件参数传值
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
+	 * @return 结果集合
+	 * @throws Exception
+	 */
+	@DynDatasource
+	public List<EmailBody> selectEmail(Map<String,Object> maps,Integer page,Integer pageSize,boolean useFlag) throws Exception;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * 根据ID删除一条
