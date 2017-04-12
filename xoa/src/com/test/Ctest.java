@@ -38,7 +38,8 @@ public class Ctest {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("fromId","zhanglan");
 		maps.put("sendFlag","1");
-		maps.put("deleteFlag","");
+		maps.put("firstFlag","");
+		maps.put("secondFlag","");
 //			maps.put("startTime", DateFormat.getTime("2015-10-10 10:10:10"));
 //			maps.put("endTime", DateFormat.getTime("2017-04-12 10:10:10"));
 //		maps.put("readFlag","");

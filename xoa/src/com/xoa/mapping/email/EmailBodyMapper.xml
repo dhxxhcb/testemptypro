@@ -222,7 +222,7 @@
 				AND emb.SEND_FLAG = #{sendFlag}
 			</if>
 			<if test="firstFlag != null and firstFlag != '' and secondFlag!=null">
-				AND e.DELETE_FLAG NOT IN (#{firstFlag}, ${secondFlag})
+				AND e.DELETE_FLAG NOT IN (#{firstFlag},#{secondFlag})
 			</if>
 			<if
 				test="startTime != null and startTime != '' and endTime != null and endTime != ''">
