@@ -39,6 +39,7 @@ public class NotifyServiceImpl implements  NotifyService{
 		return list;
 	}
 
+	
 	@Override
 	@Transactional
 	public void addNotify(Notify notify) {

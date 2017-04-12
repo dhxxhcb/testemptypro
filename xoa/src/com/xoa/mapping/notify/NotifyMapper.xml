@@ -25,7 +25,6 @@
 			javaType="String" />
 		<result column="KEYWORD" property="keyword" javaType="String" />
 		<result column="IS_FW" property="isFw" javaType="String" />
-
 		<result column="TO_ID" property="toId" javaType="String" />
 		<result column="CONTENT" property="content" javaType="String" />
 		<result column="ATTACHMENT_ID" property="attachmentId"
@@ -36,43 +35,36 @@
 		<result column="PRIV_ID" property="privId" javaType="String" />
 		<result column="USER_ID" property="userId" javaType="String" />
 		<result column="REASON" property="reason" javaType="String" />
-
 		<result column="COMPRESS_CONTENT" property="compressContent"
 			javaType="String" />
 		<result column="SUMMARY" property="summary" javaType="String" />
-
+		
 <association javaType="com.xoa.model.users.Users" property="users">
-
 <id javaType="int" property="uid" column="UID"/>
-
-<result javaType="string" property="userId" column="USER_ID"/>
-
+<result javaType="string" property="userId" column="USER_ID"/
 <result javaType="string" property="userName" column="USER_NAME"/>
-
 </association>
 	</resultMap>
 
-	<!-- 条件查询 -->
-
-
-
+<!-- 条件查询 -->
 <select id="selectNotify" resultMap="BaseResultMap" parameterType="Map">
  SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.CONTENT,n.FORMAT,u.USER_NAME from notify n,`user` u WHERE n.USER_ID=u.UID 
-
 <where>
+<if test="typeId != null and typeId != ''"> TYPE_ID = #{typeId} </if>
 
-<if test="typeId != null and typeId != ''"> and TYPE_ID = #{typeId} </if>
+<if test="sendTime != null and sendTime != '' and lastEditTime =null and lastEditTime  =''">
+ and SEND_TIME = #{sendTime} or SEND_TIME > #{sendTime} </if>
 
-<if test="sendTime != null and sendTime != ''"> and SEND_TIME = #{sendTime} </if>
+<if test="sendTime != null and sendTime != '' and lastEditTime !=null and lastEditTime  !=''">
+ and SEND_TIME between #{sendTime} and #{sendTime} </if>
 
-<if test="subject != null and subject != ''"> and SUBJECT = #{subject} </if>
+<if test="subject != null and subject != ''"> and SUBJECT LIKE CONCAT ('%',#{SUBJECT},'%')</if>
 
-<if test="content != null and content != ''"> and CONTENT = #{content} </if>
+<if test="content != null and content != ''"> and CONTENT LIKE CONCAT ('%',#{SUBJECT},'%') </if>
 
 <if test="format != null and format != ''"> and FORMAT = #{format} </if>
-
 </where>
- order by FROM_DEPT desc 
+ order by NOTIFY_ID desc 
 </select>
 
 	<!-- 根据ID查 -->
@@ -84,32 +76,15 @@
 
 	<!-- 增加 -->
 	<insert id="addNotify" parameterType="com.xoa.model.notify.Notify">
-		insert into notify (FROM_DEPT,FROM_ID,TO_ID,
-		SUBJECT,
-		CONTENT,
-		SEND_TIME,
-		BEGIN_DATE,
-		END_DATE,
-		ATTACHMENT_ID,
-		ATTACHMENT_NAME,
-		READERS,
-		PRINT,
-		PRIV_ID,
-		USER_ID,
-		TYPE_ID,
-		TOP,
-		TOP_DAYS,
-		FORMAT,
-		PUBLISH,
-		AUDITER,
-		REASON,AUDIT_DATE,COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME,SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW)
+		insert into notify (FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT,SEND_TIME,BEGIN_DATE,END_DATE,ATTACHMENT_ID,
+		ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,AUDIT_DATE,
+		COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME,SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW)
 		values
 		(#{fromDept,jdbcType=INTEGER},#{fromId,jdbcType=VARCHAR},
 		#{toId,jdbcType=LONGVARCHAR},
 		#{subject,jdbcType=VARCHAR},
 		#{content,jdbcType=LONGVARCHAR},
 		#{sendTime,jdbcType=DATE},
-		<!-- 修改字符的类型 -->
 		#{beginDate,jdbcType=INTEGER},#{endDate,jdbcType=INTEGER},
 		#{attachmentId,jdbcType=LONGVARCHAR},#{attachmentName,jdbcType=LONGVARCHAR},
 		#{readers,jdbcType=LONGVARCHAR},#{print,jdbcType=CHAR},
