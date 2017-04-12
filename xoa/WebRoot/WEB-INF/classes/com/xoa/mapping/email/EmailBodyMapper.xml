@@ -217,10 +217,13 @@
 		e.RECEIPT,
 		e.IS_F,
 		e.IS_R,
-		e.SIGN
+		e.SIGN,
+		u.USER_NAME
 		FROM
 		email_body emb LEFT JOIN email e ON
 		emb.BODY_ID = e.BODY_ID
+		LEFT JOIN user u on
+		u.USER_ID=emb.FROM_ID
 		<where>
 			<if test="fromId != null">
 				emb.FROM_ID = #{fromId}
@@ -248,7 +251,9 @@
 				AND emb.KEYWORD LIKE CONCAT(CONCAT('%',#{keyword}),'%')
 			</if>
 		</where>
-		order by BODY_ID  DESC
+		GROUP BY emb.BODY_ID ORDER BY
+		emb.BODY_ID DESC
+		<!-- order by BODY_ID  DESC -->
 	</select>
 
 
