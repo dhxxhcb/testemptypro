@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="css/vintage_css/index.css"/>
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>  
 		<script type="text/javascript" src="js/index.js"></script>  
-		
+		<script src="js/jQuery.js"></script>
 	</head>
 	<body>
 		<div class="wrap">
@@ -45,79 +45,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li>组织</li>
 							</ul>
 						</div>
-						<div class="tab_c">
-							<ul class="tab_cone" >
-								<!-- <li class="one">
-									<ul>
-										<li class="two">
-											<ul>
-												<li class="three"></li>
-											</ul>
-										</li>
-									</ul>
-								</li> -->
+						<div class="tab_c list">
 							
-							<!-- <div class="person">
-									<img class="person_logo" src="img/main_img/ren.png">
-									<h1>个人事务</h1>
-									<img src="img/main_img/down.png" class="person_down">
-								</div>
-								<div class="person">
-									<img class="person_logo" src="img/main_img/work.png">
-									<h1>工作流</h1>
-									<img style="margin-left:41%;margin-top: 10%;" src="img/main_img/down.png">
-								</div>
-								<div class="person">
-									<img class="person_logo" src="img/main_img/zhishi.png">
-									<h1>知识管理</h1>
-									<img style="" src="img/main_img/down.png" class="person_down">
-								</div>
-								<div class="person">
-									<img class="person_logo" src="img/main_img/renli.png">
-									<h1>人力资源</h1>
-									<img src="img/main_img/down.png" class="person_down">
-								</div>
-								<div class="person " id="administ">
-									<img class="person_logo" src="img/main_img/xingzheng.png">
-									<h1>行政办公</h1>
-									<img src="img/down.png" class="person_down">	
-								</div>
-								
-								
-								<div class="sanji" style="height:106px;display:none;">
-									<div class="person">
-										<img class="person_logo" src="img/xingzheng.png">
-										<h1 style="margin-left:40%;">办公用品申请</h1>
-										<img src="img/down.png" class="person_down">	
-									</div>
-									<div class="person">
-										<img class="person_logo" src="img/xingzheng.png">
-										<h1 style="margin-left:40%;">办公用品审批</h1>
-											
-									</div>
-								</div>
-								
-								<div class="person">
-									<img class="person_logo" src="img/xiangmu.png">
-									<h1>系统管理</h1>
-									<img src="img/down.png" class="person_down">
-								</div> -->
-								<!-- <div class="erji" style="height:106px;">
-									<div class="person">
-										<img class="person_logo" src="img/xingzheng.png">
-										<h1 style="margin-left:30%;">工作计划</h1>
-										<img src="img/down.png" class="person_down">	
-									</div>
-									<div class="person" id="office">
-										<img class="person_logo" src="img/xingzheng.png">
-										<h1 style="margin-left:30%;">办公用品</h1>
-										<img src="img/down.png" style="margin-left:32%;margin-top: 10%;" class="office_img">	
-									</div>
-								</div> -->
+							<ul class="tab_cone a yiji" >
+							
 							</ul>
-							<ul class="tab_ctwo" style="display:none;">
+							<ul class="tab_ctwo a" style="display:none;">
 								
-								<div class="person">
+								<!-- <div class="person">
 									<img class="person_logo" src="img/main_img/zhishi.png">
 									<h1>知识管理</h1>
 									<img style="" src="img/main_img/down.png" class="person_down">
@@ -136,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<img class="person_logo" src="img/main_img/xiangmu.png">
 									<h1>项目管理</h1>
 									<img src="img/main_img/down.png" class="person_down">
-								</div>
+								</div> -->
 							</ul>
 							
 						</div>
@@ -236,6 +171,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="foot">
 				<a href="download.html" target="_blank"><h1>点击下载PC客户端</h1></a>
+				<div class="lunbo">
+					 <ul>
+						 <li style="    margin-left: 34%; margin-top: -2%;font-size: 14px;color: #fff;">心通达OA软件领跑者</li>
+						 <li>我寄愁心与明月，随风直到夜郎西</li>
+						 <li>不是花中偏爱菊，此花开尽更无花</li>
+						 <li>辛苦遭逢起一经，干戈寥落四周星</li>
+					 </ul>
+				 </div>
+				
 				<a href="xitong.html" target="_blank"><h2>心通达 &nbsp 年付版本</h2></a>
 			</div>
 		</div>
@@ -249,31 +193,67 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					dataType:'json',
 					success:function(obj){
 							var data= obj.obj;
-							
-								var li="";
 								var str=''; 
-
+							console.log(data);
 							 for(var i=0;i<data.length;i++){
 
 								var er='';
+								console.log(data[i].child.child);
 								 for(var j=0;j<data[i].child.length;j++){
 								 
-							console.log(data[i].child[j].child); 
+							
 								var three='';
-								 	for(var k=0;k<data[i].child[j].child.length;k++){
-								 		three +='<li class="three">'+data[i].child[j].child[k].name+'</li>' ;
-								 		
+								if(data[i].child[j].child.length>0){
+									er += '<li class="two"><div class="two_all" style="width: 72%;"><h1>'+data[i].child[j].name+'</h1><img src="img/main_img/down.png"></div></li>';
+									for(var k=0;k<data[i].child[j].child.length;k++){						
+								 		 three +='<li class="three">'+data[i].child[j].child[k].name+'</li>' ; 	
 								 	}
-									er += '<li class="two">'+data[i].child[j].name+'</li>';
+								}else{
+									er += '<li class="two"><div class="two_all" style="width: 72%;"><h1>'+data[i].child[j].name+'</h1></div></li>';
+								} 
+									
 								} 
 
-								str+='<li class="one person"><img class="one_logo" src="'+data[i].img+'"><h1 class="one_name" id="administ">'+data[i].name+'</h1><div style="border-bottom: 2px solid #e3e3e5;"><img src="img/main_img/down.png" style="    margin-top: 10%;"></div><ul  style="margin-left:20%;width:100%;display:none;"><li class="two">'+er+'<ul style="margin-left:25%;display:none;"><li class="three">'+three+'</li></ul></li></ul></li>';
+								 str+='<li class="one person" id="administ"><div class="one_all" style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;"><img class="one_logo" src="'+data[i].img+'"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="one_down_img" src="img/main_img/down.png" style="margin-top: 10%;"></div><ul class="erji b"  style="margin-left:20%;width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div><ul class="sanji" style="margin-left:25%;display:none;"><li class="three">'+three+'</li></ul></li></ul></li>'; 
+								
 							}  
 							
 						console.log(three);
-						$(".tab_cone").html(str); 
+						$(".tab_cone").html(str);
+						//二级
+						$('.one_all').on('click',function () {
+							/* alert('aaa'); */
+							if ($(this).siblings('.erji').css('display')=='none') {
+								$(this).find('.one_down_img').attr('src','img/main_img/up.png');
+								$(this).siblings('.erji').show();	
+								
+							}else{
+								$(this).find('.one_down_img').attr('src','img/main_img/down.png');
+								$(this).siblings('.erji').hide();
+							}
+										
+						});
+						
+							//三级
+						$('.two_all').on('click',function () {
+				
+							if ($(this).parent().siblings('.sanji').css('display')=='none') {
+								$(this).find('.one_down_img').attr('src','img/main_img/up.png');
+								$(this).parent().siblings('.sanji').show();	
+								
+							}else{
+								$(this).find('.one_down_img').attr('src','img/main_img/down.png');
+								$(this).parent().siblings('.sanji').hide();
+							}
+										
+						});
+						 
 					}			
 				});
+				
+				var contents=$(".tab_c").find("ul");
+				console.log(contents);
 		})
 	</script>
+	
 </html>
