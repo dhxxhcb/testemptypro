@@ -116,6 +116,15 @@ public class EmailUtilController {
 	}
 
 	/**
+	 * 收件箱
+	 * @return 登录窗口
+	 */
+	@RequestMapping("/inbox") //登录窗口
+	public String logins() {
+		loger.info("进入登录页面！");
+		return "app/email/inbox";
+	}
+	/**
 	 * 根据ID删除一条邮件`
 	 */
 	/*
