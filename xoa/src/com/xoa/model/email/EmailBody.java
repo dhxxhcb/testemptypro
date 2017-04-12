@@ -22,6 +22,17 @@ public class EmailBody implements Serializable {
 	 * 时间段区间查询传入的结束时间
 	 */
 	private Integer endTime;
+	
+	/**
+	 * 第一个参数
+	 */
+	private String firstFlag;
+	
+	/**
+	 * 第二个参数
+	 */
+	private String secondFlag;
+	
 	/**
 	 * 一对多（一个用户对应多个邮件）
 	 */
@@ -717,5 +728,38 @@ public class EmailBody implements Serializable {
 	 */
 	public void setAuditMan(String auditMan) {
 		this.auditMan = auditMan == null ? null : auditMan.trim();
+	}
+	
+	
+	/**
+	 * 第一个参数
+	 * @return
+	 */
+	public String getFirstFlag() {
+		return firstFlag;
+	}
+
+	/**
+	 * 第一个参数
+	 * @param firstFlag
+	 */
+	public void setFirstFlag(String firstFlag) {
+		this.firstFlag = firstFlag;
+	}
+
+	/**
+	 * 第二个参数
+	 * @return
+	 */
+	public String getSecondFlag() {
+		return secondFlag;
+	}
+
+	/**
+	 * 第二个参数
+	 * @param secondFlag
+	 */
+	public void setSecondFlag(String secondFlag) {
+		this.secondFlag = secondFlag;
 	}
 }

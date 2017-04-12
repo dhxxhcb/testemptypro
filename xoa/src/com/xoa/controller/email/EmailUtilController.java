@@ -141,8 +141,10 @@ public class EmailUtilController {
 				ServletRequestUtils.getStringParameter(request, "fromId"));
 		maps.put("sendFlag",
 				ServletRequestUtils.getStringParameter(request, "sendFlag"));
-		maps.put("deleteFlag",
-				ServletRequestUtils.getStringParameter(request, "deleteFlag"));
+		maps.put("firstFlag",
+				ServletRequestUtils.getStringParameter(request, "firstFlag"));
+		maps.put("secondFlag",
+				ServletRequestUtils.getStringParameter(request, "secondFlag"));
 		String startTime = ServletRequestUtils.getStringParameter(request,
 				"startTime");
 		String endTime = ServletRequestUtils.getStringParameter(request,
