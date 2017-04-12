@@ -1,5 +1,6 @@
 package com.xoa.service.notify.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xoa.dao.notify.NotifyMapper;
 import com.xoa.model.notify.Notify;
+import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.ToJson;
@@ -29,6 +31,10 @@ public class NotifyServiceImpl implements  NotifyService{
         pageParams.setCheckFlag(true);
         maps.put("page", pageParams);  
         List<Notify> list = notifyMapper.selectNotify(maps);
+            for (Notify notify1 : list) {
+           notify1.setName(notify1.getUsers().getUserName());
+           notify1.setUsers(null);
+        }
         System.out.println("公告查询条数："+list.size());
 		return list;
 	}

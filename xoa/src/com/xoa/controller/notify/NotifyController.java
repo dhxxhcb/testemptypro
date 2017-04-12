@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.xoa.model.email.Email;
+import com.xoa.model.email.EmailBody;
 import com.xoa.model.notify.Notify;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.notify.NotifyService;
@@ -42,10 +44,13 @@ public class NotifyController {
 	 */
 	@RequestMapping(value = "/notifyList",method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	 public @ResponseBody
-	 String notifyList(@RequestParam(value="typeId",required=false)String typeId,@RequestParam(value="sendTime",required=false)String sendTime) {
+	 String notifyList(String typeId,String sendTime,String subject,String content,String format) {
 	  Map<String, Object> maps = new HashMap<String, Object>();
 	  maps.put("typeId", typeId);
 	  maps.put("sendTime", sendTime);
+	  maps.put("subject", subject);
+	  maps.put("content", content);
+	  maps.put("format", format);
 	   String returnReslt= null;
 	  try {
 	   List<Notify> list=notifyService.selectNotify(maps, 1, 5, true);
@@ -59,29 +64,7 @@ public class NotifyController {
 	  return returnReslt;
 	 }
 
-	// @RequestMapping(value = "/notifyList")
-	// public String notifyList(HttpServletRequest request) {
-	// loger.info("进入列表页面！");
-	// try {
-	// Notify notify = new Notify();
-	// // notify.setTypeId(request.getParameter("type_id"));
-	// notify.setTypeId("sss");
-	// if(null!=request.getParameter("date1")&&!"".equals(request.getParameter("date1"))){
-	// notify.setSendTime(new
-	// SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("date1")+" 00:00:00"));
-	// }else{
-	// notify.setSendTime(null);
-	// }
-	// List<Notify> n= notifyService.showNotify(notify);
-	// request.setAttribute("list", n);
-	// request.setAttribute("type_id",request.getParameter("type_id"));
-	// request.setAttribute("date1", request.getParameter("date1"));
-	// } catch (ParseException e) {
-	// e.printStackTrace();
-	// }
-	// return "app/notify/notifyList";
-	// }
-
+	
 	/**
 	 * 增加/修改
 	 * 
@@ -106,60 +89,38 @@ public class NotifyController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/addNotify")
+	@RequestMapping(value = "/addNotify", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	void addNotify(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
-		System.out.println("获取的id：" + id);
-
-		boolean flag = !"".equals(id);
-		System.out.println("获取结果：" + flag);
-		Notify n = new Notify();
-		n.setNotifyId(flag ? Integer.valueOf(id) : -1);
-		n.setSubject(request.getParameter("subject"));
-		n.setAuditDate(new Date());
-		n.setAuditer("ss");
-		n.setBeginDate(1);
-		n.setDownload("1");
-		n.setEndDate(22);
-		n.setFormat("sss");
-		n.setFromDept(1);
-		n.setFromId("55");
-		n.setIsFw("1");
-		n.setKeyword("2");
-		n.setLastEditor("2");
-		n.setLastEditTime(new Date());
-		n.setPrint("1");
-		n.setPublish("1");
-		n.setSendTime(new Date());
-		n.setSubjectColor("ssd");
-		n.setTop("1");
-		n.setTopDays(1);
-		n.setTypeId("11");
-		n.setAttachmentId("1");
-		n.setAttachmentName("ssss");
-		n.setUserId("1");
-		n.setToId("1");
-		n.setSummary("ss");
-		n.setReason("asad");
-		n.setContent("adasdas");
-		n.setReaders("ASDASD");
-		n.setPrivId("11");
-		byte[] b = {};
-		n.setCompressContent(b);
-
-		PrintWriter out = null;
+	String addNotify(@RequestParam(value="fromId",required=false)String fromId,
+			@RequestParam(value="typeId",required=false)String typeId,
+			@RequestParam(value="subjec",required=false)String subjec,
+			@RequestParam(value="content",required=false)String content,
+			@RequestParam(value="format",required=false)String format
+			
+		
+			
+			){
+		
+		Notify notify=new Notify();
+		notify.setFromId(fromId);
+		notify.setTypeId(typeId);
+		notify.setSubject(subjec);
+		notify.setContent(content);
+		notify.setFormat(format);
+		
+	
+		
+		
 		try {
-			out = response.getWriter();
-			notifyService.addNotify(n);
-			out.print("1");
-		} catch (IOException e) {
-			e.printStackTrace();
+			notifyService.addNotify(notify);
+			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(0, ""), "yyyy-MM-dd HH:mm:ss");
+		} catch (Exception e) {
+			loger.debug("sendMail:"+e);
+			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1, ""), "yyyy-MM-dd HH:mm:ss");
 		}
-		out.close();
-
+		
 	}
-
+	
 	/**
 	 * 删除
 	 * 

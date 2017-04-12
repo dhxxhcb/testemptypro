@@ -1,6 +1,9 @@
 package com.xoa.model.notify;
 
 import java.util.Date;
+import java.util.List;
+
+import com.xoa.model.users.Users;
 
 public class Notify {
 	/**
@@ -127,10 +130,39 @@ public class Notify {
 	 * 内容简介 
 	 */
     private String summary;
+    
+    private Users users;
+    private String name;
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private Notify no;
+	private List<Notify> noL;
 
     
     
-    public String getToId() {
+    public Notify getNo() {
+		return no;
+	}
+
+	public void setNo(Notify no) {
+		this.no = no;
+	}
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public String getToId() {
         return toId;
     }
 

@@ -143,6 +143,10 @@
 		select BYNAME FROM user
 		WHERE UID= #{uid}
 	</select>
+	<select id="getUsernameByUserId" resultType="java.lang.String">
+		select USER_NAME FROM user
+		WHERE UID= #{uid}
+	</select>
 	<select id="getDatagrid" resultMap="UserResultMap">
 		select * from user
 	</select>
