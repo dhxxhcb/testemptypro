@@ -241,7 +241,7 @@
 				AND emb.KEYWORD LIKE CONCAT(CONCAT('%',#{keyword}),'%')
 			</if>
 		</where>
-		order by BODY_ID  DESC;
+		order by BODY_ID  DESC
 	</select>
 
 
