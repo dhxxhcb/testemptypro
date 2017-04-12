@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<FRAMESET border=0 frameSpacing=0 rows=82,* frameBorder=0 id="main_parent">
+<FRAMESET border=1 frameSpacing=1 rows=82,* frameBorder=0 id="main_parent">
 <FRAME name=topFrame src="" noResize scrolling=no>
 <FRAMESET id="main" border="0" frameSpacing="0" frameBorder="0" cols="153,1%,*">
 <FRAME name="leftFrame" src="${pageContext.request.contextPath}/fileIndex" noResize>
