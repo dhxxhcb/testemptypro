@@ -17,5 +17,9 @@ public interface File_SortMapper {
 
 	void fileDeleteBySort_id(Map<String, Object> fileParent);
 
-	List<File_Sort> getSortChrildren(Map<String, Object> fileParent);
+	List<File_Sort> getSortChrildren(int tempNo);
+
+	List<File_Sort> getRootTree(String sortid);
+
+	List<File_Sort> getChildTree(String sortid);
 }

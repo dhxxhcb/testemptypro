@@ -3,6 +3,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * 树形结构类
+ * @author 杨  胜
+ *
+ */
 public class TreeNode {
 	private String id;
 	
@@ -97,6 +103,4 @@ public class TreeNode {
 	public void setAttributes(Map<String, Object> attributes) {
 		this.attributes = attributes;
 	}
-
-	
 }

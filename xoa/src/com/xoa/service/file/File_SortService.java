@@ -26,5 +26,9 @@ public interface File_SortService {
 	@DynDatasource
 	int fileDeleteBySort_id(Map<String, Object> fileParent);
 	@DynDatasource
-	List<File_Sort> getSortChrildren(Map<String, Object> fileParent);
+	List<File_Sort> getSortChrildren(int tempNo);
+	@DynDatasource
+	List<File_Sort> getRootTree(String sortid);
+	@DynDatasource
+	List<File_Sort> getChildTree(String sortid);
 }

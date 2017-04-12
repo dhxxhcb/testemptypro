@@ -17,22 +17,25 @@
 <script type="text/javascript" src="/ui/easyui/jquery.min.js"></script>
 <script type="text/javascript" src="/ui/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="/ui/easyui/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="/ui/easyui/tree.js"></script>
+<!-- <script type="text/javascript" src="/ui/easyui/tree.js"></script> -->
 <script type="text/javascript">
-$('#tree').tree({    
-    url: '/showFile',    
-    loadFilter: function(data){    
-        if (data.d){    
-            return data.d;    
-        } else {    
-            return data;    
-        }    
-    }    
+
+$(document).ready(function(){
+alert("进来了"); 
+$('#tree').tree({   
+    url: '${pageContext.request.contextPath }/showFile', 
+       
 });  
+
+}); 
+
 </script>
 </head>
 <body>
- <ul id="tree" class="easyui-tree">   
+ <ul id="tree" class="easyui-tree" style="width: 180px;">   
+ </ul>
+ <br>
+ <ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath }/showFile'">
  </ul>
 </body>
 </html>

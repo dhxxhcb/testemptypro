@@ -18,6 +18,9 @@
 		<result column="LOGS" property="logs" jdbcType="VARCHAR" />
 		<result column="KEYWORD" property="keyword" jdbcType="VARCHAR" />
 		</resultMap>
+		<select id="getFileConBySortid" parameterType="int" resultMap="file_ContentResultMap">
+		select * from file_content where SORT_ID=#{tempNo};
+		</select>
 		<delete id="fileContentDeleBySort_id" parameterType="int">
 		delete from  file_content where SORT_ID=#{tempNo};
 		</delete>

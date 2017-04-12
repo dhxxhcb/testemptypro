@@ -54,8 +54,16 @@ public class File_SortImpl  implements File_SortService{
 	}
 	
 	@Override
-	public List<File_Sort> getSortChrildren(Map<String, Object> fileParent) {
-		return file_SortMapper.getSortChrildren(fileParent);
+	public List<File_Sort> getSortChrildren(int tempNo) {
+		return file_SortMapper.getSortChrildren(tempNo);
+	}
+	@Override
+	public List<File_Sort> getRootTree(String sortid) {
+		return file_SortMapper.getRootTree(sortid);
+	}
+	@Override
+	public List<File_Sort> getChildTree(String sortid) {
+		return file_SortMapper.getChildTree(sortid);
 	}
 	
 }

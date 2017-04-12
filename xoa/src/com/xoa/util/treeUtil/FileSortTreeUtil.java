@@ -9,70 +9,30 @@ import com.xoa.model.file.File_Sort;
 public class FileSortTreeUtil {
 	private final static String MENU_ID = "";
 	
-	private final static String BTN_ID = "btn_";
 	
 	
-	List<File_Sort> rootMenus;
-	List<File_Sort> childMenus;
+	List<File_Sort> rootTree;
+	List<File_Sort> childTree;
 	
-	public FileSortTreeUtil(List<File_Sort> rootMenus,List<File_Sort> childMenus){
-		this.rootMenus = rootMenus;
-		this.childMenus = childMenus;
+	public FileSortTreeUtil(List<File_Sort> rootTree,List<File_Sort> childTree){
+		this.rootTree = rootTree;
+		this.childTree = childTree;
 	}  
 	
-	public FileSortTreeUtil(List<File_Sort> rootMenus,List<File_Sort> childMenus,List<File_Sort> childBtns){
-		this.rootMenus = rootMenus;
-		this.childMenus = childMenus;
-		
-	}  
 	
 	public List<TreeNode> getTreeNode(){
 		return getRootNodes();
 	}
 	
-	/**
-	 * 
-	 * @param menu
-	 * @return
-	 */
-	private TreeNode MenuToNode(File_Sort menu){
-		if(menu == null){
-			return null;
-		}
-		TreeNode node = new TreeNode();
-		node.setId(MENU_ID+menu.getSort_id());
-		node.setDataId(String.valueOf(menu.getSort_id()));
-		node.setText(menu.getSort_name());
-		node.setParentId(String.valueOf(menu.getSort_parent()));
-		node.getAttributes().put("type", "0");
-		node.getAttributes().put("id", menu.getSort_id());
-		return node;
-	}
 	
-	
-	/**
-	 * 
-	 * @param menu
-	 * @return
-	 
-	private TreeNode BtnToNode(AdminWidgetrule btn){
-		if(btn == null){
-			return null;
-		}
-		TreeNode node = new TreeNode();
-		node.setId(BTN_ID+btn.getRule_id());
-		node.setDataId(btn.getRule_id()+"");
-		node.setText(btn.getRule_name());
-		node.setParentId(btn.getRes_id()+"");
-		node.getAttributes().put("type", "1");
-		node.getAttributes().put("id", btn.getRule_id());
-		return node;
-	}
-*/
-	private List<TreeNode> getRootNodes(){
+     /**
+      * @author 杨  胜
+      * @return  List<TreeNode>
+      */
+	private List<TreeNode>  getRootNodes(){
 		List<TreeNode> rootNodes = new ArrayList<TreeNode>();
-		for(File_Sort menu : rootMenus){
-			TreeNode node = MenuToNode(menu);
+		for(File_Sort fs : rootTree){
+			TreeNode node = RootToNode(fs);
 			if(node != null){
 				addChlidNodes(node);
 				rootNodes.add(node);
@@ -82,62 +42,39 @@ public class FileSortTreeUtil {
 	}
 	
 	/**
-	 * 两层菜单
+	 * @author 杨  胜
 	 * @param menu
 	 * @return
-	 
-	private void addChlidNodes(TreeNode rootNode){
-		List<TreeNode> childNodes = new ArrayList<TreeNode>();  
-		for(AppOrganization menu : childMenus){
-			if(rootNode.getDataId().equals(menu.getPorgna_id())){
-				TreeNode node = MenuToNode(menu);
-				//if(childBtns != null && !childBtns.isEmpty()){
-				//	addChlidBtn(node);
-				//}
-				childNodes.add(node);
-			}
+	 */
+	private TreeNode RootToNode(File_Sort fs){
+		if(fs == null){
+			return null;
 		}
-		rootNode.setChildren(childNodes);
+		TreeNode node = new TreeNode();
+		node.setId(String.valueOf(fs.getSort_id()));
+		node.setDataId(String.valueOf(fs.getSort_id()));
+		node.setText(fs.getSort_name());
+		node.setParentId(String.valueOf(fs.getSort_parent()));
+		node.getAttributes().put("type", "0");
+		node.getAttributes().put("id", fs.getSort_id());
+		return node;
 	}
-	*/
+	
 	/**
-	 * 多层菜单
-	 * @param menu
+	 * @author 杨  胜       递归生成多层菜单
+	 * @param rootNode
 	 * @return
 	 */
 	private void addChlidNodes(TreeNode rootNode){
 		List<TreeNode> childNodes = new ArrayList<TreeNode>();  
 		boolean flag=false;
-		for(File_Sort menu : childMenus){
-			if(rootNode.getDataId().equals(menu.getSort_parent())){
-				TreeNode node = MenuToNode(menu);
-				//if(childBtns != null && !childBtns.isEmpty()){
-				//	addChlidBtn(node);
-				//}
+		for(File_Sort fs: childTree){
+			if(rootNode.getDataId().equals(fs.getSort_parent())){
+				TreeNode node = RootToNode(fs);
 				childNodes.add(node);
 				addChlidNodes(node);//如果本层找到子节点，则继续遍历下一子节点
 			}
 		}
-		
 		rootNode.setChildren(childNodes);
 	}
-	
-	/**
-	 * 设置菜单button
-	 * @param menu
-	 * @return
-	 
-	private void addChlidBtn(TreeNode treeNode){
-		List<TreeNode> childNodes = new ArrayList<TreeNode>(); 
-		for(AdminWidgetrule btn : childBtns){
-			if(treeNode.getDataId().equals(btn.getRes_id())){
-				TreeNode node = BtnToNode(btn);
-				childNodes.add(node);
-			}
-		}
-		treeNode.setChildren(childNodes);
-	}
-	*/
-	
-	
 }

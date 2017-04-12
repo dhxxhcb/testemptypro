@@ -36,8 +36,8 @@
         </if>;
 	</select>
 	<!-- ajax  -->
-	<select id="getSortChrildren" parameterType="map" resultMap="file_SortResultMap">
-	select * from file_sort where  SORT_PARENT=#{fileParent};
+	<select id="getSortChrildren" parameterType="int" resultMap="file_SortResultMap">
+	select * from file_sort where  SORT_PARENT=#{tempNo};
 	</select>
 	
 	<insert id="addFile_Sorts"  parameterType="com.xoa.model.file.File_Sort">
@@ -123,6 +123,7 @@
       </if>
     </trim>
 	</insert>
+	
 	<update id="updateFile_Sorts" parameterType="com.xoa.model.file.File_Sort">
 	update file_sort 
     <set>
@@ -141,4 +142,14 @@
 	<delete id="fileDeleteBySort_id" parameterType="com.xoa.model.file.File_Sort">
 	delete from file_sort where SORT_ID=#{sortid};
 	</delete>
+	
+	<select id="getRootTree" parameterType="int" resultMap="file_SortResultMap">
+	select * from file_sort SORT_PARENT=#{sortid};
+	</select>
+	
+	<select id="getChildTree" parameterType="int" resultMap="file_SortResultMap">
+	<![CDATA[
+		select * from file_sort SORT_PARENT<>#{sortid};
+		]]>
+	</select>
 </mapper>
