@@ -45,7 +45,7 @@ public class IndexController {
 	 */
 	@RequestMapping("/main")
 	// 登录窗口
-	public String loginSuccess() {
+	public String loginSuccess1() {
 		loger.info("成功登录！");
 		return "app/main/index";
 	}
