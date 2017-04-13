@@ -37,6 +37,8 @@
 	<mvc:resources location="/ui/img/" mapping="/img/**" />
 	<mvc:resources location="/ui/fonts/" mapping="/fonts/**" />
 	<mvc:resources location="/ui/flash/" mapping="/flash/**" />
+	<mvc:resources location="/ui/lib/" mapping="/lib/**" />
+	
 
 	<!-- 定义视图解析器 -->
 	<bean id="viewResolver"

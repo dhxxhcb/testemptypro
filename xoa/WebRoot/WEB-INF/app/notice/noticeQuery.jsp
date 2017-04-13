@@ -10,7 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta charset="UTF-8">
 		<title>公告查询</title>
 		<style type="text/css">
+		<link rel="stylesheet" type="text/css" href="lib/laydate.css"/>
 		<script src="lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/laydate.js" type="text/javascript" charset="utf-8"></script>
 		html,body{width: 100%;height: 100%;font-family: "微软雅黑";font-size: 14px;}
 			.inPole{font-size: 14px;}
 			textarea{min-width: 30%;min-height: 30px;margin: 5px 5px;}
@@ -100,8 +102,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <tr>
 		      <td nowrap="" class="TableData" width="100"> 发布日期：</td>
 		      <td class="TableData">
-		        <input type="text" id="start_time" name="SEND_TIME_MIN" size="12" maxlength="10" class="BigInput" value="" onclick="WdatePicker()"> &nbsp;至&nbsp;         
-		        <input type="text" name="SEND_TIME_MAX" size="12" maxlength="10" class="BigInput" value="" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start_time\')}'})">
+		        <!-- <input type="text" id="start_time" name="SEND_TIME_MIN" size="12" maxlength="10" class="BigInput" value="" onclick="WdatePicker()"> &nbsp;至&nbsp;         
+		        <input type="text" name="SEND_TIME_MAX" size="12" maxlength="10" class="BigInput" value="" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start_time\')}'})"> -->
+		        <input class="laydate-icon" id="start"> &nbsp;至&nbsp;
+		        <input class="laydate-icon" id="end">
 		      </td>
 		    </tr>
 		    <tr>
@@ -138,6 +142,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  </tbody>
 		</table>
 		<script type="text/javascript">
+			
+			//时间控件调用
+			var start = {
+			  elem: '#start',
+			  format: 'YYYY/MM/DD hh:mm:ss',
+			  istime: true,
+			  istoday: false,
+			  choose: function(datas){
+			     end.min = datas; //开始日选好后，重置结束日的最小日期
+			     end.start = datas //将结束日的初始值设定为开始日
+			  }
+			};
+			var end = {
+			  elem: '#end',
+			  format: 'YYYY/MM/DD hh:mm:ss',
+			  istime: true,
+			  istoday: false,
+			  choose: function(datas){
+			    start.max = datas; //结束日选好后，重置开始日的最大日期
+			  }
+			};
+			laydate(start);
+			laydate(end); //
+			
        		$(function(){
        			$('input[type="submit"]').click(function () {
 					var typeId=$('select[name="TYPE_ID"] option:checked').val();
@@ -151,7 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						'content':content,
 						'format':forMat
 					}
-					
+					alert(data.subject)
 					$.ajax({
 						type:"post",
 						url:"notifyList",

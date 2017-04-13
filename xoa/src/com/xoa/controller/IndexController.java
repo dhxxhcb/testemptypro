@@ -82,5 +82,9 @@ public class IndexController {
 		return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss"); 
 		
 	}
+	@RequestMapping("noticeQuery")
+	public String noticeQuery(){
+		return "app/notice/noticeQuery";
+	}
 	
 }
