@@ -21,7 +21,7 @@ public interface EmailBodyMapper extends BaseMapper<EmailBody>{
 	 * 根据ID查询一条邮件
 	 * @param maps
 	 */
-	public EmailBody queryById(Integer bodyId);
+	public EmailBody queryById(Map<String,Object> maps);
 
 	/**
 	 * 收件箱查询

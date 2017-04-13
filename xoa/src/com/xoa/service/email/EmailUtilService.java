@@ -54,7 +54,7 @@ public interface EmailUtilService {
 	 *            邮件Id
 	 */
 	@DynDatasource
-	public EmailBody queryById(Integer bodyId);
+	public EmailBody queryById(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag);
 
 	/**
 	 * 收件箱查询

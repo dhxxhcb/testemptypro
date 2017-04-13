@@ -332,22 +332,23 @@
 
 	<!-- 根据id查询一条邮件 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-	select
-		eb.BODY_ID,eb.SUBJECT, u.USER_NAME,eb.SEND_TIME from email_body as eb
+	 select
+		eb.BODY_ID,eb.SUBJECT, u.USER_NAME,eb.SEND_TIME,
+		e.TO_ID,
+		e.READ_FLAG,
+		e.BOX_ID,
+		e.RECEIPT,
+		e.IS_F,
+		e.IS_R,
+		e.SIGN
+		 from email_body as eb
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
-		u.USER_ID=eb.FROM_ID where 
-		eb.FROM_ID=#{fromId}
-		AND e.BOX_ID='0' AND (
-		e.IS_R='0' or e.IS_R='1')
-		AND (e.READ_FLAG='0' or e.READ_FLAG='1')
-		GROUP BY eb.BODY_ID ORDER BY
-		eb.BODY_ID DESC
-	
-		select eb.SUBJECT,eb.CONTENT,eb.SEND_TIME,eb.FROM_ID,eb.KEYWORD from
-		email_body as eb where
+		u.USER_ID=eb.FROM_ID
+		 where 
 		eb.FROM_ID=#{fromId} AND
 		eb.BODY_ID=#{bodyId}
+		GROUP BY eb.BODY_ID
 	</select>
 	<!--邮件根据ID删除一条邮件 -->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

@@ -214,8 +214,13 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 	 *            根据ID查询一条邮件
 	 */
 	@Override
-	public EmailBody queryById(Integer bodyId) {
-		return emailBodyMapper.queryById(bodyId);
+	public EmailBody queryById(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag) {
+		PageParams pageParams = new PageParams();
+		pageParams.setUseFlag(false);
+		pageParams.setPage(page);
+		pageParams.setPageSize(pageSize);
+		maps.put("page", pageParams);
+		return emailBodyMapper.queryById(maps);
 	}
 
 	/**
