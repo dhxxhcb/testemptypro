@@ -260,22 +260,26 @@
 
 	<!--草稿箱查询 -->
 	<select id="listDrafts" resultMap="BaseResultMap" parameterType="Map">
-		select eb.SUBJECT,eb.SEND_TIME,u.USER_NAME from email_body as eb
+		select eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,u.USER_NAME from email_body as eb
 		LEFT
 		JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID
-		where SEND_FLAG="0" GROUP BY eb.BODY_ID order by
+		where 
+		eb.FROM_ID=#{fromId}
+		AND SEND_FLAG="0" GROUP BY eb.BODY_ID order by
 		SEND_TIME DESC
 	</select>
 	<!-- 发件箱查询 -->
 	<select id="listSendEmail" parameterType="Map" resultMap="BaseResultMap">
-		select
+		select eb.BODY_ID,
 		eb.SUBJECT,eb.SEND_TIME,u.USER_NAME from email_body as eb
 		LEFT JOIN
 		email as e on eb.BODY_ID=e.BODY_ID
 		LEFT JOIN user as u on
-		u.USER_ID=eb.FROM_ID where SEND_FLAG="1"
+		u.USER_ID=eb.FROM_ID where
+		eb.FROM_ID=#{fromId}
+		AND SEND_FLAG="1"
 		AND(DELETE_FLAG="" OR
 		DELETE_FLAG="0" OR
 		DELETE_FLAG="2") AND
@@ -286,13 +290,14 @@
 	<!-- 废纸篓查询 空值 -->
 	<select id="listWastePaperbasket" resultMap="BaseResultMap"
 		parameterType="Map">
-		SELECT eb.SUBJECT, u.USER_NAME,eb.SEND_TIME FROM
+		SELECT eb.BODY_ID, eb.SUBJECT, u.USER_NAME,eb.SEND_TIME FROM
 		email_body as eb
-		LEFT JOIN email as e on e.BODY_ID =eb.BOD Y_ID
-		LEFT
-		JOIN
-		user as u on u. USER_ID=eb.FROM_ID
-		where  e.READ_FLAG='1' AND(e.DELETE_FLAG = '3' OR e.DELETE_FLAG = '4') GROUP BY eb.BODY_ID ORDER BY
+		LEFT JOIN email as e on e.BODY_ID =eb.BODY_ID
+		LEFT JOIN user as u on u.USER_ID=eb.FROM_ID
+		where
+		eb.FROM_ID=#{fromId}
+		AND
+		 e.READ_FLAG='1' AND(e.DELETE_FLAG = '3' OR e.DELETE_FLAG = '4') GROUP BY eb.BODY_ID ORDER BY
 		eb.SEND_TIME DESC
 	</select>
 	<!--收件箱查询 -->
@@ -301,22 +306,41 @@
 		eb.BODY_ID,eb.SUBJECT, u.USER_NAME,eb.SEND_TIME from email_body as eb
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
-		u.USER_ID=eb.FROM_ID where e.BOX_ID='0' AND (
+		u.USER_ID=eb.FROM_ID where 
+		eb.FROM_ID=#{fromId}
+		AND e.BOX_ID='0' AND (
 		e.IS_R='0' or e.IS_R='1')
 		AND (e.READ_FLAG='0' or e.READ_FLAG='1')
 		GROUP BY eb.BODY_ID ORDER BY
 		eb.BODY_ID DESC
 	</select>
+
+    <!--未读查询-->
+	<select id="selectIsRead" parameterType="Map" resultMap="BaseResultMap">
+		select
+		eb.BODY_ID,eb.SUBJECT, u.USER_NAME,eb.SEND_TIME from email_body as eb
+		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
+		LEFT JOIN user as u on
+		u.USER_ID=eb.FROM_ID where
+		eb.FROM_ID=#{fromId}
+		AND e.BOX_ID='0' AND (
+		e.IS_R='0' or e.IS_R='1')
+		AND e.READ_FLAG='0'
+		GROUP BY eb.BODY_ID ORDER BY
+		eb.BODY_ID DESC
+	</select>
+
 	<!-- 根据id查询一条邮件 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select eb.SUBJECT,eb.CONTENT,eb.SEND_TIME,eb.FROM_ID,eb.KEYWORD from
 		email_body as eb where
+		eb.FROM_ID=#{fromId} AND
 		eb.BODY_ID=#{bodyId}
 	</select>
 	<!--邮件根据ID删除一条邮件 -->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
-		email_body where BODY_ID = #{bodyId,javaType=INTEGER}
+		email_body where eb.FROM_ID=#{fromId} AND BODY_ID = #{bodyId}
 	</delete>
 
 	<update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBody">

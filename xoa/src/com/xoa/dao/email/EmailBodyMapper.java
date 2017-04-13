@@ -41,6 +41,14 @@ public interface EmailBodyMapper extends BaseMapper<EmailBody>{
 	List<EmailBody> listSendEmail(Map<String, Object> maps);
 
 	/**
+	 * 未读
+	 * @param maps
+	 * @return
+	 */
+	List<EmailBody> selectIsRead(Map<String,Object> maps);
+	
+	
+	/**
 	 * 废纸篓查询
 	 * @param maps
 	 */
