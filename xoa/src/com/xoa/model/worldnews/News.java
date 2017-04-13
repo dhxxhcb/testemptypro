@@ -23,7 +23,7 @@ public class News implements Serializable {
     private String subject;
 
     /**
-     * 新闻内容
+     * 发布者
      */
     private String provider;
 
@@ -131,10 +131,14 @@ public class News implements Serializable {
      * 新闻内容简介
      */
     private String summary;
-
     
+    private Integer read;
+    
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-    /**
+	/**
      *  主键ID
      * @return
      */
@@ -518,5 +522,12 @@ public class News implements Serializable {
 		this.summary = summary;
 	}
     
+	public Integer getRead() {
+		return read;
+	}
+
+	public void setRead(Integer read) {
+		this.read = read;
+	}
     
 }

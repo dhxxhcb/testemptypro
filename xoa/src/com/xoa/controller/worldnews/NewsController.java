@@ -58,7 +58,10 @@ public class NewsController {
 			@RequestParam(value = "subject", required = false) String subject,
 			@RequestParam(value = "newsTime", required = false) String newsTime,
 			@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
-			@RequestParam(value="keyword",required=false)String keyword) {
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam("page") Integer page,
+			@RequestParam("pageSize") Integer pageSize,
+			@RequestParam("useFlag") Boolean useFlag) {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("format", format);
 		maps.put("typeId", typeId);
@@ -66,13 +69,62 @@ public class NewsController {
 		maps.put("newsTime", newsTime);
 		maps.put("lastEditTime", lastEditTime);
 		maps.put("keyword", keyword);
+		String name = "changbai";
 		String returnReslt = null;
+		String err = null;
 		try {
-			List<News> list = newService.selectNews(maps, 1, 5, true);
+			List<News> list = newService.selectNews(maps, page, pageSize, useFlag, name);
 			ToJson<News> tojson = new ToJson<News>(0, "");
 			tojson.setObj(list);
-			returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
+			if (list.size() > 0) {
+				err = "成功";
+				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+						"yyyy-MM-dd HH:mm:ss");
+			} else {
+				err = "失败";
+				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
+						1, ""), "yyyy-MM-dd HH:mm:ss");
+			}
+
+		} catch (Exception e) {
+			loger.debug("NewsMessage:" + e);
+			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,
+					""), "yyyy-MM-dd HH:mm:ss");
+		}
+
+		return returnReslt;
+	}
+
+	/**
+	 * 信息展示 返回json demo
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/unreadShow", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody
+	String unreadNews(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("page") Integer page,
+			@RequestParam("pageSize") Integer pageSize,
+			@RequestParam("useFlag") Boolean useFlag) {
+		Map<String, Object> maps = new HashMap<String, Object>();
+		String name = "wangyun";
+		String returnReslt = null;
+		String err = null;
+		try {
+			List<News> list = newService.unreadNews(maps, page, pageSize, useFlag, name);
+			System.out.println(list);
+			ToJson<News> tojson = new ToJson<News>(0, err);
+			tojson.setObj(list);
+			if (list.size() > 0) {
+				err = "成功";
+				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+						"yyyy-MM-dd HH:mm:ss");
+			} else {
+				err = "失败";
+				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
+						1, ""), "yyyy-MM-dd HH:mm:ss");
+			}
 		} catch (Exception e) {
 			loger.debug("NewsMessage:" + e);
 			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,

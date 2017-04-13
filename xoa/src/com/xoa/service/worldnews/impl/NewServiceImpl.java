@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -35,27 +36,42 @@ public class NewServiceImpl implements NewService {
 	 * @throws Exception
 	 */
 	@Override
-	public List<News> selectNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag) throws Exception{
+	public List<News> selectNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception{
 		PageParams pageParams = new PageParams();  
          pageParams.setUseFlag(useFlag);  
          pageParams.setPage(page);  
          pageParams.setPageSize(pageSize);  
          maps.put("page", pageParams);  
          List<News> list = newsMapper.selectNews(maps);
-         System.out.println("新闻查询结果："+list.size());
+         for (News news : list) {
+			if (news.getReaders().indexOf(name)!=-1) {
+				news.setRead(1);
+			}else {
+				news.setRead(0);
+			}
+		}
          return list;
 	}
 
+	@Override
+	public List<News> unreadNews(Map<String, Object> maps, Integer page,
+			Integer pageSize, boolean useFlag, String name) throws Exception {
+		PageParams pageParams = new PageParams();  
+        pageParams.setUseFlag(useFlag);  
+        pageParams.setPage(page);  
+        pageParams.setPageSize(pageSize);  
+        maps.put("page", pageParams);  
+        List<News> list = newsMapper.unreadNews(maps);
+        List<News> list1 =new ArrayList<News>();
+        	for (News news : list) {
+    			if (news.getReaders().indexOf(name)==-1) {
+    				list1.add(news);
+				}
+		}
+        return list1;
+	}
 	
-//	
-//	@Override
-//	public ToJson<News> showNews() {
-//        ToJson<News> toJson = new ToJson<News>(0,"显示结果");
-//        List<News> list = newsMapper.showNews();
-//        toJson.setObj(list);
-//		return toJson;
-//	}
-
-	
-
 }
+	
+
+

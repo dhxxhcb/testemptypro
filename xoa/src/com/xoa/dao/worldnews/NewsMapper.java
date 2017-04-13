@@ -16,6 +16,13 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return
 	 */
 	public List<News> selectNews(Map<String, Object> maps);
+	
+	/**
+	 * 未读信息
+	 * 
+	 * @return
+	 */
+	public List<News> unreadNews(Map<String, Object> maps);
 
 	/**
 	 * 共计多少条信息

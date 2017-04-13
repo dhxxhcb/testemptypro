@@ -20,6 +20,8 @@ public interface NewService {
 	 * @throws Exception
 	 */
 	@DynDatasource
-	public List<News> selectNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag) throws Exception;
-
+	public List<News> selectNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+	
+	@DynDatasource
+	public List<News> unreadNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
 }
