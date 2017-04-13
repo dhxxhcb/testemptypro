@@ -28,9 +28,7 @@ $(function(){
 			
 	});
 	
-	$('.close').on('click',function(){
-		$('.gongzuoliu').remove();
-	})
+	
 })
 
 

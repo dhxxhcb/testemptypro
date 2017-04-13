@@ -15,31 +15,36 @@ body,
 	width:19%;
 	text-align:center;
 	height:100%;
-	/* background:red; */
 }
+
 .head_mid{
 	width:54%;
 	height:100%;
 }
-.head_mid ul li{
-	width:18%;
+.gongzuoliu{
+	width:13%;
 	height:33px;	
 	float:left;
 	color:#595959;
-	text-align:center;
 	line-height:33px;
 	margin-top: 36px;
+	background:#ccd2e0;
+	border:2px solid #666;
+	border-radius:5px 5px 0 0;
+}
+.no{
+	background:#999;
 }
 .head_mid ul li h1,.head_mid ul li img{
 	float:left;
 }
 .head_mid ul li h1{
-	margin-left: 20%;
-	font-size:14px;
+	margin-left: 8%;
+	font-size:10px;
 }
 .head_mid ul li img{
-	margin-top: 11px;
-    margin-left: 25%;
+	margin-top: 14%;
+    margin-left: 9%;
     width: 8%;
 }
 .head_rig{
@@ -68,7 +73,6 @@ body,
 .all_ul{
 	width:90%;
 	height:100%;
-	/* background:red; */
 	margin-left: 5%;
 	overflow:hidden;
 }
@@ -92,20 +96,18 @@ body,
 	text-align:center;
 	line-height:28px;
 	border-radius:8px;
-	/* color:#fff; */
 }
 .yingy{
 	background:#2b7fe0 !important;
 	color:#fff;
 }
 .all_ul div{
-	/* height:52px; */
 	width:100%;
-	/* border-bottom:2px solid #e3e3e5; */
 }
-/*  .one_logo,.one_name{
-	float:left;
-} */
+.two_all{
+	width:72%;
+	height:100%;
+}
 .one{
 	width:100%;
 }
@@ -119,15 +121,16 @@ body,
 	margin-top:7%;
 }
 .xuan{
-	width:100%;
-	height:20%;
-	background:red;
+	width: 100%;
+    height: 40px;
+    color: #fff;
+    line-height: 40px;
+    background: red;
 }
 .one_name{
 	line-height:50px;
 	margin-left: 6%;
 	width: 60%;
-	/* margin-top: -17%; */
 	font-size:14px;
 	font-weight: bold;
 }
@@ -135,7 +138,6 @@ body,
 	line-height:40px;
 	margin-left: 6%;
 	width: 75%;
-	/* margin-top: -17%; */
 	font-size:14px;
 }
 .person_logo{
@@ -159,7 +161,6 @@ body,
 .cont_nav ul li{
 	width:9%;
 	height:32px;
-	/* background:red; */
 	float:left;
 	border-radius:16px;
 	text-align:center;
@@ -173,14 +174,11 @@ body,
 .img_all{
 	width:96%;
 	height:94%;
-	/* background:red; */
-	/* text-align:center; */
 	margin:0.3% auto;
 }
 .right_one{
 	width:20%;
 	height:35%;
-	/* background:green; */
 	float:left;
 	margin-left:4%;
 	margin-top:5%;
@@ -213,7 +211,8 @@ body,
 	float:left;
 }
 .click_erji img{
-	margin-top:12%;
+	margin-top:9%;
+	margin-left:-16%;
 }
 .cont_left,.cont_rig{
 	float:left;
@@ -234,9 +233,7 @@ body,
 .foot h1{
 	margin-left:2%;
 }
-/* .foot h2{
-	margin-left:74%;
-} */
+
 .foot .lunbo{
 	width: 40%;
     height: 100%;

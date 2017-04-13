@@ -23,9 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:1.5%;margin-top:5%;width: 62%;
     height: 70%;"></div>
 				<div class="head_mid">
-					<ul>
-						<li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li>
-						<li class="gongzuoliu" style="background:#ccd2e0;"><h1>工作流</h1><img class="close" src="img/main_img/icon.png"></li>
+					<ul class="main_title">
+						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
+						<li class="gongzuoliu" index=0;><h1>我的桌面</h1><img class="close" src="img/main_img/icon.png"></li>
 					</ul>
 				</div>
 				<div class="head_rig">
@@ -81,16 +81,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="cont_rig">
 					<div class="cont_nav">
-						<ul>
-							<li>消息管理</li>
-							<li>消息管理</li>
-							<li class="infame">消息管理</li>
+						<ul class="three_title">
+					
 						</ul>
 					</div>
 					<div class="all_content" style="width:100%;height:97%;">
-						<div class="every_cont" style="width:100%;height:100%;">
-							<div><iframe id="every_module" src="WebRoot/WEB-INF/app/main/cont.jsp" frameborder="0" scrolling="yes" height="60%" width="100%" noresize="noresize"></iframe></div>
-						</div>
+						
+							<div id='f_0' class="iItem" style="width:100%;height:100%;"><iframe  id="every_module" src="WebRoot/WEB-INF/app/main/cont.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
+							
 					</div>
 				</div>
 			</div>
@@ -107,7 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<div class="foot_rig"><a href="xitong.html" target="_blank"><h2>心通达 &nbsp 年付版本</h2></a></div> -->
 				<div id="south">
-				    <table>
+				    <!-- <table>
 				        <tr>
 				            <td class="left"><div id="online_link" onClick="ViewOnlineUser()" title="共 43 人，2 人在线">在线<span id="user_count">2</span>人</div></td>
 				            <td class="left"><span id="new_sms"></span><span id="new_sms_sound" style="width:1px;height:1px;"></span></td>
@@ -117,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				                        <td class="right">
 				                            </td>
 				        </tr>
-				    </table>
+				    </table> -->
 				</div>
 				
 				<div id="on_status_list">
@@ -159,22 +157,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									if(data[i].child[j].child.length>0){
 										var three='';
 										for(var k=0;k<data[i].child[j].child.length;k++){						
-								 			three +='<li class="three">'+data[i].child[j].child[k].name+'</li>' ; 	
+								 			three +='<li class="three" url_three=http://192.168.0.17:88/general/system/'+data[i].child[j].child[k].url+'/index.php?uid=admin>'+data[i].child[j].child[k].name+'</li>' ; 	
 								 		}
-								 		er += '<li class="two" url=http://192.168.0.17:88/general/system/'+data[i].child[j].url+'/index.php?uid=admin ><div  class="two_all click_erji" style="width: 72%;"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="margin-left:25%;display:none;">'+three+'</ul></li>';
+								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url=http://192.168.0.17:88/general/system/'+data[i].child[j].url+'/index.php?uid=admin  class="two_all click_erji"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="margin-left:25%;display:none;">'+three+'</ul></li>';
 									/*  console.log($('er').find().attr('url')); */
 									}else{
-										er += '<li class="two" url=http://192.168.0.17:88/general/system/'+data[i].child[j].url+'/index.php?uid=admin><div class="two_all" style="width: 72%;"><h1>'+data[i].child[j].name+'</h1></div></li>';
+										console.log(data[i].child[j].id);
+										er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url=http://192.168.0.17:88/general/system/'+data[i].child[j].url+'/index.php?uid=admin class="two_all"><h1>'+data[i].child[j].name+'</h1></div></li>';
 										
 									} 
 								} 
 								str+='<li class="one person" id="administ"><div class="one_all" style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;"><img class="one_logo" src="'+data[i].img+'"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="one_down_img" src="img/main_img/down.png" style="margin-top: 10%;"></div><div class="two_menu"><ul class="erji b"  style="margin-left:20%;width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
 							}   
 							
-		
-						
-				
+
 						$(".tab_cone").html(str);
+						//将三级菜单拼到标题栏
+						
+						
 						//二级
 					 	$('.one_all').on('click',function () {
 							
@@ -188,11 +188,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							}
 										
 						}); 
+						
+						//点击二级的每一个，获取每一个的内容
+						$('.two').on('click','.two_all',function(){
+							var er_title=$(this).find('h1').html();
+							var all='<li class="gongzuoliu" t_tid=t_1001;><h1>'+er_title+'</h1><img class="close" src="img/main_img/icon.png"></li>';
+							/* var add=$('.gongzuoliu h1').html(er_title); */
+							console.log(all);
+							$('.main_title').append(all);
+	
+						});
+						//点击 关闭
+						$('.gongzuoliu').on('click','.close',function(){
+								$(this).parent().remove();
+						});
+						
 
-							//三级
+							//点击二级，出现三级
 						$('.click_erji').on('click',function () {
-					
-							if ($(this).siblings('.sanji').css('display')=='none') {
+							var san= $(this).siblings().html();
+							console.log(san);
+							$('.three_title').html(san);
+							
+							/* if ($(this).siblings('.sanji').css('display')=='none') {
 								$(this).find('.er_img').attr('src','img/main_img/up.png');
 								$(this).siblings('.sanji').show();	
 								
@@ -200,33 +218,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$(this).find('.er_img').attr('src','img/main_img/down.png');
 								$(this).siblings('.sanji').hide();
 							}
-										
+									 */	
 						});
 						
-						 var contIndex=0;
-						//菜单切换
-						$('.two_menu').on('click','li',function(){
-							var aaa=$(this).attr('url'); 
-							alert(aaa);
-						
-						
-							var index=$(this).index();
-							if(contIndex!=index){
-								contIndex=index;
-								$(this).addClass('xuan').siblings().removeClass('xuan');
-								$(this).pratent().siblings().find().removeClass('xuan');
-								//跳转页面
-								$('#every_module').attr('src',aaa);
+					
+						//二级菜单切换
+						$('.two_menu li').on('mouseover','.two_all',function(){
+							
+								$('.two_menu li .two_all').removeClass('xuan');
+								$(this).addClass('xuan');
+						});
+						$('.two_menu li').on('mouseout','.two_all',function(){
+							
+								$('.two_menu li .two_all').removeClass('xuan');
 								
-								var content=$(".every_cont").find("div");
-								console.log(content)
-					            $(content[index]).show();
-					            $(content[index]).siblings().hide();
+						});
+						var tid=0;
+						$('.two_menu li').on('click','.two_all',function(){
+							var url=$(this).attr('url'); 
+							var menu_tid=$(this).parent().attr('menu_tid'); 
+							alert(url);
+							//跳转页面
+							//判断id是否相同
+							console.log($('#f_'+menu_tid).length>0);
+							if($('#f_'+menu_tid).length>0){
+								//页面一打开，切换显示
+								$('.all_content .iItem').hide();
+								$('#f_'+menu_tid).show();
+							}else{
+								//页面不存在，新增 title和iframe
+								var titlestr = '<li class="gongzuoliu" index="0;" id="t_'+menu_tid+'"><h1>我的桌面</h1><img class="close" src="img/main_img/icon.png"></li>';
+								var iframestr = '<div id="f_'+menu_tid+'" class="iItem" style="width:100%;height:100%;"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
+								$('.main_title').append(titlestr);
+								$('.all_content').append(iframestr);
+								$('.all_content .iItem').hide();
+								$('#f_'+menu_tid).show();
 							}
 							
-					
-						});
+								
+						});		
+								
+						
+						//三级菜单切换
+						$('.three_title').on('click','li',function(){
+							var bbb=$(this).attr('url_three');
+							alert(bbb);
+						/* 	$('#every_module').attr('src',bbb);
+							$('.sanji li').removeClass('xuan');
+							$(this).addClass('xuan'); */
+						})
 						 
+						 console.log($('iframe').length);
+						
 					}			
 				});
 				
