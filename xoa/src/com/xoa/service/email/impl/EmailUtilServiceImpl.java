@@ -61,7 +61,6 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 				email.setBodyId(emailBody.getBodyId());
 				emailMapper.save(email);
 			}
-
 		}
 	}
 
@@ -216,7 +215,7 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 	@Override
 	public EmailBody queryById(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag) {
 		PageParams pageParams = new PageParams();
-		pageParams.setUseFlag(false);
+		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);

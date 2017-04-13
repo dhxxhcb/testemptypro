@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import com.alibaba.fastjson.JSON;
@@ -69,6 +70,11 @@ public class Ctest {
 		maps.put("bodyId", Integer.valueOf("11"));
 		maps.put("fromId", "zhanglan");
 		EmailBody emailBody = emailUtilService.queryById(maps, 1, 5, false);
+		EmailBody emailbo = new EmailBody();
+		
+		System.out.println("emailBody:"+!StringUtils.isEmpty(emailBody));
+		System.out.println("\n emailbo:"+emailBody.getBodyId());
+		
 		ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "查询成功");
 		tojson.setObject(emailBody);
 		
