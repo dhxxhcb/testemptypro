@@ -183,16 +183,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var content=$('input[name="CONTENT"]').val();
 					var data={
 						'typeId':typeId,
-						'sendTime':'2017-04-03 10:10:10',
+						'sendTime':'2017-04-03 10:28:35',
 						'subject':subject,
 						'content':content,
 						'format':forMat
 					};
-					console.log(data.typeId);
-					console.log(data.sendTime);
-					console.log(data.subject);
-					console.log(data.content);
-					console.log(data.format);
+					
 					$.ajax({
 						type:"get",
 						url:"notifyList",

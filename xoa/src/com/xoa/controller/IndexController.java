@@ -48,6 +48,7 @@ public class IndexController {
 	public String loginSuccess1() {
 		loger.info("成功登录！");
 		return "app/main/index";
+		
 	}
 
 	
@@ -82,6 +83,7 @@ public class IndexController {
 		return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss"); 
 		
 	}
+	
 	
 	
 }
