@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.xoa.dao.notify.NotifyMapper;
 import com.xoa.model.notify.Notify;
 import com.xoa.model.users.Users;
-import com.xoa.model.worldnews.News;
+
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
@@ -22,22 +22,55 @@ public class NotifyServiceImpl implements  NotifyService{
 	
 	@Resource
 	private NotifyMapper notifyMapper;
- 
-	public List<Notify> selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag) {
+	/**
+	 * 
+	 * @param maps map条件参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public List<Notify> selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name)throws Exception {
 		PageParams pageParams = new PageParams();  
         pageParams.setUseFlag(useFlag);  
         pageParams.setPage(page);  
         pageParams.setPageSize(pageSize);  
-        pageParams.setCheckFlag(true);
         maps.put("page", pageParams);  
         List<Notify> list = notifyMapper.selectNotify(maps);
             for (Notify notify1 : list) {
-           notify1.setName(notify1.getUsers().getUserName());
-           notify1.setUsers(null);
-        }
+                 notify1.setName(notify1.getUsers().getUserName());
+                 notify1.setUsers(null);
+                 if (notify1.getReaders().indexOf(name)!=-1) {
+        	        notify1.setReaders("1");
+			        }else {
+				     notify1.setReaders("0");
+			}
+		}
         System.out.println("公告查询条数："+list.size());
 		return list;
 	}
+
+
+
+/*@Override
+public List<Notify> unreadNotify(Map<String, Object> maps, Integer page,
+		Integer pageSize, boolean useFlag, String name) throws Exception {
+	PageParams pageParams = new PageParams();  
+    pageParams.setUseFlag(useFlag);  
+    pageParams.setPage(page);  
+    pageParams.setPageSize(pageSize);  
+    maps.put("page", pageParams);  
+    List<Notify> list = notifyMapper.unreadNotify(maps);
+    List<Notify> list1 =new ArrayList<Notify>();
+    	for (Notify notify : list) {
+			if (notify.getReaders().indexOf(name)==-1) {
+				list1.add(notify);
+			}
+	}
+    return list1;
+}
 
 	
 	@Override
@@ -58,6 +91,6 @@ public class NotifyServiceImpl implements  NotifyService{
 	@Override
 	public void delete(String id) {
 		notifyMapper.deleteById(id);
-	}
+	}*/
 
 }

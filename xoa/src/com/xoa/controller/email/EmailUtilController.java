@@ -34,6 +34,7 @@ import com.xoa.util.ToJson;
  */
 @Controller
 @Scope(value = "prototype")
+@RequestMapping("/email")
 public class EmailUtilController {
 	private Logger loger = Logger.getLogger(EmailUtilController.class);
 

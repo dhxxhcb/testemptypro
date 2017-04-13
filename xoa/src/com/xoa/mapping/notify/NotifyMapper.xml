@@ -48,8 +48,7 @@
 
 <!-- 条件查询 -->
 <select id="selectNotify" resultMap="BaseResultMap" parameterType="Map">
- SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.CONTENT,n.FORMAT,u.USER_NAME from notify n,`user` u WHERE n.USER_ID=u.UID 
-
+  SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.CONTENT,n.FORMAT,u.USER_NAME,n.READERS,n.NOTIFY_ID from notify n,`user` u WHERE n.FROM_ID=u.USER_ID
 <where>
 
 <if test="typeId != null and typeId != ''"> and TYPE_ID = #{typeId} </if>
