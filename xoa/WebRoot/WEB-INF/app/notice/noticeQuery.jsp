@@ -10,6 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta charset="UTF-8">
 		<title>公告查询</title>
 		<style type="text/css">
+		<script src="lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
 		html,body{width: 100%;height: 100%;font-family: "微软雅黑";font-size: 14px;}
 			.inPole{font-size: 14px;}
 			textarea{min-width: 30%;min-height: 30px;margin: 5px 5px;}
@@ -54,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        <option value="" selected="">全部</option>
 		        <option value="0">普通格式</option>
 		        <option value="1">MHT格式</option>
-		        <option value="2">超级链接</option>
+		       <!--  <option value="2">超级链接</option> -->
 		      </select>
 		      </td>
 		    </tr>
@@ -136,6 +137,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </tr>
 		  </tbody>
 		</table>
+		<script type="text/javascript">
+       		$(function(){
+       			$('input[type="submit"]').click(function () {
+					var typeId=$('select[name="TYPE_ID"] option:checked').val();
+					var forMat=$('select[name="FORMAT"] option:checked').val()
+					var subject=$('input[name="SUBJECT"]').val();
+					var content=$('input[name="CONTENT"]').val();
+					var data={
+						'typeId':typeId,
+						'sendTime':'2017-04-03 10:10:10',
+						'subject':subject,
+						'content':content,
+						'format':forMat
+					}
+					
+					$.ajax({
+						type:"post",
+						url:"notifyList",
+						dataType:'json',
+						data:data,
+						success:function(returnReslt){
+						/* alert(data.length); */
+							alert(returnReslt);
+						}
+					});
+				})
+       		})
+    	</script>
 	</body>
 </html>
 
