@@ -45,7 +45,14 @@ public class NotifyController {
 	 */
 	@RequestMapping(value = "/notifyList",method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	 public @ResponseBody
-	 String notifyList(String typeId,String sendTime,String subject,String content,String format) {
+	 String notifyList(@RequestParam(value = "typeId", required = false)String typeId,
+			 @RequestParam(value = "sendTime", required = false) String sendTime,
+			 @RequestParam(value = "subject", required = false) String subject,
+			 @RequestParam(value = "content", required = false) String content,
+			 @RequestParam(value = "format", required = false) String format,
+			 @RequestParam("page") Integer page,
+				@RequestParam("pageSize") Integer pageSize,
+				@RequestParam("useFlag") Boolean useFlag) {
 	  Map<String, Object> maps = new HashMap<String, Object>();
 	  maps.put("typeId", typeId);
 	  maps.put("sendTime", sendTime);
@@ -53,13 +60,23 @@ public class NotifyController {
 	  maps.put("content", content);
 	  maps.put("format", format);
 	   String returnReslt= null;
+	   String name="admin";
+	   String err;
 	  try {
-	   List<Notify> list=notifyService.selectNotify(maps, 1, 5, true);
+	   List<Notify> list=notifyService.selectNotify(maps, page,pageSize, useFlag, name);
 	   ToJson<Notify> tojson = new ToJson<Notify>(0, "");
 	   tojson.setObj(list);
-	   returnReslt= JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
-	  } catch (Exception e) {
-	   loger.debug("NewsMessage:"+e);
+	   if (list.size() > 0) {
+			err = "成功";
+			returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+					"yyyy-MM-dd HH:mm:ss");
+		} else {
+			err = "失败";
+			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
+					1, ""), "yyyy-MM-dd HH:mm:ss");
+		}
+	  }catch (Exception e) {
+	   loger.debug("notifyList:"+e);
 	   returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1, ""), "yyyy-MM-dd HH:mm:ss");
 	  }
 	  return returnReslt;
@@ -70,7 +87,7 @@ public class NotifyController {
 	 * 修改
 	 * 
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/notifyMessage")
 	public String notifyMessage(HttpServletRequest request) {
 		loger.info("进入添加页面！");
@@ -87,11 +104,11 @@ public class NotifyController {
 		return "app/notify/notifyMssage";
 	}
 
-	/**
+	*//**
 	 * 保存
 	 * 
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/addNotify", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String addNotify(@RequestParam(value="fromId",required=false)String fromId,
@@ -165,11 +182,11 @@ public class NotifyController {
 		
 	}
 	
-	/**
+	*//**
 	 * 删除
 	 * 
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/deleteMessage", produces = { "application/json;charset=UTF-8" })
 	public void deleteMessage(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -187,6 +204,6 @@ public class NotifyController {
 			e.printStackTrace();
 		}
 		out.close();
-	}
+	}*/
 
 }
