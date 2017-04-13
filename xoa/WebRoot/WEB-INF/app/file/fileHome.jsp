@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Insert title here</title>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(function(){
 alert("我进来了!");
 $("#fileTree").tree({
@@ -15,12 +15,10 @@ $("#fileTree").tree({
 	}
 });
 });
-</script>
+</script> -->
 </head>
-<FRAMESET id="main_parent" border="1"frameSpacing="1" rows="20,*" frameBorder="0" >
-<FRAME name=topFrame src="" noResize scrolling=no>
+<FRAMESET id="main_parent" border="1" frameSpacing="1" rows="60,*" frameBorder="0" >
+<FRAME name=topFrame src="${pageContext.request.contextPath}/topFrame" noResize scrolling=no>
 <FRAME name=downFrame src="${pageContext.request.contextPath}/fileHomeOne" noResize scrolling=no>
-
 </FRAMESET>
-
 </html>
