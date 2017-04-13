@@ -34,7 +34,7 @@
 	</resultMap>
 	<!-- 查询信息并返回 列表 -->
 	<select id="selectNews" parameterType="Map" resultMap="BaseResultMap">
-		select `SUBJECT`,TYPE_ID,NEWS_TIME,CLICK_COUNT FROM news 
+		select `SUBJECT`,TYPE_ID,NEWS_TIME,CLICK_COUNT,PROVIDER,CONTENT,READERS FROM news    
 		<where>
 			<if test="format != null and format != ''">
 				FORMAT = #{format}
@@ -45,13 +45,20 @@
 			<if test="subject != null and subject != ''">
 				AND SUBJECT like CONCAT('%',#{subject},'%')
 			</if>
+			<if
+				test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''">
+				AND NEWS_TIME between #{newsTime} and #{lastEditTime}
+			</if>
 			<if test="keyword != null and keyword != ''">
 				AND KEYWORD like CONCAT('%',#{keyword},'%')
 			</if>
 		</where>
 		ORDER BY NEWS_ID DESC
-
 	</select>
+	<select id="unreadNews" parameterType="Map" resultMap="BaseResultMap">
+		select SUBJECT,TYPE_ID,NEWS_TIME,CLICK_COUNT,PROVIDER,CONTENT,READERS FROM news  
+	</select>
+	
 	<!-- 条件总计数 -->
 	<select id="showCountNews" parameterType="com.xoa.model.worldnews.News"
 		resultMap="BaseResultMap">
