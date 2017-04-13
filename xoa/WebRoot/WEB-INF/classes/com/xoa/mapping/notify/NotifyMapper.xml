@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.notify.NotifyMapper">
+	<resultMap id="BaseResultMap" type="com.xoa.model.notify.Notify">
+		<result column="NOTIFY_ID" property="notifyId" javaType="int" />
+		<result column="FROM_DEPT" property="fromDept" javaType="int" />
+		<result column="FROM_ID" property="fromId" javaType="String" />
+		<result column="SUBJECT" property="subject" javaType="String" />
+		<result column="SEND_TIME" property="sendTime" javaType="Date" />
+		<result column="BEGIN_DATE" property="beginDate" javaType="int" />
+		<result column="END_DATE" property="endDate" javaType="int" />
+		<result column="PRINT" property="print" javaType="String" />
+		<result column="TYPE_ID" property="typeId" javaType="String" />
+		<result column="TOP" property="top" javaType="String" />
+		<result column="TOP_DAYS" property="topDays" javaType="int" />
+		<result column="FORMAT" property="format" javaType="String" />
+		<result column="PUBLISH" property="publish" javaType="String" />
+		<result column="AUDITER" property="auditer" javaType="String" />
+		<result column="AUDIT_DATE" property="auditDate" javaType="Date" />
+		<result column="DOWNLOAD" property="download" javaType="String" />
+		<result column="LAST_EDITOR" property="lastEditor" javaType="String" />
+		<result column="LAST_EDIT_TIME" property="lastEditTime"
+			javaType="Date" />
+		<result column="SUBJECT_COLOR" property="subjectColor"
+			javaType="String" />
+		<result column="KEYWORD" property="keyword" javaType="String" />
+		<result column="IS_FW" property="isFw" javaType="String" />
+		<result column="TO_ID" property="toId" javaType="String" />
+		<result column="CONTENT" property="content" javaType="String" />
+		<result column="ATTACHMENT_ID" property="attachmentId"
+			javaType="String" />
+		<result column="ATTACHMENT_NAME" property="attachmentName"
+			javaType="String" />
+		<result column="READERS" property="readers" javaType="String" />
+		<result column="PRIV_ID" property="privId" javaType="String" />
+		<result column="USER_ID" property="userId" javaType="String" />
+		<result column="REASON" property="reason" javaType="String" />
+		<result column="COMPRESS_CONTENT" property="compressContent"
+			javaType="String" />
+		<result column="SUMMARY" property="summary" javaType="String" />
+		
+<association javaType="com.xoa.model.users.Users" property="users">
+<id javaType="int" property="uid" column="UID"/>
+<result javaType="string" property="userId" column="USER_ID"/>
+<result javaType="string" property="userName" column="USER_NAME"/>
+</association>
+	</resultMap>
+
+<!-- 条件查询 -->
+<select id="selectNotify" resultMap="BaseResultMap" parameterType="Map">
+ SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.CONTENT,n.FORMAT,u.USER_NAME from notify n,`user` u WHERE n.USER_ID=u.UID 
+
+<where>
+
+<if test="typeId != null and typeId != ''"> and TYPE_ID = #{typeId} </if>
+
+<if test="sendTime != null and sendTime != ''"> and SEND_TIME = #{sendTime} </if>
+
+</where>
+order by NOTIFY_ID desc 
+</select>
+
+	<!-- 根据ID查 -->
+	<select id="getNotifyById" resultMap="BaseResultMap"
+		parameterType="String">
+		select * from notify where NOTIFY_ID = #{id}
+	</select>
+
+
+	<!-- 保存 -->
+	<insert id="addNotify" parameterType="com.xoa.model.notify.Notify">
+		insert into notify (FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT,SEND_TIME,BEGIN_DATE,END_DATE,ATTACHMENT_ID,
+		ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,AUDIT_DATE,
+		COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME,SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW)
+		values
+		(#{fromDept,jdbcType=INTEGER},#{fromId,jdbcType=VARCHAR},
+		#{toId,jdbcType=LONGVARCHAR},
+		#{subject,jdbcType=VARCHAR},
+		#{content,jdbcType=LONGVARCHAR},
+		#{sendTime,jdbcType=DATE},
+		#{beginDate,jdbcType=INTEGER},#{endDate,jdbcType=INTEGER},
+		#{attachmentId,jdbcType=LONGVARCHAR},#{attachmentName,jdbcType=LONGVARCHAR},
+		#{readers,jdbcType=LONGVARCHAR},#{print,jdbcType=CHAR},
+		#{privId,jdbcType=LONGVARCHAR},#{userId,jdbcType=LONGVARCHAR},
+		#{typeId,jdbcType=VARCHAR},
+		#{top,jdbcType=VARCHAR},
+		#{topDays,jdbcType=INTEGER},#{format,jdbcType=VARCHAR},
+		#{publish,jdbcType=CHAR},#{auditer,jdbcType=VARCHAR},
+		#{reason,jdbcType=LONGVARCHAR},#{auditDate,jdbcType=DATE},
+		#{compressContent,jdbcType=LONGVARBINARY},#{download,jdbcType=CHAR},
+		#{lastEditor,jdbcType=VARCHAR},#{lastEditTime,jdbcType=DATE},
+		#{subjectColor,jdbcType=VARCHAR},#{summary,jdbcType=LONGVARCHAR},
+		#{keyword,jdbcType=VARCHAR},#{isFw,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<!--根据Id修改 -->
+	<update id="updateNotify" parameterType="com.xoa.model.notify.Notify">
+		update notify
+		set FROM_ID = #{fromId,jdbcType=VARCHAR},
+		FORMAT = #{format,jdbcType=VARCHAR},
+		TYPE_ID = #{typeId,jdbcType=VARCHAR},
+		SUBJECT = #{subject,jdbcType=VARCHAR},
+		SEND_TIME = #{sendTime,jdbcType=DATE},
+		CONTENT = #{content,jdbcType=LONGVARCHAR}
+		where NOTIFY_ID = #{notifyId,jdbcType=INTEGER}
+	</update>
+
+	<!-- 根据id删除 -->
+	<delete id="deleteById" parameterType="String">
+		delete from notify where NOTIFY_ID = #{id}
+	</delete>
+
+</mapper>
