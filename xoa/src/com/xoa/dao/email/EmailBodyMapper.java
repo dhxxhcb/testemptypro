@@ -11,17 +11,6 @@ public interface EmailBodyMapper extends BaseMapper<EmailBody>{
 
 	public int updateByPrimaryKey(EmailBody record);
 
-//	/**
-//	 * 保存邮件
-//	 * 
-//	 * @param emailBody
-//	 *            保存实体类参数
-//	 */
-//	public void save(EmailBody emailBody);
-//	
-	
-	
-
 	/**
 	 * 根据ID删除一条
 	 * @param maps

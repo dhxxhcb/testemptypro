@@ -123,59 +123,70 @@ public class EmailUtilController {
 
 	}
 
-	/**
-	 * 邮件查询 fromId 发件人USER_ID sendFlag 是否已发送(0-未发送,1-已发送) deleteFlag 删除标识符
-	 * startTime 开始时间区间 endTime 结束时间区间 readFlag 是否已读 boxId 邮件箱分类ID sign
-	 * 星标标记(0-无,1-灰,2-绿,3-黄,4-红) keyword 内容关键词
-	 */
-	@RequestMapping(value = "/showEmail", produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody
-	String queryEmail(HttpServletRequest request) throws Exception {
-		Integer page = ServletRequestUtils.getIntParameter(request, "page");
-		Integer pageSize = ServletRequestUtils.getIntParameter(request,
-				"pageSize");
-		boolean useFlag = ServletRequestUtils.getBooleanParameter(request,
-				"useFlag");
-		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("fromId",
-				ServletRequestUtils.getStringParameter(request, "fromId"));
-		maps.put("sendFlag",
-				ServletRequestUtils.getStringParameter(request, "sendFlag"));
-		maps.put("firstFlag",
-				ServletRequestUtils.getStringParameter(request, "firstFlag"));
-		maps.put("secondFlag",
-				ServletRequestUtils.getStringParameter(request, "secondFlag"));
-		String startTime = ServletRequestUtils.getStringParameter(request,
-				"startTime");
-		String endTime = ServletRequestUtils.getStringParameter(request,
-				"endTime");
-		if (startTime != null && startTime != "" && endTime != null
-				&& endTime != "") {
-			maps.put("startTime", DateFormat.getTime(startTime));
-			maps.put("endTime", DateFormat.getTime(endTime));
-		}
-		maps.put("readFlag",
-				ServletRequestUtils.getStringParameter(request, "readFlag"));
-		maps.put("boxId", ServletRequestUtils.getIntParameter(request, "boxId"));
-		maps.put("sign",
-				ServletRequestUtils.getStringParameter(request, "sign"));
-		maps.put("keyword",
-				ServletRequestUtils.getStringParameter(request, "keyword"));
-		List<EmailBody> list = emailService.selectEmail(maps, page, pageSize,
-				useFlag);
-		int listLength = list.size();
-		if (listLength > 0) {
-			ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "查询成功");
-			tojson.setObj(list);
-			return JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		} else {
-			ToJson<EmailBody> tojson = new ToJson<EmailBody>(1, "查询失败");
-			return JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		}
-	}
+	
+	
+	
+	
+	
+	
+//	/**
+//	 * 邮件查询 
+//	 * fromId 发件人USER_ID 
+//	 * sendFlag 是否已发送(0-未发送,1-已发送)
+//	 * deleteFlag 删除标识符
+//	 * startTime 开始时间区间 
+//	 * endTime 结束时间区间 
+//	 * readFlag 是否已读 boxId 邮件箱分类ID sign
+//	 * 星标标记(0-无,1-灰,2-绿,3-黄,4-红) 
+//	 * keyword 内容关键词
+//	 */
+//	@RequestMapping(value = "/showEmail", produces = { "application/json;charset=UTF-8" })
+//	public @ResponseBody String queryEmail(HttpServletRequest request) throws Exception {
+//		Integer page = ServletRequestUtils.getIntParameter(request, "page");
+//		Integer pageSize = ServletRequestUtils.getIntParameter(request,"pageSize");
+//		boolean useFlag = ServletRequestUtils.getBooleanParameter(request,"useFlag");
+//		Map<String, Object> maps = new HashMap<String, Object>();
+//		maps.put("fromId",ServletRequestUtils.getStringParameter(request, "fromId"));
+//		maps.put("sendFlag",ServletRequestUtils.getStringParameter(request, "sendFlag"));
+//		maps.put("firstFlag",ServletRequestUtils.getStringParameter(request, "firstFlag"));
+//		maps.put("secondFlag",ServletRequestUtils.getStringParameter(request, "secondFlag"));
+//		String startTime = ServletRequestUtils.getStringParameter(request,"startTime");
+//		String endTime = ServletRequestUtils.getStringParameter(request,"endTime");
+//		if (startTime != null && startTime != "" && endTime != null	&& endTime != "") {
+//			maps.put("startTime", DateFormat.getTime(startTime));
+//			maps.put("endTime", DateFormat.getTime(endTime));
+//		}
+//		maps.put("readFlag",ServletRequestUtils.getStringParameter(request, "readFlag"));
+//		maps.put("boxId", ServletRequestUtils.getIntParameter(request, "boxId"));
+//		maps.put("sign",ServletRequestUtils.getStringParameter(request, "sign"));
+//		maps.put("keyword",	ServletRequestUtils.getStringParameter(request, "keyword"));
+//		List<EmailBody> list = emailService.selectEmail(maps, page, pageSize,useFlag);
+//		int listLength = list.size();
+//		if (listLength > 0) {
+//			ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "查询成功");
+//			tojson.setObj(list);
+//			return JSON.toJSONStringWithDateFormat(tojson,"yyyy-MM-dd HH:mm:ss");
+//		} else {
+//			ToJson<EmailBody> tojson = new ToJson<EmailBody>(1, "查询失败");
+//			return JSON.toJSONStringWithDateFormat(tojson,"yyyy-MM-dd HH:mm:ss");
+//		}
+//	}
 
+	@RequestMapping(value = "/showEmail", produces = { "application/json;charset=UTF-8" })
+	public String queryEmail(HttpServletRequest request) throws Exception{
+		String flag =  ServletRequestUtils.getStringParameter(request, "flag");
+		if(flag.trim().equals(""));
+		
+		
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 收件箱
 	 * 
@@ -199,161 +210,171 @@ public class EmailUtilController {
 	 * emailService.deleteByPrimaryKey(bodyId); }
 	 */
 
-	// /**
-	// * 根据ID查询一条邮件
-	// */
-	// @RequestMapping(value = "/queryById", produces = {
-	// "application/json;charset=UTF-8" })
-	// public @ResponseBody String queryById(HttpServletRequest request,
-	// HttpServletResponse response) {
-	// EmailBody emailBody=emailService.queryById(1);
-	// ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
-	// tojson.setObject(emailBody);
-	// loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(emailBody,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// Map<String, String> map = new HashMap<String, String>();
-	// map.put("queryById", JSON.toJSONStringWithDateFormat(emailBody,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
-	// }
-	//
-	//
-	// /**
-	// * 草稿箱查询
-	// * @throws Exception
-	// */
-	// @RequestMapping(value="/listDrafts",
-	// produces={"application/json;charset=UTF-8"})
-	// public @ResponseBody String listDrafts(HttpServletRequest request,
-	// HttpServletResponse response) throws Exception{
-	// Map<String,Object> maps = new HashMap<String, Object>();
-	// List<EmailBody> listSelectDrafts =
-	// emailService.listDrafts(maps,1,3,true);
-	// ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
-	// tojson.setObj(listSelectDrafts);
-	// loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listSelectDrafts,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// Map<String, String> map = new HashMap<String, String>();
-	// map.put("selectAllEmail",
-	// JSON.toJSONStringWithDateFormat(listSelectDrafts,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
-	// }
-	//
-	// /**
-	// * 发件箱查询
-	// * @throws Exception
-	// */
-	// @RequestMapping(value="/selectInbox",
-	// produces={"application/json;charset=UTF-8"})
-	// public @ResponseBody String selectInbox(HttpServletRequest request,
-	// HttpServletResponse response) throws Exception{
-	// Map<String,Object> maps = new HashMap<String, Object>();
-	// List<EmailBody> listInbox = emailService.selectInbox(maps,1,3,true);
-	// ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
-	// tojson.setObj(listInbox);
-	// loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listInbox,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// Map<String, String> map = new HashMap<String, String>();
-	// map.put("selectAllEmail", JSON.toJSONStringWithDateFormat(listInbox,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
-	// }
-	//
-	//
-	// /**
-	// * 已发送查询
-	// * @throws Exception
-	// */
-	// @RequestMapping(value="/selectSendEmail",
-	// produces={"application/json;charset=UTF-8"})
-	// public @ResponseBody String selectSendEmail(HttpServletRequest request,
-	// HttpServletResponse response) throws Exception{
-	// Map<String,Object> maps = new HashMap<String, Object>();
-	//
-	// List<EmailBody> listSendEmail=emailService.listSendEmail(maps, 1, 3,
-	// true);
-	// ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
-	// tojson.setObj(listSendEmail);
-	// loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listSendEmail,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// Map<String, String> map = new HashMap<String, String>();
-	// map.put("selectAllEmail", JSON.toJSONStringWithDateFormat(listSendEmail,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
-	// }
-	//
-	// /**
-	// * 废纸篓查询
-	// * @throws Exception
-	// */
-	// @RequestMapping(value="/listWastePaperbasket",
-	// produces={"application/json;charset=UTF-8"})
-	// public @ResponseBody String listWastePaperbasket(HttpServletRequest
-	// request, HttpServletResponse response) throws Exception{
-	// Map<String,Object> maps = new HashMap<String, Object>();
-	// List<EmailBody>
-	// listWastePaperbasketEmail=emailService.listWastePaperbasket(maps, 1, 3,
-	// true);
-	// ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
-	// tojson.setObj(listWastePaperbasketEmail);
-	// loger.info("结果信息：" +
-	// JSON.toJSONStringWithDateFormat(listWastePaperbasketEmail,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// Map<String, String> map = new HashMap<String, String>();
-	// map.put("selectAllEmail",
-	// JSON.toJSONStringWithDateFormat(listWastePaperbasketEmail,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
-	// }
-	//
-	// /**
-	// * 多条件查询邮件
-	// * @throws Exception
-	// *
-	// */
-	// @RequestMapping(value = "/querylistEmailBody", produces = {
-	// "application/json;charset=UTF-8" })
-	// public @ResponseBody String querylistEmailBody() throws Exception {
-	// /**
-	// * 对传进来的时间进行转换
-	// */
-	// SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	// Date date1 = format.parse("2010-01-06 11:45:55");
-	// Date date2=format.parse("2011-01-06 11:45:55");
-	// Integer starttime = new Integer((int) (date1.getTime()));
-	// Integer endtime=new Integer((int)(date2.getTime()));
-	// /**
-	// * 将条件参数存入map集合
-	// */
-	// Map<String,Object> maps = new HashMap<String, Object>();
-	// maps.put("startTime",starttime);
-	// maps.put("endTime", endtime);
-	// maps.put("readFlag",1);
-	// maps.put("boxId",0);
-	// maps.put("userName","李佳");
-	// maps.put("sign","");
-	// maps.put("keyword","通知");
-	// List<EmailBody> listEmailBody = emailService.selectEmailBody(maps, 1,10,
-	// true);
-	// loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listEmailBody,
-	// "yyyy-MM-dd HH:mm:ss"));
-	// if(listEmailBody.size()>0){
-	// ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "查询成功");
-	// tojson.setObj(listEmailBody);
-	// Map<String, String> map = new HashMap<String, String>();
-	// map.put("listqueryEmailBody",
-	// JSON.toJSONStringWithDateFormat(listEmailBody, "yyyy-MM-dd HH:mm:ss"));
-	// return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
-	// }else{
-	// ToJson<EmailBody> tojson = new ToJson<EmailBody>(1, "查询失败");
-	// tojson.setObj(listEmailBody);
-	// Map<String, String> map = new HashMap<String, String>();
-	// map.put("listqueryEmailBody",
-	// JSON.toJSONStringWithDateFormat(listEmailBody, "yyyy-MM-dd HH:mm:ss"));
-	// return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
-	// }
-	// }
+	 /**
+	 * 根据ID查询一条邮件
+	 */
+	 @RequestMapping(value = "/queryById", produces = {
+	 "application/json;charset=UTF-8" })
+	 public @ResponseBody String queryById(HttpServletRequest request,
+	 HttpServletResponse response) {
+	 EmailBody emailBody=emailService.queryById(1);
+	 ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
+	 tojson.setObject(emailBody);
+	 loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(emailBody,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 Map<String, String> map = new HashMap<String, String>();
+	 map.put("queryById", JSON.toJSONStringWithDateFormat(emailBody,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
+	 }
+	
+	 
+	 
+	 
+	 
+	 
+	
+	 /**
+	 * 草稿箱查询
+	 * @throws Exception
+	 */
+	 @RequestMapping(value="/listDrafts",
+	 produces={"application/json;charset=UTF-8"})
+	 public @ResponseBody String listDrafts(HttpServletRequest request,
+	 HttpServletResponse response) throws Exception{
+	 Map<String,Object> maps = new HashMap<String, Object>();
+	 List<EmailBody> listSelectDrafts =
+	 emailService.listDrafts(maps,1,3,true);
+	 ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
+	 tojson.setObj(listSelectDrafts);
+	 loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listSelectDrafts,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 Map<String, String> map = new HashMap<String, String>();
+	 map.put("selectAllEmail",
+	 JSON.toJSONStringWithDateFormat(listSelectDrafts,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
+	 }
+	
+	 /**
+	 * 发件箱查询
+	 * @throws Exception
+	 */
+	 @RequestMapping(value="/selectInbox",
+	 produces={"application/json;charset=UTF-8"})
+	 public @ResponseBody String selectInbox(HttpServletRequest request,
+	 HttpServletResponse response) throws Exception{
+	 Map<String,Object> maps = new HashMap<String, Object>();
+	 List<EmailBody> listInbox = emailService.selectInbox(maps,1,3,true);
+	 ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
+	 tojson.setObj(listInbox);
+	 loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listInbox,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 Map<String, String> map = new HashMap<String, String>();
+	 map.put("selectAllEmail", JSON.toJSONStringWithDateFormat(listInbox,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
+	 }
+	
+	
+	 /**
+	 * 已发送查询
+	 * @throws Exception
+	 */
+	 @RequestMapping(value="/selectSendEmail",
+	 produces={"application/json;charset=UTF-8"})
+	 public @ResponseBody String selectSendEmail(HttpServletRequest request,
+	 HttpServletResponse response) throws Exception{
+	 Map<String,Object> maps = new HashMap<String, Object>();
+	
+	 List<EmailBody> listSendEmail=emailService.listSendEmail(maps, 1, 3,
+	 true);
+	 ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
+	 tojson.setObj(listSendEmail);
+	 loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listSendEmail,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 Map<String, String> map = new HashMap<String, String>();
+	 map.put("selectAllEmail", JSON.toJSONStringWithDateFormat(listSendEmail,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
+	 }
+	
+	 /**
+	 * 废纸篓查询
+	 * @throws Exception
+	 */
+	 @RequestMapping(value="/listWastePaperbasket",
+	 produces={"application/json;charset=UTF-8"})
+	 public @ResponseBody String listWastePaperbasket(HttpServletRequest
+	 request, HttpServletResponse response) throws Exception{
+	 Map<String,Object> maps = new HashMap<String, Object>();
+	 List<EmailBody>
+	 listWastePaperbasketEmail=emailService.listWastePaperbasket(maps, 1, 3,
+	 true);
+	 ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "返回结果正确");
+	 tojson.setObj(listWastePaperbasketEmail);
+	 loger.info("结果信息：" +
+	 JSON.toJSONStringWithDateFormat(listWastePaperbasketEmail,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 Map<String, String> map = new HashMap<String, String>();
+	 map.put("selectAllEmail",
+	 JSON.toJSONStringWithDateFormat(listWastePaperbasketEmail,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
+	 }
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 /**
+	 * 多条件查询邮件
+	 * @throws Exception
+	 *
+	 */
+	 @RequestMapping(value = "/querylistEmailBody", produces = {
+	 "application/json;charset=UTF-8" })
+	 public @ResponseBody String querylistEmailBody() throws Exception {
+//	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//	 Date date1 = format.parse("2010-01-06 11:45:55");
+//	 Date date2=format.parse("2011-01-06 11:45:55");
+//	 Integer starttime = new Integer((int) (date1.getTime()));
+//	 Integer endtime=new Integer((int)(date2.getTime()));
+	 /**
+	 * 将条件参数存入map集合
+	 */
+	 Map<String,Object> maps = new HashMap<String, Object>();
+//	 maps.put("startTime",starttime);
+//	 maps.put("endTime", endtime);
+	 maps.put("readFlag",1);
+	 maps.put("boxId",0);
+	 maps.put("userName","李佳");
+	 maps.put("sign","");
+	 maps.put("keyword","通知");
+	 List<EmailBody> listEmailBody = emailService.selectEmailBody(maps, 1,10,
+	 true);
+	 loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(listEmailBody,
+	 "yyyy-MM-dd HH:mm:ss"));
+	 if(listEmailBody.size()>0){
+	 ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "查询成功");
+	 tojson.setObj(listEmailBody);
+	 Map<String, String> map = new HashMap<String, String>();
+	 map.put("listqueryEmailBody",
+	 JSON.toJSONStringWithDateFormat(listEmailBody, "yyyy-MM-dd HH:mm:ss"));
+	 return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
+	 }else{
+	 ToJson<EmailBody> tojson = new ToJson<EmailBody>(1, "查询失败");
+	 tojson.setObj(listEmailBody);
+	 Map<String, String> map = new HashMap<String, String>();
+	 map.put("listqueryEmailBody",
+	 JSON.toJSONStringWithDateFormat(listEmailBody, "yyyy-MM-dd HH:mm:ss"));
+	 return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
+	 }
+	 }
 
 	/**
 	 * 为null时转换为""

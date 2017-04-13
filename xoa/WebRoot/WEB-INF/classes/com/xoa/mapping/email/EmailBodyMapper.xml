@@ -239,7 +239,7 @@
 				AND emb.SEND_TIME between #{startTime} and #{endTime}
 			</if>
 			<if test="readFlag!=null">
-				AND e.READ_FLAG=#{readFlag}
+				AND e.READ_FLAG=''
 			</if>
 			<if test="boxId != null">
 				AND e.BOX_ID=#{boxId}
@@ -292,8 +292,7 @@
 		LEFT
 		JOIN
 		user as u on u. USER_ID=eb.FROM_ID
-		where eb.SEND_FLAG = '0' AND
-		e.DELETE_FLAG = '0' AND e.READ_FLAG='1' GROUP BY eb.BODY_ID ORDER BY
+		where  e.READ_FLAG='1' AND(e.DELETE_FLAG = '3' OR e.DELETE_FLAG = '4') GROUP BY eb.BODY_ID ORDER BY
 		eb.SEND_TIME DESC
 	</select>
 	<!--收件箱查询 -->
@@ -324,106 +323,106 @@
 		update email_body
 		<set>
 			<if test="fromId != null">
-				FROM_ID = #{fromId,javaType=String},
+				FROM_ID = #{fromId},
 			</if>
 			<if test="subject != null">
-				SUBJECT = #{subject,javaType=String},
+				SUBJECT = #{subject},
 			</if>
 			<if test="sendTime != null">
-				SEND_TIME = #{sendTime,javaType=INTEGER},
+				SEND_TIME = #{sendTime},
 			</if>
 			<if test="sendFlag != null">
-				SEND_FLAG = #{sendFlag,javaType=String},
+				SEND_FLAG = #{sendFlag},
 			</if>
 			<if test="smsRemind != null">
-				SMS_REMIND = #{smsRemind,javaType=String},
+				SMS_REMIND = #{smsRemind},
 			</if>
 			<if test="important != null">
-				IMPORTANT = #{important,javaType=String},
+				IMPORTANT = #{important},
 			</if>
 			<if test="size != null">
-				SIZE = #{size,javaType=Long},
+				SIZE = #{size},
 			</if>
 			<if test="fromWebmailId != null">
-				FROM_WEBMAIL_ID = #{fromWebmailId,javaType=INTEGER},
+				FROM_WEBMAIL_ID = #{fromWebmailId},
 			</if>
 			<if test="fromWebmail != null">
-				FROM_WEBMAIL = #{fromWebmail,javaType=String},
+				FROM_WEBMAIL = #{fromWebmail},
 			</if>
 			<if test="webmailFlag != null">
-				WEBMAIL_FLAG = #{webmailFlag,javaType=String},
+				WEBMAIL_FLAG = #{webmailFlag},
 			</if>
 			<if test="recvFromName != null">
-				RECV_FROM_NAME = #{recvFromName,javaType=String},
+				RECV_FROM_NAME = #{recvFromName},
 			</if>
 			<if test="recvFrom != null">
-				RECV_FROM = #{recvFrom,javaType=String},
+				RECV_FROM = #{recvFrom},
 			</if>
 			<if test="recvToId != null">
-				RECV_TO_ID = #{recvToId,javaType=INTEGER},
+				RECV_TO_ID = #{recvToId},
 			</if>
 			<if test="recvTo != null">
-				RECV_TO = #{recvTo,javaType=String},
+				RECV_TO = #{recvTo},
 			</if>
 			<if test="isWebmail != null">
-				IS_WEBMAIL = #{isWebmail,javaType=String},
+				IS_WEBMAIL = #{isWebmail},
 			</if>
 			<if test="isWf != null">
-				IS_WF = #{isWf,javaType=String},
+				IS_WF = #{isWf},
 			</if>
 			<if test="keyword != null">
-				KEYWORD = #{keyword,javaType=String},
+				KEYWORD = #{keyword},
 			</if>
 			<if test="secretLevel != null">
-				SECRET_LEVEL = #{secretLevel,javaType=INTEGER},
+				SECRET_LEVEL = #{secretLevel},
 			</if>
 			<if test="auditMan != null">
-				AUDIT_MAN = #{auditMan,javaType=String},
+				AUDIT_MAN = #{auditMan},
 			</if>
 			<if test="toId2 != null">
-				TO_ID2 = #{toId2,javaType=String},
+				TO_ID2 = #{toId2},
 			</if>
 			<if test="copyToId != null">
-				COPY_TO_ID = #{copyToId,javaType=String},
+				COPY_TO_ID = #{copyToId},
 			</if>
 			<if test="secretToId != null">
-				SECRET_TO_ID = #{secretToId,javaType=String},
+				SECRET_TO_ID = #{secretToId},
 			</if>
 			<if test="content != null">
-				CONTENT = #{content,javaType=String},
+				CONTENT = #{content},
 			</if>
 			<if test="attachmentId != null">
-				ATTACHMENT_ID = #{attachmentId,javaType=String},
+				ATTACHMENT_ID = #{attachmentId},
 			</if>
 			<if test="attachmentName != null">
-				ATTACHMENT_NAME = #{attachmentName,javaType=String},
+				ATTACHMENT_NAME = #{attachmentName},
 			</if>
 			<if test="toWebmail != null">
-				TO_WEBMAIL = #{toWebmail,javaType=String},
+				TO_WEBMAIL = #{toWebmail},
 			</if>
 			<if test="compressContent != null">
 				COMPRESS_CONTENT =
-				#{compressContent,javaType=byte[]},
+				#{compressContent},
 			</if>
 			<if test="webmailContent != null">
 				WEBMAIL_CONTENT =
-				#{webmailContent,javaType=byte[]},
+				#{webmailContent},
 			</if>
 			<if test="auditRemark != null">
-				AUDIT_REMARK = #{auditRemark,javaType=String},
+				AUDIT_REMARK = #{auditRemark},
 			</if>
 			<if test="copyToWebmail != null">
-				COPY_TO_WEBMAIL = #{copyToWebmail,javaType=String},
+				COPY_TO_WEBMAIL = #{copyToWebmail},
 			</if>
 			<if test="secretToWebmail != null">
 				SECRET_TO_WEBMAIL =
-				#{secretToWebmail,javaType=String},
+				#{secretToWebmail},
 			</if>
 			<if test="praise != null">
-				PRAISE = #{praise,javaType=String},
+				PRAISE = #{praise},
 			</if>
 		</set>
-		where BODY_ID = #{bodyId,javaType=INTEGER}
+		where BODY_ID = #{bodyId}
 	</update>
 
 
