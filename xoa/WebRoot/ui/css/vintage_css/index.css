@@ -118,13 +118,25 @@ body,
 .one_logo{
 	margin-top:7%;
 }
-.person h1{
+.xuan{
+	width:100%;
+	height:20%;
+	background:red;
+}
+.one_name{
 	line-height:50px;
 	margin-left: 6%;
 	width: 60%;
 	/* margin-top: -17%; */
 	font-size:14px;
 	font-weight: bold;
+}
+.two_all h1{
+	line-height:40px;
+	margin-left: 6%;
+	width: 75%;
+	/* margin-top: -17%; */
+	font-size:14px;
 }
 .person_logo{
 	margin-left: 5%;
@@ -197,6 +209,12 @@ body,
 	line-height:26px;
 	margin-left:6%;
 }
+.click_erji img,.click_erji h1{
+	float:left;
+}
+.click_erji img{
+	margin-top:12%;
+}
 .cont_left,.cont_rig{
 	float:left;
 }
@@ -216,6 +234,13 @@ body,
 .foot h1{
 	margin-left:2%;
 }
-.foot h2{
+/* .foot h2{
 	margin-left:74%;
+} */
+.foot .lunbo{
+	width: 40%;
+    height: 100%;
+}
+.foot_left,.foot_rig,.foot .lunbo{
+	float:left;
 }

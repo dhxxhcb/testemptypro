@@ -46,10 +46,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</div>
 						<div class="tab_c list">
-							
-							<ul class="tab_cone a yiji" >
-							
-							</ul>
+						
+								<ul class="tab_cone a yiji" >
+								
+								</ul>
+						
 							<ul class="tab_ctwo a" style="display:none;">
 								
 								<!-- <div class="person">
@@ -86,173 +87,150 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li class="infame">消息管理</li>
 						</ul>
 					</div>
-					<div class="img_all">
-						<div class="right_one">
-							<div class="r_one_top">
-								<img src="img/main_img/big.png">
-							</div>
-							<div class="r_one_bot">
-								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理布局内容</h2>
-							</div>
-						</div>
-							<!-- 第二个 -->
-						<div class="right_one">
-							<div class="r_one_top">
-								<img src="img/main_img/big.png">
-							</div>
-							<div class="r_one_bot">
-								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理布局内容</h2>
-							</div>
-						</div>
-							<!-- 第二个 -->
-						<div class="right_one">
-							<div class="r_one_top">
-								<img src="img/main_img/big.png">
-							</div>
-							<div class="r_one_bot">
-								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理布局内容</h2>
-							</div>
-						</div>
-							<!-- 第二个 -->
-						<div class="right_one">
-							<div class="r_one_top">
-								<img src="img/main_img/big.png">
-							</div>
-							<div class="r_one_bot">
-								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理布局内容</h2>
-							</div>
-						</div>
-							<!-- 第二个 -->
-						<div class="right_one">
-							<div class="r_one_top">
-								<img src="img/main_img/big.png">
-							</div>
-							<div class="r_one_bot">
-								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理布局内容</h2>
-							</div>
-						</div>
-							<!-- 第二个 -->
-						<div class="right_one">
-							<div class="r_one_top">
-								<img src="img/main_img/big.png">
-							</div>
-							<div class="r_one_bot">
-								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理布局内容</h2>
-							</div>
-						</div>
-							<!-- 第二个 -->
-						<div class="right_one">
-							<div class="r_one_top">
-								<img src="img/main_img/big.png">
-							</div>
-							<div class="r_one_bot">
-								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理布局内容</h2>
-							</div>
-						</div>
-						<!-- 第二个 -->
-						<div class="right_one">
-							<div class="r_one_top">
-								<img src="img/main_img/big.png">
-							</div>
-							<div class="r_one_bot">
-								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理布局内容</h2>
-							</div>
+					<div class="all_content" style="width:100%;height:97%;">
+						<div class="every_cont" style="width:100%;height:100%;">
+							<div><iframe id="every_module" src="WebRoot/WEB-INF/app/main/cont.jsp" frameborder="0" scrolling="yes" height="60%" width="100%" noresize="noresize"></iframe></div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="foot">
-				<a href="download.html" target="_blank"><h1>点击下载PC客户端</h1></a>
+				<!-- <div class="foot_left"><a href="download.html" target="_blank"><h1>点击下载PC客户端</h1></a></div>
 				<div class="lunbo">
 					 <ul>
-						 <li style="    margin-left: 34%; margin-top: -2%;font-size: 14px;color: #fff;">心通达OA软件领跑者</li>
+						 <li style="margin-left: 34%; margin-top: -2%;font-size: 14px;color: #fff;">心通达OA软件领跑者</li>
 						 <li>我寄愁心与明月，随风直到夜郎西</li>
 						 <li>不是花中偏爱菊，此花开尽更无花</li>
 						 <li>辛苦遭逢起一经，干戈寥落四周星</li>
-					 </ul>
+					 </ul> 
 				 </div>
 				
-				<a href="xitong.html" target="_blank"><h2>心通达 &nbsp 年付版本</h2></a>
-			</div>
+				<div class="foot_rig"><a href="xitong.html" target="_blank"><h2>心通达 &nbsp 年付版本</h2></a></div> -->
+				<div id="south">
+				    <table>
+				        <tr>
+				            <td class="left"><div id="online_link" onClick="ViewOnlineUser()" title="共 43 人，2 人在线">在线<span id="user_count">2</span>人</div></td>
+				            <td class="left"><span id="new_sms"></span><span id="new_sms_sound" style="width:1px;height:1px;"></span></td>
+				            <td class="center">
+				            	<div id="status_text">Office Anywhere 2015版<br>中国协同OA软件领跑者<br>体验科技关怀   共创美好未来<br></div>
+				            </td>        
+				                        <td class="right">
+				                            </td>
+				        </tr>
+				    </table>
+				</div>
+				
+				<div id="on_status_list">
+				    <ul id="on_status_ul">
+				        <li><a id="on_status_1" href="javascript:set_status(1);" title="">在线</a></li>
+				        <li><a id="on_status_2" href="javascript:set_status(2);" title="">忙碌</a></li>
+				        <li><a id="on_status_3" href="javascript:set_status(3);" title="">离开</a></li>
+				    </ul>
+				</div>
+				   <div id="overlay"></div>
+				   <div style="display:none;"></div>
 		</div>
 			
 	</body>
 	<script>
 		$(function(){
+			//-- 状态栏文字 --
+		function StatusTextScroll(){
+		    var obj = jQuery('#status_text');
+		    var scrollTo = obj.scrollTop() + obj.height();
+		    if(scrollTo >= obj.attr('scrollHeight'))
+		       scrollTo = 0;
+		    obj.animate({scrollTop: scrollTo}, 300);
+		}
+		
 			$.ajax({
 					url:'showMenu',
 					type:'get',						
 					dataType:'json',
 					success:function(obj){
 							var data= obj.obj;
-								var str=''; 
-							console.log(data);
-							 for(var i=0;i<data.length;i++){
-
+							var str=''; 
+						
+							for(var i=0;i<data.length;i++){
 								var er='';
-								console.log(data[i].child.child);
-								 for(var j=0;j<data[i].child.length;j++){
-								 
-							
-								var three='';
-								if(data[i].child[j].child.length>0){
-									er += '<li class="two"><div class="two_all" style="width: 72%;"><h1>'+data[i].child[j].name+'</h1><img src="img/main_img/down.png"></div></li>';
-									for(var k=0;k<data[i].child[j].child.length;k++){						
-								 		 three +='<li class="three">'+data[i].child[j].child[k].name+'</li>' ; 	
-								 	}
-								}else{
-									er += '<li class="two"><div class="two_all" style="width: 72%;"><h1>'+data[i].child[j].name+'</h1></div></li>';
+								/* http://192.168.0.17:88/general/system/user/index.php?uid=admin */
+								for(var j=0;j<data[i].child.length;j++){
+									/* var url=data[i].child[j].url; */
+									if(data[i].child[j].child.length>0){
+										var three='';
+										for(var k=0;k<data[i].child[j].child.length;k++){						
+								 			three +='<li class="three">'+data[i].child[j].child[k].name+'</li>' ; 	
+								 		}
+								 		er += '<li class="two" url=http://192.168.0.17:88/general/system/'+data[i].child[j].url+'/index.php?uid=admin ><div  class="two_all click_erji" style="width: 72%;"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="margin-left:25%;display:none;">'+three+'</ul></li>';
+									/*  console.log($('er').find().attr('url')); */
+									}else{
+										er += '<li class="two" url=http://192.168.0.17:88/general/system/'+data[i].child[j].url+'/index.php?uid=admin><div class="two_all" style="width: 72%;"><h1>'+data[i].child[j].name+'</h1></div></li>';
+										
+									} 
 								} 
-									
-								} 
-
-								 str+='<li class="one person" id="administ"><div class="one_all" style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;"><img class="one_logo" src="'+data[i].img+'"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="one_down_img" src="img/main_img/down.png" style="margin-top: 10%;"></div><ul class="erji b"  style="margin-left:20%;width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div><ul class="sanji" style="margin-left:25%;display:none;"><li class="three">'+three+'</li></ul></li></ul></li>'; 
-								
-							}  
+								str+='<li class="one person" id="administ"><div class="one_all" style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;"><img class="one_logo" src="'+data[i].img+'"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="one_down_img" src="img/main_img/down.png" style="margin-top: 10%;"></div><div class="two_menu"><ul class="erji b"  style="margin-left:20%;width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
+							}   
 							
-						console.log(three);
+		
+						
+				
 						$(".tab_cone").html(str);
 						//二级
-						$('.one_all').on('click',function () {
-							/* alert('aaa'); */
-							if ($(this).siblings('.erji').css('display')=='none') {
+					 	$('.one_all').on('click',function () {
+							
+							if ($(this).siblings().find('.erji').css('display')=='none') {
 								$(this).find('.one_down_img').attr('src','img/main_img/up.png');
-								$(this).siblings('.erji').show();	
+								$(this).siblings().find('.erji').show();	
 								
 							}else{
 								$(this).find('.one_down_img').attr('src','img/main_img/down.png');
-								$(this).siblings('.erji').hide();
+								$(this).siblings().find('.erji').hide();
+							}
+										
+						}); 
+
+							//三级
+						$('.click_erji').on('click',function () {
+					
+							if ($(this).siblings('.sanji').css('display')=='none') {
+								$(this).find('.er_img').attr('src','img/main_img/up.png');
+								$(this).siblings('.sanji').show();	
+								
+							}else{
+								$(this).find('.er_img').attr('src','img/main_img/down.png');
+								$(this).siblings('.sanji').hide();
 							}
 										
 						});
 						
-							//三级
-						$('.two_all').on('click',function () {
-				
-							if ($(this).parent().siblings('.sanji').css('display')=='none') {
-								$(this).find('.one_down_img').attr('src','img/main_img/up.png');
-								$(this).parent().siblings('.sanji').show();	
+						 var contIndex=0;
+						//菜单切换
+						$('.two_menu').on('click','li',function(){
+							var aaa=$(this).attr('url'); 
+							alert(aaa);
+						
+						
+							var index=$(this).index();
+							if(contIndex!=index){
+								contIndex=index;
+								$(this).addClass('xuan').siblings().removeClass('xuan');
+								$(this).pratent().siblings().find().removeClass('xuan');
+								//跳转页面
+								$('#every_module').attr('src',aaa);
 								
-							}else{
-								$(this).find('.one_down_img').attr('src','img/main_img/down.png');
-								$(this).parent().siblings('.sanji').hide();
+								var content=$(".every_cont").find("div");
+								console.log(content)
+					            $(content[index]).show();
+					            $(content[index]).siblings().hide();
 							}
-										
+							
+					
 						});
 						 
 					}			
 				});
 				
-				var contents=$(".tab_c").find("ul");
-				console.log(contents);
+		
 		})
 	</script>
 	
