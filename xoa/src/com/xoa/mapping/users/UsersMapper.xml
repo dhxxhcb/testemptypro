@@ -147,8 +147,8 @@
 		select USER_NAME FROM user
 		WHERE UID= #{uid}
 	</select>
-	<select id="getDatagrid" resultMap="UserResultMap">
-		select * from user
+	<select id="getAlluser" resultMap="UserResultMap">
+		select UID,USER_NAME,BYNAME,USER_PRIV, USER_PRIV_NAME,POST_PRIV,POST_DEPT,DEPT_ID,SEX from user 
 	</select>
 	<insert id="addUser" useGeneratedKeys="true" keyProperty="uid">
 		insert into user(

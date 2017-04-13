@@ -82,7 +82,7 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public List<Users> getAlluser() {
-		List<Users> list=usersMapper.getDatagrid();	
+		List<Users> list=usersMapper.getAlluser();	
 		return list;
 	}
 	
