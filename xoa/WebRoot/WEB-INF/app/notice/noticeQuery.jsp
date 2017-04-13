@@ -9,10 +9,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="UTF-8">
 		<title>公告查询</title>
-		<style type="text/css">
+		<meta name="renderer" content="webkit">
+	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="lib/laydate.css"/>
+		
 		<script src="lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="lib/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
 		html,body{width: 100%;height: 100%;font-family: "微软雅黑";font-size: 14px;}
 			.inPole{font-size: 14px;}
 			textarea{min-width: 30%;min-height: 30px;margin: 5px 5px;}
@@ -147,16 +151,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var start = {
 			  elem: '#start',
 			  format: 'YYYY/MM/DD hh:mm:ss',
+			 /* min: laydate.now(), //设定最小日期为当前日期*/
+			 /* max: '2099-06-16 23:59:59', //最大日期*/
 			  istime: true,
 			  istoday: false,
 			  choose: function(datas){
 			     end.min = datas; //开始日选好后，重置结束日的最小日期
-			     end.start = datas //将结束日的初始值设定为开始日
+			     end.start = datas; //将结束日的初始值设定为开始日
 			  }
 			};
 			var end = {
 			  elem: '#end',
 			  format: 'YYYY/MM/DD hh:mm:ss',
+			  /*min: laydate.now(),*/
+			  /*max: '2099-06-16 23:59:59',*/
 			  istime: true,
 			  istoday: false,
 			  choose: function(datas){
@@ -164,12 +172,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  }
 			};
 			laydate(start);
-			laydate(end); //
+			laydate(end);//
 			
        		$(function(){
+       			
        			$('input[type="submit"]').click(function () {
 					var typeId=$('select[name="TYPE_ID"] option:checked').val();
-					var forMat=$('select[name="FORMAT"] option:checked').val()
+					var forMat=$('select[name="FORMAT"] option:checked').val();
 					var subject=$('input[name="SUBJECT"]').val();
 					var content=$('input[name="CONTENT"]').val();
 					var data={
@@ -178,20 +187,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						'subject':subject,
 						'content':content,
 						'format':forMat
-					}
-					alert(data.subject)
+					};
+					console.log(data.typeId);
+					console.log(data.sendTime);
+					console.log(data.subject);
+					console.log(data.content);
+					console.log(data.format);
 					$.ajax({
-						type:"post",
+						type:"get",
 						url:"notifyList",
 						dataType:'json',
 						data:data,
-						success:function(returnReslt){
+						success:function(){
 						/* alert(data.length); */
-							alert(returnReslt);
+							console('1223');
 						}
 					});
-				})
-       		})
+				});
+       		});
     	</script>
 	</body>
 </html>

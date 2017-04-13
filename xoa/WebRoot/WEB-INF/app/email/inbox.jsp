@@ -270,6 +270,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<!--右侧侧边栏 结束-->
 		</div>
+		<script type="text/javascript">
+    		
+    		$(function(){
+	    			$.ajax({
+							type:"post",
+							url:"deleteMessage",
+							dataType:'json',
+							success:function(){
+								
+						}
+					})
+	    		})
+    		})
+    		
+    	</script>
 	</body>
 </html>
 
