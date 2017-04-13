@@ -67,7 +67,6 @@ public class FileSortTreeUtil {
 	 */
 	private void addChlidNodes(TreeNode rootNode){
 		List<TreeNode> childNodes = new ArrayList<TreeNode>();  
-		boolean flag=false;
 		for(File_Sort fs: childTree){
 			if(rootNode.getDataId().equals(String.valueOf(fs.getSort_parent()))){
 				TreeNode node = RootToNode(fs);

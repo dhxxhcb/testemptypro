@@ -1,5 +1,6 @@
 package com.xoa.controller.file;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -101,15 +102,21 @@ public class FileSortController {
 		return modelAndView;
 	}
 	@RequestMapping("/fileAdd")
-	public ModelAndView fileAdd(File_Sort file){
+	public ModelAndView fileAdd(File_Sort file) throws UnsupportedEncodingException{
 		//"redirect:/showFile"   "file/showFile"
 		Map<String, Object> model =null;
 		ModelAndView modelAndView=null;
+		
 		if(file.getSort_no()==null||file.getSort_no().equals("")){
 			model = new HashMap<String, Object>();
 			modelAndView=new ModelAndView("app/file/addFile",model);
 			return modelAndView;
 		}
+		System.out.println("--前--------------"+file.getSort_name());
+			String sname=new String(file.getSort_name().getBytes("ISO-8859-1"),"utf-8");
+		System.out.println("--中--------------"+sname);
+			file.setSort_name(sname);
+		System.out.println("--后--------------"+file.getSort_name());
 		int resultAdd=file_SortService.addFile_Sorts(file);
 		System.out.println("添加文件影响行--------"+resultAdd);
 		modelAndView=new ModelAndView("redirect:/showFiles",model);
@@ -160,7 +167,9 @@ public class FileSortController {
 		
 		//所有删除文件夹
 		List<File_Sort> childrenList=getfilesDelete(file);
+		//将父节点加入，父节点下可能也有文件
 		childrenList.add(file);
+		//文件集合
 		List<File_Content> fileContentList=new ArrayList<File_Content>();
 		//
 	   for(File_Sort f : childrenList){

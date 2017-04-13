@@ -19,19 +19,25 @@
 <script type="text/javascript" src="js/easyui/easyui-lang-zh_CN.js"></script>
 <!-- <script type="text/javascript" src="/ui/easyui/tree.js"></script> -->
 <script type="text/javascript">
-
 $(function(){
-alert("进来了"); 
-$('#tree').tree({   
-    url: '/showFile' 
-});  
-}); 
-
+alert("我进来了!");
+$("#fileTree").tree({
+	onClick : function(node){
+		alert(node.id);  // 在用户点击的时候提示
+		$.POST("/",{"id": node.id});
+	}
+});
+});
 </script>
 </head>
-<body>
- <br>
- <ul class="easyui-tree" data-options="url:'showFile',method:'get',animate:true,dnd:true">
- </ul>
+<body style="margin: 0">
+<TABLE border=0 width="700">
+	<TR>
+	 <TD width=340px align=left valign=top>
+      <ul id="fileTree" class="easyui-tree" data-options="url:'showFile',method:'get',animate:true,dnd:true">
+      </ul>
+    </TD>
+ </TR>
+</TABLE>
 </body>
 </html>
