@@ -1,5 +1,7 @@
 package com.xoa.controller.users;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.alibaba.fastjson.JSON;
 import com.xoa.controller.menu.MenuController;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
@@ -82,4 +84,28 @@ public class UsersController {
 		}
         return json;
     }
+	
+	/**
+	 * 查询所用用户
+	 * @param userId
+	 * @param out
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/user/getAlluser",produces = {"application/json;charset=UTF-8"})
+    public String getAllUser() {
+		ToJson<Users> json=new ToJson<Users>(0, null);
+		//loger.debug("传过来的ID为"+user.getUid());
+		try {
+			List<Users> list=usersService.getAlluser();  
+			json.setObj(list);
+            json.setMsg("所有用户查询成功！");
+            json.setFlag(true);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+			System.out.println(e.getMessage());
+		}
+		//return JSON.toJSONString(json);
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
+	
 }

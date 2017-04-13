@@ -25,6 +25,8 @@ public interface UsersMapper {
 	public List<Users> getdepId(int depId);
 
 	public List<Users> getRoleId(int userPriv);
+	
+	public List<Users> getAlluser();
 
 
 }

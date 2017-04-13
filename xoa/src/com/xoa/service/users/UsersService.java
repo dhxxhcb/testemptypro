@@ -39,5 +39,11 @@ public interface UsersService {
      */
 	@DynDatasource
 	public JSONObject getUserNameById(int... user_id_str);
+	
+	/**
+     *获取全部用户
+     */
+	@DynDatasource
+	public List<Users> getAlluser();
 
 }

@@ -79,6 +79,13 @@ public class UsersServiceImpl implements UsersService {
 			        }  
 				return json;
 	}
+
+	@Override
+	public List<Users> getAlluser() {
+		List<Users> list=usersMapper.getDatagrid();	
+		return list;
+	}
+	
 	
 	
 	
