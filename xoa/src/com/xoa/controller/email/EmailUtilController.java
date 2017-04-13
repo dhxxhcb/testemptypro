@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -192,7 +193,7 @@ public class EmailUtilController {
 	 * @return 字符串
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/showEmail", produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/showEmail",method=RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String queryEmail(HttpServletRequest request) throws Exception {
 		String flag = ServletRequestUtils.getStringParameter(request, "flag");
