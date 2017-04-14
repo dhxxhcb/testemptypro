@@ -278,11 +278,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							url:"deleteMessage",
 							dataType:'json',
 							success:function(){
-								
+								console.log('12');	
 						}
-					})
-	    		})
-    		})
+					});
+	    		
+	    		$('.d_im img').click(function(){
+	    			 window.location.href="email/addbox";
+	    		});
+    		});
     		
     	</script>
 	</body>
