@@ -1,6 +1,7 @@
 package com.xoa.controller.users;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -20,13 +21,14 @@ import com.xoa.util.ToJson;
 @Controller
 @Scope(value="prototype")
 public class UsersController {
-	private Logger loger = Logger.getLogger(MenuController.class);
+	private Logger loger = Logger.getLogger(UsersController.class);
 	@Resource
 	private UsersService usersService;
 	
 
 	/**
 	 * 新增用户
+	 * @param User
 	 * @return
 	 */
 	@ResponseBody
@@ -46,7 +48,7 @@ public class UsersController {
 	/**
 	 * 修改用户
      * 
-     * @param user
+     * @param User
      * @return
 	 */
 	@ResponseBody
@@ -66,7 +68,7 @@ public class UsersController {
     }
 	/**
 	 * 删除某个用户
-	 * @param userId
+	 * @param Users
 	 * @param out
 	 */
 	@ResponseBody
@@ -86,17 +88,38 @@ public class UsersController {
     }
 	
 	/**
-	 * 查询所用用户
-	 * @param userId
+	 * 根据uid查询用户信息
+	 * @param uid
+	 * @param out
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/user/findUserByuid",method = RequestMethod.POST)
+    public String findUserByuid(int uid) {
+		ToJson<Users> json=new ToJson<Users>(0, null);
+		try {
+			Users users=usersService.findUserByuid(uid);  
+			json.setObject(users);;
+            json.setMsg("查询用户成功！");
+            json.setFlag(true);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
+	
+	
+	/**
+	 * 查询所有用户信息
+	 * @param 
 	 * @param out
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getAlluser",produces = {"application/json;charset=UTF-8"})
-    public String getAllUser() {
+    public String getAllUser(Map<String, Object> maps, Integer page,
+			Integer pageSize, boolean useFlag) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
-		//loger.debug("传过来的ID为"+user.getUid());
 		try {
-			List<Users> list=usersService.getAlluser();  
+			List<Users> list=usersService.getAlluser(maps,page,pageSize,useFlag);  
 			json.setObj(list);
             json.setMsg("所有用户查询成功！");
             json.setFlag(true);
@@ -104,8 +127,26 @@ public class UsersController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-		//return JSON.toJSONString(json);
         return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
     }
+	/**
+	 * 多条件查询
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/user/getDeptByMany",method = RequestMethod.POST)
+    public ToJson<Users> getDeptByMany(Users users) {
+		ToJson<Users> json=new ToJson<Users>(0, null);
+		try {
+			List<Users> list=usersService.getUserByMany(users);
+            json.setObj(list);
+            json.setMsg("多条件查询成功！");
+            json.setFlag(true);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return json;
+    }
+	
 	
 }

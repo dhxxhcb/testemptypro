@@ -3,9 +3,8 @@ package com.xoa.controller.department;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 
-
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +14,143 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.department.Department;
-import com.xoa.service.users.UserFunctionService;
+import com.xoa.service.department.DepartmentService;
+import com.xoa.util.ToJson;
 
 
 @Controller
 @Scope(value="prototype")
 public class DepartmentController {
+	
+	private Logger loger = Logger.getLogger(DepartmentController.class);
+	
 	@Resource
-	private UserFunctionService DepartmentService;
+	private DepartmentService departmentService;
+	
+	/**
+	 * 新增部门
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/department/addDept",method = RequestMethod.POST)
+    public ToJson<Department> addDept(Department department) {
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		try {
+			departmentService.insertDept(department);
+            json.setObject(department);
+            json.setMsg("部门新增成功！");
+            json.setFlag(true);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return json;
+    }
+	
+	/**
+	 * 删除某个部门
+	 * @param deptid
+	 * @param out
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/department/deletedept",method = RequestMethod.POST)
+    public ToJson<Department> deletedept(Department department) {
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		loger.debug("传过来的ID为"+department.getDeptId());
+		try {
+			departmentService.deleteDept(department.getDeptId());
+            json.setObject(department);
+            json.setMsg("部门删除成功！");
+            json.setFlag(true);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return json;
+    }
+
+	/**
+	 * 根据deptid查询部门信息
+	 * @param deptid
+	 * @param out
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/department/getDeptByid" ,method = RequestMethod.POST)
+    public String getDeptByid(int deptid) {
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		try {
+			Department department =departmentService.getDeptById(deptid);
+			json.setObject(department);
+            json.setMsg("查询部门成功！");
+            json.setFlag(true);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+			System.out.println(e);
+		}
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
+	
+	
+	/**
+	 * 查询所有部门信息
+	 * @param 
+	 * @param out
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/department/getAlldept",produces = {"application/json;charset=UTF-8"})
+    public String getAlldept() {
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		try {
+			List<Department> list=departmentService.getDatagrid();  
+			json.setObj(list);
+            json.setMsg("所有部门查询成功！");
+            json.setFlag(true);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+			System.out.println(e.getMessage());
+		}
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
+	
+	/**
+	 * 修改部门信息
+     * 
+     * @param user
+     * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/department/editDept",method = RequestMethod.POST)
+    public ToJson<Department> editDept(Department department) {
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		loger.debug("传过来的ID为"+department.getDeptId());
+		try {
+			departmentService.editDept(department);
+            json.setObject(department);
+            json.setMsg("修改成功！");
+            json.setFlag(true);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return json;
+    }
+	
+	/**
+	 * 多条件查询
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/department/getDeptByMany",method = RequestMethod.POST)
+    public ToJson<Department> getDeptByMany(Department department) {
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		try {
+			List<Department> list=departmentService.getDeptByMany(department);
+            json.setObj(list);
+            json.setMsg("部门查询成功！");
+            json.setFlag(true);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return json;
+    }
+	
 	
 	 /**
      * 部门列表-树111

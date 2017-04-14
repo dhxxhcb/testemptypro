@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var data=obj.obj;						
 							var str='';
 							for(var i=0;i<data.length;i++){
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="center">'+data[i].subject+'</td><td class="onTd">'+data[i].content+'</td><td nowrap align="center">'+data[i].sendTime+'</td><td nowrap align="center">'+data[i].format+'</td><td nowrap align="center">'+data[i].readers+'</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" > 修改</a>&nbsp;<a href="javascript:;" class="aBtn"> 删除</a></td></tr>'
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="center">'+data[i].subject+'</td><td class="onTd"><a href="javascript:;">'+data[i].content+'</a></td><td nowrap align="center">'+data[i].sendTime+'</td><td nowrap align="center">'+data[i].format+'</td><td nowrap align="center">'+data[i].readers+'</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" > 修改</a>&nbsp;<a href="javascript:;" class="aBtn"> 删除</a></td></tr>'
 							}
 							$('.TableHeader').append(str);
 						}
@@ -58,21 +58,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </td>
     <!--<td align="center" ><input type="button" class="BigButton" onClick="window.open('new.php')" value=新建公告 ></td>-->
     <td align="right" valign="bottom" class="small1">
-    	<!--<script>
-    		function goto_page(){
-    			var page_no=parseInt(document.getElementById('page_no').value);
-    			if(isNaN(page_no)||page_no<1||page_no>1){
-    				alert("页数必须为1-1");
-    				return;
-    			}
- 			window.location="/general/notify/manage/index1.php?start="+(page_no-1)*10+"&TOTAL_ITEMS=7&PAGE_SIZE=10";
-    		} 
-    		function input_page_no(){
-    			if(event.keyCode==13) goto_page();
-    			if(event.keyCode<47||event.keyCode>57)
-    			event.returnValue=false;
-    		}
-    	</script>-->
     	<div id="pageArea" class="pageArea">
 			第<span id="pageNumber" class="pageNumber">1/1</span>页
 			<a href="javascript:;" id="pageFirst" class="pageFirstDisable" title="首页"></a>

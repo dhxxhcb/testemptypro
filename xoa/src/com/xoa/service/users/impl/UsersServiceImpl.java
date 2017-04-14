@@ -1,16 +1,16 @@
 package com.xoa.service.users.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
-import com.alibaba.fastjson.JSONObject;
 import com.xoa.dao.users.UsersMapper;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
+import com.xoa.util.page.PageParams;
 @Service
 public class UsersServiceImpl implements UsersService {
 	
@@ -55,39 +55,47 @@ public class UsersServiceImpl implements UsersService {
 		// TODO Auto-generated method stub
 		usersMapper.deleteUser(uid);
 	}
-
 	@Override
-	public JSONObject getUserNameById(int... user_id_str) {
-		//定义返回的json字符串
-				JSONObject json=new JSONObject();
-				//定义用于拼接用户姓名的字符串
-				StringBuffer sb=new StringBuffer();
-				  for (int i = 0; i < user_id_str.length; i++) {  
-			            if(user_id_str.length==1){
-			            String userName=usersMapper.getUsernameByUserId(user_id_str[i]);
-			            json.put("userName", userName);	 
-			            return json;
-			            }else{
-			            String userName=usersMapper.getUsernameByUserId(user_id_str[i]);
-			            if(i<user_id_str.length-1){
-			            sb.append(userName).append("-");
-			            }else{
-			            sb.append(userName);
-			            }
-				        json.put("userName", sb.toString());	 
-			            } 
-			        }  
-				return json;
+	public String getUserNameById(int user_id) {
+		String userName=usersMapper.getUsernameByUserId(user_id);
+				return userName;
+	}
+	/**
+	 * 用户分页查询
+	 * 
+	 * @param maps
+	 *            相关条件参数传值
+	 * @param page
+	 *            当前页
+	 * @param pageSize
+	 *            每页显示条数
+	 * @param useFlag
+	 *            是否开启分页插件
+	 * @return 结果集合
+	 * @throws Exception
+	 */
+	@Override
+	public List<Users> getAlluser(Map<String,Object> maps, Integer page,
+			Integer pageSize, boolean useFlag) {
+		PageParams pageParams = new PageParams();
+		pageParams.setPage(page);
+		pageParams.setPageSize(pageSize);
+		pageParams.setUseFlag(useFlag);
+		maps.put("page", pageParams);
+		return usersMapper.getAlluser(maps);	
 	}
 
 	@Override
-	public List<Users> getAlluser() {
-		List<Users> list=usersMapper.getAlluser();	
+	public Users findUserByuid(int uid) {	
+		Users users=usersMapper.findUserByuid(uid);
+		return users;
+	}
+
+	@Override
+	public List<Users> getUserByMany(Users user) {
+		List<Users> list=usersMapper.getUserByMany(user);
 		return list;
 	}
-	
-	
-	
-	
+
 
 }
