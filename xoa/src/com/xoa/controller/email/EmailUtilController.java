@@ -306,10 +306,10 @@ public class EmailUtilController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/inbox")
+	@RequestMapping("/index")
 
 	public String inboxPage() {
-		return "app/email/inbox";
+		return "app/email/index";
 	}
 
 	/**
