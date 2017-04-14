@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="css/vintage_css/index.css"/>
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>  
-		<script type="text/javascript" src="js/index.js"></script>  
+		<script type="text/javascript" src="js/main_js/index.js"></script>  
 		<script src="js/jQuery.js"></script>
 	</head>
 	<body>
@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="cont_rig">
 					<div class="cont_nav">
 						<ul class="three_title">
-							<li class="three" url_three="asset/config">参数设置</li>
+							<li class="three infame" url_three="asset/config">参数设置</li>
 							<li class="three" url_three="asset/manage">固定资产管理</li>
 							<li class="three" url_three="asset/query">固定资产查询</li>
 						</ul>
@@ -208,14 +208,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 						//});
 						//点击 关闭
-						$('.gongzuoliu').on('click','.close',function(){
+						/* $('.gongzuoliu').on('click','.close',function(){
 								$(this).parent().remove();
 						});
-						
+						 */
 						//点击应用或者组织，tab切换
 							//tab切换
 							 var currentIndex=0;
-							 var index;
+							/*  var index; */
 						$('.tab_t').on('click','li',function(){
 								var index=$(this).index();
 								console.log(inedx);
@@ -225,7 +225,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									$(".tab_t li").removeClass("yingy");
 									$(this).addClass('yingy');
 									//内容
-									 var contents=$(".list").find("li");
+									 var contents=$(".list").find("ul");
 									
 					                $(contents[index]).show();
 					                $(contents[index]).siblings().hide();
@@ -297,13 +297,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						//三级菜单切换
 						$('.three_title').on('click','li',function(){
 							var bbb=$(this).attr('url_three');
-							alert(bbb);
-						/* 	$('#every_module').attr('src',bbb);
-							$('.sanji li').removeClass('xuan');
-							$(this).addClass('xuan'); */
+							/* alert(bbb); */
+						 /* 	$('#every_module').attr('src',bbb); */
+							$('.three_title li').removeClass('xuan');
+							$(this).addClass('xuan');
 						})
 						 
+						$('.sanji').on('mouseover','li',function(){
+							/* var bbb=$(this).attr('url_three'); */
+							/* alert(bbb); */
+						 /* 	$('#every_module').attr('src',bbb); */
+							$('.sanji li').removeClass('xuan');
+							$(this).addClass('xuan');
+						});
+						$('.sanji').on('mouseout','li',function(){
+							
+								$('.sanji li').removeClass('xuan');
+								
+						});
+						//点击标题栏
+						$('.main_title ').on('click','li',function(){
+						    $('.main_title li').removeClass('choose');
+							$(this).addClass('choose');
+							var t_this=$(this).attr('id');
 						
+							var num=t_this.split('_')[1];
+							
+							
+							/* var f_this= 'f_'+num; */
+							
+							// cccc=f_th;
+							
+							//console.log($('.iItem').attr('id',f_this));
+							/* console.log(t_this);
+							console.log('f_'+num);
+							 */
+							/*  console.log(f_this); */
+							
+							var f_this= $('.iItem').attr('id').split('_');
+							var f_th=f_this[1];
+							
+							console.log(num);							
+							
+							  if($('#f_'+num).length>0){
+							 	console.log($('#f_'+num).length);
+							 	$('.all_content .iItem').hide();
+								$('#f_'+num).show();
+					
+							}  
+						})
+						
+						/* $('.main_title li').on('click','.close',function(){
+							/* $('.main_title li').removeClass('xuan');
+							$(this).addClass('xuan'); */
+						/* 	$(this).parent().remove();
+						})  */
 					}			
 				});
 				

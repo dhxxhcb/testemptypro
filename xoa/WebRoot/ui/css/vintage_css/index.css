@@ -140,6 +140,18 @@ body,
 	width: 75%;
 	font-size:14px;
 }
+.choose{
+	width: 13%;
+    height: 33px;
+    float: left;
+    color: #595959;
+    line-height: 33px;
+    margin-top: 36px;
+    background:orange;
+    border: 2px solid #666;
+    border-radius: 5px 5px 0 0;
+}
+}
 .person_logo{
 	margin-left: 5%;
     margin-top: 7%;
