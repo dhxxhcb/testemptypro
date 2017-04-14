@@ -132,6 +132,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</body>
 	<script>
 		$(function(){
+		var menu = {
+			"email":"",
+			"notify/show":"notice/index"
+		}
 			//-- 状态栏文字 --
 		function StatusTextScroll(){
 		    var obj = jQuery('#status_text');
@@ -157,13 +161,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									if(data[i].child[j].child.length>0){
 										var three='';
 										for(var k=0;k<data[i].child[j].child.length;k++){						
-								 			three +='<li class="three" url_three=http://192.168.0.17:88/general/system/'+data[i].child[j].child[k].url+'/index.php?uid=admin>'+data[i].child[j].child[k].name+'</li>' ; 	
+								 			three +='<li class="three" url_three='+data[i].child[j].child[k].url+'>'+data[i].child[j].child[k].name+'</li>' ; 	
 								 		}
-								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url=http://192.168.0.17:88/general/system/'+data[i].child[j].url+'/index.php?uid=admin  class="two_all click_erji"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="margin-left:25%;display:none;">'+three+'</ul></li>';
+								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="margin-left:25%;display:none;">'+three+'</ul></li>';
 									/*  console.log($('er').find().attr('url')); */
 									}else{
 										console.log(data[i].child[j].id);
-										er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url=http://192.168.0.17:88/general/system/'+data[i].child[j].url+'/index.php?uid=admin class="two_all"><h1>'+data[i].child[j].name+'</h1></div></li>';
+										er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+' class="two_all"><h1>'+data[i].child[j].name+'</h1></div></li>';
 										
 									} 
 								} 
@@ -190,14 +194,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}); 
 						
 						//点击二级的每一个，获取每一个的内容
-						$('.two').on('click','.two_all',function(){
-							var er_title=$(this).find('h1').html();
-							var all='<li class="gongzuoliu" t_tid=t_1001;><h1>'+er_title+'</h1><img class="close" src="img/main_img/icon.png"></li>';
+						//$('.two').on('click','.two_all',function(){
+							//var er_title=$(this).find('h1').html();
+							//var all='<li class="gongzuoliu" t_tid=t_1001;><h1>'+er_title+'</h1><img class="close" src="img/main_img/icon.png"></li>';
 							/* var add=$('.gongzuoliu h1').html(er_title); */
-							console.log(all);
-							$('.main_title').append(all);
+							//console.log(all);
+							//$('.main_title').append(all);
 	
-						});
+						//});
 						//点击 关闭
 						$('.gongzuoliu').on('click','.close',function(){
 								$(this).parent().remove();
@@ -238,8 +242,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var url=$(this).attr('url'); 
 							var menu_tid=$(this).parent().attr('menu_tid'); 
 							alert(url);
+							if(menu[url]){
+								url = menu[url];
+							}else{
+								url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
+							}
 							//跳转页面
 							//判断id是否相同
+							alert(url);
 							console.log($('#f_'+menu_tid).length>0);
 							if($('#f_'+menu_tid).length>0){
 								//页面一打开，切换显示
@@ -247,7 +257,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$('#f_'+menu_tid).show();
 							}else{
 								//页面不存在，新增 title和iframe
-								var titlestr = '<li class="gongzuoliu" index="0;" id="t_'+menu_tid+'"><h1>我的桌面</h1><img class="close" src="img/main_img/icon.png"></li>';
+								var titlestr = '<li class="gongzuoliu" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><img class="close" src="img/main_img/icon.png"></li>';
 								var iframestr = '<div id="f_'+menu_tid+'" class="iItem" style="width:100%;height:100%;"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 								$('.main_title').append(titlestr);
 								$('.all_content').append(iframestr);

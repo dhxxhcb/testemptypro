@@ -32,7 +32,7 @@ import com.xoa.util.ToJson;
 
 @Controller
 @Scope(value = "prototype")
-@RequestMapping("/notify1")
+@RequestMapping("/notice")
 public class NotifyController {
 
 	private Logger loger = Logger.getLogger(NotifyController.class);
@@ -83,13 +83,13 @@ public class NotifyController {
 	  return returnReslt;
 	 }
 	
-	@RequestMapping("/noticeIndex")
+	@RequestMapping("/index")
 	// 登录窗口
 	public String logins() {
-		return "app/notice/notify";
+		return "app/notice/index";
 	}
 
-	@RequestMapping("/noticeIndex1")
+	@RequestMapping("/query")
 	// 登录窗口
 	public String logins1() {
 		return "app/notice/noticeQuery";
