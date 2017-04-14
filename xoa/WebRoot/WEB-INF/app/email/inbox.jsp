@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 						<div class="ul_show" style="display: block;">
 							<ul>
-								<li class="on"><a href="javascript:;"><img src="../img/inbox.png"/>收件箱<span>32</span></a></li>
+								<li class="on Inbox"><a href="javascript:;"><img src="../img/inbox.png"/>收件箱<span>32</span></a></li>
 								<li><a href="javascript:;"><img src="../img/icon_drafts_07.png"/>草稿箱<span>2</span></a></li>
 								<li><a href="javascript:;"><img src="../img/icon_sent_07.png"/>已发送</a></li>
 								<li><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/>废纸篓</a></li>
@@ -95,6 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<!--右侧侧边栏 开始-->
 			<div class="page_right">
+				
 				<div class="header">
 					<div class="nav">
 						<ul>
@@ -270,6 +271,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<!--右侧侧边栏 结束-->
 		</div>
+		
+		<!-- <div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;display:none;">
+			<div id="iframe1" class="iframe1" style="width: 100%;height: 100%;">
+				<iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+			</div>
+		</div> -->
+		
 		<script type="text/javascript">
     		
     		$(function(){
@@ -283,8 +291,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					});
 	    		
 	    		$('.d_im img').click(function(){
-	    			 window.location.href="email/addbox";
+	    			var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+	    			$('.page_right').css('display','none');
+	    			$('.page').append(Ifrmae);
 	    		});
+	    		$('.Inbox').click(function(){
+	    			$('.page').find('.div_iframe').remove();
+	    			$('.page_right').css('display','block');
+	    		})
     		});
     		
     	</script>
