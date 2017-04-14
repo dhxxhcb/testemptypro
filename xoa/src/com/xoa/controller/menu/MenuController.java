@@ -90,7 +90,7 @@ public class MenuController {
 	@RequestMapping("/content")
 	//公告通知list
 	public String noticeIndexPage() {
-		return "app/main/notify";
+		return "app/main/cont";
 	}
 
 }

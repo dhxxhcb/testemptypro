@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="all_content" style="width:100%;height:97%;">
 						
-							<div id='f_0' class="iItem" style="width:100%;height:100%;"><iframe  id="every_module" src="WebRoot/WEB-INF/app/main/cont.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
+							<div id='f_0' class="iItem" style="width:100%;height:100%;"><iframe  id="every_module" src="content" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
 							
 					</div>
 				</div>
