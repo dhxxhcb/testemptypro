@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.department.DepartmentMapper">
+	<resultMap id="DepResultMap" type="com.xoa.model.department.Department">
+		<id column="DEPT_ID" property="deptId" jdbcType="INTEGER" />
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+		<result column="TEL_NO" property="telNo" jdbcType="VARCHAR" />
+		<result column="FAX_NO" property="faxNo" jdbcType="VARCHAR" />
+		<result column="DEPT_ADDRESS" property="deptAddress" jdbcType="VARCHAR" />
+		<result column="DEPT_NO" property="deptNo" jdbcType="VARCHAR" />
+		<result column="DEPT_PARENT" property="deptParent" jdbcType="INTEGER" />
+		<result column="IS_ORG" property="isOrg" jdbcType="CHAR" />
+		<result column="ORG_ADMIN" property="orgAdmin" jdbcType="VARCHAR" />
+		<result column="DEPT_EMAIL_AUDITS_IDS" property="deptEmailAuditsIds"
+			jdbcType="VARCHAR" />
+		<result column="WEIXIN_DEPT_ID" property="weixinDeptId"
+			jdbcType="INTEGER" />
+		<result column="DINGDING_DEPT_ID" property="dingdingDeptId"
+			jdbcType="INTEGER" />
+		<result column="G_DEPT" property="gDept" jdbcType="TINYINT" />
+		<result column="MANAGER" property="manager" jdbcType="LONGVARCHAR" />
+		<result column="ASSISTANT_ID" property="assistantId" jdbcType="LONGVARCHAR" />
+		<result column="LEADER1" property="leader1" jdbcType="LONGVARCHAR" />
+		<result column="LEADER2" property="leader2" jdbcType="LONGVARCHAR" />
+		<result column="DEPT_FUNC" property="deptFunc" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<select id="getDatagrid" resultMap="DepResultMap">
+		SELECT * from department u 
+	</select>
+	<select id="getUserAll" resultMap="DepResultMap">
+		SELECT y.* from department u,`user` y where u.DEPT_ID=#{deptId}
+	</select>
+	<select id="getDeptNameById" resultType="java.lang.String">
+		SELECT DEPT_NAME from department where DEPT_ID=#{deptId}
+	</select>
+</mapper>
