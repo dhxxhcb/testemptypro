@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							<ul class="tab_ctwo a" style="display:none;">
 								
-								<!-- <div class="person">
+								 <div class="person">
 									<img class="person_logo" src="img/main_img/zhishi.png">
 									<h1>知识管理</h1>
 									<img style="" src="img/main_img/down.png" class="person_down">
@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<img class="person_logo" src="img/main_img/xiangmu.png">
 									<h1>项目管理</h1>
 									<img src="img/main_img/down.png" class="person_down">
-								</div> -->
+								</div>
 							</ul>
 							
 						</div>
@@ -82,7 +82,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="cont_rig">
 					<div class="cont_nav">
 						<ul class="three_title">
-					
+							<li class="three" url_three="asset/config">参数设置</li>
+							<li class="three" url_three="asset/manage">固定资产管理</li>
+							<li class="three" url_three="asset/query">固定资产查询</li>
 						</ul>
 					</div>
 					<div class="all_content" style="width:100%;height:97%;">
@@ -166,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="margin-left:25%;display:none;">'+three+'</ul></li>';
 									/*  console.log($('er').find().attr('url')); */
 									}else{
-										console.log(data[i].child[j].id);
+										/* console.log(data[i].child[j].id); */
 										er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+' class="two_all"><h1>'+data[i].child[j].name+'</h1></div></li>';
 										
 									} 
@@ -207,12 +209,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$(this).parent().remove();
 						});
 						
+						//点击应用或者组织，tab切换
+							//tab切换
+							 var currentIndex=0;
+							 var index;
+						$('.tab_t').on('click','li',function(){
+								var index=$(this).index();
+								console.log(inedx);
+								if(currentIndex!=index){
+								 
+									currentIndex=index;
+									$(".tab_t li").removeClass("yingy");
+									$(this).addClass('yingy');
+									//内容
+									 var contents=$(".list").find("li");
+									
+					                $(contents[index]).show();
+					                $(contents[index]).siblings().hide();
+								}
+													
+						});
 
 							//点击二级，出现三级
 						$('.click_erji').on('click',function () {
 							var san= $(this).siblings().html();
 							console.log(san);
-							$('.three_title').html(san);
+							/* $('.three_title').html(san); */
 							
 							 if ($(this).siblings('.sanji').css('display')=='none') {
 								$(this).find('.er_img').attr('src','img/main_img/up.png');
