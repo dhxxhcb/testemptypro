@@ -12,10 +12,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/notify.css" />
-    <script src="lib/jquery-2.1.4.min.js" type="text/javascript"></script>
-   <!--  <script src="js/layer-v3.0.3/layer/layer.js" type="text/javascript" charset="utf-8"></script> -->
-    <!-- <script src="js/notify.js" type="text/javascript"></script> -->
+    <link rel="stylesheet" type="text/css" href="../css/notify.css" />
+    <script src="../lib/jquery-2.1.4.min.js" type="text/javascript"></script>
+   <!--  <script src="../js/layer-v3.0.3/layer/layer.js" type="text/javascript" charset="utf-8"></script> -->
+    <!-- <script src="../js/notify.js" type="text/javascript"></script> -->
     <script type="text/javascript">
     	$(function(){
     		
@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
   <tr>
     <td class="Big">
-    	<img src="img/notify_open.gif" align="absmiddle">
+    	<img src="../img/notify_open.gif" align="absmiddle">
     	<span class="big3">公告通知</span>&nbsp;
        <select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
           	<option value="0" selected>所有类型</option>
@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <th nowrap align="center">标题</th>
       <th nowrap align="center" style="cursor:pointer;"><u>发布内容</u></th>
       <th nowrap align="center" style="cursor:pointer;"><u>创建时间</u>
-      	<img border=0 src="img/arrow_down.gif" width="11" height="10">
+      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
       </th>
       <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
       <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th>
@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <td class="onTd">
       	<a href="javascript:;" title="" onclick="btnTxt('.div_table')">
       		<font color=red><b>仔细测试一下智能oa公告！！</b> 
-      			<img src='img/arrow_up.gif' title='已置顶'>
+      			<img src='../img/arrow_up.gif' title='已置顶'>
       		</font>
       	</a> 
       </td>
@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <td nowrap align="center"><u title="部门：北方测试研究公司" style="cursor:pointer">系统管理员</u></td>
       <td nowrap align="center"></td>
       <td style="cursor:pointer" title="" ></td>
-      <td class="onTd"><a href="javascript:;" title="" onclick="btnTxt('.div_table')"><font color=red><b>补补</b> <img src='img/arrow_up.gif' title='已置顶'></font></a> 
+      <td class="onTd"><a href="javascript:;" title="" onclick="btnTxt('.div_table')"><font color=red><b>补补</b> <img src='../img/arrow_up.gif' title='已置顶'></font></a> 
       </td>
       <td align="center">2017-01-15 00:00:00</td>
       <td nowrap align="center">2017-01-15</td>
@@ -227,16 +227,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <input type="checkbox" name="allbox" id="allbox_for" >
     	<label for="allbox_for">全选</label> &nbsp;
 	     <a href="javascript:cancel_top('1');" title="批量设置置顶">
-	     	<img src="img/add_top.gif" align="absMiddle">设置置顶
+	     	<img src="../img/add_top.gif" align="absMiddle">设置置顶
 	     </a>&nbsp;
 	     <a href="javascript:cancel_top('0');" title="批量取消置顶">
-	     	<img src="img/cancel_top.gif" align="absMiddle">取消置顶
+	     	<img src="../img/cancel_top.gif" align="absMiddle">取消置顶
 	     </a>&nbsp;
          <a href="javascript:delete_mail();" title="可删除所选公告中有权限删除的公告通知">
-         	<img src="img/delete.gif" align="absMiddle">删除所选公告
+         	<img src="../img/delete.gif" align="absMiddle">删除所选公告
          </a>&nbsp;
    		 <a href="javascript:delete_all();" title="可删除所有公告中有权限删除的公告通知">
-    		<img src="img/delete.gif" align="absMiddle">删除全部公告
+    		<img src="../img/delete.gif" align="absMiddle">删除全部公告
    		 </a>&nbsp;
     </td>
 </tr>

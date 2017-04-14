@@ -87,5 +87,10 @@ public class MenuController {
 
 		return JSON.toJSONStringWithDateFormat(menuJson, "yyyy-MM-dd HH:mm:ss");
 	}
+	@RequestMapping("/content")
+	//公告通知list
+	public String noticeIndexPage() {
+		return "app/main/cont";
+	}
 
 }

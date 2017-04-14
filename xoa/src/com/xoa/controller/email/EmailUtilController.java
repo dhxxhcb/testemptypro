@@ -307,11 +307,21 @@ public class EmailUtilController {
 	 * @return
 	 */
 	@RequestMapping("/inbox")
-	// 登录窗口
-	public String logins() {
+
+	public String inboxPage() {
 		return "app/email/inbox";
 	}
 
+	/**
+	 * 写件箱
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/addbox")
+
+	public String addboxPage() {
+		return "app/email/writeMail";
+	}
 	/**
 	 * 根据ID删除一条邮件`
 	 */
