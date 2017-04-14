@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script>
 		$(function(){
 		var menu = {
-			"email":"email/inbox",
+			"email":"",
 			"notify/show":"notice/index"
 		}
 			//-- 状态栏文字 --
@@ -171,7 +171,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										
 									} 
 								} 
-								str+='<li class="one person" id="administ"><div class="one_all" style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;"><img class="one_logo" src="'+data[i].img+'"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="one_down_img" src="img/main_img/down.png" style="margin-top: 10%;"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
+								str+='<li class="one person" id="administ"><div class="one_all" style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;"><img class="one_logo" src="img/main_img/'+data[i].img+'.png"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="one_down_img" src="img/main_img/down.png" style="margin-top: 10%;"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
 							}   
 							
 
@@ -241,7 +241,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						$('.two_menu li').on('click','.two_all',function(){
 							var url=$(this).attr('url'); 
 							var menu_tid=$(this).parent().attr('menu_tid'); 
-							console.log(url);
+							alert(url);
 							if(menu[url]){
 								url = menu[url];
 							}else{
@@ -249,8 +249,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							}
 							//跳转页面
 							//判断id是否相同
-							console.log(url);
-							
+							alert(url);
+							console.log($('#f_'+menu_tid).length>0);
 							if($('#f_'+menu_tid).length>0){
 								//页面一打开，切换显示
 								$('.all_content .iItem').hide();
@@ -272,7 +272,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						//三级菜单切换
 						$('.three_title').on('click','li',function(){
 							var bbb=$(this).attr('url_three');
-							
+							alert(bbb);
 						/* 	$('#every_module').attr('src',bbb);
 							$('.sanji li').removeClass('xuan');
 							$(this).addClass('xuan'); */
