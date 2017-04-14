@@ -306,10 +306,10 @@ public class EmailUtilController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/inbox")
+	@RequestMapping("/index")
 
 	public String inboxPage() {
-		return "app/email/inbox";
+		return "app/email/index";
 	}
 
 	/**
@@ -321,6 +321,16 @@ public class EmailUtilController {
 
 	public String addboxPage() {
 		return "app/email/writeMail";
+	}
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/indexup")
+
+	public String indexupPage() {
+		return "app/email/indexup";
 	}
 	/**
 	 * 根据ID删除一条邮件`

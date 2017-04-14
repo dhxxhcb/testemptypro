@@ -18,11 +18,43 @@ public interface NewsMapper extends BaseMapper<News> {
 	public List<News> selectNews(Map<String, Object> maps);
 	
 	/**
-	 * 未读信息
+	 * 条件新闻管理信息查询并返回
+	 * 
+	 * @return
+	 */
+	public List<News> selectNewsManage(Map<String, Object> maps);
+	
+	/**
+	 * 未读新闻
 	 * 
 	 * @return
 	 */
 	public List<News> unreadNews(Map<String, Object> maps);
+	/**
+	 * 详细新闻
+	 * 
+	 * @return
+	 */
+	public News detailedNews(Map<String, Object> maps);
+	
+	/**
+	 * 删除新闻
+	 * 
+	 * @return
+	 */
+	public void deleteNews(@Param("newsId") Integer newsId);
+	/**
+	 * 修改未读新闻
+	 * 
+	 * @return
+	 */
+	public void updateNews(News news);
+	/**
+	 * 修改新闻点击数
+	 * 
+	 * @return
+	 */
+	public void updateclickCount(News news);
 
 	/**
 	 * 共计多少条信息

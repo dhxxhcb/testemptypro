@@ -49,7 +49,7 @@ public class FileSortController {
 	 * @author 杨  胜
 	 * @return 
 	 */
-	@RequestMapping(value="/fileHome",produces={"application/json;charset=UTF-8"})
+	@RequestMapping(value="/fileHome")
 	public String fileHome() {
 		loger.info("--------fileHome-------");
 		return "app/file/fileHome";
@@ -60,7 +60,7 @@ public class FileSortController {
 		 * @author 杨  胜
 		 * @return 
 		 */
-		@RequestMapping(value="/topFrame",produces={"application/json;charset=UTF-8"})
+		@RequestMapping(value="/topFrame")
 		public String topFrame() {
 			loger.info("--------topFrame-------");
 			return "app/file/fileTop";
@@ -72,7 +72,7 @@ public class FileSortController {
      * @param file
      * @param response
      */
-	@RequestMapping(value="/showFile",produces={"application/json;charset=UTF-8"})
+	@RequestMapping(value="/showFile")
 	@ResponseBody
 	public void showFile(File_Sort file,HttpServletResponse response) {
 		loger.info("--------showFile-------");
@@ -84,7 +84,7 @@ public class FileSortController {
 	 * @author 杨  胜
 	 * @return 
 	 */
-	@RequestMapping(value="/fileIndex",produces={"application/json;charset=UTF-8"})
+	@RequestMapping(value="/fileIndex")
 	public String fileIndex() {
 		loger.info("--------fileIndex-------");
 		return "app/file/showFile";
@@ -100,8 +100,9 @@ public class FileSortController {
 		return "app/file/fileHomeOne";
 	}
 	/**
-	 * 构建树形菜单
+	 * 构建树形目录信息
 	 * @author 杨  胜
+	 * @param sortid 传入父节点获取
 	 * @return
 	 */
 	public List<TreeNode> treeMenu(int sortid) {
@@ -116,8 +117,8 @@ public class FileSortController {
 	/**
 	 * 输出到页面File_Sort集合输出跳转并展示到页面
 	 * @author 杨  胜
-	 * @param file
-	 * @return modelAndView
+	 * @param file 
+	 * @return ("app/file/showFile",model)
 	 */
 	@RequestMapping("/showFiles")
 	public ModelAndView showFiles(File_Sort file){
@@ -132,7 +133,7 @@ public class FileSortController {
 	 * 获取根文件夹
 	 * @author 杨  胜
 	 * @param file
-	 * @return modelAndView
+	 * @return ("app/file/fileSet",model)
 	 */
 	@RequestMapping("/showFileBySort_id")
 	public ModelAndView showFileBySort_id(File_Sort file){
@@ -146,7 +147,7 @@ public class FileSortController {
 	}
 	/**
 	 * 添加文件夹，通过判断字段，重复使用
-	 * @param file
+	 * @param file 
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
@@ -155,7 +156,6 @@ public class FileSortController {
 		//"redirect:/showFile"   "file/showFile"
 		Map<String, Object> model =null;
 		ModelAndView modelAndView=null;
-		
 		if(file.getSort_no()==null||file.getSort_no().equals("")){
 			model = new HashMap<String, Object>();
 			modelAndView=new ModelAndView("app/file/addFile",model);

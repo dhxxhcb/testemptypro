@@ -24,6 +24,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/easyui/jquery.min.js"></script>
 <script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="js/easyui/easyui-lang-zh_CN.js"></script>
+<style>
+	input{border:none;outline:none;display:inline-block;background:#fff;}
+	input:hover{background:#eaf2ff;padding:5px;}
+</style>
 <script type="text/javascript">
 function openWindow(sHref,strWidth,strHeight) {
   var strLeft=(screen.availWidth-strWidth)/2;
@@ -46,10 +50,10 @@ function openWindow(sHref,strWidth,strHeight) {
 	onclick="openWindow('${pageContext.request.contextPath }','700','500')"/>&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp; <input style="font-size:12px;height=40;width=160" id="BT_Select" type="button" value="查询" name="BT_new" 
 	onclick="openWindow('${pageContext.request.contextPath }','700','500')"/>&nbsp;&nbsp;&nbsp;
-	&nbsp;&nbsp; <input style="font-size:12px;height=40;width=160" id="BT_AllSelect" type="button" value="全局搜索" name="BT_new" 
+	&nbsp;&nbsp; <input style="font-size:12px;height=40;width=160;" id="BT_AllSelect" type="button" value="全局搜索" name="BT_new" 
 	onclick="openWindow('${pageContext.request.contextPath }','700','500')"/>&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp; 
-	<div style="padding:5px;border:1px solid #ddd">
+	<div style="padding:5px;width:110px;display:inline-block;">
 	<a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">文件夹操作</a>
 	</div>
 	<div id="mm1" style="width:150px;">
@@ -70,7 +74,7 @@ function openWindow(sHref,strWidth,strHeight) {
   </form>
   <br>
   <hr>
-  <span></span>/<span></span>
+  <span>公司管理制度</span>/<span>行政办公制度</span>
   <hr>
   <br>
   <form id="form2" action="">
