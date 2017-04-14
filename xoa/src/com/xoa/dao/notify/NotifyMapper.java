@@ -15,11 +15,20 @@ public interface NotifyMapper {
     List<Notify> selectNotify(Map<String,Object> maps);
     
     /**
+   	 * 未读信息
+   	 * 
+   	 * @return
+   	 */
+   	public List<Notify> unreadNotify(Map<String, Object> maps);
+    
+    /**
      * 根据ID获取对象
      * @param id
      * @return
      */
     List<Notify> getNotifyById(String id);
+    
+    Notify getNotifyById(Integer id);
     
     /**
      * 增加

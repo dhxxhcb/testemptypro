@@ -43,7 +43,7 @@ public class Notify {
 	 */
     private String typeId;
 	/**
-	 * 是否置顶
+	 * 是否置顶(0-否,1-是)
 	 */
     private String top;
 	/**
@@ -51,11 +51,11 @@ public class Notify {
 	 */
     private Integer topDays;
 	/**
-	 * 公告通知格式
+	 * 公告通知格式(0-普通格式,1-MHT格式,2-超链接)
 	 */
     private String format;
 	/**
-	 * 发布标示
+	 * 发布标示(0-未发布,1-已发布,2-已终止)
 	 */
     private String publish;
 	/**
