@@ -84,13 +84,21 @@ public class NotifyController {
 	 }
 	
 	@RequestMapping("/index")
-	// 登录窗口
-	public String logins() {
-		return "app/notice/index";
+	//公告通知list
+	public String noticeIndexPage() {
+		return "app/notice/notify";
 	}
-
+	@RequestMapping("/add")
+	//公告新建
+	public String noticeaddPage() {
+		return "app/notice/notify";
+	}
+	@RequestMapping("/edit")
+	public String noticeEditPage() {
+		return "app/notice/noticeEdit";
+	}
 	@RequestMapping("/query")
-	// 登录窗口
+	//查询
 	public String logins1() {
 		return "app/notice/noticeQuery";
 	}
