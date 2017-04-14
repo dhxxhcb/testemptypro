@@ -1,6 +1,8 @@
 package com.xoa.service.worldnews.impl;
 
+import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.worldnews.NewsMapper;
+import com.xoa.model.department.Department;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.dataSource.DynDatasource;
@@ -25,6 +27,9 @@ public class NewServiceImpl implements NewService {
 	
 	@Resource
 	private NewsMapper newsMapper;
+	
+	@Resource
+	private DepartmentMapper departmentMapper;
 
 	/**
 	 * 
@@ -70,6 +75,81 @@ public class NewServiceImpl implements NewService {
 		}
         return list1;
 	}
+
+	@Override
+	public void sendNews(News news) {
+		newsMapper.save(news);
+		
+	}
+
+	@Override
+	public void updateNews(News news) {
+		// TODO Auto-generated method stub
+		newsMapper.update(news);
+	}
+
+	@Override
+	public News queryById(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception {
+		PageParams pageParams = new PageParams();  
+        pageParams.setUseFlag(useFlag);  
+        pageParams.setPage(page);  
+        pageParams.setPageSize(pageSize);  
+        maps.put("page", pageParams);
+		News news=newsMapper.detailedNews(maps);
+		 News newa=new News();
+		 if (news.getReaders().indexOf(name)!=-1) {
+			 StringBuffer str2 = new StringBuffer(news.getReaders());
+			 String str1=str2.append(name).toString();
+			 news.setNewsId(news.getNewsId());
+			 newa.setReaders(str1);
+			 news.setClickCount(news.getClickCount()+1);
+			 newsMapper.updateNews(news);
+			}else {
+				 news.setNewsId(news.getNewsId());
+				 news.setClickCount(news.getClickCount()+1);
+				 newsMapper.updateclickCount(news);
+			}
+		
+		return news;
+		  
+		
+	}
+
+	@Override
+	public void deleteByPrimaryKey(Integer newsId) {
+		// TODO Auto-generated method stub
+		newsMapper.deleteNews(newsId);
+	}
+
+	@Override
+	public List<News> selectNewsManage(Map<String, Object> maps, Integer page,
+			Integer pageSize, boolean useFlag) throws Exception {
+		String[] strArray = null;
+		PageParams pageParams = new PageParams();  
+        pageParams.setUseFlag(useFlag);  
+        pageParams.setPage(page);  
+        pageParams.setPageSize(pageSize);  
+        maps.put("page", pageParams);  
+        List<News> list = newsMapper.selectNewsManage(maps);
+       for (News news : list) {
+			if (news.getToId().equals("ALL_DEPT")) {
+				 List<Department> list1=departmentMapper.getDatagrid();
+				 for (Department department : list1) {
+					 news.setName(department.getDeptName());
+				}
+			}else  {
+				strArray=news.getToId().split(",");
+				for (int i = 0; i < strArray.length; i++) {
+			 String name=departmentMapper.getDeptNameById(Integer.parseInt(strArray[i]));
+			 news.setName(name);
+				}
+			}
+		}
+		return list;
+	}
+	
+	
+	
 	
 }
 	

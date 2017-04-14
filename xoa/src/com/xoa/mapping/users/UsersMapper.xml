@@ -136,7 +136,7 @@
 	</resultMap>
 	<select id="findUserByName" resultMap="UserResultMap">
 		select
-		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD` from user u WHERE
+		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD`,u.DEPT_ID,u.DEPT_ID_OTHER,u.USER_PRIV,u.USER_PRIV_OTHER from user u  WHERE
 		BYNAME= #{byname}
 	</select>
 	<select id="getUsernameById" resultMap="UserResultMap">
@@ -147,14 +147,9 @@
 		select USER_NAME FROM user
 		WHERE UID= #{uid}
 	</select>
-	<select id="getAlluser" resultMap="UserResultMap" parameterType="com.xoa.model.users.Users">
-		select UID,USER_NAME,BYNAME,USER_PRIV, USER_PRIV_NAME,POST_PRIV,POST_DEPT,DEPT_ID,SEX from user 
-	</select>	
-	<select id="findUserByuid" resultType="com.xoa.model.users.Users">
-		select u.UID,u.USER_NAME,u.BYNAME,u.USER_PRIV, u.USER_PRIV_NAME,u.POST_PRIV,u.POST_DEPT,u.DEPT_ID,u.SEX FROM user u 
-		WHERE UID= #{uid}
+	<select id="getDatagrid" resultMap="UserResultMap">
+		select * from user
 	</select>
-	
 	<insert id="addUser" useGeneratedKeys="true" keyProperty="uid">
 		insert into user(
 		<trim suffixOverrides=",">

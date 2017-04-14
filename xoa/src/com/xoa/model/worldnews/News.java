@@ -3,6 +3,10 @@ package com.xoa.model.worldnews;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.xoa.model.department.Department;
+import com.xoa.model.role.Role;
+import com.xoa.model.users.Users;
+
 /**
  * 新闻实体类
  * @author zy
@@ -133,7 +137,20 @@ public class News implements Serializable {
     private String summary;
     
     private Integer read;
-    
+    private Users users;
+    private Department dep;
+    private Role role;
+    private String name;
+   
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -529,5 +546,29 @@ public class News implements Serializable {
 	public void setRead(Integer read) {
 		this.read = read;
 	}
+	 
+		public Users getUsers() {
+			return users;
+		}
+
+		public void setUsers(Users users) {
+			this.users = users;
+		}
+
+		public Department getDep() {
+			return dep;
+		}
+
+		public void setDep(Department dep) {
+			this.dep = dep;
+		}
+
+		public Role getRole() {
+			return role;
+		}
+
+		public void setRole(Role role) {
+			this.role = role;
+		}
     
 }
