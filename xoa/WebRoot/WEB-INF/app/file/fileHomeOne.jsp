@@ -15,7 +15,7 @@ function submitrequest(action){
 eval("document.location='"+action+"'");
 }
 
-$(function(){
+/* $(function(){
 alert("我进来了!");
 $("#fileTree").tree({
 	onClick : function(node){
@@ -23,27 +23,19 @@ $("#fileTree").tree({
 		$.POST("/",{"id": node.id});
 	}
 });
-});
+}); */
 </script>
 
 </head>
-<body>
+
 <FRAMESET id="main" border="0" frameSpacing="0" frameBorder="0" cols="30%,*">
-<iframe id="tree" src="${pageContext.request.contextPath}/fileIndex" width=100% marginwidth=0 marginheight=0 scrolling="no"  designMode='on' >
 
-<!-- <TABLE border=0 width="700">
-	<TR>
-	 <TD width=340px align=left valign=top>
-      <ul id="fileTree" class="easyui-tree" data-options="url:'showFile',method:'get',animate:true,dnd:true">
-      </ul>
-    </TD>
- </TR>
-</TABLE> -->
 
-</iframe>
-<%-- <FRAME name="leftFrame" src="${pageContext.request.contextPath}/fileIndex" noResize> --%>
+<frame id="tree" src="${pageContext.request.contextPath}/fileIndex"  marginwidth=0 marginheight=0  designMode='on'  >
 
-<iframe name="mainFrame" src="${pageContext.request.contextPath}/fileContent">
+
+
+<frame name="mainFrame" src="${pageContext.request.contextPath}/fileContent">
 </FRAMESET>
-</body>
+
 </html>

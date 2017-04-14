@@ -15,7 +15,7 @@ public interface File_SortMapper {
 
 	int checkSort_No();
 
-	void fileDeleteBySort_id(Map<String, Object> fileParent);
+	int fileDeleteBySort_id(Map<String, Object> fileParent);
 
 	List<File_Sort> getSortChrildren(int tempNo);
 
