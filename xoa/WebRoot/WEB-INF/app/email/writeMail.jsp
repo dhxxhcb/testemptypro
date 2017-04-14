@@ -12,11 +12,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="css/writeMail.css"/>
-		<script src="lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="lib/utf8-jsp/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
-		<script src="lib/utf8-jsp/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/writeMail.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/writeMail.css"/>
+		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/utf8-jsp/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/utf8-jsp/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/writeMail.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
@@ -27,13 +27,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<textarea name="txt" disabled></textarea>
 						<span class="add_img">
 							<span class="addImg">
-								<img src="img/org_select.png" class="addIcon"/>
+								<img src="../img/org_select.png" class="addIcon"/>
 							</span>
 							<a href="javascript:;" class="Add">添加</a>
 						</span>
 						<span class="add_img">
 							<span class="addImg">
-								<img src="img/org_select2.png" class="clearIcon"/>
+								<img src="../img/org_select2.png" class="clearIcon"/>
 							</span>
 							<a href="javascript:;" class="clear">清除</a>
 						</span>
