@@ -71,9 +71,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        <select name="TYPE_ID" class="BigSelect">
 		          <option value="" selected="">全部</option>
 		          <option value="01">决定</option>
-		<option value="02">通知</option>
-		<option value="03">通报</option>
-		<option value="04">其他</option>
+				  <option value="02">通知</option>
+				  <option value="03">通报</option>
+				  <option value="04">其他</option>
 		        </select>&nbsp;
 		      </td>
 		    </tr>
