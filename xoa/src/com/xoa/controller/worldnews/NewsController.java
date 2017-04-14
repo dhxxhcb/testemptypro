@@ -40,10 +40,18 @@ public class NewsController {
 	 * @return
 	 */
 	@RequestMapping("/clicknews")
-	public String clickNews() {
+	public String newsIndexPage() {
 		return "/app/news/newsShow";
 	}
-
+	/**
+	 * 新闻显示页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/index")
+	public String clickNews() {
+		return "/app/news/index";
+	}
 	/**
 	 * 信息展示 返回json demo
 	 * 

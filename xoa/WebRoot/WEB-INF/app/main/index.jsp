@@ -134,7 +134,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$(function(){
 		var menu = {
 			"email":"email/inbox",
-			"notify/show":"notice/index"
+			"notify/show":"notice/index",
+			"news/show":"news/index",
+			"file_folder/index2.php":"fileHome"
 		}
 			//-- 状态栏文字 --
 		function StatusTextScroll(){
