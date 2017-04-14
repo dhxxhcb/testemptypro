@@ -323,6 +323,16 @@ public class EmailUtilController {
 		return "app/email/writeMail";
 	}
 	/**
+	 * 
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/indexup")
+
+	public String indexupPage() {
+		return "app/email/indexup";
+	}
+	/**
 	 * 根据ID删除一条邮件`
 	 */
 	/*
