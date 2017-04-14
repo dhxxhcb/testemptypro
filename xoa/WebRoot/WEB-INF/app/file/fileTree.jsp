@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -24,9 +25,7 @@ alert("我进来了!");
 $("#fileTree").tree({
 	onClick : function(node){
 		alert(node.id);  // 在用户点击的时候提示
-		$.POST("/",{"id": node.id},function(data){
-		
-		});
+		$.POST("/",{"id": node.id});
 	}
 });
 });
@@ -36,7 +35,7 @@ $("#fileTree").tree({
 <TABLE border=0 width="700">
 	<TR>
 	 <TD width=340px align=left valign=top>
-      <ul id="fileTree" class="easyui-tree" data-options="url:'showFile',method:'get',animate:true">
+      <ul id="fileTree" class="easyui-tree" data-options="url:'showFile',method:'get',animate:true,dnd:true">
       </ul>
     </TD>
  </TR>
