@@ -9,14 +9,14 @@ function isUndefined(variable) {
 	return typeof variable == 'undefined' ? true : false;
 }
 
-//ä¿®å¤setTimeout bugï¼Œä½¿ç”¨window.setTimeoutè°ƒç”¨
+//ĞŞ¸´setTimeout bug£¬Ê¹ÓÃwindow.setTimeoutµ÷ÓÃ
 if(!+'\v1') {
     (function(f){
         window.setTimeout =f(window.setTimeout);
         window.setInterval =f(window.setInterval);
     })(function(f){
         return function(c,t){
-            if(typeof(c) == "string")
+            if(typeof(c) == "strin")
                return eval(c);
                
             var a=[].slice.call(arguments,2);
@@ -301,7 +301,7 @@ function in_array(needle, haystack) {
 	}
 	return false;
 }
-function getEvent() //åŒæ—¶å…¼å®¹ieå’Œffçš„å†™æ³•
+function getEvent() //Í¬Ê±¼æÈİieºÍffµÄĞ´·¨
 {
     if(document.all)  return window.event;
     func=getEvent.caller;
@@ -405,10 +405,10 @@ function upload_limit_check(file_name)
       return true;
    
    if(ext_name=="*")
-      alert(td_lang.inc.msg_1);//"ä¸å…è®¸ä¸Šä¼ æ— åç¼€åçš„æ–‡ä»¶"
+      alert(td_lang.inc.msg_1);//"²»ÔÊĞíÉÏ´«ÎŞºó×ºÃûµÄÎÄ¼ş"
    else
    	{
-   		var msg1 = sprintf(td_lang.inc.msg_106, ext_name);//"ä¸å…è®¸ä¸Šä¼ åç¼€åä¸º%sçš„æ–‡ä»¶"
+   		var msg1 = sprintf(td_lang.inc.msg_106, ext_name);//"²»ÔÊĞíÉÏ´«ºó×ºÃûÎª%sµÄÎÄ¼ş"
       alert(msg1);
     }
    return false;
@@ -418,7 +418,7 @@ function upload_image_check(file_name)
 {
    if(file_name=="")
    {
-      alert(td_lang.inc.msg_2);//"å›¾ç‰‡åªèƒ½ä¸ºgif,jpg,png,bmpæ ¼å¼"
+      alert(td_lang.inc.msg_2);//"Í¼Æ¬Ö»ÄÜÎªgif,jpg,png,bmp¸ñÊ½"
       return false;
    }
    
@@ -428,14 +428,14 @@ function upload_image_check(file_name)
       ext_name=file_name.substring(file_name.lastIndexOf(".")+1,file_name.length);
    if(ext_name=="" || ext_name==file_name)
    {
-      alert(td_lang.inc.msg_2);//"å›¾ç‰‡åªèƒ½ä¸ºgif,jpg,png,bmpæ ¼å¼"
+      alert(td_lang.inc.msg_2);//"Í¼Æ¬Ö»ÄÜÎªgif,jpg,png,bmp¸ñÊ½"
       return false;
    }
    
    var file_types = "gif,jpg,jpeg,png,bmp,";
    if(file_types.indexOf(ext_name+",")<0 && file_types.indexOf(","+ext_name+",")<=0)
    {
-      alert(td_lang.inc.msg_2);//"å›¾ç‰‡åªèƒ½ä¸ºgif,jpg,png,bmpæ ¼å¼"
+      alert(td_lang.inc.msg_2);//"Í¼Æ¬Ö»ÄÜÎªgif,jpg,png,bmp¸ñÊ½"
       return false;
    }
    
@@ -452,7 +452,7 @@ function upload_image_check1(file_name)
          if(ext_name=="pdf"||ext_name=="PDF"){
 
          }else{
-			alert("åªèƒ½ä¸Šä¼ .pdfçš„æ–‡ä»¶");
+			alert("Ö»ÄÜÉÏ´«.pdfµÄÎÄ¼ş");
 			return false;
          }
          if(ext_name=="" || ext_name==file_name)
@@ -462,10 +462,10 @@ function upload_image_check1(file_name)
          if(upload_limit==1 && !bFound || upload_limit==2 && bFound)
          return true;
          if(ext_name=="*")
-         alert(td_lang.inc.msg_1);//"ä¸å…è®¸ä¸Šä¼ æ— åç¼€åçš„æ–‡ä»¶"
+         alert(td_lang.inc.msg_1);//"²»ÔÊĞíÉÏ´«ÎŞºó×ºÃûµÄÎÄ¼ş"
          else
          {
-            var msg1 = sprintf(td_lang.inc.msg_106, ext_name);//"ä¸å…è®¸ä¸Šä¼ åç¼€åä¸º%sçš„æ–‡ä»¶"
+            var msg1 = sprintf(td_lang.inc.msg_106, ext_name);//"²»ÔÊĞíÉÏ´«ºó×ºÃûÎª%sµÄÎÄ¼ş"
             alert(msg1);
          }
          return false;
@@ -517,7 +517,7 @@ function AddFile(file_type,divname)
    var addFileLink = GetParentEl(file,"a");
    if(!attach_div || !form_el || !addFileLink)
    {
-      alert(td_lang.inc.msg_3);//"å‚æ•°æ— æ•ˆ"
+      alert(td_lang.inc.msg_3);//"²ÎÊıÎŞĞ§"
       return;
    }
    
@@ -535,7 +535,7 @@ function AddFile(file_type,divname)
    {
       if(el[i].tagName && el[i].tagName.toLowerCase()=="input" && el[i].type.toLowerCase()=="file" && el[i].id!=file.id && el[i].value==file.value)
       {
-         alert(td_lang.inc.msg_4);//"è¯¥æ–‡ä»¶å·²ç»æ·»åŠ "
+         alert(td_lang.inc.msg_4);//"¸ÃÎÄ¼şÒÑ¾­Ìí¼Ó"
          addFileLink.removeChild(file);
          var attach = CreateFileEl(file.id, file.onchange);
          addFileLink.appendChild(attach);
@@ -570,7 +570,7 @@ function AddFile1(file_type)
    var addFileLink = GetParentEl(file,"a");
    if(!attach_div || !form_el || !addFileLink)
    {
-      alert(td_lang.inc.msg_3);//"å‚æ•°æ— æ•ˆ"
+      alert(td_lang.inc.msg_3);//"²ÎÊıÎŞĞ§"
       return;
    }
    if(!upload_image_check1(file.value) || file_type == "image" && !upload_image_check1(file.value))
@@ -586,7 +586,7 @@ function AddFile1(file_type)
    {
       if(el[i].tagName && el[i].tagName.toLowerCase()=="input" && el[i].type.toLowerCase()=="file" && el[i].id!=file.id && el[i].value==file.value)
       {
-         alert(td_lang.inc.msg_4);//"è¯¥æ–‡ä»¶å·²ç»æ·»åŠ "
+         alert(td_lang.inc.msg_4);//"¸ÃÎÄ¼şÒÑ¾­Ìí¼Ó"
          addFileLink.removeChild(file);
          var attach = CreateFileEl(file.id, file.onchange);
          addFileLink.appendChild(attach);
@@ -597,11 +597,11 @@ function AddFile1(file_type)
     //====mortred===
     var classification = '';
     if(typeof(attachClassificationFlag)!='undefined' && attachClassificationFlag == 1){
-        classification = " ;å¯†çº§:<select name='classification_"+id+"' id='classification_"+id+"' class='Select'>"+attachClassificationInfo+"</select>";
+        classification = " ;ÃÜ¼¶:<select name='classification_"+id+"' id='classification_"+id+"' class='Select'>"+attachClassificationInfo+"</select>";
     }
     var decryption = '';
     if(typeof(attachDecryptionFlag)!='undefined' && attachDecryptionFlag == 1){
-        decryption = " ;è„±å¯†æ—¶é—´:<input type='text' name='decryption_"+id+"' id='decryption_"+id+"' size='12' onClick='WdatePicker()'/>";
+        decryption = " ;ÍÑÃÜÊ±¼ä:<input type='text' name='decryption_"+id+"' id='decryption_"+id+"' size='12' onClick='WdatePicker()'/>";
     }
     //=========
    
@@ -635,7 +635,7 @@ function AddFileH5(file, fileInput)
    var addFileLink = GetParentEl(fileInput, "a");
    if(!attach_div || !form_el || !addFileLink)
    {
-      //alert(td_lang.inc.msg_3);//"å‚æ•°æ— æ•ˆ"
+      //alert(td_lang.inc.msg_3);//"²ÎÊıÎŞĞ§"
       return false;
    }
    
@@ -653,7 +653,7 @@ function AddFileH5(file, fileInput)
    {
       if(el[i].tagName && el[i].tagName.toLowerCase()=="input" && el[i].type.toLowerCase() == "file" && el[i].id != fileInput.id && el[i].value == file.name)
       {
-         //"è¯¥æ–‡ä»¶å·²ç»æ·»åŠ "
+         //"¸ÃÎÄ¼şÒÑ¾­Ìí¼Ó"
          return;
       }
    }
@@ -694,30 +694,30 @@ function ShowAddFile(postfix,show_sel_attach)
    { 
       postfix = "";
    }
-   document.write('<span id="ATTACHMENT'+postfix+'_div"></span><span id="ATTACHMENT'+postfix+'_upload_div" style="display:none;"></span><div id="SelFileDiv'+postfix+'"></div><a class="addfile" href="javascript:;">'+td_lang.inc.msg_5+'<input class="addfile" type="file" name="ATTACHMENT'+postfix+'_0" id="ATTACHMENT'+postfix+'_0" size="1" hideFocus="true" onchange="AddFile();" /></a>');//æ·»åŠ é™„ä»¶   
+   document.write('<span id="ATTACHMENT'+postfix+'_div"></span><span id="ATTACHMENT'+postfix+'_upload_div" style="display:none;"></span><div id="SelFileDiv'+postfix+'"></div><a class="addfile" href="javascript:;">'+td_lang.inc.msg_5+'<input class="addfile" type="file" name="ATTACHMENT'+postfix+'_0" id="ATTACHMENT'+postfix+'_0" size="1" hideFocus="true" onchange="AddFile();" /></a>');//Ìí¼Ó¸½¼ş   
 
    if(show_sel_attach!='0')
    {
-      document.write('<a href="javascript:void(0);" onclick="sel_attach(\'SelFileDiv'+postfix+'\',\'ATTACH_DIR'+postfix+'\',\'ATTACH_NAME'+postfix+'\',\'DISK_ID'+postfix+'\');" class="selfile">'+td_lang.inc.msg_6+'</a><input type="hidden" value="" name="ATTACH_NAME'+postfix+'"><input type="hidden" value="" name="ATTACH_DIR'+postfix+'"><input type="hidden" value="" name="DISK_ID'+postfix+'">');//ä»æ–‡ä»¶æŸœå’Œç½‘ç»œç¡¬ç›˜é€‰æ‹©é™„ä»¶
+      document.write('<a href="javascript:void(0);" onclick="sel_attach(\'SelFileDiv'+postfix+'\',\'ATTACH_DIR'+postfix+'\',\'ATTACH_NAME'+postfix+'\',\'DISK_ID'+postfix+'\');" class="selfile">'+td_lang.inc.msg_6+'</a><input type="hidden" value="" name="ATTACH_NAME'+postfix+'"><input type="hidden" value="" name="ATTACH_DIR'+postfix+'"><input type="hidden" value="" name="DISK_ID'+postfix+'">');//´ÓÎÄ¼ş¹ñºÍÍøÂçÓ²ÅÌÑ¡Ôñ¸½¼ş
    }
 }
 function ShowAddFile1(postfix,show_sel_attach)
 {
    if(isUndefined(postfix)) postfix="";
-   document.write('<span id="ATTACHMENT'+postfix+'_div"></span><span id="ATTACHMENT'+postfix+'_upload_div" style="display:none;"></span><div id="SelFileDiv'+postfix+'"></div><a class="addfile" href="javascript:;">'+td_lang.inc.msg_5+'<input class="addfile" type="file" name="ATTACHMENT'+postfix+'_0" id="ATTACHMENT'+postfix+'_0" size="1" hideFocus="true" onchange="AddFile1();" /></a>');//æ·»åŠ é™„ä»¶
+   document.write('<span id="ATTACHMENT'+postfix+'_div"></span><span id="ATTACHMENT'+postfix+'_upload_div" style="display:none;"></span><div id="SelFileDiv'+postfix+'"></div><a class="addfile" href="javascript:;">'+td_lang.inc.msg_5+'<input class="addfile" type="file" name="ATTACHMENT'+postfix+'_0" id="ATTACHMENT'+postfix+'_0" size="1" hideFocus="true" onchange="AddFile1();" /></a>');//Ìí¼Ó¸½¼ş
    if(show_sel_attach!='0')
-      document.write('&nbsp;|&nbsp;<a href="#" onclick="sel_attach(\'SelFileDiv'+postfix+'\',\'ATTACH_DIR'+postfix+'\',\'ATTACH_NAME'+postfix+'\',\'DISK_ID'+postfix+'\');" class="selfile">'+td_lang.inc.msg_6+'</a><input type="hidden" value="" name="ATTACH_NAME'+postfix+'"><input type="hidden" value="" name="ATTACH_DIR'+postfix+'"><input type="hidden" value="" name="DISK_ID'+postfix+'">');//ä»æ–‡ä»¶æŸœå’Œç½‘ç»œç¡¬ç›˜é€‰æ‹©é™„ä»¶
+      document.write('&nbsp;|&nbsp;<a href="#" onclick="sel_attach(\'SelFileDiv'+postfix+'\',\'ATTACH_DIR'+postfix+'\',\'ATTACH_NAME'+postfix+'\',\'DISK_ID'+postfix+'\');" class="selfile">'+td_lang.inc.msg_6+'</a><input type="hidden" value="" name="ATTACH_NAME'+postfix+'"><input type="hidden" value="" name="ATTACH_DIR'+postfix+'"><input type="hidden" value="" name="DISK_ID'+postfix+'">');//´ÓÎÄ¼ş¹ñºÍÍøÂçÓ²ÅÌÑ¡Ôñ¸½¼ş
 }
 function ShowAddImage(postfix)
 {
    if(isUndefined(postfix)) postfix="";
-   document.write('<a id="add_image" class="addimage" href="javascript:;">'+td_lang.inc.msg_7+'<input class="addfile" type="file" name="ATTACHMENT'+postfix+'_1000" id="ATTACHMENT'+postfix+'_1000" size="1" hideFocus="true" onchange="AddFile(\'image\');" /></a>');//æ’å…¥å›¾ç‰‡
+   document.write('<a id="add_image" class="addimage" href="javascript:;">'+td_lang.inc.msg_7+'<input class="addfile" type="file" name="ATTACHMENT'+postfix+'_1000" id="ATTACHMENT'+postfix+'_1000" size="1" hideFocus="true" onchange="AddFile(\'image\');" /></a>');//²åÈëÍ¼Æ¬
 }
 
 function ShowAddImageMulti(postfix)
 {
    if(isUndefined(postfix)) postfix="";
-   document.write('<a id="add_image_multi" class="addimage add_image_multi" href="javascript:;">'+td_lang.inc.multi_img_upload+'</a>');//æ‰¹é‡æ’å…¥å›¾ç‰‡
+   document.write('<a id="add_image_multi" class="addimage add_image_multi" href="javascript:;">'+td_lang.inc.multi_img_upload+'</a>');//ÅúÁ¿²åÈëÍ¼Æ¬
 }
 
 function AddImage2Editor(name, src)

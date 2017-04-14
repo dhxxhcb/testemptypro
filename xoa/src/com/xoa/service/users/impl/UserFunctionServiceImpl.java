@@ -48,17 +48,18 @@ public class UserFunctionServiceImpl implements UserFunctionService {
 		toJson.setObj(list1);
 		return toJson;
 	}
-	@Override
+}
+	/*@Override
 	public ToJson<Department> getDep() {
 		ToJson<Department> toJson=new ToJson<Department>(0,"显示结果");
 		List<Department> dep=departmentMapper.getDatagrid();
 		toJson.setObj(dep);
 		return toJson;
-	}
-	@Override
+	}*/
+	/*@Override
 	public ToJson<Users> getUser(int uid) {
 		ToJson<Users> toJson=new ToJson<Users>(0,"显示结果");
 		List<Users> userList=departmentMapper.getUserAll(uid);
 		toJson.setObj(userList);
 		return toJson;
-	}}
+	}}*/

@@ -1,12 +1,16 @@
 package com.xoa.service.department.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xoa.dao.department.DepartmentMapper;
+import com.xoa.model.department.Department;
 import com.xoa.service.department.DepartmentService;
+
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 	@Resource
@@ -46,6 +50,45 @@ public class DepartmentServiceImpl implements DepartmentService {
 			            } 
 			        }  
 				return json;		
+	}
+
+	@Override
+	public List<Department> getDatagrid() {
+		/*PageParams pageParams = new PageParams();
+		pageParams.setPage(page);
+		pageParams.setPageSize(pageSize);
+		pageParams.setUseFlag(useFlag);
+		maps.put("page", pageParams);*/		
+		return departmentMapper.getDatagrid();
+	}
+
+	@Override
+	public Department getDeptById(int deptId) {
+		Department department =departmentMapper.getDeptById(deptId);
+		return department;
+	}
+
+	@Override
+	public void deleteDept(int deptId) {
+		departmentMapper.deleteDept(deptId);
+		
+	}
+
+	@Override
+	public void editDept(Department department) {
+		departmentMapper.editDept(department);
+		
+	}
+
+	@Override
+	public void insertDept(Department department) {
+		departmentMapper.insertDept(department);	
+	}
+
+	@Override
+	public List<Department> getDeptByMany(Department department) {
+		List<Department> list=departmentMapper.getDeptByMany(department);
+		return list;
 	}
 	
 
