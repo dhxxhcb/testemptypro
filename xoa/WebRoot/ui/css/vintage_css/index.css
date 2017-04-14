@@ -125,7 +125,7 @@ body,
     height: 40px;
     color: #fff;
     line-height: 40px;
-    background: red;
+    background: #999;
 }
 .one_name{
 	line-height:50px;
@@ -136,7 +136,7 @@ body,
 }
 .two_all h1{
 	line-height:40px;
-	margin-left: 6%;
+	margin-left: 22%;
 	width: 75%;
 	font-size:14px;
 }
