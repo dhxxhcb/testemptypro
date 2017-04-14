@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script>
 		$(function(){
 		var menu = {
-			"email":"",
+			"email":"email/inbox",
 			"notify/show":"notice/index"
 		}
 			//-- 状态栏文字 --
@@ -241,7 +241,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						$('.two_menu li').on('click','.two_all',function(){
 							var url=$(this).attr('url'); 
 							var menu_tid=$(this).parent().attr('menu_tid'); 
-							alert(url);
+							console.log(url);
 							if(menu[url]){
 								url = menu[url];
 							}else{
@@ -249,8 +249,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							}
 							//跳转页面
 							//判断id是否相同
-							alert(url);
-							console.log($('#f_'+menu_tid).length>0);
+							console.log(url);
+							
 							if($('#f_'+menu_tid).length>0){
 								//页面一打开，切换显示
 								$('.all_content .iItem').hide();
@@ -272,7 +272,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						//三级菜单切换
 						$('.three_title').on('click','li',function(){
 							var bbb=$(this).attr('url_three');
-							alert(bbb);
+							
 						/* 	$('#every_module').attr('src',bbb);
 							$('.sanji li').removeClass('xuan');
 							$(this).addClass('xuan'); */
