@@ -12,9 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="css/inbox.css"/>
-		<script src="lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/inbox.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/inbox.css"/>
+		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/inbox.js" type="text/javascript" charset="utf-8"></script>
 		
 	</head>
 	<body>
@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!--写邮件-->
 					<div class="write">
 						<div class="d_im">
-							<img src="img/btn_writeletter_03.png"/>
+							<img src="../img/btn_writeletter_03.png"/>
 						</div>
 					</div>
 					<!--收件箱-->
@@ -35,11 +35,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 						<div class="ul_show" style="display: block;">
 							<ul>
-								<li class="on"><a href="javascript:;"><img src="img/inbox.png"/>收件箱<span>32</span></a></li>
-								<li><a href="javascript:;"><img src="img/icon_drafts_07.png"/>草稿箱<span>2</span></a></li>
-								<li><a href="javascript:;"><img src="img/icon_sent_07.png"/>已发送</a></li>
-								<li><a href="javascript:;"><img src="img/icon_dustbin_07.png"/>废纸篓</a></li>
-								<li><a href="javascript:;"><img src="img/icon_search_03.png"/>查询邮件</a></li>
+								<li class="on"><a href="javascript:;"><img src="../img/inbox.png"/>收件箱<span>32</span></a></li>
+								<li><a href="javascript:;"><img src="../img/icon_drafts_07.png"/>草稿箱<span>2</span></a></li>
+								<li><a href="javascript:;"><img src="../img/icon_sent_07.png"/>已发送</a></li>
+								<li><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/>废纸篓</a></li>
+								<li><a href="javascript:;"><img src="../img/icon_search_03.png"/>查询邮件</a></li>
 							</ul>
 						</div>
 					</div>
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 						<div class="ul_show">
 							<ul>
-								<li><a href="javascript:;"><img src="img/icon_file_11.png"/>自己文件夹</a></li>
+								<li><a href="javascript:;"><img src="../img/icon_file_11.png"/>自己文件夹</a></li>
 							</ul>
 						</div>
 						
@@ -84,9 +84,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!--邮箱设置-->
 					<div class="setUp">
 						<a href="javascript:;">
-							<img class="setUp_img" src="img/icon_setmail_11.png"/>
+							<img class="setUp_img" src="../img/icon_setmail_11.png"/>
 							<span>邮箱设置</span>
-							<img class="loding" src="img/icon_refresh_11.png"/>
+							<img class="loding" src="../img/icon_refresh_11.png"/>
 						</a>
 					</div>
 				</div>
@@ -98,25 +98,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="header">
 					<div class="nav">
 						<ul>
-							<li><img src="img/icon_allmail_06.png"/>全部邮件<img src="img/icon_more_06.png" class="more_im"/></li>
-							<li><img src="img/icon_notread_06.png"/>未读<span>3</span></li>
-							<li><img src="img/icon_transmit_06.png"/>转发</li>
-							<li><img src="img/icon_move_06.png"/>移动到<img src="img/icon_more_06.png" class="more_im"/></li>
-							<li><img src="img/icon_delete_06.png"/>删除<img src="img/icon_more_06.png" class="more_im"/></li>
-							<li>更多<img src="img/icon_more_06.png" class="more_im"/></li>
+							<li><img src="../img/icon_allmail_06.png"/>全部邮件<img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li><img src="../img/icon_notread_06.png"/>未读<span>3</span></li>
+							<li><img src="../img/icon_transmit_06.png"/>转发</li>
+							<li><img src="../img/icon_move_06.png"/>移动到<img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li><img src="../img/icon_delete_06.png"/>删除<img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li>更多<img src="../img/icon_more_06.png" class="more_im"/></li>
 						</ul>
 					</div>
 					<div class="searchs">
 						<div class="search_div">
-							<img src="img/icon_search_2_06.png"/>
+							<img src="../img/icon_search_2_06.png"/>
 							<input type="search" name="search" id="search" placeholder="搜索" />
 							
 						</div>
 						<div class="format">
 							<ul>
-								<li><img src="img/icon_list_nor_06.png"/></li>
-								<li class="for_on"><img src="img/icon_shangxia_sel_06.png"/></li>
-								<li><img src="img/icon_zuoyou_nor_06.png"/></li>
+								<li><img src="../img/icon_list_nor_06.png"/></li>
+								<li class="for_on"><img src="../img/icon_shangxia_sel_06.png"/></li>
+								<li><img src="../img/icon_zuoyou_nor_06.png"/></li>
 							</ul>
 						</div>
 						
@@ -129,10 +129,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<input type="checkbox" name="checkbox" id="checkbox" value="" />
 							</th>
 							<th width="6%">
-								<img src="img/icon_read_1_07.png"/>
+								<img src="../img/icon_read_1_07.png"/>
 							</th>
 							<th width="6%">
-								<img src="img/icon_collect_07.png"/>
+								<img src="../img/icon_collect_07.png"/>
 							</th>
 							<th width="6%">发件人</th>
 							<th width="58%" class="theme">主题</th>
@@ -147,16 +147,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<input type="checkbox" name="checkbox" id="checkbox" value="" />
 							</td>
 							<td width="6%">
-								<img src="img/icon_read_3_07.png"/>
+								<img src="../img/icon_read_3_07.png"/>
 							</td>
 							<td width="6%">
-								<img src="img/icon_collect_nor_03.png"/>
+								<img src="../img/icon_collect_nor_03.png"/>
 							</td>
 							<td width="6%">张兰</td>
 							<td width="58%" class="theme">通达全新OA可选组件-知己者费用管控系统</td>
 							<td width="12%">2017年3月30日</td>
 							<td width="6%">
-								<img src="img/icon_accessory_03.png"/>
+								<img src="../img/icon_accessory_03.png"/>
 							</td>
 						</tr>
 						<tr class="Hover">
@@ -164,10 +164,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<input type="checkbox" name="checkbox" id="checkbox" value="" />
 							</td>
 							<td width="6%">
-								<img src="img/icon_notread_1_03.png"/>
+								<img src="../img/icon_notread_1_03.png"/>
 							</td>
 							<td width="6%">
-								<img src="img/icon_collect_nor_03.png"/>
+								<img src="../img/icon_collect_nor_03.png"/>
 							</td>
 							<td width="6%">张兰</td>
 							<td width="58%" class="theme">诚邀您参与通达密信试用并提出宝贵意见建议</td>
@@ -182,33 +182,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<input type="checkbox" name="checkbox" id="checkbox" value="" />
 							</td>
 							<td width="6%">
-								<img src="img/icon_read_3_07.png"/>
+								<img src="../img/icon_read_3_07.png"/>
 							</td>
 							<td width="6%">
-								<img src="img/icon_collect_07.png"/>
+								<img src="../img/icon_collect_07.png"/>
 							</td>
 							<td width="6%">张兰</td>
 							<td width="58%" class="theme">通达IT精英魔鬼训练营，招募中！</td>
 							<td width="12%">2017年3月17日</td>
 							<td width="6%">
-								<img src="img/icon_accessory_03.png"/>
+								<img src="../img/icon_accessory_03.png"/>
 							</td>
 						</tr>
 					</table>
 					<div class="back">
 						<ul>
-							<li class="replay"><img src="img/icon_replay_03.png"/>回复</li>
-							<li class="replayAll"><img src="img/icon_replay_03.png"/>回复全部</li>
-							<li><img src="img/icon_print_07.png"/>打印邮件<img src="img/icon_more_06.png" class="more_im" /></li>
+							<li class="replay"><img src="../img/icon_replay_03.png"/>回复</li>
+							<li class="replayAll"><img src="../img/icon_replay_03.png"/>回复全部</li>
+							<li><img src="../img/icon_print_07.png"/>打印邮件<img src="../img/icon_more_06.png" class="more_im" /></li>
 						</ul>
 						<div class="pages">
 							<ul>
-								<li class="fulls"><img src="img/icon_fullscreen_03.png" alt="" /></li>
+								<li class="fulls"><img src="../img/icon_fullscreen_03.png" alt="" /></li>
 								<li>
-									<img src="img/icon_left_03.png" class="s_im"/>
+									<img src="../img/icon_left_03.png" class="s_im"/>
 									<span class="one">上一封</span>
 									<span>下一封</span>
-									<img src="img/icon_right_03.png" class="s_im"/>
+									<img src="../img/icon_right_03.png" class="s_im"/>
 								</li>
 								
 							</ul>
@@ -230,11 +230,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tr>
 							<td>收件人：</td>
 							<td>
-								<span><img src="img/icon_read_3_07.png"/>李佳</span>
-								<span><img src="img/icon_notread_1_03.png"/>王云</span>
-								<span><img src="img/icon_read_3_07.png"/>王德</span>
-								<span><img src="img/icon_notread_1_03.png"/>赵敏</span>
-								<span><img src="img/icon_read_3_07.png"/>刘娜</span>
+								<span><img src="../img/icon_read_3_07.png"/>李佳</span>
+								<span><img src="../img/icon_notread_1_03.png"/>王云</span>
+								<span><img src="../img/icon_read_3_07.png"/>王德</span>
+								<span><img src="../img/icon_notread_1_03.png"/>赵敏</span>
+								<span><img src="../img/icon_read_3_07.png"/>刘娜</span>
 							</td>
 							
 						</tr>
@@ -246,7 +246,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tr>
 							<td>附&nbsp;&nbsp;&nbsp;件：</td>
 							<td>
-								<p>1个&nbsp;<img src="img/icon_accessory_03.png"/><span>智能OA移动产品部3月23日任务工单.rar&nbsp;</span>(19.81KB)</p>
+								<p>1个&nbsp;<img src="../img/icon_accessory_03.png"/><span>智能OA移动产品部3月23日任务工单.rar&nbsp;</span>(19.81KB)</p>
 							</td>
 							
 						</tr>
@@ -257,7 +257,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 					</table>
 					<span class="span_hr">
-						<div><img src="img/p1.jpg"/></div>
+						<div><img src="../img/p1.jpg"/></div>
 						<p>张兰&nbsp;&nbsp;研发总监</p>
 						<p>研发部</p>
 					</span>
