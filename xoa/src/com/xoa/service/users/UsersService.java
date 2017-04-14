@@ -1,8 +1,8 @@
 package com.xoa.service.users;
 
 import java.util.List;
+import java.util.Map;
 
-import com.alibaba.fastjson.JSONObject;
 import com.xoa.model.users.Users;
 import com.xoa.util.dataSource.DynDatasource;
 
@@ -38,12 +38,21 @@ public interface UsersService {
      * @throws IOException
      */
 	@DynDatasource
-	public JSONObject getUserNameById(int... user_id_str);
+	public String getUserNameById(int user_id);
 	
 	/**
      *获取全部用户
      */
 	@DynDatasource
-	public List<Users> getAlluser();
+	public List<Users> getAlluser(Map<String,Object> maps, Integer page,
+			Integer pageSize, boolean useFlag);
+	/**
+     *根据uid查询用户
+     */
+	@DynDatasource
+    public Users findUserByuid(int uid);
+	@DynDatasource
+	public List<Users> getUserByMany(Users user); 
+
 
 }

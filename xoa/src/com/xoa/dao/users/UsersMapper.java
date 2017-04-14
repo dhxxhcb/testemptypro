@@ -1,9 +1,9 @@
 package com.xoa.dao.users;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-
 import com.xoa.model.users.Users;
 
 public interface UsersMapper {
@@ -26,7 +26,11 @@ public interface UsersMapper {
 
 	public List<Users> getRoleId(int userPriv);
 	
-	public List<Users> getAlluser();
+	public List<Users> getAlluser(Map<String,Object> maps);
+	
+	public Users findUserByuid(int uid);
+	
+	public List<Users> getUserByMany(Users user); 
 
 
 }
