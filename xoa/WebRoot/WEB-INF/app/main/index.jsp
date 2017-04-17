@@ -25,16 +25,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="head_mid">
 					<ul class="main_title">
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
-						<li class="gongzuoliu" index=0;><h1>我的桌面</h1><img class="close" src="img/main_img/icon.png"></li>
+						<li class="gongzuoliu" id='t_0'><h1>我的桌面</h1><img class="close" src="img/main_img/icon.png"></li>
 					</ul>
 				</div>
-				<div class="head_rig">
-					<img src="img/main_img/sousuo.png">
-					<img src="img/main_img/ling.png">
-					<img src="img/main_img/ti.png">
-					<img src="img/main_img/shezhi.png">
-					<img src="img/main_img/zhuxiao.png">
-				</div>
+				<!-- 右侧的小logo -->
+				<div id="taskbar_right" class="head_rig">
+			         <a id="task_center" href="javascript:;" hidefocus="hidefocus" title="任务中心" data-step="5" data-intro="<b style='display:block'>任务中心</b>点击进入“任务中心”，可以看到按时间和紧急程度排序的待办任务，并可快速建立任务" data-position="left"></a>
+			         <a id="sns" href="javascript:;" hidefocus="hidefocus" title="企业社区" data-step="6" data-intro="<b style='display:block'>企业社区</b>点击进入“企业社区”，促进企业信息交流与知识共享" data-position="left"></a>
+			         <a id="help" href="/module/help/" hidefocus="hidefocus" title="通达OA在线帮助" data-step="7" data-intro="<b style='display:block'>通达OA在线帮助</b>“通达OA在线帮助”汇集了常见的用户问题，帮助用户快速掌握软件各项功能的使用" data-position="left" target="_blank"></a>
+			         <a id="person_info" href="javascript:;" hidefocus="hidefocus" title="控制面板" data-step="8" data-intro="<b style='display:block'>控制面板</b>点击进入“控制面板”，可以进行界面设置、个人信息设置、账号与安全设置" data-position="left"></a>
+			         <a id="theme" href="javascript:;" hidefocus="hidefocus" title="更换界面主题" data-step="9" data-intro="<b style='display:block'>更换皮肤</b>通达OA为您提供了完备的界面换肤功能，通过“更换皮肤”按钮，一触即换" data-position="left"></a>
+			         
+		      	</div>
 			</div>
 			<div class="cont">
 				<div class="cont_left">
@@ -95,45 +97,90 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<div class="foot">
-				<!-- <div class="foot_left"><a href="download.html" target="_blank"><h1>点击下载PC客户端</h1></a></div>
-				<div class="lunbo">
-					 <ul>
-						 <li style="margin-left: 34%; margin-top: -2%;font-size: 14px;color: #fff;">心通达OA软件领跑者</li>
-						 <li>我寄愁心与明月，随风直到夜郎西</li>
-						 <li>不是花中偏爱菊，此花开尽更无花</li>
-						 <li>辛苦遭逢起一经，干戈寥落四周星</li>
-					 </ul> 
-				 </div>
+				 <!-- <div class="foot_left"><a href="download.html" target="_blank"><h1>点击下载PC客户端</h1></a></div> -->
 				
-				<div class="foot_rig"><a href="xitong.html" target="_blank"><h2>心通达 &nbsp 年付版本</h2></a></div> -->
-				<div id="south">
-				    <!-- <table>
-				        <tr>
-				            <td class="left"><div id="online_link" onClick="ViewOnlineUser()" title="共 43 人，2 人在线">在线<span id="user_count">2</span>人</div></td>
-				            <td class="left"><span id="new_sms"></span><span id="new_sms_sound" style="width:1px;height:1px;"></span></td>
-				            <td class="center">
-				            	<div id="status_text">Office Anywhere 2015版<br>中国协同OA软件领跑者<br>体验科技关怀   共创美好未来<br></div>
-				            </td>        
-				                        <td class="right">
-				                            </td>
-				        </tr>
-				    </table> -->
-				</div>
+				<!-- <div class="lunbo">
+					 <ul id="status_text">					
+						 <li>Office　Anywhere　 &nbsp2015版</li>
+						 <li>中国协同OA软件领跑者</li>
+						 <li>体验科技关怀   共创美好未来</li>
+					</ul>			
+				 </div> -->
+				<div style="margin-left:30%;"><iframe  id="every_module" src="lunbo" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
 				
-				<div id="on_status_list">
-				    <ul id="on_status_ul">
-				        <li><a id="on_status_1" href="javascript:set_status(1);" title="">在线</a></li>
-				        <li><a id="on_status_2" href="javascript:set_status(2);" title="">忙碌</a></li>
-				        <li><a id="on_status_3" href="javascript:set_status(3);" title="">离开</a></li>
-				    </ul>
-				</div>
-				   <div id="overlay"></div>
-				   <div style="display:none;"></div>
+		<!-- 		<div class="foot_rig"><a href="xitong.html" target="_blank"><h2>心通达 &nbsp 年付版本</h2></a></div> -->
+				
+				
+				  
 		</div>
 			
 	</body>
 	<script>
 		$(function(){
+<<<<<<< HEAD
+			var menu = {
+				"email":"email/index",
+				"notify/show":"notice/index",
+				"news/show":"news/index",
+				"file_folder/index2.php":"fileHome",
+				"system/file_folder":"showFileBySort_id"
+			}
+			
+			$('.cont_nav').on('click','li',function(){
+				$(".cont_nav li").removeClass("infame");
+				$(this).addClass('infame');
+				
+			});
+			//鼠标移入，右边logo变颜色，移出变回。
+			//one
+			$('#task_center').on('mouseover',function(){
+				$(this).css('background','url(img/main_img/right_one.png) 0px 0px no-repeat')
+			});
+			$('#task_center').on('mouseout',function(){
+				$(this).css('background','url(img/main_img/right_two.png) 0px 0px no-repeat')
+			});
+			//two
+			$('#sns').on('mouseover',function(){
+				$(this).css('background','url(img/main_img/right_one.png) -331px 0px no-repeat')
+			});
+			$('#sns').on('mouseout',function(){
+				$(this).css('background','url(img/main_img/right_two.png) -331px 0px no-repeat')
+			});
+			//three
+			$('#help').on('mouseover',function(){
+				$(this).css('background','url(img/main_img/right_one.png) -73px 0px no-repeat')
+			});
+			$('#help').on('mouseout',function(){
+				$(this).css('background','url(img/main_img/right_two.png) -73px 0px no-repeat')
+			});
+			//four
+			$('#person_info').on('mouseover',function(){
+				$(this).css('background','url(img/main_img/right_one.png) -233px -1px no-repeat')
+			});
+			$('#person_info').on('mouseout',function(){
+				$(this).css('background','url(img/main_img/right_two.png) -233px -1px no-repeat')
+			});
+			//five
+			$('#theme').on('mouseover',function(){
+				$(this).css('background','url(img/main_img/right_one.png)  -313px 0px no-repeat')
+			});
+			$('#theme').on('mouseout',function(){
+				$(this).css('background','url(img/main_img/right_two.png)  -313px 0px no-repeat')
+			});
+			
+		//底部文字滚动
+	/* 	var lunbo='';
+		  function lunbo(id,height){
+			  var ul=$(id);
+			  var liFirst=ul.find('li:first');
+			  $(id).animate({top:height}).animate({"top":0},0,function(){
+			  var clone=liFirst.clone();
+			  $(id).append(clone);
+			  liFirst.remove();
+			  })
+		} 
+		 	 setInterval("lunbo('#status_text','-50px')",3000);  */
+=======
 		var menu = {
 			"email":"email/index",
 			"notify/manage":"notice/index",
@@ -149,6 +196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		       scrollTo = 0;
 		    obj.animate({scrollTop: scrollTo}, 300);
 		}
+>>>>>>> 1c1b4c5d385acc28235e1694dc3a4a672e1c2740
 		
 			$.ajax({
 					url:'showMenu',
@@ -166,7 +214,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									if(data[i].child[j].child.length>0){
 										var three='';
 										for(var k=0;k<data[i].child[j].child.length;k++){						
-								 			three +='<li class="three" url_three='+data[i].child[j].child[k].url+'>'+data[i].child[j].child[k].name+'</li>' ; 	
+								 			three +='<li class="three" menu_tid='+data[i].child[j].child[k].id+' url_three='+data[i].child[j].child[k].url+'>'+data[i].child[j].child[k].name+'</li>' ; 	
 								 		}
 								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="margin-left:25%;display:none;">'+three+'</ul></li>';
 									/*  console.log($('er').find().attr('url')); */
@@ -181,8 +229,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 
 						$(".tab_cone").html(str);
-						//将三级菜单拼到标题栏
-						
 						
 						//二级
 					 	$('.one_all').on('click',function () {
@@ -197,28 +243,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							}
 										
 						}); 
-						
-						//点击二级的每一个，获取每一个的内容
-						//$('.two').on('click','.two_all',function(){
-							//var er_title=$(this).find('h1').html();
-							//var all='<li class="gongzuoliu" t_tid=t_1001;><h1>'+er_title+'</h1><img class="close" src="img/main_img/icon.png"></li>';
-							/* var add=$('.gongzuoliu h1').html(er_title); */
-							//console.log(all);
-							//$('.main_title').append(all);
-	
-						//});
-						//点击 关闭
-						/* $('.gongzuoliu').on('click','.close',function(){
-								$(this).parent().remove();
-						});
-						 */
+					
 						//点击应用或者组织，tab切换
 							//tab切换
 							 var currentIndex=0;
 							/*  var index; */
 						$('.tab_t').on('click','li',function(){
 								var index=$(this).index();
-								console.log(inedx);
+								//console.log(inedx);
 								if(currentIndex!=index){
 								 
 									currentIndex=index;
@@ -236,7 +268,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							//点击二级，出现三级
 						$('.click_erji').on('click',function () {
 							var san= $(this).siblings().html();
-							console.log(san);
+							//console.log(san);
 							/* $('.three_title').html(san); */
 							
 							 if ($(this).siblings('.sanji').css('display')=='none') {
@@ -263,50 +295,85 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 						});
 						var tid=0;
+						//点击二级菜单
 						$('.two_menu li').on('click','.two_all',function(){
 							var url=$(this).attr('url'); 
 							var menu_tid=$(this).parent().attr('menu_tid'); 
-							console.log(url);
+							//console.log(url);
 							if(menu[url]){
 								url = menu[url];
 							}else{
 								url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
 							}
-							//跳转页面
+							
+						
 							//判断id是否相同
-							console.log(url);
+							//console.log(url);
 							console.log($('#f_'+menu_tid).length>0);
 							if($('#f_'+menu_tid).length>0){
 								//页面一打开，切换显示
 								$('.all_content .iItem').hide();
 								$('#f_'+menu_tid).show();
 							}else{
-								//页面不存在，新增 title和iframe
-								var titlestr = '<li class="gongzuoliu" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><img class="close" src="img/main_img/icon.png"></li>';
-								var iframestr = '<div id="f_'+menu_tid+'" class="iItem" style="width:100%;height:100%;"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
-								$('.main_title').append(titlestr);
-								$('.all_content').append(iframestr);
-								$('.all_content .iItem').hide();
-								$('#f_'+menu_tid).show();
+								if($(this).siblings('.sanji').length>0){
+										/* return  false; */
+									//console.log($(this).siblings('.sanji').length>0);
+								}else{
+									//页面不存在，新增 title和iframe
+									var titlestr = '<li class="gongzuoliu" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><img class="close" src="img/main_img/icon.png"></li>';
+									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" style="width:100%;height:100%;"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
+									$('.main_title').append(titlestr);
+									$('.all_content').append(iframestr);
+									$('.all_content .iItem').hide();
+									$('#f_'+menu_tid).show();
+								
+								}
+								
 							}
 							
 								
 						});		
+						
+						
+							//点击三级菜单，跳转页面。
+							$('.sanji').on('click','li',function(){
+								var url=$(this).attr('url_three'); 
+								
+							 var menu_tid=$(this).attr('menu_tid');  
+								console.log(url);
+								if(menu[url]){
+									url = menu[url];
+								}else{
+								url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
+								}
+								
+								console.log(menu_tid);
+								if($('#f_'+menu_tid).length>0){
+									//页面一打开，切换显示
+									$('.all_content .iItem').hide();
+									$('#f_'+menu_tid).show();
+								}else{ 
+									
+									//页面不存在，新增 title和iframe
+									var titlestr = '<li class="gongzuoliu" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).html()+'</h1><img class="close" src="img/main_img/icon.png"></li>';
+									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" style="width:100%;height:100%;"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
+									$('.main_title').append(titlestr);
+									$('.all_content').append(iframestr);
+									$('.all_content .iItem').hide();
+									$('#f_'+menu_tid).show();
+								}
+								
+					        });
 								
 						
 						//三级菜单切换
 						$('.three_title').on('click','li',function(){
 							var bbb=$(this).attr('url_three');
-							/* alert(bbb); */
-						 /* 	$('#every_module').attr('src',bbb); */
 							$('.three_title li').removeClass('xuan');
 							$(this).addClass('xuan');
 						})
 						 
 						$('.sanji').on('mouseover','li',function(){
-							/* var bbb=$(this).attr('url_three'); */
-							/* alert(bbb); */
-						 /* 	$('#every_module').attr('src',bbb); */
 							$('.sanji li').removeClass('xuan');
 							$(this).addClass('xuan');
 						});
@@ -322,23 +389,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var t_this=$(this).attr('id');
 						
 							var num=t_this.split('_')[1];
-							
-							
-							/* var f_this= 'f_'+num; */
-							
-							// cccc=f_th;
-							
-							//console.log($('.iItem').attr('id',f_this));
-							/* console.log(t_this);
-							console.log('f_'+num);
-							 */
-							/*  console.log(f_this); */
-							
-							var f_this= $('.iItem').attr('id').split('_');
-							var f_th=f_this[1];
-							
-							console.log(num);							
-							
 							  if($('#f_'+num).length>0){
 							 	console.log($('#f_'+num).length);
 							 	$('.all_content .iItem').hide();
@@ -347,11 +397,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							}  
 						})
 						
-						/* $('.main_title li').on('click','.close',function(){
-							/* $('.main_title li').removeClass('xuan');
-							$(this).addClass('xuan'); */
-						/* 	$(this).parent().remove();
-						})  */
+						//删除
+						$('.main_title').on('click','.close',function(){
+							var re=$(this).parent().attr('id');
+							var delet=re.split('_')[1];
+							console.log(delet);
+						 	 $(this).parent().remove();
+						 	 $('#f_'+delet).remove();
+						}) ;
 					}			
 				});
 				
