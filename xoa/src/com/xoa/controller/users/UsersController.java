@@ -13,11 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.xoa.controller.menu.MenuController;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 
+ /**
+ * @ClassName (类名):  UsersController
+ * @Description(简述): TODO
+ * @author(作者):      zlf
+ * @date(日期):        2017年4月17日 下午2:55:40
+ *
+ */
 @Controller
 @Scope(value="prototype")
 public class UsersController {
@@ -25,11 +31,14 @@ public class UsersController {
 	@Resource
 	private UsersService usersService;
 	
-
 	/**
-	 * 新增用户
-	 * @param User
-	 * @return
+	 * @Title: addUser
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param user
+	 * @param: @return   
+	 * @return: ToJson<Users>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/addUser",method = RequestMethod.POST)
@@ -46,10 +55,13 @@ public class UsersController {
         return json;
     }
 	/**
-	 * 修改用户
-     * 
-     * @param User
-     * @return
+	 * @Title: editUser
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param user
+	 * @param: @return   
+	 * @return: ToJson<Users>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/editUser",method = RequestMethod.POST)
@@ -66,10 +78,15 @@ public class UsersController {
 		}
         return json;
     }
+	
 	/**
-	 * 删除某个用户
-	 * @param Users
-	 * @param out
+	 * @Title: deletesUser
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param user
+	 * @param: @return   
+	 * @return: ToJson<Users>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/deleteUser",method = RequestMethod.POST)
@@ -87,10 +104,15 @@ public class UsersController {
         return json;
     }
 	
+
 	/**
-	 * 根据uid查询用户信息
-	 * @param uid
-	 * @param out
+	 * @Title: findUserByuid
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param uid
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/findUserByuid",method = RequestMethod.POST)
@@ -107,15 +129,21 @@ public class UsersController {
         return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
     }
 	
-	
 	/**
-	 * 查询所有用户信息
-	 * @param 
-	 * @param out
+	 * @Title: getAllUser
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param maps
+	 * @param: @param page
+	 * @param: @param pageSize
+	 * @param: @param useFlag
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getAlluser",produces = {"application/json;charset=UTF-8"})
-    public String getAllUser(Map<String, Object> maps, Integer page,
+    public String getAllUser( Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
@@ -130,8 +158,13 @@ public class UsersController {
         return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
     }
 	/**
-	 * 多条件查询
-	 * @return
+	 * @Title: getDeptByMany
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param users
+	 * @param: @return   
+	 * @return: ToJson<Users>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getDeptByMany",method = RequestMethod.POST)

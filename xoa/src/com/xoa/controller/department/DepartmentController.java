@@ -18,6 +18,13 @@ import com.xoa.service.department.DepartmentService;
 import com.xoa.util.ToJson;
 
 
+ /**
+ * @ClassName (类名):  DepartmentController
+ * @Description(简述): TODO
+ * @author(作者):      zlf
+ * @date(日期):        2017年4月17日 下午2:51:45
+ *
+ */
 @Controller
 @Scope(value="prototype")
 public class DepartmentController {
@@ -27,9 +34,15 @@ public class DepartmentController {
 	@Resource
 	private DepartmentService departmentService;
 	
+
 	/**
-	 * 新增部门
-	 * @return
+	 * @Title: addDept
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param department
+	 * @param: @return   
+	 * @return: ToJson<Department>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/department/addDept",method = RequestMethod.POST)
@@ -46,10 +59,15 @@ public class DepartmentController {
         return json;
     }
 	
+	
 	/**
-	 * 删除某个部门
-	 * @param deptid
-	 * @param out
+	 * @Title: deletedept
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param department
+	 * @param: @return   
+	 * @return: ToJson<Department>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/department/deletedept",method = RequestMethod.POST)
@@ -66,11 +84,14 @@ public class DepartmentController {
 		}
         return json;
     }
-
 	/**
-	 * 根据deptid查询部门信息
-	 * @param deptid
-	 * @param out
+	 * @Title: getDeptByid
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param deptid
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/department/getDeptByid" ,method = RequestMethod.POST)
@@ -89,10 +110,14 @@ public class DepartmentController {
     }
 	
 	
+	
 	/**
-	 * 查询所有部门信息
-	 * @param 
-	 * @param out
+	 * @Title: getAlldept
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/department/getAlldept",produces = {"application/json;charset=UTF-8"})
@@ -110,11 +135,15 @@ public class DepartmentController {
         return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
     }
 	
+
 	/**
-	 * 修改部门信息
-     * 
-     * @param user
-     * @return
+	 * @Title: editDept
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param department
+	 * @param: @return   
+	 * @return: ToJson<Department>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/department/editDept",method = RequestMethod.POST)
@@ -132,9 +161,15 @@ public class DepartmentController {
         return json;
     }
 	
+	
 	/**
-	 * 多条件查询
-	 * @return
+	 * @Title: getDeptByMany
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param department
+	 * @param: @return   
+	 * @return: ToJson<Department>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/department/getDeptByMany",method = RequestMethod.POST)
