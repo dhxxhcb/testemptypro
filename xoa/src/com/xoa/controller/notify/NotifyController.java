@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.xoa.model.email.Email;
-import com.xoa.model.email.EmailBody;
 import com.xoa.model.notify.Notify;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.notify.NotifyService;
@@ -39,8 +37,44 @@ public class NotifyController {
 	@Resource
 	private NotifyService notifyService;
 
+	
 	/**
-	 * 查询
+	 * 公告管理信息展示并返回
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/notifyManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	  public @ResponseBody String selectNotifyManage(
+			  @RequestParam("page") Integer page,
+				@RequestParam("pageSize") Integer pageSize,
+				@RequestParam("useFlag") Boolean useFlag){
+			Map<String, Object> maps = new HashMap<String, Object>();
+			String returnReslt = null;
+			String err="";
+			try {
+				List<Notify> list =notifyService.selectNotifyManage(maps, page, pageSize, useFlag);
+				System.out.println(list.size()+"111111");
+				ToJson<Notify> tojson = new ToJson<Notify>(0, "");
+				tojson.setObj(list);
+				if (list.size() > 0) {
+					err = "成功";
+					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+							"yyyy-MM-dd HH:mm:ss");
+				} else {
+					err = "失败";
+					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
+							1, ""), "yyyy-MM-dd HH:mm:ss");
+				}
+			} catch (Exception e) {
+				loger.debug("notifyManage:" + e);
+				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1,
+						""), "yyyy-MM-dd HH:mm:ss");
+			}
+
+			return returnReslt;
+		}
+	/**
+	 * 公告通知查询列表
 	 * 
 	 * @return
 	 */
@@ -109,12 +143,12 @@ public class NotifyController {
 						"yyyy-MM-dd HH:mm:ss");
 			} else {
 				err = "失败";
-				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
+				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
 						1, ""), "yyyy-MM-dd HH:mm:ss");
 			}
 		} catch (Exception e) {
 			loger.debug("/notifyList:" + e);
-			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,
+			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1,
 					""), "yyyy-MM-dd HH:mm:ss");
 		}
 
@@ -142,6 +176,34 @@ public class NotifyController {
 		return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
 	}
 
+	/**
+	 * 公告查询详情
+	 */
+	@RequestMapping(value = "/queryNotify",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody String queryNotify(
+			@RequestParam("notifyId") Integer notifyId,
+			@RequestParam("page") Integer page,
+			@RequestParam("pageSize") Integer pageSize,
+			@RequestParam("useFlag") Boolean useFlag){
+		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("notifyId", notifyId);
+		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
+		String name="wangyun";
+		loger.debug("传过来的ID"+notifyId);
+	try {
+		    Notify notify=notifyService.queryById(maps, page, pageSize, useFlag, name);
+			toJson.setMsg("成功");
+			toJson.setObject(notify);
+			return JSON.toJSONStringWithDateFormat(toJson,
+					"yyyy-MM-dd HH:mm:ss");
+		} catch (Exception e) {
+			toJson.setMsg("失败");
+			loger.debug("ERROR:"+e);
+			return JSON.toJSONStringWithDateFormat(toJson,
+					"yyyy-MM-dd HH:mm:ss");
+		}
+	}
+	
 	
 	@RequestMapping("/index")
 	//公告通知list
@@ -165,14 +227,14 @@ public class NotifyController {
 	
 	
 	/**
-	 * 修改
+	 * 修改公告信息
 	 * @param request
 	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/updateNotify", produces = { "application/json;charset=UTF-8" })
-	public String updateNotify(HttpServletRequest request,
-			//@RequestParam(value="notifyId",required=false)String notifyId,
+	public String updateNotify(
+			@RequestParam(value="notifyId",required=false)Integer notifyId,
 			@RequestParam(value="fromId",required=false)String fromId,
 			@RequestParam(value="typeId",required=false)String typeId,
 			@RequestParam(value="subject",required=false)String subject,
@@ -203,9 +265,9 @@ public class NotifyController {
 			@RequestParam(value="reason",required=false) String reason,
 			@RequestParam(value="compressContent",required=false) String compressContent,
 			@RequestParam(value="summary",required=false) String summary) {
-		loger.info("进入修改页面！");
+		
 		Notify notify=new Notify();
-		//notify.setNotifyId(Integer.valueOf(notifyId));
+		notify.setNotifyId(notifyId);
 		notify.setFromId(this.returnValue(fromId));
 		notify.setTypeId(this.returnValue(typeId));
 		notify.setSubject(this.returnValue(subject));
@@ -236,20 +298,21 @@ public class NotifyController {
 	    notify.setReason(this.returnValue(reason));
 	    notify.setCompressContent(compressContent.getBytes());
 	    notify.setSummary(this.returnValue(summary));
-		String notifyId = request.getParameter("notifyId");
-		if (null != notifyId && !"".equals(notifyId)) {
-			List<Notify> n = notifyService.getNotifyById(notifyId);
-			//Notify notify1 = n.get(0);
-			/*request.setAttribute("notify", notify1);
-		} else {
-			request.setAttribute("notify", null);*/
+		
+	    try {
+	    	notifyService.updateNotify(notify);
+	    	return JSON.toJSONStringWithDateFormat(
+					new ToJson<Notify>(0, ""), "yyyy-MM-dd HH:mm:ss");
+		} catch (Exception e) {
+			loger.debug("sendNews:" + e);
+			return JSON.toJSONStringWithDateFormat(
+					new ToJson<Notify>(1, ""), "yyyy-MM-dd HH:mm:ss");
 		}
 		
-		return "app/notify/notifyMssage";
 	}
 
 	/**
-	 * 保存
+	 * 保存公告信息
 	 * 
 	 * @return
 	 */
@@ -333,7 +396,7 @@ public class NotifyController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteById", produces = { "application/json;charset=UTF-8" })
-	public void deleteById(HttpServletRequest request,
+	/*public void deleteById(HttpServletRequest request,
 			HttpServletResponse response) {
 		PrintWriter out = null;
 		try {
@@ -349,6 +412,18 @@ public class NotifyController {
 			e.printStackTrace();
 		}
 		out.close();
+	}*/
+	public @ResponseBody String deleteById(@RequestParam("notifyId") Integer notifyId){
+		ToJson<Notify> toJson = new ToJson<Notify>(0,"");
+		loger.debug("传过来的ID"+notifyId);
+		try{
+			notifyService.delete(notifyId);
+			toJson.setMsg("删除成功");
+			return JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss");
+		}catch(Exception e){
+			toJson.setMsg("删除失败");
+			return JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss");
+		}
 	}
 	
 	

@@ -4,11 +4,16 @@ import java.util.Date;
 import java.util.List;
 
 import com.xoa.model.users.Users;
-
+   /**
+    * 
+    * @ClassName (类名):  Notify
+    * @Description(简述): 公告管理
+    * @author(作者):      zhanglijun
+    * @date(日期):        2017-4-17 下午6:09:31
+    *
+    */
 public class Notify {
-	/**
-	 * 唯一自增ID
-	 */
+	
     private Integer notifyId;
 	/**
 	 * 发布部门id
@@ -50,6 +55,26 @@ public class Notify {
 	 * 置顶天数
 	 */
     private Integer topDays;
+    
+	private Integer clickCount;
+    /**
+	 * 点击数
+	 * 
+	 * @return
+	 */
+	public Integer getClickCount() {
+		return clickCount;
+	}
+
+	/**
+	 * 点击数
+	 * 
+	 * @param clickCount
+	 */
+	public void setClickCount(Integer clickCount) {
+		this.clickCount = clickCount;
+	}
+
 	/**
 	 * 公告通知格式(0-普通格式,1-MHT格式,2-超链接)
 	 */
@@ -133,183 +158,509 @@ public class Notify {
     
     private Users users;
     private String name;
+    /**
+     * 
+     * @Title: getName
+     * @Description: 得到用户名
+     * @author(作者):  zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getName() {
 		return name;
 	}
-
+   /**
+    * 
+    * @Title: setName
+    * @Description: 设置用户名
+    * @author(作者):   zhanglijun
+    * @param: @param name   
+    * @return: void   
+    * @throws
+    */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	private Notify no;
-	private List<Notify> noL;
-
-    
-    
-    public Notify getNo() {
-		return no;
-	}
-
-	public void setNo(Notify no) {
-		this.no = no;
-	}
+    /**
+     * 
+     * @Title: getUsers
+     * @Description:得到用户
+     * @author(作者):  zhanglijun
+     * @param: @return   
+     * @return: Users   
+     * @throws
+     */
 
 	public Users getUsers() {
 		return users;
 	}
-
+    /**
+     * 
+     * @Title: setUsers
+     * @Description: 设置用户
+     * @author(作者):    zhanglijun
+     * @param: @param users   
+     * @return: void   
+     * @throws
+     */
 	public void setUsers(Users users) {
 		this.users = users;
 	}
-
+    /**
+     * 
+     * @Title: getToId
+     * @Description: 得到按部门发布信息
+     * @author(作者):   zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
 	public String getToId() {
         return toId;
     }
-
+    /**
+     * 
+     * @Title: setToId
+     * @Description: 设置按部门发布信息
+     * @author(作者):    zhanglijun
+     * @param: @param toId   
+     * @return: void   
+     * @throws
+     */
     public void setToId(String toId) {
         this.toId = toId == null ? null : toId.trim();
     }
-
+    /**
+     * 
+     * @Title: getContent
+     * @Description: 得到内容信息
+     * @author(作者):   zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getContent() {
         return content;
     }
-
+     /**
+      * 
+      * @Title: setContent
+      * @Description: 设置没人信息
+      * @author(作者):   zhanglijun
+      * @param: @param content   
+      * @return: void   
+      * @throws
+      */
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
-
+    /**
+     * 
+     * @Title: getAttachmentId
+     * @Description: 得到附件ID串
+     * @author(作者):  zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getAttachmentId() {
         return attachmentId;
     }
-
+    /**
+     * 
+     * @Title: setAttachmentId
+     * @Description: 设置附件ID串
+     * @author(作者):    zhanglijun
+     * @param: @param attachmentId   
+     * @return: void   
+     * @throws
+     */
     public void setAttachmentId(String attachmentId) {
         this.attachmentId = attachmentId == null ? null : attachmentId.trim();
     }
-
+    /**
+     * 
+     * @Title: getAttachmentName
+     * @Description: 得到附件名称串
+     * @author(作者):  zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getAttachmentName() {
         return attachmentName;
     }
-
+    /**
+     * 
+     * @Title: setAttachmentName
+     * @Description: 设置附件名称串
+     * @author(作者):   zhanglijun
+     * @param: @param attachmentName   
+     * @return: void   
+     * @throws
+     */
     public void setAttachmentName(String attachmentName) {
         this.attachmentName = attachmentName == null ? null : attachmentName.trim();
     }
-
+    /**
+     * 
+     * @Title: getReaders
+     * @Description: 得到阅读人员ID
+     * @author(作者):  zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getReaders() {
         return readers;
     }
-
+    /**
+     * 
+     * @Title: setReaders
+     * @Description: 设置阅读人员ID
+     * @author(作者):  zhanglijun
+     * @param: @param readers   
+     * @return: void   
+     * @throws
+     */
     public void setReaders(String readers) {
         this.readers = readers == null ? null : readers.trim();
     }
-
+    /**
+     * 
+     * @Title: getPrivId
+     * @Description: 得到按角色发布ID
+     * @author(作者):   zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getPrivId() {
         return privId;
     }
-
+    /**
+     * 
+     * @Title: setPrivId
+     * @Description: 设置按角色发布ID
+     * @author(作者):   zhanglijun
+     * @param: @param privId   
+     * @return: void   
+     * @throws
+     */
     public void setPrivId(String privId) {
         this.privId = privId == null ? null : privId.trim();
     }
-
+    /**
+     * 
+     * @Title: getUserId
+     * @Description: 得到用户ID
+     * @author(作者):    zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getUserId() {
         return userId;
     }
-
+    /**
+     * 
+     * @Title: setUserId
+     * @Description: 设置用户ID
+     * @author(作者):   zhanglijun
+     * @param: @param userId   
+     * @return: void   
+     * @throws
+     */
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
     }
-
+    /**
+     * 
+     * @Title: getReason
+     * @Description:得到审核人不同意的原因
+     * @author(作者):  zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getReason() {
         return reason;
     }
-
+    /**
+     * 
+     * @Title: setReason
+     * @Description: 设置审核人不同意的原因
+     * @author(作者):  zhanglijun
+     * @param: @param reason   
+     * @return: void   
+     * @throws
+     */
     public void setReason(String reason) {
         this.reason = reason == null ? null : reason.trim();
     }
-
+    /**
+     * 
+     * @Title: getCompressContent
+     * @Description: 得到压缩后的公告通知内容
+     * @author(作者):   zhanglijun
+     * @param: @return   
+     * @return: byte[]   
+     * @throws
+     */
     public byte[] getCompressContent() {
         return compressContent;
     }
-
+    /**
+     * 
+     * @Title: setCompressContent
+     * @Description: 设置压缩后的公告通知内容
+     * @author(作者):   zhanglijun
+     * @param: @param compressContent   
+     * @return: void   
+     * @throws
+     */
     public void setCompressContent(byte[] compressContent) {
         this.compressContent = compressContent;
     }
-
+    /**
+     * 
+     * @Title: getSummary
+     * @Description: 获取内容简介信息
+     * @author(作者):   zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getSummary() {
         return summary;
     }
-
+    /**
+     * 
+     * @Title: setSummary
+     * @Description: 设置内容简介信息
+     * @author(作者):    zhanglijun
+     * @param: @param summary   
+     * @return: void   
+     * @throws
+     */
     public void setSummary(String summary) {
         this.summary = summary == null ? null : summary.trim();
     }
-    
+    /**
+     * 
+     * @Title: getNotifyId
+     * @Description: 获取公告ID(主键)
+     * @author(作者):    zhanglijun
+     * @param: @return   
+     * @return: Integer   
+     * @throws
+     */
     public Integer getNotifyId() {
         return notifyId;
     }
-
+    /**
+     * 
+     * @Title: setNotifyId
+     * @Description: 设置公告ID(主键)
+     * @author(作者):    zhanglijun
+     * @param: @param notifyId   
+     * @return: void   
+     * @throws
+     */
     public void setNotifyId(Integer notifyId) {
         this.notifyId = notifyId;
     }
-
+    /**
+     * 
+     * @Title: getFromDept
+     * @Description:获取发布部门ID
+     * @author(作者):   zhanglijun
+     * @param: @return   
+     * @return: Integer   
+     * @throws
+     */
     public Integer getFromDept() {
         return fromDept;
     }
-
+    /**
+     * 
+     * @Title: setFromDept
+     * @Description: 设置发布部门ID
+     * @author(作者):    zhanglijun
+     * @param: @param fromDept   
+     * @return: void   
+     * @throws
+     */
     public void setFromDept(Integer fromDept) {
         this.fromDept = fromDept;
     }
-
+    /**
+     * 
+     * @Title: getFromId
+     * @Description: 获取发布用户ID(USER_ID)
+     * @author(作者):    zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getFromId() {
         return fromId;
     }
-
+    /**
+     * 
+     * @Title: setFromId
+     * @Description: 设置发布用户ID(USER_ID)
+     * @author(作者):     zhanglijun
+     * @param: @param fromId   
+     * @return: void   
+     * @throws
+     */
     public void setFromId(String fromId) {
         this.fromId = fromId == null ? null : fromId.trim();
     }
-
+    /**
+     * 
+     * @Title: getSubject
+     * @Description:获取公告标题
+     * @author(作者):    zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getSubject() {
         return subject;
     }
-
+    /**
+     * 
+     * @Title: setSubject
+     * @Description: 设置公告标题
+     * @author(作者):    zhanglijun
+     * @param: @param subject   
+     * @return: void   
+     * @throws
+     */
     public void setSubject(String subject) {
         this.subject = subject == null ? null : subject.trim();
     }
-
+    /**
+     * 
+     * @Title: getSendTime
+     * @Description: 获取发布时间
+     * @author(作者):  zhanglijun
+     * @param: @return   
+     * @return: Date   
+     * @throws
+     */
     public Date getSendTime() {
         return sendTime;
     }
-
+    /**
+     * 
+     * @Title: setSendTime
+     * @Description: 设置发布时间
+     * @author(作者):  zhanglijun
+     * @param: @param sendTime   
+     * @return: void   
+     * @throws
+     */
     public void setSendTime(Date sendTime) {
         this.sendTime = sendTime;
     }
-
+    /**
+     * 
+     * @Title: getBeginDate
+     * @Description: 获取开始日期
+     * @author(作者):  zhanglijun
+     * @param: @return   
+     * @return: Integer   
+     * @throws
+     */
     public Integer getBeginDate() {
         return beginDate;
     }
-
+    /**
+     * 
+     * @Title: setBeginDate
+     * @Description: 设置开始日期
+     * @author(作者):    zhanglijun
+     * @param: @param beginDate   
+     * @return: void   
+     * @throws
+     */
     public void setBeginDate(Integer beginDate) {
         this.beginDate = beginDate;
     }
-
+    /**
+     * 
+     * @Title: getEndDate
+     * @Description: 获取结束日期
+     * @author(作者):  zhanglijun
+     * @param: @return   
+     * @return: Integer   
+     * @throws
+     */
     public Integer getEndDate() {
         return endDate;
     }
-
+    /**
+     * 
+     * @Title: setEndDate
+     * @Description: 设置结束日期
+     * @author(作者):   zhanglijun
+     * @param: @param endDate   
+     * @return: void   
+     * @throws
+     */
     public void setEndDate(Integer endDate) {
         this.endDate = endDate;
     }
-
+    /**
+     * 
+     * @Title: getPrint
+     * @Description: 获取是否允许打印office附件信息(0-不允许,1-允许)
+     * @author(作者):  zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getPrint() {
         return print;
     }
-
+    /**
+     * 
+     * @Title: setPrint
+     * @Description: 设置是否允许打印office附件信息(0-不允许,1-允许)
+     * @author(作者):     zhanglijun
+     * @param: @param print   
+     * @return: void   
+     * @throws
+     */
     public void setPrint(String print) {
         this.print = print == null ? null : print.trim();
     }
-
+    /**
+     * 
+     * @Title: getTypeId
+     * @Description: 获取公告类型ID
+     * @author(作者):    zhanglijun
+     * @param: @return   
+     * @return: String   
+     * @throws
+     */
     public String getTypeId() {
         return typeId;
     }
-
+    /**
+     * 
+     * @Title: setTypeId
+     * @Description:设置公告类型ID
+     * @author(作者):   zhanglijun
+     * @param: @param typeId   
+     * @return: void   
+     * @throws
+     */
     public void setTypeId(String typeId) {
         this.typeId = typeId == null ? null : typeId.trim();
     }

@@ -326,7 +326,7 @@ public class NewsController {
 		}
 	}
 	/**
-	 * 根据详情删除新闻
+	 * 根据详情新闻
 	 */
 	@RequestMapping(value = "/queryNews",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String queryNews(@RequestParam("newsId") Integer newsId){

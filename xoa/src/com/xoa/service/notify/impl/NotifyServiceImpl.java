@@ -9,9 +9,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.notify.NotifyMapper;
+import com.xoa.model.department.Department;
 import com.xoa.model.notify.Notify;
 import com.xoa.model.users.Users;
+import com.xoa.model.worldnews.News;
+
 
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.ToJson;
@@ -22,6 +26,9 @@ public class NotifyServiceImpl implements  NotifyService{
 	
 	@Resource
 	private NotifyMapper notifyMapper;
+	
+	@Resource
+	private DepartmentMapper departmentMapper;
 	/**
 	 * 查询公告
 	 * @param maps map条件参数
@@ -105,6 +112,37 @@ public class NotifyServiceImpl implements  NotifyService{
 			
 	}
 
+	/**
+	 * 已读、未读公告查询
+	 */
+	@Override
+	public Notify queryById(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception {
+		PageParams pageParams = new PageParams();  
+        pageParams.setUseFlag(useFlag);  
+        pageParams.setPage(page);  
+        pageParams.setPageSize(pageSize);  
+        maps.put("page", pageParams);
+        Notify notify=notifyMapper.detailedNotify(maps);
+        Notify notifyy=new Notify();
+        if(notify.getReaders().indexOf(name)!=-1){
+        	StringBuffer str2= new StringBuffer(notify.getReaders());
+        	String str1=str2.append(name).toString();
+        	notify.setNotifyId(notify.getNotifyId());
+        	notifyy.setReaders(str1);
+        	notify.setClickCount(notify.getClickCount()+1);
+        	notifyMapper.updateNotify(notify);
+		}else {
+			notify.setNotifyId(notify.getNotifyId());
+			notify.setClickCount(notify.getClickCount()+1);
+			notifyMapper.updateclickCount(notify);
+		}
+	
+	   return notify;
+	  
+        	
+        }
+        
+	
 
 	@Override
 	public List<Notify> getNotifyById(String id) {
@@ -121,8 +159,39 @@ public class NotifyServiceImpl implements  NotifyService{
 	 * @return
 	 */
 	@Override
-	public void delete(String id) {
-		notifyMapper.deleteById(id);
+	public void delete(Integer notifyId) {
+		
+		notifyMapper.deleteById(notifyId);
+	}
+	
+	/**
+	 * 公告管理信息查询
+	 */
+	@Override
+	public List<Notify> selectNotifyManage(Map<String, Object> maps,
+			Integer page, Integer pageSize, boolean useFlag) throws Exception {
+		String[] strArray = null;
+		PageParams pageParams = new PageParams();  
+        pageParams.setUseFlag(useFlag);  
+        pageParams.setPage(page);  
+        pageParams.setPageSize(pageSize);  
+        maps.put("page", pageParams);  
+        List<Notify> list = notifyMapper.selectNotifyManage(maps);
+       for (Notify notify : list) {
+			if (notify.getToId().equals("ALL_DEPT")) {
+				 List<Department> list1=departmentMapper.getDatagrid();
+				 for (Department department : list1) {
+					 notify.setName(department.getDeptName());
+				}
+			}else  {
+				strArray=notify.getToId().split(",");
+				for (int i = 0; i < strArray.length; i++) {
+			 String name=departmentMapper.getDeptNameById(Integer.parseInt(strArray[i]));
+			 notify.setName(name);
+				}
+			}
+		}
+		return list;
 	}
 
 
