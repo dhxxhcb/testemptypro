@@ -16,10 +16,12 @@ import com.xoa.service.email.EmailUtilService;
 import com.xoa.util.page.PageParams;
 
 /**
- * 邮箱操作业务类
  * 
- * @author zlx
- * @version 1.0
+ * @ClassName (类名):  EmailUtilServiceImpl
+ * @Description(简述): 邮箱操作业务类
+ * @author(作者):      zlx
+ * @date(日期):        2017-4-17 下午5:44:41
+ *
  */
 @Service
 public class EmailUtilServiceImpl implements EmailUtilService {
@@ -33,11 +35,11 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 
 	/**
 	 * 创建邮件并发送
-	 * 
-	 * @param emailBody
-	 *            发件箱、收件箱内容信息对象 邮件内容实体类
-	 * @param email
-	 *            收件人实体类 邮件状态实体类
+	 * <p>Title: sendEmail</p>
+	 * <p>Description: </p>
+	 * @param emailBody 件箱、收件箱内容信息对象 邮件内容实体类
+	 * @param email 收件人实体类 邮件状态实体类
+	 * @author(作者):  zlx
 	 */
 	@Override
 	public void sendEmail(EmailBody emailBody, Email email) {
@@ -64,19 +66,17 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 		}
 	}
 
-	/**
-	 * 邮件查询
-	 * 
-	 * @param maps
-	 *            相关条件参数传值
-	 * @param page
-	 *            当前页
-	 * @param pageSize
-	 *            每页显示条数
-	 * @param useFlag
-	 *            是否开启分页插件
+	/** 
+	 *  查询邮件
+	 * <p>Title: selectEmail</p>
+	 * <p>Description: </p>
+	 * @param maps 相关条件参数传值
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
 	 * @return 结果集合
 	 * @throws Exception
+	 * @author(作者):  zlx
 	 */
 	@Override
 	public List<EmailBody> selectEmail(Map<String, Object> maps, Integer page,
@@ -92,10 +92,11 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 	}
 
 	/**
-	 * 根据ID删除一条
-	 * 
-	 * @param bodyId
-	 *            邮件Id
+	 * 根据id删除
+	 * <p>Title: deleteByPrimaryKey</p>
+	 * <p>Description: </p>
+	 * @param bodyId 邮件Id
+	 * @author(作者):  zlx
 	 */
 	@Override
 	public void deleteByPrimaryKey(Integer bodyId) {
@@ -104,17 +105,15 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 
 	/**
 	 * 草稿箱查询
-	 * 
-	 * @param maps
-	 *            map条件参数
-	 * @param page
-	 *            当前页
-	 * @param pageSize
-	 *            每页显示条数
-	 * @param useFlag
-	 *            是否开启分页插件
+	 * <p>Title: listDrafts</p>
+	 * <p>Description: </p>
+	 * @param maps map条件参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
 	 * @return
-	 * @throws Exception
+	 * @author(作者):  zy
+	 * @see com.xoa.service.email.EmailUtilService#listDrafts(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
 	 */
 	@Override
 	public List<EmailBody> listDrafts(Map<String, Object> maps, Integer page,
@@ -130,17 +129,16 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 
 	/**
 	 * 发件箱查询
-	 * 
-	 * @param maps
-	 *            map条件参数
-	 * @param page
-	 *            当前页
-	 * @param pageSize
-	 *            每页显示条数
-	 * @param useFlag
-	 *            是否开启分页插件
+	 * <p>Title: listSendEmail</p>
+	 * <p>Description: </p>
+	 * @param maps map条件参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
 	 * @return
 	 * @throws Exception
+	 * @author(作者):  zy
+	 * @see com.xoa.service.email.EmailUtilService#listSendEmail(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
 	 */
 	@Override
 	public List<EmailBody> listSendEmail(Map<String, Object> maps,
@@ -156,18 +154,17 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 	}
 
 	/**
-	 * 废纸篓查询
-	 * 
-	 * @param maps
-	 *            map条件参数
-	 * @param page
-	 *            当前页
-	 * @param pageSize
-	 *            每页显示条数
-	 * @param useFlag
-	 *            是否开启分页插件
+	 *  废纸篓查询
+	 * <p>Title: listWastePaperbasket</p>
+	 * <p>Description: </p>
+	 * @param maps map条件参数
+	 * @param page 当前页
+	 * @param pageSize  每页显示条数
+	 * @param useFlag 是否开启分页插件
 	 * @return
 	 * @throws Exception
+	 * @author(作者):  zy
+	 * @see com.xoa.service.email.EmailUtilService#listWastePaperbasket(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
 	 */
 	@Override
 	public List<EmailBody> listWastePaperbasket(Map<String, Object> maps,
@@ -184,17 +181,16 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 
 	/**
 	 * 条件分页查询
-	 * 
-	 * @param maps
-	 *            map条件参数
-	 * @param page
-	 *            当前页
-	 * @param pageSize
-	 *            每页显示条数
-	 * @param useFlag
-	 *            是否开启分页插件
+	 * <p>Title: selectEmailBody</p>
+	 * <p>Description: </p>
+	 * @param maps map条件参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
 	 * @return
 	 * @throws Exception
+	 * @author(作者):  zlx
+	 * @see com.xoa.service.email.EmailUtilService#selectEmailBody(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
 	 */
 	@Override
 	public List<EmailBody> selectEmailBody(Map<String, Object> maps,
@@ -209,8 +205,16 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 	}
 
 	/**
-	 * @param bodyId
-	 *            根据ID查询一条邮件
+	 *   根据ID查询一条邮件
+	 * <p>Title: queryById</p>
+	 * <p>Description: </p>
+	 * @param maps map参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否启用插件
+	 * @return
+	 * @author(作者):  zlx
+	 * @see com.xoa.service.email.EmailUtilService#queryById(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
 	 */
 	@Override
 	public EmailBody queryById(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag) {
@@ -223,8 +227,17 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 	}
 
 	/**
-	 * 收件箱查询
-	 * @param maps
+	 *  收件箱查询
+	 * <p>Title: selectInbox</p>
+	 * <p>Description: </p>
+	 * @param maps map参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启插件
+	 * @return
+	 * @throws Exception
+	 * @author(作者):  zy
+	 * @see com.xoa.service.email.EmailUtilService#selectInbox(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
 	 */
 	@Override
 	public List<EmailBody> selectInbox(Map<String, Object> maps, Integer page,
@@ -241,18 +254,17 @@ public class EmailUtilServiceImpl implements EmailUtilService {
 	
 	
 	/**
-	 * 未读
-	 * 
-	 * @param maps
-	 *            map条件参数
-	 * @param page
-	 *            当前页
-	 * @param pageSize
-	 *            每页显示条数
-	 * @param useFlag
-	 *            是否开启分页插件
+	 *  未读
+	 * <p>Title: selectIsRead</p>
+	 * <p>Description: </p>
+	 * @param maps map条件参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 
 	 * @return
 	 * @throws Exception
+	 * @author(作者):  zy
+	 * @see com.xoa.service.email.EmailUtilService#selectIsRead(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
 	 */
 	@Override
 	public List<EmailBody> selectIsRead(Map<String, Object> maps, Integer page,
