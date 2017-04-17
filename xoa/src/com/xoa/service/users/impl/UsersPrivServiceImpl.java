@@ -1,12 +1,17 @@
 package com.xoa.service.users.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xoa.dao.users.UserPrivMapper;
+import com.xoa.model.users.UserPriv;
 import com.xoa.service.users.UsersPrivService;
+import com.xoa.util.page.PageParams;
 @Service
 public class UsersPrivServiceImpl implements UsersPrivService {
 	@Resource
@@ -34,5 +39,36 @@ public class UsersPrivServiceImpl implements UsersPrivService {
 					        }  
 						return json;		
 			}
+	@Override
+	public UserPriv selectByPrimaryKey(int up) {
+		UserPriv userPriv=userPrivMapper.selectByPrimaryKey(up);
+		return userPriv;
+	}
+	@Override
+	public void deleteByPrimaryKey(int userPriv) {
+		userPrivMapper.deleteByPrimaryKey(userPriv);
+		
+	}
+	@Override
+	public void insertSelective(UserPriv record) {
+		userPrivMapper.insertSelective(record);
+		
+	}
+	@Override
+	public List<UserPriv> getAllPriv(Map<String,Object> maps, Integer page,
+			Integer pageSize, boolean useFlag) {
+		PageParams pageParams = new PageParams();
+		pageParams.setPage(page);
+		pageParams.setPageSize(pageSize);
+		pageParams.setUseFlag(useFlag);
+		maps.put("page", pageParams);
+		List<UserPriv> list=userPrivMapper.getAlluserPriv(maps);
+		return list;
+	}
+	@Override
+	public List<UserPriv> getPrivByMany(UserPriv priv) {
+		List<UserPriv> list=userPrivMapper.getPrivByMany(priv);
+		return list;
+	}
 
 }
