@@ -1,8 +1,11 @@
 package com.xoa.util.page;
 
 /**
- * 分页插件
- * @author 34910
+ * 
+ * @ClassName (类名):  PageParams
+ * @Description(简述): 分页插件工具
+ * @author(作者):      zy
+ * @date(日期):        2017-4-17 下午2:44:17
  *
  */
 public class PageParams {
@@ -37,64 +40,104 @@ public class PageParams {
 	private Integer totalPage; 
 
 	/**
-	 * 当前页
-	 * @return
+	 * 
+	 * @Title: getPage
+	 * @Description: 当前页
+	 * @author(作者):      zy
+	 * @param: @return   
+	 * @return: Integer   
+	 * @throws
 	 */
 	public Integer getPage() {
 		return page;
 	}
 
 	/**
-	 * 当前页
-	 * @param page
+	 * 
+	 * @Title: setPage
+	 * @Description: 当前页
+	 * @author(作者):      zy
+	 * @param: @param page   
+	 * @return: void   
+	 * @throws
 	 */
 	public void setPage(Integer page) {
 		this.page = page;
 	}
 
 	/**
-	 * 每页限制条数
-	 * @return
+	 * 
+	 * @Title: getPageSize
+	 * @Description: 每页限制条数
+	 * @author(作者):      zy
+	 * @param: @return   
+	 * @return: Integer   
+	 * @throws
 	 */
 	public Integer getPageSize() {
 		return pageSize;
 	}
 
 	/**
-	 * 每页限制条数
-	 * @param pageSize
+	 * 
+	 * @Title: setPageSize
+	 * @Description: 每页限制条数
+	 * @author(作者):      zy
+	 * @param: @param pageSize   
+	 * @return: void   
+	 * @throws
 	 */
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
 
 	/**
-	 * 是否启动插件，如果不启动，则不作分页
-	 * @return
+	 * 
+	 * @Title: getUseFlag
+	 * @Description: 是否启动插件，如果不启动，则不作分页
+	 * @author(作者):      zy
+	 * @param: @return   
+	 * @return: Boolean   
+	 * @throws
 	 */
 	public Boolean getUseFlag() {
 		return useFlag;
 	}
 
 	/**
-	 * 是否启动插件，如果不启动，则不作分页
-	 * @param useFlag
+	 * 
+	 * @Title: setUseFlag
+	 * @Description: 是否启动插件，如果不启动，则不作分页
+	 * @author(作者):      zy
+	 * @param: @param useFlag   
+	 * @return: void   
+	 * @throws
 	 */
 	public void setUseFlag(Boolean useFlag) {
 		this.useFlag = useFlag;
 	}
 
 	/**
-	 * 是否检测页码的有效性，如果为true，而页码大于最大页数，则抛出异常
-	 * @return
+	 * 
+	 * @Title: getCheckFlag
+	 * @Description: 是否检测页码的有效性，如果为true，而页码大于最大页数，则抛出异常
+	 * @author(作者):      zy
+	 * @param: @return   
+	 * @return: Boolean   
+	 * @throws
 	 */
 	public Boolean getCheckFlag() {
 		return checkFlag;
 	}
 
 	/**
-	 * 是否检测页码的有效性，如果为true，而页码大于最大页数，则抛出异常
-	 * @param checkFlag
+	 * 
+	 * @Title: setCheckFlag
+	 * @Description: 是否检测页码的有效性，如果为true，而页码大于最大页数，则抛出异常
+	 * @author(作者):      zy
+	 * @param: @param checkFlag   
+	 * @return: void   
+	 * @throws
 	 */
 	public void setCheckFlag(Boolean checkFlag) {
 		if(checkFlag == null){
@@ -105,48 +148,78 @@ public class PageParams {
 	}
 
 	/**
-	 * 是否清除最后order by 后面的语句
-	 * @return
+	 * 
+	 * @Title: getCleanOrderBy
+	 * @Description: 是否清除最后order by 后面的语句
+	 * @author(作者):      zy
+	 * @param: @return   
+	 * @return: Boolean   
+	 * @throws
 	 */
 	public Boolean getCleanOrderBy() {
 		return cleanOrderBy;
 	}
 
 	/**
-	 * 是否清除最后order by 后面的语句
-	 * @param cleanOrderBy
+	 * 
+	 * @Title: setCleanOrderBy
+	 * @Description: 是否清除最后order by 后面的语句
+	 * @author(作者):      zy
+	 * @param: @param cleanOrderBy   
+	 * @return: void   
+	 * @throws
 	 */
 	public void setCleanOrderBy(Boolean cleanOrderBy) {
 		this.cleanOrderBy = cleanOrderBy;
 	}
 
 	/**
-	 * 总条数
-	 * @return
+	 * 
+	 * @Title: getTotal
+	 * @Description: 总条数
+	 * @author(作者):      zy
+	 * @param: @return   
+	 * @return: Integer   
+	 * @throws
 	 */
 	public Integer getTotal() {
 		return total;
 	}
 
 	/**
-	 * 总条数
-	 * @param total
+	 * 
+	 * @Title: setTotal
+	 * @Description: 总条数
+	 * @author(作者):      zy
+	 * @param: @param total   
+	 * @return: void   
+	 * @throws
 	 */
 	public void setTotal(Integer total) {
 		this.total = total;
 	}
 
 	/**
-	 * 总页数
-	 * @return
+	 * 
+	 * @Title: getTotalPage
+	 * @Description: 总页数
+	 * @author(作者):      zy
+	 * @param: @return   
+	 * @return: Integer   
+	 * @throws
 	 */
 	public Integer getTotalPage() {
 		return totalPage;
 	}
 
 	/**
-	 * 总页数
-	 * @param totalPage
+	 * 
+	 * @Title: setTotalPage
+	 * @Description: 总页数
+	 * @author(作者):      zy
+	 * @param: @param totalPage   
+	 * @return: void   
+	 * @throws
 	 */
 	public void setTotalPage(Integer totalPage) {
 		this.totalPage = totalPage;
