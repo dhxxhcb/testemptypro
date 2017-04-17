@@ -135,6 +135,7 @@ public class NewsController {
 	/**
 	 * 信息展示 返回json demo
 	 * 
+	 * @author wyq
 	 * @return
 	 * @throws Exception
 	 */
@@ -302,6 +303,11 @@ public class NewsController {
 	}
 	/**
 	 * 根据ID删除新闻
+	 * 返回json demo
+	 * 
+	 * @author wyq
+	 * @return
+	 * @throws Exception
 	 */
 	@RequestMapping(value = "/deleteNews", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String deleteNews(@RequestParam("newsId") Integer newsId){
