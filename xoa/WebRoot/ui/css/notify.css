@@ -75,4 +75,35 @@ table.TableList tr td a{text-decoration: none;}
 .TableTop tr td{
 	border: 0;
 }
-
+.muJump{
+	width: 100%;
+	background-color: #ccc;
+	overflow: hidden;
+}
+.muJump ul{
+	list-style: none;
+}
+.muJump ul li{
+	float: left;
+	padding: 5px 10px;
+	margin-left: 5px;	
+}
+.muJump ul li:first-of-type{
+	margin-left: 10%;
+}
+.muJump ul li a{
+	display: block;
+	color: #555;
+}
+.jumpOn{
+	background-color: #5fabf8;
+}
+.jumpOn a{
+	color: #fff !important;
+}
+.muJump ul li:hover{
+	background-color: #5fabf8;
+}
+.muJump ul li:hover a{
+	color: #fff;
+}
