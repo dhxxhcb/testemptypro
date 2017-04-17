@@ -18,22 +18,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- <script src="../js/notify.js" type="text/javascript"></script> -->
     <script type="text/javascript">
     	$(function(){
-    		
+    			var data1={
+    				"page":1,
+    				"pageSize":10,
+    				"useFlag":true
+    			}
     			$.ajax({
-						type:"get",
-						url:"notifyList",
+						type:'get',
+						url:'notifyList',
 						dataType:'json',
-						success:function(obj){
-							var data=obj.obj;						
+						data:data1,
+						success:function(rsp){
+							var data=rsp.obj;	
+							console.log(data[0].name);				
 							var str='';
 							for(var i=0;i<data.length;i++){
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="center">'+data[i].subject+'</td><td class="onTd"><a href="javascript:;">'+data[i].content+'</a></td><td nowrap align="center">'+data[i].sendTime+'</td><td nowrap align="center">'+data[i].format+'</td><td nowrap align="center">'+data[i].readers+'</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" > 修改</a>&nbsp;<a href="javascript:;" class="aBtn"> 删除</a></td></tr>'
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left">'+data[i].subject+'</td><td nowrap align="center">'+data[i].sendTime+'</td><td nowrap align="center">'+data[i].format+'</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" > 修改</a>&nbsp;<a href="javascript:;" class="aBtn" onclick="delate()"> 删除</a></td></tr>';
+								str1='<input type="hidden" id="'+data[i].notifyId+'">';
 							}
-							$('.TableHeader').append(str);
+							$('.TableHeader').after(str+str1); 
 						}
 				})
     	})
     	
+    	function delate(){
+    		$.ajax({
+						type:'get',
+						url:'',
+						dataType:'json',
+						data:data1,
+						success:function(rsp){
+							
+						}
+				})
+    	}    	
     	/*  function jump () {
     		window.location.href="notice-edit.html";
     	}  */
@@ -41,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body class="bodycolor">
-
+<div style="overflow-y: scroll;">
 <table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
   <tr>
     <td class="Big">
@@ -76,153 +94,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <th nowrap align="center">发布人</th>
       <th nowrap align="center">类型</th>
       <th nowrap align="center">标题</th>
-      <th nowrap align="center" style="cursor:pointer;"><u>发布内容</u></th>
+   
       <th nowrap align="center" style="cursor:pointer;"><u>创建时间</u>
       	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
       </th>
-      <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
-      <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th>
+      <!-- <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
+      <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th> -->
       <th nowrap align="center">状态</th>
       <th nowrap align="center">操作</th>
     </tr>
 
-   <!--  <tr class="TableLine1">
-      <td>&nbsp;<input type="checkbox" name="email_select" value="25" ></td>
-      <td nowrap align="center"><u title="部门：北方测试研究公司" style="cursor:pointer">系统管理员</u></td>
-      <td nowrap align="center"></td>
-      <td style="cursor:pointer" title="角色：区域销售经理,OA 管理员,
+  
 
-人员：系统管理员">
-			<font color=#0000FF><b>角色：</b></font>区域销售经理,OA 管理...<br>
-			<font color=#0000FF><b>人员：</b></font>系统管理员<br></td>
-      <td class="onTd">
-      	<a href="javascript:;" title="" onclick="btnTxt('.div_table')">
-      		<font color=red><b>仔细测试一下智能oa公告！！</b> 
-      			<img src='../img/arrow_up.gif' title='已置顶'>
-      		</font>
-      	</a> 
-      </td>
-      <td align="center">2017-01-22 00:00:00</td>
-      <td nowrap align="center">2017-01-23</td>
-      <td nowrap align="center">2017-02-12</td>
-      <td nowrap align="center"><font color='#FF0000'>终止</font></td>
-      <td nowrap>
-            <a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;
-            <a href="javascript:;"> 生效</a>&nbsp;
-            <a href="javascript:;" onclick="jump()"> 修改</a>&nbsp;
-         	<a href="javascript:;" class="aBtn"> 删除</a>
-       </td>
-    </tr> -->
-    <!-- <tr class="TableLine2">
-      <td>&nbsp;<input type="checkbox" name="email_select" value="26" ></td>
-      <td nowrap align="center"><u title="部门：北方测试研究公司" style="cursor:pointer">系统管理员</u></td>
-      <td nowrap align="center"></td>
-      <td style="cursor:pointer" title="" ></td>
-      <td class="onTd"><a href="javascript:;" title="" onclick="btnTxt('.div_table')"><font color=red><b>补补</b> <img src='../img/arrow_up.gif' title='已置顶'></font></a> 
-      </td>
-      <td align="center">2017-01-15 00:00:00</td>
-      <td nowrap align="center">2017-01-15</td>
-      <td nowrap align="center">2017-02-08</td>
-      <td nowrap align="center"><font color='#FF0000'>终止</font></td>
-      <td nowrap>
-            <a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;
-            <a href="javascript:;"> 生效</a>&nbsp;
-            <a href="javascript:;" > 修改</a>&nbsp;
-        	<a href="javascript:;" class="aBtn"> 删除</a>
-       </td>
-    </tr> -->
-   <!--  <tr class="TableLine1">
-      <td>&nbsp;<input type="checkbox" name="email_select" value="31" ></td>
-      <td nowrap align="center"><u title="部门：北方测试研究公司" style="cursor:pointer">系统管理员</u></td>
-      <td nowrap align="center">决定</td>
-      <td style="cursor:pointer" title="" ></td>
-      <td class="onTd"><a href="javascript:;" title="早在 2006 年，苹果就联合（PRODUCT）RED（由 U2 主唱 Bono 成立的品牌），推出了一款红色配色的第二代 iPod nano，之后苹果又推出了多款印有 （PRODUCT）RED 的 iPod、保护壳、表带、耳机、蓝牙音箱等产品。" onclick="btnTxt('.div_table')"><font color=''>早在 2006 年，苹果就联合（PRODUCT）RED（由 U2 主唱...</font></a> 
-      </td>
-      <td align="center">2017-03-29 17:45:19</td>
-      <td nowrap align="center">2017-03-29</td>
-      <td nowrap align="center"></td>
-      <td nowrap align="center"><font color=red>未发布</font></td>
-      <td nowrap>
-            <a href="javascript:;" > 修改</a>&nbsp;
-         	<a href="javascript:;" class="aBtn"> 删除</a>
-       </td>
-    </tr> -->
-    <!-- <tr class="TableLine2">
-      <td>&nbsp;<input type="checkbox" name="email_select" value="30" ></td>
-      <td nowrap align="center"><u title="部门：北方测试研究公司" style="cursor:pointer">系统管理员</u></td>
-      <td nowrap align="center">决定</td>
-      <td style="cursor:pointer" title="生产一部,生产二部,质检部,北方测试研究公司,北一测试研究院,"><font color=#0000FF><b>部门：</b></font>中国兵器工业信息中心...<br></td>
-      <td  class="onTd"><a href="javascript:;" title="苹果又推出了多款印有 （PRODUCT）RED 的 iPod、保护壳、表带、耳机、蓝牙音箱等产品。" onclick="btnTxt('.div_table')"><font color=''>早在 2006 年，苹果就联合（PRODUCT）RED（由 U2 主唱...</font></a> 
-      </td>
-      <td align="center">2017-03-27 14:29:31</td>
-      <td nowrap align="center">2017-03-27</td>
-      <td nowrap align="center"></td>
-      <td nowrap align="center"><font color='#00AA00'>生效</font></td>
-      <td nowrap>
-            <a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;
-            <a href="javascript:;"> 终止</a>&nbsp;
-            <a href="javascript:;" > 修改</a>&nbsp;
-         	<a href="javascript:;" class="aBtn"> 删除</a>
-      </td>
-    </tr> -->
-    <!-- <tr class="TableLine1">
-      <td>&nbsp;<input type="checkbox" name="email_select" value="29" ></td>
-      <td nowrap align="center"><u title="部门：北方测试研究公司" style="cursor:pointer">系统管理员</u></td>
-      <td nowrap align="center">通知</td>
-      <td style="cursor:pointer" title="角色：财务总监,"><font color=#0000FF><b>角色：</b></font>财务总监,<br></td>
-      <td  class="onTd"><a href="javascript:;" title="" onclick="btnTxt('.div_table')"><font color=''>测试界面布局</font></a> 
-      </td>
-      <td align="center">2017-02-10 10:39:01</td>
-      <td nowrap align="center">2017-02-10</td>
-      <td nowrap align="center"></td>
-      <td nowrap align="center"><font color='#00AA00'>生效</font></td>
-      <td nowrap>
-            <a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;
-            <a href="javascript:;"> 终止</a>&nbsp;
-            <a href="javascript:;" > 修改</a>&nbsp;
-         	<a href="javascript:;" class="aBtn"> 删除</a>
-      </td>
-    </tr> -->
-   <!--  <tr class="TableLine2">
-      <td>&nbsp;<input type="checkbox" name="email_select" value="28" ></td>
-      <td nowrap align="center"><u title="部门：北方测试研究公司" style="cursor:pointer">系统管理员</u></td>
-      <td nowrap align="center"></td>
-      <td style="cursor:pointer" title=""></td>
-      <td  class="onTd"><a href="javascript:;" title="" onclick="btnTxt('.div_table')"><font color=''>哈哈哈哈哈哈</font></a> 
-      </td>
-      <td align="center">2017-01-18 00:00:00</td>
-      <td nowrap align="center">2017-01-18</td>
-      <td nowrap align="center">2017-01-18</td>
-      <td nowrap align="center"><font color='#FF0000'>终止</font></td>
-      <td nowrap>
-            <a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;
-            <a href="javascript:;"> 生效</a>&nbsp;
-            <a href="javascript:;" > 修改</a>&nbsp;
-         	<a href="javascript:;" class="aBtn"> 删除</a>
-       </td>
-    </tr> -->
-   <!--  <tr class="TableLine1">
-      <td>&nbsp;<input type="checkbox" name="email_select" value="27" ></td>
-      <td nowrap align="center">
-      	<u title="部门：北方测试研究公司" style="cursor:pointer">系统管理员</u>
-      </td>
-      <td nowrap align="center"></td>
-      <td style="cursor:pointer" title=""></td>
-      <td  class="onTd"><a href="javascript:;" title="" onclick="btnTxt('.div_table')"><font color=''>哈哈哈</font></a> 
-      </td>
-      <td align="center">2017-01-16 00:00:00</td>
-      <td nowrap align="center">2017-01-16</td>
-      <td nowrap align="center">2017-01-16</td>
-      <td nowrap align="center"><font color='#FF0000'>终止</font></td>
-      <td nowrap>
-            <a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;
-            <a href="javascript:;"> 生效</a>&nbsp;
-            <a href="javascript:;" > 修改</a>&nbsp;
-         	<a href="javascript:;" class="aBtn"> 删除</a>
-      </td>
-    </tr> -->
-
-<tr class="TableControl">
+<!-- <tr class="TableControl">
 <td colspan="19">
     <input type="checkbox" name="allbox" id="allbox_for" >
     	<label for="allbox_for">全选</label> &nbsp;
@@ -239,9 +123,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		<img src="../img/delete.gif" align="absMiddle">删除全部公告
    		 </a>&nbsp;
     </td>
-</tr>
+</tr> -->
 </table>
-	
+</div>
 	<!-- <script type="text/javascript">
 		
 		function btnTxt (cName,sName) {
