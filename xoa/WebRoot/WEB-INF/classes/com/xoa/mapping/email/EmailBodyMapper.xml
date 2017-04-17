@@ -103,7 +103,7 @@
 	</select>
 
 	<!-- 发送邮件并保存到数据库 -->
-	<insert id="save" parameterType="com.xoa.model.email.EmailBody">
+	<insert id="save" parameterType="com.xoa.model.email.EmailBody" useGeneratedKeys="true" keyProperty="bodyId">
 		insert into email_body (
 		BODY_ID,
 		FROM_ID,

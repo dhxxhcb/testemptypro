@@ -46,42 +46,24 @@ public class EmailUtilController {
 	 */
 	@RequestMapping(value = "/sendEmail", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String insertEmailBody(@RequestParam("bodyId") String bodyId,
-			@RequestParam(value = "fromId", required = false) String fromId,
-			@RequestParam("toId2") String toId2,
-			@RequestParam(value = "copyToId") String copyToId,
-			@RequestParam("secretToId") String secretToId,
-			@RequestParam("subject") String subject,
-			@RequestParam("content") String content,
-			@RequestParam("sendTime") String sendTime,
-			@RequestParam("attachmentId") String attachmentId,
-			@RequestParam("attachmentName") String attachmentName,
-			@RequestParam("sendFlag") String sendFlag,
-			@RequestParam("smsRemind") String smsRemind,
-			@RequestParam("important") String important,
-			@RequestParam("size") String size,
-			@RequestParam("fromWebmailId") String fromWebmailId,
-			@RequestParam("fromWebmail") String fromWebmail,
-			@RequestParam("toWebmail") String toWebmail,
-			@RequestParam("compressContent") String compressContent,
-			@RequestParam("webmailContent") String webmailContent,
-			@RequestParam("webmailFlag") String webmailFlag,
-			@RequestParam("recvFromName") String recvFromName,
-			@RequestParam("recvFrom") String recvFrom,
-			@RequestParam("recvToId") String recvToId,
-			@RequestParam("recvTo") String recvTo,
-			@RequestParam("isWebmail") String isWebmail,
-			@RequestParam("isWf") String isWf,
-			@RequestParam("keyword") String keyword,
-			@RequestParam("secretLevel") String secretLevel,
-			@RequestParam("auditMan") String auditMan,
-			@RequestParam("auditRemark") String auditRemark,
-			@RequestParam("copyToWebmail") String copyToWebmail,
-			@RequestParam("secretToWebmail") String secretToWebmail,
+	String insertEmailBody(@RequestParam(value = "fromId") String fromId,
+			@RequestParam("toId2") String toId2,@RequestParam(value = "copyToId") String copyToId,
+			@RequestParam("secretToId") String secretToId,@RequestParam("subject") String subject,
+			@RequestParam("content") String content,@RequestParam("sendTime") String sendTime,
+			@RequestParam("attachmentId") String attachmentId,@RequestParam("attachmentName") String attachmentName,
+			@RequestParam("sendFlag") String sendFlag,@RequestParam("smsRemind") String smsRemind,
+			@RequestParam("important") String important,@RequestParam("size") String size,
+			@RequestParam("fromWebmailId") String fromWebmailId,@RequestParam("fromWebmail") String fromWebmail,
+			@RequestParam("toWebmail") String toWebmail,@RequestParam("compressContent") String compressContent,
+			@RequestParam("webmailContent") String webmailContent,@RequestParam("webmailFlag") String webmailFlag,
+			@RequestParam("recvFromName") String recvFromName,@RequestParam("recvFrom") String recvFrom,
+			@RequestParam("recvToId") String recvToId,@RequestParam("recvTo") String recvTo,
+			@RequestParam("isWebmail") String isWebmail,@RequestParam("isWf") String isWf,
+			@RequestParam("keyword") String keyword,@RequestParam("secretLevel") String secretLevel,
+			@RequestParam("auditMan") String auditMan,@RequestParam("auditRemark") String auditRemark,
+			@RequestParam("copyToWebmail") String copyToWebmail,@RequestParam("secretToWebmail") String secretToWebmail,
 			@RequestParam("praise") String praise) {
-		// emailBody.setSendTime(DateFormat.getTime("2017-4-9 10:20:36"));
 		EmailBody emailBody = new EmailBody();
-		emailBody.setBodyId(Integer.valueOf(bodyId));
 		emailBody.setFromId(this.returnValue(fromId));
 		emailBody.setToId2(toId2);
 		emailBody.setCopyToId(this.returnValue(copyToId));
@@ -117,13 +99,12 @@ public class EmailUtilController {
 		try {
 			emailService.sendEmail(emailBody, new Email());
 			return JSON.toJSONStringWithDateFormat(
-					new ToJson<EmailBody>(0, ""), "yyyy-MM-dd HH:mm:ss");
+					new ToJson<EmailBody>(0, "ok"), "yyyy-MM-dd HH:mm:ss");
 		} catch (Exception e) {
 			loger.debug("sendMail:" + e);
 			return JSON.toJSONStringWithDateFormat(
-					new ToJson<EmailBody>(1, ""), "yyyy-MM-dd HH:mm:ss");
+					new ToJson<EmailBody>(1, "errorEmail"), "yyyy-MM-dd HH:mm:ss");
 		}
-
 	}
 
 	/**
@@ -306,32 +287,12 @@ public class EmailUtilController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/index")
-
-	public String inboxPage() {
-		return "app/email/index";
+	@RequestMapping("/inbox")
+	// 登录窗口
+	public String logins() {
+		return "app/email/inbox";
 	}
 
-	/**
-	 * 写件箱
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/addbox")
-
-	public String addboxPage() {
-		return "app/email/writeMail";
-	}
-	/**
-	 * 
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/indexup")
-
-	public String indexupPage() {
-		return "app/email/indexup";
-	}
 	/**
 	 * 根据ID删除一条邮件`
 	 */
