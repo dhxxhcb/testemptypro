@@ -32,9 +32,13 @@ public class UserPrivController {
 	UsersPrivService usersPrivService;
 	
 	/**
-	 * 新增角色
-	 * @param UserPriv
-	 * @return
+	 * @Title: addPriv
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param userPriv
+	 * @param: @return   
+	 * @return: ToJson<UserPriv>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/addUser",method = RequestMethod.POST)
@@ -50,10 +54,15 @@ public class UserPrivController {
 		}
         return json;
     }
+	
 	/**
-	 * 删除某个角色
-	 * @param UserPriv
-	 * @param out
+	 * @Title: deletePriv
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param userPriv
+	 * @param: @return   
+	 * @return: ToJson<UserPriv>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/deletePriv",method = RequestMethod.POST)
@@ -72,9 +81,13 @@ public class UserPrivController {
     }
 	
 	/**
-	 * 根据userPriv查询用户信息
-	 * @param uid
-	 * @param out
+	 * @Title: findUserByuid
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param userPriv
+	 * @param: @return   
+	 * @return: ToJson<UserPriv>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/findByuserPriv")
@@ -92,9 +105,16 @@ public class UserPrivController {
     }
 	
 	/**
-	 * 查询所有角色信息
-	 * @param 
-	 * @param out
+	 * @Title: getAllPriv
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param maps
+	 * @param: @param page
+	 * @param: @param pageSize
+	 * @param: @param useFlag
+	 * @param: @return   
+	 * @return: ToJson<UserPriv>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/getAllPriv",produces = {"application/json;charset=UTF-8"})
@@ -112,9 +132,15 @@ public class UserPrivController {
         return json;
     }
 	
+	
 	/**
-	 * 多条件查询
-	 * @return
+	 * @Title: getPrivByMany
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param userPriv
+	 * @param: @return   
+	 * @return: ToJson<UserPriv>   
+	 * @throws
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/getPrivByMany")

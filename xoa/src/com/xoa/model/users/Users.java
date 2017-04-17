@@ -8,7 +8,7 @@ import com.xoa.model.role.Role;
  /**
  * @ClassName (类名):  Users
  * @Description(简述): TODO
- * @author(作者):      zlf
+ * @author(作者):      wyq
  * @date(日期):        2017年4月17日 下午3:44:46
  *
  */

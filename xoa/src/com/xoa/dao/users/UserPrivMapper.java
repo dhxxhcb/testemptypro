@@ -12,55 +12,6 @@ import com.xoa.model.users.UserPriv;
  * @date(日期):        2017年4月17日 下午4:07:10
  *
  */
- /**
- * @ClassName (类名):  UserPrivMapper
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午4:07:28
- *
- */
- /**
- * @ClassName (类名):  UserPrivMapper
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午4:07:33
- *
- */
- /**
- * @ClassName (类名):  UserPrivMapper
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午4:07:35
- *
- */
- /**
- * @ClassName (类名):  UserPrivMapper
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午4:07:37
- *
- */
- /**
- * @ClassName (类名):  UserPrivMapper
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午4:07:40
- *
- */
- /**
- * @ClassName (类名):  UserPrivMapper
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午4:07:48
- *
- */
- /**
- * @ClassName (类名):  UserPrivMapper
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午4:07:50
- *
- */
 public interface UserPrivMapper {
     /**
      * @Title: deleteByPrimaryKey
