@@ -55,12 +55,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * @see com.xoa.service.department.DepartmentService#getDatagrid()
 	 */
 	@Override
-	public List<Department> getDatagrid() {
-		/*PageParams pageParams = new PageParams();
-		pageParams.setPage(page);
-		pageParams.setPageSize(pageSize);
-		pageParams.setUseFlag(useFlag);
-		maps.put("page", pageParams);*/		
+	public List<Department> getDatagrid() {	
 		return departmentMapper.getDatagrid();
 	}
 
