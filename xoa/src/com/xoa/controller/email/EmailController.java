@@ -690,5 +690,18 @@ public class EmailController {
 	// return JSON.toJSONStringWithDateFormat(tojson,"yyyy-MM-dd HH:mm:ss");
 	// }
 	// }
+	
+	@RequestMapping("/inboxup")
+	public String inboxUp(){
+		return "app/email/inboxup";
+	}
+	@RequestMapping("/writeMail")
+	public String writeMail(){
+		return "app/email/writeMail";
+	}
+	@RequestMapping("/index")
+	public String emailIndex(){
+		return "app/email/index";
+	}
 
 }
