@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.file.File_SortMapper">
+	<resultMap id="file_SortResultMap" type="com.xoa.model.file.File_Sort">
+		<id column="SORT_ID" property="sort_id" jdbcType="INTEGER"  />
+		<result column="SORT_PARENT" property="sort_parent" jdbcType="INTEGER" />
+		<result column="SORT_NO" property="sort_no" jdbcType="VARCHAR" />
+		<result column="SORT_NAME" property="sort_name" jdbcType="VARCHAR" />
+		<result column="SORT_TYPE" property="sort_type" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="user_id" jdbcType="VARCHAR" />
+		<result column="NEW_USER" property="new_user" jdbcType="VARCHAR" />
+		<result column="MANAGE_USER" property="manager_user" jdbcType="VARCHAR" />
+		<result column="DEL_USER" property="del_user" jdbcType="VARCHAR" />
+		<result column="DOWN_USER" property="down_user" jdbcType="VARCHAR" />
+		<result column="SHARE_USER" property="shar_user" jdbcType="VARCHAR" />
+		<result column="OWNER" property="owner" jdbcType="VARCHAR" />
+		<result column="SIGN_USER" property="sign_user" jdbcType="VARCHAR" />
+		<result column="REVIEW" property="review" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getFile_Sort" resultMap="file_SortResultMap" parameterType="com.xoa.model.file.File_Sort">
+		select  *  from file_sort where  1=1 
+		 <if test="sort_id != null and sort_id !=''" >
+           and sort_id=#{sort_id}
+        </if>
+        <if test="sort_parent != null and sort_parent !='' or sort_parent==0">
+           and sort_parent=#{sort_parent}
+        </if>
+         <if test="sort_no != null and sort_no !=''" >
+           and sort_no=#{sort_no}
+        </if>
+         <if test="sort_name != null and sort_name !=''" >
+           and sort_name=#{sort_name}
+        </if>
+        <if test="sort_type != null and sort_type !=''" >
+           and sort_type=#{sort_type}
+        </if>;
+	</select>
+	<!-- ajax  -->
+	<select id="getSortChrildren" parameterType="int" resultMap="file_SortResultMap">
+	select * from file_sort where  SORT_PARENT=#{tempNo};
+	</select>
+	
+	<insert id="addFile_Sorts"  parameterType="com.xoa.model.file.File_Sort">
+	insert into file_sort
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sort_parent != null and sort_parent !='' or sort_parent==0" >
+        sort_parent,
+      </if>
+      <if test="sort_no != null" >
+        sort_no,
+      </if>
+      <if test="sort_name != null" >
+        sort_name,
+      </if>
+      <if test="sort_type != null" >
+        sort_type,
+      </if>
+       <if test="user_id != null" >
+        user_id,
+      </if>
+       <if test="new_user != null" >
+        new_user,
+      </if>
+       <if test="del_user != null" >
+        del_user,
+      </if>
+       <if test="down_user != null" >
+        down_user,
+      </if>
+      <if test="shar_user != null" >
+        shar_user,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+      <if test="sign_user != null" >
+        sign_user,
+      </if>
+       <if test="sign_user != null" >
+        sign_user,
+      </if>
+       <if test="review != null" >
+        review,
+      </if>
+    </trim>
+      values 
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sort_parent != null" >
+        #{sort_parent,jdbcType=INTEGER},
+      </if>
+      <if test="sort_no != null" >
+         #{sort_no,jdbcType=VARCHAR},
+      </if>
+      <if test="sort_name != null" >
+        #{sort_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sort_type != null" >
+        #{sort_type,jdbcType=VARCHAR},
+      </if>
+      <if test="user_id != null" >
+        #{user_id,jdbcType=VARCHAR},
+      </if>
+      <if test="new_user != null" >
+        #{new_user,jdbcType=VARCHAR},
+      </if>
+      <if test="del_user != null" >
+        #{del_user,jdbcType=VARCHAR},
+      </if>
+      <if test="down_user != null" >
+        #{down_user,jdbcType=VARCHAR},
+      </if>
+      <if test="shar_user != null" >
+        #{shar_user,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="sign_user != null" >
+        #{sign_user,jdbcType=VARCHAR},
+      </if>
+      <if test="review != null" >
+        #{review,jdbcType=VARCHAR},
+      </if>
+    </trim>
+	</insert>
+	
+	<update id="updateFile_Sorts" parameterType="com.xoa.model.file.File_Sort">
+	update file_sort 
+    <set>
+    <trim  suffixOverrides="," >
+      <if test="sort_no != null" >
+        sort_no = #{sort_no,jdbcType=VARCHAR},
+      </if>
+       <if test="sort_name != null" >
+        sort_name = #{sort_name,jdbcType=VARCHAR},
+      </if>
+      </trim>
+      where sort_id=#{sort_id,jdbcType=INTEGER}
+    </set>
+	</update>
+	
+	<delete id="fileDeleteBySort_id" parameterType="com.xoa.model.file.File_Sort">
+	delete from file_sort where SORT_ID=#{sortid};
+	</delete>
+	
+	<select id="getRootTree" parameterType="int" resultMap="file_SortResultMap">
+	select * from file_sort SORT_PARENT=#{sortid};
+	</select>
+	
+	<select id="getChildTree" parameterType="int" resultMap="file_SortResultMap">
+	<![CDATA[
+		select * from file_sort SORT_PARENT<>#{sortid};
+		]]>
+	</select>
+</mapper>
