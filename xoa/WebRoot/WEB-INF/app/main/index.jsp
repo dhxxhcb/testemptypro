@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -117,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</body>
 	<script>
 		$(function(){
-<<<<<<< HEAD
+
 			var menu = {
 				"email":"email/index",
 				"notify/show":"notice/index",
@@ -180,7 +183,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  })
 		} 
 		 	 setInterval("lunbo('#status_text','-50px')",3000);  */
-=======
+
 		var menu = {
 			"email":"email/index",
 			"notify/manage":"notice/index",
@@ -188,15 +191,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			"file_folder/index2.php":"fileHome",
 			"system/file_folder":"showFileBySort_id"
 		}
-			//-- 状态栏文字 --
-		function StatusTextScroll(){
-		    var obj = jQuery('#status_text');
-		    var scrollTo = obj.scrollTop() + obj.height();
-		    if(scrollTo >= obj.attr('scrollHeight'))
-		       scrollTo = 0;
-		    obj.animate({scrollTop: scrollTo}, 300);
-		}
->>>>>>> 1c1b4c5d385acc28235e1694dc3a4a672e1c2740
+
+
 		
 			$.ajax({
 					url:'showMenu',
