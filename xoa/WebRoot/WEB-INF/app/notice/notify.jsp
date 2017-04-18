@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -121,9 +124,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body class="bodycolor">
 <div class="muJump">
 	<ul>
-		<li><a href="javascript:;">未读公告</a></li>
-		<li class="jumpOn"><a href="javascript:;">公告通知</a></li>
-		<li><a href="javascript:;">公告查询</a></li>
+		<li><a href="javascript:;"><fmt:message code="notice.title.unread" />未读公告</a></li>
+		<li class="jumpOn"><a href="javascript:;"><fmt:message code="notice.title.notify" />公告通知</a></li>
+		<li><a href="javascript:;"><fmt:message code="notice.title.query" />公告查询</a></li>
 	</ul>
 </div>
 <div class="content">
@@ -132,21 +135,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
 			<tr>
 				<td>
-					<div class="title">未读公告</div>
+					<div class="title"><fmt:message code="notice.title.unread" />未读公告</div>
 					<select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
-			          	<option value="0" selected>所有类型</option>
-			         	<option value="01">决定</option>
-						<option value="02">通知</option>
-						<option value="03">通报</option>
-						<option value="04">其他</option>
-			          	<option value="05">无类型</option>
+			          	<option value="0" selected><fmt:message code="notice.select.allType" />所有类型</option>
+			         	<option value="01"><fmt:message code="notice.select.decision" />决定</option>
+						<option value="02"><fmt:message code="notice.select.notice" />通知</option>
+						<option value="03"><fmt:message code="notice.select.bulletin" />通报</option>
+						<option value="04"><fmt:message code="notice.select.other" />其他</option>
+			          	<option value="05"><fmt:message code="notice.select.noType" />无类型</option>
 			       </select>
 				</td>
 				
 			</tr>
 			
 		</table>
-		<span>没有未读公告，2秒后自动跳到公告通知</span>
+		<span><fmt:message code="notice.text.jump" />没有未读公告，2秒后自动跳到公告通知</span>
 	</div>
 	<!-- 公告通知 start -->
 	<div id="notify" style="overflow-y: scroll;display:block;">
@@ -154,25 +157,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <tr>
 		    <td class="Big">
 		    	<img src="../img/notify_open.gif" align="absmiddle">
-		    	<span class="big3">公告通知</span>&nbsp;
+		    	<span class="big3"><fmt:message code="notice.title.notify" />公告通知</span>&nbsp;
 		       <select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
-		          	<option value="0" selected>所有类型</option>
-		         	<option value="01">决定</option>
-					<option value="02">通知</option>
-					<option value="03">通报</option>
-					<option value="04">其他</option>
-		          	<option value="05">无类型</option>
+		          	<option value="0" selected><fmt:message code="notice.select.allType" />所有类型</option>
+		         	<option value="01"><fmt:message code="notice.select.decision" />决定</option>
+					<option value="02"><fmt:message code="notice.select.notice" />通知</option>
+					<option value="03"><fmt:message code="notice.select.bulletin" />通报</option>
+					<option value="04"><fmt:message code="notice.select.other" />其他</option>
+		          	<option value="05"><fmt:message code="notice.select.noType" />无类型</option>
 		       </select>
 		    </td>
 		    <!--<td align="center" ><input type="button" class="BigButton" onClick="window.open('new.php')" value=新建公告 ></td>-->
 		    <td align="right" valign="bottom" class="small1">
 		    	<div id="pageArea" class="pageArea">
-					第<span id="pageNumber" class="pageNumber">1/1</span>页
+					<fmt:message code="notice.paging.NO" />第<span id="pageNumber" class="pageNumber">1/1</span><fmt:message code="notice.paging.page" />页
 					<a href="javascript:;" id="pageFirst" class="pageFirstDisable" title="首页"></a>
 					  <a href="javascript:;" id="pagePrevious" class="pagePreviousDisable" title="上一页"></a>
 					  <a href="javascript:;" id="pageNext" class="pageNextDisable" title="下一页"></a>
 					  <a href="javascript:;" id="pageLast" class="pageLastDisable" title="末页"></a>
-					  转到 第 <input type="text" size="3" class="SmallInput" name="page_no" id="page_no" onkeypress="input_page_no()" style='text-align:center;'> 页 
+					  <fmt:message code="notice.paging.goto" />转到 <fmt:message code="notice.paging.NO" />第 <input type="text" size="3" class="SmallInput" name="page_no" id="page_no" onkeypress="input_page_no()" style='text-align:center;'> <fmt:message code="notice.paging.page" />页 
 					  	<a href="javascript:goto_page();" id="pageGoto" class="pageGoto" title="转到"></a>
 		    	</div>
 		    </td>
@@ -181,28 +184,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table class="TableList" width="95%" align="center" cellspacing="0" cellpadding="0">
 		  <tr class="TableHeader">
 		     <!--  <th nowrap align="center">选择</th> -->
-		      <th nowrap align="center">发布人</th>
-		      <th nowrap align="center">类型</th>
-		      <th nowrap align="center">标题</th>
+		      <th nowrap align="center"><fmt:message code="notice.th.publisher" />发布人</th>
+		      <th nowrap align="center"><fmt:message code="notice.th.type" />类型</th>
+		      <th nowrap align="center"><fmt:message code="notice.th.title" />标题</th>
 		   
-		      <th nowrap align="center" style="cursor:pointer;"><u>创建时间</u>
+		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.createTime" />创建时间</u>
 		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
 		      </th>
 		      <!-- <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
 		      <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th> -->
-		      <th nowrap align="center">状态</th>
-		      <th nowrap align="center">操作</th>
+		      <th nowrap align="center"><fmt:message code="notice.th.state" />状态</th>
+		      <th nowrap align="center"><fmt:message code="notice.th.operation" />操作</th>
 		    </tr>
 		</table>
 	</div> <!-- end -->
 	
 	<!-- 公告查询 -->
 	<div id="noticeQuery" style="display: none;">
-		<div class="title">公告通知查询</div>
+		<div class="title"><fmt:message code="notice.title.noticeQuery" />公告通知查询</div>
 		<table class="TableBlock" width="50%" align="center" border="1" style="margin: 20px auto;">
 			  <form enctype="multipart/form-data" name="form1"></form>
 			    <tbody><tr>
-			      <td nowrap="" class="TableData">发布人：</td>
+			      <td nowrap="" class="TableData"><fmt:message code="notice.th.publisher" />发布人：</td>
 			      <td class="TableData">
 			        <div class="inPole">
 									<textarea name="txt" disabled></textarea>
@@ -210,24 +213,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<span class="addImg">
 											<img src="../img/org_select1.png" class="addIcon"/>
 										</span>
-										<a href="javascript:;" class="Add">添加</a>
+										<a href="javascript:;" class="Add"><fmt:message code="notice.a.add" />添加</a>
 									</span>
 									<span class="add_img">
 										<span class="addImg">
 											<img src="../img/org_select2.png" class="clearIcon"/>
 										</span>
-										<a href="javascript:;" class="clear">清除</a>
+										<a href="javascript:;" class="clear"><fmt:message code="notice.a.clear" />清除</a>
 									</span>
 								</div>
 			      </td>
 			    </tr>
 			    <tr>
-			      <td nowrap="" class="TableData" width="100"> 格式：</td>
+			      <td nowrap="" class="TableData" width="100"> <fmt:message code="notice.td.format" />格式：</td>
 			      <td class="TableData">
 			      <select name="FORMAT" class="BigSelect">
-			        <option value="0" selected="">全部</option>
-			        <option value="1">普通格式</option>
-			        <option value="2">MHT格式</option>
+			        <option value="0" selected=""><fmt:message code="notice.select.all" />全部</option>
+			        <option value="1"><fmt:message code="notice.select.commonFormat" />普通格式</option>
+			        <option value="2"><fmt:message code="notice.select.MHTformat" />MHT格式</option>
 			        <!--<option value="2">超级链接</option>-->
 			      </select>
 			      </td>
@@ -372,22 +375,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		});
 </script>
 
-	<!-- <script type="text/javascript">
-		
-		function btnTxt (cName,sName) {
-		  layer.open({
-		  title:['公告详情','text-align: center;'],
-		  type: 1,
-		  area: ['600px', '360px'],
-		  shadeClose: true, //点击遮罩关闭
-		  content: $('#lay')
-		  });
-
-		}
-	</script> -->
-	
-	
-	
 </body>
 
 	<!-- <div class="div_table" id="lay" style="display: none;">
