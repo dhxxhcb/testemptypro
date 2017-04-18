@@ -23,8 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 		<div class="wrap">
 			<div class="head">
-				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:1.5%;margin-top:5%;width: 62%;
-    height: 70%;"></div>
+				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:2%;width:72%;height:78%;
+    margin-left: 8%;"></div>
 				<div class="head_mid">
 					<ul class="main_title">
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			         
 		      	</div>
 			</div>
-			<div class="cont">
+			<div class="cont" id="client">
 				<div class="cont_left">
 					<ul class="all_ul">
 						<div class="tab_t">
@@ -94,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="all_content" style="width:100%;height:97%;">
 						
-							<div id='f_0' class="iItem" style="width:100%;height:100%;"><iframe  id="every_module" src="cont" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
+							<div id='f_0' class="iItem" style="width:100%;height:100%;overflow-y:scroll;"><iframe  id="every_module" src="cont" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
 							
 					</div>
 				</div>
@@ -144,17 +144,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 			//two
 			$('#sns').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_one.png) -331px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png) -80px 0px no-repeat')
 			});
 			$('#sns').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_two.png) -331px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png) -80px 0px no-repeat')
 			});
 			//three
 			$('#help').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_one.png) -73px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png) -160px 0px no-repeat')
 			});
 			$('#help').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_two.png) -73px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png) -160px 0px no-repeat')
 			});
 			//four
 			$('#person_info').on('mouseover',function(){
@@ -400,8 +400,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							console.log(delet);
 						 	/*  $(this).parent().remove();
 						 	 $('#f_'+delet).remove(); */
-						 	var new_delet=delet+1;
-						 	 console.log(new_delet);
+						 	console.log($(this).next());
 						}) ;
 					}			
 				});
@@ -409,5 +408,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		})
 	</script>
-	
+	<script>
+		autodivheight();
+		function autodivheight(){ 
+		  var winHeight=0;
+		  if (window.innerHeight)
+		   winHeight = window.innerHeight;
+		  else if ((document.body) && (document.body.clientHeight))
+		   winHeight = document.body.clientHeight;
+		  if (document.documentElement && document.documentElement.clientHeight)
+		   winHeight = document.documentElement.clientHeight;
+		   winWidth = document.documentElement.clientWidth;
+		  document.getElementById("client").style.height= winHeight - 90 +"px";
+		  document.getElementById("client").style.width= winWidth  +"px";
+		  
+		 }
+ window.onresize=autodivheight; 
+	</script>
 </html>

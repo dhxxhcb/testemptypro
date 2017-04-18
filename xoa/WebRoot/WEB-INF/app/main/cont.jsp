@@ -25,13 +25,13 @@ body,
 	height:100%;
 }
 .img_all{
-	width:96%;
+	width:94%;
 	height:94%;
 	margin:0.3% auto;
 }
 .right_one{
 	width:20%;
-	height:35%;
+	height:230px;
 	/* background:green; */
 	float:left;
 	margin-left:4%;
@@ -39,15 +39,17 @@ body,
 }
 .r_one_top{
 	width:100%;
-	height:65%;
+	height:140px;
 	background:#60bb5c;
 }
 .r_one_top img{
-	margin:4% 25%;
+	/* width:70%; */
+	    height: 69%;
+	margin:9% 27%;
 }
 .r_one_bot{
 	width:100%;
-	height:45%;
+	height:90px;
 	background:#ededed;
 }
 .r_one_bot h1{
@@ -55,6 +57,7 @@ body,
 	font-size:14px;
 	line-height:40px;
 	margin-left:6%;
+	font-weight: normal;
 }
 .r_one_bot h2{
 	color: #919191;
