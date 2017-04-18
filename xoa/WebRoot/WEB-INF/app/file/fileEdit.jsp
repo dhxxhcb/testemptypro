@@ -32,15 +32,15 @@ function submit(){
 </head>
 <body>
 <h1>文件夹编辑</h1>
-<form id="form1" action="${pageContext.request.contextPath }/fileUpdate" method="post">
+<form id="form1" action="${pageContext.request.contextPath }/file/update" method="post">
 <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;" width="50%">
 	<tr>
 		<td width="30%">排序号:  </td>
-		<td width="70%"><input id="sortno" name="sort_no" type="text" value="${sortno }"/></td>
+		<td width="70%"><input id="sortno" name="sortNo" type="text" value="${sortno }"/></td>
 	</tr>
 	<tr>
 		<td width="30%">文件夹名称：</td>
-		<td width="70%"><input id="sortname" name="sort_name" type="text" value="${sortname }"/></td>
+		<td width="70%"><input id="sortname" name="sortName" type="text" value="${sortname }"/></td>
 	</tr>
 	<tr>
 		<td colspan="2"><input id="fh" type="button" value="确认" onclick="closeCurrentWindow()"/></td>
@@ -49,7 +49,7 @@ function submit(){
    文件夹名称：<input id="sortname" name="sort_name" type="text" value="${sortname }"/><br> --!>
   <!--  <input id="qr" type="button" value="确认" onclick="submit()"/> -->
   <!--   <input id="fh" type="button" value="确认" onclick="closeCurrentWindow()"/>-->
-   <input id="sortid" type="hidden" name="sort_id" value="${sortid}"/>
+   <input id="sortid" type="hidden" name="sortId" value="${sortid}"/>
  </table>  
 </form>
 </body>

@@ -55,29 +55,28 @@ function openWindow(sHref,strWidth,strHeight) {
   <body>
   <h1>文件柜设置</h1>
    <form id="form2" name="form2" method="get">
-   <input id="newFile" type="button" onclick="openWindow('${pageContext.request.contextPath }/fileAdd','700','500')" value="新建文件夹"/>
+   <input id="newFile" type="button" onclick="openWindow('${pageContext.request.contextPath }/file/add','700','500')" value="新建文件夹"/>
    <hr>
    <table id="table" cellspacing="0" cellpadding="0">
     <tr> <th class="css_td"> 排序号  </th> <th class="css_td">文件夹名称  </th><th class="css_td"> 操作</th></tr>
     <c:forEach items="${parentList}" var="parent">
     <tr> 
-    <td>  ${parent.sort_no}</td> 
-    <td>  ${parent.sort_name}</td>
+    <td>  ${parent.sortNo}</td> 
+    <td>  ${parent.sortName}</td>
                     <td>&nbsp;&nbsp; <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="克隆" name="BT_find" 
-						 onclick="openWindow('${pageContext.request.contextPath }/fileClone?sort_no=${parent.sort_no }&sort_name=${parent.sort_name}','700','500')"/>&nbsp;&nbsp;
+						 onclick="openWindow('${pageContext.request.contextPath }/file/clone?sortNo=${parent.sortNo }&sortName=${parent.sortName}','700','500')"/>&nbsp;&nbsp;
 						 <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="编辑" name="BT_find" 
-						 onclick="openWindow('${pageContext.request.contextPath }/fileEdit?sort_id=${parent.sort_id}','700','500')"/>&nbsp;&nbsp;
-						 <a href="${pageContext.request.contextPath}/fileDelete?sort_id=${parent.sort_id}">
+						 onclick="openWindow('${pageContext.request.contextPath }/file/edit?sortId=${parent.sortId}','700','500')"/>&nbsp;&nbsp;
+						 <a href="${pageContext.request.contextPath}/file/deleteAll?sortId=${parent.sortId}">
 						 <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="删除" name="BT_find" />
 						 </a>&nbsp;&nbsp;
 						 <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="权限设置" name="BT_find" 
-						 onclick="openWindow('${pageContext.request.contextPath }/filePermissionSet','700','500')"/>&nbsp;&nbsp;
+						 onclick="openWindow('${pageContext.request.contextPath }/file/','700','500')"/>&nbsp;&nbsp;
 						 <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="权限报表" name="BT_find" 
-						 onclick="openWindow('${pageContext.request.contextPath }/fileAdd','700','500')"/>&nbsp;&nbsp;
+						 onclick="openWindow('${pageContext.request.contextPath }/file/','700','500')"/>&nbsp;&nbsp;
 						 <input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="菜单定义指南" name="BT_find" 
-						 onclick="openWindow('${pageContext.request.contextPath }/fileAdd','700','500')"/>&nbsp;&nbsp;
+						 onclick="openWindow('${pageContext.request.contextPath }/file/','700','500')"/>&nbsp;&nbsp;
 				    </td>
-				    <!-- <input id="sort_id" name="sort_id" type="hidden" value="${parent.sort_id }"/>  -->
 	</tr>
     </c:forEach>
    </table>
