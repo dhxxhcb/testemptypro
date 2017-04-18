@@ -372,6 +372,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					});
 				});
+				
+				$('input[type="reset"]').click(function () {
+					$('textarea').val('');
+				    $('select[name="FORMAT"]').get(0).selectedIndex=0;
+				    $('select[name="TYPE_ID"]').get(0).selectedIndex=0;
+					$('.BigInput').val('');
+					$('#start').val('');
+					$('#end').val('');
+				})
        		});
 </script>
 
