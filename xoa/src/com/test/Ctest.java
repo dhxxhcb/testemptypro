@@ -16,7 +16,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.email.Email;
 import com.xoa.model.email.EmailBody;
-import com.xoa.model.worldnews.News;
+import com.xoa.model.worldnews.NewsModel;
 import com.xoa.service.email.EmailUtilService;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;

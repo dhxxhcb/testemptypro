@@ -14,7 +14,7 @@ import com.xoa.dao.notify.NotifyMapper;
 import com.xoa.model.department.Department;
 import com.xoa.model.notify.Notify;
 import com.xoa.model.users.Users;
-import com.xoa.model.worldnews.News;
+import com.xoa.model.worldnews.NewsModel;
 
 
 import com.xoa.service.notify.NotifyService;

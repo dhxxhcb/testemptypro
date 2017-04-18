@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.common.SysParaMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.common.SysPara" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.common.SysParaModel" >
     <id column="PARA_NAME" property="paraName" javaType="string" />
     <result column="PARA_VALUE" property="paraValue" javaType="string" />
   </resultMap>

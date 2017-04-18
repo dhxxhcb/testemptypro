@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.xoa.model.menu.SysFunction;
+import com.xoa.model.menu.SysFunctionModel;
 import com.xoa.model.users.UserFunction;
 
 public interface UserFunctionMapper {

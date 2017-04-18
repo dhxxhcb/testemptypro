@@ -2,7 +2,7 @@ package com.xoa.service.menu;
 
 import java.util.List;
 
-import com.xoa.model.menu.MobileApp;
+import com.xoa.model.menu.MobileAppModel;
 import com.xoa.util.dataSource.DynDatasource;
 /**
  * 
@@ -24,6 +24,6 @@ public interface MobileAppService {
 	 * @throws
 	 */
 	@DynDatasource
-	public List<MobileApp> getMobileAppList();
+	public List<MobileAppModel> getMobileAppList();
 
 }

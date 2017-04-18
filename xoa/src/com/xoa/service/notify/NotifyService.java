@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.xoa.model.notify.Notify;
-import com.xoa.model.worldnews.News;
+import com.xoa.model.worldnews.NewsModel;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.DynDatasource;
 

@@ -9,7 +9,7 @@ import java.util.List;
  * @date(日期): 2017-4-17 下午3:11:10
  * 
  */
-public class MobileApp {
+public class MobileAppModel {
 	/**
 	 * 桌面应用的ID
 	 */
@@ -43,23 +43,23 @@ public class MobileApp {
 	 */
 	private String appPriv;
 
-	private List<MobileApp> arrOne;
+	private List<MobileAppModel> arrOne;
 
-	private List<MobileApp> arrTwo;
+	private List<MobileAppModel> arrTwo;
 
-	public List<MobileApp> getArrOne() {
+	public List<MobileAppModel> getArrOne() {
 		return arrOne;
 	}
 
-	public void setArrOne(List<MobileApp> arrOne) {
+	public void setArrOne(List<MobileAppModel> arrOne) {
 		this.arrOne = arrOne;
 	}
 
-	public List<MobileApp> getArrTwo() {
+	public List<MobileAppModel> getArrTwo() {
 		return arrTwo;
 	}
 
-	public void setArrTwo(List<MobileApp> arrTwo) {
+	public void setArrTwo(List<MobileAppModel> arrTwo) {
 		this.arrTwo = arrTwo;
 	}
 

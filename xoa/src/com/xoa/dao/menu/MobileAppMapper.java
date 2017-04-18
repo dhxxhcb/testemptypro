@@ -2,7 +2,7 @@ package com.xoa.dao.menu;
 
 import java.util.List;
 
-import com.xoa.model.menu.MobileApp;
+import com.xoa.model.menu.MobileAppModel;
 
 public interface MobileAppMapper {
 	
@@ -16,5 +16,5 @@ public interface MobileAppMapper {
      * @throws
      */
 	
-	public List<MobileApp> getMobileAppList();
+	public List<MobileAppModel> getMobileAppList();
 }

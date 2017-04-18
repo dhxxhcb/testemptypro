@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.notify.Notify;
-import com.xoa.model.worldnews.News;
+import com.xoa.model.worldnews.NewsModel;
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;

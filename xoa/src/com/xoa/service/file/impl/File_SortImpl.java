@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.xoa.dao.file.File_SortMapper;
 import com.xoa.model.file.File_Sort;
-import com.xoa.model.menu.SysMenu;
+import com.xoa.model.menu.SysMenuModel;
 import com.xoa.service.file.File_SortService;
 import com.xoa.util.ToJson;
 @Service

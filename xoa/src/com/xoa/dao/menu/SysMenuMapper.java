@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.xoa.model.menu.SysMenu;
+import com.xoa.model.menu.SysMenuModel;
 /**
  * 
  * @ClassName (类名):  SysMenuMapper
@@ -24,7 +24,7 @@ public interface SysMenuMapper {
      * @return: List<SysMenu>   
      * @throws
      */
-	public List<SysMenu> getDatagrid();
+	public List<SysMenuModel> getDatagrid();
 	
 	
 }

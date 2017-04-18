@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.sun.istack.internal.logging.Logger;
-import com.xoa.model.menu.MobileApp;
-import com.xoa.model.menu.SysFunction;
-import com.xoa.model.menu.SysMenu;
+import com.xoa.model.menu.MobileAppModel;
+import com.xoa.model.menu.SysFunctionModel;
+import com.xoa.model.menu.SysMenuModel;
 import com.xoa.service.menu.MenuService;
 import com.xoa.service.menu.MobileAppService;
 import com.xoa.util.ToJson;
@@ -49,7 +49,7 @@ public class MenuController {
 	public @ResponseBody
 	String showNew() {
 		loger.info("进入显示信息页面");
-		List<SysMenu> munuList = menuService.getAll();
+		List<SysMenuModel> munuList = menuService.getAll();
 
 		if (munuList.size() > 0) {
 			flag = 0;
@@ -59,7 +59,7 @@ public class MenuController {
 			msg = "失敗";
 		}
 
-		ToJson<SysMenu> menuJson = new ToJson<SysMenu>(flag, msg);
+		ToJson<SysMenuModel> menuJson = new ToJson<SysMenuModel>(flag, msg);
 		menuJson.setObj(munuList);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("showMenu", JSON.toJSONStringWithDateFormat(menuJson,
@@ -84,7 +84,7 @@ public class MenuController {
 	String showDadMenu(HttpServletRequest request, HttpServletResponse response) {
 		loger.info("进入显示信息页面");
 		String menuId = request.getParameter("menuId");
-		List<SysFunction> list = menuService.getDadMenu(menuId);
+		List<SysFunctionModel> list = menuService.getDadMenu(menuId);
 		if (list.size() > 0) {
 			flag = 0;
 			msg = "成功";
@@ -92,7 +92,7 @@ public class MenuController {
 			flag = 1;
 			msg = "失敗";
 		}
-		ToJson<SysFunction> menuJson = new ToJson<SysFunction>(flag, msg);
+		ToJson<SysFunctionModel> menuJson = new ToJson<SysFunctionModel>(flag, msg);
 		menuJson.setObj(list);
 		loger.info("结果信息："
 				+ JSON.toJSONStringWithDateFormat(menuJson,
@@ -116,7 +116,7 @@ public class MenuController {
 	public @ResponseBody
 	String getMenu() {
 		loger.info("进入显示信息页面");
-		List<MobileApp> munuList = mobileAppService.getMobileAppList();
+		List<MobileAppModel> munuList = mobileAppService.getMobileAppList();
 		if (munuList.size() > 0) {
 			flag = 0;
 			msg = "成功";
@@ -125,7 +125,7 @@ public class MenuController {
 			msg = "失敗";
 		}
 
-		ToJson<MobileApp> menuJson = new ToJson<MobileApp>(flag, msg);
+		ToJson<MobileAppModel> menuJson = new ToJson<MobileAppModel>(flag, msg);
 		menuJson.setObj(munuList);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("showMenu", JSON.toJSONStringWithDateFormat(menuJson,

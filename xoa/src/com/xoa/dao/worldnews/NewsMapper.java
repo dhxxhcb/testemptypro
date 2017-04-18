@@ -7,7 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.xoa.dao.base.BaseMapper;
-import com.xoa.model.worldnews.News;
+import com.xoa.model.worldnews.NewsModel;
 /**
  * 
  * @ClassName (类名):  NewsMapper
@@ -16,7 +16,7 @@ import com.xoa.model.worldnews.News;
  * @date(日期):        2017-4-17 下午5:53:28
  *
  */
-public interface NewsMapper extends BaseMapper<News> {
+public interface NewsMapper extends BaseMapper<NewsModel> {
 	/**
 	 * 
 	 * @Title: selectNews
@@ -27,7 +27,7 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return: List<News>   
 	 * @throws
 	 */
-	public List<News> selectNews(Map<String, Object> maps);
+	public List<NewsModel> selectNews(Map<String, Object> maps);
 	/**
 	 * 
 	 * @Title: selectNewsManage
@@ -38,7 +38,7 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return: List<News>   
 	 * @throws
 	 */
-	public List<News> selectNewsManage(Map<String, Object> maps);
+	public List<NewsModel> selectNewsManage(Map<String, Object> maps);
 	/**
 	 * 
 	 * @Title: unreadNews
@@ -49,7 +49,7 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return: List<News>   
 	 * @throws
 	 */
-	public List<News> unreadNews(Map<String, Object> maps);
+	public List<NewsModel> unreadNews(Map<String, Object> maps);
 	/**
 	 * 
 	 * @Title: detailedNews
@@ -60,7 +60,7 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return: News   
 	 * @throws
 	 */
-	public News detailedNews(Map<String, Object> maps);
+	public NewsModel detailedNews(Map<String, Object> maps);
 	/**
 	 * 
 	 * @Title: deleteNews
@@ -80,7 +80,7 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return: void   
 	 * @throws
 	 */
-	public void updateNews(News news);
+	public void updateNews(NewsModel news);
 	/**
 	 * 
 	 * @Title: updateclickCount
@@ -90,7 +90,7 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return: void   
 	 * @throws
 	 */
-	public void updateclickCount(News news);
+	public void updateclickCount(NewsModel news);
 	/**
 	 * 
 	 * @Title: showCountNews
@@ -102,7 +102,7 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return: List<News>   
 	 * @throws
 	 */
-	public List<News> showCountNews(@Param("typeId") String typeId,
+	public List<NewsModel> showCountNews(@Param("typeId") String typeId,
 			@Param("newsTime") Date newsTime);
 
 	/**
@@ -116,7 +116,7 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return: List<News>   
 	 * @throws
 	 */
-	public List<News> showAllNews(@Param("start") int start,
+	public List<NewsModel> showAllNews(@Param("start") int start,
 			@Param("pagesize") int pagesize);
 
 	/**
@@ -128,6 +128,6 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return: List<News>   
 	 * @throws
 	 */
-	public List<News> showAllCountNews();
+	public List<NewsModel> showAllCountNews();
 
 }

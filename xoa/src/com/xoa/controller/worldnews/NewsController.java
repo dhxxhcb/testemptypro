@@ -2,7 +2,7 @@ package com.xoa.controller.worldnews;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.email.EmailBody;
-import com.xoa.model.worldnews.News;
+import com.xoa.model.worldnews.NewsModel;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
@@ -36,6 +36,10 @@ public class NewsController {
 	@Resource
 	private NewService newService;
 	
+	private String err = "失败";
+	
+	private String ok="成功";
+	
 
 	/**
 	 * 新闻显示页面
@@ -61,24 +65,21 @@ public class NewsController {
   public @ResponseBody String selectNewsManage(){
 		Map<String, Object> maps = new HashMap<String, Object>();
 		String returnReslt = null;
-		String err="";
 		try {
-			List<News> list =newService.selectNewsManage(maps, 1, 5, true);
-			System.out.println(list.size()+"11111111111");
-			ToJson<News> tojson = new ToJson<News>(0, "");
+			List<NewsModel> list =newService.selectNewsManage(maps, 1, 5, true);
+			ToJson<NewsModel> tojson = new ToJson<NewsModel>(0, "");
 			tojson.setObj(list);
+			tojson.setMsg(ok);
 			if (list.size() > 0) {
-				err = "成功";
 				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
 						"yyyy-MM-dd HH:mm:ss");
 			} else {
-				err = "失败";
-				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-						1, ""), "yyyy-MM-dd HH:mm:ss");
+				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<NewsModel>(
+						1, err), "yyyy-MM-dd HH:mm:ss");
 			}
 		} catch (Exception e) {
 			loger.debug("NewsMessage:" + e);
-			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,
+			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<NewsModel>(1,
 					""), "yyyy-MM-dd HH:mm:ss");
 		}
 
@@ -113,9 +114,9 @@ public class NewsController {
 		String returnReslt = null;
 		String err = null;
 		try {
-			List<News> list = newService.selectNews(maps, page, pageSize,
+			List<NewsModel> list = newService.selectNews(maps, page, pageSize,
 					useFlag, name);
-			ToJson<News> tojson = new ToJson<News>(0, "");
+			ToJson<NewsModel> tojson = new ToJson<NewsModel>(0, "");
 			tojson.setObj(list);
 			if (list.size() > 0) {
 				err = "成功";
@@ -123,13 +124,13 @@ public class NewsController {
 						"yyyy-MM-dd HH:mm:ss");
 			} else {
 				err = "失败";
-				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
+				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<NewsModel>(
 						1, ""), "yyyy-MM-dd HH:mm:ss");
 			}
 
 		} catch (Exception e) {
 			loger.debug("NewsMessage:" + e);
-			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,
+			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<NewsModel>(1,
 					""), "yyyy-MM-dd HH:mm:ss");
 		}
 
@@ -154,10 +155,10 @@ public class NewsController {
 		String returnReslt = null;
 		String err = null;
 		try {
-			List<News> list = newService.unreadNews(maps, page, pageSize,
+			List<NewsModel> list = newService.unreadNews(maps, page, pageSize,
 					useFlag, name);
 			System.out.println(list);
-			ToJson<News> tojson = new ToJson<News>(0, err);
+			ToJson<NewsModel> tojson = new ToJson<NewsModel>(0, err);
 			tojson.setObj(list);
 			if (list.size() > 0) {
 				err = "成功";
@@ -165,12 +166,12 @@ public class NewsController {
 						"yyyy-MM-dd HH:mm:ss");
 			} else {
 				err = "失败";
-				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
+				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<NewsModel>(
 						1, ""), "yyyy-MM-dd HH:mm:ss");
 			}
 		} catch (Exception e) {
 			loger.debug("NewsMessage:" + e);
-			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,
+			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<NewsModel>(1,
 					""), "yyyy-MM-dd HH:mm:ss");
 		}
 
@@ -236,7 +237,7 @@ public class NewsController {
 			@RequestParam("readers") String readers,
 			@RequestParam("compressContent") String compressContent,
 			@RequestParam("summary") String summary) {
-		   News news=new News();
+		   NewsModel news=new NewsModel();
 		    news.setNewsId(0);
 		    news.setSubject(this.returnValue(subject));
 		    news.setProvider(this.returnValue(provider));
@@ -264,11 +265,11 @@ public class NewsController {
 		    try {
 		    	newService.sendNews(news);
 		    	return JSON.toJSONStringWithDateFormat(
-						new ToJson<News>(0, ""), "yyyy-MM-dd HH:mm:ss");
+						new ToJson<NewsModel>(0, ""), "yyyy-MM-dd HH:mm:ss");
 			} catch (Exception e) {
 				loger.debug("sendNews:" + e);
 				return JSON.toJSONStringWithDateFormat(
-						new ToJson<News>(1, ""), "yyyy-MM-dd HH:mm:ss");
+						new ToJson<NewsModel>(1, ""), "yyyy-MM-dd HH:mm:ss");
 			}
 
 		}
@@ -331,7 +332,7 @@ public class NewsController {
 			@RequestParam("readers") String readers,
 			@RequestParam("compressContent") String compressContent,
 			@RequestParam("summary") String summary){
-		 News news=new News();
+		 NewsModel news=new NewsModel();
 		    news.setNewsId(newsId);
 		    news.setSubject(this.returnValue(subject));
 		    news.setProvider(this.returnValue(provider));
@@ -379,7 +380,7 @@ public class NewsController {
 	 */
 	@RequestMapping(value = "/deleteNews", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String deleteNews(@RequestParam("newsId") Integer newsId){
-		ToJson<News> toJson=new ToJson<News>(0, "");
+		ToJson<NewsModel> toJson=new ToJson<NewsModel>(0, "");
 		loger.debug("传过来的ID"+newsId);
 		
 		try {
@@ -408,11 +409,11 @@ public class NewsController {
 	public @ResponseBody String queryNews(@RequestParam("newsId") Integer newsId){
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);
-		ToJson<News> toJson=new ToJson<News>(0, "");
+		ToJson<NewsModel> toJson=new ToJson<NewsModel>(0, "");
 		String name="wangyun";
 		loger.debug("传过来的ID"+newsId);
 	try {
-			News news=newService.queryById(maps, 1, 5, false, name);
+			NewsModel news=newService.queryById(maps, 1, 5, false, name);
 			toJson.setMsg("成功");
 			toJson.setObject(news);
 			return JSON.toJSONStringWithDateFormat(toJson,

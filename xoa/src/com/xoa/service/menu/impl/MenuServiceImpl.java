@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.xoa.dao.menu.MobileAppMapper;
 import com.xoa.dao.menu.SysFunctionMapper;
 import com.xoa.dao.menu.SysMenuMapper;
-import com.xoa.model.menu.MobileApp;
-import com.xoa.model.menu.SysFunction;
-import com.xoa.model.menu.SysMenu;
+import com.xoa.model.menu.MobileAppModel;
+import com.xoa.model.menu.SysFunctionModel;
+import com.xoa.model.menu.SysMenuModel;
 import com.xoa.service.menu.MenuService;
 
 /**
@@ -39,12 +39,12 @@ public class MenuServiceImpl implements MenuService {
  * @see com.xoa.service.menu.MenuService#getAll()
  */
 	@Override
-	public List<SysMenu> getAll() {
-		List<SysMenu> list=sysMenuMapper.getDatagrid();
-	  for (SysMenu sysMenu : list) {
-		  List<SysFunction> list1=sysFunctionMapper.getDatagrid(sysMenu.getId());
-		  for (SysFunction sysFunction : list1) {
-			  List<SysFunction> list2=sysFunctionMapper.childMenu(sysFunction.getId());
+	public List<SysMenuModel> getAll() {
+		List<SysMenuModel> list=sysMenuMapper.getDatagrid();
+	  for (SysMenuModel sysMenu : list) {
+		  List<SysFunctionModel> list1=sysFunctionMapper.getDatagrid(sysMenu.getId());
+		  for (SysFunctionModel sysFunction : list1) {
+			  List<SysFunctionModel> list2=sysFunctionMapper.childMenu(sysFunction.getId());
 			  sysFunction.setChild(list2);
 		}
 		  sysMenu.setChild(list1);
@@ -61,10 +61,10 @@ public class MenuServiceImpl implements MenuService {
  * @see com.xoa.service.menu.MenuService#getDadMenu(java.lang.String)
  */
 	@Override
-	public List<SysFunction> getDadMenu(String menuId) {
-		List<SysFunction> list=sysFunctionMapper.getDatagrid(menuId);
-		for (SysFunction sysFunction : list) {
-			List<SysFunction> list1=sysFunctionMapper.childMenu(sysFunction.getId());
+	public List<SysFunctionModel> getDadMenu(String menuId) {
+		List<SysFunctionModel> list=sysFunctionMapper.getDatagrid(menuId);
+		for (SysFunctionModel sysFunction : list) {
+			List<SysFunctionModel> list1=sysFunctionMapper.childMenu(sysFunction.getId());
 			sysFunction.setChild(list1);
 		}
 		return list;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.xoa.dao.common.SysParaMapper;
 import com.xoa.dao.menu.MobileAppMapper;
-import com.xoa.model.menu.MobileApp;
+import com.xoa.model.menu.MobileAppModel;
 import com.xoa.service.menu.MobileAppService;
 @SuppressWarnings("all")
 @Service
@@ -41,10 +41,10 @@ public class MobileAppServiceImpl implements MobileAppService {
 		String  ids=sysParaMapper.getSysPara();
 		String[] firstIds = ids.substring(0,ids.lastIndexOf("|")).split(",");
 		String[] twoIds = ids.substring(ids.indexOf("|")+1, ids.length()).split(",");
-		List<MobileApp> mList=mobileAppMapper.getMobileAppList();
+		List<MobileAppModel> mList=mobileAppMapper.getMobileAppList();
 		List<List> mList1=new ArrayList<List>();
-		List<MobileApp> list1 = new ArrayList<MobileApp>();
-		List<MobileApp> list2 = new ArrayList<MobileApp>();
+		List<MobileAppModel> list1 = new ArrayList<MobileAppModel>();
+		List<MobileAppModel> list2 = new ArrayList<MobileAppModel>();
 		for (int j = 0; j < firstIds.length; j++) {
 			for (int i=j; i<mList.size(); i++) {  
 				System.out.println(mList.get(j).getAppId());

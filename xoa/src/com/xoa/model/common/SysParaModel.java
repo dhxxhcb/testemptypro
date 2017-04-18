@@ -8,7 +8,7 @@ package com.xoa.model.common;
  * @date(日期): 2017-4-17 下午3:08:06
  * 
  */
-public class SysPara {
+public class SysParaModel {
 	/**
 	 * 参数名称
 	 */

@@ -2,7 +2,7 @@ package com.xoa.dao.menu;
 
 import java.util.List;
 
-import com.xoa.model.menu.SysFunction;
+import com.xoa.model.menu.SysFunctionModel;
 /**
  * 
  * @ClassName (类名):  SysFunctionMapper
@@ -22,7 +22,7 @@ public interface SysFunctionMapper {
  * @return: List<SysFunction>   
  * @throws
  */
-	 public List<SysFunction> getDatagrid(String menuId);
+	 public List<SysFunctionModel> getDatagrid(String menuId);
 	/**
 	 * 
 	 * @Title: childMenu
@@ -33,7 +33,7 @@ public interface SysFunctionMapper {
 	 * @return: List<SysFunction>   
 	 * @throws
 	 */
-	 public List<SysFunction> childMenu(String id);
+	 public List<SysFunctionModel> childMenu(String id);
 	 /**
 	  * 
 	  * @Title: getAll
@@ -43,5 +43,5 @@ public interface SysFunctionMapper {
 	  * @return: List<SysFunction>   
 	  * @throws
 	  */
-	 public List<SysFunction> getAll();
+	 public List<SysFunctionModel> getAll();
 }

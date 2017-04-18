@@ -3,7 +3,7 @@ package com.xoa.service.worldnews.impl;
 import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.worldnews.NewsMapper;
 import com.xoa.model.department.Department;
-import com.xoa.model.worldnews.News;
+import com.xoa.model.worldnews.NewsModel;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.dataSource.DynDatasource;
 import com.xoa.util.page.PageParams;
@@ -49,15 +49,15 @@ public class NewServiceImpl implements NewService {
 	 * @throws Exception
 	 */
 	@Override
-	public List<News> selectNews(Map<String, Object> maps, Integer page,
+	public List<NewsModel> selectNews(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<News> list = newsMapper.selectNews(maps);
-		for (News news : list) {
+		List<NewsModel> list = newsMapper.selectNews(maps);
+		for (NewsModel news : list) {
 			if (news.getReaders().indexOf(name) != -1) {
 				news.setRead(1);
 			} else {
@@ -88,16 +88,16 @@ public class NewServiceImpl implements NewService {
 	 *      java.lang.Integer, java.lang.Integer, boolean, java.lang.String)
 	 */
 	@Override
-	public List<News> unreadNews(Map<String, Object> maps, Integer page,
+	public List<NewsModel> unreadNews(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<News> list = newsMapper.unreadNews(maps);
-		List<News> list1 = new ArrayList<News>();
-		for (News news : list) {
+		List<NewsModel> list = newsMapper.unreadNews(maps);
+		List<NewsModel> list1 = new ArrayList<NewsModel>();
+		for (NewsModel news : list) {
 			if (news.getReaders().indexOf(name) == -1) {
 				list1.add(news);
 			}
@@ -116,10 +116,10 @@ public class NewServiceImpl implements NewService {
 	 * 
 	 * @param news
 	 * @author(作者): wyq
-	 * @see com.xoa.service.worldnews.NewService#sendNews(com.xoa.model.worldnews.News)
+	 * @see com.xoa.service.worldnews.NewService#sendNews(com.xoa.model.worldnews.NewsModel)
 	 */
 	@Override
-	public void sendNews(News news) {
+	public void sendNews(NewsModel news) {
 		newsMapper.save(news);
 
 	}
@@ -135,10 +135,10 @@ public class NewServiceImpl implements NewService {
 	 * 
 	 * @param news
 	 * @author(作者): wyq
-	 * @see com.xoa.service.worldnews.NewService#updateNews(com.xoa.model.worldnews.News)
+	 * @see com.xoa.service.worldnews.NewService#updateNews(com.xoa.model.worldnews.NewsModel)
 	 */
 	@Override
-	public void updateNews(News news) {
+	public void updateNews(NewsModel news) {
 		// TODO Auto-generated method stub
 		newsMapper.update(news);
 	}
@@ -164,15 +164,15 @@ public class NewServiceImpl implements NewService {
 	 *      java.lang.Integer, java.lang.Integer, boolean, java.lang.String)
 	 */
 	@Override
-	public News queryById(Map<String, Object> maps, Integer page,
+	public NewsModel queryById(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		News news = newsMapper.detailedNews(maps);
-		News newa = new News();
+		NewsModel news = newsMapper.detailedNews(maps);
+		NewsModel newa = new NewsModel();
 		if (news.getReaders().indexOf(name) != -1) {
 			StringBuffer str2 = new StringBuffer(news.getReaders());
 			String str1 = str2.append(name).toString();
@@ -229,7 +229,7 @@ public class NewServiceImpl implements NewService {
 	 *      java.lang.Integer, java.lang.Integer, boolean)
 	 */
 	@Override
-	public List<News> selectNewsManage(Map<String, Object> maps, Integer page,
+	public List<NewsModel> selectNewsManage(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception {
 		String[] strArray = null;
 		PageParams pageParams = new PageParams();
@@ -237,8 +237,8 @@ public class NewServiceImpl implements NewService {
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<News> list = newsMapper.selectNewsManage(maps);
-		for (News news : list) {
+		List<NewsModel> list = newsMapper.selectNewsManage(maps);
+		for (NewsModel news : list) {
 			if (news.getToId().equals("ALL_DEPT")) {
 				List<Department> list1 = departmentMapper.getDatagrid();
 				for (Department department : list1) {

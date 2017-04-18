@@ -2,10 +2,10 @@ package com.xoa.service.menu;
 
 import java.util.List;
 
-import com.xoa.model.menu.MobileApp;
-import com.xoa.model.menu.SysFunction;
-import com.xoa.model.menu.SysMenu;
-import com.xoa.model.worldnews.News;
+import com.xoa.model.menu.MobileAppModel;
+import com.xoa.model.menu.SysFunctionModel;
+import com.xoa.model.menu.SysMenuModel;
+import com.xoa.model.worldnews.NewsModel;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.DynDatasource;
 /**
@@ -28,7 +28,7 @@ public interface MenuService {
 	 * @throws
 	 */
 	@DynDatasource
-	public List<SysMenu> getAll();
+	public List<SysMenuModel> getAll();
 	
 	/**
 	 * 
@@ -41,7 +41,7 @@ public interface MenuService {
 	 * @throws
 	 */
 	@DynDatasource
-	public List<SysFunction> getDadMenu(String menuId);
+	public List<SysFunctionModel> getDadMenu(String menuId);
 	
 	
 
