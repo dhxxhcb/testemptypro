@@ -247,7 +247,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        </select>&nbsp;
 			      </td>
 			    </tr>
-			    <tr>
+			    <!-- <tr>
 			      <td nowrap="" class="TableData" width="100"> 发布状态：</td>
 			      <td class="TableData">
 			      <select name="PUBLISH" class="BigSelect">
@@ -266,7 +266,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        <option value="1">已置顶</option>
 			      </select>
 			      </td>
-			    </tr>
+			    </tr> -->
 			    <tr>
 			      <td nowrap="" class="TableData" width="100"> 标题：</td>
 			      <td class="TableData">
