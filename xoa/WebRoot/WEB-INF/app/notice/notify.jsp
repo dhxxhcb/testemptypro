@@ -23,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- <script src="../js/notify.js" type="text/javascript"></script> -->
     <style type="text/css">
     	#noticeQuery{width: 100%;}
+    	#noticeQuery table tr td{padding:5px 5px;border-color:#ccc;}
     	.TableBlock{background-color:#fff;border-color:#aaa;}
     	.inPole{font-size: 14px;}
 		textarea{min-width: 30%;min-height: 30px;margin: 5px 5px;}
@@ -208,20 +209,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			      <td nowrap="" class="TableData">发布人：</td>
 			      <td class="TableData">
 			        <div class="inPole">
-									<textarea name="txt" disabled></textarea>
-									<span class="add_img">
-										<span class="addImg">
-											<img src="../img/org_select1.png" class="addIcon"/>
-										</span>
-										<a href="javascript:;" class="Add">添加</a>
-									</span>
-									<span class="add_img">
-										<span class="addImg">
-											<img src="../img/org_select2.png" class="clearIcon"/>
-										</span>
-										<a href="javascript:;" class="clear">清除</a>
-									</span>
-								</div>
+						<textarea name="txt" disabled></textarea>
+						<span class="add_img">
+							<span class="addImg">
+								<img src="../img/org_select1.png" class="addIcon"/>
+							</span>
+								<a href="javascript:;" class="Add">添加</a>
+						</span>
+							<span class="add_img">
+								<span class="addImg">
+									<img src="../img/org_select2.png" class="clearIcon"/>
+								</span>
+								<a href="javascript:;" class="clear">清除</a>
+							</span>
+					</div>
 			      </td>
 			    </tr>
 			    <tr>
@@ -239,11 +240,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			      <td nowrap="" class="TableData"> 类型：</td>
 			      <td class="TableData">
 			        <select name="TYPE_ID" class="BigSelect">
-			          <option value="" selected="">全部</option>
-			          <option value="01">决定</option>
-			<option value="02">通知</option>
-			<option value="03">通报</option>
-			<option value="04">其他</option>
+			            <option value="" selected="">全部</option>
+			            <option value="01">决定</option>
+						<option value="02">通知</option>
+						<option value="03">通报</option>
+						<option value="04">其他</option>
 			        </select>&nbsp;
 			      </td>
 			    </tr>
