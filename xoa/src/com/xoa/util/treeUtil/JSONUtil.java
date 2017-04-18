@@ -23,7 +23,7 @@ public class JSONUtil{
     	
     }
     
-    /** *//**
+    /** 
      * 代理类时做的检查.返回应该检查的对象.
      * @param bean
      * @return

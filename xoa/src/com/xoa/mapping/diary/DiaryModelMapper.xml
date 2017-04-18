@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.diary.DiaryModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.diary.DiaryModel" >
+    <result column="DIA_ID" property="diaId"  javaType="int" />
+    <result column="USER_ID" property="userId" javaType="string" />
+    <result column="DIA_DATE" property="diaDate" javaType="string" />
+    <result column="DIA_TIME" property="diaTime" javaType="string" />
+    <result column="DIA_TYPE" property="diaType" javaType="string" />
+    <result column="SUBJECT" property="subject" javaType="string" />
+    <result column="LAST_COMMENT_TIME" property="lastCommentTime" javaType="string" />
+    <result column="TO_ALL" property="toAll" javaType="int" />
+    <result column="CRM_DIARY" property="crmDiary" javaType="int" />
+    <result column="CONTENT" property="content" javaType="string" />
+    <result column="ATTACHMENT_ID" property="attachmentId" javaType="string" />
+    <result column="ATTACHMENT_NAME" property="attachmentName" javaType="string" />
+    <result column="TO_ID" property="toId" javaType="string" />
+    <result column="COMPRESS_CONTENT" property="compressContent" javaType="string" />
+    <result column="READERS" property="readers" javaType="string" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, TO_ID, COMPRESS_CONTENT, READERS
+  </sql>
+  <!-- <insert id="insert" parameterType="com.xoa.model.diary.DiaryModelWithBLOBs" >
+    insert into diary (DIA_ID, USER_ID, DIA_DATE, 
+      DIA_TIME, DIA_TYPE, SUBJECT, 
+      LAST_COMMENT_TIME, TO_ALL, CRM_DIARY, 
+      CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, 
+      TO_ID, COMPRESS_CONTENT, READERS
+      )
+    values (#{diaId}, #{userId}, #{diaDate}, 
+      #{diaTime}, #{diaType}, #{subject}, 
+      #{lastCommentTime}, #{toAll}, #{crmDiary}, 
+      #{content}, #{attachmentId}, #{attachmentName}, 
+      #{toId}, #{compressContent}, #{readers}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xoa.model.diary.DiaryModel" >
+    insert into diary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="diaId != null" >
+        DIA_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="diaDate != null" >
+        DIA_DATE,
+      </if>
+      <if test="diaTime != null" >
+        DIA_TIME,
+      </if>
+      <if test="diaType != null" >
+        DIA_TYPE,
+      </if>
+      <if test="subject != null" >
+        SUBJECT,
+      </if>
+      <if test="lastCommentTime != null" >
+        LAST_COMMENT_TIME,
+      </if>
+      <if test="toAll != null" >
+        TO_ALL,
+      </if>
+      <if test="crmDiary != null" >
+        CRM_DIARY,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="attachmentId != null" >
+        ATTACHMENT_ID,
+      </if>
+      <if test="attachmentName != null" >
+        ATTACHMENT_NAME,
+      </if>
+      <if test="toId != null" >
+        TO_ID,
+      </if>
+      <if test="compressContent != null" >
+        COMPRESS_CONTENT,
+      </if>
+      <if test="readers != null" >
+        READERS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="diaId != null" >
+        #{diaId},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="diaDate != null" >
+        #{diaDate},
+      </if>
+      <if test="diaTime != null" >
+        #{diaTime},
+      </if>
+      <if test="diaType != null" >
+        #{diaType},
+      </if>
+      <if test="subject != null" >
+        #{subject},
+      </if>
+      <if test="lastCommentTime != null" >
+        #{lastCommentTime},
+      </if>
+      <if test="toAll != null" >
+        #{toAll},
+      </if>
+      <if test="crmDiary != null" >
+        #{crmDiary},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="attachmentId != null" >
+        #{attachmentId},
+      </if>
+      <if test="attachmentName != null" >
+        #{attachmentName},
+      </if>
+      <if test="toId != null" >
+        #{toId},
+      </if>
+      <if test="compressContent != null" >
+        #{compressContent},
+      </if>
+      <if test="readers != null" >
+        #{readers},
+      </if>
+    </trim>
+  </insert> -->
+</mapper>
