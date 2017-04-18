@@ -216,12 +216,12 @@ body,
 	background:#efefef;
 }
 .cont_nav ul li{
-	width:9%;
-	height:32px;
+	width:7%;
+	    height: 27px;
 	float:left;
 	border-radius:16px;
 	text-align:center;
-	line-height:32px;
+	line-height:27px;
 	margin-top:0.8%;
 }
 .infame{
