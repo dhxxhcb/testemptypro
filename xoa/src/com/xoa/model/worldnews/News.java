@@ -10,7 +10,7 @@ import com.xoa.model.users.Users;
 /**
  * 新闻实体类
  * 
- * @author zy
+ * @author wyq
  * @version 1.0
  */
 public class News implements Serializable {
@@ -601,6 +601,7 @@ public class News implements Serializable {
 	public Integer getRead() {
 		return read;
 	}
+
 	/**
 	 * 未读，已读的判断(0是未读,1是已读)
 	 * 
@@ -610,35 +611,61 @@ public class News implements Serializable {
 		this.read = read;
 	}
 
+	/**
+	 * 用户关联
+	 * 
+	 * @return
+	 */
 	public Users getUsers() {
 		return users;
 	}
 
+	/**
+	 * 用户关联
+	 * 
+	 * @param users
+	 */
 	public void setUsers(Users users) {
 		this.users = users;
 	}
 
+	/**
+	 * 部门关联
+	 * 
+	 * @return
+	 */
 	public Department getDep() {
 		return dep;
 	}
 
+	/**
+	 * 部门关联
+	 * 
+	 * @param dep
+	 */
 	public void setDep(Department dep) {
 		this.dep = dep;
 	}
 
+	/**
+	 * 角色关联
+	 * 
+	 * @return
+	 */
 	public Role getRole() {
 		return role;
 	}
 
+	/**
+	 * 角色关联
+	 * 
+	 * @param role
+	 */
 	public void setRole(Role role) {
 		this.role = role;
 	}
 
-	/**
-	 * 判断名字在未读
-	 * 
-	 * @return
-	 */
+
 	public String getName() {
 		return name;
 	}

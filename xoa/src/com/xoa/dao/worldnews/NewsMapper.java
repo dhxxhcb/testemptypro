@@ -8,78 +8,125 @@ import org.apache.ibatis.annotations.Param;
 
 import com.xoa.dao.base.BaseMapper;
 import com.xoa.model.worldnews.News;
-
+/**
+ * 
+ * @ClassName (类名):  NewsMapper
+ * @Description(简述): 新闻DAO
+ * @author(作者):      wyq
+ * @date(日期):        2017-4-17 下午5:53:28
+ *
+ */
 public interface NewsMapper extends BaseMapper<News> {
 	/**
-	 * 条件新闻信息查询并返回
 	 * 
-	 * @return
+	 * @Title: selectNews
+	 * @Description:条件新闻信息查询并返回
+	 * @author(作者):      wyq
+	 * @param: @param maps
+	 * @param: @return   
+	 * @return: List<News>   
+	 * @throws
 	 */
 	public List<News> selectNews(Map<String, Object> maps);
-	
 	/**
-	 * 条件新闻管理信息查询并返回
 	 * 
-	 * @return
+	 * @Title: selectNewsManage
+	 * @Description: 条件新闻管理信息查询并返回
+	 * @author(作者):      wyq
+	 * @param: @param maps
+	 * @param: @return   
+	 * @return: List<News>   
+	 * @throws
 	 */
 	public List<News> selectNewsManage(Map<String, Object> maps);
-	
 	/**
-	 * 未读新闻
 	 * 
-	 * @return
+	 * @Title: unreadNews
+	 * @Description: 未读新闻
+	 * @author(作者):      wyq
+	 * @param: @param maps
+	 * @param: @return   
+	 * @return: List<News>   
+	 * @throws
 	 */
 	public List<News> unreadNews(Map<String, Object> maps);
 	/**
-	 * 详细新闻
 	 * 
-	 * @return
+	 * @Title: detailedNews
+	 * @Description: 详细新闻
+	 * @author(作者):      wyq
+	 * @param: @param maps
+	 * @param: @return   
+	 * @return: News   
+	 * @throws
 	 */
 	public News detailedNews(Map<String, Object> maps);
-	
 	/**
-	 * 删除新闻
 	 * 
-	 * @return
+	 * @Title: deleteNews
+	 * @Description: 删除新闻
+	 * @author(作者):      wyq
+	 * @param: @param newsId   
+	 * @return: void   
+	 * @throws
 	 */
 	public void deleteNews(@Param("newsId") Integer newsId);
 	/**
-	 * 修改未读新闻
 	 * 
-	 * @return
+	 * @Title: updateNews
+	 * @Description: 修改未读新闻
+	 * @author(作者):      wyq
+	 * @param: @param news   
+	 * @return: void   
+	 * @throws
 	 */
 	public void updateNews(News news);
 	/**
-	 * 修改新闻点击数
 	 * 
-	 * @return
+	 * @Title: updateclickCount
+	 * @Description: 修改新闻点击数
+	 * @author(作者):      wyq
+	 * @param: @param news   
+	 * @return: void   
+	 * @throws
 	 */
 	public void updateclickCount(News news);
-
 	/**
-	 * 共计多少条信息
 	 * 
-	 * @param typeId
-	 * @param newsTime
-	 * @return
+	 * @Title: showCountNews
+	 * @Description: 共计多少条信息
+	 * @author(作者):      wyq
+	 * @param: @param typeId
+	 * @param: @param newsTime
+	 * @param: @return   
+	 * @return: List<News>   
+	 * @throws
 	 */
 	public List<News> showCountNews(@Param("typeId") String typeId,
 			@Param("newsTime") Date newsTime);
 
 	/**
-	 * 条件新闻信息查询并返回
 	 * 
-	 * @return
+	 * @Title: showAllNews
+	 * @Description: 条件新闻信息查询并返回
+	 * @author(作者):      wyq
+	 * @param: @param start
+	 * @param: @param pagesize
+	 * @param: @return   
+	 * @return: List<News>   
+	 * @throws
 	 */
 	public List<News> showAllNews(@Param("start") int start,
 			@Param("pagesize") int pagesize);
 
 	/**
-	 * 共计多少条信息
 	 * 
-	 * @param typeId
-	 * @param newsTime
-	 * @return
+	 * @Title: showAllCountNews
+	 * @Description: 共计多少条信息
+	 * @author(作者):      wyq
+	 * @param: @return   
+	 * @return: List<News>   
+	 * @throws
 	 */
 	public List<News> showAllCountNews();
 

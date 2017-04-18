@@ -19,8 +19,8 @@ import com.xoa.util.ToJson;
 
 @Controller
 @Scope(value="prototype")
-public class IndexController {
-	private Logger loger = Logger.getLogger(IndexController.class);
+public class loginController {
+	private Logger loger = Logger.getLogger(loginController.class);
 	@Resource
 	private UsersService usersService;
 	
