@@ -122,9 +122,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$(function(){
 
 			var menu = {
-				"email":"email/index",
-				"email":"email/writeMail",
-				"email":"email/inboxup",
+				"email":"/email/index",
+				"email":"/email/writeMail",
+				"email":"/email/inboxup",
 				"notify/show":"notice/index",
 				"news/show":"news/index",
 				"file_folder/index2.php":"fileHome",

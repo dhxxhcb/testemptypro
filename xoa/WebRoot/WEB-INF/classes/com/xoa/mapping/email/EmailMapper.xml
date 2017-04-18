@@ -25,4 +25,8 @@
       #{receipt}, #{isF}, #{isR}, #{sign}
       )
   </insert>
+  	<!-- 未读转为已读 -->
+	<update id="updateIsRead" parameterType="com.xoa.model.email.EmailModel">
+	update email set READ_FLAG=#{readFlag} where EMAIL_ID=#{emailId}
+	</update>
 </mapper>

@@ -280,9 +280,9 @@
 		u.USER_ID=eb.FROM_ID where
 		eb.FROM_ID=#{fromId}
 		AND SEND_FLAG="1"
-		AND(DELETE_FLAG="" OR
-		DELETE_FLAG="0" OR
-		DELETE_FLAG="2") AND
+		AND( e.DELETE_FLAG="" OR
+		e.DELETE_FLAG="0" OR
+		e.DELETE_FLAG="3" OR e.DELETE_FLAG="1") AND
 		BOX_ID="0" GROUP BY eb.BODY_ID
 		ORDER BY eb.BODY_ID DESC
 	</select>
@@ -295,22 +295,26 @@
 		LEFT JOIN email as e on e.BODY_ID =eb.BODY_ID
 		LEFT JOIN user as u on u.USER_ID=eb.FROM_ID
 		where
-		eb.FROM_ID=#{fromId}
-		AND
-		 e.READ_FLAG='1' AND(e.DELETE_FLAG = '3' OR e.DELETE_FLAG = '4') GROUP BY eb.BODY_ID ORDER BY
-		eb.SEND_TIME DESC
+		e.TO_ID=#{fromId}
+		AND e.READ_FLAG = '1'
+		AND (
+			e.DELETE_FLAG = '3'
+			OR e.DELETE_FLAG = '4'
+		)
+		GROUP BY
+			eb.BODY_ID
+		ORDER BY
+			eb.SEND_TIME DESC
 	</select>
 	<!--收件箱查询 -->
 	<select id="selectInbox" parameterType="Map" resultMap="BaseResultMap">
 		select
-		eb.BODY_ID,eb.SUBJECT, u.USER_NAME,eb.SEND_TIME from email_body as eb
+		eb.BODY_ID,eb.SUBJECT, u.USER_NAME,eb.SEND_TIME,e.EMAIL_ID from email_body as eb
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID where 
-		eb.FROM_ID=#{fromId}
-		AND e.BOX_ID='0' AND (
-		e.IS_R='0' or e.IS_R='1')
-		AND (e.READ_FLAG='0' or e.READ_FLAG='1')
+		e.TO_ID=#{fromId}
+		and (e.DELETE_FLAG ='0' or e.DELETE_FLAG='' or e.DELETE_FLAG='2')
 		GROUP BY eb.BODY_ID ORDER BY
 		eb.BODY_ID DESC
 	</select>
@@ -318,13 +322,12 @@
     <!--未读查询-->
 	<select id="selectIsRead" parameterType="Map" resultMap="BaseResultMap">
 		select
-		eb.BODY_ID,eb.SUBJECT, u.USER_NAME,eb.SEND_TIME from email_body as eb
+		eb.BODY_ID,eb.SUBJECT, u.USER_NAME, eb.SEND_TIME, e.EMAIL_ID,e.READ_FLAG from email_body as eb
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID where
-		eb.FROM_ID=#{fromId}
-		AND e.BOX_ID='0' AND (
-		e.IS_R='0' or e.IS_R='1')
+		e.TO_ID=#{fromId}
+		AND e.BOX_ID='0' 
 		AND e.READ_FLAG='0'
 		GROUP BY eb.BODY_ID ORDER BY
 		eb.BODY_ID DESC
@@ -346,10 +349,10 @@
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID
 		 where 
-		eb.FROM_ID=#{fromId} AND
 		eb.BODY_ID=#{bodyId}
 		GROUP BY eb.BODY_ID
 	</select>
+	
 	<!--邮件根据ID删除一条邮件 -->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
