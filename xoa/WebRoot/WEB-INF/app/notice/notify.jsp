@@ -157,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <tr>
 		    <td class="Big">
 		    	<img src="../img/notify_open.gif" align="absmiddle">
-		    	<span class="big3"><fmt:message code="notice.title.notify" />公告通知</span>&nbsp;
+		    	<span class="big3"><fmt:message code="notice.title.notify" /></span>&nbsp;
 		       <select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
 		          	<option value="0" selected>所有类型</option>
 		         	<option value="01">决定</option>
@@ -184,17 +184,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table class="TableList" width="95%" align="center" cellspacing="0" cellpadding="0">
 		  <tr class="TableHeader">
 		     <!--  <th nowrap align="center">选择</th> -->
-		      <th nowrap align="center"><fmt:message code="notice.th.publisher" />发布人</th>
-		      <th nowrap align="center"><fmt:message code="notice.th.type" />类型</th>
-		      <th nowrap align="center"><fmt:message code="notice.th.title" />标题</th>
+		      <th nowrap align="center"><fmt:message code="notice.th.publisher" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
 		   
-		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.createTime" />创建时间</u>
+		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.createTime" /></u>
 		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
 		      </th>
 		      <!-- <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
 		      <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th> -->
-		      <th nowrap align="center"><fmt:message code="notice.th.state" />状态</th>
-		      <th nowrap align="center"><fmt:message code="notice.th.operation" />操作</th>
+		      <th nowrap align="center"><fmt:message code="notice.th.state" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.operation" /></th>
 		    </tr>
 		</table>
 	</div> <!-- end -->
