@@ -285,6 +285,17 @@ public class EmailServiceImpl implements EmailService {
 		return list;
 	}
 
+	/**
+	 * 
+	 * 创建作者:      张勇
+	 * 创建日期:      2017-4-18 下午2:57:12
+	 * 类介绍:       未读转换为已读
+	 */
+	@Override
+	public void updateIsRead(EmailModel email) {
+		emailMapper.updateIsRead(email);
+	}
+
 	
 	
 }

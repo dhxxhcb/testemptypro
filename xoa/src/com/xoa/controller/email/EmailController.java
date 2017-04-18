@@ -128,7 +128,46 @@ public class EmailController {
 		}
 	}
 
-	//草稿箱
+	/**
+	 * 
+	 * 创建作者:      张勇
+	 * 创建日期:      2017-4-18 下午2:11:13
+	 * 类介绍:       保存草稿箱
+	 * 参数说明:	   @param fromId 发件人USER_ID,如(lisi,zhangsan,)
+	 * 参数说明:      @param toId2 收件人 USER_ID串，每个ID后带一个逗号，如：(lisi,zhangsan,)
+	 * 参数说明:      @param copyToId 抄送人USER_ID串,如(lisi,zhangsan,)
+	 * 参数说明:      @param subject 邮件主题
+	 * 参数说明:      @param content 邮件内容
+	 * 参数说明:      @param sendTime 发送时间,如：2017-04-04 10:20:35
+	 * 参数说明:      @param attachmentName 附件文件名串
+	 * 参数说明:      @param secretToId 密送人USER_ID串,如(lisi,zhangsan,)
+	 * 参数说明:      @param attachmentId 附件ID串
+	 * 参数说明:      @param sendFlag 是否已发送(0-未发送,1-已发送)
+	 * 参数说明:      @param smsRemind 是否使用短信提醒(0-不提醒,1-提醒)
+	 * 参数说明:      @param important 重要程度(空-一般邮件,1-重要,2-非常重要)
+	 * 参数说明:      @param size 邮件大小
+	 * 参数说明:      @param fromWebmailId 从自己的哪个外部邮箱ID对应emailbox中id
+	 * 参数说明:      @param fromWebmail 从自己的哪个外部邮箱向外发送
+	 * 参数说明:      @param toWebmail 外部收件人邮箱串
+	 * 参数说明:      @param compressContent 压缩后的邮件内容
+	 * 参数说明:      @param webmailContent 外部邮件内容
+	 * 参数说明:      @param webmailFlag 外部邮件标记(0-未发送,1-正在准备发送,2-发送成功,3-发送失败)
+	 * 参数说明:      @param recvFromName 接收外部邮箱名称
+	 * 参数说明:      @param recvFrom 接收外部邮箱ID
+	 * 参数说明:      @param recvToId 发送外部邮件ID
+	 * 参数说明:      @param recvTo 发送外部邮箱名称
+	 * 参数说明:      @param isWebmail 是否为外部邮件(0-内部邮件,1-外部邮件)
+	 * 参数说明:      @param isWf 是否同时外发(0-不外发,1-勾选向此人发送外部邮件)
+	 * 参数说明:      @param keyword 内容关键词
+	 * 参数说明:      @param secretLevel 邮件密级等级
+	 * 参数说明:      @param auditMan 审核人USER_ID
+	 * 参数说明:      @param auditRemark 审核不通过备注
+	 * 参数说明:      @param copyToWebmail 抄送外部邮箱串
+	 * 参数说明:      @param secretToWebmail 抄送外部邮箱串
+	 * 参数说明:      @param praise 点赞人user_id串
+	 * 参数说明:      @return 
+	 * @return  String json
+	 */
 	@RequestMapping(value = "/saveEmail", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String saveEmailBody(
@@ -173,6 +212,8 @@ public class EmailController {
 					"errorSendEmail"), "yyyy-MM-dd HH:mm:ss");
 		}
 	}
+	
+	
 	
 	
 	/**
@@ -241,21 +282,33 @@ public class EmailController {
 	@RequestMapping(value = "/queryByID", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String queryByID(HttpServletRequest request) throws Exception {
-		String userId = ServletRequestUtils.getStringParameter(request,
-				"userID");
+		String flag =  ServletRequestUtils.getStringParameter(request,
+				"flag");
 		Integer bodyId = ServletRequestUtils.getIntParameter(request, "bodyId");
 		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("fromId", userId);
 		maps.put("bodyId", bodyId);
 		EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
 		String returnRes = null;
-		if (emailBody.getBodyId() != null) {
-			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "查询成功");
+		if(!flag.trim().equals("isRead")){
+			if (emailBody.getBodyId() != null) {
+				ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "ok");
+				tojson.setObject(emailBody);
+				returnRes = JSON.toJSONStringWithDateFormat(tojson,
+						"yyyy-MM-dd HH:mm:ss");
+			} else {
+				ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(1, "errorQueryByID");
+				returnRes = JSON.toJSONStringWithDateFormat(tojson,
+						"yyyy-MM-dd HH:mm:ss");
+			}
+		}else{
+			Integer emailId =  ServletRequestUtils.getIntParameter(request,
+					"emailId");
+			EmailModel email = new EmailModel();
+			email.setEmailId(emailId);
+			email.setReadFlag("1");
+			emailService.updateIsRead(email);
+			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "ok");
 			tojson.setObject(emailBody);
-			returnRes = JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		} else {
-			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(1, "查询失败");
 			returnRes = JSON.toJSONStringWithDateFormat(tojson,
 					"yyyy-MM-dd HH:mm:ss");
 		}
@@ -263,41 +316,6 @@ public class EmailController {
 	}
 
 	
-	/**
-	 * 
-	 * @Title: isRead
-	 * @Description: 未读更新为已读
-	 * @author(作者):      zy
-	 * @param: @param request Http请求
-	 * @param: @return
-	 * @param: @throws Exception   
-	 * @return: String   
-	 * @throws
-	 */
-	@RequestMapping(value = "/isRead", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody
-	String isRead(HttpServletRequest request) throws Exception {
-		String userId = ServletRequestUtils.getStringParameter(request,
-				"userID");
-		Integer bodyId = ServletRequestUtils.getIntParameter(request, "bodyId");
-		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("fromId", userId);
-		maps.put("bodyId", bodyId);
-		EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
-		String returnRes = null;
-		if (emailBody.getBodyId() != null) {
-			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "查询成功");
-			tojson.setObject(emailBody);
-			returnRes = JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		} else {
-			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(1, "查询失败");
-			returnRes = JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		}
-		return returnRes;
-	}
-
 	/**
 	 * 
 	 * @Title: querylistEmailBody
@@ -452,6 +470,41 @@ public class EmailController {
 		return emailBody;
 	}
 	
+	
+//	/**
+//	 * 
+//	 * @Title: isRead
+//	 * @Description: 未读更新为已读
+//	 * @author(作者):      zy
+//	 * @param: @param request Http请求
+//	 * @param: @return
+//	 * @param: @throws Exception   
+//	 * @return: String   
+//	 * @throws
+//	 */
+//	@RequestMapping(value = "/isRead", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+//	public @ResponseBody
+//	String isRead(HttpServletRequest request) throws Exception {
+//		String userId = ServletRequestUtils.getStringParameter(request,
+//				"userID");
+//		Integer bodyId = ServletRequestUtils.getIntParameter(request, "bodyId");
+//		Map<String, Object> maps = new HashMap<String, Object>();
+//		maps.put("fromId", userId);
+//		maps.put("bodyId", bodyId);
+//		EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
+//		String returnRes = null;
+//		if (emailBody.getBodyId() != null) {
+//			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "查询成功");
+//			tojson.setObject(emailBody);
+//			returnRes = JSON.toJSONStringWithDateFormat(tojson,
+//					"yyyy-MM-dd HH:mm:ss");
+//		} else {
+//			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(1, "查询失败");
+//			returnRes = JSON.toJSONStringWithDateFormat(tojson,
+//					"yyyy-MM-dd HH:mm:ss");
+//		}
+//		return returnRes;
+//	}
 
 	/*
 	 * @RequestMapping(value = "/deleteEmailBody", produces = {

@@ -23,6 +23,16 @@ public interface EmailService {
 	//草稿箱
 	@DynDatasource
 	public void saveEmail(EmailBodyModel emailBody);
+	
+	/**
+	 * 
+	 * 创建作者:      张勇
+	 * 创建日期:      2017-4-18 下午2:55:06
+	 * 类介绍:        未读转为已读
+	 * 参数说明:     @param email 收件箱参数
+	 * @return  void
+	 */
+	public void updateIsRead(EmailModel email);
 
 	/**
 	 * 邮件查询
