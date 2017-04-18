@@ -1,17 +1,17 @@
 package com.xoa.dao.email;
 
-import com.xoa.model.email.EmailTag;
+import com.xoa.model.email.EmailTagModel;
 
 public interface EmailTagMapper {
     int deleteByPrimaryKey(Integer tagId);
 
-    int insert(EmailTag record);
+    int insert(EmailTagModel record);
 
-    int insertSelective(EmailTag record);
+    int insertSelective(EmailTagModel record);
 
-    EmailTag selectByPrimaryKey(Integer tagId);
+    EmailTagModel selectByPrimaryKey(Integer tagId);
 
-    int updateByPrimaryKeySelective(EmailTag record);
+    int updateByPrimaryKeySelective(EmailTagModel record);
 
-    int updateByPrimaryKey(EmailTag record);
+    int updateByPrimaryKey(EmailTagModel record);
 }

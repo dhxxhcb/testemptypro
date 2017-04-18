@@ -1,7 +1,7 @@
 package com.xoa.controller.worldnews;
 
 import com.alibaba.fastjson.JSON;
-import com.xoa.model.email.EmailBody;
+import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;
@@ -47,11 +47,15 @@ public class NewsController {
 		return "/app/news/newsShow";
 	}
 	
+	
 	/**
-	 * 信息展示 返回json demo
-	 * 
-	 * @return
-	 * @throws Exception
+	 * 信息展示 返回json 
+	 * @Title: selectNewsManage
+	 * @Description: TODO
+	 * @author(作者):      wyq
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 @RequestMapping(value = "/showNewsManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
   public @ResponseBody String selectNewsManage(){
@@ -173,8 +177,38 @@ public class NewsController {
 		return returnReslt;
 	}
 
+	
 	/**
 	 * 保存新闻
+	 * @Title: insertNews
+	 * @Description: TODO
+	 * @author(作者):      wyq
+	 * @param: @param subject
+	 * @param: @param provider
+	 * @param: @param newsTime
+	 * @param: @param clickCount
+	 * @param: @param anonymityYn
+	 * @param: @param format
+	 * @param: @param typeId
+	 * @param: @param publish
+	 * @param: @param top
+	 * @param: @param lastEditor
+	 * @param: @param lastEditTime
+	 * @param: @param subjectColor
+	 * @param: @param keyword
+	 * @param: @param topDays
+	 * @param: @param content
+	 * @param: @param attachmentId
+	 * @param: @param attachmentName
+	 * @param: @param toId
+	 * @param: @param privId
+	 * @param: @param userId
+	 * @param: @param readers
+	 * @param: @param compressContent
+	 * @param: @param summary
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 	@RequestMapping(value = "/sendNews", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -238,8 +272,39 @@ public class NewsController {
 			}
 
 		}
+	
 	/**
 	 * 修改新闻
+	 * @Title: updateNews
+	 * @Description: TODO
+	 * @author(作者):      wyq
+	 * @param: @param newsId
+	 * @param: @param subject
+	 * @param: @param provider
+	 * @param: @param newsTime
+	 * @param: @param clickCount
+	 * @param: @param anonymityYn
+	 * @param: @param format
+	 * @param: @param typeId
+	 * @param: @param publish
+	 * @param: @param top
+	 * @param: @param lastEditor
+	 * @param: @param lastEditTime
+	 * @param: @param subjectColor
+	 * @param: @param keyword
+	 * @param: @param topDays
+	 * @param: @param content
+	 * @param: @param attachmentId
+	 * @param: @param attachmentName
+	 * @param: @param toId
+	 * @param: @param privId
+	 * @param: @param userId
+	 * @param: @param readers
+	 * @param: @param compressContent
+	 * @param: @param summary
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 	@RequestMapping(value = "/updateNews", produces = { "application/json;charset=UTF-8" })
 	public String updateNews(@RequestParam("newsId") Integer newsId,
@@ -294,20 +359,23 @@ public class NewsController {
 		    try {
 		    	newService.updateNews(news);
 		    	return JSON.toJSONStringWithDateFormat(
-						new ToJson<EmailBody>(0, ""), "yyyy-MM-dd HH:mm:ss");
+						new ToJson<EmailBodyModel>(0, ""), "yyyy-MM-dd HH:mm:ss");
 			} catch (Exception e) {
 				loger.debug("sendNews:" + e);
 				return JSON.toJSONStringWithDateFormat(
-						new ToJson<EmailBody>(1, ""), "yyyy-MM-dd HH:mm:ss");
+						new ToJson<EmailBodyModel>(1, ""), "yyyy-MM-dd HH:mm:ss");
 			}
 	}
+	
 	/**
 	 * 根据ID删除新闻
-	 * 返回json demo
-	 * 
-	 * @author wyq
-	 * @return
-	 * @throws Exception
+	 * @Title: deleteNews
+	 * @Description: TODO
+	 * @author(作者):      wyq
+	 * @param: @param newsId
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 	@RequestMapping(value = "/deleteNews", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String deleteNews(@RequestParam("newsId") Integer newsId){
@@ -325,8 +393,16 @@ public class NewsController {
 					"yyyy-MM-dd HH:mm:ss");
 		}
 	}
+	
 	/**
-	 * 根据详情新闻
+	 * 根据ID详情新闻
+	 * @Title: queryNews
+	 * @Description: TODO
+	 * @author(作者):      wyq
+	 * @param: @param newsId
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 	@RequestMapping(value = "/queryNews",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String queryNews(@RequestParam("newsId") Integer newsId){

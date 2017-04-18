@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.email.EmailMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.email.Email" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.email.EmailModel" >
     <result column="EMAIL_ID" property="emailId" javaType="INTEGER" />
     <result column="TO_ID" property="toId" javaType="String" />
     <result column="READ_FLAG" property="readFlag" javaType="String" />
@@ -15,7 +15,7 @@
   </resultMap>
  
   	<!-- 发送邮件 并保存数据库 -->
-  <insert id="save" parameterType="com.xoa.model.email.Email" >
+  <insert id="save" parameterType="com.xoa.model.email.EmailModel" >
     insert into email (TO_ID, READ_FLAG, 
       DELETE_FLAG, BOX_ID, BODY_ID, 
       RECEIPT, IS_F, IS_R, SIGN

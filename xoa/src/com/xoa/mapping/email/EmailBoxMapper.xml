@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.email.EmailBoxMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.email.EmailBox" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.email.EmailBoxModel" >
     <id column="BOX_ID" property="boxId" javaType="INTEGER" />
     <result column="BOX_NO" property="boxNo" javaType="INTEGER" />
     <result column="BOX_NAME" property="boxName" javaType="String" />
@@ -21,13 +21,13 @@
     delete from email_box
     where BOX_ID = #{boxId,javaType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.email.EmailBox" >
+  <insert id="insert" parameterType="com.xoa.model.email.EmailBoxModel" >
     insert into email_box (BOX_ID, BOX_NO, BOX_NAME, 
       USER_ID, DEFAULT_COUNT)
     values (#{boxId,javaType=INTEGER}, #{boxNo,javaType=INTEGER}, #{boxName,javaType=String}, 
       #{userId,javaType=String}, #{defaultCount,javaType=String})
   </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.email.EmailBox" >
+  <insert id="insertSelective" parameterType="com.xoa.model.email.EmailBoxModel" >
     insert into email_box
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="boxId != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBox" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBoxModel" >
     update email_box
     <set >
       <if test="boxNo != null" >
@@ -82,7 +82,7 @@
     </set>
     where BOX_ID = #{boxId,javaType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.email.EmailBox" >
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.email.EmailBoxModel" >
     update email_box
     set BOX_NO = #{boxNo,javaType=INTEGER},
       BOX_NAME = #{boxName,javaType=String},

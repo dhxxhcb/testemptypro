@@ -47,7 +47,7 @@ public class UsersController {
 		try {
 			usersService.addUser(user);
             json.setObject(user);
-            json.setMsg("用户新增成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -67,11 +67,11 @@ public class UsersController {
 	@RequestMapping(value = "/user/editUser",method = RequestMethod.POST)
     public ToJson<Users> editUser(Users user) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
-		loger.debug("传过来的ID为"+user.getUid());
+		loger.debug("ID"+user.getUid());
 		try {
 			usersService.editUser(user);
             json.setObject(user);
-            json.setMsg("用户修改成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -92,11 +92,11 @@ public class UsersController {
 	@RequestMapping(value = "/user/deleteUser",method = RequestMethod.POST)
     public ToJson<Users> deletesUser(Users user) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
-		loger.debug("传过来的ID为"+user.getUid());
+		loger.debug("ID"+user.getUid());
 		try {
 			usersService.deleteUser(user.getUid());
             json.setObject(user);
-            json.setMsg("用户删除成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -121,7 +121,7 @@ public class UsersController {
 		try {
 			Users users=usersService.findUserByuid(uid);  
 			json.setObject(users);;
-            json.setMsg("查询用户成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -149,7 +149,7 @@ public class UsersController {
 		try {
 			List<Users> list=usersService.getAlluser(maps,page,pageSize,useFlag);  
 			json.setObj(list);
-            json.setMsg("所有用户查询成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -173,7 +173,7 @@ public class UsersController {
 		try {
 			List<Users> list=usersService.getUserByMany(users);
             json.setObj(list);
-            json.setMsg("多条件查询成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());

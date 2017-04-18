@@ -27,14 +27,7 @@ import com.xoa.model.worldnews.News;
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
-/**
- * 
- * @ClassName (类名):  NotifyController
- * @Description(简述): 公告信息
- * @author(作者):      张丽军
- * @date(日期):        2017-4-18 上午9:39:46
- *
- */
+
 @Controller
 @Scope(value = "prototype")
 @RequestMapping("/notice")
@@ -46,17 +39,9 @@ public class NotifyController {
 
 	
 	/**
+	 * 公告管理信息展示并返回
 	 * 
-	 * @Title: selectNotifyManage
-	 * @Description: 公告管理信息展示并返回
-	 * @author(作者):      张丽军
-	 * @date(日期):        2017-4-18 上午9:39:46
-	 * @param: @param page
-	 * @param: @param pageSize
-	 * @param: @param useFlag
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * @return
 	 */
 	@RequestMapping(value = "/notifyManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	  public @ResponseBody String selectNotifyManage(
@@ -88,24 +73,11 @@ public class NotifyController {
 
 			return returnReslt;
 		}
-    /**
-     * 
-     * @Title: notifyList
-     * @Description: 公告通知查询列表
-     * @author(作者):      张丽军
-     * @date(日期):        2017-4-18 上午9:39:46
-     * @param: @param typeId
-     * @param: @param sendTime
-     * @param: @param subject
-     * @param: @param content
-     * @param: @param format
-     * @param: @param page
-     * @param: @param pageSize
-     * @param: @param useFlag
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+	/**
+	 * 公告通知查询列表
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = "/notifyList",method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	 public @ResponseBody
 	 String notifyList(@RequestParam(value = "typeId", required = false)String typeId,
@@ -146,19 +118,9 @@ public class NotifyController {
 	 }
 	
 	/**
+	 * 未读信息
 	 * 
-	 * @Title: unreadNotify
-	 * @Description: 未读信息
-	 * @author(作者):      张丽军
-	 * @date(日期):        2017-4-18 上午9:39:46
-	 * @param: @param request
-	 * @param: @param response
-	 * @param: @param page
-	 * @param: @param pageSize
-	 * @param: @param useFlag
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * @return
 	 */
 	@RequestMapping(value = "/unreadNotify", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -195,18 +157,10 @@ public class NotifyController {
 	
 	
 	
-    /**
-     * 
-     * @Title: getNotifyById
-     * @Description: 根据ID查询一条公告
-     * @author(作者):      张丽军
-     * @date(日期):        2017-4-18 上午9:39:46
-     * @param: @param request
-     * @param: @param response
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
+	/**
+	 * 根据ID查询一条公告
+	 */
 	@RequestMapping(value = "/getNotifyById", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String getNotifyById(HttpServletRequest request, HttpServletResponse response) {
@@ -223,35 +177,27 @@ public class NotifyController {
 	}
 
 	/**
-	 * 
-	 * @Title: queryNotify
-	 * @Description: 公告查询详情
-	 * @author(作者):      张丽军
-	 * @date(日期):        2017-4-18 上午9:39:46
-	 * @param: @param notifyId
-	 * @param: @param page
-	 * @param: @param pageSize
-	 * @param: @param useFlag
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 公告查询详情
 	 */
 	@RequestMapping(value = "/queryNotify",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String queryNotify(
-			@RequestParam("notifyId") Integer notifyId){
+			@RequestParam("notifyId") Integer notifyId,
+			@RequestParam("page") Integer page,
+			@RequestParam("pageSize") Integer pageSize,
+			@RequestParam("useFlag") Boolean useFlag){
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
 		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
 		String name="wangyun";
-		loger.debug("ID"+notifyId);
+		loger.debug("传过来的ID"+notifyId);
 	try {
-		    Notify notify=notifyService.queryById(maps, 1, 5, false, name);
-			toJson.setMsg("seccess");
+		    Notify notify=notifyService.queryById(maps, page, pageSize, useFlag, name);
+			toJson.setMsg("成功");
 			toJson.setObject(notify);
 			return JSON.toJSONStringWithDateFormat(toJson,
 					"yyyy-MM-dd HH:mm:ss");
 		} catch (Exception e) {
-			toJson.setMsg("fail");
+			toJson.setMsg("失败");
 			loger.debug("ERROR:"+e);
 			return JSON.toJSONStringWithDateFormat(toJson,
 					"yyyy-MM-dd HH:mm:ss");
@@ -259,49 +205,32 @@ public class NotifyController {
 	}
 	
 	
-	
+	@RequestMapping("/index")
+	//公告通知list
+	public String noticeIndexPage() {
+		return "app/notice/notify";
+	}
+	@RequestMapping("/add")
+	//公告新建
+	public String noticeaddPage() {
+		return "app/notice/notify";
+	}
+	@RequestMapping("/edit")
+	public String noticeEditPage() {
+		return "app/notice/noticeEdit";
+	}
+	@RequestMapping("/query")
+	//查询
+	public String logins1() {
+		return "app/notice/noticeQuery";
+	}
 	
 	
 	/**
+	 * 修改公告信息
+	 * @param request
 	 * 
-	 * @Title: updateNotify
-	 * @Description: 修改公告信息
-	 * @author(作者):      张丽军
-	 * @date(日期):        2017-4-18 上午9:39:46
-	 * @param: @param notifyId
-	 * @param: @param fromId
-	 * @param: @param typeId
-	 * @param: @param subject
-	 * @param: @param content
-	 * @param: @param format
-	 * @param: @param fromDept
-	 * @param: @param sendTime
-	 * @param: @param beginDate
-	 * @param: @param endDate
-	 * @param: @param print
-	 * @param: @param top
-	 * @param: @param topDays
-	 * @param: @param publish
-	 * @param: @param auditer
-	 * @param: @param auditDate
-	 * @param: @param download
-	 * @param: @param lastEditor
-	 * @param: @param lastEditTime
-	 * @param: @param subjectColor
-	 * @param: @param keyword
-	 * @param: @param isFw
-	 * @param: @param toId
-	 * @param: @param attachmentId
-	 * @param: @param attachmentName
-	 * @param: @param readers
-	 * @param: @param privId
-	 * @param: @param userId
-	 * @param: @param reason
-	 * @param: @param compressContent
-	 * @param: @param summary
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * @return
 	 */
 	@RequestMapping(value = "/updateNotify", produces = { "application/json;charset=UTF-8" })
 	public String updateNotify(
@@ -375,7 +304,7 @@ public class NotifyController {
 	    	return JSON.toJSONStringWithDateFormat(
 					new ToJson<Notify>(0, ""), "yyyy-MM-dd HH:mm:ss");
 		} catch (Exception e) {
-			loger.debug("notifyList:" + e);
+			loger.debug("sendNews:" + e);
 			return JSON.toJSONStringWithDateFormat(
 					new ToJson<Notify>(1, ""), "yyyy-MM-dd HH:mm:ss");
 		}
@@ -383,44 +312,9 @@ public class NotifyController {
 	}
 
 	/**
+	 * 保存公告信息
 	 * 
-	 * @Title: addNotify
-	 * @Description: 保存公告信息
-	 * @author(作者):      张丽军
-	 * @date(日期):        2017-4-18 上午9:39:46
-	 * @param: @param fromId
-	 * @param: @param typeId
-	 * @param: @param subject
-	 * @param: @param content
-	 * @param: @param format
-	 * @param: @param fromDept
-	 * @param: @param sendTime
-	 * @param: @param beginDate
-	 * @param: @param endDate
-	 * @param: @param print
-	 * @param: @param top
-	 * @param: @param topDays
-	 * @param: @param publish
-	 * @param: @param auditer
-	 * @param: @param auditDate
-	 * @param: @param download
-	 * @param: @param lastEditor
-	 * @param: @param lastEditTime
-	 * @param: @param subjectColor
-	 * @param: @param keyword
-	 * @param: @param isFw
-	 * @param: @param toId
-	 * @param: @param attachmentId
-	 * @param: @param attachmentName
-	 * @param: @param readers
-	 * @param: @param privId
-	 * @param: @param userId
-	 * @param: @param reason
-	 * @param: @param compressContent
-	 * @param: @param summary
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * @return
 	 */
 	@RequestMapping(value = "/addNotify", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -497,15 +391,9 @@ public class NotifyController {
 	}
 	
 	/**
-	 * 
-	 * @Title: deleteById
-	 * @Description: 根据ID删除公告
-	 * @author(作者):      张丽军
-	 * @date(日期):        2017-4-18 上午9:39:46
-	 * @param: @param notifyId
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 根据ID删除公告
+	 * request   response
+	 * @return
 	 */
 	@RequestMapping(value = "/deleteById", produces = { "application/json;charset=UTF-8" })
 	/*public void deleteById(HttpServletRequest request,
@@ -540,15 +428,10 @@ public class NotifyController {
 	
 	
 	/**
+	 * 为null时转换为""
 	 * 
-	 * @Title: returnValue
-	 * @Description: 为null时转换为""
-	 * @author(作者):      张丽军
-	 * @date(日期):        2017-4-18 上午9:39:46
-	 * @param: @param value
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * @param value
+	 * @return
 	 */
 	public static String returnValue(String value) {
 		if (value != null) {

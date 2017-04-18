@@ -51,7 +51,7 @@ public class DepartmentController {
 		try {
 			departmentService.insertDept(department);
             json.setObject(department);
-            json.setMsg("部门新增成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -73,11 +73,11 @@ public class DepartmentController {
 	@RequestMapping(value = "/department/deletedept",method = RequestMethod.POST)
     public ToJson<Department> deletedept(Department department) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
-		loger.debug("传过来的ID为"+department.getDeptId());
+		loger.debug("ID"+department.getDeptId());
 		try {
 			departmentService.deleteDept(department.getDeptId());
             json.setObject(department);
-            json.setMsg("部门删除成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -100,7 +100,7 @@ public class DepartmentController {
 		try {
 			Department department =departmentService.getDeptById(deptid);
 			json.setObject(department);
-            json.setMsg("查询部门成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -126,7 +126,7 @@ public class DepartmentController {
 		try {
 			List<Department> list=departmentService.getDatagrid();  
 			json.setObj(list);
-            json.setMsg("所有部门查询成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -149,11 +149,11 @@ public class DepartmentController {
 	@RequestMapping(value = "/department/editDept",method = RequestMethod.POST)
     public ToJson<Department> editDept(Department department) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
-		loger.debug("传过来的ID为"+department.getDeptId());
+		loger.debug("ID"+department.getDeptId());
 		try {
 			departmentService.editDept(department);
             json.setObject(department);
-            json.setMsg("修改成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -178,7 +178,7 @@ public class DepartmentController {
 		try {
 			List<Department> list=departmentService.getDeptByMany(department);
             json.setObj(list);
-            json.setMsg("部门查询成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());

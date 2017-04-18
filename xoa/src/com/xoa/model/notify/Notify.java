@@ -8,7 +8,7 @@ import com.xoa.model.users.Users;
     * 
     * @ClassName (类名):  Notify
     * @Description(简述): 公告管理
-    * @author(作者):      张丽军
+    * @author(作者):      zhanglijun
     * @date(日期):        2017-4-17 下午6:09:31
     *
     */
@@ -162,8 +162,7 @@ public class Notify {
      * 
      * @Title: getName
      * @Description: 得到用户名
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -175,8 +174,7 @@ public class Notify {
     * 
     * @Title: setName
     * @Description: 设置用户名
-    * @author(作者):   张丽军
-    * @date(日期):        2017-4-17 下午6:09:31 
+    * @author(作者):   zhanglijun
     * @param: @param name   
     * @return: void   
     * @throws
@@ -189,8 +187,7 @@ public class Notify {
      * 
      * @Title: getUsers
      * @Description:得到用户
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @return   
      * @return: Users   
      * @throws
@@ -203,8 +200,7 @@ public class Notify {
      * 
      * @Title: setUsers
      * @Description: 设置用户
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @param users   
      * @return: void   
      * @throws
@@ -216,8 +212,7 @@ public class Notify {
      * 
      * @Title: getToId
      * @Description: 得到按部门发布信息
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -229,8 +224,7 @@ public class Notify {
      * 
      * @Title: setToId
      * @Description: 设置按部门发布信息
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @param toId   
      * @return: void   
      * @throws
@@ -242,8 +236,7 @@ public class Notify {
      * 
      * @Title: getContent
      * @Description: 得到内容信息
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -255,8 +248,7 @@ public class Notify {
       * 
       * @Title: setContent
       * @Description: 设置没人信息
-      * @author(作者):   张丽军
-      * @date(日期):        2017-4-17 下午6:09:31
+      * @author(作者):   zhanglijun
       * @param: @param content   
       * @return: void   
       * @throws
@@ -268,8 +260,7 @@ public class Notify {
      * 
      * @Title: getAttachmentId
      * @Description: 得到附件ID串
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -281,8 +272,7 @@ public class Notify {
      * 
      * @Title: setAttachmentId
      * @Description: 设置附件ID串
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @param attachmentId   
      * @return: void   
      * @throws
@@ -294,8 +284,7 @@ public class Notify {
      * 
      * @Title: getAttachmentName
      * @Description: 得到附件名称串
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -307,8 +296,7 @@ public class Notify {
      * 
      * @Title: setAttachmentName
      * @Description: 设置附件名称串
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @param attachmentName   
      * @return: void   
      * @throws
@@ -320,8 +308,7 @@ public class Notify {
      * 
      * @Title: getReaders
      * @Description: 得到阅读人员ID
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -333,8 +320,7 @@ public class Notify {
      * 
      * @Title: setReaders
      * @Description: 设置阅读人员ID
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @param readers   
      * @return: void   
      * @throws
@@ -346,8 +332,7 @@ public class Notify {
      * 
      * @Title: getPrivId
      * @Description: 得到按角色发布ID
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -359,8 +344,7 @@ public class Notify {
      * 
      * @Title: setPrivId
      * @Description: 设置按角色发布ID
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @param privId   
      * @return: void   
      * @throws
@@ -372,8 +356,7 @@ public class Notify {
      * 
      * @Title: getUserId
      * @Description: 得到用户ID
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -385,8 +368,7 @@ public class Notify {
      * 
      * @Title: setUserId
      * @Description: 设置用户ID
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @param userId   
      * @return: void   
      * @throws
@@ -398,8 +380,7 @@ public class Notify {
      * 
      * @Title: getReason
      * @Description:得到审核人不同意的原因
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -411,8 +392,7 @@ public class Notify {
      * 
      * @Title: setReason
      * @Description: 设置审核人不同意的原因
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @param reason   
      * @return: void   
      * @throws
@@ -424,8 +404,7 @@ public class Notify {
      * 
      * @Title: getCompressContent
      * @Description: 得到压缩后的公告通知内容
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @return   
      * @return: byte[]   
      * @throws
@@ -437,8 +416,7 @@ public class Notify {
      * 
      * @Title: setCompressContent
      * @Description: 设置压缩后的公告通知内容
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @param compressContent   
      * @return: void   
      * @throws
@@ -450,8 +428,7 @@ public class Notify {
      * 
      * @Title: getSummary
      * @Description: 获取内容简介信息
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -463,8 +440,7 @@ public class Notify {
      * 
      * @Title: setSummary
      * @Description: 设置内容简介信息
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @param summary   
      * @return: void   
      * @throws
@@ -476,8 +452,7 @@ public class Notify {
      * 
      * @Title: getNotifyId
      * @Description: 获取公告ID(主键)
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @return   
      * @return: Integer   
      * @throws
@@ -489,8 +464,7 @@ public class Notify {
      * 
      * @Title: setNotifyId
      * @Description: 设置公告ID(主键)
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @param notifyId   
      * @return: void   
      * @throws
@@ -502,8 +476,7 @@ public class Notify {
      * 
      * @Title: getFromDept
      * @Description:获取发布部门ID
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @return   
      * @return: Integer   
      * @throws
@@ -515,8 +488,7 @@ public class Notify {
      * 
      * @Title: setFromDept
      * @Description: 设置发布部门ID
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @param fromDept   
      * @return: void   
      * @throws
@@ -528,8 +500,7 @@ public class Notify {
      * 
      * @Title: getFromId
      * @Description: 获取发布用户ID(USER_ID)
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -541,8 +512,7 @@ public class Notify {
      * 
      * @Title: setFromId
      * @Description: 设置发布用户ID(USER_ID)
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):     zhanglijun
      * @param: @param fromId   
      * @return: void   
      * @throws
@@ -554,8 +524,7 @@ public class Notify {
      * 
      * @Title: getSubject
      * @Description:获取公告标题
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -567,8 +536,7 @@ public class Notify {
      * 
      * @Title: setSubject
      * @Description: 设置公告标题
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @param subject   
      * @return: void   
      * @throws
@@ -580,8 +548,7 @@ public class Notify {
      * 
      * @Title: getSendTime
      * @Description: 获取发布时间
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @return   
      * @return: Date   
      * @throws
@@ -593,8 +560,7 @@ public class Notify {
      * 
      * @Title: setSendTime
      * @Description: 设置发布时间
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @param sendTime   
      * @return: void   
      * @throws
@@ -606,8 +572,7 @@ public class Notify {
      * 
      * @Title: getBeginDate
      * @Description: 获取开始日期
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @return   
      * @return: Integer   
      * @throws
@@ -619,8 +584,7 @@ public class Notify {
      * 
      * @Title: setBeginDate
      * @Description: 设置开始日期
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @param beginDate   
      * @return: void   
      * @throws
@@ -632,8 +596,7 @@ public class Notify {
      * 
      * @Title: getEndDate
      * @Description: 获取结束日期
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @return   
      * @return: Integer   
      * @throws
@@ -645,8 +608,7 @@ public class Notify {
      * 
      * @Title: setEndDate
      * @Description: 设置结束日期
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @param endDate   
      * @return: void   
      * @throws
@@ -658,8 +620,7 @@ public class Notify {
      * 
      * @Title: getPrint
      * @Description: 获取是否允许打印office附件信息(0-不允许,1-允许)
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):  zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -671,8 +632,7 @@ public class Notify {
      * 
      * @Title: setPrint
      * @Description: 设置是否允许打印office附件信息(0-不允许,1-允许)
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):     zhanglijun
      * @param: @param print   
      * @return: void   
      * @throws
@@ -684,8 +644,7 @@ public class Notify {
      * 
      * @Title: getTypeId
      * @Description: 获取公告类型ID
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):    zhanglijun
      * @param: @return   
      * @return: String   
      * @throws
@@ -697,8 +656,7 @@ public class Notify {
      * 
      * @Title: setTypeId
      * @Description:设置公告类型ID
-     * @author(作者):   张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
+     * @author(作者):   zhanglijun
      * @param: @param typeId   
      * @return: void   
      * @throws
@@ -706,315 +664,99 @@ public class Notify {
     public void setTypeId(String typeId) {
         this.typeId = typeId == null ? null : typeId.trim();
     }
-    /**
-     * 
-     * @Title: getTop
-     * @Description: 获取置顶信息
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
     public String getTop() {
         return top;
     }
-    /**
-     * 
-     * @Title: setTop
-     * @Description: 设置置顶信息
-     * @author(作者):      张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param top   
-     * @return: void   
-     * @throws
-     */
+
     public void setTop(String top) {
         this.top = top == null ? null : top.trim();
     }
-    /**
-     * 
-     * @Title: getTopDays
-     * @Description: 获取置顶天数
-     * @author(作者):      张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: Integer   
-     * @throws
-     */
+
     public Integer getTopDays() {
         return topDays;
     }
-    /**
-     * 
-     * @Title: setTopDays
-     * @Description: 设置置顶天数
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param topDays   
-     * @return: void   
-     * @throws
-     */
+
     public void setTopDays(Integer topDays) {
         this.topDays = topDays;
     }
-    /**
-     * 
-     * @Title: getFormat
-     * @Description: 获取公告通知格式信息(0-普通格式,1-mht格式,2-超链接)
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
     public String getFormat() {
         return format;
     }
-    /**
-     * 
-     * @Title: setFormat
-     * @Description: 设置公告通知格式信息(0-普通格式,1-mht格式,2-超链接)
-     * @author(作者):      张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param format   
-     * @return: void   
-     * @throws
-     */
+
     public void setFormat(String format) {
         this.format = format == null ? null : format.trim();
     }
-    /**
-     * 
-     * @Title: getPublish
-     * @Description: 获取发布标识信息(0-未发布,1-已发布,2-待审批,3-未通过)
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
     public String getPublish() {
         return publish;
     }
-    /**
-     * 
-     * @Title: setPublish
-     * @Description: 设置发布标识信息(0-未发布,1-已发布,2-待审批,3-未通过)
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param publish   
-     * @return: void   
-     * @throws
-     */
+
     public void setPublish(String publish) {
         this.publish = publish == null ? null : publish.trim();
     }
-    /**
-     * 
-     * @Title: getAuditer
-     * @Description: 获取审核人用户ID
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
     public String getAuditer() {
         return auditer;
     }
-    /**
-     * 
-     * @Title: setAuditer
-     * @Description: 设置审核人用户ID
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param auditer   
-     * @return: void   
-     * @throws
-     */
+
     public void setAuditer(String auditer) {
         this.auditer = auditer == null ? null : auditer.trim();
     }
-    /**
-     * 
-     * @Title: getAuditDate
-     * @Description: 获取审核时间
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: Date   
-     * @throws
-     */
+
     public Date getAuditDate() {
         return auditDate;
     }
-    /**
-     * 
-     * @Title: setAuditDate
-     * @Description: 设置审核时间
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param auditDate   
-     * @return: void   
-     * @throws
-     */
+
     public void setAuditDate(Date auditDate) {
         this.auditDate = auditDate;
     }
-    /**
-     * 
-     * @Title: getDownload
-     * @Description: 获取是否允许下载office附件(0-不允许,1-允许)
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
     public String getDownload() {
         return download;
     }
-    /**
-     * 
-     * @Title: setDownload
-     * @Description: 设置是否允许下载office附件(0-不允许,1-允许)
-     * @author(作者):      张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param download   
-     * @return: void   
-     * @throws
-     */
+
     public void setDownload(String download) {
         this.download = download == null ? null : download.trim();
     }
-    /**
-     * 
-     * @Title: getLastEditor
-     * @Description: 获取最后编辑人
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
     public String getLastEditor() {
         return lastEditor;
     }
-    /**
-     * 
-     * @Title: setLastEditor
-     * @Description: 设置最后编辑人
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param lastEditor   
-     * @return: void   
-     * @throws
-     */
+
     public void setLastEditor(String lastEditor) {
         this.lastEditor = lastEditor == null ? null : lastEditor.trim();
     }
-    /**
-     * 
-     * @Title: getLastEditTime
-     * @Description: 获取最后编辑时间
-     * @author(作者):      张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: Date   
-     * @throws
-     */
+
     public Date getLastEditTime() {
         return lastEditTime;
     }
-    /**
-     * 
-     * @Title: setLastEditTime
-     * @Description: 设置最后编辑时间
-     * @author(作者):      张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param lastEditTime   
-     * @return: void   
-     * @throws
-     */
+
     public void setLastEditTime(Date lastEditTime) {
         this.lastEditTime = lastEditTime;
     }
-    /**
-     * 
-     * @Title: getSubjectColor
-     * @Description: 获取公告标题颜色
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
     public String getSubjectColor() {
         return subjectColor;
     }
-    /**
-     * 
-     * @Title: setSubjectColor
-     * @Description: 设置公告标题颜色
-     * @author(作者):    张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param subjectColor   
-     * @return: void   
-     * @throws
-     */
+
     public void setSubjectColor(String subjectColor) {
         this.subjectColor = subjectColor == null ? null : subjectColor.trim();
     }
-    /**
-     * 
-     * @Title: getKeyword
-     * @Description: 获取内容关键字
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
     public String getKeyword() {
         return keyword;
     }
-    /**
-     * 
-     * @Title: setKeyword
-     * @Description: 设置内容关键字
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param keyword   
-     * @return: void   
-     * @throws
-     */
+
     public void setKeyword(String keyword) {
         this.keyword = keyword == null ? null : keyword.trim();
     }
-    /**
-     * 
-     * @Title: getIsFw
-     * @Description:获取是否转发信息 
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
     public String getIsFw() {
         return isFw;
     }
-    /**
-     * 
-     * @Title: setIsFw
-     * @Description: 设置是否转发信息
-     * @author(作者):     张丽军
-     * @date(日期):        2017-4-17 下午6:09:31
-     * @param: @param isFw   
-     * @return: void   
-     * @throws
-     */
+
     public void setIsFw(String isFw) {
         this.isFw = isFw == null ? null : isFw.trim();
     }

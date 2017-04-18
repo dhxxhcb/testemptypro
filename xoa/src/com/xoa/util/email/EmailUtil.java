@@ -12,11 +12,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
-import com.xoa.model.email.Email;
-import com.xoa.model.email.EmailBody;
+import com.xoa.model.email.EmailModel;
+import com.xoa.model.email.EmailBodyModel;
 
 public class EmailUtil {
-  public  Boolean sendEmailBody(EmailBody emailBody,Email email){
+  public  Boolean sendEmailBody(EmailBodyModel emailBody,EmailModel email){
 	Properties properties = new Properties();  
     properties.setProperty("mail.smtp.auth", "true");//接受服务器认证  
     properties.setProperty("mail.transport.protocol", "smtp");//设置发送协议  

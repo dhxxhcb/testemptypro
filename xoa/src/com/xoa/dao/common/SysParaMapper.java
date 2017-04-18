@@ -1,6 +1,6 @@
 package com.xoa.dao.common;
 
-import com.xoa.model.common.SysParaModel;
+import com.xoa.model.common.SysPara;
 /**
  * 
  * @ClassName (类名):  SysParaMapper

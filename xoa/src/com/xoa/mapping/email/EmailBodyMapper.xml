@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.email.EmailBodyMapper">
-	<resultMap id="BaseResultMap" type="com.xoa.model.email.EmailBody">
+	<resultMap id="BaseResultMap" type="com.xoa.model.email.EmailBodyModel">
 		<id column="BODY_ID" property="bodyId" javaType="INTEGER" />
 		<result column="FROM_ID" property="fromId" javaType="String" />
 		<result column="SUBJECT" property="subject" javaType="String" />
@@ -48,7 +48,7 @@
 			<id property="userId" column="USER_ID" />
 			<result property="userName" column="USER_NAME" />
 		</association>
-		<collection property="emailList" ofType="com.xoa.model.email.Email"
+		<collection property="emailList" ofType="com.xoa.model.email.EmailModel"
 			column="BODY_ID">
 			<id column="EMAIL_ID" property="emailId" javaType="INTEGER" />
 			<result column="TO_ID" property="toId" javaType="String" />
@@ -95,7 +95,7 @@
 		LEFT JOIN user as u on eb.FROM_ID=u.USER_ID
 		LEFT
 		JOIN
-		email as e on e.BODY_ID=eb.BODY_ID
+		emailModel as e on e.BODY_ID=eb.BODY_ID
 		<where>
 			<include refid="Page_Where_Clause" />
 		</where>
@@ -103,7 +103,7 @@
 	</select>
 
 	<!-- 发送邮件并保存到数据库 -->
-	<insert id="save" parameterType="com.xoa.model.email.EmailBody" useGeneratedKeys="true" keyProperty="bodyId">
+	<insert id="save" parameterType="com.xoa.model.email.EmailBodyModel" useGeneratedKeys="true" keyProperty="bodyId">
 		insert into email_body (
 		BODY_ID,
 		FROM_ID,
@@ -356,7 +356,7 @@
 		email_body where eb.FROM_ID=#{fromId} AND BODY_ID = #{bodyId}
 	</delete>
 
-	<update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBody">
+	<update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBodyModel">
 		update email_body
 		<set>
 			<if test="fromId != null">

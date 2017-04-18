@@ -6,21 +6,38 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.xoa.dao.menu.MobileAppMapper;
 import com.xoa.dao.menu.SysFunctionMapper;
 import com.xoa.dao.menu.SysMenuMapper;
+import com.xoa.model.menu.MobileApp;
 import com.xoa.model.menu.SysFunction;
 import com.xoa.model.menu.SysMenu;
 import com.xoa.service.menu.MenuService;
 
-
+/**
+ * 
+ * @ClassName (类名):  MenuServiceImpl
+ * @Description(简述): 菜单
+ * @author(作者):      wyq
+ * @date(日期):        2017-4-17 下午6:01:31
+ *
+ */
 @Service
 public class MenuServiceImpl implements MenuService {
 	@Resource
-	private SysMenuMapper sysMenuMapper;
+	private SysMenuMapper sysMenuMapper;//父类菜单DAO
 
 	@Resource
-	private SysFunctionMapper sysFunctionMapper;
-
+	private SysFunctionMapper sysFunctionMapper;//子类菜单DAO
+	
+/**
+ * 
+ * <p>Title: getAll</p>
+ * <p>Description: </p>
+ * @return
+ * @author(作者):  wyq
+ * @see com.xoa.service.menu.MenuService#getAll()
+ */
 	@Override
 	public List<SysMenu> getAll() {
 		List<SysMenu> list=sysMenuMapper.getDatagrid();
@@ -34,18 +51,27 @@ public class MenuServiceImpl implements MenuService {
 	}
 		return list;
 	}
-
+/**
+ * 
+ * <p>Title: getDadMenu</p>
+ * <p>Description: </p>
+ * @param menuId
+ * @return
+ * @author(作者):  wyq
+ * @see com.xoa.service.menu.MenuService#getDadMenu(java.lang.String)
+ */
 	@Override
-	public List<SysFunction> getDadMenu(String menuId,String id) {
+	public List<SysFunction> getDadMenu(String menuId) {
 		List<SysFunction> list=sysFunctionMapper.getDatagrid(menuId);
-		List<SysFunction> list1=sysFunctionMapper.childMenu(id);
-		if (list1.size()>0) {
-			for (SysFunction sysFunction : list1) {
-				list.add(sysFunction);
-			}
+		for (SysFunction sysFunction : list) {
+			List<SysFunction> list1=sysFunctionMapper.childMenu(sysFunction.getId());
+			sysFunction.setChild(list1);
 		}
 		return list;
 	}
+
+
+
 
 	
 

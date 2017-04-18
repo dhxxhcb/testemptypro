@@ -2,7 +2,7 @@
 <project-module
   type="WEB"
   name="xoa"
-  id="myeclipse.1490683818746"
+  id="myeclipse.1492491718481"
   context-root="/xoa"
   j2ee-spec="6.0"
   archive="xoa.war">

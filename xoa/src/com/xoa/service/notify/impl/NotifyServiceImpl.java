@@ -20,36 +20,23 @@ import com.xoa.model.worldnews.News;
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
-/**
- * 
- * @ClassName (类名):  NotifyServiceImpl
- * @Description(简述): 实现类
- * @author(作者):      张丽军 
- * @date(日期):        2017-4-18 上午11:44:32
- *
- */
+
 @Service
 public class NotifyServiceImpl implements  NotifyService{
-  
+	
 	@Resource
 	private NotifyMapper notifyMapper;
 	
 	@Resource
 	private DepartmentMapper departmentMapper;
 	/**
-	 * 
-	 * <p>Title: selectNotify</p>
-	 * <p>Description: 查询公告信息</p>
-	 * @param maps
-	 * @param page
-	 * @param pageSize
-	 * @param useFlag
-	 * @param name
+	 * 查询公告
+	 * @param maps map条件参数
+	 * @param page 当前页
+	 * @param pageSize 每页显示条数
+	 * @param useFlag 是否开启分页插件
 	 * @return
 	 * @throws Exception
-	 * @author(作者):  张丽军
-	 * @date(日期):        2017-4-18 上午11:44:32
-	 * @see com.xoa.service.notify.NotifyService#selectNotify(java.util.Map, java.lang.Integer, java.lang.Integer, boolean, java.lang.String)
 	 */
 	@Override
 	public List<Notify> selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name)throws Exception {
@@ -75,18 +62,8 @@ public class NotifyServiceImpl implements  NotifyService{
 
 	/**
 	 * 
-	 * <p>Title: unreadNotify</p>
-	 * <p>Description: 未读信息</p>
-	 * @param maps
-	 * @param page
-	 * @param pageSize
-	 * @param useFlag
-	 * @param name
+	 * 未读公告
 	 * @return
-	 * @throws Exception
-	 * @author(作者): 张丽军
-	 * @date(日期):        2017-4-18 上午11:44:32
-	 * @see com.xoa.service.notify.NotifyService#unreadNotify(java.util.Map, java.lang.Integer, java.lang.Integer, boolean, java.lang.String)
 	 */
 
     @Override
@@ -108,15 +85,11 @@ public class NotifyServiceImpl implements  NotifyService{
 }
     
     
-   /**
-    * 
-    * <p>Title: updateNotify</p>
-    * <p>Description:更新公告信息 </p>
-    * @param notify
-    * @author(作者):  张丽军
-    * @date(日期):        2017-4-18 上午11:44:32
-    * @see com.xoa.service.notify.NotifyService#updateNotify(com.xoa.model.notify.Notify)
-    */
+    /**
+     * 
+     * 修改 公告
+     * @return
+     */
     @Transactional
     public void updateNotify(Notify notify) {
 	     if(notify.getNotifyId()!=-1){
@@ -126,15 +99,11 @@ public class NotifyServiceImpl implements  NotifyService{
 	     }
     }
 
-   /**
-    * 
-    * <p>Title: addNotify</p>
-    * <p>Description: 新增公告信息</p>
-    * @param notify
-    * @author(作者):  张丽军
-    * @date(日期):        2017-4-18 上午11:44:32
-    * @see com.xoa.service.notify.NotifyService#addNotify(com.xoa.model.notify.Notify)
-    */
+    /**
+     * 
+     * 保存公告
+     * @return
+     */
 	@Override
 	@Transactional
 	public void addNotify(Notify notify) {
@@ -144,19 +113,7 @@ public class NotifyServiceImpl implements  NotifyService{
 	}
 
 	/**
-	 * 
-	 * <p>Title: queryById</p>
-	 * <p>Description: 查询公告详情</p>
-	 * @param maps
-	 * @param page
-	 * @param pageSize
-	 * @param useFlag
-	 * @param name
-	 * @return
-	 * @throws Exception
-	 * @author(作者):  张丽军
-	 * @date(日期):        2017-4-18 上午11:44:32
-	 * @see com.xoa.service.notify.NotifyService#queryById(java.util.Map, java.lang.Integer, java.lang.Integer, boolean, java.lang.String)
+	 * 已读、未读公告查询
 	 */
 	@Override
 	public Notify queryById(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception {
@@ -186,43 +143,20 @@ public class NotifyServiceImpl implements  NotifyService{
         }
         
 	
-    /**
-     * 
-     * <p>Title: getNotifyById</p>
-     * <p>Description:根据ID查询一条数据 </p>
-     * @param id
-     * @return
-     * @author(作者):  张丽军
-     * @date(日期):        2017-4-18 上午11:44:32
-     * @see com.xoa.service.notify.NotifyService#getNotifyById(java.lang.String)
-     */
+
 	@Override
 	public List<Notify> getNotifyById(String id) {
 		return notifyMapper.getNotifyById(id);
 	}
 	
-	/**
-	 * 
-	 * <p>Title: getNotifyById</p>
-	 * <p>Description: 根据ID查询一条数据</p>
-	 * @param id
-	 * @return
-	 * @author(作者):  张丽军
-	 * @date(日期):        2017-4-18 上午11:44:32
-	 * @see com.xoa.service.notify.NotifyService#getNotifyById(java.lang.Integer)
-	 */
 	@Override
 	public Notify getNotifyById(Integer id) {
 		return notifyMapper.getNotifyById(id);
 	}
 	/**
 	 * 
-	 * <p>Title: delete</p>
-	 * <p>Description: 根据ID删除一条信息</p>
-	 * @param notifyId
-	 * @author(作者):  张丽军
-	 * @date(日期):        2017-4-18 上午11:44:32
-	 * @see com.xoa.service.notify.NotifyService#delete(java.lang.Integer)
+	 *根据ID 删除公告
+	 * @return
 	 */
 	@Override
 	public void delete(Integer notifyId) {
@@ -231,18 +165,7 @@ public class NotifyServiceImpl implements  NotifyService{
 	}
 	
 	/**
-	 * 
-	 * <p>Title: selectNotifyManage</p>
-	 * <p>Description: 查询公告管理信息</p>
-	 * @param maps
-	 * @param page
-	 * @param pageSize
-	 * @param useFlag
-	 * @return
-	 * @throws Exception
-	 * @author(作者):  张丽军
-	 * @date(日期):        2017-4-18 上午11:44:32
-	 * @see com.xoa.service.notify.NotifyService#selectNotifyManage(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
+	 * 公告管理信息查询
 	 */
 	@Override
 	public List<Notify> selectNotifyManage(Map<String, Object> maps,

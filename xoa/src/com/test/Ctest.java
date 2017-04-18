@@ -14,10 +14,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.xoa.model.email.Email;
-import com.xoa.model.email.EmailBody;
+import com.xoa.model.email.EmailModel;
+import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.worldnews.News;
-import com.xoa.service.email.EmailUtilService;
+import com.xoa.service.email.EmailService;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
@@ -29,7 +29,7 @@ public class Ctest {
 //	@Resource  
 //	private NewService newService;
 	@Resource
-	private EmailUtilService emailUtilService;
+	private EmailService emailUtilService;
 	
 //	@Test
 //	public void test() throws Exception {
@@ -69,13 +69,13 @@ public class Ctest {
 		Map<String,Object> maps = new HashMap<String, Object>();
 		maps.put("bodyId", Integer.valueOf("11"));
 		maps.put("fromId", "zhanglan");
-		EmailBody emailBody = emailUtilService.queryById(maps, 1, 5, false);
-		EmailBody emailbo = new EmailBody();
+		EmailBodyModel emailBody = emailUtilService.queryById(maps, 1, 5, false);
+		EmailBodyModel emailbo = new EmailBodyModel();
 		
 		System.out.println("emailBody:"+!StringUtils.isEmpty(emailBody));
 		System.out.println("\n emailbo:"+emailBody.getBodyId());
 		
-		ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "查询成功");
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "查询成功");
 		tojson.setObject(emailBody);
 		
 		System.out.println(JSON.toJSONStringWithDateFormat(tojson,

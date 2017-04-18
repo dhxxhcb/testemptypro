@@ -1,17 +1,17 @@
 package com.xoa.dao.email;
 
-import com.xoa.model.email.EmailBox;
+import com.xoa.model.email.EmailBoxModel;
 
 public interface EmailBoxMapper {
     int deleteByPrimaryKey(Integer boxId);
 
-    int insert(EmailBox record);
+    int insert(EmailBoxModel record);
 
-    int insertSelective(EmailBox record);
+    int insertSelective(EmailBoxModel record);
 
-    EmailBox selectByPrimaryKey(Integer boxId);
+    EmailBoxModel selectByPrimaryKey(Integer boxId);
 
-    int updateByPrimaryKeySelective(EmailBox record);
+    int updateByPrimaryKeySelective(EmailBoxModel record);
 
-    int updateByPrimaryKey(EmailBox record);
+    int updateByPrimaryKey(EmailBoxModel record);
 }
