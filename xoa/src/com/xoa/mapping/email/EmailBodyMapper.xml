@@ -322,7 +322,7 @@
     <!--未读查询-->
 	<select id="selectIsRead" parameterType="Map" resultMap="BaseResultMap">
 		select
-		eb.BODY_ID,eb.SUBJECT, u.USER_NAME, eb.SEND_TIME, e.EMAIL_ID from email_body as eb
+		eb.BODY_ID,eb.SUBJECT, u.USER_NAME, eb.SEND_TIME, e.EMAIL_ID,e.READ_FLAG from email_body as eb
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID where
