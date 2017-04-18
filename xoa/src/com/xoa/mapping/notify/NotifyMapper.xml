@@ -39,76 +39,205 @@
 			javaType="String" />
 		<result column="SUMMARY" property="summary" javaType="String" />
 		
-<association javaType="com.xoa.model.users.Users" property="users">
-<id javaType="int" property="uid" column="UID"/>
-<result javaType="string" property="userId" column="USER_ID"/>
-<result javaType="string" property="userName" column="USER_NAME"/>
-</association>
+       <association javaType="com.xoa.model.users.Users" property="users">
+       <id javaType="int" property="uid" column="UID"/>
+       <result javaType="string" property="userId" column="USER_ID"/>
+       <result javaType="string" property="userName" column="USER_NAME"/>
+       </association>
 	</resultMap>
 
-<!-- 条件查询 -->
-<select id="selectNotify" resultMap="BaseResultMap" parameterType="Map">
- SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.CONTENT,n.FORMAT,u.USER_NAME from notify n,`user` u WHERE n.USER_ID=u.UID 
-
-<where>
-
-<if test="typeId != null and typeId != ''"> and TYPE_ID = #{typeId} </if>
-
-<if test="sendTime != null and sendTime != ''"> and SEND_TIME = #{sendTime} </if>
-
-</where>
-order by NOTIFY_ID desc 
-</select>
-
-	<!-- 根据ID查 -->
-	<select id="getNotifyById" resultMap="BaseResultMap"
+   <!-- 多条件查询 -->
+    <select id="selectNotify" resultMap="BaseResultMap" parameterType="Map">
+       SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.CONTENT,n.FORMAT,u.USER_NAME,n.READERS,n.NOTIFY_ID from notify n,`user` u WHERE n.FROM_ID=u.USER_ID
+    <where>
+      <if test="format != null and format != ''"> FORMAT = #{format} </if>
+      <if test="typeId != null and typeId != ''"> AND TYPE_ID = #{typeId} </if>
+      <if test="subject != null and subject != ''"> AND SUBJECT like CONCAT('%',#{subject},'%') </if>
+      <if test="sendTime != null and sendTime != '' and lastEditTime != null and lastEditTime != ''">
+             AND SEND_TIME between #{sendTime} and #{lastEditTime} </if>
+      <if test="content != null and content != ''"> AND CONTENT like CONCAT('%',#{content},'%') </if>
+      </where>order by NOTIFY_ID DESC 
+   </select>
+   
+    <!-- 查询公告管理信息 -->
+	<select id="selectNotifyManage" parameterType="Map" resultMap="BaseResultMap">
+	select TO_ID,FROM_ID,`SUBJECT`,TYPE_ID,SEND_TIME,FORMAT,PUBLISH,CONTENT,FROM_DEPT FROM notify
+	</select>
+	
+     <!-- 根据ID查一条公告 -->
+    <select id="getNotifyById" resultMap="BaseResultMap"
 		parameterType="String">
 		select * from notify where NOTIFY_ID = #{id}
+    </select>
+    
+    <!-- 查询未读已读信息并返回 列表 -->
+	<select id="unreadNotify" parameterType="Map" resultMap="BaseResultMap">
+		select
+		`SUBJECT`,TYPE_ID,SEND_TIME,FROM_ID,FROM_DEPT,FORMAT,CONTENT,PUBLISH FROM notify
 	</select>
-
-
-	<!-- 保存 -->
+	
+	<!-- 查询所有公告信息 -->
+	<select id="selectAllNotify" parameterType="com.xoa.model.notify.Notify"
+		resultMap="BaseResultMap">
+		SELECT NOTIFY_ID,FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT,
+		SEND_TIME,BEGIN_DATE,END_DATE,ATTACHMENT_ID,
+		ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,
+		TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,AUDIT_DATE,
+		COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME,
+		SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW
+		from notify
+		<if test="start!=null and pagesize!=null">
+			limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+		ORDER BY NOTIFY_ID DESC
+	</select>
+	
+	<!-- 公告详情查询 -->
+	<select id="detailedNotify"  resultMap="BaseResultMap">
+		SELECT NOTIFY_ID,FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT,
+		SEND_TIME,BEGIN_DATE,END_DATE,ATTACHMENT_ID,
+		ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,
+		TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,AUDIT_DATE,
+		COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME,
+		SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW
+		from notify WHERE NOTIFY_ID=#{notifyId}
+	</select>
+	
+	<!-- 保存公告信息 -->
 	<insert id="addNotify" parameterType="com.xoa.model.notify.Notify">
 		insert into notify (FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT,SEND_TIME,BEGIN_DATE,END_DATE,ATTACHMENT_ID,
 		ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,AUDIT_DATE,
 		COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME,SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW)
 		values
-		(#{fromDept,jdbcType=INTEGER},#{fromId,jdbcType=VARCHAR},
-		#{toId,jdbcType=LONGVARCHAR},
-		#{subject,jdbcType=VARCHAR},
-		#{content,jdbcType=LONGVARCHAR},
-		#{sendTime,jdbcType=DATE},
-		#{beginDate,jdbcType=INTEGER},#{endDate,jdbcType=INTEGER},
-		#{attachmentId,jdbcType=LONGVARCHAR},#{attachmentName,jdbcType=LONGVARCHAR},
-		#{readers,jdbcType=LONGVARCHAR},#{print,jdbcType=CHAR},
-		#{privId,jdbcType=LONGVARCHAR},#{userId,jdbcType=LONGVARCHAR},
-		#{typeId,jdbcType=VARCHAR},
-		#{top,jdbcType=VARCHAR},
-		#{topDays,jdbcType=INTEGER},#{format,jdbcType=VARCHAR},
-		#{publish,jdbcType=CHAR},#{auditer,jdbcType=VARCHAR},
-		#{reason,jdbcType=LONGVARCHAR},#{auditDate,jdbcType=DATE},
-		#{compressContent,jdbcType=LONGVARBINARY},#{download,jdbcType=CHAR},
-		#{lastEditor,jdbcType=VARCHAR},#{lastEditTime,jdbcType=DATE},
-		#{subjectColor,jdbcType=VARCHAR},#{summary,jdbcType=LONGVARCHAR},
-		#{keyword,jdbcType=VARCHAR},#{isFw,jdbcType=VARCHAR}
+		(#{fromDept},#{fromId},
+		#{toId},#{subject},
+		#{content},#{sendTime},
+		#{beginDate},#{endDate},
+		#{attachmentId},#{attachmentName},
+		#{readersR},#{print},
+		#{privId},#{userId},
+		#{typeId},#{top},
+		#{topDays},#{format},
+		#{publish},#{auditer},
+		#{reason},#{auditDate},
+		#{compressContent},#{download},
+		#{lastEditor},#{lastEditTime},
+		#{subjectColor},#{summary},
+		#{keyword},#{isFw}
 		)
 	</insert>
 
-	<!--根据Id修改 -->
+	<!--根据Id修改公告 -->
 	<update id="updateNotify" parameterType="com.xoa.model.notify.Notify">
 		update notify
-		set FROM_ID = #{fromId,jdbcType=VARCHAR},
-		FORMAT = #{format,jdbcType=VARCHAR},
-		TYPE_ID = #{typeId,jdbcType=VARCHAR},
-		SUBJECT = #{subject,jdbcType=VARCHAR},
-		SEND_TIME = #{sendTime,jdbcType=DATE},
-		CONTENT = #{content,jdbcType=LONGVARCHAR}
-		where NOTIFY_ID = #{notifyId,jdbcType=INTEGER}
+		<set>
+		<if test="fromId != null">
+				FROM_ID = #{fromId},
+			</if>
+		<if test="fromDept != null">
+				FROM_DEPT = #{fromDept},
+			</if>
+		<if test="toId != null">
+				TO_ID = #{toId},
+			</if>
+		<if test="format != null">
+				FORMAT = #{format},
+			</if>
+		<if test="typeId != null">
+				TYPE_ID = #{typeId},
+			</if>
+		<if test="subject != null">
+				SUBJECT = #{subject},
+			</if>
+		<if test="sendTime != null">
+				SEND_TIME = #{sendTime},
+			</if>
+		<if test="content != null">
+				CONTENT = #{content},
+			</if>
+		<if test="beginDate != null">
+				BEGIN_DATE = #{beginDate},
+			</if>
+		<if test="attachmentId != null">
+				ATTACHMENT_ID = #{attachmentId},
+			</if>
+		<if test="readers != null">
+				READERS = #{readers},
+			</if>
+		<if test="privId != null">
+				PRIV_ID = #{privId},
+			</if>
+		<if test="top != null">
+				TOP = #{top},
+			</if>
+		<if test="topDays != null">
+				TOP_DAYS = #{topDays},
+			</if>
+		<if test="publish != null">
+				PUBLISH = #{publish},
+			</if>
+		<if test="reason != null">
+				REASON = #{reason},
+			</if>
+		<if test="compressContent != null">
+				COMPRESS_CONTENT = #{compressContent},
+			</if>
+		<if test="lastEditor != null">
+				LAST_EDITOR = #{lastEditor},
+			</if>
+		<if test="subjectColor != null">
+				SUBJECT_COLOR = #{subjectColor},
+			</if>
+		<if test="keyword != null">
+				KEY_WORD = #{keyword},
+			</if>
+		<if test="endDate != null">
+				END_DATE = #{endDate},
+			</if>
+		<if test="attachmentName != null">
+				ATTACHMENT_NAME = #{attachmentName},
+			</if>
+		<if test="print != null">
+				PRINT = #{print},
+			</if>
+		<if test="userId != null">
+				USER_ID = #{userId},
+			</if>
+		<if test="auditer != null">
+				AUDITER = #{auditer},
+			</if>
+		<if test="auditDate != null">
+				AUDIT_DATE = #{auditDate},
+			</if>
+			<if test="download != null">
+				DOWNLOAD = #{download},
+			</if>
+			<if test="lastEditTime != null">
+				LAST_EDIT_TIME = #{lastEditTime},
+			</if>
+			<if test="summary != null">
+				SUMMARY = #{summary},
+			</if>
+			<if test="isFw != null">
+				IS_FW = #{isFw},
+			</if>
+		
+		where NOTIFY_ID = #{notifyId}
+		</set>
 	</update>
-
+    <!-- 根据点击数查询已读未读信息 -->
+    <update id="updateclickNotify"  parameterType="com.xoa.model.notify.Notify">
+	update notify set CLICK_COUNT = #{clickCount},READERS=#{readers} where NOTIFY_ID = #{notifyId}
+	</update>
+	
+	<update id="updateclickCount"  parameterType="com.xoa.model.notify.Notify">
+	update notify set CLICK_COUNT = #{clickCount} where NOTIFY_ID = #{notifyId}
+	</update>
+	
 	<!-- 根据id删除 -->
 	<delete id="deleteById" parameterType="String">
 		delete from notify where NOTIFY_ID = #{id}
 	</delete>
+
 
 </mapper>

@@ -22,7 +22,7 @@ public class TreeNode {
 	
 	private boolean checked; //
 	
-	private String parentId;
+	private String parentId;//父节点ID
 	
 	private Map<String,Object> attributes = new HashMap<String, Object>();
 	

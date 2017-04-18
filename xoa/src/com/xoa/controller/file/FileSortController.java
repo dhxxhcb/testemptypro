@@ -1,5 +1,6 @@
 package com.xoa.controller.file;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
+import com.sun.org.apache.regexp.internal.recompile;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.model.file.File_Content;
@@ -26,6 +29,7 @@ import com.xoa.service.file.File_ContentService;
 import com.xoa.service.file.File_SortService;
 import com.xoa.util.ToJson;
 import com.xoa.util.treeUtil.FileSortTreeUtil;
+import com.xoa.util.treeUtil.HtmlUtil;
 import com.xoa.util.treeUtil.TreeNode;
 
 
@@ -40,30 +44,82 @@ public class FileSortController {
     @Resource
     EnclosureService enclosureService;
     
-	@RequestMapping(value="/showFile",produces={"application/json;charset=UTF-8"})
+    /**
+	 *文件柜跳转页面
+	 * @author 杨  胜
+	 * @return 
+	 */
+	@RequestMapping(value="/fileHome")
+	public String fileHome() {
+		loger.info("--------fileHome-------");
+		return "app/file/fileHome";
+	}
+    
+	 /**
+		 *文件柜跳转页面
+		 * @author 杨  胜
+		 * @return 
+		 */
+		@RequestMapping(value="/topFrame")
+		public String topFrame() {
+			loger.info("--------topFrame-------");
+			return "app/file/fileTop";
+		}
+	
+    /**
+     *将目录树转换成json数据通过HtmlUtil.writerJson(response, treeList)写到前台页面
+     *@author 杨  胜
+     * @param file
+     * @param response
+     */
+	@RequestMapping(value="/showFile")
 	@ResponseBody
-	public String showFile(File_Sort file) {
-		loger.info("加载文件柜");
-		List<File_Sort> listTree=file_SortService.getFile_Sorts(file);
-		   
-		return "";
-	    //JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss");
+	public void showFile(File_Sort file,HttpServletResponse response) {
+		loger.info("--------showFile-------");
+		List<TreeNode> treeList=treeMenu(file.getSort_id());
+		HtmlUtil.writerJson(response, treeList);
 	}
 	/**
-	 * 构建树形菜单
-	 * 
+	 *目录树跳转页面
+	 * @author 杨  胜
+	 * @return 
+	 */
+	@RequestMapping(value="/fileIndex")
+	public String fileIndex() {
+		loger.info("--------fileIndex-------");
+		return "app/file/showFile";
+	}
+	/**
+	 * 进入文件柜主页面
+	 * @author 杨  胜
 	 * @return
 	 */
-	public List<TreeNode> treeMenu(String sortid) {
-		List<File_Sort> rootMenus = file_SortService.getRootTree(sortid);// 根节点
-		List<File_Sort> childMenus=null;
+	@RequestMapping(value="/fileHomeOne")
+	public String fileHomeOne() {
+		loger.info("--------fileHomeOne-------");
+		return "app/file/fileHomeOne";
+	}
+	/**
+	 * 构建树形目录信息
+	 * @author 杨  胜
+	 * @param sortid 传入父节点获取
+	 * @return
+	 */
+	public List<TreeNode> treeMenu(int sortid) {
+		List<File_Sort> rootTree = file_SortService.getRootTree(sortid);// 根节点
+		List<File_Sort> childTree=null;
 		//取子节点
-		childMenus= file_SortService.getChildTree(sortid);// 子节点
+		childTree= file_SortService.getChildTree(sortid);// 子节点
 		//构造方法传值
-		FileSortTreeUtil util = new FileSortTreeUtil(rootMenus, childMenus);
+		FileSortTreeUtil util = new FileSortTreeUtil(rootTree, childTree);
 		return util.getTreeNode();
 	}
-	
+	/**
+	 * 输出到页面File_Sort集合输出跳转并展示到页面
+	 * @author 杨  胜
+	 * @param file 
+	 * @return ("app/file/showFile",model)
+	 */
 	@RequestMapping("/showFiles")
 	public ModelAndView showFiles(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
@@ -73,6 +129,12 @@ public class FileSortController {
 		ModelAndView modelAndView=new ModelAndView("app/file/showFile",model);
 		return modelAndView;
 	}
+	/**
+	 * 获取根文件夹
+	 * @author 杨  胜
+	 * @param file
+	 * @return ("app/file/fileSet",model)
+	 */
 	@RequestMapping("/showFileBySort_id")
 	public ModelAndView showFileBySort_id(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
@@ -83,8 +145,14 @@ public class FileSortController {
 		ModelAndView modelAndView=new ModelAndView("app/file/fileSet",model);
 		return modelAndView;
 	}
+	/**
+	 * 添加文件夹，通过判断字段，重复使用
+	 * @param file 
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping("/fileAdd")
-	public ModelAndView fileAdd(File_Sort file){
+	public ModelAndView fileAdd(File_Sort file) throws UnsupportedEncodingException{
 		//"redirect:/showFile"   "file/showFile"
 		Map<String, Object> model =null;
 		ModelAndView modelAndView=null;
@@ -93,12 +161,21 @@ public class FileSortController {
 			modelAndView=new ModelAndView("app/file/addFile",model);
 			return modelAndView;
 		}
+		System.out.println("--前--------------"+file.getSort_name());
+			String sname=new String(file.getSort_name().getBytes("ISO-8859-1"),"utf-8");
+		System.out.println("--中--------------"+sname);
+			file.setSort_name(sname);
+		System.out.println("--后--------------"+file.getSort_name());
 		int resultAdd=file_SortService.addFile_Sorts(file);
 		System.out.println("添加文件影响行--------"+resultAdd);
 		modelAndView=new ModelAndView("redirect:/showFiles",model);
 		return modelAndView;
 	}
-	
+	/**
+	 * 文件夹克隆
+	 * @param file
+	 * @return
+	 */
 	@RequestMapping("/fileClone")
 	public ModelAndView fileClone(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
@@ -108,7 +185,11 @@ public class FileSortController {
 		
 		return modelAndView;
 	}
-	
+	/**
+	 * 编辑文件夹信息传值跳转
+	 * @param file
+	 * @return
+	 */
 	@RequestMapping("/fileEdit")
 	public ModelAndView fileEdit(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
@@ -121,7 +202,11 @@ public class FileSortController {
 		ModelAndView modelAndView=new ModelAndView("app/file/fileEdit",fileEdit);
 		return modelAndView;
 	}
-	
+	/**
+	 * 修改文件夹信息
+	 * @param file
+	 * @return
+	 */
 	@RequestMapping("/fileUpdate")
 	public ModelAndView  fileUpdate(File_Sort file){
 		//"redirect:/showFile"   "file/showFile"
@@ -133,17 +218,19 @@ public class FileSortController {
 	}
 	
 	/**
-	 * @author 杨  胜
 	 * 删除目录
+	 * @author 杨  胜
 	 * @param file
-	 * @return
+	 * @return modelAndView
 	 */
 	@RequestMapping("/fileDelete")
 	public ModelAndView fileDelete(HttpServletRequest request,File_Sort file){
 		
 		//所有删除文件夹
 		List<File_Sort> childrenList=getfilesDelete(file);
+		//将父节点加入，父节点下可能也有文件
 		childrenList.add(file);
+		//文件集合
 		List<File_Content> fileContentList=new ArrayList<File_Content>();
 		//
 	   for(File_Sort f : childrenList){
@@ -170,7 +257,7 @@ public class FileSortController {
 	 * @author 杨  胜
 	 * @category 递归循环获取文件夹对象
 	 * @param file
-	 * @return
+	 * @return parentList
 	 */
 	public List<File_Sort> getfilesDelete(File_Sort file){
 	    //传值查询子节点数据

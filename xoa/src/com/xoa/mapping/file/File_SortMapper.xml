@@ -144,12 +144,12 @@
 	</delete>
 	
 	<select id="getRootTree" parameterType="int" resultMap="file_SortResultMap">
-	select * from file_sort SORT_PARENT=#{sortid};
+	select * from file_sort where SORT_PARENT=#{sortid};
 	</select>
 	
 	<select id="getChildTree" parameterType="int" resultMap="file_SortResultMap">
 	<![CDATA[
-		select * from file_sort SORT_PARENT<>#{sortid};
+		select * from file_sort  where SORT_PARENT<>#{sortid};
 		]]>
 	</select>
 </mapper>

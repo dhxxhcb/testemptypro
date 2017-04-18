@@ -18,7 +18,7 @@ $("#fileTree").tree({
 </script> -->
 </head>
 <FRAMESET id="main_parent" border="1" frameSpacing="1" rows="60,*" frameBorder="0" >
-<FRAME name=topFrame src="${pageContext.request.contextPath}/file/topFrame" noResize scrolling=no>
-<FRAME name=downFrame src="${pageContext.request.contextPath}/file/main" noResize scrolling=no>
+<FRAME name=topFrame src="${pageContext.request.contextPath}/topFrame" noResize scrolling=no>
+<FRAME name=downFrame src="${pageContext.request.contextPath}/fileHomeOne" noResize scrolling=no>
 </FRAMESET>
 </html>

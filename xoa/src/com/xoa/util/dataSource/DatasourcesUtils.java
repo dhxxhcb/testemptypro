@@ -2,8 +2,10 @@ package com.xoa.util.dataSource;
 
 /**
  * 
- * @author zy
- * @version 1.0
+ * @ClassName (类名):  DatasourcesUtils
+ * @Description(简述): 数据源获取
+ * @author(作者):      zy
+ * @date(日期):        2017-4-17 下午2:35:03
  *
  */
 public class DatasourcesUtils {
@@ -19,26 +21,39 @@ public class DatasourcesUtils {
 	private static final ThreadLocal<String> contextHolder= new ThreadLocal<String>();
 	
 	/**
-	 * 设置数据源名称
-	 * @Title: setDataSources 
-	 * @param datasourceName
+	 * 
+	 * @Title: setDataSources
+	 * @Description: 设置数据源名称
+	 * @author(作者):      zy
+	 * @param: @param datasourceName   数据源名称
+	 * @return: void   
+	 * @throws
 	 */
 	public static void setDataSources (String datasourceName) {
 		contextHolder.set(datasourceName);
 	}
 	
 	/**
-	 * 获取连接类型
-	 * @Title: getDataSourceType 
-	 * @return
+	 * 
+	 * @Title: getDataSourceType
+	 * @Description: 获取连接类型
+	 * @author(作者):      zy
+	 * @param: @return   
+	 * @return: String   字符串
+	 * @throws
 	 */
 	public static String getDataSourceType () {
 		return contextHolder.get();
 	}
 	
 	/**
-	 * 清除
+	 * 
 	 * @Title: clear
+	 * @Description: 清除
+	 * @author(作者):      zy
+	 * @param:    
+	 * @return: void   
+	 * @throws
 	 */
 	public static void clear(){
 		contextHolder.remove();

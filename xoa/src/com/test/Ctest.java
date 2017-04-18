@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import com.alibaba.fastjson.JSON;
@@ -30,50 +31,67 @@ public class Ctest {
 	@Resource
 	private EmailUtilService emailUtilService;
 	
-	@Test
-	public void test() throws Exception {
-		Integer page = 1;
-		Integer pageSize = 5;
-		boolean useFlag = true;
-		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("fromId","zhanglan");
-		maps.put("sendFlag","1");
-		maps.put("deleteFlag","");
-//			maps.put("startTime", DateFormat.getTime("2015-10-10 10:10:10"));
-//			maps.put("endTime", DateFormat.getTime("2017-04-12 10:10:10"));
-//		maps.put("readFlag","");
-//		maps.put("boxId", "");
-//		maps.put("sign","");
-//		maps.put("keyword","");
-		List<EmailBody> list = emailUtilService.selectEmail(maps, page, pageSize,
-				useFlag);
-		int listLength = list.size();
-		if (listLength > 0) {
-			ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "查询成功");
-			tojson.setObj(list);
-			System.out.println(JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss"));
-		} else {
-			ToJson<EmailBody> tojson = new ToJson<EmailBody>(1, "查询失败");
-			System.out.println(JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss"));
-		}
-	
-	}
-	
-	
 //	@Test
 //	public void test() throws Exception {
-////		
-////		 Map<String,Object> maps = new HashMap<String, Object>();
-////	     maps.put("typeId", null);
-////	     maps.put("newsTime", null);
-////	    List<News> page = newService.selectNews(maps, 1, 5, true);
-////		System.out.println(JSON.toJSONStringWithDateFormat(page, "yyyy-MM-dd HH:mm:ss"));
+//		Integer page = 1;
+//		Integer pageSize = 5;
+//		boolean useFlag = true;
+//		Map<String, Object> maps = new HashMap<String, Object>();
+//		maps.put("fromId","zhanglan");
+//		maps.put("sendFlag","1");
+//		maps.put("firstFlag","");
+//		maps.put("secondFlag","");
+////			maps.put("startTime", DateFormat.getTime("2015-10-10 10:10:10"));
+////			maps.put("endTime", DateFormat.getTime("2017-04-12 10:10:10"));
+////		maps.put("readFlag","");
+////		maps.put("boxId", "");
+////		maps.put("sign","");
+////		maps.put("keyword","");
+//		List<EmailBody> list = emailUtilService.selectEmail(maps, page, pageSize,
+//				useFlag);
+//		int listLength = list.size();
+//		if (listLength > 0) {
+//			ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "查询成功");
+//			tojson.setObj(list);
+//			System.out.println(JSON.toJSONStringWithDateFormat(tojson,
+//					"yyyy-MM-dd HH:mm:ss"));
+//		} else {
+//			ToJson<EmailBody> tojson = new ToJson<EmailBody>(1, "查询失败");
+//			System.out.println(JSON.toJSONStringWithDateFormat(tojson,
+//					"yyyy-MM-dd HH:mm:ss"));
+//		}
+//	
+//	}
+//	
+	
+	@Test
+	public void test() throws Exception {
+		Map<String,Object> maps = new HashMap<String, Object>();
+		maps.put("bodyId", Integer.valueOf("11"));
+		maps.put("fromId", "zhanglan");
+		EmailBody emailBody = emailUtilService.queryById(maps, 1, 5, false);
+		EmailBody emailbo = new EmailBody();
+		
+		System.out.println("emailBody:"+!StringUtils.isEmpty(emailBody));
+		System.out.println("\n emailbo:"+emailBody.getBodyId());
+		
+		ToJson<EmailBody> tojson = new ToJson<EmailBody>(0, "查询成功");
+		tojson.setObject(emailBody);
+		
+		System.out.println(JSON.toJSONStringWithDateFormat(tojson,
+					"yyyy-MM-dd HH:mm:ss"));
+		
+		
 //		
-//		
+//		 Map<String,Object> maps = new HashMap<String, Object>();
+//	     maps.put("typeId", null);
+//	     maps.put("newsTime", null);
+//	    List<News> page = newService.selectNews(maps, 1, 5, true);
+//		System.out.println(JSON.toJSONStringWithDateFormat(page, "yyyy-MM-dd HH:mm:ss"));
+		
+		
 //		EmailBody emailBody = new EmailBody();
-//		emailBody.setBodyId(17);
+//		emailBody.setBodyId(18);
 //		emailBody.setFromId("admin");
 //		emailBody.setToId2(
 //				"liumingcai,liuyingwu,wangyun,changbai,chenchangliu,chenqiang,lichang,liuyongkang,liuna,wangde,litian,wuhai,lihai,zhangshan,");
@@ -131,7 +149,7 @@ public class Ctest {
 //		// 显示不能为空
 //		email.setSign("");
 //		emailUtilService.sendEmail(emailBody, email);
-//		
-//	}
+		
+	}
 
 }

@@ -12,30 +12,32 @@
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" type="text/css" href="/ui/easyui/easyui.css">
-<link rel="stylesheet" type="text/css" href="/ui/easyui/icon.css">
-<script type="text/javascript" src="/ui/easyui/jquery.min.js"></script>
-<script type="text/javascript" src="/ui/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="/ui/easyui/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
+<link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
+<script type="text/javascript" src="js/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/easyui/easyui-lang-zh_CN.js"></script>
 <!-- <script type="text/javascript" src="/ui/easyui/tree.js"></script> -->
 <script type="text/javascript">
-
-$(document).ready(function(){
-alert("进来了"); 
-$('#tree').tree({   
-    url: '${pageContext.request.contextPath }/showFile', 
-       
-});  
-
-}); 
-
+$(function(){
+alert("我进来了!");
+$("#fileTree").tree({
+	onClick : function(node){
+		alert(node.id);  // 在用户点击的时候提示
+		$.POST("/",{"id": node.id});
+	}
+});
+});
 </script>
 </head>
-<body>
- <ul id="tree" class="easyui-tree" style="width: 180px;">   
- </ul>
- <br>
- <ul class="easyui-tree" data-options="url:'${pageContext.request.contextPath }/showFile'">
- </ul>
+<body style="margin: 0">
+<TABLE border=0 width="700">
+	<TR>
+	 <TD width=340px align=left valign=top>
+      <ul id="fileTree" class="easyui-tree" data-options="url:'showFile',method:'get',animate:true,dnd:true">
+      </ul>
+    </TD>
+ </TR>
+</TABLE>
 </body>
 </html>

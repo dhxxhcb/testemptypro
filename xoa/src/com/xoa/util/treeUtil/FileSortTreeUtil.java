@@ -67,9 +67,8 @@ public class FileSortTreeUtil {
 	 */
 	private void addChlidNodes(TreeNode rootNode){
 		List<TreeNode> childNodes = new ArrayList<TreeNode>();  
-		boolean flag=false;
 		for(File_Sort fs: childTree){
-			if(rootNode.getDataId().equals(fs.getSort_parent())){
+			if(rootNode.getDataId().equals(String.valueOf(fs.getSort_parent()))){
 				TreeNode node = RootToNode(fs);
 				childNodes.add(node);
 				addChlidNodes(node);//如果本层找到子节点，则继续遍历下一子节点
