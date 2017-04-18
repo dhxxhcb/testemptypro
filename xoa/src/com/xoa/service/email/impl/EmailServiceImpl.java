@@ -51,21 +51,28 @@ public class EmailServiceImpl implements EmailService {
 			String[] toID2 = toID.split(",");
 			for (int i = 0; i < toID2.length; i++) {
 				email.setToId(toID2[i]);
-				email.setSign(email.getSign());
-				email.setReceipt(email.getReceipt());
-				email.setReadFlag(email.getReadFlag());
-				email.setIsR(email.getIsR());
-				email.setIsF(email.getIsF());
+				email.setSign("0");
+				email.setReceipt("0");
+				email.setReadFlag("0");
+				email.setIsR("");
+				email.setIsF("");
 				email.setEmailId(email.getEmailId());
-				email.setEmailBody(emailBody);
-				email.setDeleteFlag(email.getDeleteFlag());
-				email.setBoxId(email.getBoxId());
+				email.setDeleteFlag("0");
+				email.setBoxId(0);
 				email.setBodyId(emailBody.getBodyId());
 				emailMapper.save(email);
 			}
 		}
 	}
 
+	//草稿箱
+	@Override
+	public void saveEmail(EmailBodyModel emailBody) {
+		emailBodyMapper.save(emailBody);
+	}
+
+	
+	
 	/** 
 	 *  查询邮件
 	 * <p>Title: selectEmail</p>

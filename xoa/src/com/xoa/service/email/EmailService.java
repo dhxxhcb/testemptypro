@@ -19,6 +19,10 @@ public interface EmailService {
 	 */
 	@DynDatasource
 	public void sendEmail(EmailBodyModel emailBody, EmailModel email);
+	
+	//草稿箱
+	@DynDatasource
+	public void saveEmail(EmailBodyModel emailBody);
 
 	/**
 	 * 邮件查询

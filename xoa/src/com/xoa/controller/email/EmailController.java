@@ -128,6 +128,7 @@ public class EmailController {
 		}
 	}
 
+	//草稿箱
 	@RequestMapping(value = "/saveEmail", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String saveEmailBody(
@@ -162,8 +163,8 @@ public class EmailController {
 			@RequestParam(value = "secretToWebmail", required = false) String secretToWebmail,
 			@RequestParam(value = "praise", required = false) String praise) {
 		try {
-				emailService.sendEmail(this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, new Date(), "0", secretToId, attachmentId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
-						, new EmailModel());
+				emailService.saveEmail(this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, new Date(), "0", secretToId, attachmentId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
+						);
 			return JSON.toJSONStringWithDateFormat(new ToJson<EmailBodyModel>(0,
 					"ok"), "yyyy-MM-dd HH:mm:ss");
 		} catch (Exception e) {
@@ -172,7 +173,6 @@ public class EmailController {
 					"errorSendEmail"), "yyyy-MM-dd HH:mm:ss");
 		}
 	}
-	
 	
 	
 	/**
@@ -277,8 +277,6 @@ public class EmailController {
 	@RequestMapping(value = "/isRead", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String isRead(HttpServletRequest request) throws Exception {
-		String flag = ServletRequestUtils.getStringParameter(request,
-				"flag");
 		String userId = ServletRequestUtils.getStringParameter(request,
 				"userID");
 		Integer bodyId = ServletRequestUtils.getIntParameter(request, "bodyId");
@@ -416,7 +414,7 @@ public class EmailController {
 			 String copyToWebmail,String secretToWebmail,String praise){
 		EmailBodyModel emailBody = new EmailBodyModel();
 		emailBody.setFromId(this.returnValue(fromId));
-		emailBody.setToId2(toId2);
+		emailBody.setToId2(this.returnValue(toId2));
 		emailBody.setCopyToId(this.returnValue(copyToId));
 		emailBody.setSecretToId(this.returnValue(secretToId));
 		emailBody.setSubject(this.returnValue(subject));
