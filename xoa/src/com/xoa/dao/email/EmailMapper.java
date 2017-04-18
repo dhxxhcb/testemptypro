@@ -8,4 +8,6 @@ public interface EmailMapper extends BaseMapper<EmailModel>{
 //   public int insert(Email email);
 
    public int insertSelective(EmailModel record);
+   
+   public void updateIsRead(EmailModel email);
 }
