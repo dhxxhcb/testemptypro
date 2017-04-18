@@ -2,19 +2,26 @@ package com.xoa.util.treeUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xoa.model.file.File_Sort;
+import com.xoa.model.file.FileSortModel;
 
 
-
+/**
+ * 
+ * @ClassName (类名):  FileSortTreeUtil
+ * @Description(简述): 生成树结构工具类
+ * @author(作者):      ys
+ * @date(日期):        2017-4-17 下午4:32:41
+ *
+ */
 public class FileSortTreeUtil {
 	private final static String MENU_ID = "";
 	
 	
 	
-	List<File_Sort> rootTree;
-	List<File_Sort> childTree;
+	List<FileSortModel> rootTree;
+	List<FileSortModel> childTree;
 	
-	public FileSortTreeUtil(List<File_Sort> rootTree,List<File_Sort> childTree){
+	public FileSortTreeUtil(List<FileSortModel> rootTree,List<FileSortModel> childTree){
 		this.rootTree = rootTree;
 		this.childTree = childTree;
 	}  
@@ -31,7 +38,7 @@ public class FileSortTreeUtil {
       */
 	private List<TreeNode>  getRootNodes(){
 		List<TreeNode> rootNodes = new ArrayList<TreeNode>();
-		for(File_Sort fs : rootTree){
+		for(FileSortModel fs : rootTree){
 			TreeNode node = RootToNode(fs);
 			if(node != null){
 				addChlidNodes(node);
@@ -46,17 +53,17 @@ public class FileSortTreeUtil {
 	 * @param menu
 	 * @return
 	 */
-	private TreeNode RootToNode(File_Sort fs){
+	private TreeNode RootToNode(FileSortModel fs){
 		if(fs == null){
 			return null;
 		}
 		TreeNode node = new TreeNode();
-		node.setId(String.valueOf(fs.getSort_id()));
-		node.setDataId(String.valueOf(fs.getSort_id()));
-		node.setText(fs.getSort_name());
-		node.setParentId(String.valueOf(fs.getSort_parent()));
+		node.setId(String.valueOf(fs.getSortId()));
+		node.setDataId(String.valueOf(fs.getSortId()));
+		node.setText(fs.getSortName());
+		node.setParentId(String.valueOf(fs.getSortParent()));
 		node.getAttributes().put("type", "0");
-		node.getAttributes().put("id", fs.getSort_id());
+		node.getAttributes().put("id", fs.getSortId());
 		return node;
 	}
 	
@@ -67,8 +74,8 @@ public class FileSortTreeUtil {
 	 */
 	private void addChlidNodes(TreeNode rootNode){
 		List<TreeNode> childNodes = new ArrayList<TreeNode>();  
-		for(File_Sort fs: childTree){
-			if(rootNode.getDataId().equals(String.valueOf(fs.getSort_parent()))){
+		for(FileSortModel fs: childTree){
+			if(rootNode.getDataId().equals(String.valueOf(fs.getSortParent()))){
 				TreeNode node = RootToNode(fs);
 				childNodes.add(node);
 				addChlidNodes(node);//如果本层找到子节点，则继续遍历下一子节点

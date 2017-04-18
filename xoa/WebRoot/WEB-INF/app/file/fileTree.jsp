@@ -1,18 +1,21 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+	pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <title>My JSP 'showFile.jsp' starting page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+<head>
+<base href="<%=basePath%>">
+<title>My JSP 'showFile.jsp' starting page</title>
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <script type="text/javascript" src="js/easyui/jquery.min.js"></script>
@@ -32,13 +35,13 @@ $("#fileTree").tree({
 </script>
 </head>
 <body style="margin: 0">
-<TABLE border=0 width="700">
-	<TR>
-	 <TD width=340px align=left valign=top>
-      <ul id="fileTree" class="easyui-tree" data-options="url:'showFile',method:'get',animate:true,dnd:true">
-      </ul>
-    </TD>
- </TR>
-</TABLE>
+	<TABLE border=0 width="700">
+		<TR>
+			<TD width=340px align=left valign=top>
+				<ul id="fileTree" class="easyui-tree"
+					data-options="url:'file/writeTree',method:'get',animate:true">
+				</ul></TD>
+		</TR>
+	</TABLE>
 </body>
 </html>

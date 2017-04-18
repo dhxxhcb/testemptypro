@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,14 +28,17 @@ $("#fileTree").tree({
 
 </head>
 
-<FRAMESET id="main" border="0" frameSpacing="0" frameBorder="0" cols="30%,*">
+<FRAMESET id="main" border="0" frameSpacing="0" frameBorder="0"
+	cols="30%,*">
 
 
-<frame id="tree" src="${pageContext.request.contextPath}/fileIndex"  marginwidth=0 marginheight=0  designMode='on'  >
+	<frame id="tree" src="${pageContext.request.contextPath}/file/tree"
+		marginwidth=0 marginheight=0 designMode='on'>
 
 
 
-<frame name="mainFrame" src="${pageContext.request.contextPath}/fileContent">
+	<frame name="mainFrame"
+		src="${pageContext.request.contextPath}/file/fileContent">
 </FRAMESET>
 
 </html>

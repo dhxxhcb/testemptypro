@@ -5,8 +5,11 @@ import java.util.Map;
 
 
 /**
- * 树形结构类
- * @author 杨  胜
+ * 
+ * @ClassName (类名):  TreeNode
+ * @Description(简述): 树形结构类
+ * @author(作者):      ys
+ * @date(日期):        2017-4-17 下午4:34:07
  *
  */
 public class TreeNode {
