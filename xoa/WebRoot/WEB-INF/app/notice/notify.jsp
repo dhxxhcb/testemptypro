@@ -286,7 +286,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        <input type="text" name="CONTENT" size="33" maxlength="200" class="BigInput" value="">
 			      </td>
 			    </tr>
-			    <tr>
+			   <!--  <tr>
 			      <td nowrap="" class="TableData" width="100"> 生效状态：</td>
 			      <td class="TableData">
 			      <select name="STAT" class="BigSelect">
@@ -296,15 +296,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        <option value="3">已终止</option>
 			      </select>
 			      </td>
-			    </tr>
-			    <tr>
+			    </tr> -->
+			   <!--  <tr>
 			      <td nowrap="" class="TableData" width="100"> 操作：</td>
 			      <td class="TableData">
 			        <input type="radio" name="OPERATION" id="OPERATION1" value="1" checked=""><label for="OPERATION1">查询</label>
 			        <input type="radio" name="OPERATION" id="OPERATION2" value="2"><label for="OPERATION2">删除</label>
 			        <input type="radio" name="OPERATION" id="OPERATION3" value="3"><label for="OPERATION3">导出excel文件</label>
 			      </td>
-			    </tr>
+			    </tr> -->
 			    <tr align="center" class="TableControl">
 			      <td colspan="2" nowrap="">
 			        <input type="submit" value="确定" class="BigButton">&nbsp;&nbsp;
