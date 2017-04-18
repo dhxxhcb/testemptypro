@@ -47,7 +47,7 @@ public class UserPrivController {
 		try {
 			usersPrivService.insertSelective(userPriv);
             json.setObject(userPriv);
-            json.setMsg("新增角色成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -68,11 +68,11 @@ public class UserPrivController {
 	@RequestMapping(value = "/userPriv/deletePriv",method = RequestMethod.POST)
     public ToJson<UserPriv> deletePriv(UserPriv userPriv) {
 		ToJson<UserPriv> json=new ToJson<UserPriv>(0, null);
-		loger.debug("传过来的ID为"+userPriv.getUserPriv());
+		loger.debug("ID"+userPriv.getUserPriv());
 		try {
 			usersPrivService.deleteByPrimaryKey(userPriv.getUserPriv());
             json.setObject(userPriv);
-            json.setMsg("角色删除成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -96,7 +96,7 @@ public class UserPrivController {
 		try {
 			UserPriv priv=usersPrivService.selectByPrimaryKey(userPriv);
 			json.setObject(priv);;
-            json.setMsg("查询用户成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -124,7 +124,7 @@ public class UserPrivController {
 		try {
 			List<UserPriv> list=usersPrivService.getAllPriv(maps,page,pageSize,useFlag);  
 			json.setObj(list);
-            json.setMsg("所有角色查询成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
@@ -149,7 +149,7 @@ public class UserPrivController {
 		try {
 			List<UserPriv> list=usersPrivService.getPrivByMany(userPriv);
             json.setObj(list);
-            json.setMsg("多条件查询成功！");
+            json.setMsg("OK");
             json.setFlag(true);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());

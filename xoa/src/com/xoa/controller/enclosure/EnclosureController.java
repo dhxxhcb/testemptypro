@@ -6,9 +6,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,8 +28,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.enclosure.EnclosureService;
 
+ /**
+ * @ClassName (类名):  EnclosureController
+ * @Description(简述): TODO
+ * @author(作者):      zlf
+ * @date(日期):        2017年4月18日 下午1:47:16
+ *
+ */
 @Controller
 @Scope(value="prototype")
 public class EnclosureController {
@@ -33,10 +46,17 @@ public class EnclosureController {
 	@Resource
 	private EnclosureService enclosureService;
 	
+	
 	/**
-	 * 单文件上传
-	 * @return 
-	 * @throws Exception 
+	 * @Title: upload
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param file
+	 * @param: @param request
+	 * @param: @param model
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 	@RequestMapping(value = "/upload")  
     public String upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {  
@@ -50,14 +70,7 @@ public class EnclosureController {
         model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName);
         return "login/logins";  
     }  
-	
-	
-	/**
-	 * 多文件上传
-	 * @return 
-	 * @throws Exception 
-	 */
-	@RequestMapping(value = "/uploadbatch")  
+	/*@RequestMapping(value = "/uploadbatch")  
     public String upload(HttpServletRequest request,
 			HttpServletResponse response, ModelMap mmMap) {  
 		
@@ -91,12 +104,97 @@ public class EnclosureController {
               
         }
         return "login/logins";  
-	}
+	}*/
+	
+	
+	    @RequestMapping("/uploadbatch")  
+	    public String threeFileUpload(  
+	            @RequestParam("file") MultipartFile[] files,HttpServletRequest request) {  
+	      
+	        List<Attachment> list = new ArrayList<Attachment>();
+	        //获得公司名
+	        String company="xoa111";
+	        //获得模块名
+	        String module=com.xoa.util.ModuleEnum.EMAIL.getName();
+	        //当前年月
+	        String ym = new SimpleDateFormat("yyMM").format(new Date());
+	        // 获得项目的路径  
+	        ServletContext sc = request.getSession().getServletContext();  
+	        // 上传位置  
+	        String basePath = sc.getRealPath("/upload"); // 设定文件保存的目录  
+	        
+	    	String path=basePath+"/"+company+"/"+module+"/"+ym;	
+	        //File f = new File(path);  
+	       /* if (!f.exists())  
+	            f.mkdirs();*/  	     	      
+	        for (int i = 0; i < files.length; i++) {  
+	        	MultipartFile file = files[i];
+	            // 获得原始文件名  
+	        	String fileName=file.getOriginalFilename();	
+	            //String fileName = files[i].getOriginalFilename();  
+	            System.out.println("原始文件名:" + fileName);  
+	            //当前时间戳
+		    	  String attachDate = new SimpleDateFormat("MMddHHmmss").format(new Date());
+		    	  int attachID=Integer.parseInt(attachDate);
+		    	  String newFileName=Integer.toString(attachID)+"."+fileName; 
+	            if (!file.isEmpty()) {  
+	            	try{
+	            	  if(!new File(path, newFileName).exists()){  
+	    	    		  new File(path, newFileName).mkdirs();  
+                       }  
+	    	        // 转存文件 
+	            file.transferTo(new File(path,newFileName));
+	                } catch (Exception e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            
+	            
+	            byte a=0;
+	            byte b=2;
+	            
+	          //获得模块名
+		        int moduleID=com.xoa.util.ModuleEnum.EMAIL.getIndex();
+	            byte mid=(byte)moduleID;
+	            Attachment attachment=new Attachment();
+	            attachment.setAttachId(attachID);
+	            attachment.setModule(mid);
+	            attachment.setAttachFile(fileName);
+	            attachment.setAttachName(fileName);
+	            attachment.setYm(ym);
+	            attachment.setAttachSign(new Long(0));
+	            attachment.setDelFlag(a);
+	            attachment.setPosition(b);
+	            list.add(attachment);
+	            enclosureService.saveAttachment(attachment);
+	            //attachmentMapper.insertSelective(attachment);
+	            
+	            //System.out.println("上传文件到:" + path + newFileName);  
+	            //list.add(path + newFileName);  
+	            
+	      
+	        } 
+
+	        // 保存文件地址，用于JSP页面回显  
+	        //model.addAttribute("fileList", list);  
+	        return "";  
+	      
+	    } 
+	
+	
+	
+	
 	
 	/**
-	 * 下载
-	 * @return 
-	 * @throws Exception 
+	 * @Title: download
+	 * @Description: TODO
+	 * @author(作者):      zlf
+	 * @param: @param filename
+	 * @param: @param response
+	 * @param: @param request
+	 * @param: @return   
+	 * @return: String   
+	 * @throws
 	 */
 	@RequestMapping(value={"/download"},method={RequestMethod.GET})
 	public String download(String filename,HttpServletResponse response,
