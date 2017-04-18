@@ -31,14 +31,10 @@ import org.apache.ibatis.session.Configuration;
 
 import com.xoa.util.dataSource.DynDatasources;
   
-/**
+/** 
  * 
- * @ClassName (类名):  PagingPlugin
- * @Description(简述): 分页插件拦截器
- * @author(作者):      zy
- * @date(日期):        2017-4-17 下午2:48:16
- *
- */
+ * @author zy
+ */  
 @Intercepts({  
     @Signature(type = StatementHandler.class,  
             method = "prepare",  
@@ -59,16 +55,9 @@ public class PagingPlugin implements Interceptor {
     private static final String DB_TYPE_MYSQL = "mysqlDataSources";  
     private static final String DB_TYPE_ORACLE = "oracleDataSources";  
   
-    /**
-     * 插件实现方法
-     * <p>Title: intercept</p>
-     * <p>Description: </p>
-     * @param invocation
-     * @return 对象
-     * @throws Throwable
-     * @author(作者):  zy
-     * @see org.apache.ibatis.plugin.Interceptor#intercept(org.apache.ibatis.plugin.Invocation)
-     */
+    /** 
+     * 插件实现方法 
+     */  
     @Override  
     public Object intercept(Invocation invocation) throws Throwable {  
         StatementHandler stmtHandler = (StatementHandler) getUnProxyObject(invocation.getTarget());  

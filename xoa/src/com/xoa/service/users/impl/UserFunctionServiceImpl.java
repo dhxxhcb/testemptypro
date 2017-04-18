@@ -12,7 +12,7 @@ import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.menu.SysFunctionMapper;
 import com.xoa.dao.users.UserFunctionMapper;
 import com.xoa.model.department.Department;
-import com.xoa.model.menu.SysFunctionModel;
+import com.xoa.model.menu.SysFunction;
 import com.xoa.model.users.UserFunction;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UserFunctionService;
@@ -26,13 +26,13 @@ public class UserFunctionServiceImpl implements UserFunctionService {
 	@Resource
 	private DepartmentMapper departmentMapper;
 	@Override
-	public ToJson<SysFunctionModel> getMenu(int uid) {
-		ToJson<SysFunctionModel> toJson=new ToJson<SysFunctionModel>(0,"显示结果");
+	public ToJson<SysFunction> getMenu(int uid) {
+		ToJson<SysFunction> toJson=new ToJson<SysFunction>(0,"显示结果");
 		String[] strArray = null;
-		List<SysFunctionModel> sFunList=sysFunctionMapper.getAll();
+		List<SysFunction> sFunList=sysFunctionMapper.getAll();
 		UserFunction uFun=userFunctionMapper.getMenuByUserId(uid);
 		strArray=uFun.getUserFunCidStr().split(",");
-		List<SysFunctionModel> list1 = new ArrayList<SysFunctionModel>();
+		List<SysFunction> list1 = new ArrayList<SysFunction>();
 		System.out.println(strArray.length);
 		for (int j = 0; j < strArray.length; j++) {
 			for (int i=j; i<sFunList.size(); i++) {  
@@ -48,18 +48,17 @@ public class UserFunctionServiceImpl implements UserFunctionService {
 		toJson.setObj(list1);
 		return toJson;
 	}
-}
-	/*@Override
+	@Override
 	public ToJson<Department> getDep() {
 		ToJson<Department> toJson=new ToJson<Department>(0,"显示结果");
 		List<Department> dep=departmentMapper.getDatagrid();
 		toJson.setObj(dep);
 		return toJson;
-	}*/
-	/*@Override
+	}
+	@Override
 	public ToJson<Users> getUser(int uid) {
 		ToJson<Users> toJson=new ToJson<Users>(0,"显示结果");
 		List<Users> userList=departmentMapper.getUserAll(uid);
 		toJson.setObj(userList);
 		return toJson;
-	}}*/
+	}}

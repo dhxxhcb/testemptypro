@@ -15,93 +15,43 @@ body,
 	width:19%;
 	text-align:center;
 	height:100%;
+	/* background:red; */
 }
-
 .head_mid{
 	width:54%;
 	height:100%;
 }
-.gongzuoliu{
-	width:13%;
+.head_mid ul li{
+	width:18%;
 	height:33px;	
 	float:left;
 	color:#595959;
+	text-align:center;
 	line-height:33px;
 	margin-top: 36px;
-	background:#ccd2e0;
-	border:2px solid #666;
-	border-radius:5px 5px 0 0;
-}
-.no{
-	background:#999;
 }
 .head_mid ul li h1,.head_mid ul li img{
 	float:left;
 }
 .head_mid ul li h1{
-	margin-left: 8%;
-	font-size:10px;
+	margin-left: 20%;
+	font-size:14px;
 }
 .head_mid ul li img{
-	margin-top: 14%;
-    margin-left: 9%;
+	margin-top: 11px;
+    margin-left: 25%;
     width: 8%;
 }
 .head_rig{
 	width:27%;
 	height:100%;
 }
-.head_rig li{
-	float:left;
+.head_rig img{
 	margin-left: 10%;
     margin-top: 7%;
-}
-.head_rig img{
-	
     height: 31%;
 }
-/* ÓÒ²àµÄlogo */
- #taskbar_right #task_center {
-    display: inline-block;
-    width: 15%;
-    height: 45%;
-    margin-top: 5%;
-    margin-right: 10px;
-    background: url(../../img/main_img/right_two.png) 0px 0px no-repeat;
-}
- #taskbar_right #sns {
-    display: inline-block;
-    width: 15%;
-    height: 45%;
-    margin-top: 10px;
-    margin-right: 10px;
-    background: url(../../img/main_img/right_two.png) -331px 0px no-repeat;
-}
- #taskbar_right #help {
-    display: inline-block;
-    width: 15%;
-    height: 45%;
-    margin-top: 10px;
-    margin-right: 10px;
-    background: url(../../img/main_img/right_two.png) -73px 0px no-repeat;
-}
- #taskbar_right #person_info {
-    display: inline-block;
-    width: 15%;
-    height: 45%;
-    margin-top: 10px;
-    margin-right: 10px;
-    background: url(../../img/main_img/right_two.png) -233px -1px no-repeat;
-}
- #taskbar_right #theme {
-    display: inline-block;
-    width: 15%;
-    height: 45%;
-    margin-top: 10px;
-    margin-right: 10px;
-    background: url(../../img/main_img/right_two.png) -313px 0px no-repeat;
-}
-.head_left,.head_mid,#taskbar_right{
+.head_left,.head_mid,.head_rig{
 	float:left;
 }
 .cont{
@@ -118,6 +68,7 @@ body,
 .all_ul{
 	width:90%;
 	height:100%;
+	/* background:red; */
 	margin-left: 5%;
 	overflow:hidden;
 }
@@ -141,18 +92,20 @@ body,
 	text-align:center;
 	line-height:28px;
 	border-radius:8px;
+	/* color:#fff; */
 }
 .yingy{
 	background:#2b7fe0 !important;
 	color:#fff;
 }
 .all_ul div{
+	/* height:52px; */
 	width:100%;
+	/* border-bottom:2px solid #e3e3e5; */
 }
-.two_all{
-	width:72%;
-	height:100%;
-}
+/*  .one_logo,.one_name{
+	float:left;
+} */
 .one{
 	width:100%;
 }
@@ -165,37 +118,13 @@ body,
 .one_logo{
 	margin-top:7%;
 }
-.xuan{
-	width: 100%;
-    height: 40px;
-    color: #fff;
-    line-height: 40px;
-    background: #999;
-}
-.one_name{
+.person h1{
 	line-height:50px;
 	margin-left: 6%;
 	width: 60%;
+	/* margin-top: -17%; */
 	font-size:14px;
 	font-weight: bold;
-}
-.two_all h1{
-	line-height:40px;
-	margin-left: 22%;
-	width: 75%;
-	font-size:14px;
-}
-.choose{
-	width: 13%;
-    height: 33px;
-    float: left;
-    color: #595959;
-    line-height: 33px;
-    margin-top: 36px;
-    background:orange;
-    border: 2px solid #666;
-    border-radius: 5px 5px 0 0;
-}
 }
 .person_logo{
 	margin-left: 5%;
@@ -218,6 +147,7 @@ body,
 .cont_nav ul li{
 	width:9%;
 	height:32px;
+	/* background:red; */
 	float:left;
 	border-radius:16px;
 	text-align:center;
@@ -231,11 +161,14 @@ body,
 .img_all{
 	width:96%;
 	height:94%;
+	/* background:red; */
+	/* text-align:center; */
 	margin:0.3% auto;
 }
 .right_one{
 	width:20%;
 	height:35%;
+	/* background:green; */
 	float:left;
 	margin-left:4%;
 	margin-top:5%;
@@ -264,13 +197,6 @@ body,
 	line-height:26px;
 	margin-left:6%;
 }
-.click_erji img,.click_erji h1{
-	float:left;
-}
-.click_erji img{
-	margin-top:9%;
-	margin-left:-16%;
-}
 .cont_left,.cont_rig{
 	float:left;
 }
@@ -290,18 +216,6 @@ body,
 .foot h1{
 	margin-left:2%;
 }
-
-.foot .lunbo{
-	width: 40%;
-    height: 100%;
-    margin-left: 32%;
-}
-.lunbo li{
-	text-align:center;
-	line-height:40px;
-	font-size:14px;
-	color:#fff;
-}
-.foot_left,.foot_rig,.foot .lunbo{
-	float:left;
+.foot h2{
+	margin-left:74%;
 }

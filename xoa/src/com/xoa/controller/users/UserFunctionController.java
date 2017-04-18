@@ -1,21 +1,30 @@
 package com.xoa.controller.users;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.xoa.controller.menu.MenuController;
+import com.xoa.model.department.Department;
+import com.xoa.model.menu.SysFunction;
+import com.xoa.model.users.Users;
 import com.xoa.service.users.UserFunctionService;
-
+import com.xoa.util.ToJson;
 
 @Controller
 @Scope(value="prototype")
 public class UserFunctionController {
-	
 	private Logger loger = Logger.getLogger(MenuController.class);
-	
 	@Resource
 	private UserFunctionService  userFunctionService;
 	

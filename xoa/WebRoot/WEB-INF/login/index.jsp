@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 					</li>
 					<li class="div_li one">
-						<a href="login?loginId=1001">
+						<a href="login1001">
 							<span class="round"></span>
 							<span class="bord">|</span>
 							<span class="txt">
@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 					</li>
 					<li class="div_li tow">
-						<a href="login?loginId=1002">
+						<a href="javascript:;">
 							<span class="round"></span>
 							<span class="bord">|</span>
 							<span class="txt">

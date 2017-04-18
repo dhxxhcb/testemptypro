@@ -3,8 +3,9 @@ package com.xoa.controller.department;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,178 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.department.Department;
-import com.xoa.service.department.DepartmentService;
-import com.xoa.util.ToJson;
+import com.xoa.service.users.UserFunctionService;
 
 
- /**
- * @ClassName (类名):  DepartmentController
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午2:51:45
- *
- */
 @Controller
 @Scope(value="prototype")
 public class DepartmentController {
-	
-	private Logger loger = Logger.getLogger(DepartmentController.class);
-	
 	@Resource
-	private DepartmentService departmentService;
-	
-
-	/**
-	 * @Title: addDept
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param department
-	 * @param: @return   
-	 * @return: ToJson<Department>   
-	 * @throws
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/department/addDept",method = RequestMethod.POST)
-    public ToJson<Department> addDept(Department department) {
-		ToJson<Department> json=new ToJson<Department>(0, null);
-		try {
-			departmentService.insertDept(department);
-            json.setObject(department);
-            json.setMsg("OK");
-            json.setFlag(true);
-		} catch (Exception e) {
-			json.setMsg(e.getMessage());
-		}
-        return json;
-    }
-	
-	
-	/**
-	 * @Title: deletedept
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param department
-	 * @param: @return   
-	 * @return: ToJson<Department>   
-	 * @throws
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/department/deletedept",method = RequestMethod.POST)
-    public ToJson<Department> deletedept(Department department) {
-		ToJson<Department> json=new ToJson<Department>(0, null);
-		loger.debug("ID"+department.getDeptId());
-		try {
-			departmentService.deleteDept(department.getDeptId());
-            json.setObject(department);
-            json.setMsg("OK");
-            json.setFlag(true);
-		} catch (Exception e) {
-			json.setMsg(e.getMessage());
-		}
-        return json;
-    }
-	/**
-	 * @Title: getDeptByid
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param deptid
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/department/getDeptByid" ,method = RequestMethod.POST)
-    public String getDeptByid(int deptid) {
-		ToJson<Department> json=new ToJson<Department>(0, null);
-		try {
-			Department department =departmentService.getDeptById(deptid);
-			json.setObject(department);
-            json.setMsg("OK");
-            json.setFlag(true);
-		} catch (Exception e) {
-			json.setMsg(e.getMessage());
-			System.out.println(e);
-		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
-    }
-	
-	
-	
-	/**
-	 * @Title: getAlldept
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/department/getAlldept",produces = {"application/json;charset=UTF-8"})
-    public String getAlldept() {
-		ToJson<Department> json=new ToJson<Department>(0, null);
-		try {
-			List<Department> list=departmentService.getDatagrid();  
-			json.setObj(list);
-            json.setMsg("OK");
-            json.setFlag(true);
-		} catch (Exception e) {
-			json.setMsg(e.getMessage());
-			System.out.println(e.getMessage());
-		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
-    }
-	
-
-	/**
-	 * @Title: editDept
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param department
-	 * @param: @return   
-	 * @return: ToJson<Department>   
-	 * @throws
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/department/editDept",method = RequestMethod.POST)
-    public ToJson<Department> editDept(Department department) {
-		ToJson<Department> json=new ToJson<Department>(0, null);
-		loger.debug("ID"+department.getDeptId());
-		try {
-			departmentService.editDept(department);
-            json.setObject(department);
-            json.setMsg("OK");
-            json.setFlag(true);
-		} catch (Exception e) {
-			json.setMsg(e.getMessage());
-		}
-        return json;
-    }
-	
-	
-	/**
-	 * @Title: getDeptByMany
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param department
-	 * @param: @return   
-	 * @return: ToJson<Department>   
-	 * @throws
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/department/getDeptByMany",method = RequestMethod.POST)
-    public ToJson<Department> getDeptByMany(Department department) {
-		ToJson<Department> json=new ToJson<Department>(0, null);
-		try {
-			List<Department> list=departmentService.getDeptByMany(department);
-            json.setObj(list);
-            json.setMsg("OK");
-            json.setFlag(true);
-		} catch (Exception e) {
-			json.setMsg(e.getMessage());
-		}
-        return json;
-    }
-	
+	private UserFunctionService DepartmentService;
 	
 	 /**
      * 部门列表-树111

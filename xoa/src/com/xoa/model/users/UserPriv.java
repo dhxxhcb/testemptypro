@@ -1,40 +1,18 @@
 package com.xoa.model.users;
 
- /**
- * @ClassName (类名):  UserPriv
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午5:36:41
- *
- */
 public class UserPriv {
-	/**
-	 *角色ID
-	 */
     private Integer userPriv;
-    /**
-	 *角色名称
-	 */
+
     private String privName;
-    /**
-	 *角色编码
-	 */
+
     private Short privNo;
-    /**
-	 *角色对应的功能ID串
-	 */
+
     private String funcIdStr;
-    /**
-	 *所属部门
-	 */
+
     private Integer privDeptId;
-    /**
-	 *角色类型
-	 */
+
     private Byte privType;
-    /**
-	 *全局角色
-	 */
+
     private Byte isGlobal;
 
     public Integer getUserPriv() {

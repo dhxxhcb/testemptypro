@@ -33,7 +33,7 @@ function SelectUser(FUNC_ID,MODULE_ID,TO_ID, TO_NAME, MANAGE_FLAG,FORM_NAME,USE_
       loc_x = tleft;   
       loc_y = ttop + 15;
   }
-  LoadDialogWindow(URL,self,loc_x, loc_y, w, h);//这里设置了选人窗口的宽度和高度
+  LoadDialogWindow(URL,self,loc_x, loc_y, w, h);//����������ѡ�˴��ڵĿ��Ⱥ͸߶�
 }
 function ClearUser(TO_ID, TO_NAME)
 {
@@ -46,7 +46,7 @@ function ClearUser(TO_ID, TO_NAME)
   document.getElementsByName(TO_NAME)[0].value="";
 }
 
-//工作流选择
+//������ѡ��
 function SelectPrcs(MODULE_ID,TO_ID, TO_NAME, MANAGE_FLAG,FORM_NAME)
 {
   URL="/module/flow_prcs_select/?MODULE_ID="+MODULE_ID+"&TO_ID="+TO_ID+"&TO_NAME="+TO_NAME+"&MANAGE_FLAG="+MANAGE_FLAG+"&FORM_NAME="+FORM_NAME;
@@ -207,7 +207,7 @@ function SelectAddr(FIELD, TO_ID, FORM_NAME)
      loc_x=document.body.scrollLeft+event.clientX-event.offsetX-100;
      loc_y=document.body.scrollTop+event.clientY-event.offsetY+170;
   }
-  LoadDialogWindow(URL,self,loc_x, loc_y, 600, 350);//这里设置了选人窗口的宽度和高度
+  LoadDialogWindow(URL,self,loc_x, loc_y, 600, 350);//����������ѡ�˴��ڵĿ��Ⱥ͸߶�
 }
 function ClearAddr(TO_ID)
 {
@@ -308,7 +308,7 @@ function SelectUserExternal(MODULE_ID, TO_ID, TO_NAME, MANAGE_FLAG, FORM_NAME)
      loc_y=document.body.scrollTop+event.clientY+170;
   }
   //window.open(URL);
-  LoadDialogWindow(URL,self,loc_x, loc_y, 220, 350);//这里设置了选人窗口的宽度和高度
+  LoadDialogWindow(URL,self,loc_x, loc_y, 220, 350);//����������ѡ�˴��ڵĿ��Ⱥ͸߶�
 }
 function SelectTable(TO_ID, DB_NAME, FORM_NAME)
 {

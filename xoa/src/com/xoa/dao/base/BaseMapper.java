@@ -4,72 +4,37 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 
- * @ClassName (类名):  BaseMapper
- * @Description(简述): 父类DAO
- * @author(作者):      zy
- * @date(日期):        2017-4-17 下午2:25:56
+ * DAO父类
+ * @author gaosubo
  *
+ * @param <T>
  */
 public interface BaseMapper<T> {
 	
 	/**
-	 * 
-	 * @Title: save
-	 * @Description: 保存对象
-	 * @author(作者):      zy
-	 * @param: @param t   需要保存对象 
-	 * @return: void   
-	 * @throws
+	 * 保存对象
+	 * @param t 需要保存对象
 	 */
 	public void save(T t);
 	
 	/**
-	 * 
-	 * @Title: update
-	 * @Description: 修改对象
-	 * @author(作者):      zy
-	 * @param: @param t 需修改对象
-	 * @param: @return   
-	 * @return: Integer   修改条数
-	 * @throws
+	 * 修改对象
+	 * @param t 需修改对象
+	 * @return  修改条数
 	 */
 	public Integer update(T t);
 	
 	/**
-	 * 
-	 * @Title: delete
-	 * @Description: 删除对象
-	 * @author(作者):      zy
-	 * @param: @param t 需删除对象
-	 * @param: @return   
-	 * @return: Integer   删除数据条数
-	 * @throws
+	 * 删除对象
+	 * @param t 需删除对象
+	 * @return 删除数据条数
 	 */
 	public Integer delete(T t);
 	
 	/**
-	 *  查询结果返回
-	 * @Title: selectObjcet
-	 * @Description: TODO
-	 * @author(作者):      zy
-	 * @param: @param maps 需传入map条件
-	 * @param: @return   
-	 * @return: List<T>   查询结果以list集合显示
-	 * @throws
+	 * 查询结果返回
+	 * @param maps 需传入map条件
+	 * @return list集合  查询结果以list集合显示
 	 */
 	public List<T> selectObjcet(Map<String,Object> maps);
-	
-	/**
-	 * 
-	 * @Title: queryOne
-	 * @Description: TODO
-	 * @author(作者):      zy
-	 * @param: @param maps
-	 * @param: @return   
-	 * @return: T   
-	 * @throws
-	 */
-	public T queryOne(Map<String, Object> maps);
-	
 }

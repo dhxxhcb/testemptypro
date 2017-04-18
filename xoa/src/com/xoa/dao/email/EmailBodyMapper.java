@@ -11,6 +11,17 @@ public interface EmailBodyMapper extends BaseMapper<EmailBody>{
 
 	public int updateByPrimaryKey(EmailBody record);
 
+//	/**
+//	 * 保存邮件
+//	 * 
+//	 * @param emailBody
+//	 *            保存实体类参数
+//	 */
+//	public void save(EmailBody emailBody);
+//	
+	
+	
+
 	/**
 	 * 根据ID删除一条
 	 * @param maps
@@ -21,7 +32,7 @@ public interface EmailBodyMapper extends BaseMapper<EmailBody>{
 	 * 根据ID查询一条邮件
 	 * @param maps
 	 */
-	public EmailBody queryById(Map<String,Object> maps);
+	public EmailBody queryById(Integer bodyId);
 
 	/**
 	 * 收件箱查询
@@ -40,14 +51,6 @@ public interface EmailBodyMapper extends BaseMapper<EmailBody>{
 	 */
 	List<EmailBody> listSendEmail(Map<String, Object> maps);
 
-	/**
-	 * 未读
-	 * @param maps
-	 * @return
-	 */
-	List<EmailBody> selectIsRead(Map<String,Object> maps);
-	
-	
 	/**
 	 * 废纸篓查询
 	 * @param maps

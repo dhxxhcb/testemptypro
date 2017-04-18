@@ -9,13 +9,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="UTF-8">
 		<title>公告查询</title>
-		<meta name="renderer" content="webkit">
-	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
-		
-		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 		html,body{width: 100%;height: 100%;font-family: "微软雅黑";font-size: 14px;}
 			.inPole{font-size: 14px;}
@@ -61,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        <option value="" selected="">全部</option>
 		        <option value="0">普通格式</option>
 		        <option value="1">MHT格式</option>
-		       <!--  <option value="2">超级链接</option> -->
+		        <option value="2">超级链接</option>
 		      </select>
 		      </td>
 		    </tr>
@@ -71,9 +64,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        <select name="TYPE_ID" class="BigSelect">
 		          <option value="" selected="">全部</option>
 		          <option value="01">决定</option>
-				  <option value="02">通知</option>
-				  <option value="03">通报</option>
-				  <option value="04">其他</option>
+		<option value="02">通知</option>
+		<option value="03">通报</option>
+		<option value="04">其他</option>
 		        </select>&nbsp;
 		      </td>
 		    </tr>
@@ -106,10 +99,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <tr>
 		      <td nowrap="" class="TableData" width="100"> 发布日期：</td>
 		      <td class="TableData">
-		        <!-- <input type="text" id="start_time" name="SEND_TIME_MIN" size="12" maxlength="10" class="BigInput" value="" onclick="WdatePicker()"> &nbsp;至&nbsp;         
-		        <input type="text" name="SEND_TIME_MAX" size="12" maxlength="10" class="BigInput" value="" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start_time\')}'})"> -->
-		        <input class="laydate-icon" id="start"> &nbsp;至&nbsp;
-		        <input class="laydate-icon" id="end">
+		        <input type="text" id="start_time" name="SEND_TIME_MIN" size="12" maxlength="10" class="BigInput" value="" onclick="WdatePicker()"> &nbsp;至&nbsp;         
+		        <input type="text" name="SEND_TIME_MAX" size="12" maxlength="10" class="BigInput" value="" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start_time\')}'})">
 		      </td>
 		    </tr>
 		    <tr>
@@ -145,63 +136,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </tr>
 		  </tbody>
 		</table>
-		<script type="text/javascript">
-			
-			//时间控件调用
-			var start = {
-			  elem: '#start',
-			  format: 'YYYY/MM/DD hh:mm:ss',
-			 /* min: laydate.now(), //设定最小日期为当前日期*/
-			 /* max: '2099-06-16 23:59:59', //最大日期*/
-			  istime: true,
-			  istoday: false,
-			  choose: function(datas){
-			     end.min = datas; //开始日选好后，重置结束日的最小日期
-			     end.start = datas; //将结束日的初始值设定为开始日
-			  }
-			};
-			var end = {
-			  elem: '#end',
-			  format: 'YYYY/MM/DD hh:mm:ss',
-			  /*min: laydate.now(),*/
-			  /*max: '2099-06-16 23:59:59',*/
-			  istime: true,
-			  istoday: false,
-			  choose: function(datas){
-			    start.max = datas; //结束日选好后，重置开始日的最大日期
-			  }
-			};
-			laydate(start);
-			laydate(end);//
-			
-       		$(function(){
-       			
-       			$('input[type="submit"]').click(function () {
-					var typeId=$('select[name="TYPE_ID"] option:checked').val();
-					var forMat=$('select[name="FORMAT"] option:checked').val();
-					var subject=$('input[name="SUBJECT"]').val();
-					var content=$('input[name="CONTENT"]').val();
-					var data={
-						'typeId':typeId,
-						'sendTime':'2017-04-03 10:28:35',
-						'subject':subject,
-						'content':content,
-						'format':forMat
-					};
-					
-					$.ajax({
-						type:"get",
-						url:"notifyList",
-						dataType:'json',
-						data:data,
-						success:function(){
-						/* alert(data.length); */
-							console('1223');
-						}
-					});
-				});
-       		});
-    	</script>
 	</body>
 </html>
 
