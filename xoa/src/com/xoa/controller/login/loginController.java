@@ -50,6 +50,18 @@ public class loginController {
 		return "app/main/index";
 	}
 
+	@RequestMapping("/lunbo")
+	// 登录窗口
+	public String lunbo() {
+		loger.info("成功登录！");
+		return "app/main/lunbo";
+	}
+	@RequestMapping("/cont")
+	// 登录窗口
+	public String cont() {
+		loger.info("成功登录！");
+		return "app/main/cont";
+	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST,produces={"application/json;charset=UTF-8"})
 	public @ResponseBody  String loginsuccess(@RequestParam("username") String username, @RequestParam("password") String password,

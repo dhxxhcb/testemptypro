@@ -94,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="all_content" style="width:100%;height:97%;">
 						
-							<div id='f_0' class="iItem" style="width:100%;height:100%;"><iframe  id="every_module" src="content" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
+							<div id='f_0' class="iItem" style="width:100%;height:100%;"><iframe  id="every_module" src="cont" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
 							
 					</div>
 				</div>
@@ -398,8 +398,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var re=$(this).parent().attr('id');
 							var delet=re.split('_')[1];
 							console.log(delet);
-						 	 $(this).parent().remove();
-						 	 $('#f_'+delet).remove();
+						 	/*  $(this).parent().remove();
+						 	 $('#f_'+delet).remove(); */
+						 	var new_delet=delet+1;
+						 	 console.log(new_delet);
 						}) ;
 					}			
 				});
