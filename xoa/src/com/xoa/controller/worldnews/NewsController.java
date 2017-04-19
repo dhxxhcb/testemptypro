@@ -31,10 +31,20 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @Scope(value = "prototype")
 @RequestMapping("/news")
+/**
+ * 
+ * 创建作者:   王曰岐
+ * 创建日期:   2017-4-19 下午3:51:46
+ * 类介绍  :    新闻控制器
+ * 构造参数:    无
+ *
+ */
 public class NewsController {
 	private Logger loger = Logger.getLogger(NewsController.class);
 	@Resource
 	private NewService newService;
+	private	String err="err";
+	private	String  ok="ok";
 	
 
 	/**
@@ -48,33 +58,32 @@ public class NewsController {
 	}
 	
 	
+	
 	/**
-	 * 信息展示 返回json 
-	 * @Title: selectNewsManage
-	 * @Description: TODO
-	 * @author(作者):      wyq
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:51:58
+	 * 方法介绍:   新闻管理信息展示 返回json 
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 @RequestMapping(value = "/showNewsManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
   public @ResponseBody String selectNewsManage(){
 		Map<String, Object> maps = new HashMap<String, Object>();
 		String returnReslt = null;
-		String err="";
+		
 		try {
 			List<News> list =newService.selectNewsManage(maps, 1, 5, true);
 			System.out.println(list.size()+"11111111111");
 			ToJson<News> tojson = new ToJson<News>(0, "");
 			tojson.setObj(list);
 			if (list.size() > 0) {
-				err = "成功";
+				tojson.setMsg(ok);
 				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
 						"yyyy-MM-dd HH:mm:ss");
 			} else {
-				err = "失败";
 				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-						1, ""), "yyyy-MM-dd HH:mm:ss");
+						1, err), "yyyy-MM-dd HH:mm:ss");
 			}
 		} catch (Exception e) {
 			loger.debug("NewsMessage:" + e);
@@ -84,12 +93,23 @@ public class NewsController {
 
 		return returnReslt;
 	}
-	/**
-	 * 信息展示 返回json demo
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
+/**
+ * 
+ * 创建作者:   王曰岐
+ * 创建日期:   2017-4-19 下午3:53:28
+ * 方法介绍:   新闻信息展示
+ * 参数说明:   @param format
+ * 参数说明:   @param typeId
+ * 参数说明:   @param subject
+ * 参数说明:   @param newsTime
+ * 参数说明:   @param lastEditTime
+ * 参数说明:   @param keyword
+ * 参数说明:   @param page
+ * 参数说明:   @param pageSize
+ * 参数说明:   @param useFlag
+ * 参数说明:   @return
+ * @return     String
+ */
 	@RequestMapping(value = "/newsShow", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String showNews(
@@ -111,20 +131,18 @@ public class NewsController {
 		maps.put("keyword", keyword);
 		String name = "changbai";
 		String returnReslt = null;
-		String err = null;
 		try {
 			List<News> list = newService.selectNews(maps, page, pageSize,
 					useFlag, name);
 			ToJson<News> tojson = new ToJson<News>(0, "");
 			tojson.setObj(list);
 			if (list.size() > 0) {
-				err = "成功";
+				tojson.setMsg(ok);
 				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
 						"yyyy-MM-dd HH:mm:ss");
 			} else {
-				err = "失败";
 				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-						1, ""), "yyyy-MM-dd HH:mm:ss");
+						1, err), "yyyy-MM-dd HH:mm:ss");
 			}
 
 		} catch (Exception e) {
@@ -137,11 +155,17 @@ public class NewsController {
 	}
 
 	/**
-	 * 信息展示 返回json demo
 	 * 
-	 * @author wyq
-	 * @return
-	 * @throws Exception
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:54:11
+	 * 方法介绍:   未读信息展示
+	 * 参数说明:   @param request
+	 * 参数说明:   @param response
+	 * 参数说明:   @param page
+	 * 参数说明:   @param pageSize
+	 * 参数说明:   @param useFlag
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping(value = "/unreadShow", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -152,7 +176,6 @@ public class NewsController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		String name = "wangyun";
 		String returnReslt = null;
-		String err = null;
 		try {
 			List<News> list = newService.unreadNews(maps, page, pageSize,
 					useFlag, name);
@@ -160,13 +183,12 @@ public class NewsController {
 			ToJson<News> tojson = new ToJson<News>(0, err);
 			tojson.setObj(list);
 			if (list.size() > 0) {
-				err = "成功";
+				tojson.setMsg(ok);
 				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
 						"yyyy-MM-dd HH:mm:ss");
 			} else {
-				err = "失败";
 				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-						1, ""), "yyyy-MM-dd HH:mm:ss");
+						1, err), "yyyy-MM-dd HH:mm:ss");
 			}
 		} catch (Exception e) {
 			loger.debug("NewsMessage:" + e);
@@ -178,38 +200,37 @@ public class NewsController {
 	}
 
 	
-	/**
-	 * 保存新闻
-	 * @Title: insertNews
-	 * @Description: TODO
-	 * @author(作者):      wyq
-	 * @param: @param subject
-	 * @param: @param provider
-	 * @param: @param newsTime
-	 * @param: @param clickCount
-	 * @param: @param anonymityYn
-	 * @param: @param format
-	 * @param: @param typeId
-	 * @param: @param publish
-	 * @param: @param top
-	 * @param: @param lastEditor
-	 * @param: @param lastEditTime
-	 * @param: @param subjectColor
-	 * @param: @param keyword
-	 * @param: @param topDays
-	 * @param: @param content
-	 * @param: @param attachmentId
-	 * @param: @param attachmentName
-	 * @param: @param toId
-	 * @param: @param privId
-	 * @param: @param userId
-	 * @param: @param readers
-	 * @param: @param compressContent
-	 * @param: @param summary
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
-	 */
+	 /**
+	  * 
+	  * 创建作者:   王曰岐
+	  * 创建日期:   2017-4-19 下午3:54:51
+	  * 方法介绍:   添加新闻
+	  * 参数说明:   @param subject
+	  * 参数说明:   @param provider
+	  * 参数说明:   @param newsTime
+	  * 参数说明:   @param clickCount
+	  * 参数说明:   @param anonymityYn
+	  * 参数说明:   @param format
+	  * 参数说明:   @param typeId
+	  * 参数说明:   @param publish
+	  * 参数说明:   @param top
+	  * 参数说明:   @param lastEditor
+	  * 参数说明:   @param lastEditTime
+	  * 参数说明:   @param subjectColor
+	  * 参数说明:   @param keyword
+	  * 参数说明:   @param topDays
+	  * 参数说明:   @param content
+	  * 参数说明:   @param attachmentId
+	  * 参数说明:   @param attachmentName
+	  * 参数说明:   @param toId
+	  * 参数说明:   @param privId
+	  * 参数说明:   @param userId
+	  * 参数说明:   @param readers
+	  * 参数说明:   @param compressContent
+	  * 参数说明:   @param summary
+	  * 参数说明:   @return
+	  * @return     String
+	  */
 	@RequestMapping(value = "/sendNews", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String insertNews(
@@ -264,48 +285,47 @@ public class NewsController {
 		    try {
 		    	newService.sendNews(news);
 		    	return JSON.toJSONStringWithDateFormat(
-						new ToJson<News>(0, ""), "yyyy-MM-dd HH:mm:ss");
+						new ToJson<News>(0, ok), "yyyy-MM-dd HH:mm:ss");
 			} catch (Exception e) {
 				loger.debug("sendNews:" + e);
 				return JSON.toJSONStringWithDateFormat(
-						new ToJson<News>(1, ""), "yyyy-MM-dd HH:mm:ss");
+						new ToJson<News>(1, err), "yyyy-MM-dd HH:mm:ss");
 			}
 
 		}
 	
-	/**
-	 * 修改新闻
-	 * @Title: updateNews
-	 * @Description: TODO
-	 * @author(作者):      wyq
-	 * @param: @param newsId
-	 * @param: @param subject
-	 * @param: @param provider
-	 * @param: @param newsTime
-	 * @param: @param clickCount
-	 * @param: @param anonymityYn
-	 * @param: @param format
-	 * @param: @param typeId
-	 * @param: @param publish
-	 * @param: @param top
-	 * @param: @param lastEditor
-	 * @param: @param lastEditTime
-	 * @param: @param subjectColor
-	 * @param: @param keyword
-	 * @param: @param topDays
-	 * @param: @param content
-	 * @param: @param attachmentId
-	 * @param: @param attachmentName
-	 * @param: @param toId
-	 * @param: @param privId
-	 * @param: @param userId
-	 * @param: @param readers
-	 * @param: @param compressContent
-	 * @param: @param summary
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
-	 */
+	 /**
+	  * 
+	  * 创建作者:   王曰岐
+	  * 创建日期:   2017-4-19 下午3:55:20
+	  * 方法介绍:   修改新闻
+	  * 参数说明:   @param newsId
+	  * 参数说明:   @param subject
+	  * 参数说明:   @param provider
+	  * 参数说明:   @param newsTime
+	  * 参数说明:   @param clickCount
+	  * 参数说明:   @param anonymityYn
+	  * 参数说明:   @param format
+	  * 参数说明:   @param typeId
+	  * 参数说明:   @param publish
+	  * 参数说明:   @param top
+	  * 参数说明:   @param lastEditor
+	  * 参数说明:   @param lastEditTime
+	  * 参数说明:   @param subjectColor
+	  * 参数说明:   @param keyword
+	  * 参数说明:   @param topDays
+	  * 参数说明:   @param content
+	  * 参数说明:   @param attachmentId
+	  * 参数说明:   @param attachmentName
+	  * 参数说明:   @param toId
+	  * 参数说明:   @param privId
+	  * 参数说明:   @param userId
+	  * 参数说明:   @param readers
+	  * 参数说明:   @param compressContent
+	  * 参数说明:   @param summary
+	  * 参数说明:   @return
+	  * @return     String
+	  */
 	@RequestMapping(value = "/updateNews", produces = { "application/json;charset=UTF-8" })
 	public String updateNews(@RequestParam("newsId") Integer newsId,
 			@RequestParam("subject") String subject,
@@ -359,50 +379,46 @@ public class NewsController {
 		    try {
 		    	newService.updateNews(news);
 		    	return JSON.toJSONStringWithDateFormat(
-						new ToJson<EmailBodyModel>(0, ""), "yyyy-MM-dd HH:mm:ss");
+						new ToJson<EmailBodyModel>(0, ok), "yyyy-MM-dd HH:mm:ss");
 			} catch (Exception e) {
 				loger.debug("sendNews:" + e);
 				return JSON.toJSONStringWithDateFormat(
-						new ToJson<EmailBodyModel>(1, ""), "yyyy-MM-dd HH:mm:ss");
+						new ToJson<EmailBodyModel>(1, err), "yyyy-MM-dd HH:mm:ss");
 			}
 	}
 	
 	/**
-	 * 根据ID删除新闻
-	 * @Title: deleteNews
-	 * @Description: TODO
-	 * @author(作者):      wyq
-	 * @param: @param newsId
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:55:40
+	 * 方法介绍:   根据ID删除新闻
+	 * 参数说明:   @param newsId
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping(value = "/deleteNews", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String deleteNews(@RequestParam("newsId") Integer newsId){
 		ToJson<News> toJson=new ToJson<News>(0, "");
-		loger.debug("传过来的ID"+newsId);
-		
 		try {
+			toJson.setMsg(ok);
 			newService.deleteByPrimaryKey(newsId);
-			toJson.setMsg("成功");
 			return JSON.toJSONStringWithDateFormat(toJson,
 					"yyyy-MM-dd HH:mm:ss");
 		} catch (Exception e) {
-			toJson.setMsg("失败");
 			return JSON.toJSONStringWithDateFormat(toJson,
 					"yyyy-MM-dd HH:mm:ss");
 		}
 	}
 	
 	/**
-	 * 根据ID详情新闻
-	 * @Title: queryNews
-	 * @Description: TODO
-	 * @author(作者):      wyq
-	 * @param: @param newsId
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:56:10
+	 * 方法介绍:   根据ID详情新闻
+	 * 参数说明:   @param newsId
+	 * 参数说明:   @param request
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping(value = "/queryNews",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String queryNews(@RequestParam("newsId") Integer newsId,HttpServletRequest request){
@@ -410,15 +426,14 @@ public class NewsController {
 		maps.put("newsId", newsId);
 		ToJson<News> toJson=new ToJson<News>(0, "");
 		String name="wangyueqi";
-		loger.debug("传过来的ID"+newsId);
 	try {
 			News news=newService.queryById(maps, 1, 5, false, name);
-			toJson.setMsg("成功");
+			toJson.setMsg(ok);
 			toJson.setObject(news);
 			return JSON.toJSONStringWithDateFormat(toJson,
 					"yyyy-MM-dd HH:mm:ss");
 		} catch (Exception e) {
-			toJson.setMsg("失败");
+			toJson.setMsg(err);
 			loger.debug("ERROR:"+e);
 			return JSON.toJSONStringWithDateFormat(toJson,
 					"yyyy-MM-dd HH:mm:ss");
@@ -427,10 +442,13 @@ public class NewsController {
 	
 	
 	/**
-	 * 为null时转换为""
 	 * 
-	 * @param value
-	 * @return
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:56:32
+	 * 方法介绍:   为null时转换为""
+	 * 参数说明:   @param value
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public static String returnValue(String value) {
 		if (value != null) {

@@ -8,37 +8,36 @@ import com.xoa.model.menu.SysMenu;
 import com.xoa.model.worldnews.News;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.DynDatasource;
-/**
- * 
- * @ClassName (类名):  MenuService
- * @Description(简述): 菜单
- * @author(作者):      wyq
- * @date(日期):        2017-4-17 下午5:59:48
- *
- */
+
+ /**
+  * 
+  * 创建作者:   王曰岐
+  * 创建日期:   2017-4-19 下午3:43:43
+  * 类介绍  :    菜单Service
+  * 构造参数:   
+  *
+  */
 public interface MenuService {
 	
 	/**
 	 * 
-	 * @Title: getAll
-	 * @Description: 获取一级菜单
-	 * @author(作者):      wyq
-	 * @param: @return   
-	 * @return: List<SysMenu>   
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:43:57
+	 * 方法介绍:   获取全部菜单
+	 * 参数说明:   @return
+	 * @return     List<SysMenu>
 	 */
 	@DynDatasource
 	public List<SysMenu> getAll();
 	
 	/**
 	 * 
-	 * @Title: getDadMenu
-	 * @Description: 获取子类级菜单
-	 * @author(作者):      wyq
-	 * @param: @param menuId
-	 * @param: @return   
-	 * @return: List<SysFunction>   
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:44:08
+	 * 方法介绍:   获取子类菜单
+	 * 参数说明:   @param menuId
+	 * 参数说明:   @return
+	 * @return     List<SysFunction>
 	 */
 	@DynDatasource
 	public List<SysFunction> getDadMenu(String menuId);

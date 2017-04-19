@@ -4,6 +4,7 @@ import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.worldnews.NewsMapper;
 import com.xoa.model.department.Department;
 import com.xoa.model.worldnews.News;
+import com.xoa.service.department.DepartmentService;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.dataSource.DynDatasource;
 import com.xoa.util.page.PageParams;
@@ -20,10 +21,10 @@ import java.util.List;
 import java.util.Map;
 /**
  * 
- * @ClassName (类名):  NewServiceImpl
- * @Description(简述): TODO
- * @author(作者):      wyq
- * @date(日期):        2017-4-17 下午5:58:46
+ * 创建作者:   王曰岐
+ * 创建日期:   2017-4-19 下午3:40:36
+ * 类介绍  :    新闻ServiceImpl(逻辑层)
+ * 构造参数:   
  *
  */
 @Service
@@ -34,20 +35,11 @@ public class NewServiceImpl implements NewService {
 
 	@Resource
 	private DepartmentMapper departmentMapper;//部门DAO
-
-	/**
-	 * 
-	 * @param maps
-	 *            map条件参数
-	 * @param page
-	 *            当前页
-	 * @param pageSize
-	 *            每页显示条数
-	 * @param useFlag
-	 *            是否开启分页插件
-	 * @return
-	 * @throws Exception
-	 */
+	
+	@Resource
+	private DepartmentService  departmentService;
+	
+	
 	@Override
 	public List<News> selectNews(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
@@ -67,26 +59,6 @@ public class NewServiceImpl implements NewService {
 		return list;
 	}
 
-	/**
-	 * 
-	 * <p>
-	 * Title: unreadNews
-	 * </p>
-	 * <p>
-	 * Description:
-	 * </p>
-	 * 
-	 * @param maps
-	 * @param page
-	 * @param pageSize
-	 * @param useFlag
-	 * @param name
-	 * @return
-	 * @throws Exception
-	 * @author(作者): wyq
-	 * @see com.xoa.service.worldnews.NewService#unreadNews(java.util.Map,
-	 *      java.lang.Integer, java.lang.Integer, boolean, java.lang.String)
-	 */
 	@Override
 	public List<News> unreadNews(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
@@ -105,64 +77,18 @@ public class NewServiceImpl implements NewService {
 		return list1;
 	}
 
-	/**
-	 * 
-	 * <p>
-	 * Title: sendNews
-	 * </p>
-	 * <p>
-	 * Description:
-	 * </p>
-	 * 
-	 * @param news
-	 * @author(作者): wyq
-	 * @see com.xoa.service.worldnews.NewService#sendNews(com.xoa.model.worldnews.News)
-	 */
 	@Override
 	public void sendNews(News news) {
 		newsMapper.save(news);
 
 	}
 
-	/**
-	 * 
-	 * <p>
-	 * Title: updateNews
-	 * </p>
-	 * <p>
-	 * Description:
-	 * </p>
-	 * 
-	 * @param news
-	 * @author(作者): wyq
-	 * @see com.xoa.service.worldnews.NewService#updateNews(com.xoa.model.worldnews.News)
-	 */
 	@Override
 	public void updateNews(News news) {
 		// TODO Auto-generated method stub
 		newsMapper.update(news);
 	}
 
-	/**
-	 * 
-	 * <p>
-	 * Title: queryById
-	 * </p>
-	 * <p>
-	 * Description:
-	 * </p>
-	 * 
-	 * @param maps
-	 * @param page
-	 * @param pageSize
-	 * @param useFlag
-	 * @param name
-	 * @return
-	 * @throws Exception
-	 * @author(作者): wyq
-	 * @see com.xoa.service.worldnews.NewService#queryById(java.util.Map,
-	 *      java.lang.Integer, java.lang.Integer, boolean, java.lang.String)
-	 */
 	@Override
 	public News queryById(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
@@ -190,45 +116,12 @@ public class NewServiceImpl implements NewService {
 		return news;
 
 	}
-
-	/**
-	 * 
-	 * <p>
-	 * Title: deleteByPrimaryKey
-	 * </p>
-	 * <p>
-	 * Description:
-	 * </p>
-	 * 
-	 * @param newsId
-	 * @author(作者): wyq
-	 * @see com.xoa.service.worldnews.NewService#deleteByPrimaryKey(java.lang.Integer)
-	 */
 	@Override
 	public void deleteByPrimaryKey(Integer newsId) {
 		// TODO Auto-generated method stub
 		newsMapper.deleteNews(newsId);
 	}
-
-	/**
-	 * 
-	 * <p>
-	 * Title: selectNewsManage
-	 * </p>
-	 * <p>
-	 * Description:
-	 * </p>
-	 * 
-	 * @param maps
-	 * @param page
-	 * @param pageSize
-	 * @param useFlag
-	 * @return
-	 * @throws Exception
-	 * @author(作者): wyq
-	 * @see com.xoa.service.worldnews.NewService#selectNewsManage(java.util.Map,
-	 *      java.lang.Integer, java.lang.Integer, boolean)
-	 */
+	 
 	@Override
 	public List<News> selectNewsManage(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception {
@@ -248,9 +141,8 @@ public class NewServiceImpl implements NewService {
 			} else {
 				strArray = news.getToId().split(",");
 				for (int i = 0; i < strArray.length; i++) {
-					String name = departmentMapper.getDeptNameById(Integer
-							.parseInt(strArray[i]));
-					news.setName(name);
+					List<String> name = departmentService.getDeptNameById(Integer.parseInt(strArray[i]));
+				
 				}
 			}
 		}
