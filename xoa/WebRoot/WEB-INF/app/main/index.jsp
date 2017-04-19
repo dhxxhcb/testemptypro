@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="head_mid">
 					<ul class="main_title">
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
-						<li class="gongzuoliu" id='t_0'><h1>我的桌面</h1><div class="img"><img class="close" src="img/main_img/icon.png"></div></li>
+						<li class="gongzuoliu" id='t_0'><div class="img"><img class="close" src="img/main_img/icon.png"></div><h1>我的桌面</h1></li>
 					</ul>
 				</div>
 				<!-- 右侧的小logo -->
@@ -123,8 +123,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			var menu = {
 				"email":"/email/index",
-				"notify_show":"notice/index",
-				"news_show":"news/index",
+				"email":"/email/writeMail",
+				"email":"/email/inboxup",
+				"notify/show":"notice/index",
+				"news/show":"news/index",
 				"file_folder/index2.php":"fileHome",
 				"system/file_folder":"showFileBySort_id"
 			}
@@ -137,38 +139,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//鼠标移入，右边logo变颜色，移出变回。
 			//one
 			$('#task_center').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_one.png) 0px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png) 0px 0px no-repeat')
 			});
 			$('#task_center').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_two.png) 0px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png) 0px 0px no-repeat')
 			});
 			//two
 			$('#sns').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_one.png) -80px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png) -60px 0px no-repeat')
 			});
 			$('#sns').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_two.png) -80px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png) -60px 0px no-repeat')
 			});
 			//three
 			$('#help').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_one.png) -160px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png) -115px 0px no-repeat')
 			});
 			$('#help').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_two.png) -160px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png) -115px 0px no-repeat')
 			});
 			//four
 			$('#person_info').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_one.png) -233px -1px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png) -174px -1px no-repeat')
 			});
 			$('#person_info').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_two.png) -233px -1px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png) -174px -1px no-repeat')
 			});
 			//five
 			$('#theme').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_one.png)  -313px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png)  -233px 0px no-repeat')
 			});
 			$('#theme').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_two.png)  -313px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png)  -233px 0px no-repeat')
 			});
 			
 		//底部文字滚动
@@ -188,10 +190,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			"email":"email/index",
 			"email":"email/writeMail",
 			"email":"email/inboxup",
-			"notify_show":"notice/index",
-			"news_show":"news/index",
+			"notify/manage":"notice/index",
+			"news/show":"news/index",
 			"file_folder/index2.php":"fileHome",
-			"system_file_folder":"showFileBySort_id"
+			"system/file_folder":"showFileBySort_id"
 		}
 
 
@@ -222,9 +224,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										
 									} 
 								} 
-								str+='<li class="one person" id="administ"><div class="one_all" style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;"><img class="one_logo" src="img/main_img/'+data[i].img+'.png"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="one_down_img" src="img/main_img/down.png" style="margin-top: 10%;"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
+								str+='<li class="one person" id="administ"><div class="one_all" ><img class="one_logo" src="img/main_img/'+data[i].img+'.png"><h1 class="one_name" id="administ">'+data[i].name+'</h1></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
 							}   
-							
+							/* style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;" */
 
 						$(".tab_cone").html(str);
 						
@@ -232,11 +234,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 	$('.one_all').on('click',function () {
 							
 							if ($(this).siblings().find('.erji').css('display')=='none') {
-								$(this).find('.one_down_img').attr('src','img/main_img/up.png');
+								/* $(this).find('.one_down_img').attr('src','img/main_img/up.png'); */
+								$(this).css({
+									'background':'#cde2fa',
+									'color':'#006bb8'
+								});
+								/* $(this).css('background','#cde2fa'); */
 								$(this).siblings().find('.erji').show();	
 								
 							}else{
-								$(this).find('.one_down_img').attr('src','img/main_img/down.png');
+								$(this).css('background','#f0f0f1');
+								
 								$(this).siblings().find('.erji').hide();
 							}
 										
@@ -295,8 +303,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						var tid=0;
 						//点击二级菜单
 						$('.two_menu li').on('click','.two_all',function(){
-							var url=$(this).attr('url').replace('/','_'); 
+							var url=$(this).attr('url'); 
 							var menu_tid=$(this).parent().attr('menu_tid'); 
+							//console.log(url);
 							if(menu[url]){
 								url = menu[url];
 							}else{
@@ -317,8 +326,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									//console.log($(this).siblings('.sanji').length>0);
 								}else{
 									//页面不存在，新增 title和iframe
-				
-									var titlestr = '<li class="gongzuoliu" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div class="img"><img class="close" src="img/main_img/icon.png"></div></li>';
+									
+									var titlestr = '<li class="choose" index="0;" id="t_'+menu_tid+'"><div class="img"><img class="close" src="img/main_img/icon.png"></div><h1>'+$(this).find('h1').html()+'</h1></li>';
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" style="width:100%;height:100%;"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 									$('.main_title').append(titlestr);
 									$('.all_content').append(iframestr);
@@ -353,9 +362,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								}else{ 
 									
 									//页面不存在，新增 title和iframe
-									var titlestr = '<li class="gongzuoliu" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).html()+'</h1><img class="close" src="img/main_img/icon.png"></li>';
+									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><div><img class="close" src="img/main_img/icon.png"></div><h1>'+$(this).find('h1').html()+'</h1></li>';
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" style="width:100%;height:100%;"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
-									$('.main_title').append(titlestr);
+									$('.main_title').append(titlestrs);
 									$('.all_content').append(iframestr);
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
@@ -382,8 +391,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						});
 						//点击标题栏
 						$('.main_title ').on('click','li',function(){
-						    $('.main_title li').removeClass('choose');
-							$(this).addClass('choose');
+							
+						    $('.main_title li').removeClass('change');
+							$(this).addClass('change');
 							var t_this=$(this).attr('id');
 						
 							var num=t_this.split('_')[1];
@@ -400,6 +410,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var re=$(this).parent().attr('id');
 							var delet=re.split('_')[1];
 							console.log(delet);
+							
 						 	/*  $(this).parent().remove();
 						 	 $('#f_'+delet).remove(); */
 						 	console.log($(this).next());
