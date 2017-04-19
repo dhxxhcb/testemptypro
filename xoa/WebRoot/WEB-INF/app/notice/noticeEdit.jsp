@@ -16,12 +16,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="../css/notice/notice.css"/>
 		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/attach.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/wdatepicker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/notice/attach.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/notice/wdatepicker.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
 		<!--<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>-->
-		<script src="../js/notice.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/notice/notice.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<div class="content">
