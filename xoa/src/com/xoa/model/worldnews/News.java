@@ -7,11 +7,14 @@ import com.xoa.model.department.Department;
 import com.xoa.model.role.Role;
 import com.xoa.model.users.Users;
 
+
 /**
- * 新闻实体类
  * 
- * @author wyq
- * @version 1.0
+ * 创建作者:   王曰岐
+ * 创建日期:   2017-4-19 下午3:25:09
+ * 类介绍  :    新闻实体类
+ * 构造参数:   无
+ *
  */
 public class News implements Serializable {
 
@@ -665,7 +668,11 @@ public class News implements Serializable {
 		this.role = role;
 	}
 
-
+	/**
+	 * 判断名字在未读
+	 * 
+	 * @param name
+	 */
 	public String getName() {
 		return name;
 	}

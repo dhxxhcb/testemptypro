@@ -11,6 +11,6 @@
     <result column="APP_DESC" property="appDesc"  javaType="string" />
   </resultMap>
   <select id="getMobileAppList" resultMap="BaseResultMap">
-  SELECT a.APP_ID,a.APP_NAME,a.APP_TYPE,a.APP_MODULE,a.APP_ICON,a.APP_URL,a.APP_DESC,a.APP_PRIV from mobile_app a
+SELECT a.APP_ID,a.APP_NAME,a.APP_TYPE,a.APP_MODULE,a.APP_ICON,a.APP_URL,a.APP_DESC,a.APP_PRIV from mobile_app a
   </select>
 </mapper>

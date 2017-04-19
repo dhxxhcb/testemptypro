@@ -40,7 +40,8 @@ public class MenuController {
 	@Resource
 	private MobileAppService mobileAppService;
 	private int flag; 
-	private String msg;
+	private	String err="err";
+	private	String  ok="ok";
 	
 
 	
@@ -57,12 +58,13 @@ public class MenuController {
 	String showNew() {
 		List<SysMenu> munuList = menuService.getAll();
 
+		String msg;
 		if (munuList.size() > 0) {
 			flag = 0;
-			msg = "success";
+			msg = ok;
 		} else {
 			flag = 1;
-			msg = "err";
+			msg = err;
 		}
 
 		ToJson<SysMenu> menuJson = new ToJson<SysMenu>(flag, msg);
@@ -75,34 +77,30 @@ public class MenuController {
 
 	
 	/**
-	 * 获取一级菜单下面的子类菜单
-	 * @Title: showDadMenu
-	 * @Description: TODO
-	 * @author(作者):      wyq
-	 * @param: @param request
-	 * @param: @param response
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:57:41
+	 * 方法介绍:   获取一级菜单下面的子类菜单
+	 * 参数说明:   @param request
+	 * 参数说明:   @param response
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping(value = "/showSubclassesMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String showDadMenu(HttpServletRequest request, HttpServletResponse response) {
-		loger.info("进入显示信息页面");
 		String menuId = request.getParameter("menuId");
 		List<SysFunction> list = menuService.getDadMenu(menuId);
+		String msg;
 		if (list.size() > 0) {
 			flag = 0;
-			msg = "成功";
+			msg = ok;
 		} else {
 			flag = 1;
-			msg = "失敗";
+			msg = err;
 		}
 		ToJson<SysFunction> menuJson = new ToJson<SysFunction>(flag, msg);
 		menuJson.setObj(list);
-		loger.info("结果信息："
-				+ JSON.toJSONStringWithDateFormat(menuJson,
-						"yyyy-MM-dd HH:mm:ss"));
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("showSubclassesMenu", JSON.toJSONStringWithDateFormat(menuJson,
 				"yyyy-MM-dd HH:mm:ss"));
@@ -110,32 +108,28 @@ public class MenuController {
 		return JSON.toJSONStringWithDateFormat(menuJson, "yyyy-MM-dd HH:mm:ss");
 	}
 	/**
-	 * 移动对应菜单
-	 * @Title: getMenu
-	 * @Description: TODO
-	 * @author(作者):      wyq
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:59:56
+	 * 方法介绍:   移动对应菜单
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping(value = "/getMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String getMenu() {
-		loger.info("进入显示信息页面");
 		List<MobileApp> munuList = mobileAppService.getMobileAppList();
+		String msg;
 		if (munuList.size() > 0) {
 			flag = 0;
-			msg = "成功";
+			msg = ok;
 		} else {
 			flag = 1;
-			msg = "失敗";
+			msg = err;
 		}
 
 		ToJson<MobileApp> menuJson = new ToJson<MobileApp>(flag, msg);
 		menuJson.setObj(munuList);
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("showMenu", JSON.toJSONStringWithDateFormat(menuJson,
-				"yyyy-MM-dd HH:mm:ss"));
 		return JSON.toJSONStringWithDateFormat(menuJson, "yyyy-MM-dd HH:mm:ss");
 		
 		

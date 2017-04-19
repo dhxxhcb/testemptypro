@@ -15,12 +15,13 @@ import com.xoa.model.menu.SysFunction;
 import com.xoa.model.menu.SysMenu;
 import com.xoa.service.menu.MenuService;
 
+
 /**
  * 
- * @ClassName (类名):  MenuServiceImpl
- * @Description(简述): 菜单
- * @author(作者):      wyq
- * @date(日期):        2017-4-17 下午6:01:31
+ * 创建作者:   王曰岐
+ * 创建日期:   2017-4-19 下午3:44:26
+ * 类介绍  :    菜单ServiceImpl
+ * 构造参数:   
  *
  */
 @Service
@@ -31,14 +32,6 @@ public class MenuServiceImpl implements MenuService {
 	@Resource
 	private SysFunctionMapper sysFunctionMapper;//子类菜单DAO
 	
-/**
- * 
- * <p>Title: getAll</p>
- * <p>Description: </p>
- * @return
- * @author(作者):  wyq
- * @see com.xoa.service.menu.MenuService#getAll()
- */
    @Override
 	public List<SysMenu> getAll() {
 		List<SysMenu> list=sysMenuMapper.getDatagrid();
@@ -54,15 +47,6 @@ public class MenuServiceImpl implements MenuService {
 	}
 	
 	
-/**
- * 
- * <p>Title: getDadMenu</p>
- * <p>Description: </p>
- * @param menuId
- * @return
- * @author(作者):  wyq
- * @see com.xoa.service.menu.MenuService#getDadMenu(java.lang.String)
- */
 	@Override
 	public List<SysFunction> getDadMenu(String menuId) {
 		List<SysFunction> list=sysFunctionMapper.getDatagrid(menuId);

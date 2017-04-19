@@ -46,12 +46,12 @@ public class loginController {
 		return "login/index";
 	}
 	
-	@RequestMapping("/cont") //URL的/index
+	@RequestMapping("/cont") //URL的/cont
 	public String cont() {
 		return "app/main/cont";
 	}
 	
-	@RequestMapping("/lunbo") //URL的/index
+	@RequestMapping("/lunbo") //URL的/lunbo
 	public String lunbo() {
 		return "app/main/lunbo";
 	}
@@ -73,28 +73,38 @@ public class loginController {
 	 * 
 	 * 创建作者:   吴道全
 	 * 创建日期:   2017-4-18 下午3:42:00
-	 * 方法介绍:   
+	 * 方法介绍:   跳转登录
 	 * 参数说明:   @return
 	 * @return     String
 	 */
 	@RequestMapping("/main") // 登录窗口
-	public String loginSuccess1() {
-		loger.info("成功登录！");
+	public String loginSuccess() {
 		return "app/main/index";
 	}
 
-	
+	/**
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:51:00
+	 * 方法介绍:   匹配用户名和用户密码
+	 * 参数说明:   @param username 用户名
+	 * 参数说明:   @param password 密码
+	 * 参数说明:   @param request 
+	 * 参数说明:   @param response
+	 * 参数说明:   @return
+	 * 参数说明:   @throws Exception
+	 * @return     String
+	 */
 	@RequestMapping(value="/login",method=RequestMethod.POST,produces={"application/json;charset=UTF-8"})
-	public @ResponseBody  String loginsuccess(@RequestParam("username") String username, @RequestParam("password") String password,
+	public @ResponseBody  String loginEnter(@RequestParam("username") String username, @RequestParam("password") String password,
             HttpServletRequest request,HttpServletResponse response) throws Exception{
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		Users user=usersService.findUserByName(username);
 		try {
 			if (user==null) {
-			loger.info("登录用户名不存在");
-			request.getSession().setAttribute("message", "用户名不存在，请重新登录");
+			request.getSession().setAttribute("message", "errOne");
 			    json.setObject(user);
-	            json.setMsg("用户登录失败！");
+	            json.setMsg("err");
 	            json.setFlag(false);
 			
 			
@@ -111,7 +121,7 @@ public class loginController {
 				request.getSession().setAttribute("deptIdOther", user.getDeptIdOther());
 			}
 			    json.setObject(user);
-	            json.setMsg("用户登录成功！");
+	            json.setMsg("OK");
 	            json.setFlag(true);
 		   
 		}

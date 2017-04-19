@@ -2,12 +2,14 @@ package com.xoa.model.menu;
 
 import java.util.List;
 
+
 /**
- * @ClassName (类名): 一级菜单
- * @Description(简述): TODO
- * @author(作者): wyq
- * @date(日期): 2017-4-17 下午5:39:47
  * 
+ * 创建作者:   王曰岐
+ * 创建日期:   2017-4-19 下午3:24:22
+ * 类介绍  :   一级菜单
+ * 构造参数:   无
+ *
  */
 public class SysMenu {
 	/**
@@ -31,132 +33,52 @@ public class SysMenu {
 	 */
 	private List<SysFunction> child;
 
-	/**
-	 * 
-	 * @Title: getId
-	 * @Description: 菜单ID
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
-	 */
+	
 	public String getId() {
 		return id;
 	}
 
-	/**
-	 * 
-	 * @Title: setId
-	 * @Description: 菜单ID
-	 * @author(作者): wyq
-	 * @param: @param id
-	 * @return: void
-	 * @throws
-	 */
+	
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	/**
-	 * 
-	 * @Title: getName
-	 * @Description: 菜单名称
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
-	 */
+	
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * 
-	 * @Title: setName
-	 * @Description: 菜单名称
-	 * @author(作者): wyq
-	 * @param: @param name
-	 * @return: void
-	 * @throws
-	 */
+	
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * 
-	 * @Title: getImg
-	 * @Description: 菜单图片名
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
-	 */
+	
 	public String getImg() {
 		return img;
 	}
 
-	/**
-	 * 
-	 * @Title: setImg
-	 * @Description: 菜单图片名
-	 * @author(作者): wyq
-	 * @param: @param img
-	 * @return: void
-	 * @throws
-	 */
+	
 	public void setImg(String img) {
 		this.img = img;
 	}
 
-	/**
-	 * 
-	 * @Title: getExt
-	 * @Description: 菜单图片名
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
-	 */
+	
 	public String getExt() {
 		return ext;
 	}
 
-	/**
-	 * 
-	 * @Title: setExt
-	 * @Description: 菜单图片名
-	 * @author(作者): wyq
-	 * @param: @param ext
-	 * @return: void
-	 * @throws
-	 */
+	
 	public void setExt(String ext) {
 		this.ext = ext;
 	}
 
-	/**
-	 * 
-	 * @Title: getChild
-	 * @Description: 对应二级菜单
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: List<SysFunction>
-	 * @throws
-	 */
+	
 	public List<SysFunction> getChild() {
 		return child;
 	}
 
-	/**
-	 * 
-	 * @Title: setChild
-	 * @Description: 对应二级菜单
-	 * @author(作者): wyq
-	 * @param: @param child
-	 * @return: void
-	 * @throws
-	 */
+	
 	public void setChild(List<SysFunction> child) {
 		this.child = child;
 	}
