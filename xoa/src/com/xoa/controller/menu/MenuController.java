@@ -126,6 +126,7 @@ public class MenuController {
 		} else {
 			flag = 1;
 			msg = err;
+			
 		}
 
 		ToJson<MobileApp> menuJson = new ToJson<MobileApp>(flag, msg);

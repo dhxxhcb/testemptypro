@@ -132,17 +132,25 @@ public class NewServiceImpl implements NewService {
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
 		List<News> list = newsMapper.selectNewsManage(maps);
+		StringBuffer s=new StringBuffer();
 		for (News news : list) {
 			if (news.getToId().equals("ALL_DEPT")) {
 				List<Department> list1 = departmentMapper.getDatagrid();
 				for (Department department : list1) {
-					news.setName(department.getDeptName());
+					s.append(department.getDeptName());
+					s.append(",");
+					news.setName(s.toString());
 				}
 			} else {
 				strArray = news.getToId().split(",");
 				for (int i = 0; i < strArray.length; i++) {
-					List<String> name = departmentService.getDeptNameById(Integer.parseInt(strArray[i]));
-				
+					List<String> depname = departmentService.getDeptNameById(Integer.parseInt(strArray[i]));
+					for (String string : depname) {
+						s.append(string);
+						s.append(",");
+						news.setName(s.toString());
+					}
+					
 				}
 			}
 		}

@@ -2,6 +2,7 @@ package com.xoa.model.worldnews;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import com.xoa.model.department.Department;
 import com.xoa.model.role.Role;
@@ -159,6 +160,16 @@ public class News implements Serializable {
 	 * 判断名字在未读
 	 */
 	private String name;
+
+	private List<String> depName;
+	
+	public List<String> getDepName() {
+		return depName;
+	}
+
+	public void setDepName(List<String> depName) {
+		this.depName = depName;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
