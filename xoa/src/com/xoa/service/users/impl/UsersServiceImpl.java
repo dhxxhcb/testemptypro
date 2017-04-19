@@ -146,6 +146,8 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public List<Users> getBySearch(Map<String, Object> maps, Integer page, Integer pageSize, boolean useFlag) {
 		// TODO Auto-generated method stub
+		List<Users> list=usersMapper.getBySearch( maps);
+	
 		return usersMapper.getBySearch(maps);
 	}
 

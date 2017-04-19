@@ -135,15 +135,13 @@
 		</association>
 	</resultMap>
 	<select id="getBySearch"
+	   parameterType="java.util.HashMap"
         resultType="com.xoa.model.users.Users">
         select u.UID,u.USER_ID as userId,u.USER_NAME as userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,
         u.DEPT_ID,u.SEX,u.AVATAR, d.DEPT_NAME as deptName from user u ,department d
 		   where u.DEPT_ID= d.DEPT_ID 
-		   <if test="search!=null">
-			and userName = #{search ,jdbcType=VARCHAR} 
-			
-		</if>   
-				
+			<if test="search!=null"> AND u.USER_NAME LIKE #{search}
+			or u.USER_PRIV_NAME LIKE #{search} or d.DEPT_NAME LIKE #{search}</if>
     </select>  
     <select id="getUserAndDept"
         parameterType="java.lang.Integer"

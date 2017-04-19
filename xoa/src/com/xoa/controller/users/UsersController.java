@@ -219,8 +219,7 @@ public class UsersController {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");
-			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("search", search);
+			maps.put("search", search);
 			List<Users> list=usersService.getBySearch(maps,page,pageSize,useFlag);  
 			json.setObj(list);
             json.setMsg("OK");
