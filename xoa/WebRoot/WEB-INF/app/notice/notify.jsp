@@ -45,19 +45,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
     	$(function(){
     	
-    		$('.M-box3').pagination({
-				    pageCount:10,
-				    jump:true,
-				    coping:true,
-				    homePage:'首页',
-				    endPage:'末页',
-				    prevContent:'上页',
-				    nextContent:'下页'
-				});
+    		
     	
     			var data1={
     				"page":1,
-    				"pageSize":10,
+    				"pageSize":2,
     				"useFlag":true
     			};
     			$.ajax({
@@ -74,6 +66,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								str1='<input type="hidden" id="'+data[i].notifyId+'">';
 							}
 							$('.TableHeader').after(str+str1); 
+							
+							$('.M-box3').pagination({
+							    pageCount:10,
+							    jump:true,
+							    coping:true,
+							    homePage:'首页',
+							    endPage:'末页',
+							    prevContent:'上页',
+							    nextContent:'下页'
+							});
 						}
 				});
 				
