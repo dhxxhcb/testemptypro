@@ -33,6 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		.add_img .addImg .addIcon{position: absolute;top: 0;left: 0;}
 		.add_img .addImg .clearIcon{position: absolute;top: 0;left: -20px;}
 		#noRead{width: 100%;}
+		#noRead .title{font-family: "微软雅黑";font-size:18px;}
 		#noRead span{display: block;width: 50%;margin: 20px auto;padding: 20px 20px;font-size: 25px;text-align: center;background-color: #6fb4fa;color: #fff;}
 		.title{font-size: 16px;color: #124164;font-weight: bold;margin-top:20px;margin-left:20px;display: inline-block;}
 		
@@ -138,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>
 					<div class="title">未读公告</div>
 					<select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
-			          	<option value="0" selected></option>
+			          	<option value="0" selected>所有类型</option>
 			         	<option value="01">决定</option>
 						<option value="02">通知</option>
 						<option value="03">通报</option>
@@ -167,8 +168,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option value="04">其他</option>
 		          	<option value="05">无类型</option>
 		       </select>
+		       <span>发布日期</span>
+				<input id="test" name="SEND_TIME" class="laydate-icon">
+				<input type="button" id="but" value="确定" />
 		    </td>
-		    <!--<td align="center" ><input type="button" class="BigButton" onClick="window.open('new.php')" value=新建公告 ></td>-->
+			   		
 		    <td align="right" valign="bottom" class="small1">
 		    	<div id="pageArea" class="pageArea">
 					第<span id="pageNumber" class="pageNumber">1/1</span>页
@@ -319,6 +323,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 
 <script type="text/javascript">
+			//时间控件调用
+			laydate({
+			  elem: '#test', //目标元素。
+			  format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+			  istime: true, //显示时、分、秒
+			});
+			
 			//时间控件调用
 			var start = {
 			  elem: '#start',
