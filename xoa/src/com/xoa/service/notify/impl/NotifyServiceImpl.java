@@ -13,8 +13,8 @@ import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.notify.NotifyMapper;
 import com.xoa.model.department.Department;
 import com.xoa.model.notify.Notify;
-import com.xoa.model.users.Users;
-import com.xoa.model.worldnews.News;
+
+
 
 
 import com.xoa.service.notify.NotifyService;
@@ -169,7 +169,7 @@ public class NotifyServiceImpl implements  NotifyService{
         maps.put("page", pageParams);
         Notify notify=notifyMapper.detailedNotify(maps);
      
-    /*  if(notify.getReaders().indexOf(name)==-1){
+      if(notify.getReaders().indexOf(name)==-1){
         	StringBuffer str2= new StringBuffer(notify.getReaders());
         	str2.append(",");
         	str2.append(name);
@@ -177,7 +177,7 @@ public class NotifyServiceImpl implements  NotifyService{
         	notify.setNotifyId(notify.getNotifyId());
         	notify.setReaders(str1);
         	notifyMapper.updateReaders(notify);
-		}*/
+		}
 	
 	   return notify;
 	  

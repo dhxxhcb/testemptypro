@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.notify.Notify;
-import com.xoa.model.worldnews.News;
+
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
@@ -212,7 +212,7 @@ public class NotifyController {
 	 * 创建作者:   张丽军
 	 * 创建日期:   2017-4-18 下午8:19:13
 	 * 方法介绍:   公告查询详情
-	 * 参数说明:   @param notifyId
+	 * 参数说明:   @param notifyId 
 	 * 参数说明:   @return
 	 * 参数说明:   @throws Exception
 	 * @return     String
@@ -248,37 +248,37 @@ public class NotifyController {
 	 * 创建作者:   张丽军
 	 * 创建日期:   2017-4-18 下午8:19:48
 	 * 方法介绍:   修改公告信息
-	 * 参数说明:   @param notifyId
-	 * 参数说明:   @param fromId
-	 * 参数说明:   @param typeId
-	 * 参数说明:   @param subject
-	 * 参数说明:   @param content
-	 * 参数说明:   @param format
-	 * 参数说明:   @param fromDept
-	 * 参数说明:   @param sendTime
-	 * 参数说明:   @param beginDate
-	 * 参数说明:   @param endDate
-	 * 参数说明:   @param print
-	 * 参数说明:   @param top
-	 * 参数说明:   @param topDays
-	 * 参数说明:   @param publish
-	 * 参数说明:   @param auditer
-	 * 参数说明:   @param auditDate
-	 * 参数说明:   @param download
-	 * 参数说明:   @param lastEditor
-	 * 参数说明:   @param lastEditTime
-	 * 参数说明:   @param subjectColor
-	 * 参数说明:   @param keyword
-	 * 参数说明:   @param isFw
-	 * 参数说明:   @param toId
-	 * 参数说明:   @param attachmentId
-	 * 参数说明:   @param attachmentName
-	 * 参数说明:   @param readers
-	 * 参数说明:   @param privId
-	 * 参数说明:   @param userId
-	 * 参数说明:   @param reason
-	 * 参数说明:   @param compressContent
-	 * 参数说明:   @param summary
+	 * 参数说明:   @param notifyId  主键(公告)
+	 * 参数说明:   @param fromId   发布用户USER_ID
+	 * 参数说明:   @param typeId  公告型
+	 * 参数说明:   @param subject  公告标题
+	 * 参数说明:   @param content  公告通知内容
+	 * 参数说明:   @param format  公告通知格式(0-普通格式,1-mht格式,2-超链接)
+	 * 参数说明:   @param fromDept 发布部门ID
+	 * 参数说明:   @param sendTime  发送时间
+	 * 参数说明:   @param beginDate  开始日期
+	 * 参数说明:   @param endDate   结束日期
+	 * 参数说明:   @param print  是否允许打印office附件(0-不允许,1-允许)
+	 * 参数说明:   @param top  是否置顶(0-否,1-是)
+	 * 参数说明:   @param topDays  置顶天数
+	 * 参数说明:   @param publish   发布标识(0-未发布,1-已发布,2-待审批,3-未通过)
+	 * 参数说明:   @param auditer  审核人用户ID
+	 * 参数说明:   @param auditDate  审核时间
+	 * 参数说明:   @param download  是否允许下载office附件(0-不允许,1-允许)
+	 * 参数说明:   @param lastEditor  最后编辑人
+	 * 参数说明:   @param lastEditTime  最后编辑时间
+	 * 参数说明:   @param subjectColor  公告标题颜色
+	 * 参数说明:   @param keyword  内容关键字
+	 * 参数说明:   @param isFw  是否转发
+	 * 参数说明:   @param toId  按部门发布
+	 * 参数说明:   @param attachmentId  附件ID串
+	 * 参数说明:   @param attachmentName  附件名称串
+	 * 参数说明:   @param readers  阅读人员用户ID串
+	 * 参数说明:   @param privId  按角色发布
+	 * 参数说明:   @param userId  用户id
+	 * 参数说明:   @param reason  审核人不同意的原因
+	 * 参数说明:   @param compressContent  压缩后的公告通知内容
+	 * 参数说明:   @param summary  内容简介
 	 * 参数说明:   @return
 	 * @return     String
 	 */
@@ -366,36 +366,36 @@ public class NotifyController {
 	 * 创建作者:   张丽军
 	 * 创建日期:   2017-4-18 下午8:20:09
 	 * 方法介绍:   保存公告信息
-	 * 参数说明:   @param fromId
-	 * 参数说明:   @param typeId
-	 * 参数说明:   @param subject
-	 * 参数说明:   @param content
-	 * 参数说明:   @param format
-	 * 参数说明:   @param fromDept
-	 * 参数说明:   @param sendTime
-	 * 参数说明:   @param beginDate
-	 * 参数说明:   @param endDate
-	 * 参数说明:   @param print
-	 * 参数说明:   @param top
-	 * 参数说明:   @param topDays
-	 * 参数说明:   @param publish
-	 * 参数说明:   @param auditer
-	 * 参数说明:   @param auditDate
-	 * 参数说明:   @param download
-	 * 参数说明:   @param lastEditor
-	 * 参数说明:   @param lastEditTime
-	 * 参数说明:   @param subjectColor
-	 * 参数说明:   @param keyword
-	 * 参数说明:   @param isFw
-	 * 参数说明:   @param toId
-	 * 参数说明:   @param attachmentId
-	 * 参数说明:   @param attachmentName
-	 * 参数说明:   @param readers
-	 * 参数说明:   @param privId
-	 * 参数说明:   @param userId
-	 * 参数说明:   @param reason
-	 * 参数说明:   @param compressContent
-	 * 参数说明:   @param summary
+	 * 参数说明:   @param fromId   发布用户USER_ID
+	 * 参数说明:   @param typeId  公告型
+	 * 参数说明:   @param subject  公告标题
+	 * 参数说明:   @param content  公告通知内容
+	 * 参数说明:   @param format  公告通知格式(0-普通格式,1-mht格式,2-超链接)
+	 * 参数说明:   @param fromDept 发布部门ID
+	 * 参数说明:   @param sendTime  发送时间
+	 * 参数说明:   @param beginDate  开始日期
+	 * 参数说明:   @param endDate   结束日期
+	 * 参数说明:   @param print  是否允许打印office附件(0-不允许,1-允许)
+	 * 参数说明:   @param top  是否置顶(0-否,1-是)
+	 * 参数说明:   @param topDays  置顶天数
+	 * 参数说明:   @param publish   发布标识(0-未发布,1-已发布,2-待审批,3-未通过)
+	 * 参数说明:   @param auditer  审核人用户ID
+	 * 参数说明:   @param auditDate  审核时间
+	 * 参数说明:   @param download  是否允许下载office附件(0-不允许,1-允许)
+	 * 参数说明:   @param lastEditor  最后编辑人
+	 * 参数说明:   @param lastEditTime  最后编辑时间
+	 * 参数说明:   @param subjectColor  公告标题颜色
+	 * 参数说明:   @param keyword  内容关键字
+	 * 参数说明:   @param isFw  是否转发
+	 * 参数说明:   @param toId  按部门发布
+	 * 参数说明:   @param attachmentId  附件ID串
+	 * 参数说明:   @param attachmentName  附件名称串
+	 * 参数说明:   @param readers  阅读人员用户ID串
+	 * 参数说明:   @param privId  按角色发布
+	 * 参数说明:   @param userId  用户id
+	 * 参数说明:   @param reason  审核人不同意的原因
+	 * 参数说明:   @param compressContent  压缩后的公告通知内容
+	 * 参数说明:   @param summary  内容简介
 	 * 参数说明:   @return
 	 * @return     String
 	 */
