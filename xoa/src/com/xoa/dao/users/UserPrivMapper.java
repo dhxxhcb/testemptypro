@@ -5,101 +5,101 @@ import java.util.Map;
 
 import com.xoa.model.users.UserPriv;
 
+
  /**
- * @ClassName (类名):  UserPrivMapper
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午4:07:10
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月18日 下午6:38:35
+ * 类介绍  :    角色权限表
+ * 构造参数:   
  *
  */
 public interface UserPrivMapper {
+   
     /**
-     * @Title: deleteByPrimaryKey
-     * @Description: TODO
-     * @author(作者):      zlf
-     * @param: @param userPriv   
-     * @return: void   
-     * @throws
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月18日 下午6:38:41
+     * 方法介绍:   根据userpriv删除角色
+     * 参数说明:   @param userPriv
+     * @return     void
      */
     void deleteByPrimaryKey(Integer userPriv);
+   
     /**
-     * @Title: insert
-     * @Description: TODO
-     * @author(作者):      zlf
-     * @param: @param record
-     * @param: @return   
-     * @return: int   
-     * @throws
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月18日 下午6:38:47
+     * 方法介绍:   新增userpriv
+     * 参数说明:   @param record
+     * 参数说明:   @return
+     * @return     int
      */
     int insert(UserPriv record);
-    
+  
     /**
-     * @Title: insertSelective
-     * @Description: TODO
-     * @author(作者):      zlf
-     * @param: @param record   
-     * @return: void   
-     * @throws
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月18日 下午6:38:53
+     * 方法介绍:   新增userpriv
+     * 参数说明:   @param record
+     * @return     void
      */
     void insertSelective(UserPriv record);   
+   
     /**
-     * @Title: selectByPrimaryKey
-     * @Description: TODO
-     * @author(作者):      zlf
-     * @param: @param userPriv
-     * @param: @return   
-     * @return: UserPriv   
-     * @throws
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月18日 下午6:38:59
+     * 方法介绍:   根据userpriv查询userpriv
+     * 参数说明:   @param userPriv
+     * 参数说明:   @return
+     * @return     UserPriv
      */
     UserPriv selectByPrimaryKey(int userPriv);
+   
     /**
-     * @Title: updateByPrimaryKeySelective
-     * @Description: TODO
-     * @author(作者):      zlf
-     * @param: @param record
-     * @param: @return   
-     * @return: int   
-     * @throws
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月18日 下午6:39:05
+     * 方法介绍:   更新
+     * 参数说明:   @param record
+     * 参数说明:   @return
+     * @return     int
      */
     int updateByPrimaryKeySelective(UserPriv record);
+  
     /**
-     * @Title: updateByPrimaryKey
-     * @Description: TODO
-     * @author(作者):      zlf
-     * @param: @param record
-     * @param: @return   
-     * @return: int   
-     * @throws
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月18日 下午6:39:11
+     * 方法介绍:   更新
+     * 参数说明:   @param record
+     * 参数说明:   @return
+     * @return     int
      */
     int updateByPrimaryKey(UserPriv record);   
+   
     /**
-     * @Title: getPrivNameById
-     * @Description: TODO
-     * @author(作者):      zlf
-     * @param: @param userPriv
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月18日 下午6:39:17
+     * 方法介绍:   根据userpriv获取privname
+     * 参数说明:   @param userPriv
+     * 参数说明:   @return
+     * @return     String
      */
     String getPrivNameById(Integer userPriv);  
+   
     /**
-     * @Title: getAlluserPriv
-     * @Description: TODO
-     * @author(作者):      zlf
-     * @param: @param maps
-     * @param: @return   
-     * @return: List<UserPriv>   
-     * @throws
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月18日 下午6:39:24
+     * 方法介绍:   获取所有userpriv
+     * 参数说明:   @param maps
+     * 参数说明:   @return
+     * @return     List<UserPriv>
      */
     List<UserPriv> getAlluserPriv(Map<String,Object> maps); 
+   
     /**
-     * @Title: getPrivByMany
-     * @Description: TODO
-     * @author(作者):      zlf
-     * @param: @param userPriv
-     * @param: @return   
-     * @return: List<UserPriv>   
-     * @throws
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月18日 下午6:39:31
+     * 方法介绍:   多条件获取userpriv
+     * 参数说明:   @param userPriv
+     * 参数说明:   @return
+     * @return     List<UserPriv>
      */
     List<UserPriv> getPrivByMany(UserPriv userPriv); 
 }

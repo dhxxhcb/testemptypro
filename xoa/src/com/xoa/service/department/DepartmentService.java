@@ -7,83 +7,83 @@ import com.xoa.model.department.Department;
 import com.xoa.util.dataSource.DynDatasource;
 
  /**
- * @ClassName (类名):  DepartmentService
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午3:45:51
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月19日 上午9:36:46
+ * 类介绍  :    部门
+ * 构造参数:   
  *
  */
 public interface DepartmentService {
+	
 	/**
-	 * @Title: getDeptNameById
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param dept_id_str
-	 * @param: @return   
-	 * @return: JSONObject   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:36:59
+	 * 方法介绍:   根据部门id串获取部门信息
+	 * 参数说明:   @param dept_id_str
+	 * 参数说明:   @return
+	 * @return     JSONObject
 	 */
 	@DynDatasource
 	public JSONObject getDeptNameById(int... dept_id_str);
+	
 	/**
-	 * @Title: getDatagrid
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @return   
-	 * @return: List<Department>   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:37:25
+	 * 方法介绍:   获取所有部门
+	 * 参数说明:   @return
+	 * @return     List<Department>
 	 */
 	@DynDatasource
     public List<Department> getDatagrid();
+	
 	/**
-	 * @Title: getDeptById
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param deptId
-	 * @param: @return   
-	 * @return: Department   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:37:39
+	 * 方法介绍:   根据部门id获取
+	 * 参数说明:   @param deptId
+	 * 参数说明:   @return
+	 * @return     Department
 	 */
 	@DynDatasource
 	public Department getDeptById(int deptId);
+	
 	/**
-	 * @Title: deleteDept
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param deptId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:40:51
+	 * 方法介绍:   删除部门
+	 * 参数说明:   @param deptId
+	 * @return     void
 	 */
 	@DynDatasource 
 	public void deleteDept(int deptId);
+	
 	/**
-	 * @Title: insertDept
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param department   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:41:02
+	 * 方法介绍:   插入部门
+	 * 参数说明:   @param department
+	 * @return     void
 	 */
 	@DynDatasource 
 	public void insertDept(Department department);
+
 	/**
-	 * @Title: editDept
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param department   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:41:21
+	 * 方法介绍:   修改部门
+	 * 参数说明:   @param department
+	 * @return     void
 	 */
 	@DynDatasource 
 	public void editDept(Department department);
+	
 	/**
-	 * @Title: getDeptByMany
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param department
-	 * @param: @return   
-	 * @return: List<Department>   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:41:31
+	 * 方法介绍:   多条件查询部门信息
+	 * 参数说明:   @param department
+	 * 参数说明:   @return
+	 * @return     List<Department>
 	 */
 	@DynDatasource 
 	public List<Department> getDeptByMany(Department department);
