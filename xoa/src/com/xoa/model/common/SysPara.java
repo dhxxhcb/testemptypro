@@ -1,13 +1,12 @@
 package com.xoa.model.common;
-
-/**
- * 
- * @ClassName (类名): SysPara
- * @Description(简述): TODO
- * @author(作者): wyq
- * @date(日期): 2017-4-17 下午3:08:06
- * 
- */
+ /**
+  * 
+  * 创建作者:   王曰岐
+  * 创建日期:   2017-4-18 下午5:36:22
+  * 类介绍   :    APP端
+  * 构造参数:   无
+  *
+  */
 public class SysPara {
 	/**
 	 * 参数名称
@@ -20,12 +19,11 @@ public class SysPara {
 
 	/**
 	 * 
-	 * @Title: getParaName
-	 * @Description: 参数名称
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午5:36:36
+	 * 方法介绍:   参数名称
+	 * 参数说明:   @return
+	 * @return     String  paraName(参数名称)
 	 */
 	public String getParaName() {
 		return paraName;
@@ -33,12 +31,11 @@ public class SysPara {
 
 	/**
 	 * 
-	 * @Title: setParaName
-	 * @Description: 参数名称
-	 * @author(作者): wyq
-	 * @param: @param paraName
-	 * @return: void
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午5:43:52
+	 * 方法介绍:    参数名称
+	 * 参数说明:   @param paraName
+	 * @return     void
 	 */
 	public void setParaName(String paraName) {
 		this.paraName = paraName == null ? null : paraName.trim();
@@ -46,12 +43,11 @@ public class SysPara {
 
 	/**
 	 * 
-	 * @Title: getParaValue
-	 * @Description: 参数值
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午5:44:25
+	 * 方法介绍:   参数值
+	 * 参数说明:   @return
+	 * @return     String paraValue(参数值)
 	 */
 	public String getParaValue() {
 		return paraValue;
@@ -59,12 +55,11 @@ public class SysPara {
 
 	/**
 	 * 
-	 * @Title: setParaValue
-	 * @Description: 参数值
-	 * @author(作者): wyq
-	 * @param: @param paraValue
-	 * @return: void
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午5:44:47
+	 * 方法介绍:   参数值
+	 * 参数说明:   @param paraValue
+	 * @return     void
 	 */
 	public void setParaValue(String paraValue) {
 		this.paraValue = paraValue == null ? null : paraValue.trim();

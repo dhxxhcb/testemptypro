@@ -4,25 +4,25 @@ import java.util.List;
 
 import com.xoa.model.menu.MobileApp;
 import com.xoa.util.dataSource.DynDatasource;
-/**
- * 
- * @ClassName (类名):  MobileAppService
- * @Description(简述): 移动端
- * @author(作者):      wyq
- * @date(日期):        2017-4-17 下午5:59:35
- *
- */
+
+    /**
+     * 
+     * 创建作者:   王曰岐
+     * 创建日期:   2017-4-18 下午6:22:38
+     * 类介绍  :    APP端菜单Service
+     * 构造参数:   
+     *
+     */
 public interface MobileAppService {
 	
-	/**
-	 * 
-	 * @Title: getMobileAppList
-	 * @Description: 获取移动端所需菜单
-	 * @author(作者):      wyq
-	 * @param: @return   
-	 * @return: List<MobileApp>   
-	 * @throws
-	 */
+	 /**
+	  * 
+	  * 创建作者:   王曰岐
+	  * 创建日期:   2017-4-18 下午6:23:33
+	  * 方法介绍:   获得APP端菜单
+	  * 参数说明:   @return
+	  * @return     List<MobileApp> 返回APP菜单集合
+	  */
 	@DynDatasource
 	public List<MobileApp> getMobileAppList();
 

@@ -1,5 +1,6 @@
 package com.xoa.service.menu.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -38,7 +39,7 @@ public class MenuServiceImpl implements MenuService {
  * @author(作者):  wyq
  * @see com.xoa.service.menu.MenuService#getAll()
  */
-	@Override
+   @Override
 	public List<SysMenu> getAll() {
 		List<SysMenu> list=sysMenuMapper.getDatagrid();
 	  for (SysMenu sysMenu : list) {
@@ -51,6 +52,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 		return list;
 	}
+	
+	
 /**
  * 
  * <p>Title: getDadMenu</p>

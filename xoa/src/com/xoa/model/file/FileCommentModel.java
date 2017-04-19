@@ -1,11 +1,11 @@
 package com.xoa.model.file;
+
 /**
  * 
- * @ClassName (类名):  FileCommentModel
- * @Description(简述): 公共文件柜文档评论表
- * @author(作者):      ys
- * @date(日期):        2017-4-17 下午4:17:21
- *
+ * 创建作者:   杨 胜
+ * 创建日期:   2017-4-18 下午7:40:09
+ * 类介绍  :   公共文件柜文档评论表
+ * 构造参数:   
  */
 public class FileCommentModel {
 	/**
@@ -28,122 +28,122 @@ public class FileCommentModel {
 	  * 点评保存时间
 	  */
 	 String sendTime;
+
 	 /**
 	  * 
-	  * @Title: getCommentId
-	  * @Description: 唯一自增ID
-	  * @author(作者):      ys
-	  * @param: @return   
-	  * @return: int   
-	  * @throws
+	  * 创建作者:   杨 胜
+	  * 创建日期:   2017-4-18 下午7:41:37
+	  * 方法介绍:    唯一自增ID
+	  * 参数说明:   @return
+	  * @return     int
 	  */
 	public int getCommentId() {
 		return commentId;
 	}
+
 	/**
 	 * 
-	 * @Title: setCommentId
-	 * @Description: 唯一自增ID
-	 * @author(作者):      ys
-	 * @param: @param commentId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:43:00
+	 * 方法介绍:   唯一自增ID
+	 * 参数说明:   @param commentId
+	 * @return     void
 	 */
 	public void setCommentId(int commentId) {
 		this.commentId = commentId;
 	}
+
 	/**
 	 * 
-	 * @Title: getFileId
-	 * @Description: 文件ID
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: int   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:43:16
+	 * 方法介绍:   文件ID
+	 * 参数说明:   @return
+	 * @return     int
 	 */
 	public int getFileId() {
 		return fileId;
 	}
+
 	/**
 	 * 
-	 * @Title: setFileId
-	 * @Description: 文件ID
-	 * @author(作者):      ys
-	 * @param: @param fileId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:43:43
+	 * 方法介绍:   文件ID
+	 * 参数说明:   @param fileId
+	 * @return     void
 	 */
 	public void setFileId(int fileId) {
 		this.fileId = fileId;
 	}
+
 	/**
 	 * 
-	 * @Title: getUserId
-	 * @Description: 点评用户的USERID
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:43:59
+	 * 方法介绍:   点评用户的USERID
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getUserId() {
 		return userId;
 	}
+	
 	/**
 	 * 
-	 * @Title: setUserId
-	 * @Description: 点评用户的USERID
-	 * @author(作者):      ys
-	 * @param: @param userId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:44:19
+	 * 方法介绍:   点评用户的USERID
+	 * 参数说明:   @param userId
+	 * @return     void
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
 	/**
 	 * 
-	 * @Title: getContent
-	 * @Description: 点评内容 
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:44:57
+	 * 方法介绍:   点评内容 
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getContent() {
 		return content;
 	}
+	
 	/**
 	 * 
-	 * @Title: setContent
-	 * @Description: 点评内容 
-	 * @author(作者):      ys
-	 * @param: @param content   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:45:15
+	 * 方法介绍:   点评内容 
+	 * 参数说明:   @param content
+	 * @return     void
 	 */
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	/**
 	 * 
-	 * @Title: getSendTime
-	 * @Description: 点评保存时间
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:45:29
+	 * 方法介绍:   点评保存时间
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getSendTime() {
 		return sendTime;
 	}
+
 	/**
 	 * 
-	 * @Title: setSendTime
-	 * @Description: 点评保存时间
-	 * @author(作者):      ys
-	 * @param: @param sendTime   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:45:43
+	 * 方法介绍:   点评保存时间
+	 * 参数说明:   @param sendTime
+	 * @return     void
 	 */
 	public void setSendTime(String sendTime) {
 		this.sendTime = sendTime;

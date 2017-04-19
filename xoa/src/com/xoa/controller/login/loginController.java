@@ -1,5 +1,4 @@
 package com.xoa.controller.login;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,20 +17,35 @@ import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 
-
 @Controller
 @Scope(value="prototype")
+
+/**
+ * 
+ * 创建作者:   王曰岐
+ * 创建日期:   2017-4-18 下午3:11:29
+ * 类介绍    :   登录控制器
+ * 构造参数:   无
+ *
+ */
 public class loginController {
 	private Logger loger = Logger.getLogger(loginController.class);
-	@Resource
-	private UsersService usersService;
+	@Resource 
+	private UsersService usersService; 
 	
-	@RequestMapping("/index") //登录窗口
+	/**
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午3:15:40
+	 * 方法介绍:   处理登录过程
+	 * 参数说明:   @return
+	 * @return     String 返回登录的jsp路径
+	 */
+	@RequestMapping("/index") //URL的/index
 	public String login() {
-		loger.info("成功登录！");
 		return "login/index";
 	}
-	
+
 	/**
 	 * 分公司登录窗口
 	 * @return 登录窗口
@@ -46,28 +60,19 @@ public class loginController {
 	}
 	
 	/**
-	 * 登录窗口
-	 * @return 登录窗口
+	 * 
+	 * 创建作者:   吴道全
+	 * 创建日期:   2017-4-18 下午3:42:00
+	 * 方法介绍:   
+	 * 参数说明:   @return
+	 * @return     String
 	 */
-	@RequestMapping("/main")
-	// 登录窗口
+	@RequestMapping("/main") // 登录窗口
 	public String loginSuccess1() {
 		loger.info("成功登录！");
 		return "app/main/index";
 	}
 
-	@RequestMapping("/lunbo")
-	// 登录窗口
-	public String lunbo() {
-		loger.info("成功登录！");
-		return "app/main/lunbo";
-	}
-	@RequestMapping("/cont")
-	// 登录窗口
-	public String cont() {
-		loger.info("成功登录！");
-		return "app/main/cont";
-	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST,produces={"application/json;charset=UTF-8"})
 	public @ResponseBody  String loginsuccess(@RequestParam("username") String username, @RequestParam("password") String password,

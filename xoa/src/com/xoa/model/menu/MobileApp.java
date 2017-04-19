@@ -3,11 +3,12 @@ package com.xoa.model.menu;
 import java.util.List;
 
 /**
- * @ClassName (类名): MobileApp
- * @Description(简述): TODO
- * @author(作者): wyq
- * @date(日期): 2017-4-17 下午3:11:10
  * 
+ * 创建作者:   王曰岐
+ * 创建日期:   2017-4-18 下午5:46:46
+ * 类介绍   :   APP端菜单
+ * 构造参数:   无
+ *
  */
 public class MobileApp {
 	/**
@@ -42,35 +43,14 @@ public class MobileApp {
 	 * 应用权限
 	 */
 	private String appPriv;
-
-	private List<MobileApp> arrOne;
-
-	private List<MobileApp> arrTwo;
-
-	public List<MobileApp> getArrOne() {
-		return arrOne;
-	}
-
-	public void setArrOne(List<MobileApp> arrOne) {
-		this.arrOne = arrOne;
-	}
-
-	public List<MobileApp> getArrTwo() {
-		return arrTwo;
-	}
-
-	public void setArrTwo(List<MobileApp> arrTwo) {
-		this.arrTwo = arrTwo;
-	}
-
+	
 	/**
 	 * 
-	 * @Title: getAppId
-	 * @Description: 桌面应用的ID
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: Integer
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午5:47:31
+	 * 方法介绍:   获得桌面应用的ID
+	 * 参数说明:   @return
+	 * @return     Integer appId(桌面应用的ID)
 	 */
 	public Integer getAppId() {
 		return appId;
@@ -78,12 +58,11 @@ public class MobileApp {
 
 	/**
 	 * 
-	 * @Title: setAppId
-	 * @Description: 桌面应用的ID
-	 * @author(作者): wyq
-	 * @param: @param appId
-	 * @return: void
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午5:48:02
+	 * 方法介绍:   设置桌面应用的ID
+	 * 参数说明:   @param appId
+	 * @return     void
 	 */
 	public void setAppId(Integer appId) {
 		this.appId = appId;
@@ -91,25 +70,24 @@ public class MobileApp {
 
 	/**
 	 * 
-	 * @Title: getAppName
-	 * @Description: 应用的名称
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午5:48:18
+	 * 方法介绍:   获得应用的名称
+	 * 参数说明:   @return
+	 * @return     String appName(应用的名称)
 	 */
 	public String getAppName() {
 		return appName;
 	}
 
+	
 	/**
 	 * 
-	 * @Title: setAppName
-	 * @Description: 应用的名称
-	 * @author(作者): wyq
-	 * @param: @param appName
-	 * @return: void
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:02:43
+	 * 方法介绍:   设置应用的名称
+	 * 参数说明:   @param appName
+	 * @return     void
 	 */
 	public void setAppName(String appName) {
 		this.appName = appName == null ? null : appName.trim();
@@ -117,38 +95,34 @@ public class MobileApp {
 
 	/**
 	 * 
-	 * @Title: getAppType
-	 * @Description: 应用的类型 system是系统内置不允许改变，vip组件为需要购买，custom是用户可以自己定制的
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:11:52
+	 * 方法介绍:   获得应用的类型 (system是系统内置不允许改变，vip组件为需要购买，custom是用户可以自己定制的)
+	 * 参数说明:   @return
+	 * @return     String  appType(应用的类型)
 	 */
 	public String getAppType() {
 		return appType;
 	}
-
-	/**
-	 * 
-	 * @Title: setAppType
-	 * @Description: 应用的类型 system是系统内置不允许改变，vip组件为需要购买，custom是用户可以自己定制的
-	 * @author(作者): wyq
-	 * @param: @param appType
-	 * @return: void
-	 * @throws
-	 */
+    /**
+     * 
+     * 创建作者:   王曰岐
+     * 创建日期:   2017-4-18 下午6:13:03
+     * 方法介绍:   设置应用的类型 (system是系统内置不允许改变，vip组件为需要购买，custom是用户可以自己定制的)
+     * 参数说明:   @param appType
+     * @return     void
+     */
 	public void setAppType(String appType) {
 		this.appType = appType == null ? null : appType.trim();
 	}
 
 	/**
 	 * 
-	 * @Title: getAppModule
-	 * @Description: 应用所代表的模块
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:13:18
+	 * 方法介绍:   获得应用所代表的模块
+	 * 参数说明:   @return
+	 * @return     String  appModule(应用所代表的模块)
 	 */
 	public String getAppModule() {
 		return appModule;
@@ -156,51 +130,45 @@ public class MobileApp {
 
 	/**
 	 * 
-	 * @Title: setAppModule
-	 * @Description: 应用所代表的模块
-	 * @author(作者): wyq
-	 * @param: @param appModule
-	 * @return: void
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:13:46
+	 * 方法介绍:   设置应用所代表的模块
+	 * 参数说明:   @param appModule
+	 * @return     void
 	 */
 	public void setAppModule(String appModule) {
 		this.appModule = appModule == null ? null : appModule.trim();
 	}
-
 	/**
 	 * 
-	 * @Title: getAppIcon
-	 * @Description: 应用的图标
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:14:11
+	 * 方法介绍:   获得应用的图标
+	 * 参数说明:   @return
+	 * @return     String appIcon(应用的图标)
 	 */
 	public String getAppIcon() {
 		return appIcon;
 	}
-
-	/**
-	 * 
-	 * @Title: setAppIcon
-	 * @Description: 应用的图标
-	 * @author(作者): wyq
-	 * @param: @param appIcon
-	 * @return: void
-	 * @throws
-	 */
+    /**
+     * 
+     * 创建作者:   王曰岐
+     * 创建日期:   2017-4-18 下午6:14:44
+     * 方法介绍:   设置应用的图标
+     * 参数说明:   @param appIcon
+     * @return     void
+     */
 	public void setAppIcon(String appIcon) {
 		this.appIcon = appIcon == null ? null : appIcon.trim();
 	}
 
 	/**
 	 * 
-	 * @Title: getAppUrl
-	 * @Description: 如果应用是打开连接地址的，则不为空
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:15:06
+	 * 方法介绍:   获得如果应用是打开连接地址的，则不为空
+	 * 参数说明:   @return
+	 * @return     String appUrl(应用连接地址)
 	 */
 	public String getAppUrl() {
 		return appUrl;
@@ -208,12 +176,11 @@ public class MobileApp {
 
 	/**
 	 * 
-	 * @Title: setAppUrl
-	 * @Description: 如果应用是打开连接地址的，则不为空
-	 * @author(作者): wyq
-	 * @param: @param appUrl
-	 * @return: void
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:15:40
+	 * 方法介绍:   设置如果应用是打开连接地址的，则不为空
+	 * 参数说明:   @param appUrl
+	 * @return     void
 	 */
 	public void setAppUrl(String appUrl) {
 		this.appUrl = appUrl == null ? null : appUrl.trim();
@@ -221,38 +188,36 @@ public class MobileApp {
 
 	/**
 	 * 
-	 * @Title: getAppDesc
-	 * @Description: 应用的描述
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:16:01
+	 * 方法介绍:   获得应用的描述
+	 * 参数说明:   @return
+	 * @return     String  appDesc(应用的描述)
 	 */
 	public String getAppDesc() {
 		return appDesc;
 	}
-
+ 
 	/**
 	 * 
-	 * @Title: setAppDesc
-	 * @Description: 应用的描述
-	 * @author(作者): wyq
-	 * @param: @param appDesc
-	 * @return: void
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:16:21
+	 * 方法介绍:   设置应用的描述
+	 * 参数说明:   @param appDesc
+	 * @return     void
 	 */
 	public void setAppDesc(String appDesc) {
 		this.appDesc = appDesc == null ? null : appDesc.trim();
 	}
 
+	
 	/**
 	 * 
-	 * @Title: getAppPriv
-	 * @Description: TODO
-	 * @author(作者): wyq
-	 * @param: @return
-	 * @return: String
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:16:32
+	 * 方法介绍:   获得应用权限
+	 * 参数说明:   @return
+	 * @return     String appPriv(应用权限)
 	 */
 	public String getAppPriv() {
 		return appPriv;
@@ -260,12 +225,11 @@ public class MobileApp {
 
 	/**
 	 * 
-	 * @Title: setAppPriv
-	 * @Description: TODO
-	 * @author(作者): wyq
-	 * @param: @param appPriv
-	 * @return: void
-	 * @throws
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-18 下午6:17:24
+	 * 方法介绍:   设置应用权限
+	 * 参数说明:   @param appPriv
+	 * @return     void
 	 */
 	public void setAppPriv(String appPriv) {
 		this.appPriv = appPriv == null ? null : appPriv.trim();

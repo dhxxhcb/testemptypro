@@ -2,10 +2,10 @@ package com.xoa.model.file;
 
 /**
  * 
- * @ClassName (类名):  FileContentModel
- * @Description(简述): 文件柜文件表
- * @author(作者):      ys
- * @date(日期):        2017-4-17 下午4:16:59
+ * 创建作者:   杨 胜
+ * 创建日期:   2017-4-18 下午7:39:53
+ * 类介绍  :   文件柜文件表
+ * 构造参数:   
  *
  */
 public class FileContentModel {
@@ -70,362 +70,361 @@ public class FileContentModel {
         */
        String keyword;
        
-     /**
-      * 
-      * @Title: getContentId
-      * @Description: 自增唯一ID
-      * @author(作者):      ys
-      * @param: @return   
-      * @return: int   
-      * @throws
-      */
+       /**
+        * 
+        * 创建作者:   杨 胜
+        * 创建日期:   2017-4-18 下午7:49:31
+        * 方法介绍:   自增唯一ID
+        * 参数说明:   @return
+        * @return     int
+        */
 	public int getContentId() {
 		return contentId;
 	}
+
 	/**
 	 * 
-	 * @Title: setContentId
-	 * @Description: 自增唯一ID
-	 * @author(作者):      ys
-	 * @param: @param contentId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:49:45
+	 * 方法介绍:   自增唯一ID
+	 * 参数说明:   @param contentId
+	 * @return     void
 	 */
 	public void setContentId(int contentId) {
 		this.contentId = contentId;
 	}
+	
 	/**
 	 * 
-	 * @Title: getSortId
-	 * @Description: 目录ID
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: int   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:49:56
+	 * 方法介绍:   目录ID
+	 * 参数说明:   @return
+	 * @return     int
 	 */
 	public int getSortId() {
 		return sortId;
 	}
+	
 	/**
 	 * 
-	 * @Title: setSortId
-	 * @Description: 目录ID
-	 * @author(作者):      ys
-	 * @param: @param sortId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:50:07
+	 * 方法介绍:   目录ID
+	 * 参数说明:   @param sortId
+	 * @return     void
 	 */
 	public void setSortId(int sortId) {
 		this.sortId = sortId;
 	}
+	
 	/**
 	 * 
-	 * @Title: getSubject
-	 * @Description: 文件名称
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:50:19
+	 * 方法介绍:   文件名称
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getSubject() {
 		return subject;
 	}
+	
 	/**
 	 * 
-	 * @Title: setSubject
-	 * @Description: 文件名称
-	 * @author(作者):      ys
-	 * @param: @param subject   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:50:32
+	 * 方法介绍:   文件名称
+	 * 参数说明:   @param subject
+	 * @return     void
 	 */
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
+	
 	/**
 	 * 
-	 * @Title: getContent
-	 * @Description: 文件内容
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:50:44
+	 * 方法介绍:   文件内容
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getContent() {
 		return content;
 	}
+	
 	/**
 	 * 
-	 * @Title: setContent
-	 * @Description: 文件内容
-	 * @author(作者):      ys
-	 * @param: @param content   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:50:56
+	 * 方法介绍:   文件内容
+	 * 参数说明:   @param content
+	 * @return     void
 	 */
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
 	/**
 	 * 
-	 * @Title: getSendTime
-	 * @Description: 保存时间
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:51:10
+	 * 方法介绍:   保存时间
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getSendTime() {
 		return sendTime;
 	}
+
 	/**
 	 * 
-	 * @Title: setSendTime
-	 * @Description: 保存时间
-	 * @author(作者):      ys
-	 * @param: @param sendTime   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:51:20
+	 * 方法介绍:   保存时间
+	 * 参数说明:   @param sendTime
+	 * @return     void
 	 */
 	public void setSendTime(String sendTime) {
 		this.sendTime = sendTime;
 	}
+	
 	/**
 	 * 
-	 * @Title: getAttachmentId
-	 * @Description: 附件ID串 ATTACHMENTID
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:51:31
+	 * 方法介绍:   附件ID串 ATTACHMENTID
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getAttachmentId() {
 		return attachmentId;
 	}
+	
 	/**
 	 * 
-	 * @Title: setAttachmentId
-	 * @Description: 附件ID串 ATTACHMENTID
-	 * @author(作者):      ys
-	 * @param: @param attachmentId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:51:47
+	 * 方法介绍:   附件ID串 ATTACHMENTID
+	 * 参数说明:   @param attachmentId
+	 * @return     void
 	 */
 	public void setAttachmentId(String attachmentId) {
 		this.attachmentId = attachmentId;
 	}
+	
 	/**
 	 * 
-	 * @Title: getAttachmentName
-	 * @Description: 附件名称串
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:52:36
+	 * 方法介绍:   附件名称串
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getAttachmentName() {
 		return attachmentName;
 	}
+	
 	/**
 	 * 
-	 * @Title: setAttachmentName
-	 * @Description: 附件名称串
-	 * @author(作者):      ys
-	 * @param: @param attachmentName   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:52:47
+	 * 方法介绍:   附件名称串
+	 * 参数说明:   @param attachmentName
+	 * @return     void
 	 */
 	public void setAttachmentName(String attachmentName) {
 		this.attachmentName = attachmentName;
 	}
+	
 	/**
 	 * 
-	 * @Title: getAttachmentDesc
-	 * @Description: 附件描述
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:52:58
+	 * 方法介绍:   附件描述
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getAttachmentDesc() {
 		return attachmentDesc;
 	}
+	
 	/**
 	 * 
-	 * @Title: setAttachmentDesc
-	 * @Description: 附件描述
-	 * @author(作者):      ys
-	 * @param: @param attachmentDesc   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:53:10
+	 * 方法介绍:   附件描述
+	 * 参数说明:   @param attachmentDesc
+	 * @return     void
 	 */
 	public void setAttachmentDesc(String attachmentDesc) {
 		this.attachmentDesc = attachmentDesc;
 	}
+	
 	/**
 	 * 
-	 * @Title: getUserId
-	 * @Description: 有访问权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:53:21
+	 * 方法介绍:   有访问权限的用户ID串
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getUserId() {
 		return userId;
 	}
+
 	/**
 	 * 
-	 * @Title: setUserId
-	 * @Description: 有访问权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @param userId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:53:32
+	 * 方法介绍:   有访问权限的用户ID串
+	 * 参数说明:   @param userId
+	 * @return     void
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
 	/**
 	 * 
-	 * @Title: getContentNo
-	 * @Description: 文件排序号
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: int   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:53:42
+	 * 方法介绍:   文件排序号
+	 * 参数说明:   @return
+	 * @return     int
 	 */
 	public int getContentNo() {
 		return contentNo;
 	}
+	
 	/**
 	 * 
-	 * @Title: setContentNo
-	 * @Description: 文件排序号
-	 * @author(作者):      ys
-	 * @param: @param contentNo   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:53:52
+	 * 方法介绍:   文件排序号
+	 * 参数说明:   @param contentNo
+	 * @return     void
 	 */
 	public void setContentNo(int contentNo) {
 		this.contentNo = contentNo;
 	}
+	
 	/**
 	 * 
-	 * @Title: getNewPerson
-	 * @Description: 文件转发人
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:54:04
+	 * 方法介绍:   文件转发人
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getNewPerson() {
 		return newPerson;
 	}
+	
 	/**
 	 * 
-	 * @Title: setNewPerson
-	 * @Description: 文件转发人
-	 * @author(作者):      ys
-	 * @param: @param newPerson   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:54:15
+	 * 方法介绍:   文件转发人
+	 * 参数说明:   @param newPerson
+	 * @return     void
 	 */
 	public void setNewPerson(String newPerson) {
 		this.newPerson = newPerson;
 	}
+	
 	/**
 	 * 
-	 * @Title: getReaders
-	 * @Description: 阅读人员
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:54:24
+	 * 方法介绍:   阅读人员
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getReaders() {
 		return readers;
 	}
+	
 	/**
 	 * 
-	 * @Title: setReaders
-	 * @Description: 阅读人员
-	 * @author(作者):      ys
-	 * @param: @param readers   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:54:35
+	 * 方法介绍:   阅读人员
+	 * 参数说明:   @param readers
+	 * @return     void
 	 */
 	public void setReaders(String readers) {
 		this.readers = readers;
 	}
+	
 	/**
 	 * 
-	 * @Title: getCreater
-	 * @Description: 创建人
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:54:51
+	 * 方法介绍:   创建人
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getCreater() {
 		return creater;
 	}
+
 	/**
 	 * 
-	 * @Title: setCreater
-	 * @Description: 创建人
-	 * @author(作者):      ys
-	 * @param: @param creater   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:55:02
+	 * 方法介绍:   创建人
+	 * 参数说明:   @param creater
+	 * @return     void
 	 */
 	public void setCreater(String creater) {
 		this.creater = creater;
 	}
+	
 	/**
 	 * 
-	 * @Title: getLogs
-	 * @Description: 对该文件所做主要操作的日志
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:55:18
+	 * 方法介绍:   对该文件所做主要操作的日志
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getLogs() {
 		return logs;
 	}
+
 	/**
 	 * 
-	 * @Title: setLogs
-	 * @Description: 对该文件所做主要操作的日志
-	 * @author(作者):      ys
-	 * @param: @param logs   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:55:34
+	 * 方法介绍:   对该文件所做主要操作的日志
+	 * 参数说明:   @param logs
+	 * @return     void
 	 */
 	public void setLogs(String logs) {
 		this.logs = logs;
 	}
+
 	/**
 	 * 
-	 * @Title: getKeyword
-	 * @Description: 内容关键词
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:55:48
+	 * 方法介绍:   内容关键词
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getKeyword() {
 		return keyword;
 	}
+
 	/**
 	 * 
-	 * @Title: setKeyword
-	 * @Description: 内容关键词
-	 * @author(作者):      ys
-	 * @param: @param keyword   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:55:59
+	 * 方法介绍:   内容关键词
+	 * 参数说明:   @param keyword
+	 * @return     void
 	 */
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;

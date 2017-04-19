@@ -18,12 +18,9 @@
 		<result column="REVIEW" property="review" javaType="string" />
 	</resultMap>
 	<select id="getFileSort" resultMap="file_SortResultMap" parameterType="com.xoa.model.file.FileSortModel">
-		select  *  from file_sort where  1=1 
-		 <if test="sortId != null and sortId !=''" >
-           and sort_id=#{sortId}
-        </if>
+		select  *  from file_sort  where  1=1 
         <if test="sortParent != null and sortParent !='' or sortParent==0">
-           and sort_parent=#{sortParent}
+           and SORT_PARENT=#{sortParent};
         </if>
          <if test="sortNo != null and sortNo !=''" >
            and sort_no=#{sortNo}

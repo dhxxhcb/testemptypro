@@ -405,11 +405,11 @@ public class NewsController {
 	 * @throws
 	 */
 	@RequestMapping(value = "/queryNews",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody String queryNews(@RequestParam("newsId") Integer newsId){
+	public @ResponseBody String queryNews(@RequestParam("newsId") Integer newsId,HttpServletRequest request){
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);
 		ToJson<News> toJson=new ToJson<News>(0, "");
-		String name="wangyun";
+		String name="wangyueqi";
 		loger.debug("传过来的ID"+newsId);
 	try {
 			News news=newService.queryById(maps, 1, 5, false, name);
