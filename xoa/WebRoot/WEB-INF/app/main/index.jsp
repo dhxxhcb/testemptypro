@@ -85,13 +85,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</ul>
 				</div>
 				<div class="cont_rig">
-					<div class="cont_nav">
+					<!-- <div class="cont_nav">
 						<ul class="three_title">
 							<li class="three infame" url_three="asset/config">参数设置</li>
 							<li class="three" url_three="asset/manage">固定资产管理</li>
 							<li class="three" url_three="asset/query">固定资产查询</li>
 						</ul>
-					</div>
+					</div> -->
 					<div class="all_content" style="width:100%;height:97%;">
 						
 							<div id='f_0' class="iItem" style="width:100%;height:100%;overflow-y:scroll;"><iframe  id="every_module" src="cont" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
