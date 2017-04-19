@@ -1,10 +1,11 @@
 package com.xoa.model.file;
+
 /**
  * 
- * @ClassName (类名):  FileSortModel
- * @Description(简述): 文件柜目录表 
- * @author(作者):      ys
- * @date(日期):        2017-4-17 下午4:02:19
+ * 创建作者:   杨 胜
+ * 创建日期:   2017-4-18 下午7:39:21
+ * 类介绍  :   文件柜目录表 
+ * 构造参数:   
  *
  */
 public class FileSortModel {

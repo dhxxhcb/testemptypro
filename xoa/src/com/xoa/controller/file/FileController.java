@@ -31,12 +31,10 @@ import com.xoa.util.treeUtil.TreeNode;
 
 
 /**
- * 
  * 创建作者:   杨 胜
  * 创建日期:   2017-4-18 下午4:06:47
  * 类介绍  :   文件柜模块控制层
- * 构造参数:   默认 （由Spring容器托管）
- *
+ * 构造参数:   默认(由Spring容器托管)
  */
 @Controller
 @RequestMapping("/file")
@@ -67,7 +65,7 @@ public class FileController {
 	/**
 	 * 创建作者:   杨 胜
 	 * 创建日期:   2017-4-18 下午4:07:34
-	 * 方法介绍:   
+	 * 方法介绍:   文件柜顶层页面跳转
 	 * 参数说明:   @return
 	 * @return     String
 	 */
@@ -86,7 +84,7 @@ public class FileController {
 	 * 参数说明:   @param response
 	 * @return     void
 	 */
-	@RequestMapping(value = "/writeTree")
+	@RequestMapping(value = "/writeTree", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
 	public void showFile(FileSortModel file, HttpServletResponse response) {
 		loger.info("--------showFile-------");
@@ -158,16 +156,27 @@ public class FileController {
 	 * 
 	 * 创建作者:   杨 胜
 	 * 创建日期:   2017-4-18 下午4:12:25
-	 * 方法介绍:   输出到页面File_Sort：json类型集合输出跳转并展示到页面
+	 * 方法介绍:   输出到页面File_Sort：json类型
 	 * 参数说明:   @param file
 	 * 参数说明:   @return
-	 * @return     String
+	 * @return   void
 	 */
-	@RequestMapping("/showFile")
-	public String showFiles(FileSortModel file) {
+	@RequestMapping(value="/catalog")
+	@ResponseBody
+	public void showFiles(FileSortModel file,HttpServletResponse response) {
 		// "redirect:/showFile" "file/showFile"
-		ToJson<FileSortModel> fileSortJson = fileSortService.getFileSortJson(file);
-		return JSON.toJSONStringWithDateFormat(fileSortJson, "yyyy-MM-dd HH:mm:ss");
+		if(file.getSortId()!=0){
+			System.out.println("----------getSortId-----------"+file.getSortId());
+			FileSortModel fileChr=new FileSortModel();
+			fileChr.setSortParent(file.getSortId());
+			List<FileSortModel> fileChrList = fileSortService.getFileSortList(fileChr);
+			HtmlUtil.writerJson(response, fileChrList);
+		}else{
+			FileSortModel filePar=new FileSortModel();
+			filePar.setSortParent(file.getSortId());
+			List<FileSortModel> fileParList = fileSortService.getFileSortList(filePar);
+			HtmlUtil.writerJson(response,fileParList);
+		}
 	}
 
 	/**
@@ -272,7 +281,7 @@ public class FileController {
 	 * 方法介绍:   修改文件夹信息
 	 * 参数说明:   @param file
 	 * 参数说明:   @return
-	 * @return     ModelAndView
+	 * @return   ModelAndView
 	 */
 	@RequestMapping("/update")
 	public ModelAndView fileUpdate(FileSortModel file) {
@@ -292,7 +301,7 @@ public class FileController {
 	 * 参数说明:   @param request
 	 * 参数说明:   @param file
 	 * 参数说明:   @return
-	 * @return     ModelAndView
+	 * @return   ModelAndView
 	 */
 	@RequestMapping("/deleteAll")
 	public ModelAndView fileDelete(HttpServletRequest request, FileSortModel file) {
