@@ -63,7 +63,7 @@ public class loginController {
 	@RequestMapping(value="/login",method=RequestMethod.GET) //登录窗口
 	public String logins(@RequestParam("loginId") String loginId,HttpServletRequest request,HttpServletResponse response) {
 		String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
-		String locale = (String) request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
+		Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
 		
 		loger.info("----------"+locale); 
 		return "login/"+loginId+"/login";

@@ -217,7 +217,7 @@ public class NotifyController {
 	 * 参数说明:   @throws Exception
 	 * @return     String
 	 */
-	@RequestMapping(value = "/queryNotify",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String queryNotify(
 			@RequestParam("notifyId") Integer notifyId) throws Exception{
 		Map<String, Object> maps = new HashMap<String, Object>();
