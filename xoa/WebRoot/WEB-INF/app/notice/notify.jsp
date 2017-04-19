@@ -82,7 +82,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//$('.TableList').on('click','.windowOpen',function(){alert(2)})
 				$('.TableList').on('click','.windowOpen',function(){
 					var nid=$(this).attr('noticeId');
-					
 					$.popWindow('detail?nid='+nid);
 				})
 				
