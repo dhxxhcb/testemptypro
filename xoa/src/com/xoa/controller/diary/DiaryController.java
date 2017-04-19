@@ -14,7 +14,7 @@ public class DiaryController {
 	@Resource
 	DiaryService diaryService;
 	
-	@RequestMapping("/diary_")
+	@RequestMapping("/add")
 	public void diaryAdd(){
 		
 	}
