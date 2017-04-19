@@ -92,7 +92,7 @@ public class Notify {
 	/**
 	 * 审核时间
 	 */
-    private Date auditDate;
+    private String auditDate;
 	/**
 	 * 是否允许下载office附件
 	 */
@@ -760,30 +760,16 @@ public class Notify {
 		this.lastEditor = lastEditor;
 	}
 
-    /**
-     * 
-     * 创建作者:   张丽军
-     * 创建日期:   2017-4-18 下午7:50:28
-     * 方法介绍:   获取审核日期
-     * 参数说明:   @return
-     * @return     Date
-     */
-
-	public Date getAuditDate() {
+ 
+    public String getAuditDate() {
 		return auditDate;
 	}
-    /**
-     * 
-     * 创建作者:   张丽军
-     * 创建日期:   2017-4-18 下午7:50:59
-     * 方法介绍:   设置审核日期
-     * 参数说明:   @param auditDate
-     * @return     void
-     */
-	public void setAuditDate(Date auditDate) {
+
+	public void setAuditDate(String auditDate) {
 		this.auditDate = auditDate;
 	}
-    /**
+
+	/**
      * 
      * 创建作者:   张丽军
      * 创建日期:   2017-4-18 下午7:51:17

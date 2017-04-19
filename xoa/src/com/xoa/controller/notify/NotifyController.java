@@ -332,7 +332,7 @@ public class NotifyController {
 	    notify.setTopDays( DateFormat.getTime(topDays));
 	    notify.setPublish(this.returnValue(publish));
 	    notify.setAuditer(this.returnValue(auditer));
-	    notify.setAuditDate(DateFormat.getDate(auditDate));
+	    notify.setAuditDate(auditDate);
 	    notify.setDownload(this.returnValue(download));
 	    notify.setLastEditor(this.returnValue(lastEditor));
 	    notify.setLastEditTime(DateFormat.getDate(lastEditTime));
@@ -447,7 +447,7 @@ public class NotifyController {
 	    notify.setTopDays( DateFormat.getTime(topDays));
 	    notify.setPublish(this.returnValue(publish));
 	    notify.setAuditer(this.returnValue(auditer));
-	    notify.setAuditDate(DateFormat.getDate(auditDate));
+	    notify.setAuditDate(auditDate);
 	    notify.setDownload(this.returnValue(download));
 	    notify.setLastEditor(this.returnValue(lastEditor));
 	    notify.setLastEditTime(DateFormat.getDate(lastEditTime));
