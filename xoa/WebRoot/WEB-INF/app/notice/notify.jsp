@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
   	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
+  	<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css">
     	#noticeQuery{width: 100%;}
     	#noticeQuery table tr td{padding:5px 5px;border-color:#ccc;}
@@ -62,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							console.log(data[0].name);				
 							var str='';
 							for(var i=0;i<data.length;i++){
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].sendTime+'</td><td nowrap align="center">'+data[i].format+'</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" > 修改</a>&nbsp;<a href="javascript:;" class="aBtn" onclick="delate('+data[i].notifyId+')"> 删除</a></td></tr>';
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].sendTime+'</td><td nowrap align="center">'+data[i].format+'</td></tr>';
 								str1='<input type="hidden" id="'+data[i].notifyId+'">';
 							}
 							$('.TableHeader').after(str+str1); 
