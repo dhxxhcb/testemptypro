@@ -40,15 +40,23 @@ body,
 }
  .head_mid ul li h1,.head_mid ul li div{
 	float:left;
+	height:100%;
 } 
 .head_mid ul li h1{
-	margin-left: 8%;
+	/* margin-left: 8%; */
+	width:60%;
+	line-height: 33px;
 	font-size:10px;
+}
+.head_mid ul li div{
+	width:40%;
 }
 .head_mid ul li img{
 	margin-top: 14%;
-    margin-left: 9%;
-    width: 8%;
+    margin-left: 27%;
+    
+    width: 28%;
+}
 }
 .head_rig{
 	width:27%;
