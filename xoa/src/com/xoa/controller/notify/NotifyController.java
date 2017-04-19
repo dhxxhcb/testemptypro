@@ -530,7 +530,10 @@ public class NotifyController {
 			return "";
 		}
 	}
-
+	@RequestMapping("/index")
+	public String emailIndex(){
+		return "app/notice/notify";
+	}
 
 
 }

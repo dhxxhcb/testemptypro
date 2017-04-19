@@ -48,15 +48,14 @@ public class EnclosureController {
 	
 	
 	/**
-	 * @Title: upload
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param file
-	 * @param: @param request
-	 * @param: @param model
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午11:48:09
+	 * 方法介绍:   上传
+	 * 参数说明:   @param file
+	 * 参数说明:   @param request
+	 * 参数说明:   @param model
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping(value = "/upload")  
     public String upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {  

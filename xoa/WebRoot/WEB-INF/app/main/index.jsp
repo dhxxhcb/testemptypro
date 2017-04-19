@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="css/vintage_css/index.css"/>
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>  
 		<script type="text/javascript" src="js/main_js/index.js"></script>  
-		<script src="js/jQuery.js"></script>
+		<script src="js/jquery.js"></script>
 	</head>
 	<body>
 		<div class="wrap">
@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="head_mid">
 					<ul class="main_title">
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
-						<li class="gongzuoliu" id='t_0'><h1>我的桌面</h1><img class="close" src="img/main_img/icon.png"></li>
+						<li class="gongzuoliu" id='t_0'><h1>我的桌面</h1><div class="img"><img class="close" src="img/main_img/icon.png"></div></li>
 					</ul>
 				</div>
 				<!-- 右侧的小logo -->
@@ -190,10 +190,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			"email":"email/index",
 			"email":"email/writeMail",
 			"email":"email/inboxup",
-			"notify/manage":"notice/index",
-			"news/show":"news/index",
+			"notify_show":"notice/index",
+			"news_show":"news/index",
 			"file_folder/index2.php":"fileHome",
-			"system/file_folder":"showFileBySort_id"
+			"system_file_folder":"showFileBySort_id"
 		}
 
 
@@ -297,9 +297,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						var tid=0;
 						//点击二级菜单
 						$('.two_menu li').on('click','.two_all',function(){
-							var url=$(this).attr('url'); 
+							var url=$(this).attr('url').replace('/','_'); 
 							var menu_tid=$(this).parent().attr('menu_tid'); 
-							//console.log(url);
 							if(menu[url]){
 								url = menu[url];
 							}else{
@@ -320,7 +319,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									//console.log($(this).siblings('.sanji').length>0);
 								}else{
 									//页面不存在，新增 title和iframe
-									var titlestr = '<li class="gongzuoliu" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><img class="close" src="img/main_img/icon.png"></li>';
+				
+									var titlestr = '<li class="gongzuoliu" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div class="img"><img class="close" src="img/main_img/icon.png"></div></li>';
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" style="width:100%;height:100%;"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 									$('.main_title').append(titlestr);
 									$('.all_content').append(iframestr);

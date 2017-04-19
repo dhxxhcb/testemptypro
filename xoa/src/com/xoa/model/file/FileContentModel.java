@@ -70,6 +70,21 @@ public class FileContentModel {
         */
        String keyword;
        
+  	 /**************************************/
+  	 /*
+  	  * 附加字段 用于判断文件与文件夹区别
+  	  */
+  	 String fileType; 
+  	 
+  	public String getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+
+	/**************************************/
        /**
         * 
         * 创建作者:   杨 胜

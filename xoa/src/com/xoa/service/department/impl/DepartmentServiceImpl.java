@@ -11,11 +11,12 @@ import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.model.department.Department;
 import com.xoa.service.department.DepartmentService;
 
+
  /**
- * @ClassName (类名):  DepartmentServiceImpl
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午3:46:48
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月19日 上午9:41:51
+ * 类介绍  :    部门实现类
+ * 构造参数:   
  *
  */
 @Service
@@ -23,6 +24,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Resource
 	private DepartmentMapper departmentMapper;
 	
+	 /**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:42:08
+	 * 方法介绍:   根据部门id串获取部门
+	 * 参数说明:   @param dept_id_str
+	 * 参数说明:   @return
+	 * @return     JSONObject   
+	 */
 	@Override
 	public JSONObject getDeptNameById(int... dept_id_str){
 		//定义返回的json字符串
@@ -47,25 +56,27 @@ public class DepartmentServiceImpl implements DepartmentService {
 				return json;		
 	}
 
+	
 	 /**
-	 * <p>Title: getDatagrid</p>
-	 * <p>Description: </p>
-	 * @return
-	 * @author(作者):  zlf
-	 * @see com.xoa.service.department.DepartmentService#getDatagrid()
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:42:36
+	 * 方法介绍:   获取所有部门
+	 * 参数说明:   @return
+	 * @return     List<Department>   
 	 */
 	@Override
 	public List<Department> getDatagrid() {	
 		return departmentMapper.getDatagrid();
 	}
 
+	
 	 /**
-	 * <p>Title: getDeptById</p>
-	 * <p>Description: </p>
-	 * @param deptId
-	 * @return
-	 * @author(作者):  zlf
-	 * @see com.xoa.service.department.DepartmentService#getDeptById(int)
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:42:50
+	 * 方法介绍:   根据部门id获取部门
+	 * 参数说明:   @param deptId
+	 * 参数说明:   @return
+	 * @return     Department   
 	 */
 	@Override
 	public Department getDeptById(int deptId) {
@@ -74,11 +85,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	 /**
-	 * <p>Title: deleteDept</p>
-	 * <p>Description: </p>
-	 * @param deptId
-	 * @author(作者):  zlf
-	 * @see com.xoa.service.department.DepartmentService#deleteDept(int)
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:43:07
+	 * 方法介绍:   根据部门id删除部门
+	 * 参数说明:   @param deptId
+	 * @return     void   
 	 */
 	@Override
 	public void deleteDept(int deptId) {
@@ -87,11 +98,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	 /**
-	 * <p>Title: editDept</p>
-	 * <p>Description: </p>
-	 * @param department
-	 * @author(作者):  zlf
-	 * @see com.xoa.service.department.DepartmentService#editDept(com.xoa.model.department.Department)
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:43:23
+	 * 方法介绍:   修改部门
+	 * 参数说明:   @param department
+	 * @return     void   
 	 */
 	@Override
 	public void editDept(Department department) {
@@ -100,24 +111,25 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	 /**
-	 * <p>Title: insertDept</p>
-	 * <p>Description: </p>
-	 * @param department
-	 * @author(作者):  zlf
-	 * @see com.xoa.service.department.DepartmentService#insertDept(com.xoa.model.department.Department)
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:43:34
+	 * 方法介绍:   保存部门
+	 * 参数说明:   @param department
+	 * @return     void   
 	 */
 	@Override
 	public void insertDept(Department department) {
 		departmentMapper.insertDept(department);	
 	}
 
+	
 	 /**
-	 * <p>Title: getDeptByMany</p>
-	 * <p>Description: </p>
-	 * @param department
-	 * @return
-	 * @author(作者):  zlf
-	 * @see com.xoa.service.department.DepartmentService#getDeptByMany(com.xoa.model.department.Department)
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:43:51
+	 * 方法介绍:   多条件查询部门信息
+	 * 参数说明:   @param department
+	 * 参数说明:   @return
+	 * @return     List<Department>   
 	 */
 	@Override
 	public List<Department> getDeptByMany(Department department) {

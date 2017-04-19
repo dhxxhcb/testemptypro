@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xoa.model.users.UserPriv;
 import com.xoa.service.users.UsersPrivService;
 import com.xoa.util.ToJson;
+ 
  /**
- * @ClassName (类名):  UserPrivController
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午3:56:52
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月18日 下午6:05:02
+ * 类介绍  :    用户角色权限表
+ * 构造参数:   
  *
  */
 @Controller
@@ -31,14 +32,14 @@ public class UserPrivController {
 	@Resource
 	UsersPrivService usersPrivService;
 	
+
 	/**
-	 * @Title: addPriv
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param userPriv
-	 * @param: @return   
-	 * @return: ToJson<UserPriv>   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月18日 下午8:05:22
+	 * 方法介绍:   添加角色
+	 * 参数说明:   @param userPriv
+	 * 参数说明:   @return
+	 * @return     ToJson<UserPriv>
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/addUser",method = RequestMethod.POST)
@@ -55,14 +56,14 @@ public class UserPrivController {
         return json;
     }
 	
+	
 	/**
-	 * @Title: deletePriv
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param userPriv
-	 * @param: @return   
-	 * @return: ToJson<UserPriv>   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:28:46
+	 * 方法介绍:   删除角色
+	 * 参数说明:   @param userPriv
+	 * 参数说明:   @return
+	 * @return     ToJson<UserPriv>
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/deletePriv",method = RequestMethod.POST)
@@ -80,14 +81,14 @@ public class UserPrivController {
         return json;
     }
 	
+	
 	/**
-	 * @Title: findUserByuid
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param userPriv
-	 * @param: @return   
-	 * @return: ToJson<UserPriv>   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:28:59
+	 * 方法介绍:   根据角色名称查找角色
+	 * 参数说明:   @param userPriv
+	 * 参数说明:   @return
+	 * @return     ToJson<UserPriv>
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/findByuserPriv")
@@ -104,17 +105,17 @@ public class UserPrivController {
         return json;
     }
 	
+	
 	/**
-	 * @Title: getAllPriv
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param maps
-	 * @param: @param page
-	 * @param: @param pageSize
-	 * @param: @param useFlag
-	 * @param: @return   
-	 * @return: ToJson<UserPriv>   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:29:29
+	 * 方法介绍:   获取所有角色
+	 * 参数说明:   @param maps
+	 * 参数说明:   @param page
+	 * 参数说明:   @param pageSize
+	 * 参数说明:   @param useFlag
+	 * 参数说明:   @return
+	 * @return     ToJson<UserPriv>
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/getAllPriv",produces = {"application/json;charset=UTF-8"})
@@ -133,14 +134,14 @@ public class UserPrivController {
     }
 	
 	
+	
 	/**
-	 * @Title: getPrivByMany
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param userPriv
-	 * @param: @return   
-	 * @return: ToJson<UserPriv>   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 上午9:29:42
+	 * 方法介绍:   多条件查找角色
+	 * 参数说明:   @param userPriv
+	 * 参数说明:   @return
+	 * @return     ToJson<UserPriv>
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/getPrivByMany")

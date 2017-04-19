@@ -16,9 +16,13 @@
 		<result column="OWNER" property="owner" javaType="string" />
 		<result column="SIGN_USER" property="signUser" javaType="string" />
 		<result column="REVIEW" property="review" javaType="string" />
+		<result  column="fileType"  property="fileType" javaType="string" />
 	</resultMap>
+	<sql id="FileSort">
+	SORT_ID,SORT_PARENT,SORT_NO,SORT_NAME,SORT_TYPE,USER_ID,NEW_USER,MANAGE_USER,DEL_USER,DOWN_USER,DOWN_USER,SHARE_USER,OWNER,SIGN_USER,REVIEW
+	</sql>
 	<select id="getFileSort" resultMap="file_SortResultMap" parameterType="com.xoa.model.file.FileSortModel">
-		select  *  from file_sort  where  1=1 
+		select  <include refid="FileSort"></include> ,'folder' as fileType  from file_sort  where  1=1 
         <if test="sortParent != null and sortParent !='' or sortParent==0">
            and SORT_PARENT=#{sortParent};
         </if>

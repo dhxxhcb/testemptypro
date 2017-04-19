@@ -7,128 +7,106 @@ import com.xoa.model.users.Users;
 import com.xoa.util.dataSource.DynDatasource;
 
 
+ 
  /**
- * @ClassName (类名):  UsersService
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月17日 下午2:57:01
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月18日 下午6:29:57
+ * 类介绍  :    用户service层接口
+ * 构造参数:   
  *
  */
-public interface UsersService {
-	
-
+public interface UsersService {	
 	/**
-	 * @Title: findUserByName
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param byname
-	 * @param: @return   
-	 * @return: Users   
-	 * @throws
-	 */
-	@DynDatasource
-    public Users findUserByName( String byname);
-    
-	/**
-	 * @Title: getUsernameById
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param uid
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
-	 */
-	@DynDatasource
-	public String getUsernameById( int uid);	
-	/**
-	 * @Title: getDatagrid
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @return   
-	 * @return: List<Users>   
-	 * @throws
-	 */
-	@DynDatasource
-	public  List<Users> getDatagrid();	
-	/**
-	 * @Title: addUser
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param user   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月18日 下午4:25:08
+	 * 方法介绍:   添加用户
+	 * 参数说明:   @param user
+	 * @return     void
 	 */
 	@DynDatasource
 	public void addUser(Users user);
+
 	/**
-	 * @Title: editUser
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param user   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月18日 下午5:25:14
+	 * 方法介绍:   修改用户
+	 * 参数说明:   @param user
+	 * @return     void
 	 */
 	@DynDatasource
 	public void editUser(Users user);	
+
 	/**
-	 * @Title: deleteUser
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param uid   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月18日 下午5:25:20
+	 * 方法介绍:   删除用户
+	 * 参数说明:   @param uid
+	 * @return     void
 	 */
 	@DynDatasource
 	public void deleteUser(int uid);
 	
-	  /**
-     * 根据用户user_id获取用户姓名
-     * 
-     * @param  user_id_str
-     *            user_id串
-     * @return JSONObject
-     *  		  用户姓名串
-     * @throws IOException
-     */
-	@DynDatasource
-	public String getUserNameById(int user_id);
 	/**
-	 * @Title: getAlluser
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param maps
-	 * @param: @param page
-	 * @param: @param pageSize
-	 * @param: @param useFlag
-	 * @param: @return   
-	 * @return: List<Users>   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月18日 下午5:25:35
+	 * 方法介绍:   获取所有用户
+	 * 参数说明:   @param maps
+	 * 参数说明:   @param page
+	 * 参数说明:   @param pageSize
+	 * 参数说明:   @param useFlag
+	 * 参数说明:   @return
+	 * @return     List<Users>
 	 */
 	@DynDatasource
 	public List<Users> getAlluser(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag);
+	
 	/**
-	 * @Title: findUserByuid
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param uid
-	 * @param: @return   
-	 * @return: Users   
-	 * @throws
-	 */
-	@DynDatasource
-    public Users findUserByuid(int uid);
-	/**
-	 * @Title: getUserByMany
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param user
-	 * @param: @return   
-	 * @return: List<Users>   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月18日 下午5:29:25
+	 * 方法介绍:   多条件查询用户
+	 * 参数说明:   @param user
+	 * 参数说明:   @return
+	 * @return     List<Users>
 	 */
 	@DynDatasource
 	public List<Users> getUserByMany(Users user); 
-
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月18日 下午5:17:43
+	 * 方法介绍:   获取用户信息和部门信息
+	 * 参数说明:   @param maps
+	 * 参数说明:   @param page
+	 * 参数说明:   @param pageSize
+	 * 参数说明:   @param useFlag
+	 * 参数说明:   @return
+	 * @return     List<Users>
+	 */
+	@DynDatasource
+	public List<Users> getUserAndDept(Map<String,Object> maps, Integer page,
+			Integer pageSize, boolean useFlag);
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月18日 下午5:00:12
+	 * 方法介绍:   格局uid查询用户
+	 * 参数说明:   @param uid
+	 * 参数说明:   @return
+	 * @return     Users
+	 */
+	@DynDatasource
+	public Users findUserByuid(int uid);
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月18日 下午5:18:08
+	 * 方法介绍:   根据别名查找用户
+	 * 参数说明:   @param byname
+	 * 参数说明:   @return
+	 * @return     Users
+	 */
+	@DynDatasource
+    public Users findUserByName( String byname);
 
 }

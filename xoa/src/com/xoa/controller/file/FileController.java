@@ -162,21 +162,29 @@ public class FileController {
 	 * @return   void
 	 */
 	@RequestMapping(value="/catalog")
-	@ResponseBody
 	public void showFiles(FileSortModel file,HttpServletResponse response) {
 		// "redirect:/showFile" "file/showFile"
-		if(file.getSortId()!=0){
-			System.out.println("----------getSortId-----------"+file.getSortId());
+		List<FileSortModel> fileList =null;
+		List<Object>  tatalList=new ArrayList<Object>();
+		int tempNo=file.getSortId();
+		//获取文件
+		List<FileContentModel>  fileConList=fileContentService.getFileConBySortid(tempNo);
+		System.out.println("----------fileConList------------"+fileConList.size());
+		//通过判断获取父文件夹或子文件夹
+		if(file.getSortId()==0){
+			System.out.println("----------getFileSortList------------");
 			FileSortModel fileChr=new FileSortModel();
 			fileChr.setSortParent(file.getSortId());
-			List<FileSortModel> fileChrList = fileSortService.getFileSortList(fileChr);
-			HtmlUtil.writerJson(response, fileChrList);
+			fileList = fileSortService.getFileSortList(fileChr);
 		}else{
+		
 			FileSortModel filePar=new FileSortModel();
 			filePar.setSortParent(file.getSortId());
-			List<FileSortModel> fileParList = fileSortService.getFileSortList(filePar);
-			HtmlUtil.writerJson(response,fileParList);
+			fileList = fileSortService.getFileSortList(filePar);
 		}
+		tatalList.addAll(fileConList);
+		tatalList.addAll(fileList);
+		HtmlUtil.writerJson(response,tatalList);
 	}
 
 	/**
