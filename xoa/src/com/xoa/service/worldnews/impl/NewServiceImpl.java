@@ -172,12 +172,13 @@ public class NewServiceImpl implements NewService {
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
 		News news = newsMapper.detailedNews(maps);
-		News newa = new News();
-		if (news.getReaders().indexOf(name) != -1) {
+		if (news.getReaders().indexOf(name) == -1) {
 			StringBuffer str2 = new StringBuffer(news.getReaders());
-			String str1 = str2.append(name).toString();
+			str2.append(",");
+			str2.append(name);
+			String str1 =str2.toString();
 			news.setNewsId(news.getNewsId());
-			newa.setReaders(str1);
+			news.setReaders(str1);
 			news.setClickCount(news.getClickCount() + 1);
 			newsMapper.updateNews(news);
 		} else {

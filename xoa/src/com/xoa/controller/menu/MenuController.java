@@ -23,7 +23,14 @@ import com.xoa.model.menu.SysMenu;
 import com.xoa.service.menu.MenuService;
 import com.xoa.service.menu.MobileAppService;
 import com.xoa.util.ToJson;
-
+/**
+ * 
+ * 创建作者:   王曰岐
+ * 创建日期:   2017-4-18 下午6:34:34
+ * 类介绍   :    菜单控制器
+ * 构造参数:    无
+ *
+ */
 @Controller
 @Scope(value = "prototype")
 public class MenuController {
@@ -34,29 +41,28 @@ public class MenuController {
 	private MobileAppService mobileAppService;
 	private int flag; 
 	private String msg;
+	
 
 	
-	/**
-	 * 一级菜单列表
-	 * @Title: showNew
-	 * @Description: TODO
-	 * @author(作者):      wyq
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
-	 */
+	 /**
+	  * 
+	  * 创建作者:   王曰岐
+	  * 创建日期:   2017-4-18 下午6:35:04
+	  * 方法介绍:   获取菜单和下面的子菜单
+	  * 参数说明:   @return
+	  * @return     String 返回JSON类型的菜单
+	  */
 	@RequestMapping(value = "/showMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String showNew() {
-		loger.info("进入显示信息页面");
 		List<SysMenu> munuList = menuService.getAll();
 
 		if (munuList.size() > 0) {
 			flag = 0;
-			msg = "成功";
+			msg = "success";
 		} else {
 			flag = 1;
-			msg = "失敗";
+			msg = "err";
 		}
 
 		ToJson<SysMenu> menuJson = new ToJson<SysMenu>(flag, msg);
