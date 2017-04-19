@@ -32,15 +32,15 @@ body,
 	/* border:2px solid #666;
 	border-radius:5px 5px 0 0; */
 }
-.gongzuoliu h1,.gongzuoliu div{
+/* .gongzuoliu h1,.gongzuoliu div{
 	float:left;
-}
+} */
 .no{
 	background:#999;
 }
-.head_mid ul li h1,.head_mid ul li img{
+ .head_mid ul li h1,.head_mid ul li div{
 	float:left;
-}
+} 
 .head_mid ul li h1{
 	margin-left: 8%;
 	font-size:10px;
