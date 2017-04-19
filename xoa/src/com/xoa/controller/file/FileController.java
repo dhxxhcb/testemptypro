@@ -127,7 +127,7 @@ public class FileController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	@RequestMapping(value = "/fileContent")
+	@RequestMapping(value = "/content")
 	public String fileContent() {
 		loger.info("--------home-------");
 		return "app/file/fileContent";
