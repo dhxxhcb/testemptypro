@@ -64,11 +64,7 @@
 	select TO_ID,FROM_ID,`SUBJECT`,TYPE_ID,SEND_TIME,FORMAT,PUBLISH,CONTENT,FROM_DEPT FROM notify
 	</select>
 	
-     <!-- 根据ID查一条公告 -->
-    <select id="getNotifyById" resultMap="BaseResultMap"
-		parameterType="String">
-		select * from notify where NOTIFY_ID = #{id}
-    </select>
+   
     
     <!-- 查询未读已读信息并返回 列表 -->
 	<select id="unreadNotify" parameterType="Map" resultMap="BaseResultMap">
@@ -80,10 +76,10 @@
 	<select id="selectAllNotify" parameterType="com.xoa.model.notify.Notify"
 		resultMap="BaseResultMap">
 		SELECT NOTIFY_ID,FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT,
-		SEND_TIME,BEGIN_DATE,END_DATE,ATTACHMENT_ID,
+		BEGIN_DATE,END_DATE,ATTACHMENT_ID,
 		ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,
 		TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,AUDIT_DATE,
-		COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME,
+		COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,
 		SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW
 		from notify
 		<if test="start!=null and pagesize!=null">
@@ -93,14 +89,14 @@
 	</select>
 	
 	<!-- 公告详情查询 -->
-	<select id="detailedNotify"  resultMap="BaseResultMap">
-		SELECT NOTIFY_ID,FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT,
+	<select id="detailedNotify"  resultMap="BaseResultMap" >
+		 SELECT NOTIFY_ID,FROM_DEPT,FROM_ID,TO_ID,`SUBJECT`,CONTENT,
 		SEND_TIME,BEGIN_DATE,END_DATE,ATTACHMENT_ID,
 		ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,
 		TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,AUDIT_DATE,
-		COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME,
+		DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME,
 		SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW
-		from notify WHERE NOTIFY_ID=#{notifyId}
+		FROM notify WHERE NOTIFY_ID=${notifyId} 
 	</select>
 	
 	<!-- 保存公告信息 -->
@@ -114,7 +110,7 @@
 		#{content},#{sendTime},
 		#{beginDate},#{endDate},
 		#{attachmentId},#{attachmentName},
-		#{readersR},#{print},
+		#{readers},#{print},
 		#{privId},#{userId},
 		#{typeId},#{top},
 		#{topDays},#{format},
@@ -225,14 +221,9 @@
 		where NOTIFY_ID = #{notifyId}
 		</set>
 	</update>
-    <!-- 根据点击数查询已读未读信息 -->
-    <update id="updateclickNotify"  parameterType="com.xoa.model.notify.Notify">
-	update notify set CLICK_COUNT = #{clickCount},READERS=#{readers} where NOTIFY_ID = #{notifyId}
-	</update>
-	
-	<update id="updateclickCount"  parameterType="com.xoa.model.notify.Notify">
-	update notify set CLICK_COUNT = #{clickCount} where NOTIFY_ID = #{notifyId}
-	</update>
+    
+	<!-- <update id="updateReaders" parameterType="com.xoa.model.notify.Notify">
+	update notify set READERS = #{readers} where NOTIFY_ID = #{notifyId} -->
 	
 	<!-- 根据id删除 -->
 	<delete id="deleteById" parameterType="String">

@@ -28,21 +28,36 @@ import com.xoa.service.notify.NotifyService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 
+/**
+ * 
+ * 创建作者:   张丽军
+ * 创建日期:   2017-4-18 下午6:30:01
+ * 类介绍  :    公告控制器
+ * 构造参数:   无
+ *
+ */
 @Controller
 @Scope(value = "prototype")
 @RequestMapping("/notice")
 public class NotifyController {
-
+    
 	private Logger loger = Logger.getLogger(NotifyController.class);
 	@Resource
 	private NotifyService notifyService;
 
 	
 	/**
-	 * 公告管理信息展示并返回
 	 * 
-	 * @return
+	 * 创建作者:   张丽军
+	 * 创建日期:   2017-4-18 下午8:03:18
+	 * 方法介绍:   公告处理过程
+	 * 参数说明:   @param page   当前页面
+	 * 参数说明:   @param pageSize  页面数
+	 * 参数说明:   @param useFlag  是否启用分页插件
+	 * 参数说明:   @return
+	 * @return     String(true:成功   false：失败)
 	 */
+	
 	@RequestMapping(value = "/notifyManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	  public @ResponseBody String selectNotifyManage(
 			  @RequestParam("page") Integer page,
@@ -73,11 +88,22 @@ public class NotifyController {
 
 			return returnReslt;
 		}
-	/**
-	 * 公告通知查询列表
-	 * 
-	 * @return
-	 */
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午8:12:18
+     * 方法介绍:   公告通知查询列表
+     * 参数说明:   @param typeId  公告类型
+     * 参数说明:   @param sendTime 发送时间
+     * 参数说明:   @param subject  公告标题
+     * 参数说明:   @param content  公告内容
+     * 参数说明:   @param format   公告格式
+     * 参数说明:   @param page     当前页面
+     * 参数说明:   @param pageSize  页面数
+     * 参数说明:   @param useFlag  是否启用分页插件
+     * 参数说明:   @return  Json
+     * @return     String(true:成功  false：失败)
+     */
 	@RequestMapping(value = "/notifyList",method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	 public @ResponseBody
 	 String notifyList(@RequestParam(value = "typeId", required = false)String typeId,
@@ -118,9 +144,17 @@ public class NotifyController {
 	 }
 	
 	/**
-	 * 未读信息
 	 * 
-	 * @return
+	 * 创建作者:   张丽军
+	 * 创建日期:   2017-4-18 下午8:16:20
+	 * 方法介绍:   未读信息
+	 * 参数说明:   @param request  请求
+	 * 参数说明:   @param response 响应
+	 * 参数说明:   @param page   当前页
+	 * 参数说明:   @param pageSize 页面数
+	 * 参数说明:   @param useFlag  是否启用分页插件
+	 * 参数说明:   @return Json
+	 * @return     String(true：成功 false：失败)
 	 */
 	@RequestMapping(value = "/unreadNotify", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -157,11 +191,8 @@ public class NotifyController {
 	
 	
 	
-
-	/**
-	 * 根据ID查询一条公告
-	 */
-	@RequestMapping(value = "/getNotifyById", produces = { "application/json;charset=UTF-8" })
+    
+	/*@RequestMapping(value = "/getNotifyById", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String getNotifyById(HttpServletRequest request, HttpServletResponse response) {
 		Notify notify = notifyService.getNotifyById(1);
@@ -175,29 +206,33 @@ public class NotifyController {
 				"yyyy-MM-dd HH:mm:ss"));
 		return JSON.toJSONStringWithDateFormat(tojson, "yyyy-MM-dd HH:mm:ss");
 	}
-
+*/
 	/**
-	 * 公告查询详情
+	 * 
+	 * 创建作者:   张丽军
+	 * 创建日期:   2017-4-18 下午8:19:13
+	 * 方法介绍:   公告查询详情
+	 * 参数说明:   @param notifyId
+	 * 参数说明:   @return
+	 * 参数说明:   @throws Exception
+	 * @return     String
 	 */
 	@RequestMapping(value = "/queryNotify",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String queryNotify(
-			@RequestParam("notifyId") Integer notifyId,
-			@RequestParam("page") Integer page,
-			@RequestParam("pageSize") Integer pageSize,
-			@RequestParam("useFlag") Boolean useFlag){
+			@RequestParam("notifyId") Integer notifyId) throws Exception{
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
 		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
 		String name="wangyun";
-		loger.debug("传过来的ID"+notifyId);
+		loger.debug("ID"+notifyId);
 	try {
-		    Notify notify=notifyService.queryById(maps, page, pageSize, useFlag, name);
-			toJson.setMsg("成功");
+		    Notify notify=notifyService.queryById(maps, 1, 5, false, name);
+			toJson.setMsg("seccess");
 			toJson.setObject(notify);
 			return JSON.toJSONStringWithDateFormat(toJson,
 					"yyyy-MM-dd HH:mm:ss");
 		} catch (Exception e) {
-			toJson.setMsg("失败");
+			toJson.setMsg("fail");
 			loger.debug("ERROR:"+e);
 			return JSON.toJSONStringWithDateFormat(toJson,
 					"yyyy-MM-dd HH:mm:ss");
@@ -205,32 +240,47 @@ public class NotifyController {
 	}
 	
 	
-	@RequestMapping("/index")
-	//公告通知list
-	public String noticeIndexPage() {
-		return "app/notice/notify";
-	}
-	@RequestMapping("/add")
-	//公告新建
-	public String noticeaddPage() {
-		return "app/notice/notify";
-	}
-	@RequestMapping("/edit")
-	public String noticeEditPage() {
-		return "app/notice/noticeEdit";
-	}
-	@RequestMapping("/query")
-	//查询
-	public String logins1() {
-		return "app/notice/noticeQuery";
-	}
+	
 	
 	
 	/**
-	 * 修改公告信息
-	 * @param request
 	 * 
-	 * @return
+	 * 创建作者:   张丽军
+	 * 创建日期:   2017-4-18 下午8:19:48
+	 * 方法介绍:   修改公告信息
+	 * 参数说明:   @param notifyId
+	 * 参数说明:   @param fromId
+	 * 参数说明:   @param typeId
+	 * 参数说明:   @param subject
+	 * 参数说明:   @param content
+	 * 参数说明:   @param format
+	 * 参数说明:   @param fromDept
+	 * 参数说明:   @param sendTime
+	 * 参数说明:   @param beginDate
+	 * 参数说明:   @param endDate
+	 * 参数说明:   @param print
+	 * 参数说明:   @param top
+	 * 参数说明:   @param topDays
+	 * 参数说明:   @param publish
+	 * 参数说明:   @param auditer
+	 * 参数说明:   @param auditDate
+	 * 参数说明:   @param download
+	 * 参数说明:   @param lastEditor
+	 * 参数说明:   @param lastEditTime
+	 * 参数说明:   @param subjectColor
+	 * 参数说明:   @param keyword
+	 * 参数说明:   @param isFw
+	 * 参数说明:   @param toId
+	 * 参数说明:   @param attachmentId
+	 * 参数说明:   @param attachmentName
+	 * 参数说明:   @param readers
+	 * 参数说明:   @param privId
+	 * 参数说明:   @param userId
+	 * 参数说明:   @param reason
+	 * 参数说明:   @param compressContent
+	 * 参数说明:   @param summary
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping(value = "/updateNotify", produces = { "application/json;charset=UTF-8" })
 	public String updateNotify(
@@ -304,7 +354,7 @@ public class NotifyController {
 	    	return JSON.toJSONStringWithDateFormat(
 					new ToJson<Notify>(0, ""), "yyyy-MM-dd HH:mm:ss");
 		} catch (Exception e) {
-			loger.debug("sendNews:" + e);
+			loger.debug("notifyList:" + e);
 			return JSON.toJSONStringWithDateFormat(
 					new ToJson<Notify>(1, ""), "yyyy-MM-dd HH:mm:ss");
 		}
@@ -312,9 +362,42 @@ public class NotifyController {
 	}
 
 	/**
-	 * 保存公告信息
 	 * 
-	 * @return
+	 * 创建作者:   张丽军
+	 * 创建日期:   2017-4-18 下午8:20:09
+	 * 方法介绍:   保存公告信息
+	 * 参数说明:   @param fromId
+	 * 参数说明:   @param typeId
+	 * 参数说明:   @param subject
+	 * 参数说明:   @param content
+	 * 参数说明:   @param format
+	 * 参数说明:   @param fromDept
+	 * 参数说明:   @param sendTime
+	 * 参数说明:   @param beginDate
+	 * 参数说明:   @param endDate
+	 * 参数说明:   @param print
+	 * 参数说明:   @param top
+	 * 参数说明:   @param topDays
+	 * 参数说明:   @param publish
+	 * 参数说明:   @param auditer
+	 * 参数说明:   @param auditDate
+	 * 参数说明:   @param download
+	 * 参数说明:   @param lastEditor
+	 * 参数说明:   @param lastEditTime
+	 * 参数说明:   @param subjectColor
+	 * 参数说明:   @param keyword
+	 * 参数说明:   @param isFw
+	 * 参数说明:   @param toId
+	 * 参数说明:   @param attachmentId
+	 * 参数说明:   @param attachmentName
+	 * 参数说明:   @param readers
+	 * 参数说明:   @param privId
+	 * 参数说明:   @param userId
+	 * 参数说明:   @param reason
+	 * 参数说明:   @param compressContent
+	 * 参数说明:   @param summary
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping(value = "/addNotify", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -391,9 +474,13 @@ public class NotifyController {
 	}
 	
 	/**
-	 * 根据ID删除公告
-	 * request   response
-	 * @return
+	 * 
+	 * 创建作者:   张丽军
+	 * 创建日期:   2017-4-18 下午8:20:30
+	 * 方法介绍:   根据ID删除公告
+	 * 参数说明:   @param notifyId
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping(value = "/deleteById", produces = { "application/json;charset=UTF-8" })
 	/*public void deleteById(HttpServletRequest request,
@@ -428,10 +515,13 @@ public class NotifyController {
 	
 	
 	/**
-	 * 为null时转换为""
 	 * 
-	 * @param value
-	 * @return
+	 * 创建作者:   张丽军
+	 * 创建日期:   2017-4-18 下午8:52:53
+	 * 方法介绍:   为null时转换为""
+	 * 参数说明:   @param value
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public static String returnValue(String value) {
 		if (value != null) {
@@ -440,6 +530,7 @@ public class NotifyController {
 			return "";
 		}
 	}
+
 
 
 }
