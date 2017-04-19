@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
-		html,body{width: 100%;height: 100%;font-family: "微软雅黑";font-size: 14px;}
+			html,body{width: 100%;height: 100%;font-family: "微软雅黑";font-size: 14px;}
 			.inPole{font-size: 14px;}
 			textarea{min-width: 30%;min-height: 30px;margin: 5px 5px;}
 			.inPole a{display: inline-block;padding: 3px 5px;text-decoration: none;}

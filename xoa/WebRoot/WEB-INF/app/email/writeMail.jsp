@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/writeMail.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/email/writeMail.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">

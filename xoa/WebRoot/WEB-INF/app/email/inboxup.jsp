@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="../css/email/inbox.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/email/inbox-upright.css"/>
 		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/inbox.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/email/inbox.js" type="text/javascript" charset="utf-8"></script>
 		
 	</head>
 	<body>
