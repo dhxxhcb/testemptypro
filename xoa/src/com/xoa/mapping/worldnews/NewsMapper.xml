@@ -65,6 +65,7 @@
 		</where>
 		ORDER BY NEWS_ID DESC
 	</select>
+		<!-- 查询新闻管理信息并返回 列表 -->
 	<select id="selectNewsManage" parameterType="Map" resultMap="BaseResultMap">
 	select TO_ID,NEWS_ID,`SUBJECT`,TYPE_ID,NEWS_TIME,CLICK_COUNT,PROVIDER,CONTENT,READERS FROM news 
 	</select>
