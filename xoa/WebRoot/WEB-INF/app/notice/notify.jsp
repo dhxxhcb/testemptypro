@@ -156,12 +156,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>
 					<div class="title">未读公告</div>
 					<select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
-			          	<option value="0" selected>所有类型</option>
-			         	<option value="01">决定</option>
-						<option value="02">通知</option>
-						<option value="03">通报</option>
-						<option value="04">其他</option>
-			          	<option value="05">无类型</option>
+		          	<option value="0" selected><fmt:message code="notice.type.alltype" />所有类型</option>
+		         	<option value="01"><fmt:message code="notice.type.Decision" />决定</option>
+					<option value="02"><fmt:message code="notice.type.notice" />通知</option>
+					<option value="03"><fmt:message code="notice.type.Bulletin" />通报</option>
+					<option value="04"><fmt:message code="notice.type.other" />其他</option>
+		          	<option value="05"><fmt:message code="notice.type.notype" />无类型</option>
 			       </select>
 				</td>
 				
@@ -178,14 +178,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    	<img src="../img/notify_open.gif" align="absmiddle">
 		    	<span class="big3"><fmt:message code="notice.title.notify" /></span>&nbsp;
 		       <select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
-		          	<option value="0" selected>所有类型</option>
-		         	<option value="01">决定</option>
-					<option value="02">通知</option>
-					<option value="03">通报</option>
-					<option value="04">其他</option>
-		          	<option value="05">无类型</option>
+		          	<option value="0" selected><fmt:message code="notice.type.alltype" />所有类型</option>
+		         	<option value="01"><fmt:message code="notice.type.Decision" />决定</option>
+					<option value="02"><fmt:message code="notice.type.notice" />通知</option>
+					<option value="03"><fmt:message code="notice.type.Bulletin" />通报</option>
+					<option value="04"><fmt:message code="notice.type.other" />其他</option>
+		          	<option value="05"><fmt:message code="notice.type.notype" />无类型</option>
 		       </select>
-		       <span>发布日期</span>
+		       <span><fmt:message code="notice.title.Releasedate" /></span>
 				<input id="test" name="SEND_TIME" class="laydate-icon">
 				<input type="button" id="but" value="确定" />
 		    </td>
