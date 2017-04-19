@@ -1,10 +1,11 @@
 package com.xoa.model.file;
+
 /**
  * 
- * @ClassName (类名):  FileScoreModel
- * @Description(简述): 公共文件柜文档打分表
- * @author(作者):      ys
- * @date(日期):        2017-4-17 下午4:15:02
+ * 创建作者:   杨 胜
+ * 创建日期:   2017-4-18 下午7:39:35
+ * 类介绍  :   公共文件柜文档打分表
+ * 构造参数:   
  *
  */
 public class FileScoreModel {
@@ -28,122 +29,122 @@ public class FileScoreModel {
 	 * 分数
 	 */
 	int fraction;
+
 	/**
 	 * 
-	 * @Title: getScoreId
-	 * @Description: 唯一自增ID
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: int   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:46:11
+	 * 方法介绍:    唯一自增ID
+	 * 参数说明:   @return
+	 * @return     int
 	 */
 	public int getScoreId() {
 		return scoreId;
 	}
+	
 	/**
 	 * 
-	 * @Title: setScoreId
-	 * @Description: 唯一自增ID
-	 * @author(作者):      ys
-	 * @param: @param scoreId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:46:26
+	 * 方法介绍:   唯一自增ID
+	 * 参数说明:   @param scoreId
+	 * @return     void
 	 */
 	public void setScoreId(int scoreId) {
 		this.scoreId = scoreId;
 	}
+	
 	/**
 	 * 
-	 * @Title: getFileId
-	 * @Description: 文件ID
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: int   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:46:39
+	 * 方法介绍:   文件ID
+	 * 参数说明:   @return
+	 * @return     int
 	 */
 	public int getFileId() {
 		return fileId;
 	}
+	
 	/**
 	 * 
-	 * @Title: setFileId
-	 * @Description: 文件ID
-	 * @author(作者):      ys
-	 * @param: @param fileId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:46:56
+	 * 方法介绍:   文件ID
+	 * 参数说明:   @param fileId
+	 * @return     void
 	 */
 	public void setFileId(int fileId) {
 		this.fileId = fileId;
 	}
+	
 	/**
 	 * 
-	 * @Title: getUserId
-	 * @Description: 打分用户的USERID
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:47:09
+	 * 方法介绍:   打分用户的USERID
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getUserId() {
 		return userId;
 	}
+
 	/**
 	 * 
-	 * @Title: setUserId
-	 * @Description: 打分用户的USERID
-	 * @author(作者):      ys
-	 * @param: @param userId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:47:22
+	 * 方法介绍:   打分用户的USERID
+	 * 参数说明:   @param userId
+	 * @return     void
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
 	/**
 	 * 
-	 * @Title: getSendTime
-	 * @Description: 打分用户的USERID
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:47:37
+	 * 方法介绍:   打分时间
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getSendTime() {
 		return sendTime;
 	}
+	
 	/**
 	 * 
-	 * @Title: setSendTime
-	 * @Description: 打分用户的USERID
-	 * @author(作者):      ys
-	 * @param: @param sendTime   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:47:51
+	 * 方法介绍:   打分时间
+	 * 参数说明:   @param sendTime
+	 * @return     void
 	 */
 	public void setSendTime(String sendTime) {
 		this.sendTime = sendTime;
 	}
+	
 	/**
 	 * 
-	 * @Title: getFraction
-	 * @Description: 分数
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: int   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:48:54
+	 * 方法介绍:   分数
+	 * 参数说明:   @return
+	 * @return     int
 	 */
 	public int getFraction() {
 		return fraction;
 	}
+
 	/**
 	 * 
-	 * @Title: setFraction
-	 * @Description: 分数
-	 * @author(作者):      ys
-	 * @param: @param fraction   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午7:49:10
+	 * 方法介绍:   分数
+	 * 参数说明:   @param fraction
+	 * @return     void
 	 */
 	public void setFraction(int fraction) {
 		this.fraction = fraction;
