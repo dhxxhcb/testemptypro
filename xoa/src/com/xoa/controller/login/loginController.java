@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
@@ -35,7 +37,11 @@ public class loginController {
 	 * @return 登录窗口
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.GET) //登录窗口
-	public String logins(@RequestParam("loginId") String loginId) {
+	public String logins(@RequestParam("loginId") String loginId,HttpServletRequest request,HttpServletResponse response) {
+		String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
+		String locale = (String) request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
+		
+		loger.info("----------"+locale); 
 		return "login/"+loginId+"/login";
 	}
 	
