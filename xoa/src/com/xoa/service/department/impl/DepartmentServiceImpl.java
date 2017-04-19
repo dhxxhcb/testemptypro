@@ -1,5 +1,6 @@
 package com.xoa.service.department.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -33,27 +34,27 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * @return     JSONObject   
 	 */
 	@Override
-	public JSONObject getDeptNameById(int... dept_id_str){
-		//定义返回的json字符串
-		JSONObject json=new JSONObject();
+	public List<String> getDeptNameById(int... deptID){
+		//定义返回的list
+		List<String> list=new ArrayList<String>();
 		//定义用户拼接部门名称的字符串
 		StringBuffer sb=new StringBuffer();
-		  for (int i = 0; i < dept_id_str.length; i++) { 			  
-			     if(dept_id_str.length==1){
-			            String deptName=departmentMapper.getDeptNameById(dept_id_str[i]);
-			            json.put("deptName", deptName);	 
-			            return json;
+		  for (int i = 0; i < deptID.length; i++) { 			  
+			     if(deptID.length==1){
+			            String deptName=departmentMapper.getDeptNameById(deptID[i]);
+			            list.add(deptName);
+			            return list;
 			            }else{
-			            String deptName=departmentMapper.getDeptNameById(dept_id_str[i]);
-			            if(i<dept_id_str.length-1){
-			            sb.append(deptName).append("-");
+			            String deptName=departmentMapper.getDeptNameById(deptID[i]);
+			            if(i<deptID.length-1){
+			            sb.append(deptName).append(",");
 			            }else{
 			            sb.append(deptName);
-			            }
-				        json.put("deptName", sb.toString());	 
+			            } 
 			            } 
 			        }  
-				return json;		
+		     list.add(sb.toString());
+				return list;		
 	}
 
 	

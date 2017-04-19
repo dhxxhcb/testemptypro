@@ -124,6 +124,8 @@ public interface UsersMapper {
 	 * @return     List<Users>
 	 */
 	public List<Users> getUserAndDept(Map<String,Object> maps);
+	
+	public List<Users> getBySearch(Map<String,Object> maps);
 
 
 }

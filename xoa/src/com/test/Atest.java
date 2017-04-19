@@ -1,5 +1,7 @@
 package com.test;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -51,17 +53,17 @@ public class Atest {
 			System.out.println(js.get("privName").toString());
 		}*/
 		
-	/*	@Resource  
+		@Resource  
 		private DepartmentService departmentService;
 		@Test
 		public void test() throws Exception {
 			
-			JSONObject js= departmentService.getDeptNameById(new int[] {3, 4});
+			List<String> list = departmentService.getDeptNameById(new int[] {3,4,5});
 			System.out.println("vcc");
-			System.out.println(js.get("deptName").toString());
+			System.out.println(list.get(0).toString());
 		
 		
-		}*/
+		}
 	
 
 }

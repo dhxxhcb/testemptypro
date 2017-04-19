@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -25,17 +24,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.enclosure.EnclosureService;
 
+ 
  /**
- * @ClassName (类名):  EnclosureController
- * @Description(简述): TODO
- * @author(作者):      zlf
- * @date(日期):        2017年4月18日 下午1:47:16
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月19日 下午12:56:00
+ * 类介绍  :    附件
+ * 构造参数:   
  *
  */
 @Controller

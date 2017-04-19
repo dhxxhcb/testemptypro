@@ -5,10 +5,10 @@ import java.util.List;
 import com.xoa.model.users.Users;
 
  /**
- * @ClassName (类名):  Department
- * @Description(简述): TODO
- * @author(作者):      wyq
- * @date(日期):        2017年4月17日 下午5:40:20
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月19日 上午11:50:52
+ * 类介绍  :   
+ * 构造参数:   
  *
  */
 public class Department {

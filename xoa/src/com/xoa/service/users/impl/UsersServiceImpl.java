@@ -143,6 +143,11 @@ public class UsersServiceImpl implements UsersService {
 		Users user=usersMapper.findUserByName(byname);
 		return user;
 	}
+	@Override
+	public List<Users> getBySearch(Map<String, Object> maps, Integer page, Integer pageSize, boolean useFlag) {
+		// TODO Auto-generated method stub
+		return usersMapper.getBySearch(maps);
+	}
 
 
 }

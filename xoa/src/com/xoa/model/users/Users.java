@@ -307,7 +307,17 @@ public class Users {
 	private String userPara;
 	
 	private Department dep;
+	
+	private String deptName; 
+	
+	
 
+	public String getDeptName() {
+		return deptName;
+	}
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
 	private Role role;
 	
 	public Department getDep() {

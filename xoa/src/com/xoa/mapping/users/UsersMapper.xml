@@ -134,13 +134,24 @@
 			<result column="IS_GLOBAL" property="isGlobal" jdbcType="TINYINT" javaType="java.sql.Timestamp" />
 		</association>
 	</resultMap>
-	<select id="getUserAndDept"
+	<select id="getBySearch"
+        resultType="com.xoa.model.users.Users">
+        select u.UID,u.USER_ID as userId,u.USER_NAME as userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,
+        u.DEPT_ID,u.SEX,u.AVATAR, d.DEPT_NAME as deptName from user u ,department d
+		   where u.DEPT_ID= d.DEPT_ID 
+		   <if test="search!=null">
+			and userName = #{search ,jdbcType=VARCHAR} 
+			
+		</if>   
+				
+    </select>  
+    <select id="getUserAndDept"
         parameterType="java.lang.Integer"
         resultType="com.xoa.model.users.Users">
-        select u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME,
+       select u.UID,u.USER_ID as userId,u.USER_NAME as userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,
         u.DEPT_ID,u.SEX,u.AVATAR, d.DEPT_NAME as deptName from user u ,department d
-		   where u.DEPT_ID= d.DEPT_ID
-    </select>   	
+		   where u.DEPT_ID= d.DEPT_ID 
+    </select>        	
 	<select id="findUserByName" resultMap="UserResultMap">
 		select
 		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD`,u.DEPT_ID,u.DEPT_ID_OTHER,u.USER_PRIV,u.USER_PRIV_OTHER from user u  WHERE

@@ -108,5 +108,9 @@ public interface UsersService {
 	 */
 	@DynDatasource
     public Users findUserByName( String byname);
+	
+	
+	public List<Users> getBySearch(Map<String,Object> maps, Integer page,
+			Integer pageSize, boolean useFlag);
 
 }

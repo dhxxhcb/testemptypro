@@ -1,9 +1,11 @@
 package com.xoa.controller.users;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -198,6 +200,28 @@ public class UsersController {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			List<Users> list=usersService.getUserAndDept(maps,page,pageSize,useFlag);  
+			json.setObj(list);
+            json.setMsg("OK");
+            json.setFlag(true);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+			System.out.println(e.getMessage());
+		}
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/user/getBySearch" ,produces = {"application/json;charset=UTF-8"})
+    public String getBySearch(HttpServletRequest request,Map<String, Object> maps,Integer page,
+			Integer pageSize, boolean useFlag) {
+		ToJson<Users> json=new ToJson<Users>(0, null);
+		try {
+			request.setCharacterEncoding("UTF-8");
+			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("search", search);
+			List<Users> list=usersService.getBySearch(maps,page,pageSize,useFlag);  
 			json.setObj(list);
             json.setMsg("OK");
             json.setFlag(true);
