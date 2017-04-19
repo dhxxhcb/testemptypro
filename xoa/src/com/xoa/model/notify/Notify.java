@@ -1,7 +1,7 @@
 package com.xoa.model.notify;
 
 import java.util.Date;
-import java.util.List;
+
 
 import com.xoa.model.users.Users;
    
@@ -58,25 +58,6 @@ public class Notify {
 	 */
     private Integer topDays;
     
-	private Integer clickCount;
-    /**
-	 * 点击数
-	 * 
-	 * @return
-	 */
-	public Integer getClickCount() {
-		return clickCount;
-	}
-
-	/**
-	 * 点击数
-	 * 
-	 * @param clickCount
-	 */
-	public void setClickCount(Integer clickCount) {
-		this.clickCount = clickCount;
-	}
-
 	/**
 	 * 公告通知格式(0-普通格式,1-MHT格式,2-超链接)
 	 */
@@ -760,11 +741,25 @@ public class Notify {
 		this.lastEditor = lastEditor;
 	}
 
- 
+    /**
+     * 
+     * 创建作者:   吴道全
+     * 创建日期:   2017-4-19 下午2:52:26
+     * 方法介绍:   获取审核日期
+     * 参数说明:   @return
+     * @return     String
+     */
     public String getAuditDate() {
 		return auditDate;
 	}
-
+    /**
+     * 
+     * 创建作者:   吴道全
+     * 创建日期:   2017-4-19 下午2:51:33
+     * 方法介绍:   设置审核日期
+     * 参数说明:   @param auditDate
+     * @return     void
+     */
 	public void setAuditDate(String auditDate) {
 		this.auditDate = auditDate;
 	}
