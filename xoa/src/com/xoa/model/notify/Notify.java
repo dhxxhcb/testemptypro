@@ -4,20 +4,22 @@ import java.util.Date;
 import java.util.List;
 
 import com.xoa.model.users.Users;
-   /**
-    * 
-    * @ClassName (类名):  Notify
-    * @Description(简述): 公告管理
-    * @author(作者):      zhanglijun
-    * @date(日期):        2017-4-17 下午6:09:31
-    *
-    */
+   
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:36:27
+     * 类介绍  :   公告实体类
+     * 构造参数:   无
+     *
+     */
 public class Notify {
 	
     private Integer notifyId;
 	/**
 	 * 发布部门id
 	 */
+    
     private Integer fromDept;
 	/**
 	 * 发布用户USER_ID
@@ -158,605 +160,739 @@ public class Notify {
     
     private Users users;
     private String name;
+ 
     /**
      * 
-     * @Title: getName
-     * @Description: 得到用户名
-     * @author(作者):  zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:38:20
+     * 方法介绍:   get方法，获取用户名
+     * 参数说明:   @return
+     * @return     String
      */
     public String getName() {
 		return name;
 	}
-   /**
-    * 
-    * @Title: setName
-    * @Description: 设置用户名
-    * @author(作者):   zhanglijun
-    * @param: @param name   
-    * @return: void   
-    * @throws
-    */
+  
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:43:26
+     * 方法介绍:   set方法，设置用户名
+     * 参数说明:   @param name
+     * @return     void
+     */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-    /**
-     * 
-     * @Title: getUsers
-     * @Description:得到用户
-     * @author(作者):  zhanglijun
-     * @param: @return   
-     * @return: Users   
-     * @throws
-     */
-
+    
+     /**
+      * 
+      * 创建作者:   张丽军
+      * 创建日期:   2017-4-18 下午6:47:08
+      * 方法介绍:   get方法 获取用户
+      * 参数说明:   @return
+      * @return     Users
+      */
 	public Users getUsers() {
 		return users;
 	}
     /**
      * 
-     * @Title: setUsers
-     * @Description: 设置用户
-     * @author(作者):    zhanglijun
-     * @param: @param users   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:49:03
+     * 方法介绍:   set方法 设置用户
+     * 参数说明:   @param users
+     * @return     void
      */
 	public void setUsers(Users users) {
 		this.users = users;
 	}
     /**
      * 
-     * @Title: getToId
-     * @Description: 得到按部门发布信息
-     * @author(作者):   zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:50:41
+     * 方法介绍:   获取按部门发布信息
+     * 参数说明:   @return
+     * @return     String
      */
 	public String getToId() {
         return toId;
     }
     /**
      * 
-     * @Title: setToId
-     * @Description: 设置按部门发布信息
-     * @author(作者):    zhanglijun
-     * @param: @param toId   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:51:05
+     * 方法介绍:   设置按部门发布信息
+     * 参数说明:   @param toId
+     * @return     void
      */
     public void setToId(String toId) {
         this.toId = toId == null ? null : toId.trim();
     }
     /**
      * 
-     * @Title: getContent
-     * @Description: 得到内容信息
-     * @author(作者):   zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:52:00
+     * 方法介绍:   获取内容信息
+     * 参数说明:   @return
+     * @return     String
      */
     public String getContent() {
         return content;
     }
      /**
       * 
-      * @Title: setContent
-      * @Description: 设置没人信息
-      * @author(作者):   zhanglijun
-      * @param: @param content   
-      * @return: void   
-      * @throws
+      * 创建作者:   张丽军
+      * 创建日期:   2017-4-18 下午6:52:44
+      * 方法介绍:   设置内容信息
+      * 参数说明:   @param content
+      * @return     void
       */
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
     /**
      * 
-     * @Title: getAttachmentId
-     * @Description: 得到附件ID串
-     * @author(作者):  zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:54:17
+     * 方法介绍:   获取附件ID串
+     * 参数说明:   @return
+     * @return     String
      */
     public String getAttachmentId() {
         return attachmentId;
     }
     /**
      * 
-     * @Title: setAttachmentId
-     * @Description: 设置附件ID串
-     * @author(作者):    zhanglijun
-     * @param: @param attachmentId   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:54:30
+     * 方法介绍:   设置附件ID串
+     * 参数说明:   @param attachmentId
+     * @return     void
      */
     public void setAttachmentId(String attachmentId) {
         this.attachmentId = attachmentId == null ? null : attachmentId.trim();
     }
     /**
      * 
-     * @Title: getAttachmentName
-     * @Description: 得到附件名称串
-     * @author(作者):  zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:55:07
+     * 方法介绍:   获取附件名称串
+     * 参数说明:   @return
+     * @return     String
      */
     public String getAttachmentName() {
         return attachmentName;
     }
     /**
      * 
-     * @Title: setAttachmentName
-     * @Description: 设置附件名称串
-     * @author(作者):   zhanglijun
-     * @param: @param attachmentName   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:55:30
+     * 方法介绍:   设置附件名称串
+     * 参数说明:   @param attachmentName
+     * @return     void
      */
     public void setAttachmentName(String attachmentName) {
         this.attachmentName = attachmentName == null ? null : attachmentName.trim();
     }
     /**
      * 
-     * @Title: getReaders
-     * @Description: 得到阅读人员ID
-     * @author(作者):  zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:55:54
+     * 方法介绍:   获取阅读人员ID
+     * 参数说明:   @return
+     * @return     String
      */
     public String getReaders() {
         return readers;
     }
     /**
      * 
-     * @Title: setReaders
-     * @Description: 设置阅读人员ID
-     * @author(作者):  zhanglijun
-     * @param: @param readers   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:56:20
+     * 方法介绍:   设置阅读人员ID
+     * 参数说明:   @param readers
+     * @return     void
      */
     public void setReaders(String readers) {
         this.readers = readers == null ? null : readers.trim();
     }
     /**
      * 
-     * @Title: getPrivId
-     * @Description: 得到按角色发布ID
-     * @author(作者):   zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:56:48
+     * 方法介绍:   获取按角色发布ID
+     * 参数说明:   @return
+     * @return     String
      */
     public String getPrivId() {
         return privId;
     }
     /**
      * 
-     * @Title: setPrivId
-     * @Description: 设置按角色发布ID
-     * @author(作者):   zhanglijun
-     * @param: @param privId   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:57:05
+     * 方法介绍:   设置按角色发布ID
+     * 参数说明:   @param privId
+     * @return     void
      */
     public void setPrivId(String privId) {
         this.privId = privId == null ? null : privId.trim();
     }
     /**
      * 
-     * @Title: getUserId
-     * @Description: 得到用户ID
-     * @author(作者):    zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:57:21
+     * 方法介绍:   获取用户ID
+     * 参数说明:   @return
+     * @return     String
      */
     public String getUserId() {
         return userId;
     }
     /**
      * 
-     * @Title: setUserId
-     * @Description: 设置用户ID
-     * @author(作者):   zhanglijun
-     * @param: @param userId   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:57:49
+     * 方法介绍:   设置用户ID
+     * 参数说明:   @param userId
+     * @return     void
      */
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
     }
     /**
      * 
-     * @Title: getReason
-     * @Description:得到审核人不同意的原因
-     * @author(作者):  zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:58:50
+     * 方法介绍:   获取审核人不同意的原因
+     * 参数说明:   @return
+     * @return     String
      */
     public String getReason() {
         return reason;
     }
     /**
      * 
-     * @Title: setReason
-     * @Description: 设置审核人不同意的原因
-     * @author(作者):  zhanglijun
-     * @param: @param reason   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:59:08
+     * 方法介绍:   设置审核人不同意的原因
+     * 参数说明:   @param reason
+     * @return     void
      */
     public void setReason(String reason) {
         this.reason = reason == null ? null : reason.trim();
     }
     /**
      * 
-     * @Title: getCompressContent
-     * @Description: 得到压缩后的公告通知内容
-     * @author(作者):   zhanglijun
-     * @param: @return   
-     * @return: byte[]   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:59:23
+     * 方法介绍:   获取得到压缩后的公告通知内容
+     * 参数说明:   @return
+     * @return     byte[]
      */
     public byte[] getCompressContent() {
         return compressContent;
     }
     /**
      * 
-     * @Title: setCompressContent
-     * @Description: 设置压缩后的公告通知内容
-     * @author(作者):   zhanglijun
-     * @param: @param compressContent   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午6:59:43
+     * 方法介绍:   设置压缩后的公告通知内容
+     * 参数说明:   @param compressContent
+     * @return     void
      */
     public void setCompressContent(byte[] compressContent) {
         this.compressContent = compressContent;
     }
     /**
      * 
-     * @Title: getSummary
-     * @Description: 获取内容简介信息
-     * @author(作者):   zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:00:08
+     * 方法介绍:   获取内容简介信息
+     * 参数说明:   @return
+     * @return     String
      */
     public String getSummary() {
         return summary;
     }
     /**
      * 
-     * @Title: setSummary
-     * @Description: 设置内容简介信息
-     * @author(作者):    zhanglijun
-     * @param: @param summary   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:00:35
+     * 方法介绍:   设置内容简介信息
+     * 参数说明:   @param summary
+     * @return     void
      */
     public void setSummary(String summary) {
         this.summary = summary == null ? null : summary.trim();
     }
     /**
      * 
-     * @Title: getNotifyId
-     * @Description: 获取公告ID(主键)
-     * @author(作者):    zhanglijun
-     * @param: @return   
-     * @return: Integer   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:05:00
+     * 方法介绍:   获取公告ID(主键)
+     * 参数说明:   @return
+     * @return     Integer
      */
     public Integer getNotifyId() {
         return notifyId;
     }
     /**
      * 
-     * @Title: setNotifyId
-     * @Description: 设置公告ID(主键)
-     * @author(作者):    zhanglijun
-     * @param: @param notifyId   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:05:13
+     * 方法介绍:   设置公告ID(主键)
+     * 参数说明:   @param notifyId
+     * @return     void
      */
     public void setNotifyId(Integer notifyId) {
         this.notifyId = notifyId;
     }
     /**
      * 
-     * @Title: getFromDept
-     * @Description:获取发布部门ID
-     * @author(作者):   zhanglijun
-     * @param: @return   
-     * @return: Integer   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:05:25
+     * 方法介绍:   获取发布部门ID
+     * 参数说明:   @return
+     * @return     Integer
      */
     public Integer getFromDept() {
         return fromDept;
     }
     /**
      * 
-     * @Title: setFromDept
-     * @Description: 设置发布部门ID
-     * @author(作者):    zhanglijun
-     * @param: @param fromDept   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:05:51
+     * 方法介绍:   设置发布部门ID
+     * 参数说明:   @param fromDept
+     * @return     void
      */
     public void setFromDept(Integer fromDept) {
         this.fromDept = fromDept;
     }
     /**
      * 
-     * @Title: getFromId
-     * @Description: 获取发布用户ID(USER_ID)
-     * @author(作者):    zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:06:24
+     * 方法介绍:   获取发布用户ID(USER_ID)
+     * 参数说明:   @return
+     * @return     String
      */
     public String getFromId() {
         return fromId;
     }
     /**
      * 
-     * @Title: setFromId
-     * @Description: 设置发布用户ID(USER_ID)
-     * @author(作者):     zhanglijun
-     * @param: @param fromId   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:06:47
+     * 方法介绍:   设置发布用户ID(USER_ID)
+     * 参数说明:   @param fromId
+     * @return     void
      */
     public void setFromId(String fromId) {
         this.fromId = fromId == null ? null : fromId.trim();
     }
     /**
      * 
-     * @Title: getSubject
-     * @Description:获取公告标题
-     * @author(作者):    zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:06:54
+     * 方法介绍:   获取公告标题 
+     * 参数说明:   @return
+     * @return     String
      */
     public String getSubject() {
         return subject;
     }
     /**
      * 
-     * @Title: setSubject
-     * @Description: 设置公告标题
-     * @author(作者):    zhanglijun
-     * @param: @param subject   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:07:11
+     * 方法介绍:   设置公告标题
+     * 参数说明:   @param subject
+     * @return     void
      */
     public void setSubject(String subject) {
         this.subject = subject == null ? null : subject.trim();
     }
     /**
      * 
-     * @Title: getSendTime
-     * @Description: 获取发布时间
-     * @author(作者):  zhanglijun
-     * @param: @return   
-     * @return: Date   
-     * @throws
-     */
-    public Date getSendTime() {
-        return sendTime;
-    }
-    /**
-     * 
-     * @Title: setSendTime
-     * @Description: 设置发布时间
-     * @author(作者):  zhanglijun
-     * @param: @param sendTime   
-     * @return: void   
-     * @throws
-     */
-    public void setSendTime(Date sendTime) {
-        this.sendTime = sendTime;
-    }
-    /**
-     * 
-     * @Title: getBeginDate
-     * @Description: 获取开始日期
-     * @author(作者):  zhanglijun
-     * @param: @return   
-     * @return: Integer   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:07:39
+     * 方法介绍:   获取开始日期
+     * 参数说明:   @return
+     * @return     Integer
      */
     public Integer getBeginDate() {
         return beginDate;
     }
     /**
      * 
-     * @Title: setBeginDate
-     * @Description: 设置开始日期
-     * @author(作者):    zhanglijun
-     * @param: @param beginDate   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:07:51
+     * 方法介绍:   设置开始日期
+     * 参数说明:   @param beginDate
+     * @return     void
      */
     public void setBeginDate(Integer beginDate) {
         this.beginDate = beginDate;
     }
     /**
      * 
-     * @Title: getEndDate
-     * @Description: 获取结束日期
-     * @author(作者):  zhanglijun
-     * @param: @return   
-     * @return: Integer   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:08:05
+     * 方法介绍:   获取结束日期
+     * 参数说明:   @return
+     * @return     Integer
      */
     public Integer getEndDate() {
         return endDate;
     }
     /**
      * 
-     * @Title: setEndDate
-     * @Description: 设置结束日期
-     * @author(作者):   zhanglijun
-     * @param: @param endDate   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:08:41
+     * 方法介绍:   设置结束日期
+     * 参数说明:   @param endDate
+     * @return     void
      */
     public void setEndDate(Integer endDate) {
         this.endDate = endDate;
     }
     /**
      * 
-     * @Title: getPrint
-     * @Description: 获取是否允许打印office附件信息(0-不允许,1-允许)
-     * @author(作者):  zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:08:59
+     * 方法介绍:   获取是否允许打印office附件信息(0-不允许,1-允许)
+     * 参数说明:   @return
+     * @return     String
      */
     public String getPrint() {
         return print;
     }
     /**
      * 
-     * @Title: setPrint
-     * @Description: 设置是否允许打印office附件信息(0-不允许,1-允许)
-     * @author(作者):     zhanglijun
-     * @param: @param print   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:09:12
+     * 方法介绍:   获取是否允许打印office附件信息(0-不允许,1-允许)
+     * 参数说明:   @param print
+     * @return     void
      */
     public void setPrint(String print) {
         this.print = print == null ? null : print.trim();
     }
     /**
      * 
-     * @Title: getTypeId
-     * @Description: 获取公告类型ID
-     * @author(作者):    zhanglijun
-     * @param: @return   
-     * @return: String   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:09:42
+     * 方法介绍:   获取公告类型ID
+     * 参数说明:   @return
+     * @return     String
      */
     public String getTypeId() {
         return typeId;
     }
     /**
      * 
-     * @Title: setTypeId
-     * @Description:设置公告类型ID
-     * @author(作者):   zhanglijun
-     * @param: @param typeId   
-     * @return: void   
-     * @throws
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:09:51
+     * 方法介绍:   设置公告类型ID
+     * 参数说明:   @param typeId
+     * @return     void
      */
     public void setTypeId(String typeId) {
         this.typeId = typeId == null ? null : typeId.trim();
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:10:13
+     * 方法介绍:   获取置顶信息
+     * 参数说明:   @return
+     * @return     String
+     */
     public String getTop() {
         return top;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:10:25
+     * 方法介绍:   设置置顶信息
+     * 参数说明:   @param top
+     * @return     void
+     */
     public void setTop(String top) {
         this.top = top == null ? null : top.trim();
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:10:43
+     * 方法介绍:   获取置顶天数
+     * 参数说明:   @return
+     * @return     Integer
+     */
     public Integer getTopDays() {
         return topDays;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:10:52
+     * 方法介绍:   设置置顶天数
+     * 参数说明:   @param topDays
+     * @return     void
+     */
     public void setTopDays(Integer topDays) {
         this.topDays = topDays;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:11:13
+     * 方法介绍:   获取公告通知格式信息(0-普通格式,1-html格式,2-超链接)
+     * 参数说明:   @return
+     * @return     String
+     */
     public String getFormat() {
         return format;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:11:37
+     * 方法介绍:  设置公告通知格式信息(0-普通格式,1-html格式,2-超链接)
+     * 参数说明:   @param format
+     * @return     void
+     */
     public void setFormat(String format) {
         this.format = format == null ? null : format.trim();
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:12:11
+     * 方法介绍:   获取发布标识信息(0-未发布,1-已发布,2-待审批,3-未通过)
+     * 参数说明:   @return
+     * @return     String
+     */
     public String getPublish() {
         return publish;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:12:27
+     * 方法介绍:   设置发布标识信息(0-未发布,1-已发布,2-待审批,3-未通过)
+     * 参数说明:   @param publish
+     * @return     void
+     */
     public void setPublish(String publish) {
         this.publish = publish == null ? null : publish.trim();
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:12:51
+     * 方法介绍:   获取审核人用户ID
+     * 参数说明:   @return
+     * @return     String
+     */
     public String getAuditer() {
         return auditer;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:13:28
+     * 方法介绍:   设置审核人用户ID
+     * 参数说明:   @param auditer
+     * @return     void
+     */
     public void setAuditer(String auditer) {
         this.auditer = auditer == null ? null : auditer.trim();
     }
-
-    public Date getAuditDate() {
-        return auditDate;
-    }
-
-    public void setAuditDate(Date auditDate) {
-        this.auditDate = auditDate;
-    }
-
+   
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:13:47
+     * 方法介绍:   获取是否允许下载office附件(0-不允许,1-允许)
+     * 参数说明:   @return
+     * @return     String
+     */
     public String getDownload() {
         return download;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:14:27
+     * 方法介绍:   设置是否允许下载office附件(0-不允许,1-允许)
+     * 参数说明:   @param download
+     * @return     void
+     */
     public void setDownload(String download) {
         this.download = download == null ? null : download.trim();
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:14:38
+     * 方法介绍:   获取最后编辑人
+     * 参数说明:   @return
+     * @return     String
+     */
     public String getLastEditor() {
         return lastEditor;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:14:50
+     * 方法介绍:   设置最后编辑人
+     * 参数说明:   @return
+     * @return     Date
+     */
     public void setLastEditor(String lastEditor) {
-        this.lastEditor = lastEditor == null ? null : lastEditor.trim();
-    }
+		this.lastEditor = lastEditor;
+	}
 
-    public Date getLastEditTime() {
-        return lastEditTime;
-    }
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:50:28
+     * 方法介绍:   获取审核日期
+     * 参数说明:   @return
+     * @return     Date
+     */
 
-    public void setLastEditTime(Date lastEditTime) {
-        this.lastEditTime = lastEditTime;
-    }
+	public Date getAuditDate() {
+		return auditDate;
+	}
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:50:59
+     * 方法介绍:   设置审核日期
+     * 参数说明:   @param auditDate
+     * @return     void
+     */
+	public void setAuditDate(Date auditDate) {
+		this.auditDate = auditDate;
+	}
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:51:17
+     * 方法介绍:   获取发送时间
+     * 参数说明:   @return
+     * @return     Date
+     */
 
+	public Date getSendTime() {
+		return sendTime;
+	}
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:51:45
+     * 方法介绍:   设置发送时间
+     * 参数说明:   @param sendTime
+     * @return     void
+     */
+	public void setSendTime(Date sendTime) {
+		this.sendTime = sendTime;
+	}
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:52:52
+     * 方法介绍:   获取最后编辑时间
+     * 参数说明:   @return
+     * @return     Date
+     */
+	public Date getLastEditTime() {
+		return lastEditTime;
+	}
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:53:19
+     * 方法介绍:   设置最后编辑时间
+     * 参数说明:   @param lastEditTime
+     * @return     void
+     */
+	public void setLastEditTime(Date lastEditTime) {
+		this.lastEditTime = lastEditTime;
+	}
+
+	
+	/**
+	 * 
+	 * 创建作者:   张丽军
+	 * 创建日期:   2017-4-18 下午7:59:20
+	 * 方法介绍:   获取公告标题颜色
+	 * 参数说明:   @return
+	 * @return     String
+	 */
     public String getSubjectColor() {
         return subjectColor;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:59:31
+     * 方法介绍:   设置公告标题颜色
+     * 参数说明:   @param subjectColor
+     * @return     void
+     */
     public void setSubjectColor(String subjectColor) {
         this.subjectColor = subjectColor == null ? null : subjectColor.trim();
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:59:43
+     * 方法介绍:   获取内容关键字
+     * 参数说明:   @return
+     * @return     String
+     */
     public String getKeyword() {
         return keyword;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午7:59:57
+     * 方法介绍:   设置内容关键字
+     * 参数说明:   @param keyword
+     * @return     void
+     */
     public void setKeyword(String keyword) {
         this.keyword = keyword == null ? null : keyword.trim();
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午8:00:07
+     * 方法介绍:   获取是否转发信息 
+     * 参数说明:   @return
+     * @return     String
+     */
     public String getIsFw() {
         return isFw;
     }
-
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-18 下午8:00:17
+     * 方法介绍:   设置是否转发信息
+     * 参数说明:   @param isFw
+     * @return     void
+     */
     public void setIsFw(String isFw) {
         this.isFw = isFw == null ? null : isFw.trim();
     }

@@ -21,23 +21,38 @@ import com.xoa.service.notify.NotifyService;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 
+/**
+ * 
+ * 创建作者:   张丽军
+ * 创建日期:   2017-4-18 下午6:22:58
+ * 类介绍  :   公告实现类
+ * 构造参数:   无
+ *
+ */
 @Service
 public class NotifyServiceImpl implements  NotifyService{
-	
+   
 	@Resource
 	private NotifyMapper notifyMapper;
 	
 	@Resource
 	private DepartmentMapper departmentMapper;
 	/**
-	 * 查询公告
-	 * @param maps map条件参数
-	 * @param page 当前页
-	 * @param pageSize 每页显示条数
-	 * @param useFlag 是否开启分页插件
+	 * 
+	 * <p>Title: selectNotify</p>
+	 * <p>Description: 查询公告信息</p>
+	 * @param maps
+	 * @param page
+	 * @param pageSize
+	 * @param useFlag
+	 * @param name
 	 * @return
 	 * @throws Exception
+	 * @author(作者):  张丽军
+	 * @date(日期):        2017-4-18 上午11:44:32
+	 * @see com.xoa.service.notify.NotifyService#selectNotify(java.util.Map, java.lang.Integer, java.lang.Integer, boolean, java.lang.String)
 	 */
+     
 	@Override
 	public List<Notify> selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name)throws Exception {
 		PageParams pageParams = new PageParams();  
@@ -62,8 +77,18 @@ public class NotifyServiceImpl implements  NotifyService{
 
 	/**
 	 * 
-	 * 未读公告
+	 * <p>Title: unreadNotify</p>
+	 * <p>Description: 未读信息</p>
+	 * @param maps
+	 * @param page
+	 * @param pageSize
+	 * @param useFlag
+	 * @param name
 	 * @return
+	 * @throws Exception
+	 * @author(作者): 张丽军
+	 * @date(日期):        2017-4-18 上午11:44:32
+	 * @see com.xoa.service.notify.NotifyService#unreadNotify(java.util.Map, java.lang.Integer, java.lang.Integer, boolean, java.lang.String)
 	 */
 
     @Override
@@ -85,11 +110,15 @@ public class NotifyServiceImpl implements  NotifyService{
 }
     
     
-    /**
-     * 
-     * 修改 公告
-     * @return
-     */
+   /**
+    * 
+    * <p>Title: updateNotify</p>
+    * <p>Description:更新公告信息 </p>
+    * @param notify
+    * @author(作者):  张丽军
+    * @date(日期):        2017-4-18 上午11:44:32
+    * @see com.xoa.service.notify.NotifyService#updateNotify(com.xoa.model.notify.Notify)
+    */
     @Transactional
     public void updateNotify(Notify notify) {
 	     if(notify.getNotifyId()!=-1){
@@ -99,11 +128,15 @@ public class NotifyServiceImpl implements  NotifyService{
 	     }
     }
 
-    /**
-     * 
-     * 保存公告
-     * @return
-     */
+   /**
+    * 
+    * <p>Title: addNotify</p>
+    * <p>Description: 新增公告信息</p>
+    * @param notify
+    * @author(作者):  张丽军
+    * @date(日期):        2017-4-18 上午11:44:32
+    * @see com.xoa.service.notify.NotifyService#addNotify(com.xoa.model.notify.Notify)
+    */
 	@Override
 	@Transactional
 	public void addNotify(Notify notify) {
@@ -113,7 +146,19 @@ public class NotifyServiceImpl implements  NotifyService{
 	}
 
 	/**
-	 * 已读、未读公告查询
+	 * 
+	 * <p>Title: queryById</p>
+	 * <p>Description: 查询公告详情</p>
+	 * @param maps
+	 * @param page
+	 * @param pageSize
+	 * @param useFlag
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 * @author(作者):  张丽军
+	 * @date(日期):        2017-4-18 上午11:44:32
+	 * @see com.xoa.service.notify.NotifyService#queryById(java.util.Map, java.lang.Integer, java.lang.Integer, boolean, java.lang.String)
 	 */
 	@Override
 	public Notify queryById(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception {
@@ -123,19 +168,16 @@ public class NotifyServiceImpl implements  NotifyService{
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);
         Notify notify=notifyMapper.detailedNotify(maps);
-        Notify notifyy=new Notify();
-        if(notify.getReaders().indexOf(name)!=-1){
+     
+    /*  if(notify.getReaders().indexOf(name)==-1){
         	StringBuffer str2= new StringBuffer(notify.getReaders());
-        	String str1=str2.append(name).toString();
+        	str2.append(",");
+        	str2.append(name);
+        	String str1=str2.toString();
         	notify.setNotifyId(notify.getNotifyId());
-        	notifyy.setReaders(str1);
-        	notify.setClickCount(notify.getClickCount()+1);
-        	notifyMapper.updateNotify(notify);
-		}else {
-			notify.setNotifyId(notify.getNotifyId());
-			notify.setClickCount(notify.getClickCount()+1);
-			notifyMapper.updateclickCount(notify);
-		}
+        	notify.setReaders(str1);
+        	notifyMapper.updateReaders(notify);
+		}*/
 	
 	   return notify;
 	  
@@ -143,20 +185,43 @@ public class NotifyServiceImpl implements  NotifyService{
         }
         
 	
-
+    /**
+     * 
+     * <p>Title: getNotifyById</p>
+     * <p>Description:根据ID查询一条数据 </p>
+     * @param id
+     * @return
+     * @author(作者):  张丽军
+     * @date(日期):        2017-4-18 上午11:44:32
+     * @see com.xoa.service.notify.NotifyService#getNotifyById(java.lang.String)
+     */
 	@Override
 	public List<Notify> getNotifyById(String id) {
 		return notifyMapper.getNotifyById(id);
 	}
 	
+	/**
+	 * 
+	 * <p>Title: getNotifyById</p>
+	 * <p>Description: 根据ID查询一条数据</p>
+	 * @param id
+	 * @return
+	 * @author(作者):  张丽军
+	 * @date(日期):        2017-4-18 上午11:44:32
+	 * @see com.xoa.service.notify.NotifyService#getNotifyById(java.lang.Integer)
+	 */
 	@Override
 	public Notify getNotifyById(Integer id) {
 		return notifyMapper.getNotifyById(id);
 	}
 	/**
 	 * 
-	 *根据ID 删除公告
-	 * @return
+	 * <p>Title: delete</p>
+	 * <p>Description: 根据ID删除一条信息</p>
+	 * @param notifyId
+	 * @author(作者):  张丽军
+	 * @date(日期):        2017-4-18 上午11:44:32
+	 * @see com.xoa.service.notify.NotifyService#delete(java.lang.Integer)
 	 */
 	@Override
 	public void delete(Integer notifyId) {
@@ -165,7 +230,18 @@ public class NotifyServiceImpl implements  NotifyService{
 	}
 	
 	/**
-	 * 公告管理信息查询
+	 * 
+	 * <p>Title: selectNotifyManage</p>
+	 * <p>Description: 查询公告管理信息</p>
+	 * @param maps
+	 * @param page
+	 * @param pageSize
+	 * @param useFlag
+	 * @return
+	 * @throws Exception
+	 * @author(作者):  张丽军
+	 * @date(日期):        2017-4-18 上午11:44:32
+	 * @see com.xoa.service.notify.NotifyService#selectNotifyManage(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
 	 */
 	@Override
 	public List<Notify> selectNotifyManage(Map<String, Object> maps,
