@@ -222,13 +222,11 @@
 		</set>
 	</update>
     
-	<!-- <update id="updateReaders" parameterType="com.xoa.model.notify.Notify">
-	update notify set READERS = #{readers} where NOTIFY_ID = #{notifyId} -->
-	
+	 <update id="updateReaders" parameterType="com.xoa.model.notify.Notify">
+	update notify set READERS = #{readers} where NOTIFY_ID = #{notifyId} 
+	</update>
 	<!-- 根据id删除 -->
 	<delete id="deleteById" parameterType="String">
 		delete from notify where NOTIFY_ID = #{id}
 	</delete>
-
-
 </mapper>
