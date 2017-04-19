@@ -695,9 +695,9 @@ public class EmailController {
 	public String inboxUp(){
 		return "app/email/inboxup";
 	}
-	@RequestMapping("/writeMail")
+	@RequestMapping("/addbox")
 	public String writeMail(){
-		return "app/email/writeMail";
+		return "app/email/addbox";
 	}
 	@RequestMapping("/index")
 	public String emailIndex(){

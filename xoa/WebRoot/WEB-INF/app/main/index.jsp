@@ -123,10 +123,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			var menu = {
 				"email":"/email/index",
-				"email":"/email/writeMail",
-				"email":"/email/inboxup",
-				"notify/show":"notice/index",
-				"news/show":"news/index",
+				"notify_show":"notice/index",
+				"news_show":"news/index",
 				"file_folder/index2.php":"fileHome",
 				"system/file_folder":"showFileBySort_id"
 			}
