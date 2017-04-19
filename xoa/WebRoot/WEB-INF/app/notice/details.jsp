@@ -28,6 +28,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.btnImg .margin a{margin-right: 20px;}
 			
 		</style>
+		<script type="text/javascript">
+			/* $(function () {
+				var id=
+				$.getQueryString()
+			}) */
+		</script>
 	</head>
 	<body>
 		<div class="detailsContent">
