@@ -228,14 +228,14 @@ public class FileController {
 			return modelAndView;
 		}
 		// 乱码处理-----开始
-		System.out.println("--前--------------" + file.getSortName());
+		System.out.println("--before--------------" + file.getSortName());
 		String sname = new String(file.getSortName().getBytes("ISO-8859-1"),"utf-8");
-		System.out.println("--中--------------" + sname);
+		System.out.println("--into--------------" + sname);
 		file.setSortName(sname);
-		System.out.println("--后--------------" + file.getSortName());
+		System.out.println("--behand--------------" + file.getSortName());
 		// 乱码处理-----结束
+		//添加文件影响行
 		int resultAdd = fileSortService.saveFileSort(file);
-		System.out.println("添加文件影响行--------" + resultAdd);
 		modelAndView = new ModelAndView("redirect:/shows", model);
 		return modelAndView;
 	}
@@ -294,8 +294,8 @@ public class FileController {
 	@RequestMapping("/update")
 	public ModelAndView fileUpdate(FileSortModel file) {
 		// "redirect:/showFile" "file/showFile"
+		//修改文件影响行
 		int resultUpdate = fileSortService.updateFileSort(file);
-		System.out.println("--修改文件影响行--------" + resultUpdate);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("app/file/fileEdit");
 		return modelAndView;
@@ -326,9 +326,9 @@ public class FileController {
 			List<FileContentModel> fileContent = fileContentService
 					.getFileConBySortid(tempNo);
 			fileContentList.addAll(fileContent);
+			//删除文件影响行
 			int deleConNo = fileContentService
 					.deleteBySortId(tempNo);
-			System.out.println("删除文件影响行----deleConNo----" + deleConNo);
 		}
 		// 删除附件
 		// boolean flag=deleteAttachment(fileContentList,request);
@@ -336,9 +336,9 @@ public class FileController {
 		for (FileSortModel f : childrenList) {
 			Map<String, Object> fileSortidMap = new HashMap<String, Object>();
 			fileSortidMap.put("sortid", f.getSortId());
+			//删除文件影响行
 			int deleSortNo = fileSortService
 					.deleteBySortId(fileSortidMap);
-			System.out.println("删除文件影响行----deleSortNo----" + deleSortNo);
 		}
 		Map<String, Object> model = new HashMap<String, Object>();
 		ModelAndView modelAndView = new ModelAndView(

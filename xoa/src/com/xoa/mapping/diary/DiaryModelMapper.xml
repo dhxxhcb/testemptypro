@@ -18,9 +18,21 @@
     <result column="COMPRESS_CONTENT" property="compressContent" javaType="string" />
     <result column="READERS" property="readers" javaType="string" />
   </resultMap>
-  <sql id="Blob_Column_List" >
-    CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, TO_ID, COMPRESS_CONTENT, READERS
+  <sql id="DiaryList" >
+    DIA_ID,USER_ID,DIA_DATE,DIA_TIME,DIA_TYPE,SUBJECT,LAST_COMMENT_TIME,TO_ALL,CRM_DIARY,CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, TO_ID, COMPRESS_CONTENT, READERS
   </sql>
+  <select id="addDiary" parameterType="com.xoa.model.diary.DiaryModel"> 
+  select   <include refid="DiaryList"/> 
+  </select>
+  <insert id="addDiary"> 
+    insert into diary (<include refid="DiaryList"/>) values (
+      #{diaId}, #{userId}, #{diaDate}, 
+      #{diaTime}, #{diaType}, #{subject}, 
+      #{lastCommentTime}, #{toAll}, #{crmDiary}, 
+      #{content}, #{attachmentId}, #{attachmentName}, 
+      #{toId}, #{compressContent}, #{readers}
+      );
+  </insert>
   <!-- <insert id="insert" parameterType="com.xoa.model.diary.DiaryModelWithBLOBs" >
     insert into diary (DIA_ID, USER_ID, DIA_DATE, 
       DIA_TIME, DIA_TYPE, SUBJECT, 

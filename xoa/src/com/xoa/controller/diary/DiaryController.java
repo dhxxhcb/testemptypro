@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.xoa.model.diary.DiaryModel;
 import com.xoa.service.diary.DiaryService;
 
 @Controller
@@ -15,8 +16,8 @@ public class DiaryController {
 	DiaryService diaryService;
 	
 	@RequestMapping("/add")
-	public void diaryAdd(){
-		
+	public void diaryAdd(DiaryModel diaryModel){
+		int temp=diaryService.addDiary(diaryModel);
 	}
 	
 }
