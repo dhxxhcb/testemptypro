@@ -17,9 +17,14 @@
 		<result column="CREATER" property="creater" javaType="string" />
 		<result column="LOGS" property="logs" javaType="string" />
 		<result column="KEYWORD" property="keyword" javaType="string" />
+		<result  column="fileType"  property="fileType" javaType="string" />
 		</resultMap>
+		<sql id="FileCon">
+		CONTENT_ID,SORT_ID,SUBJECT,CONTENT,SEND_TIME,ATTACHMENT_ID,ATTACHMENT_NAME,ATTACHMENT_DESC,USER_ID,CONTENT_NO,NEW_PERSON,READERS,
+		CREATER,LOGS,KEYWORD
+		</sql>
 		<select id="getFileConBySortid" parameterType="int" resultMap="file_ContentResultMap">
-		select * from file_content where SORT_ID=#{tempNo};
+		select <include refid="FileCon"></include>,'file' as fileType from file_content where SORT_ID=#{tempNo};
 		</select>
 		<delete id="fileContentDeleBySort_id" parameterType="int">
 		delete from  file_content where SORT_ID=#{tempNo};
