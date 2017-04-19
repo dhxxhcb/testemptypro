@@ -43,7 +43,7 @@ body,
 } 
 .head_mid ul li h1{
 	/* margin-left: 8%; */
-	width:80%;
+	width:82%;
 	color: #2a588c;
     font-size:12px;
     font-weight:bold;
@@ -51,11 +51,12 @@ body,
 	font-size:10px;
 }
 .head_mid ul li div{
-	width:20%;
+	width:18%;
 }
 .head_mid ul li img{
 	margin-top: 16%;
     width: 40%;
+    height: 19%;
     margin-left: 20%
 }
 .head_rig{
@@ -139,7 +140,7 @@ body,
 }
 .tab_cone{
 	height:760px;
-	/* overflow-y:scroll; */
+	overflow-y:scroll;
 }
 .top_ul{
 	width:90%;
@@ -169,10 +170,10 @@ body,
 }
 .one_all{
 	width:100%;
-	height:50px;
-	background:#f0f0f1;
-	border:1px solid #999999;
-	    border-radius: 4px;
+	height:49px;
+	background: url(../../img/main_img/first_no.png) 0px 0px no-repeat;
+	/* border:1px solid #999999; */
+	border-radius: 4px;
 }
 .yingy{
 	background: url(../../img/main_img/blue_hua.png) 0px 0px no-repeat;
@@ -218,6 +219,7 @@ body,
 	line-height:40px;
 	margin-left: 22%;
 	width: 75%;
+	font-weight:bold;
 	font-size:14px;
 }
 .choose{
@@ -316,6 +318,9 @@ body,
 }
 .cont_left,.cont_rig{
 	float:left;
+}
+.sanji h1{
+	font-weight:bold;
 }
 .foot{
 	width:100%;

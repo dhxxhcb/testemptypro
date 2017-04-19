@@ -201,7 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									if(data[i].child[j].child.length>0){
 										var three='';
 										for(var k=0;k<data[i].child[j].child.length;k++){						
-								 			three +='<li class="three" menu_tid='+data[i].child[j].child[k].id+' url_three='+data[i].child[j].child[k].url+'><h1 style="margin-left:25%;">'+data[i].child[j].child[k].name+'</h1></li>' ; 	
+								 			three +='<li class="three" menu_tid='+data[i].child[j].child[k].id+' url_three='+data[i].child[j].child[k].url+'><h1 style="margin-left:37%;">'+data[i].child[j].child[k].name+'</h1></li>' ; 	
 								 		}
 								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
 									/*  console.log($('er').find().attr('url')); */
@@ -223,15 +223,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							if ($(this).siblings().find('.erji').css('display')=='none') {
 								/* $(this).find('.one_down_img').attr('src','img/main_img/up.png'); */
 								$(this).css({
-									'background':'#cde2fa',
-									'color':'#006bb8'
+									'background':'url(img/main_img/first_yes.png) 0px 1.4px no-repeat',
+									'color':'#006bb8',
+									'border':'1px solid #999'
 								});
 								/* $(this).css('background','#cde2fa'); */
-								$(this).siblings().find('.erji').show();	
+								$(this).siblings().find('.erji').show();
+								$(this).siblings().find('.erji').css('background','#e8f4fc');
 								
 							}else{
-								$(this).css('background','#f0f0f1');
-								
+								/* $(this).css('background','cc'); */
+								$(this).css({
+									'background':'url(img/main_img/first_no.png) 0px 0px no-repeat',
+									'color':'#000'
+								});
 								$(this).siblings().find('.erji').hide();
 							}
 										
@@ -279,13 +284,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						//二级菜单切换
 						$('.two_menu li').on('mouseover','.two_all',function(){
 							
-								$('.two_menu li .two_all').removeClass('xuan');
-								$(this).addClass('xuan');
+								/* $('.two_menu li .two_all').removeClass('xuan');
+								$(this).addClass('xuan'); */
+								$(this).find('h1').css('color','#2f8ae3');
 						});
 						$('.two_menu li').on('mouseout','.two_all',function(){
 							
 								$('.two_menu li .two_all').removeClass('xuan');
-								
+								$(this).find('h1').css('color','#000');
 						});
 						var tid=0;
 						//点击二级菜单
@@ -368,12 +374,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						})
 						 
 						$('.sanji').on('mouseover','li',function(){
-							$('.sanji li').removeClass('xuan');
-							$(this).addClass('xuan');
+							/* $('.sanji li').removeClass('xuan');
+							$(this).addClass('xuan'); */
+							$(this).css({
+									/* 'background':'url(img/main_img/first_yes.png) 0px 1.4px no-repeat', */
+									'color':'#006bb8',
+									
+								});
+							
 						});
 						$('.sanji').on('mouseout','li',function(){
 							
-								$('.sanji li').removeClass('xuan');
+								/* $('.sanji li').removeClass('xuan'); */
+								$(this).css({
+									/* 'background':'url(img/main_img/first_no.png) 0px 0px no-repeat', */
+									'color':'#000'
+								});
 								
 						});
 						//点击标题栏
@@ -393,14 +409,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						})
 						
 						//删除
+						//移入
+						$('.main_title').on('mouseover','.close',function(){
+							
+							$(this).attr('src','img/main_img/delet_yuan.png');
+						 
+						}) ;
+						//移出
+						$('.main_title').on('mouseout','.close',function(){
+							
+							$(this).attr('src','img/main_img/icon.png');
+						 
+						}) ;
+						
 						$('.main_title').on('click','.close',function(){
-							var re=$(this).parent().attr('id');
+							/* alert('111'); */
+							var re=$(this).parent().parent().attr('id');
+							console.log(re);
 							var delet=re.split('_')[1];
 							console.log(delet);
-							
-						 	/*  $(this).parent().remove();
-						 	 $('#f_'+delet).remove(); */
-						 	console.log($(this).next());
+							/* alert($(this)); */
+						 	$(this).parent().parent().remove();
+						 /* 	console.log($(this).parent().parent()); */
+						 	 $('#f_'+delet).remove();
+						 	/*  $('#f_'+delet).siblings().show(); */
+						 	/* console.log($(this).next()); */
 						}) ;
 					}			
 				});
