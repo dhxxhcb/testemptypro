@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="UTF-8">
 		<title>公告详情</title>
+		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			body{padding: 0;margin: 0;font-family: "微软雅黑";width: 100%;}
@@ -29,10 +30,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		</style>
 		<script type="text/javascript">
-			/* $(function () {
-				var id=
-				$.getQueryString()
-			}) */
+			 $(function () {
+				
+				alert(GetQueryString('nid'));
+			}) ;
+			
+			//获取地址栏参数函数
+			function GetQueryString(name)
+			{
+			     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			     var r = window.location.search.substr(1).match(reg);
+			     if(r!=null)return  unescape(r[2]); return null;
+			}
 		</script>
 	</head>
 	<body>
