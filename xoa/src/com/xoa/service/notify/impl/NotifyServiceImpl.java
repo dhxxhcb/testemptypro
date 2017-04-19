@@ -168,7 +168,6 @@ public class NotifyServiceImpl implements  NotifyService{
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);
         Notify notify=notifyMapper.detailedNotify(maps);
-     
       if(notify.getReaders().indexOf(name)==-1){
         	StringBuffer str2= new StringBuffer(notify.getReaders());
         	str2.append(",");

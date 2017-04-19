@@ -16,7 +16,7 @@
 		<result column="FORMAT" property="format" javaType="String" />
 		<result column="PUBLISH" property="publish" javaType="String" />
 		<result column="AUDITER" property="auditer" javaType="String" />
-		<result column="AUDIT_DATE" property="auditDate" javaType="Date" />
+		<result column="AUDIT_DATE" property="auditDate" javaType="String" />
 		<result column="DOWNLOAD" property="download" javaType="String" />
 		<result column="LAST_EDITOR" property="lastEditor" javaType="String" />
 		<result column="LAST_EDIT_TIME" property="lastEditTime"
@@ -78,7 +78,8 @@
 		SELECT NOTIFY_ID,FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT,
 		BEGIN_DATE,END_DATE,ATTACHMENT_ID,
 		ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,
-		TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,AUDIT_DATE,
+		TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,
+		AUDIT_DATE,
 		COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,
 		SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW
 		from notify
@@ -93,7 +94,8 @@
 		 SELECT NOTIFY_ID,FROM_DEPT,FROM_ID,TO_ID,`SUBJECT`,CONTENT,
 		SEND_TIME,BEGIN_DATE,END_DATE,ATTACHMENT_ID,
 		ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,
-		TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,AUDIT_DATE,
+		TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON,
+		IF(AUDIT_DATE='0000-00-00','null',AUDIT_DATE)AUDIT_DATE,
 		DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME,
 		SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW
 		FROM notify WHERE NOTIFY_ID=${notifyId} 
