@@ -157,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="content">
 	<!-- 未读公告 -->
 	<div id="noRead" style="display: none;">
-		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
+		<!-- <table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
 			<tr>
 				<td>
 					<div class="title"><fmt:message code="notice.title.unreadannouncement" /></div>
@@ -173,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			</tr>
 			
-		</table>
+		</table> -->
 		<span><fmt:message code="notice.alert.nodatealert" /></span>
 	</div>
 	<!-- 公告通知 start -->
@@ -223,7 +223,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <!-- <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
 		      <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th> -->
 		      <th nowrap align="center"><fmt:message code="notice.th.state" /></th>
-		      <th nowrap align="center"><fmt:message code="notice.th.operation" /></th>
+		     <!--  <th nowrap align="center"><fmt:message code="notice.th.operation" /></th> -->
 		    </tr>
 		</table>
 	</div> <!-- end -->
