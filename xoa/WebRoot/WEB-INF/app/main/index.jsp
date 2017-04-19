@@ -122,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$(function(){
 
 			var menu = {
-				"email":"/email/index",
+				"email":"email/index",
 				"notify_show":"notice/index",
 				"news_show":"news/index",
 				"file_folder/index2.php":"fileHome",
@@ -289,11 +289,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						var tid=0;
 						//点击二级菜单
 						$('.two_menu li').on('click','.two_all',function(){
-							var url=$(this).attr('url').replace('/','_'); 
+							var url=$(this).attr('url'); 
 							var menu_tid=$(this).parent().attr('menu_tid'); 
 							//console.log(url);
-							if(menu[url]){
-								url = menu[url];
+							if(menu[url.replace('/','_')]){
+								url = menu[url.replace('/','_')];
 							}else{
 								url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
 							}
