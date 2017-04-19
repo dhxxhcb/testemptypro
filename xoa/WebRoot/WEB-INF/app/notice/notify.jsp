@@ -16,11 +16,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
+	<link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
     <link rel="stylesheet" type="text/css" href="../css/notice/notify.css" />
     <script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
-   <!--  <script src="../js/layer-v3.0.3/layer/layer.js" type="text/javascript" charset="utf-8"></script> -->
-    <!-- <script src="../js/notify.js" type="text/javascript"></script> -->
+  	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css">
     	#noticeQuery{width: 100%;}
     	#noticeQuery table tr td{padding:5px 5px;border-color:#ccc;}
@@ -36,10 +36,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#noRead .title{font-family: "微软雅黑";font-size:18px;}
 		#noRead span{display: block;width: 50%;margin: 20px auto;padding: 20px 20px;font-size: 25px;text-align: center;background-color: #6fb4fa;color: #fff;}
 		.title{font-size: 16px;color: #124164;font-weight: bold;margin-top:20px;margin-left:20px;display: inline-block;}
-		
+		.M-box3{margin-left:100px;margin-top:10px;}
+		.M-box3 a{margin: 0 3px;width: 25px;height: 20px;line-height: 20px;font-size: 12px;text-decoration: none;}
+		.M-box3 .active{margin: 0px 3px;width: 25px;height: 20px;line-height: 20px;background: #2b7fe0;font-size: 12px;border: 1px solid #2b7fe0;}
+		.jump-ipt{margin: 0 3px;width: 25px;height: 20px;line-height: 20px;font-size: 12px;}
+		.M-box3 a:hover{background: #2b7fe0;}
     </style>
     <script type="text/javascript">
     	$(function(){
+    	
+    		$('.M-box3').pagination({
+				    pageCount:10,
+				    jump:true,
+				    coping:true,
+				    homePage:'首页',
+				    endPage:'末页',
+				    prevContent:'上页',
+				    nextContent:'下页'
+				});
+    	
     			var data1={
     				"page":1,
     				"pageSize":10,
@@ -174,7 +189,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </td>
 			   		
 		    <td align="right" valign="bottom" class="small1">
-		    	<div id="pageArea" class="pageArea">
+		    	<!-- <div id="pageArea" class="pageArea">
 					第<span id="pageNumber" class="pageNumber">1/1</span>页
 					<a href="javascript:;" id="pageFirst" class="pageFirstDisable" title="首页"></a>
 					  <a href="javascript:;" id="pagePrevious" class="pagePreviousDisable" title="上一页"></a>
@@ -182,7 +197,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  <a href="javascript:;" id="pageLast" class="pageLastDisable" title="末页"></a>
 					 转到 第 <input type="text" size="3" class="SmallInput" name="page_no" id="page_no" onkeypress="input_page_no()" style='text-align:center;'> 页 
 					  	<a href="javascript:goto_page();" id="pageGoto" class="pageGoto" title="转到"></a>
-		    	</div>
+		    	</div> -->
+		    	<div class="M-box3"></div>
 		    </td>
 		  </tr>
 		</table>
