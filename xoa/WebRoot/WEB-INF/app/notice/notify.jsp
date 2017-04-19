@@ -72,10 +72,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    pageCount:10,
 							    jump:true,
 							    coping:true,
-							    homePage:'首页',
-							    endPage:'末页',
-							    prevContent:'上页',
-							    nextContent:'下页'
+							    homePage:'<fmt:message code="global.page.first" />',
+							    endPage:'<fmt:message code="global.page.last" />',
+							    prevContent:'<fmt:message code="global.page.pre" />',
+							    nextContent:'<fmt:message code="global.page.next" />'
 							});
 						}
 				});
