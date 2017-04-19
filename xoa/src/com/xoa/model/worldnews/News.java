@@ -161,13 +161,13 @@ public class News implements Serializable {
 	 */
 	private String name;
 
-	private List<String> depName;
-	
-	public List<String> getDepName() {
+	private String depName;
+
+	public String getDepName() {
 		return depName;
 	}
 
-	public void setDepName(List<String> depName) {
+	public void setDepName(String depName) {
 		this.depName = depName;
 	}
 

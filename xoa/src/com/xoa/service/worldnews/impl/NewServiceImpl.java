@@ -1,8 +1,10 @@
 package com.xoa.service.worldnews.impl;
 
 import com.xoa.dao.department.DepartmentMapper;
+import com.xoa.dao.users.UsersMapper;
 import com.xoa.dao.worldnews.NewsMapper;
 import com.xoa.model.department.Department;
+import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.worldnews.NewService;
@@ -35,6 +37,9 @@ public class NewServiceImpl implements NewService {
 
 	@Resource
 	private DepartmentMapper departmentMapper;//部门DAO
+	
+	@Resource
+	private UsersMapper UsersMapper; 
 	
 	@Resource
 	private DepartmentService  departmentService;
@@ -132,23 +137,29 @@ public class NewServiceImpl implements NewService {
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
 		List<News> list = newsMapper.selectNewsManage(maps);
-		StringBuffer s=new StringBuffer();
 		for (News news : list) {
+			StringBuffer s=new StringBuffer();
 			if (news.getToId().equals("ALL_DEPT")) {
 				List<Department> list1 = departmentMapper.getDatagrid();
 				for (Department department : list1) {
-					s.append(department.getDeptName());
-					s.append(",");
-					news.setName(s.toString());
+					if (department.getDeptName()!=null) {
+						s.append(department.getDeptName());
+						s.append(",");
+						news.setDepName(s.toString());
+					}
+					
 				}
 			} else {
 				strArray = news.getToId().split(",");
 				for (int i = 0; i < strArray.length; i++) {
 					List<String> depname = departmentService.getDeptNameById(Integer.parseInt(strArray[i]));
 					for (String string : depname) {
-						s.append(string);
-						s.append(",");
-						news.setName(s.toString());
+						if (string!=null) {
+							s.append(string);
+							s.append(",");
+							news.setDepName(s.toString());
+						}
+						
 					}
 					
 				}
