@@ -143,9 +143,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body class="bodycolor">
 <div class="muJump">
 	<ul>
-		<li><a href="javascript:;">未读公告</a></li>
-		<li class="jumpOn"><a href="javascript:;">公告通知</a></li>
-		<li><a href="javascript:;">公告查询</a></li>
+		<li><a href="javascript:;"><fmt:message code="notice.title.unreadannouncement" /></a></li>
+		<li class="jumpOn"><a href="javascript:;"><fmt:message code="notice.title.notify" /></a></li>
+		<li><a href="javascript:;"><fmt:message code="notice.title.announcementquery" /></a></li>
 	</ul>
 </div>
 <div class="content">
@@ -154,21 +154,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
 			<tr>
 				<td>
-					<div class="title">未读公告</div>
+					<div class="title"><fmt:message code="notice.title.unreadannouncement" /></div>
 					<select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
-		          	<option value="0" selected><fmt:message code="notice.type.alltype" />所有类型</option>
-		         	<option value="01"><fmt:message code="notice.type.Decision" />决定</option>
-					<option value="02"><fmt:message code="notice.type.notice" />通知</option>
-					<option value="03"><fmt:message code="notice.type.Bulletin" />通报</option>
-					<option value="04"><fmt:message code="notice.type.other" />其他</option>
-		          	<option value="05"><fmt:message code="notice.type.notype" />无类型</option>
+		          	<option value="0" selected><fmt:message code="notice.type.alltype" /></option>
+		         	<option value="01"><fmt:message code="notice.type.Decision" /></option>
+					<option value="02"><fmt:message code="notice.type.notice" /></option>
+					<option value="03"><fmt:message code="notice.type.Bulletin" /></option>
+					<option value="04"><fmt:message code="notice.type.other" /></option>
+		          	<option value="05"><fmt:message code="notice.type.notype" /></option>
 			       </select>
 				</td>
 				
 			</tr>
 			
 		</table>
-		<span>没有未读公告，2秒后自动跳到公告通知</span>
+		<span><fmt:message code="notice.alert.nodatealert" /></span>
 	</div>
 	<!-- 公告通知 start -->
 	<div id="notify" style="overflow-y: scroll;display:block;">
@@ -178,16 +178,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    	<img src="../img/notify_open.gif" align="absmiddle">
 		    	<span class="big3"><fmt:message code="notice.title.notify" /></span>&nbsp;
 		       <select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
-		          	<option value="0" selected><fmt:message code="notice.type.alltype" />所有类型</option>
-		         	<option value="01"><fmt:message code="notice.type.Decision" />决定</option>
-					<option value="02"><fmt:message code="notice.type.notice" />通知</option>
-					<option value="03"><fmt:message code="notice.type.Bulletin" />通报</option>
-					<option value="04"><fmt:message code="notice.type.other" />其他</option>
-		          	<option value="05"><fmt:message code="notice.type.notype" />无类型</option>
+		          	<option value="0" selected><fmt:message code="notice.type.alltype" /></option>
+		         	<option value="01"><fmt:message code="notice.type.Decision" /></option>
+					<option value="02"><fmt:message code="notice.type.notice" /></option>
+					<option value="03"><fmt:message code="notice.type.Bulletin" /></option>
+					<option value="04"><fmt:message code="notice.type.other" /></option>
+		          	<option value="05"><fmt:message code="notice.type.notype" /></option>
 		       </select>
-		       <span><fmt:message code="notice.title.Releasedate" /></span>
+		       <span><fmt:message code="notice.title.Releasedate" />:</span>
 				<input id="test" name="SEND_TIME" class="laydate-icon">
-				<input type="button" id="but" value="确定" />
+				<input type="button" id="but" value="<fmt:message code="global.lang.ok" />" />
 		    </td>
 			   		
 		    <td align="right" valign="bottom" class="small1">
@@ -297,7 +297,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			      </td>
 			    </tr>
 			    <tr>
-			      <td nowrap="" class="TableData" width="100"> 发布日期：</td>
+			      <td nowrap="" class="TableData" width="100"> <fmt:message code="notice.title.Releasedate" />：</td>
 			      <td class="TableData">
 			        	<input class="laydate-icon" id="start"> &nbsp;至&nbsp;
 						<input class="laydate-icon" id="end">
