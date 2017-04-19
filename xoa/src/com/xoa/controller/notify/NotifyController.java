@@ -502,6 +502,9 @@ public class NotifyController {
 	public String emailIndex(){
 		return "app/notice/notify";
 	}
-
+	@RequestMapping("/deail")
+	public String deail(){
+		return "app/notice/details";
+	}
 
 }
