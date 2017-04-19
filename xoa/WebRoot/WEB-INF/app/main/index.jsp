@@ -123,10 +123,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			var menu = {
 				"email":"/email/index",
-				"email":"/email/writeMail",
-				"email":"/email/inboxup",
-				"notify/show":"notice/index",
-				"news/show":"news/index",
+				"notify_show":"notice/index",
+				"news_show":"news/index",
 				"file_folder/index2.php":"fileHome",
 				"system/file_folder":"showFileBySort_id"
 			}
@@ -185,18 +183,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  })
 		} 
 		 	 setInterval("lunbo('#status_text','-50px')",3000);  */
-
-		var menu = {
-			"email":"email/index",
-			"email":"email/writeMail",
-			"email":"email/inboxup",
-			"notify/manage":"notice/index",
-			"news/show":"news/index",
-			"file_folder/index2.php":"fileHome",
-			"system/file_folder":"showFileBySort_id"
-		}
-
-
 		
 			$.ajax({
 					url:'showMenu',
@@ -303,7 +289,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						var tid=0;
 						//点击二级菜单
 						$('.two_menu li').on('click','.two_all',function(){
-							var url=$(this).attr('url'); 
+							var url=$(this).attr('url').replace('/','_'); 
 							var menu_tid=$(this).parent().attr('menu_tid'); 
 							//console.log(url);
 							if(menu[url]){
