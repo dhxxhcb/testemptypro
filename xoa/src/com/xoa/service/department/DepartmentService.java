@@ -19,7 +19,7 @@ public interface DepartmentService {
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 下午2:51:12
-	 * 方法介绍:   根据部门id串获取部门
+	 * 方法介绍:   根据部门id串获取部门名称
 	 * 参数说明:   @param dept_id_str
 	 * 参数说明:   @return
 	 * @return     List<String>
