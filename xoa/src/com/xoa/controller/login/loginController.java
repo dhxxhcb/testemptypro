@@ -45,6 +45,16 @@ public class loginController {
 	public String login() {
 		return "login/index";
 	}
+	
+	@RequestMapping("/cont") //URL的/index
+	public String cont() {
+		return "app/main/cont";
+	}
+	
+	@RequestMapping("/lunbo") //URL的/index
+	public String lunbo() {
+		return "app/main/lunbo";
+	}
 
 	/**
 	 * 分公司登录窗口

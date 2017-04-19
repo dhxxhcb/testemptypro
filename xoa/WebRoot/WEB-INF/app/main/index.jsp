@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="css/vintage_css/index.css"/>
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>  
 		<script type="text/javascript" src="js/main_js/index.js"></script>  
-		<script src="js/jQuery.js"></script>
+		<script src="js/jquery.js"></script>
 	</head>
 	<body>
 		<div class="wrap">
@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="head_mid">
 					<ul class="main_title">
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
-						<li class="gongzuoliu" id='t_0'><h1>我的桌面</h1><img class="close" src="img/main_img/icon.png"></li>
+						<li class="gongzuoliu" id='t_0'><h1>我的桌面</h1><div class="img"><img class="close" src="img/main_img/icon.png"></div></li>
 					</ul>
 				</div>
 				<!-- 右侧的小logo -->

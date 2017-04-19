@@ -10,10 +10,10 @@ body,
 .head{
 	width:100%;
 	height:70px;
-	background:#2b7fe0;
+	 background: url(../../img/main_img/bg.png) -42px 0px no-repeat;
 }
 .head_left{
-	width:19%;
+	width:16.9%;
 	height:100%;
 }
 
@@ -22,15 +22,18 @@ body,
 	height:100%;
 }
 .gongzuoliu{
-	width:13%;
+	width:11%;
 	height:33px;	
 	float:left;
 	color:#595959;
 	line-height:33px;
 	margin-top: 36px;
-	background:#ccd2e0;
-	border:2px solid #666;
-	border-radius:5px 5px 0 0;
+	background: url(../../img/main_img/title_no.png) -42px 0px no-repeat;
+	/* border:2px solid #666;
+	border-radius:5px 5px 0 0; */
+}
+.gongzuoliu h1,.gongzuoliu div{
+	float:left;
 }
 .no{
 	background:#999;
