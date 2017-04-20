@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html><!--<![endif]-->
  <head>
-    <title>公告通知</title>
+    <title><fmt:message code="notice.title.notify" /></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#noRead span{display: block;width: 50%;margin: 20px auto;padding: 20px 20px;font-size: 25px;text-align: center;background-color: #6fb4fa;color: #fff;}
 		.title{font-size: 16px;color: #124164;font-weight: bold;margin-top:20px;margin-left:20px;display: inline-block;}
 		.M-box3{margin-left:100px;margin-top:10px;}
-		.M-box3 a{margin: 0 3px;width: 25px;height: 20px;line-height: 20px;font-size: 12px;text-decoration: none;}
+		.M-box3 a{margin: 0 3px;width: 29px;height: 20px;line-height: 20px;font-size: 12px;text-decoration: none;}
 		.M-box3 .active{margin: 0px 3px;width: 25px;height: 20px;line-height: 20px;background: #2b7fe0;font-size: 12px;border: 1px solid #2b7fe0;}
 		.jump-ipt{margin: 0 3px;width: 25px;height: 20px;line-height: 20px;font-size: 12px;}
 		.M-box3 a:hover{background: #2b7fe0;}
@@ -75,7 +75,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    homePage:'<fmt:message code="global.page.first" />',
 							    endPage:'<fmt:message code="global.page.last" />',
 							    prevContent:'<fmt:message code="global.page.pre" />',
-							    nextContent:'<fmt:message code="global.page.next" />'
+							    nextContent:'<fmt:message code="global.page.next" />',
+							    jumpBtn:'<fmt:message code="global.page.jump" />'
 							});
 						}
 				});
@@ -131,7 +132,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						dataType:'json',
 						data:{'id':id},
 						success:function(){
-							
 							location.reload();
 						}
 				}); 

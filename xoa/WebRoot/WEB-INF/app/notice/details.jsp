@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -32,16 +35,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript">
 			 $(function () {
 				
-				alert(GetQueryString('nid'));
+				var nid=$.GetQueryString('nid');
+				alert(nid);
+				/*  $.ajax({
+						type:'get',
+						url:'queryNotify',
+						dataType:'json',
+						data:{'id':id},
+						success:function(){
+							location.reload();
+						}
+				}); */
+				
 			}) ;
-			
-			//获取地址栏参数函数
-			function GetQueryString(name)
-			{
-			     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-			     var r = window.location.search.substr(1).match(reg);
-			     if(r!=null)return  unescape(r[2]); return null;
-			}
 		</script>
 	</head>
 	<body>
