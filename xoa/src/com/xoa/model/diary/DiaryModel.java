@@ -65,7 +65,7 @@ public class DiaryModel {
     /**
      * 压缩后的日志内容
      */
-    private byte[] compressContent;
+    private String compressContent;
    /**
      * 阅读人员ID串
      */
@@ -233,7 +233,7 @@ public class DiaryModel {
      * 参数说明:   @return
      * @return     byte[]
      */
-    public byte[] getCompressContent() {
+    public String getCompressContent() {
         return compressContent;
     }
     /**
@@ -244,7 +244,7 @@ public class DiaryModel {
      * 参数说明:   @param compressContent
      * @return     void
      */
-    public void setCompressContent(byte[] compressContent) {
+    public void setCompressContent(String compressContent) {
         this.compressContent = compressContent;
     }
     /**

@@ -35,12 +35,11 @@ public class DiaryServiceImpl implements DiaryService{
 	 * 参数说明:   @return
 	 * @return   ToJson<DiaryModel>
 	 */
-	@Override
 	public ToJson<DiaryModel> getDiaryIndex(DiaryModel diaryModel) {
 	       Map<String, Object> diaryMap=new  HashMap<String, Object>();
 	       //用户Id
 	       diaryMap.put("userId", diaryModel.getUserId());
-	       diaryMap.put("toAll", "1");
+	       diaryMap.put("toAll", "0");
 	       //我的日志 
 		   List<DiaryModel> diaryList=diaryModelMapper.getDiarySelf(diaryMap);
 		   //取得共享日志数量
@@ -48,12 +47,12 @@ public class DiaryServiceImpl implements DiaryService{
 		   Map<String, Object> tempNo=new  HashMap<String, Object>();
 	       //用户Id
 		   tempNo.put("userId", diaryModel.getUserId());
-		   tempNo.put("toAll", "1");
+		   tempNo.put("toAll", "0");
 		   int  sharListSelf=diaryModelMapper.getDiarySelfLess(tempNo);
 		   
 		   ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, diaryCount+","+diaryList.size()+","+(diaryCount-sharListSelf));
 		   diaryListToJson.setObj(diaryList);
-		   return null;
+		   return diaryListToJson;
 	}
 	/**
 	 * 
@@ -64,16 +63,11 @@ public class DiaryServiceImpl implements DiaryService{
 	 * 参数说明:   @return
 	 * @return   ToJson<DiaryModel>
 	 */
-	@Override
 	public ToJson<DiaryModel> getDiaryAll(DiaryModel diaryModel) {
 	       Map<String, Object> diaryMap=new  HashMap<String, Object>();
-	       //我的日志 
-	       diaryMap.put("userId", diaryModel.getUserId());
-	       diaryMap.put("toAll", "1");
-		   List<DiaryModel> diaryOtherList=diaryModelMapper.getDiaryOtherList(diaryMap);
-		   
+		   List<DiaryModel> diaryAllList=diaryModelMapper.getDiaryList(diaryMap);
 		   ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, "");
-		   diaryListToJson.setObj(diaryOtherList);
+		   diaryListToJson.setObj(diaryAllList);
 		   return diaryListToJson;
 	}
 	 
@@ -86,14 +80,14 @@ public class DiaryServiceImpl implements DiaryService{
 	 * 参数说明:   @return
 	 * @return   ToJson<DiaryModel>
 	 */
-	@Override
 	public ToJson<DiaryModel> getDiaryOther(DiaryModel diaryModel) {
 	       Map<String, Object> diaryMap=new  HashMap<String, Object>();
+	       diaryMap.put("userId", diaryModel.getUserId());
+	       diaryMap.put("toAll", "0");
 	       //我的日志 
 		   List<DiaryModel> diaryList=diaryModelMapper.getDiaryList(diaryMap);
-		   
 		   ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, "");
-		   return null;
+		   return diaryListToJson;
 	}
 	/**
      * 
@@ -104,7 +98,6 @@ public class DiaryServiceImpl implements DiaryService{
      * 参数说明:   @return
      * @return   int 添加数量影响行
      */
-	@Override
 	public int saveDiary(DiaryModel diaryModel) {
 		return diaryModelMapper.saveDiary(diaryModel);
 	}
@@ -117,10 +110,7 @@ public class DiaryServiceImpl implements DiaryService{
 	    * 参数说明:   @return
 	    * @return   int  修改
 	    */
-	@Override
 	public int updateDiary(DiaryModel diaryModel) {
 		return diaryModelMapper.updateDiary(diaryModel);
 	}
-	
-	
 }

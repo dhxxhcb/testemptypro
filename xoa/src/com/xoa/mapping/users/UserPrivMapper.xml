@@ -14,7 +14,7 @@
     USER_PRIV, PRIV_NAME, PRIV_NO, FUNC_ID_STR, PRIV_DEPT_ID, PRIV_TYPE, IS_GLOBAL
   </sql>
   
-   <select id="getAlluserPriv" resultType="java.util.Map" parameterType="com.xoa.dao.users.UserPrivMapper">
+   <select id="getAlluserPriv" resultMap="BaseResultMap" parameterType="map">
     select USER_PRIV, PRIV_NAME, PRIV_NO, FUNC_ID_STR, PRIV_DEPT_ID, PRIV_TYPE, IS_GLOBAL
     from user_priv
     where 1=1 

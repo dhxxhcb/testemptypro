@@ -15,7 +15,7 @@
     <result column="ATTACHMENT_ID" property="attachmentId" javaType="string" />
     <result column="ATTACHMENT_NAME" property="attachmentName" javaType="string" />
     <result column="TO_ID" property="toId" javaType="string" />
-    <result column="COMPRESS_CONTENT" property="compressContent" javaType="string" />
+    <result column="COMPRESS_CONTENT" property="compressContent" javaType="String" />
     <result column="READERS" property="readers" javaType="string" />
   </resultMap>
   <sql id="DiaryList" >
@@ -80,20 +80,19 @@
       </if>
     </set>
   </update>
-  <select id="getDiarySelfLess" parameterType="map"> 
+  <select id="getDiarySelfLess" parameterType="map" resultType="Integer"> 
   select count(*) from  diary where TO_ALL=#{toAll} and  USER_ID=#{userId} ;
   </select>
-  <select id="getDiarySelf" parameterType="map">
+  <select id="getDiarySelf" parameterType="map" resultMap="BaseResultMap">
     select * from diary where  USER_ID=#{userId} 
-    <if test=""></if>
   </select>
-  <select id="getDiaryCount">
+  <select id="getDiaryCount" resultType="Integer">
    select count(*) from  diary where TO_ALL=1;
   </select>
-  <select id="getDiaryList">
-   select * from  diary;
+  <select id="getDiaryList" resultMap="BaseResultMap">
+   select  *  from  diary;
   </select>
-  <select id="getDiaryOtherList" parameterType="map">
+  <select id="getDiaryOtherList" parameterType="map" resultMap="BaseResultMap">
   select * from diary where USER_ID <![CDATA[<>]]>  #{userId} and TO_ALL=#{toAll};
   </select>
   <!-- <insert id="insert" parameterType="com.xoa.model.diary.DiaryModelWithBLOBs" >

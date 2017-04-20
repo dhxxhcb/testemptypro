@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.xoa.model.users.UserPriv;
 import com.xoa.service.users.UsersPrivService;
 import com.xoa.util.ToJson;
@@ -119,7 +120,7 @@ public class UserPrivController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/getAllPriv",produces = {"application/json;charset=UTF-8"})
-    public ToJson<UserPriv> getAllPriv(Map<String, Object> maps, Integer page,
+    public String getAllPriv(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) {
 		ToJson<UserPriv> json=new ToJson<UserPriv>(0, null);
 		try {
@@ -130,7 +131,7 @@ public class UserPrivController {
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
-        return json;
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
     }
 	
 	

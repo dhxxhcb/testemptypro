@@ -1,13 +1,14 @@
 package com.xoa.controller.diary;
 
 
-import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.xoa.model.diary.DiaryModel;
 import com.xoa.service.diary.DiaryService;
 import com.xoa.util.ToJson;
@@ -29,6 +30,7 @@ public class DiaryController {
 	 * @return   String  返回数据库操作影响行
 	 */
 	@RequestMapping("/save")
+	@ResponseBody
 	public String diaryAdd(DiaryModel diaryModel){
 		int temp=diaryService.saveDiary(diaryModel);
 		return temp+"";
@@ -43,6 +45,7 @@ public class DiaryController {
 	 * @return   String  返回数据库操作影响行
 	 */
 	@RequestMapping("/update")
+	@ResponseBody
 	public String diaryUpdate(DiaryModel diaryModel){
 		int temp=diaryService.updateDiary(diaryModel);
 		return temp+"";
@@ -57,11 +60,11 @@ public class DiaryController {
 	 * @return   getAll
 	 */
 	@RequestMapping("/getIndex")
+	@ResponseBody
 	public String diaryGet(DiaryModel diaryModel){
 		ToJson<DiaryModel> diaryToJson=diaryService.getDiaryIndex(diaryModel);
-		return null;
+		return JSON.toJSONStringWithDateFormat(diaryToJson,"yyyy-MM-dd HH:mm:ss");
 	}
-	
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -71,9 +74,10 @@ public class DiaryController {
 	 * @return   void
 	 */
 	@RequestMapping("/getAll")
+	@ResponseBody
 	public String  diaryGetAll(DiaryModel diaryModel){
-		ToJson<DiaryModel> diaryToJson=diaryService.getDiaryAll(diaryModel);
-		return null;
+		ToJson<DiaryModel> diaryAllToJson=diaryService.getDiaryAll(diaryModel);
+		return JSON.toJSONStringWithDateFormat(diaryAllToJson,"yyyy-MM-dd HH:mm:ss");
 	}
 	
 }

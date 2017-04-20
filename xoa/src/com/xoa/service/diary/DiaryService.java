@@ -33,7 +33,7 @@ public interface DiaryService {
     * 方法介绍:   工作日志编辑操作
     * 参数说明:   @param diaryModel
     * 参数说明:   @return
-    * @return     int
+    * @return   int
     */
 	@DynDatasource
 	int updateDiary(DiaryModel diaryModel);

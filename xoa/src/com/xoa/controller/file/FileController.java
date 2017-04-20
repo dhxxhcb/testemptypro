@@ -16,15 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
-import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.model.file.FileContentModel;
 import com.xoa.model.file.FileSortModel;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.service.file.FileContentService;
 import com.xoa.service.file.FileSortService;
-import com.xoa.util.ToJson;
 import com.xoa.util.treeUtil.FileSortTreeUtil;
 import com.xoa.util.treeUtil.HtmlUtil;
 import com.xoa.util.treeUtil.TreeNode;
@@ -67,7 +64,7 @@ public class FileController {
 	 * 创建日期:   2017-4-18 下午4:07:34
 	 * 方法介绍:   文件柜顶层页面跳转
 	 * 参数说明:   @return
-	 * @return     String
+	 * @return   String
 	 */
 	@RequestMapping(value = "/topFrame")
 	public String topFrame() {
@@ -91,7 +88,7 @@ public class FileController {
 		List<TreeNode> treeList = treeMenu(file.getSortId());
 		HtmlUtil.writerJson(response, treeList);
 	}
-	
+
 	/**
 	 * 
 	 * 创建作者:   杨 胜

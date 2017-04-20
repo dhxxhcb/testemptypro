@@ -38,7 +38,7 @@ $("#fileTree").tree({
 
 
 	<frame name="mainFrame"
-		src="${pageContext.request.contextPath}/file/fileContent">
+		src="${pageContext.request.contextPath}/file/content">
 </FRAMESET>
 
 </html>
