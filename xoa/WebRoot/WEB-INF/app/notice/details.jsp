@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript">
 			 $(function () {
 				
-				var nid=$.GetQueryString('nid');
+				var nid=$.getQueryString('nid');
 				alert(nid);
 				/*  $.ajax({
 						type:'get',
