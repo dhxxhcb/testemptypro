@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.common.Sys_codeMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.common.Sys_code" >
+    <id column="CODE_ID" property="codeId" jdbcType="INTEGER" />
+    <result column="CODE_NO" property="codeNo" jdbcType="VARCHAR" />
+    <result column="CODE_NAME" property="codeName" jdbcType="VARCHAR" />
+    <result column="CODE_ORDER" property="codeOrder" jdbcType="VARCHAR" />
+    <result column="PARENT_NO" property="parentNo" jdbcType="VARCHAR" />
+    <result column="CODE_FLAG" property="codeFlag" jdbcType="VARCHAR" />
+    <result column="CODE_EXT" property="codeExt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CODE_ID, CODE_NO, CODE_NAME, CODE_ORDER, PARENT_NO, CODE_FLAG, CODE_EXT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_code
+    where CODE_ID = #{codeId,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="getCodeId" parameterType="java.lang.Integer">
+  select  CODE_NAME   from sys_code where CODE_ID = #{codeId,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_code
+    where CODE_ID = #{codeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xoa.model.common.Sys_code" >
+    insert into sys_code (CODE_ID, CODE_NO, CODE_NAME, 
+      CODE_ORDER, PARENT_NO, CODE_FLAG, 
+      CODE_EXT)
+    values (#{codeId,jdbcType=INTEGER}, #{codeNo,jdbcType=VARCHAR}, #{codeName,jdbcType=VARCHAR}, 
+      #{codeOrder,jdbcType=VARCHAR}, #{parentNo,jdbcType=VARCHAR}, #{codeFlag,jdbcType=VARCHAR}, 
+      #{codeExt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xoa.model.common.Sys_code" >
+    insert into sys_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codeId != null" >
+        CODE_ID,
+      </if>
+      <if test="codeNo != null" >
+        CODE_NO,
+      </if>
+      <if test="codeName != null" >
+        CODE_NAME,
+      </if>
+      <if test="codeOrder != null" >
+        CODE_ORDER,
+      </if>
+      <if test="parentNo != null" >
+        PARENT_NO,
+      </if>
+      <if test="codeFlag != null" >
+        CODE_FLAG,
+      </if>
+      <if test="codeExt != null" >
+        CODE_EXT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codeId != null" >
+        #{codeId,jdbcType=INTEGER},
+      </if>
+      <if test="codeNo != null" >
+        #{codeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="codeName != null" >
+        #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="codeOrder != null" >
+        #{codeOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNo != null" >
+        #{parentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="codeFlag != null" >
+        #{codeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="codeExt != null" >
+        #{codeExt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.common.Sys_code" >
+    update sys_code
+    <set >
+      <if test="codeNo != null" >
+        CODE_NO = #{codeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="codeName != null" >
+        CODE_NAME = #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="codeOrder != null" >
+        CODE_ORDER = #{codeOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNo != null" >
+        PARENT_NO = #{parentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="codeFlag != null" >
+        CODE_FLAG = #{codeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="codeExt != null" >
+        CODE_EXT = #{codeExt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CODE_ID = #{codeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.common.Sys_code" >
+    update sys_code
+    set CODE_NO = #{codeNo,jdbcType=VARCHAR},
+      CODE_NAME = #{codeName,jdbcType=VARCHAR},
+      CODE_ORDER = #{codeOrder,jdbcType=VARCHAR},
+      PARENT_NO = #{parentNo,jdbcType=VARCHAR},
+      CODE_FLAG = #{codeFlag,jdbcType=VARCHAR},
+      CODE_EXT = #{codeExt,jdbcType=VARCHAR}
+    where CODE_ID = #{codeId,jdbcType=INTEGER}
+  </update>
+</mapper>
