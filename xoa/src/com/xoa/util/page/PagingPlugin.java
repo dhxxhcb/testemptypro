@@ -33,10 +33,10 @@ import com.xoa.util.dataSource.DynDatasources;
   
 /**
  * 
- * @ClassName (类名):  PagingPlugin
- * @Description(简述): 分页插件拦截器
- * @author(作者):      zy
- * @date(日期):        2017-4-17 下午2:48:16
+ * 创建作者:   张勇
+ * 创建日期:   2017-4-20 上午11:08:23
+ * 类介绍  :   分页插件拦截器
+ * 构造参数:   
  *
  */
 @Intercepts({  
@@ -45,14 +45,26 @@ import com.xoa.util.dataSource.DynDatasources;
             args = {Connection.class})})  
 public class PagingPlugin implements Interceptor {  
   
-    /** 
-     * 插件默认参数，可配置 
-     */  
-    private Integer defaultPage; //默认页码  
-    private Integer defaultPageSize;//默认每页条数  
-    private Boolean defaultUseFlag; //默认是否启用插件  
-    private Boolean defaultCheckFlag; //默认是否检测页码参数  
-    private Boolean defaultCleanOrderBy; //默认是否清除最后一个order by 后的语句  
+	/**
+	 * 默认页码  
+	 */
+    private Integer defaultPage; 
+    /**
+     * 默认每页条数 
+     */
+    private Integer defaultPageSize; 
+    /**
+     * 默认是否启用插件  
+     */
+    private Boolean defaultUseFlag; 
+    /**
+     * 默认是否检测页码参数  
+     */
+    private Boolean defaultCheckFlag; 
+    /**
+     * 默认是否清除最后一个order by 后的语句 
+     */
+    private Boolean defaultCleanOrderBy;  
     
     private DynDatasources dyTypeDate = new DynDatasources();
   
@@ -60,14 +72,12 @@ public class PagingPlugin implements Interceptor {
     private static final String DB_TYPE_ORACLE = "oracleDataSources";  
   
     /**
-     * 插件实现方法
-     * <p>Title: intercept</p>
-     * <p>Description: </p>
-     * @param invocation
-     * @return 对象
-     * @throws Throwable
-     * @author(作者):  zy
-     * @see org.apache.ibatis.plugin.Interceptor#intercept(org.apache.ibatis.plugin.Invocation)
+     * 
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:08:23
+     * 类介绍  :   插件实现方法
+     * 构造参数:   
+     *
      */
     @Override  
     public Object intercept(Invocation invocation) throws Throwable {  
@@ -116,12 +126,16 @@ public class PagingPlugin implements Interceptor {
     }  
   
   
-    /*** 
-     * 分离出分页参数. 
-     * @param parameterObject --执行参数 
-     * @return 分页参数 
-     * @throws Exception 
-     */  
+    /**
+     * 
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:09:54
+     * 方法介绍:   分离出分页参数
+     * 参数说明:   @param parameterObject
+     * 参数说明:   @return
+     * 参数说明:   @throws Exception
+     * @return     PageParams
+     */
     public PageParams getPageParamsForParamObj(Object parameterObject) throws Exception {  
         PageParams pageParams = null;  
         if (parameterObject == null) {  
@@ -157,24 +171,32 @@ public class PagingPlugin implements Interceptor {
     }  
   
   
-    /** 
-     * 判断是否sql语句. 
-     * @param sql 
-     * @return 
-     */  
+    /**
+     * 
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:10:05
+     * 方法介绍:   判断是否select语句.
+     * 参数说明:   @param sql
+     * 参数说明:   @return
+     * @return     boolean
+     */
     private boolean checkSelect(String sql) {  
         String trimSql = sql.trim();  
         int idx = trimSql.toLowerCase().indexOf("select");  
         return idx == 0;  
     }  
   
-    /** 
-     * 检查当前页码的有效性. 
-     * @param checkFlag 
-     * @param pageNum 
-     * @param pageTotal 
-     * @throws Throwable 
-     */  
+    /**
+     * 
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:10:27
+     * 方法介绍:    检查当前页码的有效性.
+     * 参数说明:   @param checkFlag
+     * 参数说明:   @param pageNum
+     * 参数说明:   @param pageTotal
+     * 参数说明:   @throws Throwable
+     * @return     void
+     */
     private void checkPage(Boolean checkFlag, Integer pageNum, Integer pageTotal) throws Throwable  {  
         if (checkFlag) {  
             //检查页码page是否合法.  
@@ -185,17 +207,21 @@ public class PagingPlugin implements Interceptor {
     }  
   
   
-    /** 
-     * 预编译改写后的SQL，并设置分页参数 
-     * @param invocation 
-     * @param metaStatementHandler 
-     * @param boundSql 
-     * @param pageNum 
-     * @param pageSize 
-     * @param dbType 
-     * @throws IllegalAccessException 
-     * @throws InvocationTargetException 
-     */  
+    /**
+     * 
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:10:37
+     * 方法介绍:   预编译改写后的SQL，并设置分页参数 
+     * 参数说明:   @param invocation
+     * 参数说明:   @param metaStatementHandler
+     * 参数说明:   @param boundSql
+     * 参数说明:   @param pageNum
+     * 参数说明:   @param pageSize
+     * 参数说明:   @param dbType
+     * 参数说明:   @return
+     * 参数说明:   @throws Exception
+     * @return     Object
+     */
     private Object preparedSQL(Invocation invocation, MetaObject metaStatementHandler, BoundSql boundSql, int pageNum, int pageSize, String dbType) throws Exception {  
         //获取当前需要执行的SQL  
        System.out.println("preparedSQL:"+dbType);
@@ -210,17 +236,20 @@ public class PagingPlugin implements Interceptor {
         return statementObj;  
     }  
   
-    /** 
-     * 获取总条数. 
+    /**
      * 
-     * @param ivt Invocation 
-     * @param metaStatementHandler statementHandler 
-     * @param boundSql sql 
-     * @param cleanOrderBy 是否清除order by语句 
-     * * @param dbType 
-     * @return sql查询总数. 
-     * @throws Throwable 异常. 
-     */  
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:10:50
+     * 方法介绍:   获取总条数. 
+     * 参数说明:   @param ivt
+     * 参数说明:   @param metaStatementHandler
+     * 参数说明:   @param boundSql
+     * 参数说明:   @param cleanOrderBy
+     * 参数说明:   @param dbType
+     * 参数说明:   @return
+     * 参数说明:   @throws Throwable
+     * @return     int
+     */
     private int getTotal(Invocation ivt, MetaObject metaStatementHandler, BoundSql boundSql, Boolean cleanOrderBy, String dbType) throws Throwable {  
         //获取当前的mappedStatement  
         MappedStatement mappedStatement = (MappedStatement) metaStatementHandler.getValue("delegate.mappedStatement");  
@@ -271,12 +300,15 @@ public class PagingPlugin implements Interceptor {
         return sb.substring(0, idx).toString();  
     }  
   
-    /** 
-     * 从代理对象中分离出真实对象. 
+    /**
      * 
-     * @param ivt --Invocation 
-     * @return 非代理StatementHandler对象 
-     */  
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:11:01
+     * 方法介绍:   从代理对象中分离出真实对象.
+     * 参数说明:   @param target
+     * 参数说明:   @return
+     * @return     Object
+     */
     private Object getUnProxyObject(Object target) {  
         MetaObject metaStatementHandler = SystemMetaObject.forObject(target);  
         // 分离代理对象链(由于目标类可能被多个拦截器拦截，从而形成多次代理，通过循环可以分离出最原始的的目标类)  
@@ -292,7 +324,7 @@ public class PagingPlugin implements Interceptor {
   
     /** 
      * 生成代理对象 
-     * @param statementHandler 原始对象 
+     * 参数说明 :  @param statementHandler 原始对象 
      * @return 代理对象 
      */  
     @Override  
@@ -302,7 +334,6 @@ public class PagingPlugin implements Interceptor {
   
     /** 
      * 设置插件配置参数。 
-     * @param props 
      */  
     @Override  
     public void setProperties(Properties props) {  
@@ -320,14 +351,17 @@ public class PagingPlugin implements Interceptor {
         this.defaultCleanOrderBy = Boolean.parseBoolean(StringDefaultCleanOrderBy);  
     }  
   
-    /** 
-     * TODO 
-     * 计算总数的SQL, 
-     * 这里需要根据数据库的类型改写SQL，目前支持MySQL和Oracle 
-     * @param currSql —— 当前执行的SQL 
-     * @return 改写后的SQL 
-     * @throws NotSupportedException 
-     */  
+    /**
+     * 
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:11:54
+     * 方法介绍:   计算总数的SQL,这里需要根据数据库的类型改写SQL，目前支持MySQL和Oracle 
+     * 参数说明:   @param currSql 当前执行的SQL 
+     * 参数说明:   @param dbType
+     * 参数说明:   @return 改写后的SQL 
+     * 参数说明:   @throws NotSupportedException
+     * @return     String
+     */
     private String getTotalSQL(String currSql, String dbType) throws NotSupportedException {  
     	System.out.println("getTotalSQL:"+dbType);
         if (DB_TYPE_MYSQL.equals(dbType)) {  
@@ -339,14 +373,17 @@ public class PagingPlugin implements Interceptor {
         }  
     }  
   
-    /** 
-     * TODO 需要使用其他数据库需要改写 
-     * 分页获取参数的SQL 
-     * 这里需要根据数据库的类型改写SQL，目前支持MySQL和Oracle 
-     * @param currSql —— 当前执行的SQL 
-     * @return 改写后的SQL 
-     * @throws NotSupportedException 
-     */  
+    /**
+     * 
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:12:19
+     * 方法介绍:    需要使用其他数据库需要改写 ,分页获取参数的SQL,这里需要根据数据库的类型改写SQL，目前支持MySQL和Oracle 
+     * 参数说明:   @param currSql 当前执行的SQL
+     * 参数说明:   @param dbType
+     * 参数说明:   @return 改写后的SQL
+     * 参数说明:   @throws NotSupportedException
+     * @return     String
+     */
     private String getPageDataSQL(String currSql, String dbType) throws NotSupportedException {  
     	System.out.println("getPageDataSQL:"+dbType);
         if (DB_TYPE_MYSQL.equals(dbType)) {  
@@ -358,13 +395,18 @@ public class PagingPlugin implements Interceptor {
         }  
     }  
   
-    /** 
-     * TODO 需要使用其他数据库需要改写 
-     * 使用PreparedStatement预编译两个分页参数，如果数据库的规则不一样，需要改写设置的参数规则。目前支持MySQL和Oracle 
-     * @throws SQLException 
-     * @throws NotSupportedException 
+    /**
      * 
-     */  
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:12:55
+     * 方法介绍:   需要使用其他数据库需要改写 ,使用PreparedStatement预编译两个分页参数，如果数据库的规则不一样，需要改写设置的参数规则。目前支持MySQL和Oracle 
+     * 参数说明:   @param ps
+     * 参数说明:   @param pageNum
+     * 参数说明:   @param pageSize
+     * 参数说明:   @param dbType
+     * 参数说明:   @throws Exception
+     * @return     void
+     */
     private void preparePageDataParams(PreparedStatement ps, int pageNum, int pageSize, String dbType) throws Exception {  
         //prepared()方法编译SQL，由于MyBatis上下文没有我们分页参数的信息，所以这里需要设置这两个参数.  
             //获取需要设置的参数个数，由于我们的参数是最后的两个，所以很容易得到其位置  
@@ -383,14 +425,14 @@ public class PagingPlugin implements Interceptor {
   
     }
   
-    /** 
-     * 
-     * TODO 需要使用其他数据库需要改写 
-     * 目前支持MySQL和Oracle 
-     * @param mappedStatement 
-     * @return 
-     * @throws Exception 
-     */  
+//    /** 
+//     * 
+//     * TODO 需要使用其他数据库需要改写 
+//     * 目前支持MySQL和Oracle 
+//     * @param mappedStatement 
+//     * @return 
+//     * @throws Exception 
+//     */  
 //    private String getDataSourceType(MappedStatement mappedStatement) throws Exception {  
 //        Connection conn = null;  
 //        String dbConnectionStr = null;  

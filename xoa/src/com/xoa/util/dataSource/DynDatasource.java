@@ -8,10 +8,10 @@ import java.lang.annotation.Target;
 
 /**
  * 
- * @ClassName (类名):  DynDatasource
- * @Description(简述): 数据源自定义注解
- * @author(作者):      zy
- * @date(日期):        2017-4-17 下午2:37:18
+ * 创建作者:   张勇
+ * 创建日期:   2017-4-20 上午11:02:32
+ * 类介绍  :   数据源自定义注解
+ * 构造参数:   
  *
  */
 @Target({ElementType.METHOD,ElementType.ANNOTATION_TYPE})
@@ -21,12 +21,11 @@ public @interface DynDatasource {
 	
 	/**
 	 * 
-	 * @Title: sourceName
-	 * @Description: 默认连接类型
-	 * @author(作者):      zy
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午11:02:42
+	 * 方法介绍:   默认连接类型
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	String sourceName() default "mysqlDataSources";
 	

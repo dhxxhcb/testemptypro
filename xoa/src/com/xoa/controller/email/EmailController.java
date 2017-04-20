@@ -27,10 +27,10 @@ import com.xoa.util.ToJson;
 
 /**
  * 
- * @ClassName (类名):  EmailUtilController
- * @Description(简述): 邮件
- * @author(作者):      zy
- * @date(日期):        2017-4-17 下午5:34:30
+ * 创建作者:   张勇
+ * 创建日期:   2017-4-20 上午10:32:14
+ * 类介绍  :   邮件
+ * 构造参数:   
  *
  */
 @Controller
@@ -44,44 +44,43 @@ public class EmailController {
 
 	/**
 	 * 
-	 * @Title: insertEmailBody
-	 * @Description: 发送邮件并保存
-	 * @author(作者): zy
-	 * @param: @param fromId 发件人USER_ID,如(lisi,zhangsan,)
-	 * @param: @param toId2 收件人 USER_ID串，每个ID后带一个逗号，如：(lisi,zhangsan,)
-	 * @param: @param copyToId 抄送人USER_ID串,如(lisi,zhangsan,)
-	 * @param: @param subject 邮件主题
-	 * @param: @param content 邮件内容
-	 * @param: @param sendTime 发送时间,如：2017-04-04 10:20:35
-	 * @param: @param attachmentName 附件文件名串
-	 * @param: @param secretToId 密送人USER_ID串,如(lisi,zhangsan,)
-	 * @param: @param attachmentId 附件ID串
-	 * @param: @param sendFlag 是否已发送(0-未发送,1-已发送)
-	 * @param: @param smsRemind 是否使用短信提醒(0-不提醒,1-提醒)
-	 * @param: @param important 重要程度(空-一般邮件,1-重要,2-非常重要)
-	 * @param: @param size 邮件大小
-	 * @param: @param fromWebmailId 从自己的哪个外部邮箱ID对应emailbox中id
-	 * @param: @param fromWebmail 从自己的哪个外部邮箱向外发送
-	 * @param: @param toWebmail 外部收件人邮箱串
-	 * @param: @param compressContent 压缩后的邮件内容
-	 * @param: @param webmailContent 外部邮件内容
-	 * @param: @param webmailFlag 外部邮件标记(0-未发送,1-正在准备发送,2-发送成功,3-发送失败)
-	 * @param: @param recvFromName 接收外部邮箱名称
-	 * @param: @param recvFrom 接收外部邮箱ID
-	 * @param: @param recvToId 发送外部邮件ID
-	 * @param: @param recvTo 发送外部邮箱名称
-	 * @param: @param isWebmail 是否为外部邮件(0-内部邮件,1-外部邮件)
-	 * @param: @param isWf 是否同时外发(0-不外发,1-勾选向此人发送外部邮件)
-	 * @param: @param keyword 内容关键词
-	 * @param: @param secretLevel 邮件密级等级
-	 * @param: @param auditMan 审核人USER_ID
-	 * @param: @param auditRemark 审核不通过备注
-	 * @param: @param copyToWebmail 抄送外部邮箱串
-	 * @param: @param secretToWebmail 抄送外部邮箱串
-	 * @param: @param praise 点赞人user_id串
-	 * @param: @return
-	 * @return: String Json串
-	 * @throws
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:33:59
+	 * 方法介绍:   发送邮件并保存
+	 * 参数说明:	   @param fromId 发件人USER_ID,如(lisi,zhangsan,)
+	 * 参数说明:      @param toId2 收件人 USER_ID串，每个ID后带一个逗号，如：(lisi,zhangsan,)
+	 * 参数说明:      @param copyToId 抄送人USER_ID串,如(lisi,zhangsan,)
+	 * 参数说明:      @param subject 邮件主题
+	 * 参数说明:      @param content 邮件内容
+	 * 参数说明:      @param sendTime 发送时间,如：2017-04-04 10:20:35
+	 * 参数说明:      @param attachmentName 附件文件名串
+	 * 参数说明:      @param secretToId 密送人USER_ID串,如(lisi,zhangsan,)
+	 * 参数说明:      @param attachmentId 附件ID串
+	 * 参数说明:      @param sendFlag 是否已发送(0-未发送,1-已发送)
+	 * 参数说明:      @param smsRemind 是否使用短信提醒(0-不提醒,1-提醒)
+	 * 参数说明:      @param important 重要程度(空-一般邮件,1-重要,2-非常重要)
+	 * 参数说明:      @param size 邮件大小
+	 * 参数说明:      @param fromWebmailId 从自己的哪个外部邮箱ID对应emailbox中id
+	 * 参数说明:      @param fromWebmail 从自己的哪个外部邮箱向外发送
+	 * 参数说明:      @param toWebmail 外部收件人邮箱串
+	 * 参数说明:      @param compressContent 压缩后的邮件内容
+	 * 参数说明:      @param webmailContent 外部邮件内容
+	 * 参数说明:      @param webmailFlag 外部邮件标记(0-未发送,1-正在准备发送,2-发送成功,3-发送失败)
+	 * 参数说明:      @param recvFromName 接收外部邮箱名称
+	 * 参数说明:      @param recvFrom 接收外部邮箱ID
+	 * 参数说明:      @param recvToId 发送外部邮件ID
+	 * 参数说明:      @param recvTo 发送外部邮箱名称
+	 * 参数说明:      @param isWebmail 是否为外部邮件(0-内部邮件,1-外部邮件)
+	 * 参数说明:      @param isWf 是否同时外发(0-不外发,1-勾选向此人发送外部邮件)
+	 * 参数说明:      @param keyword 内容关键词
+	 * 参数说明:      @param secretLevel 邮件密级等级
+	 * 参数说明:      @param auditMan 审核人USER_ID
+	 * 参数说明:      @param auditRemark 审核不通过备注
+	 * 参数说明:      @param copyToWebmail 抄送外部邮箱串
+	 * 参数说明:      @param secretToWebmail 抄送外部邮箱串
+	 * 参数说明:      @param praise 点赞人user_id串
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping(value = "/sendEmail", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -217,15 +216,14 @@ public class EmailController {
 	
 	
 	/**
-	 * 
-	 * @Title: queryEmail
-	 * @Description: 邮件查询
-	 * @author(作者):      zy
-	 * @param: @param  request inbox 收件箱 drafts 草稿箱 outbox 发件箱 recycle 废纸篓 noRead 未读
-	 * @param: @return 字符串
-	 * @param: @throws Exception   
-	 * @return: String   
-	 * @throws
+	 * 邮件查询
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:35:16
+	 * 方法介绍:   
+	 * 参数说明:   @param  request inbox 收件箱 drafts 草稿箱 outbox 发件箱 recycle 废纸篓 noRead 未读
+	 * 参数说明:   @return json
+	 * 参数说明:   @throws Exception
+	 * @return     String
 	 */
 	@RequestMapping(value = "/showEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -270,14 +268,13 @@ public class EmailController {
 
 	/**
 	 * 
-	 * @Title: queryByID
-	 * @Description: 根据ID查询内容
-	 * @author(作者):      zy
-	 * @param: @param request Http请求
-	 * @param: @return
-	 * @param: @throws Exception   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:35:48
+	 * 方法介绍:   根据ID查询内容
+	 * 参数说明:   @param request HTTP请求
+	 * 参数说明:   @return Json
+	 * 参数说明:   @throws Exception
+	 * @return     String
 	 */
 	@RequestMapping(value = "/queryByID", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -318,13 +315,12 @@ public class EmailController {
 	
 	/**
 	 * 
-	 * @Title: querylistEmailBody
-	 * @Description: 多条件查询邮件
-	 * @author(作者):      zy
-	 * @param: @return
-	 * @param: @throws Exception   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:38:04
+	 * 方法介绍:   多条件查询邮件
+	 * 参数说明:   @return Json
+	 * 参数说明:   @throws Exception
+	 * @return     String
 	 */
 	@RequestMapping(value = "/querylistEmailBody", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -363,13 +359,12 @@ public class EmailController {
 
 	/**
 	 * 
-	 * @Title: returnValue
-	 * @Description: 为null时转换为""
-	 * @author(作者):      zy
-	 * @param: @param value  需转换字符串
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:39:24
+	 * 方法介绍:   为null时转换为""
+	 * 参数说明:   @param value 需转换字符串
+	 * 参数说明:   @return Json
+	 * @return     String
 	 */
 	public static String returnValue(String value) {
 		if (value != null) {
@@ -381,43 +376,43 @@ public class EmailController {
 
 	/**
 	 * 
-	 * @Title: returnObj
-	 * @Description: 邮件获取参数封装方法
-	 * @author(作者): zy
-	 * @param: @param fromId 发件人USER_ID,如(lisi,zhangsan,)
-	 * @param: @param toId2 收件人 USER_ID串，每个ID后带一个逗号，如：(lisi,zhangsan,)
-	 * @param: @param copyToId 抄送人USER_ID串,如(lisi,zhangsan,)
-	 * @param: @param subject 邮件主题
-	 * @param: @param content 邮件内容
-	 * @param: @param sendTime 发送时间,如：2017-04-04 10:20:35
-	 * @param: @param attachmentName 附件文件名串
-	 * @param: @param secretToId 密送人USER_ID串,如(lisi,zhangsan,)
-	 * @param: @param attachmentId 附件ID串
-	 * @param: @param sendFlag 是否已发送(0-未发送,1-已发送)
-	 * @param: @param smsRemind 是否使用短信提醒(0-不提醒,1-提醒)
-	 * @param: @param important 重要程度(空-一般邮件,1-重要,2-非常重要)
-	 * @param: @param size 邮件大小
-	 * @param: @param fromWebmailId 从自己的哪个外部邮箱ID对应emailbox中id
-	 * @param: @param fromWebmail 从自己的哪个外部邮箱向外发送
-	 * @param: @param toWebmail 外部收件人邮箱串
-	 * @param: @param compressContent 压缩后的邮件内容
-	 * @param: @param webmailContent 外部邮件内容
-	 * @param: @param webmailFlag 外部邮件标记(0-未发送,1-正在准备发送,2-发送成功,3-发送失败)
-	 * @param: @param recvFromName 接收外部邮箱名称
-	 * @param: @param recvFrom 接收外部邮箱ID
-	 * @param: @param recvToId 发送外部邮件ID
-	 * @param: @param recvTo 发送外部邮箱名称
-	 * @param: @param isWebmail 是否为外部邮件(0-内部邮件,1-外部邮件)
-	 * @param: @param isWf 是否同时外发(0-不外发,1-勾选向此人发送外部邮件)
-	 * @param: @param keyword 内容关键词
-	 * @param: @param secretLevel 邮件密级等级
-	 * @param: @param auditMan 审核人USER_ID
-	 * @param: @param auditRemark 审核不通过备注
-	 * @param: @param copyToWebmail 抄送外部邮箱串
-	 * @param: @param secretToWebmail 抄送外部邮箱串
-	 * @param: @param praise 点赞人user_id串
-	 * @return: EmailBody   
-	 * @throws
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:40:01
+	 * 方法介绍:   参数获取方法
+	 * 参数说明:	   @param fromId 发件人USER_ID,如(lisi,zhangsan,)
+	 * 参数说明:      @param toId2 收件人 USER_ID串，每个ID后带一个逗号，如：(lisi,zhangsan,)
+	 * 参数说明:      @param copyToId 抄送人USER_ID串,如(lisi,zhangsan,)
+	 * 参数说明:      @param subject 邮件主题
+	 * 参数说明:      @param content 邮件内容
+	 * 参数说明:      @param sendTime 发送时间,如：2017-04-04 10:20:35
+	 * 参数说明:      @param attachmentName 附件文件名串
+	 * 参数说明:      @param secretToId 密送人USER_ID串,如(lisi,zhangsan,)
+	 * 参数说明:      @param attachmentId 附件ID串
+	 * 参数说明:      @param sendFlag 是否已发送(0-未发送,1-已发送)
+	 * 参数说明:      @param smsRemind 是否使用短信提醒(0-不提醒,1-提醒)
+	 * 参数说明:      @param important 重要程度(空-一般邮件,1-重要,2-非常重要)
+	 * 参数说明:      @param size 邮件大小
+	 * 参数说明:      @param fromWebmailId 从自己的哪个外部邮箱ID对应emailbox中id
+	 * 参数说明:      @param fromWebmail 从自己的哪个外部邮箱向外发送
+	 * 参数说明:      @param toWebmail 外部收件人邮箱串
+	 * 参数说明:      @param compressContent 压缩后的邮件内容
+	 * 参数说明:      @param webmailContent 外部邮件内容
+	 * 参数说明:      @param webmailFlag 外部邮件标记(0-未发送,1-正在准备发送,2-发送成功,3-发送失败)
+	 * 参数说明:      @param recvFromName 接收外部邮箱名称
+	 * 参数说明:      @param recvFrom 接收外部邮箱ID
+	 * 参数说明:      @param recvToId 发送外部邮件ID
+	 * 参数说明:      @param recvTo 发送外部邮箱名称
+	 * 参数说明:      @param isWebmail 是否为外部邮件(0-内部邮件,1-外部邮件)
+	 * 参数说明:      @param isWf 是否同时外发(0-不外发,1-勾选向此人发送外部邮件)
+	 * 参数说明:      @param keyword 内容关键词
+	 * 参数说明:      @param secretLevel 邮件密级等级
+	 * 参数说明:      @param auditMan 审核人USER_ID
+	 * 参数说明:      @param auditRemark 审核不通过备注
+	 * 参数说明:      @param copyToWebmail 抄送外部邮箱串
+	 * 参数说明:      @param secretToWebmail 抄送外部邮箱串
+	 * 参数说明:      @param praise 点赞人user_id串
+	 * 参数说明:      @return 对象
+	 * @return     EmailBodyModel
 	 */
 	@SuppressWarnings("static-access")
 	public  EmailBodyModel returnObj(String fromId, String toId2, String copyToId,
