@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		
     	});
     	
-    	function delate(id){
+    	/* function delate(id){
     		var msg='是否确认删除?';
     		if (confirm(msg)==true){ 
 			  	
@@ -140,7 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 }else{ 
 			 	return false; 
 			 } 	
-    	}    	
+    	}    */ 	
     		
     </script>
 </head>
@@ -404,8 +404,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									type:"get",
 									url:"notifyList",
 									dataType:'json',
-									data:data,
-									success:function(){
+									data:data1,
+									success:function(rsp){
 										var data=rsp.obj;
 										var str='';
 										for(var i=0;i<data.length;i++){
