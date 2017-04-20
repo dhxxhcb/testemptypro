@@ -372,36 +372,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 
 </body>
-
-	<!-- <div class="div_table" id="lay" style="display: none;">
-		<table class="TableBlock no-top-border " align="center" width="90%" cellspacing="0" cellpadding="0">
-		   <tbody>
-		   	<tr>
-			   <td style="padding:0px" width="100%"> 
-				     <table class="TableTop" cellpadding="0" width="100%" cellspacing="0">
-				        <tbody>
-					      	<tr>        
-					        	<td class="center" width="100%">仔细测试一下智能oa公告！！</td>       
-					     	</tr>
-				    	</tbody>
-				     </table>
-			 	</td>
-			 </tr>
-		    <tr>
-		      <td class="TableContent" align="right">
-				      发布部门：<u title="部门：北方测试研究公司" style="cursor:hand">北方测试研究公司</u>&nbsp;&nbsp;
-				     发布人：<u title="部门：北方测试研究公司" style="cursor:hand">系统管理员</u>&nbsp;&nbsp;
-				      发布于：<i>2017-01-23</i>&nbsp;&nbsp;
-		       </td>
-		    </tr>
-		    <tr>
-		      <td colspan="2" class="rich-content content" style="height:300;font-size:12pt;" valign="top">
-		好的好的  <br><br>
-				<span id="showKeyword" class="small1"><a href="javascript:get_keyword();" class="A1" id="B1">显示本文关键词</a></span></td>
-		   </tr>
-		  </tbody>
-		</table>
-	</div> -->
-
-		
 </html>
