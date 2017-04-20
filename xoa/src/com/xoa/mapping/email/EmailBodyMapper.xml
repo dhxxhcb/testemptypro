@@ -475,14 +475,14 @@
 	where eb.FROM_ID=#{fromId} AND e.DELETE_FLAG !='' AND e.DELETE_FLAG !='0' AND e.DELETE_FLAG !='1'  AND e.DELETE_FLAG !='2' AND e.DELETE_FLAG !='4'
 	</update>
 	
-<!-- 	<!-- 发件箱为1时删除 -->
+	<!--  发件箱为1时删除 
 	<delete id="deleteRecycle" parameterType="com.xoa.model.email.EmailModel">
 	delete email as e LEFT JOIN  email_body eb on e.BODY_ID=eb.BODY_ID 
 	where eb.FROM_ID=#{fromId} AND e.DELETE_FLAG ='1'
 	
 		delete from
 		email_body where eb.FROM_ID=#{fromId} AND BODY_ID = #{bodyId}
-	</delete> -->
+	</delete>  -->
 	
 	
 
