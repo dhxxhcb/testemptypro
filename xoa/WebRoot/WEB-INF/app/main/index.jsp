@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="css/vintage_css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/theme1/index.css"/>
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>  
 		<script type="text/javascript" src="js/main_js/index.js"></script>  
 		<script src="js/jquery.js"></script>
