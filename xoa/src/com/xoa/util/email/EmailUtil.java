@@ -15,6 +15,14 @@ import javax.mail.internet.MimeMessage.RecipientType;
 import com.xoa.model.email.EmailModel;
 import com.xoa.model.email.EmailBodyModel;
 
+/**
+ * 
+ * 创建作者:   周丽霞
+ * 创建日期:   2017-4-20 上午11:05:18
+ * 类介绍  :   邮箱对外发送
+ * 构造参数:   
+ *
+ */
 public class EmailUtil {
   public  Boolean sendEmailBody(EmailBodyModel emailBody,EmailModel email){
 	Properties properties = new Properties();  

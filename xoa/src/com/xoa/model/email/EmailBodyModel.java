@@ -6,9 +6,12 @@ import java.util.List;
 import com.xoa.model.users.Users;
 
 /**
- * 发件箱、收件箱内容信息保存
- * @author gaosubo
- * @version 1.0
+ * 
+ * 创建作者:   张勇
+ * 创建日期:   2017-4-20 上午10:45:51
+ * 类介绍  :    发件箱、收件箱内容信息保存
+ * 构造参数:   
+ *
  */
 public class EmailBodyModel implements Serializable {
 	private static final long serialVersionUID = 1076969159692234636L;

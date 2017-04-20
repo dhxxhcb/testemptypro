@@ -3,9 +3,12 @@ package com.xoa.model.email;
 import java.io.Serializable;
 
 /**
- * 收件人实体类
- * @author gaosubo
- * @version 1.0
+ * 
+ * 创建作者:   张勇
+ * 创建日期:   2017-4-20 上午10:46:22
+ * 类介绍  :   收件人实体类
+ * 构造参数:   
+ *
  */
 public class EmailModel implements Serializable {
 	private static final long serialVersionUID = 1076969159692234636L;
