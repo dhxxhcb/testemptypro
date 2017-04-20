@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="content">
 
 	<!-- 公告通知 start -->
-	<div id="notify" style="overflow-y: scroll;display:block;">
+	<div id="queryList" style="overflow-y: scroll;display:block;">
 		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
 		  <tr>
 		    <td class="Big">
@@ -110,7 +110,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <th nowrap align="center"><fmt:message code="notice.th.createTime" />
 		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
 		      </th>
-		     <!--  <th nowrap align="center"><fmt:message code="notice.th.operation" /></th> -->
+		    </tr>
+		    <tr>
+		    	<td><input type="button" name="Btn" class="Btn" id="Btn" value="返回"></td>
 		    </tr>
 		</table>
 	</div> 
