@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							console.log(data[0].name);				
 							var str='';
 							for(var i=0;i<data.length;i++){
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].sendTime+'</td><td nowrap align="center">'+data[i].format+'</td></tr>';
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'</td></tr>';
 								str1='<input type="hidden" id="'+data[i].notifyId+'">';
 							}
 							$('.TableHeader').after(str+str1); 
@@ -217,12 +217,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
 		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
 		   
-		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.createTime" /></u>
-		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
+		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.range" /></u>
+		      	
 		      </th>
 		      <!-- <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
 		      <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th> -->
-		      <th nowrap align="center"><fmt:message code="notice.th.state" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.createTime" />
+		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
+		      </th>
 		     <!--  <th nowrap align="center"><fmt:message code="notice.th.operation" /></th> -->
 		    </tr>
 		</table>
