@@ -205,7 +205,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
 		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
 		   
-		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.range" /></u>
+		      <th nowrap align="center" style="cursor:pointer;"><u>发布范围</u>
 		      	
 		      </th>
 		      <th nowrap align="center"><fmt:message code="notice.th.createTime" />
@@ -218,11 +218,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- 公告查询 -->
 	<div id="noticeQuery" style="display: none;">
-		<div class="title"><fmt:message code="notice.title.announcementquery" />公告通知查询</div>
+		<div class="title"><fmt:message code="notice.title.announcementquery" /></div>
 		<table class="TableBlock" width="50%" align="center" border="1" style="margin: 20px auto;">
 			  <form enctype="multipart/form-data" name="form1"></form>
 			    <tbody><tr>
-			      <td nowrap="" class="TableData"><fmt:message code="notice.th.publisher" />发布人：</td>
+			      <td nowrap="" class="TableData"><fmt:message code="notice.th.publisher" />：</td>
 			      <td class="TableData">
 			        <div class="inPole">
 						<textarea name="txt" disabled></textarea>
@@ -230,13 +230,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<span class="addImg">
 								<img src="../img/org_select1.png" class="addIcon"/>
 							</span>
-								<a href="javascript:;" class="Add"><fmt:message code="notice.title.add" />添加</a>
+								<a href="javascript:;" class="Add"></a>
 						</span>
 							<span class="add_img">
 								<span class="addImg">
 									<img src="../img/org_select2.png" class="clearIcon"/>
 								</span>
-								<a href="javascript:;" class="clear"><fmt:message code="notice.title.clear" />清除</a>
+								<a href="javascript:;" class="clear">清除</a>
 							</span>
 					</div>
 			      </td>
@@ -253,19 +253,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			      </td>
 			    </tr>
 			    <tr>
-			      <td nowrap="" class="TableData"> <fmt:message code="notice.th.type" />类型：</td>
+			      <td nowrap="" class="TableData"> 类型：</td>
 			      <td class="TableData">
 			        <select name="TYPE_ID" class="BigSelect">
-			            <option value="" selected=""><fmt:message code="notice.th.type" />全部</option>
-			            <option value="01"><fmt:message code="notice.type.Decision" />决定</option>
-						<option value="02"><fmt:message code="notice.type.notice" />通知</option>
-						<option value="03"><fmt:message code="notice.type.Bulletin" />通报</option>
-						<option value="04"><fmt:message code="notice.type.other" />其他</option>
+			            <option value="" selected="">全部</option>
+			            <option value="01">决定</option>
+						<option value="02">通知</option>
+						<option value="03">通报</option>
+						<option value="04">其他</option>
 			        </select>&nbsp;
 			      </td>
 			    </tr>
 			    <tr>
-			      <td nowrap="" class="TableData" width="100"> <fmt:message code="notice.th.title" />标题：</td>
+			      <td nowrap="" class="TableData" width="100"> <fmt:message code="notice.th.title" />：</td>
 			      <td class="TableData">
 			        <input type="text" name="SUBJECT" size="33" maxlength="100" class="BigInput" value="">
 			      </td>
