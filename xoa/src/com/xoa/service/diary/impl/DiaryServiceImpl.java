@@ -105,8 +105,8 @@ public class DiaryServiceImpl implements DiaryService{
      * @return   int 添加数量影响行
      */
 	@Override
-	public int addDiary(DiaryModel diaryModel) {
-		return diaryModelMapper.addDiary(diaryModel);
+	public int saveDiary(DiaryModel diaryModel) {
+		return diaryModelMapper.saveDiary(diaryModel);
 	}
 	 /**
 	    * 

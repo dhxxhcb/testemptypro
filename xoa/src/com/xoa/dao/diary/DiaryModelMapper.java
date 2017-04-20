@@ -8,7 +8,7 @@ import com.xoa.model.diary.DiaryModel;
 
 public interface DiaryModelMapper {
 
-	int addDiary(DiaryModel diaryModel);
+	int saveDiary(DiaryModel diaryModel);
 
 	int updateDiary(DiaryModel diaryModel);
 

@@ -20,4 +20,6 @@ public interface FileSortMapper {
 	List<FileSortModel> getRootTree(int sortid);
 
 	List<FileSortModel> getChildTree(int sortid);
+
+	int saveFileSortChr(FileSortModel file);
 }
