@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.xoa.model.diary.DiaryModel;
 import com.xoa.util.ToJson;
+import com.xoa.util.dataSource.DynDatasource;
 /**
  * 创建作者:   杨 胜
  * 创建日期:   2017-4-19 上午9:21:03
@@ -23,7 +24,8 @@ public interface DiaryService {
      * 参数说明:   @return
      * @return     int
      */
-	int addDiary(DiaryModel diaryModel);
+	@DynDatasource
+	int saveDiary(DiaryModel diaryModel);
    /**
     * 
     * 创建作者:   杨 胜
@@ -33,6 +35,7 @@ public interface DiaryService {
     * 参数说明:   @return
     * @return     int
     */
+	@DynDatasource
 	int updateDiary(DiaryModel diaryModel);
 	/**
 	 * 
@@ -43,6 +46,7 @@ public interface DiaryService {
 	 * 参数说明:   @return
 	 * @return     List<DiaryModel>
 	 */
+	@DynDatasource
 	ToJson<DiaryModel> getDiaryIndex(DiaryModel diaryModel);
 	/**
 	 * 
@@ -53,6 +57,7 @@ public interface DiaryService {
 	 * 参数说明:   @return
 	 * @return   ToJson<DiaryModel>
 	 */
+	@DynDatasource
 	ToJson<DiaryModel> getDiaryAll(DiaryModel diaryModel);
 	/**
 	 * 
@@ -63,5 +68,6 @@ public interface DiaryService {
 	 * 参数说明:   @return
 	 * @return     ToJson<DiaryModel>
 	 */
+	@DynDatasource
 	ToJson<DiaryModel> getDiaryOther(DiaryModel diaryModel);
 }

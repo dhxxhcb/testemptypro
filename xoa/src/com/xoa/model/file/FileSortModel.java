@@ -84,338 +84,337 @@ public class FileSortModel {
 		this.fileType =fileType;
 	}
 	/**************************************/
-	 /**
-	  * 
-	  * @Title: getReview
-	  * @Description: 评论/打分权限 get
-	  * @author(作者):      ys
-	  * @param: @return   
-	  * @return: String   
-	  * @throws
-	  */
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:50:54
+	 * 方法介绍:   评论/打分权限 get
+	 * 参数说明:   @return
+	 * @return     String
+	 */
 	public String getReview() {
 		return review;
 	}
+	
 	/**
-	  * 
-	  * @Title: getReview
-	  * @Description: 评论/打分权限 set
-	  * @author(作者):      ys
-	  * @param: @return   
-	  * @return: String   
-	  * @throws
-	  */
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:51:08
+	 * 方法介绍:   评论/打分权限 set
+	 * 参数说明:   @param review
+	 * @return     void
+	 */
 	public void setReview(String review) {
 		this.review = review;
 	}
+
 	/**
 	 * 
-	 * @Title: getSortId
-	 * @Description: 自增唯一 get
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: int   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:51:23
+	 * 方法介绍:   自增唯一 get
+	 * 参数说明:   @return
+	 * @return     int
 	 */
 	public int getSortId() {
 		return sortId;
 	}
+	
 	/**
 	 * 
-	 * @Title: setSortId
-	 * @Description: 自增唯一 set
-	 * @author(作者):      ys
-	 * @param: @param sortId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:51:38
+	 * 方法介绍:   自增唯一 set
+	 * 参数说明:   @param sortId
+	 * @return     void
 	 */
 	public void setSortId(int sortId) {
 		this.sortId = sortId;
 	}
+
 	/**
 	 * 
-	 * @Title: getSortParent
-	 * @Description: 上级目录ID get
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: int   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:52:01
+	 * 方法介绍:   上级目录ID get
+	 * 参数说明:   @return
+	 * @return     int
 	 */
 	public int getSortParent() {
 		return sortParent;
 	}
+
 	/**
 	 * 
-	 * @Title: setSortParent
-	 * @Description: 上级目录ID set
-	 * @author(作者):      ys
-	 * @param: @param sortParent   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:52:14
+	 * 方法介绍:   上级目录ID set
+	 * 参数说明:   @param sortParent
+	 * @return     void
 	 */
 	public void setSortParent(int sortParent) {
 		this.sortParent = sortParent;
 	}
+
 	/**
 	 * 
-	 * @Title: getSortNo
-	 * @Description: 目录排序号 get
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:52:26
+	 * 方法介绍:   目录排序号 get
+	 * 参数说明:   @return
+	 * @return   String
 	 */
 	public String getSortNo() {
 		return sortNo;
 	}
+
 	/**
 	 * 
-	 * @Title: setSortNo
-	 * @Description: 目录排序号 set
-	 * @author(作者):      ys
-	 * @param: @param sortNo   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:52:47
+	 * 方法介绍:   目录排序号 set
+	 * 参数说明:   @param sortNo
+	 * @return     void
 	 */
 	public void setSortNo(String sortNo) {
 		this.sortNo = sortNo;
 	}
+	
 	/**
 	 * 
-	 * @Title: getSortName
-	 * @Description: 目录名称 get
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:53:02
+	 * 方法介绍:    目录名称 get
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getSortName() {
 		return sortName;
 	}
+
 	/**
 	 * 
-	 * @Title: setSortName
-	 * @Description: 目录名称 set
-	 * @author(作者):      ys
-	 * @param: @param sortName   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:53:17
+	 * 方法介绍:   目录名称 set
+	 * 参数说明:   @param sortName
+	 * @return     void
 	 */
 	public void setSortName(String sortName) {
 		this.sortName = sortName;
 	}
+	
 	/**
 	 * 
-	 * @Title: getSortType
-	 * @Description: 类型(1-公共文件柜,2-个人文件柜)
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:53:30
+	 * 方法介绍:   类型(1-公共文件柜,2-个人文件柜)
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getSortType() {
 		return sortType;
 	}
+	
+
 	/**
 	 * 
-	 * @Title: setSortType
-	 * @Description: 类型(1-公共文件柜,2-个人文件柜)
-	 * @author(作者):      ys
-	 * @param: @param sortType   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:53:45
+	 * 方法介绍:   类型(1-公共文件柜,2-个人文件柜)
+	 * 参数说明:   @param sortType
+	 * @return     void
 	 */
 	public void setSortType(String sortType) {
 		this.sortType = sortType;
 	}
+
 	/**
 	 * 
-	 * @Title: getUserId
-	 * @Description: 有访问权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:53:56
+	 * 方法介绍:   有访问权限的用户ID串
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getUserId() {
 		return userId;
 	}
+	
 	/**
 	 * 
-	 * @Title: setUserId
-	 * @Description: 有访问权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @param userId   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:54:09
+	 * 方法介绍:   有访问权限的用户ID串
+	 * 参数说明:   @param userId
+	 * @return     void
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	/**
 	 * 
-	 * @Title: getNewUser
-	 * @Description: 有新建权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:54:22
+	 * 方法介绍:    有新建权限的用户ID串
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getNewUser() {
 		return newUser;
 	}
+
 	/**
 	 * 
-	 * @Title: setNewUser
-	 * @Description: 有新建权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @param newUser   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:54:34
+	 * 方法介绍:    有新建权限的用户ID串
+	 * 参数说明:   @param newUser
+	 * @return     void
 	 */
 	public void setNewUser(String newUser) {
 		this.newUser = newUser;
 	}
+
 	/**
 	 * 
-	 * @Title: getManagerUser
-	 * @Description: 有编辑权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:54:45
+	 * 方法介绍:   有编辑权限的用户ID串
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getManagerUser() {
 		return managerUser;
 	}
+	
 	/**
 	 * 
-	 * @Title: setManagerUser
-	 * @Description: 有编辑权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @param managerUser   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:54:55
+	 * 方法介绍:   有编辑权限的用户ID串
+	 * 参数说明:   @param managerUser
+	 * @return     void
 	 */
 	public void setManagerUser(String managerUser) {
 		this.managerUser = managerUser;
 	}
+
 	/**
 	 * 
-	 * @Title: getDelUser
-	 * @Description: 有删除权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:55:06
+	 * 方法介绍:   有删除权限的用户ID串
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getDelUser() {
 		return delUser;
 	}
+	
 	/**
 	 * 
-	 * @Title: setDelUser
-	 * @Description: 有删除权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @param delUser   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:55:16
+	 * 方法介绍:   有删除权限的用户ID串
+	 * 参数说明:   @param delUser
+	 * @return     void
 	 */
 	public void setDelUser(String delUser) {
 		this.delUser = delUser;
 	}
+
 	/**
 	 * 
-	 * @Title: getDownUser
-	 * @Description: 有下载/打印权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:55:32
+	 * 方法介绍:   有下载/打印权限的用户ID串
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getDownUser() {
 		return downUser;
 	}
+
 	/**
 	 * 
-	 * @Title: setDownUser
-	 * @Description: 有下载/打印权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @param downUser   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:55:42
+	 * 方法介绍:   有下载/打印权限的用户ID串
+	 * 参数说明:   @param downUser
+	 * @return     void
 	 */
 	public void setDownUser(String downUser) {
 		this.downUser = downUser;
 	}
+
 	/**
 	 * 
-	 * @Title: getSharUser
-	 * @Description: 个人共享
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:55:55
+	 * 方法介绍:   个人共享
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getSharUser() {
 		return sharUser;
 	}
+
 	/**
 	 * 
-	 * @Title: setSharUser
-	 * @Description: 个人共享
-	 * @author(作者):      ys
-	 * @param: @param sharUser   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:56:06
+	 * 方法介绍:   个人共享
+	 * 参数说明:   @param sharUser
+	 * @return     void
 	 */
 	public void setSharUser(String sharUser) {
 		this.sharUser = sharUser;
 	}
+	
 	/**
 	 * 
-	 * @Title: getOwner
-	 * @Description: 所有者ID串
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:56:17
+	 * 方法介绍:   所有者ID串
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getOwner() {
 		return owner;
 	}
+
 	/**
 	 * 
-	 * @Title: setOwner
-	 * @Description: 所有者ID串
-	 * @author(作者):      ys
-	 * @param: @param owner   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:56:29
+	 * 方法介绍:   所有者ID串
+	 * 参数说明:   @param owner
+	 * @return     void
 	 */
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+
 	/**
 	 * 
-	 * @Title: getSignUser
-	 * @Description: 有签阅权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:56:45
+	 * 方法介绍:   有签阅权限的用户ID串
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	public String getSignUser() {
 		return signUser;
 	}
 	/**
 	 * 
-	 * @Title: setSignUser
-	 * @Description: 有签阅权限的用户ID串
-	 * @author(作者):      ys
-	 * @param: @param signUser   
-	 * @return: void   
-	 * @throws
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 下午12:57:09
+	 * 方法介绍:   有签阅权限的用户ID串
+	 * 参数说明:   @param signUser
+	 * @return     void
 	 */
 	public void setSignUser(String signUser) {
 		this.signUser = signUser;

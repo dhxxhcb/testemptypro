@@ -28,9 +28,9 @@ public class DiaryController {
 	 * 参数说明:   @return
 	 * @return   String  返回数据库操作影响行
 	 */
-	@RequestMapping("/add")
+	@RequestMapping("/save")
 	public String diaryAdd(DiaryModel diaryModel){
-		int temp=diaryService.addDiary(diaryModel);
+		int temp=diaryService.saveDiary(diaryModel);
 		return temp+"";
 	}
 	/**
@@ -54,11 +54,26 @@ public class DiaryController {
 	 * 方法介绍:   动态查询日志操作
 	 * 参数说明:   @param diaryModel
 	 * 参数说明:   @return
-	 * @return     String
+	 * @return   getAll
 	 */
 	@RequestMapping("/getIndex")
-	public void diaryGet(DiaryModel diaryModel){
+	public String diaryGet(DiaryModel diaryModel){
 		ToJson<DiaryModel> diaryToJson=diaryService.getDiaryIndex(diaryModel);
+		return null;
+	}
+	
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-20 上午9:16:19
+	 * 方法介绍:   取得全部共享
+	 * 参数说明:   @param diaryModel
+	 * @return   void
+	 */
+	@RequestMapping("/getAll")
+	public String  diaryGetAll(DiaryModel diaryModel){
+		ToJson<DiaryModel> diaryToJson=diaryService.getDiaryAll(diaryModel);
+		return null;
 	}
 	
 }

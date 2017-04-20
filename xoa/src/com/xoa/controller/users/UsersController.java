@@ -211,6 +211,18 @@ public class UsersController {
     }
 	
 	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月20日 下午2:28:22
+	 * 方法介绍:   搜索框条件查询
+	 * 参数说明:   @param request
+	 * 参数说明:   @param maps
+	 * 参数说明:   @param page
+	 * 参数说明:   @param pageSize
+	 * 参数说明:   @param useFlag
+	 * 参数说明:   @return
+	 * @return     String
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getBySearch" ,produces = {"application/json;charset=UTF-8"})
     public String getBySearch(HttpServletRequest request,Map<String, Object> maps,Integer page,
@@ -218,9 +230,8 @@ public class UsersController {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");			
-			Users user=new Users();
-			//maps=new HashMap<String, Object>();
+			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");						
+			maps=new HashMap<String, Object>();
 			maps.put("userName", search);
 			maps.put("userPrivName", search);
 			maps.put("deptName", search);

@@ -175,11 +175,12 @@ public class FileController {
 			System.out.println("----------getFileSortList------------");
 			FileSortModel fileChr=new FileSortModel();
 			fileChr.setSortParent(file.getSortId());
+			fileChr.setSortType(file.getSortType());
 			fileList = fileSortService.getFileSortList(fileChr);
 		}else{
-		
 			FileSortModel filePar=new FileSortModel();
 			filePar.setSortParent(file.getSortId());
+			filePar.setSortType(file.getSortType());
 			fileList = fileSortService.getFileSortList(filePar);
 		}
 		tatalList.addAll(fileConList);
@@ -219,12 +220,10 @@ public class FileController {
 	@RequestMapping("/add")
 	public ModelAndView fileAdd(FileSortModel file)
 			throws UnsupportedEncodingException {
-		// "redirect:/showFile" "file/showFile"
 		Map<String, Object> model = null;
 		ModelAndView modelAndView = null;
-		if (file.getSortNo() == null || file.getSortNo().equals("")) {
-			model = new HashMap<String, Object>();
-			modelAndView = new ModelAndView("app/file/fileAdd", model);
+		if (file.getSortNo() == null || "".equals(file.getSortNo())) {
+			modelAndView = new ModelAndView("app/file/fileAdd", null);
 			return modelAndView;
 		}
 		// 乱码处理-----开始
@@ -234,8 +233,14 @@ public class FileController {
 		file.setSortName(sname);
 		System.out.println("--behand--------------" + file.getSortName());
 		// 乱码处理-----结束
+		if(file.getSortId()!=0){
+			file.setSortParent(file.getSortId());
+			file.setSortId(0);
+			int resultSaveChr=fileSortService.saveFileSortChr(file);
+			return null;
+		}
 		//添加文件影响行
-		int resultAdd = fileSortService.saveFileSort(file);
+		int resultSave = fileSortService.saveFileSort(file);
 		modelAndView = new ModelAndView("redirect:/shows", model);
 		return modelAndView;
 	}

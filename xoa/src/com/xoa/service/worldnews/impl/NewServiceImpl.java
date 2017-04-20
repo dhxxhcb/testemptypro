@@ -1,24 +1,22 @@
 package com.xoa.service.worldnews.impl;
 
+import com.xoa.dao.common.SysCodeMapper;
 import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.users.UsersMapper;
 import com.xoa.dao.worldnews.NewsMapper;
+import com.xoa.model.common.SysCode;
 import com.xoa.model.department.Department;
 import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.worldnews.NewService;
-import com.xoa.util.dataSource.DynDatasource;
 import com.xoa.util.page.PageParams;
-import com.xoa.util.ToJson;
 
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 /**
@@ -44,6 +42,10 @@ public class NewServiceImpl implements NewService {
 	@Resource
 	private DepartmentService  departmentService;
 	
+	@Resource
+	private SysCodeMapper sysCodeMapper;
+	
+	
 	
 	@Override
 	public List<News> selectNews(Map<String, Object> maps, Integer page,
@@ -55,6 +57,11 @@ public class NewServiceImpl implements NewService {
 		maps.put("page", pageParams);
 		List<News> list = newsMapper.selectNews(maps);
 		for (News news : list) {
+				Users user=UsersMapper.findUserByName(news.getProvider());
+				news.setUserName(user.getUserName());
+				SysCode code=sysCodeMapper.getSysCode(news.getTypeId());
+				news.setTypeName(code.getCodeName());
+				
 			if (news.getReaders().indexOf(name) != -1) {
 				news.setRead(1);
 			} else {
@@ -75,6 +82,10 @@ public class NewServiceImpl implements NewService {
 		List<News> list = newsMapper.unreadNews(maps);
 		List<News> list1 = new ArrayList<News>();
 		for (News news : list) {
+			Users user=UsersMapper.findUserByName(news.getProvider());
+			news.setUserName(user.getUserName());
+		/*	String code=sysCodeMapper.getSysCode(news.getTypeId());
+			news.setTypeName(code);*/
 			if (news.getReaders().indexOf(name) == -1) {
 				list1.add(news);
 			}
@@ -90,7 +101,6 @@ public class NewServiceImpl implements NewService {
 
 	@Override
 	public void updateNews(News news) {
-		// TODO Auto-generated method stub
 		newsMapper.update(news);
 	}
 
@@ -123,7 +133,6 @@ public class NewServiceImpl implements NewService {
 	}
 	@Override
 	public void deleteByPrimaryKey(Integer newsId) {
-		// TODO Auto-generated method stub
 		newsMapper.deleteNews(newsId);
 	}
 	 
@@ -138,6 +147,10 @@ public class NewServiceImpl implements NewService {
 		maps.put("page", pageParams);
 		List<News> list = newsMapper.selectNewsManage(maps);
 		for (News news : list) {
+			Users user=UsersMapper.findUserByName(news.getProvider());
+			news.setUserName(user.getUserName());
+		/*	String code=sysCodeMapper.getSysCode(news.getTypeId());
+			news.setTypeName(code);*/
 			StringBuffer s=new StringBuffer();
 			if (news.getToId().equals("ALL_DEPT")) {
 				List<Department> list1 = departmentMapper.getDatagrid();

@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -13,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="../css/email/writeMail.css"/>
-		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/email/writeMail.js" type="text/javascript" charset="utf-8"></script>
@@ -78,15 +81,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					添加附件
 				</td>
 			</tr>
-			<tr>
-				<!--<td>提醒：</td>
-				<td class="sendReady">
-					<input type="checkbox" name="remind" id="remind" value="" />
-					<span>发送事物提醒消息</span>
-					<input type="checkbox" name="read" id="read" value="" />
-					<span>请求阅读收条</span>
-				</td>
-			</tr>-->
 			<tr>
 				<td colspan="2">
 					<div class="div_btn">

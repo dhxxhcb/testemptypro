@@ -102,8 +102,7 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * 参数说明:   @return
 	 * @return     List<News>
 	 */
-	public List<News> showCountNews(@Param("typeId") String typeId,
-			@Param("newsTime") Date newsTime);
+	public int showCountNews(Integer newsId);
 
 	/**
 	 * 
