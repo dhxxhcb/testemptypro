@@ -52,7 +52,7 @@ public class DepartmentController {
 			departmentService.insertDept(department);
             json.setObject(department);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -78,7 +78,7 @@ public class DepartmentController {
 			departmentService.deleteDept(department.getDeptId());
             json.setObject(department);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -101,7 +101,7 @@ public class DepartmentController {
 			Department department =departmentService.getDeptById(deptid);
 			json.setObject(department);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 			System.out.println(e);
@@ -125,7 +125,7 @@ public class DepartmentController {
 			List<Department> list=departmentService.getDatagrid();  
 			json.setObj(list);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
@@ -152,7 +152,7 @@ public class DepartmentController {
 			departmentService.editDept(department);
             json.setObject(department);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -175,7 +175,7 @@ public class DepartmentController {
 			List<Department> list=departmentService.getDeptByMany(department);
             json.setObj(list);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}

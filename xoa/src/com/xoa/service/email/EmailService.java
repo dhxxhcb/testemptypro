@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.xoa.model.email.EmailModel;
 import com.xoa.model.email.EmailBodyModel;
+import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.DynDatasource;
 
 /**
@@ -64,7 +65,7 @@ public interface EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@DynDatasource
-	public List<EmailBodyModel> selectEmail(Map<String, Object> maps, Integer page,
+	public ToJson<EmailBodyModel> selectEmail(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception;
 
 	/**
@@ -107,7 +108,7 @@ public interface EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@DynDatasource
-	List<EmailBodyModel> selectInbox(Map<String, Object> maps, Integer page,
+	ToJson<EmailBodyModel> selectInbox(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception;
 
 	/**
@@ -124,7 +125,7 @@ public interface EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@DynDatasource
-	List<EmailBodyModel> listDrafts(Map<String, Object> maps, Integer page,
+	ToJson<EmailBodyModel> listDrafts(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception;
 
 	/**
@@ -141,7 +142,7 @@ public interface EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@DynDatasource
-	List<EmailBodyModel> listSendEmail(Map<String, Object> maps, Integer page,
+	ToJson<EmailBodyModel> listSendEmail(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception;
 
 	/**
@@ -158,7 +159,7 @@ public interface EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@DynDatasource
-	List<EmailBodyModel> listWastePaperbasket(Map<String, Object> maps,
+	ToJson<EmailBodyModel> listWastePaperbasket(Map<String, Object> maps,
 			Integer page, Integer pageSize, boolean useFlag) throws Exception;
 
 	/**
@@ -175,7 +176,7 @@ public interface EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@DynDatasource
-	public List<EmailBodyModel> selectEmailBody(Map<String, Object> maps,
+	public ToJson<EmailBodyModel> selectEmailBody(Map<String, Object> maps,
 			Integer page, Integer pageSize, boolean useFlag) throws Exception;
 
 	/**
@@ -192,7 +193,7 @@ public interface EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@DynDatasource
-	List<EmailBodyModel> selectIsRead(Map<String, Object> maps, Integer page,
+	ToJson<EmailBodyModel> selectIsRead(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception;
 
 }

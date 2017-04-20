@@ -31,6 +31,11 @@ public class ToJson<T> {
      * 返回消息提示
      */
     private String msg;
+    
+    /**
+     * 查询总条数
+     */
+    private Integer totleNum;
 
     /**
 	 * 创建作者:   张勇
@@ -47,6 +52,13 @@ public class ToJson<T> {
         }
         this.msg = msg;
     }
+    
+    /**
+	 * 
+	 */
+	public ToJson() {
+		// TODO Auto-generated constructor stub
+	}
 
     /**
      * 
@@ -136,11 +148,41 @@ public class ToJson<T> {
      * 
      * 创建作者:   张勇
      * 创建日期:   2017-4-20 上午11:21:47
-     * 方法介绍:   返回信息结果标识布尔值
+     * 方法介绍:   返回信息结果标识布尔值 0:true/1:false
      * 参数说明:   @param flag true/fasle
      * @return     void
      */
-    public void setFlag(boolean flag) {
-        this.flag = flag;
+    public void setFlag(int flag) {
+    	 if(flag==0){
+             this.flag = true;
+         }else{
+             this.flag = false;
+         }
     }
+
+    /**
+     * 
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午11:31:45
+     * 方法介绍:   查询总条数
+     * 参数说明:   @return
+     * @return     Integer
+     */
+	public Integer getTotleNum() {
+		return totleNum;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午11:31:55
+	 * 方法介绍:   查询总条数
+	 * 参数说明:   @param totleNum
+	 * @return     void
+	 */
+	public void setTotleNum(Integer totleNum) {
+		this.totleNum = totleNum;
+	}
+    
+    
 }

@@ -105,7 +105,7 @@ public class loginController {
 			request.getSession().setAttribute("message", "errOne");
 			    json.setObject(user);
 	            json.setMsg("err");
-	            json.setFlag(false);
+	            json.setFlag(1);
 			
 			
 		}else {
@@ -122,7 +122,7 @@ public class loginController {
 			}
 			    json.setObject(user);
 	            json.setMsg("OK");
-	            json.setFlag(true);
+	            json.setFlag(0);
 		   
 		}
 			

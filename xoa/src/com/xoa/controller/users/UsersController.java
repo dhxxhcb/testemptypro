@@ -51,7 +51,7 @@ public class UsersController {
 			usersService.addUser(user);
             json.setObject(user);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -75,7 +75,7 @@ public class UsersController {
 			usersService.editUser(user);
             json.setObject(user);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -100,7 +100,7 @@ public class UsersController {
 			usersService.deleteUser(user.getUid());
             json.setObject(user);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -123,7 +123,7 @@ public class UsersController {
 			Users users=usersService.findUserByuid(uid);  
 			json.setObject(users);;
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -151,7 +151,7 @@ public class UsersController {
 			List<Users> list=usersService.getAlluser(maps,page,pageSize,useFlag);  
 			json.setObj(list);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
@@ -175,7 +175,7 @@ public class UsersController {
 			List<Users> list=usersService.getUserByMany(users);
             json.setObj(list);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -202,7 +202,7 @@ public class UsersController {
 			List<Users> list=usersService.getUserAndDept(maps,page,pageSize,useFlag);  
 			json.setObj(list);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
@@ -227,7 +227,7 @@ public class UsersController {
 			List<Users> list=usersService.getBySearch(maps,page,pageSize,useFlag);  
 			json.setObj(list);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
