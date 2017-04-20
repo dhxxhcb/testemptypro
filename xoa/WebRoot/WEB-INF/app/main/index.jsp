@@ -471,8 +471,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//tab 切换
 					$('.tab_t').on('click','li',function(){
-							/* $('#tab_t li').removeClass('act');
-							$(this).addClass('act'); */
+						
 							$(".tab_t li").removeClass("yingy");
 							$(this).addClass('yingy');
 							 if($(this).attr('id')=='use'){
