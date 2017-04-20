@@ -31,7 +31,14 @@ public class MenuServiceImpl implements MenuService {
 
 	@Resource
 	private SysFunctionMapper sysFunctionMapper;//子类菜单DAO
-	
+	/**
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:43:57
+	 * 方法介绍:   获取全部菜单
+	 * 参数说明:   @return
+	 * @return     List<SysMenu>
+	 */
    @Override
 	public List<SysMenu> getAll() {
 		List<SysMenu> list=sysMenuMapper.getDatagrid();
@@ -46,7 +53,15 @@ public class MenuServiceImpl implements MenuService {
 		return list;
 	}
 	
-	
+   /**
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:44:08
+	 * 方法介绍:   获取子类菜单
+	 * 参数说明:   @param menuId
+	 * 参数说明:   @return
+	 * @return     List<SysFunction>
+	 */
 	@Override
 	public List<SysFunction> getDadMenu(String menuId) {
 		List<SysFunction> list=sysFunctionMapper.getDatagrid(menuId);

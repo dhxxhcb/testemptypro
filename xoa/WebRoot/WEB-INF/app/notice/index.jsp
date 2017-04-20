@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<link rel="stylesheet" type="text/css" href=../lib/laydate.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/notice/notice.css"/>
-		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/notice/attach.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/notice/wdatepicker.js" type="text/javascript" charset="utf-8"></script>

@@ -20,13 +20,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 html,
 body,
 
-.wrap{
+.wrapper{
 	width:100%;
 	height:100%;
+	 overflow-y:auto;  
 }
 .img_all{
 	width:94%;
-	height:94%;
+	height:100%;
 	margin:0.3% auto;
 }
 .right_one{
@@ -81,7 +82,7 @@ body,
 </head>
 
 <body>
-	<div class="wrap">
+	<div class="wrapper">
 		<div class="img_all">
 						<div class="right_one">
 							<div class="r_one_top">
@@ -89,7 +90,7 @@ body,
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理</h2>
+								<h2>模块管理布局内容模块管理布局内容模块管理布局内容</h2>
 							</div>
 						</div>
 							<!-- 第二个 -->
@@ -99,7 +100,7 @@ body,
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理</h2>
+								<h2>模块管理布局内容模块管理布局内容模块管理布局内容</h2>
 							</div>
 						</div>
 							<!-- 第二个 -->
@@ -109,7 +110,7 @@ body,
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理</h2>
+								<h2>模块管理布局内容模块管理布局内容模块管理布局内容</h2>
 							</div>
 						</div>
 							<!-- 第二个 -->
@@ -119,7 +120,7 @@ body,
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理</h2>
+								<h2>模块管理布局内容模块管理布局内容模块管理布局内容</h2>
 							</div>
 						</div>
 							<!-- 第二个 -->
@@ -129,7 +130,7 @@ body,
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理</h2>
+								<h2>模块管理布局内容模块管理布局内容模块管理布局内容</h2>
 							</div>
 						</div>
 							<!-- 第二个 -->
@@ -139,7 +140,7 @@ body,
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理</h2>
+								<h2>模块管理布局内容模块管理布局内容模块管理布局内容</h2>
 							</div>
 						</div>
 							<!-- 第二个 -->
@@ -149,7 +150,7 @@ body,
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理</h2>
+								<h2>模块管理布局内容模块管理布局内容模块管理布局内容</h2>
 							</div>
 						</div>
 						<!-- 第二个 -->
@@ -159,7 +160,7 @@ body,
 							</div>
 							<div class="r_one_bot">
 								<h1>公告通知</h1>
-								<h2>模块管理布局内容模块管理布局内容模块管理布局内容模块管理</h2>
+								<h2>模块管理布局内容模块管理布局内容模块管理布局内容</h2>
 							</div>
 						</div>
 </div>

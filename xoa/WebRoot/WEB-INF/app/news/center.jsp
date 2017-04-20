@@ -16,9 +16,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
+    <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
         $(function () {
-        
             var GG = {
                 "kk": function (mm) {
                   
@@ -30,17 +30,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						data:{page:mm,pageSize:"10",useFlag:"true"},
 						success:function(data){
 						/* alert("第" + mm + "页"); */
-						/* var data1=rsp.obj[0].clickCount */				
-							var news = "";
-							for (var i = 0; i < data.obj.length; i++) {
-								news += "<tr><td>"+data.obj[i].subject+"</td>"+
-										 "<td>"+data.obj[i].typeId+"</td>"+
-										   "<td>"+data.obj[i].newsTime+"</td>"+
-										   "<td>"+data.obj[i].clickCount+"</td>"+
-										   "<td>"+data.obj[i].read+"</td></tr>";
-										   
-							}
-							/* alert(news); */
+						/* var data1=rsp.obj[0].clickCount */	
+							
+                            var news = "";
+                            for (var i = 0; i < data.obj.length; i++) {
+                                news = "<tr><td>"+data.obj[i].subject+"</td>"+
+                                        "<td>"+data.obj[i].typeId+"</td>"+
+                                        "<td>"+data.obj[i].newsTime+"</td>"+
+                                        "<td><a href='' noticeId="+data.obj[i].newsTime+" class='windowOpen'>"+data.obj[i].clickCount+"</ a></td>"+
+                                        "<td>"+data.obj[i].read+"</td>"+news;
+                            }
+							
 							$("#j_tb").html(news);
 							
 						}
@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
                     
                 }
-            }
+            };
             $("#page").initPage(71, 1, GG.kk);
 
             $("li").click(function(){
@@ -62,7 +62,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
                 
                /* alert($(this).text());*/
-            })
+            });
+            
+            /* 新闻详情页 */
+               $("#j_tb").on('click','.windowOpen',function(){
+            var nid=$(this).attr('noticeId');
+            $.popWindow('detail?nid='+nid);
+        });
+        
         });
 
  

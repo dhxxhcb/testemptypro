@@ -56,6 +56,15 @@ public class NewsController {
 	public String clickNews() {
 		return "/app/news/center";
 	}
+	@RequestMapping("/detail")
+	public String News() {
+		return "/app/news/news_detail";
+	}
+	
+	@RequestMapping("/index1")
+	public String sendNews() {
+		return "/app/news/newsAdd";
+	}
 	
 	
 	
@@ -65,7 +74,7 @@ public class NewsController {
 	 * 创建日期:   2017-4-19 下午3:51:58
 	 * 方法介绍:   新闻管理信息展示 返回json 
 	 * 参数说明:   @return
-	 * @return     String
+	 * @return     String 返回新闻管理列表
 	 */
 @RequestMapping(value = "/showNewsManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
   public @ResponseBody String selectNewsManage(){

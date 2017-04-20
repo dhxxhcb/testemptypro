@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="UTF-8">
 		<title>公告详情</title>
-		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			body{padding: 0;margin: 0;font-family: "微软雅黑";width: 100%;}

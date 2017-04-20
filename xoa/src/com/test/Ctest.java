@@ -69,17 +69,17 @@ public class Ctest {
 		Map<String,Object> maps = new HashMap<String, Object>();
 		maps.put("bodyId", Integer.valueOf("11"));
 		maps.put("fromId", "zhanglan");
-		EmailBodyModel emailBody = emailUtilService.queryById(maps, 1, 5, false);
+//		EmailBodyModel emailBody = emailUtilService.queryById(maps, 1, 5, false);
 		EmailBodyModel emailbo = new EmailBodyModel();
 		
-		System.out.println("emailBody:"+!StringUtils.isEmpty(emailBody));
-		System.out.println("\n emailbo:"+emailBody.getBodyId());
+//		System.out.println("emailBody:"+!StringUtils.isEmpty(emailBody));
+//		System.out.println("\n emailbo:"+emailBody.getBodyId());
+//		
+//		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "查询成功");
+//		tojson.setObject(emailBody);
 		
-		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "查询成功");
-		tojson.setObject(emailBody);
-		
-		System.out.println(JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss"));
+//		System.out.println(JSON.toJSONStringWithDateFormat(tojson,
+//					"yyyy-MM-dd HH:mm:ss"));
 		
 		
 //		

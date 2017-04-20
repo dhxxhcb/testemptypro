@@ -159,7 +159,25 @@ public class News implements Serializable {
 	/**
 	 * 判断名字在未读
 	 */
-	private String name;
+	private String userName;
+	
+	private String  typeName;
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	private String depName;
 
@@ -679,22 +697,5 @@ public class News implements Serializable {
 		this.role = role;
 	}
 
-	/**
-	 * 判断名字在未读
-	 * 
-	 * @param name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * 判断名字在未读
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 
 }

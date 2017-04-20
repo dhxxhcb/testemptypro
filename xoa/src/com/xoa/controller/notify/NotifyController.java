@@ -504,6 +504,11 @@ public class NotifyController {
 	public String emailIndex(){
 		return "app/notice/administration";
 	}
+	@RequestMapping("/detail")
+	public String detail(){
+		return "app/notice/details";
+	}
+
 
 
 }

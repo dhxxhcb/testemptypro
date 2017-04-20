@@ -11,7 +11,7 @@ import com.xoa.util.dataSource.DynDatasource;
      * 创建作者:   王曰岐
      * 创建日期:   2017-4-19 下午3:35:07
      * 类介绍  :    新闻Service(逻辑层)
-     * 构造参数:   
+     * 构造参数:    无 
      *
      */
 public interface NewService {
@@ -21,7 +21,7 @@ public interface NewService {
 	 * 
 	 * 创建作者:   王曰岐
 	 * 创建日期:   2017-4-19 下午3:35:41
-	 * 方法介绍:   
+	 * 方法介绍:   查询新闻列表
 	 * 参数说明:   @param maps map条件参数
 	 * 参数说明:   @param page  当前页
 	 * 参数说明:   @param pageSize 每页显示条数
@@ -29,16 +29,17 @@ public interface NewService {
 	 * 参数说明:   @param name 名字
 	 * 参数说明:   @return
 	 * 参数说明:   @throws Exception
-	 * @return     List<News>
+	 * @return     List<News> 返回新闻列表List
 	 */
 	@DynDatasource
 	public List<News> selectNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
 	
+	
 	/**
 	 * 
 	 * 创建作者:   王曰岐
-	 * 创建日期:   2017-4-19 下午3:38:49
-	 * 方法介绍:   
+	 * 创建日期:   2017-4-19 下午3:35:41
+	 * 方法介绍:   查询未读新闻列表
 	 * 参数说明:   @param maps map条件参数
 	 * 参数说明:   @param page  当前页
 	 * 参数说明:   @param pageSize 每页显示条数
@@ -46,7 +47,7 @@ public interface NewService {
 	 * 参数说明:   @param name 名字
 	 * 参数说明:   @return
 	 * 参数说明:   @throws Exception
-	 * @return     List<News>
+	 * @return     List<News> 返回新闻列表List
 	 */
 	@DynDatasource
 	public List<News> unreadNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
@@ -54,7 +55,7 @@ public interface NewService {
 	 * 
 	 * 创建作者:   王曰岐
 	 * 创建日期:   2017-4-19 下午3:39:06
-	 * 方法介绍:   
+	 * 方法介绍:   查询新闻管理
 	 * 参数说明:   @param maps map条件参数
 	 * 参数说明:   @param page  当前页
 	 * 参数说明:   @param pageSize 每页显示条数

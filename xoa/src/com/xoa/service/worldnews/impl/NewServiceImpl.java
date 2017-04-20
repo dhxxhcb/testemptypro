@@ -1,24 +1,22 @@
 package com.xoa.service.worldnews.impl;
 
+import com.xoa.dao.common.SysCodeMapper;
 import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.users.UsersMapper;
 import com.xoa.dao.worldnews.NewsMapper;
+import com.xoa.model.common.SysCode;
 import com.xoa.model.department.Department;
 import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.worldnews.NewService;
-import com.xoa.util.dataSource.DynDatasource;
 import com.xoa.util.page.PageParams;
-import com.xoa.util.ToJson;
 
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 /**
@@ -44,7 +42,25 @@ public class NewServiceImpl implements NewService {
 	@Resource
 	private DepartmentService  departmentService;
 	
+	@Resource
+	private SysCodeMapper sysCodeMapper;
 	
+	
+	
+	/**
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:35:41
+	 * 方法介绍:   查询新闻列表
+	 * 参数说明:   @param maps map条件参数
+	 * 参数说明:   @param page  当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @param name 名字
+	 * 参数说明:   @return
+	 * 参数说明:   @throws Exception
+	 * @return     List<News> 返回新闻列表List
+	 */
 	@Override
 	public List<News> selectNews(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
@@ -55,6 +71,11 @@ public class NewServiceImpl implements NewService {
 		maps.put("page", pageParams);
 		List<News> list = newsMapper.selectNews(maps);
 		for (News news : list) {
+				Users user=UsersMapper.findUserByName(news.getProvider());
+				news.setUserName(user.getUserName());
+				SysCode code=sysCodeMapper.getSysCode(news.getTypeId());
+				news.setTypeName(code.getCodeName());
+				
 			if (news.getReaders().indexOf(name) != -1) {
 				news.setRead(1);
 			} else {
@@ -63,7 +84,21 @@ public class NewServiceImpl implements NewService {
 		}
 		return list;
 	}
-
+	
+	/**
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:35:41
+	 * 方法介绍:   查询未读新闻列表
+	 * 参数说明:   @param maps map条件参数
+	 * 参数说明:   @param page  当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @param name 名字
+	 * 参数说明:   @return
+	 * 参数说明:   @throws Exception
+	 * @return     List<News> 返回新闻列表List
+	 */
 	@Override
 	public List<News> unreadNews(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
@@ -75,25 +110,50 @@ public class NewServiceImpl implements NewService {
 		List<News> list = newsMapper.unreadNews(maps);
 		List<News> list1 = new ArrayList<News>();
 		for (News news : list) {
+			Users user=UsersMapper.findUserByName(news.getProvider());
+			news.setUserName(user.getUserName());
+		/*	String code=sysCodeMapper.getSysCode(news.getTypeId());
+			news.setTypeName(code);*/
 			if (news.getReaders().indexOf(name) == -1) {
 				list1.add(news);
 			}
 		}
 		return list1;
 	}
-
+	/**
+	 * 
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:39:24
+	 * 方法介绍:   添加新闻
+	 * 参数说明:   @param news
+	 * @return     void
+	 */
 	@Override
 	public void sendNews(News news) {
 		newsMapper.save(news);
 
 	}
-
+	 /**
+	  * 
+	  * 创建作者:   王曰岐
+	  * 创建日期:   2017-4-19 下午3:39:48
+	  * 方法介绍:   修改新闻
+	  * 参数说明:   @param news
+	  * @return     void
+	  */
 	@Override
 	public void updateNews(News news) {
-		// TODO Auto-generated method stub
 		newsMapper.update(news);
 	}
-
+	 /**
+     * 
+     * 创建作者:   王曰岐
+     * 创建日期:   2017-4-19 下午3:40:16
+     * 方法介绍:   根据ID查询一条
+     * 参数说明:   @param newsId
+     * @return     void
+     */
 	@Override
 	public News queryById(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
@@ -120,13 +180,31 @@ public class NewServiceImpl implements NewService {
 
 		return news;
 
-	}
+	} /**
+     * 
+     * 创建作者:   王曰岐
+     * 创建日期:   2017-4-19 下午3:40:16
+     * 方法介绍:   根据ID删除一条
+     * 参数说明:   @param newsId
+     * @return     void
+     */
 	@Override
 	public void deleteByPrimaryKey(Integer newsId) {
-		// TODO Auto-generated method stub
 		newsMapper.deleteNews(newsId);
 	}
-	 
+	/**
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:39:06
+	 * 方法介绍:   查询新闻管理
+	 * 参数说明:   @param maps map条件参数
+	 * 参数说明:   @param page  当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return
+	 * 参数说明:   @throws Exception
+	 * @return     List<News>
+	 */
 	@Override
 	public List<News> selectNewsManage(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception {
@@ -138,6 +216,10 @@ public class NewServiceImpl implements NewService {
 		maps.put("page", pageParams);
 		List<News> list = newsMapper.selectNewsManage(maps);
 		for (News news : list) {
+			Users user=UsersMapper.findUserByName(news.getProvider());
+			news.setUserName(user.getUserName());
+		/*	String code=sysCodeMapper.getSysCode(news.getTypeId());
+			news.setTypeName(code);*/
 			StringBuffer s=new StringBuffer();
 			if (news.getToId().equals("ALL_DEPT")) {
 				List<Department> list1 = departmentMapper.getDatagrid();

@@ -7,7 +7,7 @@ package com.xoa.model.common;
  * 构造参数:   无
  *
  */
-public class Sys_code {
+public class SysCode {
 	/**
 	 * 代码ID
 	 */

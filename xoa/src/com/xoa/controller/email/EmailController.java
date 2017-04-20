@@ -219,7 +219,7 @@ public class EmailController {
 	 * 邮件查询
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:35:16
-	 * 方法介绍:   
+	 * 方法介绍:   查询列表
 	 * 参数说明:   @param  request inbox 收件箱 drafts 草稿箱 outbox 发件箱 recycle 废纸篓 noRead 未读
 	 * 参数说明:   @return json
 	 * 参数说明:   @throws Exception
@@ -238,28 +238,28 @@ public class EmailController {
 				"userID");
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("fromId", userId);
-		List<EmailBodyModel> list = new ArrayList<EmailBodyModel>();
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
+		String returnRes = null;
 		if (flag.trim().equals("inbox")) {
-			list = emailService.selectInbox(maps, page, pageSize, useFlag);
+			tojson = emailService.selectInbox(maps, page, pageSize, useFlag);
 		} else if (flag.trim().equals("drafts")) {
-			list = emailService.listDrafts(maps, page, pageSize, useFlag);
+			tojson = emailService.listDrafts(maps, page, pageSize, useFlag);
 		} else if (flag.trim().equals("outbox")) {
-			list = emailService.listSendEmail(maps, page, pageSize, useFlag);
+			tojson = emailService.listSendEmail(maps, page, pageSize, useFlag);
 		} else if (flag.trim().equals("recycle")) {
-			list = emailService.listWastePaperbasket(maps, page, pageSize,
+			tojson = emailService.listWastePaperbasket(maps, page, pageSize,
 					useFlag);
 		} else if (flag.trim().equals("noRead")) {
-			list = emailService.selectIsRead(maps, page, pageSize, useFlag);
+			tojson = emailService.selectIsRead(maps, page, pageSize, useFlag);
 		}
-		String returnRes = null;
-		int length = list.size();
-		if (length > 0) {
-			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "有数据");
-			tojson.setObj(list);
+		if (tojson.getObj().size()>0) {
+			tojson.setFlag(0);
+			tojson.setMsg("ok");
 			returnRes = JSON.toJSONStringWithDateFormat(tojson,
 					"yyyy-MM-dd HH:mm:ss");
 		} else {
-			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(1, "无数据");
+			tojson.setFlag(1);
+			tojson.setMsg("error");
 			returnRes = JSON.toJSONStringWithDateFormat(tojson,
 					"yyyy-MM-dd HH:mm:ss");
 		}
@@ -278,38 +278,38 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/queryByID", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String queryByID(HttpServletRequest request) throws Exception {
-		String flag =  ServletRequestUtils.getStringParameter(request,
-				"flag");
-		Integer bodyId = ServletRequestUtils.getIntParameter(request, "bodyId");
-		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("bodyId", bodyId);
-		EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
-		String returnRes = null;
-		if(!flag.trim().equals("isRead")){
-			if (emailBody.getBodyId() != null) {
+		String queryByID(HttpServletRequest request) throws Exception {
+			String flag =  ServletRequestUtils.getStringParameter(request,
+					"flag");
+			Integer bodyId = ServletRequestUtils.getIntParameter(request, "bodyId");
+			Map<String, Object> maps = new HashMap<String, Object>();
+			maps.put("bodyId", bodyId);
+			EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
+			String returnRes = null;
+			if(!flag.trim().equals("isRead")){
+				if (emailBody.getBodyId() != null) {
+					ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "ok");
+					tojson.setObject(emailBody);
+					returnRes = JSON.toJSONStringWithDateFormat(tojson,
+							"yyyy-MM-dd HH:mm:ss");
+				} else {
+					ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(1, "errorQueryByID");
+					returnRes = JSON.toJSONStringWithDateFormat(tojson,
+							"yyyy-MM-dd HH:mm:ss");
+				}
+			}else{
+				Integer emailId =  ServletRequestUtils.getIntParameter(request,
+						"emailId");
+				EmailModel email = new EmailModel();
+				email.setEmailId(emailId);
+				email.setReadFlag("1");
+				emailService.updateIsRead(email);
 				ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "ok");
 				tojson.setObject(emailBody);
 				returnRes = JSON.toJSONStringWithDateFormat(tojson,
 						"yyyy-MM-dd HH:mm:ss");
-			} else {
-				ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(1, "errorQueryByID");
-				returnRes = JSON.toJSONStringWithDateFormat(tojson,
-						"yyyy-MM-dd HH:mm:ss");
 			}
-		}else{
-			Integer emailId =  ServletRequestUtils.getIntParameter(request,
-					"emailId");
-			EmailModel email = new EmailModel();
-			email.setEmailId(emailId);
-			email.setReadFlag("1");
-			emailService.updateIsRead(email);
-			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "ok");
-			tojson.setObject(emailBody);
-			returnRes = JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		}
-		return returnRes;
+			return returnRes;
 	}
 
 	
@@ -333,25 +333,17 @@ public class EmailController {
 		maps.put("userName", "李佳");
 		maps.put("sign", "");
 		maps.put("keyword", "通知");
-		List<EmailBodyModel> listEmailBody = emailService.selectEmailBody(maps, 1,
-				10, true);
-		loger.info("结果信息："
-				+ JSON.toJSONStringWithDateFormat(listEmailBody,
-						"yyyy-MM-dd HH:mm:ss"));
-		if (listEmailBody.size() > 0) {
-			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "查询成功");
-			tojson.setObj(listEmailBody);
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
+		tojson = emailService.selectEmailBody(maps, 1,10, true);
+		if (tojson.getObj().size() > 0) {
+			tojson.setFlag(0);
+			tojson.setMsg("ok");
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("listqueryEmailBody", JSON.toJSONStringWithDateFormat(
-					listEmailBody, "yyyy-MM-dd HH:mm:ss"));
 			return JSON.toJSONStringWithDateFormat(tojson,
 					"yyyy-MM-dd HH:mm:ss");
 		} else {
-			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(1, "查询失败");
-			tojson.setObj(listEmailBody);
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("listqueryEmailBody", JSON.toJSONStringWithDateFormat(
-					listEmailBody, "yyyy-MM-dd HH:mm:ss"));
+			tojson.setFlag(1);
+			tojson.setMsg("error");
 			return JSON.toJSONStringWithDateFormat(tojson,
 					"yyyy-MM-dd HH:mm:ss");
 		}

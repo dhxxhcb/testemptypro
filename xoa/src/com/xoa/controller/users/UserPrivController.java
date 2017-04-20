@@ -50,7 +50,7 @@ public class UserPrivController {
 			usersPrivService.insertSelective(userPriv);
             json.setObject(userPriv);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -75,7 +75,7 @@ public class UserPrivController {
 			usersPrivService.deleteByPrimaryKey(userPriv.getUserPriv());
             json.setObject(userPriv);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -99,7 +99,7 @@ public class UserPrivController {
 			UserPriv priv=usersPrivService.selectByPrimaryKey(userPriv);
 			json.setObject(priv);;
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -127,7 +127,7 @@ public class UserPrivController {
 			List<UserPriv> list=usersPrivService.getAllPriv(maps,page,pageSize,useFlag);  
 			json.setObj(list);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -152,7 +152,7 @@ public class UserPrivController {
 			List<UserPriv> list=usersPrivService.getPrivByMany(userPriv);
             json.setObj(list);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}

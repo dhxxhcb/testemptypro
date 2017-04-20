@@ -1,8 +1,8 @@
 package com.xoa.service.department;
 
 import java.util.List;
+import java.util.Map;
 
-import com.alibaba.fastjson.JSONObject;
 import com.xoa.model.department.Department;
 import com.xoa.util.dataSource.DynDatasource;
 
@@ -88,6 +88,22 @@ public interface DepartmentService {
 	 */
 	@DynDatasource 
 	public List<Department> getDeptByMany(Department department);
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月20日 下午5:46:02
+	 * 方法介绍:   
+	 * 参数说明:   @param maps
+	 * 参数说明:   @param page
+	 * 参数说明:   @param pageSize
+	 * 参数说明:   @param useFlag
+	 * 参数说明:   @return
+	 * @return     List<Department>
+	 */
+	@DynDatasource 
+	public List<Department> getChDept(Map<String,Object> maps, Integer page,
+			Integer pageSize, boolean useFlag);
+	
 	
 
 }

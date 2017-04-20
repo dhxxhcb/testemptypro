@@ -13,6 +13,7 @@ import com.xoa.dao.email.EmailMapper;
 import com.xoa.model.email.EmailModel;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.service.email.EmailService;
+import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 
 /**
@@ -95,8 +96,9 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@Override
-	public List<EmailBodyModel> selectEmail(Map<String, Object> maps, Integer page,
+	public ToJson<EmailBodyModel> selectEmail(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception {
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		logger.info("查询邮件!");
 		PageParams pageParams = new PageParams();
 		pageParams.setPage(page);
@@ -104,7 +106,9 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setUseFlag(useFlag);
 		maps.put("page", pageParams);
 		logger.info("邮件查询emailService赋值！");
-		return emailBodyMapper.selectObjcet(maps);
+		tojson.setObj(emailBodyMapper.selectObjcet(maps));
+		tojson.setTotleNum(pageParams.getTotal());
+		return tojson;
 	}
 
 	/**
@@ -134,15 +138,17 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@Override
-	public List<EmailBodyModel> listDrafts(Map<String, Object> maps, Integer page,
+	public ToJson<EmailBodyModel> listDrafts(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) {
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<EmailBodyModel> list = emailBodyMapper.listDrafts(maps);
-		return list;
+		tojson.setObj(emailBodyMapper.listDrafts(maps));
+		tojson.setTotleNum(pageParams.getTotal());
+		return tojson;
 	}
 
 	/**
@@ -159,16 +165,17 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@Override
-	public List<EmailBodyModel> listSendEmail(Map<String, Object> maps,
+	public ToJson<EmailBodyModel> listSendEmail(Map<String, Object> maps,
 			Integer page, Integer pageSize, boolean useFlag) throws Exception {
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<EmailBodyModel> list = emailBodyMapper.listSendEmail(maps);
-		System.out.println(list.size());
-		return list;
+		tojson.setObj(emailBodyMapper.listSendEmail(maps));
+		tojson.setTotleNum(pageParams.getTotal());
+		return tojson;
 	}
 
 	/**
@@ -185,16 +192,17 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@Override
-	public List<EmailBodyModel> listWastePaperbasket(Map<String, Object> maps,
+	public ToJson<EmailBodyModel> listWastePaperbasket(Map<String, Object> maps,
 			Integer page, Integer pageSize, boolean useFlag) throws Exception {
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<EmailBodyModel> list = emailBodyMapper.listWastePaperbasket(maps);
-		System.out.println(list.size());
-		return list;
+		tojson.setObj(emailBodyMapper.listWastePaperbasket(maps));
+		tojson.setTotleNum(pageParams.getTotal());
+		return tojson;
 	}
 
 	/**
@@ -211,15 +219,17 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@Override
-	public List<EmailBodyModel> selectEmailBody(Map<String, Object> maps,
+	public ToJson<EmailBodyModel> selectEmailBody(Map<String, Object> maps,
 			Integer page, Integer pageSize, boolean useFlag) throws Exception {
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<EmailBodyModel> list = emailBodyMapper.listqueryEmailBody(maps);
-		return list;
+		tojson.setObj(emailBodyMapper.listqueryEmailBody(maps));
+		tojson.setTotleNum(pageParams.getTotal());
+		return tojson;
 	}
 
 	/**
@@ -258,15 +268,17 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@Override
-	public List<EmailBodyModel> selectInbox(Map<String, Object> maps, Integer page,
+	public ToJson<EmailBodyModel> selectInbox(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception {
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<EmailBodyModel> list = emailBodyMapper.selectInbox(maps);
-		return list;
+		tojson.setObj(emailBodyMapper.selectInbox(maps));
+		tojson.setTotleNum(pageParams.getTotal());
+		return tojson;
 	}
 
 	
@@ -285,15 +297,17 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@Override
-	public List<EmailBodyModel> selectIsRead(Map<String, Object> maps, Integer page,
+	public ToJson<EmailBodyModel> selectIsRead(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception {
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<EmailBodyModel> list = emailBodyMapper.selectIsRead(maps);
-		return list;
+		tojson.setObj(emailBodyMapper.selectIsRead(maps));
+		tojson.setTotleNum(pageParams.getTotal());
+		return tojson;
 	}
 
 	/**

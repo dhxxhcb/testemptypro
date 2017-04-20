@@ -1,8 +1,10 @@
 package com.xoa.controller.department;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -52,7 +54,7 @@ public class DepartmentController {
 			departmentService.insertDept(department);
             json.setObject(department);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -78,7 +80,7 @@ public class DepartmentController {
 			departmentService.deleteDept(department.getDeptId());
             json.setObject(department);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -101,7 +103,7 @@ public class DepartmentController {
 			Department department =departmentService.getDeptById(deptid);
 			json.setObject(department);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 			System.out.println(e);
@@ -125,7 +127,7 @@ public class DepartmentController {
 			List<Department> list=departmentService.getDatagrid();  
 			json.setObj(list);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
@@ -152,7 +154,7 @@ public class DepartmentController {
 			departmentService.editDept(department);
             json.setObject(department);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
@@ -175,13 +177,42 @@ public class DepartmentController {
 			List<Department> list=departmentService.getDeptByMany(department);
             json.setObj(list);
             json.setMsg("OK");
-            json.setFlag(true);
+            json.setFlag(0);
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
         return json;
     }
-	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月20日 下午6:14:43
+	 * 方法介绍:   获取子级目录
+	 * 参数说明:   @param request
+	 * 参数说明:   @param maps
+	 * 参数说明:   @param page
+	 * 参数说明:   @param pageSize
+	 * 参数说明:   @param useFlag
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/department/getChDept",produces = {"application/json;charset=UTF-8"})
+    public String getChDept(HttpServletRequest request,Map<String, Object> maps,Integer page,
+			Integer pageSize, boolean useFlag) {
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		try {
+			request.setCharacterEncoding("UTF-8");
+			String deptId=new String(request.getParameter("deptId").getBytes("ISO-8859-1"),"UTF-8");
+			maps.put("deptId", deptId);
+			List<Department> list=departmentService.getChDept(maps,page,pageSize,useFlag);
+            json.setObj(list);
+            json.setMsg("OK");
+            json.setFlag(0);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
 	
 	 /**
      * 部门列表-树111
