@@ -86,7 +86,7 @@ public class Atest {
 				List<Users> list=userSerice.getBySearch(maps,1,5,false);  
 				json.setObj(list);
 	            json.setMsg("OK");
-	            json.setFlag(true);
+	            //json.setFlag(true);
 			} catch (Exception e) {
 				System.out.println("错误信息："+e);
 				

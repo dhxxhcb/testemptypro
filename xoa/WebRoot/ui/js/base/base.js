@@ -1,8 +1,8 @@
 ;;$(function(){
 	$.extend({
 		popWindow:function(url,top,left,width,height) {
-			var top = top || '100';
-			var left = left || '100';
+			var top = top || '200';
+			var left = left || '300';
 			var width = width || '640';
 			var height = height || '600';
 			window.open(url,top,left,width,height);

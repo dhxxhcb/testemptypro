@@ -29,16 +29,19 @@ import com.xoa.util.ToJson;
  */
 @Controller
 @Scope(value="prototype")
-@RequestMapping("/ggemail")
+@RequestMapping("/spirit")
 public class SpiritController {
 	private Logger loger = Logger.getLogger(SpiritController.class);
 	@Resource
 	private UsersService usersService;
 	
-	@RequestMapping("/ggindex") //URL的/index
+	@RequestMapping("/login") //URL的/index
 	public String login() {
-		return "login/index";
+		return "app/spirit/login/login";
 	}
-	
+	@RequestMapping("/main") //URL的/index
+	public String main() {
+		return "app/spirit/main";
+	}
 	
 }
