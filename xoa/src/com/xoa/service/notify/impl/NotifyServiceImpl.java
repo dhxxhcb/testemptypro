@@ -25,7 +25,7 @@ import com.xoa.util.page.PageParams;
  * 
  * 创建作者:   张丽军
  * 创建日期:   2017-4-18 下午6:22:58
- * 类介绍  :   公告实现类
+ * 类介绍  :   公告实现类(逻辑层)
  * 构造参数:   无
  *
  */
@@ -68,7 +68,7 @@ public class NotifyServiceImpl implements  NotifyService{
 				     notify1.setReaders("0");
 			}
 		}
-        System.out.println("公告查询条数："+list.size());
+        System.out.println("notifyCount："+list.size());
 		return list;
 	}
 

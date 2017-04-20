@@ -111,6 +111,7 @@ public class NotifyController {
 			 @RequestParam(value = "subject", required = false) String subject,
 			 @RequestParam(value = "content", required = false) String content,
 			 @RequestParam(value = "format", required = false) String format,
+			 @RequestParam(value = "toId", required = false) String toId,
 			 @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag) {
@@ -120,6 +121,7 @@ public class NotifyController {
 	  maps.put("subject", subject);
 	  maps.put("content", content);
 	  maps.put("format", format);
+	  maps.put("toId", toId);
 	   String returnReslt= null;
 	   String name="admin";
 	   String err;
@@ -207,7 +209,7 @@ public class NotifyController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
 		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
-		String name="wangyun";
+		String name="zhangli";
 		loger.debug("transfersID"+notifyId);
 	try {
 		    Notify notify=notifyService.queryById(maps, 1, 5, false, name);
@@ -502,9 +504,6 @@ public class NotifyController {
 	public String emailIndex(){
 		return "app/notice/notify";
 	}
-	@RequestMapping("/detail")
-	public String deail(){
-		return "app/notice/details";
-	}
+
 
 }

@@ -48,7 +48,7 @@
 
    <!-- 多条件查询 -->
     <select id="selectNotify" resultMap="BaseResultMap" parameterType="Map">
-       SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.CONTENT,n.FORMAT,u.USER_NAME,n.READERS,n.NOTIFY_ID from notify n,`user` u WHERE n.FROM_ID=u.USER_ID
+       SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.CONTENT,n.FORMAT,n.TO_ID,u.USER_NAME,n.READERS,n.NOTIFY_ID from notify n,`user` u WHERE n.FROM_ID=u.USER_ID
     <where>
       <if test="format != null and format != ''"> FORMAT = #{format} </if>
       <if test="typeId != null and typeId != ''"> AND TYPE_ID = #{typeId} </if>
@@ -82,10 +82,7 @@
 		AUDIT_DATE,
 		COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,
 		SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW
-		from notify
-		<if test="start!=null and pagesize!=null">
-			limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
-		</if>
+		from notify	
 		ORDER BY NOTIFY_ID DESC
 	</select>
 	
