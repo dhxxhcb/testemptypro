@@ -272,7 +272,7 @@
 	</select>
 	<!-- 发件箱查询 -->
 	<select id="listSendEmail" parameterType="Map" resultMap="BaseResultMap">
-		select eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
+		select eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,e.READ_FLAG,eb.TO_ID2,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
 		LEFT JOIN
 		email as e on eb.BODY_ID=e.BODY_ID
 		LEFT JOIN user as u on
@@ -289,7 +289,7 @@
 	<!-- 废纸篓查询 空值 -->
 	<select id="listWastePaperbasket" resultMap="BaseResultMap"
 		parameterType="Map">
-		SELECT eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,eb.SECRET_TO_ID,u.USER_ID,eb.CONTENT,e.TO_ID,u.USER_NAME FROM
+		SELECT eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,e.READ_FLAG,eb.COPY_TO_ID,eb.SECRET_TO_ID,u.USER_ID,eb.CONTENT,e.TO_ID,u.USER_NAME FROM
 		email_body as eb
 		LEFT JOIN email as e on e.BODY_ID =eb.BODY_ID
 		LEFT JOIN user as u on u.USER_ID=eb.FROM_ID
@@ -308,7 +308,7 @@
 	<!--收件箱查询 -->
 	<select id="selectInbox" parameterType="Map" resultMap="BaseResultMap">
 		select
-		eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
+		eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,e.READ_FLAG,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID where 
@@ -321,7 +321,7 @@
     <!--未读查询-->
 	<select id="selectIsRead" parameterType="Map" resultMap="BaseResultMap">
 		select
-		eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
+		eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,e.READ_FLAG,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID where
@@ -335,8 +335,8 @@
 	<!-- 根据id查询一条邮件 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 	 select
-		eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,eb.SECRET_TO_ID,u.USER_ID,eb.CONTENT,e.TO_ID,u.USER_NAME
-		e.TO_ID,
+		eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,eb.SECRET_TO_ID,u.USER_ID,eb.CONTENT,
+		e.TO_ID,u.USER_NAME,
 		e.READ_FLAG,
 		e.BOX_ID,
 		e.RECEIPT,
@@ -475,13 +475,21 @@
 	where eb.FROM_ID=#{fromId} AND e.DELETE_FLAG !='' AND e.DELETE_FLAG !='0' AND e.DELETE_FLAG !='1'  AND e.DELETE_FLAG !='2' AND e.DELETE_FLAG !='4'
 	</update>
 	
-	<!--  发件箱为1时删除 
+	<!--  发件箱为1时删除  
 	<delete id="deleteRecycle" parameterType="com.xoa.model.email.EmailModel">
 	delete email as e LEFT JOIN  email_body eb on e.BODY_ID=eb.BODY_ID 
 	where eb.FROM_ID=#{fromId} AND e.DELETE_FLAG ='1'
 	
 		delete from
 		email_body where eb.FROM_ID=#{fromId} AND BODY_ID = #{bodyId}
+		
+		DELETE FROM	email WHERE BODY_ID = (SELECT eb.BODY_ID
+		FROM
+			email_body AS eb
+		WHERE
+			eb.FROM_ID = 'zy'
+	)
+AND DELETE_FLAG = '1'
 	</delete>  -->
 	
 	
