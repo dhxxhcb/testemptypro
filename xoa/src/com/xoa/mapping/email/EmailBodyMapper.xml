@@ -464,5 +464,28 @@
 		where BODY_ID = #{bodyId}
 	</update>
 
+	<!-- 发件箱删除 变为2 -->
+	<update id="updateRecycle" parameterType="com.xoa.model.email.EmailModel">
+	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='2' 
+	where eb.FROM_ID=#{fromId} AND e.DELETE_FLAG !='1'  AND e.DELETE_FLAG !='2' AND e.DELETE_FLAG !='3' AND e.DELETE_FLAG !='4'
+	</update>
+	<!-- 发件箱删除 变为3 -->
+	<update id="updateRecycles" parameterType="com.xoa.model.email.EmailModel">
+	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='4' 
+	where eb.FROM_ID=#{fromId} AND e.DELETE_FLAG !='' AND e.DELETE_FLAG !='0' AND e.DELETE_FLAG !='1'  AND e.DELETE_FLAG !='2' AND e.DELETE_FLAG !='4'
+	</update>
+	
+<!-- 	<!-- 发件箱为1时删除 -->
+	<delete id="deleteRecycle" parameterType="com.xoa.model.email.EmailModel">
+	delete email as e LEFT JOIN  email_body eb on e.BODY_ID=eb.BODY_ID 
+	where eb.FROM_ID=#{fromId} AND e.DELETE_FLAG ='1'
+	
+		delete from
+		email_body where eb.FROM_ID=#{fromId} AND BODY_ID = #{bodyId}
+	</delete> -->
+	
+	
+
+
 
 </mapper>
