@@ -21,7 +21,7 @@ import com.xoa.util.ToJson;
 
 
  /**
- * 创建作者:   张龙飞
+ * 创建作者:   、
  * 创建日期:   2017年4月18日 下午6:42:39
  * 类介绍  :    用户
  * 构造参数:   
@@ -29,13 +29,13 @@ import com.xoa.util.ToJson;
  */
 @Controller
 @Scope(value="prototype")
-@RequestMapping("/email")
+@RequestMapping("/ggemail")
 public class SpiritController {
 	private Logger loger = Logger.getLogger(SpiritController.class);
 	@Resource
 	private UsersService usersService;
 	
-	@RequestMapping("/index") //URL的/index
+	@RequestMapping("/ggindex") //URL的/index
 	public String login() {
 		return "login/index";
 	}
