@@ -218,8 +218,12 @@ public class UsersController {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");
-			maps.put("search", search);
+			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");			
+			Users user=new Users();
+			//maps=new HashMap<String, Object>();
+			maps.put("userName", search);
+			maps.put("userPrivName", search);
+			maps.put("deptName", search);
 			List<Users> list=usersService.getBySearch(maps,page,pageSize,useFlag);  
 			json.setObj(list);
             json.setMsg("OK");

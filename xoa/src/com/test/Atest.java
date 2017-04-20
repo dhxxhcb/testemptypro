@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xoa.model.department.Department;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.users.UsersPrivService;
 import com.xoa.service.users.UsersService;
@@ -57,8 +58,11 @@ public class Atest {
 		private DepartmentService departmentService;
 		@Test
 		public void test() throws Exception {
+			List<Department> list1 =departmentService.getDatagrid();
 			
-			List<String> list = departmentService.getDeptNameById(new int[] {3,4,5});
+			
+			List<Department> list =departmentService.getDatagrid();
+			//List<String> list = departmentService.getDeptNameById(new int[] {3,4,5});
 			System.out.println("vcc");
 			System.out.println(list.get(0).toString());
 		
