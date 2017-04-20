@@ -45,6 +45,7 @@ public class NotifyController {
 	@Resource
 	private NotifyService notifyService;
 
+	private	String err="";
 	
 	/**
 	 * 
@@ -65,7 +66,6 @@ public class NotifyController {
 				@RequestParam("useFlag") Boolean useFlag){
 			Map<String, Object> maps = new HashMap<String, Object>();
 			String returnReslt = null;
-			String err="";
 			try {
 				List<Notify> list =notifyService.selectNotifyManage(maps, page, pageSize, useFlag);
 				
@@ -124,7 +124,7 @@ public class NotifyController {
 	  maps.put("toId", toId);
 	   String returnReslt= null;
 	   String name="admin";
-	   String err;
+	 
 	  try {
 	   List<Notify> list=notifyService.selectNotify(maps, page,pageSize, useFlag, name);
 	   ToJson<Notify> tojson = new ToJson<Notify>(0, "");
