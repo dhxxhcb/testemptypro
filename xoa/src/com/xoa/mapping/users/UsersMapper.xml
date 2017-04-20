@@ -88,7 +88,8 @@
 		<result column="MY_RSS" property="myRss" javaType="string" />
 		<result column="REMARK" property="remark" javaType="string" />
 		<result column="USER_PARA" property="userPara" javaType="string" />
-		<association property="dep" javaType="com.xoa.model.department.Department">
+		<association property="dep"
+			javaType="com.xoa.model.department.Department">
 			<id column="DEPT_ID" property="deptId" />
 			<result column="DEPT_NAME" property="deptName" />
 			<result column="TEL_NO" property="telNo" jdbcType="VARCHAR"
@@ -125,36 +126,50 @@
 				javaType="string" />
 		</association>
 		<association property="role" javaType="com.xoa.model.role.Role">
-			<id column="USER_PRIV" property="userPriv" jdbcType="INTEGER" javaType="int" />
-			<result column="PRIV_NAME" property="privName" jdbcType="VARCHAR" javaType="string" />
-			<result column="PRIV_NO" property="privNo" jdbcType="SMALLINT" javaType="string" />
-			<result column="FUNC_ID_STR" property="funcIdStr" jdbcType="VARCHAR" javaType="string" />
-			<result column="PRIV_DEPT_ID" property="privDeptId" jdbcType="INTEGER"  javaType="string" />
-			<result column="PRIV_TYPE" property="privType" jdbcType="TINYINT" javaType="java.sql.Timestamp"/>
-			<result column="IS_GLOBAL" property="isGlobal" jdbcType="TINYINT" javaType="java.sql.Timestamp" />
+			<id column="USER_PRIV" property="userPriv" jdbcType="INTEGER"
+				javaType="int" />
+			<result column="PRIV_NAME" property="privName" jdbcType="VARCHAR"
+				javaType="string" />
+			<result column="PRIV_NO" property="privNo" jdbcType="SMALLINT"
+				javaType="string" />
+			<result column="FUNC_ID_STR" property="funcIdStr" jdbcType="VARCHAR"
+				javaType="string" />
+			<result column="PRIV_DEPT_ID" property="privDeptId" jdbcType="INTEGER"
+				javaType="string" />
+			<result column="PRIV_TYPE" property="privType" jdbcType="TINYINT"
+				javaType="java.sql.Timestamp" />
+			<result column="IS_GLOBAL" property="isGlobal" jdbcType="TINYINT"
+				javaType="java.sql.Timestamp" />
 		</association>
 	</resultMap>
-	<select id="getBySearch"
-        resultType="com.xoa.model.users.Users">
-        select u.UID,u.USER_ID as userId,u.USER_NAME as userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,
-        u.DEPT_ID,u.SEX,u.AVATAR, d.DEPT_NAME as deptName from user u ,department d
-		   where u.DEPT_ID= d.DEPT_ID 
-		   <if test="search!=null">
-			and userName = #{search ,jdbcType=VARCHAR} 
-			
-		</if>   
-				
-    </select>  
-    <select id="getUserAndDept"
-        parameterType="java.lang.Integer"
-        resultType="com.xoa.model.users.Users">
-       select u.UID,u.USER_ID as userId,u.USER_NAME as userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,
-        u.DEPT_ID,u.SEX,u.AVATAR, d.DEPT_NAME as deptName from user u ,department d
-		   where u.DEPT_ID= d.DEPT_ID 
-    </select>        	
+	<select id="getBySearch" parameterType="Map"
+		resultType="com.xoa.model.users.Users">
+		select u.USER_NAME as
+		userName,u.USER_PRIV_NAME as userPrivName,
+		 d.DEPT_NAME as deptName from user u
+		,department d  where  u.DEPT_ID= d.DEPT_ID 
+        <if test="userName != null and userName !=''">
+			and ( u.USER_NAME = #{userName}
+		</if> 
+       <if test="userPrivName != null and userPrivName !=''">
+			or u.USER_PRIV_NAME = #{userPrivName}
+		</if> 
+        <if test="deptName != null and deptName !=''">
+			or d.DEPT_NAME = #{deptName} )
+		</if> 
+	</select>
+	<select id="getUserAndDept" parameterType="java.lang.Integer"
+		resultType="com.xoa.model.users.Users">
+		select u.UID,u.USER_ID as userId,u.USER_NAME as
+		userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,
+		u.DEPT_ID,u.SEX,u.AVATAR, d.DEPT_NAME as deptName from user u
+		,department d
+		where u.DEPT_ID= d.DEPT_ID
+	</select>
 	<select id="findUserByName" resultMap="UserResultMap">
 		select
-		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD`,u.DEPT_ID,u.DEPT_ID_OTHER,u.USER_PRIV,u.USER_PRIV_OTHER from user u  WHERE
+		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD`,u.DEPT_ID,u.DEPT_ID_OTHER,u.USER_PRIV,u.USER_PRIV_OTHER
+		from user u WHERE
 		BYNAME= #{byname}
 	</select>
 	<select id="getUsernameById" resultMap="UserResultMap">
@@ -162,232 +177,235 @@
 		WHERE UID= #{uid}
 	</select>
 	<select id="getUsernameByUserId" resultType="java.lang.String">
-		select USER_NAME FROM user
+		select USER_NAME
+		FROM user
 		WHERE UID= #{uid}
 	</select>
 	<select id="getDatagrid" resultMap="UserResultMap">
 		select * from user
 	</select>
-	<select id="getAlluser"  resultType="java.util.Map" parameterType="com.xoa.model.users.Users">
-		select UID,USER_ID,USER_NAME,BYNAME,USER_PRIV,USER_PRIV_NAME,DEPT_ID,SEX,AVATAR from user 
-		   where 1=1  
-        <if test="userId != null and userId !=''">
-				and USER_ID = #{userId},
-			</if>
-			<if test="userName != null and userName !=''">
-				and USER_NAME = #{userName},
-			</if>
-			<if test="userNameIndex != null and userNameIndex !=''">
-				and USER_NAME_INDEX = #{userNameIndex},
-			</if>
-			<if test="byname != null and byname !=''">
-				and BYNAME = #{byname},
-			</if>
-			<if test="useingKey != null and useingKey !=''">
-				and USEING_KEY = #{useingKey},
-			</if>
-			<if test="usingFinger != null and usingFinger !=''">
-				and USING_FINGER = #{usingFinger},
-			</if>
-			<if test="password != null and password !=''">
-				and PASSWORD = #{password},
-			</if>
-			<if test="keySn != null and keySn !=''">
-				and KEY_SN = #{keySn},
-			</if>
-			<if test="secureKeySn != null and secureKeySn !=''">
-				and SECURE_KEY_SN = #{secureKeySn},
-			</if>
-			<if test="userPriv != null and userPriv !='' ">
-				and USER_PRIV = #{userPriv},
-			</if>
-			<if test="userPrivNo != null and userPrivNo !=''">
-				and USER_PRIV_NO = #{userPrivNo},
-			</if>
-			<if test="userPrivName != null and userPrivName !=''">
-				and USER_PRIV_NAME = #{userPrivName},
-			</if>
-			<if test="postPriv != null and postPriv !=''">
-				and POST_PRIV = #{postPriv},
-			</if>
-			<if test="postDept != null and postDept !=''">
-				and POST_DEPT = #{postDept},
-			</if>
-			<if test="deptId != null and deptId !=''">
-				and DEPT_ID = #{deptId},
-			</if>
-			<if test="deptIdOther != null and deptIdOther !=''">
-				and DEPT_ID_OTHER = #{deptIdOther},
-			</if>
-			<if test="sex != null and sex !=''">
-				and SEX = #{sex},
-			</if>
-			<if test="birthday != null and birthday !=''">
-				and BIRTHDAY = #{birthday},
-			</if>
-			<if test="isLunar != null and isLunar !=''">
-				and IS_LUNAR = #{isLunar},
-			</if>
-			<if test="telNoDept != null and telNoDept !=''">
-				and TEL_NO_DEPT = #{telNoDept},
-			</if>
-			<if test="faxNoDept != null and faxNoDept !=''">
-				and FAX_NO_DEPT = #{faxNoDept},
-			</if>
-			<if test="addHome != null and addHome !=''">
-				and ADD_HOME = #{addHome},
-			</if>
-			<if test="postNoHome != null and postNoHome !=''">
-				and POST_NO_HOME = #{postNoHome},
-			</if>
-			<if test="telNoHome != null and telNoHome !=''">
-				and TEL_NO_HOME = #{telNoHome},
-			</if>
-			<if test="mobilNo != null and mobilNo !=''">
-				and MOBIL_NO = #{mobilNo},
-			</if>
-			<if test="bpNo != null and bpNo !=''">
-				and BP_NO = #{bpNo},
-			</if>
-			<if test="email != null and email !=''">
-				and EMAIL = #{email},
-			</if>
-			<if test="oicqNo != null and oicqNo !=''">
-				and OICQ_NO = #{oicqNo},
-			</if>
-			<if test="icqNo != null and icqNo !=''">
-				and ICQ_NO = #{icqNo},
-			</if>
-			<if test="msn != null and msn !=''">
-				and MSN = #{msn},
-			</if>
-			<if test="avatar != null and avatar !=''">
-				and AVATAR = #{avatar},
-			</if>
-			<if test="callSound != null and callSound !=''">
-				and CALL_SOUND = #{callSound},
-			</if>
-			<if test="lastVisitTime != null and lastVisitTime !=''">
-				and LAST_VISIT_TIME = #{lastVisitTime},
-			</if>
-			<if test="smsOn != null and smsOn !=''">
-				and SMS_ON = #{smsOn},
-			</if>
-			<if test="menuType != null and menuType !=''">
-				and MENU_TYPE = #{menuType},
-			</if>
-			<if test="lastPassTime != null and lastPassTime !=''">
-				and LAST_PASS_TIME = #{lastPassTime},
-			</if>
-			<if test="theme != null and theme !=''">
-				and THEME = #{theme},
-			</if>
-			<if test="portal != null and portal !=''">
-				and PORTAL = #{portal},
-			</if>
-			<if test="panel != null and panel !=''">
-				and PANEL = #{panel},
-			</if>
-			<if test="online != null and online !=''">
-				and ONLINE = #{online},
-			</if>
-			<if test="onStatus != null and onStatus !=''">
-				and ON_STATUS = #{onStatus},
-			</if>
-			<if test="attendStatus != null and attendStatus !=''">
-				and ATTEND_STATUS = #{attendStatus},
-			</if>
-			<if test="mobilNoHidden != null and mobilNoHidden !=''">
-				and MOBIL_NO_HIDDEN = #{mobilNoHidden},
-			</if>
-			<if test="mytableLeft != null and mytableLeft !=''">
-				and MYTABLE_LEFT = #{mytableLeft},
-			</if>
-			<if test="mytableRight != null and mytableRight !=''">
-				and MYTABLE_RIGHT = #{mytableRight},
-			</if>
-			<if test="userPrivOther != null and userPrivOther !=''">
-				and USER_PRIV_OTHER = #{userPrivOther},
-			</if>
-			<if test="userNo != null and userNo !=''">
-				and USER_NO = #{userNo},
-			</if>
-			<if test="notLogin != null and notLogin !=''">
-				and NOT_LOGIN = #{notLogin},
-			</if>
-			<if test="notViewUser != null and notViewUser !=''">
-				and NOT_VIEW_USER = #{notViewUser},
-			</if>
-			<if test="notViewTable != null and notViewTable !=''">
-				and NOT_VIEW_TABLE = #{notViewTable},
-			</if>
-			<if test="notSearch != null and notSearch !=''">
-				and NOT_SEARCH = #{notSearch},
-			</if>
-			<if test="bkground != null and bkground !=''">
-				and BKGROUND = #{bkground},
-			</if>
-			<if test="bindIp != null and bindIp !=''">
-				and BIND_IP = #{bindIp},
-			</if>
-			<if test="lastVisitIp != null and lastVisitIp !=''">
-				and LAST_VISIT_IP = #{lastVisitIp},
-			</if>
-			<if test="menuImage != null and menuImage !=''">
-				and MENU_IMAGE = #{menuImage},
-			</if>
-			<if test="weatherCity != null and weatherCity !=''">
-				and WEATHER_CITY = #{weatherCity},
-			</if>
-			<if test="showRss != null and showRss !=''">
-				and SHOW_RSS = #{showRss},
-			</if>
-			<if test="menuExpand != null and menuExpand !=''">
-				and MENU_EXPAND = #{menuExpand},
-			</if>
-			<if test="myStatus != null and myStatus !=''">
-				and MY_STATUS = #{myStatus},
-			</if>
-			<!-- <if test="limitLogin != nulland limitLogin !=''">
-				and LIMIT_LOGIN = #{limitLogin},
-			</if> -->
-			<if test="photo != null and photo !=''">
-				and PHOTO = #{photo},
-			</if>
-			<if test="imRange != null and imRange !=''">
-				and IM_RANGE = #{imRange},
-			</if>
-			<if test="leaveTime != null and leaveTime !=''">
-				and LEAVE_TIME = #{leaveTime},
-			</if>
-			<if test="secretLevel != null and secretLevel !=''">
-				and SECRET_LEVEL = #{secretLevel},
-			</if>
-			<if test="notMobileLogin != null and notMobileLogin !=''">
-				and NOT_MOBILE_LOGIN = #{notMobileLogin},
-			</if>
-			<if test="manageModuleType != null and manageModuleType !=''">
-				and MANAGE_MODULE_TYPE = #{manageModuleType},
-			</if>
-			<if test="userPrivType != null and userPrivType !=''">
-				and USER_PRIV_TYPE = #{userPrivType},
-			</if>
-			<if test="userManageOrgs != null and userManageOrgs !=''">
-				and USER_MANAGE_ORGS = #{userManageOrgs},
-			</if>
-			<if test="shortcut != null and shortcut !=''">
-				and SHORTCUT = #{shortcut},
-			</if>
-			<if test="myRss != null and myRss !=''">
-				and MY_RSS = #{myRss},
-			</if>
-			<if test="remark != null and remark !=''">
-				and REMARK = #{remark},
-			</if>
-			<if test="userPara != null and userPara !=''">
-				and USER_PARA = #{userPara}
-			</if> 	
-	</select>	
+	<select id="getAlluser" resultType="java.util.Map"
+		parameterType="com.xoa.model.users.Users">
+		select
+		UID,USER_ID,USER_NAME,BYNAME,USER_PRIV,USER_PRIV_NAME,DEPT_ID,SEX,AVATAR
+		from user
+		where 1=1
+		<if test="userId != null and userId !=''">
+			and USER_ID = #{userId},
+		</if>
+		<if test="userName != null and userName !=''">
+			and USER_NAME = #{userName},
+		</if>
+		<if test="userNameIndex != null and userNameIndex !=''">
+			and USER_NAME_INDEX = #{userNameIndex},
+		</if>
+		<if test="byname != null and byname !=''">
+			and BYNAME = #{byname},
+		</if>
+		<if test="useingKey != null and useingKey !=''">
+			and USEING_KEY = #{useingKey},
+		</if>
+		<if test="usingFinger != null and usingFinger !=''">
+			and USING_FINGER = #{usingFinger},
+		</if>
+		<if test="password != null and password !=''">
+			and PASSWORD = #{password},
+		</if>
+		<if test="keySn != null and keySn !=''">
+			and KEY_SN = #{keySn},
+		</if>
+		<if test="secureKeySn != null and secureKeySn !=''">
+			and SECURE_KEY_SN = #{secureKeySn},
+		</if>
+		<if test="userPriv != null and userPriv !='' ">
+			and USER_PRIV = #{userPriv},
+		</if>
+		<if test="userPrivNo != null and userPrivNo !=''">
+			and USER_PRIV_NO = #{userPrivNo},
+		</if>
+		<if test="userPrivName != null and userPrivName !=''">
+			and USER_PRIV_NAME = #{userPrivName},
+		</if>
+		<if test="postPriv != null and postPriv !=''">
+			and POST_PRIV = #{postPriv},
+		</if>
+		<if test="postDept != null and postDept !=''">
+			and POST_DEPT = #{postDept},
+		</if>
+		<if test="deptId != null and deptId !=''">
+			and DEPT_ID = #{deptId},
+		</if>
+		<if test="deptIdOther != null and deptIdOther !=''">
+			and DEPT_ID_OTHER = #{deptIdOther},
+		</if>
+		<if test="sex != null and sex !=''">
+			and SEX = #{sex},
+		</if>
+		<if test="birthday != null and birthday !=''">
+			and BIRTHDAY = #{birthday},
+		</if>
+		<if test="isLunar != null and isLunar !=''">
+			and IS_LUNAR = #{isLunar},
+		</if>
+		<if test="telNoDept != null and telNoDept !=''">
+			and TEL_NO_DEPT = #{telNoDept},
+		</if>
+		<if test="faxNoDept != null and faxNoDept !=''">
+			and FAX_NO_DEPT = #{faxNoDept},
+		</if>
+		<if test="addHome != null and addHome !=''">
+			and ADD_HOME = #{addHome},
+		</if>
+		<if test="postNoHome != null and postNoHome !=''">
+			and POST_NO_HOME = #{postNoHome},
+		</if>
+		<if test="telNoHome != null and telNoHome !=''">
+			and TEL_NO_HOME = #{telNoHome},
+		</if>
+		<if test="mobilNo != null and mobilNo !=''">
+			and MOBIL_NO = #{mobilNo},
+		</if>
+		<if test="bpNo != null and bpNo !=''">
+			and BP_NO = #{bpNo},
+		</if>
+		<if test="email != null and email !=''">
+			and EMAIL = #{email},
+		</if>
+		<if test="oicqNo != null and oicqNo !=''">
+			and OICQ_NO = #{oicqNo},
+		</if>
+		<if test="icqNo != null and icqNo !=''">
+			and ICQ_NO = #{icqNo},
+		</if>
+		<if test="msn != null and msn !=''">
+			and MSN = #{msn},
+		</if>
+		<if test="avatar != null and avatar !=''">
+			and AVATAR = #{avatar},
+		</if>
+		<if test="callSound != null and callSound !=''">
+			and CALL_SOUND = #{callSound},
+		</if>
+		<if test="lastVisitTime != null and lastVisitTime !=''">
+			and LAST_VISIT_TIME = #{lastVisitTime},
+		</if>
+		<if test="smsOn != null and smsOn !=''">
+			and SMS_ON = #{smsOn},
+		</if>
+		<if test="menuType != null and menuType !=''">
+			and MENU_TYPE = #{menuType},
+		</if>
+		<if test="lastPassTime != null and lastPassTime !=''">
+			and LAST_PASS_TIME = #{lastPassTime},
+		</if>
+		<if test="theme != null and theme !=''">
+			and THEME = #{theme},
+		</if>
+		<if test="portal != null and portal !=''">
+			and PORTAL = #{portal},
+		</if>
+		<if test="panel != null and panel !=''">
+			and PANEL = #{panel},
+		</if>
+		<if test="online != null and online !=''">
+			and ONLINE = #{online},
+		</if>
+		<if test="onStatus != null and onStatus !=''">
+			and ON_STATUS = #{onStatus},
+		</if>
+		<if test="attendStatus != null and attendStatus !=''">
+			and ATTEND_STATUS = #{attendStatus},
+		</if>
+		<if test="mobilNoHidden != null and mobilNoHidden !=''">
+			and MOBIL_NO_HIDDEN = #{mobilNoHidden},
+		</if>
+		<if test="mytableLeft != null and mytableLeft !=''">
+			and MYTABLE_LEFT = #{mytableLeft},
+		</if>
+		<if test="mytableRight != null and mytableRight !=''">
+			and MYTABLE_RIGHT = #{mytableRight},
+		</if>
+		<if test="userPrivOther != null and userPrivOther !=''">
+			and USER_PRIV_OTHER = #{userPrivOther},
+		</if>
+		<if test="userNo != null and userNo !=''">
+			and USER_NO = #{userNo},
+		</if>
+		<if test="notLogin != null and notLogin !=''">
+			and NOT_LOGIN = #{notLogin},
+		</if>
+		<if test="notViewUser != null and notViewUser !=''">
+			and NOT_VIEW_USER = #{notViewUser},
+		</if>
+		<if test="notViewTable != null and notViewTable !=''">
+			and NOT_VIEW_TABLE = #{notViewTable},
+		</if>
+		<if test="notSearch != null and notSearch !=''">
+			and NOT_SEARCH = #{notSearch},
+		</if>
+		<if test="bkground != null and bkground !=''">
+			and BKGROUND = #{bkground},
+		</if>
+		<if test="bindIp != null and bindIp !=''">
+			and BIND_IP = #{bindIp},
+		</if>
+		<if test="lastVisitIp != null and lastVisitIp !=''">
+			and LAST_VISIT_IP = #{lastVisitIp},
+		</if>
+		<if test="menuImage != null and menuImage !=''">
+			and MENU_IMAGE = #{menuImage},
+		</if>
+		<if test="weatherCity != null and weatherCity !=''">
+			and WEATHER_CITY = #{weatherCity},
+		</if>
+		<if test="showRss != null and showRss !=''">
+			and SHOW_RSS = #{showRss},
+		</if>
+		<if test="menuExpand != null and menuExpand !=''">
+			and MENU_EXPAND = #{menuExpand},
+		</if>
+		<if test="myStatus != null and myStatus !=''">
+			and MY_STATUS = #{myStatus},
+		</if>
+		<!-- <if test="limitLogin != nulland limitLogin !=''"> and LIMIT_LOGIN 
+			= #{limitLogin}, </if> -->
+		<if test="photo != null and photo !=''">
+			and PHOTO = #{photo},
+		</if>
+		<if test="imRange != null and imRange !=''">
+			and IM_RANGE = #{imRange},
+		</if>
+		<if test="leaveTime != null and leaveTime !=''">
+			and LEAVE_TIME = #{leaveTime},
+		</if>
+		<if test="secretLevel != null and secretLevel !=''">
+			and SECRET_LEVEL = #{secretLevel},
+		</if>
+		<if test="notMobileLogin != null and notMobileLogin !=''">
+			and NOT_MOBILE_LOGIN = #{notMobileLogin},
+		</if>
+		<if test="manageModuleType != null and manageModuleType !=''">
+			and MANAGE_MODULE_TYPE = #{manageModuleType},
+		</if>
+		<if test="userPrivType != null and userPrivType !=''">
+			and USER_PRIV_TYPE = #{userPrivType},
+		</if>
+		<if test="userManageOrgs != null and userManageOrgs !=''">
+			and USER_MANAGE_ORGS = #{userManageOrgs},
+		</if>
+		<if test="shortcut != null and shortcut !=''">
+			and SHORTCUT = #{shortcut},
+		</if>
+		<if test="myRss != null and myRss !=''">
+			and MY_RSS = #{myRss},
+		</if>
+		<if test="remark != null and remark !=''">
+			and REMARK = #{remark},
+		</if>
+		<if test="userPara != null and userPara !=''">
+			and USER_PARA = #{userPara}
+		</if>
+	</select>
 	<insert id="addUser" useGeneratedKeys="true" keyProperty="uid">
 		insert into user(
 		<trim suffixOverrides=",">

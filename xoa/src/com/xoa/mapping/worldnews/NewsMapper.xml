@@ -31,13 +31,6 @@
 		<result column="COMPRESS_CONTENT" property="compressContent"
 			javaType="String" />
 		<result column="SUMMARY" property="summary" javaType="String" />
-		<association property="dep" javaType="com.xoa.model.department.Department">
-			<id column="DEPT_ID" property="deptId" />
-			<result column="DEPT_NAME" property="deptName" /></association>
-	  <association property="users" javaType="com.xoa.model.users.Users">
-  		<id column="UID" property="uid" javaType="int" />
-		<result column="USER_ID" property="userId" javaType="string" />
-		<result column="USER_NAME" property="userName" javaType="string" /></association>
 	</resultMap>
 	<!-- 查询信息并返回 列表 -->
 	<select id="selectNews" parameterType="Map" resultMap="BaseResultMap">
@@ -100,27 +93,6 @@
 		</if>
 	</select>
 
-	<select id="showAllNews" parameterType="com.xoa.model.worldnews.News"
-		resultMap="BaseResultMap">
-		SELECT NEWS_ID, SUBJECT, PROVIDER,
-		NEWS_TIME, CLICK_COUNT,
-		ANONYMITY_YN,
-		FORMAT, TYPE_ID, PUBLISH,
-		TOP, LAST_EDITOR,
-		LAST_EDIT_TIME,
-		SUBJECT_COLOR, KEYWORD, TOP_DAYS,
-		CONTENT,
-		ATTACHMENT_ID, ATTACHMENT_NAME,
-		TO_ID, PRIV_ID, USER_ID,
-		READERS,
-		COMPRESS_CONTENT, SUMMARY
-		FROM news
-		<if test="start!=null and pagesize!=null">
-			limit #{start jdbcType=INTEGER},#{pagesize
-			jdbcType=INTEGER}
-		</if>
-		ORDER BY NEWS_ID DESC
-	</select>
 
 	<select id="showAllCountNews" parameterType="com.xoa.model.worldnews.News"
 		resultMap="BaseResultMap">

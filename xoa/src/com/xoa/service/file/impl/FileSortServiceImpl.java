@@ -156,5 +156,18 @@ public class FileSortServiceImpl  implements FileSortService{
 	public List<FileSortModel> getChildTree(int sortid) {
 		return file_SortMapper.getChildTree(sortid);
 	}
+	/**
+     * 
+     * 创建作者:   杨 胜
+     * 创建日期:   2017-4-20 上午9:39:32
+     * 方法介绍:   添加子文件夹
+     * 参数说明:   @param file
+     * 参数说明:   @return
+     * @return   int 添加子文件夹影响行
+     */
+	@Override
+	public int saveFileSortChr(FileSortModel file) {
+		return file_SortMapper.saveFileSortChr(file);
+	}
 	
 }

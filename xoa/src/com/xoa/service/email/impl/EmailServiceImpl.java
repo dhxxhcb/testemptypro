@@ -17,10 +17,10 @@ import com.xoa.util.page.PageParams;
 
 /**
  * 
- * @ClassName (类名):  EmailUtilServiceImpl
- * @Description(简述): 邮箱操作业务类
- * @author(作者):      zlx
- * @date(日期):        2017-4-17 下午5:44:41
+ * 创建作者:   张勇
+ * 创建日期:   2017-4-20 上午10:54:20
+ * 类介绍  :   邮件业务层实现类
+ * 构造参数:   
  *
  */
 @Service
@@ -34,12 +34,13 @@ public class EmailServiceImpl implements EmailService {
 	private EmailMapper emailMapper;
 
 	/**
-	 * 创建邮件并发送
-	 * <p>Title: sendEmail</p>
-	 * <p>Description: </p>
-	 * @param emailBody 件箱、收件箱内容信息对象 邮件内容实体类
-	 * @param email 收件人实体类 邮件状态实体类
-	 * @author(作者):  zlx
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:47:08
+	 * 方法介绍:   创建邮件并发送
+	 * 参数说明:   @param emailBody  邮件内容实体类
+	 * 参数说明:   @param email 邮件状态实体类
+	 * @return     void
 	 */
 	@Override
 	public void sendEmail(EmailBodyModel emailBody, EmailModel email) {
@@ -65,7 +66,14 @@ public class EmailServiceImpl implements EmailService {
 		}
 	}
 
-	//草稿箱
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:47:26
+	 * 方法介绍:   草稿箱
+	 * 参数说明:   @param emailBody 邮件内容实体类
+	 * @return     void
+	 */
 	@Override
 	public void saveEmail(EmailBodyModel emailBody) {
 		emailBodyMapper.save(emailBody);
@@ -73,17 +81,18 @@ public class EmailServiceImpl implements EmailService {
 
 	
 	
-	/** 
-	 *  查询邮件
-	 * <p>Title: selectEmail</p>
-	 * <p>Description: </p>
-	 * @param maps 相关条件参数传值
-	 * @param page 当前页
-	 * @param pageSize 每页显示条数
-	 * @param useFlag 是否开启分页插件
-	 * @return 结果集合
-	 * @throws Exception
-	 * @author(作者):  zlx
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:48:04
+	 * 方法介绍:   查询邮件
+	 * 参数说明:   @param maps 相关条件参数传值
+	 * 参数说明:   @param page 当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return 结果集合
+	 * 参数说明:   @throws Exception
+	 * @return     List<EmailBodyModel>
 	 */
 	@Override
 	public List<EmailBodyModel> selectEmail(Map<String, Object> maps, Integer page,
@@ -99,11 +108,12 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	/**
-	 * 根据id删除
-	 * <p>Title: deleteByPrimaryKey</p>
-	 * <p>Description: </p>
-	 * @param bodyId 邮件Id
-	 * @author(作者):  zlx
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:48:31
+	 * 方法介绍:   根据ID删除一条
+	 * 参数说明:   @param bodyId 邮件Id
+	 * @return     void
 	 */
 	@Override
 	public void deleteByPrimaryKey(Integer bodyId) {
@@ -111,16 +121,17 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	/**
-	 * 草稿箱查询
-	 * <p>Title: listDrafts</p>
-	 * <p>Description: </p>
-	 * @param maps map条件参数
-	 * @param page 当前页
-	 * @param pageSize 每页显示条数
-	 * @param useFlag 是否开启分页插件
-	 * @return
-	 * @author(作者):  zy
-	 * @see com.xoa.service.email.EmailService#listDrafts(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:51:42
+	 * 方法介绍:   草稿箱查询
+	 * 参数说明:   @param maps 相关条件参数传值
+	 * 参数说明:   @param page 当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return 结果集合
+	 * 参数说明:   @throws Exception
+	 * @return     List<EmailBodyModel>
 	 */
 	@Override
 	public List<EmailBodyModel> listDrafts(Map<String, Object> maps, Integer page,
@@ -135,17 +146,17 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	/**
-	 * 发件箱查询
-	 * <p>Title: listSendEmail</p>
-	 * <p>Description: </p>
-	 * @param maps map条件参数
-	 * @param page 当前页
-	 * @param pageSize 每页显示条数
-	 * @param useFlag 是否开启分页插件
-	 * @return
-	 * @throws Exception
-	 * @author(作者):  zy
-	 * @see com.xoa.service.email.EmailService#listSendEmail(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:52:01
+	 * 方法介绍:   已发送查询
+	 * 参数说明:   @param maps 相关条件参数传值
+	 * 参数说明:   @param page 当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return 结果集合
+	 * 参数说明:   @throws Exception
+	 * @return     List<EmailBodyModel>
 	 */
 	@Override
 	public List<EmailBodyModel> listSendEmail(Map<String, Object> maps,
@@ -161,17 +172,17 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	/**
-	 *  废纸篓查询
-	 * <p>Title: listWastePaperbasket</p>
-	 * <p>Description: </p>
-	 * @param maps map条件参数
-	 * @param page 当前页
-	 * @param pageSize  每页显示条数
-	 * @param useFlag 是否开启分页插件
-	 * @return
-	 * @throws Exception
-	 * @author(作者):  zy
-	 * @see com.xoa.service.email.EmailService#listWastePaperbasket(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:52:30
+	 * 方法介绍:   废纸篓查询
+	 * 参数说明:   @param maps 相关条件参数传值
+	 * 参数说明:   @param page 当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return 结果集合
+	 * 参数说明:   @throws Exception
+	 * @return     List<EmailBodyModel>
 	 */
 	@Override
 	public List<EmailBodyModel> listWastePaperbasket(Map<String, Object> maps,
@@ -187,17 +198,17 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	/**
-	 * 条件分页查询
-	 * <p>Title: selectEmailBody</p>
-	 * <p>Description: </p>
-	 * @param maps map条件参数
-	 * @param page 当前页
-	 * @param pageSize 每页显示条数
-	 * @param useFlag 是否开启分页插件
-	 * @return
-	 * @throws Exception
-	 * @author(作者):  zlx
-	 * @see com.xoa.service.email.EmailService#selectEmailBody(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:52:59
+	 * 方法介绍:   已发送查询
+	 * 参数说明:   @param maps 相关条件参数传值
+	 * 参数说明:   @param page 当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return 结果集合
+	 * 参数说明:   @throws Exception
+	 * @return     List<EmailBodyModel>
 	 */
 	@Override
 	public List<EmailBodyModel> selectEmailBody(Map<String, Object> maps,
@@ -212,16 +223,16 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	/**
-	 *   根据ID查询一条邮件
-	 * <p>Title: queryById</p>
-	 * <p>Description: </p>
-	 * @param maps map参数
-	 * @param page 当前页
-	 * @param pageSize 每页显示条数
-	 * @param useFlag 是否启用插件
-	 * @return
-	 * @author(作者):  zlx
-	 * @see com.xoa.service.email.EmailService#queryById(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:48:55
+	 * 方法介绍:   根据ID查询一条邮件
+	 * 参数说明:   @param maps 相关条件参数传值
+	 * 参数说明:   @param page 当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return 结果集合
+	 * @return     EmailBodyModel
 	 */
 	@Override
 	public EmailBodyModel queryById(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag) {
@@ -234,17 +245,17 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	/**
-	 *  收件箱查询
-	 * <p>Title: selectInbox</p>
-	 * <p>Description: </p>
-	 * @param maps map参数
-	 * @param page 当前页
-	 * @param pageSize 每页显示条数
-	 * @param useFlag 是否开启插件
-	 * @return
-	 * @throws Exception
-	 * @author(作者):  zy
-	 * @see com.xoa.service.email.EmailService#selectInbox(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:49:30
+	 * 方法介绍:   收件箱查询
+	 * 参数说明:   @param maps 相关条件参数传值
+	 * 参数说明:   @param page 当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return 结果集合
+	 * 参数说明:   @throws Exception
+	 * @return     List<EmailBodyModel>
 	 */
 	@Override
 	public List<EmailBodyModel> selectInbox(Map<String, Object> maps, Integer page,
@@ -261,17 +272,17 @@ public class EmailServiceImpl implements EmailService {
 	
 	
 	/**
-	 *  未读
-	 * <p>Title: selectIsRead</p>
-	 * <p>Description: </p>
-	 * @param maps map条件参数
-	 * @param page 当前页
-	 * @param pageSize 每页显示条数
-	 * @param useFlag 
-	 * @return
-	 * @throws Exception
-	 * @author(作者):  zy
-	 * @see com.xoa.service.email.EmailService#selectIsRead(java.util.Map, java.lang.Integer, java.lang.Integer, boolean)
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:53:42
+	 * 方法介绍:   未读
+	 * 参数说明:   @param maps 相关条件参数传值
+	 * 参数说明:   @param page 当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return 结果集合
+	 * 参数说明:   @throws Exception
+	 * @return     List<EmailBodyModel>
 	 */
 	@Override
 	public List<EmailBodyModel> selectIsRead(Map<String, Object> maps, Integer page,
@@ -287,9 +298,11 @@ public class EmailServiceImpl implements EmailService {
 
 	/**
 	 * 
-	 * 创建作者:      张勇
-	 * 创建日期:      2017-4-18 下午2:57:12
-	 * 类介绍:       未读转换为已读
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:47:44
+	 * 方法介绍:    未读转为已读
+	 * 参数说明:   @param email  收件箱参数
+	 * @return     void
 	 */
 	@Override
 	public void updateIsRead(EmailModel email) {

@@ -19,12 +19,15 @@
 		<result  column="fileType"  property="fileType" javaType="string" />
 	</resultMap>
 	<sql id="FileSort">
-	SORT_ID,SORT_PARENT,SORT_NO,SORT_NAME,SORT_TYPE,USER_ID,NEW_USER,MANAGE_USER,DEL_USER,DOWN_USER,DOWN_USER,SHARE_USER,OWNER,SIGN_USER,REVIEW
+	SORT_ID,SORT_PARENT,SORT_NO,SORT_NAME,SORT_TYPE,USER_ID,NEW_USER,MANAGE_USER,DEL_USER,DOWN_USER,SHARE_USER,OWNER,SIGN_USER,REVIEW
+	</sql>
+	<sql id="insertFile">
+	SORT_PARENT,SORT_NO,SORT_NAME,SORT_TYPE,USER_ID,NEW_USER,MANAGE_USER,DEL_USER,DOWN_USER,SHARE_USER,OWNER,SIGN_USER,REVIEW
 	</sql>
 	<select id="getFileSort" resultMap="file_SortResultMap" parameterType="com.xoa.model.file.FileSortModel">
 		select  <include refid="FileSort"></include> ,'folder' as fileType  from file_sort  where  1=1 
         <if test="sortParent != null and sortParent !='' or sortParent==0">
-           and SORT_PARENT=#{sortParent};
+           and SORT_PARENT=#{sortParent}
         </if>
          <if test="sortNo != null and sortNo !=''" >
            and sort_no=#{sortNo}
@@ -34,7 +37,7 @@
         </if>
         <if test="sortType != null and sortType !=''" >
            and sort_type=#{sortType}
-        </if>;
+          </if>
 	</select>
 	<!-- ajax  -->
 	<select id="getSortChrildren" parameterType="int" resultMap="file_SortResultMap">
@@ -42,83 +45,81 @@
 	</select>
 	
 	<insert id="saveFileSort"  parameterType="com.xoa.model.file.FileSortModel">
-	insert into file_sort
-	 <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="sortParent != null and sortParent !='' or sortParent==0" >
+	insert into file_sort  (<include refid="insertFile"/>)
+ <!--  <if test="sortParent != null and sortParent !='' or sortParent==0" >
         SORT_PARENT,
       </if>
-      <if test="sortNo != null" >
-        SORT_NO,
-      </if>
-      <if test="sortName != null" >
-        SORT_NAME,
-      </if>
-      <if test="sortType != null" >
-        SORT_TYPE,
-      </if>
-       <if test="userId != null" >
-        USER_ID,
-      </if>
-       <if test="newUser != null" >
-        NEW_USER,
-      </if>
-       <if test="managerUser != null" >
-        MANAGE_USER,
-      </if>
-       <if test="downUser != null" >
-        DOWN_USER,
-      </if>
-      <if test="sharUser != null" >
-        SHARE_USER,
-      </if>
-      <if test="owner != null" >
-        OWNER,
-      </if>
-      <if test="signUser != null" >
-        SIGN_USER,
-      </if>
-       <if test="review != null" >
-        REVIEW,
-      </if>
-    </trim>
+      SORT_PARENT,SORT_NO,SORT_NAME,SORT_TYPE,USER_ID,NEW_USER,MANAGE_USER,DEL_USER,DOWN_USER,SHARE_USER,OWNER,SIGN_USER,REVIEW
+      -->
       values 
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="sortParent != null" >
-        #{sortParent},
-      </if>
-      <if test="sortNo != null" >
+         #{sortParent},
          #{sortNo},
-      </if>
-      <if test="sortName != null" >
         #{sortName},
+        '5',
+      <if test="userId == null or userId == ''" >
+        '',
       </if>
-      <if test="sortType != null" >
-        #{sortType},
-      </if>
-      <if test="userId != null" >
+      <if test="userId != null and userId !=''" >
         #{userId},
       </if>
-      <if test="newUser != null" >
+      
+      <if test="newUser == null or newUser == ''" >
+        '',
+      </if>
+      <if test="newUser != null and newUser != ''" >
         #{newUser},
       </if>
-      <if test="managerUser != null" >
+      
+      <if test="managerUser == null or managerUser == ''" >
+        '',
+      </if>
+      <if test="managerUser != null and managerUser != ''" >
         #{managerUser},
       </if>
-      <if test="downUser != null" >
+      
+      <if test="delUser == null or delUser == ''" >
+        '',
+      </if>
+      <if test="delUser != null and delUser != ''" >
+        #{delUser},
+      </if>
+      
+      <if test="downUser == null or downUser == ''" >
+        '',
+      </if>
+      <if test="downUser != null and downUser != ''" >
         #{downUser},
       </if>
-      <if test="sharUser != null" >
+      
+      <if test="sharUser == null or sharUser == ''" >
+        '',
+      </if>
+      <if test="sharUser != null and sharUser != ''" >
         #{sharUser},
       </if>
-      <if test="owner != null" >
+      
+      <if test="owner == null or owner == ''" >
+        '',
+      </if>
+      <if test="owner != null and owner != ''" >
         #{owner},
       </if>
-      <if test="signUser != null" >
+      
+      <if test="signUser == null or signUser == ''" >
+        '',
+      </if>
+      <if test="signUser != null and signUser != ''" >
         #{signUser},
       </if>
-      <if test="review != null" >
+      
+      <if test="review == null or review ==''" >
+        '',
+      </if>
+      <if test="review != null and review != ''" >
         #{review},
       </if>
+      
     </trim>
 	</insert>
 	
@@ -126,10 +127,10 @@
 	update file_sort 
     <set>
     <trim  suffixOverrides="," >
-      <if test="sortNo != null" >
+      <if test="sortNo != null and sortNo != ''" >
         sort_no = #{sortNo},
       </if>
-       <if test="sortName != null" >
+       <if test="sortName != null and sortName != ''" >
         sort_name = #{sortName},
       </if>
       </trim>
@@ -150,4 +151,82 @@
 		select * from file_sort  where SORT_PARENT<>#{sortid};
 		]]>
 	</select>
+	
+	<insert id="saveFileSortChr" parameterType="com.xoa.model.file.FileSortModel">
+	insert into file_sort (<include refid="insertFile"/>) 
+	values 
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+	<!--  <if test="sortParent != null and sortParent !='' or sortParent==0" >
+        SORT_PARENT,
+      </if>
+      SORT_PARENT,SORT_NO,SORT_NAME,SORT_TYPE,USER_ID,NEW_USER,MANAGE_USER,DEL_USER,DOWN_USER,SHARE_USER,OWNER,SIGN_USER,REVIEW
+      -->
+         #{sortParent},
+         #{sortNo},
+        #{sortName},
+        '5',
+    <if test="userId == null or userId == ''" >
+        '',
+      </if>
+      <if test="userId != null and userId !=''" >
+        #{userId},
+      </if>
+      
+      <if test="newUser == null or newUser == ''" >
+        '',
+      </if>
+      <if test="newUser != null and newUser != ''" >
+        #{newUser},
+      </if>
+      
+      <if test="managerUser == null or managerUser == ''" >
+        '',
+      </if>
+      <if test="managerUser != null and managerUser != ''" >
+        #{managerUser},
+      </if>
+      
+      <if test="delUser == null or delUser == ''" >
+        '',
+      </if>
+      <if test="delUser != null and delUser != ''" >
+        #{delUser},
+      </if>
+      
+      <if test="downUser == null or downUser == ''" >
+        '',
+      </if>
+      <if test="downUser != null and downUser != ''" >
+        #{downUser},
+      </if>
+      
+      <if test="sharUser == null or sharUser == ''" >
+        '',
+      </if>
+      <if test="sharUser != null and sharUser != ''" >
+        #{sharUser},
+      </if>
+      
+      <if test="owner == null or owner == ''" >
+        '',
+      </if>
+      <if test="owner != null and owner != ''" >
+        #{owner},
+      </if>
+      
+      <if test="signUser == null or signUser == ''" >
+        '',
+      </if>
+      <if test="signUser != null and signUser != ''" >
+        #{signUser},
+      </if>
+      
+      <if test="review == null or review ==''" >
+        '',
+      </if>
+      <if test="review != null and review != ''" >
+        #{review},
+      </if>
+    </trim>
+	</insert>
 </mapper>

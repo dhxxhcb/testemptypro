@@ -9,10 +9,10 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * 
- * @ClassName (类名):  JSONSerializer
- * @Description(简述): JSON初始化
- * @author(作者):      zy
- * @date(日期):        2017-4-17 下午2:52:22
+ * 创建作者:   张勇
+ * 创建日期:   2017-4-20 上午11:16:36
+ * 类介绍  :   JSON初始化
+ * 构造参数:   
  *
  */
 public class JSONSerializer {
@@ -20,13 +20,12 @@ public class JSONSerializer {
 
 	 /**
 	  * 
-	  * @Title: serialize
-	  * @Description: 对象转换为json
-	  * @author(作者):      zy
-	  * @param: @param object
-	  * @param: @return   
-	  * @return: String   
-	  * @throws
+	  * 创建作者:   张勇
+	  * 创建日期:   2017-4-20 上午11:16:46
+	  * 方法介绍:   对象转换为json
+	  * 参数说明:   @param object
+	  * 参数说明:   @return
+	  * @return     String
 	  */
      public static <T> String serialize(T object) {
          return JSON.toJSONString(object);
@@ -34,14 +33,13 @@ public class JSONSerializer {
 
      /**
       * 
-      * @Title: deserialize
-      * @Description: 获取json中的对象
-      * @author(作者):      zy
-      * @param: @param string
-      * @param: @param clz
-      * @param: @return   
-      * @return: T   
-      * @throws
+      * 创建作者:   张勇
+      * 创建日期:   2017-4-20 上午11:16:58
+      * 方法介绍:   获取json中的对象
+      * 参数说明:   @param string
+      * 参数说明:   @param clz
+      * 参数说明:   @return
+      * @return     T
       */
      public static <T> T deserialize(String string, Class<T> clz) {
          return JSON.parseObject(string, clz);
@@ -49,15 +47,14 @@ public class JSONSerializer {
 
      /**
       * 
-      * @Title: load
-      * @Description: 路径的类转换为对象
-      * @author(作者):      zy
-      * @param: @param path
-      * @param: @param clz
-      * @param: @return
-      * @param: @throws IOException   
-      * @return: T   
-      * @throws
+      * 创建作者:   张勇
+      * 创建日期:   2017-4-20 上午11:17:12
+      * 方法介绍:   路径的类转换为对象
+      * 参数说明:   @param path
+      * 参数说明:   @param clz
+      * 参数说明:   @return
+      * 参数说明:   @throws IOException
+      * @return     T
       */
      public static <T> T load(Path path, Class<T> clz) throws IOException {
          return deserialize(
@@ -66,14 +63,13 @@ public class JSONSerializer {
 
      /**
       * 
-      * @Title: save
-      * @Description: 对象保存为文件
-      * @author(作者):      zy
-      * @param: @param path
-      * @param: @param object
-      * @param: @throws IOException   
-      * @return: void   
-      * @throws
+      * 创建作者:   张勇
+      * 创建日期:   2017-4-20 上午11:17:23
+      * 方法介绍:   对象保存为文件
+      * 参数说明:   @param path
+      * 参数说明:   @param object
+      * 参数说明:   @throws IOException
+      * @return     void
       */
      public static <T> void save(Path path, T object) throws IOException {
          if (Files.notExists(path.getParent())) {

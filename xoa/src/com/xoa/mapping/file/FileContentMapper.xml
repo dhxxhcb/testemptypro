@@ -26,7 +26,7 @@
 		<select id="getFileConBySortid" parameterType="int" resultMap="file_ContentResultMap">
 		select <include refid="FileCon"></include>,'file' as fileType from file_content where SORT_ID=#{tempNo};
 		</select>
-		<delete id="fileContentDeleBySort_id" parameterType="int">
+		<delete id="deleteBySort_id" parameterType="int">
 		delete from  file_content where SORT_ID=#{tempNo};
 		</delete>
 </mapper>

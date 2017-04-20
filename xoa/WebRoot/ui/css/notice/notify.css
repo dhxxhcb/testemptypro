@@ -92,6 +92,8 @@ table.TableList tr td a{text-decoration: none;}
 	float: left;
 	padding: 5px 10px;
 	margin-left: 5px;	
+	border-radius:20px;
+	margin:5px 10px;
 }
 .muJump ul li:first-of-type{
 	margin-left: 10%;

@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html><!--<![endif]-->
  <head>
-    <title>公告通知</title>
+    <title><fmt:message code="notice.title.notify" /></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
 	<link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
     <link rel="stylesheet" type="text/css" href="../css/notice/notify.css" />
-    <script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
   	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
   	<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	#noticeQuery table tr td{padding:5px 5px;border-color:#ccc;}
     	.TableBlock{background-color:#fff;border-color:#aaa;}
     	.inPole{font-size: 14px;}
-		textarea{min-width: 30%;min-height: 30px;margin: 5px 5px;}
+		textarea{min-width: 65%;min-height: 35px;margin: 5px 5px;}
 		.inPole a{display: inline-block;padding: 3px 5px;text-decoration: none;}
 		.add_img .addImg{display: inline-block;width: 20px;height: 10px;overflow: hidden;position: relative;}
 		.add_img .addImg img{height: 100%;}
@@ -38,16 +38,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#noRead span{display: block;width: 50%;margin: 20px auto;padding: 20px 20px;font-size: 25px;text-align: center;background-color: #6fb4fa;color: #fff;}
 		.title{font-size: 16px;color: #124164;font-weight: bold;margin-top:20px;margin-left:20px;display: inline-block;}
 		.M-box3{margin-left:100px;margin-top:10px;}
-		.M-box3 a{margin: 0 3px;width: 25px;height: 20px;line-height: 20px;font-size: 12px;text-decoration: none;}
+		.M-box3 a{margin: 0 3px;width: 29px;height: 20px;line-height: 20px;font-size: 12px;text-decoration: none;}
 		.M-box3 .active{margin: 0px 3px;width: 25px;height: 20px;line-height: 20px;background: #2b7fe0;font-size: 12px;border: 1px solid #2b7fe0;}
 		.jump-ipt{margin: 0 3px;width: 25px;height: 20px;line-height: 20px;font-size: 12px;}
 		.M-box3 a:hover{background: #2b7fe0;}
+		.laydate-icon{width:150px;}
+		.BigInput{width:352px;height:20px;}
+		.BigButton{width:40px;height:25px;border-radius:3px;line-height:25px;text-align:center;}
+		.Btn{width:120px;margin:0 auto;}
     </style>
     <script type="text/javascript">
     	$(function(){
-    	
-    		
-    	
     			var data1={
     				"page":1,
     				"pageSize":5,
@@ -63,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							console.log(data[0].name);				
 							var str='';
 							for(var i=0;i<data.length;i++){
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].sendTime+'</td><td nowrap align="center">'+data[i].format+'</td></tr>';
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'</td></tr>';
 								str1='<input type="hidden" id="'+data[i].notifyId+'">';
 							}
 							$('.TableHeader').after(str+str1); 
@@ -72,10 +73,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    pageCount:10,
 							    jump:true,
 							    coping:true,
-							    homePage:'首页',
-							    endPage:'末页',
-							    prevContent:'上页',
-							    nextContent:'下页'
+							    homePage:'<fmt:message code="global.page.first" />',
+							    endPage:'<fmt:message code="global.page.last" />',
+							    prevContent:'<fmt:message code="global.page.pre" />',
+							    nextContent:'<fmt:message code="global.page.next" />',
+							    jumpBtn:'<fmt:message code="global.page.jump" />'
 							});
 						}
 				});
@@ -117,8 +119,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			
 	    		});
 	    		
-	    		
-	    		
     	});
     	
     	function delate(id){
@@ -131,7 +131,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						dataType:'json',
 						data:{'id':id},
 						success:function(){
-							
 							location.reload();
 						}
 				}); 
@@ -140,9 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 	return false; 
 			 } 	
     	}    	
-    	
-    	
-    	
+    		
     </script>
 </head>
 
@@ -197,15 +194,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </td>
 			   		
 		    <td align="right" valign="bottom" class="small1">
-		    	<!-- <div id="pageArea" class="pageArea">
-					第<span id="pageNumber" class="pageNumber">1/1</span>页
-					<a href="javascript:;" id="pageFirst" class="pageFirstDisable" title="首页"></a>
-					  <a href="javascript:;" id="pagePrevious" class="pagePreviousDisable" title="上一页"></a>
-					  <a href="javascript:;" id="pageNext" class="pageNextDisable" title="下一页"></a>
-					  <a href="javascript:;" id="pageLast" class="pageLastDisable" title="末页"></a>
-					 转到 第 <input type="text" size="3" class="SmallInput" name="page_no" id="page_no" onkeypress="input_page_no()" style='text-align:center;'> 页 
-					  	<a href="javascript:goto_page();" id="pageGoto" class="pageGoto" title="转到"></a>
-		    	</div> -->
 		    	<div class="M-box3"></div>
 		    </td>
 		  </tr>
@@ -217,12 +205,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
 		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
 		   
-		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.createTime" /></u>
+		      <th nowrap align="center" style="cursor:pointer;"><u>发布范围</u>
+		      	
+		      </th>
+		      <th nowrap align="center"><fmt:message code="notice.th.createTime" />
 		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
 		      </th>
-		      <!-- <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
-		      <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th> -->
-		      <th nowrap align="center"><fmt:message code="notice.th.state" /></th>
 		     <!--  <th nowrap align="center"><fmt:message code="notice.th.operation" /></th> -->
 		    </tr>
 		</table>
@@ -230,11 +218,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- 公告查询 -->
 	<div id="noticeQuery" style="display: none;">
-		<div class="title">公告通知查询</div>
+		<div class="title"><fmt:message code="notice.title.announcementquery" /></div>
 		<table class="TableBlock" width="50%" align="center" border="1" style="margin: 20px auto;">
 			  <form enctype="multipart/form-data" name="form1"></form>
 			    <tbody><tr>
-			      <td nowrap="" class="TableData">发布人：</td>
+			      <td nowrap="" class="TableData"><fmt:message code="notice.th.publisher" />：</td>
 			      <td class="TableData">
 			        <div class="inPole">
 						<textarea name="txt" disabled></textarea>
@@ -242,7 +230,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<span class="addImg">
 								<img src="../img/org_select1.png" class="addIcon"/>
 							</span>
-								<a href="javascript:;" class="Add">添加</a>
+								<a href="javascript:;" class="Add"></a>
 						</span>
 							<span class="add_img">
 								<span class="addImg">
@@ -276,28 +264,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        </select>&nbsp;
 			      </td>
 			    </tr>
-			    <!-- <tr>
-			      <td nowrap="" class="TableData" width="100"> 发布状态：</td>
-			      <td class="TableData">
-			      <select name="PUBLISH" class="BigSelect">
-			        <option value="" selected="">全部</option>
-			        <option value="0">未发布</option>
-			        <option value="1">已发布</option>
-			      </select>
-			      </td>
-			    </tr>
 			    <tr>
-			      <td nowrap="" class="TableData" width="100"> 是否置顶：</td>
-			      <td class="TableData">
-			      <select name="TOP" class="BigSelect">
-			        <option value="" selected="">全部</option>
-			        <option value="0">未置顶</option>
-			        <option value="1">已置顶</option>
-			      </select>
-			      </td>
-			    </tr> -->
-			    <tr>
-			      <td nowrap="" class="TableData" width="100"> 标题：</td>
+			      <td nowrap="" class="TableData" width="100"> <fmt:message code="notice.th.title" />：</td>
 			      <td class="TableData">
 			        <input type="text" name="SUBJECT" size="33" maxlength="100" class="BigInput" value="">
 			      </td>
@@ -315,29 +283,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        <input type="text" name="CONTENT" size="33" maxlength="200" class="BigInput" value="">
 			      </td>
 			    </tr>
-			   <!--  <tr>
-			      <td nowrap="" class="TableData" width="100"> 生效状态：</td>
-			      <td class="TableData">
-			      <select name="STAT" class="BigSelect">
-			        <option value="" selected="">全部</option>
-			        <option value="1">待生效</option>
-			        <option value="2">已生效</option>
-			        <option value="3">已终止</option>
-			      </select>
-			      </td>
-			    </tr> -->
-			   <!--  <tr>
-			      <td nowrap="" class="TableData" width="100"> 操作：</td>
-			      <td class="TableData">
-			        <input type="radio" name="OPERATION" id="OPERATION1" value="1" checked=""><label for="OPERATION1">查询</label>
-			        <input type="radio" name="OPERATION" id="OPERATION2" value="2"><label for="OPERATION2">删除</label>
-			        <input type="radio" name="OPERATION" id="OPERATION3" value="3"><label for="OPERATION3">导出excel文件</label>
-			      </td>
-			    </tr> -->
 			    <tr align="center" class="TableControl">
 			      <td colspan="2" nowrap="">
-			        <input type="submit" value="确定" class="BigButton">&nbsp;&nbsp;
-			        <input type="reset" value="重填" class="BigButton">&nbsp;&nbsp;
+			      	<div class="Btn">
+				        <input type="submit" value="查询" class="BigButton">&nbsp;&nbsp;
+				        <input type="reset" value="重填" class="BigButton">&nbsp;&nbsp;
+			        </div>
 			      </td>
 			    </tr>
 			  </tbody>

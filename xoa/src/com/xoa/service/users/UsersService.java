@@ -109,7 +109,18 @@ public interface UsersService {
 	@DynDatasource
     public Users findUserByName( String byname);
 	
-	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月19日 下午6:40:15
+	 * 方法介绍:   根据查询条件查找用户
+	 * 参数说明:   @param maps
+	 * 参数说明:   @param page
+	 * 参数说明:   @param pageSize
+	 * 参数说明:   @param useFlag
+	 * 参数说明:   @return
+	 * @return     List<Users>
+	 */
+	@DynDatasource
 	public List<Users> getBySearch(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag);
 

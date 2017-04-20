@@ -28,10 +28,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 /**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:42:08
-	 * 方法介绍:   根据部门id串获取部门
-	 * 参数说明:   @param dept_id_str
+	 * 方法介绍:   根据部门id串获取部门名称
+	 * 参数说明:   @param deptID
 	 * 参数说明:   @return
-	 * @return     JSONObject   
+	 * @return     List<String>   
 	 */
 	@Override
 	public List<String> getDeptNameById(int... deptID){
