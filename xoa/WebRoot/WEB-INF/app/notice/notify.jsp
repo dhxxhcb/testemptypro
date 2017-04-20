@@ -46,6 +46,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		.BigInput{width:352px;height:20px;}
 		.BigButton{width:40px;height:25px;border-radius:3px;line-height:25px;text-align:center;}
 		.Btn{width:120px;margin:0 auto;}
+		.divBtn{width:50px;margin:5px auto;}
+		.iBtn{width:100%;height:30px;text-align:center;line-height:30px;}
     </style>
     <script type="text/javascript">
     	$(function(){
@@ -61,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						data:data1,
 						success:function(rsp){
 							var data=rsp.obj;	
-							console.log(data[0].name);				
+							//console.log(data[0].name);				
 							var str='';
 							for(var i=0;i<data.length;i++){
 								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'</td></tr>';
@@ -81,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							});
 						}
 				});
-				//$('.TableList').on('click','.windowOpen',function(){alert(2)})
+				
 				$('.TableList').on('click','.windowOpen',function(){
 					var nid=$(this).attr('noticeId');
 					$.popWindow('detail?nid='+nid);
@@ -310,7 +312,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  </tr>
 		</table>
 		<table class="TableList" width="95%" align="center" cellspacing="0" cellpadding="0">
-		  <tr class="TableHeader">
+		  <tr class="TableHead">
 		     <!--  <th nowrap align="center">选择</th> -->
 		      <th nowrap align="center"><fmt:message code="notice.th.publisher" /></th>
 		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
@@ -324,7 +326,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      </th>
 		    </tr>
 		    <tr>
-		    	<td colspan="5"><input type="button" name="Btn" class="Btn" id="Btn" value="返回" style="cursor: pointer;"></td>
+		    	<td colspan="5">
+			    	<div class="divBtn">
+			    		<input type="button" name="iBtn" class="iBtn" id="iBtn" value="返回" style="cursor: pointer;">
+			    	</div>
+		    	</td>
 		    </tr>
 		</table>
 	</div> 
@@ -366,6 +372,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			laydate(end);
 			
 			$(function(){
+				var data1={
+    				"page":1,
+    				"pageSize":5,
+    				"useFlag":true
+    			};
        			
        			$('input[type="submit"]').click(function () {
        				//alert('123');
@@ -380,22 +391,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						'content':content,
 						'format':forMat
 					};
-					
-					if(subject!=''||content!=''){
-						$('#noticeQuery').css('display','none');
-						$('#queryList').css('display','block');
-					} else{
-						return false;
-						alert('请输入标题或内容！');
-					}
-					
 					$.ajax({
 						type:"get",
 						url:"notifyList",
 						dataType:'json',
-						data:data,
+						data:data1,
 						success:function(){
-							//alert(data.typeId);
+							if(subject!=''||content!=''){
+								$('#noticeQuery').css('display','none');
+								$('#queryList').css('display','block');
+								$.ajax({
+									type:"get",
+									url:"notifyList",
+									dataType:'json',
+									data:data,
+									success:function(){
+										var data=rsp.obj;
+										var str='';
+										for(var i=0;i<data.length;i++){
+											str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'</td></tr>';
+											str1='<input type="hidden" id="'+data[i].notifyId+'">';
+										}
+										$('.TableHead').append(str+str1);
+									}
+								});
+							}
 							
 						}
 					});
@@ -414,7 +434,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('#end').val('');
 				});
 				
-				$('#Btn').click(function(){
+				$('#iBtn').click(function(){
 					$('#queryList').css('display','none');
 					$('#noticeQuery').css('display','block');
 				})
