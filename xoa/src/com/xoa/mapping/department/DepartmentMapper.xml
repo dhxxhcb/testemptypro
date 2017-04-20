@@ -27,7 +27,10 @@
 	<select id="getDatagrid" resultMap="DepResultMap">
 		SELECT * from department u 
 	</select>
-	
+	<select id="getChDept" parameterType="Map" 
+	resultMap="DepResultMap">
+		SELECT DEPT_ID,DEPT_NAME,DEPT_NO from department where DEPT_PARENT=#{deptId}
+	</select>
 	<select id="getDeptNameById" resultType="java.lang.String">
 		SELECT DEPT_NAME from department where DEPT_ID=#{deptId}
 	</select>

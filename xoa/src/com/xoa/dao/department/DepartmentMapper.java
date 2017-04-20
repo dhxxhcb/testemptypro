@@ -1,6 +1,7 @@
 package com.xoa.dao.department;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xoa.model.department.Department;
 
@@ -85,4 +86,14 @@ public void editDept(Department department);
  * @return     List<Department>
  */
 public List<Department> getDeptByMany(Department department); 
+
+/**
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月20日 下午5:47:07
+ * 方法介绍:   获取子目录
+ * 参数说明:   @param maps
+ * 参数说明:   @return
+ * @return     List<Department>
+ */
+public List<Department> getChDept(Map<String,Object> maps);
 }

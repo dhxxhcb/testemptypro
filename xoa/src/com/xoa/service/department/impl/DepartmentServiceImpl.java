@@ -2,6 +2,7 @@ package com.xoa.service.department.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -135,6 +136,22 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public List<Department> getDeptByMany(Department department) {
 		List<Department> list=departmentMapper.getDeptByMany(department);
+		return list;
+	}
+	
+
+	 /**
+		 * 创建作者:   张龙飞
+		 * 创建日期:   2017年4月19日 上午9:43:51
+		 * 方法介绍:   子部门查询
+		 * 参数说明:   @param department
+		 * 参数说明:   @return
+		 * @return     List<Department>   
+		 */
+	@Override
+	public List<Department> getChDept(Map<String,Object> maps, Integer page,
+			Integer pageSize, boolean useFlag) {
+	    List<Department> list=departmentMapper.getChDept(maps);    
 		return list;
 	}
 	
