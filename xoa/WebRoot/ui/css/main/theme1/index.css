@@ -45,10 +45,9 @@ body,
 	/* margin-left: 8%; */
 	width:82%;
 	color: #2a588c;
-    font-size:12px;
     font-weight:bold;
 	line-height: 40px;
-	font-size:10px;
+	font-size:8px;
 }
 .head_mid ul li div{
 	width:18%;
@@ -193,7 +192,7 @@ body,
 	float:left;
 }
 .one_all img{
-	    margin-left: 18%;
+	    margin-left: 15%;
 }
 .down_jiao{
 	margin-top:10%;
@@ -228,7 +227,7 @@ body,
     float: left;
     line-height: 40px;
     margin-top: 31.5px;
-    position: relative;
+    /* position: relative; */
     z-index: 1;
     margin-left: -1.5%;
     margin-bottom: 0px;

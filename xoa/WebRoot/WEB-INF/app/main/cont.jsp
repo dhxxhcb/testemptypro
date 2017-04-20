@@ -20,13 +20,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 html,
 body,
 
-.wrap{
+.wrapper{
 	width:100%;
 	height:100%;
+	 overflow-y:auto;  
 }
 .img_all{
 	width:94%;
-	height:94%;
+	height:100%;
 	margin:0.3% auto;
 }
 .right_one{
@@ -81,7 +82,7 @@ body,
 </head>
 
 <body>
-	<div class="wrap">
+	<div class="wrapper">
 		<div class="img_all">
 						<div class="right_one">
 							<div class="r_one_top">
