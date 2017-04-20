@@ -56,6 +56,10 @@ public class NewsController {
 	public String clickNews() {
 		return "/app/news/center";
 	}
+	@RequestMapping("/detail")
+	public String News() {
+		return "/app/news/news_detail";
+	}
 	
 	
 	
