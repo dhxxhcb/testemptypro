@@ -409,11 +409,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 						});
 						
-						
-						
-						
-						
-						
+
 					//success的后括号
 					}		
 				});//ajax传入应用数据结束括号 
@@ -462,8 +458,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 /* 	console.log($(this).parent().parent()); */
 						 	 $('#f_'+delet).remove();
 						 	/*  $('#f_'+delet).siblings().show(); */
-						 	console.log($(this).next('li'));
-						 	
+						 	/* console.log($(this).siblings('li').length>0); */
+						 	var  li= $(this).parents('li');
+						 	console.log(li);
+						 	console.log($(this).parents('li').next());
+						 	/* if($(this).siblings('li').length>0){
+						 		 $('#f_'+delet).siblings().show();
+						 	}else{
+						 		
+						 	}  */
 						}) ;
 				
 				//tab 切换
