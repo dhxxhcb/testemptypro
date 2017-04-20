@@ -57,6 +57,11 @@ public class NewsController {
 		return "/app/news/center";
 	}
 	
+	@RequestMapping("/index1")
+	public String sendNews() {
+		return "/app/news/newsAdd";
+	}
+	
 	
 	
 	/**
