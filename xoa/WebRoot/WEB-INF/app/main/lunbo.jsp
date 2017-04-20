@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
  <div class="lunbo">
 	 <ul id="status_text">					
-		<li>Office　Anywhere　 &nbsp2015版</li>
+		<li>心通达OA</li>
 		<li>中国协同OA软件领跑者</li>
 		<li>体验科技关怀   共创美好未来</li>
 	</ul>

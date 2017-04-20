@@ -34,11 +34,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<!-- 右侧的小logo -->
 				<div id="taskbar_right" class="head_rig">
-			         <a id="task_center" href="javascript:;" hidefocus="hidefocus" title="任务中心" data-step="5" data-intro="<b style='display:block'>任务中心</b>点击进入“任务中心”，可以看到按时间和紧急程度排序的待办任务，并可快速建立任务" data-position="left"></a>
-			         <a id="sns" href="javascript:;" hidefocus="hidefocus" title="企业社区" data-step="6" data-intro="<b style='display:block'>企业社区</b>点击进入“企业社区”，促进企业信息交流与知识共享" data-position="left"></a>
-			         <a id="help" href="/module/help/" hidefocus="hidefocus" title="通达OA在线帮助" data-step="7" data-intro="<b style='display:block'>通达OA在线帮助</b>“通达OA在线帮助”汇集了常见的用户问题，帮助用户快速掌握软件各项功能的使用" data-position="left" target="_blank"></a>
-			         <a id="person_info" href="javascript:;" hidefocus="hidefocus" title="控制面板" data-step="8" data-intro="<b style='display:block'>控制面板</b>点击进入“控制面板”，可以进行界面设置、个人信息设置、账号与安全设置" data-position="left"></a>
-			         <a id="theme" href="javascript:;" hidefocus="hidefocus" title="更换界面主题" data-step="9" data-intro="<b style='display:block'>更换皮肤</b>通达OA为您提供了完备的界面换肤功能，通过“更换皮肤”按钮，一触即换" data-position="left"></a>
+			         <a id="task_center" href="javascript:;" hidefocus="hidefocus" title="搜索" data-step="5" data-intro="<b style='display:block'>搜索</b>点击进入“任务中心”，可以看到按时间和紧急程度排序的待办任务，并可快速建立任务" data-position="left"></a>
+			         <a id="sns" href="javascript:;" hidefocus="hidefocus" title="提醒" data-step="6" data-intro="<b style='display:block'>提醒 </b>点击进入“企业社区”，促进企业信息交流与知识共享" data-position="left"></a>
+			         <a id="help" href="/module/help/" hidefocus="hidefocus" title="主题 " data-step="7" data-intro="<b style='display:block'>主题 </b>“通达OA在线帮助”汇集了常见的用户问题，帮助用户快速掌握软件各项功能的使用" data-position="left" target="_blank"></a>
+			         <a id="person_info" href="javascript:;" hidefocus="hidefocus" title="设置" data-step="8" data-intro="<b style='display:block'>设置</b>点击进入“控制面板”，可以进行界面设置、个人信息设置、账号与安全设置" data-position="left"></a>
+			         <a id="theme" href="javascript:;" hidefocus="hidefocus" title="注销" data-step="9" data-intro="<b style='display:block'>更换皮肤</b>通达OA为您提供了完备的界面换肤功能，通过“更换皮肤”按钮，一触即换" data-position="left"></a>
 			         
 		      	</div>
 			</div>
@@ -47,8 +47,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<ul class="all_ul">
 						<div class="tab_t">
 							<ul class="top_ul">
-								<li class="yingy">应用</li>
-								<li>组织</li>
+								<li class="yingy" id="use">应用</li>
+								<li id="orgnize">组织</li>
 							</ul>
 						</div>
 						<div class="tab_c list">
@@ -93,9 +93,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li class="three" url_three="asset/query">固定资产查询</li>
 						</ul>
 					</div> -->
-					<div class="all_content" style="width:100%;height:97%;">
+					<div class="all_content" style="width:100%;height:100%;">
 						
-							<div id='f_0' class="iItem" style="width:100%;height:100%;overflow-y:scroll;"><iframe  id="every_module" src="cont" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
+							<div id='f_0' class="iItem" style="width:100%;height:100%;overflow:hidden;"><iframe  id="every_module" src="cont" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
 							
 					</div>
 				</div>
@@ -184,8 +184,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  })
 		} 
 		 	 setInterval("lunbo('#status_text','-50px')",3000);  */
-		
-			$.ajax({
+		function init(){
+			 $.ajax({
 					url:'showMenu',
 					type:'get',						
 					dataType:'json',
@@ -217,36 +217,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						$(".tab_cone").html(str);
 						
-						//二级
-					 	$('.one_all').on('click',function () {
-							
-							if ($(this).siblings().find('.erji').css('display')=='none') {
-								/* $(this).find('.one_down_img').attr('src','img/main_img/up.png'); */
-								$(this).css({
+						 
+						
+						//鼠标移动到一级菜单变样式，移出变回
+						$('.one_all').on('mouseover',function () {
+							$(this).css({
 									'background':'url(img/main_img/first_yes.png) 0px 1.4px no-repeat',
 									'color':'#006bb8',
 									'border':'1px solid #999'
 								});
+						});
+						//移出
+						$('.one_all').on('mouseout',function () {
+							$(this).css({
+									'background':'url(img/main_img/first_no.png) 0px 0px no-repeat',
+									'color':'#000'
+								});
+						});
+						
+						
+						
+						//点击一级菜单。显示二级
+					 	$('.one_all').on('click',function () {
+							
+							if ($(this).siblings().find('.erji').css('display')=='none') {
+								/* $(this).find('.one_down_img').attr('src','img/main_img/up.png'); */
+								
 								/* $(this).css('background','#cde2fa'); */
 								$(this).siblings().find('.erji').show();
 								$(this).siblings().find('.erji').css('background','#e8f4fc');
 								
 							}else{
 								/* $(this).css('background','cc'); */
-								$(this).css({
-									'background':'url(img/main_img/first_no.png) 0px 0px no-repeat',
-									'color':'#000'
-								});
+								
 								$(this).siblings().find('.erji').hide();
 							}
 										
-						}); 
+						});
 					
 						//点击应用或者组织，tab切换
 							//tab切换
-							 var currentIndex=0;
+						/* 	 var currentIndex=0;
 							/*  var index; */
-						$('.tab_t').on('click','li',function(){
+					/* 	$('.tab_t').on('click','li',function(){
 								var index=$(this).index();
 								//console.log(inedx);
 								if(currentIndex!=index){
@@ -261,7 +274,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					                $(contents[index]).siblings().hide();
 								}
 													
-						});
+						}); */
+						
+						
 
 							//点击二级，出现三级
 						$('.click_erji').on('click',function () {
@@ -293,7 +308,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$('.two_menu li .two_all').removeClass('xuan');
 								$(this).find('h1').css('color','#000');
 						});
-						var tid=0;
+						
+						
 						//点击二级菜单
 						$('.two_menu li').on('click','.two_all',function(){
 							var url=$(this).attr('url'); 
@@ -304,9 +320,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							}else{
 								url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
 							}
-							
-						
-							//判断id是否相同
+
+							//判断标题id与iframeid是否相同
 							//console.log(url);
 							console.log($('#f_'+menu_tid).length>0);
 							if($('#f_'+menu_tid).length>0){
@@ -367,12 +382,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 						
 						//三级菜单切换
-						$('.three_title').on('click','li',function(){
+						/* $('.three_title').on('click','li',function(){
 							var bbb=$(this).attr('url_three');
 							$('.three_title li').removeClass('xuan');
 							$(this).addClass('xuan');
-						})
-						 
+						}) */
+						 //三级菜单移入变样式
 						$('.sanji').on('mouseover','li',function(){
 							/* $('.sanji li').removeClass('xuan');
 							$(this).addClass('xuan'); */
@@ -383,6 +398,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								});
 							
 						});
+						//三级菜单移出
 						$('.sanji').on('mouseout','li',function(){
 							
 								/* $('.sanji li').removeClass('xuan'); */
@@ -392,6 +408,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								});
 								
 						});
+						
+						
+						
+						
+						
+						
+					//success的后括号
+					}		
+				});//ajax传入应用数据结束括号 
+			  
+		}//init方法结束
+		
+			init();//调用init()方法
 						//点击标题栏
 						$('.main_title ').on('click','li',function(){
 							
@@ -406,8 +435,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$('#f_'+num).show();
 					
 							}  
-						})
-						
+						});
 						//删除
 						//移入
 						$('.main_title').on('mouseover','.close',function(){
@@ -421,7 +449,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							$(this).attr('src','img/main_img/icon.png');
 						 
 						}) ;
-						
+			
+					//点击删除
 						$('.main_title').on('click','.close',function(){
 							/* alert('111'); */
 							var re=$(this).parent().parent().attr('id');
@@ -433,10 +462,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 /* 	console.log($(this).parent().parent()); */
 						 	 $('#f_'+delet).remove();
 						 	/*  $('#f_'+delet).siblings().show(); */
-						 	/* console.log($(this).next()); */
+						 	console.log($(this).next('li'));
+						 	
 						}) ;
-					}			
-				});
+				
+				//tab 切换
+					$('.tab_t').on('click','li',function(){
+							/* $('#tab_t li').removeClass('act');
+							$(this).addClass('act'); */
+							$(".tab_t li").removeClass("yingy");
+							$(this).addClass('yingy');
+							 if($(this).attr('id')=='use'){
+								init();
+							}else{
+								/* init_orgnize(); */
+							} 
+							
+					})
 				
 		
 		})
@@ -452,7 +494,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  if (document.documentElement && document.documentElement.clientHeight)
 		   winHeight = document.documentElement.clientHeight;
 		   winWidth = document.documentElement.clientWidth;
-		  document.getElementById("client").style.height= winHeight - 90 +"px";
+		  document.getElementById("client").style.height= winHeight - 110 +"px";
 		  document.getElementById("client").style.width= winWidth  +"px";
 		  
 		 }
