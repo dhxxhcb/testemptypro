@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li><a href="javascript:;"><img src="../img/icon_drafts_07.png"/>草稿箱<span>2</span></a></li>
 								<li><a href="javascript:;"><img src="../img/icon_sent_07.png"/>已发送</a></li>
 								<li><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/>废纸篓</a></li>
-								<li><a href="javascript:;"><img src="../img/icon_search_03.png"/>查询邮件</a></li>
+								<li class='liSearch'><a href="javascript:;"><img src="../img/icon_search_03.png"/>查询邮件</a></li>
 							</ul>
 						</div>
 					</div>
@@ -300,6 +300,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		$('.Inbox').click(function(){
 	    			$('.page').find('.div_iframe').remove();
 	    			$('.page_right').css('display','block');
+	    		})
+	    		
+	    		$('.liSearch').click(function(){
+	    			var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+	    			$('.page_right').css('display','none');
+	    			$('.page').append(Ifrmae);
 	    		})
 	    		
 	    		//不同风格页面互调
