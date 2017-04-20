@@ -132,7 +132,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						dataType:'json',
 						data:{'id':id},
 						success:function(){
-							
 							location.reload();
 						}
 				}); 
