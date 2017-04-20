@@ -120,6 +120,7 @@ public interface UsersService {
 	 * 参数说明:   @return
 	 * @return     List<Users>
 	 */
+	@DynDatasource
 	public List<Users> getBySearch(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag);
 
