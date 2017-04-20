@@ -30,8 +30,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  }
  ul li{
  width: 600px;
- height: 50px;
- line-height: 50px;
+ height: 40px;
+ line-height: 40px;
  font-size:16px;
  color:#fff;
  text-align: center

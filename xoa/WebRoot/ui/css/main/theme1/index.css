@@ -10,7 +10,7 @@ body,
 .head{
 	width:100%;
 	height:70px;
-	 background: url(../../img/main_img/bg.png) -42px 0px no-repeat;
+	 background: url(../../../img/main_img/bg.png) -42px 0px no-repeat;
 }
 .head_left{
 	width:16.9%;
@@ -29,7 +29,7 @@ body,
     margin-top: 31.5px;
     position: relative;
     z-index: 999;
-    background: url(../../img/main_img/title_no.png) 2px -2px no-repeat;
+    background: url(../../../img/main_img/title_no.png) 2px -2px no-repeat;
 }
 /* .gongzuoliu h1,.gongzuoliu div{
 	float:left;
@@ -79,7 +79,7 @@ body,
     height: 45%;
     margin-top: 8%;
    
-    background: url(../../img/main_img/right_one.png) 0px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) 0px 0px no-repeat;
 }
  #taskbar_right #sns {
     display: inline-block;
@@ -87,7 +87,7 @@ body,
     height: 45%;
     margin-top: 8%;
    margin-left:7%;
-    background: url(../../img/main_img/right_one.png) -60px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) -60px 0px no-repeat;
 }
  #taskbar_right #help {
     display: inline-block;
@@ -95,7 +95,7 @@ body,
     height: 45%;
     margin-top: 8%;
     margin-left:7%;
-    background: url(../../img/main_img/right_one.png) -115px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) -115px 0px no-repeat;
 }
  #taskbar_right #person_info {
     display: inline-block;
@@ -103,7 +103,7 @@ body,
     height: 45%;
     margin-top: 8%;
     margin-left:7%;
-    background: url(../../img/main_img/right_one.png) -174px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) -174px 0px no-repeat;
 }
  #taskbar_right #theme {
     display: inline-block;
@@ -111,7 +111,7 @@ body,
     height: 45%;
     margin-top: 8%;
     margin-left:7%;
-    background: url(../../img/main_img/right_one.png) -233px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) -233px 0px no-repeat;
 }
 .head_left,.head_mid,#taskbar_right{
 	float:left;
@@ -129,7 +129,7 @@ body,
 .cont_left{
 	width:17%;
 	height:100%;
-	background: url(../../img/main_img/cont_left.png) 0px 0px no-repeat;
+	background: url(../../../img/main_img/cont_left.png) 0px 0px no-repeat;
 }
 .all_ul{
 	width:96%;
@@ -145,7 +145,7 @@ body,
 .top_ul{
 	width:90%;
 	height:54%;
-	background: url(../../img/main_img/huakuai.png) 0px 0px no-repeat;
+	background: url(../../../img/main_img/huakuai.png) 0px 0px no-repeat;
 	border:1px solid #5e5e5e;
 	border-radius:5px;
 	margin-top:4%;
@@ -171,12 +171,12 @@ body,
 .one_all{
 	width:100%;
 	height:49px;
-	background: url(../../img/main_img/first_no.png) 0px 0px no-repeat;
+	background: url(../../../img/main_img/first_no.png) 0px 0px no-repeat;
 	/* border:1px solid #999999; */
 	border-radius: 4px;
 }
 .yingy{
-	background: url(../../img/main_img/blue_hua.png) 0px 0px no-repeat;
+	background: url(../../../img/main_img/blue_hua.png) 0px 0px no-repeat;
 	color:#fff;
 }
 .all_ul div{
@@ -232,7 +232,7 @@ body,
     z-index: 1;
     margin-left: -1.5%;
     margin-bottom: 0px;
-    background: url(../../img/main_img/title_no.png) 2px -2px no-repeat;
+    background: url(../../../img/main_img/title_no.png) 2px -2px no-repeat;
 }
  .change{
  	  width: 110px;
@@ -240,7 +240,7 @@ body,
     position: relative;
     z-index: 999;
     line-height: 40px;
-	background: url(../../img/main_img/title_yes.png) 2px -2px no-repeat;
+	background: url(../../../img/main_img/title_yes.png) 2px -2px no-repeat;
 } 
 .person_logo{
 	margin-left: 5%;
