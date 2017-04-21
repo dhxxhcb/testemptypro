@@ -10,7 +10,7 @@ import com.xoa.util.dataSource.DynDatasource;
  * 创建作者:   张龙飞
  * 创建日期:   2017年4月19日 上午9:36:46
  * 类介绍  :    部门
- * 构造参数:   
+ * 构造参数:    无
  *
  */
 public interface DepartmentService {
@@ -20,19 +20,19 @@ public interface DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 下午2:51:12
 	 * 方法介绍:   根据部门id串获取部门名称
-	 * 参数说明:   @param dept_id_str
+	 * 参数说明:   @param deptIds  部门id数组
 	 * 参数说明:   @return
-	 * @return     List<String>
+	 * @return     List<String>  部门名称集合
 	 */
 	@DynDatasource
-	public List<String> getDeptNameById(int... dept_id_str);
+	public List<String> getDeptNameById(int... deptIds);
 	
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:37:25
 	 * 方法介绍:   获取所有部门
 	 * 参数说明:   @return
-	 * @return     List<Department>
+	 * @return     List<Department>  所有部门的集合
 	 */
 	@DynDatasource
     public List<Department> getDatagrid();
@@ -41,9 +41,9 @@ public interface DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:37:39
 	 * 方法介绍:   根据部门id获取
-	 * 参数说明:   @param deptId
+	 * 参数说明:   @param deptId  部门id
 	 * 参数说明:   @return
-	 * @return     Department
+	 * @return     Department  部门信息
 	 */
 	@DynDatasource
 	public Department getDeptById(int deptId);
@@ -52,8 +52,8 @@ public interface DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:40:51
 	 * 方法介绍:   删除部门
-	 * 参数说明:   @param deptId
-	 * @return     void
+	 * 参数说明:   @param deptId  部门id
+	 * @return     void   无返回值
 	 */
 	@DynDatasource 
 	public void deleteDept(int deptId);
@@ -62,8 +62,8 @@ public interface DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:41:02
 	 * 方法介绍:   插入部门
-	 * 参数说明:   @param department
-	 * @return     void
+	 * 参数说明:   @param department  部门信息
+	 * @return     void  无返回值
 	 */
 	@DynDatasource 
 	public void insertDept(Department department);
@@ -72,8 +72,8 @@ public interface DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:41:21
 	 * 方法介绍:   修改部门
-	 * 参数说明:   @param department
-	 * @return     void
+	 * 参数说明:   @param department  部门信息
+	 * @return     void  无返回值
 	 */
 	@DynDatasource 
 	public void editDept(Department department);
@@ -82,9 +82,9 @@ public interface DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:41:31
 	 * 方法介绍:   多条件查询部门信息
-	 * 参数说明:   @param department
+	 * 参数说明:   @param department 部门信息
 	 * 参数说明:   @return
-	 * @return     List<Department>
+	 * @return     List<Department>  部门信息集合
 	 */
 	@DynDatasource 
 	public List<Department> getDeptByMany(Department department);
@@ -92,13 +92,13 @@ public interface DepartmentService {
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月20日 下午5:46:02
-	 * 方法介绍:   
-	 * 参数说明:   @param maps
-	 * 参数说明:   @param page
-	 * 参数说明:   @param pageSize
-	 * 参数说明:   @param useFlag
+	 * 方法介绍:   获取子级目录
+	 * 参数说明:   @param maps  
+	 * 参数说明:   @param page  当前页面
+	 * 参数说明:   @param pageSize  页面显示数据条数
+	 * 参数说明:   @param useFlag  是否开启分页
 	 * 参数说明:   @return
-	 * @return     List<Department>
+	 * @return     List<Department>  部门集合
 	 */
 	@DynDatasource 
 	public List<Department> getChDept(Map<String,Object> maps, Integer page,

@@ -46,17 +46,17 @@ public interface UsersService {
 	@DynDatasource
 	public void deleteUser(int uid);
 	
-	/**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月18日 下午5:25:35
-	 * 方法介绍:   获取所有用户
-	 * 参数说明:   @param maps
-	 * 参数说明:   @param page
-	 * 参数说明:   @param pageSize
-	 * 参数说明:   @param useFlag
-	 * 参数说明:   @return
-	 * @return     List<Users>
-	 */
+	 /**
+	  * 创建作者:   张龙飞
+	  * 创建日期:   2017年4月21日 上午10:27:07
+	  * 方法介绍:   根据输入条件进行查询
+	  * 参数说明:   @param maps 集合
+	  * 参数说明:   @param page 当前页面
+	  * 参数说明:   @param pageSize  页面大小
+	  * 参数说明:   @param useFlag  是否开启分页
+	  * 参数说明:   @return
+	  * @return     List<Users>   返回用户信息   
+	  */
 	@DynDatasource
 	public List<Users> getAlluser(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag);
@@ -65,9 +65,9 @@ public interface UsersService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午5:29:25
 	 * 方法介绍:   多条件查询用户
-	 * 参数说明:   @param user
+	 * 参数说明:   @param user 用户信息
 	 * 参数说明:   @return
-	 * @return     List<Users>
+	 * @return     List<Users>  返回用户信息
 	 */
 	@DynDatasource
 	public List<Users> getUserByMany(Users user); 
@@ -76,13 +76,13 @@ public interface UsersService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午5:17:43
 	 * 方法介绍:   获取用户信息和部门信息
-	 * 参数说明:   @param maps
-	 * 参数说明:   @param page
-	 * 参数说明:   @param pageSize
-	 * 参数说明:   @param useFlag
-	 * 参数说明:   @return
-	 * @return     List<Users>
-	 */
+	 * 参数说明:   @param maps  集合
+	 * 参数说明:   @param page  当前页面
+	 * 参数说明:   @param pageSize  页面大小
+	 * 参数说明:   @param useFlag  是否开启分页
+	 * 参数说明:   @return 
+	 * @return     List<Users>   返回用户信息
+ 	 */
 	@DynDatasource
 	public List<Users> getUserAndDept(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag);
@@ -91,9 +91,9 @@ public interface UsersService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午5:00:12
 	 * 方法介绍:   格局uid查询用户
-	 * 参数说明:   @param uid
+	 * 参数说明:   @param uid 用户uid
 	 * 参数说明:   @return
-	 * @return     Users
+	 * @return     Users  返回用户信息
 	 */
 	@DynDatasource
 	public Users findUserByuid(int uid);
@@ -102,9 +102,9 @@ public interface UsersService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午5:18:08
 	 * 方法介绍:   根据别名查找用户
-	 * 参数说明:   @param byname
+	 * 参数说明:   @param byname  别名
 	 * 参数说明:   @return
-	 * @return     Users
+	 * @return     Users  返回用户信息
 	 */
 	@DynDatasource
     public Users findUserByName( String byname);
@@ -113,12 +113,12 @@ public interface UsersService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 下午6:40:15
 	 * 方法介绍:   根据查询条件查找用户
-	 * 参数说明:   @param maps
-	 * 参数说明:   @param page
-	 * 参数说明:   @param pageSize
-	 * 参数说明:   @param useFlag
+	 * 参数说明:   @param maps  集合
+	 * 参数说明:   @param page  当前页面
+	 * 参数说明:   @param pageSize  页面大小
+	 * 参数说明:   @param useFlag  是否开启分页
 	 * 参数说明:   @return
-	 * @return     List<Users>
+	 * @return     List<Users>  返回用户信息
 	 */
 	@DynDatasource
 	public List<Users> getBySearch(Map<String,Object> maps, Integer page,

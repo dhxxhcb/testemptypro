@@ -21,7 +21,7 @@ import com.xoa.util.ToJson;
  * 创建作者:   张龙飞
  * 创建日期:   2017年4月18日 下午6:05:02
  * 类介绍  :    用户角色权限表
- * 构造参数:   
+ * 构造参数:   无
  *
  */
 @Controller
@@ -38,9 +38,9 @@ public class UserPrivController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午8:05:22
 	 * 方法介绍:   添加角色
-	 * 参数说明:   @param userPriv
+	 * 参数说明:   @param userPriv  用户角色
 	 * 参数说明:   @return
-	 * @return     ToJson<UserPriv>
+	 * @return     ToJson<UserPriv>  返回页面显示信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/addUser",method = RequestMethod.POST)
@@ -62,9 +62,9 @@ public class UserPrivController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:28:46
 	 * 方法介绍:   删除角色
-	 * 参数说明:   @param userPriv
+	 * 参数说明:   @param userPriv  用户角色
 	 * 参数说明:   @return
-	 * @return     ToJson<UserPriv>
+	 * @return     ToJson<UserPriv>  返回显示信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/deletePriv",method = RequestMethod.POST)
@@ -87,9 +87,9 @@ public class UserPrivController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:28:59
 	 * 方法介绍:   根据角色名称查找角色
-	 * 参数说明:   @param userPriv
+	 * 参数说明:   @param userPriv  用户角色
 	 * 参数说明:   @return
-	 * @return     ToJson<UserPriv>
+	 * @return     ToJson<UserPriv>   返回用户角色
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/findByuserPriv")
@@ -111,12 +111,12 @@ public class UserPrivController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:29:29
 	 * 方法介绍:   获取所有角色
-	 * 参数说明:   @param maps
-	 * 参数说明:   @param page
-	 * 参数说明:   @param pageSize
-	 * 参数说明:   @param useFlag
+	 * 参数说明:   @param maps  集合
+	 * 参数说明:   @param page  当前页面
+	 * 参数说明:   @param pageSize  页面大小
+	 * 参数说明:   @param useFlag   是否开启分页
 	 * 参数说明:   @return
-	 * @return     ToJson<UserPriv>
+	 * @return     ToJson<UserPriv>  返回所有角色
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/getAllPriv",produces = {"application/json;charset=UTF-8"})
@@ -140,9 +140,9 @@ public class UserPrivController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:29:42
 	 * 方法介绍:   多条件查找角色
-	 * 参数说明:   @param userPriv
+	 * 参数说明:   @param userPriv  角色信息
 	 * 参数说明:   @return
-	 * @return     ToJson<UserPriv>
+	 * @return     ToJson<UserPriv>  返回角色
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/getPrivByMany")

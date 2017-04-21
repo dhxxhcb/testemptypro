@@ -24,7 +24,7 @@ import com.xoa.util.ToJson;
  * 创建作者:   张龙飞
  * 创建日期:   2017年4月18日 下午6:42:39
  * 类介绍  :    用户
- * 构造参数:   
+ * 构造参数:    无
  *
  */
 @Controller
@@ -39,9 +39,9 @@ public class UsersController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午6:43:04
 	 * 方法介绍:   添加用户
-	 * 参数说明:   @param user
+	 * 参数说明:   @param user  用户信息
 	 * 参数说明:   @return
-	 * @return     ToJson<Users>
+	 * @return     ToJson<Users>  返回显示信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/addUser",method = RequestMethod.POST)
@@ -62,9 +62,9 @@ public class UsersController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午6:53:11
 	 * 方法介绍:   修改用户
-	 * 参数说明:   @param user
+	 * 参数说明:   @param user  用户信息
 	 * 参数说明:   @return
-	 * @return     ToJson<Users>
+	 * @return     ToJson<Users>  返回显示信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/editUser",method = RequestMethod.POST)
@@ -87,9 +87,9 @@ public class UsersController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午6:53:19
 	 * 方法介绍:   删除用户
-	 * 参数说明:   @param user
+	 * 参数说明:   @param user  用户信息
 	 * 参数说明:   @return
-	 * @return     ToJson<Users>
+	 * @return     ToJson<Users> 返回显示信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/deleteUser",method = RequestMethod.POST)
@@ -111,9 +111,9 @@ public class UsersController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午6:53:27
 	 * 方法介绍:   根据uid查询用户
-	 * 参数说明:   @param uid
+	 * 参数说明:   @param uid  用户uid号
 	 * 参数说明:   @return
-	 * @return     String
+	 * @return     String  返回用户信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/findUserByuid",method = RequestMethod.POST)
@@ -135,13 +135,12 @@ public class UsersController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午6:53:36
 	 * 方法介绍:   获取所有用户
-	 * 参数说明:   @param maps
-	 * 参数说明:   @param page
-	 * 参数说明:   @param pageSize
-	 * 参数说明:   @param useFlag
+	 * 参数说明:   @param maps  封装集合对象
+	 * 参数说明:   @param page  当前页面
+	 * 参数说明:   @param pageSize  页面数据大小
+	 * 参数说明:   @param useFlag  是否开启分页
 	 * 参数说明:   @return
-	 * @return     String
-	 */
+	 * @return     String  返回所有用户信息
 	@ResponseBody
 	@RequestMapping(value = "/user/getAlluser",produces = {"application/json;charset=UTF-8"})
     public String getAllUser( Map<String, Object> maps,Integer page,
@@ -163,9 +162,9 @@ public class UsersController {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午6:53:43
 	 * 方法介绍:   根据多条件查询部门
-	 * 参数说明:   @param users
+	 * 参数说明:   @param users  用户信息
 	 * 参数说明:   @return
-	 * @return     ToJson<Users>
+	 * @return     ToJson<Users>  返回用户信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getDeptByMany",method = RequestMethod.POST)
@@ -184,14 +183,14 @@ public class UsersController {
 	
 	/**
 	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月18日 下午7:16:57
-	 * 方法介绍:   获取用户名称以及用户信息
-	 * 参数说明:   @param maps
-	 * 参数说明:   @param page
-	 * 参数说明:   @param pageSize
-	 * 参数说明:   @param useFlag
+	 * 创建日期:   2017年4月20日 下午7:16:57
+	 * 方法介绍:   获取用户信息以及部门名称信息
+	 * 参数说明:   @param maps  集合
+	 * 参数说明:   @param page  当前页面
+	 * 参数说明:   @param pageSize  页面大小
+	 * 参数说明:   @param useFlag  是否开启分页
 	 * 参数说明:   @return
-	 * @return     String
+	 * @return     String  返回用户信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getUserAndDept" ,produces = {"application/json;charset=UTF-8"})
@@ -214,14 +213,14 @@ public class UsersController {
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月20日 下午2:28:22
-	 * 方法介绍:   搜索框条件查询
-	 * 参数说明:   @param request
-	 * 参数说明:   @param maps
-	 * 参数说明:   @param page
-	 * 参数说明:   @param pageSize
-	 * 参数说明:   @param useFlag
+	 * 方法介绍:   根据（用户姓名、角色、部门）查询用户信息接口
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @param maps  集合
+	 * 参数说明:   @param page  当前页面
+	 * 参数说明:   @param pageSize  页面大小
+	 * 参数说明:   @param useFlag   是否开启分页
 	 * 参数说明:   @return
-	 * @return     String
+	 * @return     String  返回用户信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getBySearch" ,produces = {"application/json;charset=UTF-8"})

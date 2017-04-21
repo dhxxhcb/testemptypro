@@ -30,7 +30,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:42:08
 	 * 方法介绍:   根据部门id串获取部门名称
-	 * 参数说明:   @param deptID
+	 * 参数说明:   @param deptID 部门id
 	 * 参数说明:   @return
 	 * @return     List<String>   
 	 */
@@ -103,8 +103,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:43:23
 	 * 方法介绍:   修改部门
-	 * 参数说明:   @param department
-	 * @return     void   
+	 * 参数说明:   @param department 部门信息
+	 * @return     void   无
 	 */
 	@Override
 	public void editDept(Department department) {
@@ -116,9 +116,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:43:34
 	 * 方法介绍:   保存部门
-	 * 参数说明:   @param department
-	 * @return     void   
-	 */
+	 * 参数说明:   @param department 部门信息
+	 * @return     void    无
+	 */ 
 	@Override
 	public void insertDept(Department department) {
 		departmentMapper.insertDept(department);	
@@ -129,9 +129,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:43:51
 	 * 方法介绍:   多条件查询部门信息
-	 * 参数说明:   @param department
+	 * 参数说明:   @param department  部门信息
 	 * 参数说明:   @return
-	 * @return     List<Department>   
+	 * @return     List<Department>    返回部门信息
 	 */
 	@Override
 	public List<Department> getDeptByMany(Department department) {
@@ -140,14 +140,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 	
 
-	 /**
-		 * 创建作者:   张龙飞
-		 * 创建日期:   2017年4月19日 上午9:43:51
-		 * 方法介绍:   子部门查询
-		 * 参数说明:   @param department
-		 * 参数说明:   @return
-		 * @return     List<Department>   
-		 */
 	@Override
 	public List<Department> getChDept(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) {

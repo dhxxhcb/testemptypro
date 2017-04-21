@@ -10,7 +10,7 @@ import com.xoa.model.users.UserPriv;
  * 创建作者:   张龙飞
  * 创建日期:   2017年4月18日 下午6:38:35
  * 类介绍  :    角色权限表
- * 构造参数:   
+ * 构造参数:   无
  *
  */
 public interface UserPrivMapper {
@@ -19,8 +19,8 @@ public interface UserPrivMapper {
      * 创建作者:   张龙飞
      * 创建日期:   2017年4月18日 下午6:38:41
      * 方法介绍:   根据userpriv删除角色
-     * 参数说明:   @param userPriv
-     * @return     void
+     * 参数说明:   @param userPriv 角色编号
+     * @return     void  无
      */
     void deleteByPrimaryKey(Integer userPriv);
    
@@ -28,18 +28,18 @@ public interface UserPrivMapper {
      * 创建作者:   张龙飞
      * 创建日期:   2017年4月18日 下午6:38:47
      * 方法介绍:   新增userpriv
-     * 参数说明:   @param record
+     * 参数说明:   @param record 角色信息
      * 参数说明:   @return
-     * @return     int
+     * @return     int 插入条数
      */
     int insert(UserPriv record);
   
     /**
      * 创建作者:   张龙飞
      * 创建日期:   2017年4月18日 下午6:38:53
-     * 方法介绍:   新增userpriv
-     * 参数说明:   @param record
-     * @return     void
+     * 方法介绍:   新增角色
+     * 参数说明:   @param record 角色信息
+     * @return     void  无
      */
     void insertSelective(UserPriv record);   
    
@@ -47,9 +47,9 @@ public interface UserPrivMapper {
      * 创建作者:   张龙飞
      * 创建日期:   2017年4月18日 下午6:38:59
      * 方法介绍:   根据userpriv查询userpriv
-     * 参数说明:   @param userPriv
+     * 参数说明:   @param userPriv  角色
      * 参数说明:   @return
-     * @return     UserPriv
+     * @return     UserPriv  角色
      */
     UserPriv selectByPrimaryKey(int userPriv);
    
@@ -57,9 +57,9 @@ public interface UserPrivMapper {
      * 创建作者:   张龙飞
      * 创建日期:   2017年4月18日 下午6:39:05
      * 方法介绍:   更新
-     * 参数说明:   @param record
+     * 参数说明:   @param record 角色信息
      * 参数说明:   @return
-     * @return     int
+     * @return     int 
      */
     int updateByPrimaryKeySelective(UserPriv record);
   
@@ -67,9 +67,9 @@ public interface UserPrivMapper {
      * 创建作者:   张龙飞
      * 创建日期:   2017年4月18日 下午6:39:11
      * 方法介绍:   更新
-     * 参数说明:   @param record
+     * 参数说明:   @param record  角色信息
      * 参数说明:   @return
-     * @return     int
+     * @return     int  插入记录
      */
     int updateByPrimaryKey(UserPriv record);   
    
@@ -77,9 +77,9 @@ public interface UserPrivMapper {
      * 创建作者:   张龙飞
      * 创建日期:   2017年4月18日 下午6:39:17
      * 方法介绍:   根据userpriv获取privname
-     * 参数说明:   @param userPriv
+     * 参数说明:   @param userPriv  角色
      * 参数说明:   @return
-     * @return     String
+     * @return     String 角色名称
      */
     String getPrivNameById(Integer userPriv);  
    
@@ -87,9 +87,9 @@ public interface UserPrivMapper {
      * 创建作者:   张龙飞
      * 创建日期:   2017年4月18日 下午6:39:24
      * 方法介绍:   获取所有userpriv
-     * 参数说明:   @param maps
+     * 参数说明:   @param maps 集合
      * 参数说明:   @return
-     * @return     List<UserPriv>
+     * @return     List<UserPriv>  返回角色集合
      */
     List<UserPriv> getAlluserPriv(Map<String,Object> maps); 
    
@@ -97,9 +97,9 @@ public interface UserPrivMapper {
      * 创建作者:   张龙飞
      * 创建日期:   2017年4月18日 下午6:39:31
      * 方法介绍:   多条件获取userpriv
-     * 参数说明:   @param userPriv
+     * 参数说明:   @param userPriv  角色信息
      * 参数说明:   @return
-     * @return     List<UserPriv>
+     * @return     List<UserPriv>  返回角色信息
      */
     List<UserPriv> getPrivByMany(UserPriv userPriv); 
 }
