@@ -120,8 +120,8 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     void
 	 */
 	@Override
-	public void deleteByPrimaryKey(Integer bodyId) {
-		emailBodyMapper.deleteByPrimaryKey(bodyId);
+	public void deleteByID(Integer bodyId) {
+		emailBodyMapper.deleteDrafts(bodyId);
 	}
 
 	/**
@@ -323,6 +323,77 @@ public class EmailServiceImpl implements EmailService {
 		emailMapper.updateIsRead(email);
 	}
 
-	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午11:16:38
+	 * 方法介绍:   发件箱删除
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	@Override
+	public String deleteOutEmail(Integer emailId,String flag) {
+		String returnRes = "0";
+		try {
+			if(flag.trim().equals("0")||flag.trim().equals("")){
+				emailBodyMapper.updateOutbox(emailId);
+			}else if(flag.trim().equals("3")){
+				emailBodyMapper.updateOutboxs(emailId);
+			}else{
+				emailBodyMapper.deleteOutbox(emailId);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			returnRes = "1";
+		}
+		return returnRes;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午11:16:38
+	 * 方法介绍:   发件箱删除邮件
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	@Override
+	public String deleteInEmail(Integer emailId, String flag) {
+		String returnRes = "0";
+		try {
+			if(flag.trim().equals("0")||flag.trim().equals("")){
+				emailBodyMapper.updateInbox(emailId);
+			}else{
+				emailBodyMapper.updateInboxs(emailId);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			returnRes = "1";
+		}
+		return returnRes;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午11:16:38
+	 * 方法介绍:   废纸篓删除邮件
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	@Override
+	public String deleteRecycleEmail(Integer emailId, String flag) {
+		String returnRes = "0";
+		try {
+			if(flag.trim().equals("3")){
+				emailBodyMapper.updateRecycle(emailId);
+			}else{
+				emailBodyMapper.deleteRecycle(emailId);
+			}
+		} catch (Exception e) {
+			returnRes = "1";
+		}
+		return returnRes;
+	}
 	
 }
