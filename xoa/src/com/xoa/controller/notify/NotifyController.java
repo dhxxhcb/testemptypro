@@ -512,6 +512,12 @@ public class NotifyController {
 	public String emailManage(){
 		return "app/notice/administration";
 	}
-
-
+	@RequestMapping("/add")
+	public String add(){
+		return "app/notice/add";
+	}
+	@RequestMapping("/noticeQuery")
+	public String noticeQuery(){
+		return "app/notice/noticeQuery";
+	}
 }
