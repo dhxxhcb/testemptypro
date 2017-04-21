@@ -163,6 +163,27 @@ public class UsersServiceImpl implements UsersService {
 		maps.put("page", pageParams);
 		return usersMapper.getBySearch(maps);
 	}
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月21日 上午11:00:05
+	 * 方法介绍:   根据部门id查询用户信息
+	 * 参数说明:   @param maps  集合
+	 * 参数说明:   @param page  当前页面
+	 * 参数说明:   @param pageSize  页面大小
+	 * 参数说明:   @param useFlag  是否开启分页
+	 * 参数说明:   @return
+	 * @return     List<Users>  返回用户信息
+	 */
+	@Override
+	public List<Users> getByDeptId(Map<String, Object> maps, Integer page, Integer pageSize, boolean useFlag) {
+		PageParams pageParams = new PageParams();
+		pageParams.setPage(page);
+		pageParams.setPageSize(pageSize);
+		pageParams.setUseFlag(useFlag);
+		maps.put("page", pageParams);
+		return usersMapper.getByDeptId(maps);
+	}
 
 
 }

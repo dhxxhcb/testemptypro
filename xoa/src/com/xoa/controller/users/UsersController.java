@@ -157,7 +157,7 @@ public class UsersController {
 		}
         return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
     }
-	
+	**/
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午6:53:43
@@ -235,6 +235,40 @@ public class UsersController {
 			maps.put("userPrivName", search);
 			maps.put("deptName", search);
 			List<Users> list=usersService.getBySearch(maps,page,pageSize,useFlag);  
+			json.setObj(list);
+            json.setMsg("OK");
+            json.setFlag(0);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+			System.out.println(e.getMessage());
+		}
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
+	
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月21日 上午11:49:11
+	 * 方法介绍:   根据部门id获取所有用户
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @param maps 集合
+	 * 参数说明:   @param page 当前页面
+	 * 参数说明:   @param pageSize 页面大小
+	 * 参数说明:   @param useFlag 是否开启分页
+	 * 参数说明:   @return
+	 * @return     String  返回部门信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/user/getByDeptId" ,produces = {"application/json;charset=UTF-8"})
+    public String getByDeptId(HttpServletRequest request,Map<String, Object> maps,Integer page,
+			Integer pageSize, boolean useFlag) {
+		ToJson<Users> json=new ToJson<Users>(0, null);
+		try {
+			request.setCharacterEncoding("UTF-8");
+			int deptId=Integer.parseInt(new String(request.getParameter("deptId").getBytes("ISO-8859-1"),"UTF-8"));						
+			maps=new HashMap<String, Object>();
+			maps.put("deptId", deptId);
+			List<Users> list=usersService.getByDeptId(maps,page,pageSize,useFlag);  
 			json.setObj(list);
             json.setMsg("OK");
             json.setFlag(0);

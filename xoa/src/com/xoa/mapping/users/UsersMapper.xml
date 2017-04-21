@@ -142,6 +142,11 @@
 				javaType="java.sql.Timestamp" />
 		</association>
 	</resultMap>
+	<select id="getByDeptId" parameterType="Map"
+		resultType="com.xoa.model.users.Users">
+		select u.USER_NAME as userName,u.USER_PRIV_NAME as userPrivName
+		 from user u where DEPT_ID= #{deptId}
+	</select>
 	<select id="getBySearch" parameterType="Map"
 		resultType="com.xoa.model.users.Users">
 		select u.USER_NAME as

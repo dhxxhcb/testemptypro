@@ -135,5 +135,14 @@ public interface UsersMapper {
 	 */
 	public List<Users> getBySearch(Map<String,Object> maps);
 
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月21日 上午10:56:22
+	 * 方法介绍:   格局部门编号查询用户信息
+	 * 参数说明:   @param maps 集合（封装部门编号）
+	 * 参数说明:   @return
+	 * @return     List<Users> 返回部门信息
+	 */
+	public List<Users> getByDeptId(Map<String,Object> maps);
 
 }
