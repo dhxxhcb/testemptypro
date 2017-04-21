@@ -204,7 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <th nowrap align="center"><fmt:message code="news.th.publisher" /></th>
 		      <th nowrap align="center"><fmt:message code="news.th.type" /></th>
 		      <th nowrap align="center"><fmt:message code="news.th.title" /></th>
-		      <th nowrap align="center" style="cursor:pointer;"><u>点击数</u></th>
+		      <th nowrap align="center" style="cursor:pointer;"><fmt:message code="news.type.clicks" /></th>
 		      <th nowrap align="center"><fmt:message code="news.th.createTime" />
 		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
 		      </th>
