@@ -4,11 +4,10 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE html>
 <!-- saved from url=(0058)file:///C:/Users/gaosubo/Desktop/OA%E7%B2%BE%E7%81%B5.html -->
 <html><!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>OA精灵</title>
 
     <meta name="renderer" content="webkit">
@@ -19,11 +18,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var MYOA_JS_SERVER = "";
         var MYOA_STATIC_SERVER = "";
     </script>
-    <link rel="stylesheet" type="text/css" href="css/ispirit_index.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/sys_function_7a682d434e.js"></script>
-    <script type="text/javascript" src="js/ispirit.js"></script>
-    <script type="text/javascript" src="js/ispirit_index.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/spirit/ispirit_index.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/spirit/sys_function_7a682d434e.js"></script>
+    <script type="text/javascript" src="../js/spirit/ispirit.js"></script>
+    <script type="text/javascript" src="../js/spirit/ispirit_index.js"></script>
     <script>
         var bIMLogin = false;
         var i_ver = "2";
@@ -69,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 <div id="ipanel_container" style="height: 563px;">
-    <iframe id="ipanel" name="ipanel" src="saved_resource.html" allowtransparency="true" border="0"
+    <iframe id="ipanel" name="ipanel" src="dh" allowtransparency="true" border="0"
             frameborder="0" framespacing="0" marginheight="0" marginwidth="0" style="width:100%;height:100%;"></iframe>
 </div>
 <div id="status_bar">
@@ -94,6 +93,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </table>
 
 </div>
-
 </body>
 </html>

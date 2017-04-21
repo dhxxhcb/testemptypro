@@ -31,7 +31,7 @@ A.A1:hover   { COLOR: #ff0000; TEXT-DECORATION: underline}
 A.orgAdd:link, A.orgAdd:visited{
    color:#207BD6;
    padding-left:12px;
-   background:url("../../img/spirit/org_select.png") no-repeat;
+   background:url("../images/org_select.png") no-repeat;
    background-position:0px 0px;
 }
 A.orgAdd:hover, A.orgAdd:active{
@@ -42,7 +42,7 @@ A.orgAdd:hover, A.orgAdd:active{
 A.orgClear:link, A.orgClear:visited{
    color:#9AA9B8;
    padding-left:12px;
-   background:url("../../img/spirit/org_select.png") no-repeat;
+   background:url("../images/org_select.png") no-repeat;
    background-position:0px -60px;
    margin-left:5px;
 }
@@ -74,7 +74,7 @@ a.addfile {
 
    text-decoration:none;
    padding-left:18px;
-   background:url("../../img/spirit/add.png") no-repeat left center;
+   background:url("../images/add.png") no-repeat left center;
 
    cursor:pointer;
 }
@@ -82,7 +82,7 @@ a.addfile_drag:hover,
 a.addfile:hover {
 
    text-decoration:underline;
-   background:url("../../img/spirit/add_hover.png") no-repeat left center;
+   background:url("../images/add_hover.png") no-repeat left center;
 }
 
 input[type="file"].addfile,
@@ -125,12 +125,12 @@ a.addimage .swfupload{
 }
 a.selfile{
    padding-left:18px;
-   background:url("../../img/spirit/add_selfile.png") no-repeat left center;
+   background:url("../images/add_selfile.png") no-repeat left center;
    cursor:pointer;
 }
 a.selfile:hover{
    padding-left:18px;
-   background:url("../../img/spirit/add_selfile_hover.png") no-repeat left center;
+   background:url("../images/add_selfile_hover.png") no-repeat left center;
    cursor:pointer;
 }
 a.selfile:link, a.selfile:visited {
@@ -146,35 +146,35 @@ a.addimage {
    overflow:hidden; 
    text-decoration:none;
    padding-left:18px;
-   background:url("../../img/spirit/add_img.png") no-repeat left center;
+   background:url("../images/add_img.png") no-repeat left center;
 
    cursor:pointer;
 }
 a.addimage:hover {
    text-decoration:underline;
-   background:url("../../img/spirit/add_img_hover.png") no-repeat left center;
+   background:url("../images/add_img_hover.png") no-repeat left center;
 }
 a.add_image_multi{
    width: 75px;
    padding-left:18px;
-   background:url("../../img/spirit/add_img_muti.png") no-repeat left center;
+   background:url("../images/add_img_muti.png") no-repeat left center;
    cursor:pointer;
 }
 a.add_image_multi:hover {
    text-decoration:underline;
-   background:url("../../img/spirit/add_img_muti_hover.png") no-repeat left center;
+   background:url("../images/add_img_muti_hover.png") no-repeat left center;
 }
 a.add_swfupload{
    padding-left:18px; 
    overflow:hidden;
    position: relative;
-   background:url("../../img/spirit/upload_muti.png") no-repeat left center;
+   background:url("../images/upload_muti.png") no-repeat left center;
    cursor:pointer;
    width: 70px;
 }
 a.add_swfupload:hover{
    text-decoration:underline;
-   background:url("../../img/spirit/upload_muti_hover.png") no-repeat left center;
+   background:url("../images/upload_muti_hover.png") no-repeat left center;
 }
 a.add_swfupload .swfupload {
     position: absolute;
@@ -224,7 +224,7 @@ a.dropdown:visited {
    text-align:right;
    padding-right:16px;
    text-decoration:none;
-   background:url("../../img/spirit/menu_arrow_down.gif") right center no-repeat;
+   background:url("../images/menu_arrow_down.gif") right center no-repeat;
 }
 
 label.sms-remind-label{
@@ -240,7 +240,7 @@ a.ToolBtn{
    display:inline-block;
    padding-left:5px;
    text-decoration:none;
-   background:url("../../img/spirit/tool_btn.png") left 0px no-repeat;
+   background:url("../images/tool_btn.png") left 0px no-repeat;
 }
 a.ToolBtn span{
    display:inline-block;
@@ -248,7 +248,7 @@ a.ToolBtn span{
    height:21px;
    line-height:21px;
    color:#ffffff !important;
-   background:url("../../img/spirit/tool_btn.png") right -42px no-repeat;
+   background:url("../images/tool_btn.png") right -42px no-repeat;
    cursor:pointer;
 }
 a.ToolBtn:hover,
@@ -264,7 +264,7 @@ a.ToolBtn-active span{
 a.ToolBtn2{
    display:inline-block;
    text-decoration:none !important;
-   background:url("../../img/spirit/big_btn_bg.png") left -1px repeat-x;
+   background:url("../images/big_btn_bg.png") left -1px repeat-x;
    font-size:12px;
    font-weight:bold;
    border:1px #91a9bd solid;
@@ -288,7 +288,7 @@ a.BigBtn{
    display:inline-block;
    padding-left:5px;
    text-decoration:none !important;
-   background:url("../../img/spirit/tool_btn.png") left 0px no-repeat;
+   background:url("../images/tool_btn.png") left 0px no-repeat;
 }
 a.BigBtn span{
    display:inline-block;
@@ -296,7 +296,7 @@ a.BigBtn span{
    height:21px;
    line-height:21px;
    color:#fff !important;
-   background:url("../../img/spirit/tool_btn.png") right -42px no-repeat;
+   background:url("../images/tool_btn.png") right -42px no-repeat;
    cursor:pointer;
 }
 a.BigBtn:hover{
@@ -313,7 +313,7 @@ table{border-collapse:collapse;}
 }
 .bodycolor { BACKGROUND: #E2E5E6;padding-top:5px;}
 .loginbodycolor { BACKGROUND: #6BA2D8}
-.topbar {font-size: 9pt;BACKGROUND: #C4D9EF;background-image: url("../../img/spirit/topbar.gif")}
+.topbar {font-size: 9pt;BACKGROUND: #C4D9EF;background-image: url("../images/topbar.gif")}
 
 .panel{ BACKGROUND: #C4D9EF; COLOR:#654125;}
 .timebar{ BACKGROUND: #CEDFF1;}
@@ -329,10 +329,10 @@ table{border-collapse:collapse;}
 .big4   { COLOR: #FF0000;}
 .verybig{ font-size: 24pt}
 
-.ArrowButtonL{width:20px;height:16px;background: url('../../img/spirit/previouspage.gif') center center no-repeat;}
-.ArrowButtonR{width:20px;height:16px;background: url('../../img/spirit/nextpage.gif') center center no-repeat;}
-.ArrowButtonLL{width:20px;height:16px;background: url('../../img/spirit/prevpreviouspage.png') center center no-repeat;}
-.ArrowButtonRR{width:20px;height:16px;background: url('../../img/spirit/nextnextpage.png') center center no-repeat;}
+.ArrowButtonL{width:20px;height:16px;background: url('../images/previouspage.gif') center center no-repeat;}
+.ArrowButtonR{width:20px;height:16px;background: url('../images/nextpage.gif') center center no-repeat;}
+.ArrowButtonLL{width:20px;height:16px;background: url('../images/prevpreviouspage.png') center center no-repeat;}
+.ArrowButtonRR{width:20px;height:16px;background: url('../images/nextnextpage.png') center center no-repeat;}
 
 
 
@@ -366,24 +366,24 @@ input.SmallButton{
 }
 input.SmallButton:hover{box-shadow: 0px -2px 2px 0px #86DDEF inset;}
 
-input.SmallButtonAHover{width:50px;height:21px;color:#FFFFFF;background:url("../../img/spirit/btn_a.png") no-repeat;border:0px;cursor:pointer;background-position:0 -21px;}
-input.SmallButtonA{width:50px;height:21px;color:#FFFFFF;background:url("../../img/spirit/btn_a.png") no-repeat;border:0px;cursor:pointer;}
+input.SmallButtonAHover{width:50px;height:21px;color:#FFFFFF;background:url("../images/btn_a.png") no-repeat;border:0px;cursor:pointer;background-position:0 -21px;}
+input.SmallButtonA{width:50px;height:21px;color:#FFFFFF;background:url("../images/btn_a.png") no-repeat;border:0px;cursor:pointer;}
 input.SmallButtonA:hover{background-position:0 -21px;}
 
-input.SmallButtonBHover{width:74px;height:21px;color:#FFFFFF;background:url("../../img/spirit/btn_b.png") no-repeat;border:0px;cursor:pointer;background-position:0 -21px;}
-input.SmallButtonB{width:74px;height:21px;color:#FFFFFF;background:url("../../img/spirit/btn_b.png") no-repeat;border:0px;cursor:pointer;}
+input.SmallButtonBHover{width:74px;height:21px;color:#FFFFFF;background:url("../images/btn_b.png") no-repeat;border:0px;cursor:pointer;background-position:0 -21px;}
+input.SmallButtonB{width:74px;height:21px;color:#FFFFFF;background:url("../images/btn_b.png") no-repeat;border:0px;cursor:pointer;}
 input.SmallButtonB:hover{background-position:0 -21px;}
 
-input.SmallButtonCHover{width:105px;height:21px;color:#FFFFFF;background:url("../../img/spirit/btn_c.png") no-repeat;border:0px;cursor:pointer;background-position:0 -21px;}
-input.SmallButtonC{width:105px;height:21px;color:#FFFFFF;background:url("../../img/spirit/btn_c.png") no-repeat;border:0px;cursor:pointer;}
+input.SmallButtonCHover{width:105px;height:21px;color:#FFFFFF;background:url("../images/btn_c.png") no-repeat;border:0px;cursor:pointer;background-position:0 -21px;}
+input.SmallButtonC{width:105px;height:21px;color:#FFFFFF;background:url("../images/btn_c.png") no-repeat;border:0px;cursor:pointer;}
 input.SmallButtonC:hover{background-position:0 -21px;}
 
-input.SmallButtonDHover{width:160px;height:21px;color:#FFFFFF;background:url("../../img/spirit/btn_d.png") no-repeat;border:0px;cursor:pointer;background-position:0 -21px;}
-input.SmallButtonD{width:160px;height:21px;color:#FFFFFF;background:url("../../img/spirit/btn_d.png") no-repeat;border:0px;cursor:pointer;}
+input.SmallButtonDHover{width:160px;height:21px;color:#FFFFFF;background:url("../images/btn_d.png") no-repeat;border:0px;cursor:pointer;background-position:0 -21px;}
+input.SmallButtonD{width:160px;height:21px;color:#FFFFFF;background:url("../images/btn_d.png") no-repeat;border:0px;cursor:pointer;}
 input.SmallButtonD:hover{background-position:0 -21px;}
 
-input.SmallButtonEHover{width:245px;height:21px;color:#FFFFFF;background:url("../../img/spirit/btn_e.png") no-repeat;border:0px;cursor:pointer;background-position:0 -21px;}
-input.SmallButtonE{width:245px;height:21px;color:#FFFFFF;background:url("../../img/spirit/btn_e.png") no-repeat;border:0px;cursor:pointer;}
+input.SmallButtonEHover{width:245px;height:21px;color:#FFFFFF;background:url("../images/btn_e.png") no-repeat;border:0px;cursor:pointer;background-position:0 -21px;}
+input.SmallButtonE{width:245px;height:21px;color:#FFFFFF;background:url("../images/btn_e.png") no-repeat;border:0px;cursor:pointer;}
 input.SmallButtonE:hover{background-position:0 -21px;}
 
 input.BigButton{ 
@@ -416,31 +416,31 @@ input.BigButton{
 }
 input.BigButton:hover{box-shadow: 0px -2px 2px 0px #86DDEF inset;}
 
-input.BigButtonAHover{width:60px;height:24px;color:#FFFFFF;background:url("../../img/spirit/big_btn_a.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;background-position:0 -24px;}
-input.BigButtonA{width:60px;height:24px;color:#FFFFFF;background:url("../../img/spirit/big_btn_a.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;}
+input.BigButtonAHover{width:60px;height:24px;color:#FFFFFF;background:url("../images/big_btn_a.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;background-position:0 -24px;}
+input.BigButtonA{width:60px;height:24px;color:#FFFFFF;background:url("../images/big_btn_a.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;}
 input.BigButtonA:hover{background-position:0 -24px;}
 
-input.BigButtonBHover{width:84px;height:24px;color:#FFFFFF;background:url("../../img/spirit/big_btn_b.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;background-position:0 -24px;}
-input.BigButtonB{width:84px;height:24px;color:#FFFFFF;background:url("../../img/spirit/big_btn_b.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;}
+input.BigButtonBHover{width:84px;height:24px;color:#FFFFFF;background:url("../images/big_btn_b.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;background-position:0 -24px;}
+input.BigButtonB{width:84px;height:24px;color:#FFFFFF;background:url("../images/big_btn_b.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;}
 input.BigButtonB:hover{background-position:0 -24px;}
 
-input.BigButtonCHover{width:125px;height:24px;color:#FFFFFF;background:url("../../img/spirit/big_btn_c.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;background-position:0 -24px;}
-input.BigButtonC{width:125px;height:24px;color:#FFFFFF;background:url("../../img/spirit/big_btn_c.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;}
+input.BigButtonCHover{width:125px;height:24px;color:#FFFFFF;background:url("../images/big_btn_c.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;background-position:0 -24px;}
+input.BigButtonC{width:125px;height:24px;color:#FFFFFF;background:url("../images/big_btn_c.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;}
 input.BigButtonC:hover{background-position:0 -24px;}
 
-input.BigButtonDHover{width:195px;height:24px;color:#FFFFFF;background:url("../../img/spirit/big_btn_d.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;background-position:0 -24px;}
-input.BigButtonD{width:195px;height:24px;color:#FFFFFF;background:url("../../img/spirit/big_btn_d.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;}
+input.BigButtonDHover{width:195px;height:24px;color:#FFFFFF;background:url("../images/big_btn_d.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;background-position:0 -24px;}
+input.BigButtonD{width:195px;height:24px;color:#FFFFFF;background:url("../images/big_btn_d.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;}
 input.BigButtonD:hover{background-position:0 -24px;}
 
-input.BigButtonEHover{width:305px;height:24px;color:#FFFFFF;background:url("../../img/spirit/big_btn_e.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;background-position:0 -24px;}
-input.BigButtonE{width:305px;height:24px;color:#FFFFFF;background:url("../../img/spirit/big_btn_e.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;}
+input.BigButtonEHover{width:305px;height:24px;color:#FFFFFF;background:url("../images/big_btn_e.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;background-position:0 -24px;}
+input.BigButtonE{width:305px;height:24px;color:#FFFFFF;background:url("../images/big_btn_e.png") no-repeat;border:0px;cursor:pointer;font-size:12pt;}
 input.BigButtonE:hover{background-position:0 -24px;}
 
-input.BigInput,textarea.BigInput {font-size: 10pt;padding: 1px 5px;  border: 1px solid #C0BBB4; background: white url('../../img/spirit/bg_input_text.png') top left repeat-x;}
-input.BigInput:hover,textarea.BigInput:hover {font-size: 10pt;border: 1px solid #99CC00; background: white url('../../img/spirit/bg_input_text_hover.png') top left repeat-x;}
+input.BigInput,textarea.BigInput {font-size: 10pt;padding: 1px 5px;  border: 1px solid #C0BBB4; background: white url('../images/bg_input_text.png') top left repeat-x;}
+input.BigInput:hover,textarea.BigInput:hover {font-size: 10pt;border: 1px solid #99CC00; background: white url('../images/bg_input_text_hover.png') top left repeat-x;}
 input.BigInput{ height: 20px; }
-input.SmallInput,textarea.SmallInput {font-size: 9pt;padding: 1px 5px;  border: 1px solid #C0BBB4; background: white url('../../img/spirit/bg_input_text.png') top left repeat-x;}
-input.SmallInput:hover,textarea.SmallInput:hover {font-size: 9pt;border: 1px solid #99CC00; background: white url('../../img/spirit/bg_input_text_hover.png') top left repeat-x;}
+input.SmallInput,textarea.SmallInput {font-size: 9pt;padding: 1px 5px;  border: 1px solid #C0BBB4; background: white url('../images/bg_input_text.png') top left repeat-x;}
+input.SmallInput:hover,textarea.SmallInput:hover {font-size: 9pt;border: 1px solid #99CC00; background: white url('../images/bg_input_text_hover.png') top left repeat-x;}
 
 input.BigInputMoney{COLOR:#006; BACKGROUND: #F8F8F8; text-align: RIGHT; border:solid 1px black; BORDER-BOTTOM:1px double; FONT-SIZE: 12pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 22px; LINE-HEIGHT: normal}
 
@@ -448,19 +448,19 @@ input.BigStatic,textarea.BigStatic {font-size: 10pt;padding: 1px 5px;  border: 1
 
 input.SmallStatic,textarea.SmallStatic {font-size: 9pt;padding: 1px 5px;  border: 1px solid #C0BBB4; background: #E0E0E0;}
 
-select.BigSelect  { COLOR: #000066;  border: 1px solid #C0BBB4; background: white url('../../img/spirit/bg_input_text.png') top left repeat-x; BORDER-BOTTOM:1px double; FONT-SIZE: 12pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 22px; LINE-HEIGHT: normal}
-select.BigSelect:hover  { COLOR: #000066;  border: 1px solid #C0BBB4; background: white url('../../img/spirit/bg_input_text_hover.png') top left repeat-x; BORDER-BOTTOM:1px double; FONT-SIZE: 12pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 22px; LINE-HEIGHT: normal}
+select.BigSelect  { COLOR: #000066;  border: 1px solid #C0BBB4; background: white url('../images/bg_input_text.png') top left repeat-x; BORDER-BOTTOM:1px double; FONT-SIZE: 12pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 22px; LINE-HEIGHT: normal}
+select.BigSelect:hover  { COLOR: #000066;  border: 1px solid #C0BBB4; background: white url('../images/bg_input_text_hover.png') top left repeat-x; BORDER-BOTTOM:1px double; FONT-SIZE: 12pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 22px; LINE-HEIGHT: normal}
 
-select.SmallSelect{ COLOR: #000066;  border: 1px solid #C0BBB4; background: white url('../../img/spirit/bg_input_text.png') top left repeat-x; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 18px; LINE-HEIGHT: normal}
-select.SmallSelect:hover{ COLOR: #000066;  border: 1px solid #C0BBB4; background: white url('../../img/spirit/bg_input_text_hover.png') top left repeat-x; BORDER-BOTTOM:1px double; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 18px; LINE-HEIGHT: normal}
+select.SmallSelect{ COLOR: #000066;  border: 1px solid #C0BBB4; background: white url('../images/bg_input_text.png') top left repeat-x; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 18px; LINE-HEIGHT: normal}
+select.SmallSelect:hover{ COLOR: #000066;  border: 1px solid #C0BBB4; background: white url('../images/bg_input_text_hover.png') top left repeat-x; BORDER-BOTTOM:1px double; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 18px; LINE-HEIGHT: normal}
 
 select.BigStatic  { COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black; BORDER-BOTTOM:1px double; FONT-SIZE: 12pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 22px; LINE-HEIGHT: normal}
 select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 18px; LINE-HEIGHT: normal}
 
-.TableControl{ background: url("../../img/spirit/footer_bg.png") bottom left;}
-.TableHeader { COLOR:#2E2E5A; FONT-WEIGHT: bold; FONT-SIZE: 9pt; background:url("../../img/spirit/list_hd_bg.png"); line-height:25px;}
-.TableHeader1 { BACKGROUND: #D3E5FA; background-image: url("../../img/spirit/button_back.gif");  cursor:pointer; COLOR: #000066;}
-.TableHeader2 { BACKGROUND: #D3E5FA; background-image: url("../../img/spirit/menubg.gif");  cursor:pointer; COLOR: #000066;FONT-WEIGHT: bold;}
+.TableControl{ background: url("../images/footer_bg.png") bottom left;}
+.TableHeader { COLOR:#2E2E5A; FONT-WEIGHT: bold; FONT-SIZE: 9pt; background:url("../images/list_hd_bg.png"); line-height:25px;}
+.TableHeader1 { BACKGROUND: #D3E5FA; background-image: url("../images/button_back.gif");  cursor:pointer; COLOR: #000066;}
+.TableHeader2 { BACKGROUND: #D3E5FA; background-image: url("../images/menubg.gif");  cursor:pointer; COLOR: #000066;FONT-WEIGHT: bold;}
 .TableContent{ BACKGROUND: #F0F0F0;}
 .TableData   { BACKGROUND: #FFFFFF;COLOR:#000000;}
 .TableLine1  { BACKGROUND: #F8F8F8;}
@@ -474,16 +474,16 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
 .percent { height: 12px; border: 1px solid #666666; float: left; padding: 0px;margin-top:3px;}
 .percent div {height: 8px;font-size: 0px;margin: 1px;float:left;background-color:#00FF40;}
 .percenttxt {float:left;font-size: 9pt;margin-top:1px;}
-.s_on{background:url(../../img/spirit/topmenubg2.gif);font-size: 9pt;}
-.s_of{background:url(../../img/spirit/topmenubg1.gif);font-size: 9pt;}
-.m_on{background:url(../../img/spirit/topmenubg2.gif);font-size: 9pt;}
+.s_on{background:url(../images/topmenubg2.gif);font-size: 9pt;}
+.s_of{background:url(../images/topmenubg1.gif);font-size: 9pt;}
+.m_on{background:url(../images/topmenubg2.gif);font-size: 9pt;}
 .border14-1 {border: solid 1px #2E2E5A;font-size: 14px;}/* 表格外框 */
 .border14-2 {border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color: #2E2E5A;border-right-width: 1px;border-right-style: solid;border-right-color: #2E2E5A;font-size: 14px;}/* 表格边框右面 */
 .border14-3 {border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color: #98BBD6;font-size: 14px;border-top-style: none;border-right-style: none;border-left-style: none;}/* 表格边框底面 */
 .border14-4 {border-right-width: 1px;border-right-style: solid;border-right-color: #98BBD6;font-size: 14px;}/* 表格边框左面 */
 .title_text {  font-size: 14px; font-weight: bold; color: #0A5FA2; }
 .table_border {  border-color: #98BBD6 #98BBD6 black; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
-.table_bg {  background-attachment: fixed; background-image: url("../../img/spirit/bg_header.png"); background-repeat: repeat; background-position: left; border-color: #2E2E5A black; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
+.table_bg {  background-attachment: fixed; background-image: url("../images/bg_header.png"); background-repeat: repeat; background-position: left; border-color: #2E2E5A black; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px}
 
 .attach_link{white-space: nowrap;margin-right: 15px;line-height: 22px;}
 .lte_ie9 .attach_link,.lte_ie8 .attach_link{white-space: normal;}
@@ -520,7 +520,7 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
    line-height:30px;
    font-weight:bold;
    text-align:center;
-   background:url('../../img/spirit/list_hd_bg.png') left top repeat-x;
+   background:url('../images/list_hd_bg.png') left top repeat-x;
 }
 .BlockTop td.left{
    width:5px;
@@ -564,7 +564,7 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
    line-height:25px;
    font-weight:bold;
    text-align:center;
-   background:url('../../img/spirit/list_hd_bg.png') left top repeat-x;
+   background:url('../images/list_hd_bg.png') left top repeat-x;
 }
 .BlockBottom td.left{
    width:5px;
@@ -584,7 +584,7 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
 .TableTop td{
    line-height:25px;
    font-weight:bold;
-   background:url('../../img/spirit/list_hd_bg.png') left top repeat-x;
+   background:url('../images/list_hd_bg.png') left top repeat-x;
 }
 .TableTop td.left{
    width:5px;
@@ -605,7 +605,7 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
 }
 .TableList .TableHeader td,
 .TableList td.TableHeader{
-   background:url("../../img/spirit/list_hd_bg.png");
+   background:url("../images/list_hd_bg.png");
    border-top:1px #9F9F9F solid;
    border-right:1px #DCDCDC solid;
    font-weight:bold;
@@ -640,7 +640,7 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
 .TableList .TableControl td,
 .TableList td.TableFooter,
 .TableList td.TableControl{
-   background: url("../../img/spirit/footer_bg.png") bottom left;
+   background: url("../images/footer_bg.png") bottom left;
    border-top:1px #DCDCDC solid;
    padding:3px;
 }
@@ -695,7 +695,7 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
 }
 .TableBlock .TableHeader td,
 .TableBlock td.TableHeader{
-   background:url("../../img/spirit/list_hd_bg.png");
+   background:url("../images/list_hd_bg.png");
    border-bottom:1px #9F9F9F solid;
    border-right:1px #606275 solid;
    font-weight:bold;
@@ -735,7 +735,7 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
 .TableBlock .TableControl td,
 .TableBlock td.TableFooter,
 .TableBlock td.TableControl{
-   background: url("../../img/spirit/footer_bg.png") bottom left;
+   background: url("../images/footer_bg.png") bottom left;
    border-top:1px #606275 solid;
    padding:3px;
 }
@@ -838,7 +838,7 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
 }
 .MessageBox .head .center,
 .dialog .head .center{
-   background:url('../../img/spirit/list_hd_bg.png') left top repeat-x;
+   background:url('../images/list_hd_bg.png') left top repeat-x;
 }
 .MessageBox .head .center .title,
 .dialog .head .center .title{
@@ -854,11 +854,11 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
    width:16px;
    height:16px;
    margin-top:5px;
-   background:url('../../img/spirit/close.png') center center no-repeat;
+   background:url('../images/close.png') center center no-repeat;
 }
 .MessageBox .head .center .close:hover,
 .dialog .head .center .close:hover{
-   background:url('../../img/spirit/close_x.png') center center no-repeat;
+   background:url('../images/close_x.png') center center no-repeat;
 }
 .MessageBox .head .right,
 .dialog .head .right{
@@ -942,27 +942,27 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
 }
 
 .MessageBox .msg .error{
-   background-image:url("../../img/spirit/icon64_error.png");
+   background-image:url("../images/icon64_error.png");
    background-position:10px 10px;
    background-repeat:no-repeat;
 }
 .MessageBox .msg .info{
-   background-image:url("../../img/spirit/icon64_info.png");
+   background-image:url("../images/icon64_info.png");
    background-position:10px 10px;
    background-repeat:no-repeat;
 }
 .MessageBox .msg .warning{
-   background-image:url("../../img/spirit/icon64_warning.png");
+   background-image:url("../images/icon64_warning.png");
    background-position:10px 10px;
    background-repeat:no-repeat;
 }
 .MessageBox .msg .forbidden{
-   background-image:url("../../img/spirit/icon64_forbidden.png");
+   background-image:url("../images/icon64_forbidden.png");
    background-position:10px 10px;
    background-repeat:no-repeat;
 }
 .MessageBox .msg .stop{
-   background-image:url("../../img/spirit/icon64_stop.png");
+   background-image:url("../images/icon64_stop.png");
    background-position:10px 10px;
    background-repeat:no-repeat;
 }
@@ -990,15 +990,15 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
 .pageArea{text-align:left;padding:5px;color:#006EFE;width:330px;display:inline;}
 .pageArea img{cursor:pointer;}
 .pageArea a{width:30px;height:16px;display:inline-block;}
-.pageArea .pageFirst{background: url('../../img/spirit/firstpage.gif') center center no-repeat;}
-.pageArea .pagePrevious{background: url('../../img/spirit/previouspage.gif') center center no-repeat;}
-.pageArea .pageNext{background: url('../../img/spirit/nextpage.gif') center center no-repeat;}
-.pageArea .pageLast{background: url('../../img/spirit/lastpage.gif') center center no-repeat;}
-.pageArea .pageFirstDisable{background: url('../../img/spirit/firstpage_disable.gif') center center no-repeat;}
-.pageArea .pagePreviousDisable{background: url('../../img/spirit/previouspage_disable.gif') center center no-repeat;}
-.pageArea .pageNextDisable{background: url('../../img/spirit/nextpage_disable.gif') center center no-repeat;}
-.pageArea .pageLastDisable{background: url('../../img/spirit/lastpage_disable.gif') center center no-repeat;}
-.pageArea .pageGoto{background: url('../../img/spirit/green_arrow.gif') center center no-repeat;width:17px;}
+.pageArea .pageFirst{background: url('../images/firstpage.gif') center center no-repeat;}
+.pageArea .pagePrevious{background: url('../images/previouspage.gif') center center no-repeat;}
+.pageArea .pageNext{background: url('../images/nextpage.gif') center center no-repeat;}
+.pageArea .pageLast{background: url('../images/lastpage.gif') center center no-repeat;}
+.pageArea .pageFirstDisable{background: url('../images/firstpage_disable.gif') center center no-repeat;}
+.pageArea .pagePreviousDisable{background: url('../images/previouspage_disable.gif') center center no-repeat;}
+.pageArea .pageNextDisable{background: url('../images/nextpage_disable.gif') center center no-repeat;}
+.pageArea .pageLastDisable{background: url('../images/lastpage_disable.gif') center center no-repeat;}
+.pageArea .pageGoto{background: url('../images/green_arrow.gif') center center no-repeat;width:17px;}
 
 .ColorTable {
 	margin: 0px; background: #F5FBFF; border: #BBBBBB 1px solid;
@@ -1015,22 +1015,22 @@ select.SmallStatic{ COLOR: #000066; BACKGROUND: #E0E0E0; border:solid 1px black;
 
 .scroll-left{
    width:16px;
-   background:url('../../img/spirit/hscroll_arrow.png') -1px center no-repeat;
+   background:url('../images/hscroll_arrow.png') -1px center no-repeat;
    cursor:pointer;
 }
 .scroll-left-active{
    width:16px;
-   background:url('../../img/spirit/hscroll_arrow.png') -33px center no-repeat;
+   background:url('../images/hscroll_arrow.png') -33px center no-repeat;
    cursor:pointer;
 }
 .scroll-right{
    width:16px;
-   background:url('../../img/spirit/hscroll_arrow.png') -16px center no-repeat;
+   background:url('../images/hscroll_arrow.png') -16px center no-repeat;
    cursor:pointer;
 }
 .scroll-right-active{
    width:16px;
-   background:url('../../img/spirit/hscroll_arrow.png') -48px center no-repeat;
+   background:url('../images/hscroll_arrow.png') -48px center no-repeat;
    cursor:pointer;
 }
 
@@ -1040,19 +1040,19 @@ table.card .info .offline{
    padding-left:0px;
 }
 .online-0{
-   background:url('../../img/spirit/client_type_0.png') left center no-repeat;
+   background:url('../images/client_type_0.png') left center no-repeat;
 }
 .online-1{
-   background:url('../../img/spirit/client_type_1.png') left center no-repeat;
+   background:url('../images/client_type_1.png') left center no-repeat;
 }
 .online-2{
-   background:url('../../img/spirit/client_type_2.png') left center no-repeat;
+   background:url('../images/client_type_2.png') left center no-repeat;
 }
 .online-5{
-   background:url('../../img/spirit/client_type_5.png') left center no-repeat;
+   background:url('../images/client_type_5.png') left center no-repeat;
 }
 .online-6{
-   background:url('../../img/spirit/client_type_6.png') left center no-repeat;
+   background:url('../images/client_type_6.png') left center no-repeat;
 }
 
 /* tools */

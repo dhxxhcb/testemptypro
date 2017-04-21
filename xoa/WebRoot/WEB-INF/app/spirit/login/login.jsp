@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var uname = $.getQueryString('USERNAME');
 		var I_VER = $.getQueryString('I_VER');
 		if(uname != ''){
-			location.href = "../main";
+			location.href = "main";
 		}
         $("#login").click(function () {
             location.href = "main.html";
