@@ -178,44 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </tr>
 		</table>
 	</div> 
-</div><!-- 查询列表  -->
-	<div id="queryList" style="overflow-y: scroll;display:none;">
-		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
-		  <tr>
-		    <td class="Big">
-		    	<img src="../img/notify_open.gif" align="absmiddle">
-		    	<span class="big3">公告通知查询结束</span>
-		    </td>
-			   		
-		    <td align="right" valign="bottom" class="small1">
-		    	<div class="M-box3"></div>
-		    </td>
-		  </tr>
-		</table>
-		<table class="TableList" width="95%" align="center" cellspacing="0" cellpadding="0">
-		  <tr class="TableHead">
-		     <!--  <th nowrap align="center">选择</th> -->
-		      <th nowrap align="center"><fmt:message code="notice.th.publisher" /></th>
-		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
-		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
-		   
-		      <th nowrap align="center" style="cursor:pointer;"><u>发布范围</u>
-		      	
-		      </th>
-		      <th nowrap align="center"><fmt:message code="notice.th.createTime" />
-		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
-		      </th>
-		    </tr>
-		    <tr>
-		    	<td colspan="5">
-			    	<div class="divBtn">
-			    		<input type="button" name="iBtn" class="iBtn" id="iBtn" value="返回" style="cursor: pointer;">
-			    	</div>
-		    	</td>
-		    </tr>
-		</table>
-	</div> 
-</div>
+
 		<script type="text/javascript">
 			
 			//时间控件调用

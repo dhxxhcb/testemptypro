@@ -404,7 +404,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											str+='<tr class="TableLine33"><td nowrap align="center">'+data[i].userName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].newsId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].clickCount+'</td><td nowrap align="center">'+data[i].newsTime+'</td></tr>';
 											str1='<input type="hidden" id="'+data[i].notifyId+'">';
 										}
-										$('.TableHead').append(str+str1); 
+										$('.TableHead').after(str+str1); 
 									}
 								});
 							}
