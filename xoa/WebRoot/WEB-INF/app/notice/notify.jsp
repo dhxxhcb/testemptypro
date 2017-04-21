@@ -390,13 +390,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						'sendTime':'2017-04-03 10:28:35',
 						'subject':subject,
 						'content':content,
-						'format':forMat
+						'format':forMat,
+						"page":1,
+    				    "pageSize":5,
+    				    "useFlag":true
 					};
 					$.ajax({
 						type:"get",
 						url:"notifyList",
 						dataType:'json',
-						data:data1,
+						data:data,
 						success:function(){
 							if(subject!=''||content!=''){
 								$('#noticeQuery').css('display','none');
@@ -410,7 +413,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var data=rsp.obj;
 										var str='';
 										for(var i=0;i<data.length;i++){
-											str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td></tr>';
+											str+='<tr class="TableLiney"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td></tr>';
 											//str1='';
 										}
 										$('.TableHead').after(str);
@@ -435,7 +438,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#iBtn').click(function(){
 					$('#queryList').css('display','none');
 					$('#noticeQuery').css('display','block');
-					$('.TableLine1').remove();
+					$('.TableLiney').remove();
 				})
 				
        		});
