@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var GG = {
                 "kk": function (mm) {
                  	var read = $('.index_head .one').parent().attr('data_id');
-					var typeId = $('#select').val();
+					var typeId = $('#select').val()==0?'':$('#select').val();
 					var nTime = $('#test').val();
 					console.log(read,typeId,nTime);
 					ajax_data(read,typeId,nTime);

@@ -70,6 +70,57 @@
 		select
 		SUBJECT,TYPE_ID,NEWS_TIME,CLICK_COUNT,PROVIDER,CONTENT,READERS FROM
 		news
+		<where>
+		   <if test="nTime != null and nTime != ''">
+				NEWS_TIME = #{nTime}
+			</if>  
+			<if test="format != null and format != ''">
+				FORMAT = #{format}
+			</if>
+			<if test="typeId != null and typeId != ''">
+				AND TYPE_ID = #{typeId}
+			</if>
+			<if test="subject != null and subject != ''">
+				AND SUBJECT like CONCAT('%',#{subject},'%')
+			</if>
+			<if
+				test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''">
+				AND NEWS_TIME between #{newsTime} and #{lastEditTime}
+			</if>
+			<if test="content != null and content != ''">
+				AND CONTENT like CONCAT('%',#{content},'%')
+			</if>
+		</where>
+		ORDER BY NEWS_ID DESC
+	</select>
+	
+	<!-- 查询未读已读信息并返回 列表 -->
+	<select id="readNews" parameterType="Map" resultMap="BaseResultMap">
+		select
+		SUBJECT,TYPE_ID,NEWS_TIME,CLICK_COUNT,PROVIDER,CONTENT,READERS FROM
+		news
+		<where>
+		   <if test="nTime != null and nTime != ''">
+				NEWS_TIME = #{nTime}
+			</if>  
+			<if test="format != null and format != ''">
+				FORMAT = #{format}
+			</if>
+			<if test="typeId != null and typeId != ''">
+				AND TYPE_ID = #{typeId}
+			</if>
+			<if test="subject != null and subject != ''">
+				AND SUBJECT like CONCAT('%',#{subject},'%')
+			</if>
+			<if
+				test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''">
+				AND NEWS_TIME between #{newsTime} and #{lastEditTime}
+			</if>
+			<if test="content != null and content != ''">
+				AND CONTENT like CONCAT('%',#{content},'%')
+			</if>
+		</where>
+		ORDER BY NEWS_ID DESC
 	</select>
 
 	<!-- 条件总计数 -->

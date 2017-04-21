@@ -128,6 +128,7 @@ public class NewsController {
 			@RequestParam(value = "nTime", required = false) String nTime,
 			@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
 			@RequestParam(value = "content", required = false) String content,
+			@RequestParam("read") String read,
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag,
@@ -140,19 +141,44 @@ public class NewsController {
 		maps.put("nTime", nTime);
 		maps.put("lastEditTime", lastEditTime);
 		maps.put("content", content);
-		String name = "wangyueqi";
+		String name = "wangyuessss";
 		String returnReslt = null;
 		try {
-			ToJson<News> tojson= newService.selectNews(maps, page, pageSize,useFlag, name);
-			if (tojson.getObj().size() > 0) {
-				tojson.setMsg(ok);
-				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-						"yyyy-MM-dd HH:mm:ss");
-			} else {
-				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-						1, err), "yyyy-MM-dd HH:mm:ss");
+			 if (read.equals("0")) {
+				ToJson<News> tojson= newService.unreadNews(maps, page, pageSize,
+						useFlag, name);
+				if (tojson.getObj().size() > 0) {
+					tojson.setMsg(ok);
+					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+							"yyyy-MM-dd HH:mm:ss");
+				} else {
+					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
+							1, err), "yyyy-MM-dd HH:mm:ss");
+				}
+			}else if (read.equals("1")) {//已读
+				ToJson<News> tojson= newService.readNews(maps, page, pageSize,
+						useFlag, name);
+				if (tojson.getObj().size() > 0) {
+					tojson.setMsg(ok);
+					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+							"yyyy-MM-dd HH:mm:ss");
+				} else {
+					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
+							1,"ok"), "yyyy-MM-dd HH:mm:ss");
+				}
 			}
-
+				else 
+			{
+				ToJson<News> tojson= newService.selectNews(maps, page, pageSize,useFlag, name);
+				if (tojson.getObj().size() > 0) {
+					tojson.setMsg(ok);
+					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+							"yyyy-MM-dd HH:mm:ss");
+				} else {
+					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
+							1, err), "yyyy-MM-dd HH:mm:ss");
+				}
+			}
 		} catch (Exception e) {
 			loger.debug("NewsMessage:" + e);
 			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,
@@ -185,12 +211,9 @@ public class NewsController {
 		String name = (String) request.getSession().getAttribute("byname");
 		String returnReslt = null;
 		try {
-			List<News> list = newService.unreadNews(maps, page, pageSize,
+			ToJson<News> tojson= newService.unreadNews(maps, page, pageSize,
 					useFlag, name);
-			System.out.println(list);
-			ToJson<News> tojson = new ToJson<News>(0, err);
-			tojson.setObj(list);
-			if (list.size() > 0) {
+			if (tojson.getObj().size() > 0) {
 				tojson.setMsg(ok);
 				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
 						"yyyy-MM-dd HH:mm:ss");
