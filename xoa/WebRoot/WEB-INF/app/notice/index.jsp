@@ -162,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}); 
 		 
 	        var ue = UE.getEditor('container');
-			$(function() {
+			/* $(function() {
 			//设置编辑器的内容
 				
 				$("#btn2").on("click",function(){
@@ -190,7 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					})
 				})
 				
-			}); 
+			});  */
 	    </script>
 	</body>
 </html>

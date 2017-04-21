@@ -28,30 +28,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</style>
 	</head>
 	<body>
+	<div id="noticeQuery" style="display: none;">
 		<table class="TableBlock" width="550" align="center" border="1">
 		  <form enctype="multipart/form-data" name="form1"></form>
 		    <tbody><tr>
 		      <td nowrap="" class="TableData">发布人：</td>
 		      <td class="TableData">
-		        <!--<input type="hidden" name="TO_ID" value="">
-		        <textarea cols="35" name="TO_NAME" rows="3" class="BigStatic" wrap="yes" readonly=""></textarea>-->
-		        <!--<a href="javascript:;" class="orgAdd">添加</a>
-		        <a href="javascript:;" class="orgClear">清空</a>-->
 		        <div class="inPole">
-								<textarea name="txt" disabled></textarea>
-								<span class="add_img">
-									<span class="addImg">
-										<img src="img/org_select1.png" class="addIcon"/>
-									</span>
-									<a href="javascript:;" class="Add">添加</a>
-								</span>
-								<span class="add_img">
-									<span class="addImg">
-										<img src="img/org_select2.png" class="clearIcon"/>
-									</span>
-									<a href="javascript:;" class="clear">清除</a>
-								</span>
-							</div>
+					<textarea name="txt" disabled></textarea>
+					<span class="add_img">
+						<span class="addImg">
+							<img src="img/org_select1.png" class="addIcon"/>
+						</span>
+						<a href="javascript:;" class="Add">添加</a>
+					</span>
+					<span class="add_img">
+						<span class="addImg">
+							<img src="img/org_select2.png" class="clearIcon"/>
+						</span>
+						<a href="javascript:;" class="clear">清除</a>
+					</span>
+				</div>
 		      </td>
 		    </tr>
 		    <tr>
@@ -106,8 +103,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <tr>
 		      <td nowrap="" class="TableData" width="100"> 发布日期：</td>
 		      <td class="TableData">
-		        <!-- <input type="text" id="start_time" name="SEND_TIME_MIN" size="12" maxlength="10" class="BigInput" value="" onclick="WdatePicker()"> &nbsp;至&nbsp;         
-		        <input type="text" name="SEND_TIME_MAX" size="12" maxlength="10" class="BigInput" value="" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start_time\')}'})"> -->
 		        <input class="laydate-icon" id="start"> &nbsp;至&nbsp;
 		        <input class="laydate-icon" id="end">
 		      </td>
@@ -145,6 +140,82 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </tr>
 		  </tbody>
 		</table>
+	</div>
+	<!-- 查询列表  -->
+	<div id="queryList" style="overflow-y: scroll;display:none;">
+		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
+		  <tr>
+		    <td class="Big">
+		    	<img src="../img/notify_open.gif" align="absmiddle">
+		    	<span class="big3">公告通知查询结束</span>
+		    </td>
+			   		
+		    <td align="right" valign="bottom" class="small1">
+		    	<div class="M-box3"></div>
+		    </td>
+		  </tr>
+		</table>
+		<table class="TableList" width="95%" align="center" cellspacing="0" cellpadding="0">
+		  <tr class="TableHead">
+		     <!--  <th nowrap align="center">选择</th> -->
+		      <th nowrap align="center"><fmt:message code="notice.th.publisher" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
+		   
+		      <th nowrap align="center" style="cursor:pointer;"><u>发布范围</u>
+		      	
+		      </th>
+		      <th nowrap align="center"><fmt:message code="notice.th.createTime" />
+		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
+		      </th>
+		    </tr>
+		    <tr>
+		    	<td colspan="5">
+			    	<div class="divBtn">
+			    		<input type="button" name="iBtn" class="iBtn" id="iBtn" value="返回" style="cursor: pointer;">
+			    	</div>
+		    	</td>
+		    </tr>
+		</table>
+	</div> 
+</div><!-- 查询列表  -->
+	<div id="queryList" style="overflow-y: scroll;display:none;">
+		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
+		  <tr>
+		    <td class="Big">
+		    	<img src="../img/notify_open.gif" align="absmiddle">
+		    	<span class="big3">公告通知查询结束</span>
+		    </td>
+			   		
+		    <td align="right" valign="bottom" class="small1">
+		    	<div class="M-box3"></div>
+		    </td>
+		  </tr>
+		</table>
+		<table class="TableList" width="95%" align="center" cellspacing="0" cellpadding="0">
+		  <tr class="TableHead">
+		     <!--  <th nowrap align="center">选择</th> -->
+		      <th nowrap align="center"><fmt:message code="notice.th.publisher" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
+		   
+		      <th nowrap align="center" style="cursor:pointer;"><u>发布范围</u>
+		      	
+		      </th>
+		      <th nowrap align="center"><fmt:message code="notice.th.createTime" />
+		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
+		      </th>
+		    </tr>
+		    <tr>
+		    	<td colspan="5">
+			    	<div class="divBtn">
+			    		<input type="button" name="iBtn" class="iBtn" id="iBtn" value="返回" style="cursor: pointer;">
+			    	</div>
+		    	</td>
+		    </tr>
+		</table>
+	</div> 
+</div>
 		<script type="text/javascript">
 			
 			//时间控件调用
@@ -174,7 +245,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			laydate(start);
 			laydate(end);//
 			
-       		$(function(){
+       		/* $(function(){
        			
        			$('input[type="submit"]').click(function () {
 					var typeId=$('select[name="TYPE_ID"] option:checked').val();
@@ -195,12 +266,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						dataType:'json',
 						data:data,
 						success:function(){
-						/* alert(data.length); */
+					
 							console('1223');
 						}
 					});
 				});
-       		});
+       		}); */
     	</script>
 	</body>
 </html>
