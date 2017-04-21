@@ -126,6 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"email":"email/index",
 				"notify_show":"notice/index",
 				"news_show":"news/index",
+				"notify_manage":"notice/manage",
 				"file_folder/index2.php":"fileHome",
 				"system/file_folder":"showFileBySort_id"
 			}
