@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
                 $(".news").html($(this).find('span').text());
 				var read = $(this).attr('data_id');
-				var typeId = $('#select').val();
+				var typeId = $('#select').val()==0?'':$('#select').val();
 				var nTime = $('#test').val();
 				console.log(read,typeId,nTime);
 				if(read == ''||read == 0){

@@ -153,7 +153,7 @@ public class NewsController {
 							"yyyy-MM-dd HH:mm:ss");
 				} else {
 					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-							1, err), "yyyy-MM-dd HH:mm:ss");
+							1, ok), "yyyy-MM-dd HH:mm:ss");
 				}
 			}else if (read.equals("1")) {//已读
 				ToJson<News> tojson= newService.readNews(maps, page, pageSize,
