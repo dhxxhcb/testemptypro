@@ -10,6 +10,7 @@ import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.worldnews.NewService;
+import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 
 import org.springframework.stereotype.Service;
@@ -62,8 +63,9 @@ public class NewServiceImpl implements NewService {
 	 * @return     List<News> 返回新闻列表List
 	 */
 	@Override
-	public List<News> selectNews(Map<String, Object> maps, Integer page,
+	public ToJson<News>  selectNews(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
+		ToJson<News>  newJson=new ToJson<News>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
@@ -82,7 +84,9 @@ public class NewServiceImpl implements NewService {
 				news.setRead(0);
 			}
 		}
-		return list;
+		newJson.setObj(list);
+		newJson.setTotleNum(pageParams.getTotal());
+		return newJson;
 	}
 	
 	/**
@@ -100,8 +104,9 @@ public class NewServiceImpl implements NewService {
 	 * @return     List<News> 返回新闻列表List
 	 */
 	@Override
-	public List<News> unreadNews(Map<String, Object> maps, Integer page,
+	public ToJson<News> unreadNews(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
+		ToJson<News>  newJson=new ToJson<News>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
@@ -118,7 +123,34 @@ public class NewServiceImpl implements NewService {
 				list1.add(news);
 			}
 		}
-		return list1;
+		newJson.setObj(list1);
+		newJson.setTotleNum(pageParams.getTotal());
+		return newJson;
+	}
+	
+	@Override
+	public ToJson<News> readNews(Map<String, Object> maps, Integer page,
+			Integer pageSize, boolean useFlag, String name) throws Exception {
+		ToJson<News>  newJson=new ToJson<News>();
+		PageParams pageParams = new PageParams();
+		pageParams.setUseFlag(useFlag);
+		pageParams.setPage(page);
+		pageParams.setPageSize(pageSize);
+		maps.put("page", pageParams);
+		List<News> list = newsMapper.unreadNews(maps);
+		List<News> list1 = new ArrayList<News>();
+		for (News news : list) {
+			Users user=UsersMapper.findUserByName(news.getProvider());
+			news.setProviderName(user.getUserName());
+			SysCode code=sysCodeMapper.getSysCode(news.getTypeId());
+			news.setTypeName(code.getCodeName());
+			if (news.getReaders().indexOf(name) != -1) {
+				list1.add(news);
+			}
+		}
+		newJson.setObj(list1);
+		newJson.setTotleNum(pageParams.getTotal());
+		return newJson;
 	}
 	/**
 	 * 

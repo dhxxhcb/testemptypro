@@ -31,6 +31,10 @@
 	resultMap="DepResultMap">
 		SELECT DEPT_ID,DEPT_NAME,DEPT_NO from department where DEPT_PARENT=#{deptId}
 	</select>
+	<select id="getFatherDept" 
+	resultMap="DepResultMap">
+		SELECT * from department where DEPT_ID=#{deptParent}
+	</select>
 	<select id="getDeptNameById" resultType="java.lang.String">
 		SELECT DEPT_NAME from department where DEPT_ID=#{deptId}
 	</select>
