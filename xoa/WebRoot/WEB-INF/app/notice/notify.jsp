@@ -52,11 +52,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
     	$(function(){
     			var data1={
+    				"typeId":'',
+    				"sendTime":'',
     				"page":1,
     				"pageSize":10,
     				"useFlag":true
     			};
-    			$.ajax({
+    			initNotice();
+    			function initNotice(){
+    				$.ajax({
 						type:'get',
 						url:'notifyList',
 						dataType:'json',
@@ -82,13 +86,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    jumpBtn:'<fmt:message code="global.page.jump" />'
 							});
 						}
-				});
+					});
+    			}
+    			//查询
+    			$('#btn_ok').click(function(){
+    				data1.typeId = $('#noticetype:selected').val();
+    				data1.sendTime =$('').val();
+    				console.log(data1);
+    				//initNotice();
+    			})
 				
 				$('.TableList').on('click','.windowOpen',function(){
 					var nid=$(this).attr('noticeId');
 					$.popWindow('detail?nid='+nid);
 				})
-				
+				//查询
 				$('.muJump ul li').click(function () {
 	    			var index=$(this).index();
 	    			$('.muJump ul li').removeClass('jumpOn');
@@ -182,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <td class="Big">
 		    	<img src="../img/notify_open.gif" align="absmiddle">
 		    	<span class="big3"><fmt:message code="notice.title.notify" /></span>&nbsp;
-		       <select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
+		       <select name="TYPE" id="noticetype" class="BigSelect" onChange="change_type(this.value);">
 		          	<option value="0" selected><fmt:message code="notice.type.alltype" /></option>
 		         	<option value="01"><fmt:message code="notice.type.Decision" /></option>
 					<option value="02"><fmt:message code="notice.type.notice" /></option>
@@ -192,7 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		       </select>
 		       <span><fmt:message code="notice.title.Releasedate" />:</span>
 				<input id="test" name="SEND_TIME" class="laydate-icon">
-				<input type="button" id="but" value="<fmt:message code="global.lang.ok" />" />
+				<input type="button" id="btn_ok" value="<fmt:message code="global.lang.ok" />" />
 		    </td>
 			   		
 		    <td align="right" valign="bottom" class="small1">
