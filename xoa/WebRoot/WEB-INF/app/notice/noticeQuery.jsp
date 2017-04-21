@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</style>
 	</head>
 	<body>
-	<div id="noticeQuery" style="display: none;">
+	<div id="noticeQuery" style="display: block;">
 		<table class="TableBlock" width="550" align="center" border="1">
 		  <form enctype="multipart/form-data" name="form1"></form>
 		    <tbody><tr>

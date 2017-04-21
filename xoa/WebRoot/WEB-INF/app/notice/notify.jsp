@@ -52,13 +52,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
     	$(function(){
     			var data1={
-    				"typeId":'',
-    				"sendTime":'',
+    				"typeId":$('#noticetype option:checked').val(),
+    				"sendTime":$('#test').val(),
     				"page":1,
     				"pageSize":10,
     				"useFlag":true
     			};
+    			
     			initNotice();
+    			
     			function initNotice(){
     				$.ajax({
 						type:'get',
@@ -67,13 +69,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						data:data1,
 						success:function(rsp){
 							var data=rsp.obj;	
-							//console.log(data[0].name);				
+							console.log(data);				
 							var str='';
 							for(var i=0;i<data.length;i++){
 								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td></tr>';
-								str1='';
+								
 							}
-							$('.TableHeader').after(str+str1); 
+							$('.TableHeader').after(str); 
 							
 							$('.M-box3').pagination({
 							    pageCount:1,
@@ -88,12 +90,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					});
     			}
-    			//查询
-    			$('#btn_ok').click(function(){
-    				data1.typeId = $('#noticetype:selected').val();
-    				data1.sendTime =$('').val();
-    				console.log(data1);
-    				//initNotice();
+    			//条件查询
+    			$('#but').click(function(){
+    				
+    				data1.typeId = $('#noticetype option:checked').val();
+    				data1.sendTime =$('#test').val();
+    				alert(data1.typeId);
+    				initNotice();
     			})
 				
 				$('.TableList').on('click','.windowOpen',function(){
@@ -194,17 +197,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <td class="Big">
 		    	<img src="../img/notify_open.gif" align="absmiddle">
 		    	<span class="big3"><fmt:message code="notice.title.notify" /></span>&nbsp;
-		       <select name="TYPE" id="noticetype" class="BigSelect" onChange="change_type(this.value);">
-		          	<option value="0" selected><fmt:message code="notice.type.alltype" /></option>
+		       <select name="TYPE" id="noticetype" class="BigSelect">
+		          	<option value="" selected><fmt:message code="notice.type.alltype" /></option>
 		         	<option value="01"><fmt:message code="notice.type.Decision" /></option>
 					<option value="02"><fmt:message code="notice.type.notice" /></option>
 					<option value="03"><fmt:message code="notice.type.Bulletin" /></option>
 					<option value="04"><fmt:message code="notice.type.other" /></option>
-		          	<option value="05"><fmt:message code="notice.type.notype" /></option>
+		          	<!-- <option value="05"><fmt:message code="notice.type.notype" /></option> -->
 		       </select>
 		       <span><fmt:message code="notice.title.Releasedate" />:</span>
 				<input id="test" name="SEND_TIME" class="laydate-icon">
-				<input type="button" id="btn_ok" value="<fmt:message code="global.lang.ok" />" />
+				<input type="button" id="but" value="<fmt:message code="global.lang.ok" />" />
 		    </td>
 			   		
 		    <td align="right" valign="bottom" class="small1">
