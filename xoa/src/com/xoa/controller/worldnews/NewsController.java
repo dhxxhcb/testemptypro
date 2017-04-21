@@ -58,12 +58,12 @@ public class NewsController {
 	}
 	@RequestMapping("/detail")
 	public String News() {
-		return "/app/news/news_detail";
+		return "/app/news/newsDetail";
 	}
 	
 	@RequestMapping("/index1")
 	public String sendNews() {
-		return "/app/news/newsAdd";
+		return "/app/news/newsList";
 	}
 	
 	
@@ -131,6 +131,7 @@ public class NewsController {
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag) {
+		System.out.println(subject);
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("format", format);
 		maps.put("typeId", typeId);

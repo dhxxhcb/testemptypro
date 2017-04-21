@@ -112,8 +112,8 @@ public class NewServiceImpl implements NewService {
 		for (News news : list) {
 			Users user=UsersMapper.findUserByName(news.getProvider());
 			news.setUserName(user.getUserName());
-		/*	String code=sysCodeMapper.getSysCode(news.getTypeId());
-			news.setTypeName(code);*/
+			SysCode code=sysCodeMapper.getSysCode(news.getTypeId());
+			news.setTypeName(code.getCodeName());
 			if (news.getReaders().indexOf(name) == -1) {
 				list1.add(news);
 			}
@@ -163,6 +163,10 @@ public class NewServiceImpl implements NewService {
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
 		News news = newsMapper.detailedNews(maps);
+		Users user=UsersMapper.findUserByName(news.getProvider());
+		news.setUserName(user.getUserName());
+		SysCode code=sysCodeMapper.getSysCode(news.getTypeId());
+		news.setTypeName(code.getCodeName());
 		if (news.getReaders().indexOf(name) == -1) {
 			StringBuffer str2 = new StringBuffer(news.getReaders());
 			str2.append(",");
@@ -218,8 +222,8 @@ public class NewServiceImpl implements NewService {
 		for (News news : list) {
 			Users user=UsersMapper.findUserByName(news.getProvider());
 			news.setUserName(user.getUserName());
-		/*	String code=sysCodeMapper.getSysCode(news.getTypeId());
-			news.setTypeName(code);*/
+			SysCode code=sysCodeMapper.getSysCode(news.getTypeId());
+			news.setTypeName(code.getCodeName());
 			StringBuffer s=new StringBuffer();
 			if (news.getToId().equals("ALL_DEPT")) {
 				List<Department> list1 = departmentMapper.getDatagrid();

@@ -34,11 +34,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
                             var news = "";
                             for (var i = 0; i < data.obj.length; i++) {
-                                news = "<tr><td>"+data.obj[i].subject+"</td>"+
-                                        "<td>"+data.obj[i].typeId+"</td>"+
-                                        "<td>"+data.obj[i].newsTime+"</td>"+
-                                        "<td><a href='' noticeId="+data.obj[i].newsTime+" class='windowOpen'>"+data.obj[i].clickCount+"</ a></td>"+
-                                        "<td>"+data.obj[i].read+"</td>"+news;
+                                news = "<tr><td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
+                                        "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
+                                        "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].newsTime+"</ a></td>"+
+                                        "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].clickCount+"</ a></td>"+
+                                        "<td><a href='' newsId="+data.obj[i].newsTime+" class='windowOpen'>"+data.obj[i].read+"</ a></td>"+news;
                             }
 							
 							$("#j_tb").html(news);
@@ -66,8 +66,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
             /* 新闻详情页 */
                $("#j_tb").on('click','.windowOpen',function(){
-            var nid=$(this).attr('noticeId');
-            $.popWindow('detail?nid='+nid);
+            var nid=$(this).attr('newsId');
+            $.popWindow('detail?newsId='+nid);
         });
         
         });
