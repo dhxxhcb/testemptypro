@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#noRead .title{font-family: "微软雅黑";font-size:18px;}
 		#noRead span{display: block;width: 50%;margin: 20px auto;padding: 20px 20px;font-size: 25px;text-align: center;background-color: #6fb4fa;color: #fff;}
 		.title{font-size: 16px;color: #124164;font-weight: bold;margin-top:20px;margin-left:20px;display: inline-block;}
-		.M-box3{margin-left:100px;margin-top:10px;}
+		.M-box3{margin-top:10px;float:right;}
 		.M-box3 a{margin: 0 3px;width: 29px;height: 20px;line-height: 20px;font-size: 12px;text-decoration: none;}
 		.M-box3 .active{margin: 0px 3px;width: 25px;height: 20px;line-height: 20px;background: #2b7fe0;font-size: 12px;border: 1px solid #2b7fe0;}
 		.jump-ipt{margin: 0 3px;width: 25px;height: 20px;line-height: 20px;font-size: 12px;}
@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	$(function(){
     			var data1={
     				"page":1,
-    				"pageSize":5,
+    				"pageSize":10,
     				"useFlag":true
     			};
     			$.ajax({
@@ -66,13 +66,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							//console.log(data[0].name);				
 							var str='';
 							for(var i=0;i<data.length;i++){
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'</td></tr>';
-								str1='<input type="hidden" id="'+data[i].notifyId+'">';
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td></tr>';
+								str1='';
 							}
 							$('.TableHeader').after(str+str1); 
 							
 							$('.M-box3').pagination({
-							    pageCount:10,
+							    pageCount:1,
 							    jump:true,
 							    coping:true,
 							    homePage:'<fmt:message code="global.page.first" />',
@@ -409,10 +409,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var data=rsp.obj;
 										var str='';
 										for(var i=0;i<data.length;i++){
-											str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'</td></tr>';
-											str1='<input type="hidden" id="'+data[i].notifyId+'">';
+											str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td></tr>';
+											//str1='';
 										}
-										$('.TableHead').after(str+str1);
+										$('.TableHead').after(str);
 									}
 								});
 							}
@@ -437,6 +437,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#iBtn').click(function(){
 					$('#queryList').css('display','none');
 					$('#noticeQuery').css('display','block');
+					$('.TableLine1').remove();
+					//$()
 				})
 				
        		});
