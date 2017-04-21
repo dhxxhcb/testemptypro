@@ -278,10 +278,7 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/queryByID", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-		String queryByID(HttpServletRequest request) throws Exception {
-			String flag =  ServletRequestUtils.getStringParameter(request,
-					"flag");
-			Integer emailId = ServletRequestUtils.getIntParameter(request, "emailId");
+		String queryByID(@RequestParam("emailId") Integer emailId,@RequestParam("flag")String flag) throws Exception {
 			Map<String, Object> maps = new HashMap<String, Object>();
 			maps.put("emailId", emailId);
 			EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
@@ -298,8 +295,6 @@ public class EmailController {
 							"yyyy-MM-dd HH:mm:ss");
 				}
 			}else{
-//				Integer emailId =  ServletRequestUtils.getIntParameter(request,
-//						"emailId");
 				EmailModel email = new EmailModel();
 				email.setEmailId(emailId);
 				email.setReadFlag("1");
