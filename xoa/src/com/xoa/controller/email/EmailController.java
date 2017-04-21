@@ -314,6 +314,45 @@ public class EmailController {
 
 	
 	/**
+	 * 邮件查询
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:35:16
+	 * 方法介绍:   删除列表
+	 * 参数说明:   @param  request inbox 收件箱  outbox 发件箱 recycle 废纸篓
+	 * 参数说明:   @return json
+	 * 参数说明:   @throws Exception
+	 * @return     String
+	 */
+	@RequestMapping(value = "/deleteEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody String deleteEmail(@RequestParam("flag")String flag,@RequestParam("deleteFlag") String deleteFlag,
+			@RequestParam("emailID") Integer emailId){
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
+		String returnRes = "";
+		if (flag.trim().equals("inbox")) {
+			returnRes = emailService.deleteInEmail(emailId, deleteFlag);
+		} else if (flag.trim().equals("outbox")) {
+			returnRes = emailService.deleteOutEmail(emailId, deleteFlag);
+		} else if (flag.trim().equals("recycle")) {
+			returnRes = emailService.deleteRecycleEmail(emailId, deleteFlag);
+		} 
+//		else if (flag.trim().equals("drafts")) {
+//			emailService.deleteRecycleEmail(emailBodyModel, deleteFlag);
+//		}
+		
+		if (returnRes.equals("0")) {
+			tojson.setFlag(0);
+			tojson.setMsg("ok");
+			return JSON.toJSONStringWithDateFormat(tojson,
+					"yyyy-MM-dd HH:mm:ss");
+		} else {
+			tojson.setFlag(1);
+			tojson.setMsg("error");
+			return JSON.toJSONStringWithDateFormat(tojson,
+					"yyyy-MM-dd HH:mm:ss");
+		}
+	}
+	
+	/**
 	 * 
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:38:04
