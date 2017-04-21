@@ -372,6 +372,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			laydate(end);
 			
 			$(function(){
+				//alert('123')
 				var data1={
     				"page":1,
     				"pageSize":5,
@@ -420,9 +421,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					});
 					
-					
-					
-					
 				});
 				
 				$('input[type="reset"]').click(function () {
@@ -438,7 +436,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('#queryList').css('display','none');
 					$('#noticeQuery').css('display','block');
 					$('.TableLine1').remove();
-					//$()
 				})
 				
        		});
