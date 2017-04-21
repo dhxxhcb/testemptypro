@@ -13,11 +13,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/spirit/login.css"/>
 </head>
 <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>  
+<script type="text/javascript" src="../js/base/base.js"></script>  
 <script type="text/javascript">
     $(function () {
-
+    //m_strOaUrl = "http://192.168.0.17/xoa/spirit/login?I_VER=2&USERNAME=admin"
+		var uname = $.getQueryString('USERNAME');
+		var I_VER = $.getQueryString('I_VER');
+		if(uname != ''){
+			location.href = "../main";
+		}
         $("#login").click(function () {
-            location.href = "../main.html";
+            location.href = "main.html";
         })
     });
 

@@ -35,13 +35,19 @@ public class SpiritController {
 	@Resource
 	private UsersService usersService;
 	
+	/*@RequestMapping("/zzz") //URL的/index
+	public String login1() {
+		return "app/spirit/main";
+	}*/
+	
 	@RequestMapping("/login") //URL的/index
 	public String login() {
 		return "app/spirit/login/login";
 	}
-	@RequestMapping("/main") //URL的/index
-	public String main() {
-		return "app/spirit/main";
+	
+	@RequestMapping("/loging") //URL的/index
+	public String loging() {
+		return "app/main/cont";
 	}
 	
 }
