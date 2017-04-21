@@ -52,10 +52,10 @@ public class NewsController {
 	 * 
 	 * @return
 	 */
-/*	@RequestMapping("/index")
+	@RequestMapping("/index1")
 	public String clickNews() {
 		return "/app/news/center";
-	}*/
+	}
 	@RequestMapping("/detail")
 	public String News() {
 		return "/app/news/newsDetail";
@@ -143,8 +143,7 @@ public class NewsController {
 		String name = "wangyueqi";
 		String returnReslt = null;
 		try {
-			ToJson<News> tojson= newService.selectNews(maps, page, pageSize,
-					useFlag, name);
+			ToJson<News> tojson= newService.selectNews(maps, page, pageSize,useFlag, name);
 			if (tojson.getObj().size() > 0) {
 				tojson.setMsg(ok);
 				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
