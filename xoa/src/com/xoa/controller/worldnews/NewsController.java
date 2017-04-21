@@ -125,27 +125,27 @@ public class NewsController {
 			@RequestParam(value = "typeId", required = false) String typeId,
 			@RequestParam(value = "subject", required = false) String subject,
 			@RequestParam(value = "newsTime", required = false) String newsTime,
+			@RequestParam(value = "nTime", required = false) String nTime,
 			@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
-			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "content", required = false) String content,
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
-			@RequestParam("useFlag") Boolean useFlag) {
-		System.out.println(subject);
+			@RequestParam("useFlag") Boolean useFlag,
+			HttpServletRequest request, HttpServletResponse response) {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("format", format);
 		maps.put("typeId", typeId);
 		maps.put("subject", subject);
 		maps.put("newsTime", newsTime);
+		maps.put("nTime", nTime);
 		maps.put("lastEditTime", lastEditTime);
-		maps.put("keyword", keyword);
-		String name = "changbai";
+		maps.put("content", content);
+		String name = "wangyueqi";
 		String returnReslt = null;
 		try {
-			List<News> list = newService.selectNews(maps, page, pageSize,
+			ToJson<News> tojson= newService.selectNews(maps, page, pageSize,
 					useFlag, name);
-			ToJson<News> tojson = new ToJson<News>(0, "");
-			tojson.setObj(list);
-			if (list.size() > 0) {
+			if (tojson.getObj().size() > 0) {
 				tojson.setMsg(ok);
 				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
 						"yyyy-MM-dd HH:mm:ss");
@@ -183,7 +183,7 @@ public class NewsController {
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag) {
 		Map<String, Object> maps = new HashMap<String, Object>();
-		String name = "wangyun";
+		String name = (String) request.getSession().getAttribute("byname");
 		String returnReslt = null;
 		try {
 			List<News> list = newService.unreadNews(maps, page, pageSize,
@@ -434,7 +434,7 @@ public class NewsController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);
 		ToJson<News> toJson=new ToJson<News>(0, "");
-		String name="wangyueqi";
+		String name = (String) request.getSession().getAttribute("byname");
 	try {
 			News news=newService.queryById(maps, 1, 5, false, name);
 			toJson.setMsg(ok);

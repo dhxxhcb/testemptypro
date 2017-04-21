@@ -10,6 +10,7 @@ import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.worldnews.NewService;
+import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 
 import org.springframework.stereotype.Service;
@@ -62,8 +63,9 @@ public class NewServiceImpl implements NewService {
 	 * @return     List<News> 返回新闻列表List
 	 */
 	@Override
-	public List<News> selectNews(Map<String, Object> maps, Integer page,
+	public ToJson<News>  selectNews(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
+		ToJson<News>  newJson=new ToJson<News>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
@@ -82,7 +84,9 @@ public class NewServiceImpl implements NewService {
 				news.setRead(0);
 			}
 		}
-		return list;
+		newJson.setObj(list);
+		newJson.setTotleNum(pageParams.getTotal());
+		return newJson;
 	}
 	
 	/**
