@@ -281,9 +281,9 @@ public class EmailController {
 		String queryByID(HttpServletRequest request) throws Exception {
 			String flag =  ServletRequestUtils.getStringParameter(request,
 					"flag");
-			Integer bodyId = ServletRequestUtils.getIntParameter(request, "bodyId");
+			Integer emailId = ServletRequestUtils.getIntParameter(request, "emailId");
 			Map<String, Object> maps = new HashMap<String, Object>();
-			maps.put("bodyId", bodyId);
+			maps.put("emailId", emailId);
 			EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
 			String returnRes = null;
 			if(!flag.trim().equals("isRead")){
@@ -298,8 +298,8 @@ public class EmailController {
 							"yyyy-MM-dd HH:mm:ss");
 				}
 			}else{
-				Integer emailId =  ServletRequestUtils.getIntParameter(request,
-						"emailId");
+//				Integer emailId =  ServletRequestUtils.getIntParameter(request,
+//						"emailId");
 				EmailModel email = new EmailModel();
 				email.setEmailId(emailId);
 				email.setReadFlag("1");

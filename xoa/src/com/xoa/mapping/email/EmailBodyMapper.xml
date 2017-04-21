@@ -260,7 +260,7 @@
 
 	<!--草稿箱查询 -->
 	<select id="listDrafts" resultMap="BaseResultMap" parameterType="Map">
-		select eb.FROM_ID, eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,e.TO_ID,u.USER_ID,u.USER_NAME from email_body as eb
+		select eb.FROM_ID,e.EMAIL_ID, eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,e.TO_ID,u.USER_ID,u.USER_NAME from email_body as eb
 		LEFT
 		JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
@@ -289,7 +289,7 @@
 	<!-- 废纸篓查询 空值 -->
 	<select id="listWastePaperbasket" resultMap="BaseResultMap"
 		parameterType="Map">
-		SELECT eb.FROM_ID,eb.BODY_ID,eb.SUBJECT,e.DELETE_FLAG,eb.SEND_TIME,eb.TO_ID2,e.READ_FLAG,eb.COPY_TO_ID,eb.SECRET_TO_ID,u.USER_ID,eb.CONTENT,e.TO_ID,u.USER_NAME FROM
+		SELECT eb.FROM_ID,e.EMAIL_ID,eb.BODY_ID,eb.SUBJECT,e.DELETE_FLAG,eb.SEND_TIME,eb.TO_ID2,e.READ_FLAG,eb.COPY_TO_ID,eb.SECRET_TO_ID,u.USER_ID,eb.CONTENT,e.TO_ID,u.USER_NAME FROM
 		email_body as eb
 		LEFT JOIN email as e on e.BODY_ID =eb.BODY_ID
 		LEFT JOIN user as u on u.USER_ID=eb.FROM_ID
@@ -309,7 +309,7 @@
 	<select id="selectInbox" parameterType="Map" resultMap="BaseResultMap">
 		select
 		eb.FROM_ID,
-		eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,e.DELETE_FLAG,eb.TO_ID2,e.READ_FLAG,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
+		eb.BODY_ID,eb.SUBJECT,e.EMAIL_ID,eb.SEND_TIME,e.DELETE_FLAG,eb.TO_ID2,e.READ_FLAG,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID where 
@@ -351,7 +351,7 @@
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID
 		 where 
-		eb.BODY_ID=#{bodyId}
+		e.EMAIL_ID=#{emailId}
 		GROUP BY eb.BODY_ID
 	</select>
 	
