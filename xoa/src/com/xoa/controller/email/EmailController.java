@@ -281,9 +281,9 @@ public class EmailController {
 		String queryByID(HttpServletRequest request) throws Exception {
 			String flag =  ServletRequestUtils.getStringParameter(request,
 					"flag");
-			Integer bodyId = ServletRequestUtils.getIntParameter(request, "bodyId");
+			Integer emailId = ServletRequestUtils.getIntParameter(request, "emailId");
 			Map<String, Object> maps = new HashMap<String, Object>();
-			maps.put("bodyId", bodyId);
+			maps.put("emailId", emailId);
 			EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
 			String returnRes = null;
 			if(!flag.trim().equals("isRead")){
@@ -298,8 +298,8 @@ public class EmailController {
 							"yyyy-MM-dd HH:mm:ss");
 				}
 			}else{
-				Integer emailId =  ServletRequestUtils.getIntParameter(request,
-						"emailId");
+//				Integer emailId =  ServletRequestUtils.getIntParameter(request,
+//						"emailId");
 				EmailModel email = new EmailModel();
 				email.setEmailId(emailId);
 				email.setReadFlag("1");
@@ -312,6 +312,45 @@ public class EmailController {
 			return returnRes;
 	}
 
+	
+	/**
+	 * 邮件查询
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:35:16
+	 * 方法介绍:   删除列表
+	 * 参数说明:   @param  request inbox 收件箱  outbox 发件箱 recycle 废纸篓
+	 * 参数说明:   @return json
+	 * 参数说明:   @throws Exception
+	 * @return     String
+	 */
+	@RequestMapping(value = "/deleteEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody String deleteEmail(@RequestParam("flag")String flag,@RequestParam("deleteFlag") String deleteFlag,
+			@RequestParam("emailID") Integer emailId){
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
+		String returnRes = "";
+		if (flag.trim().equals("inbox")) {
+			returnRes = emailService.deleteInEmail(emailId, deleteFlag);
+		} else if (flag.trim().equals("outbox")) {
+			returnRes = emailService.deleteOutEmail(emailId, deleteFlag);
+		} else if (flag.trim().equals("recycle")) {
+			returnRes = emailService.deleteRecycleEmail(emailId, deleteFlag);
+		} 
+//		else if (flag.trim().equals("drafts")) {
+//			emailService.deleteRecycleEmail(emailBodyModel, deleteFlag);
+//		}
+		
+		if (returnRes.equals("0")) {
+			tojson.setFlag(0);
+			tojson.setMsg("ok");
+			return JSON.toJSONStringWithDateFormat(tojson,
+					"yyyy-MM-dd HH:mm:ss");
+		} else {
+			tojson.setFlag(1);
+			tojson.setMsg("error");
+			return JSON.toJSONStringWithDateFormat(tojson,
+					"yyyy-MM-dd HH:mm:ss");
+		}
+	}
 	
 	/**
 	 * 

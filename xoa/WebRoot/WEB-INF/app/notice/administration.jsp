@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		.jump-ipt{margin: 0 3px;width: 25px;height: 20px;line-height: 20px;font-size: 12px;}
 		.M-box3 a:hover{background: #2b7fe0;}
     </style>
-   <!--  <script type="text/javascript">
+   <script type="text/javascript">
     	$(function(){
     			var data1={
     				"page":1,
@@ -50,52 +50,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			};
     			$.ajax({
 						type:'get',
-						url:'notifyList',
+						url:'notifyManage',
 						dataType:'json',
 						data:data1,
 						success:function(rsp){
 							var data=rsp.obj;	
-							console.log(data[0].name);				
+							//console.log(data[0].name);				
 							var str='';
 							for(var i=0;i<data.length;i++){
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].sendTime+'</td><td nowrap align="center">'+data[i].format+'</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" > 修改</a>&nbsp;<a href="javascript:;" class="aBtn" onclick="delate('+data[i].notifyId+')"> 删除</a></td></tr>';
-								str1='<input type="hidden" id="'+data[i].notifyId+'">';
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" onclick="jump()" > 修改</a>&nbsp;<a href="javascript:;"> 删除</a></td></tr>';
+								str1='';
 							}
 							$('.TableHeader').after(str+str1); 
+							
+							$('.M-box3').pagination({
+							    pageCount:1,
+							    jump:true,
+							    coping:true,
+							    homePage:'<fmt:message code="global.page.first" />',
+							    endPage:'<fmt:message code="global.page.last" />',
+							    prevContent:'<fmt:message code="global.page.pre" />',
+							    nextContent:'<fmt:message code="global.page.next" />',
+							    jumpBtn:'<fmt:message code="global.page.jump" />'
+							});
 						}
 				});
-				
-				$('.muJump ul li').click(function () {
-	    			var index=$(this).index();
-	    			$('.muJump ul li').removeClass('jumpOn');
-	    			$(this).addClass('jumpOn');
-	    			$('.content>div').eq(index).show().siblings().hide();
-	    			
-	    			if($('.content>div').eq(0).css('display')=='block'){
-	    				$.ajax({
-								type:'get',
-								url:'unreadNotify',
-								dataType:'json',
-								data:data1,
-								success:function(rsp){
-									var data=rsp.flag;
-									//alert(data);
-									if(data==false){
-										var timer=setTimeout(function(){
-											$('.content>div').eq(1).show();
-											$('.content>div').eq(0).hide();
-											$('.muJump ul li').eq(1).addClass('jumpOn').siblings().removeClass('jumpOn');
-											clearTimeout(timer);
-										},2000);
-										
-									}else{
-										alert('有数据');
-									}
-								}
-						});
-	    			}
-	    			
-	    		});
 	    		
 	    		
 	    		
@@ -123,18 +102,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	
     	
     	
-    </script> -->
+    </script>
 </head>
 
 <body class="bodycolor">
 <div class="muJump">
 	<ul>
-		<li><a href="javascript:;">未读公告</a></li>
-		<li class="jumpOn"><a href="javascript:;">公告通知</a></li>
-		<li><a href="javascript:;">公告查询</a></li>
+		<li class="jumpOn" id="NOTIFY"><a href="javascript:;">公告管理</a></li>
+		<li><a href="javascript:;" id="NEWLY">新建公告</a></li>
+		<li><a href="javascript:;" >公告查询</a></li>
 	</ul>
 </div>
 <div class="content">
+	<!-- 公告管理 -->
 	<div id="notify" style="overflow-y: scroll;display:block;">
 		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
 		  <tr>
@@ -168,10 +148,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      </th>
 		      <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
 		      <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th>
-		      <th nowrap align="center"><fmt:message code="notice.th.state" /></th>
+		      <!-- <th nowrap align="center"><fmt:message code="notice.th.state" /></th> -->
 		      <th nowrap align="center"><fmt:message code="notice.th.operation" /></th>
 		    </tr>
 		</table>
+	</div>
+	<div class="div_iframe_newly" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;display:none;">
+		<div id="iframe1" class="iframe1" style="width: 100%;height: 100%;">
+			<iframe  id="iframe_id" src="writeMail" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+		</div>
+	</div>
+	<div class="div_iframe_query" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;display:none;">
+		<div id="iframe1" class="iframe1" style="width: 100%;height: 100%;">
+			<iframe  id="iframe_id" src="writeMail" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+		</div>
 	</div>
 </div>
 </body>

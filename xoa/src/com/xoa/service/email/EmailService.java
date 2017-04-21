@@ -77,7 +77,7 @@ public interface EmailService {
 	 * @return     void
 	 */
 	@DynDatasource
-	public void deleteByPrimaryKey(Integer bodyId);
+	public void deleteByID(Integer bodyId);
 
 	/**
 	 * 
@@ -193,7 +193,40 @@ public interface EmailService {
 	 * @return     List<EmailBodyModel>
 	 */
 	@DynDatasource
-	ToJson<EmailBodyModel> selectIsRead(Map<String, Object> maps, Integer page,
+	public ToJson<EmailBodyModel> selectIsRead(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception;
+	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午11:16:38
+	 * 方法介绍:   发件箱删除邮件
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	@DynDatasource
+	public String deleteOutEmail(Integer emailId,String flag);
+	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午11:16:38
+	 * 方法介绍:   收件箱删除邮件
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	@DynDatasource
+	public String deleteInEmail(Integer emailId,String flag);
+	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午11:16:38
+	 * 方法介绍:   废纸篓删除邮件
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	@DynDatasource
+	public String deleteRecycleEmail(Integer emailId,String flag);
 
 }

@@ -27,7 +27,7 @@ public interface EmailBodyMapper extends BaseMapper<EmailBodyModel>{
 	 * 参数说明:   @param bodyId
 	 * @return     void
 	 */
-	public void deleteByPrimaryKey(Integer bodyId);
+	public void deleteDrafts(Integer bodyId);
 
 	/**
 	 * 
@@ -105,5 +105,76 @@ public interface EmailBodyMapper extends BaseMapper<EmailBodyModel>{
 	 * @return     List<EmailBodyModel>
 	 */
 	List<EmailBodyModel> listqueryEmailBody(Map<String, Object> maps);
+	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午10:07:01
+	 * 方法介绍:   发件箱删除 变为2
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	public void updateOutbox(Integer emailId);
+	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午10:07:39
+	 * 方法介绍:   发件箱删除 变为4
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	public void updateOutboxs(Integer emailId);
+	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午10:39:20
+	 * 方法介绍:   发件箱为1时删除 
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	public void deleteOutbox(Integer emailId);
+	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午10:41:01
+	 * 方法介绍:   收件箱删除 ，变为3
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	public void updateInbox(Integer emailId);
+	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午10:41:35
+	 * 方法介绍:   收件箱删除 ，变为4
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	public void updateInboxs(Integer emailId);
+	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午10:42:44
+	 * 方法介绍:   废纸篓删除，变为1 
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	public void updateRecycle(Integer emailId);
+	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午10:43:38
+	 * 方法介绍:   废纸篓删除
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	public void deleteRecycle(Integer emailId);
+	
 
 }

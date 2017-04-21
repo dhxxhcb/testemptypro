@@ -28,10 +28,9 @@ import com.xoa.util.ToJson;
  *
  */
 @Controller
-@Scope(value="prototype")
 @RequestMapping("/spirit")
 public class SpiritController {
-	private Logger loger = Logger.getLogger(SpiritController.class);
+	private Logger logger = Logger.getLogger(SpiritController.class);
 	@Resource
 	private UsersService usersService;
 	
@@ -45,9 +44,24 @@ public class SpiritController {
 		return "app/spirit/login/login";
 	}
 	
-	@RequestMapping("/loging") //URL的/index
-	public String loging() {
-		return "app/main/cont";
+	@RequestMapping("/main") //URL的/index
+	public String main() {
+		return "app/spirit/mains";
 	}
-	
+	@RequestMapping("/menu") //URL的/index
+	public String menu() {
+		return "app/spirit/menu";
+	}
+	@RequestMapping("/dh") //URL的/index
+	public String dh() {
+		return "app/spirit/dh";
+	}
+	@RequestMapping("/bq") //URL的/index
+	public String bq() {
+		return "app/spirit/bq";
+	}
+	@RequestMapping("/zz") //URL的/index
+	public String zz() {
+		return "app/spirit/zz";
+	}
 }

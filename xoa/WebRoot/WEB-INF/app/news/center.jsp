@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li style="width:2px;"><img src="../img/02.png" alt=""/></li>
             <li>未读新闻</li>
             <li style="width:2px;"><img src="../img/02.png" alt=""/></li>
-            <li>新闻查询</li>
+            <li><a href="../news_query/news_query.html">新闻查询</a></li>
         </ul>
     </div>
     <!--head通栏结束-->
@@ -109,12 +109,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
 
             </div>
-            <img style="margin-left:24px;margin-top:20px; cursor: pointer;" src="../img/03.png" alt=""/>
+            <img style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
         </div>
 
 
         <div class="right">
 
+            <!-- 分页按钮-->
             <ul class="page" maxshowpageitem="0" pagelistcount="1" id="page"></ul>
 
         </div>
@@ -131,14 +132,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <tr>
                     <td class="th">标题</td>
                     <td class="th">类型</td>
-                    <td class="th"  >
-                                                发布时间
+                    <td class="th" style="position: relative">
+                        发布时间
 
-                         <img style="position: absolute;margin-left:9px;cursor: pointer;" src="../img/05.png" alt=""/>
-                         <img  style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;" src="../img/06.png " alt=""/>
+                        <img style="position: absolute;margin-left:9px;cursor: pointer;" src="../img/05.png" alt=""/>
+                        <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
+                             src="../img/06.png " alt=""/>
                     </td>
                     <td class="th">点击次数</td>
                     <td class="th">评论（条）</td>
+                    <td class="th">发布部门</td>
                 </tr>
                 </thead>
                 <tbody id="j_tb">
@@ -150,24 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td>2017-04-14 10:55</td>
                     <td>01</td>
                     <td>20</td>
-                </tr>
-                <tr>
-                    <td>
-                        团队调高效率的方法
-                    </td>
-                    <td>行业资讯</td>
-                    <td>2017-04-14 10:55</td>
-                    <td>01</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>
-                        团队调高效率的方法
-                    </td>
-                    <td>行业资讯</td>
-                    <td>2017-04-14 10:55</td>
-                    <td>01</td>
-                    <td>20</td>
+                    <td>111111</td>
 
                 </tr>
                 <tr>
@@ -178,6 +164,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td>2017-04-14 10:55</td>
                     <td>01</td>
                     <td>20</td>
+                    <td>111111</td>
+                </tr>
+                <tr>
+                    <td>
+                        团队调高效率的方法
+                    </td>
+                    <td>行业资讯</td>
+                    <td>2017-04-14 10:55</td>
+                    <td>01</td>
+                    <td>20</td>
+                    <td>111111</td>
 
                 </tr>
                 <tr>
@@ -188,6 +185,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td>2017-04-14 10:55</td>
                     <td>01</td>
                     <td>20</td>
+                    <td>111111</td>
 
                 </tr>
                 <tr>
@@ -198,6 +196,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td>2017-04-14 10:55</td>
                     <td>01</td>
                     <td>20</td>
+                    <td>111111</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        团队调高效率的方法
+                    </td>
+                    <td>行业资讯</td>
+                    <td>2017-04-14 10:55</td>
+                    <td>01</td>
+                    <td>20</td>
+                    <td>111111</td>
 
                 </tr>
                 </tbody>
