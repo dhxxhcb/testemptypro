@@ -156,11 +156,7 @@ public class News implements Serializable {
 	 * 角色关联
 	 */
 	private Role role;
-	/**
-	 * 判断名字在未读
-	 */
-	private String userName;
-	
+
 	private String  typeName;
 
 	public String getTypeName() {
@@ -170,15 +166,21 @@ public class News implements Serializable {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
+	/**
+	 * 发布者
+	 */
+	private String providerName;
+	
+	
+	
 
-	public String getUserName() {
-		return userName;
+	public String getProviderName() {
+		return providerName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setProviderName(String providerName) {
+		this.providerName = providerName;
 	}
-
 	private String depName;
 
 	public String getDepName() {

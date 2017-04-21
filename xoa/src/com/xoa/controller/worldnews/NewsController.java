@@ -52,16 +52,16 @@ public class NewsController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/index")
+/*	@RequestMapping("/index")
 	public String clickNews() {
 		return "/app/news/center";
-	}
+	}*/
 	@RequestMapping("/detail")
 	public String News() {
 		return "/app/news/newsDetail";
 	}
 	
-	@RequestMapping("/index1")
+	@RequestMapping("/index")
 	public String sendNews() {
 		return "/app/news/newsList";
 	}
@@ -83,7 +83,6 @@ public class NewsController {
 		
 		try {
 			List<News> list =newService.selectNewsManage(maps, 1, 5, true);
-			System.out.println(list.size()+"11111111111");
 			ToJson<News> tojson = new ToJson<News>(0, "");
 			tojson.setObj(list);
 			if (list.size() > 0) {

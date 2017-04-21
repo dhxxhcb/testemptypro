@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							//console.log(data[0].name);				
 							var str='';
 							for(var i=0;i<data.length;i++){
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].userName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" newsId="'+data[i].newsId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].clickCount+'</td><td nowrap align="center">'+data[i].newsTime+'</td></tr>';
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].providerName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" newsId="'+data[i].newsId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].clickCount+'</td><td nowrap align="center">'+data[i].newsTime+'</td></tr>';
 								str1='<input type="hidden" id="'+data[i].newsId+'">';
 							}
 							$('.TableHeader').after(str+str1); 
@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</ul>
 </div>
 <div class="content">
-	<!-- 未读公告 -->
+	<!-- 未读新闻 -->
 	<div id="noRead" style="display: none;">
 		<!-- <table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
 			<tr>
@@ -174,7 +174,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</table> -->
 		<span><fmt:message code="notice.alert.nodatealert" /></span>
 	</div>
-	<!-- 公告通知 start -->
+	<!-- 新闻通知 start -->
 	<div id="notify" style="overflow-y: scroll;display:block;">
 		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
 		  <tr>
@@ -212,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</table>
 	</div> <!-- end -->
 	
-	<!-- 公告查询 -->
+	<!-- 新闻查询 -->
 	<div id="noticeQuery" style="display: none;">
 		<div class="title"><fmt:message code="notice.title.announcementquery" /></div>
 		<table class="TableBlock" width="50%" align="center" border="1" style="margin: 20px auto;">
@@ -297,7 +297,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <tr>
 		    <td class="Big">
 		    	<img src="../img/notify_open.gif" align="absmiddle">
-		    	<span class="big3">公告通知查询结束</span>
+		    	<span class="big3">新闻通知查询结束</span>
 		    </td>
 			   		
 		    <td align="right" valign="bottom" class="small1">
@@ -378,16 +378,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var content=$('input[name="CONTENT"]').val();
 					var data={
 						'typeId':typeId,
-						'sendTime':'2017-04-03 10:28:35',
+						'sendTime':'sendTime',
 						'subject':subject,
 						'content':content,
-						'format':forMat
+						'format':forMat,
+						"page":1,
+    				    "pageSize":5,
+    				    "useFlag":true
 					};
 					$.ajax({
 						type:"get",
 						url:"newsShow",
 						dataType:'json',
-						data:data1,
+						data:data,
 						success:function(){
 							if(subject!=''||content!=''){
 								$('#noticeQuery').css('display','none');
@@ -396,13 +399,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									type:"get",
 									url:"newsShow",
 									dataType:'json',
-									data:data1,
+									data:data,
 									success:function(rsp){
 										var data=rsp.obj;
 										var str='';
 										 for(var i=0;i<data.length;i++){
-											str+='<tr class="TableLine33"><td nowrap align="center">'+data[i].userName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].newsId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].clickCount+'</td><td nowrap align="center">'+data[i].newsTime+'</td></tr>';
-											str1='<input type="hidden" id="'+data[i].notifyId+'">';
+											str+='<tr class="TableLiney"><td nowrap align="center">'+data[i].providerName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].newsId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].clickCount+'</td><td nowrap align="center">'+data[i].newsTime+'<input type="hidden" id="'+data[i].newsId+'"></td></tr>';
+											/* str1=''; */
 										}
 										$('.TableHead').after(str+str1); 
 									}
@@ -429,7 +432,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#iBtn').click(function(){
 					$('#queryList').css('display','none');
 					$('#noticeQuery').css('display','block');
-				})
+				  $('.TableLiney').remove();
+				});
 				
        		});
 </script>

@@ -72,7 +72,7 @@ public class NewServiceImpl implements NewService {
 		List<News> list = newsMapper.selectNews(maps);
 		for (News news : list) {
 				Users user=UsersMapper.findUserByName(news.getProvider());
-				news.setUserName(user.getUserName());
+				news.setProviderName(user.getUserName());
 				SysCode code=sysCodeMapper.getSysCode(news.getTypeId());
 				news.setTypeName(code.getCodeName());
 				
@@ -111,7 +111,7 @@ public class NewServiceImpl implements NewService {
 		List<News> list1 = new ArrayList<News>();
 		for (News news : list) {
 			Users user=UsersMapper.findUserByName(news.getProvider());
-			news.setUserName(user.getUserName());
+			news.setProviderName(user.getUserName());
 			SysCode code=sysCodeMapper.getSysCode(news.getTypeId());
 			news.setTypeName(code.getCodeName());
 			if (news.getReaders().indexOf(name) == -1) {
@@ -164,7 +164,7 @@ public class NewServiceImpl implements NewService {
 		maps.put("page", pageParams);
 		News news = newsMapper.detailedNews(maps);
 		Users user=UsersMapper.findUserByName(news.getProvider());
-		news.setUserName(user.getUserName());
+		news.setProviderName(user.getUserName());
 		SysCode code=sysCodeMapper.getSysCode(news.getTypeId());
 		news.setTypeName(code.getCodeName());
 		if (news.getReaders().indexOf(name) == -1) {
@@ -221,7 +221,7 @@ public class NewServiceImpl implements NewService {
 		List<News> list = newsMapper.selectNewsManage(maps);
 		for (News news : list) {
 			Users user=UsersMapper.findUserByName(news.getProvider());
-			news.setUserName(user.getUserName());
+			news.setProvider(user.getUserName());
 			SysCode code=sysCodeMapper.getSysCode(news.getTypeId());
 			news.setTypeName(code.getCodeName());
 			StringBuffer s=new StringBuffer();
