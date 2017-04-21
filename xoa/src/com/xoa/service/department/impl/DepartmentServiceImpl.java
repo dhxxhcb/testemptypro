@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.model.department.Department;
 import com.xoa.service.department.DepartmentService;
@@ -18,7 +17,7 @@ import com.xoa.service.department.DepartmentService;
  * 创建作者:   张龙飞
  * 创建日期:   2017年4月19日 上午9:41:51
  * 类介绍  :    部门实现类
- * 构造参数:   
+ * 构造参数:   无
  *
  */
 @Service
@@ -32,7 +31,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * 方法介绍:   根据部门id串获取部门名称
 	 * 参数说明:   @param deptID 部门id
 	 * 参数说明:   @return
-	 * @return     List<String>   
+	 * @return     List<String>    返回部门名称
 	 */
 	@Override
 	public List<String> getDeptNameById(int... deptID){
@@ -63,8 +62,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:42:36
 	 * 方法介绍:   获取所有部门
-	 * 参数说明:   @return
-	 * @return     List<Department>   
+	 * 参数说明:   @return 
+	 * @return     List<Department>   返回所有部门 
 	 */
 	@Override
 	public List<Department> getDatagrid() {	
@@ -76,9 +75,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:42:50
 	 * 方法介绍:   根据部门id获取部门
-	 * 参数说明:   @param deptId
+	 * 参数说明:   @param deptId  部门id
 	 * 参数说明:   @return
-	 * @return     Department   
+	 * @return     Department   返回部门信息
 	 */
 	@Override
 	public Department getDeptById(int deptId) {
@@ -90,8 +89,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:43:07
 	 * 方法介绍:   根据部门id删除部门
-	 * 参数说明:   @param deptId
-	 * @return     void   
+	 * 参数说明:   @param deptId  部门id
+	 * @return     void   无
 	 */
 	@Override
 	public void deleteDept(int deptId) {
@@ -140,6 +139,17 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 	
 
+	 /**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月21日 上午10:50:37
+	 * 方法介绍:   获取子目录
+	 * 参数说明:   @param maps 集合
+	 * 参数说明:   @param page 当前页面
+	 * 参数说明:   @param pageSize 页面大小
+	 * 参数说明:   @param useFlag  是否开启分页
+	 * 参数说明:   @return
+	 * @return     List<Department>   返回子目录
+	 */
 	@Override
 	public List<Department> getChDept(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) {
