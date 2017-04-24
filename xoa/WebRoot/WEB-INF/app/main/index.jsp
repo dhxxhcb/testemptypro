@@ -27,10 +27,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:2%;width:72%;height:75%;
     margin-left: 8%;"></div>
 				<div class="head_mid">
+					<div class="left_scroll"></div>
 					<ul class="main_title">
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
 						<li class="gongzuoliu" id='t_0'><div class="img"><img class="close" src="img/main_img/icon.png"></div><h1>我的桌面</h1></li>
 					</ul>
+					<div class="right_scroll"></div>
 				</div>
 				<!-- 右侧的小logo -->
 				<div id="taskbar_right" class="head_rig">
@@ -171,6 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$('#theme').on('mouseout',function(){
 				$(this).css('background','url(img/main_img/right_one.png)  -233px 0px no-repeat')
 			});
+			
 			
 		//底部文字滚动
 	/* 	var lunbo='';
@@ -333,6 +336,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								//页面一打开，切换显示
 								$('.all_content .iItem').hide();
 								$('#f_'+menu_tid).show();
+								
+								$('#t_'+menu_tid).css({
+									'background':'url(img/main_img/title_yes.png) 5px 2px no-repeat',
+									'position':'relative',
+									'z-index':99999
+								})
+								$('#t_'+menu_tid).siblings().css({
+									'background':'url(img/main_img/title_no.png) 5px 2px no-repeat',
+									'position':'relative',
+									'z-index':999
+								})
 							}else{
 								if($(this).siblings('.sanji').length>0){
 										/* return  false; */
@@ -372,6 +386,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									//页面一打开，切换显示
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
+										$('#t_'+menu_tid).css({
+										'background':'url(img/main_img/title_yes.png) 5px 2px no-repeat',
+										'position':'relative',
+										'z-index':99999
+									})
+									$('#t_'+menu_tid).siblings().css({
+										'background':'url(img/main_img/title_no.png) 5px 2px no-repeat',
+										'position':'relative',
+										'z-index':999
+									})
+								
 								}else{ 
 									
 									//页面不存在，新增 title和iframe
@@ -564,7 +589,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							 	$('.all_content .iItem').hide();
 								$('#f_'+num).show();
 					
-							}  
+							} 
+							$(this).siblings().css({
+										'background':'url(img/main_img/title_no.png) 5px 2px no-repeat',
+										'position':'relative',
+										'z-index':999
+									})
+							$(this).css({
+										'background':'url(img/main_img/title_yes.png) 5px 2px no-repeat',
+										'position':'relative',
+										'z-index':99999
+							})
+							
 						});
 						//删除
 						//移入
