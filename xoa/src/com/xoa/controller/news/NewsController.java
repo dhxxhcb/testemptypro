@@ -128,11 +128,14 @@ public class NewsController {
 			@RequestParam(value = "nTime", required = false) String nTime,
 			@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
 			@RequestParam(value = "content", required = false) String content,
-			@RequestParam("read") String read,
+			@RequestParam(value ="read", required = false) String read,
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag,
 			HttpServletRequest request, HttpServletResponse response) {
+		if (typeId.equals("0")) {
+			typeId=null;
+		}
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("format", format);
 		maps.put("typeId", typeId);
@@ -168,7 +171,7 @@ public class NewsController {
 				}
 			}
 				else 
-			{
+				{
 				ToJson<News> tojson= newService.selectNews(maps, page, pageSize,useFlag, name);
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg(ok);
