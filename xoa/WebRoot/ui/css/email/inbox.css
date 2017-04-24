@@ -10,7 +10,7 @@ html, body {
     height: 100%;
     background: #f0f4f7;
     /*overflow: hidden;*/
-    font-family: "微软雅黑";
+    font-family: "寰蒋闆呴粦";
 }
 ul{
 	list-style: none;
@@ -56,7 +56,7 @@ ul{
 	width: 100%;
 	height: 100%;
 }
-/*收件箱*/
+/*鏀朵欢绠�/
 .page .page_left .inBox{
 	width: 100%;
 	overflow: hidden;
@@ -68,14 +68,14 @@ ul{
 	margin-right: 15%;		
 }
 
-/*其他邮箱*/
+/*鍏朵粬閭*/
 .page .page_left .other{
 	width: 100%;
 	overflow: hidden;
 	border-bottom: rgba(0,0,0,0.12) 1px solid;
 }
 
-/*邮件智能分类*/
+/*閭欢鏅鸿兘鍒嗙被*/
 .page .page_left .classify{
 	width: 100%;
 	overflow: hidden;
@@ -85,7 +85,7 @@ ul{
 	margin-left: 14%;
 }
 
-/*邮箱设置*/
+/*閭璁剧疆*/
 .page .page_left .setUp{
 	width: 15%;
 	position: fixed;
@@ -119,7 +119,7 @@ ul{
 }
 
 
-/*左侧边栏公用样式*/
+/*宸︿晶杈规爮鍏敤鏍峰紡*/
 .page .page_left .inbox_btn{
 	display: block;
 	text-decoration: none;
@@ -134,11 +134,11 @@ ul{
 	margin-left: 9%;
 }
 .div_up{
-	background: url(../img/icon_more_shouqi_07.png) no-repeat 75% center;
+	background: url(../../img/icon_more_shouqi_07.png) no-repeat 75% center;
 	background-size: 18px 15px;
 }
 .div_down{
-	background: url(../img/icon_more_dakai_07.png) no-repeat 75% center;
+	background: url(../../img/icon_more_dakai_07.png) no-repeat 75% center;
 	background-size: 18px 10px;
 }
 
@@ -172,7 +172,7 @@ ul{
 	box-shadow:inset 0 0 10px #4a7aaa;
 }
 
-/*右侧区域样式*/
+/*鍙充晶鍖哄煙鏍峰紡*/
 .page .page_right .header{
 	width: 100%;
 	height: 56px;
@@ -191,7 +191,7 @@ ul{
 	height: 35px;
 	border: #d3d6d9 1px solid;
 	border-radius: 3px;
-	background: url(../img/btn_bg_03.png) no-repeat;
+	background: url(../../img/btn_bg_03.png) no-repeat;
 	margin-top: 8px;
 	margin-right: 1%;
 	font-size: 14px;
@@ -276,7 +276,7 @@ ul{
 .for_on{
 	background-color: #fff !important;
 }
-/*表格区域*/
+/*琛ㄦ牸鍖哄煙*/
 .page .page_right .tab{
 	width: 100%;
 }
@@ -320,7 +320,7 @@ ul{
 	float: left;
 	border: #d3d6d9 1px solid;
 	border-radius: 3px;
-	background: url(../img/btn_bg_03.png) no-repeat;
+	background: url(../../img/btn_bg_03.png) no-repeat;
 	margin-top: 15px;
 	margin-right: 16px;
 	font-size: 14px;
