@@ -52,11 +52,11 @@ public class NewsController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/index1")
+	@RequestMapping("/index")
 	public String clickNews() {
 		return "/app/news/center";
 	}
-	@RequestMapping("/detail")
+	/*@RequestMapping("/detail")
 	public String News() {
 		return "/app/news/newsDetail";
 	}
@@ -64,7 +64,7 @@ public class NewsController {
 	@RequestMapping("/index")
 	public String sendNews() {
 		return "/app/news/newsList";
-	}
+	}*/
 	
 	
 	
@@ -144,7 +144,7 @@ public class NewsController {
 		maps.put("nTime", nTime);
 		maps.put("lastEditTime", lastEditTime);
 		maps.put("content", content);
-		String name = "wangyuessss";
+		String name = (String) request.getSession().getAttribute("userId");
 		String returnReslt = null;
 		try {
 			 if (read.equals("0")) {
