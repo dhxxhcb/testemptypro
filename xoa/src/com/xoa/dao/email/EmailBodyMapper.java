@@ -1,11 +1,10 @@
 package com.xoa.dao.email;
 
-import java.util.List;
-import java.util.Map;
-
 import com.xoa.dao.base.BaseMapper;
 import com.xoa.model.email.EmailBodyModel;
-import com.xoa.util.page.PageParams;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -23,7 +22,7 @@ public interface EmailBodyMapper extends BaseMapper<EmailBodyModel>{
 	 * 
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:42:43
-	 * 方法介绍:   根据ID删除一条
+	 * 方法介绍:   根据ID删除草稿箱邮件
 	 * 参数说明:   @param bodyId
 	 * @return     void
 	 */

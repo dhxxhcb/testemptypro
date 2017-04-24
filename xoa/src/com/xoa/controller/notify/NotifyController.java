@@ -116,6 +116,7 @@ public class NotifyController {
 			 @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag) {
+		System.out.println(subject);
 	  Map<String, Object> maps = new HashMap<String, Object>();
 	  maps.put("typeId", typeId);
 	  maps.put("sendTime", sendTime);
