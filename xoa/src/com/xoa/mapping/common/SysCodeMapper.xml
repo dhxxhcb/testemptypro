@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.common.SysCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.common.SysCode" >
+    <id column="CODE_ID" property="codeId" jdbcType="INTEGER" />
+    <result column="CODE_NO" property="codeNo" jdbcType="VARCHAR" />
+    <result column="CODE_NAME" property="codeName" jdbcType="VARCHAR" />
+    <result column="CODE_ORDER" property="codeOrder" jdbcType="VARCHAR" />
+    <result column="PARENT_NO" property="parentNo" jdbcType="VARCHAR" />
+    <result column="CODE_FLAG" property="codeFlag" jdbcType="VARCHAR" />
+    <result column="CODE_EXT" property="codeExt" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <select id="getSysCode"  parameterType="string" resultMap="BaseResultMap"> 
+ select  s.CODE_NAME,s.CODE_ID,s.CODE_NO  from sys_code s WHERE s.PARENT_NO='NEWS' and s.CODE_ORDER=#{codeOrder}
+  </select>
+  
+  <select id="getSysCode1"  parameterType="java.lang.String" resultMap="BaseResultMap"  >
+  select  CODE_NAME ,CODE_ID,CODE_NO from sys_code where PARENT_NO='NOTIFY' AND CODE_NO= #{codeNo}  
+  </select>
+  
+  
+</mapper>
