@@ -42,9 +42,7 @@ public class MenuController {
 	private int flag; 
 	private	String err="err";
 	private	String  ok="ok";
-	
 
-	
 	 /**
 	  * 
 	  * 创建作者:   王曰岐
@@ -128,13 +126,9 @@ public class MenuController {
 			msg = err;
 			
 		}
-
 		ToJson<MobileApp> menuJson = new ToJson<MobileApp>(flag, msg);
 		menuJson.setObj(munuList);
 		return JSON.toJSONStringWithDateFormat(menuJson, "yyyy-MM-dd HH:mm:ss");
-		
-		
-		
 	}
 
 }

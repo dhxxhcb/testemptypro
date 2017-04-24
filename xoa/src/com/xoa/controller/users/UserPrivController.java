@@ -32,8 +32,6 @@ public class UserPrivController {
 	
 	@Resource
 	UsersPrivService usersPrivService;
-	
-
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午8:05:22

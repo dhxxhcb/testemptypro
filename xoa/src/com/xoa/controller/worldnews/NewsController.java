@@ -1,4 +1,4 @@
-package com.xoa.controller.news;
+package com.xoa.controller.worldnews;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.email.EmailBodyModel;
@@ -56,15 +56,15 @@ public class NewsController {
 	public String clickNews() {
 		return "/app/news/center";
 	}
-	/*@RequestMapping("/detail")
+	@RequestMapping("/detail")
 	public String News() {
 		return "/app/news/newsDetail";
 	}
 	
-	@RequestMapping("/index")
+	@RequestMapping("/index1")
 	public String sendNews() {
 		return "/app/news/newsList";
-	}*/
+	}
 	
 	
 	
@@ -83,6 +83,7 @@ public class NewsController {
 		
 		try {
 			List<News> list =newService.selectNewsManage(maps, 1, 5, true);
+			System.out.println(list.size()+"11111111111");
 			ToJson<News> tojson = new ToJson<News>(0, "");
 			tojson.setObj(list);
 			if (list.size() > 0) {
@@ -125,63 +126,35 @@ public class NewsController {
 			@RequestParam(value = "typeId", required = false) String typeId,
 			@RequestParam(value = "subject", required = false) String subject,
 			@RequestParam(value = "newsTime", required = false) String newsTime,
-			@RequestParam(value = "nTime", required = false) String nTime,
 			@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
-			@RequestParam(value = "content", required = false) String content,
-			@RequestParam(value ="read", required = false) String read,
+			@RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
-			@RequestParam("useFlag") Boolean useFlag,
-			HttpServletRequest request, HttpServletResponse response) {
-		if (typeId.equals("0")) {
-			typeId=null;
-		}
+			@RequestParam("useFlag") Boolean useFlag) {
+		System.out.println(subject);
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("format", format);
 		maps.put("typeId", typeId);
 		maps.put("subject", subject);
 		maps.put("newsTime", newsTime);
-		maps.put("nTime", nTime);
 		maps.put("lastEditTime", lastEditTime);
-		maps.put("content", content);
-		String name = (String) request.getSession().getAttribute("userId");
+		maps.put("keyword", keyword);
+		String name = "changbai";
 		String returnReslt = null;
 		try {
-			 if (read.equals("0")) {
-				ToJson<News> tojson= newService.unreadNews(maps, page, pageSize,
-						useFlag, name);
-				if (tojson.getObj().size() > 0) {
-					tojson.setMsg(ok);
-					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-							"yyyy-MM-dd HH:mm:ss");
-				} else {
-					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-							1, ok), "yyyy-MM-dd HH:mm:ss");
-				}
-			}else if (read.equals("1")) {//已读
-				ToJson<News> tojson= newService.readNews(maps, page, pageSize,
-						useFlag, name);
-				if (tojson.getObj().size() > 0) {
-					tojson.setMsg(ok);
-					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-							"yyyy-MM-dd HH:mm:ss");
-				} else {
-					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-							1,"ok"), "yyyy-MM-dd HH:mm:ss");
-				}
+			List<News> list = newService.selectNews(maps, page, pageSize,
+					useFlag, name);
+			ToJson<News> tojson = new ToJson<News>(0, "");
+			tojson.setObj(list);
+			if (list.size() > 0) {
+				tojson.setMsg(ok);
+				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+						"yyyy-MM-dd HH:mm:ss");
+			} else {
+				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
+						1, err), "yyyy-MM-dd HH:mm:ss");
 			}
-				else 
-				{
-				ToJson<News> tojson= newService.selectNews(maps, page, pageSize,useFlag, name);
-				if (tojson.getObj().size() > 0) {
-					tojson.setMsg(ok);
-					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-							"yyyy-MM-dd HH:mm:ss");
-				} else {
-					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-							1, err), "yyyy-MM-dd HH:mm:ss");
-				}
-			}
+
 		} catch (Exception e) {
 			loger.debug("NewsMessage:" + e);
 			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,
@@ -211,12 +184,15 @@ public class NewsController {
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag) {
 		Map<String, Object> maps = new HashMap<String, Object>();
-		String name = (String) request.getSession().getAttribute("byname");
+		String name = "wangyun";
 		String returnReslt = null;
 		try {
-			ToJson<News> tojson= newService.unreadNews(maps, page, pageSize,
+			List<News> list = newService.unreadNews(maps, page, pageSize,
 					useFlag, name);
-			if (tojson.getObj().size() > 0) {
+			System.out.println(list);
+			ToJson<News> tojson = new ToJson<News>(0, err);
+			tojson.setObj(list);
+			if (list.size() > 0) {
 				tojson.setMsg(ok);
 				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
 						"yyyy-MM-dd HH:mm:ss");
@@ -459,7 +435,7 @@ public class NewsController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);
 		ToJson<News> toJson=new ToJson<News>(0, "");
-		String name = (String) request.getSession().getAttribute("byname");
+		String name="wangyueqi";
 	try {
 			News news=newService.queryById(maps, 1, 5, false, name);
 			toJson.setMsg(ok);

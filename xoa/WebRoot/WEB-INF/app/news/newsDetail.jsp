@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var data1=rsp.object;
 							var str='';
 							$('.title').text(data1.subject); 
-							str='<li><span>'+data1.providerName+'</span></li><li><span>发布于：</span><span>'+data1.newsTime+'</span></li>';
+							str='<li><span>'+data1.userName+'</span></li><li><span>发布于：</span><span>'+data1.newsTime+'</span></li>';
 							$('ul').append(str);
 							$('.divTxt').append('<p>'+data1.content+'</p>');
 						}

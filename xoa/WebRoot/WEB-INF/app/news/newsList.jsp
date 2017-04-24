@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <html><!--<![endif]-->
  <head>
-    <title><fmt:message code="news.title.news" /></title>
+    <title><fmt:message code="notice.title.notify" /></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							//console.log(data[0].name);				
 							var str='';
 							for(var i=0;i<data.length;i++){
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].providerName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" newsId="'+data[i].newsId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].clickCount+'</td><td nowrap align="center">'+data[i].newsTime+'</td></tr>';
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].userName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" newsId="'+data[i].newsId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].clickCount+'</td><td nowrap align="center">'+data[i].newsTime+'</td></tr>';
 								str1='<input type="hidden" id="'+data[i].newsId+'">';
 							}
 							$('.TableHeader').after(str+str1); 
@@ -147,49 +147,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body class="bodycolor">
 <div class="muJump">
 	<ul>
-		<li><a href="javascript:;"><fmt:message code="news.title.unreadannouncement" /></a></li>
-		<li class="jumpOn"><a href="javascript:;"><fmt:message code="news.title.news" /></a></li>
-		<li><a href="javascript:;"><fmt:message code="news.title.announcementquery" /></a></li>
+		<li><a href="javascript:;"><fmt:message code="notice.title.unreadannouncement" /></a></li>
+		<li class="jumpOn"><a href="javascript:;"><fmt:message code="notice.title.notify" /></a></li>
+		<li><a href="javascript:;"><fmt:message code="notice.title.announcementquery" /></a></li>
 	</ul>
 </div>
 <div class="content">
-	<!-- 未读新闻 -->
+	<!-- 未读公告 -->
 	<div id="noRead" style="display: none;">
 		<!-- <table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
 			<tr>
 				<td>
-					<div class="title"><fmt:message code="news.title.unreadannouncement" /></div>
+					<div class="title"><fmt:message code="notice.title.unreadannouncement" /></div>
 					<select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
-		          	<option value="0" selected><fmt:message code="news.type.alltype" /></option>
-		         	<option value="01"><fmt:message code="news.type.Decision" /></option>
-					<option value="02"><fmt:message code="news.type.notice" /></option>
-					<option value="03"><fmt:message code="news.type.Bulletin" /></option>
-					<option value="04"><fmt:message code="news.type.other" /></option>
-		          	<option value="05"><fmt:message code="news.type.notype" /></option>
+		          	<option value="0" selected><fmt:message code="notice.type.alltype" /></option>
+		         	<option value="01"><fmt:message code="notice.type.Decision" /></option>
+					<option value="02"><fmt:message code="notice.type.notice" /></option>
+					<option value="03"><fmt:message code="notice.type.Bulletin" /></option>
+					<option value="04"><fmt:message code="notice.type.other" /></option>
+		          	<option value="05"><fmt:message code="notice.type.notype" /></option>
 			       </select>
 				</td>
 				
 			</tr>
 			
 		</table> -->
-		<span><fmt:message code="news.alert.nodatealert" /></span>
+		<span><fmt:message code="notice.alert.nodatealert" /></span>
 	</div>
-	<!-- 新闻通知 start -->
+	<!-- 公告通知 start -->
 	<div id="notify" style="overflow-y: scroll;display:block;">
 		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
 		  <tr>
 		    <td class="Big">
 		    	<img src="../img/notify_open.gif" align="absmiddle">
-		    	<span class="big3"><fmt:message code="news.title.news" /></span>&nbsp;
+		    	<span class="big3"><fmt:message code="notice.title.notify" /></span>&nbsp;
 		       <select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
-		          	<option value="0" selected><fmt:message code="news.type.alltype" /></option>
-		         	<option value="01"><fmt:message code="news.type.Decision" /></option>
-					<option value="02"><fmt:message code="news.type.notice" /></option>
-					<option value="03"><fmt:message code="news.type.Bulletin" /></option>
-					<option value="04"><fmt:message code="news.type.other" /></option>
-		          	<option value="05"><fmt:message code="news.type.notype" /></option>
+		          	<option value="0" selected><fmt:message code="notice.type.alltype" /></option>
+		         	<option value="01"><fmt:message code="notice.type.Decision" /></option>
+					<option value="02"><fmt:message code="notice.type.notice" /></option>
+					<option value="03"><fmt:message code="notice.type.Bulletin" /></option>
+					<option value="04"><fmt:message code="notice.type.other" /></option>
+		          	<option value="05"><fmt:message code="notice.type.notype" /></option>
 		       </select>
-		       <span><fmt:message code="news.title.Releasedate" />:</span>
+		       <span><fmt:message code="notice.title.Releasedate" />:</span>
 				<input id="test" name="SEND_TIME" class="laydate-icon">
 				<input type="button" id="but" value="<fmt:message code="global.lang.ok" />" />
 		    </td>
@@ -201,24 +201,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</table>
 		<table class="TableList" width="95%" align="center" cellspacing="0" cellpadding="0">
 		  <tr class="TableHeader">
-		      <th nowrap align="center"><fmt:message code="news.th.publisher" /></th>
-		      <th nowrap align="center"><fmt:message code="news.th.type" /></th>
-		      <th nowrap align="center"><fmt:message code="news.th.title" /></th>
-		      <th nowrap align="center" style="cursor:pointer;"><fmt:message code="news.type.clicks" /></th>
-		      <th nowrap align="center"><fmt:message code="news.th.createTime" />
+		      <th nowrap align="center"><fmt:message code="notice.th.publisher" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
+		      <th nowrap align="center" style="cursor:pointer;"><u>点击数</u></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.createTime" />
 		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
 		      </th>
 		  </tr>
 		</table>
 	</div> <!-- end -->
 	
-	<!-- 新闻查询 -->
+	<!-- 公告查询 -->
 	<div id="noticeQuery" style="display: none;">
-		<div class="title"><fmt:message code="news.title.announcementquery" /></div>
+		<div class="title"><fmt:message code="notice.title.announcementquery" /></div>
 		<table class="TableBlock" width="50%" align="center" border="1" style="margin: 20px auto;">
 			  <form enctype="multipart/form-data" name="form1"></form>
 			    <tbody><tr>
-			      <td nowrap="" class="TableData"><fmt:message code="news.th.publisher" />：</td>
+			      <td nowrap="" class="TableData"><fmt:message code="notice.th.publisher" />：</td>
 			      <td class="TableData">
 			        <div class="inPole">
 						<textarea name="txt" disabled></textarea>
@@ -261,13 +261,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			      </td>
 			    </tr>
 			    <tr>
-			      <td nowrap="" class="TableData" width="100"> <fmt:message code="news.th.title" />：</td>
+			      <td nowrap="" class="TableData" width="100"> <fmt:message code="notice.th.title" />：</td>
 			      <td class="TableData">
 			        <input type="text" name="SUBJECT" size="33" maxlength="100" class="BigInput" value="">
 			      </td>
 			    </tr>
 			    <tr>
-			      <td nowrap="" class="TableData" width="100"> <fmt:message code="news.title.Releasedate" />：</td>
+			      <td nowrap="" class="TableData" width="100"> <fmt:message code="notice.title.Releasedate" />：</td>
 			      <td class="TableData">
 			        	<input class="laydate-icon" id="start"> &nbsp;至&nbsp;
 						<input class="laydate-icon" id="end">
@@ -297,7 +297,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <tr>
 		    <td class="Big">
 		    	<img src="../img/notify_open.gif" align="absmiddle">
-		    	<span class="big3">新闻通知查询结束</span>
+		    	<span class="big3">公告通知查询结束</span>
 		    </td>
 			   		
 		    <td align="right" valign="bottom" class="small1">
@@ -308,11 +308,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table class="TableList" width="95%" align="center" cellspacing="0" cellpadding="0">
 		  <tr class="TableHead">
 		     <!--  <th nowrap align="center">选择</th> -->
-		      <th nowrap align="center"><fmt:message code="news.th.publisher" /></th>
-		      <th nowrap align="center"><fmt:message code="news.th.type" /></th>
-		      <th nowrap align="center"><fmt:message code="news.th.title" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.publisher" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
+		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
 		      <th nowrap align="center" style="cursor:pointer;"><u>点击数</u></th>
-		      <th nowrap align="center"><fmt:message code="news.th.createTime" />
+		      <th nowrap align="center"><fmt:message code="notice.th.createTime" />
 		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
 		      </th>
 		    </tr>
@@ -378,19 +378,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var content=$('input[name="CONTENT"]').val();
 					var data={
 						'typeId':typeId,
-						'sendTime':'sendTime',
+						'sendTime':'2017-04-03 10:28:35',
 						'subject':subject,
 						'content':content,
-						'format':forMat,
-						"page":1,
-    				    "pageSize":5,
-    				    "useFlag":true
+						'format':forMat
 					};
 					$.ajax({
 						type:"get",
 						url:"newsShow",
 						dataType:'json',
-						data:data,
+						data:data1,
 						success:function(){
 							if(subject!=''||content!=''){
 								$('#noticeQuery').css('display','none');
@@ -399,13 +396,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									type:"get",
 									url:"newsShow",
 									dataType:'json',
-									data:data,
+									data:data1,
 									success:function(rsp){
 										var data=rsp.obj;
 										var str='';
 										 for(var i=0;i<data.length;i++){
-											str+='<tr class="TableLiney"><td nowrap align="center">'+data[i].providerName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].newsId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].clickCount+'</td><td nowrap align="center">'+data[i].newsTime+'<input type="hidden" id="'+data[i].newsId+'"></td></tr>';
-											/* str1=''; */
+											str+='<tr class="TableLine33"><td nowrap align="center">'+data[i].userName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].newsId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].clickCount+'</td><td nowrap align="center">'+data[i].newsTime+'</td></tr>';
+											str1='<input type="hidden" id="'+data[i].notifyId+'">';
 										}
 										$('.TableHead').after(str+str1); 
 									}
@@ -432,8 +429,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#iBtn').click(function(){
 					$('#queryList').css('display','none');
 					$('#noticeQuery').css('display','block');
-				  $('.TableLiney').remove();
-				});
+				})
 				
        		});
 </script>
