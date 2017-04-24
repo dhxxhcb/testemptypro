@@ -19,84 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript">
-        $(function () {
-            var GG = {
-                "kk": function (mm) {
-                 	var read = $('.index_head .one').parent().attr('data_id');
-					var typeId = $('#select').val()==0?'':$('#select').val();
-					var nTime = $('#test').val();
-					console.log(read,typeId,nTime);
-					ajax_data(read,typeId,nTime);
-                }
-            };
-            $("#page").initPage(71, 1, GG.kk);
 
-           $(".index_head li").click(function (){
-				console.log('qqq');
-                $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
-                $(".news").html($(this).find('span').text());
-				var read = $(this).attr('data_id');
-				var typeId = $('#select').val()==0?'':$('#select').val();
-				var nTime = $('#test').val();
-				console.log(read,typeId,nTime);
-				if(read == ''||read == 0){
-					$('.step1').show();
-					$('.center').hide();
-					ajax_data(read,typeId,nTime);
-				}else if(read == 1){
-					$('.step1').hide();
-					$('.center').show();
-				}
-				
-            })
-            function ajax_data(read,typeId,nTime){
-            	$.ajax({
-					type: "get",
-					url: "<%=basePath%>news/newsShow",
-					dataType: 'JSON',
-					data: {
-						page:1,
-						pageSize:5,
-						useFlag:true,
-						read:read,
-						typeId:typeId,
-						nTime:nTime
-					},
-					success: function(data){
-						console.log(data);
-						var news = "";
-                           for (var i = 0; i < data.obj.length; i++) {
-                               news = "<tr><td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].newsTime+"</ a></td>"+
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].clickCount+"</ a></td>"+
-                                       "<td><a href='' newsId="+data.obj[i].newsTime+" class='windowOpen'>"+data.obj[i].read+"</ a></td>"+news;
-                           }
-						
-						$("#j_tb").html(news);
-					}   
-				})
-            }
-            
-            /* 新闻详情页 */
-               $("#j_tb").on('click','.windowOpen',function(){
-		            var nid=$(this).attr('newsId');
-		            $.popWindow('detail?newsId='+nid);
-		        });
-        		$('.submit').click(function (){
-					var read = $('.index_head .one').parent().attr('data_id');
-					var typeId = $('#select').val();
-					var nTime = $('#test').val();
-					console.log(read,typeId,nTime);
-					ajax_data(read,typeId,nTime);
-				})
-        });
-		
- 
-
-
-    </script>
     <style type="text/css">
 		.head li{
 			width: 154px;
@@ -221,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</select>
             <div>
                 <div style="font-size: 15px; margin-left:28px; ">日期 :</div>
-                <input class="button1" id="test">
+                <input class="button1" id="sendTime">
             </div>
             <img  class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
         </div>
@@ -253,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    </td>
 	                    <td class="th">点击次数</td>
 	                    <td class="th">评论（条）</td>
-	                    <td class="th">发布部门</td>
+	                    <!-- <td class="th">发布部门</td> -->
 	                </tr>
                 </thead>
                 <tbody id="j_tb">                                                                                           
@@ -286,27 +209,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            </div>
 	            <div class="le subject">
 	                <div class="color">标题：</div>
-	                <div><input style="height:26px;width:279px;margin-left:69px;margin-right: 15px;" type="text"/></div>
+	                <div><input id="subject" style="height:26px;width:279px;margin-left:69px;margin-right: 15px;" type="text"/></div>
 	            </div>
-	            <div class="le date">
+				<div class="le date">
 	                <div class="color">发布日期：</div>
-	                <div><input style="height:24px;width:119px;margin-left:38px;margin-right: 11px;" type="text"/></div>
+	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:45px;margin-right: 11px;" type="text"/></div>
 	                <div class="color">至</div>
-	                <div> <input  style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
+	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
 	            </div>
-	            <div class="le ce1">
-	                <div class="color">内容：</div>
-	                <div><input  style="height:25px;width:279px;margin-left:70px;"   type="text"/></div>
+	           	<div class="le ce1">
+	                <div class="color">类型：</div>
+	                <div>            
+		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select">
+							<option value="0" selected="">所有类型</option>
+							<option value="01">公司动态</option>
+							<option value="02">媒体关注</option>
+							<option value="03">行业资讯</option>
+							<option value="04">合作伙伴新闻</option>
+							<option value="05">客户新闻</option>
+							<option value="">无类型</option>
+						</select>
+					</div>
 	
 	            </div>
 	            <div class="le ce2">
 	                <div class="color">内容:</div>
-	                <div><input   style="height:25px;width:279px;margin-left:80px;" type="text"/></div>
+	                <div><input id="content"  style="height:25px;width:279px;margin-left:80px;" type="text"/></div>
 	
 	            </div>
 	        </div>
 	        <div class="icons">
-	            <img style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
+	            <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
 	            <img style="margin-right:30px; cursor: pointer;"  src="../img/4query.png" alt=""/>
 	            <img style=" cursor: pointer;" src="../img/5query.png" alt=""/>
 	        </div>
@@ -317,16 +250,102 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--footer部分结束-->
 </div>
 <script>
-	//时间控件调用
-   laydate({
-     elem: '#test', //目标元素。
+$(function () {
+            var data = {
+                read : $('.index_head .one').parent().attr('data_id'),
+				typeId : $('#select').val()==0?'':$('#select').val(),
+				nTime : $('#sendTime').val(),
+				page:1,
+				pageSize:5,
+				useFlag:true,
+				newsTime:'',
+				lastEditTime:'',
+				content:'',
+				subject:''
+
+            };
+           initPageList();
+
+           $(".index_head li").click(function (){
+				console.log('qqq');
+                $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
+                $(".news").html($(this).find('span').text());
+				data.read = $(this).attr('data_id');
+				data.typeId = $('#select').val()==0?'':$('#select').val();
+				data.nTime = $('#sendTime').val();
+				console.log(data);
+				if(data.read == ''||data.read == 0){
+					$('.step1').show();
+					$('.center').hide();
+					initPageList();
+				}else if(data.read == 1){
+					$('.step1').hide();
+					$('.center').show('');
+					$('#subject').val('');
+					$('#beginTime').val('');
+					$('#endTime').val('');
+					$('#select').val()==0?'':$('#select').val();
+					$('#content').val('');
+				}
+				
+            })
+            function initPageList(read,typeId,nTime){
+            	$.ajax({
+					type: "get",
+					url: "<%=basePath%>news/newsShow",
+					dataType: 'JSON',
+					data: data,
+					success: function(data){
+						console.log(data);
+						var news = "";
+                           for (var i = 0; i < data.obj.length; i++) {
+                               news = "<tr><td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
+                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
+                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].newsTime+"</ a></td>"+
+                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].clickCount+"</ a></td>"+
+                                       "<td><a href='' newsId="+data.obj[i].newsTime+" class='windowOpen'>"+data.obj[i].read+"</ a></td>"+news;
+                           }
+						
+						$("#j_tb").html(news);
+					}   
+				})
+            }
+            
+            /* 新闻详情页 */
+               $("#j_tb").on('click','.windowOpen',function(){
+		            var nid=$(this).attr('newsId');
+		            $.popWindow('detail?newsId='+nid);
+		        });
+        		$('.submit').click(function (){
+					data.read = $('.index_head .one').parent().attr('data_id');
+					data.typeId = $('#select').val();
+					data.nTime = $('#sendTime').val();
+					//console.log(read,typeId,nTime);
+					initPageList();
+				});
+				//时间控件调用
+  
+   $('#btn_query').click(function (){
+		
+		data.subject = $('#subject').val();
+		data.beginTime = $('#beginTime').val();
+		data.endTime = $('#endTime').val();
+		data.typeId =  $('#select').val()==0?'':$('#select').val();
+		data.content = $('#content').val();
+		initPageList();
+		$('.step1').show();
+		$('.center').hide();
+	});
+});
+	 laydate({
+     elem: '#sendTime', //目标元素。
      format: 'YYYY-MM-DD hh:mm:ss', //日期格式
      istime: true, //显示时、分、秒
    });
    
    //时间控件调用
    var start = {
-     elem: '#start',
+     elem: '#beginTime',
      format: 'YYYY/MM/DD hh:mm:ss',
     /* min: laydate.now(), //设定最小日期为当前日期*/
     /* max: '2099-06-16 23:59:59', //最大日期*/
@@ -338,7 +357,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      }
    };
    var end = {
-     elem: '#end',
+     elem: '#endTime',
      format: 'YYYY/MM/DD hh:mm:ss',
      /*min: laydate.now(),*/
      /*max: '2099-06-16 23:59:59',*/
