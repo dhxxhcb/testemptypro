@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 "kk": function (mm) {
                  	var read = $('.index_head .one').parent().attr('data_id');
 					var typeId = $('#select').val()==0?'':$('#select').val();
-					var nTime = $('#test').val();
+					var nTime = $('#sendTime').val();
 					console.log(read,typeId,nTime);
 					ajax_data(read,typeId,nTime);
                 }
@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $(".news").html($(this).find('span').text());
 				var read = $(this).attr('data_id');
 				var typeId = $('#select').val()==0?'':$('#select').val();
-				var nTime = $('#test').val();
+				var nTime = $('#sendTime').val();
 				console.log(read,typeId,nTime);
 				if(read == ''||read == 0){
 					$('.step1').show();
@@ -67,11 +67,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						console.log(data);
 						var news = "";
                            for (var i = 0; i < data.obj.length; i++) {
-                               news = "<tr><td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
+                               news = "<tr newsId="+data.obj[i].newsId+"><td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
                                        "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
                                        "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].newsTime+"</ a></td>"+
                                        "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].clickCount+"</ a></td>"+
-                                       "<td><a href='' newsId="+data.obj[i].newsTime+" class='windowOpen'>"+data.obj[i].read+"</ a></td>"+news;
+                                       "<td><a href=''  class='windowOpen'>"+'0'+"</ a></td>"+news;
                            }
 						
 						$("#j_tb").html(news);
@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		$('.submit').click(function (){
 					var read = $('.index_head .one').parent().attr('data_id');
 					var typeId = $('#select').val();
-					var nTime = $('#test').val();
+					var nTime = $('#sendTime').val();
 					console.log(read,typeId,nTime);
 					ajax_data(read,typeId,nTime);
 				})
@@ -221,7 +221,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</select>
             <div>
                 <div style="font-size: 15px; margin-left:28px; ">日期 :</div>
-                <input class="button1" id="test">
+                <input class="button1" id="sendTime">
             </div>
             <img  class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
         </div>
@@ -253,7 +253,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    </td>
 	                    <td class="th">点击次数</td>
 	                    <td class="th">评论（条）</td>
-	                    <td class="th">发布部门</td>
+	                    <!-- <td class="th">发布部门</td> -->
 	                </tr>
                 </thead>
                 <tbody id="j_tb">                                                                                           
@@ -290,13 +290,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            </div>
 	            <div class="le date">
 	                <div class="color">发布日期：</div>
-	                <div><input style="height:24px;width:119px;margin-left:38px;margin-right: 11px;" type="text"/></div>
+	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:45px;margin-right: 11px;" type="text"/></div>
 	                <div class="color">至</div>
-	                <div> <input  style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
+	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
 	            </div>
 	            <div class="le ce1">
-	                <div class="color">内容：</div>
-	                <div><input  style="height:25px;width:279px;margin-left:70px;"   type="text"/></div>
+	                <div class="color">类型：</div>
+	                <div>            
+		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select">
+							<option value="0" selected="">所有类型</option>
+							<option value="01">公司动态</option>
+							<option value="02">媒体关注</option>
+							<option value="03">行业资讯</option>
+							<option value="04">合作伙伴新闻</option>
+							<option value="05">客户新闻</option>
+							<option value="">无类型</option>
+						</select>
+					</div>
 	
 	            </div>
 	            <div class="le ce2">
@@ -319,11 +329,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 	//时间控件调用
    laydate({
-     elem: '#test', //目标元素。
+     elem: '#sendTime', //目标元素。
      format: 'YYYY-MM-DD hh:mm:ss', //日期格式
      istime: true, //显示时、分、秒
    });
-   
+   	//时间控件调用
+   laydate({
+     elem: '#beginTime', //目标元素。
+     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+     istime: true, //显示时、分、秒
+   });
+   	//时间控件调用
+   laydate({
+     elem: '#endTime', //目标元素。
+     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+     istime: true, //显示时、分、秒
+   });
    //时间控件调用
    var start = {
      elem: '#start',
