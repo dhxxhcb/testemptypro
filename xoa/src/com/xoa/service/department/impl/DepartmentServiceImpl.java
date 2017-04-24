@@ -156,6 +156,28 @@ public class DepartmentServiceImpl implements DepartmentService {
 	    List<Department> list=departmentMapper.getChDept(maps);    
 		return list;
 	}
+
+
+	 /**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月21日 下午1:55:52
+	 * 方法介绍:   递归获取所有父级部门信息
+	 * 参数说明:   @param deptParent 部门
+	 * 参数说明:   @param list 用于存储父级部门信息
+	 * 参数说明:   @return
+	 * @return     List<Department>  返回父级部门信息
+	 */
+	@Override
+	public List<Department> getFatherDept(int deptParent,List<Department> list) {
+		 Department dep=departmentMapper.getFatherDept(deptParent);
+		if(dep.getDeptParent()!=0){
+			list.add(dep);
+		}else{
+			list.add(dep);
+			return list;
+		}
+		return getFatherDept(dep.getDeptParent(),list);
+	}
 	
 
 }

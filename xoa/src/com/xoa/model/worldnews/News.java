@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.xoa.model.common.SysCode;
 import com.xoa.model.department.Department;
 import com.xoa.model.role.Role;
 import com.xoa.model.users.Users;
@@ -156,11 +157,17 @@ public class News implements Serializable {
 	 * 角色关联
 	 */
 	private Role role;
-	/**
-	 * 判断名字在未读
-	 */
-	private String userName;
 	
+	 private SysCode codes;
+	
+	
+	public SysCode getCodes() {
+		return codes;
+	}
+
+	public void setCodes(SysCode codes) {
+		this.codes = codes;
+	}
 	private String  typeName;
 
 	public String getTypeName() {
@@ -170,15 +177,21 @@ public class News implements Serializable {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
+	/**
+	 * 发布者
+	 */
+	private String providerName;
+	
+	
+	
 
-	public String getUserName() {
-		return userName;
+	public String getProviderName() {
+		return providerName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setProviderName(String providerName) {
+		this.providerName = providerName;
 	}
-
 	private String depName;
 
 	public String getDepName() {

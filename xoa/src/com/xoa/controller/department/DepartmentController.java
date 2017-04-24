@@ -1,5 +1,6 @@
 package com.xoa.controller.department;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -213,6 +214,43 @@ public class DepartmentController {
 		}
         return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
     }
+	
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月21日 下午2:52:46
+	 * 方法介绍:   获得多部门名
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @return
+	 * @return     String 返回长部门名
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/department/getFatherDept",produces = {"application/json;charset=UTF-8"})
+    public String getFatherDept(HttpServletRequest request) {
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		try {
+			request.setCharacterEncoding("UTF-8");
+			int deptParent=Integer.parseInt(new String(request.getParameter("deptParent").getBytes("ISO-8859-1"),"UTF-8"));
+			List<Department> list =new ArrayList<Department>();
+			list=departmentService.getFatherDept(deptParent,list); 
+			StringBuffer sb=new StringBuffer();
+			for(int i=list.size()-1;i>=0;i--){
+				sb.append(list.get(i).getDeptName());
+				if(i>0){
+					sb.append("/");
+				}
+			}
+			json.setObject(sb);
+            json.setMsg("OK");
+            json.setFlag(0);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+			System.out.println(e.getMessage());
+		}
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
+	
+	
 	
 	 /**
      * 部门列表-树111

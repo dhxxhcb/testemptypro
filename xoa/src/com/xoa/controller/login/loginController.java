@@ -30,7 +30,7 @@ import com.xoa.util.ToJson;
  */
 public class loginController {
 	private Logger loger = Logger.getLogger(loginController.class);
-	@Resource
+	@Resource 
 	private UsersService usersService; 
 	
 	/**

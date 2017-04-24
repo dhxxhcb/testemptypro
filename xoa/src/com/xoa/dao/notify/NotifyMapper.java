@@ -26,6 +26,8 @@ public interface NotifyMapper {
     * @return     List<Notify>
     */
     List<Notify> selectNotify(Map<String,Object> maps);
+    
+    List<Notify> selectCountNotify(Map<String,Object> maps);
     /**
      * 
      * 创建作者:   张丽军

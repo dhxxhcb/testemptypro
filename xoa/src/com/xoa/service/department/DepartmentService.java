@@ -67,7 +67,6 @@ public interface DepartmentService {
 	 */
 	@DynDatasource 
 	public void insertDept(Department department);
-
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:41:21
@@ -76,8 +75,7 @@ public interface DepartmentService {
 	 * @return     void  无返回值
 	 */
 	@DynDatasource 
-	public void editDept(Department department);
-	
+	public void editDept(Department department);	
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:41:31
@@ -102,8 +100,15 @@ public interface DepartmentService {
 	 */
 	@DynDatasource 
 	public List<Department> getChDept(Map<String,Object> maps, Integer page,
-			Integer pageSize, boolean useFlag);
-	
-	
+			Integer pageSize, boolean useFlag);	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月21日 下午1:12:18
+	 * 方法介绍:   获得上级部门
+	 * 参数说明:   @return
+	 * @return     List<Department> 返回上级部门信息
+	 */
+	@DynDatasource
+	public List<Department> getFatherDept(int deptParent,List<Department> list);
 
 }

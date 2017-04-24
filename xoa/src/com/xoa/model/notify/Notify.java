@@ -141,6 +141,46 @@ public class Notify {
     
     private Users users;
     private String name;
+  
+    
+    
+    
+    private String depName;
+
+    public String getDepName() {
+     return depName;
+    }
+
+    public void setDepName(String depName) {
+     this.depName = depName;
+    }
+    
+  
+    
+    private String typeName;
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-20 下午6:30:51
+     * 方法介绍:   获取公告类型
+     * 参数说明:   @return
+     * @return     String
+     */
+    public String getTypeName(){
+    	return typeName;
+    }
+    /**
+     * 
+     * 创建作者:   张丽军
+     * 创建日期:   2017-4-20 下午6:31:21
+     * 方法介绍:   设置公告类型
+     * 参数说明:   @param typeName
+     * @return     void
+     */
+    public void setTypeName(String typeName){
+    	this.typeName = typeName;
+    }
+    
  
     /**
      * 

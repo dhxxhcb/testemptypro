@@ -18,13 +18,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="css/main/theme1/index.css"/>
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>  
 		<script type="text/javascript" src="js/main_js/index.js"></script>  
-		<script src="js/jquery.js"></script>
+		<!-- <script src="js/jquery.js"></script> -->
 		<script src="js/base/base.js"></script>
 	</head>
 	<body>
 		<div class="wrap">
 			<div class="head">
-				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:2%;width:72%;height:78%;
+				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:2%;width:72%;height:75%;
     margin-left: 8%;"></div>
 				<div class="head_mid">
 					<ul class="main_title">
@@ -126,7 +126,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"email":"email/index",
 				"notify_show":"notice/index",
 				"news_show":"news/index",
-				"notify_manage":"notice/manage",
 				"file_folder/index2.php":"fileHome",
 				"system/file_folder":"showFileBySort_id"
 			}
@@ -202,13 +201,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									if(data[i].child[j].child.length>0){
 										var three='';
 										for(var k=0;k<data[i].child[j].child.length;k++){						
-								 			three +='<li class="three" menu_tid='+data[i].child[j].child[k].id+' url_three='+data[i].child[j].child[k].url+'><h1 style="margin-left:37%;">'+data[i].child[j].child[k].name+'</h1></li>' ; 	
+								 			three +='<li class="three" menu_tid='+data[i].child[j].child[k].id+' url_three='+data[i].child[j].child[k].url+'><img class="sanji_circle" src="img/main_img/hei.png"><h1 style="margin-left:6%;">'+data[i].child[j].child[k].name+'</h1></li>' ; 	
 								 		}
-								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
+								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"><img class="erji_circle" src="img/main_img/hei.png"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
 									/*  console.log($('er').find().attr('url')); */
 									}else{
 										/* console.log(data[i].child[j].id); */
-										er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+' class="two_all"><h1>'+data[i].child[j].name+'</h1></div></li>';
+										er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+' class="two_all"><img class="erji_circle" src="img/main_img/hei.png"><h1 class="erji_h1">'+data[i].child[j].name+'</h1></div></li>';
 										
 									} 
 								} 
@@ -223,21 +222,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						//鼠标移动到一级菜单变样式，移出变回
 						$('.one_all').on('mouseover',function () {
 							$(this).css({
-									'background':'url(img/main_img/first_yes.png) 0px 1.4px no-repeat',
+									'background':'url(img/main_img/first_yes.png) 0px 2px no-repeat',
 									'color':'#006bb8',
-									'border':'1px solid #999'
+									/* 'border':'1px solid #999', */
+									'cursor':'pointer'
 								});
 						});
 						//移出
 						$('.one_all').on('mouseout',function () {
 							$(this).css({
-									'background':'url(img/main_img/first_no.png) 0px 0px no-repeat',
+									'background':'url(img/main_img/first_no.png) 0px -0px no-repeat',
 									'color':'#000'
 								});
 						});
-						
-						
-						
+							
 						//点击一级菜单。显示二级
 					 	$('.one_all').on('click',function () {
 							
@@ -302,12 +300,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 								/* $('.two_menu li .two_all').removeClass('xuan');
 								$(this).addClass('xuan'); */
-								$(this).find('h1').css('color','#2f8ae3');
+								$(this).find('h1').css({
+									'color':'#2f8ae3',
+									 'cursor':'pointer'
+								});
+								 $(this).find('.erji_circle').attr('src','img/main_img/lan.png'); 
+								
 						});
 						$('.two_menu li').on('mouseout','.two_all',function(){
 							
 								$('.two_menu li .two_all').removeClass('xuan');
 								$(this).find('h1').css('color','#000');
+								 $(this).find('.erji_circle').attr('src','img/main_img/hei.png'); 
 						});
 						
 						
@@ -395,8 +399,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							$(this).css({
 									/* 'background':'url(img/main_img/first_yes.png) 0px 1.4px no-repeat', */
 									'color':'#006bb8',
-									
+									'cursor':'pointer'
 								});
+							 $(this).find('img').attr('src','img/main_img/lan.png'); 
 							
 						});
 						//三级菜单移出
@@ -407,7 +412,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									/* 'background':'url(img/main_img/first_no.png) 0px 0px no-repeat', */
 									'color':'#000'
 								});
-								
+								 $(this).find('img').attr('src','img/main_img/hei.png'); 
 						});
 						
 
@@ -418,6 +423,94 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}//init方法结束
 		
 			init();//调用init()方法
+			var data = {
+						deptId:0
+			};
+			//init_orgnize()方法
+			function init_orgnize(){
+			
+				 $.ajax({
+					url:'department/getChDept',
+					type:'get',	
+					data:data, 		
+					dataType:'json',					
+					success:function(obj){
+					var data=obj.obj;
+						console.log(data);
+						var li='';
+						for(var i=0;i<data.length;i++){
+							li +='<li style="height:36px;"><img src="img/main_img/company_logo.png" alt=""><a style="line-height:36px;" href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a><ul class="ul_two"></ul></li>' ;
+							
+						}
+						
+						$(".tab_cone").html(li);
+					}
+					
+				});
+				
+				
+			}
+			init_orgnize();
+			//组织二级
+			var data1 = {
+						deptId:1
+				};
+			var data2 = {
+						deptId:2
+				};
+				
+			$(".tab_cone").on('click','li:eq(0)',function(){
+				 
+					 /* $.ajax({
+							url:'department/getChDept',
+							type:'get',	
+							data:data1,		
+							dataType:'json',
+							success:function(obj){
+								 console.log(obj.obj);
+								var data=obj.obj;
+								var li_two='';
+								for(var i=0;i<obj.obj.length;i++){
+									li_two='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span><ul class="three_ul"></ul></li>'
+								}
+								
+								$(".tab_cone li:eq(0) .ul_two").html(li_two);
+							}
+					}); */
+					
+				/* 	data.deptId=1;
+					init_orgnize();
+					for(var i=0;i<obj.obj.length;i++){
+						li_two='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span><ul class="three_ul"></ul></li>'
+					}
+								
+					$(".tab_cone li:eq(0) .ul_two").html(li_two); */
+					
+					/* if($('.ul_two li').css('display')=='none'){
+						$('.ul_two li').show();
+					}else{
+						$('.ul_two li').hide();
+					} */
+			});
+			//组织三级
+		
+				 $.ajax({
+							url:'department/getChDept',
+							type:'get',	
+							data:data2,		
+							dataType:'json',
+							success:function(obj){
+								/* console.log(obj.obj); */
+							/* 	var data=obj.obj; */
+								/* var li_three=''; */
+							/* 	console.log(data); */
+							/* 	for(var i=0;i<obj.obj.length;i++){
+									li_three='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span></li>'
+								}
+								$(".tab_cone li:eq(0) .ul_two").html(li_two); */
+							}
+					});
+			
 						//点击标题栏
 						$('.main_title ').on('click','li',function(){
 							
@@ -454,20 +547,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							console.log(re);
 							var delet=re.split('_')[1];
 							console.log(delet);
-							/* alert($(this)); */
+					
 						 	$(this).parent().parent().remove();
 						 /* 	console.log($(this).parent().parent()); */
 						 	 $('#f_'+delet).remove();
-						 	/*  $('#f_'+delet).siblings().show(); */
+						 	  $('#f_'+delet).next().show(); 
+						 	 /*  console.log( $('#re'));
+						 	  console.log( $('#f_'+delet).next()); */
 						 	/* console.log($(this).siblings('li').length>0); */
 						 	var  li= $(this).parents('li');
-						 	console.log(li);
-						 	console.log($(this).parents('li').next());
-						 	/* if($(this).siblings('li').length>0){
+						 	/* console.log(li);
+						 	console.log($(this).parents('li').next()); */
+						 	
+						 	/*  if($(this).siblings('li').length>0){
 						 		 $('#f_'+delet).siblings().show();
+						 		 
 						 	}else{
 						 		
-						 	}  */
+						 	}   */
 						}) ;
 				
 				//tab 切换
@@ -478,7 +575,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							 if($(this).attr('id')=='use'){
 								init();
 							}else{
-								/* init_orgnize(); */
+								 init_orgnize(); 
 							} 
 							
 					})

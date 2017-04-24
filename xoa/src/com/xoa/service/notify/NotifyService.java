@@ -33,6 +33,8 @@ public interface NotifyService {
 	 */
 	@DynDatasource
    public  List<Notify>  selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+
+	
 	/**
 	 * 
 	 * 创建作者:   张丽军

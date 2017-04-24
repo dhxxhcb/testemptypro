@@ -1,21 +1,17 @@
 package com.xoa.service.email.impl;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 import com.xoa.dao.email.EmailBodyMapper;
 import com.xoa.dao.email.EmailMapper;
-import com.xoa.model.email.EmailModel;
 import com.xoa.model.email.EmailBodyModel;
+import com.xoa.model.email.EmailModel;
 import com.xoa.service.email.EmailService;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * 
@@ -116,13 +112,13 @@ public class EmailServiceImpl implements EmailService {
 	 * 
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:48:31
-	 * 方法介绍:   根据ID删除一条
+	 * 方法介绍:   根据ID删除草稿箱邮件
 	 * 参数说明:   @param bodyId 邮件Id
 	 * @return     void
 	 */
 	@Override
-	public void deleteByPrimaryKey(Integer bodyId) {
-		emailBodyMapper.deleteByPrimaryKey(bodyId);
+	public void deleteByID(Integer bodyId) {
+		emailBodyMapper.deleteDrafts(bodyId);
 	}
 
 	/**
@@ -324,6 +320,77 @@ public class EmailServiceImpl implements EmailService {
 		emailMapper.updateIsRead(email);
 	}
 
-	
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午11:16:38
+	 * 方法介绍:   发件箱删除
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	@Override
+	public String deleteOutEmail(Integer emailId,String flag) {
+		String returnRes = "0";
+		try {
+			if(flag.trim().equals("0")||flag.trim().equals("")){
+				emailBodyMapper.updateOutbox(emailId);
+			}else if(flag.trim().equals("3")){
+				emailBodyMapper.updateOutboxs(emailId);
+			}else{
+				emailBodyMapper.deleteOutbox(emailId);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			returnRes = "1";
+		}
+		return returnRes;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午11:16:38
+	 * 方法介绍:   发件箱删除邮件
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	@Override
+	public String deleteInEmail(Integer emailId, String flag) {
+		String returnRes = "0";
+		try {
+			if(flag.trim().equals("0")||flag.trim().equals("")){
+				emailBodyMapper.updateInbox(emailId);
+			}else{
+				emailBodyMapper.updateInboxs(emailId);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			returnRes = "1";
+		}
+		return returnRes;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-21 上午11:16:38
+	 * 方法介绍:   废纸篓删除邮件
+	 * 参数说明:   @param emailBodyModel
+	 * @return     void
+	 */
+	@Override
+	public String deleteRecycleEmail(Integer emailId, String flag) {
+		String returnRes = "0";
+		try {
+			if(flag.trim().equals("3")){
+				emailBodyMapper.updateRecycle(emailId);
+			}else{
+				emailBodyMapper.deleteRecycle(emailId);
+			}
+		} catch (Exception e) {
+			returnRes = "1";
+		}
+		return returnRes;
+	}
 	
 }
