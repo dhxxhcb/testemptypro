@@ -18,6 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
 	<link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
     <link rel="stylesheet" type="text/css" href="../css/notice/notify.css" />
+     <link rel="stylesheet" type="text/css" href="../css/base.css" />
     <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
   	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
@@ -37,11 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#noRead .title{font-family: "微软雅黑";font-size:18px;}
 		#noRead span{display: block;width: 50%;margin: 20px auto;padding: 20px 20px;font-size: 25px;text-align: center;background-color: #6fb4fa;color: #fff;}
 		.title{font-size: 16px;color: #124164;font-weight: bold;margin-top:20px;margin-left:20px;display: inline-block;}
-		.M-box3{margin-top:10px;float:right;}
-		.M-box3 a{margin: 0 3px;width: 29px;height: 20px;line-height: 20px;font-size: 12px;text-decoration: none;}
-		.M-box3 .active{margin: 0px 3px;width: 25px;height: 20px;line-height: 20px;background: #2b7fe0;font-size: 12px;border: 1px solid #2b7fe0;}
-		.jump-ipt{margin: 0 3px;width: 25px;height: 20px;line-height: 20px;font-size: 12px;}
-		.M-box3 a:hover{background: #2b7fe0;}
+		
 		.laydate-icon{width:150px;}
 		.BigInput{width:352px;height:20px;}
 		.BigButton{width:40px;height:25px;border-radius:3px;line-height:25px;text-align:center;}

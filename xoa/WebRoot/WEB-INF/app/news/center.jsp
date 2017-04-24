@@ -12,14 +12,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../css/news/page.css">
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
-
+	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css">
 		.head li{
 			width: 154px;
@@ -153,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="right">
 
             <!-- 分页按钮-->
-            <ul class="page" maxshowpageitem="0" pagelistcount="1" id="page"></ul>
+            <div class="M-box3"></div>
 
         </div>
 
@@ -264,8 +265,11 @@ $(function () {
 				subject:''
 
             };
-           initPageList();
-
+           initPageList(function(pageCount){
+           		 initPagination(pageCount,data.pageSize);
+           });
+          
+		  
            $(".index_head li").click(function (){
 				console.log('qqq');
                 $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
@@ -289,28 +293,50 @@ $(function () {
 				}
 				
             })
-            function initPageList(read,typeId,nTime){
+            function initPageList(cb){
             	$.ajax({
 					type: "get",
 					url: "<%=basePath%>news/newsShow",
 					dataType: 'JSON',
 					data: data,
-					success: function(data){
-						console.log(data);
+					success: function(obj){
+						console.log(obj);
 						var news = "";
-                           for (var i = 0; i < data.obj.length; i++) {
-                               news = "<tr><td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].newsTime+"</ a></td>"+
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].clickCount+"</ a></td>"+
-                                       "<td><a href='' newsId="+data.obj[i].newsTime+" class='windowOpen'>"+data.obj[i].read+"</ a></td>"+news;
+                           for (var i = 0; i < obj.obj.length; i++) {
+                               news = "<tr><td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].subject+"</ a></td>"+
+                                       "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].typeName+"</ a></td>"+
+                                       "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsTime+"</ a></td>"+
+                                       "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].clickCount+"</ a></td>"+
+                                       "<td><a href='' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+obj.obj[i].read+"</ a></td>"+news;
                            }
-						
+                           
+							
 						$("#j_tb").html(news);
+						if(cb){
+							cb(obj.totleNum);
+						}
 					}   
 				})
             }
-            
+            function initPagination(totalData,pageSize){
+            	console.log(totalData+'---'+pageSize);
+            	$('.M-box3').pagination({
+							    totalData:totalData,
+							    showData:pageSize,
+							    jump:true,
+							    coping:true,
+							    homePage:'<fmt:message code="global.page.first" />',
+							    endPage:'<fmt:message code="global.page.last" />',
+							    prevContent:'<fmt:message code="global.page.pre" />',
+							    nextContent:'<fmt:message code="global.page.next" />',
+							    jumpBtn:'<fmt:message code="global.page.jump" />',
+							    callback:function(index){
+							    	data.page = index.getCurrent();
+							    	console.log(index.getCurrent());
+							    	initPageList();
+							    }
+							});
+            }
             /* 新闻详情页 */
                $("#j_tb").on('click','.windowOpen',function(){
 		            var nid=$(this).attr('newsId');
