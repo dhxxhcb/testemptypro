@@ -335,7 +335,7 @@
 	</select>
 
 	<!-- 根据id查询一条邮件 -->
-	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<select id="queryById" resultMap="BaseResultMap" parameterType="Map">
 	 select
 	 eb.FROM_ID,
 		eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,eb.SECRET_TO_ID,u.USER_ID,eb.CONTENT,
@@ -350,15 +350,20 @@
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID
-		 where 
+		 where
+		 <if test="emailId != null and emailId != ''">
 		e.EMAIL_ID=#{emailId}
+         </if>
+        <if test="bodyId != null and bodyId != ''">
+         eb.BODY_ID = #{bodyId}
+        </if>
 		GROUP BY eb.BODY_ID
 	</select>
 	
 	<!--草稿箱删除，delete -->
 	<delete id="deleteDrafts" parameterType="java.lang.Integer">
 		delete from
-		email_body where FROM_ID=#{fromId} AND BODY_ID = #{bodyId}
+		email_body where BODY_ID = #{bodyId}
 	</delete>
 
 	<update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBodyModel">

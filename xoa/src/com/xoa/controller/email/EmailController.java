@@ -1,14 +1,11 @@
 package com.xoa.controller.email;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.alibaba.fastjson.JSON;
+import com.xoa.model.email.EmailBodyModel;
+import com.xoa.model.email.EmailModel;
+import com.xoa.service.email.EmailService;
+import com.xoa.util.DateFormat;
+import com.xoa.util.ToJson;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -18,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
-import com.xoa.model.email.EmailModel;
-import com.xoa.model.email.EmailBodyModel;
-import com.xoa.service.email.EmailService;
-import com.xoa.util.DateFormat;
-import com.xoa.util.ToJson;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
@@ -278,11 +274,12 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/queryByID", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-		String queryByID(@RequestParam("emailId") Integer emailId,@RequestParam("flag")String flag) throws Exception {
+		String queryByID(@RequestParam(value = "emailId",required = false) Integer emailId,@RequestParam("flag")String flag,@RequestParam(value = "bodyId",required = false) Integer bodyId) throws Exception {
 			Map<String, Object> maps = new HashMap<String, Object>();
 			maps.put("emailId", emailId);
+        maps.put("bodyId", bodyId);
 			EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
-			String returnRes = null;
+			String returnRes = "";
 			if(!flag.trim().equals("isRead")){
 				if (emailBody.getBodyId() != null) {
 					ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "ok");
@@ -309,7 +306,6 @@ public class EmailController {
 
 	
 	/**
-	 * 邮件查询
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:35:16
 	 * 方法介绍:   删除列表
@@ -346,7 +342,30 @@ public class EmailController {
 					"yyyy-MM-dd HH:mm:ss");
 		}
 	}
-	
+
+    /**
+     *
+     * 创建作者:   张勇
+     * 创建日期:   2017-4-20 上午10:35:16
+     * 方法介绍:   草稿箱删除
+     * 参数说明:   @param  bodyId 邮箱内容ID
+     * 参数说明:   @return json
+     * @return     String
+     */
+    @RequestMapping(value = "/deleteDraftsEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+    public @ResponseBody String deleteDraftsEmail(@RequestParam("bodyId") Integer bodyId){
+        try {
+            ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (0,"ok");
+            emailService.deleteByID(bodyId);
+           return JSON.toJSONStringWithDateFormat(tojson,"yyyy-MM-dd HH:mm:ss");
+        }catch (Exception e){
+            ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (1,"error");
+            return  JSON.toJSONStringWithDateFormat(tojson,"yyyy-MM-dd HH:mm:ss");
+        }
+    }
+
+
+
 	/**
 	 * 
 	 * 创建作者:   张勇
@@ -724,5 +743,4 @@ public class EmailController {
 	public String emailIndex(){
 		return "app/email/index";
 	}
-
 }
