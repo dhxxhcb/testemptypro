@@ -17,4 +17,6 @@ public interface AttachmentMapper {
     
     Attachment findByAttachId(int attachId);
     
+    Attachment findByLast();
+    
 }

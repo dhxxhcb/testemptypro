@@ -28,7 +28,12 @@
     from attachment
     where ATTACH_ID = #{attachId,jdbcType=INTEGER}
   </select>
-  
+  <select id="findByLast"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from attachment
+    where aid = (SELECT max(aid) FROM attachment);
+  </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from attachment

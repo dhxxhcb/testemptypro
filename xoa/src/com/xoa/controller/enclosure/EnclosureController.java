@@ -9,10 +9,11 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,7 +34,7 @@ import com.xoa.service.enclosure.EnclosureService;
  * 创建作者:   张龙飞
  * 创建日期:   2017年4月19日 下午12:56:00
  * 类介绍  :    附件
- * 构造参数:   
+ * 构造参数:   无
  *
  */
 @Controller
@@ -43,69 +44,18 @@ public class EnclosureController {
 	
 	@Resource
 	private EnclosureService enclosureService;
-	
-	
-	/**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月19日 上午11:48:09
-	 * 方法介绍:   上传
-	 * 参数说明:   @param file
-	 * 参数说明:   @param request
-	 * 参数说明:   @param model
-	 * 参数说明:   @return
-	 * @return     String
-	 */
-	@RequestMapping(value = "/upload")  
-    public String upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {  
-		String module=com.xoa.util.ModuleEnum.EMAIL.getName();
-        String path = request.getSession().getServletContext().getRealPath("upload");  
-        String fileName = file.getOriginalFilename(); 
-        boolean b=enclosureService.saveUpload(path, fileName,module, file); 
-        if(b==true){
-        loger.info(request.getContextPath()+"/upload/"+fileName);
-        }
-        model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName);
-        return "login/logins";  
-    }  
-	/*@RequestMapping(value = "/uploadbatch")  
-    public String upload(HttpServletRequest request,
-			HttpServletResponse response, ModelMap mmMap) {  
-		
-		// 创建一个通用的多部分解析器
-		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
-				request.getSession().getServletContext());
-		//获得模块ID
-		String module=com.xoa.util.ModuleEnum.EMAIL.getName();
-		//判断 request 是否有文件上传,即多部分请求  
-        if(multipartResolver.isMultipart(request)){  
-            //转换成多部分request    
-            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;  
-            //取得request中的所有文件名  
-            Iterator<String> iter = multiRequest.getFileNames();  
-            while(iter.hasNext()){  
-                //取得上传文件  
-                MultipartFile file = multiRequest.getFile(iter.next());  
-               
-                //对上传文件进行处理
-                if(!file.isEmpty()){  
-                	String path = request.getSession().getServletContext()
-        					.getRealPath("upload");
-        			String fileName = file.getOriginalFilename();
-        			
-        			 boolean b=enclosureService.saveUpload(path, fileName,module, file); 
-        		        if(b==true){
-        		        loger.info(request.getContextPath()+"/upload/"+fileName);
-        		        }        
-                }  
-            }  
-              
-        }
-        return "login/logins";  
-	}*/
-	
-	
-	    @RequestMapping("/uploadbatch")  
-	    public String threeFileUpload(  
+
+	    /**
+	     * 创建作者:   张龙飞
+	     * 创建日期:   2017年4月24日 下午8:20:58
+	     * 方法介绍:   上传
+	     * 参数说明:   @param files 上传的文件
+	     * 参数说明:   @param request 请求
+	     * 参数说明:   @return
+	     * @return     String  返回页面
+	     */
+	    @RequestMapping("/upload")  
+	    public String FileUpload(  
 	            @RequestParam("file") MultipartFile[] files,HttpServletRequest request) {  
 	      
 	        List<Attachment> list = new ArrayList<Attachment>();
@@ -116,11 +66,13 @@ public class EnclosureController {
 	        //当前年月
 	        String ym = new SimpleDateFormat("yyMM").format(new Date());
 	        // 获得项目的路径  
-	        ServletContext sc = request.getSession().getServletContext();  
+	       // ServletContext sc = request.getSession().getServletContext();  
 	        // 上传位置  
-	        String basePath = sc.getRealPath("/upload"); // 设定文件保存的目录  
-	        
+	       // String basePath = sc.getRealPath("/upload"); // 设定文件保存的目录  
+	        String basePath="D://upload";
 	    	String path=basePath+"/"+company+"/"+module+"/"+ym;	
+	    	
+	    	Map<String, String> fileNameMap = new HashMap<String, String>(); 
 	        //File f = new File(path);  
 	       /* if (!f.exists())  
 	            f.mkdirs();*/  	     	      
@@ -131,8 +83,10 @@ public class EnclosureController {
 	            //String fileName = files[i].getOriginalFilename();  
 	            System.out.println("原始文件名:" + fileName);  
 	            //当前时间戳
-		    	  String attachDate = new SimpleDateFormat("MMddHHmmss").format(new Date());
-		    	  int attachID=Integer.parseInt(attachDate);
+	           // System.currentTimeMillis();
+	    		int attachID=Math.abs((int) System.currentTimeMillis()); 
+		    	 // String attachDate = new SimpleDateFormat("MMddHHmmss").format(new Date());
+		    	  //int attachID=Integer.parseInt(attachDate);
 		    	  String newFileName=Integer.toString(attachID)+"."+fileName; 
 	            if (!file.isEmpty()) {  
 	            	try{
@@ -164,36 +118,96 @@ public class EnclosureController {
 	            attachment.setPosition(b);
 	            list.add(attachment);
 	            enclosureService.saveAttachment(attachment);
-	            //attachmentMapper.insertSelective(attachment);
+	           // Attachment att=enclosureService.findByLast();
 	            
+	           //String attUrl="AID="+att.getAid()+"&"+"Module="+att.getModule()+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
+	           //fileNameMap.put(attUrl,fileName);
+	           fileNameMap.put(path+"/"+newFileName,fileName);
+	           //attachmentMapper.insertSelective(attachment);	            
 	            //System.out.println("上传文件到:" + path + newFileName);  
 	            //list.add(path + newFileName);  
-	            
-	      
 	        } 
-
+	        //String url=
+	        // 存储要下载的文件名  
+	       //Map<String, String> fileNameMap = new HashMap<String, String>();  
+	        // 递归遍历filepath目录下的所有文件和目录，将文件的文件名存储到map集合中  
+	        //listfile(new File(path), fileNameMap,path);// File既可以代表一个文件也可以代表一个目录  
+	       // File allfile=new File(path);
+	    	//File allfiles[] = allfile.listFiles();
+	    	//for (File f : allfiles) {
+	    	//	String realName = f.getName().substring(
+			//			f.getName().indexOf(".") + 1);
+			//	// file.getName()得到的是文件的原始名称，这个名称是唯一的，因此可以作为key，realName是处理过后的名称，有可能会重复	
+	    	//	fileNameMap.put(path+"//"+f.getName(),realName);
+	    //	}
+	        // 将Map集合发送到listfile.jsp页面进行显示  
+      
+	        request.setAttribute("fileNameMap", fileNameMap); 
 	        // 保存文件地址，用于JSP页面回显  
 	        //model.addAttribute("fileList", list);  
-	        return "";  
+	        return "app/upload/listFile";  
 	      
 	    } 
 	
 	
+	    /** 
+	     * 列出所有的图片 
+	     */  
+	    /*@RequestMapping("/listFile")  
+	    public String listFile(HttpServletRequest request,  
+	            HttpServletResponse response) {  
+	        // 获取上传文件的目录  
+	        ServletContext sc = request.getSession().getServletContext();  
+	        // 上传位置  
+	        String uploadFilePath = sc.getRealPath("/img") + "/"; // 设定文件保存的目录  
+	        // 存储要下载的文件名  
+	        Map<String, String> fileNameMap = new HashMap<String, String>();  
+	        // 递归遍历filepath目录下的所有文件和目录，将文件的文件名存储到map集合中  
+	        listfile(new File(uploadFilePath), fileNameMap);// File既可以代表一个文件也可以代表一个目录  
+	        // 将Map集合发送到listfile.jsp页面进行显示  
+	        request.setAttribute("fileNameMap", fileNameMap);  
+	        return "listFile";  
+	    }  */
+	    
+		public void listfile(File file, Map<String, String> map,String path) {
+			// 如果file代表的不是一个文件，而是一个目录
+			if (!file.isFile()) {
+				// 列出该目录下的所有文件和目录
+				File files[] = file.listFiles();
+				// 遍历files[]数组
+				for (File f : files) {
+					// 递归
+					listfile(f, map,path);
+				}
+			} else {
+				/**
+				 * 处理文件名，上传后的文件是以uuid_文件名的形式去重新命名的，去除文件名的时间戳部分
+				 * file.getName().indexOf
+				 * (".")检索字符串中第一次出现"."字符的位置，如果文件名类似于：9349249849.afanda.avi
+				 * 那么file.getName().substring(file.getName().indexOf(".")+1)
+				 * 处理之后就可以得到
+				 */
+				String realName = file.getName().substring(
+						file.getName().indexOf(".") + 1);
+				// file.getName()得到的是文件的原始名称，这个名称是唯一的，因此可以作为key，realName是处理过后的名称，有可能会重复
+				
+				map.put(path+"/"+realName,file.getName());
+			}
+		}
 	
 	
 	
 	/**
-	 * @Title: download
-	 * @Description: TODO
-	 * @author(作者):      zlf
-	 * @param: @param filename
-	 * @param: @param response
-	 * @param: @param request
-	 * @param: @return   
-	 * @return: String   
-	 * @throws
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月24日 上午10:19:22
+	 * 方法介绍:   下载
+	 * 参数说明:   @param filename 文件名
+	 * 参数说明:   @param response 响应
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @return
+	 * @return     String 返回是否成功
 	 */
-	@RequestMapping(value={"/download"},method={RequestMethod.GET})
+	@RequestMapping(value={"/download"},method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
 	public String download(String filename,HttpServletResponse response,
 	 HttpServletRequest request) {
 		response.setCharacterEncoding("utf-8");
@@ -203,7 +217,7 @@ public class EnclosureController {
 				try {
 					String path = Thread.currentThread().getContextClassLoader()
 							.getResource("").getPath()
-							+ "download";//这个download目录为啥建立在classes下的
+							+ "download";//
 					InputStream inputStream = new FileInputStream(new File(path
 							+ File.separator + filename));
 
@@ -226,6 +240,105 @@ public class EnclosureController {
 		            //  返回值要注意，要不然就出现下面这句错误！
 		            //java+getOutputStream() has already been called for this response
 				return null;
+	}
+	
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月24日 下午8:18:47
+	 * 方法介绍:   下载
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @param response 相应
+	 * @return     void 无
+	 */
+	@RequestMapping(value={"/downFile"} ,method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
+	public void downFile(HttpServletRequest request,
+			HttpServletResponse response) {
+		System.out.println("1");
+		// 得到要下载的文件名
+		String fileName = request.getParameter("fileName");
+		
+		//String company="xoa111";
+		
+		//String Module="email";
+		
+		//String YM=request.getParameter("YM");
+		
+		//String AttachmentId= request.getParameter("ATTACHMENT_ID");
+		
+		//String AttachmentName =request.getParameter("ATTACHMENT_NAME");
+		
+		//String path="D://"+"upload"+company+"/"+Module+"/"+YM;
+		
+	//	String fName=AttachmentId+"."+AttachmentName;
+		
+		System.out.println("2");
+		try {
+			fileName = new String(fileName.getBytes("iso8859-1"), "UTF-8");
+			System.out.println("3");
+			// 获取上传文件的目录
+			//ServletContext sc = request.getSession().getServletContext();
+			System.out.println("4");
+			// 上传位置
+			//String fileSaveRootPath = sc.getRealPath("/img"); 
+			
+			//System.out.println(fileSaveRootPath + "//" + fileName);
+			// 得到要下载的文件
+			//File file = new File(fileSaveRootPath + "\\" + fileName);
+			
+			String bath = fileName.substring(fileName.indexOf("//") + 1);
+			File file = new File(fileName);
+
+			// 如果文件不存在
+			if (!file.exists()) {
+				request.setAttribute("message", "您要下载的资源已被删除！！");
+				System.out.println("您要下载的资源已被删除！！");
+				return;
+			}
+			// 清空response
+			response.reset();
+			// 处理文件名
+			String realname = fileName.substring(fileName.indexOf(".") + 1);
+			// 设置响应头，控制浏览器下载该文件
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("multipart/form-data");  
+			// 设置响应头，控制浏览器下载该文件
+			response.setHeader("content-disposition", "attachment;filename="
+								+ realname);
+			// 读取要下载的文件，保存到文件输入流
+			FileInputStream in = new FileInputStream(fileName);			
+			// 创建输出流	
+			OutputStream out = response.getOutputStream();
+			// 创建缓冲区
+			//创建带有自动行刷新的PW
+			//PrintWriter pw = new PrintWriter(out,true);
+			//pw.wait();
+			byte buffer[] = new byte[1024];
+			int len = 0;
+			// 循环将输入流中的内容读取到缓冲区当中
+			while ((len = in.read(buffer)) > 0) {
+				// 输出缓冲区的内容到浏览器，实现文件下载
+				out.write(buffer, 0, len);
+			}
+			// 关闭文件输入流
+			in.close();
+			// 关闭输出流
+			out.close();
+		} catch (Exception e) {
+
+		}
+	}
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月24日 下午6:18:16
+	 * 方法介绍:   上传测试入口
+	 * 参数说明:   @return
+	 * @return     String 返回上传页面
+	 */
+	@RequestMapping("/up") 
+	public String cont() {
+		return "app/upload/updwj";
 	}
 	
 	
