@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.email.EmailMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.email.EmailModel" >
+    <result column="EMAIL_ID" property="emailId" javaType="INTEGER" />
+    <result column="TO_ID" property="toId" javaType="String" />
+    <result column="READ_FLAG" property="readFlag" javaType="String" />
+    <result column="DELETE_FLAG" property="deleteFlag" javaType="String" />
+    <result column="BOX_ID" property="boxId" javaType="INTEGER" />
+    <result column="BODY_ID" property="bodyId" javaType="INTEGER" />
+    <result column="RECEIPT" property="receipt" javaType="String" />
+    <result column="IS_F" property="isF" javaType="String" />
+    <result column="IS_R" property="isR" javaType="String" />
+    <result column="SIGN" property="sign" javaType="String" />
+  </resultMap>
+ 
+  	<!-- 发送邮件 并保存数据库 -->
+  <insert id="save" parameterType="com.xoa.model.email.EmailModel" >
+    insert into email (TO_ID, READ_FLAG, 
+      DELETE_FLAG, BOX_ID, BODY_ID, 
+      RECEIPT, IS_F, IS_R, SIGN
+      )
+    values ( #{toId}, #{readFlag}, 
+      #{deleteFlag}, #{boxId}, #{bodyId}, 
+      #{receipt}, #{isF}, #{isR}, #{sign}
+      )
+  </insert>
+  	<!-- 未读转为已读 -->
+	<update id="updateIsRead" parameterType="com.xoa.model.email.EmailModel">
+	update email set READ_FLAG=#{readFlag} where EMAIL_ID=#{emailId}
+	</update>
+</mapper>

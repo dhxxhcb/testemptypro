@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.department.DepartmentMapper">
+	<resultMap id="DepResultMap" type="com.xoa.model.department.Department">
+		<id column="DEPT_ID" property="deptId" jdbcType="INTEGER" />
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+		<result column="TEL_NO" property="telNo" jdbcType="VARCHAR" />
+		<result column="FAX_NO" property="faxNo" jdbcType="VARCHAR" />
+		<result column="DEPT_ADDRESS" property="deptAddress" jdbcType="VARCHAR" />
+		<result column="DEPT_NO" property="deptNo" jdbcType="VARCHAR" />
+		<result column="DEPT_PARENT" property="deptParent" jdbcType="INTEGER" />
+		<result column="IS_ORG" property="isOrg" jdbcType="CHAR" />
+		<result column="ORG_ADMIN" property="orgAdmin" jdbcType="VARCHAR" />
+		<result column="DEPT_EMAIL_AUDITS_IDS" property="deptEmailAuditsIds"
+			jdbcType="VARCHAR" />
+		<result column="WEIXIN_DEPT_ID" property="weixinDeptId"
+			jdbcType="INTEGER" />
+		<result column="DINGDING_DEPT_ID" property="dingdingDeptId"
+			jdbcType="INTEGER" />
+		<result column="G_DEPT" property="gDept" jdbcType="TINYINT" />
+		<result column="MANAGER" property="manager" jdbcType="LONGVARCHAR" />
+		<result column="ASSISTANT_ID" property="assistantId" jdbcType="LONGVARCHAR" />
+		<result column="LEADER1" property="leader1" jdbcType="LONGVARCHAR" />
+		<result column="LEADER2" property="leader2" jdbcType="LONGVARCHAR" />
+		<result column="DEPT_FUNC" property="deptFunc" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<select id="getDatagrid" resultMap="DepResultMap">
+		SELECT * from department u 
+	</select>
+	<select id="getChDept" parameterType="Map" 
+	resultMap="DepResultMap">
+		SELECT DEPT_ID,DEPT_NAME,DEPT_NO from department where DEPT_PARENT=#{deptId}
+	</select>
+	<select id="getFatherDept" 
+	resultMap="DepResultMap">
+		SELECT * from department where DEPT_ID=#{deptParent}
+	</select>
+	<select id="getDeptNameById" resultType="java.lang.String">
+		SELECT DEPT_NAME from department where DEPT_ID=#{deptId}
+	</select>
+	<select id="getDeptById" resultType="com.xoa.model.department.Department">
+		SELECT * from department where DEPT_ID=#{deptId}
+	</select>
+    <select id="getDeptByMany" parameterType="com.xoa.model.department.Department" resultType="map">  
+        select * from department  
+        where 1=1  
+        <if test="deptName != null">
+        and DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="telNo != null">
+        and TEL_NO = #{telNo,jdbcType=VARCHAR},
+      </if>
+      <if test="faxNo != null">
+        and FAX_NO = #{faxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAddress != null">
+        and DEPT_ADDRESS = #{deptAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNo != null">
+        and DEPT_NO = #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptParent != null">
+        and DEPT_PARENT = #{deptParent,jdbcType=INTEGER},
+      </if>
+      <if test="isOrg != null">
+        and IS_ORG = #{isOrg,jdbcType=CHAR},
+      </if>
+      <if test="orgAdmin != null">
+        and ORG_ADMIN = #{orgAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="deptEmailAuditsIds != null">
+        and DEPT_EMAIL_AUDITS_IDS = #{deptEmailAuditsIds,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinDeptId != null">
+        and  WEIXIN_DEPT_ID = #{weixinDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="dingdingDeptId != null">
+        and DINGDING_DEPT_ID = #{dingdingDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="gDept != null">
+        and G_DEPT = #{gDept,jdbcType=TINYINT},
+      </if>
+      <if test="manager != null">
+        and MANAGER = #{manager,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="assistantId != null">
+        and ASSISTANT_ID = #{assistantId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="leader1 != null">
+        and LEADER1 = #{leader1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="leader2 != null">
+        and LEADER2 = #{leader2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="deptFunc != null">
+        and DEPT_FUNC = #{deptFunc,jdbcType=LONGVARCHAR},
+      </if>  
+    </select>   
+	<delete id="deleteDept">
+		DELETE FROM department where DEPT_ID=#{deptId}
+	</delete>		
+	 <update id="editDept" parameterType="com.xoa.model.department.Department">
+    update department
+    <set>
+      <if test="deptName != null">
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="telNo != null">
+        TEL_NO = #{telNo,jdbcType=VARCHAR},
+      </if>
+      <if test="faxNo != null">
+        FAX_NO = #{faxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAddress != null">
+        DEPT_ADDRESS = #{deptAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNo != null">
+        DEPT_NO = #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptParent != null">
+        DEPT_PARENT = #{deptParent,jdbcType=INTEGER},
+      </if>
+      <if test="isOrg != null">
+        IS_ORG = #{isOrg,jdbcType=CHAR},
+      </if>
+      <if test="orgAdmin != null">
+        ORG_ADMIN = #{orgAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="deptEmailAuditsIds != null">
+        DEPT_EMAIL_AUDITS_IDS = #{deptEmailAuditsIds,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinDeptId != null">
+        WEIXIN_DEPT_ID = #{weixinDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="dingdingDeptId != null">
+        DINGDING_DEPT_ID = #{dingdingDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="gDept != null">
+        G_DEPT = #{gDept,jdbcType=TINYINT},
+      </if>
+      <if test="manager != null">
+        MANAGER = #{manager,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="assistantId != null">
+        ASSISTANT_ID = #{assistantId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="leader1 != null">
+        LEADER1 = #{leader1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="leader2 != null">
+        LEADER2 = #{leader2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="deptFunc != null">
+        DEPT_FUNC = #{deptFunc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where DEPT_ID = #{deptId,jdbcType=INTEGER}
+  </update>	
+  <insert id="insertDept" parameterType="com.xoa.model.department.Department">
+    insert into department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptId != null">
+        DEPT_ID,
+      </if>
+      <if test="deptName != null">
+        DEPT_NAME,
+      </if>
+      <if test="telNo != null">
+        TEL_NO,
+      </if>
+      <if test="faxNo != null">
+        FAX_NO,
+      </if>
+      <if test="deptAddress != null">
+        DEPT_ADDRESS,
+      </if>
+      <if test="deptNo != null">
+        DEPT_NO,
+      </if>
+      <if test="deptParent != null">
+        DEPT_PARENT,
+      </if>
+      <if test="isOrg != null">
+        IS_ORG,
+      </if>
+      <if test="orgAdmin != null">
+        ORG_ADMIN,
+      </if>
+      <if test="deptEmailAuditsIds != null">
+        DEPT_EMAIL_AUDITS_IDS,
+      </if>
+      <if test="weixinDeptId != null">
+        WEIXIN_DEPT_ID,
+      </if>
+      <if test="dingdingDeptId != null">
+        DINGDING_DEPT_ID,
+      </if>
+      <if test="gDept != null">
+        G_DEPT,
+      </if>
+      <if test="manager != null">
+        MANAGER,
+      </if>
+      <if test="assistantId != null">
+        ASSISTANT_ID,
+      </if>
+      <if test="leader1 != null">
+        LEADER1,
+      </if>
+      <if test="leader2 != null">
+        LEADER2,
+      </if>
+      <if test="deptFunc != null">
+        DEPT_FUNC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptId != null">
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="telNo != null">
+        #{telNo,jdbcType=VARCHAR},
+      </if>
+      <if test="faxNo != null">
+        #{faxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAddress != null">
+        #{deptAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNo != null">
+        #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptParent != null">
+        #{deptParent,jdbcType=INTEGER},
+      </if>
+      <if test="isOrg != null">
+        #{isOrg,jdbcType=CHAR},
+      </if>
+      <if test="orgAdmin != null">
+        #{orgAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="deptEmailAuditsIds != null">
+        #{deptEmailAuditsIds,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinDeptId != null">
+        #{weixinDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="dingdingDeptId != null">
+        #{dingdingDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="gDept != null">
+        #{gDept,jdbcType=TINYINT},
+      </if>
+      <if test="manager != null">
+        #{manager,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="assistantId != null">
+        #{assistantId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="leader1 != null">
+        #{leader1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="leader2 != null">
+        #{leader2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="deptFunc != null">
+        #{deptFunc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+</mapper>
