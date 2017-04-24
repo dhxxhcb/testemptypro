@@ -279,13 +279,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								success:function(rsp){
 									var data1=rsp.obj;
 									alert(data1[0].content)
+									alert(data1[0].bodyId)
+									alert(data1[0].fromId)
+									alert(data1[0].emailList[0].readFlag)
 									var str='';
 									for(var i=0;i<data1.length;i++){
-										if(data1[i].emailList.readFlag==0){
-											str+='<li><div class="shang"><span>'+data1[i].fromId+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">13:31</span></div><div class="xia"><span class="xia_txt">'+data1[i].subject+'</span><img src="../img/icon_accessory_03.png"/></div><input type="hidden" id="'+data[i].emailList.bodyId+'"></li>';
-										}
-										$('.befor').append(str);
+										//if(data1[i].emailList[0].readFlag==0){
+											
+											str+='<li><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">13:31</span></div><div class="xia"><span class="xia_txt">'+data1[i].subject+'</span><img src="../img/icon_accessory_03.png"/><input type="hidden" id="'+data1[i].bodyId+'"></div></li>';
+										//}
+										
 									}
+									$('.main_left ul').append(str);
 								}
 				})
 				
