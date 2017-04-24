@@ -299,16 +299,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var data1=rsp.obj;
 									var str='';
 									for(var i=0;i<data1.length;i++){
-										if(data1[i].emailList.readFlag==0){
+										if(data1[i].emailList[0].readFlag==0){
 											str+='<tr class="Hover"><td width="6%"><input type="checkbox" name="checkbox" id="checkbox" value="" /></td>'+
 													'<td width="6%"><img src="../img/icon_read_3_07.png"/></td>'+
 													'<td width="6%"><img src="../img/icon_collect_nor_03.png"/></td>'+
 													'<td width="6%">'+data1[i].fromId+'</td>'+
 													'<td width="58%" class="theme">'+data1[i].subject+'</td><td width="12%">2017年3月30日</td>'+
-													'<td width="6%"><img src="../img/icon_accessory_03.png"/></td></tr>';
+													'<td width="6%"><img src="../img/icon_accessory_03.png"/><input type="hidden" id="'+data1[i].bodyId+'"></td></tr>';
 										}
-										$('.befor').after(str);
+										
 									}
+									$('.befor').after(str);
 								}
 				})
 				

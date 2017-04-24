@@ -155,12 +155,21 @@
 .main .main_left ul li img{
 	width: 16px;
 	height: 16px;
-	margin-left: 8px;
+	margin-left: 15px;
 }
 .main .main_left ul li .time{
-	margin-left: 15%;
+	display: inline-block;
+    float: right;
+    margin-right: 5%;
+}
+.main .main_left ul li .xia img{
+	display: inline-block;
+    float: right;
+    margin-right: 8%;
 }
 .main .main_left ul li .xia .xia_txt{
+	text-decoration: none;
+	color:#000;
 	display: inline-block;
 	width: 70%;
 	overflow: hidden;
