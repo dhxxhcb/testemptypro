@@ -20,4 +20,6 @@ public interface SysCodeMapper {
      * @return    String
      */
     public SysCode getSysCode(String codeOrder);
+    
+    public SysCode getSysCode1(String codeNo);
 }
