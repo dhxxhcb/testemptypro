@@ -6,6 +6,7 @@ import java.util.Map;
 import com.xoa.model.notify.Notify;
 
 
+import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.DynDatasource;
 /**
  * 
@@ -32,7 +33,7 @@ public interface NotifyService {
 	 * @return     List<Notify>
 	 */
 	@DynDatasource
-   public  List<Notify>  selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+   public ToJson<Notify>  selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
 
 	
 	/**
@@ -65,7 +66,9 @@ public interface NotifyService {
 	 * @return     List<Notify>
 	 */
 	@DynDatasource
-	public List<Notify> unreadNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+	public ToJson<Notify>  unreadNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+	
+	public ToJson<Notify>  readNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
    /**
    * 
    * 创建作者:   张丽军

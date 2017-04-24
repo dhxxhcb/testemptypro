@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.notify.Notify;
+import com.xoa.model.worldnews.News;
 
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.DateFormat;
@@ -46,6 +47,11 @@ public class NotifyController {
 	private NotifyService notifyService;
 
 	private	String err="";
+	
+	@RequestMapping("/index")
+	public String clickNews() {
+		return "app/notice/notice";
+	}
 	
 	/**
 	 * 
@@ -110,14 +116,17 @@ public class NotifyController {
 	 String notifyList(@RequestParam(value = "typeId", required = false)String typeId,
 			 @RequestParam(value = "sendTime", required = false) String sendTime,
 			 @RequestParam(value = "subject", required = false) String subject,
-			 @RequestParam(value = "content", required = false) String content,
 			 @RequestParam(value = "format", required = false) String format,
+			 @RequestParam(value = "content", required = false) String content,
 			 @RequestParam(value = "toId", required = false) String toId,
+			 @RequestParam(value ="read", required = false) String read,
 			 @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag) {
-		System.out.println(subject);
 	  Map<String, Object> maps = new HashMap<String, Object>();
+	  if (typeId.equals("0")) {
+			typeId=null;
+		}
 	  maps.put("typeId", typeId);
 	  maps.put("sendTime", sendTime);
 	  maps.put("subject", subject);
@@ -125,23 +134,41 @@ public class NotifyController {
 	  maps.put("format", format);
 	  maps.put("toId", toId);
 	  String returnReslt= null;
-	  String name="admin";
-	 
+	  String name="admin11212";
 	  try {
-	   List<Notify> list=notifyService.selectNotify(maps, page,pageSize, useFlag, name);
-	   ToJson<Notify> tojson = new ToJson<Notify>(0, "");
-	   //公告查询总条数
-	   tojson.setObj(list);
-	   tojson.setTotleNum(list.size());
-	   if (list.size() > 0) {
-			err = "seccess";
-			returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		} else {
-			err = "fail";
-			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
-					1, ""), "yyyy-MM-dd HH:mm:ss");
-		}
+		  if (read.equals("0")) {
+				ToJson<Notify> tojson= notifyService.unreadNotify(maps, page, pageSize, useFlag, name);
+				if (tojson.getObj().size() > 0) {
+					tojson.setMsg("ok");
+					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+							"yyyy-MM-dd HH:mm:ss");
+				} else {
+					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
+							1, "ok"), "yyyy-MM-dd HH:mm:ss");
+				}
+			}else if (read.equals("1")) {//已读
+				ToJson<Notify> tojson= notifyService.readNotify(maps, page, pageSize, useFlag, name);
+				if (tojson.getObj().size() > 0) {
+					tojson.setMsg("ok");
+					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+							"yyyy-MM-dd HH:mm:ss");
+				} else {
+					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
+							1,"ok"), "yyyy-MM-dd HH:mm:ss");
+				}
+			}
+				else 
+				{
+				ToJson<Notify> tojson= notifyService.selectNotify(maps, page, pageSize, useFlag, name);
+				if (tojson.getObj().size() > 0) {
+					tojson.setMsg("ok");
+					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
+							"yyyy-MM-dd HH:mm:ss");
+				} else {
+					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
+							1, err), "yyyy-MM-dd HH:mm:ss");
+				}
+			}
 	  }catch (Exception e) {
 	   loger.debug("notifyList:"+e);
 	   returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1, ""), "yyyy-MM-dd HH:mm:ss");
@@ -162,7 +189,7 @@ public class NotifyController {
 	 * 参数说明:   @return Json
 	 * @return     String(true：seccess false：fail)
 	 */
-	@RequestMapping(value = "/unreadNotify", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	/*@RequestMapping(value = "/unreadNotify", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String unreadNotify(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("page") Integer page,
@@ -193,7 +220,7 @@ public class NotifyController {
 		}
 
 		return returnReslt;
-	}
+	}*/
 	
 	
 
@@ -496,10 +523,10 @@ public class NotifyController {
 			return "";
 		}
 	}
-	@RequestMapping("/index")
+	/*@RequestMapping("/index")
 	public String emailIndex(){
 		return "app/notice/notify";
-	}
+	}*/
 
 
 }

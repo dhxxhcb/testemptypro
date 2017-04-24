@@ -67,7 +67,8 @@ public class NotifyServiceImpl implements  NotifyService{
 	 * @return     List<Notify>
 	 */
 	@Override
-	public List<Notify> selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name)throws Exception {
+	public ToJson<Notify> selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name)throws Exception {
+		ToJson<Notify>  json=new ToJson<Notify>();
 		PageParams pageParams = new PageParams();  
         pageParams.setUseFlag(useFlag);  
         pageParams.setPage(page);  
@@ -76,14 +77,8 @@ public class NotifyServiceImpl implements  NotifyService{
         List<Notify> list = notifyMapper.selectNotify(maps);//遍历每一条公告
             for (Notify notify1 : list) {
             	//查询用户
-                 notify1.setName(notify1.getUsers().getUserName());
-                 notify1.setUsers(null);
-              /*   int i=list.size();
-                 notify1.setCount(i);
-                 */                       
-                 //查询公告类型
-                 SysCode code=sysCodeMapper.getSysCode1(notify1.getTypeId());
- 				 notify1.setTypeName(code.getCodeName());
+            	notify1.setName(notify1.getUsers().getUserName());
+				 notify1.setTypeName(notify1.getCodes().getCodeName());
  				 //已读未读
                  if (notify1.getReaders().indexOf(name)!=-1) {
         	        notify1.setReaders("1");
@@ -91,8 +86,9 @@ public class NotifyServiceImpl implements  NotifyService{
 				     notify1.setReaders("0");
 			}
 		}
-        System.out.println("notifyCount："+list.size());
-		return list;
+            json.setObj(list);
+            json.setTotleNum(pageParams.getTotal());
+		return json;
 	}
 
 	/**
@@ -111,9 +107,33 @@ public class NotifyServiceImpl implements  NotifyService{
 	 */
 
     @Override
-    public List<Notify> unreadNotify(Map<String, Object> maps, Integer page,
+    public ToJson<Notify> unreadNotify(Map<String, Object> maps, Integer page,
 		Integer pageSize, boolean useFlag, String name) throws Exception {
-	PageParams pageParams = new PageParams();  
+    	ToJson<Notify>   json=new ToJson<Notify>();
+    	PageParams pageParams = new PageParams();  
+    pageParams.setUseFlag(useFlag);  
+    pageParams.setPage(page);  
+    pageParams.setPageSize(pageSize);  
+    maps.put("page", pageParams);  
+    List<Notify> list = notifyMapper.unreadNotify(maps);
+    List<Notify> list1 =new ArrayList<Notify>();
+    	for (Notify notify : list) {
+    		notify.setName(notify.getUsers().getUserName());
+			 notify.setTypeName(notify.getCodes().getCodeName());
+			if (notify.getReaders().indexOf(name)==-1) {
+				list1.add(notify);
+			}
+	}
+
+        json.setObj(list1);
+        json.setTotleNum(pageParams.getTotal());
+    return json;
+}
+    @Override
+	public ToJson<Notify> readNotify(Map<String, Object> maps, Integer page,
+			Integer pageSize, boolean useFlag, String name) throws Exception {
+    	ToJson<Notify>   json=new ToJson<Notify>();
+    	PageParams pageParams = new PageParams();  
     pageParams.setUseFlag(useFlag);  
     pageParams.setPage(page);  
     pageParams.setPageSize(pageSize);  
@@ -122,16 +142,16 @@ public class NotifyServiceImpl implements  NotifyService{
     List<Notify> list1 =new ArrayList<Notify>();
     	for (Notify notify : list) {
     		 notify.setName(notify.getUsers().getUserName());
-             notify.setUsers(null);
-             SysCode code=sysCodeMapper.getSysCode1(notify.getTypeId());
-				 notify.setTypeName(code.getCodeName());
-			if (notify.getReaders().indexOf(name)==-1) {
+				 notify.setTypeName(notify.getCodes().getCodeName());
+			if (notify.getReaders().indexOf(name)!=-1) {
 				list1.add(notify);
 			}
 	}
-    return list1;
-}
-    
+
+        json.setObj(list1);
+        json.setTotleNum(pageParams.getTotal());
+		return json;
+	}
     
     
     /**
@@ -304,6 +324,8 @@ public class NotifyServiceImpl implements  NotifyService{
 		}
 		return list;
 	}
+
+	
 
 
 }

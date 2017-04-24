@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				$.ajax({
 						type:'get',
-						url:'queryNews',
+						url:'getOneById',
 						dataType:'json',
 						data:{'newsId':nid},
 						success:function(rsp){

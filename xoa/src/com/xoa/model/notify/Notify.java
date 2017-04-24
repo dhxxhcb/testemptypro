@@ -3,6 +3,7 @@ package com.xoa.model.notify;
 import java.util.Date;
 
 
+import com.xoa.model.common.SysCode;
 import com.xoa.model.users.Users;
    
     /**
@@ -141,11 +142,21 @@ public class Notify {
     
     private Users users;
     private String name;
-  
+  private  SysCode codes;
     
     
     
-    private String depName;
+    public SysCode getCodes() {
+	return codes;
+}
+
+public void setCodes(SysCode codes) {
+	this.codes = codes;
+}
+
+
+
+	private String depName;
 
     public String getDepName() {
      return depName;
