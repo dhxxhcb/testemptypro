@@ -8,6 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html lang="en">
 <head>
  <meta charset="UTF-8">
+ <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
  <title>Document</title>
  <style>
  *{
@@ -46,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<li>体验科技关怀   共创美好未来</li>
 	</ul>
  </div>
-<script src="js/main_js/jquery.js"></script>
+   
 <script>
  function lunbo(id,height){
   var ul=$(id);
