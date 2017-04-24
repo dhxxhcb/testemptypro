@@ -3,9 +3,14 @@ package com.xoa.dao.im;
 import com.xoa.model.im.ImChatList;
 import com.xoa.model.im.ImChatListExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ImChatListMapper {
+	
+	ImChatList selectChatListByParams(Map<String, Object> params);
+	
     int countByExample(ImChatListExample example);
 
     int deleteByExample(ImChatListExample example);

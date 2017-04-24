@@ -1,6 +1,12 @@
 package com.xoa.controller.im;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.xoa.service.im.ImDataService;
+import com.xoa.util.ToJson;
+import com.xoa.util.common.wrapper.BaseWrapper;
 
 
 /**
@@ -12,6 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
+@RequestMapping("/im")
 public class ImDataController {
-    
+    @Autowired
+    ImDataService imDataService;
+    @RequestMapping("/putMessage")
+	public BaseWrapper putMessageInfo(Integer flag, String from_uid,
+			String to_uid, String of_from, String of_to, String content,
+			String type, String time, String uuid){
+		return imDataService.putMessageInfo(flag, from_uid, to_uid, of_from, of_to, content, type, time, uuid);
+	}
+	
 }
