@@ -32,6 +32,9 @@ body,
     z-index: 999;
     background: url(../../../img/main_img/title_no.png) 5px 2px no-repeat;
 }
+.ul_two{
+	margin-left:10%;
+}
 .two_all img,.two_all h1{
 	float:left;
 }
@@ -72,7 +75,7 @@ body,
 	
     height: 31%;
 }
-/* ÓÒ²àµÄlogo */
+/* å³ä¾§çš„logo */
  #taskbar_right #task_center {
     display: inline-block;
     width: 10%;

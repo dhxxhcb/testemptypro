@@ -337,6 +337,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								if($(this).siblings('.sanji').length>0){
 										/* return  false; */
 									//console.log($(this).siblings('.sanji').length>0);
+									
 								}else{
 									//页面不存在，新增 title和iframe
 									
@@ -439,7 +440,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						console.log(data);
 						var li='';
 						for(var i=0;i<data.length;i++){
-							li +='<li style="height:36px;"><img src="img/main_img/company_logo.png" alt=""><a style="line-height:36px;" href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a><ul class="ul_two"></ul></li>' ;
+							li +='<li class="orangize_one" style="height:36px;"><div><img src="img/main_img/company_logo.png" alt=""><a style="line-height:36px;" href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></div><ul class="ul_two"></ul></li>' ;
 							
 						}
 						
@@ -459,9 +460,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						deptId:2
 				};
 				
-			$(".tab_cone").on('click','li:eq(0)',function(){
+			$(".tab_cone").on('click','.orangize_one:nth-child(1)',function(){
 				 
-					 /* $.ajax({
+					  $.ajax({
 							url:'department/getChDept',
 							type:'get',	
 							data:data1,		
@@ -474,17 +475,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									li_two='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span><ul class="three_ul"></ul></li>'
 								}
 								
-								$(".tab_cone li:eq(0) .ul_two").html(li_two);
+								 $(".tab_cone li:eq(0) .ul_two").html(li_two);
+								/* $('.orangize_one').find('.ul_two').html(li_two); */
 							}
-					}); */
+					}); 
 					
-				/* 	data.deptId=1;
-					init_orgnize();
+				 	
+					/* init_orgnize();
+					data.deptId=1;
 					for(var i=0;i<obj.obj.length;i++){
 						li_two='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span><ul class="three_ul"></ul></li>'
 					}
 								
-					$(".tab_cone li:eq(0) .ul_two").html(li_two); */
+					$(this).find('.ul_two').html(li_two);  */
+					
+					/* if($('.ul_two li').css('display')=='none'){
+						$('.ul_two li').show();
+					}else{
+						$('.ul_two li').hide();
+					} */
+			/* }); */
+			
+			//第二个二级
+			
+				$(".tab_cone").on('click','.orangize_one:nth-child(2)',function(){
+				 
+					  $.ajax({
+							url:'department/getChDept',
+							type:'get',	
+							data:data2,		
+							dataType:'json',
+							success:function(obj){
+								 console.log(obj.obj);
+								var data=obj.obj;
+								var li_two='';
+								for(var i=0;i<obj.obj.length;i++){
+									li_t='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span><ul class="three_ul"></ul></li>'
+								}
+								
+								 $(".tab_cone li:eq(1) .ul_two").html(li_two);
+								/* $('.orangize_one').find('.ul_two').html(li_two); */
+							}
+					}); 
+					
+				 	
+					/* init_orgnize();
+					data.deptId=1;
+					for(var i=0;i<obj.obj.length;i++){
+						li_two='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span><ul class="three_ul"></ul></li>'
+					}
+								
+					$(this).find('.ul_two').html(li_two);  */
 					
 					/* if($('.ul_two li').css('display')=='none'){
 						$('.ul_two li').show();
