@@ -454,7 +454,7 @@ public class NewsController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	@RequestMapping(value = "/queryNews",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String queryNews(@RequestParam("newsId") Integer newsId,HttpServletRequest request){
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);
