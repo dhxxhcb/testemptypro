@@ -80,6 +80,32 @@
 		FROM
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
+	     	<if test="format != null and format != ''">
+				 AND FORMAT = #{format}
+			</if>
+			<if test="typeId != null and typeId != ''">
+				AND TYPE_ID = #{typeId}
+			</if>
+			<if test="top != null and top != ''">
+				AND TOP = #{top}
+			</if>
+			<if test="publish != null and publish != ''">
+				AND PUBLISH = #{publish}
+			</if>
+			<if test="subject != null and subject != ''">
+				AND SUBJECT like CONCAT('%',#{subject},'%')
+			</if>
+			<if
+				test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''">
+				AND NEWS_TIME between #{newsTime} and #{lastEditTime}
+			</if>
+			<if test="content != null and content != ''">
+				AND CONTENT like CONCAT('%',#{content},'%')
+			</if>
+			<if
+				test="clickCount != null and clickCount != '' and click != null and click != ''">
+				AND CLICK_COUNT between #{clickCount} and #{click}
+			</if>
 	</select>
 	<!-- 查询未读已读信息并返回 列表 -->
 	<select id="unreadNews" parameterType="Map" resultMap="BaseResultMap">

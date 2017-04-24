@@ -77,15 +77,40 @@ public class NewsController {
 	 * @return     String 返回新闻管理列表
 	 */
 @RequestMapping(value = "/showNewsManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-  public @ResponseBody String selectNewsManage(){
+  public @ResponseBody String selectNewsManage(
+			@RequestParam(value = "format", required = false) String format,
+			@RequestParam(value = "typeId", required = false) String typeId,
+			@RequestParam(value = "top", required = false) String top,
+			@RequestParam(value = "publish", required = false) String publish,
+			@RequestParam(value = "clickCount", required = false) String clickCount,
+			@RequestParam(value = "click", required = false) String click,
+			@RequestParam(value = "subject", required = false) String subject,
+			@RequestParam(value = "newsTime", required = false) String newsTime,
+			@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
+			@RequestParam(value = "content", required = false) String content,
+			@RequestParam("page") Integer page,
+			@RequestParam("pageSize") Integer pageSize,
+			@RequestParam("useFlag") Boolean useFlag,
+			HttpServletRequest request, HttpServletResponse response){
 		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("format", format);
+		   if (typeId.equals("0")) {
+		        typeId=null;
+	     }else {
+	    	 maps.put("typeId", typeId);
+		}
+		maps.put("top", top);
+		maps.put("publish", publish);
+		maps.put("clickCount", clickCount);
+		maps.put("click", click);
+		maps.put("subject", subject);
+		maps.put("newsTime", newsTime);
+		maps.put("lastEditTime", lastEditTime);
+		maps.put("content", content);
 		String returnReslt = null;
-		
 		try {
-			List<News> list =newService.selectNewsManage(maps, 1, 5, true);
-			ToJson<News> tojson = new ToJson<News>(0, "");
-			tojson.setObj(list);
-			if (list.size() > 0) {
+			ToJson<News> tojson =newService.selectNewsManage(maps, 1, 5, true);
+			if (tojson.getObj().size() > 0) {
 				tojson.setMsg(ok);
 				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
 						"yyyy-MM-dd HH:mm:ss");
@@ -454,7 +479,7 @@ public class NewsController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	@RequestMapping(value = "/queryNews",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String queryNews(@RequestParam("newsId") Integer newsId,HttpServletRequest request){
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);

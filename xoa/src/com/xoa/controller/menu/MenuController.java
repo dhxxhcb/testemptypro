@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.sun.istack.internal.logging.Logger;
 import com.xoa.model.menu.MobileApp;
 import com.xoa.model.menu.SysFunction;
 import com.xoa.model.menu.SysMenu;
@@ -34,7 +33,6 @@ import com.xoa.util.ToJson;
 @Controller
 @Scope(value = "prototype")
 public class MenuController {
-	private Logger loger = Logger.getLogger(MenuController.class);
 	@Resource
 	private MenuService menuService;
 	@Resource

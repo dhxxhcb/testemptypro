@@ -234,8 +234,9 @@ public class NewServiceImpl implements NewService {
 	 * @return     List<News>
 	 */
 	@Override
-	public List<News> selectNewsManage(Map<String, Object> maps, Integer page,
+	public ToJson<News> selectNewsManage(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception {
+		ToJson<News>  newJson=new ToJson<News>();
 		String[] strArray = null;
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
@@ -273,7 +274,9 @@ public class NewServiceImpl implements NewService {
 				}
 			}
 		}
-		return list;
+		newJson.setObj(list);
+		newJson.setTotleNum(pageParams.getTotal());
+		return newJson;
 	}
 
 }

@@ -51,7 +51,7 @@ public interface NewService {
 	 * @return     List<News> 返回新闻列表List
 	 */
 	@DynDatasource
-	public ToJson<News>unreadNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+	public ToJson<News> unreadNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
 	
 	/**
 	 * 
@@ -68,7 +68,7 @@ public interface NewService {
 	 * @return     List<News> 返回新闻列表List
 	 */
 	@DynDatasource
-	public ToJson<News>readNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+	public ToJson<News> readNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
 	/**
 	 * 
 	 * 创建作者:   王曰岐
@@ -83,7 +83,7 @@ public interface NewService {
 	 * @return     List<News>
 	 */
 	@DynDatasource
-	public List<News> selectNewsManage(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag) throws Exception;
+	public ToJson<News> selectNewsManage(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag) throws Exception;
 	
 	/**
 	 * 
