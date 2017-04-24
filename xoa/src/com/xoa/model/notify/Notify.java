@@ -141,7 +141,7 @@ public class Notify {
     
     private Users users;
     private String name;
-    private Integer count;
+  
     
     
     
@@ -154,12 +154,7 @@ public class Notify {
     public void setDepName(String depName) {
      this.depName = depName;
     }
-    public Integer getCount(){
-    	return count;
-    }
-    public void setCount(Integer count){
-    	this.count=count;
-    }
+    
   
     
     private String typeName;

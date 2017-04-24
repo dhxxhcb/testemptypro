@@ -52,11 +52,11 @@ public class NewsController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/index1")
+	@RequestMapping("/index")
 	public String clickNews() {
 		return "/app/news/center";
 	}
-	@RequestMapping("/detail")
+	/*@RequestMapping("/detail")
 	public String News() {
 		return "/app/news/newsDetail";
 	}
@@ -64,7 +64,7 @@ public class NewsController {
 	@RequestMapping("/index")
 	public String sendNews() {
 		return "/app/news/newsList";
-	}
+	}*/
 	
 	
 	
@@ -128,11 +128,14 @@ public class NewsController {
 			@RequestParam(value = "nTime", required = false) String nTime,
 			@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
 			@RequestParam(value = "content", required = false) String content,
-			@RequestParam("read") String read,
+			@RequestParam(value ="read", required = false) String read,
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag,
 			HttpServletRequest request, HttpServletResponse response) {
+		if (typeId.equals("0")) {
+			typeId=null;
+		}
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("format", format);
 		maps.put("typeId", typeId);
@@ -141,7 +144,7 @@ public class NewsController {
 		maps.put("nTime", nTime);
 		maps.put("lastEditTime", lastEditTime);
 		maps.put("content", content);
-		String name = "wangyuessss";
+		String name = (String) request.getSession().getAttribute("userId");
 		String returnReslt = null;
 		try {
 			 if (read.equals("0")) {
@@ -168,7 +171,7 @@ public class NewsController {
 				}
 			}
 				else 
-			{
+				{
 				ToJson<News> tojson= newService.selectNews(maps, page, pageSize,useFlag, name);
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg(ok);
