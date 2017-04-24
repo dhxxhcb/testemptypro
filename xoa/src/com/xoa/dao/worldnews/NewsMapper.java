@@ -50,16 +50,6 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return     List<News>
 	 */
 	public List<News> unreadNews(Map<String, Object> maps);
-	/**
-	 * 
-	 * 创建作者:   王曰岐
-	 * 创建日期:   2017-4-19 下午3:31:44
-	 * 方法介绍:   未读新闻
-	 * 参数说明:   @param maps
-	 * 参数说明:   @return
-	 * @return     List<News>
-	 */
-	public List<News> readNews(Map<String, Object> maps);
 	
 	/**
 	 * 

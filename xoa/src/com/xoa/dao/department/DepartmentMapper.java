@@ -96,15 +96,4 @@ public List<Department> getDeptByMany(Department department);
  * @return     List<Department>  返回部门集合
  */
 public List<Department> getChDept(Map<String,Object> maps);
-
-
-/**
- * 创建作者:   张龙飞
- * 创建日期:   2017年4月21日 下午1:10:00
- * 方法介绍:   获得上级部门
- * 参数说明:   @param deptId 下级部门编号
- * 参数说明:   @return
- * @return     Department 返回部门信息
- */
-public Department getFatherDept(int deptId);
 }

@@ -52,32 +52,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
     	$(function(){
     			var data1={
-	    				"typeId":'',
-	    				"sendTime":'',
-	    				"page":1,
-	    				"pageSize":10,
-	    				"useFlag":true
-	    			};
-    			
-    			initNotice();
-    			
-    			function initNotice(){
-    				
-    				$.ajax({
+    				"page":1,
+    				"pageSize":10,
+    				"useFlag":true
+    			};
+    			$.ajax({
 						type:'get',
 						url:'notifyList',
 						dataType:'json',
 						data:data1,
 						success:function(rsp){
-							//alert(data1.typeId);
-							var data=rsp.obj;			
+							var data=rsp.obj;	
+							//console.log(data[0].name);				
 							var str='';
 							for(var i=0;i<data.length;i++){
-								$('.TableLine1').remove();
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td></tr>';
-								
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td></tr>';
+								str1='';
 							}
-							$('.TableHeader').after(str); 
+							$('.TableHeader').after(str+str1); 
 							
 							$('.M-box3').pagination({
 							    pageCount:1,
@@ -90,22 +82,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    jumpBtn:'<fmt:message code="global.page.jump" />'
 							});
 						}
-					});
-    			}
-    			//条件查询
-    			$('#but').click(function(){
-    				
-    				data1.typeId = $('#noticetype option:checked').val();
-    				data1.sendTime =$('#test').val();
-    				alert(data1.typeId);
-    				initNotice();
-    			})
+				});
 				
 				$('.TableList').on('click','.windowOpen',function(){
 					var nid=$(this).attr('noticeId');
 					$.popWindow('detail?nid='+nid);
 				})
-				//查询
+				
 				$('.muJump ul li').click(function () {
 	    			var index=$(this).index();
 	    			$('.muJump ul li').removeClass('jumpOn');
@@ -199,13 +182,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <td class="Big">
 		    	<img src="../img/notify_open.gif" align="absmiddle">
 		    	<span class="big3"><fmt:message code="notice.title.notify" /></span>&nbsp;
-		       <select name="TYPE" id="noticetype" class="BigSelect">
-		          	<option value="" selected><fmt:message code="notice.type.alltype" /></option>
+		       <select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
+		          	<option value="0" selected><fmt:message code="notice.type.alltype" /></option>
 		         	<option value="01"><fmt:message code="notice.type.Decision" /></option>
 					<option value="02"><fmt:message code="notice.type.notice" /></option>
 					<option value="03"><fmt:message code="notice.type.Bulletin" /></option>
 					<option value="04"><fmt:message code="notice.type.other" /></option>
-		          	<!-- <option value="05"><fmt:message code="notice.type.notype" /></option> -->
+		          	<option value="05"><fmt:message code="notice.type.notype" /></option>
 		       </select>
 		       <span><fmt:message code="notice.title.Releasedate" />:</span>
 				<input id="test" name="SEND_TIME" class="laydate-icon">
@@ -389,7 +372,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			laydate(end);
 			
 			$(function(){
-				//alert('123')
 				var data1={
     				"page":1,
     				"pageSize":5,
@@ -404,19 +386,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var content=$('input[name="CONTENT"]').val();
 					var data={
 						'typeId':typeId,
+						'sendTime':'2017-04-03 10:28:35',
 						'subject':subject,
 						'content':content,
-						'format':forMat,
-						"page":1,
-    				    "pageSize":5,
-    				    "useFlag":true
+						'format':forMat
 					};
 					$.ajax({
 						type:"get",
 						url:"notifyList",
 						dataType:'json',
-						data:data,
+						data:data1,
 						success:function(){
+							if(subject!=''||content!=''){
 								$('#noticeQuery').css('display','none');
 								$('#queryList').css('display','block');
 								$.ajax({
@@ -428,14 +409,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var data=rsp.obj;
 										var str='';
 										for(var i=0;i<data.length;i++){
-											str+='<tr class="TableLiney"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td></tr>';
+											str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td></tr>';
 											//str1='';
 										}
 										$('.TableHead').after(str);
 									}
 								});
+							}
+							
 						}
 					});
+					
+					
+					
 					
 				});
 				
@@ -451,7 +437,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#iBtn').click(function(){
 					$('#queryList').css('display','none');
 					$('#noticeQuery').css('display','block');
-					$('.TableLiney').remove();
+					$('.TableLine1').remove();
+					//$()
 				})
 				
        		});

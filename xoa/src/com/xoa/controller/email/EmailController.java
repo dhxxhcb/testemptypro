@@ -1,11 +1,14 @@
 package com.xoa.controller.email;
 
-import com.alibaba.fastjson.JSON;
-import com.xoa.model.email.EmailBodyModel;
-import com.xoa.model.email.EmailModel;
-import com.xoa.service.email.EmailService;
-import com.xoa.util.DateFormat;
-import com.xoa.util.ToJson;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,11 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import com.alibaba.fastjson.JSON;
+import com.xoa.model.email.EmailModel;
+import com.xoa.model.email.EmailBodyModel;
+import com.xoa.service.email.EmailService;
+import com.xoa.util.DateFormat;
+import com.xoa.util.ToJson;
 
 /**
  * 
@@ -212,6 +216,7 @@ public class EmailController {
 	
 	
 	/**
+	 * 邮件查询
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:35:16
 	 * 方法介绍:   查询列表
@@ -273,12 +278,14 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/queryByID", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-		String queryByID(@RequestParam(value = "emailId",required = false) Integer emailId,@RequestParam("flag")String flag,@RequestParam(value = "bodyId",required = false) Integer bodyId) throws Exception {
+		String queryByID(HttpServletRequest request) throws Exception {
+			String flag =  ServletRequestUtils.getStringParameter(request,
+					"flag");
+			Integer bodyId = ServletRequestUtils.getIntParameter(request, "bodyId");
 			Map<String, Object> maps = new HashMap<String, Object>();
-			maps.put("emailId", emailId);
-        maps.put("bodyId", bodyId);
+			maps.put("bodyId", bodyId);
 			EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
-			String returnRes = "";
+			String returnRes = null;
 			if(!flag.trim().equals("isRead")){
 				if (emailBody.getBodyId() != null) {
 					ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "ok");
@@ -291,6 +298,8 @@ public class EmailController {
 							"yyyy-MM-dd HH:mm:ss");
 				}
 			}else{
+				Integer emailId =  ServletRequestUtils.getIntParameter(request,
+						"emailId");
 				EmailModel email = new EmailModel();
 				email.setEmailId(emailId);
 				email.setReadFlag("1");
@@ -304,67 +313,6 @@ public class EmailController {
 	}
 
 	
-	/**
-	 * 创建作者:   张勇
-	 * 创建日期:   2017-4-20 上午10:35:16
-	 * 方法介绍:   删除列表
-	 * 参数说明:   @param  request inbox 收件箱  outbox 发件箱 recycle 废纸篓
-	 * 参数说明:   @return json
-	 * 参数说明:   @throws Exception
-	 * @return     String
-	 */
-	@RequestMapping(value = "/deleteEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody String deleteEmail(@RequestParam("flag")String flag,@RequestParam("deleteFlag") String deleteFlag,
-			@RequestParam("emailID") Integer emailId){
-		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
-		String returnRes = "";
-		if (flag.trim().equals("inbox")) {
-			returnRes = emailService.deleteInEmail(emailId, deleteFlag);
-		} else if (flag.trim().equals("outbox")) {
-			returnRes = emailService.deleteOutEmail(emailId, deleteFlag);
-		} else if (flag.trim().equals("recycle")) {
-			returnRes = emailService.deleteRecycleEmail(emailId, deleteFlag);
-		} 
-//		else if (flag.trim().equals("drafts")) {
-//			emailService.deleteRecycleEmail(emailBodyModel, deleteFlag);
-//		}
-		
-		if (returnRes.equals("0")) {
-			tojson.setFlag(0);
-			tojson.setMsg("ok");
-			return JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		} else {
-			tojson.setFlag(1);
-			tojson.setMsg("error");
-			return JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
-		}
-	}
-
-    /**
-     *
-     * 创建作者:   张勇
-     * 创建日期:   2017-4-20 上午10:35:16
-     * 方法介绍:   草稿箱删除
-     * 参数说明:   @param  bodyId 邮箱内容ID
-     * 参数说明:   @return json
-     * @return     String
-     */
-    @RequestMapping(value = "/deleteDraftsEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-    public @ResponseBody String deleteDraftsEmail(@RequestParam("bodyId") Integer bodyId){
-        try {
-            ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (0,"ok");
-            emailService.deleteByID(bodyId);
-           return JSON.toJSONStringWithDateFormat(tojson,"yyyy-MM-dd HH:mm:ss");
-        }catch (Exception e){
-            ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (1,"error");
-            return  JSON.toJSONStringWithDateFormat(tojson,"yyyy-MM-dd HH:mm:ss");
-        }
-    }
-
-
-
 	/**
 	 * 
 	 * 创建作者:   张勇
@@ -742,4 +690,5 @@ public class EmailController {
 	public String emailIndex(){
 		return "app/email/index";
 	}
+
 }

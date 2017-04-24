@@ -54,17 +54,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						dataType:'json',
 						data:data1,
 						success:function(rsp){
-							var data=rsp.obj;
-								
+							var data=rsp.obj;	
 							//console.log(data[0].name);				
 							var str='';
-							var str1='';
 							for(var i=0;i<data.length;i++){
-							alert(data[1].notifyId)
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].toId+'</a></td><td nowrap align="center">'+data[i].subject+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td><td nowrap align="center">&nbsp</td><td nowrap align="center">&nbsp</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" onclick="jump()" > 修改</a>&nbsp;<a href="javascript:;" onclick="delate('+data[i].notifyId+')"> 删除</a></td></tr>';
-								//str1+='<input type="hidden" id="'+data[i].notifyId+'">';
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].subject+'</a></td><td nowrap align="center">'+data[i].toId+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td></tr>';
+								str1='';
 							}
-							$('.TableHeader').after(str); 
+							$('.TableHeader').after(str+str1); 
 							
 							$('.M-box3').pagination({
 							    pageCount:1,
@@ -84,7 +81,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	});
     	
     	function delate(id){
-    		//alert(data[i].notifyId)
     		var msg='是否确认删除?';
     		if (confirm(msg)==true){ 
 			  	
@@ -95,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						data:{'id':id},
 						success:function(){
 							
-							//location.reload();
+							location.reload();
 						}
 				}); 
 				return true;
@@ -112,13 +108,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body class="bodycolor">
 <div class="muJump">
 	<ul>
-		<li class="jumpOn" id="NOTIFY"><a href="javascript:;">公告管理</a></li>
-		<li><a href="javascript:;" id="NEWLY">新建公告</a></li>
-		<li><a href="javascript:;" >公告查询</a></li>
+		<li class="jumpOn"><a href="javascript:;">公告管理</a></li>
+		<li><a href="javascript:;">新建公告</a></li>
+		<li><a href="javascript:;">公告查询</a></li>
 	</ul>
 </div>
 <div class="content">
-	<!-- 公告管理 -->
 	<div id="notify" style="overflow-y: scroll;display:block;">
 		<table border="0" width="95%" cellspacing="0" cellpadding="3" class="small" align="center">
 		  <tr>
@@ -152,33 +147,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      </th>
 		      <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
 		      <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th>
-		      <!-- <th nowrap align="center"><fmt:message code="notice.th.state" /></th> -->
+		      <th nowrap align="center"><fmt:message code="notice.th.state" /></th>
 		      <th nowrap align="center"><fmt:message code="notice.th.operation" /></th>
 		    </tr>
 		</table>
 	</div>
-	<div class="div_iframe_newly" style="width: 100%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;display:none;">
-		<div id="iframe1" class="iframe1" style="width: 100%;height: 100%;">
-			<iframe  id="iframe_id" src="add" frameborder="0" height="100%" width="100%" noresize="noresize"></iframe>
-		</div>
-	</div>
-	<div class="div_iframe_query" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;display:none;">
-		<div id="iframe1" class="iframe1" style="width: 100%;height: 100%;">
-			<iframe  id="iframe_id" src="noticeQuery" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-		</div>
-	</div>
 </div>
-	<script type="text/javascript">
-		
-		$(function(){
-			$('.muJump ul li').click(function(){
-				var index=$(this).index();
-				$('.muJump ul li').removeClass('jumpOn');
-	    		$(this).addClass('jumpOn');
-	    		$('.content>div').eq(index).show().siblings().hide();
-			})
-		})
-		
-	</script>
 </body>
 </html>

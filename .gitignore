@@ -1,1 +1,4 @@
 /xoa/WebRoot/WEB-INF/classes
+/.idea
+/xoa/.classpath
+/xoa/.settings

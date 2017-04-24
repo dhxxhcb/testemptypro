@@ -91,9 +91,6 @@ public class DateFormat {
 		return re_StrTime;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(DateFormat.getStrTime(1492592887));
-	}
 	
 
 }
