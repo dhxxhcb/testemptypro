@@ -126,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="tab">
 					<table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-						<tr>
+						<tr class='befor'>
 							<th width="6%">
 								<input type="checkbox" name="checkbox" id="checkbox" value="" />
 							</th>
@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th width="12%">日期</th>
 							<th width="6%">附件</th>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td class="title" colspan="7">今日</td>
 						</tr>
 						<tr class="Hover">
@@ -195,7 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td width="6%">
 								<img src="../img/icon_accessory_03.png"/>
 							</td>
-						</tr>
+						</tr> -->
 					</table>
 					<div class="back">
 						<ul>
@@ -282,14 +282,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript">
     		
     		$(function(){
-	    			$.ajax({
-							type:"post",
-							url:"deleteMessage",
-							dataType:'json',
-							success:function(){
-								console.log('12');	
-						}
-					});
+	    			var data={
+						"flag":"inbox",
+						"page":1,
+						"pageSize":10,
+						"useFlag":true,
+						"userID":"lijia"
+					}
+				
+				$.ajax({
+								type:'get',
+								url:'showEmail',
+								dataType:'json',
+								data:data,
+								success:function(rsp){
+									var data1=rsp.obj;
+									var str='';
+									for(var i=0;i<data1.length;i++){
+										if(data1[i].emailList.readFlag==0){
+											str+='<tr class="Hover"><td width="6%"><input type="checkbox" name="checkbox" id="checkbox" value="" /></td>'+
+													'<td width="6%"><img src="../img/icon_read_3_07.png"/></td>'+
+													'<td width="6%"><img src="../img/icon_collect_nor_03.png"/></td>'+
+													'<td width="6%">'+data1[i].fromId+'</td>'+
+													'<td width="58%" class="theme">'+data1[i].subject+'</td><td width="12%">2017年3月30日</td>'+
+													'<td width="6%"><img src="../img/icon_accessory_03.png"/></td></tr>';
+										}
+										$('.befor').after(str);
+									}
+								}
+				})
+				
 	    		
 	    		//与写邮件页面互调
 	    		$('.d_im img').click(function(){

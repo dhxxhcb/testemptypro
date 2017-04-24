@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="main">
 					<div class="main_left">
 						<ul>
-							<li>
+							<li class="befor">
 								<div class="sort">
 									<img src="../img/icon_search_03(1).png"/>
 									<img src="../img/icon_shuaxin_03.png"/>
@@ -142,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<img src="../img/icon_shaixuan_03.png"/>排序
 								</div>
 							</li>
-							<li class="tile">今日</li>
+							<!-- <li class="tile">今日</li>
 							<li>
 								<div class="shang">
 									<span>张兰</span>
@@ -179,7 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<span class="xia_txt">通达全新OA可选组件-知己者费用管控系统</span>
 									<img src="../img/icon_accessory_03.png"/>
 								</div>
-							</li>
+							</li> -->
 						</ul>
 					</div>
 					<div class="main_right">
@@ -275,9 +275,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								type:'get',
 								url:'showEmail',
 								dataType:'json',
-								data:data1,
+								data:data,
 								success:function(rsp){
-									
+									var data1=rsp.obj;
+									alert(data1[0].content)
+									var str='';
+									for(var i=0;i<data1.length;i++){
+										if(data1[i].emailList.readFlag==0){
+											str+='<li><div class="shang"><span>'+data1[i].fromId+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">13:31</span></div><div class="xia"><span class="xia_txt">'+data1[i].subject+'</span><img src="../img/icon_accessory_03.png"/></div><input type="hidden" id="'+data[i].emailList.bodyId+'"></li>';
+										}
+										$('.befor').append(str);
+									}
 								}
 				})
 				
