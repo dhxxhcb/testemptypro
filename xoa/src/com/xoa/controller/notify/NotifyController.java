@@ -60,7 +60,7 @@ public class NotifyController {
 	 */
 	
 	@RequestMapping(value = "/notifyManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-	  public @ResponseBody String selectNotifyManage(
+	  public @ResponseBody String notifyManage(
 			  @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag){
@@ -71,6 +71,7 @@ public class NotifyController {
 				
 				ToJson<Notify> tojson = new ToJson<Notify>(0, "");
 				tojson.setObj(list);
+			    tojson.setTotleNum(list.size());
 				if (list.size() > 0) {
 					err = "seccess";
 					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
@@ -123,13 +124,15 @@ public class NotifyController {
 	  maps.put("content", content);
 	  maps.put("format", format);
 	  maps.put("toId", toId);
-	   String returnReslt= null;
-	   String name="admin";
+	  String returnReslt= null;
+	  String name="admin";
 	 
 	  try {
 	   List<Notify> list=notifyService.selectNotify(maps, page,pageSize, useFlag, name);
 	   ToJson<Notify> tojson = new ToJson<Notify>(0, "");
+	   //公告查询总条数
 	   tojson.setObj(list);
+	   tojson.setTotleNum(list.size());
 	   if (list.size() > 0) {
 			err = "seccess";
 			returnReslt = JSON.toJSONStringWithDateFormat(tojson,
@@ -204,8 +207,8 @@ public class NotifyController {
 	 * 参数说明:   @throws Exception
 	 * @return     String
 	 */
-	@RequestMapping(value = "/queryNotify",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody String queryNotify(
+	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody String getOneById(
 			@RequestParam("notifyId") Integer notifyId) throws Exception{
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
@@ -225,11 +228,7 @@ public class NotifyController {
 					"yyyy-MM-dd HH:mm:ss");
 		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * 
 	 * 创建作者:   张丽军
@@ -271,7 +270,6 @@ public class NotifyController {
 	 */
 	@RequestMapping(value = "/updateNotify", produces = { "application/json;charset=UTF-8" })
 	public String updateNotify(
-			@RequestParam(value="notifyId",required=false)Integer notifyId,
 			@RequestParam(value="fromId",required=false)String fromId,
 			@RequestParam(value="typeId",required=false)String typeId,
 			@RequestParam(value="subject",required=false)String subject,
@@ -302,9 +300,7 @@ public class NotifyController {
 			@RequestParam(value="reason",required=false) String reason,
 			@RequestParam(value="compressContent",required=false) String compressContent,
 			@RequestParam(value="summary",required=false) String summary) {
-		
-		Notify notify=new Notify();
-		notify.setNotifyId(notifyId);
+		Notify notify=new Notify();	
 		notify.setFromId(this.returnValue(fromId));
 		notify.setTypeId(this.returnValue(typeId));
 		notify.setSubject(this.returnValue(subject));
@@ -334,8 +330,7 @@ public class NotifyController {
 	    notify.setUserId(this.returnValue(userId));
 	    notify.setReason(this.returnValue(reason));
 	    notify.setCompressContent(compressContent.getBytes());
-	    notify.setSummary(this.returnValue(summary));
-		
+	    notify.setSummary(this.returnValue(summary));	
 	    try {
 	    	notifyService.updateNotify(notify);
 	    	return JSON.toJSONStringWithDateFormat(
@@ -505,20 +500,6 @@ public class NotifyController {
 	public String emailIndex(){
 		return "app/notice/notify";
 	}
-	@RequestMapping("/detail")
-	public String detail(){
-		return "app/notice/details";
-	}
-	@RequestMapping("/manage")
-	public String emailManage(){
-		return "app/notice/administration";
-	}
-	@RequestMapping("/add")
-	public String add(){
-		return "app/notice/add";
-	}
-	@RequestMapping("/noticeQuery")
-	public String noticeQuery(){
-		return "app/notice/noticeQuery";
-	}
+
+
 }

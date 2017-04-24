@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 		<div class="wrap">
 			<div class="head">
-				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:2%;width:72%;height:78%;
+				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:2%;width:72%;height:75%;
     margin-left: 8%;"></div>
 				<div class="head_mid">
 					<ul class="main_title">

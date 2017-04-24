@@ -48,7 +48,7 @@ body,
 	color: #2a588c;
     font-weight:bold;
 	line-height: 40px;
-	font-size:8px;
+	font-size:10px;
 }
 .head_mid ul li div{
 	width:15%;
@@ -156,7 +156,8 @@ body,
 	height:100%;
 	float:left;
 	font-size:14px;
-	    color: #2a588c;
+	color: #2a588c;
+	cursor: pointer;
 	text-align:center;
 	line-height:28px;
 	border-radius:4px;

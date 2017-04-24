@@ -9,14 +9,19 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xoa.dao.common.SysCodeMapper;
 import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.notify.NotifyMapper;
+
+import com.xoa.model.common.SysCode;
 import com.xoa.model.department.Department;
 import com.xoa.model.notify.Notify;
 
 
 
 
+
+import com.xoa.service.department.DepartmentService;
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
@@ -37,6 +42,16 @@ public class NotifyServiceImpl implements  NotifyService{
 	
 	@Resource
 	private DepartmentMapper departmentMapper;
+	
+	@Resource
+	private DepartmentService  departmentService;
+	
+ 
+	
+	@Resource
+	private SysCodeMapper sysCodeMapper;
+	
+	
 	/**
 	 * 
 	 * 创建作者:   张丽军
@@ -58,10 +73,18 @@ public class NotifyServiceImpl implements  NotifyService{
         pageParams.setPage(page);  
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);  
-        List<Notify> list = notifyMapper.selectNotify(maps);
+        List<Notify> list = notifyMapper.selectNotify(maps);//遍历每一条公告
             for (Notify notify1 : list) {
+            	//查询用户
                  notify1.setName(notify1.getUsers().getUserName());
                  notify1.setUsers(null);
+              /*   int i=list.size();
+                 notify1.setCount(i);
+                 */                       
+                 //查询公告类型
+                 SysCode code=sysCodeMapper.getSysCode1(notify1.getTypeId());
+ 				 notify1.setTypeName(code.getCodeName());
+ 				 //已读未读
                  if (notify1.getReaders().indexOf(name)!=-1) {
         	        notify1.setReaders("1");
 			        }else {
@@ -71,7 +94,6 @@ public class NotifyServiceImpl implements  NotifyService{
         System.out.println("notifyCount："+list.size());
 		return list;
 	}
-
 
 	/**
 	 * 
@@ -99,6 +121,10 @@ public class NotifyServiceImpl implements  NotifyService{
     List<Notify> list = notifyMapper.unreadNotify(maps);
     List<Notify> list1 =new ArrayList<Notify>();
     	for (Notify notify : list) {
+    		 notify.setName(notify.getUsers().getUserName());
+             notify.setUsers(null);
+             SysCode code=sysCodeMapper.getSysCode1(notify.getTypeId());
+				 notify.setTypeName(code.getCodeName());
 			if (notify.getReaders().indexOf(name)==-1) {
 				list1.add(notify);
 			}
@@ -163,6 +189,10 @@ public class NotifyServiceImpl implements  NotifyService{
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);
         Notify notify=notifyMapper.detailedNotify(maps);
+        notify.setName(notify.getUsers().getUserName());
+        notify.setUsers(null);
+        SysCode code=sysCodeMapper.getSysCode1(notify.getTypeId());
+		notify.setTypeName(code.getCodeName());
       if(notify.getReaders().indexOf(name)==-1){
         	StringBuffer str2= new StringBuffer(notify.getReaders());
         	str2.append(",");
@@ -243,17 +273,32 @@ public class NotifyServiceImpl implements  NotifyService{
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);  
         List<Notify> list = notifyMapper.selectNotifyManage(maps);
-       for (Notify notify : list) {
+      for (Notify notify : list) {
+    	  notify.setName(notify.getUsers().getUserName());
+           SysCode code=sysCodeMapper.getSysCode1(notify.getTypeId());
+            notify.setTypeName(code.getCodeName());
+    	  StringBuffer s=new StringBuffer();
 			if (notify.getToId().equals("ALL_DEPT")) {
 				 List<Department> list1=departmentMapper.getDatagrid();
 				 for (Department department : list1) {
-					 notify.setName(department.getDeptName());
+					 if(department.getDeptName()!=null)
+					 {
+						 s.append(department.getDeptName());
+						 s.append(",");
+						 notify.setName(s.toString());
+					 }				 
 				}
 			}else  {
 				strArray=notify.getToId().split(",");
-				for (int i = 0; i < strArray.length; i++) {
-			 String name=departmentMapper.getDeptNameById(Integer.parseInt(strArray[i]));
-			 notify.setName(name);
+				for (int i = 0; i < strArray.length; i++) {		
+			        List<String> name=departmentService.getDeptNameById(Integer.parseInt(strArray[i]));
+			        for(String string : name)
+			        	if(string!=null)
+			        	{
+			        		s.append(string);
+			        		s.append(",");
+			        		notify.setName(s.toString());
+			        	}
 				}
 			}
 		}
