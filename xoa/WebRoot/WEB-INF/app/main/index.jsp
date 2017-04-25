@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="left_scroll"></div>
 					<ul class="main_title">
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
-						<li class="gongzuoliu" left='0' id='t_0'><div class="img"><img class="close" src="img/main_img/icon.png"></div><h1><fmt:message code="global.my.Desktop" /></h1></li>
+						<li class="gongzuoliu" left='0' id='t_0'><div class="img"></div><h1><fmt:message code="global.my.Desktop" /></h1></li>
 					</ul>
 					<div class="right_scroll"></div>
 				</div>
@@ -294,7 +294,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						//鼠标移动到一级菜单变样式，移出变回
 						$('.one_all').on('mouseover',function () {
 							$(this).css({
-									'background':'url(img/main_img/first_yes.png) 0px 2px no-repeat',
+									'background':'url(img/main_img/first_yes.png) 0px 0px no-repeat',
 									'color':'#006bb8',
 									/* 'border':'1px solid #999', */
 									'cursor':'pointer'

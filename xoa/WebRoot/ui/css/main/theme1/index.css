@@ -51,7 +51,7 @@ body,
 	color: #2a588c;
     font-weight:bold;
 	line-height: 40px;
-	font-size:10px;
+	font-size:12px;
 }
 .head_mid ul li div{
 	width:15%;
@@ -217,7 +217,7 @@ body,
 }
 .one_all{
 	width: 99%;
-    height: 50px;
+    height: 48px;
     background: url(../../../img/main_img/first_no.png) 0px 0px no-repeat;
     border: 1px solid #999999;
     border-top: none;
