@@ -13,3 +13,25 @@ html,body{
 	width:100%;
 	height:50px;
 }
+.body_top ul,.body_top li{
+	list-style:none;
+	-webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-padding-start: 0;
+	margin:0;
+	display:inline-block;
+	height:100%;
+}
+.body_top ul{
+	
+	width:100%;
+	
+}
+.body_top li{
+	width:32%;
+	text-align: center;
+}
+.title{
+	font-size:15px;
+	color:#4f4f4f;
+}

@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <script type="text/javascript">    </script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
      <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/spirit/ipanel.css">
     <link rel="stylesheet" type="text/css" href="../css/spirit/menu.css">
@@ -24,13 +24,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<div class="wrap">
 		<div class="body_top">
-			<ul class="nav nav-tabs">
-			  <li role="presentation" class="active"><a href="#">应用</a></li>
-			  <li role="presentation"><a href="#">组织</a></li>
-			  <li role="presentation"><a href="#">便签</a></li>
-			</ul> 
+			<ul>
+				<li>
+					<div><span></span><span>应用</span></div>
+				</li>
+				<li>
+					<div><span></span><span>组织</span></div>
+				</li>
+				<li>
+					<div><span></span><span>便签</span></div>
+				</li>
+			</ul>
 		</div>
-	
+		<div class="connect">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
 	
 	</div>
 </body>
