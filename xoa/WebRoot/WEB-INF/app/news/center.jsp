@@ -304,11 +304,11 @@ $(function () {
 						console.log(obj);
 						var news = "";
                            for (var i = 0; i < obj.obj.length; i++) {
-                               news = "<tr><td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].subject+"</ a></td>"+
-                                       "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].typeName+"</ a></td>"+
-                                       "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsTime+"</ a></td>"+
-                                       "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].clickCount+"</ a></td>"+
-                                       "<td><a href='' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+'0'+"</ a></td>"+news;
+                               news = "<tr><td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].subject+"</ a></td>"+
+                                       "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].typeName+"</ a></td>"+
+                                       "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsTime+"</ a></td>"+
+                                       "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].clickCount+"</ a></td>"+
+                                       "<td><a href='#' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+'0'+"</ a></td>"+news;
                            }
                            
 							
