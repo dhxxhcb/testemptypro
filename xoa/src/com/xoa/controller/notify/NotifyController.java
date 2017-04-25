@@ -58,7 +58,7 @@ public class NotifyController {
 	}
 	@RequestMapping("/detail")
 	public String details() {
-		return "app/notice/details";
+		return "app/notice/noticeDerail";
 	}
 	/**
 	 * 
