@@ -88,7 +88,7 @@
 	<!-- 查询公告管理信息 -->
 	<select id="selectNotifyManage" parameterType="Map" resultMap="BaseResultMap">
 		select
-		n.TO_ID,n.FROM_ID,n.`SUBJECT`,n.TYPE_ID,n.SEND_TIME,n.FORMAT,n.BEGIN_DATE,n.END_DATE,n.PUBLISH,n.CONTENT,n.FROM_DEPT,u.USER_NAME
+		n.NOTIFY_ID,n.TO_ID,n.FROM_ID,n.`SUBJECT`,n.TYPE_ID,n.SEND_TIME,n.FORMAT,n.BEGIN_DATE,n.END_DATE,n.PUBLISH,n.CONTENT,n.FROM_DEPT,u.USER_NAME
 		FROM notify n,`user` u WHERE n.FROM_ID=u.USER_ID
 	</select>
 
