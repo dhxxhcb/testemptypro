@@ -10,7 +10,7 @@ package com.xoa.util.dataSource;
  */
 public class DatasourcesUtils {
 	/**
-	 * mysql
+	 * mysqls
 	 */
 	public final static String MYSQL_DATA_SOURCES = "mysqlDataSources";
 	/** 
