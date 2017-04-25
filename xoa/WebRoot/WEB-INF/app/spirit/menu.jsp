@@ -22,8 +22,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/spirit/ipanel.css">
     <link rel="stylesheet" type="text/css" href="../css/spirit/menu.css">
 </head>
-
-
 <body onload="view_menu(1);init();window.setTimeout(init, 1);" marginwidth="0" marginheight="0">
 <div id="sub_tabs" class="sub_tabs">
     <a id="my_fav" href="javascript:;"><span>我的常用菜单</span></a>

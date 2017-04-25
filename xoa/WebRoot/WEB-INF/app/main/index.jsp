@@ -742,8 +742,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					}
 				})
+				function get(){
+				}
 		
-		})
+		});
 	</script>
 	<script>
 		autodivheight();
