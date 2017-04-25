@@ -286,6 +286,10 @@ ul{
 .page .page_right .tab table .theme_a{
 	text-align: center;
 }
+.page .page_right .tab table .theme_a a{
+	text-decoration: none;
+	color: #000;
+}
 .page .page_right .tab table tr{
 	width: 100%;
 	border-bottom: #d3d6d9 1px solid;

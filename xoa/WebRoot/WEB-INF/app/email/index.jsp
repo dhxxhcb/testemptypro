@@ -244,7 +244,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$(function () {
 				//与写邮件页面互调
 				$('.d_im img').click(function(){
-	    			var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="writeMail" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+	    			var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
 	    			$('.page_right').css('display','none');
 	    			$('.page').append(Ifrmae);
 	    		});
