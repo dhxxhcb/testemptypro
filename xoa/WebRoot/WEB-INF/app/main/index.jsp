@@ -764,7 +764,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 							});
 							
-							target.append(str);
+							target.html(str);
 						}
 					})
 				}
