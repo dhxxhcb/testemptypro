@@ -23,15 +23,15 @@
 .up_page_right .up_header .up_nav ul li{
 	font-size: 14px;
 	float: left;
-	padding: 5px 10px;
+	padding: 4px 4px;
 	border: #999 1px solid;
 	margin-top: 12px;
-	margin-right: 1%;
+	margin-right: 0.5%;
 	border-radius: 3px;
 	cursor: pointer;
 }
 .up_page_right .up_header .up_nav ul li:nth-child(2){
-	margin-right: 5%;
+	margin-right: 3%;
 }
 .up_page_right .up_header .up_nav ul li img.im{
 	width: 16px;
@@ -51,7 +51,6 @@
 .up_pages .up_div_pages{
 	float: left;
 	overflow: hidden;
-	margin-left: 18%;
 }
 .up_pages .up_div_pages ul li{
 	float: left;
