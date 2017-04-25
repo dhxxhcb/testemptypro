@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </script>
   </head>
   <body>
-  <h1>新建文件夹</h1>
+  <h1>新建子文件夹</h1>
   <form id="form1" name="form1" action="${pageContext.request.contextPath }/fileAdd">
   <table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;" width="50%">
 	<tr>

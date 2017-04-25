@@ -63,8 +63,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 								</ul>
 						
-							<ul class="tab_ctwo a" style="display:none;">
-								<li>
+							<ul class="tab_ctwo a" id="deptOrg" style="display:none;">
+								<!-- <li>
 									<span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="中国兵器工业集团">中国兵器工业集团</a></span>
 									<ul style="margin-left:10%;">
 										<li><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="中国兵器工业信息中心">中国兵器工业信息中心</a></span>
@@ -143,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</ul>
 										</li>
 									</ul>
-								</li>
+								</li> -->
 							
 							</ul>
 							
@@ -514,7 +514,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});//ajax传入应用数据结束括号 
 			  
 		}//init方法结束
-		
+			getChDept($('#deptOrg'),0);
 			init();//调用init()方法
 			var data = {
 						deptId:0
@@ -742,17 +742,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							$('.main_title li:nth-child(1)').css('left','0px');
 						}
 					}
-				})
-				function getChDept(deptId){
+				});
+				$('.all_ul .tab_ctwo').on('click','.childdept',function(){
+					var  that = $(this);
+					getChDept(that.next(),that.attr('deptid'));
+				});
+				function getChDept(target,deptId){
 					$.ajax({
 						url:'department/getChDept',
 						type:'get',	
 						data:{
-							
+							deptId:deptId
 						},		
 						dataType:'json',
-						success:function(obj){ 
+						success:function(data){ 
 							
+							var str = '';
+							data.obj.forEach(function(v,i){
+								
+								str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+							});
+							
+							target.append(str);
 						}
 					})
 				}
