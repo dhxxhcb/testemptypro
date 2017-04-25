@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  }
  .lunbo{
  position: relative;
- width: 600px;
+/*  width: 600px; */
  height: 50px;
 
  overflow: hidden;

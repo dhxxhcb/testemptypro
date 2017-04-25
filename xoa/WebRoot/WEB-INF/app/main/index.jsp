@@ -28,8 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 		<div class="wrap">
 			<div class="head">
-				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:2%;width:72%;height:75%;
-    margin-left: 8%;"></div>
+				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:2%;margin-left: 8%;"></div>
 				<div class="head_mid">
 					<div class="left_scroll"></div>
 					<ul class="main_title">
@@ -176,7 +175,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 <li>体验科技关怀   共创美好未来</li>
 					</ul>			
 				 </div> -->
-				<div style="margin-left:30%;"><iframe  id="every_module" src="lunbo" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
+				<div style="width: 569px;height: 50px;margin: auto;"><iframe  id="every_module" src="lunbo" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
 				
 		<!-- 		<div class="foot_rig"><a href="xitong.html" target="_blank"><h2>心通达 &nbsp 年付版本</h2></a></div> -->
 				
