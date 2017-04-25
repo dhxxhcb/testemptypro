@@ -41,6 +41,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		.M-box3 .active{margin: 0px 3px;width: 25px;height: 20px;line-height: 20px;background: #2b7fe0;font-size: 12px;border: 1px solid #2b7fe0;}
 		.jump-ipt{margin: 0 3px;width: 25px;height: 20px;line-height: 20px;font-size: 12px;}
 		.M-box3 a:hover{background: #2b7fe0;}
+		     	.break_td{
+     		width: 100px;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+     	}
     </style>
    <script type="text/javascript">
     	$(function(){
@@ -62,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var str1='';
 							for(var i=0;i<data.length;i++){
 								var begindate = new Date(data[i].beginDate).Format('yyyy:MM:dd hh:mm:ss')
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].users.userName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+'管理员'+'</a></td><td nowrap align="center">'+data[i].subject+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td><td nowrap align="center">'+begindate+'</td><td nowrap align="center">&nbsp</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" onclick="jump()" > 修改</a>&nbsp;<a href="javascript:;" onclick="delate('+data[i].notifyId+')"> 删除</a></td></tr>';
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].users.userName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><div class="break_td" title="'+data[i].name+'">'+data[i].name+'</div></td><td nowrap align="center">'+data[i].subject+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td><td nowrap align="center">'+begindate+'</td><td nowrap align="center">&nbsp</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" onclick="jump()" > 修改</a>&nbsp;<a href="javascript:;" onclick="delate('+data[i].notifyId+')"> 删除</a></td></tr>';
 
 								//str1+='<input type="hidden" id="'+data[i].notifyId+'">';
 							}
