@@ -163,7 +163,8 @@ textarea {
 
 		function initNotice() {
 
-			$.ajax({
+			$
+					.ajax({
 						type : 'get',
 						url : 'notifyList',
 						dataType : 'json',

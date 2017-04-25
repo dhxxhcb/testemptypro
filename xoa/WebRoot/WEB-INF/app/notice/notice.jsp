@@ -130,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <img src="../img/01.png">
+            <img src="../img/notice01.png">
 
             <div class="news">公告通知</div>
             <select name="TYPE" class="button1" style="float: left;" id="select">
@@ -218,7 +218,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           	<div class="le ce1">
 	                <div class="color">类型：</div>
 	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select_query">
+		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select">
 							<option value="0" selected="">所有类型</option>
 							<option value="01">决定</option>
 						    <option value="02">通知</option>
@@ -323,11 +323,11 @@ $(function () {
 				//时间控件调用
   
    $('#btn_query').click(function (){
-		data.read='';
+		
 		data.subject = $('#subject').val();
 		data.beginDate = $('#beginTime').val();
 		data.endDate = $('#endTime').val();
-		data.typeId =  $('#select_query').val()==0?'':$('#select_query').val();
+		data.typeId =  $('#select').val()==0?'':$('#select').val();
 		data.content = $('#content').val();
 		initPageList();
 		$('.step1').show();
@@ -343,7 +343,7 @@ $(function () {
    //时间控件调用
    var start = {
      elem: '#beginTime',
-     format: 'YYYY-MM-DD hh:mm:ss',
+     format: 'YYYY/MM/DD hh:mm:ss',
     /* min: laydate.now(), //设定最小日期为当前日期*/
     /* max: '2099-06-16 23:59:59', //最大日期*/
      istime: true,
@@ -355,7 +355,7 @@ $(function () {
    };
    var end = {
      elem: '#endTime',
-     format: 'YYYY-MM-DD hh:mm:ss',
+     format: 'YYYY/MM/DD hh:mm:ss',
      /*min: laydate.now(),*/
      /*max: '2099-06-16 23:59:59',*/
      istime: true,

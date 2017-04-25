@@ -134,19 +134,19 @@ s, i, em {
 
 .head {
     border-bottom: 1px solid #9E9E9E;
-    padding-bottom: 5px;
+    padding-bottom: 3px;
 }
 
 .head li {
     width: 112px;
     text-align: center;
-    height: 30px;
-    line-height: 30px;
+    height: 28px;
+    line-height: 28px;
     display: inline-block;
     float: left;
     font-family: "微软雅黑";
     font-size: 18px;
-    margin: 10px;
+    margin: 6px;
     cursor: pointer
 
 }
