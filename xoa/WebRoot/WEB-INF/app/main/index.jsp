@@ -745,7 +745,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});
 				$('.all_ul .tab_ctwo').on('click','.childdept',function(){
 					var  that = $(this);
-					
 					getChDept(that.next(),that.attr('deptid'));
 				});
 				function getChDept(target,deptId){
