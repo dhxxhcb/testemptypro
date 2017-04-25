@@ -318,7 +318,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$(this).siblings().find('.erji').css('background','#e8f4fc');
 								
 							}else{
-								/* $(this).css('background','cc'); */
 								
 								$(this).siblings().find('.erji').hide();
 							}
@@ -351,9 +350,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							//点击二级，出现三级
 						$('.click_erji').on('click',function () {
 							var san= $(this).siblings().html();
-							//console.log(san);
-							/* $('.three_title').html(san); */
-							
 							 if ($(this).siblings('.sanji').css('display')=='none') {
 								$(this).find('.er_img').attr('src','img/main_img/up.png');
 								$(this).siblings('.sanji').show();	
@@ -480,15 +476,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 						
 						//三级菜单切换
-						/* $('.three_title').on('click','li',function(){
-							var bbb=$(this).attr('url_three');
-							$('.three_title li').removeClass('xuan');
-							$(this).addClass('xuan');
-						}) */
 						 //三级菜单移入变样式
 						$('.sanji').on('mouseover','li',function(){
-							/* $('.sanji li').removeClass('xuan');
-							$(this).addClass('xuan'); */
 							$(this).css({
 									/* 'background':'url(img/main_img/first_yes.png) 0px 1.4px no-repeat', */
 									'color':'#006bb8',
@@ -514,36 +503,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});//ajax传入应用数据结束括号 
 			  
 		}//init方法结束
+		
 			getChDept($('#deptOrg'),0);
+			
 			init();//调用init()方法
 			var data = {
 						deptId:0
 			};
-			//init_orgnize()方法
-			/* function init_orgnize(){
 			
-				 $.ajax({
-					url:'department/getChDept',
-					type:'get',	
-					data:data, 		
-					dataType:'json',					
-					success:function(obj){
-					var data=obj.obj;
-						console.log(data);
-						var li='';
-						for(var i=0;i<data.length;i++){
-							li +='<li class="orangize_one" style="height:36px;"><div><img src="img/main_img/company_logo.png" alt=""><a style="line-height:36px;" href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></div><ul class="ul_two"></ul></li>' ;
-							
-						}
-						
-						$(".tab_cone").html(li);
-					}
-					
-				});
-				
-				
-			}
-			init_orgnize(); */
+		
+		/* 	init_orgnize();  */
 			//组织二级
 			var data1 = {
 						deptId:1
@@ -551,99 +520,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var data2 = {
 						deptId:2
 				};
-				
-	/* 		$(".tab_cone").on('click','.orangize_one:nth-child(2)',function(){
-				 
-					  $.ajax({
-							url:'department/getChDept',
-							type:'get',	
-							data:data1,		
-							dataType:'json',
-							success:function(obj){
-								 console.log(obj.obj);
-								var data=obj.obj;
-								var li_two='';
-								for(var i=0;i<obj.obj.length;i++){
-									li_two='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span><ul class="three_ul"></ul></li>'
-								}
 								
-								 $(".tab_cone li:eq(0) .ul_two").html(li_two);
-								/* $('.orangize_one').find('.ul_two').html(li_two); */
-					/* 		}
-					});  */
-					
-				 	
-					/* init_orgnize();
-					data.deptId=1;
-					for(var i=0;i<obj.obj.length;i++){
-						li_two='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span><ul class="three_ul"></ul></li>'
-					}
-								
-					$(this).find('.ul_two').html(li_two);  */
-					
-					/* if($('.ul_two li').css('display')=='none'){
-						$('.ul_two li').show();
-					}else{
-						$('.ul_two li').hide();
-					} */
-	/* 		}); */
-			
-			//第二个二级
-			
-			/* 	$(".tab_cone").on('click','.orangize_one:nth-child(2)',function(){
-				 
-					  $.ajax({
-							url:'department/getChDept',
-							type:'get',	
-							data:data2,		
-							dataType:'json',
-							success:function(obj){
-								 console.log(obj.obj);
-								var data=obj.obj;
-								var li_two='';
-								for(var i=0;i<obj.obj.length;i++){
-									li_two='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span><ul class="three_ul"></ul></li>'
-								}
-								
-								 $(".tab_cone li:eq(0) .ul_two").html(li_two);
-								/* $('.orangize_one').find('.ul_two').html(li_two); */
-					/* 		}
-					});  */
-					
-				 	
-					/* init_orgnize();
-					data.deptId=1;
-					for(var i=0;i<obj.obj.length;i++){
-						li_two='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span><ul class="three_ul"></ul></li>'
-					}
-								
-					$(this).find('.ul_two').html(li_two);  */
-					
-					/* if($('.ul_two li').css('display')=='none'){
-						$('.ul_two li').show();
-					}else{
-						$('.ul_two li').hide();
-					} */
-			/* }); */
-			//组织三级
-		
-				/*  $.ajax({
-							url:'department/getChDept',
-							type:'get',	
-							data:data2,		
-							dataType:'json',
-							success:function(obj){ */
-								/* console.log(obj.obj); */
-							/* 	var data=obj.obj; */
-								/* var li_three=''; */
-							/* 	console.log(data); */
-							/* 	for(var i=0;i<obj.obj.length;i++){
-									li_three='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span></li>'
-								}
-								$(".tab_cone li:eq(0) .ul_two").html(li_two); */
-					/* 		}
-					});
-			 */
+
 						//点击标题栏
 						$('.main_title ').on('click','li',function(){
 							
@@ -743,8 +621,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					}
 				});
+				
+				
 				$('.all_ul .tab_ctwo').on('click','.childdept',function(){
 					var  that = $(this);
+					
 					getChDept(that.next(),that.attr('deptid'));
 				});
 				function getChDept(target,deptId){
