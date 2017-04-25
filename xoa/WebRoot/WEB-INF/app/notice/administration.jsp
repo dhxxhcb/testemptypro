@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var str='';
 							var str1='';
 							for(var i=0;i<data.length;i++){
-							alert(data[1].notifyId)
+							
 								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].toId+'</a></td><td nowrap align="center">'+data[i].subject+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td><td nowrap align="center">&nbsp</td><td nowrap align="center">&nbsp</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" onclick="jump()" > 修改</a>&nbsp;<a href="javascript:;" onclick="delate('+data[i].notifyId+')"> 删除</a></td></tr>';
 								//str1+='<input type="hidden" id="'+data[i].notifyId+'">';
 							}
