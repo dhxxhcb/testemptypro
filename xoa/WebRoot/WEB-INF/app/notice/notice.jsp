@@ -188,10 +188,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!--footer部分开始-->
     <div class="footer w clearfix">
-        <div>快捷操作:</div>
+         <!-- <div>快捷操作:</div>
         <div class="read">
-            <img src="../img/read.png" alt=""/>
-        </div>
+        <img src="../img/read.png" alt=""/>  
+        </div>--> 
 
     </div>
     </div>
