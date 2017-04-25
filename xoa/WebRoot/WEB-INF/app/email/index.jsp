@@ -107,8 +107,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul>
 							<li><img src="../img/icon_allmail_06.png" class="im"/>全部邮件<img src="../img/icon_more_06.png" class="am"/></li>
 							<li><img src="../img/icon_notread_06.png" class="im"/>未读<span>3</span></li>
-							<li><img src="../img/icon_replay_03.png" class="im"/>回复<span>3</span></li>
-							<li><img src="../img/icon_replay_03.png" class="im"/>回复全部<span>3</span></li>
+							<li><img src="../img/icon_replay_03.png" class="im"/>回复</li>
+							<li><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
 							<li><img src="../img/icon_transmit_06.png" class="im"/>转发</li>
 							<li><img src="../img/icon_move_06.png" class="im"/>移动到<img src="../img/icon_more_06.png" class="am"/></li>
 							<li><img src="../img/icon_delete_06.png" class="im"/>删除<img src="../img/icon_more_06.png" class="am"/></li>
