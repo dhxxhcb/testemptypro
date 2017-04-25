@@ -56,7 +56,10 @@ public class NotifyController {
 	public String manage() {
 		return "app/notice/administration";
 	}
-
+	@RequestMapping("/detail")
+	public String details() {
+		return "app/notice/details";
+	}
 	/**
 	 * 
 	 * 创建作者:   张丽军
