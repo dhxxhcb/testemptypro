@@ -4,12 +4,17 @@
   <resultMap id="menuResultMap" type="com.xoa.model.menu.SysMenu" >
     <id column="MENU_ID" property="id" javaType="string"/>
     <result column="MENU_NAME" property="name"  javaType="string" />
+     <result column="MENU_NAME1" property="name1"  javaType="string" />
+      <result column="MENU_NAME2" property="name2"  javaType="string" />
+       <result column="MENU_NAME3" property="name3"  javaType="string" />
+        <result column="MENU_NAME4" property="name4"  javaType="string" />
+         <result column="MENU_NAME5" property="name5"  javaType="string" />
     <result column="IMAGE" property="img"  javaType="string" />
     <result column="MENU_EXT" property="ext"  javaType="string" />
   </resultMap>
   
   
-   <select id="getDatagrid" resultMap="menuResultMap">
-		select MENU_ID,MENU_NAME,IMAGE,MENU_EXT from sys_menu 
+   <select id="getDatagrid" resultMap="menuResultMap" >
+		SELECT MENU_ID,MENU_NAME,MENU_NAME1,MENU_NAME2,MENU_NAME3,MENU_NAME4,MENU_NAME5,IMAGE,MENU_EXT from sys_menu 
 	</select>
 </mapper>

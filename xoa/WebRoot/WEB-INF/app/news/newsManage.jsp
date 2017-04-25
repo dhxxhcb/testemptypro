@@ -12,14 +12,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../css/news/page.css">
-    <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
+     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
-
+	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css">
 		.head li{
 			width: 154px;
@@ -111,6 +112,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		input{
      		border: 1px solid #ccc;
+     		
+     	}
+     	#input1 {
+     		width:12px;
+     		hight:12px;
      	}
 	</style>
 </head>
@@ -142,13 +148,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<option value="05">客户新闻</option>
 				<option value="">无类型</option>
 			</select>
-
+			 <img  class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>	
         </div>
 
 
-        <div class="right">
+          <div class="right">
+
             <!-- 分页按钮-->
             <div class="M-box3"></div>
+
         </div>
 
     </div>
@@ -188,7 +196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!--footer部分开始-->
     <div class="footer w clearfix">
-        <div><input name="" type="checkbox" value="" />全选</div>
+        <div><input id='input1' name="" type="checkbox" value="" />全选</div>
         <div>删除所选新闻</div>
         <div>查阅情况</div>
         <div>取消置顶</div>
@@ -304,7 +312,7 @@ $(function () {
 						console.log(data);
 						var news = "";
                            for (var i = 0; i < data.obj.length; i++) {
-                               	 news = "<tr><td><input name='' type='checkbox' value=''/></td>"+//选择
+                               	 news = "<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
                                		   "<td>"+data.obj[i].providerName+"</td>"+//发布人
                                        "<td>"+data.obj[i].typeName+"</td>"+//类型
                                        "<td>"+data.obj[i].depName+"</td>"+//发布范围

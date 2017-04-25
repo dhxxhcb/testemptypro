@@ -154,7 +154,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="right">
 
             <!-- 分页按钮-->
-            <div class="M-box3"></div>
+            <div class="M-box3">
+            </div>
 
         </div>
 
@@ -290,7 +291,6 @@ $(function () {
 					$('#endTime').val('');
 					$('#select').val()==0?'':$('#select').val();
 					$('#content').val('');
-
 				}
 				
             })
@@ -355,8 +355,8 @@ $(function () {
    $('#btn_query').click(function (){
 		
 		data.subject = $('#subject_query').val();
-		data.newsTime = $('#beginTime').val();
-		data.lastEditTime = $('#endTime').val();
+		data.beginTime = $('#beginTime').val();
+		data.endTime = $('#endTime').val();
 		data.typeId =  $('#select_query').val()==0?'':$('#select_query').val();
 		data.content = $('#content').val();
 		initPageList();

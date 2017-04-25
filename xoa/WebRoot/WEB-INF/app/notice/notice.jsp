@@ -130,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <img src="../img/01.png">
+            <img src="../img/notice01.png">
 
             <div class="news">公告通知</div>
             <select name="TYPE" class="button1" style="float: left;" id="select">
@@ -323,7 +323,7 @@ $(function () {
 				//时间控件调用
   
    $('#btn_query').click(function (){
-		data.read='';
+		
 		data.subject = $('#subject').val();
 		data.beginDate = $('#beginTime').val();
 		data.endDate = $('#endTime').val();

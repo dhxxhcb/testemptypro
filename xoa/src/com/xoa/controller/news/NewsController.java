@@ -6,6 +6,7 @@ import com.xoa.model.worldnews.News;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.L;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;

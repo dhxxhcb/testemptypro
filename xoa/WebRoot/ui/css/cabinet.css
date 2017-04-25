@@ -96,7 +96,7 @@ s, i, em {
 /*公共类*/
 .w {
     /*版心 提取 */
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -126,94 +126,20 @@ s, i, em {
 
 /*css初始化完成*/
 
-/*头部样式*/
-.bx {
-    width: 1200px;
-    margin: 0 auto;
-}
-
+/*head开始*/
 .head {
-    border-bottom: 1px solid #9E9E9E;
-    padding-bottom: 3px;
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 2px solid #A8C9EA;
+    background-color: #F0F4F7;
 }
-
-.head li {
-    width: 112px;
-    text-align: center;
-    height: 28px;
-    line-height: 28px;
+.head div {
     display: inline-block;
     float: left;
-    font-family: "微软雅黑";
-    font-size: 18px;
-    margin: 6px;
-    cursor: pointer
-
+    margin-left: 30px;
 }
 
-.head .one {
-    background-color: #2F8AE3;
-    font-size: 18px;
-    color: #ffffff;
-    border-radius: 20px;
-
-}
-
-/*navigation开始*/
-.navigation {
-    heihgt: 70px;
-    display: inline-block;
-    float: left;
-    /*border: 1px solid red;*/
-    width: 1200px;
-}
-
-.navigation .left {
-    float: left;
-    line-height: 71px;
-}
-
-.navigation .left img {
-    float: left;
-    margin-top: 13px;
-}
-
-.navigation .left .news {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0 5px;
-}
-
-.navigation .left .button1 {
-    height: 26px;
-    width: 168px;
-    line-height: 26px;
-    border: 1px solid #d0d0d0;
-    border-radius: 3px;
-    margin: 20px 10px;
-
-}
-
-.navigation .left .button1 div {
-    margin-left: 12px;
-}
-
-.navigation .left .button1 img {
-    margin-top: 12px;
-    cursor: pointer;
-
-}
-
-.navigation .left div {
-    float: left;
-}
-
-.navigation .right {
-    float: right;
-    margin-top: 18px;
-}
-
-/*表格*/
+/*middle部分开始*/
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -251,23 +177,16 @@ tr:hover {
     background-color: #D3E7FA;
 }
 
-/*页脚部分*/
-.footer {
-    margin-top: 5px;
-    heihgt: 40px;
+/*bottom 部分开始*/
+.bottom {
+    height:40px;
     line-height: 40px;
+    border: 1px solid #c0c0c0;
+    margin-top:10px;
     background-color: #fff;
-    border: 1px solid #d0d0d0;
 }
-
-.footer div {
+.bottom div {
     display: inline-block;
     float: left;
-    margin-left:20px;
-    font-size: 14px;
-}
-
-.footer .read {
-    margin-left: 16px;
-    cursor: pointer;
+    margin-left: 30px;
 }
