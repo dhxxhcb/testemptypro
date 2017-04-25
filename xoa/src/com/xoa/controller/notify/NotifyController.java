@@ -131,7 +131,8 @@ public class NotifyController {
 			 @RequestParam(value ="endDate", required = false) String endDate,
 			 @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
-				@RequestParam("useFlag") Boolean useFlag) {
+				@RequestParam("useFlag") Boolean useFlag,
+				HttpServletRequest request, HttpServletResponse response) {
 	  Map<String, Object> maps = new HashMap<String, Object>();
 	  if (typeId.equals("0")) {
 			typeId=null;
@@ -143,7 +144,7 @@ public class NotifyController {
 	  maps.put("format", format);
 	  maps.put("toId", toId);
 	  String returnReslt= null;
-	  String name="admin111";
+	  String name=(String) request.getSession().getAttribute("userId");
 	  try {
 		  if (read.equals("0")) {
 				ToJson<Notify> tojson= notifyService.unreadNotify(maps, page, pageSize, useFlag, name);

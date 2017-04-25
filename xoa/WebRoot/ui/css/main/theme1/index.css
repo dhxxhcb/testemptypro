@@ -57,11 +57,10 @@ body,
 	width:15%;
 }
 .head_mid ul li img{
-	margin-top: 90%;
-    width: 52%;
+	margin-top: 95%;
+    width: 48%;
     height: 24%;
-    /* margin-left: -106%; */
-    margin-right: 9%;
+    margin-right: 5%;
 }
 .head_rig{
 	width:21%;
