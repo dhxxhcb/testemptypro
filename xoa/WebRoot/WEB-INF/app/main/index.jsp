@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>首页</title>
+		<title><fmt:message code="global.page.first" /></title>
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="left_scroll"></div>
 					<ul class="main_title">
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
-						<li class="gongzuoliu" left='0' id='t_0'><div class="img"><img class="close" src="img/main_img/icon.png"></div><h1>我的桌面</h1></li>
+						<li class="gongzuoliu" left='0' id='t_0'><div class="img"><img class="close" src="img/main_img/icon.png"></div><h1><fmt:message code="global.my.Desktop" /></h1></li>
 					</ul>
 					<div class="right_scroll"></div>
 				</div>
@@ -52,8 +52,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<ul class="all_ul">
 						<div class="tab_t">
 							<ul class="top_ul">
-								<li class="yingy" id="use">应用</li>
-								<li id="orgnize">组织</li>
+								<li class="yingy" id="use"><fmt:message code="global.lang.apply" /></li>
+								<li id="orgnize"><fmt:message code="global.lang.tissue" /></li>
 							</ul>
 						</div>
 						<div class="tab_c list">
