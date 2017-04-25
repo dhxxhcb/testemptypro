@@ -394,15 +394,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		})
 				
 				$('#drafts').click(function(){
+					
 					$('.drafts').css('display','block').siblings().css('display','none');
+					showAjax("drafts");
 				})
 				
 				$('#hasBeenSend').click(function(){
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
+					showAjax("outbox");
 				})
 				
 				$('#wastebasket').click(function(){
 					$('.wastebasket').css('display','block').siblings().css('display','none');
+					showAjax("recycle");
 				})
 				
 				$('#InBox').click(function(){
@@ -421,7 +425,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					window.location.href='inboxup';
 				});
 				
-				var data={
+				 var data={
 					"flag":"inbox",
 					"page":1,
 					"pageSize":10,
@@ -449,7 +453,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									}
 									$('.main_left ul .befor').after(str);
 								}
-				});
+				}); 
+				
 				
 				$('.main_left').on('click','.BTN',function(){
 					var nId=$(this).find('input').attr('id');
@@ -487,6 +492,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 									
 								}
+					});
+				}
+				
+				function showAjax(flag){
+					$('.BTN').remove();
+					var data1={
+						"flag":flag,
+						"page":1,
+						"pageSize":10,
+						"useFlag":true,
+						"userID":"lijia"
+					}	
+					
+					$.ajax({
+									type:'get',
+									url:'showEmail',
+									dataType:'json',
+									data:data1,
+									success:function(rsp){
+										var data1=rsp.obj;
+										var str='';
+										for(var i=0;i<data1.length;i++){
+											var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm:ss');
+											//alert(data1[i].sendTime);
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';										
+										}
+										$('.befor').after(str);
+									}
 					});
 				}
 			
