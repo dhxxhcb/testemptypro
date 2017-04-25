@@ -19,14 +19,112 @@
 		<result column="KEYWORD" property="keyword" javaType="string" />
 		<result  column="fileType"  property="fileType" javaType="string" />
 		</resultMap>
-		<sql id="FileCon">
+		<sql id="FileConSelect">
 		CONTENT_ID,SORT_ID,SUBJECT,CONTENT,SEND_TIME,ATTACHMENT_ID,ATTACHMENT_NAME,ATTACHMENT_DESC,USER_ID,CONTENT_NO,NEW_PERSON,READERS,
 		CREATER,LOGS,KEYWORD
 		</sql>
+		<sql id="FileConInsert">
+		SORT_ID,SUBJECT,CONTENT,SEND_TIME,ATTACHMENT_ID,ATTACHMENT_NAME,ATTACHMENT_DESC,USER_ID,CONTENT_NO,NEW_PERSON,READERS,
+		CREATER,LOGS,KEYWORD
+		</sql>
 		<select id="getFileConBySortid" parameterType="int" resultMap="file_ContentResultMap">
-		select <include refid="FileCon"></include>,'file' as fileType from file_content where SORT_ID=#{tempNo};
+		select <include refid="FileConSelect"/>,'file' as fileType from file_content where SORT_ID=#{tempNo};
+		</select>
+		<select id="getFileConByContentId" parameterType="string" resultMap="file_ContentResultMap">
+		select * from file_content where CONTENT_ID = #{contentId};
 		</select>
 		<delete id="deleteBySort_id" parameterType="int">
 		delete from  file_content where SORT_ID=#{tempNo};
 		</delete>
+		<insert id="addContent" parameterType="com.xoa.model.file.FileContentModel">
+		insert into file_content  (<include refid="FileConInsert"/> ) values (
+		 <if test="sortId == null or sortId == ''" >
+        '',
+         </if>
+        <if test="sortId != null and sortId !=''" >
+          #{userId},
+      </if>
+      
+       <if test="subject == null or subject == ''" >
+        '',
+       </if>
+        <if test="subject != null and subject !=''" >
+          #{subject},
+      </if>
+      
+      <if test="content == null or content == ''" >
+        '',
+         </if>
+        <if test="content != null and content !=''" >
+          #{content},
+      </if>
+      <if test="sendTime == null or sendTime == ''" >
+        '',
+         </if>
+        <if test="sendTime != null and sendTime !=''" >
+          #{sendTime},
+      </if>
+      
+      <if test="attachmentId == null or attachmentId == ''" >
+        '',
+         </if>
+        <if test="attachmentId != null and attachmentId !=''" >
+          #{attachmentId},
+      </if>
+      <if test="attachmentName == null or attachmentName == ''" >
+        '',
+         </if>
+        <if test="attachmentName != null and attachmentName !=''" >
+          #{attachmentName},
+      </if>
+      <if test="attachmentDesc == null or attachmentDesc == ''" >
+        '',
+         </if>
+        <if test="attachmentDesc != null and attachmentDesc !=''" >
+          #{attachmentDesc},
+      </if>
+      <if test="userId == null or userId == ''" >
+        '',
+         </if>
+        <if test="userId != null and userId !=''" >
+          #{userId},
+      </if>
+      <if test="contentNo == null or contentNo == ''" >
+        '',
+         </if>
+        <if test="contentNo != null and contentNo !=''" >
+          #{contentNo},
+      </if>
+      <if test="newPerson == null or newPerson == ''" >
+        '',
+         </if>
+        <if test="newPerson != null and newPerson !=''" >
+          #{newPerson},
+      </if>
+      <if test="readers == null or readers == ''" >
+        '',
+         </if>
+        <if test="readers != null and readers !=''" >
+          #{readers},
+      </if>
+      <if test="creater == null or creater == ''" >
+        '',
+         </if>
+        <if test="creater != null and creater !=''" >
+          #{creater},
+      </if>
+      <if test="logs == null or logs == ''" >
+        '',
+         </if>
+        <if test="logs != null and logs !=''" >
+          #{logs},
+      </if>
+      <if test="keyword == null or keyword == ''" >
+        '',
+         </if>
+        <if test="keyword != null and keyword !=''" >
+          #{keyword},
+      </if>
+      )
+		</insert>
 </mapper>

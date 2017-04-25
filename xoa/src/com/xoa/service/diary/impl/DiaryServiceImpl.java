@@ -1,11 +1,17 @@
 package com.xoa.service.diary.impl;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.Inflater;
+
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.diary.DiaryModelMapper;
@@ -22,6 +28,7 @@ import com.xoa.util.ToJson;
  */
 @Service
 public class DiaryServiceImpl implements DiaryService{
+	private Logger loger = Logger.getLogger(DiaryServiceImpl.class);
 	
 	@Resource
 	DiaryModelMapper diaryModelMapper;
@@ -63,12 +70,21 @@ public class DiaryServiceImpl implements DiaryService{
 	 * 参数说明:   @return
 	 * @return   ToJson<DiaryModel>
 	 */
-	public ToJson<DiaryModel> getDiaryAll(DiaryModel diaryModel) {
+	public List<DiaryModel> getDiaryAll(DiaryModel diaryModel) {
 	       Map<String, Object> diaryMap=new  HashMap<String, Object>();
 		   List<DiaryModel> diaryAllList=diaryModelMapper.getDiaryList(diaryMap);
-		   ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, "");
-		   diaryListToJson.setObj(diaryAllList);
-		   return diaryListToJson;
+//		   for(DiaryModel dm:diaryAllList){
+//			 System.out.println("---------------getCompressContentBefore-------------"+dm.getCompressContent());
+//			 String compressString=null;
+//			try {
+//				compressString=decompress(URLDecoder.decode(dm.getCompressContent(), "ISO-8859-1"));
+//			} catch (UnsupportedEncodingException e) {
+//				e.printStackTrace();
+//			}
+//		      dm.setCompressContent(compressString);
+//		      System.out.println("---------------getCompressContentAfter-------------"+dm.getCompressContent());
+//		   }
+		   return diaryAllList;
 	}
 	 
 	/**
@@ -85,8 +101,9 @@ public class DiaryServiceImpl implements DiaryService{
 	       diaryMap.put("userId", diaryModel.getUserId());
 	       diaryMap.put("toAll", "0");
 	       //我的日志 
-		   List<DiaryModel> diaryList=diaryModelMapper.getDiaryList(diaryMap);
+		   List<DiaryModel> diaryList=diaryModelMapper.getDiaryOtherList(diaryMap);
 		   ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, "");
+		   diaryListToJson.setObj(diaryList);
 		   return diaryListToJson;
 	}
 	/**
@@ -113,4 +130,68 @@ public class DiaryServiceImpl implements DiaryService{
 	public int updateDiary(DiaryModel diaryModel) {
 		return diaryModelMapper.updateDiary(diaryModel);
 	}
+	
+	
+public static String decompress(String data) throws UnsupportedEncodingException {
+        return decompress(data,"ISO-8859-1");
+}
+public static String decompress(String data, String charset) throws UnsupportedEncodingException {
+
+        byte[] bytes = data.getBytes(charset);
+
+        byte[] output = new byte[1024];
+
+        Inflater decompresser = new Inflater();
+        decompresser.reset();
+        decompresser.setInput(bytes);
+
+        ByteArrayOutputStream o = new ByteArrayOutputStream(bytes.length);
+        try {
+            byte[] buf = new byte[1024];
+            while (!decompresser.finished()) {
+                int i = decompresser.inflate(buf);
+                o.write(buf, 0, i);
+            }
+            output = o.toByteArray();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                o.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        decompresser.end();
+        return new String(output);
+    }
+	
+//	public String transfor(String s){
+//		byte[] compressByte=s.getBytes();
+//    	InputStream tempIs=new ByteArrayInputStream(compressByte);
+//    	InputStreamReader isr=null;
+//    	try {
+//		   isr=new InputStreamReader(tempIs,"Unicode");
+//		} catch (UnsupportedEncodingException e) {
+//            loger.info("mediumblob二进制转化异常");
+//			e.printStackTrace();
+//		}
+//    	BufferedReader br=new BufferedReader(isr);
+//    	StringBuffer compressBuffer=null;
+//    	try {
+//    		compressBuffer=new StringBuffer();
+//			while (br.readLine()!=null) {
+//    			compressBuffer.append(br.readLine());
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//    	String  compressString=null;
+//    	try {
+//			compressString=new String(compressBuffer.toString().getBytes("ISO-8859-1"),"UTF-8");
+//		} catch (UnsupportedEncodingException e) {
+//			e.printStackTrace();
+//		}
+//		return compressString;
+//	} 
 }

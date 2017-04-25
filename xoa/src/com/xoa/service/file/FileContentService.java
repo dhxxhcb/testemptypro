@@ -10,4 +10,6 @@ public interface FileContentService {
 	int deleteBySortId(int sort_id);
 	@DynDatasource
 	List<FileContentModel>   getFileConBySortid(int tempNo);
+	@DynDatasource
+	FileContentModel getFileConByContentId(String contentId);
 }

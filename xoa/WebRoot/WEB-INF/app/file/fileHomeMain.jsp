@@ -15,7 +15,7 @@ function submitrequest(action){
 eval("document.location='"+action+"'");
 }
 
-/* $(function(){
+$(function(){
 alert("我进来了!");
 $("#fileTree").tree({
 	onClick : function(node){
@@ -23,22 +23,18 @@ $("#fileTree").tree({
 		$.POST("/",{"id": node.id});
 	}
 });
-}); */
+});
 </script>
 
 </head>
 
-<FRAMESET id="main" border="0" frameSpacing="0" frameBorder="0"
-	cols="30%,*">
+<body>
 
-
-	<frame id="tree" src="${pageContext.request.contextPath}/file/tree"
-		marginwidth=0 marginheight=0 designMode='on'>
-
-
-
-	<frame name="mainFrame"
-		src="${pageContext.request.contextPath}/file/content">
-</FRAMESET>
-
+          
+				<ul id="fileTree" class="easyui-tree"
+					data-options="url:'file/writeTree',method:'get',animate:true">
+				</ul>
+		
+    
+</body>
 </html>

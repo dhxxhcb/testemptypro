@@ -13,13 +13,27 @@ import com.xoa.service.file.FileContentService;
 public class FileContentServiceImpl implements FileContentService{
 	@Resource
 	FileContentMapper file_ContentMapper;
-	@Override
+	
+	
 	public int deleteBySortId(int sort_id) {
 		return file_ContentMapper.deleteBySort_id(sort_id);
 	}
-	@Override
+	
+	
 	public List<FileContentModel> getFileConBySortid(int tempNo) {
-		// TODO Auto-generated method stub
-		return file_ContentMapper.getFileConBySortid(tempNo);
+		List<FileContentModel>  FileContentList=file_ContentMapper.getFileConBySortid(tempNo);
+		for(FileContentModel  fcm:FileContentList){
+			System.out.println("--------tempbefore---"+fcm.getSendTime());
+			String temp=fcm.getSendTime().substring(0, 19);
+			System.out.println("--------temp---"+temp);
+			fcm.setSendTime(temp);
+		}
+		return FileContentList;
+	}
+
+
+	@Override
+	public FileContentModel getFileConByContentId(String contentId) {
+		return	file_ContentMapper.getFileConByContentId(contentId);
 	}
 }

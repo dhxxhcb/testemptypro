@@ -2,36 +2,44 @@ package com.xoa.controller.diary;
 
 
 
-import javax.annotation.Resource;
+import java.util.List;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.xoa.controller.file.FileController;
 import com.xoa.model.diary.DiaryModel;
 import com.xoa.service.diary.DiaryService;
 import com.xoa.util.ToJson;
+import com.xoa.util.treeUtil.HtmlUtil;
 
 @Controller
 @RequestMapping("/diary_")
 public class DiaryController {
+	private Logger loger = Logger.getLogger(DiaryController.class);
 	@Resource
 	DiaryService diaryService;
+	
+	  
 	/**
 	 * 
-	 * 创建作者:  朱振宇
-	 * 创建日期:  2017-4-24 下午7:27:20
-	 * 方法介绍:  主页面
-	 * 参数说明:  @return
-	 * @return    String
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-24 下午2:39:25
+	 * 方法介绍:   跳转主页面
+	 * 参数说明:   @param diaryModel
+	 * 参数说明:   @return
+	 * @return     String
 	 */
 	@RequestMapping("/index")
-	public String clickNews() {
-		return "/app/diary/index";
+	public String diaryIndex(DiaryModel diaryModel){
+		return "app/diary/index";
 	}
-
-	
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -86,10 +94,24 @@ public class DiaryController {
 	 * @return   void
 	 */
 	@RequestMapping("/getAll")
-	@ResponseBody
-	public String  diaryGetAll(DiaryModel diaryModel){
-		ToJson<DiaryModel> diaryAllToJson=diaryService.getDiaryAll(diaryModel);
-		return JSON.toJSONStringWithDateFormat(diaryAllToJson,"yyyy-MM-dd HH:mm:ss");
+	public void  diaryGetAll(DiaryModel diaryModel,HttpServletResponse response){
+		List<DiaryModel> diaryAllToJson=diaryService.getDiaryAll(diaryModel);
+		HtmlUtil.writerJson(response, diaryAllToJson);
 	}
-	
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-24 下午2:38:34
+	 * 方法介绍:   取得他人共享
+	 * 参数说明:   @param diaryModel
+	 * 参数说明:   @param response
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	@RequestMapping("/getOther")
+	@ResponseBody
+	public String  diaryGetOther(DiaryModel diaryModel){
+		ToJson<DiaryModel> diaryOtherToJson = diaryService.getDiaryOther(diaryModel);
+		return JSON.toJSONStringWithDateFormat(diaryOtherToJson,"yyyy-MM-dd HH:mm:ss");
+	}
 }

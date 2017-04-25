@@ -119,7 +119,6 @@
       <if test="review != null and review != ''" >
         #{review},
       </if>
-      
     </trim>
 	</insert>
 	

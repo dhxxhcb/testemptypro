@@ -8,4 +8,6 @@ public interface FileContentMapper {
 	int deleteBySort_id(int sort_id);
 
 	List<FileContentModel> getFileConBySortid(int tempNo);
+
+	FileContentModel getFileConByContentId(String contentId);
 }

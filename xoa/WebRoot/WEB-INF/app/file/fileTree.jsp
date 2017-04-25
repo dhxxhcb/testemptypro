@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>My JSP 'showFile.jsp' starting page</title>
+<title></title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -40,7 +40,8 @@ $("#fileTree").tree({
 			<TD width=340px align=left valign=top>
 				<ul id="fileTree" class="easyui-tree"
 					data-options="url:'file/writeTree',method:'get',animate:true">
-				</ul></TD>
+				</ul>
+			</TD>
 		</TR>
 	</TABLE>
 </body>

@@ -42,8 +42,6 @@ public class FileController {
 	FileSortService fileSortService;
 	@Resource
 	FileContentService fileContentService;
-	@Resource
-	EnclosureService enclosureService;
 
 	/**
 	 * 
@@ -123,13 +121,36 @@ public class FileController {
 	 * 方法介绍:   文件展示页面跳转
 	 * 参数说明:   @return
 	 * @return     String
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value = "/content")
-	public String fileContent() {
+	@ResponseBody
+	public ModelAndView fileContent(String sortType,String sortId,String text) throws UnsupportedEncodingException {
 		loger.info("--------home-------");
-		return "app/file/fileContent";
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("sortId", sortId);
+		model.put("sortType", sortType);
+		String sname = new String(text.getBytes("ISO-8859-1"),"utf-8");
+		model.put("text", sname);
+		ModelAndView modelAndView = new ModelAndView("app/file/fileContent", model);
+		return modelAndView;
 	}
-
+	
+	@RequestMapping(value = "addContent")
+	public String addContent() {
+		loger.info("--------home-------");
+		return "app/file/";
+	}
+	@RequestMapping(value = "/catContent")
+	public ModelAndView catContent(String contentId) {
+		loger.info("--------catContent-------");
+		Map<String, Object> model = new HashMap<String, Object>();
+		FileContentModel fcm=fileContentService.getFileConByContentId(contentId);
+		model.put("fcm", fcm);
+		ModelAndView modelAndView = new ModelAndView("app/file/fileContentDetail", model);
+		return modelAndView;
+	}
+	
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -159,13 +180,18 @@ public class FileController {
 	 * @return   void
 	 */
 	@RequestMapping(value="/catalog")
-	public void showFiles(FileSortModel file,HttpServletResponse response) {
+	public void showFiles(FileSortModel file,HttpServletResponse response,String postType) {
 		// "redirect:/showFile" "file/showFile"
 		List<FileSortModel> fileList =null;
 		List<Object>  tatalList=new ArrayList<Object>();
 		int tempNo=file.getSortId();
 		//获取文件
 		List<FileContentModel>  fileConList=fileContentService.getFileConBySortid(tempNo);
+		if("1".equals(postType)){
+			for(FileContentModel fcm:fileConList){
+				fcm.setContent("");
+			}
+		}
 		System.out.println("----------fileConList------------"+fileConList.size());
 		//通过判断获取父文件夹或子文件夹
 		if(file.getSortId()==0){
@@ -230,10 +256,12 @@ public class FileController {
 		file.setSortName(sname);
 		System.out.println("--behand--------------" + file.getSortName());
 		// 乱码处理-----结束
+		//新建子文件夹
 		if(file.getSortId()!=0){
 			file.setSortParent(file.getSortId());
 			file.setSortId(0);
 			int resultSaveChr=fileSortService.saveFileSortChr(file);
+			System.out.println("----------新建sortId:"+file.getSortId()+"子文件夹---------------");
 			return null;
 		}
 		//添加文件影响行

@@ -38,6 +38,32 @@ input:hover {
 }
 </style>
 <script type="text/javascript">
+$(function(){
+	$.ajax({
+						type:'post',
+						url:'<%=basePath%>/file/catalog',
+						dataType:'json',
+						data:{'sortId':${sortId},'sortType':${sortType},'postType':"1"},
+						success:function(data){
+						var files='';
+							for(var i=0;i<data.length;i++){
+							if(data[i].fileType=="folder"){
+							files+="  <tr><td> <a href=\"${pageContext.request.contextPath }\">"+data[i].sortName+ "  </a></td>  <td>"+data[i].sortNo+ "  </td> <td> "+''+ "  </td><td> "+''+ "  </td></tr>" 
+							   }else{
+							files+="<tr><td> <a href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"
+							+data[i].subject+
+							"</a></td><td>"+data[i].contentId+ "</td><td>"+data[i].sendTime+ "  </td><td> "
+							+''+ 
+							"</td></tr>" 
+							   }
+							}
+							$("#file_Tachr").html(files);
+						}
+				}); 
+});
+
+
+
 function openWindow(sHref,strWidth,strHeight) {
   var strLeft=(screen.availWidth-strWidth)/2;
   var strTop=(screen.availHeight-strHeight)/2;
@@ -53,6 +79,7 @@ function openWindow(sHref,strWidth,strHeight) {
 
 <body>
 	<form id="form1" action="">
+	<hr>
 		&nbsp;&nbsp; <input style="font-size:12px;height=40;width=160"
 			id="BT_Add" type="button" value="+ 新建文件" name="BT_new"
 			onclick="openWindow('${pageContext.request.contextPath }','700','500')" />&nbsp;&nbsp;&nbsp;
@@ -85,13 +112,26 @@ function openWindow(sHref,strWidth,strHeight) {
 				</div>
 			</div>
 		</div>
-	</form>
 	<br>
 	<hr>
-	<span>公司管理制度</span>/
-	<span>行政办公制度</span>
+	<span>${text}</span>
 	<hr>
 	<br>
-	<form id="form2" action=""></form>
+</form>
+<table id="file_Ta" class="w" border="0">
+            <thead>
+            <tr>
+                <td class="th">--------文件名称-------------------</td>
+                <td class="th">-----------排序号-----------</td>
+                <td class="th" >-----------发布时间-----------</td>
+                <td class="th">--------操作--------</td>
+            </tr>
+            </thead>
+            <tbody id="file_Tachr">
+            
+            </tbody>
+        </table>
+        
+	
 </body>
 </html>

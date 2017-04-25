@@ -120,26 +120,17 @@ function openWindow(sHref,strWidth,strHeight) {
 				<tr>
 					<td>${parent.sortNo}</td>
 					<td>${parent.sortName}</td>
-					<td>&nbsp;&nbsp; <input
-						style="font-size:12px;height=20;width=80" id="BT_Add"
-						type="button" value="克隆" name="BT_find"
-						onclick="openWindow('${pageContext.request.contextPath }/file/clone?sortNo=${parent.sortNo }&sortName=${parent.sortName}','700','500')" />&nbsp;&nbsp;
+					<td>&nbsp;&nbsp; 
 						<input style="font-size:12px;height=20;width=80" id="BT_Add"
 						type="button" value="编辑" name="BT_find"
 						onclick="openWindow('${pageContext.request.contextPath }/file/edit?sortId=${parent.sortId}','700','500')" />&nbsp;&nbsp;
 						<a
 						href="${pageContext.request.contextPath}/file/deleteAll?sortId=${parent.sortId}">
 							<input style="font-size:12px;height=20;width=80" id="BT_Add"
-							type="button" value="删除" name="BT_find" /> </a>&nbsp;&nbsp; <input
-						style="font-size:12px;height=20;width=80" id="BT_Add"
-						type="button" value="权限设置" name="BT_find"
-						onclick="openWindow('${pageContext.request.contextPath }/file/','700','500')" />&nbsp;&nbsp;
-						<input style="font-size:12px;height=20;width=80" id="BT_Add"
-						type="button" value="权限报表" name="BT_find"
-						onclick="openWindow('${pageContext.request.contextPath }/file/','700','500')" />&nbsp;&nbsp;
-						<input style="font-size:12px;height=20;width=80" id="BT_Add"
-						type="button" value="菜单定义指南" name="BT_find"
-						onclick="openWindow('${pageContext.request.contextPath }/file/','700','500')" />&nbsp;&nbsp;
+							type="button" value="删除" name="BT_find" /> </a>&nbsp;&nbsp; 
+							<input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="权限设置" name="BT_find"
+						      onclick="openWindow('${pageContext.request.contextPath }/','700','500')" />&nbsp;&nbsp;
+						
 					</td>
 				</tr>
 			</c:forEach>
