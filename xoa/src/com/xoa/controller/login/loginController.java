@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSON;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.L;
 
 @Controller
 @Scope(value="prototype")
@@ -65,7 +66,6 @@ public class loginController {
 		String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
 		Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
 		
-		loger.info("----------"+locale); 
 		return "login/"+loginId+"/login";
 	}
 	
