@@ -121,8 +121,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="muJump">
 	<ul>
 		<li class="jumpOn" id="NOTIFY"><a href="javascript:;">公告管理</a></li>
-		<li><a href="javascript:;" id="NEWLY">新建公告</a></li>
-		<li><a href="javascript:;" >公告查询</a></li>
+		<li><a href="add" id="NEWLY">新建公告</a></li>
+		<li><a href="noticeQuery" >公告查询</a></li>
 	</ul>
 </div>
 <div class="content">

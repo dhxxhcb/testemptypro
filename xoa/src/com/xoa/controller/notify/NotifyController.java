@@ -60,6 +60,14 @@ public class NotifyController {
 	public String details() {
 		return "app/notice/noticeDerail";
 	}
+	@RequestMapping("/add")
+	public String add() {
+		return "app/notice/add";
+	}
+	@RequestMapping("/noticeQuery")
+	public String noticeQuery() {
+		return "app/notice/noticeQuery";
+	}
 	/**
 	 * 
 	 * 创建作者:   张丽军
