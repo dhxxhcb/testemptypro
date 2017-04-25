@@ -53,7 +53,7 @@
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
 			<if test="nTime != null and nTime != ''">
-				AND DATE(NEWS_TIME = #{nTime})
+				AND DATE(NEWS_TIME) = #{nTime}
 			</if>
 			<if test="format != null and format != ''">
 				 AND FORMAT = #{format}
@@ -114,9 +114,9 @@
 		FROM
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
-		<where>
+		
 			<if test="nTime != null and nTime != ''">
-				AND DATE(NEWS_TIME = #{nTime})
+				AND DATE(NEWS_TIME) = #{nTime}
 			</if>
 			<if test="format != null and format != ''">
 				AND FORMAT = #{format}
@@ -134,7 +134,7 @@
 			<if test="content != null and content != ''">
 				AND CONTENT like CONCAT('%',#{content},'%')
 			</if>
-		</where>
+		
 		ORDER BY NEWS_ID DESC
 	</select>
 
@@ -145,9 +145,9 @@
 		FROM
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
-		<where>
+		
 			<if test="nTime != null and nTime != ''">
-				AND DATE(NEWS_TIME = #{nTime})
+				AND DATE(NEWS_TIME) = #{nTime}
 			</if>
 			<if test="format != null and format != ''">
 			    AND	FORMAT = #{format}
@@ -165,7 +165,7 @@
 			<if test="content != null and content != ''">
 				AND CONTENT like CONCAT('%',#{content},'%')
 			</if>
-		</where>
+		
 		ORDER BY NEWS_ID DESC
 	</select>
 

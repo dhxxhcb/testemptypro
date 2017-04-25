@@ -120,6 +120,8 @@ public class NotifyController {
 			 @RequestParam(value = "content", required = false) String content,
 			 @RequestParam(value = "toId", required = false) String toId,
 			 @RequestParam(value ="read", required = false) String read,
+			 @RequestParam(value ="beginDate", required = false) String beginDate,
+			 @RequestParam(value ="endDate", required = false) String endDate,
 			 @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag) {
@@ -134,7 +136,7 @@ public class NotifyController {
 	  maps.put("format", format);
 	  maps.put("toId", toId);
 	  String returnReslt= null;
-	  String name="admin11212";
+	  String name="admin111";
 	  try {
 		  if (read.equals("0")) {
 				ToJson<Notify> tojson= notifyService.unreadNotify(maps, page, pageSize, useFlag, name);

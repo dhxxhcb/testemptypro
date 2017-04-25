@@ -67,11 +67,11 @@
 		<if test="typeId != null and typeId != ''"> AND TYPE_ID = #{typeId} </if>
 		<if test="subject != null and subject != ''"> AND SUBJECT like CONCAT('%',#{subject},'%') </if>
 		<if test="sendTime != null and sendTime != ''">
-			AND SEND_TIME = #{sendTime}
+			 AND DATE(SEND_TIME) = #{sendTime}
 		</if>
 		<if
 			test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
-			AND BEGIN_DATE between #{beginDate} and #{endDate}
+			AND SEND_TIME between #{beginDate} and #{endDate}
 		</if>
 		<if test="content != null and content != ''"> AND CONTENT like CONCAT('%',#{content},'%') </if>
 
@@ -104,11 +104,11 @@
 		<if test="typeId != null and typeId != ''"> AND TYPE_ID = #{typeId} </if>
 		<if test="subject != null and subject != ''"> AND SUBJECT like CONCAT('%',#{subject},'%') </if>
 		<if test="sendTime != null and sendTime != ''">
-			AND SEND_TIME = #{sendTime}
+			 AND DATE(SEND_TIME) = #{sendTime}
 		</if>
 		<if
 			test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
-			AND BEGIN_DATE between #{beginDate} and #{endDate}
+			AND SEND_TIME between #{beginDate} and #{endDate}
 		</if>
 		<if test="content != null and content != ''"> AND CONTENT like CONCAT('%',#{content},'%') </if>
 	</select>

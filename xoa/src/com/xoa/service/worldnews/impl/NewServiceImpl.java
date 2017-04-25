@@ -133,7 +133,7 @@ public class NewServiceImpl implements NewService {
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<News> list = newsMapper.unreadNews(maps);
+		List<News> list = newsMapper.readNews(maps);
 		List<News> list1 = new ArrayList<News>();
 		for (News news : list) {
 			news.setProviderName(news.getUsers().getUserName());

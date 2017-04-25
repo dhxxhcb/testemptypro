@@ -250,12 +250,12 @@ $(function () {
             var data = {
                 read : $('.index_head .one').parent().attr('data_id'),
 				typeId : $('#select').val()==0?'':$('#select').val(),
-				nTime : $('#sendTime').val(),
+				sendTime : $('#sendTime').val(),
 				page:1,
 				pageSize:5,
 				useFlag:true,
-				newsTime:'',
-				lastEditTime:'',
+				beginDate:'',
+				endDate:'',
 				content:'',
 				subject:''
 
@@ -268,7 +268,7 @@ $(function () {
                 $(".news").html($(this).find('span').text());
 				data.read = $(this).attr('data_id');
 				data.typeId = $('#select').val()==0?'':$('#select').val();
-				data.nTime = $('#sendTime').val();
+				data.sendTime = $('#sendTime').val();
 				console.log(data);
 				if(data.read == ''||data.read == 0){
 					$('.step1').show();
@@ -294,7 +294,6 @@ $(function () {
 					success: function(data){
 						console.log(data);
 						var news = "";
-					
                            for (var i = 0; i < data.obj.length; i++) {
                                news += "<tr><td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
                                        "<td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
@@ -317,7 +316,7 @@ $(function () {
         		$('.submit').click(function (){
 					data.read = $('.index_head .one').parent().attr('data_id');
 					data.typeId = $('#select').val();
-					data.nTime = $('#sendTime').val();
+					data.sendTime = $('#sendTime').val();
 					//console.log(read,typeId,nTime);
 					initPageList();
 				});
@@ -326,8 +325,8 @@ $(function () {
    $('#btn_query').click(function (){
 		
 		data.subject = $('#subject').val();
-		data.beginTime = $('#beginTime').val();
-		data.endTime = $('#endTime').val();
+		data.beginDate = $('#beginTime').val();
+		data.endDate = $('#endTime').val();
 		data.typeId =  $('#select').val()==0?'':$('#select').val();
 		data.content = $('#content').val();
 		initPageList();
