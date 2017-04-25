@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -78,6 +79,7 @@ public class EnclosureController {
 	            f.mkdirs();*/  	     	      
 	        for (int i = 0; i < files.length; i++) {  
 	        	MultipartFile file = files[i];
+	        	if(!file.isEmpty()){
 	            // 获得原始文件名  
 	        	String fileName=file.getOriginalFilename();	
 	            //String fileName = files[i].getOriginalFilename();  
@@ -126,6 +128,7 @@ public class EnclosureController {
 	           //attachmentMapper.insertSelective(attachment);	            
 	            //System.out.println("上传文件到:" + path + newFileName);  
 	            //list.add(path + newFileName);  
+	        	}
 	        } 
 	        //String url=
 	        // 存储要下载的文件名  
@@ -299,12 +302,13 @@ public class EnclosureController {
 			response.reset();
 			// 处理文件名
 			String realname = fileName.substring(fileName.indexOf(".") + 1);
+			  
 			// 设置响应头，控制浏览器下载该文件
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("multipart/form-data");  
 			// 设置响应头，控制浏览器下载该文件
 			response.setHeader("content-disposition", "attachment;filename="
-								+ realname);
+								+new String(realname.getBytes("UTF-8"), "ISO8859-1"));
 			// 读取要下载的文件，保存到文件输入流
 			FileInputStream in = new FileInputStream(fileName);			
 			// 创建输出流	
