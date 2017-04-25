@@ -572,8 +572,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							console.log(delet);
 					
 						 	$(this).parent().parent().remove();
-						 /* 	console.log($(this).parent().parent()); */
+						
 						 	 $('#f_'+delet).remove();
+						 	 	console.log($('#f_'+delet).next());
 						 	  $('#f_'+delet).next().show(); 
 						 	 /*  console.log( $('#re'));
 						 	  console.log( $('#f_'+delet).next()); */
