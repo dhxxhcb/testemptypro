@@ -98,6 +98,7 @@ public class DiaryController {
 		List<DiaryModel> diaryAllToJson=diaryService.getDiaryAll(diaryModel);
 		HtmlUtil.writerJson(response, diaryAllToJson);
 	}
+	
 	/**
 	 * 
 	 * 创建作者:   杨 胜

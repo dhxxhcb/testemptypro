@@ -66,11 +66,19 @@ public class FileSortModel {
 	  */
 	 String review;
 	 
+	 String descrtption;
+	 
 	 /**
 	  * 配置一对多关联
 	  */
 	 
-	 /**************************************/
+	 public String getDescrtption() {
+		return descrtption;
+	}
+	public void setDescrtption(String descrtption) {
+		this.descrtption = descrtption;
+	}
+	/**************************************/
 	 /*
 	  * 附加字段 用于判断文件与文件夹区别
 	  */
