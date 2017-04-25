@@ -1,6 +1,8 @@
 package com.xoa.model.im;
 
-public class ImMessage {
+import com.xoa.util.page.PageParams;
+
+public class ImMessage extends PageParams{
     private Integer imid;
 
     private String fromUid;

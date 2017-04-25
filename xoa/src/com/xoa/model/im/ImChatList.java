@@ -1,5 +1,7 @@
 package com.xoa.model.im;
 
+import com.xoa.util.page.PageParams;
+
 public class ImChatList {
     private Integer listId;
 

@@ -1,6 +1,8 @@
 package com.xoa.model.im;
 
-public class ImRoom {
+import com.xoa.util.page.PageParams;
+
+public class ImRoom extends PageParams{
     private Integer rid;
 
     private String rnamr;
