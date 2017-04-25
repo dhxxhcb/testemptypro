@@ -290,6 +290,7 @@ $(function () {
 					$('#endTime').val('');
 					$('#select').val()==0?'':$('#select').val();
 					$('#content').val('');
+
 				}
 				
             })
@@ -354,8 +355,8 @@ $(function () {
    $('#btn_query').click(function (){
 		
 		data.subject = $('#subject_query').val();
-		data.beginTime = $('#beginTime').val();
-		data.endTime = $('#endTime').val();
+		data.newsTime = $('#beginTime').val();
+		data.lastEditTime = $('#endTime').val();
 		data.typeId =  $('#select_query').val()==0?'':$('#select_query').val();
 		data.content = $('#content').val();
 		initPageList();
