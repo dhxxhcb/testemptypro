@@ -26,6 +26,9 @@
 	</sql>
 	<select id="getFileSort" resultMap="file_SortResultMap" parameterType="com.xoa.model.file.FileSortModel">
 		select  <include refid="FileSort"></include> ,'folder' as fileType  from file_sort  where  1=1 
+		<if test="sortId != null and sortId !=''" >
+           and SORT_ID=#{sortId}
+        </if>
         <if test="sortParent != null and sortParent !='' or sortParent==0">
            and SORT_PARENT=#{sortParent}
         </if>

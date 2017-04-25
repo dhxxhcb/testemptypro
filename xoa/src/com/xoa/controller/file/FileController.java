@@ -311,7 +311,11 @@ public class FileController {
 		// "redirect:/showFile" "file/showFile"
 		Map<String, Object> fileEditMap = new HashMap<String, Object>();
 		List<FileSortModel> fileslist = fileSortService.getFileSortList(file);
-		FileSortModel files = fileslist.get(0);
+		System.out.println("------"+fileslist.size()+"-------");
+		FileSortModel files=null;
+		if(fileslist.size()>0){
+		files = fileslist.get(0);
+		}
 		fileEditMap.put("sortid", files.getSortId());
 		fileEditMap.put("sortno", files.getSortNo());
 		fileEditMap.put("sortname", files.getSortName());
