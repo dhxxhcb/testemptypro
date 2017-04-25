@@ -307,7 +307,7 @@ $(function () {
                                        "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].typeName+"</ a></td>"+
                                        "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsTime+"</ a></td>"+
                                        "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].clickCount+"</ a></td>"+
-                                       "<td><a href='' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+obj.obj[i].read+"</ a></td>"+news;
+                                       "<td><a href='' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+'0'+"</ a></td>"+news;
                            }
                            
 							

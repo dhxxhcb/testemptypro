@@ -56,15 +56,30 @@ public class NewsController {
 	public String clickNews() {
 		return "/app/news/center";
 	}
-@RequestMapping("/detail")
+	/**
+	 * 
+	 * 创建作者:  朱振宇
+	 * 创建日期:  2017-4-25 上午9:36:04
+	 * 方法介绍:  新闻详情页面
+	 * 参数说明:  @return
+	 * @return    String
+	 */
+	@RequestMapping("/detail")
 	public String News() {
 		return "/app/news/newsDetail";
 	}
-	
-/*		@RequestMapping("/index")
+	/**
+	 * 
+	 * 创建作者:  朱振宇
+	 * 创建日期:  2017-4-25 上午9:36:22
+	 * 方法介绍:  新闻管理页面
+	 * 参数说明:  @return
+	 * @return    String
+	 */
+	@RequestMapping("/manage")
 	public String sendNews() {
-		return "/app/news/newsList";
-	}*/
+		return "/app/news/newsManage";
+	}
 	
 	
 	

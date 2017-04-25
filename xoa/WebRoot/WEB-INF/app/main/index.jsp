@@ -130,7 +130,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"news_show":"news/index",
 				"file_folder/index2.php":"fileHome",
 				"system/file_folder":"showFileBySort_id",
-				"diary_show":"diary/index"
+				"diary_show":"diary/index",
+				"news_manage":"news/manage"
 			}
 			
 			$('.cont_nav').on('click','li',function(){
