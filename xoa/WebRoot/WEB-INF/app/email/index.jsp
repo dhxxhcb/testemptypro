@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="../css/email/inbox-upright.css"/>
 		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/email/inbox.js" type="text/javascript" charset="utf-8"></script>
-		
+		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -280,12 +280,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var data1=rsp.obj;
 									var str='';
 									for(var i=0;i<data1.length;i++){
-										//var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm:ss');
+										var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm:ss');
 										//alert(data1[i].sendTime);
 										if(data1[i].emailList[0].readFlag==1){
-											str+='<li><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">13:31</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 										} else if(data1[i].emailList[0].readFlag==0){
-											str+='<li><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">13:31</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 										}
 										
 									}
@@ -293,30 +293,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								}
 				});
 				
-				$('.main_left').on('click','.xia_txt',function(){
-					var nId=$(this).parent().parent().find('input').attr('id');
-					alert(nId);
+				$('.main_left').on('click','.BTN',function(){
+					var nId=$(this).find('input').attr('id');
+					//alert(nId);
 					init(nId,'#TAB','.article');
-					/* $.ajax({
-								type:'get',
-								url:'queryByID',
-								dataType:'json',
-								data:{'emailId':nId,'flag':''},
-								success:function(rsp){
-									var data2=rsp.object;
-									
-									$('#TAB').find('tr').eq(0).find('td').after('<td width="72%">'+data2.subject+'</td>');
-									$('#TAB').find('tr').eq(1).append('<td>'+data2.users.userName+'</td>');
-									$('#TAB').find('tr').eq(2).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toId+'</span></td>');
-									$('#TAB').find('tr').eq(3).append('<td>'+data2.sendTime+'</td>');
-									$('#TAB').find('tr').eq(4).append('<td>&nbsp</td>');
-									
-								}
-					}); */
 					
 				})
 				
-				
+				init('181','#TAB','.article');
 				
 			});
 			
@@ -328,6 +312,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								data:{'emailId':id,'flag':''},
 								success:function(rsp){
 									var data2=rsp.object;
+									var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm:ss');
 									$(obj).find('tr').eq(0).find('td').eq(1).remove();
 									$(obj).find('tr').eq(1).find('td').eq(1).remove();
 									$(obj).find('tr').eq(2).find('td').eq(1).remove();
@@ -338,7 +323,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									$(obj).find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>');
 									$(obj).find('tr').eq(1).append('<td>'+data2.users.userName+'</td>');
 									$(obj).find('tr').eq(2).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toId+'</span></td>');
-									$(obj).find('tr').eq(3).append('<td>'+data2.sendTime+'</td>');
+									$(obj).find('tr').eq(3).append('<td>'+sendTime+'</td>');
 									$(obj).find('tr').eq(4).append('<td>&nbsp</td>');
 									$(sName).append('<p>'+data2.content+'</p>');
 									
