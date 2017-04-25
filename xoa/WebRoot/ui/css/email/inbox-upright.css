@@ -30,8 +30,23 @@
 	border-radius: 3px;
 	cursor: pointer;
 }
+.up_page_right .up_header .up_nav ul li span{
+	display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #f00;
+    text-align: center;
+    margin-left: 5px;
+    color: #fff;
+    margin-top: 5px;
+    line-height: 16px;
+    margin-right: 5px;
+}
 .up_page_right .up_header .up_nav ul li:nth-child(2){
 	margin-right: 3%;
+    height: 27px;
+    padding: 0;
 }
 .up_page_right .up_header .up_nav ul li img.im{
 	width: 16px;

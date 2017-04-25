@@ -136,66 +136,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th width="6%">
 								<img src="../img/icon_collect_07.png"/>
 							</th>
-							<th width="10%">发件人</th>
-							<th width="46%" class="theme">主题</th>
+							<th width="16%">发件人</th>
+							<th width="40%" class="theme">主题</th>
 							<th width="20%">日期</th>
 							<th width="6%">附件</th>
 						</tr>
-						<!-- <tr>
-							<td class="title" colspan="7">今日</td>
-						</tr>
-						<tr class="Hover">
-							<td width="6%">
-								<input type="checkbox" name="checkbox" id="checkbox" value="" />
-							</td>
-							<td width="6%">
-								<img src="../img/icon_read_3_07.png"/>
-							</td>
-							<td width="6%">
-								<img src="../img/icon_collect_nor_03.png"/>
-							</td>
-							<td width="6%">张兰</td>
-							<td width="58%" class="theme">通达全新OA可选组件-知己者费用管控系统</td>
-							<td width="12%">2017年3月30日</td>
-							<td width="6%">
-								<img src="../img/icon_accessory_03.png"/>
-							</td>
-						</tr>
-						<tr class="Hover">
-							<td width="6%">
-								<input type="checkbox" name="checkbox" id="checkbox" value="" />
-							</td>
-							<td width="6%">
-								<img src="../img/icon_notread_1_03.png"/>
-							</td>
-							<td width="6%">
-								<img src="../img/icon_collect_nor_03.png"/>
-							</td>
-							<td width="6%">张兰</td>
-							<td width="58%" class="theme">诚邀您参与通达密信试用并提出宝贵意见建议</td>
-							<td width="12%">2017年3月30日</td>
-							<td width="6%"></td>
-						</tr>
-						<tr>
-							<td class="title" colspan="7">更早</td>
-						</tr>
-						<tr class="Hover">
-							<td width="6%">
-								<input type="checkbox" name="checkbox" id="checkbox" value="" />
-							</td>
-							<td width="6%">
-								<img src="../img/icon_read_3_07.png"/>
-							</td>
-							<td width="6%">
-								<img src="../img/icon_collect_07.png"/>
-							</td>
-							<td width="6%">张兰</td>
-							<td width="58%" class="theme">通达IT精英魔鬼训练营，招募中！</td>
-							<td width="12%">2017年3月17日</td>
-							<td width="6%">
-								<img src="../img/icon_accessory_03.png"/>
-							</td>
-						</tr> -->
+						
 					</table>
 					<!-- <div class="back">
 						<ul>
@@ -272,12 +218,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div> -->
 			<!--右侧侧边栏 结束-->
 		</div>
-		
-		<!-- <div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;display:none;">
-			<div id="iframe1" class="iframe1" style="width: 100%;height: 100%;">
-				<iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-			</div>
-		</div> -->
 		
 		<script type="text/javascript">
     		

@@ -236,6 +236,7 @@ ul{
 	margin-right: 10px;
 }
 .page .page_right .header .searchs .search_div input{
+	width: 75%;
 	float: left;
 	margin-top: 10px;
 	border: none;
@@ -289,6 +290,8 @@ ul{
 .page .page_right .tab table .theme_a a{
 	text-decoration: none;
 	color: #000;
+	text-align: left;
+    display: block;
 }
 .page .page_right .tab table tr{
 	width: 100%;
