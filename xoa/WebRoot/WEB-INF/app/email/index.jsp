@@ -260,7 +260,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					$(this).siblings().removeClass('for_on');
 					$(this).parent().find('li').eq(2).find('img').attr('src','img/icon_zuoyou_nor_06.png');
-					window.location.href='index';
+					window.location.href='inboxup';
 				});
 				
 				var data={

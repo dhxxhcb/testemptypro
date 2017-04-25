@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="../css/email/inbox.css"/>
 		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/email/inbox.js" type="text/javascript" charset="utf-8"></script>
-		
+		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -136,9 +136,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th width="6%">
 								<img src="../img/icon_collect_07.png"/>
 							</th>
-							<th width="6%">发件人</th>
-							<th width="58%" class="theme">主题</th>
-							<th width="12%">日期</th>
+							<th width="10%">发件人</th>
+							<th width="46%" class="theme">主题</th>
+							<th width="20%">日期</th>
 							<th width="6%">附件</th>
 						</tr>
 						<!-- <tr>
@@ -197,7 +197,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</td>
 						</tr> -->
 					</table>
-					<div class="back">
+					<!-- <div class="back">
 						<ul>
 							<li class="replay"><img src="../img/icon_replay_03.png"/>回复</li>
 							<li class="replayAll"><img src="../img/icon_replay_03.png"/>回复全部</li>
@@ -216,8 +216,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</div>
 					</div>
-				</div>
-				<div class="details">
+				</div> -->
+				<!-- <div class="details">
 					<table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 						<tr>
 							<td width="8%">主&nbsp;&nbsp;&nbsp;题：</td>
@@ -269,7 +269,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </p>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<!--右侧侧边栏 结束-->
 		</div>
 		
@@ -299,19 +299,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var data1=rsp.obj;
 									var str='';
 									for(var i=0;i<data1.length;i++){
-										if(data1[i].emailList[0].readFlag==0){
-											str+='<tr class="Hover"><td width="6%"><input type="checkbox" name="checkbox" id="checkbox" value="" /></td>'+
-													'<td width="6%"><img src="../img/icon_read_3_07.png"/></td>'+
-													'<td width="6%"><img src="../img/icon_collect_nor_03.png"/></td>'+
-													'<td width="6%">'+data1[i].fromId+'</td>'+
-													'<td width="58%" class="theme">'+data1[i].subject+'</td><td width="12%">2017年3月30日</td>'+
-													'<td width="6%"><img src="../img/icon_accessory_03.png"/><input type="hidden" id="'+data1[i].bodyId+'"></td></tr>';
+										var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm:ss');
+										//alert(data1[i].sendTime);
+										if(data1[i].emailList[0].readFlag==1){
+											str+='<tr class="Hover"><td width="6%"><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td width="6%"><img src="../img/icon_read_3_07.png"/></td><td width="6%"><img src="../img/icon_collect_nor_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td width="46%" class="theme">'+data1[i].subject+'</td><td width="20%">'+sendTime+'</td><td width="10%"><img src="../img/icon_accessory_03.png"/></td></tr>';
+										} else if(data1[i].emailList[0].readFlag==0){
+											str+='<tr class="Hover"><td width="6%"><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td width="6%"><img src="../img/icon_notread_1_03.png"/></td><td width="6%"><img src="../img/icon_collect_nor_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td width="46%" class="theme">'+data1[i].subject+'</td><td width="20%">'+sendTime+'</td><td width="10%"><img src="../img/icon_accessory_03.png"/></td></tr>';
 										}
 										
 									}
 									$('.befor').after(str);
 								}
-				})
+				});
 				
 	    		
 	    		//与写邮件页面互调
@@ -337,7 +336,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					$(this).siblings().removeClass('for_on');
 					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_shangxia_nor_06.png');
-					window.location.href='inboxup';
+					window.location.href='index';
 				})
 	    		
     		});
