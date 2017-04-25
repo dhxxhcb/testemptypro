@@ -418,7 +418,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					showAjax("outbox");
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
-						alert(nId);
+						//alert(nId);
 						//init2(nId,'#TAB','.article1');
 						$.ajax({
 								type:'get',
@@ -456,7 +456,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
-						alert(nId);
+						//alert(nId);
 						//init2(nId,'#TAB','.article1');
 						$.ajax({
 								type:'get',
