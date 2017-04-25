@@ -423,4 +423,11 @@
       UUID = #{uuid,jdbcType=VARCHAR}
     where IMID = #{imid,jdbcType=INTEGER}
   </update>
+  
+  <delete id="deleteByUUID" parameterType="Map">
+		delete from
+		im_message
+		where UUID = #{uuid} and FROM_UID = #{fromId}
+	</delete>
+  
 </mapper>

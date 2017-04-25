@@ -2,6 +2,7 @@ package com.xoa.service.im;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -10,6 +11,8 @@ import org.apache.poi.ss.usermodel.Chart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+
 
 import com.alibaba.fastjson.JSONArray;
 import com.sun.imageio.plugins.wbmp.WBMPImageReader;
@@ -21,6 +24,7 @@ import com.xoa.model.im.ImChatList;
 import com.xoa.model.im.ImChatListExample;
 import com.xoa.model.im.ImMessage;
 import com.xoa.model.im.ImMessageWithBLOBs;
+import com.xoa.service.im.wrapper.ImChatListWrappers;
 import com.xoa.util.common.CheckCallBack;
 import com.xoa.util.common.L;
 import com.xoa.util.common.StringUtils;
@@ -169,4 +173,47 @@ public class ImDataService {
 		
 		return bWrapper;
 	}
+	@DynDatasource
+    public ImChatListWrappers<ImChatList> getImChatList(String from_uid){
+    	ImChatListWrappers<ImChatList> wrappers =new ImChatListWrappers<ImChatList>();
+    	wrappers.setFlag(false);
+    	if(StringUtils.checkNull(from_uid)){
+    		wrappers.setMsg("缺少必要的参数，请确保您的信息合法");
+    		wrappers.setStatus(false);
+    		return wrappers;
+    	}
+    	
+    	List<ImChatList> datas= chatlistMapper.selectByFromId(from_uid);
+    	if(datas==null||datas.size()==0){
+    		wrappers.setMsg("没有数据，请稍后尝试");
+    		wrappers.setStatus(false);
+    	}else{
+    		wrappers.setMsg("数据获取成功");
+    		wrappers.setStatus(true);
+    		wrappers.setFlag(true);
+    		wrappers.setDatas(datas);
+    	}
+    	return wrappers;
+    }
+	
+	
+	
+	@DynDatasource
+	public BaseWrapper rollBackMessage(String from_id,String delete_uuid){
+		//删除此消息 
+		BaseWrapper bw=	new BaseWrapper();
+		if(StringUtils.checkNull(from_id)||StringUtils.checkNull(delete_uuid)){
+			bw.setFlag(false);
+			bw.setStatus(false);
+			bw.setMsg("缺少必要参数");
+			return bw;
+		}
+			
+	    int der =	messageMapper.deleteByUUID(from_id,delete_uuid);
+		//更新最后一条记录
+		
+		
+		return new BaseWrapper();
+	}
+	
 }

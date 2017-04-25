@@ -98,6 +98,10 @@
 	<sql id="Blob_Column_List">
 		LAST_CONTENT
 	</sql>
+	<select id="selectByFromId" parameterType="String" resultMap="BaseResultMap"> 
+	    select * from im_chat_list where FROM_UID = #{fromId} or TO_UID = #{fromId}
+	</select>
+	
 	<select id="selectChatListByParams" parameterType="Map"
 		resultMap="BaseResultMap"> 
 		select * from im_chat_list where 1=1
@@ -161,6 +165,7 @@
 		im_chat_list
 		where LIST_ID = #{listId,jdbcType=INTEGER}
 	</delete>
+	
 	<delete id="deleteByExample" parameterType="com.xoa.model.im.ImChatListExample">
 		delete from im_chat_list
 		<if test="_parameter != null">

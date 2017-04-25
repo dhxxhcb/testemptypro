@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Param;
 public interface ImChatListMapper {
 
 	ImChatList selectChatListByParams(Map<String, Object> params);
+	
+	List<ImChatList> selectByFromId(String fromId);
 
 	int countByExample(ImChatListExample example);
  

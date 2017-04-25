@@ -2,7 +2,7 @@ package com.xoa.model.im;
 
 import com.xoa.util.page.PageParams;
 
-public class ImChatList {
+public class ImChatList extends PageParams {
     private Integer listId;
 
     private String fromUid;
