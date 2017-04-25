@@ -195,7 +195,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"system/file_folder":"showFileBySort_id",
 				"diary_show":"diary/index",
 				"news_manage":"news/manage",
-				"notify_manage":"notice/manage"
+				"notify_manage":"notice/manage",
+				"knowledge_management":"file/home",
+				"system_file_folder":"file/setIndex"
 			}
 			
 			$('.cont_nav').on('click','li',function(){
