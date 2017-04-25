@@ -120,8 +120,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
-           <li data_id="0"><span style="width: 112px;display: inline-block;text-align: center;">未读新闻</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
-            <li data_id=""><span class="one" style="width: 112px;display: inline-block;text-align: center;">全部新闻</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
+           <li data_id="0"><span class="one" style="width: 112px;display: inline-block;text-align: center;">未读新闻</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
+            <li data_id=""><span  style="width: 112px;display: inline-block;text-align: center;">全部新闻</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
              <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;">新闻查询</span></li>
         </ul>
     </div>

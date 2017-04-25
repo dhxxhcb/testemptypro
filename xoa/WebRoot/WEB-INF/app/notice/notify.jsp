@@ -13,8 +13,7 @@
 <html>
 <!--<![endif]-->
 <head>
-<title><fmt:message code="notice.title.notify" />
-</title>
+<title><fmt:message code="notice.title.notify" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
@@ -262,17 +261,11 @@ textarea {
 	<div class="muJump">
 		<ul>
 			<li><a href="javascript:;"><fmt:message
-						code="notice.title.unreadannouncement" />
-			</a>
-			</li>
+						code="notice.title.unreadannouncement" /> </a></li>
 			<li class="jumpOn"><a href="javascript:;"><fmt:message
-						code="notice.title.notify" />
-			</a>
-			</li>
+						code="notice.title.notify" /> </a></li>
 			<li><a href="javascript:;"><fmt:message
-						code="notice.title.announcementquery" />
-			</a>
-			</li>
+						code="notice.title.announcementquery" /> </a></li>
 		</ul>
 	</div>
 	<div class="content">
@@ -295,8 +288,7 @@ textarea {
 			</tr>
 			
 		</table> -->
-			<span><fmt:message code="notice.alert.nodatealert" />
-			</span>
+			<span><fmt:message code="notice.alert.nodatealert" /> </span>
 		</div>
 		<!-- 公告通知 start -->
 		<div id="notify" style="overflow-y: scroll;display:block;">
@@ -305,8 +297,8 @@ textarea {
 				<tr>
 					<td class="Big"><img src="../img/notify_open.gif"
 						align="absmiddle"> <span class="big3"><fmt:message
-								code="notice.title.notify" />
-					</span>&nbsp; <select name="TYPE" id="noticetype" class="BigSelect">
+								code="notice.title.notify" /> </span>&nbsp; <select name="TYPE"
+						id="noticetype" class="BigSelect">
 							<option value="" selected>
 								<fmt:message code="notice.type.alltype" />
 							</option>
@@ -326,10 +318,12 @@ textarea {
 					</select> <span><fmt:message code="notice.title.Releasedate" />:</span> <input
 						id="test" name="SEND_TIME" class="laydate-icon"> <input
 						type="button" id="but"
-						value="<fmt:message code="global.lang.ok" />" /></td>
+						value="<fmt:message code="global.lang.ok" />" />
+					</td>
 
 					<td align="right" valign="bottom" class="small1">
-						<div class="M-box3"></div></td>
+						<div class="M-box3"></div>
+					</td>
 				</tr>
 			</table>
 			<table class="TableList" width="95%" align="center" cellspacing="0"
@@ -337,8 +331,7 @@ textarea {
 				<tr class="TableHeader">
 					<!--  <th nowrap align="center">选择</th> -->
 					<th nowrap align="center"><fmt:message
-							code="notice.th.publisher" />
-					</th>
+							code="notice.th.publisher" /></th>
 					<th nowrap align="center"><fmt:message code="notice.th.type" />
 					</th>
 					<th nowrap align="center"><fmt:message code="notice.th.title" />
@@ -349,7 +342,8 @@ textarea {
 					</th>
 					<th nowrap align="center"><fmt:message
 							code="notice.th.createTime" /> <img border=0
-						src="../img/arrow_down.gif" width="11" height="10"></th>
+						src="../img/arrow_down.gif" width="11" height="10">
+					</th>
 					<!--  <th nowrap align="center"><fmt:message code="notice.th.operation" /></th> -->
 				</tr>
 			</table>
@@ -377,7 +371,8 @@ textarea {
 									<span class="addImg"> <img src="../img/org_select2.png"
 										class="clearIcon" /> </span> <a href="javascript:;" class="clear">清除</a>
 								</span>
-							</div></td>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td nowrap="" class="TableData" width="100">格式：</td>
@@ -386,7 +381,8 @@ textarea {
 								<option value="1">普通格式</option>
 								<option value="2">MHT格式</option>
 								<!--<option value="2">超级链接</option>-->
-						</select></td>
+						</select>
+						</td>
 					</tr>
 					<tr>
 						<td nowrap="" class="TableData">类型：</td>
@@ -403,18 +399,21 @@ textarea {
 						<td nowrap="" class="TableData" width="100"><fmt:message
 								code="notice.th.title" />：</td>
 						<td class="TableData"><input type="text" name="SUBJECT"
-							size="33" maxlength="100" class="BigInput" value=""></td>
+							size="33" maxlength="100" class="BigInput" value="">
+						</td>
 					</tr>
 					<tr>
 						<td nowrap="" class="TableData" width="100"><fmt:message
 								code="notice.title.Releasedate" />：</td>
 						<td class="TableData"><input class="laydate-icon" id="start">
-							&nbsp;至&nbsp; <input class="laydate-icon" id="end"></td>
+							&nbsp;至&nbsp; <input class="laydate-icon" id="end">
+						</td>
 					</tr>
 					<tr>
 						<td nowrap="" class="TableData" width="100">内容：</td>
 						<td class="TableData"><input type="text" name="CONTENT"
-							size="33" maxlength="200" class="BigInput" value=""></td>
+							size="33" maxlength="200" class="BigInput" value="">
+						</td>
 					</tr>
 					<tr align="center" class="TableControl">
 						<td colspan="2" nowrap="">
@@ -423,7 +422,8 @@ textarea {
 									style="cursor: pointer;">&nbsp;&nbsp; <input
 									type="reset" value="重填" class="BigButton"
 									style="cursor: pointer;">&nbsp;&nbsp;
-							</div></td>
+							</div>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -436,10 +436,12 @@ textarea {
 				class="small" align="center">
 				<tr>
 					<td class="Big"><img src="../img/notify_open.gif"
-						align="absmiddle"> <span class="big3">公告通知查询结束</span></td>
+						align="absmiddle"> <span class="big3">公告通知查询结束</span>
+					</td>
 
 					<td align="right" valign="bottom" class="small1">
-						<div class="M-box3"></div></td>
+						<div class="M-box3"></div>
+					</td>
 				</tr>
 			</table>
 			<table class="TableList" width="95%" align="center" cellspacing="0"
@@ -447,8 +449,7 @@ textarea {
 				<tr class="TableHead">
 					<!--  <th nowrap align="center">选择</th> -->
 					<th nowrap align="center"><fmt:message
-							code="notice.th.publisher" />
-					</th>
+							code="notice.th.publisher" /></th>
 					<th nowrap align="center"><fmt:message code="notice.th.type" />
 					</th>
 					<th nowrap align="center"><fmt:message code="notice.th.title" />
@@ -459,14 +460,16 @@ textarea {
 					</th>
 					<th nowrap align="center"><fmt:message
 							code="notice.th.createTime" /> <img border=0
-						src="../img/arrow_down.gif" width="11" height="10"></th>
+						src="../img/arrow_down.gif" width="11" height="10">
+					</th>
 				</tr>
 				<tr>
 					<td colspan="5">
 						<div class="divBtn">
 							<input type="button" name="iBtn" class="iBtn" id="iBtn"
 								value="返回" style="cursor: pointer;">
-						</div></td>
+						</div>
+					</td>
 				</tr>
 			</table>
 		</div>
