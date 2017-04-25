@@ -20,6 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/notice/notify.css" />
     <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
   <script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css">
     	#noticeQuery{width: 100%;}
@@ -60,8 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var str='';
 							var str1='';
 							for(var i=0;i<data.length;i++){
-							
-								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].name+'</td><td nowrap align="center">'+data[i].typeId+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+data[i].toId+'</a></td><td nowrap align="center">'+data[i].subject+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td><td nowrap align="center">&nbsp</td><td nowrap align="center">&nbsp</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" onclick="jump()" > 修改</a>&nbsp;<a href="javascript:;" onclick="delate('+data[i].notifyId+')"> 删除</a></td></tr>';
+								var begindate = new Date(data[i].beginDate).Format('yyyy:MM:dd hh:mm:ss')
+								str+='<tr class="TableLine1"><td nowrap align="center">'+data[i].users.userName+'</td><td nowrap align="center">'+data[i].typeName+'</td><td nowrap align="left"><a href="javascript:;" noticeId="'+data[i].notifyId+'" class="windowOpen">'+'管理员'+'</a></td><td nowrap align="center">'+data[i].subject+'</td><td nowrap align="center">'+data[i].sendTime+'<input type="hidden" id="'+data[i].notifyId+'"></td><td nowrap align="center">'+begindate+'</td><td nowrap align="center">&nbsp</td><td nowrap><a href="javascript:;" title="查阅情况"> 查阅情况</a>&nbsp;<a href="javascript:;"> 生效</a>&nbsp;<a href="javascript:;" onclick="jump()" > 修改</a>&nbsp;<a href="javascript:;" onclick="delate('+data[i].notifyId+')"> 删除</a></td></tr>';
 								//str1+='<input type="hidden" id="'+data[i].notifyId+'">';
 							}
 							$('.TableHeader').after(str); 
