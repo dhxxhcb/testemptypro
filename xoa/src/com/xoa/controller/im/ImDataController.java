@@ -24,11 +24,12 @@ public class ImDataController {
 	@Autowired
 	ImDataService imDataService;
     
-	
+	 
 	@RequestMapping("/putMessage")
 	public BaseWrapper putMessageInfo(Integer flag, String from_uid,
 			String to_uid, String of_from, String of_to, String content,
-			String type, String time, String uuid) {
+			String type, String time, String uuid) { 
+		
 		return imDataService.putMessageInfo(flag, from_uid, to_uid, of_from,
 				of_to, content, type, time, uuid);
 	}

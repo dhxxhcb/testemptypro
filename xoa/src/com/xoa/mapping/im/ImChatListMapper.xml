@@ -99,7 +99,7 @@
 		LAST_CONTENT
 	</sql>
 	<select id="selectChatListByParams" parameterType="Map"
-		resultMap="BaseResultMap">
+		resultMap="BaseResultMap"> 
 		select * from im_chat_list where 1=1
 		<if test="listId != null"> and LIST_ID=#{listId}</if>
 		<if test="fromUid != null"> and FROM_UID=#{fromUid}</if>

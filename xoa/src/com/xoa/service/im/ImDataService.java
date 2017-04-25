@@ -153,7 +153,7 @@ public class ImDataService {
 			}
 			if(meResult<1||chResult<1){
 				throw new ImDataException("Im存入出现异常，进入catch块。");
-			}else{
+			}else{ 
 				bWrapper.setFlag(true);
 				bWrapper.setMsg("操作成功");
 				bWrapper.setStatus(true);

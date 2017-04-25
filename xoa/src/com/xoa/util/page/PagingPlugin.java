@@ -87,7 +87,7 @@ public class PagingPlugin implements Interceptor {
   
         MetaObject metaStatementHandler = SystemMetaObject.forObject(stmtHandler);  
         String sql = (String) metaStatementHandler.getValue("delegate.boundSql.sql");  
-        
+         
         MappedStatement mappedStatement =  (MappedStatement) metaStatementHandler.getValue("delegate.mappedStatement");  
         //获取数据源连接类型
         String dbType = dyTypeDate.determineCurrentLookupKey().toString();  

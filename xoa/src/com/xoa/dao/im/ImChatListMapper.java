@@ -13,7 +13,7 @@ public interface ImChatListMapper {
 	ImChatList selectChatListByParams(Map<String, Object> params);
 
 	int countByExample(ImChatListExample example);
-
+ 
 	int deleteByExample(ImChatListExample example);
 
 	int deleteByPrimaryKey(Integer listId);

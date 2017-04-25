@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface ImMessageMapper {
     int countByExample(ImMessageExample example);
-
+ 
     int deleteByExample(ImMessageExample example);
 
     int deleteByPrimaryKey(Integer imid);

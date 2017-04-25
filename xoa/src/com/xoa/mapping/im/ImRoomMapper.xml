@@ -24,7 +24,7 @@
                 <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue" > 
                   and ${criterion.condition} #{criterion.value}
                 </when>
                 <when test="criterion.betweenValue" >

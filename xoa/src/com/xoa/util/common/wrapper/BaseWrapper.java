@@ -14,7 +14,7 @@ public class BaseWrapper {
 	boolean status;
 	boolean flag;
 	String msg;
-	Date time;
+	Date time; 
 
 	public BaseWrapper() {
 		super();

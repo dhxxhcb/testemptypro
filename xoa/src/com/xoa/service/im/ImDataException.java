@@ -14,7 +14,7 @@ public class ImDataException extends RuntimeException {
     public ImDataException() {
 		// TODO Auto-generated constructor stub
     	super();
-	}
+	} 
     public ImDataException(String messsage) {
 		// TODO Auto-generated constructor stub
     	super(messsage);

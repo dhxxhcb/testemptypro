@@ -6,7 +6,7 @@ public class ImMessage extends PageParams{
     private Integer imid;
 
     private String fromUid;
-
+ 
     private String toUid;
 
     private String ofFrom;

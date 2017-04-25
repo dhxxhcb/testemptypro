@@ -114,5 +114,5 @@ public class L extends LoggerBase {
 		sbBuffer.append("------------日志信息结束-------------");
 		return sbBuffer.toString();
 	}
-
+ 
 }

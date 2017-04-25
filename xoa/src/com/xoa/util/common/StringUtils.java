@@ -43,12 +43,12 @@ public class StringUtils {
 		}
 		return null;
 	}
-	
+	 
 	public static Boolean checkNull(String str){
 		if(str==null) return true;
 		if("".equals(str.trim())||str.trim().length()==0) return true;
 	    return false;
 	}
 	
-
+ 
 }

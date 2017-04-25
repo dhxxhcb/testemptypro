@@ -6,7 +6,7 @@ public class ImChatList {
     private Integer listId;
 
     private String fromUid;
-
+ 
     private String toUid;
 
     private String ofFrom;

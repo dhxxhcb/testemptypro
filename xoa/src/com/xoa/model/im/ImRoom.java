@@ -10,7 +10,7 @@ public class ImRoom extends PageParams{
     private String rsetUid;
 
     private String rsetOfid;
-
+ 
     private String rtime;
 
     private String rmemberUid;
