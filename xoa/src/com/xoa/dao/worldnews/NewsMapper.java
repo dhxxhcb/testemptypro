@@ -101,6 +101,15 @@ public interface NewsMapper extends BaseMapper<News> {
 	 * @return     void
 	 */
 	public void updateclickCount(News news);
+	/**
+	 * 
+	 * 创建作者:   王曰岐
+	 * 创建日期:   2017-4-19 下午3:34:00
+	 * 方法介绍:   修改新闻点击数
+	 * 参数说明:   @param news
+	 * @return     void
+	 */
+	public void updatePublish(News news);
 	
 	/**
 	 * 

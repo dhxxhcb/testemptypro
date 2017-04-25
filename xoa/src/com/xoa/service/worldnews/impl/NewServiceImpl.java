@@ -183,6 +183,7 @@ public class NewServiceImpl implements NewService {
 	@Override
 	public News queryById(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
+		String[] strArray = null;
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
@@ -191,6 +192,32 @@ public class NewServiceImpl implements NewService {
 		News news = newsMapper.detailedNews(maps);
 		news.setProviderName(news.getUsers().getUserName());
 		news.setTypeName(news.getCodes().getCodeName());
+		StringBuffer s=new StringBuffer();
+		if (news.getToId().equals("ALL_DEPT")) {
+			List<Department> list1 = departmentMapper.getDatagrid();
+			for (Department department : list1) {
+				if (department.getDeptName()!=null) {
+					s.append(department.getDeptName());
+					s.append(",");
+					news.setDepName(s.toString());
+				}
+				
+			}
+		} else {
+			strArray = news.getToId().split(",");
+			for (int i = 0; i < strArray.length; i++) {
+				List<String> depname = departmentService.getDeptNameById(Integer.parseInt(strArray[i]));
+				for (String string : depname) {
+					if (string!=null) {
+						s.append(string);
+						s.append(",");
+						news.setDepName(s.toString());
+					}
+					
+				}
+				
+			}
+		}
 		if (news.getReaders().indexOf(name) == -1) {
 			StringBuffer str2 = new StringBuffer(news.getReaders());
 			str2.append(",");
@@ -237,7 +264,7 @@ public class NewServiceImpl implements NewService {
 	public ToJson<News> selectNewsManage(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception {
 		ToJson<News>  newJson=new ToJson<News>();
-		String[] strArray = null;
+		
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
@@ -247,36 +274,17 @@ public class NewServiceImpl implements NewService {
 		for (News news : list) {
 			news.setProviderName(news.getUsers().getUserName());
 			news.setTypeName(news.getCodes().getCodeName());
-			StringBuffer s=new StringBuffer();
-			if (news.getToId().equals("ALL_DEPT")) {
-				List<Department> list1 = departmentMapper.getDatagrid();
-				for (Department department : list1) {
-					if (department.getDeptName()!=null) {
-						s.append(department.getDeptName());
-						s.append(",");
-						news.setDepName(s.toString());
-					}
-					
-				}
-			} else {
-				strArray = news.getToId().split(",");
-				for (int i = 0; i < strArray.length; i++) {
-					List<String> depname = departmentService.getDeptNameById(Integer.parseInt(strArray[i]));
-					for (String string : depname) {
-						if (string!=null) {
-							s.append(string);
-							s.append(",");
-							news.setDepName(s.toString());
-						}
-						
-					}
-					
-				}
-			}
+			
 		}
 		newJson.setObj(list);
 		newJson.setTotleNum(pageParams.getTotal());
 		return newJson;
+	}
+
+	@Override
+	public void updatePublish(News news) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
