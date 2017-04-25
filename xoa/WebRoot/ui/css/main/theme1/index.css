@@ -272,6 +272,32 @@ body,
     font-weight: bold;
     font-size: 14px;
 }
+
+.dynatree-expander{
+
+	
+	width: 16px;
+    height: 16px;
+    display: -moz-inline-box;
+    display: inline-block;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: left;
+   background: url(../../../img/main_img/icons.gif);
+    background-position: 0 -175px;
+}
+
+.dynatree-checkbox{
+	width: 16px;
+    height: 16px;
+    display: -moz-inline-box;
+    display: inline-block;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: left;
+   background: url(../../../img/main_img/icons.gif);
+    background-position: 0 -32px;
+}
 .choose{
 	width: 119px;
     height: 40px;
