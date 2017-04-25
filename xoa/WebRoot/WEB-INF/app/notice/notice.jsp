@@ -119,8 +119,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
-         <li data_id="0"><span style="width: 112px;display: inline-block;text-align: center;">未读公告</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
             <li data_id=""><span class="one" style="width: 112px;display: inline-block;text-align: center;">公告通知</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
+            <li data_id="0"><span style="width: 112px;display: inline-block;text-align: center;">未读公告</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
             <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;">公告查询</span></li>
         </ul>
     </div>
@@ -130,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <img src="../img/notice01.png">
+            <img src="../img/notice01.png"  style="width:25px;height:25px; margin-right:5px;">
 
             <div class="news">公告通知</div>
             <select name="TYPE" class="button1" style="float: left;" id="select">
@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div style="font-size: 15px; margin-left:28px; ">日期 :</div>
                 <input class="button1" id="sendTime">
             </div>
-            <img  class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
+            <img  style="width:55px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
         </div>
 
 
@@ -172,7 +172,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                        <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
 	                             src="../img/06.png " alt=""/>
 	                    </td>
-	                    <td class="th">查看详情</td>
+	                    <td class="th">发布范围</td>
 	                    <td class="th">类型</td>
 	                    <!-- <td class="th">发布部门</td> -->
 	                </tr>
@@ -188,10 +188,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!--footer部分开始-->
     <div class="footer w clearfix">
-         <!-- <div>快捷操作:</div>
+        <div>快捷操作:</div>
         <div class="read">
-        <img src="../img/read.png" alt=""/>  
-        </div>--> 
+            <img src="../img/read.png" alt=""/>
+        </div>
 
     </div>
     </div>
@@ -298,7 +298,7 @@ $(function () {
                                news += "<tr><td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
                                        "<td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
                                        "<td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].sendTime+"</ a></td>"+
-                                       "<td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+'详情'+"</ a></td>"+
+                                       "<td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].toId+"</ a></td>"+
                                        "<td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
                                        +news;
                            }
@@ -310,8 +310,8 @@ $(function () {
             
             /* 新闻详情页 */
                $("#j_tb").on('click','.windowOpen',function(){
-		            var nid=$(this).attr('notifyId');
-		            $.popWindow('detail?notifyId='+nid);
+		            var nid=$(this).attr('newsId');
+		            $.popWindow('detail?newsId='+nid);
 		        });
         		$('.submit').click(function (){
 					data.read = $('.index_head .one').parent().attr('data_id');
@@ -343,7 +343,7 @@ $(function () {
    //时间控件调用
    var start = {
      elem: '#beginTime',
-     format: 'YYYY-MM-DD hh:mm:ss',
+     format: 'YYYY/MM/DD hh:mm:ss',
     /* min: laydate.now(), //设定最小日期为当前日期*/
     /* max: '2099-06-16 23:59:59', //最大日期*/
      istime: true,
@@ -355,7 +355,7 @@ $(function () {
    };
    var end = {
      elem: '#endTime',
-     format: 'YYYY-MM-DD hh:mm:ss',
+     format: 'YYYY/MM/DD hh:mm:ss',
      /*min: laydate.now(),*/
      /*max: '2099-06-16 23:59:59',*/
      istime: true,

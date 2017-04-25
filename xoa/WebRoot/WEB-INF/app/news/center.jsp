@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <img src="../img/01.png">
+            <img src="../img/01.png" style="width:28px;height:28px; margin-right:5px;">
 
             <div class="news">全部新闻</div>
             <select name="TYPE" class="button1" style="float: left;" id="select">
@@ -147,7 +147,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div style="font-size: 15px; margin-left:28px; ">日期 :</div>
                 <input class="button1" id="sendTime">
             </div>
-            <img  class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
+            <img style="width:55px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
         </div>
 
 
