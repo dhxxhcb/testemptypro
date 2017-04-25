@@ -376,8 +376,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		})
 			
 				$('.liSearch').click(function(){
-	    			var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
-	    			$('.page_right').css('display','none');
+	    			var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="mailQuery" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+	    			$('.up_page_right').css('display','none');
 	    			$('.page').append(Ifrmae);
 	    		})
 				
@@ -416,7 +416,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#hasBeenSend').click(function(){
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
 					showAjax("outbox");
-					$('.main_left').on('click','.BTN',function(){
+					/* $('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
 						//alert(nId);
 						//init2(nId,'#TAB','.article1');
@@ -446,7 +446,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								}
 					});
 						
-					})
+					}) */
 					
 				})
 				
@@ -454,7 +454,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('.wastebasket').css('display','block').siblings().css('display','none');
 					showAjax("recycle");
 					
-					$('.main_left').on('click','.BTN',function(){
+					/* $('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
 						//alert(nId);
 						//init2(nId,'#TAB','.article1');
@@ -484,7 +484,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								}
 					});
 						
-					})
+					}) */
 					
 				})
 				
