@@ -748,7 +748,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						url:'department/getChDept',
 						type:'get',	
 						data:{
-							
+							deptId:0
 						},		
 						dataType:'json',
 						success:function(obj){ 

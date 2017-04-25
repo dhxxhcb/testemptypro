@@ -742,4 +742,8 @@ public class EmailController {
 	public String emailIndex(){
 		return "app/email/index";
 	}
+	@RequestMapping("/mailQuery")
+	public String mailQuery(){
+		return "app/email/mailQuery";
+	}
 }
