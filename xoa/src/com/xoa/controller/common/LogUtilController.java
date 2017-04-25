@@ -1,4 +1,4 @@
-package com.xoa.controller.diary;
+package com.xoa.controller.common;
 
 import java.util.ArrayList;
 import java.util.HashMap;

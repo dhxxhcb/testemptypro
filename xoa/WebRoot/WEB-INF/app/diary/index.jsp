@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1"/>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/diary/style.css"/>
     <!--[if lte IE 8]>
     <script type="text/javascript" src="../js/ccorrect_btn.js"></script>
     <![endif]-->
@@ -34,10 +34,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </script>
 </head>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../css/diary.css">
+<link rel="stylesheet" type="text/css" href="../css/diary/diary.css">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.tag.css">
 <link rel="stylesheet" type="text/css" href="../css/jquery.ux.calendar.css">
-<link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/diary/index.css">
 
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -756,13 +756,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div style="display:none">
     <textarea id="TD_HTML_EDITOR_" name="TD_HTML_EDITOR_" rows="8" cols="60"></textarea>
     <script type="text/javascript">//<![CDATA[
-    window.UEDITOR_CONFIG = {"UEDITOR_HOME_URL": "\/module\/ueditor\/"};
+    window.UEDITOR_CONFIG = {"UEDITOR_HOME_URL": "\/lib\/ueditor\/"};
     //]]></script>
     <script type="text/javascript">//<![CDATA[
     window.HTML_MODEL_TYPE = '';
     //]]></script>
-    <script type="text/javascript" src="../js/ueditor.config.min.js"></script>
-    <script type="text/javascript" src="../js/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="../lib/ueditor/ueditor.config.min.js"></script>
+    <script type="text/javascript" src="../lib/ueditor/ueditor.all.min.js"></script>
     <script type="text/javascript">//<![CDATA[
     UE.dom.domUtils.on(window, 'load', function () {
         var ue = UE.getEditor('TD_HTML_EDITOR_', {

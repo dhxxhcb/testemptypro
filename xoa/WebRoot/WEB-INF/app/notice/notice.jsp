@@ -294,8 +294,9 @@ $(function () {
 					success: function(data){
 						console.log(data);
 						var news = "";
+					
                            for (var i = 0; i < data.obj.length; i++) {
-                               news = "<tr><td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
+                               news += "<tr><td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
                                        "<td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
                                        "<td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].sendTime+"</ a></td>"+
                                        "<td><a href='' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].toId+"</ a></td>"+

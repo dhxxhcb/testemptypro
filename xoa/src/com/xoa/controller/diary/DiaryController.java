@@ -18,7 +18,19 @@ import com.xoa.util.ToJson;
 public class DiaryController {
 	@Resource
 	DiaryService diaryService;
-	
+	/**
+	 * 
+	 * 创建作者:  朱振宇
+	 * 创建日期:  2017-4-24 下午7:27:20
+	 * 方法介绍:  主页面
+	 * 参数说明:  @return
+	 * @return    String
+	 */
+	@RequestMapping("/index")
+	public String clickNews() {
+		return "/app/diary/index";
+	}
+
 	
 	/**
 	 * 
