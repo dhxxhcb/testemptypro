@@ -147,10 +147,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
         <div class="right">
-
             <!-- 分页按钮-->
-            <ul class="page" maxshowpageitem="0" pagelistcount="1" id="page"></ul>
-
+            <div class="M-box3"></div>
         </div>
 
     </div>
@@ -180,6 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          
                 	                                                            
                 </tbody>
+                
             </table>
         </div>
 
@@ -189,10 +188,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!--footer部分开始-->
     <div class="footer w clearfix">
-        <div>快捷操作:</div>
-        <div class="read">
-            <img src="../img/read.png" alt=""/>
-        </div>
+        <div><input name="" type="checkbox" value="" />全选</div>
+        <div>删除所选新闻</div>
+        <div>查阅情况</div>
+        <div>取消置顶</div>
+        <div>删除全部新闻</div>
+        <div>终止所选新闻</div>
+        <div>生效所选新闻</div>
 
     </div>
     </div>
@@ -259,13 +261,16 @@ $(function () {
 				useFlag:true,
 				newsTime:'',
 				lastEditTime:'',
-				content:'',	
+				content:'',
 				subject:'',
 				typeId:0
 
             };
-           initPageList();
-
+           initPageList(function(pageCount){
+           		 initPagination(pageCount,data.pageSize);
+           });
+          
+		  
            $(".index_head li").click(function (){
 				console.log('qqq');
                 $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
@@ -274,11 +279,11 @@ $(function () {
 				data.typeId = $('#select').val()==0?'':$('#select').val();
 				data.nTime = $('#sendTime').val();
 				console.log(data);
-				if(data.read == ''||data.read == 0){
+				if(data.read == ''){
 					$('.step1').show();
 					$('.center').hide();
 					initPageList();
-				}else if(data.read == 1){
+				}else if(data.read == 1 || data.read == 0){
 					$('.step1').hide();
 					$('.center').show('');
 					$('#subject').val('');
@@ -288,8 +293,8 @@ $(function () {
 					$('#content').val('');
 				}
 				
-            })
-            function initPageList(read,typeId,nTime){
+            });
+            function initPageList(cb){
             	$.ajax({
 					type: "get",
 					url: "<%=basePath%>news/showNewsManage",
@@ -299,29 +304,52 @@ $(function () {
 						console.log(data);
 						var news = "";
                            for (var i = 0; i < data.obj.length; i++) {
-                           		 news = "<tr><td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>不确定</a></td>"+//选择
-                               		   "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].providerName+"</a></td>"+//发布人
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].typeName+"</a></td>"+//类型
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].depName+"</a></td>"+//发布范围
+                               	 news = "<tr><td><input name='' type='checkbox' value=''/></td>"+//选择
+                               		   "<td>"+data.obj[i].providerName+"</td>"+//发布人
+                                       "<td>"+data.obj[i].typeName+"</td>"+//类型
+                                       "<td>"+data.obj[i].depName+"</td>"+//发布范围
                                        "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</a></td>"+//标题
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].newsTime+"</a></td>"+//发布时间
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].clickCount+"</a></td>"+//点击数
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>不确定</a></td>"+//评论（条）
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>不确定</a></td>"+//状态
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>不确定</a></td>"+//操作
+                                       "<td>"+data.obj[i].newsTime+"</td>"+//发布时间
+                                       "<td>"+data.obj[i].clickCount+"</td>"+//点击数
+                                       "<td>"+data.obj[i].newsId+"</td>"+//评论（条）
+                                       "<td>"+"生效</td>"+//状态
+                                       "<td>"+"不确定</td>"+//操作
                                        news;
-                               }
-						
+                           }
+                           
+							
 						$("#j_tb").html(news);
+						if(cb){
+							cb(data.totleNum);
+						}
 					}   
 				})
             }
-            
+            function initPagination(totalData,pageSize){
+            	console.log(totalData+'---'+pageSize);
+            	$('.M-box3').pagination({
+							    totalData:totalData,
+							    showData:pageSize,
+							    jump:true,
+							    coping:true,
+							    homePage:'<fmt:message code="global.page.first" />',
+							    endPage:'<fmt:message code="global.page.last" />',
+							    prevContent:'<fmt:message code="global.page.pre" />',
+							    nextContent:'<fmt:message code="global.page.next" />',
+							    jumpBtn:'<fmt:message code="global.page.jump" />',
+							    callback:function(index){
+							    	data.page = index.getCurrent();
+							    	console.log(index.getCurrent());
+							    	initPageList();
+							    }
+							});
+            }
             /* 新闻详情页 */
                $("#j_tb").on('click','.windowOpen',function(){
 		            var nid=$(this).attr('newsId');
 		            $.popWindow('detail?newsId='+nid);
 		        });
+		        /* 新闻查询按钮 */
         		$('.submit').click(function (){
 					data.read = $('.index_head .one').parent().attr('data_id');
 					data.typeId = $('#select').val();
