@@ -71,7 +71,7 @@
 			<if test="content != null and content != ''">
 				AND CONTENT like CONCAT('%',#{content},'%')
 			</if>
-		ORDER BY NEWS_ID DESC
+		ORDER BY NEWS_TIME ASC
 	</select>
 	<!-- 查询新闻管理信息并返回 列表 -->
 	<select id="selectNewsManage" parameterType="Map" resultMap="BaseResultMap">
@@ -106,6 +106,7 @@
 				test="clickCount != null and clickCount != '' and click != null and click != ''">
 				AND CLICK_COUNT between #{clickCount} and #{click}
 			</if>
+			ORDER BY NEWS_TIME ASC
 	</select>
 	<!-- 查询未读已读信息并返回 列表 -->
 	<select id="unreadNews" parameterType="Map" resultMap="BaseResultMap">
@@ -135,7 +136,7 @@
 				AND CONTENT like CONCAT('%',#{content},'%')
 			</if>
 		
-		ORDER BY NEWS_ID DESC
+		ORDER BY NEWS_TIME ASC
 	</select>
 
 	<!-- 查询未读已读信息并返回 列表 -->
@@ -166,7 +167,7 @@
 				AND CONTENT like CONCAT('%',#{content},'%')
 			</if>
 		
-		ORDER BY NEWS_ID DESC
+		ORDER BY NEWS_TIME ASC
 	</select>
 
 	<select id="showAllCountNews" parameterType="com.xoa.model.worldnews.News"

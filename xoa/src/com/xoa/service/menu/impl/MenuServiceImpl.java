@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import com.xoa.dao.menu.MobileAppMapper;
 import com.xoa.dao.menu.SysFunctionMapper;
 import com.xoa.dao.menu.SysMenuMapper;
@@ -40,11 +41,21 @@ public class MenuServiceImpl implements MenuService {
 	 * @return     List<SysMenu>
 	 */
    @Override
-	public List<SysMenu> getAll() {
+	public List<SysMenu> getAll(String locale) {
 		List<SysMenu> list=sysMenuMapper.getDatagrid();
 	  for (SysMenu sysMenu : list) {
+		  if (locale.equals("zh_CN")) {
+			  sysMenu.setName(sysMenu.getName());
+		}else if (locale.equals("en_US")) {
+			sysMenu.setName(sysMenu.getName1());
+		}
 		  List<SysFunction> list1=sysFunctionMapper.getDatagrid(sysMenu.getId());
 		  for (SysFunction sysFunction : list1) {
+			  if (locale.equals("zh_CN")) {
+				  sysFunction.setName(sysFunction.getName());
+			}else if (locale.equals("en_US")) {
+				sysFunction.setName(sysFunction.getName1());
+			}
 			  List<SysFunction> list2=sysFunctionMapper.childMenu(sysFunction.getId());
 			  sysFunction.setChild(list2);
 		}

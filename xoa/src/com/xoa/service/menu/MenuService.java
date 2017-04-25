@@ -28,7 +28,7 @@ public interface MenuService {
 	 * @return     List<SysMenu>
 	 */
 	@DynDatasource
-	public List<SysMenu> getAll();
+	public List<SysMenu> getAll(String locale);
 	
 	/**
 	 * 
