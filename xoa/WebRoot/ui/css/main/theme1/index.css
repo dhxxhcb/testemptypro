@@ -57,10 +57,11 @@ body,
 	width:15%;
 }
 .head_mid ul li img{
-	margin-top: 16%;
-    width: 40%;
-    height: 19%;
-    margin-left: 43%
+	margin-top: 90%;
+    width: 52%;
+    height: 24%;
+    /* margin-left: -106%; */
+    margin-right: 9%;
 }
 .head_rig{
 	width:21%;
@@ -157,12 +158,17 @@ body,
 .main_title{
 	    width: 96%;
 	    height:100%;
+	    /*  position:resolute; */
+    	z-index:9;
+    	overflow:hidden;
 }
 .left_scroll,.right_scroll{
 	width: 2%;
     height: 38%;
     margin-top: 42px;
     background: red;
+    position:resolute;
+    z-index:999;
 }
 .left_scroll{
 	background: url(../../../img/main_img/tabs_arrow.png) 0px 0px no-repeat;
@@ -221,11 +227,8 @@ body,
 	background: url(../../../img/main_img/blue_hua.png) 0px 0px no-repeat;
 	    color: #fff !important;
 }
-/* .all_ul div{
-	width:100%;
-} */
 .two_all{
-	width:72%;
+	width:100%;
 	height:100%;
 }
 .one{

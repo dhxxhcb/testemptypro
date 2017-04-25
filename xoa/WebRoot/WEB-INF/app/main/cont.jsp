@@ -13,8 +13,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title></title>
-	<link rel="stylesheet" type="text/css" href="css/index.css"/>
-	<link rel="stylesheet" type="text/css" href="css/m_reset.css"/>
+	<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+	<link rel="stylesheet" type="text/css" href="css/main/theme1/m_reset.css"/>
 	<style>
 		@import url(m_reset.css);
 html,

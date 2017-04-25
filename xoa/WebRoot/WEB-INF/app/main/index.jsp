@@ -15,6 +15,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		
+		<link rel="stylesheet" type="text/css" href="css/main/theme1/bootstrap-responsive.min.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="css/main/theme1/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/main/theme1/index.css"/>
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>  
 		<script type="text/javascript" src="js/main_js/index.js"></script>  
@@ -30,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="left_scroll"></div>
 					<ul class="main_title">
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
-						<li class="gongzuoliu" id='t_0'><div class="img"><img class="close" src="img/main_img/icon.png"></div><h1>我的桌面</h1></li>
+						<li class="gongzuoliu" left='0' id='t_0'><div class="img"><img class="close" src="img/main_img/icon.png"></div><h1>我的桌面</h1></li>
 					</ul>
 					<div class="right_scroll"></div>
 				</div>
@@ -60,27 +64,87 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</ul>
 						
 							<ul class="tab_ctwo a" style="display:none;">
-								
-								 <div class="person">
-									<img class="person_logo" src="img/main_img/zhishi.png">
-									<h1>知识管理</h1>
-									<img style="" src="img/main_img/down.png" class="person_down">
-								</div>
-								<div class="person">
-									<img class="person_logo" src="img/main_img/renli.png">
-									<h1>人力资源</h1>
-									<img src="img/main_img/down.png" class="person_down">
-								</div>
-								<div class="person">
-									<img class="person_logo" src="img/main_img/xingzheng.png">
-									<h1>行政办公</h1>
-									<img src="img/main_img/down.png" class="person_down">
-								</div>
-								<div class="person">
-									<img class="person_logo" src="img/main_img/xiangmu.png">
-									<h1>项目管理</h1>
-									<img src="img/main_img/down.png" class="person_down">
-								</div>
+								<li>
+									<span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="中国兵器工业集团">中国兵器工业集团</a></span>
+									<ul style="margin-left:10%;">
+										<li><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="中国兵器工业信息中心">中国兵器工业信息中心</a></span>
+											<ul style="margin-left:10%;">
+												<li><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="北京通达信科科技有限公司">北京通达信科科技有限公司</a></span>
+													<ul style="margin-left:10%;">
+														<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="总经理">总经理</a></span>
+															<ul style="margin-left:10%;">
+																<li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="综合管理部">综合管理部</a></span>
+																	<ul style="margin-left:10%;">
+																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="人力资源部">人力资源部</a></span>
+																		</li>
+																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="财务部">财务部</a></span>
+																		</li>
+																		<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="行政部">行政部</a></span>
+																		</li>
+																	</ul>
+																</li>
+																<li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="市场营销部">市场营销部</a></span>
+																	<ul style="margin-left:10%;">
+																		<li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="市场部">市场部</a></span>
+																			<ul style="display: none;">
+																				<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="品牌部">品牌部</a></span>
+																				</li>
+																				<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="网络营销中心">网络营销中心</a></span>
+																				</li>
+																				<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="商务中心">商务中心</a></span>
+																				</li>
+																			</ul>
+																			</li>
+																			<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="销售部">销售部</a></span>
+																			</li>
+																	</ul>
+																</li>
+																<li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="研发部">研发部</a></span>
+																	<ul style="margin-left:10%;">
+																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="产品部">产品部</a></span>
+																		</li>
+																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="开发一部">开发一部</a></span>
+																		</li>
+																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="开发二部">开发二部</a></span>
+																		</li>
+																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="质量保证部">质量保证部</a></span>
+																		</li>
+																		<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="设计部">设计部</a></span>
+																		</li>
+																	</ul>
+																</li>
+																<li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="项目部">项目部</a></span>
+																	<ul style="margin-left:10%;">
+																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="项目一部">项目一部</a></span>
+																		</li>
+																		<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="项目二部">项目二部</a></span>
+																		</li>
+																	</ul>
+																</li>
+																<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="生产部">生产部</a></span>
+																	<ul style="margin-left:10%;">
+																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="采购部">采购部</a></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="生产一部">生产一部</a></span>
+																		</li>
+																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="生产二部">生产二部</a></span>
+																		</li>
+																		<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="质检部">质检部</a></span>
+																		</li>
+																	</ul>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="北方测试研究公司">北方测试研究公司</a></span>
+											<ul style="margin-left:10%;">
+												<li><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="北一测试研究院">北一测试研究院</a></span></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							
 							</ul>
 							
 						</div>
@@ -129,9 +193,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"notify_show":"notice/index",
 				"news_show":"news/index",
 				"file_folder/index2.php":"fileHome",
-				"system/file_folder":"showFileBySort_id",
-				"diary_show":"diary/index",
-				"news_manage":"news/manage"
+				"system/file_folder":"showFileBySort_id"
 			}
 			
 			$('.cont_nav').on('click','li',function(){
@@ -175,6 +237,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$('#theme').on('mouseout',function(){
 				$(this).css('background','url(img/main_img/right_one.png)  -233px 0px no-repeat')
 			});
+			
 			
 			
 		//底部文字滚动
@@ -454,7 +517,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						deptId:0
 			};
 			//init_orgnize()方法
-			function init_orgnize(){
+			/* function init_orgnize(){
 			
 				 $.ajax({
 					url:'department/getChDept',
@@ -477,7 +540,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				
 			}
-			init_orgnize();
+			init_orgnize(); */
 			//组织二级
 			var data1 = {
 						deptId:1
@@ -486,7 +549,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						deptId:2
 				};
 				
-			$(".tab_cone").on('click','.orangize_one:nth-child(2)',function(){
+	/* 		$(".tab_cone").on('click','.orangize_one:nth-child(2)',function(){
 				 
 					  $.ajax({
 							url:'department/getChDept',
@@ -503,8 +566,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 								 $(".tab_cone li:eq(0) .ul_two").html(li_two);
 								/* $('.orangize_one').find('.ul_two').html(li_two); */
-							}
-					}); 
+					/* 		}
+					});  */
 					
 				 	
 					/* init_orgnize();
@@ -520,11 +583,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}else{
 						$('.ul_two li').hide();
 					} */
-			});
+	/* 		}); */
 			
 			//第二个二级
 			
-				$(".tab_cone").on('click','.orangize_one:nth-child(2)',function(){
+			/* 	$(".tab_cone").on('click','.orangize_one:nth-child(2)',function(){
 				 
 					  $.ajax({
 							url:'department/getChDept',
@@ -541,8 +604,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 								 $(".tab_cone li:eq(0) .ul_two").html(li_two);
 								/* $('.orangize_one').find('.ul_two').html(li_two); */
-							}
-					}); 
+					/* 		}
+					});  */
 					
 				 	
 					/* init_orgnize();
@@ -558,15 +621,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}else{
 						$('.ul_two li').hide();
 					} */
-			});
+			/* }); */
 			//组织三级
 		
-				 $.ajax({
+				/*  $.ajax({
 							url:'department/getChDept',
 							type:'get',	
 							data:data2,		
 							dataType:'json',
-							success:function(obj){
+							success:function(obj){ */
 								/* console.log(obj.obj); */
 							/* 	var data=obj.obj; */
 								/* var li_three=''; */
@@ -575,9 +638,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									li_three='<li><span class="dynatree-expander"></span><a href="#" class="dynatree-title" title="'+data[i].deptName+'">'+data[i].deptName+'</a></span></li>'
 								}
 								$(".tab_cone li:eq(0) .ul_two").html(li_two); */
-							}
+					/* 		}
 					});
-			
+			 */
 						//点击标题栏
 						$('.main_title ').on('click','li',function(){
 							
@@ -651,13 +714,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							$(".tab_t li").removeClass("yingy");
 							$(this).addClass('yingy');
 							 if($(this).attr('id')=='use'){
-								init();
+								/* init(); */
+								$('.tab_cone').css("display","block");
+								$('.tab_ctwo').css("display","none");
 							}else{
-								 init_orgnize(); 
+								$('.tab_cone').css("display","none");
+								$('.tab_ctwo').css("display","block");
 							} 
 							
 					})
-				
+				//向左移动
+				$('.right_scroll').on('click',function(){
+					console.log($('.main_title li').length>=8);
+					if($('.main_title li').length>=8){
+						$('.main_title li').animate({left:"-=100px"});
+					}
+				})
+				//向右移动
+					$('.left_scroll').on('click',function(){
+					console.log($('.main_title li').length>=8);
+					if($('.main_title li').length>=8){
+						$('.main_title li').animate({left:"+=100px"});
+						if($('.main_title li:nth-child(1)').attr('left')==0){
+							$('.main_title li:nth-child(1)').css('left','0px');
+						}
+					}
+				})
 		
 		})
 	</script>
