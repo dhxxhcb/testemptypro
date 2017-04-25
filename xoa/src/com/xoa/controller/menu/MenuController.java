@@ -58,23 +58,48 @@ public class MenuController {
 	String showNew(HttpServletRequest request,HttpServletResponse response) {
 		String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
 		Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
-		L.a(locale.toString());
-		List<SysMenu> munuList = menuService.getAll(locale.toString());
-		String msg;
-		if (munuList.size() > 0) {
-			flag = 0;
-			msg = ok;
-		} else {
-			flag = 1;
-			msg = err;
-		}
+		List<SysMenu>  munuList;
+		try {
+			
+			munuList= menuService.getAll(locale.toString());
+			String msg;
+			if (munuList.size() > 0) {
+				flag = 0;
+				msg = ok;
+			} else {
+				flag = 1;
+				msg = err;
+			}
 
-		ToJson<SysMenu> menuJson = new ToJson<SysMenu>(flag, msg);
-		menuJson.setObj(munuList);
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("showMenu", JSON.toJSONStringWithDateFormat(menuJson,
-				"yyyy-MM-dd HH:mm:ss"));
-		return JSON.toJSONStringWithDateFormat(menuJson, "yyyy-MM-dd HH:mm:ss");
+			ToJson<SysMenu> menuJson = new ToJson<SysMenu>(flag, msg);
+			menuJson.setObj(munuList);
+
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("showMenu", JSON.toJSONStringWithDateFormat(menuJson,
+					"yyyy-MM-dd HH:mm:ss"));
+			return JSON.toJSONStringWithDateFormat(menuJson, "yyyy-MM-dd HH:mm:ss");
+		} catch (Exception e) {
+			
+			munuList= menuService.getAll("zh_CN");
+			String msg;
+			if (munuList.size() > 0) {
+				flag = 0;
+				msg = ok;
+			} else {
+				flag = 1;
+				msg = err;
+			}
+
+			ToJson<SysMenu> menuJson = new ToJson<SysMenu>(flag, msg);
+			menuJson.setObj(munuList);
+
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("showMenu", JSON.toJSONStringWithDateFormat(menuJson,
+					"yyyy-MM-dd HH:mm:ss"));
+			return JSON.toJSONStringWithDateFormat(menuJson, "yyyy-MM-dd HH:mm:ss");
+		}
+	
+		
 	}
 
 	
