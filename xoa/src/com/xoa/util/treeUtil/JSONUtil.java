@@ -158,7 +158,7 @@ public class JSONUtil{
                         key = key.substring(0, 1).toLowerCase() +
                             key.substring(1);
                     }
-                    Object elementObj = method.invoke(bean, null);
+                    Object elementObj = method.invoke(bean,null);
                     if(!useClassConvert && elementObj instanceof Class)
                         continue;
 

@@ -245,9 +245,17 @@ public class FileController {
 			throws UnsupportedEncodingException {
 		Map<String, Object> model = null;
 		ModelAndView modelAndView = null;
-		if (file.getSortNo() == null || "".equals(file.getSortNo())) {
+		if("".equals(file.getSortNo())||file.getSortNo()==null){
+			
+		if ("".equals(file.getSortName())||file.getSortName()==null) {
 			modelAndView = new ModelAndView("app/file/fileAdd", null);
 			return modelAndView;
+		}
+		
+		if (!"".equals(file.getSortName())||file.getSortName()!=null) {
+			modelAndView = new ModelAndView("app/file/addFile", null);
+			return modelAndView;
+		}
 		}
 		// 乱码处理-----开始
 		System.out.println("--before--------------" + file.getSortName());

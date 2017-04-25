@@ -19,11 +19,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
-<link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
+	<link rel="stylesheet" type="text/css" href="css/cabinet.css">
+
 <script type="text/javascript" src="js/easyui/jquery.min.js"></script>
-<script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="js/easyui/easyui-lang-zh_CN.js"></script>
+
 <style>
 input {
 	border: none;
@@ -41,20 +40,16 @@ input:hover {
 $(function(){
 	$.ajax({
 						type:'post',
-						url:'<%=basePath%>/file/catalog',
+						url:'<%=basePath%>file/catalog',
 						dataType:'json',
 						data:{'sortId':${sortId},'sortType':${sortType},'postType':"1"},
 						success:function(data){
 						var files='';
 							for(var i=0;i<data.length;i++){
 							if(data[i].fileType=="folder"){
-							files+="  <tr><td> <a href=\"${pageContext.request.contextPath }\">"+data[i].sortName+ "  </a></td>  <td>"+data[i].sortNo+ "  </td> <td> "+''+ "  </td><td> "+''+ "  </td></tr>" 
+							files+="  <tr><td><input type=\"checkbox\" name=\"\" value=\"\" > <a href=\"${pageContext.request.contextPath }\">"+data[i].sortName+ "  </a></td>  <td><img src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td> <img src=\"img/file/cabinet8.png\" alt=\"\"/> </td></tr>" 
 							   }else{
-							files+="<tr><td> <a href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"
-							+data[i].subject+
-							"</a></td><td>"+data[i].contentId+ "</td><td>"+data[i].sendTime+ "  </td><td> "
-							+''+ 
-							"</td></tr>" 
+							   files+="  <tr><td><input type=\"checkbox\" name=\"\" value=\"\" > <a href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td> <img src=\"img/file/cabinet8.png\" alt=\"\"/> </td></tr>" 
 							   }
 							}
 							$("#file_Tachr").html(files);
@@ -77,61 +72,63 @@ function openWindow(sHref,strWidth,strHeight) {
 	</script>
 </head>
 
-<body>
-	<form id="form1" action="">
-	<hr>
-		&nbsp;&nbsp; <input style="font-size:12px;height=40;width=160"
-			id="BT_Add" type="button" value="+ 新建文件" name="BT_new"
-			onclick="openWindow('${pageContext.request.contextPath }','700','500')" />&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp; <input style="font-size:12px;height=40;width=160"
-			id="BT_Upload" type="button" value="+ 批量上传" name="BT_new"
-			onclick="openWindow('${pageContext.request.contextPath }','700','500')" />&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp; <input style="font-size:12px;height=40;width=160"
-			id="BT_Select" type="button" value="查询" name="BT_new"
-			onclick="openWindow('${pageContext.request.contextPath }','700','500')" />&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp; <input style="font-size:12px;height=40;width=160;"
-			id="BT_AllSelect" type="button" value="全局搜索" name="BT_new"
-			onclick="openWindow('${pageContext.request.contextPath }','700','500')" />&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;
-		<div style="padding:5px;width:110px;display:inline-block;">
-			<a href="#" class="easyui-menubutton"
-				data-options="menu:'#mm1',iconCls:'icon-edit'">文件夹操作</a>
-		</div>
-		<div id="mm1" style="width:150px;">
-			<div data-options="iconCls:'icon-add'">新增子文件夹</div>
-			<div data-options="iconCls:'icon-remove'">删除目录</div>
-			<div class="menu-sep"></div>
-			<div>设置权限</div>
-			<div class="menu-sep"></div>
-			<div>
-				<span>编辑文件夹</span>
-				<div style="width:150px;">
-					<div>编辑</div>
-					<div>复制</div>
-					<div>剪切</div>
-				</div>
-			</div>
-		</div>
-	<br>
-	<hr>
-	<span>${text}</span>
-	<hr>
-	<br>
-</form>
-<table id="file_Ta" class="w" border="0">
+<body style="background-color: #EBEBEB">
+<div class="head w clearfix">
+    <div> <a href="#"><img src="img/file/cabinet01.png" alt="新建文件"/></a></div>
+    <div> <a href="#"><img src="img/file/cabinet02.png" alt="批量上传"/></a></div>
+    <div> <a href="#"><img src="img/file/cabinet03.png" alt="查询"/></a></div>
+    <div> <a href="#"><img src="img/file/cabinet04.png" alt="全局搜索"/></a></div>
+</div>
+<!--middle部分开始-->
+<div class="w">
+    <div class="wrap">
+        <table class="w">
             <thead>
             <tr>
-                <td class="th">--------文件名称-------------------</td>
-                <td class="th">-----------排序号-----------</td>
-                <td class="th" >-----------发布时间-----------</td>
-                <td class="th">--------操作--------</td>
+                <td class="th">文件 名称</td>
+                <td class="th">附件</td>
+                <td class="th" style="position: relative">
+                    发布时间
+                    <img style="position: absolute;margin-left:9px;cursor: pointer;" src="img/file/cabinet05.png" alt=""/>
+                    <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
+                         src="img/file/cabinet06.png " alt=""/>
+                </td>
+                <td class="th" style="position: relative">
+                    排序号
+                    <img style="position: absolute;margin-left:9px;cursor: pointer;" src="img/file/cabinet05.png" alt=""/>
+                    <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
+                         src="img/file/cabinet06.png " alt=""/>
+                </td>
+                <td class="th">操作</td>
             </tr>
             </thead>
             <tbody id="file_Tachr">
-            
             </tbody>
         </table>
-        
-	
+    </div>
+</div>
+	<!--bottom 部分开始-->
+<div class="bottom w">
+    <div>
+        <input type="checkbox" name="" value="" >
+        全选
+
+    </div>
+    <div>
+        <img src="img/file/cabinet9.png" alt=""/>
+    </div>
+    <div>
+        <img src="img/file/cabinet10.png" alt=""/>
+    </div>
+    <div>
+        <img src="img/file/cabinet11.png" alt=""/>
+    </div>
+    <div>
+        <img src="img/file/cabinet12.png" alt=""/>
+    </div>
+
+</div>
+
+<!--bottom 部分结束-->
 </body>
 </html>
