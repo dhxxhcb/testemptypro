@@ -56,6 +56,7 @@ public class NotifyController {
 	public String manage() {
 		return "app/notice/administration";
 	}
+
 	/**
 	 * 
 	 * 创建作者:   张丽军
