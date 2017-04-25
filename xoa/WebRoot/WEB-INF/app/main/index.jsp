@@ -742,7 +742,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					}
 				})
-				function get(){
+				function getChDept(){
+					$.ajax({
+						
+					})
 				}
 		
 		});
