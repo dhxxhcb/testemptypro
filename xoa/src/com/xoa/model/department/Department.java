@@ -93,9 +93,17 @@ public class Department {
     
     private String userPrivName;
     
+    private String type;
     
-    
-    public String getAvatar() {
+    public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getAvatar() {
 		return avatar;
 	}
 
