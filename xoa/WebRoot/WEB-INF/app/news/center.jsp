@@ -210,7 +210,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            </div>
 	            <div class="le subject">
 	                <div class="color">标题：</div>
-	                <div><input id="subject" style="height:26px;width:279px;margin-left:69px;margin-right: 15px;" type="text"/></div>
+	                <div><input id="subject_query" style="height:26px;width:279px;margin-left:69px;margin-right: 15px;" type="text"/></div>
 	            </div>
 				<div class="le date">
 	                <div class="color">发布日期：</div>
@@ -221,7 +221,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           	<div class="le ce1">
 	                <div class="color">类型：</div>
 	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select">
+		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select_query">
 							<option value="0" selected="">所有类型</option>
 							<option value="01">公司动态</option>
 							<option value="02">媒体关注</option>
@@ -353,10 +353,10 @@ $(function () {
   
    $('#btn_query').click(function (){
 		
-		data.subject = $('#subject').val();
+		data.subject = $('#subject_query').val();
 		data.beginTime = $('#beginTime').val();
 		data.endTime = $('#endTime').val();
-		data.typeId =  $('#select').val()==0?'':$('#select').val();
+		data.typeId =  $('#select_query').val()==0?'':$('#select_query').val();
 		data.content = $('#content').val();
 		initPageList();
 		$('.step1').show();
@@ -372,7 +372,7 @@ $(function () {
    //时间控件调用
    var start = {
      elem: '#beginTime',
-     format: 'YYYY/MM/DD hh:mm:ss',
+     format: 'YYYY-MM-DD hh:mm:ss',
     /* min: laydate.now(), //设定最小日期为当前日期*/
     /* max: '2099-06-16 23:59:59', //最大日期*/
      istime: true,
@@ -384,7 +384,7 @@ $(function () {
    };
    var end = {
      elem: '#endTime',
-     format: 'YYYY/MM/DD hh:mm:ss',
+     format: 'YYYY-MM-DD hh:mm:ss',
      /*min: laydate.now(),*/
      /*max: '2099-06-16 23:59:59',*/
      istime: true,
