@@ -279,5 +279,28 @@ public class UsersController {
         return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
     }
 	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月25日 上午10:17:54
+	 * 方法介绍:   根据uid查询用户姓名、部门、角色信息
+	 * 参数说明:   @param uid  用户uid
+	 * 参数说明:   @return
+	 * @return     String 返回用户信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/user/getByUid" ,produces = {"application/json;charset=UTF-8"})
+    public String getByUid(int uid) {
+		ToJson<Users> json=new ToJson<Users>(0, null);
+		try {
+			Users user=usersService.getByUid(uid);  
+			json.setObject(user);
+            json.setMsg("OK");
+            json.setFlag(0);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+			System.out.println(e.getMessage());
+		}
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
 	
 }

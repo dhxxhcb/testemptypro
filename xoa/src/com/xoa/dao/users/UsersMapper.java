@@ -138,11 +138,19 @@ public interface UsersMapper {
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月21日 上午10:56:22
-	 * 方法介绍:   格局部门编号查询用户信息
+	 * 方法介绍:   根据部门编号查询用户信息
 	 * 参数说明:   @param maps 集合（封装部门编号）
 	 * 参数说明:   @return
 	 * @return     List<Users> 返回部门信息
 	 */
 	public List<Users> getByDeptId(Map<String,Object> maps);
 
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月25日 上午10:03:52
+	 * 方法介绍:   根据uid查询用户姓名、部门、角色信息
+	 * 参数说明:   @return
+	 * @return     User
+	 */
+	public Users getByUid(int uid);
 }

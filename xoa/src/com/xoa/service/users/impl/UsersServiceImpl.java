@@ -184,6 +184,21 @@ public class UsersServiceImpl implements UsersService {
 		maps.put("page", pageParams);
 		return usersMapper.getByDeptId(maps);
 	}
+	
+
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月21日 上午11:00:05
+	 * 方法介绍:   根据uid查询用户姓名、部门、角色信息
+	 * 参数说明:   @param uid  用户uid
+	 * 参数说明:   @return
+	 * @return     Users  返回用户信息
+	 */
+	@Override
+	public Users getByUid(int uid) {
+		Users users=usersMapper.getByUid(uid);
+		return users;
+	}
 
 
 }

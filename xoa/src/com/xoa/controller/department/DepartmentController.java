@@ -198,14 +198,12 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/department/getChDept",produces = {"application/json;charset=UTF-8"})
-    public String getChDept(HttpServletRequest request,Map<String, Object> maps,Integer page,
-			Integer pageSize, boolean useFlag) {
+    public String getChDept(HttpServletRequest request) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String deptId=new String(request.getParameter("deptId").getBytes("ISO-8859-1"),"UTF-8");
-			maps.put("deptId", deptId);
-			List<Department> list=departmentService.getChDept(maps,page,pageSize,useFlag);
+			int deptId=Integer.parseInt(new String(request.getParameter("deptId").getBytes("ISO-8859-1"),"UTF-8"));
+			List<Department> list=departmentService.getChDept(deptId);
             json.setObj(list);
             json.setMsg("OK");
             json.setFlag(0);
@@ -250,6 +248,63 @@ public class DepartmentController {
         return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
     }
 	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月24日 下午8:58:05
+	 * 方法介绍:   根据部门排序号获得部门信息接口
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @param maps 集合
+	 * 参数说明:   @param page 当前页面
+	 * 参数说明:   @param pageSize 页面大小
+	 * 参数说明:   @param useFlag 是否开启分页
+	 * 参数说明:   @return
+	 * @return     String  返回部门信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/department/getChDeptByNo",produces = {"application/json;charset=UTF-8"})
+    public String getChDeptByNo(HttpServletRequest request,Map<String, Object> maps,Integer page,
+			Integer pageSize, boolean useFlag) {
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		try {
+			request.setCharacterEncoding("UTF-8");
+			String deptNo=new String(request.getParameter("deptNo").getBytes("ISO-8859-1"),"UTF-8");
+			maps.put("deptNo", deptNo);
+			List<Department> list =new ArrayList<Department>();
+		    list=departmentService.getChDeptByNo(deptNo, list);
+            json.setObj(list);
+            json.setMsg("OK");
+            json.setFlag(0);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
+	
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月25日 下午2:12:15
+	 * 方法介绍:   获取当前部门下子部门与部门人员
+	 * 参数说明:   @param request
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/department/getChDeptUser",produces = {"application/json;charset=UTF-8"})
+    public String getChDeptUser(HttpServletRequest request) {
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		try {
+			request.setCharacterEncoding("UTF-8");
+			int deptId=Integer.parseInt(new String(request.getParameter("deptId").getBytes("ISO-8859-1"),"UTF-8"));
+			List<Department> list=departmentService.getChDeptUser(deptId);
+            json.setObj(list);
+            json.setMsg("OK");
+            json.setFlag(0);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
 	
 	
 	 /**

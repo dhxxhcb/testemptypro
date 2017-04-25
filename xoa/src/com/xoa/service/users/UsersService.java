@@ -137,6 +137,16 @@ public interface UsersService {
 	 */
 	@DynDatasource
 	public List<Users> getByDeptId(Map<String,Object> maps, Integer page,
-			Integer pageSize, boolean useFlag);
+			Integer pageSize, boolean useFlag);	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月25日 上午10:06:33
+	 * 方法介绍:   根据uid查询用户姓名、部门、角色信息
+	 * 参数说明:   @param uid 用户uid
+	 * 参数说明:   @return
+	 * @return     Users 返回用户信息
+	 */
+	@DynDatasource
+	public Users getByUid(int uid);
 
 }

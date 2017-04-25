@@ -1,7 +1,6 @@
 package com.xoa.service.department;
 
 import java.util.List;
-import java.util.Map;
 
 import com.xoa.model.department.Department;
 import com.xoa.util.dataSource.DynDatasource;
@@ -99,8 +98,7 @@ public interface DepartmentService {
 	 * @return     List<Department>  部门集合
 	 */
 	@DynDatasource 
-	public List<Department> getChDept(Map<String,Object> maps, Integer page,
-			Integer pageSize, boolean useFlag);	
+	public List<Department> getChDept(int deptId);	
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月21日 下午1:12:18
@@ -110,5 +108,28 @@ public interface DepartmentService {
 	 */
 	@DynDatasource
 	public List<Department> getFatherDept(int deptParent,List<Department> list);
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月24日 下午8:59:24
+	 * 方法介绍:   根据部门排序号获得部门信息接口
+	 * 参数说明:   @param deptNo 部门编号
+	 * 参数说明:   @param list 部门信息
+	 * 参数说明:   @return  
+	 * @return     List<Department>  部门信息
+	 */
+	@DynDatasource
+	public List<Department> getChDeptByNo(String deptNo,List<Department> list);
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月25日 下午2:13:28
+	 * 方法介绍:   获取当前部门下子部门与部门人员
+	 * 参数说明:   @param deptId 部门id
+	 * 参数说明:   @return
+	 * @return     List<Department> 返回部门信息
+	 */
+	@DynDatasource
+	public List<Department> getChDeptUser(int deptId);
 
 }

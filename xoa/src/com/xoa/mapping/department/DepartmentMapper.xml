@@ -27,7 +27,7 @@
 	<select id="getDatagrid" resultMap="DepResultMap">
 		SELECT * from department u 
 	</select>
-	<select id="getChDept" parameterType="Map" 
+	<select id="getChDept" 
 	resultMap="DepResultMap">
 		SELECT DEPT_ID,DEPT_NAME,DEPT_NO from department where DEPT_PARENT=#{deptId}
 	</select>
@@ -35,6 +35,14 @@
 	resultMap="DepResultMap">
 		SELECT * from department where DEPT_ID=#{deptParent}
 	</select>
+	
+	<select id="getChDeptUser" 
+	resultType="java.util.Map">
+		SELECT u.AVATAR as avater,u.USER_NAME as userName,
+		u.UID as uid,u.USER_PRIV_NAME as userPrivName from department d,user u
+		 where d.DEPT_ID=u.DEPT_ID and d.DEPT_ID=#{deptId}
+	</select>
+	
 	<select id="getDeptNameById" resultType="java.lang.String">
 		SELECT DEPT_NAME from department where DEPT_ID=#{deptId}
 	</select>

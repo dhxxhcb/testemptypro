@@ -85,7 +85,49 @@ public class Department {
 	 */
     private String deptFunc;
     
-    private List<Users> users;
+    private String avatar;
+    
+    private String userName;
+    
+    private Integer uid;
+    
+    private String userPrivName;
+    
+    
+    
+    public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public Integer getUid() {
+		return uid;
+	}
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+
+	public String getUserPrivName() {
+		return userPrivName;
+	}
+
+	public void setUserPrivName(String userPrivName) {
+		this.userPrivName = userPrivName;
+	}
+
+	private List<Users> users;
  
     public String getManager() {
         return manager;

@@ -1,7 +1,6 @@
 package com.xoa.dao.department;
 
 import java.util.List;
-import java.util.Map;
 
 import com.xoa.model.department.Department;
 
@@ -95,7 +94,7 @@ public List<Department> getDeptByMany(Department department);
  * 参数说明:   @return
  * @return     List<Department>  返回部门集合
  */
-public List<Department> getChDept(Map<String,Object> maps);
+public List<Department> getChDept(int deptId );
 
 
 /**
@@ -107,4 +106,27 @@ public List<Department> getChDept(Map<String,Object> maps);
  * @return     Department 返回部门信息
  */
 public Department getFatherDept(int deptId);
+
+/**
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月24日 下午8:46:01
+ * 方法介绍:   获得部门
+ * 参数说明:   @param deptNo 部门排序号
+ * 参数说明:   @return
+ * @return     List<Department> 返回部门信息
+ */
+public List<Department> getChDeptByNo(String deptNo);
+
+
+/**
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月25日 下午2:13:28
+ * 方法介绍:   获取当前部门下子部门与部门人员
+ * 参数说明:   @param deptId 部门id
+ * 参数说明:   @return
+ * @return     List<Department> 返回部门编号
+ */
+public List<Department> getChDeptUser(int deptId);
+
+
 }

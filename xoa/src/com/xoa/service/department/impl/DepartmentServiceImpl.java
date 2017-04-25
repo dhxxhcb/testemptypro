@@ -2,7 +2,6 @@ package com.xoa.service.department.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -151,9 +150,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * @return     List<Department>   返回子目录
 	 */
 	@Override
-	public List<Department> getChDept(Map<String,Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) {
-	    List<Department> list=departmentMapper.getChDept(maps);    
+	public List<Department> getChDept(int deptId) {
+	    List<Department> list=departmentMapper.getChDept(deptId);  
+	    
 		return list;
 	}
 
@@ -177,6 +176,54 @@ public class DepartmentServiceImpl implements DepartmentService {
 			return list;
 		}
 		return getFatherDept(dep.getDeptParent(),list);
+	}
+
+
+	public List<Department> getChDeptByNo(String deptNo,List<Department> list){
+		return list;
+//		list=new ArrayList<Department>(); 
+//		List<Department> list1=departmentMapper.getChDeptByNo(deptNo);
+//		if(list!=null){
+//			for( Department d:list1){
+//				list1=new ArrayList<Department>();
+//				list1= departmentMapper.getChDeptByNo(d.getDeptNo());
+//				//d.setChild(list1);
+//			}
+//			return getChDeptByNo(list.get(0).getDeptNo(), list);
+//		}else{
+//			return list;
+//		}		
+	}
+
+
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月25日 下午2:13:28
+	 * 方法介绍:   获取当前部门下子部门与部门人员
+	 * 参数说明:   @param deptId 部门id
+	 * 参数说明:   @return
+	 * @return     List<Department> 返回部门编号
+	 */
+	@Override
+	public List<Department> getChDeptUser(int deptId) {
+		List<Department> list=departmentMapper.getChDept(deptId); 
+		List<Department> list1=departmentMapper.getChDeptUser(deptId);
+		if(list.size()!=0&&list1.size()!=0){
+		for(int i=0;i<list1.size();i++){
+			list.add(list1.get(i));
+		}
+		return list;
+		}
+		if(list.size()!=0&&list1.size()==0){
+			return list;
+		}
+		if(list.size()==0&&list1.size()!=0){
+			return list1;
+		}
+		if(list.size()==0&&list1.size()==0){
+			return null;
+		}
+		return null;
 	}
 	
 
