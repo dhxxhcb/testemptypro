@@ -742,9 +742,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					}
 				})
-				function getChDept(){
+				function getChDept(deptId){
 					$.ajax({
-						
+						url:'department/getChDept',
+						type:'get',	
+						data:{
+							
+						},		
+						dataType:'json',
+						success:function(obj){ 
+							
+						}
 					})
 				}
 		

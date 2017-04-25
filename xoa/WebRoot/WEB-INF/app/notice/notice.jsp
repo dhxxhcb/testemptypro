@@ -323,7 +323,7 @@ $(function () {
 				//时间控件调用
   
    $('#btn_query').click(function (){
-		
+		data.read='';
 		data.subject = $('#subject').val();
 		data.beginDate = $('#beginTime').val();
 		data.endDate = $('#endTime').val();
