@@ -118,6 +118,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      		width:12px;
      		hight:12px;
      	}
+     	.break_td{
+     		width: 100px;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+     	}
 	</style>
 </head>
 <body>
@@ -315,7 +321,7 @@ $(function () {
                                	 news = "<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
                                		   "<td>"+data.obj[i].providerName+"</td>"+//发布人
                                        "<td>"+data.obj[i].typeName+"</td>"+//类型
-                                       "<td>"+data.obj[i].depName+"</td>"+//发布范围
+                                       "<td><div class='break_td' alt="+data.obj[i].depName+">"+data.obj[i].depName+"</div></td>"+//发布范围
                                        "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</a></td>"+//标题
                                        "<td>"+data.obj[i].newsTime+"</td>"+//发布时间
                                        "<td>"+data.obj[i].clickCount+"</td>"+//点击数
