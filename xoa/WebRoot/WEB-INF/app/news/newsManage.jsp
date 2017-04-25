@@ -196,7 +196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!--footer部分开始-->
     <div class="footer w clearfix">
-        <div><input name="" type="checkbox" value="" />全选</div>
+        <div><input id='input1' name="" type="checkbox" value="" />全选</div>
         <div>删除所选新闻</div>
         <div>查阅情况</div>
         <div>取消置顶</div>
