@@ -119,9 +119,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
-            <li data_id=""><span class="one" style="width: 112px;display: inline-block;text-align: center;">公告通知</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
-            <li data_id="0"><span style="width: 112px;display: inline-block;text-align: center;">未读公告</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
-            <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;">公告查询</span></li>
+            <!--  //公告通知 -->
+            <li data_id=""><span class="one" style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="notice.title.notify" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
+           <!--  //未读公告 -->
+            <li data_id="0"><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="notice.title.unreadannouncement" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
+            <!-- //公告查询 -->
+            <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="notice.title.announcementquery" /></span></li>
         </ul>
     </div>
     <!--head通栏结束-->
@@ -130,21 +133,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <img src="../img/notice01.png"  style="width:25px;height:25px; margin-right:5px;">
-
-            <div class="news">公告通知</div>
+            <img src="../img/01.png">
+             
+            <div class="news"><fmt:message code="notice.title.notify" /></div><!-- //公告通知 -->
             <select name="TYPE" class="button1" style="float: left;" id="select">
-				<option value="0" selected="">所有类型</option>
-				<option value="01">决定</option>
-						    <option value="02">通知</option>
-						    <option value="03">通报</option>
-						    <option value="04">其他</option>
+				<option value="0" selected=""><fmt:message code="notice.type.alltype" /></option>
+				<option value="01"><fmt:message code="notice.type.Decision"/></option>
+						    <option value="02"><fmt:message code="notice.type.notice" /></option>
+						    <option value="03"><fmt:message code="notice.type.Bulletin" /></option>
+						    <option value="04"><fmt:message code="notice.type.other" /></option>
 			</select>
             <div>
-                <div style="font-size: 15px; margin-left:28px; ">日期 :</div>
+                <div style="font-size: 15px; margin-left:28px; "><fmt:message code="global.lang.date" /> :</div>
                 <input class="button1" id="sendTime">
             </div>
-            <img  style="width:55px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
+            <img  class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
         </div>
 
 
@@ -165,15 +168,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <table class="w">
                 <thead>
                 	<tr>
-                    	<td class="th">发布人</td>
-                    	<td class="th">标题</td>
-                    	<td class="th" style="position: relative">生效日期
+                    	<td class="th"><fmt:message code="notice.th.publisher" /></td>
+                    	<td class="th"><fmt:message code="notice.th.title" /></td>
+                    	<td class="th" style="position: relative"><fmt:message code="notice.th.effectivedate" />
 	                        <img style="position: absolute;margin-left:9px;cursor: pointer;" src="../img/05.png" alt=""/>
 	                        <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
 	                             src="../img/06.png " alt=""/>
 	                    </td>
-	                    <td class="th">发布范围</td>
-	                    <td class="th">类型</td>
+	                    <td class="th"><fmt:message code="notice.th.releasescope" /></td>
+	                    <td class="th"><fmt:message code="notice.th.type" /></td>
 	                    <!-- <td class="th">发布部门</td> -->
 	                </tr>
                 </thead>
@@ -187,49 +190,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--content部分结束-->
 
     <!--footer部分开始-->
-    <div class="footer w clearfix">
-        <div>快捷操作:</div>
+    <!-- <div class="footer w clearfix">
+        <div><fmt:message code="notice.th.quickoperation" />:</div>
         <div class="read">
             <img src="../img/read.png" alt=""/>
-        </div>
+        </div> -->
 
     </div>
     </div>
     <div class="center" style="width:100%;margin-top: 50px;display: none;">
     	 <div class="login">
-	        <div class="header">输入查询条件</div>
+	        <div class="header"><fmt:message code="global.lang.inputquerycondition" /></div><!-- //输入查询条件 -->
 	        <div class="middle">
 	            <div class="le publisher">
-	                <div class="color">发布人：</div>
+	                <div class="color"><fmt:message code="notice.th.publisher" />：</div><!-- //发布人 -->
 	                <div><input style="height:50px;width:279px;margin-left:56px;margin-right: 15px;" type="text" /></div>
-	                <div style="margin-right:23px; color:#207BD6">添加</div>
-	                <div>清空</div>
+	                <div style="margin-right:23px; color:#207BD6"><fmt:message code="global.lang.add" /></div><!-- //添加 -->
+	                <div><fmt:message code="global.lang.empty" /></div><!-- //清空 -->
 	            </div>
 	            <div class="le subject">
-	                <div class="color">标题：</div>
+	                <div class="color"><fmt:message code="notice.th.title" />：</div><!-- //标题 -->
 	                <div><input id="subject" style="height:26px;width:279px;margin-left:69px;margin-right: 15px;" type="text"/></div>
 	            </div>
 				<div class="le date">
-	                <div class="color">发布日期：</div>
+	                <div class="color"><fmt:message code="notice.title.Releasedate" />：</div><!-- //发布日期 -->
 	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:45px;margin-right: 11px;" type="text"/></div>
-	                <div class="color">至</div>
+	                <div class="color"><fmt:message code="global.lang.to" /></div><!-- //至 -->
 	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
 	            </div>
 	           	<div class="le ce1">
-	                <div class="color">类型：</div>
+	                <div class="color"><fmt:message code="notice.th.type" />：</div><!-- //类型 -->
 	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select">
-							<option value="0" selected="">所有类型</option>
-							<option value="01">决定</option>
-						    <option value="02">通知</option>
-						    <option value="03">通报</option>
-						    <option value="04">其他</option>
+		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select_query">
+							<option value="0" selected=""><fmt:message code="notice.type.alltype" /></option><!-- //所有类型 -->
+							<option value="01"><fmt:message code="notice.type.Decision"/></option><!-- //决定 -->
+						    <option value="02"><fmt:message code="notice.type.notice" /></option><!-- //通知 -->
+						    <option value="03"><fmt:message code="notice.type.Bulletin" /></option><!-- //通报 -->
+						    <option value="04"><fmt:message code="notice.type.other" /></option><!-- //其他 -->
 						</select>
 					</div>
 	
 	            </div>
 	            <div class="le ce2">
-	                <div class="color">内容:</div>
+	                <div class="color"><fmt:message code="notice.th.content" />:</div><!-- //内容 -->
 	                <div><input id="content"  style="height:25px;width:279px;margin-left:80px;" type="text"/></div>
 	
 	            </div>
@@ -323,11 +326,11 @@ $(function () {
 				//时间控件调用
   
    $('#btn_query').click(function (){
-		
+		data.read='';
 		data.subject = $('#subject').val();
 		data.beginDate = $('#beginTime').val();
 		data.endDate = $('#endTime').val();
-		data.typeId =  $('#select').val()==0?'':$('#select').val();
+		data.typeId =  $('#select_query').val()==0?'':$('#select_query').val();
 		data.content = $('#content').val();
 		initPageList();
 		$('.step1').show();
@@ -343,7 +346,7 @@ $(function () {
    //时间控件调用
    var start = {
      elem: '#beginTime',
-     format: 'YYYY/MM/DD hh:mm:ss',
+     format: 'YYYY-MM-DD hh:mm:ss',
     /* min: laydate.now(), //设定最小日期为当前日期*/
     /* max: '2099-06-16 23:59:59', //最大日期*/
      istime: true,
@@ -355,7 +358,7 @@ $(function () {
    };
    var end = {
      elem: '#endTime',
-     format: 'YYYY/MM/DD hh:mm:ss',
+     format: 'YYYY-MM-DD hh:mm:ss',
      /*min: laydate.now(),*/
      /*max: '2099-06-16 23:59:59',*/
      istime: true,
