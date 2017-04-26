@@ -52,7 +52,7 @@ ul{
 	width: 80%;
 /*	height: 40px;*/
 	margin: 0 auto;
-	margin-top: 8px;
+	margin-top: 13px;
 }
 .page .page_left .write .d_im img{
 	width: 100%;
@@ -148,6 +148,10 @@ ul{
 	line-height: 52px;
 	font-size: 14px;
 }
+.page .page_left .ul_show li:hover{
+	background-color: #6ea1d5;
+   
+}
 .page .page_left .ul_show li a{
 	display: block;
 	text-decoration: none;
@@ -194,16 +198,15 @@ ul{
 }
 .page .page_right .header .nav li span{
 	display: block;
-	width: 16px;
-	height: 16px;
-	border-radius: 50%;
-	background-color: #f00;
+	width: 20px;
+	height: 14px;
+	background: url(../../img/icon_juxing.png) no-repeat;
 	text-align: center;
 	margin-left: 10px;
 	color: #fff;
 	float: right;
 	margin-top: 10px;
-	line-height: 16px;
+	line-height: 14px;
 }
 .page .page_right .header .nav li img:not(.more_im){
 	width: 16px;
@@ -245,6 +248,7 @@ ul{
 }
 .page .page_right .header .searchs .format{
 	float: left;
+	margin-left: 10%;
 }
 .page .page_right .header .searchs .format ul{
 	width: 120px;

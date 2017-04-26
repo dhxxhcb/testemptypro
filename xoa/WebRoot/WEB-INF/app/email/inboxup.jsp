@@ -116,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="format">
 							<ul>
-								<li><img src="../img/icon_list_nor_06.png"/></li>
+								<!-- <li><img src="../img/icon_list_nor_06.png"/></li> -->
 								<li class="for_on"><img src="../img/icon_shangxia_sel_06.png"/></li>
 								<li><img src="../img/icon_zuoyou_nor_06.png"/></li>
 							</ul>
@@ -130,12 +130,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th width="6%">
 								<input type="checkbox" name="checkbox" id="checkbox" value="" />
 							</th>
-							<th width="6%">
-								<img src="../img/icon_read_1_07.png"/>
-							</th>
-							<th width="6%">
-								<img src="../img/icon_collect_07.png"/>
-							</th>
+							<th width="6%">状态</th>
+							<th width="6%">标记</th>
 							<th width="16%">发件人</th>
 							<th width="40%" class="theme">主题</th>
 							<th width="16%">日期</th>

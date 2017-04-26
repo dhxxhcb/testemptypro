@@ -125,7 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="up_format">
 							<ul>
-								<li><img src="../img/icon_list_nor_06.png"/></li>
+								<!-- <li><img src="../img/icon_list_nor_06.png"/></li> -->
 								<li><img src="../img/icon_shangxia_nor_06.png"/></li>
 								<li class="for_on"><img src="../img/icon_zuoyou_sel_03.png"/></li>
 							</ul>
@@ -411,10 +411,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								"page":1,
 								"pageSize":10,
 								"useFlag":true,
-								"userID":"lijia"
+								"userID":"admin"
 						}
 					
-					$.ajax({
+						$.ajax({
 									type:'get',
 									url:'showEmail',
 									dataType:'json',
