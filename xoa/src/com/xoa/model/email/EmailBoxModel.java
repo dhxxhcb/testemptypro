@@ -13,7 +13,7 @@ public class EmailBoxModel implements Serializable{
     private String userId;
 
     private String defaultCount;
-
+ 
     public Integer getBoxId() {
         return boxId;
     }

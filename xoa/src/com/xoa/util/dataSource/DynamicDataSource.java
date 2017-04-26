@@ -3,9 +3,6 @@ package com.xoa.util.dataSource;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
-* Created by gaosubo on 2017/4/25.
-*/
-/**
  * 
  * 创建作者:   张勇
  * 创建日期:   2017-4-26 下午5:39:00

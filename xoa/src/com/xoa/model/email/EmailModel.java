@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public class EmailModel implements Serializable {
 	private static final long serialVersionUID = 1076969159692234636L;
-
+  
 	/**
 	 * 自增唯一ID
 	 */
