@@ -181,9 +181,9 @@
 	</select>
 	<select id="findUserByName" resultMap="UserResultMap">
 		select
-		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD`,u.DEPT_ID,u.DEPT_ID_OTHER,u.USER_PRIV,u.USER_PRIV_OTHER
-		from user u WHERE
-		BYNAME= #{byname}
+		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD`,u.DEPT_ID,u.DEPT_ID_OTHER,u.USER_PRIV,u.USER_PRIV_OTHER,d.DEPT_NAME,u.USER_PRIV_NAME,u.SEX,u.AVATAR
+		from user u,department d WHERE
+		u.USER_ID= #{byname} and u.DEPT_ID=d.DEPT_ID
 	</select>
 	<select id="getUsernameById" resultMap="UserResultMap">
 		select USER_NAME FROM user
