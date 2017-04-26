@@ -9,7 +9,9 @@ import org.apache.ibatis.annotations.Param;
 
 
 public interface ImChatListMapper {
-
+   
+	int updateByRollBack(ImChatList record);
+	 
 	ImChatList selectChatListByParams(Map<String, Object> params);
 	
 	List<ImChatList> selectByFromId(String fromId);
