@@ -97,7 +97,7 @@ public class loginController {
 	 * @return     String
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.POST,produces={"application/json;charset=UTF-8"})
-	public @ResponseBody  String loginEnter(@RequestParam("username") String username, @RequestParam("password") String password,
+	public @ResponseBody  ToJson<Users> loginEnter(@RequestParam("username") String username, @RequestParam("password") String password,
             HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String loginId = (String)request.getSession().getAttribute("loginDateSouse");
 		L.a("login:"+loginId);
@@ -128,7 +128,7 @@ public class loginController {
 	            json.setFlag(0);
 		   
 		}
-		return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss"); 
+		return json; 
 		
 	}
 	
