@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -67,8 +70,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 					<tr>
 						<td width="15%">
-							<fmt:message code="notice.th.IssuedByDepartment" />：<br>
-							<a href="javascript:;" id="href_txt"><fmt:message code="notice.th.PostedByPersonnelOrRoles" /></a>
+							<fmt:message code="notice.th.IssuedByDepartment"/>
+							：<br>
+							<a href="javascript:;" id="href_txt">
+							<fmt:message code="notice.th.PostedByPersonnelOrRoles" /></a>
 						</td>
 						<td width="70%">
 							<div class="inPole">

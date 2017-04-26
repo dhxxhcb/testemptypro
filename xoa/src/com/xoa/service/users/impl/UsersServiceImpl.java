@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.xoa.dao.users.UsersMapper;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
 
  /**
@@ -142,6 +143,7 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public Users findUserByName(String byname) {
 		Users user=usersMapper.findUserByName(byname);
+		user.setDeptName(user.getDep().getDeptName());
 		return user;
 	}
 	 /**
@@ -210,24 +212,25 @@ public class UsersServiceImpl implements UsersService {
 	 * @return     List<String>  返回用户姓名串
 	 */
 	@Override
-	public List<String> getUserNameById(String userIds) {
-		List<String> list=new ArrayList<String>();
+	public String getUserNameById(String userIds) {
+		if(StringUtils.checkNull(userIds)){
+			return null;
+		}
 		//定义用于拼接角色名称的字符串
 		StringBuffer sb=new StringBuffer();
 		String[] temp = userIds.split(",");  
 		for(int i=0;i<temp.length;i++){
-			if(temp[i]!=""){
+			if(!StringUtils.checkNull(temp[i])){
 		 String userName=usersMapper.getUsernameByUserId(temp[i]);
 		 if(userName!=""){  		
 		 if(i<temp.length-1){
-	            sb.append(userName).append("/");
+	            sb.append(userName).append(",");
 	            }else{
 	            sb.append(userName);
 	            }
 			}
 		}
 		}
-		list.add(sb.toString());
-		return list;
+		return sb.toString();
 	}
 }

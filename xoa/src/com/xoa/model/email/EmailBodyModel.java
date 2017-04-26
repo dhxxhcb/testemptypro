@@ -15,7 +15,7 @@ import com.xoa.model.users.Users;
  */
 public class EmailBodyModel implements Serializable {
 	private static final long serialVersionUID = 1076969159692234636L;
-
+	
 	/**
 	 * 时间段区间查询传入的开始时间
 	 */
@@ -49,7 +49,7 @@ public class EmailBodyModel implements Serializable {
 	 * 发件人USER_ID
 	 */
 	private String fromId;
-
+	
 	/**
 	 * 邮件主题
 	 */
@@ -137,16 +137,33 @@ public class EmailBodyModel implements Serializable {
 	 * 收件人USER_ID串
 	 */
 	private String toId2;
+	
+	/**
+	 * 收件人姓名
+	 */
+	private String toName;
+	
 
 	/**
 	 * 抄送人USER_ID串
 	 */
 	private String copyToId;
+	
+	/**
+	 * 抄送人姓名
+	 */
+	private String copyName;
+	
 
 	/**
 	 * 密送人USER_ID串
 	 */
 	private String secretToId;
+	
+	/**
+	 * 密送人姓名
+	 */
+	private String secretToName;
 
 	/**
 	 * 邮件内容
@@ -765,4 +782,79 @@ public class EmailBodyModel implements Serializable {
 	public void setSecondFlag(String secondFlag) {
 		this.secondFlag = secondFlag;
 	}
+
+	/**
+	 * 收件人姓名
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-26 下午6:12:54
+	 * 方法介绍:   收件人姓名
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	public String getToName() {
+		return toName;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-26 下午6:14:11
+	 * 方法介绍:   收件人姓名
+	 * 参数说明:   @param toName
+	 * @return     void
+	 */
+	public void setToName(String toName) {
+		this.toName = toName;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-26 下午6:14:33
+	 * 方法介绍:   抄送人姓名
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	public String getCopyName() {
+		return copyName;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-26 下午6:14:44
+	 * 方法介绍:   抄送人姓名
+	 * 参数说明:   @param copyName
+	 * @return     void
+	 */
+	public void setCopyName(String copyName) {
+		this.copyName = copyName;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-26 下午6:14:54
+	 * 方法介绍:   密送人姓名
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	public String getSecretToName() {
+		return secretToName;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-26 下午6:15:04
+	 * 方法介绍:   密送人姓名
+	 * 参数说明:   @param secretToName
+	 * @return     void
+	 */
+	public void setSecretToName(String secretToName) {
+		this.secretToName = secretToName;
+	}
+	
+	
+	
 }

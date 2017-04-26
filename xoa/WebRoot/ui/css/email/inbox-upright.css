@@ -32,15 +32,14 @@
 }
 .up_page_right .up_header .up_nav ul li span{
 	display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: #f00;
+    width: 26px;
+    height: 14px;
+    background: url(../../img/icon_juxing.png) no-repeat;
     text-align: center;
     margin-left: 5px;
     color: #fff;
-    margin-top: 5px;
-    line-height: 16px;
+    margin-top: 7px;
+    line-height: 14px;
     margin-right: 5px;
     font-size:12px;
 }
@@ -98,25 +97,25 @@
 
 .up_pages .up_format{
 	float: left;
-	margin-left: 2%;
+    margin-left: 10%;
+    margin-top: 10px;
+    border-radius: 3px;
+    border: #999 1px solid;
 }
 .up_pages .up_format ul{
-	width: 120px;
-
 	overflow: hidden;
 	border-radius: 3px;
 }
 .up_pages .up_format ul li{
 	float: left;
-	width: 40px;
-	height: 35px;
-	margin-top: 10px;
-	background-color: #f6f6f6;
-	text-align: center;
-	overflow: hidden;
+    width: 40px;
+    height: 30px;
+    background-color: #f6f6f6;
+    text-align: center;
+    overflow: hidden;
 }
 .up_pages .up_format ul li img{
-	margin-top: 6px;
+	margin-top: 5px;
 }
 .main{
 	width: 100%;

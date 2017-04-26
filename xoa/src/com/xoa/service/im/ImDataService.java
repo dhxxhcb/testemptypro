@@ -116,6 +116,7 @@ public class ImDataService {
 			// FIXME 类型不知道按什么区分现在默认文本类型
 			switch (flag) {
 			case 1:
+
 				break;
 			default:
 				break;

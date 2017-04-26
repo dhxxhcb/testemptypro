@@ -5,12 +5,16 @@ import com.xoa.dao.email.EmailMapper;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.email.EmailModel;
 import com.xoa.service.email.EmailService;
+import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,6 +34,9 @@ public class EmailServiceImpl implements EmailService {
 
 	@Resource
 	private EmailMapper emailMapper;
+	
+	@Resource
+	private UsersService usersService;
 
 	/**
 	 * 
@@ -103,7 +110,15 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setUseFlag(useFlag);
 		maps.put("page", pageParams);
 		logger.info("邮件查询emailService赋值！");
-		tojson.setObj(emailBodyMapper.selectObjcet(maps));
+		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
+		List<EmailBodyModel> listEmai = emailBodyMapper.selectObjcet(maps);
+		for(EmailBodyModel emailBody:listEmai){
+			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
+			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			list.add(emailBody);
+		}
+		tojson.setObj(list);
 		tojson.setTotleNum(pageParams.getTotal());
 		return tojson;
 	}
@@ -143,7 +158,15 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		tojson.setObj(emailBodyMapper.listDrafts(maps));
+		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
+		List<EmailBodyModel> listEmai = emailBodyMapper.listDrafts(maps);
+		for(EmailBodyModel emailBody:listEmai){
+			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
+			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			list.add(emailBody);
+		}
+		tojson.setObj(list);
 		tojson.setTotleNum(pageParams.getTotal());
 		return tojson;
 	}

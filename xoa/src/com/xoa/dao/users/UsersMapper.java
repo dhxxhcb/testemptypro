@@ -154,5 +154,13 @@ public interface UsersMapper {
 	 */
 	public Users getByUid(int uid);
 	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月26日 下午6:21:47
+	 * 方法介绍:   根据userId串获取用户姓名
+	 * 参数说明:   @param userId 用户userId串
+	 * 参数说明:   @return
+	 * @return     String 返回用户姓名拼接串
+	 */
 	public String getUsernameByUserId(String userId);
 }
