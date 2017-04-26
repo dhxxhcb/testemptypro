@@ -29,7 +29,6 @@ public class ImDataController {
 	ImDataService imDataService;
 
 	/**
-	 * 
 	 * @作者 韩东堂
 	 * @创建日期 2017-4-25 下午5:20:24
 	 * @方法介绍

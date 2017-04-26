@@ -99,7 +99,7 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getDeptByid" ,method = RequestMethod.POST)
-    public String getDeptByid(int deptid) {
+    public ToJson<Department> getDeptByid(int deptid) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			Department department =departmentService.getDeptById(deptid);
@@ -110,7 +110,7 @@ public class DepartmentController {
 			json.setMsg(e.getMessage());
 			System.out.println(e);
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 
@@ -123,7 +123,7 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getAlldept",produces = {"application/json;charset=UTF-8"})
-    public String getAlldept() {
+    public ToJson<Department> getAlldept() {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			List<Department> list=departmentService.getDatagrid();  
@@ -134,7 +134,7 @@ public class DepartmentController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 

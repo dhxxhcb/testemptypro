@@ -72,7 +72,8 @@
 		<property name="maxUploadSize" value="60000000" />
 	</bean>
 
-
+     <bean id="exceptionHandler" class="com.xoa.global.exception.GlobalException"/>  
+  
 	<!-- 开启Shiro注解的Spring配置方式的beans。在lifecycleBeanPostProcessor之后运行 -->
 	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" 
 		depends-on="lifecycleBeanPostProcessor"> <property name="proxyTargetClass" 
