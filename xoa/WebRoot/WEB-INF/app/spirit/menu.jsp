@@ -37,7 +37,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 		</div> -->
 		<div class="connect">
-			<!-- <div class="li_0 li_li"> -->
 				<div class="app_head">
 					<span class="tip_font">应用</span>
 					<div class="tips">
@@ -46,57 +45,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<div class="app_connect yiji">
-					<ul>
-						<li>
-							<div><span  class="head_pic"><img src="" alt=""/></span>
-							<span title="yingyongmingcheng" class="yiji_title">个人设置</span>
-							<span class="dianji"></span></div>
-								<div>
-									<ul>
-										<li>
-											<div><span  class="head_pic"><img src="" alt=""/></span>
-							<span title="yingyongmingcheng" class="yiji_title">个人设置</span>
-							<span class="dianji"></span></div>
-											<div>
-												<ul>
-													<li>
-							<div><span  class="head_pic"><img src="" alt=""/></span>
-							<span title="yingyongmingcheng" class="yiji_title">个人设置</span>
-							<span class="dianji"></span></div>
-						</li>
-												</ul>
-											</div>
-										</li>
-									</ul>
-								</div>
-							
-						</li>
-						<li>
-							<div><span  class="head_pic"><img src="" alt=""/></span>
-							<span title="yingyongmingcheng" class="yiji_title">个人设置</span>
-							<span class="dianji"></span></div>
-						</li>
-						<li>
-							<div><span  class="head_pic"><img src="" alt=""/></span>
-							<span title="yingyongmingcheng" class="yiji_title">个人设置</span>
-							<span class="dianji"></span></div>
-						</li>
-					</ul>
+					<ul></ul>
 				</div>
-			<!-- </div> -->
-			<!-- <div class="li_1 li_li cosp">
-				<div>222</div>
-			</div>
-			<div class="li_2 li_li cosp">
-				<div>333</div>
-			</div> -->
 		</div>
 	
 	</div>
 </body>
-<!--  <script type="text/javascript" src="js/utility.js"></script>
-<script type="text/javascript" src="file:///C:/static/js/ispirit.js"></script>
-<script type="text/javascript" src="js/ispirit.js"></script>-->
+ <script type="text/javascript" src="/js/utility.js"></script>
+
+<script type="text/javascript" src="../js/ispirit.js"></script>
 
 
 <script language="JavaScript">
@@ -118,13 +75,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     					for(var j=0;j<fchild.length;j++){
 	     						var schild=fchild[j].child;
 	     						if(fchild[j].child!=''){
-	     							li+='<li ><div class="yiji_title" url="'+fchild[j].url+'" onClick="window.external.OA_SMS("/xoa/email/index","MAX","OPEN_URL");"><span  class="head_pic"><img src="../img/main_img/hei.png" alt="erimg"/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span><span class="dianji before"></span></div><div class="sanji common"><ul>';
+	     							li+='<li ><div class="yiji_title" url="'+fchild[j].url+'" onClick="opennew()"><span  class="head_pic"><img src="../img/main_img/hei.png" alt="erimg"/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span><span class="dianji before"></span></div><div class="sanji common"><ul>';
 	     							for(var z=0;z<schild.length;z++){
-	     								li+='<li ><div class="yiji_title" url="'+schild[z].url+'" onClick="window.external.OA_SMS("/xoa/email/index","MAX","OPEN_URL");"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+schild[z].name1+'" id="'+schild[z].id+'"  class="appname">'+schild[z].name+'</span></div></li>';
+	     								li+='<li ><div class="yiji_title" url="'+schild[z].url+'" onClick="opennew()"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+schild[z].name1+'" id="'+schild[z].id+'"  class="appname">'+schild[z].name+'</span></div></li>';
 	     							}
 	     							li+='</ul></div>';
 	     						}else{
-	     							li+='<li><div class="yiji_title"  url="'+fchild[j].url+'" onClick="window.external.OA_SMS("/xoa/email/index","MAX","OPEN_URL");"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span></div></li>';
+	     							li+='<li><div class="yiji_title"  url="'+fchild[j].url+'" onClick="opennew()"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span></div></li>';
 	     						}
 	     					}
 	     					li+='</ul></div>';
@@ -137,7 +94,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 }
 		
 	});
-	   
+	   function opennew(){
+	   	//	console.log($(event.target));
+	   	//	var url=$(event.target).attr("url");
+			if(typeof(window.external.OA_SMS)!='undefined'){
+				window.external.OA_SMS("/xoa/email/index","MAX","OPEN_URL");
+			}else{
+				window.open('/xoa/email/index');
+			}
+		}
 </script>
 <script language="JavaScript">
 	$(function(){
@@ -151,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$(this).siblings('div.common').slideUp(100);
 			}
 	   	});		
-	
+		
 	});
 	
 </script>

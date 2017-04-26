@@ -1,6 +1,9 @@
-if(typeof(window.console) != "undefined" && typeof(window.console.OaSms) != "undefined"){
+	//console.log("1");
+//if(typeof(window.console) != "undefined" && typeof(window.console.OaSms) != "undefined"){
+
    window.external = window.external || {};
    window.external.OA_SMS = function(arg1, arg2, arg3){  
+	   
       switch(arg3){
          case 'OPEN_URL':
             var t, l, d = new Date(), h = 548 + 85, w = 780 + 50, URL = arg1, newWindow;
@@ -39,7 +42,7 @@ if(typeof(window.console) != "undefined" && typeof(window.console.OaSms) != "und
       }    
       return window.console.OaSms(arg1, arg2, arg3);
    };
-}
+//}
 
 function IspiritOaSms(argv1, argv2, argv3)
 {
