@@ -10,10 +10,12 @@
     <result column="CODE_FLAG" property="codeFlag" jdbcType="VARCHAR" />
     <result column="CODE_EXT" property="codeExt" jdbcType="VARCHAR" />
   </resultMap>
-  
-  
   <select id="getSysCode"  parameterType="string" resultMap="BaseResultMap"> 
  select  s.CODE_NAME,s.CODE_ID,s.CODE_NO  from sys_code s WHERE s.PARENT_NO='NEWS' and s.CODE_ORDER=#{codeOrder}
+  </select>
+  <select id="getSysCodeName"  parameterType="Map" resultMap="BaseResultMap"> 
+   SELECT CODE_NAME,CODE_EXT from SYS_CODE where PARENT_NO=#{parentNo} 
+   and find_in_set(CODE_NO,#{codeNo})
   </select>
   
   <select id="getSysCode1"  parameterType="java.lang.String" resultMap="BaseResultMap"  >

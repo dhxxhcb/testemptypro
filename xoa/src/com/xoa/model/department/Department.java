@@ -92,10 +92,24 @@ public class Department {
     private Integer uid;
     
     private String userPrivName;
-    
+    /**
+   	 * 返回类型
+   	 */
     private String type;
-    
-    public String getType() {
+    /**
+   	 * 统计
+   	 */
+    private String count;
+   
+    public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
+
+	public String getType() {
 		return type;
 	}
 

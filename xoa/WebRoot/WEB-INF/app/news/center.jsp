@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../lib/layer/layer.js"></script>
     <style type="text/css">
 		.head li{
 			width: 154px;
@@ -267,12 +268,13 @@ $(function () {
 
             };
            initPageList(function(pageCount){
+           console.log(pageCount);
            		 initPagination(pageCount,data.pageSize);
            });
           
 		  
            $(".index_head li").click(function (){
-				console.log('qqq');
+				
                 $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
                 $(".news").html($(this).find('span').text());
 				data.read = $(this).attr('data_id');
@@ -282,7 +284,9 @@ $(function () {
 				if(data.read == ''||data.read == 0){
 					$('.step1').show();
 					$('.center').hide();
-					initPageList();
+					initPageList(function(pageCount){
+		           		 initPagination(pageCount,data.pageSize);
+		            });
 				}else if(data.read == 1){
 					$('.step1').hide();
 					$('.center').show('');
@@ -292,35 +296,49 @@ $(function () {
 					$('#select').val()==0?'':$('#select').val();
 					$('#content').val('');
 				}
-				
             })
             function initPageList(cb){
+            	var layerIndex = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
             	$.ajax({
 					type: "get",
 					url: "<%=basePath%>news/newsShow",
 					dataType: 'JSON',
 					data: data,
 					success: function(obj){
-						console.log(obj);
-						var news = "";
-                           for (var i = 0; i < obj.obj.length; i++) {
-                               news = "<tr><td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].subject+"</ a></td>"+
+						layer.closeAll()
+						if(obj.obj.length == 0){
+							
+							layer.msg('没有未读新闻，2秒后自动跳到公告通知', {icon: 6});
+							var turnindex=setInterval(function(){
+								layer.closeAll();
+								$(".index_head li").eq(1).click();
+								clearInterval(turnindex);
+							},2*1000);
+						}else{
+							var str = "";
+							
+                        	for (var i = 0; i < obj.obj.length; i++) {
+                               str += "<tr><td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].subject+"</ a></td>"+
                                        "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].typeName+"</ a></td>"+
                                        "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsTime+"</ a></td>"+
                                        "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].clickCount+"</ a></td>"+
-                                       "<td><a href='#' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+'0'+"</ a></td>"+news;
+                                       "<td><a href='#' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+'0'+"</ a></td>";
                            }
-                           
-							
-						$("#j_tb").html(news);
-						if(cb){
-							cb(obj.totleNum);
+                           var loadindex=setInterval(function(){
+								layer.closeAll();
+								$("#j_tb").html(str);
+								clearInterval(turnindex);
+							},1000);
+                          
+							if(cb){
+								//alert(obj.totleNum);
+								cb(obj.totleNum);
+							}
 						}
 					}   
 				})
             }
             function initPagination(totalData,pageSize){
-            	console.log(totalData+'---'+pageSize);
             	$('.M-box3').pagination({
 							    totalData:totalData,
 							    showData:pageSize,
@@ -341,7 +359,7 @@ $(function () {
             /* 新闻详情页 */
                $("#j_tb").on('click','.windowOpen',function(){
 		            var nid=$(this).attr('newsId');
-		            $.popWindow('detail?newsId='+nid);
+		            $.popWindow('detail?newsId='+nid,'1111');
 		        });
         		$('.submit').click(function (){
 					data.read = $('.index_head .one').parent().attr('data_id');

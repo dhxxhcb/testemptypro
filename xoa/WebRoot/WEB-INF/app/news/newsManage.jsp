@@ -327,7 +327,7 @@ $(function () {
                                        "<td>"+data.obj[i].clickCount+"</td>"+//点击数
                                        "<td>"+data.obj[i].newsId+"</td>"+//评论（条）
                                        "<td>"+"生效</td>"+//状态
-                                       "<td>"+"不确定</td>"+//操作
+                                       "<td>"+"修改  管理评论  终止  删除</td>"+//操作
                                        news;
                            }
                            
