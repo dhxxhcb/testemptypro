@@ -4,6 +4,11 @@ html,body{
 	background:#e8f5fd;
 	margin:0;
 	padding:0;
+	font-family: 'Microsoft yahei';
+	overflow:auto;
+}
+ul,li{
+	list-style:none;
 }
 .wrap{
 	width:100%;
@@ -11,7 +16,7 @@ html,body{
 }
 .body_top{
 	width:100%;
-	height:50px;
+	height:40px;
 }
 .body_top ul,.body_top li{
 	list-style:none;
@@ -21,17 +26,127 @@ html,body{
 	margin:0;
 	display:inline-block;
 	height:100%;
+	position: relative;
 }
 .body_top ul{
-	
 	width:100%;
-	
+	border-bottom: 1px solid #d6e3eb;
 }
 .body_top li{
 	width:32%;
+	line-height: 40px;
 	text-align: center;
 }
-.title{
+.bg_icon{
+	display:block;
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.icon1{
+	width:20px;
+	height:20px;
+	background:url(../../img/spirit/menu/yingyong.png) center;
+	background-size: cover;
+}
+.icon2{
+	width:26px;
+	height:20px;
+	background:url(../../img/spirit/menu/zuzhi.png) center;
+	background-size:cover;
+}
+.icon3{
+	width:23px;
+	height:20px;
+	background:url(../../img/spirit/menu/bianqian.png) center;
+	background-size: cover;
+}
+.tip_font{
 	font-size:15px;
 	color:#4f4f4f;
+}
+.connect{
+	width:98%;
+	height:auto;
+	margin:0 auto;
+}
+
+.li_li{
+	width:100%;
+	height:100%;
+}
+.cosp{
+	display:none;
+}
+.app_connect{
+	float: left;
+    width: 100%;
+    height: 100%;
+}
+.app_connect li{
+	cursor: pointer;
+}
+.app_head{
+	float: left;
+    clear: both;
+    width: 100%;
+        height: 30px;
+    line-height: 30px;
+}
+.tip_font{
+	display: inline-block;
+    width: 32%;
+    text-align: center;
+}
+.tips{
+	width:40%;
+	float:right;
+	display:inline-block;
+}
+.add_icon,.fresh_icon{
+	width:16px;
+	height:16px;
+	display:inline-block;
+	float: right;
+    position: relative;
+    top:7px;
+     cursor: pointer;
+}
+.add_icon{
+	background:url(../../img/spirit/menu/add_yy.png) center;
+	background-size: cover;
+    margin-right: 12px;
+}
+.fresh_icon{
+	background:url(../../img/spirit/menu/fresh.png) center;
+	background-size: cover;
+}
+.head_pic,.dianji{
+	display:inline-block;
+	height:20px;
+	width:20px;
+	border:1px solid #777;
+	margin:4px;
+}
+.yiji_title{
+	position: relative;
+	top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 30px;
+    line-height: 30px;
+}
+.appname{
+	display: inline-block;
+	width:calc(100% - 60px);
+	height: 30px;
+    line-height: 30px;
+    position: relative;
+    top: -10px;
+}
+.erji,.sanji{
+	
 }
