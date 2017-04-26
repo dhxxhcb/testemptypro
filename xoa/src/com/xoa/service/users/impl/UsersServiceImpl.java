@@ -224,7 +224,7 @@ public class UsersServiceImpl implements UsersService {
 		 String userName=usersMapper.getUsernameByUserId(temp[i]);
 		 if(userName!=""){  		
 		 if(i<temp.length-1){
-	            sb.append(userName).append("/");
+	            sb.append(userName).append(",");
 	            }else{
 	            sb.append(userName);
 	            }

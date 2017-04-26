@@ -33,21 +33,25 @@ public class EnclosureServiceImpl implements EnclosureService {
 		return a;
 	}
 
-	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月26日 下午6:57:35
+	 * 方法介绍:   查找最后的附件信息
+	 * 参数说明:   @return
+	 * @return     Attachment 附件信息
+	 */
 	@Override
 	public Attachment findByLast() {
 		Attachment att = attachmentMapper.findByLast();
 		return att;
 	}
-
 	@Override
-	public Attachment upload(MultipartFile[] files,String company,String module) {
+	public List<Attachment> upload(MultipartFile[] files,String company,String module) {
 		 List<Attachment> list = new ArrayList<Attachment>();
 		  //当前年月
 	     String ym = new SimpleDateFormat("yyMM").format(new Date());
 	     String basePath="D://upload";
-	     String path=basePath+"/"+company+"/"+module+"/"+ym;
-	 	 Map<String, String> fileNameMap = new HashMap<String, String>(); 
+	     String path=basePath+"/"+company+"/"+module+"/"+ym;	 	 
 	 	Attachment attachment=new Attachment();
 	 	 for (int i = 0; i < files.length; i++) {  
 	        	MultipartFile file = files[i];
@@ -62,8 +66,6 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            //当前时间戳
 	           // System.currentTimeMillis();
 	    		int attachID=Math.abs((int) System.currentTimeMillis()); 
-		    	 // String attachDate = new SimpleDateFormat("MMddHHmmss").format(new Date());
-		    	  //int attachID=Integer.parseInt(attachDate);
 		    	String newFileName=Integer.toString(attachID)+"."+fileName; 
 	            if (!file.isEmpty()) {  
 	            	try{
@@ -80,8 +82,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            byte b=2;
 	          //获得模块名
 		        int moduleID=com.xoa.util.ModuleEnum.EMAIL.getIndex();
-	            byte mid=(byte)moduleID;
-	            
+	            byte mid=(byte)moduleID;	            
 	            attachment.setAttachId(attachID);
 	            attachment.setModule(mid);
 	            attachment.setAttachFile(fileName);
@@ -89,13 +90,12 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            attachment.setYm(ym);
 	            attachment.setAttachSign(new Long(0));
 	            attachment.setDelFlag(a);
-	            attachment.setPosition(b);
-	            list.add(attachment);
+	            attachment.setPosition(b);            
 	            saveAttachment(attachment);
 	            attachment=findByLast();
-		
+	            list.add(attachment);
 	  }
     }
-	 	return attachment;
-     }
-	}	
+	 	return list;
+  }
+}	
