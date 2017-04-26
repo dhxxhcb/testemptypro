@@ -9,7 +9,7 @@ public interface ImRoomMapper {
     int countByExample(ImRoomExample example);
 
     int deleteByExample(ImRoomExample example);
-
+ 
     int deleteByPrimaryKey(Integer rid);
 
     int insert(ImRoom record);

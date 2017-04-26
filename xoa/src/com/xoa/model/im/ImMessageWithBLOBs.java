@@ -11,7 +11,7 @@ public class ImMessageWithBLOBs extends ImMessage {
         return content;
     }
 
-    public void setContent(String content) {
+     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
 

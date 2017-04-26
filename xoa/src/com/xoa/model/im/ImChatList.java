@@ -1,10 +1,12 @@
 package com.xoa.model.im;
 
-public class ImChatList {
+import com.xoa.util.page.PageParams;
+
+public class ImChatList extends PageParams {
     private Integer listId;
 
     private String fromUid;
-
+ 
     private String toUid;
 
     private String ofFrom;
@@ -13,7 +15,7 @@ public class ImChatList {
 
     private String lastTime;
 
-    private Integer lastAtime;
+    private String lastAtime;
 
     private String lastFileId;
 
@@ -77,11 +79,11 @@ public class ImChatList {
         this.lastTime = lastTime == null ? null : lastTime.trim();
     }
 
-    public Integer getLastAtime() {
+    public String getLastAtime() {
         return lastAtime;
     }
 
-    public void setLastAtime(Integer lastAtime) {
+    public void setLastAtime(String lastAtime) {
         this.lastAtime = lastAtime;
     }
 

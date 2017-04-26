@@ -9,7 +9,7 @@
     <result column="OF_TO" property="ofTo" jdbcType="VARCHAR" />
     <result column="THUMBNAIL_URL" property="thumbnailUrl" jdbcType="VARCHAR" />
     <result column="STIME" property="stime" jdbcType="VARCHAR" />
-    <result column="ATIME" property="atime" jdbcType="INTEGER" />
+    <result column="ATIME" property="atime" jdbcType="VARCHAR" />
     <result column="TYPE" property="type" jdbcType="VARCHAR" />
     <result column="DFLAG" property="dflag" jdbcType="CHAR" />
     <result column="MSG_TYPE" property="msgType" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
+        <if test="criteria.valid" > 
           <trim prefix="(" suffix=")" prefixOverrides="and" >
             <foreach collection="criteria.criteria" item="criterion" >
               <choose >
@@ -142,7 +142,7 @@
       )
     values (#{imid,jdbcType=INTEGER}, #{fromUid,jdbcType=VARCHAR}, #{toUid,jdbcType=VARCHAR}, 
       #{ofFrom,jdbcType=VARCHAR}, #{ofTo,jdbcType=VARCHAR}, #{thumbnailUrl,jdbcType=VARCHAR}, 
-      #{stime,jdbcType=VARCHAR}, #{atime,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{stime,jdbcType=VARCHAR}, #{atime,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
       #{dflag,jdbcType=CHAR}, #{msgType,jdbcType=VARCHAR}, #{uuid,jdbcType=VARCHAR}, 
       #{content,jdbcType=LONGVARCHAR}, #{fileId,jdbcType=LONGVARCHAR}, #{fileName,jdbcType=LONGVARCHAR}
       )
@@ -219,7 +219,7 @@
         #{stime,jdbcType=VARCHAR},
       </if>
       <if test="atime != null" >
-        #{atime,jdbcType=INTEGER},
+        #{atime,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
         #{type,jdbcType=VARCHAR},
@@ -275,7 +275,7 @@
         STIME = #{record.stime,jdbcType=VARCHAR},
       </if>
       <if test="record.atime != null" >
-        ATIME = #{record.atime,jdbcType=INTEGER},
+        ATIME = #{record.atime,jdbcType=VARCHAR},
       </if>
       <if test="record.type != null" >
         TYPE = #{record.type,jdbcType=VARCHAR},
@@ -312,7 +312,7 @@
       OF_TO = #{record.ofTo,jdbcType=VARCHAR},
       THUMBNAIL_URL = #{record.thumbnailUrl,jdbcType=VARCHAR},
       STIME = #{record.stime,jdbcType=VARCHAR},
-      ATIME = #{record.atime,jdbcType=INTEGER},
+      ATIME = #{record.atime,jdbcType=VARCHAR},
       TYPE = #{record.type,jdbcType=VARCHAR},
       DFLAG = #{record.dflag,jdbcType=CHAR},
       MSG_TYPE = #{record.msgType,jdbcType=VARCHAR},
@@ -333,7 +333,7 @@
       OF_TO = #{record.ofTo,jdbcType=VARCHAR},
       THUMBNAIL_URL = #{record.thumbnailUrl,jdbcType=VARCHAR},
       STIME = #{record.stime,jdbcType=VARCHAR},
-      ATIME = #{record.atime,jdbcType=INTEGER},
+      ATIME = #{record.atime,jdbcType=VARCHAR},
       TYPE = #{record.type,jdbcType=VARCHAR},
       DFLAG = #{record.dflag,jdbcType=CHAR},
       MSG_TYPE = #{record.msgType,jdbcType=VARCHAR},
@@ -364,7 +364,7 @@
         STIME = #{stime,jdbcType=VARCHAR},
       </if>
       <if test="atime != null" >
-        ATIME = #{atime,jdbcType=INTEGER},
+        ATIME = #{atime,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
         TYPE = #{type,jdbcType=VARCHAR},
@@ -398,7 +398,7 @@
       OF_TO = #{ofTo,jdbcType=VARCHAR},
       THUMBNAIL_URL = #{thumbnailUrl,jdbcType=VARCHAR},
       STIME = #{stime,jdbcType=VARCHAR},
-      ATIME = #{atime,jdbcType=INTEGER},
+      ATIME = #{atime,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=VARCHAR},
       DFLAG = #{dflag,jdbcType=CHAR},
       MSG_TYPE = #{msgType,jdbcType=VARCHAR},
@@ -416,11 +416,18 @@
       OF_TO = #{ofTo,jdbcType=VARCHAR},
       THUMBNAIL_URL = #{thumbnailUrl,jdbcType=VARCHAR},
       STIME = #{stime,jdbcType=VARCHAR},
-      ATIME = #{atime,jdbcType=INTEGER},
+      ATIME = #{atime,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=VARCHAR},
       DFLAG = #{dflag,jdbcType=CHAR},
       MSG_TYPE = #{msgType,jdbcType=VARCHAR},
       UUID = #{uuid,jdbcType=VARCHAR}
     where IMID = #{imid,jdbcType=INTEGER}
   </update>
+  
+  <delete id="deleteByUUID" parameterType="Map">
+		delete from
+		im_message
+		where UUID = #{uuid} and FROM_UID = #{fromId} and ATIME > #{now}
+	</delete>
+  
 </mapper>
