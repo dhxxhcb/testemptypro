@@ -35,7 +35,7 @@ public class EmailBodyModel implements Serializable {
 	 * 第二个参数
 	 */
 	private String secondFlag;
-	
+	 
 	/**
 	 * 一对多（一个用户对应多个邮件）
 	 */

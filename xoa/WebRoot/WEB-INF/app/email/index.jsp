@@ -423,7 +423,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var data1=rsp.obj;
 										var str='';
 										for(var i=0;i<data1.length;i++){
-											var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm:ss');
+											var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm');
 											
 												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 											
@@ -441,27 +441,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('.main_left').on('click','.BTN',function(){
 					
 						var nId=$(this).find('input').attr('nId');
-						//alert(nId);
+					
 						init3(nId);
-						/* $.ajax({
-									type:'get',
-									url:'queryByID',
-									dataType:'json',
-									data:{'emailId':nId,'flag':''},
-									success:function(rsp){
-										var data2=rsp.object;
-										var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm:ss');
-										$('#TAC').find('tr').eq(0).find('td').eq(1).remove();
-										$('#TAC').find('tr').eq(1).find('td').eq(1).remove();
-										$('#TAC').find('tr').eq(2).find('td').eq(1).remove();
-										$('.article1').find('p').remove();
-										
-										$('#TAC').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>')
-										$('#TAC').find('tr').eq(1).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toId+'</span></td>')
-										$('#TAC').find('tr').eq(2).append('<td>'+sendTime+'</td>')
-										$('.article1').append('<p>'+data2.content+'</p>');
-									}
-						}); */
 						
 					}) 
 				})
@@ -476,29 +457,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						var nId=$(this).find('input').attr('id');
 						//alert(nId);
 						init2(nId)
-						/* $.ajax({
-									type:'get',
-									url:'queryByID',
-									dataType:'json',
-									data:{'emailId':nId,'flag':''},
-									success:function(rsp){
-										var data2=rsp.object;
-										var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm:ss');
-										$('#TAD').find('tr').eq(0).find('td').eq(1).remove();
-										$('#TAD').find('tr').eq(1).find('td').eq(1).remove();
-										$('#TAD').find('tr').eq(2).find('td').eq(1).remove();
-										$('#TAD').find('tr').eq(3).find('td').eq(1).remove();
-										$('#TAD').find('tr').eq(4).find('td').eq(1).remove();
-										$('.article2').find('p').remove();
-										
-										$('#TAD').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>');
-										$('#TAD').find('tr').eq(1).append('<td>'+data2.users.userName+'</td>');
-										$('#TAD').find('tr').eq(2).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toId+'</span></td>');
-										$('#TAD').find('tr').eq(3).append('<td>'+sendTime+'</td>');
-										$('#TAD').find('tr').eq(4).append('<td>&nbsp</td>');
-										$('.article2').append('<p>'+data2.content+'</p>');
-									}
-						}); */
 						
 					}) 
 					
@@ -538,7 +496,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								data:{'emailId':id,'flag':''},
 								success:function(rsp){
 									var data2=rsp.object;
-									var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm:ss');
+									var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm');
 									$(obj).find('tr').eq(0).find('td').eq(1).remove();
 									$(obj).find('tr').eq(1).find('td').eq(1).remove();
 									$(obj).find('tr').eq(2).find('td').eq(1).remove();
@@ -579,7 +537,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var data1=rsp.obj;
 										var str='';
 										for(var i=0;i<data1.length;i++){
-										var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm:ss');
+										var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm');
 										//alert(data1[i].sendTime);
 										if(data1[i].emailList[0].readFlag==1){
 											str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
@@ -603,7 +561,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									data:{'emailId':id,'flag':''},
 									success:function(rsp){
 										var data2=rsp.object;
-										var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm:ss');
+										var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm');
 										$('#TAD').find('tr').eq(0).find('td').eq(1).remove();
 										$('#TAD').find('tr').eq(1).find('td').eq(1).remove();
 										$('#TAD').find('tr').eq(2).find('td').eq(1).remove();
@@ -631,7 +589,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									data:{'emailId':id,'flag':''},
 									success:function(rsp){
 										var data2=rsp.object;
-										var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm:ss');
+										var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm');
 										$('#TAC').find('tr').eq(0).find('td').eq(1).remove();
 										$('#TAC').find('tr').eq(1).find('td').eq(1).remove();
 										$('#TAC').find('tr').eq(2).find('td').eq(1).remove();

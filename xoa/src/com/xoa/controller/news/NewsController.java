@@ -123,15 +123,14 @@ public class NewsController {
 		maps.put("newsTime", newsTime);
 		maps.put("lastEditTime", lastEditTime);
 		maps.put("content", content);
-		ToJson<News> returnReslt = null;
+		ToJson<News> returnReslt = new ToJson(1,"");
 		try {
 			ToJson<News> tojson =newService.selectNewsManage(maps, 1, 5, true);
 			if (tojson.getObj().size() > 0) {
 				tojson.setMsg(ok);
 				returnReslt = tojson;
-						
 			} else {
-				returnReslt =tojson;
+				returnReslt = tojson;
 			}
 		} catch (Exception e) {
 			loger.debug("NewsMessage:" + e);
@@ -192,7 +191,7 @@ public class NewsController {
 		maps.put("click", click);
 		
 		String name = (String) request.getSession().getAttribute("userId");
-		ToJson<News> returnReslt = null;
+		ToJson<News>returnReslt = new ToJson(1,"");
 		try {
 			 if (read.equals("0")) {
 				ToJson<News> tojson= newService.unreadNews(maps, page, pageSize,
@@ -218,7 +217,7 @@ public class NewsController {
 				ToJson<News> tojson= newService.selectNews(maps, page, pageSize,useFlag, name);
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg(ok);
-					returnReslt = tojson;
+					returnReslt =tojson;
 				} else {
 					returnReslt = tojson;
 				}

@@ -99,7 +99,7 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getDeptByid" ,method = RequestMethod.POST)
-    public String getDeptByid(int deptid) {
+    public ToJson<Department> getDeptByid(int deptid) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			Department department =departmentService.getDeptById(deptid);
@@ -110,7 +110,7 @@ public class DepartmentController {
 			json.setMsg(e.getMessage());
 			System.out.println(e);
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 
@@ -123,7 +123,7 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getAlldept",produces = {"application/json;charset=UTF-8"})
-    public String getAlldept() {
+    public ToJson<Department> getAlldept() {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			List<Department> list=departmentService.getDatagrid();  
@@ -134,7 +134,7 @@ public class DepartmentController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 
@@ -199,7 +199,7 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getChDeptfq",produces = {"application/json;charset=UTF-8"})
-    public String getChDept(HttpServletRequest request) {
+    public ToJson<Department> getChDept(HttpServletRequest request) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -211,7 +211,7 @@ public class DepartmentController {
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 	
@@ -225,7 +225,7 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getFatherDept",produces = {"application/json;charset=UTF-8"})
-    public String getFatherDept(HttpServletRequest request) {
+    public ToJson<Department> getFatherDept(HttpServletRequest request) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -246,7 +246,7 @@ public class DepartmentController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 	/**
@@ -263,7 +263,7 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getChDeptByNo",produces = {"application/json;charset=UTF-8"})
-    public String getChDeptByNo(HttpServletRequest request,Map<String, Object> maps,Integer page,
+    public ToJson<Department> getChDeptByNo(HttpServletRequest request,Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
@@ -278,7 +278,7 @@ public class DepartmentController {
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 	
