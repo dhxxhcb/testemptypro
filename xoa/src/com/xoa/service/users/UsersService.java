@@ -157,5 +157,5 @@ public interface UsersService {
 	 * @return     List<String>  返回用户姓名集合
 	 */
 	@DynDatasource
-	public List<String> getUserNameById(String userIds);
+	public String getUserNameById(String userIds);
 }
