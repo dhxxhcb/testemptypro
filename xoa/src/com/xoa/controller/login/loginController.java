@@ -101,19 +101,18 @@ public class loginController {
             HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String loginId = (String)request.getSession().getAttribute("loginDateSouse");
 		L.a("login:"+loginId);
-		 ContextHolder.setConsumerType("xoa"+loginId);
 		ToJson<Users> json=new ToJson<Users>(0, null);
+		ContextHolder.setConsumerType("xoa"+loginId);
 		Users user=usersService.findUserByName(username);
-		try {
-			if (user==null) {
+		if (user==null) {
 				L.a("login erro");
 			request.getSession().setAttribute("message", "errOne");
 			    json.setObject(user);
 	            json.setMsg("err");
 	            json.setFlag(1);
 		}else {
-			if (user.getByname().equals(username)) {
-				L.a("login success");
+//			if (user.getByname().equals(username)) {
+//				L.a("login success");
 				request.getSession().setAttribute("uid", user.getUid());
 				request.getSession().setAttribute("userId", user.getUserId());
 				request.getSession().setAttribute("userName", username);
@@ -123,16 +122,11 @@ public class loginController {
 				request.getSession().setAttribute("userPrivNo", user.getUserPriv());
 				request.getSession().setAttribute("deptId", user.getDeptId());
 				request.getSession().setAttribute("deptIdOther", user.getDeptIdOther());
-			}
+//			}
 			    json.setObject(user);
 	            json.setMsg("OK");
 	            json.setFlag(0);
 		   
-		}
-			
-		} catch (Exception e) {
-			json.setMsg(e.getMessage());
-
 		}
 		return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss"); 
 		

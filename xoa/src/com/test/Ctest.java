@@ -3,9 +3,13 @@ package com.test;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 
+import com.xoa.model.users.Users;
+import com.xoa.service.users.UsersService;
+import com.xoa.util.dataSource.ContextHolder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -30,6 +34,9 @@ public class Ctest {
 //	private NewService newService;
 	@Resource
 	private EmailService emailUtilService;
+
+    @Resource
+    private UsersService usersService;
 	
 //	@Test
 //	public void test() throws Exception {
@@ -66,20 +73,44 @@ public class Ctest {
 	
 	@Test
 	public void test() throws Exception {
-		Map<String,Object> maps = new HashMap<String, Object>();
-		maps.put("bodyId", Integer.valueOf("11"));
-		maps.put("fromId", "zhanglan");
-		EmailBodyModel emailBody = emailUtilService.queryById(maps, 1, 5, false);
-		EmailBodyModel emailbo = new EmailBodyModel();
 		
-		System.out.println("emailBody:"+!StringUtils.isEmpty(emailBody));
-		System.out.println("\n emailbo:"+emailBody.getBodyId());
+		ResourceBundle rb =  ResourceBundle.getBundle("jdbc-sql");
+		System.out.println(rb.getString("mysql.uname")=="root");
 		
-		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "查询成功");
-		tojson.setObject(emailBody);
-		
-		System.out.println(JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss"));
+//        ContextHolder.setConsumerType("xoa");
+//        System.out.println("类型："+ContextHolder.getConsumerType());
+//                Users user=usersService.findUserByName("zhangyong");
+//        ToJson<Users> json=new ToJson<Users>(0, null);
+//        try {
+//            if (user.getBpNo()=="") {
+//                System.out.println("登录失败");
+//            }else {
+//                System.out.println("登录成功");
+//            }
+//
+//        } catch (Exception e) {
+//            json.setMsg(e.getMessage());
+//
+//        }
+        
+        
+        
+        
+        
+//		Map<String,Object> maps = new HashMap<String, Object>();
+//		maps.put("bodyId", Integer.valueOf("11"));
+//		maps.put("fromId", "zhanglan");
+//		EmailBodyModel emailBody = emailUtilService.queryById(maps, 1, 5, false);
+//		EmailBodyModel emailbo = new EmailBodyModel();
+//
+//		System.out.println("emailBody:"+!StringUtils.isEmpty(emailBody));
+//		System.out.println("\n emailbo:"+emailBody.getBodyId());
+//
+//		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "查询成功");
+//		tojson.setObject(emailBody);
+//
+//		System.out.println(JSON.toJSONStringWithDateFormat(tojson,
+//					"yyyy-MM-dd HH:mm:ss"));
 		
 		
 //		
