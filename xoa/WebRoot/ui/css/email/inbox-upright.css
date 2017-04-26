@@ -129,7 +129,8 @@
 	border-right: #cee7ff 8px solid;
 	height: 100%;
 	overflow-y: auto;  
-    overflow-x: hidden; 
+    overflow-x: hidden;
+    height: 93%; 
 }
 .main .main_left ul li{
 	padding-left: 10px;
