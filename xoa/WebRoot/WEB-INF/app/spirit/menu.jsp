@@ -112,13 +112,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     		if(obj!=''){
 	     			for(var i=0;i<obj.length;i++){
 	     				var fchild=obj[i].child;
-	     				li+='<li><div class="yiji_title "><span  class="head_pic"><img src="../img/main_img/'+obj[i].img+'.png" alt="img"/></span><span title="'+obj[i].name1+'" id="'+obj[i].id+'" class="appname">'+obj[i].name+'</span><span class="dianji before"></span></div>';
+	     				li+='<li><div class="yiji_title"><span  class="head_pic"><img src="../img/main_img/'+obj[i].img+'.png" alt="img"/></span><span title="'+obj[i].name1+'" id="'+obj[i].id+'" class="appname">'+obj[i].name+'</span><span class="dianji before"></span></div>';
 	     				if(fchild.length!=0){
 	     					li+='<div class="erji common"><ul>';
 	     					for(var j=0;j<fchild.length;j++){
 	     						var schild=fchild[j].child;
 	     						if(fchild[j].child!=''){
-	     							li+='<li url="'+fchild[j].url+'" onClick="window.external.OA_SMS("'+fchild[j].url+'","","OPEN_URL");"><div class="yiji_title"><span  class="head_pic"><img src="../img/main_img/hei.png" alt="erimg"/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span><span class="dianji before"></span></div><div class="sanji common"><ul>';
+	     							li+='<li url="'+fchild[j].url+'" onClick="window.external.OA_SMS("/xoa/email/index","MAX","OPEN_URL");"><div class="yiji_title"><span  class="head_pic"><img src="../img/main_img/hei.png" alt="erimg"/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span><span class="dianji before"></span></div><div class="sanji common"><ul>';
 	     							for(var z=0;z<schild.length;z++){
 	     								li+='<li url="'+schild[z].url+'" onClick="window.external.OA_SMS("'+schild[z].url+'","","OPEN_URL");"><div class="yiji_title"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+schild[z].name1+'" id="'+schild[z].id+'"  class="appname">'+schild[z].name+'</span></div></li>';
 	     							}
