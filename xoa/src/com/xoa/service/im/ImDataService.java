@@ -107,7 +107,7 @@ public class ImDataService {
 			record.setContent(content);
 			record.setStime(time);
 			Long atime = new Date().getTime();
-			record.setAtime(atime.intValue());
+			record.setAtime(String.valueOf(atime));
 			record.setUseFlag(false);
 			// TODO 处理附近信息
 			// FIXME 类型不知道按什么区分现在默认文本类型
@@ -142,7 +142,7 @@ public class ImDataService {
 			putDateChatList.setOfFrom(of_from);
 			putDateChatList.setOfTo(of_to);
 			putDateChatList.setLastTime(time);
-			putDateChatList.setLastAtime(atime.intValue());
+			putDateChatList.setLastAtime(String.valueOf(atime));
 			putDateChatList.setLastContent(content);
 			putDateChatList.setType(type);
 			putDateChatList.setUuid(uuid);
@@ -199,6 +199,7 @@ public class ImDataService {
 	
 	
 	@DynDatasource
+	@Transactional(rollbackFor=ImDataException.class)
 	public BaseWrapper rollBackMessage(String from_id,String delete_uuid){
 		//删除此消息 
 		BaseWrapper bw=	new BaseWrapper();
@@ -208,9 +209,20 @@ public class ImDataService {
 			bw.setMsg("缺少必要参数");
 			return bw;
 		}
-			
-	    int der =	messageMapper.deleteByUUID(from_id,delete_uuid);
+		//三分钟内可撤销	
+		Long nowL=new Date(System.currentTimeMillis()-1000*3*60).getTime();
+		Integer now = nowL.intValue();
+		L.w("now is ",now);
+	    int der =	messageMapper.deleteByUUID(from_id,delete_uuid,now);
+		if(der<1){
+			bw.setFlag(false);
+			bw.setStatus(false);
+			bw.setMsg("撤销失败");
+			return bw;
+		}
 		//更新最后一条记录
+		
+		
 		
 		
 		return new BaseWrapper();

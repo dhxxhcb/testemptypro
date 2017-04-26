@@ -8,7 +8,7 @@
 		<result column="OF_FROM" property="ofFrom" jdbcType="VARCHAR" />
 		<result column="OF_TO" property="ofTo" jdbcType="VARCHAR" />
 		<result column="LAST_TIME" property="lastTime" jdbcType="VARCHAR" />
-		<result column="LAST_ATIME" property="lastAtime" jdbcType="INTEGER" />
+		<result column="LAST_ATIME" property="lastAtime" jdbcType="VARCHAR" />
 		<result column="LAST_FILE_ID" property="lastFileId" jdbcType="VARCHAR" />
 		<result column="LAST_FILE_NAME" property="lastFileName"
 			jdbcType="VARCHAR" />
@@ -186,7 +186,7 @@
 		#{toUid,jdbcType=VARCHAR},
 		#{ofFrom,jdbcType=VARCHAR}, #{ofTo,jdbcType=VARCHAR},
 		#{lastTime,jdbcType=VARCHAR},
-		#{lastAtime,jdbcType=INTEGER},
+		#{lastAtime,jdbcType=VARCHAR},
 		#{lastFileId,jdbcType=VARCHAR},
 		#{lastFileName,jdbcType=VARCHAR},
 		#{lastThumbnailUrl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
@@ -260,7 +260,7 @@
 				#{lastTime,jdbcType=VARCHAR},
 			</if>
 			<if test="lastAtime != null">
-				#{lastAtime,jdbcType=INTEGER},
+				#{lastAtime,jdbcType=VARCHAR},
 			</if>
 			<if test="lastFileId != null">
 				#{lastFileId,jdbcType=VARCHAR},
@@ -314,7 +314,7 @@
 				LAST_TIME = #{record.lastTime,jdbcType=VARCHAR},
 			</if>
 			<if test="record.lastAtime != null">
-				LAST_ATIME = #{record.lastAtime,jdbcType=INTEGER},
+				LAST_ATIME = #{record.lastAtime,jdbcType=VARCHAR},
 			</if>
 			<if test="record.lastFileId != null">
 				LAST_FILE_ID = #{record.lastFileId,jdbcType=VARCHAR},
@@ -357,7 +357,7 @@
 		LAST_TIME =
 		#{record.lastTime,jdbcType=VARCHAR},
 		LAST_ATIME =
-		#{record.lastAtime,jdbcType=INTEGER},
+		#{record.lastAtime,jdbcType=VARCHAR},
 		LAST_FILE_ID =
 		#{record.lastFileId,jdbcType=VARCHAR},
 		LAST_FILE_NAME =
@@ -389,7 +389,7 @@
 		LAST_TIME =
 		#{record.lastTime,jdbcType=VARCHAR},
 		LAST_ATIME =
-		#{record.lastAtime,jdbcType=INTEGER},
+		#{record.lastAtime,jdbcType=VARCHAR},
 		LAST_FILE_ID =
 		#{record.lastFileId,jdbcType=VARCHAR},
 		LAST_FILE_NAME =
@@ -424,7 +424,7 @@
 				LAST_TIME = #{lastTime,jdbcType=VARCHAR},
 			</if>
 			<if test="lastAtime != null">
-				LAST_ATIME = #{lastAtime,jdbcType=INTEGER},
+				LAST_ATIME = #{lastAtime,jdbcType=VARCHAR},
 			</if>
 			<if test="lastFileId != null">
 				LAST_FILE_ID = #{lastFileId,jdbcType=VARCHAR},
@@ -461,7 +461,7 @@
 		OF_TO =
 		#{ofTo,jdbcType=VARCHAR},
 		LAST_TIME = #{lastTime,jdbcType=VARCHAR},
-		LAST_ATIME = #{lastAtime,jdbcType=INTEGER},
+		LAST_ATIME = #{lastAtime,jdbcType=VARCHAR},
 		LAST_FILE_ID =
 		#{lastFileId,jdbcType=VARCHAR},
 		LAST_FILE_NAME =
@@ -485,7 +485,7 @@
 		OF_TO =
 		#{ofTo,jdbcType=VARCHAR},
 		LAST_TIME = #{lastTime,jdbcType=VARCHAR},
-		LAST_ATIME = #{lastAtime,jdbcType=INTEGER},
+		LAST_ATIME = #{lastAtime,jdbcType=VARCHAR},
 		LAST_FILE_ID =
 		#{lastFileId,jdbcType=VARCHAR},
 		LAST_FILE_NAME =

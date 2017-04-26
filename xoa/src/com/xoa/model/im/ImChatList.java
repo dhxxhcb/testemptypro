@@ -15,7 +15,7 @@ public class ImChatList extends PageParams {
 
     private String lastTime;
 
-    private Integer lastAtime;
+    private String lastAtime;
 
     private String lastFileId;
 
@@ -79,11 +79,11 @@ public class ImChatList extends PageParams {
         this.lastTime = lastTime == null ? null : lastTime.trim();
     }
 
-    public Integer getLastAtime() {
+    public String getLastAtime() {
         return lastAtime;
     }
 
-    public void setLastAtime(Integer lastAtime) {
+    public void setLastAtime(String lastAtime) {
         this.lastAtime = lastAtime;
     }
 
