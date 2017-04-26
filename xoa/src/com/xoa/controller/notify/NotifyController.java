@@ -158,6 +158,7 @@ public class NotifyController {
 				} else {
 					tojson.setFlag(1);
 				}
+				returnReslt=tojson;
 			}else if (read.equals("1")) {//已读
 				ToJson<Notify> tojson= notifyService.readNotify(maps, page, pageSize, useFlag, name);
 				if (tojson.getObj().size() > 0) {
@@ -166,6 +167,7 @@ public class NotifyController {
 				} else {
 					tojson.setFlag(1);
 				}
+				returnReslt=tojson;
 			}
 				else 
 				{
@@ -176,11 +178,14 @@ public class NotifyController {
 				} else {
 					tojson.setFlag(1);
 				}
+				returnReslt=tojson;
 			}
+		  
 	  }catch (Exception e) {
 	   loger.debug("notifyList:"+e);
 	   
 	  }
+	 
 	  return returnReslt;
 	 }
 	
@@ -243,7 +248,7 @@ public class NotifyController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody String getOneById(
+	public @ResponseBody ToJson<Notify> getOneById(
 			@RequestParam("notifyId") Integer notifyId) throws Exception{
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
@@ -254,13 +259,11 @@ public class NotifyController {
 		    Notify notify=notifyService.queryById(maps, 1, 5, false, name);
 			toJson.setMsg("seccess");
 			toJson.setObject(notify);
-			return JSON.toJSONStringWithDateFormat(toJson,
-					"yyyy-MM-dd HH:mm:ss");
+			return toJson;
 		} catch (Exception e) {
 			toJson.setMsg("fail");
 			loger.debug("ERROR:"+e);
-			return JSON.toJSONStringWithDateFormat(toJson,
-					"yyyy-MM-dd HH:mm:ss");
+			return toJson;
 		}
 	}
 
@@ -303,8 +306,9 @@ public class NotifyController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/updateNotify", produces = { "application/json;charset=UTF-8" })
-	public String updateNotify(
+	public ToJson<Notify> updateNotify(
 			@RequestParam(value="fromId",required=false)String fromId,
 			@RequestParam(value="typeId",required=false)String typeId,
 			@RequestParam(value="subject",required=false)String subject,
@@ -368,12 +372,12 @@ public class NotifyController {
 	    notify.setSummary(this.returnValue(summary));	
 	    try {
 	    	notifyService.updateNotify(notify);
-	    	return JSON.toJSONStringWithDateFormat(
-					new ToJson<Notify>(0, ""), "yyyy-MM-dd HH:mm:ss");
+	    	return 
+					new ToJson<Notify>(0, "");
 		} catch (Exception e) {
 			loger.debug("notifyList:" + e);
-			return JSON.toJSONStringWithDateFormat(
-					new ToJson<Notify>(1, ""), "yyyy-MM-dd HH:mm:ss");
+			return 
+					new ToJson<Notify>(1, "");
 		}
 		
 	}
@@ -418,7 +422,7 @@ public class NotifyController {
 	 */
 	@RequestMapping(value = "/addNotify", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String addNotify(
+	 ToJson<Notify> addNotify(
 			@RequestParam(value="fromId",required=false)String fromId,
 			@RequestParam(value="typeId",required=false)String typeId,
 			@RequestParam(value="subject",required=false)String subject,
@@ -482,10 +486,10 @@ public class NotifyController {
 	    notify.setSummary(this.returnValue(summary));
 		try {
 			notifyService.addNotify(notify);
-			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(0, ""), "yyyy-MM-dd HH:mm:ss");
+			return new ToJson<Notify>(0, "");
 		} catch (Exception e) {
 			loger.debug("notifyList:"+e);
-			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1, ""), "yyyy-MM-dd HH:mm:ss");
+			return new ToJson<Notify>(1, "");
 		}
 		
 	}
@@ -501,16 +505,16 @@ public class NotifyController {
 	 */
 	@RequestMapping(value = "/deleteById", produces = { "application/json;charset=UTF-8" })
 
-	public @ResponseBody String deleteById(@RequestParam("notifyId") Integer notifyId){
+	public @ResponseBody ToJson<Notify> deleteById(@RequestParam("notifyId") Integer notifyId){
 		ToJson<Notify> toJson = new ToJson<Notify>(0,"");
 		loger.debug("transfersID"+notifyId);
 		try{
 			notifyService.delete(notifyId);
 			toJson.setMsg("delete seccess");
-			return JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss");
+			return toJson;
 		}catch(Exception e){
 			toJson.setMsg("delete fail");
-			return JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss");
+			return toJson;
 		}
 	}
 	
