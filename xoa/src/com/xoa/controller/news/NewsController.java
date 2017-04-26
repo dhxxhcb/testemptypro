@@ -93,7 +93,7 @@ public class NewsController {
 	 * @return     String 返回新闻管理列表
 	 */
 @RequestMapping(value = "/showNewsManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-  public @ResponseBody String selectNewsManage(
+  public @ResponseBody ToJson<News> selectNewsManage(
 			@RequestParam(value = "format", required = false) String format,
 			@RequestParam(value = "typeId", required = false) String typeId,
 			@RequestParam(value = "top", required = false) String top,
@@ -123,21 +123,17 @@ public class NewsController {
 		maps.put("newsTime", newsTime);
 		maps.put("lastEditTime", lastEditTime);
 		maps.put("content", content);
-		String returnReslt = null;
+		ToJson<News> returnReslt = new ToJson(1,"");
 		try {
 			ToJson<News> tojson =newService.selectNewsManage(maps, 1, 5, true);
 			if (tojson.getObj().size() > 0) {
 				tojson.setMsg(ok);
-				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-						"yyyy-MM-dd HH:mm:ss");
+				returnReslt = tojson;
 			} else {
-				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-						1, err), "yyyy-MM-dd HH:mm:ss");
+				returnReslt = tojson;
 			}
 		} catch (Exception e) {
 			loger.debug("NewsMessage:" + e);
-			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,
-					""), "yyyy-MM-dd HH:mm:ss");
 		}
 
 		return returnReslt;
@@ -194,7 +190,7 @@ public class NewsController {
 		maps.put("clickCount", clickCount);
 		maps.put("click", click);
 		
-		String name = "WWWWWWW";
+		String name = (String) request.getSession().getAttribute("userId");
 		ToJson<News>returnReslt = new ToJson(1,"");
 		try {
 			 if (read.equals("0")) {
@@ -497,7 +493,7 @@ public class NewsController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody String queryNews(@RequestParam("newsId") Integer newsId,HttpServletRequest request){
+	public @ResponseBody ToJson<News> queryNews(@RequestParam("newsId") Integer newsId,HttpServletRequest request){
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);
 		ToJson<News> toJson=new ToJson<News>(0, "");
@@ -506,13 +502,11 @@ public class NewsController {
 			News news=newService.queryById(maps, 1, 5, false, name);
 			toJson.setMsg(ok);
 			toJson.setObject(news);
-			return JSON.toJSONStringWithDateFormat(toJson,
-					"yyyy-MM-dd HH:mm:ss");
+			return toJson;
 		} catch (Exception e) {
 			toJson.setMsg(err);
 			loger.debug("ERROR:"+e);
-			return JSON.toJSONStringWithDateFormat(toJson,
-					"yyyy-MM-dd HH:mm:ss");
+			return toJson;
 		}
 	}
 	
