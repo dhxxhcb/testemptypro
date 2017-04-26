@@ -221,9 +221,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 			return list1;
 		}
 		if(list.size()==0&&list1.size()==0){
-			return list;
+			return null;
 		}
-		return list;
+		return null;
 	}
 	
 
