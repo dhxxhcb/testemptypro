@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html><!--<![endif]-->
  <head>
-    <title>公告通知管理</title>
+    <title><fmt:message code="notice.title.notifynoticemanage" /></title><!-- 公告通知管理 -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
@@ -120,9 +120,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body class="bodycolor">
 <div class="muJump">
 	<ul>
-		<li class="jumpOn" id="NOTIFY"><a href="javascript:;">公告管理</a></li>
-		<li><a href="add" id="NEWLY">新建公告</a></li>
-		<li><a href="noticeQuery" >公告查询</a></li>
+		<li class="jumpOn" id="NOTIFY"><a href="javascript:;"><fmt:message code="notice.th.notifymanage" /></a></li>
+		<li><a href="add" id="NEWLY"><fmt:message code="notice.th.buildnotify" /></a></li>
+		<li><a href="noticeQuery" ><fmt:message code="notice.title.announcementquery" /></a></li>
 	</ul>
 </div>
 <div class="content">
@@ -132,14 +132,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <tr>
 		    <td class="Big">
 		    	<img src="../img/notify_open.gif" align="absmiddle">
-		    	<span class="big3">管理公告通知</span>&nbsp;
+		    	<span class="big3"><fmt:message code="notice.th.managenotifynotice" /></span>&nbsp;
 		       <select name="TYPE" class="BigSelect" onChange="change_type(this.value);">
-		          	<option value="0" selected>所有类型</option>
-		         	<option value="01">决定</option>
-					<option value="02">通知</option>
-					<option value="03">通报</option>
-					<option value="04">其他</option>
-		          	<option value="05">无类型</option>
+		          	<option value="0" selected><fmt:message code="notice.type.alltype" /></option>
+		         	<option value="01"><fmt:message code="notice.type.Decision" /></option>
+					<option value="02"><fmt:message code="notice.type.notice" /></option>
+					<option value="03"><fmt:message code="notice.type.Bulletin" /></option>
+					<option value="04"><fmt:message code="notice.type.other" /></option>
+		          	<option value="05"><fmt:message code="notice.type.notype" /></option>
 		       </select>
 		    </td>
 		    <td align="right" valign="bottom" class="small1">
@@ -152,14 +152,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		     <!--  <th nowrap align="center">选择</th> -->
 		      <th nowrap align="center"><fmt:message code="notice.th.publisher" /></th>
 		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
-		      <th nowrap align="center">发布范围</th>
+		      <th nowrap align="center"><fmt:message code="notice.th.releasescope" /></th>
 		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
 		   
 		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.createTime" /></u>
 		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
 		      </th>
-		      <th nowrap align="center" style="cursor:pointer;"><u>生效日期</u></th>
-		      <th nowrap align="center" style="cursor:pointer;"><u>终止日期</u></th>
+		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.effectivedate" /></u></th>
+		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.endDate" /></u></th>
 		      <!-- <th nowrap align="center"><fmt:message code="notice.th.state" /></th> -->
 		      <th nowrap align="center"><fmt:message code="notice.th.operation" /></th>
 		    </tr>

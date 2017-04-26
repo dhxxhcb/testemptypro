@@ -153,4 +153,6 @@ public interface UsersMapper {
 	 * @return     User
 	 */
 	public Users getByUid(int uid);
+	
+	public String getUsernameByUserId(String userId);
 }

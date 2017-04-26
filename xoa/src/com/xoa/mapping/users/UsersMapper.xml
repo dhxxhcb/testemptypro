@@ -186,13 +186,13 @@
 		BYNAME= #{byname}
 	</select>
 	<select id="getUsernameById" resultMap="UserResultMap">
-		select BYNAME FROM user
+		select USER_NAME FROM user
 		WHERE UID= #{uid}
 	</select>
 	<select id="getUsernameByUserId" resultType="java.lang.String">
 		select USER_NAME
 		FROM user
-		WHERE UID= #{uid}
+		WHERE USER_ID = #{userId}
 	</select>
 	<select id="getDatagrid" resultMap="UserResultMap">
 		select * from user

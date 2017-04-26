@@ -206,8 +206,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 */
 	@Override
 	public List<Department> getChDeptUser(int deptId) {
-		List<Department> list=departmentMapper.getChDept(deptId); 
 		List<Department> list1=departmentMapper.getChDeptUser(deptId);
+		List<Department> list=departmentMapper.getChDept(deptId); 	
 		if(list.size()!=0&&list1.size()!=0){
 		for(int i=0;i<list1.size();i++){
 			list.add(list1.get(i));

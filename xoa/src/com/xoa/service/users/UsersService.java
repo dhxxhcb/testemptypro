@@ -148,5 +148,14 @@ public interface UsersService {
 	 */
 	@DynDatasource
 	public Users getByUid(int uid);
-
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月21日 上午11:00:05
+	 * 方法介绍:   根据uid串获取用户姓名
+	 * 参数说明:   @param userIds 用户userid串
+	 * 参数说明:   @return
+	 * @return     List<String>  返回用户姓名集合
+	 */
+	@DynDatasource
+	public List<String> getUserNameById(String userIds);
 }

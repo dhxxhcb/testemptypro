@@ -1,9 +1,11 @@
 package com.xoa.service.enclosure.impl;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xoa.dao.enclosure.AttachmentMapper;
 import com.xoa.model.enclosure.Attachment;
@@ -30,6 +32,12 @@ public class EnclosureServiceImpl implements EnclosureService {
 	public Attachment findByLast() {
 		Attachment att = attachmentMapper.findByLast();
 		return att;
+	}
+
+	@Override
+	public Map<String, String> uoload(MultipartFile[] files) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

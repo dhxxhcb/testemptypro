@@ -11,18 +11,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title><fmt:message code="notice.title.notify" /></title>
     <link rel="stylesheet" type="text/css" href="../css/news/page.css">
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
-    <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/base.css" />
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../lib/layer/layer.js"></script>
+
     <style type="text/css">
 		.head li{
 			width: 154px;
@@ -153,9 +150,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
         </div>
 
-       
+
         <div class="right">
-			<div class="M-box3"></div>
+
             <!-- 分页按钮-->
             <ul class="page" maxshowpageitem="0" pagelistcount="1" id="page"></ul>
 
@@ -266,9 +263,7 @@ $(function () {
 				subject:''
 
             };
-            initPageList(function(pageCount){
-           		 initPagination(pageCount,data.pageSize);
-            });
+           initPageList();
 
            $(".index_head li").click(function (){
 				console.log('qqq');
@@ -281,9 +276,7 @@ $(function () {
 				if(data.read == ''||data.read == 0){
 					$('.step1').show();
 					$('.center').hide();
-					initPageList(function(pageCount){
-		           		 initPagination(pageCount,data.pageSize);
-		            });
+					initPageList();
 				}else if(data.read == 1){
 					$('.step1').hide();
 					$('.center').show('');
@@ -295,26 +288,16 @@ $(function () {
 				}
 				
             })
-            function initPageList(cb){
-            	var layerIndex = layer.load(0, {shade: false});
+            function initPageList(read,typeId,nTime){
             	$.ajax({
 					type: "get",
 					url: "<%=basePath%>notice/notifyList",
 					dataType: 'JSON',
 					data: data,
 					success: function(data){
-						
-						if(data.obj.length == 0){
-							layer.closeAll()
-							layer.msg('没有未读新闻，2秒后自动跳到公告通知', {icon: 6});
-							var turnindex=setInterval(function(){
-								layer.closeAll();
-								$(".index_head li").eq(1).click();
-								clearInterval(turnindex);
-							},2*1000);
-						}else{
-							var news = "";
-                        	for (var i = 0; i < data.obj.length; i++) {
+						console.log(data);
+						var news = "";
+                           for (var i = 0; i < data.obj.length; i++) {
                                news += "<tr><td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].sendTime+"</ a></td>"+
@@ -322,16 +305,8 @@ $(function () {
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
                                        +news;
                            }
-							var loadindex=setInterval(function(){
-								layer.closeAll();
-								$("#j_tb").html(news);
-								clearInterval(turnindex);
-							},1000);
-							
-							if(cb){
-								cb(obj.totleNum);
-							}
-						}
+						
+						$("#j_tb").html(news);
 					}   
 				})
             }
@@ -349,8 +324,7 @@ $(function () {
 					initPageList();
 				});
 				//时间控件调用
-				
-
+  
    $('#btn_query').click(function (){
 		data.read='';
 		data.subject = $('#subject').val();
@@ -382,24 +356,6 @@ $(function () {
         end.start = datas; //将结束日的初始值设定为开始日
      }
    };
-            function initPagination(totalData,pageSize){
-            	$('.M-box3').pagination({
-							    totalData:totalData,
-							    showData:pageSize,
-							    jump:true,
-							    coping:true,
-							    homePage:'<fmt:message code="global.page.first" />',
-							    endPage:'<fmt:message code="global.page.last" />',
-							    prevContent:'<fmt:message code="global.page.pre" />',
-							    nextContent:'<fmt:message code="global.page.next" />',
-							    jumpBtn:'<fmt:message code="global.page.jump" />',
-							    callback:function(index){
-							    	data.page = index.getCurrent();
-							    	console.log(index.getCurrent());
-							    	initPageList();
-							    }
-							});
-            }
    var end = {
      elem: '#endTime',
      format: 'YYYY-MM-DD hh:mm:ss',
