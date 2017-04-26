@@ -1,5 +1,6 @@
 package com.xoa.controller.users;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -230,6 +231,7 @@ public class UsersController {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");						
+			//String search=URLEncoder.encode(request.getParameter("search"),"UTF-8"); 
 			maps=new HashMap<String, Object>();
 			maps.put("userName", search);
 			maps.put("userPrivName", search);
