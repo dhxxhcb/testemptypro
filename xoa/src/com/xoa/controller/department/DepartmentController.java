@@ -198,7 +198,7 @@ public class DepartmentController {
 	 * @return     String  返回下级部门信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/getChDept",produces = {"application/json;charset=UTF-8"})
+	@RequestMapping(value = "/getChDeptfq",produces = {"application/json;charset=UTF-8"})
     public String getChDept(HttpServletRequest request) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
@@ -291,7 +291,7 @@ public class DepartmentController {
 	 * @return     String
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/getChDeptUser",produces = {"application/json;charset=UTF-8"})
+	@RequestMapping(value = "/getChDept",produces = {"application/json;charset=UTF-8"})
     public String getChDeptUser(HttpServletRequest request) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
