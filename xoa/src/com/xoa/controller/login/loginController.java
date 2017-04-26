@@ -17,6 +17,7 @@ import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
+import com.xoa.util.dataSource.ContextHolder;
 
 @Controller
 @Scope(value="prototype")
@@ -63,9 +64,9 @@ public class loginController {
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.GET) //登录窗口
 	public String logins(@RequestParam("loginId") String loginId,HttpServletRequest request,HttpServletResponse response) {
+		request.getSession().setAttribute("loginDateSouse", loginId);
 		String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
 		Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
-		
 		return "login/"+loginId+"/login";
 	}
 	
@@ -98,25 +99,28 @@ public class loginController {
 	@RequestMapping(value="/login",method=RequestMethod.POST,produces={"application/json;charset=UTF-8"})
 	public @ResponseBody  String loginEnter(@RequestParam("username") String username, @RequestParam("password") String password,
             HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String loginId = (String)request.getSession().getAttribute("loginDateSouse");
+		L.a("login:"+loginId);
+		 ContextHolder.setConsumerType("xoa"+loginId);
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		Users user=usersService.findUserByName(username);
 		try {
 			if (user==null) {
+				L.a("login erro");
 			request.getSession().setAttribute("message", "errOne");
 			    json.setObject(user);
 	            json.setMsg("err");
 	            json.setFlag(1);
-			
-			
 		}else {
 			if (user.getByname().equals(username)) {
+				L.a("login success");
 				request.getSession().setAttribute("uid", user.getUid());
 				request.getSession().setAttribute("userId", user.getUserId());
 				request.getSession().setAttribute("userName", username);
 				request.getSession().setAttribute("byname", user.getByname());
 				request.getSession().setAttribute("password", user.getPassword());
 				request.getSession().setAttribute("userPriv", user.getUserPriv());
-				request.getSession().setAttribute("userPrivNo", user.getUserPrivNo());
+				request.getSession().setAttribute("userPrivNo", user.getUserPriv());
 				request.getSession().setAttribute("deptId", user.getDeptId());
 				request.getSession().setAttribute("deptIdOther", user.getDeptIdOther());
 			}

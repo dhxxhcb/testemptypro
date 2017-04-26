@@ -28,8 +28,10 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;  
 import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;  
 import org.apache.ibatis.session.Configuration;  
+import com.alibaba.fastjson.JSONArray;
+import com.xoa.util.common.L;
 
-import com.xoa.util.dataSource.DynDatasources;
+
   
 /**
  * 
@@ -66,7 +68,7 @@ public class PagingPlugin implements Interceptor {
      */
     private Boolean defaultCleanOrderBy;  
     
-    private DynDatasources dyTypeDate = new DynDatasources();
+//    private DynDatasources dyTypeDate = new DynDatasources();
   
     private static final String DB_TYPE_MYSQL = "mysqlDataSources";  
     private static final String DB_TYPE_ORACLE = "oracleDataSources";  
@@ -85,25 +87,34 @@ public class PagingPlugin implements Interceptor {
   
         MetaObject metaStatementHandler = SystemMetaObject.forObject(stmtHandler);  
         String sql = (String) metaStatementHandler.getValue("delegate.boundSql.sql");  
-  
+         
         MappedStatement mappedStatement =  (MappedStatement) metaStatementHandler.getValue("delegate.mappedStatement");  
         //获取数据源连接类型
-        String dbType = dyTypeDate.determineCurrentLookupKey().toString();  
+
+//        String dbType = dyTypeDate.determineCurrentLookupKey().toString();  
+        String dbType = "mysqlDataSources";  
   
+
+//        String dbType = dyTypeDate.determineCurrentLookupKey().toString();  
+        BoundSql boundSql = (BoundSql) metaStatementHandler.getValue("delegate.boundSql");  
+        L.w("sqlcheck you sql is:",sql,"\r\n Params is",JSONArray.toJSONString(boundSql));
         //不是select语句.  
         if (!this.checkSelect(sql)) {  
+        	L.w("you sql is not select ,pleasecheck");
             return invocation.proceed();  
         }  
-        BoundSql boundSql = (BoundSql) metaStatementHandler.getValue("delegate.boundSql");  
+        
         Object parameterObject = boundSql.getParameterObject();  
         PageParams pageParams = getPageParamsForParamObj(parameterObject);  
         if (pageParams == null) { //无法获取分页参数，不进行分页。  
-            return invocation.proceed();  
+        	L.w("pageParams is null");
+        	return invocation.proceed();  
         }  
   
         //获取配置中是否启用分页功能.  
         Boolean useFlag = pageParams.getUseFlag() == null? this.defaultUseFlag : pageParams.getUseFlag();  
-        if (!useFlag) {  //不使用分页插件.  
+        if (!useFlag) {  //不使用分页插件. 
+        	L.w("useFlag"+useFlag);
             return invocation.proceed();  
         }  
         //获取相关配置的参数.  
@@ -149,7 +160,9 @@ public class PagingPlugin implements Interceptor {
             Iterator<String> iterator = keySet.iterator();  
             while(iterator.hasNext()) {  
                 String key = iterator.next();  
+                L.w("key is ",key);
                 Object value = paramMap.get(key);  
+//                L.w("value is ",value);
                 if (value instanceof PageParams) {  
                     return (PageParams)value;  
                 }  
