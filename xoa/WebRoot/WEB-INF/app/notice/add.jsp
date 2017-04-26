@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>新建公告</title>
+		<title><fmt:message code="notice.th.buildnotify" /></title><!-- 新建公告-->
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -26,12 +26,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="content">
 			<div class="title">
 				<img src="img/notify_new.gif" alt="" />
-				<span>新建公告</span>
-				<a href="javascript:;" id="noty">选择格式</a>
+				<span><fmt:message code="notice.th.buildnotify" /></span>
+				<a href="javascript:;" id="noty"><fmt:message code="notice.th.choseformat" /></a>
 				<div class="div_form" style="display: none;">
-					<a href="javascript:;">普通格式</a>
-					<a href="javascript:;">MHT格式</a>
-					<a href="javascript:;">超级链接</a>
+					<a href="javascript:;"><fmt:message code="notice.format.Commonformat" /></a>
+					<a href="javascript:;"><fmt:message code="notice.format.MHTformat" /></a>
+					<a href="javascript:;"><fmt:message code="notice.format.hyperlink" /></a>
 				</div>
 			</div>
 			
@@ -40,17 +40,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<tr>
 						<td width="15%">
 							<select name="type_name" id="type_id" title="新闻" style="width: 70%;">
-					            <option value="00">选择公告类型</option>           
-					            <option value="01">决定</option>
-								<option value="02">通知</option>
-								<option value="03">通告</option>
-								<option value="04">其他</option>
+					            <option value="00"><fmt:message code="notice.th.chosenotifytype" /></option>           
+					            <option value="01"><fmt:message code="notice.type.Decision" /></option>
+								<option value="02"><fmt:message code="notice.type.notice" /></option>
+								<option value="03"><fmt:message code="notice.type.Bulletin" /></option>
+								<option value="04"><fmt:message code="notice.type.other" /></option>
 					         </select>
 						</td>
 						<td width="70%">
 							<input type="text" class="in_title" id="txt_id" placeholder="请输入公告标题" styl="outline: none;"/><font color=red>(*)</font>
 							 <a id="font_color_link" href="javascript:;" class="dropdown" >
-							 	<span>设置标题颜色</span>
+							 	<span><fmt:message code="notice.th.SetTitlecolor" /></span>
 							 	
 							 </a>
 							 <div class="worldColor" style="display: none;">
@@ -67,8 +67,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 					<tr>
 						<td width="15%">
-							按部门发布：<br>
-							<a href="javascript:;" id="href_txt">按人员或角色发布</a>
+							<fmt:message code="notice.th.IssuedByDepartment" />：<br>
+							<a href="javascript:;" id="href_txt"><fmt:message code="notice.th.PostedByPersonnelOrRoles" /></a>
 						</td>
 						<td width="70%">
 							<div class="inPole">
@@ -77,22 +77,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<span class="addImg">
 										<img src="img/org_select1.png" class="addIcon"/>
 									</span>
-									<a href="javascript:;" class="Add">添加</a>
+									<a href="javascript:;" class="Add"><fmt:message code="global.lang.add" /></a>
 								</span>
 								<span class="add_img">
 									<span class="addImg">
 										<img src="img/org_select2.png" class="clearIcon"/>
 									</span>
-									<a href="javascript:;" class="clear">清除</a>
+									<a href="javascript:;" class="clear"><fmt:message code="global.lang.empty" /></a>
 								</span>
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td width="15%">发布时间：</td>
+						<td width="15%"><fmt:message code="notice.th.PostedTime" />：</td>
 						<td width="70%">
 							<input id="test" name="SEND_TIME" class="laydate-icon">
-							<a href="javascript:resetTime();" class="reset">重置为当前时间</a>
+							<a href="javascript:resetTime();" class="reset"><fmt:message code="notice.th.ResetToCurrentTime" /></a>
 						</td>
 					</tr>
 					<!--<tr>
@@ -106,23 +106,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 					</tr>-->
 					<tr>
-						<td width="15%">置顶：</td>
+						<td width="15%"><fmt:message code="notice.th.top" />：</td>
 						<td width="70%">
 							<input type="checkbox" name="TOP" id="TOP">
-							<label for="TOP">使公告通知置顶，显示为重要</label>
-      						<input type="text" name="TOP_DAYS" size="3" maxlength="4" onkeyup="this.value=this.value.replace(/\D/g,'')" class="BigInput" value="0">&nbsp;天后结束置顶，0表示一直置顶 
+							<label for="TOP"><fmt:message code="notice.th.topMajor" /></label>
+      						<input type="text" name="TOP_DAYS" size="3" maxlength="4" onkeyup="this.value=this.value.replace(/\D/g,'')" class="BigInput" value="0">&nbsp;<fmt:message code="notice.th.endTop" /> 
 						</td>
 					</tr>
 					<tr>
-						<td width="15%">内容简介：</td>
+						<td width="15%"><fmt:message code="notice.th.contentValidity" />：</td>
 						<td width="70%">
-							<input class="BigInput" type="text" name="SUMMARY" cols="46" rows="2" size=60 maxlength="30" value="">(最多输入30个字)
+							<input class="BigInput" type="text" name="SUMMARY" cols="46" rows="2" size=60 maxlength="30" value=""><fmt:message code="notice.th.contentHigh" />
 						</td>
 					</tr>
 					<tr>
-						<td width="15%">附件上传：</td>
+						<td width="15%"><fmt:message code="notice.th.fileUpload" />：</td>
 						<td width="70%">
-							附件上传
+					    <fmt:message code="notice.th.fileUpload" />
 						</td>
 					</tr>
 					<tr>
@@ -133,12 +133,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 					</tr>
 					<tr>
-						<td width="15%">关键词：</td>
+						<td width="15%"><fmt:message code="notice.th.keyWord" />：</td>
 						<td width="70%">
 							<input type="text" name="KEYWORD" id='KEYWORD' class="BigInput"  size=50>
 					      	<span id="tishi"></span>
-					      	<a href='javascript:get_keyword();' class='A1'>自动获取关键词
-					      	</a>&nbsp;&nbsp;&nbsp;(您可以调整关键词内容，多个关键词请用,分隔)
+					      	<a href='javascript:get_keyword();' class='A1'><fmt:message code="notice.th.AutomaticKeywordAcquisition" />
+					      	</a>&nbsp;&nbsp;&nbsp;<fmt:message code="notice.th.keyContent" />
 						</td>
 					</tr>
 					<tr class="last_tr">
