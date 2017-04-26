@@ -1,5 +1,6 @@
 package com.xoa.service.users.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -199,6 +200,34 @@ public class UsersServiceImpl implements UsersService {
 		Users users=usersMapper.getByUid(uid);
 		return users;
 	}
-
-
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月21日 上午11:00:05
+	 * 方法介绍:   根据uid串获取用户姓名
+	 * 参数说明:   @param uids  用户uid串
+	 * 参数说明:   @return
+	 * @return     List<String>  返回用户姓名串
+	 */
+	@Override
+	public List<String> getUserNameById(String userIds) {
+		List<String> list=new ArrayList<String>();
+		//定义用于拼接角色名称的字符串
+		StringBuffer sb=new StringBuffer();
+		String[] temp = userIds.split(",");  
+		for(int i=0;i<temp.length;i++){
+			if(temp[i]!=""){
+		 String userName=usersMapper.getUsernameByUserId(temp[i]);
+		 if(userName!=""){  		
+		 if(i<temp.length-1){
+	            sb.append(userName).append("/");
+	            }else{
+	            sb.append(userName);
+	            }
+			}
+		}
+		}
+		list.add(sb.toString());
+		return list;
+	}
 }
