@@ -147,7 +147,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div style="font-size: 15px; margin-left:28px; "><fmt:message code="global.lang.date" />:</div>
                 <input class="button1" id="sendTime">
             </div>
-            <img style="width:55px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
+            <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
         </div>
 
 
@@ -304,11 +304,11 @@ $(function () {
 						console.log(obj);
 						var news = "";
                            for (var i = 0; i < obj.obj.length; i++) {
-                               news = "<tr><td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].subject+"</ a></td>"+
-                                       "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].typeName+"</ a></td>"+
-                                       "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsTime+"</ a></td>"+
-                                       "<td><a href='' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].clickCount+"</ a></td>"+
-                                       "<td><a href='' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+'0'+"</ a></td>"+news;
+                               news = "<tr><td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].subject+"</ a></td>"+
+                                       "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].typeName+"</ a></td>"+
+                                       "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsTime+"</ a></td>"+
+                                       "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].clickCount+"</ a></td>"+
+                                       "<td><a href='#' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+'0'+"</ a></td>"+news;
                            }
                            
 							
