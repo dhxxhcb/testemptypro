@@ -143,6 +143,7 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public Users findUserByName(String byname) {
 		Users user=usersMapper.findUserByName(byname);
+		user.setDeptName(user.getDep().getDeptName());
 		return user;
 	}
 	 /**

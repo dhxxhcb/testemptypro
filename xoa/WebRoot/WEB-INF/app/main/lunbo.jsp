@@ -31,8 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  }
  ul li{
  width: 600px;
- height: 40px;
- line-height: 40px;
+ height: 30px;
+ line-height: 30px;
  font-size:16px;
  color:#fff;
  text-align: center
@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   liFirst.remove();
   })
  }
- setInterval("lunbo('ul','-40px')",3000);
+ setInterval("lunbo('ul','-30px')",3000);
 </script>
 </body>
 </html>
