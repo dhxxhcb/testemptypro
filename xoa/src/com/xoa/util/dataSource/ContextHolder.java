@@ -1,8 +1,13 @@
 package com.xoa.util.dataSource;
 
 /**
-* Created by gaosubo on 2017/4/25.
-*/
+ * 
+ * 创建作者:   张勇
+ * 创建日期:   2017-4-26 下午5:38:23
+ * 类介绍  :    分线程连接数据源
+ * 构造参数:   
+ *
+ */
 public class ContextHolder {
 //    public static final String mysqlDataSources1="mysqlDataSources";
 //    public static final String mysqlDataSources="mysqlDataSources1";

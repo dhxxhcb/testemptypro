@@ -75,7 +75,8 @@ public class Ctest {
 	public void test() throws Exception {
 		
 		ResourceBundle rb =  ResourceBundle.getBundle("jdbc-sql");
-		System.out.println(rb.getString("mysql.uname")=="root");
+		String name = rb.getString("mysql.driverClassName");
+		System.out.println("jieguo:"+name);
 		
 //        ContextHolder.setConsumerType("xoa");
 //        System.out.println("类型："+ContextHolder.getConsumerType());

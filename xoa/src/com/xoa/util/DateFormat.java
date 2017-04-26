@@ -13,6 +13,8 @@ import java.util.Date;
  *
  */
 public class DateFormat {
+	
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	/**
 	 * 
@@ -25,7 +27,6 @@ public class DateFormat {
 	 */
 	public static Integer getTime(String time) {
 		String re_time = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date d;
 		try {
 			d = sdf.parse(time);
@@ -49,7 +50,6 @@ public class DateFormat {
 	 */
 	public static String getStrTime(Integer time) {
 		String re_StrTime = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		long lcc_time = Long.valueOf(time);
 		re_StrTime = sdf.format(new Date(lcc_time * 1000L));
 		return re_StrTime;
@@ -66,7 +66,6 @@ public class DateFormat {
 	 */
 	public static Date getDate(String time){
 		Date re_time = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
 			re_time = sdf.parse(time);
 		} catch (ParseException e) {
@@ -86,7 +85,6 @@ public class DateFormat {
 	 */
 	public static String getStrDate(Date time){
 		String re_StrTime = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		re_StrTime = sdf.format(time);
 		return re_StrTime;
 	}
@@ -94,6 +92,8 @@ public class DateFormat {
 	public static void main(String[] args) {
 		System.out.println(DateFormat.getStrTime(1492592887));
 	}
+	
+	
 	
 
 }

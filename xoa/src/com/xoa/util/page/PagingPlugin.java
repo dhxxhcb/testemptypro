@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.Iterator;  
 import java.util.Map;  
 import java.util.Properties;  
+import java.util.ResourceBundle;
 import java.util.Set;  
   
 import javax.transaction.NotSupportedException;  
@@ -70,9 +71,12 @@ public class PagingPlugin implements Interceptor {
     
 //    private DynDatasources dyTypeDate = new DynDatasources();
   
-    private static final String DB_TYPE_MYSQL = "mysqlDataSources";  
-    private static final String DB_TYPE_ORACLE = "oracleDataSources";  
-  
+    ResourceBundle rb =  ResourceBundle.getBundle("jdbc-sql");
+    private String dyTypeDate = rb.getString("mysql.uname");
+    private static final String DB_TYPE_MYSQL = "com.mysql.jdbc.Driver";  
+    private static final String DB_TYPE_ORACLE = "oracle.jdbc.driver.OracleDriver";  
+    
+    
     /**
      * 
      * 创建作者:   张勇
@@ -92,7 +96,7 @@ public class PagingPlugin implements Interceptor {
         //获取数据源连接类型
 
 //        String dbType = dyTypeDate.determineCurrentLookupKey().toString();  
-        String dbType = "mysqlDataSources";  
+        String dbType = dyTypeDate;  
   
 
 //        String dbType = dyTypeDate.determineCurrentLookupKey().toString();  
