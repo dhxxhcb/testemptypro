@@ -359,7 +359,7 @@ $(function () {
             /* 新闻详情页 */
                $("#j_tb").on('click','.windowOpen',function(){
 		            var nid=$(this).attr('newsId');
-		            $.popWindow('detail?newsId='+nid);
+		            $.popWindow('detail?newsId='+nid,'1111');
 		        });
         		$('.submit').click(function (){
 					data.read = $('.index_head .one').parent().attr('data_id');
