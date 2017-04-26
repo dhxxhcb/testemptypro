@@ -150,7 +150,7 @@
 	<select id="getByUid"
 		resultType="com.xoa.model.users.Users">
 		select u.USER_ID as userId,u.USER_NAME as
-		userName,u.BYNAME,u.USER_PRIV_NAME as userPrivName,
+		userName,u.BYNAME,u.USER_PRIV_NAME as userPrivName,u.MY_STATUS as mystatus,
 		u.SEX,d.DEPT_NAME as deptName from user u
 		,department d
 		where u.DEPT_ID= d.DEPT_ID and UID= #{uid}

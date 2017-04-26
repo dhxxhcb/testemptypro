@@ -150,7 +150,7 @@ public interface UsersMapper {
 	 * 创建日期:   2017年4月25日 上午10:03:52
 	 * 方法介绍:   根据uid查询用户姓名、部门、角色信息
 	 * 参数说明:   @return
-	 * @return     User
+	 * @return     User 返回用户信息
 	 */
 	public Users getByUid(int uid);
 }

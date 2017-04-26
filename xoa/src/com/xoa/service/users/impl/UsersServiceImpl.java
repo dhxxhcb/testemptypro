@@ -188,7 +188,7 @@ public class UsersServiceImpl implements UsersService {
 
 	/**
 	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月21日 上午11:00:05
+	 * 创建日期:   2017年4月25日 上午11:00:05
 	 * 方法介绍:   根据uid查询用户姓名、部门、角色信息
 	 * 参数说明:   @param uid  用户uid
 	 * 参数说明:   @return
