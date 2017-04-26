@@ -46,22 +46,21 @@ body,
 	height:100%;
 } 
 .head_mid ul li h1{
-	margin-left: 2%; 
-	width: 63%;
-    color: #2a588c;
-    font-weight: bold;
-    line-height: 40px;
-    text-align: center;
-    font-size: 12px;
+	/* margin-left: 8%; */
+	width:85%;
+	color: #2a588c;
+    font-weight:bold;
+	line-height: 40px;
+	font-size:12px;
 }
 .head_mid ul li div{
-	width:17%;
+	width:15%;
 }
 .head_mid ul li img{
-	margin-top: 87%;
+	margin-top: 95%;
     width: 42%;
     height: 20%;
-    margin-right: -4%;
+    margin-right: 5%;
 }
 .head_rig{
 	width:21%;

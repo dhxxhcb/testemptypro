@@ -1,10 +1,12 @@
 package com.xoa.model.im;
 
-public class ImMessage {
+import com.xoa.util.page.PageParams;
+
+public class ImMessage extends PageParams{
     private Integer imid;
 
     private String fromUid;
-
+ 
     private String toUid;
 
     private String ofFrom;
@@ -15,7 +17,7 @@ public class ImMessage {
 
     private String stime;
 
-    private Integer atime;
+    private String atime;
 
     private String type;
 
@@ -81,11 +83,11 @@ public class ImMessage {
         this.stime = stime == null ? null : stime.trim();
     }
 
-    public Integer getAtime() {
+    public String getAtime() {
         return atime;
     }
 
-    public void setAtime(Integer atime) {
+    public void setAtime(String atime) {
         this.atime = atime;
     }
 

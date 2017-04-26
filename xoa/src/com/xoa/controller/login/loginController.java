@@ -116,7 +116,7 @@ public class loginController {
 				request.getSession().setAttribute("byname", user.getByname());
 				request.getSession().setAttribute("password", user.getPassword());
 				request.getSession().setAttribute("userPriv", user.getUserPriv());
-				request.getSession().setAttribute("userPrivNo", user.getUserPrivNo());
+				request.getSession().setAttribute("userPrivNo", user.getUserPriv());
 				request.getSession().setAttribute("deptId", user.getDeptId());
 				request.getSession().setAttribute("deptIdOther", user.getDeptIdOther());
 			}

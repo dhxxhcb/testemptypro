@@ -76,5 +76,5 @@ public abstract class LoggerBase {
 	public void setLinNumber(Integer linNumber) {
 		this.linNumber = linNumber;
 	}  
-    
+      
 }

@@ -109,17 +109,6 @@ public interface NewService {
     public void updateNews(News news);
     
     /**
-	  * 
-	  * 创建作者:   王曰岐
-	  * 创建日期:   2017-4-19 下午3:39:48
-	  * 方法介绍:   修改新闻
-	  * 参数说明:   @param news
-	  * @return     void
-	  */
-   @DynDatasource
-   public void updatePublish(News news);
-    
-    /**
      * 
      * 创建作者:   王曰岐
      * 创建日期:   2017-4-19 下午3:39:57

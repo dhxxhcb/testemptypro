@@ -29,7 +29,7 @@
 	</select>
 	<select id="getChDept" 
 	resultMap="DepResultMap">
-		SELECT "dep" as type, DEPT_ID,DEPT_NAME,DEPT_NO from department where DEPT_PARENT=#{deptId}
+		SELECT DEPT_ID,DEPT_NAME,DEPT_NO from department where DEPT_PARENT=#{deptId}
 	</select>
 	<select id="getFatherDept" 
 	resultMap="DepResultMap">
@@ -37,8 +37,8 @@
 	</select>
 	
 	<select id="getChDeptUser" 
-	resultType="com.xoa.model.department.Department">
-		SELECT "people" as type, u.AVATAR as avater,u.USER_NAME as userName,
+	resultType="java.util.Map">
+		SELECT u.AVATAR as avater,u.USER_NAME as userName,
 		u.UID as uid,u.USER_PRIV_NAME as userPrivName from department d,user u
 		 where d.DEPT_ID=u.DEPT_ID and d.DEPT_ID=#{deptId}
 	</select>

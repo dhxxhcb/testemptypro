@@ -138,8 +138,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</th>
 							<th width="16%">发件人</th>
 							<th width="40%" class="theme">主题</th>
-							<th width="16%">日期</th>
-							<th width="10%">附件</th>
+							<th width="20%">日期</th>
+							<th width="6%">附件</th>
 						</tr>
 						
 					</table>
@@ -242,9 +242,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm:ss');
 										//alert(data1[i].sendTime);
 										if(data1[i].emailList[0].readFlag==1){
-											str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_3_07.png"/></td><td width="6%"><img src="../img/icon_collect_nor_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+											str+='<tr class="Hover"><td width="6%"><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td width="6%"><img src="../img/icon_read_3_07.png"/></td><td width="6%"><img src="../img/icon_collect_nor_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td width="46%" class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td width="20%">'+sendTime+'</td><td width="10%"><img src="../img/icon_accessory_03.png"/></td></tr>';
 										} else if(data1[i].emailList[0].readFlag==0){
-											str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_notread_1_03.png"/></td><td width="6%"><img src="../img/icon_collect_nor_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+											str+='<tr class="Hover"><td width="6%"><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td width="6%"><img src="../img/icon_notread_1_03.png"/></td><td width="6%"><img src="../img/icon_collect_nor_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td width="46%" class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td width="20%">'+sendTime+'</td><td width="10%"><img src="../img/icon_accessory_03.png"/></td></tr>';
 										}
 										
 									}

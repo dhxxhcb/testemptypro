@@ -3,34 +3,45 @@ package com.xoa.dao.im;
 import com.xoa.model.im.ImChatList;
 import com.xoa.model.im.ImChatListExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
+
 public interface ImChatListMapper {
-    int countByExample(ImChatListExample example);
 
-    int deleteByExample(ImChatListExample example);
+	ImChatList selectChatListByParams(Map<String, Object> params);
+	
+	List<ImChatList> selectByFromId(String fromId);
 
-    int deleteByPrimaryKey(Integer listId);
+	int countByExample(ImChatListExample example);
+ 
+	int deleteByExample(ImChatListExample example);
 
-    int insert(ImChatList record);
+	int deleteByPrimaryKey(Integer listId);
 
-    int insertSelective(ImChatList record);
+	int insert(ImChatList record);
 
-    List<ImChatList> selectByExampleWithBLOBs(ImChatListExample example);
+	int insertSelective(ImChatList record);
 
-    List<ImChatList> selectByExample(ImChatListExample example);
+	List<ImChatList> selectByExampleWithBLOBs(ImChatListExample example);
 
-    ImChatList selectByPrimaryKey(Integer listId);
+	List<ImChatList> selectByExample(ImChatListExample example);
 
-    int updateByExampleSelective(@Param("record") ImChatList record, @Param("example") ImChatListExample example);
+	ImChatList selectByPrimaryKey(Integer listId);
 
-    int updateByExampleWithBLOBs(@Param("record") ImChatList record, @Param("example") ImChatListExample example);
+	int updateByExampleSelective(@Param("record") ImChatList record,
+			@Param("example") ImChatListExample example);
 
-    int updateByExample(@Param("record") ImChatList record, @Param("example") ImChatListExample example);
+	int updateByExampleWithBLOBs(@Param("record") ImChatList record,
+			@Param("example") ImChatListExample example);
 
-    int updateByPrimaryKeySelective(ImChatList record);
+	int updateByExample(@Param("record") ImChatList record,
+			@Param("example") ImChatListExample example);
 
-    int updateByPrimaryKeyWithBLOBs(ImChatList record);
+	int updateByPrimaryKeySelective(ImChatList record);
 
-    int updateByPrimaryKey(ImChatList record);
+	int updateByPrimaryKeyWithBLOBs(ImChatList record);
+
+	int updateByPrimaryKey(ImChatList record);
 }

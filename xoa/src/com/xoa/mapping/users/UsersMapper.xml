@@ -168,7 +168,7 @@
 			or u.USER_PRIV_NAME = #{userPrivName}
 		</if> 
         <if test="deptName != null and deptName !=''">
-			or d.DEPT_NAME = #{deptName} )
+			or d.DEPT_NAME = #{deptName} ) 
 		</if> 
 	</select>
 	<select id="getUserAndDept" parameterType="java.lang.Integer"
