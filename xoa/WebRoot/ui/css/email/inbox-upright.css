@@ -97,11 +97,12 @@
 
 .up_pages .up_format{
 	float: left;
-	margin-left: 10%;
+    margin-left: 10%;
+    margin-top: 10px;
+    border-radius: 3px;
+    border: #999 1px solid;
 }
 .up_pages .up_format ul{
-	width: 120px;
-
 	overflow: hidden;
 	border-radius: 3px;
 }

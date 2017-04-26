@@ -58,7 +58,11 @@ ul{
 	width: 100%;
 	height: 100%;
 }
-
+.page .page_left .inBox{
+	width: 100%;
+	overflow: hidden;
+	border-bottom: rgba(0,0,0,0.12) 1px solid;
+}
 
 /*鍏朵粬閭*/
 .page .page_left .other{
@@ -138,6 +142,7 @@ ul{
 	display: none;
 	width: 100%;
 	overflow: hidden;
+	
 }
 .page .page_left .spac_show{
 	margin-bottom: 52px;	
@@ -198,7 +203,7 @@ ul{
 }
 .page .page_right .header .nav li span{
 	display: block;
-	width: 20px;
+	width: 26px;
 	height: 14px;
 	background: url(../../img/icon_juxing.png) no-repeat;
 	text-align: center;
@@ -248,25 +253,26 @@ ul{
 }
 .page .page_right .header .searchs .format{
 	float: left;
-	margin-left: 10%;
+    margin-left: 10%;
+    margin-top: 10px;
+    border-radius: 3px;
+    border: #999 1px solid;
 }
 .page .page_right .header .searchs .format ul{
-	width: 120px;
 
 	overflow: hidden;
 	border-radius: 3px;
 }
 .page .page_right .header .searchs .format ul li{
 	float: left;
-	width: 40px;
-	height: 35px;
-	margin-top: 10px;
-	background-color: #f6f6f6;
-	text-align: center;
-	overflow: hidden;
+    width: 40px;
+    height: 30px;
+    background-color: #f6f6f6;
+    text-align: center;
+    overflow: hidden;
 }
 .page .page_right .header .searchs .format ul li img{
-	margin-top: 6px;
+	margin-top: 5px;
 }
 
 
