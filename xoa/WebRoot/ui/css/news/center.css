@@ -96,7 +96,7 @@ s, i, em {
 /*公共类*/
 .w {
     /*版心 提取 */
-    width: 1200px;
+    width: 1450px;
     margin: 0 auto;
 }
 
@@ -128,8 +128,10 @@ s, i, em {
 
 /*头部样式*/
 .bx {
-    width: 1200px;
-    margin: 0 auto;
+    width: 1450px;
+   /*  margin: 0 auto; */
+   margin-left:30px;
+  
 }
 
 .head {
@@ -165,7 +167,7 @@ s, i, em {
     display: inline-block;
     float: left;
     /*border: 1px solid red;*/
-    width: 1200px;
+    width: 1450px;
 }
 
 .navigation .left {
