@@ -507,7 +507,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  
 		}//init方法结束
 		
-			getChDept($('#deptOrg'),0);
+		
 			
 			init();//调用init()方法
 			var data = {
@@ -637,17 +637,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						},		
 						dataType:'json',
 						success:function(data){ 
+							if(deptId==0){
+								var str = '';
+								data.obj.forEach(function(v,i){
+									
+									str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+								});
+							}else{
+								var str = '';
+								data.obj.forEach(function(v,i){
+									
+									str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+								});
+							}
 							
-							var str = '';
-							data.obj.forEach(function(v,i){
-								
-								str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
-							});
 							
 							target.html(str);
 						}
 					})
 				}
+				
+					getChDept($('#deptOrg'),0);
 		
 		});
 	</script>
@@ -662,7 +672,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  if (document.documentElement && document.documentElement.clientHeight)
 		   winHeight = document.documentElement.clientHeight;
 		   winWidth = document.documentElement.clientWidth;
-		  document.getElementById("client").style.height= winHeight - 110 +"px";
+		  document.getElementById("client").style.height= winHeight - 101 +"px";
 		  document.getElementById("client").style.width= winWidth  +"px";
 		  
 		 }
