@@ -81,34 +81,30 @@ public class NotifyController {
 	 */
 	
 	@RequestMapping(value = "/notifyManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-	  public @ResponseBody String notifyManage(
+	  public @ResponseBody ToJson<Notify> notifyManage(
 			  @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag){
 			Map<String, Object> maps = new HashMap<String, Object>();
-			String returnReslt = null;
+			
+			ToJson<Notify> tojson = new ToJson<Notify>(0, "");
 			try {
 				List<Notify> list =notifyService.selectNotifyManage(maps, page, pageSize, useFlag);
-				
-				ToJson<Notify> tojson = new ToJson<Notify>(0, "");
 				tojson.setObj(list);
 			    tojson.setTotleNum(list.size());
 				if (list.size() > 0) {
 					err = "seccess";
-					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-							"yyyy-MM-dd HH:mm:ss");
 				} else {
 					err = "fail";
-					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
-							1, ""), "yyyy-MM-dd HH:mm:ss");
+					tojson.setFlag(1);
 				}
 			} catch (Exception e) {
 				loger.debug("notifyManage:" + e);
-				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1,
-						""), "yyyy-MM-dd HH:mm:ss");
+				err = "fail";
+				tojson.setFlag(1);
 			}
-
-			return returnReslt;
+			tojson.setMsg(err);
+			return tojson;
 		}
     /**
      * 
@@ -128,7 +124,7 @@ public class NotifyController {
      */
 	@RequestMapping(value = "/notifyList",method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	 public @ResponseBody
-	 String notifyList(@RequestParam(value = "typeId", required = false)String typeId,
+	 ToJson<Notify> notifyList(@RequestParam(value = "typeId", required = false)String typeId,
 			 @RequestParam(value = "sendTime", required = false) String sendTime,
 			 @RequestParam(value = "subject", required = false) String subject,
 			 @RequestParam(value = "format", required = false) String format,
@@ -151,28 +147,24 @@ public class NotifyController {
 	  maps.put("content", content);
 	  maps.put("format", format);
 	  maps.put("toId", toId);
-	  String returnReslt= null;
+	  ToJson<Notify> returnReslt=null;
 	  String name=(String) request.getSession().getAttribute("userId");
 	  try {
 		  if (read.equals("0")) {
 				ToJson<Notify> tojson= notifyService.unreadNotify(maps, page, pageSize, useFlag, name);
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg("ok");
-					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-							"yyyy-MM-dd HH:mm:ss");
+					
 				} else {
-					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
-							1, "ok"), "yyyy-MM-dd HH:mm:ss");
+					tojson.setFlag(1);
 				}
 			}else if (read.equals("1")) {//已读
 				ToJson<Notify> tojson= notifyService.readNotify(maps, page, pageSize, useFlag, name);
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg("ok");
-					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-							"yyyy-MM-dd HH:mm:ss");
+					
 				} else {
-					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
-							1,"ok"), "yyyy-MM-dd HH:mm:ss");
+					tojson.setFlag(1);
 				}
 			}
 				else 
@@ -180,16 +172,14 @@ public class NotifyController {
 				ToJson<Notify> tojson= notifyService.selectNotify(maps, page, pageSize, useFlag, name);
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg("ok");
-					returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-							"yyyy-MM-dd HH:mm:ss");
+					
 				} else {
-					returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
-							1, err), "yyyy-MM-dd HH:mm:ss");
+					tojson.setFlag(1);
 				}
 			}
 	  }catch (Exception e) {
 	   loger.debug("notifyList:"+e);
-	   returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1, ""), "yyyy-MM-dd HH:mm:ss");
+	   
 	  }
 	  return returnReslt;
 	 }
