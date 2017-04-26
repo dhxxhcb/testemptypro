@@ -267,6 +267,7 @@ $(function () {
 
             };
            initPageList(function(pageCount){
+           console.log(pageCount);
            		 initPagination(pageCount,data.pageSize);
            });
           
@@ -282,7 +283,10 @@ $(function () {
 				if(data.read == ''||data.read == 0){
 					$('.step1').show();
 					$('.center').hide();
-					initPageList();
+					           initPageList(function(pageCount){
+           console.log(pageCount);
+           		 initPagination(pageCount,data.pageSize);
+           });
 				}else if(data.read == 1){
 					$('.step1').hide();
 					$('.center').show('');
@@ -314,12 +318,14 @@ $(function () {
 							
 						$("#j_tb").html(news);
 						if(cb){
+							//alert(obj.totleNum);
 							cb(obj.totleNum);
 						}
 					}   
 				})
             }
             function initPagination(totalData,pageSize){
+            
             	console.log(totalData+'---'+pageSize);
             	$('.M-box3').pagination({
 							    totalData:totalData,

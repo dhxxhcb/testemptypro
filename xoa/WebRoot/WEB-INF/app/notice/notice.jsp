@@ -15,11 +15,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/news/page.css">
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css">
 		.head li{
 			width: 154px;
@@ -152,7 +153,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
         <div class="right">
-
+			           <!--  <div class="M-box3">
+            </div> -->
             <!-- 分页按钮-->
             <ul class="page" maxshowpageitem="0" pagelistcount="1" id="page"></ul>
 
@@ -307,6 +309,7 @@ $(function () {
                            }
 						
 						$("#j_tb").html(news);
+						initPagination(50,5);
 					}   
 				})
             }
@@ -324,7 +327,8 @@ $(function () {
 					initPageList();
 				});
 				//时间控件调用
-  
+				
+
    $('#btn_query').click(function (){
 		data.read='';
 		data.subject = $('#subject').val();
@@ -356,6 +360,26 @@ $(function () {
         end.start = datas; //将结束日的初始值设定为开始日
      }
    };
+               function initPagination(totalData,pageSize){
+            
+            	console.log(totalData+'---'+pageSize);
+            	$('.M-box3').pagination({
+							    totalData:totalData,
+							    showData:pageSize,
+							    jump:true,
+							    coping:true,
+							    homePage:'<fmt:message code="global.page.first" />',
+							    endPage:'<fmt:message code="global.page.last" />',
+							    prevContent:'<fmt:message code="global.page.pre" />',
+							    nextContent:'<fmt:message code="global.page.next" />',
+							    jumpBtn:'<fmt:message code="global.page.jump" />',
+							    callback:function(index){
+							    	data.page = index.getCurrent();
+							    	console.log(index.getCurrent());
+							    	initPageList();
+							    }
+							});
+            }
    var end = {
      elem: '#endTime',
      format: 'YYYY-MM-DD hh:mm:ss',
