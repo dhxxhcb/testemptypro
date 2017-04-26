@@ -128,7 +128,7 @@ s, i, em {
 
 /*头部样式*/
 .bx {
-    width: 1450px;
+    width: 90%;
    /*  margin: 0 auto; */
    margin-left:30px;
   
@@ -167,7 +167,7 @@ s, i, em {
     display: inline-block;
     float: left;
     /*border: 1px solid red;*/
-    width: 1450px;
+    width: 90%;
 }
 
 .navigation .left {
