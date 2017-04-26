@@ -15,7 +15,7 @@
 	<context:property-placeholder location="classpath:jdbc-sql.properties" />
 
 	<!-- mysql -->
-	<bean id="mysqlDataSources" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
+	<bean id="xoa" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
 		destroy-method="close">
 		<property name="driverClass" value="${mysql.driverClassName}" />
 		<property name="jdbcUrl" value="${mysql.url}" />
@@ -41,44 +41,64 @@
 		<!--关闭连接时，是否提交未提交的事务，默认为false，即关闭连接，回滚未提交的事务 -->
 		<property name="autoCommitOnClose" value="${autoCommitOnClose}" />
 	</bean>
+    <!-- mysql -->
+    <bean id="xoa1001" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="${mysql.driverClassName1}" />
+        <property name="jdbcUrl" value="${mysql.url1}" />
+        <property name="user" value="${mysql.uname1}" />
+        <property name="password" value="${mysql.password1}" />
+        <property name="maxPoolSize" value="${maxPoolSize}" />
+        <property name="minPoolSize" value="${minPoolSize}" />
+        <property name="initialPoolSize" value="${initialPoolSize}" />
+        <property name="maxIdleTime" value="${maxIdleTime}" />
+        <property name="checkoutTimeout" value="${checkoutTimeout}" />
+        <property name="acquireIncrement" value="${acquireIncrement}" />
+        <property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />
+        <property name="acquireRetryDelay" value="${acquireRetryDelay}" />
+        <property name="autoCommitOnClose" value="${autoCommitOnClose}" />
+    </bean>
 
-	<!-- oracle -->
-	<bean id="oracleDataSources" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
-		destroy-method="close">
-		<property name="driverClass" value="${oracle.driverClassName}" />
-		<property name="jdbcUrl" value="${oracle.url}" />
-		<property name="user" value="${oracle.uname}" />
-		<property name="password" value="${oracle.password}" />
-		<property name="maxPoolSize" value="${maxPoolSize}" />
-		<property name="minPoolSize" value="${minPoolSize}" />
-		<property name="initialPoolSize" value="${initialPoolSize}" />
-		<property name="maxIdleTime" value="${maxIdleTime}" />
-		<property name="checkoutTimeout" value="${checkoutTimeout}" />
-		<property name="acquireIncrement" value="${acquireIncrement}" />
-		<property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />
-		<property name="acquireRetryDelay" value="${acquireRetryDelay}" />
-		<property name="autoCommitOnClose" value="${autoCommitOnClose}" />
-	</bean>
 
-	<bean id="dynDatasources" class="com.xoa.util.dataSource.DynDatasources">
-		<property name="targetDataSources">
-			<map key-type="java.lang.String">
-				<entry key="mysqlDataSources" value-ref="mysqlDataSources" />
-				<entry key="oracleDataSources" value-ref="oracleDataSources" />
-			</map>
-		</property>
-		<!-- 默认为mysql -->
-		<property name="defaultTargetDataSource" ref="mysqlDataSources" />
-	</bean>
+    <!-- oracle -->
+    <!--<bean id="oracleDataSources" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+        destroy-method="close">
+        <property name="driverClass" value="${oracle.driverClassName}" />
+        <property name="jdbcUrl" value="${oracle.url}" />
+        <property name="user" value="${oracle.uname}" />
+        <property name="password" value="${oracle.password}" />
+        <property name="maxPoolSize" value="${maxPoolSize}" />
+        <property name="minPoolSize" value="${minPoolSize}" />
+        <property name="initialPoolSize" value="${initialPoolSize}" />
+        <property name="maxIdleTime" value="${maxIdleTime}" />
+        <property name="checkoutTimeout" value="${checkoutTimeout}" />
+        <property name="acquireIncrement" value="${acquireIncrement}" />
+        <property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />
+        <property name="acquireRetryDelay" value="${acquireRetryDelay}" />
+        <property name="autoCommitOnClose" value="${autoCommitOnClose}" />
+    </bean>-->
+
+    <!--<bean id="dynDatasources" class="com.xoa.util.dataSource.DynDatasources">-->
+    <bean id="dynDatasources" class="com.xoa.util.dataSource.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="xoa" value-ref="xoa" />
+                <entry key="xoa1001" value-ref="xoa1001"/>
+                <!--<entry key="oracleDataSources" value-ref="oracleDataSources" />-->
+            </map>
+        </property>
+        <!-- 默认为mysql -->
+        <property name="defaultTargetDataSource" ref="xoa" />
+    </bean>
 	
 		<!-- 配置sql会话工厂：SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dynDatasources" />
-		<property name="configLocation" value="classpath:config/spring/mybatis-config.xml" /> 
 		<property name="mapperLocations" value="classpath:com/xoa/mapping/*/*.xml" />
+		<property name="configLocation" value="classpath:config/spring/mybatis-config.xml" /> 
 	</bean>
 	
-	 <bean id="myInspectDatasource" class="com.xoa.util.dataSource.MyInspectDatasource" />
+	 <!--<bean id="myInspectDatasource" class="com.xoa.util.dataSource.MyInspectDatasource" />-->
 	<aop:aspectj-autoproxy />
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->

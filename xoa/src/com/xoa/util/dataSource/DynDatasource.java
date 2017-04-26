@@ -27,6 +27,6 @@ public @interface DynDatasource {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	String sourceName() default "mysqlDataSources";
+//	String sourceName() default "mysqlDataSources";
 	
 }

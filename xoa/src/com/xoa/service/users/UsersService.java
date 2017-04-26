@@ -106,7 +106,7 @@ public interface UsersService {
 	 * 参数说明:   @return
 	 * @return     Users  返回用户信息
 	 */
-	@DynDatasource
+//	@DynDatasource
     public Users findUserByName( String byname);
 	
 	/**
