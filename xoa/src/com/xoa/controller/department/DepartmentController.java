@@ -24,12 +24,13 @@ import com.xoa.util.ToJson;
  /**
  * 创建作者:   张龙飞
  * 创建日期:   2017年4月19日 上午9:21:53
- * 类介绍  :    部门
+ * 类介绍  :    部门控制器
  * 构造参数:    无
  *
  */
 @Controller
 @Scope(value="prototype")
+@RequestMapping("/department")
 public class DepartmentController {
 	
 	private Logger loger = Logger.getLogger(DepartmentController.class);
@@ -48,7 +49,7 @@ public class DepartmentController {
 	 * @return     ToJson<Department> 返回部门信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/department/addDept",method = RequestMethod.POST)
+	@RequestMapping(value = "/addDept",method = RequestMethod.POST)
     public ToJson<Department> addDept(Department department) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
@@ -73,7 +74,7 @@ public class DepartmentController {
 	 * @return     ToJson<Department> 返回显示信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/department/deletedept",method = RequestMethod.POST)
+	@RequestMapping(value = "/deletedept",method = RequestMethod.POST)
     public ToJson<Department> deletedept(Department department) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		loger.debug("ID"+department.getDeptId());
@@ -97,7 +98,7 @@ public class DepartmentController {
 	 * @return     String 返回单个部门信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/department/getDeptByid" ,method = RequestMethod.POST)
+	@RequestMapping(value = "/getDeptByid" ,method = RequestMethod.POST)
     public String getDeptByid(int deptid) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
@@ -121,7 +122,7 @@ public class DepartmentController {
 	 * @return     String  返回所有部门信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/department/getAlldept",produces = {"application/json;charset=UTF-8"})
+	@RequestMapping(value = "/getAlldept",produces = {"application/json;charset=UTF-8"})
     public String getAlldept() {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
@@ -147,7 +148,7 @@ public class DepartmentController {
 	 * @return     ToJson<Department>   返回显示信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/department/editDept",method = RequestMethod.POST)
+	@RequestMapping(value = "/editDept",method = RequestMethod.POST)
     public ToJson<Department> editDept(Department department) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		loger.debug("ID"+department.getDeptId());
@@ -171,7 +172,7 @@ public class DepartmentController {
 	 * @return     ToJson<Department> 返回符合条件部门信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/department/getDeptByMany",method = RequestMethod.POST)
+	@RequestMapping(value = "/getDeptByMany",method = RequestMethod.POST)
     public ToJson<Department> getDeptByMany(Department department) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
@@ -197,7 +198,7 @@ public class DepartmentController {
 	 * @return     String  返回下级部门信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/department/getChDept",produces = {"application/json;charset=UTF-8"})
+	@RequestMapping(value = "/getChDept",produces = {"application/json;charset=UTF-8"})
     public String getChDept(HttpServletRequest request) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
@@ -223,7 +224,7 @@ public class DepartmentController {
 	 * @return     String 返回长部门名
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/department/getFatherDept",produces = {"application/json;charset=UTF-8"})
+	@RequestMapping(value = "/getFatherDept",produces = {"application/json;charset=UTF-8"})
     public String getFatherDept(HttpServletRequest request) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
@@ -261,7 +262,7 @@ public class DepartmentController {
 	 * @return     String  返回部门信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/department/getChDeptByNo",produces = {"application/json;charset=UTF-8"})
+	@RequestMapping(value = "/getChDeptByNo",produces = {"application/json;charset=UTF-8"})
     public String getChDeptByNo(HttpServletRequest request,Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
@@ -290,7 +291,7 @@ public class DepartmentController {
 	 * @return     String
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/department/getChDeptUser",produces = {"application/json;charset=UTF-8"})
+	@RequestMapping(value = "/getChDeptUser",produces = {"application/json;charset=UTF-8"})
     public String getChDeptUser(HttpServletRequest request) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
