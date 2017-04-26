@@ -116,6 +116,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
 			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
 			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -164,6 +165,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
 			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
 			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -193,7 +195,16 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		tojson.setObj(emailBodyMapper.listSendEmail(maps));
+		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
+		List<EmailBodyModel> listEmai = emailBodyMapper.listSendEmail(maps);
+		for(EmailBodyModel emailBody:listEmai){
+			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
+			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			list.add(emailBody);
+		}
+		tojson.setObj(list);
 		tojson.setTotleNum(pageParams.getTotal());
 		return tojson;
 	}
@@ -220,7 +231,16 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		tojson.setObj(emailBodyMapper.listWastePaperbasket(maps));
+		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
+		List<EmailBodyModel> listEmai =emailBodyMapper.listWastePaperbasket(maps);
+		for(EmailBodyModel emailBody:listEmai){
+			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
+			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			list.add(emailBody);
+		}
+		tojson.setObj(list);
 		tojson.setTotleNum(pageParams.getTotal());
 		return tojson;
 	}
@@ -247,7 +267,16 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		tojson.setObj(emailBodyMapper.listqueryEmailBody(maps));
+		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
+		List<EmailBodyModel> listEmai = emailBodyMapper.listqueryEmailBody(maps);
+		for(EmailBodyModel emailBody:listEmai){
+			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
+			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			list.add(emailBody);
+		}
+		tojson.setObj(list);
 		tojson.setTotleNum(pageParams.getTotal());
 		return tojson;
 	}
@@ -271,7 +300,12 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		return emailBodyMapper.queryById(maps);
+		EmailBodyModel emailBody = emailBodyMapper.queryById(maps);
+		emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+		emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
+		emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+		emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+		return emailBody;
 	}
 
 	/**
@@ -296,7 +330,16 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		tojson.setObj(emailBodyMapper.selectInbox(maps));
+		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
+		List<EmailBodyModel> listEmai = emailBodyMapper.selectInbox(maps);
+		for(EmailBodyModel emailBody:listEmai){
+			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
+			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			list.add(emailBody);
+		}
+		tojson.setObj(list);
 		tojson.setTotleNum(pageParams.getTotal());
 		return tojson;
 	}
@@ -325,7 +368,16 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		tojson.setObj(emailBodyMapper.selectIsRead(maps));
+		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
+		List<EmailBodyModel> listEmai = emailBodyMapper.selectIsRead(maps);
+		for(EmailBodyModel emailBody:listEmai){
+			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
+			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			list.add(emailBody);
+		}
+		tojson.setObj(list);
 		tojson.setTotleNum(pageParams.getTotal());
 		return tojson;
 	}
@@ -415,5 +467,15 @@ public class EmailServiceImpl implements EmailService {
 		}
 		return returnRes;
 	}
+	
+	public List<EmailModel> returnEmail(List<EmailModel> listEmail){
+		List<EmailModel> list = new ArrayList<EmailModel>();
+		for(EmailModel emailModel:listEmail){
+			emailModel.setToName(usersService.getUserNameById(emailModel.getToId()));
+			list.add(emailModel);
+		}
+		return list;
+	}
+	
 	
 }

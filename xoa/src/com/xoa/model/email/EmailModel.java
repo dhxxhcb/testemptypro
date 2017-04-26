@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public class EmailModel implements Serializable {
 	private static final long serialVersionUID = 1076969159692234636L;
-
+  
 	/**
 	 * 自增唯一ID
 	 */
@@ -22,6 +22,11 @@ public class EmailModel implements Serializable {
 	 * 收件人USER_ID
 	 */
 	private String toId;
+	
+	/**
+	 * 收件人姓名
+	 */
+	private String toName;
 	
 	/**
 	 * 邮件读取状态(0-未读,1-已读)
@@ -243,4 +248,31 @@ public class EmailModel implements Serializable {
 	public void setSign(String sign) {
 		this.sign = sign == null ? null : sign.trim();
 	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-26 下午7:19:25
+	 * 方法介绍:   收件人姓名
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	public String getToName() {
+		return toName;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-26 下午7:19:35
+	 * 方法介绍:   收件人姓名
+	 * 参数说明:   @param toName
+	 * @return     void
+	 */
+	public void setToName(String toName) {
+		this.toName = toName;
+	}
+	
+	
+	
 }

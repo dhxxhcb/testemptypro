@@ -17,15 +17,4 @@ $(function () {
 		$(this).addClass('on');
 	})
 	
-	/*$('.page_left li').mouseover(function () {
-		$(this).css('background-color','#6f97bf');
-		
-	})
-	$('.page_left li').mouseout(function () {
-		$(this).css('background-color','#7eacdb');
-		
-	})*/
-	
-	
-	
 })
