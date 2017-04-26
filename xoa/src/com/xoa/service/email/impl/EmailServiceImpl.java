@@ -5,12 +5,16 @@ import com.xoa.dao.email.EmailMapper;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.email.EmailModel;
 import com.xoa.service.email.EmailService;
+import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,6 +34,9 @@ public class EmailServiceImpl implements EmailService {
 
 	@Resource
 	private EmailMapper emailMapper;
+	
+	@Resource
+	private UsersService usersService;
 
 	/**
 	 * 
@@ -103,6 +110,10 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setUseFlag(useFlag);
 		maps.put("page", pageParams);
 		logger.info("邮件查询emailService赋值！");
+		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
+//		emailBodyMapper.selectObjcet(maps)
+//		for()
+		
 		tojson.setObj(emailBodyMapper.selectObjcet(maps));
 		tojson.setTotleNum(pageParams.getTotal());
 		return tojson;

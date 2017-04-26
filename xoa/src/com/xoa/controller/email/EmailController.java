@@ -80,7 +80,7 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/sendEmail", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String insertEmailBody(
+	ToJson<EmailBodyModel> insertEmailBody(
 			@RequestParam(value = "fromId") String fromId,
 			@RequestParam(value = "toId2", required = false) String toId2,
 			@RequestParam(value = "copyToId", required = false) String copyToId,
@@ -114,12 +114,12 @@ public class EmailController {
 		try {
 				emailService.sendEmail(this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, new Date(), "1", secretToId, attachmentId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
 						, new EmailModel());
-			return JSON.toJSONStringWithDateFormat(new ToJson<EmailBodyModel>(0,
-					"ok"), "yyyy-MM-dd HH:mm:ss");
+			return new ToJson<EmailBodyModel>(0,
+					"ok");
 		} catch (Exception e) {
 			loger.debug("sendMail:" + e);
-			return JSON.toJSONStringWithDateFormat(new ToJson<EmailBodyModel>(1,
-					"errorSendEmail"), "yyyy-MM-dd HH:mm:ss");
+			return new ToJson<EmailBodyModel>(1,
+					"errorSendEmail");
 		}
 	}
 
@@ -165,7 +165,7 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/saveEmail", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String saveEmailBody(
+	ToJson<EmailBodyModel> saveEmailBody(
 			@RequestParam(value = "fromId") String fromId,
 			@RequestParam(value = "toId2", required = false) String toId2,
 			@RequestParam(value = "copyToId", required = false) String copyToId,
@@ -199,12 +199,12 @@ public class EmailController {
 		try {
 				emailService.saveEmail(this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, new Date(), "0", secretToId, attachmentId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
 						);
-			return JSON.toJSONStringWithDateFormat(new ToJson<EmailBodyModel>(0,
-					"ok"), "yyyy-MM-dd HH:mm:ss");
+			return new ToJson<EmailBodyModel>(0,
+					"ok");
 		} catch (Exception e) {
 			loger.debug("sendMail:" + e);
-			return JSON.toJSONStringWithDateFormat(new ToJson<EmailBodyModel>(1,
-					"errorSendEmail"), "yyyy-MM-dd HH:mm:ss");
+			return new ToJson<EmailBodyModel>(1,
+					"errorSendEmail");
 		}
 	}
 	
@@ -222,7 +222,7 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/showEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String queryEmail(HttpServletRequest request) throws Exception {
+	ToJson<EmailBodyModel> queryEmail(HttpServletRequest request) throws Exception {
 		String flag = ServletRequestUtils.getStringParameter(request, "flag");
 		Integer page = ServletRequestUtils.getIntParameter(request, "page");
 		Integer pageSize = ServletRequestUtils.getIntParameter(request,
@@ -234,7 +234,6 @@ public class EmailController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("fromId", userId);
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
-		String returnRes = null;
 		if (flag.trim().equals("inbox")) {
 			tojson = emailService.selectInbox(maps, page, pageSize, useFlag);
 		} else if (flag.trim().equals("drafts")) {
@@ -250,15 +249,11 @@ public class EmailController {
 		if (tojson.getObj().size()>0) {
 			tojson.setFlag(0);
 			tojson.setMsg("ok");
-			returnRes = JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
 		} else {
 			tojson.setFlag(1);
 			tojson.setMsg("error");
-			returnRes = JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
 		}
-		return returnRes;
+		return tojson;
 	}
 
 	/**
@@ -273,34 +268,31 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/queryByID", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-		String queryByID(@RequestParam(value = "emailId",required = false) Integer emailId,@RequestParam("flag")String flag,@RequestParam(value = "bodyId",required = false) Integer bodyId) throws Exception {
+		ToJson<EmailBodyModel> queryByID(@RequestParam(value = "emailId",required = false) Integer emailId,@RequestParam("flag")String flag,@RequestParam(value = "bodyId",required = false) Integer bodyId) throws Exception {
 			Map<String, Object> maps = new HashMap<String, Object>();
 			maps.put("emailId", emailId);
         maps.put("bodyId", bodyId);
 			EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
-			String returnRes = "";
+			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 			if(!flag.trim().equals("isRead")){
 				if (emailBody.getBodyId() != null) {
-					ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "ok");
+					tojson.setFlag(0);
+					tojson.setMsg("ok");
 					tojson.setObject(emailBody);
-					returnRes = JSON.toJSONStringWithDateFormat(tojson,
-							"yyyy-MM-dd HH:mm:ss");
 				} else {
-					ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(1, "errorQueryByID");
-					returnRes = JSON.toJSONStringWithDateFormat(tojson,
-							"yyyy-MM-dd HH:mm:ss");
+					tojson.setFlag(1);
+					tojson.setMsg("errorQueryByID");
 				}
 			}else{
 				EmailModel email = new EmailModel();
 				email.setEmailId(emailId);
 				email.setReadFlag("1");
 				emailService.updateIsRead(email);
-				ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>(0, "ok");
+				tojson.setFlag(0);
+				tojson.setMsg("ok");
 				tojson.setObject(emailBody);
-				returnRes = JSON.toJSONStringWithDateFormat(tojson,
-						"yyyy-MM-dd HH:mm:ss");
 			}
-			return returnRes;
+			return tojson;
 	}
 
 	
@@ -314,7 +306,7 @@ public class EmailController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/deleteEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody String deleteEmail(@RequestParam("flag")String flag,@RequestParam("deleteFlag") String deleteFlag,
+	public @ResponseBody ToJson<EmailBodyModel> deleteEmail(@RequestParam("flag")String flag,@RequestParam("deleteFlag") String deleteFlag,
 			@RequestParam("emailID") Integer emailId){
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		String returnRes = "";
@@ -328,18 +320,14 @@ public class EmailController {
 //		else if (flag.trim().equals("drafts")) {
 //			emailService.deleteRecycleEmail(emailBodyModel, deleteFlag);
 //		}
-		
 		if (returnRes.equals("0")) {
 			tojson.setFlag(0);
 			tojson.setMsg("ok");
-			return JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
 		} else {
 			tojson.setFlag(1);
 			tojson.setMsg("error");
-			return JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
 		}
+		return tojson;
 	}
 
     /**
@@ -352,14 +340,14 @@ public class EmailController {
      * @return     String
      */
     @RequestMapping(value = "/deleteDraftsEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-    public @ResponseBody String deleteDraftsEmail(@RequestParam("bodyId") Integer bodyId){
+    public @ResponseBody ToJson<EmailBodyModel> deleteDraftsEmail(@RequestParam("bodyId") Integer bodyId){
         try {
             ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (0,"ok");
             emailService.deleteByID(bodyId);
-           return JSON.toJSONStringWithDateFormat(tojson,"yyyy-MM-dd HH:mm:ss");
+           return tojson;
         }catch (Exception e){
             ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (1,"error");
-            return  JSON.toJSONStringWithDateFormat(tojson,"yyyy-MM-dd HH:mm:ss");
+            return  tojson;
         }
     }
 
@@ -376,7 +364,7 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/querylistEmailBody", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String querylistEmailBody() throws Exception {
+	ToJson<EmailBodyModel> querylistEmailBody() throws Exception {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		// maps.put("startTime",starttime);
 		// maps.put("endTime", endtime);
@@ -391,14 +379,11 @@ public class EmailController {
 			tojson.setFlag(0);
 			tojson.setMsg("ok");
 			Map<String, String> map = new HashMap<String, String>();
-			return JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
 		} else {
 			tojson.setFlag(1);
 			tojson.setMsg("error");
-			return JSON.toJSONStringWithDateFormat(tojson,
-					"yyyy-MM-dd HH:mm:ss");
 		}
+		return tojson;
 	}
 
 	/**
