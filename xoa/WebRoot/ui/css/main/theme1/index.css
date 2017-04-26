@@ -52,7 +52,7 @@ body,
     font-weight: bold;
     line-height: 40px;
     text-align: center;
-    font-size: 12px;
+   font-size: 10pt;
 }
 .head_mid ul li div{
 	width:13%;
@@ -154,6 +154,9 @@ body,
 	height: 91%;
 	width:100%;
 	overflow-y:scroll;
+}
+.tab_cone li:nth-child(1) {
+	    border-top: 1px solid rgb(153, 153, 153);
 }
 .top_ul{
 	width:90%;
@@ -272,9 +275,9 @@ body,
 .one_name{
 	line-height:50px;
 	margin-left: 6%;
-	width: 35%;
+	width: 30%;
 	font-size:14px;
-	font-family:'黑体';
+	/* font-family:'黑体'; */
 	/* font-weight: bold; */
 }
 .erji_circle{
@@ -285,7 +288,7 @@ body,
 	line-height: 40px;
     margin-left: 7%;
     width: 67%;
- 	font-family:'黑体';
+ 	/* font-family:'黑体'; */
     font-size: 14px;
 }
 
@@ -422,7 +425,7 @@ body,
 }
 .sanji h1{
 	/* font-weight:bold; */
-	font-family:'黑体';
+/* 	font-family:'黑体'; */
 }
 .foot{
 	width:100%;
