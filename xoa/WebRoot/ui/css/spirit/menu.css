@@ -1,68 +1,16 @@
-html,body{
-	width:100%;
-	height:auto;
-	background:#e8f5fd;
-	margin:0;
-	padding:0;
-	font-family: 'Microsoft yahei';
-	overflow:auto;
+html,body,.wrap{
+	width: 100%;
+    height: 100%;
+    background: #e8f5fd;
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft yahei';
+    overflow: hidden;
+    float:left;
+    clear:both;
 }
 ul,li{
 	list-style:none;
-}
-.wrap{
-	width:100%;
-	height:100%;
-}
-.body_top{
-	width:100%;
-	height:40px;
-}
-.body_top ul,.body_top li{
-	list-style:none;
-	-webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-    -webkit-padding-start: 0;
-	margin:0;
-	display:inline-block;
-	height:100%;
-	position: relative;
-}
-.body_top ul{
-	width:100%;
-	border-bottom: 1px solid #d6e3eb;
-}
-.body_top li{
-	width:32%;
-	line-height: 40px;
-	text-align: center;
-}
-.bg_icon{
-	display:block;
-	position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-}
-.icon1{
-	width:20px;
-	height:20px;
-	background:url(../../img/spirit/menu/yingyong.png) center;
-	background-size: cover;
-}
-.icon2{
-	width:26px;
-	height:20px;
-	background:url(../../img/spirit/menu/zuzhi.png) center;
-	background-size:cover;
-}
-.icon3{
-	width:23px;
-	height:20px;
-	background:url(../../img/spirit/menu/bianqian.png) center;
-	background-size: cover;
 }
 .tip_font{
 	font-size:15px;
@@ -70,8 +18,9 @@ ul,li{
 }
 .connect{
 	width:98%;
-	height:auto;
+	height:100%;
 	margin:0 auto;
+	overflow: hidden;
 }
 
 .li_li{
@@ -84,7 +33,8 @@ ul,li{
 .app_connect{
 	float: left;
     width: 100%;
-    height: 100%;
+   height: calc(100% - 32px);
+   overflow-y: auto;
 }
 .app_connect li{
 	cursor: pointer;
@@ -93,8 +43,9 @@ ul,li{
 	float: left;
     clear: both;
     width: 100%;
-        height: 30px;
+    height: 30px;
     line-height: 30px;
+    border-bottom: 1px solid #ddd;
 }
 .tip_font{
 	display: inline-block;
@@ -125,11 +76,11 @@ ul,li{
 	background-size: cover;
 }
 .head_pic,.dianji{
+	position:relative;
 	display:inline-block;
 	height:20px;
 	width:20px;
-	border:1px solid #777;
-	margin:4px;
+	margin:5px;
 }
 .yiji_title{
 	position: relative;
@@ -147,6 +98,20 @@ ul,li{
     position: relative;
     top: -10px;
 }
+.head_pic img{
+	position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.before{
+	background:url(../../img/main_img/up.png) no-repeat center;
+}
+.after{
+	background:url(../../img/main_img/down.png) no-repeat center;
+}
 .erji,.sanji{
-	
+	 display:none; 
 }

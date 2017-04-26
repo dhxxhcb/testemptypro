@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 	<div class="wrap">
-		<div class="body_top">
+		<!-- <div class="body_top">
 			<ul>
 				<li>
 					<span class="bg_icon icon1"></span>
@@ -35,9 +35,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="bg_icon icon3">
 				</li>
 			</ul>
-		</div>
+		</div> -->
 		<div class="connect">
-			<div class="li_0 li_li">
+			<!-- <div class="li_0 li_li"> -->
 				<div class="app_head">
 					<span class="tip_font">应用</span>
 					<div class="tips">
@@ -83,13 +83,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 					</ul>
 				</div>
-			</div>
-			<div class="li_1 li_li cosp">
+			<!-- </div> -->
+			<!-- <div class="li_1 li_li cosp">
 				<div>222</div>
 			</div>
 			<div class="li_2 li_li cosp">
 				<div>333</div>
-			</div>
+			</div> -->
 		</div>
 	
 	</div>
@@ -112,19 +112,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     		if(obj!=''){
 	     			for(var i=0;i<obj.length;i++){
 	     				var fchild=obj[i].child;
-	     				li+='<li onclick="ss()"><div class="yiji_title "><span  class="head_pic"><img src="" alt=""/></span><span title="'+obj[i].name1+'" id="'+obj[i].id+'" class="appname">'+obj[i].name+'</span><span class="dianji"></span></div>';
+	     				li+='<li><div class="yiji_title "><span  class="head_pic"><img src="../img/main_img/'+obj[i].img+'.png" alt="img"/></span><span title="'+obj[i].name1+'" id="'+obj[i].id+'" class="appname">'+obj[i].name+'</span><span class="dianji before"></span></div>';
 	     				if(fchild.length!=0){
-	     					li+='<div class="erji"><ul>';
+	     					li+='<div class="erji common"><ul>';
 	     					for(var j=0;j<fchild.length;j++){
 	     						var schild=fchild[j].child;
 	     						if(fchild[j].child!=''){
-	     							li+='<li url="'+fchild[j].url+'"><div class="yiji_title"><span  class="head_pic"><img src="" alt=""/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span><span class="dianji"></span></div><div class="sanji"><ul>';
+	     							li+='<li url="'+fchild[j].url+'"><div class="yiji_title"><span  class="head_pic"><img src="../img/main_img/hei.png" alt="erimg"/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span><span class="dianji before"></span></div><div class="sanji common"><ul>';
 	     							for(var z=0;z<schild.length;z++){
-	     								li+='<li url="'+schild[z].url+'"><div class="yiji_title"><span  class="head_pic"><img src="" alt=""/></span><span title="'+schild[z].name1+'" id="'+schild[z].id+'"  class="appname">'+schild[z].name+'</span></div></li>';
+	     								li+='<li url="'+schild[z].url+'"><div class="yiji_title"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+schild[z].name1+'" id="'+schild[z].id+'"  class="appname">'+schild[z].name+'</span></div></li>';
 	     							}
 	     							li+='</ul></div>';
 	     						}else{
-	     							li+='<li url="'+fchild[j].url+'"><div class="yiji_title"><span  class="head_pic"><img src="" alt=""/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span></div></li>';
+	     							li+='<li url="'+fchild[j].url+'"><div class="yiji_title"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span></div></li>';
 	     						}
 	     					}
 	     					li+='</ul></div>';
@@ -133,33 +133,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     			}
 	     			$(".app_connect ul").html(li);
 	     		}
-	     	}else{
-	     		document.write='可能除了点问题';
-	     	}
-	     	 
+	     	} 
 		 }
 		
 	});
-	
-	   	function ss(){
-	   		/* alert("1"); */
-	   	}
 	   
 </script>
 <script language="JavaScript">
 	$(function(){
-		/***应用/组织/便签跳转***/
-	   $(".body_top ul li").click(function(){
-	   		var i=$(this).index();
-	   		$(".connect div.li_"+i).removeClass("cosp").siblings("div").addClass('cosp');
-	   });
 	   /***应用二三级菜单展示隐藏***/
-	   /* 	$(".app_connect ul li").click(function(){
-	   		alert("des");
-	   	}); */
-	   	$(".app_connect ul ").on('click','li .yiji_title ',function(){
-	   			alert("des");
-	   		});		
+	   	$(".app_connect ul").on('click','li .yiji_title',function(){
+			if($(this).siblings('div.common').css('display')=='none'){
+				$(this).children('span:eq(2)').removeClass('before').addClass('after');
+				$(this).siblings('div.common').slideDown(100).children('ul li');
+			}else{
+				$(this).children('span:eq(2)').removeClass('after').addClass('before');
+				$(this).siblings('div.common').slideUp(100);
+			}
+	   	});		
 	
 	});
 	
