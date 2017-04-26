@@ -55,7 +55,7 @@ public class MenuController {
 	  */
 	@RequestMapping(value = "/showMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	ToJson<SysMenu>  showNew(HttpServletRequest request,HttpServletResponse response) {
+	ToJson<SysMenu> showNew(HttpServletRequest request,HttpServletResponse response) {
 		String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
 		Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
 		List<SysMenu>  munuList;
