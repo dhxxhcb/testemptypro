@@ -1,13 +1,13 @@
 ;;$(function(){
 	$.extend({
-		popWindow:function(url,top,left,width,height) {
+		popWindow:function(url,title,top,left,width,height) {
 			
 			var top = top || '100';
 			var left = left || '300';
 			var width = width || '640';
 			var height = height || '500';
 			var specs = 'top='+top+',left='+left+',width='+width+',height='+height;
-			window.open(url,'hh',specs);
+			window.open(url,title,specs);
 	    }
 	});
 	$.extend({

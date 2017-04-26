@@ -497,4 +497,53 @@
 		UUID = #{uuid,jdbcType=VARCHAR}
 		where LIST_ID = #{listId,jdbcType=INTEGER}
 	</update>
+	<update id="updateByRollBack" parameterType="com.xoa.model.im.ImChatList">
+	   update im_chat_list
+		<set>
+			<if test="fromUid != null">
+				FROM_UID = #{fromUid,jdbcType=VARCHAR},
+			</if>
+			<if test="toUid != null">
+				TO_UID = #{toUid,jdbcType=VARCHAR},
+			</if>
+			<if test="ofFrom != null">
+				OF_FROM = #{ofFrom,jdbcType=VARCHAR},
+			</if>
+			<if test="ofTo != null">
+				OF_TO = #{ofTo,jdbcType=VARCHAR},
+			</if>
+			<if test="lastTime != null">
+				LAST_TIME = #{lastTime,jdbcType=VARCHAR},
+			</if>
+			<if test="lastAtime != null">
+				LAST_ATIME = #{lastAtime,jdbcType=VARCHAR},
+			</if>
+			<if test="lastFileId != null">
+				LAST_FILE_ID = #{lastFileId,jdbcType=VARCHAR},
+			</if>
+			<if test="lastFileName != null">
+				LAST_FILE_NAME = #{lastFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="lastThumbnailUrl != null">
+				LAST_THUMBNAIL_URL =
+				#{lastThumbnailUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="msgType != null">
+				MSG_TYPE = #{msgType,jdbcType=CHAR},
+			</if>
+			<if test="uuid != null">
+				UUID = #{uuid,jdbcType=VARCHAR},
+			</if>
+			<if test="lastContent != null">
+				LAST_CONTENT = #{lastContent,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where FROM_UID = #{fromUid,jdbcType=VARCHAR} and TO_UID = #{toUid,jdbcType=VARCHAR}
+	  
+	</update>
+	
+	
 </mapper>

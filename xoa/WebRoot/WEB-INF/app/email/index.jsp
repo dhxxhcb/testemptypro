@@ -437,11 +437,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#hasBeenSend').click(function(){
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
 					showAjax("outbox");
+					init3('124');
 					$('.main_left').on('click','.BTN',function(){
 					
 						var nId=$(this).find('input').attr('nId');
 						//alert(nId);
-						$.ajax({
+						init3(nId);
+						/* $.ajax({
 									type:'get',
 									url:'queryByID',
 									dataType:'json',
@@ -459,7 +461,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										$('#TAC').find('tr').eq(2).append('<td>'+sendTime+'</td>')
 										$('.article1').append('<p>'+data2.content+'</p>');
 									}
-						});
+						}); */
 						
 					}) 
 				})
@@ -468,12 +470,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#wastebasket').click(function(){
 					$('.wastebasket').css('display','block').siblings().css('display','none');
 					showAjax("recycle");
-					
+					init2('419');
 					$('.main_left').on('click','.BTN',function(){
 					
 						var nId=$(this).find('input').attr('id');
 						//alert(nId);
-						$.ajax({
+						init2(nId)
+						/* $.ajax({
 									type:'get',
 									url:'queryByID',
 									dataType:'json',
@@ -495,7 +498,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										$('#TAD').find('tr').eq(4).append('<td>&nbsp</td>');
 										$('.article2').append('<p>'+data2.content+'</p>');
 									}
-						});
+						}); */
 						
 					}) 
 					
@@ -564,7 +567,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						"page":1,
 						"pageSize":10,
 						"useFlag":true,
-						"userID":"lijia"
+						"userID":"admin"
 					}	
 					
 					$.ajax({
@@ -588,6 +591,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										$('.befor').after(str);
 									}
 					});
+				}
+				
+				
+				function init2(id){
+				
+					$.ajax({
+									type:'get',
+									url:'queryByID',
+									dataType:'json',
+									data:{'emailId':id,'flag':''},
+									success:function(rsp){
+										var data2=rsp.object;
+										var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm:ss');
+										$('#TAD').find('tr').eq(0).find('td').eq(1).remove();
+										$('#TAD').find('tr').eq(1).find('td').eq(1).remove();
+										$('#TAD').find('tr').eq(2).find('td').eq(1).remove();
+										$('#TAD').find('tr').eq(3).find('td').eq(1).remove();
+										$('#TAD').find('tr').eq(4).find('td').eq(1).remove();
+										$('.article2').find('p').remove();
+										
+										$('#TAD').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>');
+										$('#TAD').find('tr').eq(1).append('<td>'+data2.users.userName+'</td>');
+										$('#TAD').find('tr').eq(2).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toId+'</span></td>');
+										$('#TAD').find('tr').eq(3).append('<td>'+sendTime+'</td>');
+										$('#TAD').find('tr').eq(4).append('<td>&nbsp</td>');
+										$('.article2').append('<p>'+data2.content+'</p>');
+									}
+						});
+				
+				}
+				
+				
+				function init3(id){
+					$.ajax({
+									type:'get',
+									url:'queryByID',
+									dataType:'json',
+									data:{'emailId':id,'flag':''},
+									success:function(rsp){
+										var data2=rsp.object;
+										var sendTime=new Date(data2.sendTime).Format('yyyy-MM-dd hh:mm:ss');
+										$('#TAC').find('tr').eq(0).find('td').eq(1).remove();
+										$('#TAC').find('tr').eq(1).find('td').eq(1).remove();
+										$('#TAC').find('tr').eq(2).find('td').eq(1).remove();
+										$('.article1').find('p').remove();
+										
+										$('#TAC').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>')
+										$('#TAC').find('tr').eq(1).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toId+'</span></td>')
+										$('#TAC').find('tr').eq(2).append('<td>'+sendTime+'</td>')
+										$('.article1').append('<p>'+data2.content+'</p>');
+									}
+						});
 				}
 			
 		</script>

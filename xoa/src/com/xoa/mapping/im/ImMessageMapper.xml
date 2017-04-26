@@ -429,5 +429,14 @@
 		im_message
 		where UUID = #{uuid} and FROM_UID = #{fromId} and ATIME > #{now}
 	</delete>
-  
+	<select id="selectByFromAndTo" parameterType="Map" resultMap="ResultMapWithBLOBs">
+       SELECT * FROM im_message WHERE FROM_UID=#{fromId} AND TO_UID=#{toId}  ORDER BY ATIME DESC LIMIT 0,2
+   </select>
+   <select id="selectByUUID" parameterType="Map" resultMap="ResultMapWithBLOBs">
+       SELECT * FROM im_message WHERE FROM_UID=#{fromId} AND UUID=#{uuid}  ORDER BY ATIME DESC LIMIT 0,1
+   </select>
+   <select id="selectMessageByPage" parameterType="Map" resultMap="ResultMapWithBLOBs" >
+      SELECT * FROM im_message WHERE ((FROM_UID=#{fromId} AND TO_UID =#{toId}) OR (FROM_UID=#{toId} AND TO_UID =#{fromId})) AND #{lastTime} >= ATIME  ORDER BY ATIME
+      limit #{pageNo},#{pageSize} 
+   </select>
 </mapper>

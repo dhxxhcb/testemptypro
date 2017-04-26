@@ -31,10 +31,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="head_left"><img src="img/main_img/LOGO.png" style="margin-top:2%;margin-left: 8%;"></div>
 				<div class="head_mid">
 					<div class="left_scroll"></div>
-					<ul class="main_title">
+					<div class="main_title">
+						<ul>
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
-						<li class="gongzuoliu" left='0' id='t_0'><div class="img"></div><h1><fmt:message code="global.my.Desktop" /></h1></li>
-					</ul>
+							<li class="gongzuoliu" left='0' id='t_0'><div class="img"></div><h1><fmt:message code="global.my.Desktop" /></h1></li>
+						</ul>
+					</div>
 					<div class="right_scroll"></div>
 				</div>
 				<!-- 右侧的小logo -->
@@ -160,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div> -->
 					<div class="all_content" style="width:100%;height:100%;">
 						
-							<div id='f_0' class="iItem" style="width:100%;height:100%;overflow:hidden;"><iframe  id="every_module" src="cont" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
+							<div id='f_0' class="iItem"><iframe  id="every_module" src="cont" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
 							
 					</div>
 				</div>
@@ -264,7 +266,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					success:function(obj){
 							var data= obj.obj;
 							var str=''; 
-						
+						console.log(data);
 							for(var i=0;i<data.length;i++){
 								var er='';
 								/* http://192.168.0.17:88/general/system/user/index.php?uid=admin */
@@ -283,7 +285,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										
 									} 
 								} 
-								str+='<li class="one person" id="administ"><div class="one_all" ><img class="one_logo" src="img/main_img/'+data[i].img+'.png"><h1 class="one_name" id="administ">'+data[i].name+'</h1></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
+								str+='<li class="one person" id="administ"><div class="one_all" ><img class="one_logo" src="img/main_img/'+data[i].img+'.png"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="down_jiao" src="img/main_img/down.png"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
 							}   
 							/* style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;" */
 
@@ -312,14 +314,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 	$('.one_all').on('click',function () {
 							
 							if ($(this).siblings().find('.erji').css('display')=='none') {
-								/* $(this).find('.one_down_img').attr('src','img/main_img/up.png'); */
+								 $(this).find('.down_jiao').attr('src','img/main_img/up.png'); 
 								
 								/* $(this).css('background','#cde2fa'); */
 								$(this).siblings().find('.erji').show();
 								$(this).siblings().find('.erji').css('background','#e8f4fc');
 								
 							}else{
-								
+								 $(this).find('.down_jiao').attr('src','img/main_img/down.png'); 
 								$(this).siblings().find('.erji').hide();
 							}
 										
@@ -420,8 +422,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									//页面不存在，新增 title和iframe
 									
 									var titlestr = '<li class="choose" index="0;" id="t_'+menu_tid+'"><div class="img"><img class="close" src="img/main_img/icon.png"></div><h1>'+$(this).find('h1').html()+'</h1></li>';
-									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" style="width:100%;height:100%;"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
-									$('.main_title').append(titlestr);
+									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" ><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
+									$('.main_title ul').append(titlestr);
 									$('.all_content').append(iframestr);
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
@@ -466,8 +468,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 									//页面不存在，新增 title和iframe
 									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><div><img class="close" src="img/main_img/icon.png"></div><h1>'+$(this).find('h1').html()+'</h1></li>';
-									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" style="width:100%;height:100%;"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
-									$('.main_title').append(titlestrs);
+									var iframestr = '<div id="f_'+menu_tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
+									$('.main_title ul').append(titlestrs);
 									$('.all_content').append(iframestr);
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
@@ -570,26 +572,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							console.log(re);
 							var delet=re.split('_')[1];
 							console.log(delet);
-					
+							
+						 	 $('#t_'+delet).next().attr('style','background:url(img/main_img/title_yes.png) 5px 2px no-repeat');
 						 	$(this).parent().parent().remove();
-						
-						 	
-						 	 	console.log($('#f_'+delet));
-						 	  $('#f_'+delet).next().show(); 
-						 	  $('#f_'+delet).remove();
-						 	 /*  console.log( $('#re'));
-						 	  console.log( $('#f_'+delet).next()); */
-						 	/* console.log($(this).siblings('li').length>0); */
+								
+						 	 	console.log($('#f_'+delet).next());
+						 	  $('#f_'+delet).next().show();
+						 	  
+						 	   $('#f_'+delet).remove(); 
+
 						 	var  li= $(this).parents('li');
-						 	/* console.log(li);
-						 	console.log($(this).parents('li').next()); */
-						 	
-						 	/*  if($(this).siblings('li').length>0){
-						 		 $('#f_'+delet).siblings().show();
-						 		 
-						 	}else{
-						 		
-						 	}   */
+						 
 						}) ;
 				
 				//tab 切换
@@ -609,19 +602,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					})
 				//向左移动
 				$('.right_scroll').on('click',function(){
-					console.log($('.main_title li').length>=8);
-					if($('.main_title li').length>=8){
-						$('.main_title li').animate({left:"-=100px"});
-					}
+					/* console.log($('.main_title li').length>=8); */
+					 if($('.main_title li').length>=8 && $('.main_title li').next() ){
+							$('.main_title li').animate({left:"-=100px"});
+							$('.main_title ul').animate({width:"+=110px"});
+
+					} 
 				})
 				//向右移动
 					$('.left_scroll').on('click',function(){
 					console.log($('.main_title li').length>=8);
 					if($('.main_title li').length>=8){
 						$('.main_title li').animate({left:"+=100px"});
+						
 						if($('.main_title li:nth-child(1)').attr('left')==0){
 							$('.main_title li:nth-child(1)').css('left','0px');
 						}
+						
 					}
 				});
 				
