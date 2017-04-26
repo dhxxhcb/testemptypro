@@ -118,13 +118,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     					for(var j=0;j<fchild.length;j++){
 	     						var schild=fchild[j].child;
 	     						if(fchild[j].child!=''){
-	     							li+='<li url="'+fchild[j].url+'" onClick="window.external.OA_SMS("/xoa/email/index","MAX","OPEN_URL");"><div class="yiji_title"><span  class="head_pic"><img src="../img/main_img/hei.png" alt="erimg"/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span><span class="dianji before"></span></div><div class="sanji common"><ul>';
+	     							li+='<li ><div class="yiji_title" url="'+fchild[j].url+'" onClick="window.external.OA_SMS("/xoa/email/index","MAX","OPEN_URL");"><span  class="head_pic"><img src="../img/main_img/hei.png" alt="erimg"/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span><span class="dianji before"></span></div><div class="sanji common"><ul>';
 	     							for(var z=0;z<schild.length;z++){
-	     								li+='<li url="'+schild[z].url+'" onClick="window.external.OA_SMS("'+schild[z].url+'","","OPEN_URL");"><div class="yiji_title"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+schild[z].name1+'" id="'+schild[z].id+'"  class="appname">'+schild[z].name+'</span></div></li>';
+	     								li+='<li ><div class="yiji_title" url="'+schild[z].url+'" onClick="window.external.OA_SMS("/xoa/email/index","MAX","OPEN_URL");"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+schild[z].name1+'" id="'+schild[z].id+'"  class="appname">'+schild[z].name+'</span></div></li>';
 	     							}
 	     							li+='</ul></div>';
 	     						}else{
-	     							li+='<li url="'+fchild[j].url+'" onClick="window.external.OA_SMS("'+fchild[j].url+'","","OPEN_URL");"><div class="yiji_title"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span></div></li>';
+	     							li+='<li><div class="yiji_title"  url="'+fchild[j].url+'" onClick="window.external.OA_SMS("/xoa/email/index","MAX","OPEN_URL");"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span></div></li>';
 	     						}
 	     					}
 	     					li+='</ul></div>';
