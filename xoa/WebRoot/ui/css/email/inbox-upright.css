@@ -42,6 +42,7 @@
     margin-top: 5px;
     line-height: 16px;
     margin-right: 5px;
+    font-size: 12px;
 }
 .up_page_right .up_header .up_nav ul li:nth-child(2){
 	margin-right: 3%;
@@ -252,21 +253,22 @@
 .main_right .span_hr p{
 	margin-top: 5px;
 }
-.main_right .article{
-	margin-top: 10px;
+.main_right .article,.main_right .article1,.main_right .article2{
+	margin-top: 20px;
 	width: 100%;
 	padding-left: 2%;
 	border-top: #ebebeb 1px solid;
 }
-.main_right .article1{
+/* .main_right .article1{
 	margin-top: 10px;
 	width: 100%;
 	padding-left: 2%;
 	border-top: #ebebeb 1px solid;
-}
-.main_right .article p{
+} */
+.main_right .article p,.main_right .article1 p,.main_right .article2 p{
 	margin-right: 25px;
 	font-size: 14px;
+	line-height: 21px;
 }
 .main_right .article p:first-of-type{
 	margin-top: 13px;
