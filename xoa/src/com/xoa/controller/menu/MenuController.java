@@ -144,7 +144,7 @@ public class MenuController {
 	 */
 	@RequestMapping(value = "/getMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String getMenu() {
+	List<MobileApp> getMenu() {
 		List<MobileApp> munuList = mobileAppService.getMobileAppList();
 		String msg;
 		if (munuList.size() > 0) {
@@ -158,7 +158,7 @@ public class MenuController {
 
 		ToJson<MobileApp> menuJson = new ToJson<MobileApp>(flag, msg);
 		menuJson.setObj(munuList);
-		return JSON.toJSONStringWithDateFormat(menuJson, "yyyy-MM-dd HH:mm:ss");
+		return  munuList;
 		
 		
 		
