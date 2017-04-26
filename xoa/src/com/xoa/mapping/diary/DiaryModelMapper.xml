@@ -19,7 +19,7 @@
     <result column="READERS" property="readers" javaType="string" />
   </resultMap>
   <sql id="DiaryList" >
-    DIA_ID,USER_ID,DIA_DATE,DIA_TIME,DIA_TYPE,SUBJECT,if(LAST_COMMENT_TIME='0000-00-00 00:00:00','null',LAST_COMMENT_TIME)LAST_COMMENT_TIME,TO_ALL,CRM_DIARY,CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, TO_ID, COMPRESS_CONTENT, READERS
+    DIA_ID,USER_ID,DIA_DATE,DIA_TIME,DIA_TYPE,SUBJECT,LAST_COMMENT_TIME,TO_ALL,CRM_DIARY,CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, TO_ID, COMPRESS_CONTENT, READERS
   </sql>
   <insert id="addDiary" parameterType="com.xoa.model.diary.DiaryModel"> 
     insert into diary (<include refid="DiaryList"/>) values (
@@ -90,7 +90,7 @@
    select count(*) from  diary where TO_ALL=1;
   </select>
   <select id="getDiaryList" resultMap="BaseResultMap">
-   select  <include refid="DiaryList"/>  from  diary;
+   select  *  from  diary;
   </select>
   <select id="getDiaryOtherList" parameterType="map" resultMap="BaseResultMap">
   select * from diary where USER_ID <![CDATA[<>]]>  #{userId} and TO_ALL=#{toAll};

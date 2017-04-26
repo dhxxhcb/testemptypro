@@ -164,10 +164,6 @@ public class NewsController {
 	String showNews(
 			@RequestParam(value = "format", required = false) String format,
 			@RequestParam(value = "typeId", required = false) String typeId,
-			@RequestParam(value = "top", required = false) String top,
-			@RequestParam(value = "publish", required = false) String publish,
-			@RequestParam(value = "clickCount", required = false) String clickCount,
-			@RequestParam(value = "click", required = false) String click,
 			@RequestParam(value = "subject", required = false) String subject,
 			@RequestParam(value = "newsTime", required = false) String newsTime,
 			@RequestParam(value = "nTime", required = false) String nTime,
@@ -189,11 +185,6 @@ public class NewsController {
 		maps.put("nTime", nTime);
 		maps.put("lastEditTime", lastEditTime);
 		maps.put("content", content);
-		maps.put("top", top);
-		maps.put("publish", publish);
-		maps.put("clickCount", clickCount);
-		maps.put("click", click);
-		
 		String name = (String) request.getSession().getAttribute("userId");
 		String returnReslt = null;
 		try {
@@ -509,7 +500,7 @@ public class NewsController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);
 		ToJson<News> toJson=new ToJson<News>(0, "");
-		String name =(String) request.getSession().getAttribute("byname");
+		String name = (String) request.getSession().getAttribute("byname");
 	try {
 			News news=newService.queryById(maps, 1, 5, false, name);
 			toJson.setMsg(ok);

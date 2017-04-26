@@ -7,8 +7,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ImMessageMapper {
+	
+	int deleteByUUID(@Param("fromId")String fromId,@Param("uuid")String uuid,@Param("now") Integer now);
+	
     int countByExample(ImMessageExample example);
-
+ 
     int deleteByExample(ImMessageExample example);
 
     int deleteByPrimaryKey(Integer imid);

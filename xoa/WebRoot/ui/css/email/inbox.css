@@ -56,7 +56,17 @@ ul{
 	width: 100%;
 	height: 100%;
 }
+/*鏀朵欢绠�/
+.page .page_left .inBox{
+	width: 100%;
+	overflow: hidden;
+	border-bottom: rgba(0,0,0,0.12) 1px solid;
+}
 
+.page .page_left .inBox .ul_show li span{
+	float: right;
+	margin-right: 15%;		
+}
 
 /*鍏朵粬閭*/
 .page .page_left .other{
@@ -71,8 +81,8 @@ ul{
 	overflow: hidden;
 	border-bottom: rgba(0,0,0,0.12) 1px solid;
 }
-.ul_show li a span{
-	margin-left: 20px;
+.page .page_left .classify .ul_show li span{
+	margin-left: 14%;
 }
 
 /*閭璁剧疆*/

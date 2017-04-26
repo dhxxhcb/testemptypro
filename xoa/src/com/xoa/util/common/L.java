@@ -1,4 +1,7 @@
 package com.xoa.util.common;
+
+import com.alibaba.fastjson.JSONArray;
+
 /**
  * 
  * @作者 韩东堂
@@ -27,7 +30,7 @@ public class L extends LoggerBase {
 	 * @参数说明 @param msgs 自己输入的记录信息
 	 * @return 无
 	 */
-	public static void w(String... msgs) {
+	public static void w(Object... msgs) {
 		// TODO Auto-generated method stub
 		// super.log.info(arg0);
 		L	lloader =L.getInstance();
@@ -42,7 +45,7 @@ public class L extends LoggerBase {
      * @参数说明 @param msgs 自己输入的记录信息
      * @return
      */
-	public static void e(String... msgs) {
+	public static void e(Object... msgs) {
 		// TODO Auto-generated method stub
 		L	lloader =L.getInstance();
 		lloader.loadLogger(LOG_TYPE_ERROR);
@@ -57,7 +60,7 @@ public class L extends LoggerBase {
 	 * @参数说明 @param msgs 自己输入的记录信息
 	 * @return 无
 	 */
-	public static void a(String... msgs) {
+	public static void a(Object... msgs) {
 		// TODO Auto-generated method stub
 		L	lloader =L.getInstance();
 		lloader.loadLogger(LOG_TYPE_INFO);
@@ -72,7 +75,7 @@ public class L extends LoggerBase {
      * @参数说明 @param msgs 自己输入的记录信息
      * @return 无
      */
-	public static void i(String... msgs) {
+	public static void i(Object... msgs) {
 		// TODO Auto-generated method stub
 		L	lloader =L.getInstance();
 		lloader.loadLogger(LOG_TYPE_INFO);
@@ -88,25 +91,28 @@ public class L extends LoggerBase {
 	 * @参数说明 @return String 拼接过的信息
 	 * @return
 	 */
-	private  String subString(String... msgs) {
+	private  String subString(Object... obj) {
+		
+	
+		
 		StringBuffer sbBuffer = new StringBuffer(
 				"------------日志信息开始-------------");
 		sbBuffer.append("\r\n");
 		sbBuffer.append("file:" + getFileName());
 		sbBuffer.append("\r\n");
-		sbBuffer.append("class:" + getClassName() + "(" + getClassName().substring(getClassName().lastIndexOf(".") + 1, getClassName().length()) + ".java:1)");
+		sbBuffer.append("class:  at " + getClassName() + "(" + getClassName().substring(getClassName().lastIndexOf(".") + 1, getClassName().length()) + ".java:1)");
 		sbBuffer.append("\r\n");
 		sbBuffer.append("method:" + getMethodName());
 		sbBuffer.append("\r\n");
-		sbBuffer.append("line:" + getLinNumber()+" "+getClassName()+"(" + getClassName().substring(getClassName().lastIndexOf(".") + 1, getClassName().length()) + ".java:"+getLinNumber()+")");
+		sbBuffer.append("line:  at " + getLinNumber()+" "+getClassName()+"(" + getClassName().substring(getClassName().lastIndexOf(".") + 1, getClassName().length()) + ".java:"+getLinNumber()+")");
 		sbBuffer.append("\r\n");
 		sbBuffer.append("your write info is:");
 		sbBuffer.append("\r\n");
-		for (String msg : msgs) {
-			sbBuffer.append(msg + " ");
+		for (Object msg : obj) {
+				sbBuffer.append(JSONArray.toJSON(msg) + " ");
 		}
 		sbBuffer.append("------------日志信息结束-------------");
 		return sbBuffer.toString();
 	}
-
+ 
 }

@@ -273,30 +273,3 @@
 .main_right .article p:first-of-type{
 	margin-top: 13px;
 }
-
-.QUERY{
-	width: 600px;
-	margin: 0 auto;
-}
-.QUERY .title{
-	width: 100%;
-	text-align: center;
-	line-height: 40px;
-}
-.QUERY table tr td{
-	padding: 5px 5px;
-	border-color: #ddd;
-}
-.QUERY #btn{
-	display: block;
-	margin: 0 auto;
-	outline: none;
-	border: none;
-	border-radius: 3px;
-	padding: 3px 8px;
-	cursor: pointer;
-}
-.QUERY #btn:hover{
-	background-color: #9fbdee;
-	color: #fff;
-}
