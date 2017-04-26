@@ -292,7 +292,7 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getChDept",produces = {"application/json;charset=UTF-8"})
-    public String getChDeptUser(HttpServletRequest request) {
+    public ToJson<Department> getChDeptUser(HttpServletRequest request) {
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -304,7 +304,7 @@ public class DepartmentController {
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 	
