@@ -308,7 +308,7 @@ $(function () {
 						layer.closeAll()
 						if(obj.obj.length == 0){
 							if($('.index_head .one').parent().attr('data_id') == '0'){
-								layer.msg('没有未读新闻，2秒后自动跳到公告通知', {icon: 6});
+								layer.msg('没有未读新闻，2秒后自动跳到全部新闻', {icon: 6});
 								var turnindex=setInterval(function(){
 									layer.closeAll();
 									$(".index_head li").eq(1).click();
