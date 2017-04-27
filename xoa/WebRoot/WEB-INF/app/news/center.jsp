@@ -16,6 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
     <link rel="stylesheet" type="text/css" href="../css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../css/news/add_center.css"/>
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
@@ -23,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/layer/layer.js"></script>
     <style type="text/css">
-		
+	
 	</style>
 </head>
 <body>
@@ -31,8 +32,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
-           <li data_id="0"><span class="one" style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.unread" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
-            <li data_id=""><span  style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.new" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
+           <li data_id="0"><span class="one" style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.unread" /></span><img src="../img/02.png" alt="" style="width: 2px;"/></li>
+            <li data_id=""><span  style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.new" /></span><img src="../img/02.png" alt="" style="width: 2px;"/></li>
              <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.query" /></span></li>
         </ul>
     </div>
@@ -178,10 +179,10 @@ $(function () {
 				subject:''
 
             };
-           initPageList(function(pageCount){
+            initPageList(function(pageCount){
            console.log(pageCount);
            		 initPagination(pageCount,data.pageSize);
-           });
+           }); 
           
 		  
            $(".index_head li").click(function (){
@@ -263,7 +264,7 @@ $(function () {
 							    callback:function(index){
 							    	data.page = index.getCurrent();
 							    	console.log(index.getCurrent());
-							    	initPageList();
+							    	  initPageList();
 							    }
 							});
             }
@@ -277,7 +278,7 @@ $(function () {
 					data.typeId = $('#select').val();
 					data.nTime = $('#sendTime').val();
 					//console.log(read,typeId,nTime);
-					initPageList();
+					 initPageList(); 
 				});
 				//时间控件调用
   

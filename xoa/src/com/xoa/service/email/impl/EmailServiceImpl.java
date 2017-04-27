@@ -4,12 +4,16 @@ import com.xoa.dao.email.EmailBodyMapper;
 import com.xoa.dao.email.EmailMapper;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.email.EmailModel;
+import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.email.EmailService;
+import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.service.users.UsersService;
+import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 
@@ -37,6 +41,9 @@ public class EmailServiceImpl implements EmailService {
 	
 	@Resource
 	private UsersService usersService;
+	
+	@Resource
+	private EnclosureService  enclosureService;
 
 	/**
 	 * 
@@ -48,7 +55,21 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     void
 	 */
 	@Override
-	public void sendEmail(EmailBodyModel emailBody, EmailModel email) {
+	public void sendEmail(EmailBodyModel emailBody,MultipartFile[] files, EmailModel email) {
+			//判断是否有上传的文件
+			if(files.length>0){
+				List<Attachment> upLoad = new ArrayList<Attachment>();
+				upLoad = enclosureService.upload(files, "xoa111", "email");
+				StringBuilder attachName = new StringBuilder();
+				StringBuilder attachmentId = new StringBuilder();
+				int fileUpload = upLoad.size();
+				for(int i = 0 ; i<fileUpload;i++){
+					attachmentId.append(upLoad.get(i).getAid()+"@"+upLoad.get(i).getYm()+"_"+upLoad.get(i).getAttachId()+",");
+					attachName.append(upLoad.get(i).getAttachName()+"*");
+				}
+				emailBody.setAttachmentId(attachmentId.toString());
+				emailBody.setAttachmentName(attachName.toString());
+			}
 		emailBodyMapper.save(emailBody);
 		String toID = emailBody.getToId2().trim()
 				+ emailBody.getCopyToId().trim()
@@ -80,7 +101,7 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     void
 	 */
 	@Override
-	public void saveEmail(EmailBodyModel emailBody) {
+	public void saveEmail(EmailBodyModel emailBody,MultipartFile[] files) {
 		emailBodyMapper.save(emailBody);
 	}
 
@@ -117,6 +138,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
 			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -166,6 +188,8 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
 			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
+			
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -202,6 +226,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
 			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -238,6 +263,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
 			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -274,6 +300,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
 			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -305,6 +332,7 @@ public class EmailServiceImpl implements EmailService {
 		emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
 		emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
 		emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+		emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 		return emailBody;
 	}
 
@@ -337,6 +365,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
 			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -375,6 +404,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
 			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);

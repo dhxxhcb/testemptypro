@@ -44,4 +44,19 @@ public interface EnclosureService {
 	 */
 	@DynDatasource
 	public List<Attachment>  upload(MultipartFile[] files,String company,String module);
+	
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月27日 上午9:24:05
+	 * 方法介绍:   获取附件url
+	 * 参数说明:   @param att 附件信息
+	 * 参数说明:   @param company 公司
+	 * 参数说明:   @param module 模块名
+	 * 参数说明:   @return
+	 * @return     String 返回附件
+	 */
+	@DynDatasource
+	public String attachmenturl(Attachment att,String company,String module);
 }
+

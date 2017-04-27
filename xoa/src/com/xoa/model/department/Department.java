@@ -11,6 +11,13 @@ import com.xoa.model.users.Users;
  * 构造参数:   无
  *
  */
+ /**
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年4月26日 下午8:12:20
+ * 类介绍  :   
+ * 构造参数:   
+ *
+ */
 public class Department {
 	/**
 	 * 自增唯一ID
@@ -84,13 +91,21 @@ public class Department {
 	 * 部门职能
 	 */
     private String deptFunc;
-    
+    /**
+	 * 头像
+	 */
     private String avatar;
-    
+    /**
+	 * 用户名字
+	 */
     private String userName;
-    
+    /**
+	 * 用户uid
+	 */
     private Integer uid;
-    
+    /**
+	 * 用户角色名字
+	 */
     private String userPrivName;
     /**
    	 * 返回类型
@@ -100,8 +115,20 @@ public class Department {
    	 * 统计
    	 */
     private String count;
+    
+    private String sex;
+    
+    
    
-    public String getCount() {
+    public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getCount() {
 		return count;
 	}
 

@@ -3,22 +3,41 @@ package com.xoa.model.enclosure;
  * 附件信息表
  */
 public class Attachment {
+	/**
+	 * 自增唯一Id
+	 */
     private Integer aid;
-
+    /**
+	 * 位置
+	 */
     private Byte position;
-
+    /**
+	 * 对应attachment_module表中模块的module_id号
+	 */
     private Byte module;
-
+    /**
+	 * 年月
+	 */
     private String ym;
-
+    /**
+  	 * 附件id
+  	 */
     private Integer attachId;
-
+    /**
+  	 * 附件文件
+  	 */
     private String attachFile;
-
+    /**
+  	 * 附件名称
+  	 */
     private String attachName;
-
+    /**
+  	 * 标记
+  	 */
     private Long attachSign;
-
+    /**
+  	 * 删除标记(0-未删除,1-已删除)
+  	 */
     private Byte delFlag;
 
     public Integer getAid() {

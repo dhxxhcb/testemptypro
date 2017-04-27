@@ -1,5 +1,6 @@
 package com.xoa.model.email;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,6 +16,11 @@ import com.xoa.model.users.Users;
  */
 public class EmailBodyModel implements Serializable {
 	private static final long serialVersionUID = 1076969159692234636L;
+	
+	/**
+	 * 大概时间
+	 */
+	private String probablyDate;
 	
 	/**
 	 * 时间段区间查询传入的开始时间
@@ -853,6 +859,30 @@ public class EmailBodyModel implements Serializable {
 	 */
 	public void setSecretToName(String secretToName) {
 		this.secretToName = secretToName;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-27 上午10:37:14
+	 * 方法介绍:   大概时间
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	public String getProbablyDate() {
+		return probablyDate;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-27 上午10:37:21
+	 * 方法介绍:   大概时间
+	 * 参数说明:   @param probablyDate
+	 * @return     void
+	 */
+	public void setProbablyDate(String probablyDate) {
+		this.probablyDate = probablyDate;
 	}
 	
 	

@@ -122,7 +122,7 @@ public class Ctest {
 //		System.out.println(JSON.toJSONStringWithDateFormat(page, "yyyy-MM-dd HH:mm:ss"));
 		
 		
-//		EmailBody emailBody = new EmailBody();
+//		EmailBodyModel emailBody = new EmailBodyModel();
 //		emailBody.setBodyId(18);
 //		emailBody.setFromId("admin");
 //		emailBody.setToId2(
@@ -164,7 +164,7 @@ public class Ctest {
 //		emailBody.setSecretToWebmail("");
 //		// 点赞人 需明确
 //		emailBody.setPraise("");
-//		Email email = new Email();
+//		EmailModel email = new EmailModel();
 //		email.setEmailId(241);
 //		email.setReadFlag("");
 //		// 邮件删除状态
