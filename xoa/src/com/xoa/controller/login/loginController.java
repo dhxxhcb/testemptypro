@@ -23,6 +23,7 @@ import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
 import com.xoa.util.http.HttpClientUtil;
@@ -116,6 +117,12 @@ public class loginController {
 		String loginId = (String) request.getSession().getAttribute(
 				"loginDateSouse");
 		ToJson<Users> json = new ToJson<Users>(0, null);
+		if(StringUtils.checkNull(username)){
+			json.setFlag(1);
+			json.setMsg("err");
+			return json;
+		}
+		
 		ContextHolder.setConsumerType("xoa" + loginId);
 		String httpOrgCreateTest = url;
 		Map<String, String> createMap = new HashMap<String, String>();
