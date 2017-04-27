@@ -514,6 +514,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			
 			init();//调用init()方法
+			
 						//点击标题栏
 						$('.main_title ').on('click','li',function(){
 							
@@ -556,21 +557,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 					//点击删除
 						$('.main_title').on('click','.close',function(){
-							/* alert('111'); */
+						
 							var re=$(this).parent().parent().attr('id');
 							console.log(re);
 							var delet=re.split('_')[1];
 							console.log(delet);
 							
-						 	 $('#t_'+delet).next().attr('style','background:url(img/main_img/title_yes.png) 5px 2px no-repeat');
-						 	$(this).parent().parent().remove();
+						 	
+						 
 								
-						 	 	console.log($('#f_'+delet).next());
+						 	/*  	console.log($('#f_'+delet).next()); */
+						 	if($('#f_'+delet).next()){
+						 		$('#t_'+delet).next().attr('style','background:url(img/main_img/title_yes.png) 5px 2px no-repeat');	
+						 	 	$(this).parent().parent().remove();
 						 	  $('#f_'+delet).next().show();
 						 	  
 						 	   $('#f_'+delet).remove(); 
+						 	}else{
+						 		console.log($('#t_'+delet).prev());
+						 		$('#t_'+delet).prev().attr('style','background:url(img/main_img/title_yes.png) 5px 2px no-repeat');	
+						 	 	$(this).parent().parent().remove();
+						 	 	$('#f_'+delet).prev().show();
+						 	 	$('#f_'+delet).remove(); 
+						 	 	
+						 	    
+						 	}
+						 	   
 
-						 	var  li= $(this).parents('li');
+						 	/* var  li= $(this).parents('li'); */
 						 
 						}) ;
 				
