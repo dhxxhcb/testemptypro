@@ -30,16 +30,16 @@ public class GlobalException implements HandlerExceptionResolver {
 		FastJsonJsonView view = new FastJsonJsonView();
 		ModelAndView modelAndView =new ModelAndView();
 		//Im异常处理 其他类型异常参照着写
-		Map<String, Object> ex =new HashMap<String, Object>();
-		ex.put("status", false);
-		ex.put("flag", false);
-		ex.put("message", "操作失败");
-		view.setAttributesMap(ex);
 		if(arg3 instanceof ImDataException){
-			
+			Map<String, Object> ex =new HashMap<String, Object>();
+			ex.put("status", false);
+			ex.put("flag", false);
+			ex.put("message", "操作失败");
+			view.setAttributesMap(ex);
 			modelAndView.setView(view);
 		}
-		modelAndView.setView(view);
+		
+	
 		return modelAndView;
 	}
 

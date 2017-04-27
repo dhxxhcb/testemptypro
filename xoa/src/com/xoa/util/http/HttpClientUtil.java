@@ -19,7 +19,7 @@ import com.xoa.util.common.L;
  * 利用HttpClient进行post请求的工具类 
  */  
 public class HttpClientUtil {  
-    public String doPost(String url,Map<String,String> map,String charset){  
+    public static String doPost(String url,Map<String,String> map,String charset){  
         HttpClient httpClient = null;  
         HttpPost httpPost = null;  
         String result = null;  
@@ -38,7 +38,6 @@ public class HttpClientUtil {
                 httpPost.setEntity(entity);  
             }  
             HttpResponse response = httpClient.execute(httpPost);  
-            L.w("response",response);
             if(response != null){  
                 HttpEntity resEntity = response.getEntity();  
                 if(resEntity != null){  
@@ -46,7 +45,8 @@ public class HttpClientUtil {
                 }  
             }  
         }catch(Exception ex){  
-            ex.printStackTrace();  
+            ex.printStackTrace(); 
+            L.w("response exception",ex);
         }  
         return result;  
     }  
