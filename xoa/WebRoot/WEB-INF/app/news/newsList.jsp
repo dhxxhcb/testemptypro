@@ -232,31 +232,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<span class="addImg">
 									<img src="../img/org_select2.png" class="clearIcon"/>
 								</span>
-								<a href="javascript:;" class="clear">清除</a>
+								<a href="javascript:;" class="clear"><fmt:message code="global.lang.delete" /></a>
 							</span>
 					</div>
 			      </td>
 			    </tr>
 			    <tr>
-			      <td nowrap="" class="TableData" width="100"> 格式：</td>
+			      <td nowrap="" class="TableData" width="100"><fmt:message code="notice.th.format" />：</td>
 			      <td class="TableData">
 			      <select name="FORMAT" class="BigSelect">
-			        <option value="0" selected="">全部</option>
-			        <option value="1">普通格式</option>
-			        <option value="2">MHT格式</option>
+			        <option value="0" selected=""><fmt:message code="notice.th.all" /></option>
+			        <option value="1"><fmt:message code="notice.format.Commonformat" /></option>
+			        <option value="2"><fmt:message code="notice.format.MHTformat" /></option>
 			        <!--<option value="2">超级链接</option>-->
 			      </select>
 			      </td>
 			    </tr>
 			    <tr>
-			      <td nowrap="" class="TableData"> 类型：</td>
+			      <td nowrap="" class="TableData"><fmt:message code="notice.th.type" />：</td>
 			      <td class="TableData">
 			        <select name="TYPE_ID" class="BigSelect">
-			            <option value="" selected="">全部</option>
-			            <option value="01">决定</option>
-						<option value="02">通知</option>
-						<option value="03">通报</option>
-						<option value="04">其他</option>
+			            <option value="" selected=""><fmt:message code="notice.th.all" /></option>
+			            <option value="01"><fmt:message code="notice.type.Decision" /></option>
+						<option value="02"><fmt:message code="notice.type.notice" /></option>
+						<option value="03"><fmt:message code="notice.type.Bulletin" /></option>
+						<option value="04"><fmt:message code="notice.type.other" /></option>
 			        </select>&nbsp;
 			      </td>
 			    </tr>
@@ -269,12 +269,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    <tr>
 			      <td nowrap="" class="TableData" width="100"> <fmt:message code="news.title.Releasedate" />：</td>
 			      <td class="TableData">
-			        	<input class="laydate-icon" id="start"> &nbsp;至&nbsp;
+			        	<input class="laydate-icon" id="start"> &nbsp;<fmt:message code="global.lang.to" />&nbsp;
 						<input class="laydate-icon" id="end">
 			      </td>
 			    </tr>
 			    <tr>
-			      <td nowrap="" class="TableData" width="100"> 内容：</td>
+			      <td nowrap="" class="TableData" width="100"><fmt:message code="notice.th.content" />：</td>
 			      <td class="TableData">
 			        <input type="text" name="CONTENT" size="33" maxlength="200" class="BigInput" value="">
 			      </td>
@@ -297,7 +297,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <tr>
 		    <td class="Big">
 		    	<img src="../img/notify_open.gif" align="absmiddle">
-		    	<span class="big3">新闻通知查询结束</span>
+		    	<span class="big3"><fmt:message code="news.th.newsnoticeEnd" /></span>
 		    </td>
 			   		
 		    <td align="right" valign="bottom" class="small1">
@@ -311,7 +311,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <th nowrap align="center"><fmt:message code="news.th.publisher" /></th>
 		      <th nowrap align="center"><fmt:message code="news.th.type" /></th>
 		      <th nowrap align="center"><fmt:message code="news.th.title" /></th>
-		      <th nowrap align="center" style="cursor:pointer;"><u>点击数</u></th>
+		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="news.th.clicknumber" /></u></th>
 		      <th nowrap align="center"><fmt:message code="news.th.createTime" />
 		      	<img border=0 src="../img/arrow_down.gif" width="11" height="10">
 		      </th>

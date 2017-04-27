@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<table cellspacing="0" cellpadding="0" class="tab">
 					<tr>
 						<td width="15%">
-							<select name="type_name" id="type_id" title="新闻" style="width: 70%;">
+							<select name="type_name" id="type_id" title="公告" style="width: 70%;">
 					            <option value="00"><fmt:message code="notice.th.chosenotifytype" /></option>           
 					            <option value="01"><fmt:message code="notice.type.Decision" /></option>
 								<option value="02"><fmt:message code="notice.type.notice" /></option>

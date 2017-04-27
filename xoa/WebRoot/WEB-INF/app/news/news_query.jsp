@@ -31,11 +31,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--head通栏开始-->
 <div class="head w clearfix">
     <ul>
-        <li class="one">全部新闻</li>
+        <li class="one"><fmt:message code="news.th.allnews" /></li>
         <li style="width:2px;"><img src="images/02query.png" alt=""/></li>
-        <li>未读新闻</li>
+        <li><fmt:message code="news.title.unread" /></li>
         <li style="width:2px;"><img src="images/02query.png" alt=""/></li>
-        <li>新闻查询</li>
+        <li><fmt:message code="news.title.query" /></li>
     </ul>
 </div>
 <!--head通栏结束-->
@@ -43,35 +43,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="center w">
     <div class="title clearfix">
         <img src="images/01query.png" alt=""/>
-        <div class="news">新闻查询</div>
+        <div class="news"><fmt:message code="news.title.query" /></div>
     </div>
 
     <div class="login">
-        <div class="header">输入查询条件</div>
+        <div class="header"><fmt:message code="global.lang.inputquerycondition" /></div>
         <div class="middle">
             <div class="le publisher">
-                <div class="color">发布人：</div>
+                <div class="color"><fmt:message code="notice.th.publisher" />：</div>
                 <div><input style="height:50px;width:279px;margin-left:56px;margin-right: 15px;" type="text" /></div>
-                <div style="margin-right:23px; color:#207BD6">添加</div>
-                <div>清空</div>
+                <div style="margin-right:23px; color:#207BD6"><fmt:message code="global.lang.add" /></div>
+                <div><fmt:message code="global.lang.empty" /></div>
             </div>
             <div class="le subject">
-                <div class="color">标题：</div>
+                <div class="color"><fmt:message code="notice.th.title" />：</div>
                 <div><input style="height:26px;width:279px;margin-left:69px;margin-right: 15px;" type="text"/></div>
             </div>
             <div class="le date">
-                <div class="color">发布日期：</div>
+                <div class="color"><fmt:message code="notice.title.Releasedate" />：</div>
                 <div><input style="height:24px;width:119px;margin-left:38px;margin-right: 11px;" type="text"/></div>
-                <div class="color">至</div>
+                <div class="color"><fmt:message code="global.lang.to" /></div>
                 <div> <input  style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
             </div>
             <div class="le ce1">
-                <div class="color">内容：</div>
+                <div class="color"><fmt:message code="notice.th.content" />：</div>
                 <div><input  style="height:25px;width:279px;margin-left:70px;"   type="text"/></div>
 
             </div>
             <div class="le ce2">
-                <div class="color">内容:</div>
+                <div class="color"><fmt:message code="notice.th.content" />:</div>
                 <div><input   style="height:25px;width:279px;margin-left:80px;" type="text"/></div>
 
             </div>

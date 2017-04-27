@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
+<%
+ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,17 +17,17 @@
 		<tbody>
 			<tr>
 				<td class="Big"><img src="/static/images/notify_open.gif"
-					align="absmiddle"><span class="big3"> 新闻</span>&nbsp; <select
+					align="absmiddle"><span class="big3"><fmt:message code="news.title.new" /></span>&nbsp; <select
 					name="TYPE" class="BigSelect"
 					onchange="change_type(this.value,SEND_TIME.value);">
-						<option value="0" selected="">所有类型</option>
-						<option value="01">公司动态</option>
-						<option value="02">媒体关注</option>
-						<option value="03">行业资讯</option>
-						<option value="04">合作伙伴新闻</option>
-						<option value="05">客户新闻</option>
-						<option value="">无类型</option>
-				</select>&nbsp; 发布日期<input name="SEND_TIME" size="12" maxlength="10"
+						<option value="0" selected=""><fmt:message code="news.th.type" /></option>
+						<option value="01"><fmt:message code="news.th.company" /></option>
+						<option value="02"><fmt:message code="news.th.media" /></option>
+						<option value="03"><fmt:message code="news.th.industry" /></option>
+						<option value="04"><fmt:message code="news.th.partner" /></option>
+						<option value="05"><fmt:message code="news.th.client" /></option>
+						<option value=""><fmt:message code="news.th.none" /></option>
+				</select>&nbsp; <fmt:message code="notice.title.Releasedate" /><input name="SEND_TIME" size="12" maxlength="10"
 					class="BigInput" value="" onclick="WdatePicker()" type="text">&nbsp;<input
 					class="SmallButton" value="确定" onclick="ajaxGotoPage(1);"
 					type="button"></td>
@@ -34,48 +39,48 @@
 		<tbody>
 			<tr class="TableHeader">
 				<td onclick="order_by('SUBJECT','1');" style="cursor: hand;"
-					nowrap="" align="center"><u>标题</u></td>
-				<td nowrap="" align="center">类型</td>
+					nowrap="" align="center"><u><fmt:message code="notice.th.title" /></u></td>
+				<td nowrap="" align="center"><fmt:message code="notice.th.type" /></td>
 				<td onclick="order_by('NEWS_TIME','0');" style="cursor: hand;"
-					nowrap="" align="center"><u>发布时间</u><img
+					nowrap="" align="center"><u><fmt:message code="notice.th.PostedTime" /></u><img
 					src="/static/images/arrow_down.gif" height="10" border="0"
 					width="11"></td>
 				<td onclick="order_by('CLICK_COUNT','1');" style="cursor: hand;"
-					nowrap="" align="center"><u>点击次数</u></td>
-				<td nowrap="" align="center">评论(条)</td>
-				<td nowrap="" align="center">新闻评论</td>
+					nowrap="" align="center"><u><fmt:message code="news.th.clicks" /></u></td>
+				<td nowrap="" align="center"><fmt:message code="news.th.commentnew" /></td>
+				<td nowrap="" align="center"><fmt:message code="news.th.newscomment" /></td>
 			</tr>
 
 			<tr class="TableLine1">
 				<td><a href="javascript:open_news('6','0');"
 					title="喜欢红色外观的手机？这次你又多了一个选择。3 月 21 日晚上 8 点半，苹果在官方在线商店和天猫旗舰店中「悄悄」上线了红色（RED）的 iPhone 7 和 iPhone 7 Plus，售价 6188 元起。"><font
-						color="red"><b>喜欢红色外观的手机？这次你又多了一个选择。3 月 21 ...</b></font></a></td>
+						color="red"><b><fmt:message code="news.th.other1" /></b></font></a></td>
 				<td nowrap="" align="center"></td>
 				<td nowrap="" align="center">2017-03-27 14:23:28</td>
 				<td nowrap="" align="center">38</td>
 				<td nowrap="" align="center">0</td>
-				<td nowrap="" align="center"><a href="javascript:re_news('6');">评论</a>
+				<td nowrap="" align="center"><a href="javascript:re_news('6');"><fmt:message code="news.th.comment" /></a>
 				</td>
 			</tr>
 			<tr class="TableLine2">
 				<td><a href="javascript:open_news('5','0');"
 					title="如何看待苹果公司 2017年3月21日 上架红色 iPhone 7 和新款 9.7 英寸 iPad？"><font
-						color="#f00001">如何看待苹果公司 2017年3月21日 上架红色 iPhone 7 ...</font></a></td>
+						color="#f00001"><fmt:message code="news.th.other3" /></font></a></td>
 				<td nowrap="" align="center"></td>
 				<td nowrap="" align="center">2017-03-27 14:16:51</td>
 				<td nowrap="" align="center">5</td>
 				<td nowrap="" align="center">0</td>
-				<td nowrap="" align="center"><a href="javascript:re_news('5');">评论</a>
+				<td nowrap="" align="center"><a href="javascript:re_news('5');"><fmt:message code="news.th.comment" /></a>
 				</td>
 			</tr>
 			<tr class="TableLine1">
 				<td><a href="javascript:open_news('4','0');" title=""><font
-						color="">仔细测试一下智能oa新闻！！</font></a></td>
+						color=""><fmt:message code="news.th.other4" /></font></a></td>
 				<td nowrap="" align="center"></td>
 				<td nowrap="" align="center">2017-02-10 00:00:00</td>
 				<td nowrap="" align="center">81</td>
 				<td nowrap="" align="center">0</td>
-				<td nowrap="" align="center"><a href="javascript:re_news('4');">评论</a>
+				<td nowrap="" align="center"><a href="javascript:re_news('4');"><fmt:message code="news.th.comment" /></a>
 				</td>
 			</tr>
 
@@ -85,11 +90,11 @@
 	<table class="TableBlock" align="center" width="95%">
 		<tbody>
 			<tr>
-				<td class="TableContent" nowrap="" align="center" width="80"><b>快捷操作：</b></td>
+				<td class="TableContent" nowrap="" align="center" width="80"><b><fmt:message code="news.th.Quickoperation" />：</b></td>
 				<td class="TableControl" nowrap="">&nbsp; <a
 					href="javascript:read_all();" title="标记所有新闻为已读"><img
 						src="/static/images/email_open.gif" align="absMiddle" border="0">
-						标记所有新闻为已读</a>&nbsp;&nbsp;
+						<fmt:message code="news.th.signread" /></a>&nbsp;&nbsp;
 				</td>
 			</tr>
 		</tbody>
