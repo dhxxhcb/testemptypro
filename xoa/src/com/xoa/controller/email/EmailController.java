@@ -8,6 +8,7 @@ import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
 import com.xoa.util.common.StringUtils;
+import com.xoa.util.dataSource.ContextHolder;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -115,7 +116,9 @@ public class EmailController {
 			@RequestParam(value = "auditRemark", required = false) String auditRemark,
 			@RequestParam(value = "copyToWebmail", required = false) String copyToWebmail,
 			@RequestParam(value = "secretToWebmail", required = false) String secretToWebmail,
-			@RequestParam(value = "praise", required = false) String praise) {
+			@RequestParam(value = "praise", required = false) String praise,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		try {
 				emailService.sendEmail(
 						this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "0", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
@@ -202,7 +205,9 @@ public class EmailController {
 			@RequestParam(value = "auditRemark", required = false) String auditRemark,
 			@RequestParam(value = "copyToWebmail", required = false) String copyToWebmail,
 			@RequestParam(value = "secretToWebmail", required = false) String secretToWebmail,
-			@RequestParam(value = "praise", required = false) String praise) {
+			@RequestParam(value = "praise", required = false) String praise,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		try {
 				emailService.saveEmail(
 						this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "0", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
@@ -231,6 +236,8 @@ public class EmailController {
 	@RequestMapping(value = "/showEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	ToJson<EmailBodyModel> queryEmail(HttpServletRequest request) throws Exception {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		String flag = ServletRequestUtils.getStringParameter(request, "flag");
 		Integer page = ServletRequestUtils.getIntParameter(request, "page");
 		Integer pageSize = ServletRequestUtils.getIntParameter(request,
@@ -283,8 +290,10 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/queryByID", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-		ToJson<EmailBodyModel> queryByID(@RequestParam(value = "emailId",required = false) Integer emailId,@RequestParam("flag")String flag,@RequestParam(value = "bodyId",required = false) Integer bodyId) throws Exception {
-			Map<String, Object> maps = new HashMap<String, Object>();
+		ToJson<EmailBodyModel> queryByID(HttpServletRequest request,@RequestParam(value = "emailId",required = false) Integer emailId,@RequestParam("flag")String flag,@RequestParam(value = "bodyId",required = false) Integer bodyId) throws Exception {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));	
+		Map<String, Object> maps = new HashMap<String, Object>();
 			maps.put("emailId", emailId);
 			maps.put("bodyId", bodyId);
 			EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
@@ -322,7 +331,9 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/deleteEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody ToJson<EmailBodyModel> deleteEmail(@RequestParam("flag")String flag,@RequestParam("deleteFlag") String deleteFlag,
-			@RequestParam("emailID") Integer emailId){
+			@RequestParam("emailID") Integer emailId,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		String returnRes = "";
 		if (flag.trim().equals("inbox")) {
@@ -355,8 +366,11 @@ public class EmailController {
      * @return     String
      */
     @RequestMapping(value = "/deleteDraftsEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-    public @ResponseBody ToJson<EmailBodyModel> deleteDraftsEmail(@RequestParam("bodyId") Integer bodyId){
-        try {
+    public @ResponseBody ToJson<EmailBodyModel> deleteDraftsEmail(@RequestParam("bodyId") Integer bodyId,
+    	HttpServletRequest request) {
+    		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+    				"loginDateSouse"));
+    	try {
             ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (0,"ok");
             emailService.deleteByID(bodyId);
            return tojson;
@@ -379,7 +393,9 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/querylistEmailBody", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	ToJson<EmailBodyModel> querylistEmailBody() throws Exception {
+	ToJson<EmailBodyModel> querylistEmailBody(HttpServletRequest request) throws Exception {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		Map<String, Object> maps = new HashMap<String, Object>();
 		// maps.put("startTime",starttime);
 		// maps.put("endTime", endtime);
@@ -731,19 +747,27 @@ public class EmailController {
 	// }
 	
 	@RequestMapping("/inboxup")
-	public String inboxUp(){
+	public String inboxUp(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/email/inboxup";
 	}
 	@RequestMapping("/addbox")
-	public String writeMail(){
+	public String writeMail(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/email/addbox";
 	}
 	@RequestMapping("/index")
-	public String emailIndex(){
+	public String emailIndex(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/email/index";
 	}
 	@RequestMapping("/mailQuery")
-	public String mailQuery(){
+	public String mailQuery(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/email/mailQuery";
 	}
 }

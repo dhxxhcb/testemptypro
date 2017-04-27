@@ -54,7 +54,16 @@ public class MenuServiceImpl implements MenuService {
 				}
 				List<SysFunction> list2 = sysFunctionMapper
 						.childMenu(sysFunction.getId());
-				sysFunction.setChild(list2);
+				 for (SysFunction sysFunction2 : list2) {
+					 if (locale.equals("zh_CN")) {
+						 sysFunction2.setName(sysFunction2.getName());
+						} else if (locale.equals("en_US")) {
+							sysFunction2.setName(sysFunction2.getName1());
+						}
+					 
+				}
+				 sysFunction.setChild(list2);
+				
 			}
 			sysMenu.setChild(list1);
 		}

@@ -24,6 +24,7 @@ import com.xoa.service.menu.MenuService;
 import com.xoa.service.menu.MobileAppService;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
+import com.xoa.util.dataSource.ContextHolder;
 /**
  * 
  * 创建作者:   王曰岐
@@ -56,6 +57,8 @@ public class MenuController {
 	@RequestMapping(value = "/showMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	ToJson<SysMenu> showNew(HttpServletRequest request,HttpServletResponse response) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
 		Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
 		List<SysMenu>  munuList;
@@ -116,6 +119,8 @@ public class MenuController {
 	@RequestMapping(value = "/showSubclassesMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String showDadMenu(HttpServletRequest request, HttpServletResponse response) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		String menuId = request.getParameter("menuId");
 		List<SysFunction> list = menuService.getDadMenu(menuId);
 		String msg;
@@ -144,7 +149,9 @@ public class MenuController {
 	 */
 	@RequestMapping(value = "/getMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	ToJson<MobileApp> getMenu() {
+	ToJson<MobileApp> getMenu(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		List<MobileApp> munuList = mobileAppService.getMobileAppList();
 		String msg;
 		if (munuList.size() > 0) {

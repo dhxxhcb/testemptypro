@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
+import com.xoa.util.dataSource.ContextHolder;
 
 
  /**
@@ -45,7 +46,9 @@ public class UsersController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/addUser",method = RequestMethod.POST)
-    public ToJson<Users> addUser(Users user) {
+    public ToJson<Users> addUser(Users user,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			usersService.addUser(user);
@@ -68,7 +71,9 @@ public class UsersController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/editUser",method = RequestMethod.POST)
-    public ToJson<Users> editUser(Users user) {
+    public ToJson<Users> editUser(Users user,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		loger.debug("ID"+user.getUid());
 		try {
@@ -93,7 +98,9 @@ public class UsersController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/deleteUser",method = RequestMethod.POST)
-    public ToJson<Users> deletesUser(Users user) {
+    public ToJson<Users> deletesUser(Users user,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		loger.debug("ID"+user.getUid());
 		try {
@@ -117,7 +124,9 @@ public class UsersController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/findUserByuid",method = RequestMethod.POST)
-    public ToJson<Users> findUserByuid(int uid) {
+    public ToJson<Users> findUserByuid(int uid,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			Users users=usersService.findUserByuid(uid);  
@@ -168,7 +177,9 @@ public class UsersController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getDeptByMany",method = RequestMethod.POST)
-    public ToJson<Users> getDeptByMany(Users users) {
+    public ToJson<Users> getDeptByMany(Users users,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			List<Users> list=usersService.getUserByMany(users);
@@ -195,7 +206,9 @@ public class UsersController {
 	@ResponseBody
 	@RequestMapping(value = "/user/getUserAndDept" ,produces = {"application/json;charset=UTF-8"})
     public ToJson<Users> getUserAndDept( Map<String, Object> maps,Integer page,
-			Integer pageSize, boolean useFlag) {
+			Integer pageSize, boolean useFlag,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			List<Users> list=usersService.getUserAndDept(maps,page,pageSize,useFlag);  
@@ -226,6 +239,8 @@ public class UsersController {
 	@RequestMapping(value = "/user/getBySearch" ,produces = {"application/json;charset=UTF-8"})
     public ToJson<Users> getBySearch(HttpServletRequest request,Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -266,6 +281,8 @@ public class UsersController {
 	@RequestMapping(value = "/user/getByDeptId" ,produces = {"application/json;charset=UTF-8"})
     public ToJson<Users> getByDeptId(HttpServletRequest request,Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -293,7 +310,9 @@ public class UsersController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getByUid" ,produces = {"application/json;charset=UTF-8"})
-    public ToJson<Users> getByUid(int uid) {
+    public ToJson<Users> getByUid(int uid,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			Users user=usersService.getByUid(uid);  
@@ -309,7 +328,9 @@ public class UsersController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/user/getUserNameById",method = RequestMethod.GET)
-    public ToJson<Users> getUserNameById(String userIds) {
+    public ToJson<Users> getUserNameById(String userIds,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		//loger.debug("ID"+user.getUid());
 		try {

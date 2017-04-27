@@ -5,6 +5,7 @@ package com.xoa.controller.diary;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -17,6 +18,7 @@ import com.xoa.controller.file.FileController;
 import com.xoa.model.diary.DiaryModel;
 import com.xoa.service.diary.DiaryService;
 import com.xoa.util.ToJson;
+import com.xoa.util.dataSource.ContextHolder;
 import com.xoa.util.treeUtil.HtmlUtil;
 
 @Controller
@@ -37,7 +39,9 @@ public class DiaryController {
 	 * @return     String
 	 */
 	@RequestMapping("/index")
-	public String diaryIndex(DiaryModel diaryModel){
+	public String diaryIndex(DiaryModel diaryModel,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/diary/index";
 	}
 	/**
@@ -51,7 +55,9 @@ public class DiaryController {
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public String diaryAdd(DiaryModel diaryModel){
+	public String diaryAdd(DiaryModel diaryModel,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		int temp=diaryService.saveDiary(diaryModel);
 		return temp+"";
 	}
@@ -66,7 +72,9 @@ public class DiaryController {
 	 */
 	@RequestMapping("/update")
 	@ResponseBody
-	public String diaryUpdate(DiaryModel diaryModel){
+	public String diaryUpdate(DiaryModel diaryModel,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		int temp=diaryService.updateDiary(diaryModel);
 		return temp+"";
 	}
@@ -81,7 +89,9 @@ public class DiaryController {
 	 */
 	@RequestMapping("/getIndex")
 	@ResponseBody
-	public String diaryGet(DiaryModel diaryModel){
+	public String diaryGet(DiaryModel diaryModel,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<DiaryModel> diaryToJson=diaryService.getDiaryIndex(diaryModel);
 		return JSON.toJSONStringWithDateFormat(diaryToJson,"yyyy-MM-dd HH:mm:ss");
 	}
@@ -94,7 +104,9 @@ public class DiaryController {
 	 * @return   void
 	 */
 	@RequestMapping("/getAll")
-	public void  diaryGetAll(DiaryModel diaryModel,HttpServletResponse response){
+	public void  diaryGetAll(DiaryModel diaryModel,HttpServletResponse response,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		List<DiaryModel> diaryAllToJson=diaryService.getDiaryAll(diaryModel);
 		HtmlUtil.writerJson(response, diaryAllToJson);
 	}
@@ -111,7 +123,9 @@ public class DiaryController {
 	 */
 	@RequestMapping("/getOther")
 	@ResponseBody
-	public String  diaryGetOther(DiaryModel diaryModel){
+	public String  diaryGetOther(DiaryModel diaryModel,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<DiaryModel> diaryOtherToJson = diaryService.getDiaryOther(diaryModel);
 		return JSON.toJSONStringWithDateFormat(diaryOtherToJson,"yyyy-MM-dd HH:mm:ss");
 	}

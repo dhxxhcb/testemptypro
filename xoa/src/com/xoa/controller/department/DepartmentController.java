@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xoa.model.department.Department;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.util.ToJson;
+import com.xoa.util.dataSource.ContextHolder;
 
 
  /**
@@ -47,7 +48,9 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/addDept",method = RequestMethod.POST)
-    public ToJson<Department> addDept(Department department) {
+    public ToJson<Department> addDept(Department department,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			departmentService.insertDept(department);
@@ -72,7 +75,9 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/deletedept",method = RequestMethod.POST)
-    public ToJson<Department> deletedept(Department department) {
+    public ToJson<Department> deletedept(Department department,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		loger.debug("ID"+department.getDeptId());
 		try {
@@ -96,7 +101,9 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getDeptByid" ,method = RequestMethod.POST)
-    public ToJson<Department> getDeptByid(int deptid) {
+    public ToJson<Department> getDeptByid(int deptid,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			Department department =departmentService.getDeptById(deptid);
@@ -120,7 +127,9 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getAlldept",produces = {"application/json;charset=UTF-8"})
-    public ToJson<Department> getAlldept() {
+    public ToJson<Department> getAlldept(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			List<Department> list=departmentService.getDatagrid();  
@@ -146,7 +155,9 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/editDept",method = RequestMethod.POST)
-    public ToJson<Department> editDept(Department department) {
+    public ToJson<Department> editDept(Department department,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		loger.debug("ID"+department.getDeptId());
 		try {
@@ -170,7 +181,9 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/getDeptByMany",method = RequestMethod.POST)
-    public ToJson<Department> getDeptByMany(Department department) {
+    public ToJson<Department> getDeptByMany(Department department,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			List<Department> list=departmentService.getDeptByMany(department);
@@ -197,6 +210,8 @@ public class DepartmentController {
 	@ResponseBody
 	@RequestMapping(value = "/getChDeptfq",produces = {"application/json;charset=UTF-8"})
     public ToJson<Department> getChDept(HttpServletRequest request) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -223,6 +238,8 @@ public class DepartmentController {
 	@ResponseBody
 	@RequestMapping(value = "/getFatherDept",produces = {"application/json;charset=UTF-8"})
     public ToJson<Department> getFatherDept(HttpServletRequest request) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -262,6 +279,8 @@ public class DepartmentController {
 	@RequestMapping(value = "/getChDeptByNo",produces = {"application/json;charset=UTF-8"})
     public ToJson<Department> getChDeptByNo(HttpServletRequest request,Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -290,6 +309,8 @@ public class DepartmentController {
 	@ResponseBody
 	@RequestMapping(value = "/getChDept",produces = {"application/json;charset=UTF-8"})
     public ToJson<Department> getChDeptUser(HttpServletRequest request) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		ToJson<Department> json=new ToJson<Department>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
