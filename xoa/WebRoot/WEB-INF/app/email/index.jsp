@@ -152,45 +152,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="main_right InBox">
 						
 							<table id="TAB" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-								<tr>
+								<tr class="MAIN">
 									<td width="8%">主题：</td>
 									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
 									
 								</tr>
-								<tr>
+								<tr class="SEND">
 									<td>发件人：</td>
 									<!-- <td>张兰</td> -->
 									
 								</tr>
-								<tr>
+								<tr class="IN">
 									<td>收件人：</td>
-									<!-- <td>
-										<span><img src="../img/icon_read_3_07.png"/>李佳</span>
-										<span><img src="../img/icon_notread_1_03.png"/>王云</span>
-										<span><img src="../img/icon_read_3_07.png"/>王德</span>
-										<span><img src="../img/icon_notread_1_03.png"/>赵敏</span>
-										<span><img src="../img/icon_read_3_07.png"/>刘娜</span>
-									</td> -->
 									
 								</tr>
-								<tr>
+								<tr class="DATE">
 									<td>时间：</td>
 									<!-- <td>2017年3月30日13:31（星期四）</td> -->
 									
 								</tr>
-								<!-- <tr>
-									<td>附&nbsp;&nbsp;&nbsp;件：</td>
-									<td>
-										<p>1个&nbsp;<img src="../img/icon_accessory_03.png"/><span>智能OA移动产品部3月23日任务工单.rar&nbsp;</span>(19.81KB)</p>
-									</td>
-									
-								</tr> -->
-								<!-- <tr>
-									<td>关键词：</td>
-									<td>财务&nbsp;业务&nbsp;信息&nbsp;数据&nbsp;预算&nbsp;&nbsp;&nbsp;(正文共536字)</td>
-									
-								</tr>
-	 -->						</table>
+								
+					</table>
 							<span class="span_hr">
 								<div><img src="../img/p1.jpg"/></div>
 								<p><span>张兰</span>&nbsp;&nbsp;<span class="zong">研发总监</span></p>
@@ -282,12 +264,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="main_right hasBeenSend" style="display:none;">
 						
 							<table id="TAC" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-								<tr>
+								<tr class="MAIN2">
 									<td width="8%">主题：</td>
 									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
 									
 								</tr>
-								<tr>
+								<tr class="SEND2">
 									<td>收件人：</td>
 									<!-- <td>
 										<span><img src="../img/icon_read_3_07.png"/>李佳</span>
@@ -298,7 +280,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</td> -->
 									
 								</tr>
-								<tr>
+								<tr class="DATE2">
 									<td>时间：</td>
 									<!-- <td>2017年3月30日13:31（星期四）</td> -->
 									
@@ -315,28 +297,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="main_right wastebasket" style="display:none;">
 						
 							<table id="TAD" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-								<tr>
+								<tr class="MAIN3">
 									<td width="8%">主题：</td>
 									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
 									
 								</tr>
-								<tr>
+								<tr class="SEND3">
 									<td>发件人：</td>
 									<!-- <td>张兰</td> -->
 									
 								</tr>
-								<tr>
+								<tr class="IN3">
 									<td>收件人：</td>
-									<!-- <td>
-										<span><img src="../img/icon_read_3_07.png"/>李佳</span>
-										<span><img src="../img/icon_notread_1_03.png"/>王云</span>
-										<span><img src="../img/icon_read_3_07.png"/>王德</span>
-										<span><img src="../img/icon_notread_1_03.png"/>赵敏</span>
-										<span><img src="../img/icon_read_3_07.png"/>刘娜</span>
-									</td> -->
-									
 								</tr>
-								<tr>
+								<tr class="DATE3">
 									<td>时间：</td>
 									<!-- <td>2017年3月30日13:31（星期四）</td> -->
 									
