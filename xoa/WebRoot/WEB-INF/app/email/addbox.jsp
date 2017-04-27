@@ -19,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
+		 <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/email/writeMail.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
@@ -32,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<span class="addImg">
 								<img src="../img/org_select.png" class="addIcon"/>
 							</span>
-							<a href="javascript:;" class="Add">添加</a>
+							<a href="javascript:;" id="selectUser" class="Add ">添加</a>
 						</span>
 						<span class="add_img">
 							<span class="addImg">
@@ -97,6 +98,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 var ue = UE.getEditor('container');
        		 //获取输入框内容
        		 $(function(){
+       		 	$("#selectUser").on("click",function(){
+       		 		$.popWindow("../common/selectUser");
+       		 	});
        		 	$("#btn1").on("click",function(){
 					
 					var userId=$('textarea[name="txt"]').val();
