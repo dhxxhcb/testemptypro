@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.content .left .logo img{display: block;width: 100%;}
 			
 			.content .right{width: 45%;float: left;}
-			.content .right ul{list-style: none;margin-top: 25%;margin-left: 15%;position: relative;}
+			.content .right ul{list-style: none;margin-top: 26%;margin-left: 15%;position: relative;}
 			.content .right ul li.total{width: 384px;height: 50px;background: url(img/1.png) no-repeat;position: relative;border-radius: 25px;background-position:center;margin-bottom: 42px;z-index: 999;}
 			.content .right ul li a{text-decoration: none;display: block;width: 100%;}
 			.content .right ul li.total .round{display: block;width: 16px;height: 16px;border-radius: 50%;background-color: #fff;;margin-left: 25px;position: absolute;top: 17px;}
@@ -63,14 +63,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 
 		 
 		</style>
-		<script type="text/javascript">
+<script type="text/javascript">
 		$(function () {
 			$("#lg").click(function(){
-				
+				$("#tp").slideToggle();
 			});
 		
 		}
-		</script>
+</script> 
 		
 	</head>
 	<body>
@@ -82,6 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<img id="lg" src="img/sy02.png"/>
 					<img id="lg" src="img/sy04.png"/>
 				</div>
+				<!-- <img id="tp" src="img/sy05.png"/> -->
 			
 			</div>
 			<div class="right">
@@ -91,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  &nbsp;&nbsp;
 					  <a href="?lang=en_US"><fmt:message code="language.en" /></a>
 					  &nbsp;&nbsp;
-					  <a href="?lang=en_US">繁体</a>
+					  <!-- <a href="?lang=en_US">繁体</a> -->
 				</div>
 				<ul>
 					<li class="total">
