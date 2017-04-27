@@ -453,6 +453,9 @@ ul{
 .page .page_right .details .article p:first-of-type{
 	margin-top: 13px;
 }
+.back{
+	background-color:#c5e9fb;
+}
 
 
 @media only screen and (min-width: 1680px) {

@@ -430,6 +430,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				 //详情点击事件
 				$('.main_left').on('click','.BTN',function(){
+					$(this).addClass('back').siblings().removeClass('back')
 					
 					var nId=$(this).find('input').attr('id');
 					
