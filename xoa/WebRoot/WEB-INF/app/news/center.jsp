@@ -250,8 +250,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	            </div>
 	            <div class="le ce2">
-	                <div class="color"><fmt:message code="notice.th.content" />:</div>
-	                <input id="content"  style="height:25px;width:279px;margin-left:64px;position: relative;" type="text"/>
+	                <div class="color"style="width:105px;"><fmt:message code="notice.th.content" />:</div>
+	                <input id="content"  style="height:25px;width:279px;margin-left:0px;position: relative;" type="text"/>
 	
 	            </div>
 	        </div>
