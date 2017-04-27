@@ -201,9 +201,9 @@ public class NewsController {
 		maps.put("publish", publish);
 		maps.put("clickCount", clickCount);
 		maps.put("click", click);
-		
 		String name = (String) request.getSession().getAttribute("byname");
 		ToJson<News> returnReslt = new ToJson(1,"");
+		L.a("sasasasasa"+subject);
 		try {
 			 if (read.equals("0")) {
 				ToJson<News> tojson= newService.unreadNews(maps, page, pageSize,
