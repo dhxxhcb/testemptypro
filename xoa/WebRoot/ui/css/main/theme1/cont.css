@@ -4,7 +4,7 @@ html,body,.wrapper{
 	width:100%;
 	height:100%;
 	background:#f6f7f7;
-	  font-family: "Microsoft yehei";
+	  font-family: "Microsoft Yahei";
 }
 html,body{
 	overflow:hidden;
@@ -59,8 +59,21 @@ ul.total{
     margin-left: 3%;
     margin-top: 1%;
 }
+.s_container{
+	height: calc(100% - 45px);
+	width:100%;
+}
+.s_container ul{
+	height:100%;
+}
 .s_container ul li{
+	position:relative;
 	border-bottom:1px solid #ddd;
+	height: calc((100% / 5) - 1px);
+	font-size: 15px;
+}
+.s_container ul li:last-child{
+	border:0;
 }
 .s_container ul li span{
 	display:inline-block;
@@ -83,7 +96,6 @@ ul.total{
 	color:#fff;
 }
 .s_head span{
-	font-weight: bold;
 	cursor: pointer;
 }
 .model,.more{
@@ -99,4 +111,28 @@ ul.total{
 .sort{
 	width:80px;
 	margin:7px;
+}
+.e_title{
+	position: absolute;
+    left: 40px;
+	width: calc(100% - 150px);
+    height: 100%;
+    line-height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.e_time{
+	position: absolute;
+    right: 10px;
+	height: 100%;
+    width: 100px;
+    text-align: right;
+}
+.e_img{
+	position: absolute;
+    top: 0;
+    left: 10px;
+    bottom: 0;
+    margin: auto;
 }
