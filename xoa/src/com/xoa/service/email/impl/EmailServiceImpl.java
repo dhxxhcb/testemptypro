@@ -58,7 +58,7 @@ public class EmailServiceImpl implements EmailService {
 	@Override
 	public void sendEmail(EmailBodyModel emailBody,MultipartFile[] files, EmailModel email) {
 			//判断是否有上传的文件
-			if(files.length>0){
+			if(files!=null){
 				List<Attachment> upLoad = new ArrayList<Attachment>();
 				upLoad = enclosureService.upload(files, "xoa111", "email");
 				StringBuilder attachName = new StringBuilder();
