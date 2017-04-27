@@ -123,7 +123,7 @@ public class UsersController {
 	 * @return     ToJson<Users>  返回用户信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/user/findUserByuid",method = RequestMethod.POST)
+	@RequestMapping(value = "/user/findUserByuid",produces = {"application/json;charset=UTF-8"},method = RequestMethod.GET)
     public ToJson<Users> findUserByuid(int uid,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
