@@ -223,9 +223,10 @@ public class NotifyServiceImpl implements  NotifyService{
         	str2.append(",");
         	str2.append(name);
         	String str1=str2.toString();
-        	notify.setNotifyId(notify.getNotifyId());
-        	notify.setReaders(str1);
-        	notifyMapper.updateReaders(notify);
+        	Notify Notify1=new Notify();
+        	Notify1.setNotifyId(notify.getNotifyId());
+        	Notify1.setReaders(str1);
+        	notifyMapper.updateReaders(Notify1);
 		}
 	
 	   return notify;

@@ -202,7 +202,7 @@ public class NewsController {
 		maps.put("clickCount", clickCount);
 		maps.put("click", click);
 		
-		String name = "wwwwww";
+		String name = (String) request.getSession().getAttribute("byname");
 		ToJson<News> returnReslt = new ToJson(1,"");
 		try {
 			 if (read.equals("0")) {

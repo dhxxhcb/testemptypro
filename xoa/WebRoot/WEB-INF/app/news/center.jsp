@@ -162,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="button1" id="sendTime">
             </div>
              <!-- <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/> -->
-            <div id="cx">查询</div>
+            <div id="cx"  class="submit" >查询</div>
         </div>
 
 
@@ -250,7 +250,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	            </div>
 	            <div class="le ce2">
-	                <div class="color"><fmt:message code="news.th.none" />:</div>
+	                <div class="color"><fmt:message code="notice.th.content" />:</div>
 	                <input id="content"  style="height:25px;width:279px;margin-left:64px;position: relative;" type="text"/>
 	
 	            </div>
