@@ -26,6 +26,7 @@ public class HttpClientUtil {
         try{  
             httpClient = new SSLClient();  
             httpPost = new HttpPost(url);  
+            L.w("url is",url ,"and param is " ,map);
             //设置参数  
             List<NameValuePair> list = new ArrayList<NameValuePair>();  
             Iterator iterator = map.entrySet().iterator();  

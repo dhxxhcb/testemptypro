@@ -59,17 +59,13 @@ public class loginController {
 
 	@RequestMapping("/cont")
 	// URL的/cont
-	public String cont(HttpServletRequest request) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
+	public String cont() {
 		return "app/main/cont";
 	}
 
 	@RequestMapping("/lunbo")
 	// URL的/lunbo
-	public String lunbo(HttpServletRequest request) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
+	public String lunbo() {
 		return "app/main/lunbo";
 	}
 
@@ -98,9 +94,7 @@ public class loginController {
 	 */
 	@RequestMapping("/main")
 	// 登录窗口
-	public String loginSuccess(HttpServletRequest request) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
+	public String loginSuccess() {
 		return "app/main/index";
 	}
 
@@ -122,19 +116,14 @@ public class loginController {
 				"loginDateSouse");
 		ToJson<Users> json = new ToJson<Users>(0, null);
 		ContextHolder.setConsumerType("xoa" + loginId);
-		String httpOrgCreateTest = url + "httpOrg/create";
+		String httpOrgCreateTest = url;
 		Map<String, String> createMap = new HashMap<String, String>();
-		createMap.put("userid", "username");
-		createMap.put("password", "password");
+		createMap.put("userid", username);
+		createMap.put("password", password);
 		String httpOrgCreateTestRtn = HttpClientUtil.doPost(httpOrgCreateTest,
 				createMap, charset);
 		L.a("Http response" + httpOrgCreateTestRtn);
-		if (httpOrgCreateTestRtn.equals("err")) {
-			request.getSession().setAttribute("message", "errOne");
-			json.setMsg("err");
-			json.setFlag(1);
-		} else if (httpOrgCreateTestRtn.equals("ok")) {
-
+		 if (httpOrgCreateTestRtn.trim().equals("ok")) {
 			Users user = usersService.findUserByName(username, request);
 			if (user == null) {
 				L.a("login erro");
@@ -164,7 +153,11 @@ public class loginController {
 				json.setFlag(0);
 
 			}
-		}
+		}else if (httpOrgCreateTestRtn.trim().equals("err")) {
+			request.getSession().setAttribute("message", "errOne");
+			json.setMsg("err");
+			json.setFlag(1);
+		} 
 		return json;
 
 	}
