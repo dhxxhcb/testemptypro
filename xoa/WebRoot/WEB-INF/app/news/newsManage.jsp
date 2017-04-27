@@ -217,25 +217,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div class="header">输入查询条件</div>
 	        <div class="middle">
 	            <div class="le publisher">
-	                <div class="color">发布人：</div>
-	                <div><input style="height:50px;width:279px;margin-left:56px;margin-right: 15px;" type="text" /></div>
+	                <div class="color"style="width:105px;">发布人：</div>
+	                <div><input style="height:50px;width:279px;margin-left:0px;margin-right: 15px;" type="text" /></div>
 	                <div style="margin-right:23px; color:#207BD6">添加</div>
 	                <div>清空</div>
 	            </div>
 	            <div class="le subject">
-	                <div class="color">标题：</div>
-	                <div><input id="subject" style="height:26px;width:279px;margin-left:69px;margin-right: 15px;" type="text"/></div>
+	                <div class="color"style="width:105px;">标题：</div>
+	                <div><input id="subject" style="height:26px;width:279px;margin-left:0px;margin-right: 15px;" type="text"/></div>
 	            </div>
 				<div class="le date">
-	                <div class="color">发布日期：</div>
-	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:45px;margin-right: 11px;" type="text"/></div>
+	                <div class="color"style="width:105px;">发布日期：</div>
+	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:0px;margin-right: 11px;" type="text"/></div>
 	                <div class="color">至</div>
 	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
 	            </div>
 	           	<div class="le ce1">
-	                <div class="color">类型：</div>
+	                <div class="color"style="width:105px;">类型：</div>
 	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select">
+		                <select name="TYPE" style="height:24px;width:119px;margin-left:0px;" class="button1" style="float: left;" id="select">
 							<option value="0" selected="">所有类型</option>
 							<option value="01">公司动态</option>
 							<option value="02">媒体关注</option>

@@ -349,7 +349,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" ><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 									$('.main_title ul').append(titlestr);
-									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) 5px 2px no-repeat; ');
+									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) -1px 2px no-repeat; ');
 									
 									/* console.log($('#t_'+menu_tid).siblings()); */
 									$('.all_content').append(iframestr);
@@ -398,7 +398,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div><img class="close" src="img/main_img/icon.png"></div></li>';
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 									$('.main_title ul').append(titlestrs);
-									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) 5px 2px no-repeat;');	
+									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) -1px 2px no-repeat;');	
 									$('.all_content').append(iframestr);
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
@@ -485,20 +485,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var re=$(this).parent().parent().attr('id');
 							console.log(re);
 							var delet=re.split('_')[1];
-							console.log(delet);
-							
-						 	
-						 
-								
+							console.log(delet)
+								console.log($('#t_'+delet).prev());
 						 	/*  	console.log($('#f_'+delet).next()); */
 						 	if($('#f_'+delet).next()){
-						 		$('#t_'+delet).next().attr('style','background:url(img/main_img/title_yes.png) -1px 2px no-repeat');	
+						 		$('#t_'+delet).next().attr('style','background:url(img/main_img/title_yes.png) -1px 2px no-repeat; position: relative; z-index: 99999;');	
 						 	 	$(this).parent().parent().remove();
 						 	  $('#f_'+delet).next().show();
 						 	  
 						 	   $('#f_'+delet).remove(); 
 						 	}else{
-						 		console.log($('#t_'+delet).prev());
+						 		
 						 		$('#t_'+delet).prev().attr('style','background:url(img/main_img/title_yes.png) -1px 2px no-repeat');	
 						 	 	$(this).parent().parent().remove();
 						 	 	$('#f_'+delet).prev().show();
