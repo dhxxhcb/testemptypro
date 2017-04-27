@@ -64,6 +64,22 @@ public class FileController {
 		loger.info("--------home-------");
 		return "app/file/fileHome";
 	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午4:07:17
+	 * 方法介绍:   文件柜跳转首页面
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	@RequestMapping(value = "/temp")
+	public String temp(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		loger.info("--------home-------");
+		return "app/file/temp";
+	}
+
 
 	/**
 	 * 创建作者:   杨 胜
