@@ -158,7 +158,7 @@ public class UsersServiceImpl implements UsersService {
 	    String ip= CusAccessObjectUtil.getIpAddress(req);
 	    sysLog.setIp(ip);
 	    sysLog.setType(1);
-	    sysLog.setRemark("userName="+user.getUserId());
+	    sysLog.setRemark("");
 	    syslogMapper.save(sysLog);
 	    
 		return user;

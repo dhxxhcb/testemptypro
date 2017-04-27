@@ -12,14 +12,10 @@
 
 	<insert id="save" parameterType="com.xoa.model.common.Syslog">
 		insert into SYS_LOG (LOG_ID,USER_ID,TIME,IP,TYPE,
-		 <if test="remark != null and remark !=''">
 				REMARK
-			</if>
 		) values
 		(#{logId},#{userId},#{time},#{ip},#{type},
-		<if test="remark != null and remark !=''">
 				#{remark}
-			</if>
 		)
 
 	</insert>
