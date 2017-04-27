@@ -43,7 +43,8 @@ s, i, em {
 /*公共类*/
 .w {
     /*版心 提取 */
-    width: 1450px;
+    /* width: 1450px; */
+    width:100%;
     margin: 0 auto;
 }
 
@@ -75,9 +76,9 @@ s, i, em {
 
 /*头部样式*/
 .bx {
-    width: 95%;
+    width: 99%;
    /*  margin: 0 auto; */
-   margin-left:30px;
+   margin-left:10px;
   
 }
 
