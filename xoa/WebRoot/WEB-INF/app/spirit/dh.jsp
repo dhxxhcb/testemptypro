@@ -270,7 +270,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="tabs">
     <ul id="nav_menu">
         <li id="li_1"><a id="menu_1" href="javascript:view_menu(&#39;1&#39;);" hidefocus="hidefocus" title="导航菜单"
-                         class="active"><span>导航</span></a></li>
+                         class="active"><span>应用</span></a></li>
         <li id="li_2"><a id="menu_2" href="javascript:view_menu(&#39;2&#39;);" hidefocus="hidefocus" title="组织机构及人员"
                          class=""><span>组织</span></a></li>
         <!-- <li id="li_3"><a id="menu_3" href="javascript:view_menu(&#39;3&#39;);" hidefocus="hidefocus" title="微讯" class=""><span>微讯</span></a></li>-->
