@@ -1,8 +1,12 @@
 package com.xoa.controller.login;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.alibaba.fastjson.JSON;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
 import com.xoa.util.dataSource.ContextHolder;
+import com.xoa.util.http.HttpClientUtil;
 
 @Controller
 @Scope(value="prototype")
@@ -34,7 +40,10 @@ public class loginController {
 	private Logger loger = Logger.getLogger(loginController.class);
 	@Resource 
 	private UsersService usersService; 
-	
+	@Value("${app_login_path_php}")
+	private String url;  
+	private String charset = "utf-8";  
+    private HttpClientUtil httpClientUtil = null;	
 	/**
 	 * 
 	 * 创建作者:   王曰岐
@@ -100,36 +109,62 @@ public class loginController {
 	public @ResponseBody  ToJson<Users> loginEnter(@RequestParam("username") String username, @RequestParam("password") String password,
             HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String loginId = (String)request.getSession().getAttribute("loginDateSouse");
-		L.a("login:"+loginId);
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		ContextHolder.setConsumerType("xoa"+loginId);
-		Users user=usersService.findUserByName(username,request);
-		if (user==null) {
-				L.a("login erro");
-			request.getSession().setAttribute("message", "errOne");
-			    json.setObject(user);
+		    String httpOrgCreateTest = url + "httpOrg/create";  
+	        Map<String,String> createMap = new HashMap<String,String>();
+	        createMap.put("userid","username");  
+	        createMap.put("password","password");  
+	        String httpOrgCreateTestRtn = httpClientUtil.doPost(httpOrgCreateTest,createMap,charset); 
+	        L.a("信息"+httpOrgCreateTestRtn); 
+	        if (httpOrgCreateTestRtn.equals("err")) {
+	        	request.getSession().setAttribute("message", "errOne");
 	            json.setMsg("err");
 	            json.setFlag(1);
-		}else {
-//			if (user.getByname().equals(username)) {
-//				L.a("login success");
-				request.getSession().setAttribute("uid", user.getUid());
-				request.getSession().setAttribute("userId", user.getUserId());
-				request.getSession().setAttribute("userName", username);
-				request.getSession().setAttribute("byname", user.getByname());
-				request.getSession().setAttribute("password", user.getPassword());
-				request.getSession().setAttribute("userPriv", user.getUserPriv());
-				request.getSession().setAttribute("userPrivNo", user.getUserPriv());
-				request.getSession().setAttribute("deptId", user.getDeptId());
-				request.getSession().setAttribute("deptIdOther", user.getDeptIdOther());
-//			}
-			    json.setObject(user);
-	            json.setMsg("OK");
-	            json.setFlag(0);
+			}else if (httpOrgCreateTestRtn.equals("ok")) {
+				Users user=usersService.findUserByName(username,request);
+				  if (user==null) {
+						L.a("login erro");
+				     	request.getSession().setAttribute("message", "errOne");
+					    json.setObject(user);
+			            json.setMsg("err");
+			            json.setFlag(1);
+				}else {
+//					if (user.getByname().equals(username)) {
+//						L.a("login success");
+						request.getSession().setAttribute("uid", user.getUid());
+						request.getSession().setAttribute("userId", user.getUserId());
+						request.getSession().setAttribute("userName", username);
+						request.getSession().setAttribute("byname", user.getByname());
+						request.getSession().setAttribute("password", user.getPassword());
+						request.getSession().setAttribute("userPriv", user.getUserPriv());
+						request.getSession().setAttribute("userPrivNo", user.getUserPriv());
+						request.getSession().setAttribute("deptId", user.getDeptId());
+						request.getSession().setAttribute("deptIdOther", user.getDeptIdOther());
+//					}
+					    json.setObject(user);
+			            json.setMsg("OK");
+			            json.setFlag(0);
+				   
+				}
+			}
 		   
-		}
 		return json; 
 		
 	}
+	
+	/*public loginController(){  
+        httpClientUtil = new HttpClientUtil();  
+    } */ 
+      
+   /* public void loginCheck(@RequestParam("username") String username, @RequestParam("password") String password
+    		){  
+        String httpOrgCreateTest = url + "httpOrg/create";  
+        Map<String,String> createMap = new HashMap<String,String>();
+        createMap.put("userid","username");  
+        createMap.put("password","password");  
+        String httpOrgCreateTestRtn = httpClientUtil.doPost(httpOrgCreateTest,createMap,charset);  
+        System.out.println("result:"+httpOrgCreateTestRtn);  
+    }  */
 	
 }
