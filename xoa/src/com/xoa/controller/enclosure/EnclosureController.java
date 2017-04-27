@@ -229,10 +229,21 @@ public class EnclosureController {
 						@RequestParam("ATTACHMENT_ID") String attachmentId ,
 						@RequestParam("ATTACHMENT_NAME") String attachmenrName ,
 						@RequestParam("company") String company ,
-			HttpServletResponse response,
-	 HttpServletRequest request) {
+						HttpServletResponse response,
+						HttpServletRequest request) {
+		
+		ResourceBundle rb =  ResourceBundle.getBundle("upload");
+		//String name = rb.getString("mysql.driverClassName");
+		String osName = System.getProperty("os.name");
+		StringBuffer sb=new StringBuffer();
+		if(osName.toLowerCase().startsWith("win")){  
+		  sb=sb.append(rb.getString("upload.win"));  
+		}else{
+		  sb=sb.append(rb.getString("upload.linux"));
+		}
+		String basePath=sb.toString();
 	
-		String path="D://upload"+"/"+company+"/"+module+"/"+ym+"/"+attachmentId+"."+attachmenrName;
+		String path=basePath+"/"+company+"/"+module+"/"+ym+"/"+attachmentId+"."+attachmenrName;
 		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
@@ -242,8 +253,8 @@ public class EnclosureController {
 				/*	String path = Thread.currentThread().getContextClassLoader()
 							.getResource("").getPath()
 							+ "download";//
-*/					InputStream inputStream = new FileInputStream(new File(path
-							));
+*/					
+					InputStream inputStream = new FileInputStream(new File(path));
 
 					OutputStream os = response.getOutputStream();
 					byte[] b = new byte[2048];
