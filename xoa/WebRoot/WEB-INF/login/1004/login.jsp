@@ -58,11 +58,13 @@
 			#loginbtn:hover{background-color:#59a8ff;}
 			.content .ban1{ width:100%; height:83%; background: url(img/login/shfgs_bg.png) no-repeat;background-size:100% 100%; position: relative;}
 </style>
-<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 <script type="text/javascript">
 	$(function() {
+	
 		$('#loginbtn').click(function() {
+			
 			login();
 			$(this).css({"cursor":"default","background":"#1f7de4"});
 		});
@@ -112,7 +114,7 @@
 							<input type="password" id="password" name="password" placeholder="<fmt:message code="passWord"/>" />
 						</div>
 						<div class="div_log">
-							<a href="javascript:void(0)" id="loginbtn"><fmt:message code="loging" /></a>
+							<a href="javascript:void(0);" id="loginbtn"><fmt:message code="loging" /></a>
 						</div>
 					</div>
 			</div>
