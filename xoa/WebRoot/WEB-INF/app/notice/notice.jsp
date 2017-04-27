@@ -206,25 +206,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div class="header"><fmt:message code="global.lang.inputquerycondition" /></div><!-- //输入查询条件 -->
 	        <div class="middle">
 	            <div class="le publisher">
-	                <div class="color"><fmt:message code="notice.th.publisher" />：</div><!-- //发布人 -->
-	                <div><input style="height:50px;width:279px;margin-left:56px;margin-right: 15px;" type="text" /></div>
+	                <div class="color" style="width:105px;"><fmt:message code="notice.th.publisher" />：</div><!-- //发布人 -->
+	                <div><input style="height:50px;width:279px;margin-left:0px;margin-right: 15px;" type="text" /></div>
 	                <div style="margin-right:23px; color:#207BD6"><fmt:message code="global.lang.add" /></div><!-- //添加 -->
 	                <div><fmt:message code="global.lang.empty" /></div><!-- //清空 -->
 	            </div>
 	            <div class="le subject">
-	                <div class="color"><fmt:message code="notice.th.title" />：</div><!-- //标题 -->
-	                <div><input id="subject" style="height:26px;width:279px;margin-left:69px;margin-right: 15px;" type="text"/></div>
+	                <div class="color" style="width:105px;"><fmt:message code="notice.th.title" />：</div><!-- //标题 -->
+	                <div><input id="subject" style="height:26px;width:279px;margin-left:0px;margin-right: 15px;" type="text"/></div>
 	            </div>
 				<div class="le date">
-	                <div class="color"><fmt:message code="notice.title.Releasedate" />：</div><!-- //发布日期 -->
-	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:45px;margin-right: 11px;" type="text"/></div>
+	                <div class="color"style="width:105px;"><fmt:message code="notice.title.Releasedate" />：</div><!-- //发布日期 -->
+	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:0px;margin-right: 11px;" type="text"/></div>
 	                <div class="color"><fmt:message code="global.lang.to" /></div><!-- //至 -->
 	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
 	            </div>
 	           	<div class="le ce1">
-	                <div class="color"><fmt:message code="notice.th.type" />：</div><!-- //类型 -->
+	                <div class="color"style="width:105px;"><fmt:message code="notice.th.type" />：</div><!-- //类型 -->
 	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select_query">
+		                <select name="TYPE" style="height:24px;width:119px;margin-left:0px;" class="button1" style="float: left;" id="select_query">
 							<option value="0" selected=""><fmt:message code="notice.type.alltype" /></option><!-- //所有类型 -->
 							<option value="01"><fmt:message code="notice.type.Decision"/></option><!-- //决定 -->
 						    <option value="02"><fmt:message code="notice.type.notice" /></option><!-- //通知 -->
@@ -306,12 +306,19 @@ $(function () {
 						
 						if(data.obj.length == 0){
 							layer.closeAll()
-							layer.msg('没有未读新闻，2秒后自动跳到公告通知', {icon: 6});
-							var turnindex=setInterval(function(){
-								layer.closeAll();
-								$(".index_head li").eq(1).click();
-								clearInterval(turnindex);
-							},2*1000);
+							console.log($('.index_head .one').parent().attr('data_id')=='0');
+							if($('.index_head .one').parent().attr('data_id') == '0'){
+							
+								layer.msg('没有未读公告，2秒后自动跳到公告通知', {icon: 6});
+								var turnindex=setInterval(function(){
+									layer.closeAll();
+									$(".index_head li").eq(1).click();
+									clearInterval(turnindex);
+								},2*1000);
+							}else{
+								layer.msg('没有更多数据！', {icon: 6});
+							}
+							
 						}else{
 							var news = "";
                         	for (var i = 0; i < data.obj.length; i++) {
@@ -325,7 +332,7 @@ $(function () {
 							var loadindex=setInterval(function(){
 								layer.closeAll();
 								$("#j_tb").html(news);
-								clearInterval(turnindex);
+								clearInterval(loadindex);
 							},1000);
 							
 							if(cb){

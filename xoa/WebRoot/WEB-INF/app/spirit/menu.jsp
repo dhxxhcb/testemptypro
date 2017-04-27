@@ -51,7 +51,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     type:'get',      
 	     dataType:'json',
 	     success:function(obj){
-	     	console.log(obj.obj);
 	     	if(obj.msg=='ok'){
 	     		var obj=obj.obj;
 	     		var li='';

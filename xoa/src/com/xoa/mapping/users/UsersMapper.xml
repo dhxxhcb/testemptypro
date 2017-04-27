@@ -147,6 +147,14 @@
 		select u.USER_NAME as userName,u.USER_PRIV_NAME as userPrivName
 		 from user u where DEPT_ID= #{deptId}
 	</select>	
+	<select id="findUserByuid" parameterType="Map"
+		resultType="com.xoa.model.users.Users">
+		select u.UID,u.USER_ID as userId,u.USER_NAME as
+		userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,
+		u.DEPT_ID,u.SEX,u.AVATAR, d.DEPT_NAME as deptName ,u.OICQ_NO as oicqNo,
+		u.TEL_NO_DEPT as telNoDept , u.EMAIL as email,u.MOBIL_NO as mobilNo
+		from user u,department d  where u.DEPT_ID= d.DEPT_ID and UID= #{uid}
+	</select>	
 	<select id="getByUid"
 		resultType="com.xoa.model.users.Users">
 		select u.USER_ID as userId,u.USER_NAME as

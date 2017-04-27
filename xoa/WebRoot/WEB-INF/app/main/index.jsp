@@ -66,84 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							<ul class="tab_ctwo a" id="deptOrg" style="display:none;">
 								<!-- <li>
-									<span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="中国兵器工业集团">中国兵器工业集团</a></span>
-									<ul style="margin-left:10%;">
-										<li><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="中国兵器工业信息中心">中国兵器工业信息中心</a></span>
-											<ul style="margin-left:10%;">
-												<li><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="北京通达信科科技有限公司">北京通达信科科技有限公司</a></span>
-													<ul style="margin-left:10%;">
-														<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="总经理">总经理</a></span>
-															<ul style="margin-left:10%;">
-																<li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="综合管理部">综合管理部</a></span>
-																	<ul style="margin-left:10%;">
-																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="人力资源部">人力资源部</a></span>
-																		</li>
-																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="财务部">财务部</a></span>
-																		</li>
-																		<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="行政部">行政部</a></span>
-																		</li>
-																	</ul>
-																</li>
-																<li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="市场营销部">市场营销部</a></span>
-																	<ul style="margin-left:10%;">
-																		<li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="市场部">市场部</a></span>
-																			<ul style="display: none;">
-																				<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="品牌部">品牌部</a></span>
-																				</li>
-																				<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="网络营销中心">网络营销中心</a></span>
-																				</li>
-																				<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="商务中心">商务中心</a></span>
-																				</li>
-																			</ul>
-																			</li>
-																			<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="销售部">销售部</a></span>
-																			</li>
-																	</ul>
-																</li>
-																<li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="研发部">研发部</a></span>
-																	<ul style="margin-left:10%;">
-																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="产品部">产品部</a></span>
-																		</li>
-																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="开发一部">开发一部</a></span>
-																		</li>
-																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="开发二部">开发二部</a></span>
-																		</li>
-																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="质量保证部">质量保证部</a></span>
-																		</li>
-																		<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="设计部">设计部</a></span>
-																		</li>
-																	</ul>
-																</li>
-																<li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="项目部">项目部</a></span>
-																	<ul style="margin-left:10%;">
-																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="项目一部">项目一部</a></span>
-																		</li>
-																		<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="项目二部">项目二部</a></span>
-																		</li>
-																	</ul>
-																</li>
-																<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="生产部">生产部</a></span>
-																	<ul style="margin-left:10%;">
-																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="采购部">采购部</a></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="生产一部">生产一部</a></span>
-																		</li>
-																		<li class=""><span class="dynatree-node dynatree-folder dynatree-exp-c dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="生产二部">生产二部</a></span>
-																		</li>
-																		<li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="质检部">质检部</a></span>
-																		</li>
-																	</ul>
-																</li>
-															</ul>
-														</li>
-													</ul>
-												</li>
-											</ul>
-										</li>
-										<li><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="北方测试研究公司">北方测试研究公司</a></span>
-											<ul style="margin-left:10%;">
-												<li><span class="dynatree-node dynatree-folder dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-connector"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="北一测试研究院">北一测试研究院</a></span></li>
-											</ul>
-										</li>
-									</ul>
+									
 								</li> -->
 							
 							</ul>
@@ -405,12 +328,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$('#f_'+menu_tid).show();
 								
 								$('#t_'+menu_tid).css({
-									'background':'url(img/main_img/title_yes.png) 5px 2px no-repeat',
+									'background':'url(img/main_img/title_yes.png) -1px 2px no-repeat',
 									'position':'relative',
 									'z-index':99999
 								})
 								$('#t_'+menu_tid).siblings().css({
-									'background':'url(img/main_img/title_no.png) 5px 2px no-repeat',
+									'background':'url(img/main_img/title_no.png) -1px 2px no-repeat',
 									'position':'relative',
 									'z-index':999
 								})
@@ -426,7 +349,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" ><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 									$('.main_title ul').append(titlestr);
-									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) 5px 2px no-repeat; position: relative; z-index: 999;');
+									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) -1px 2px no-repeat; ');
 									
 									/* console.log($('#t_'+menu_tid).siblings()); */
 									$('.all_content').append(iframestr);
@@ -459,12 +382,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
 										$('#t_'+menu_tid).css({
-										'background':'url(img/main_img/title_yes.png) 5px 2px no-repeat',
+										'background':'url(img/main_img/title_yes.png) -1px 2px no-repeat',
 										'position':'relative',
 										'z-index':99999
 									})
 									$('#t_'+menu_tid).siblings().css({
-										'background':'url(img/main_img/title_no.png) 5px 2px no-repeat',
+										'background':'url(img/main_img/title_no.png) -1px 2px no-repeat',
 										'position':'relative',
 										'z-index':999
 									})
@@ -474,7 +397,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									//页面不存在，新增 title和iframe
 									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div><img class="close" src="img/main_img/icon.png"></div></li>';
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
-									$('.main_title ul').append(titlestrs);	
+									$('.main_title ul').append(titlestrs);
+									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) -1px 2px no-repeat;');	
 									$('.all_content').append(iframestr);
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
@@ -530,12 +454,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 							} 
 							$(this).siblings().css({
-										'background':'url(img/main_img/title_no.png) 5px 2px no-repeat',
+										'background':'url(img/main_img/title_no.png) -1px 2px no-repeat',
 										'position':'relative',
 										'z-index':999
 									})
 							$(this).css({
-										'background':'url(img/main_img/title_yes.png) 5px 2px no-repeat',
+										'background':'url(img/main_img/title_yes.png) -1px 2px no-repeat',
 										'position':'relative',
 										'z-index':99999
 							})
@@ -561,21 +485,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var re=$(this).parent().parent().attr('id');
 							console.log(re);
 							var delet=re.split('_')[1];
-							console.log(delet);
-							
-						 	
-						 
-								
+							console.log(delet)
+								console.log($('#t_'+delet).prev());
 						 	/*  	console.log($('#f_'+delet).next()); */
 						 	if($('#f_'+delet).next()){
-						 		$('#t_'+delet).next().attr('style','background:url(img/main_img/title_yes.png) 5px 2px no-repeat');	
+						 		$('#t_'+delet).next().attr('style','background:url(img/main_img/title_yes.png) -1px 2px no-repeat; position: relative; z-index: 99999;');	
 						 	 	$(this).parent().parent().remove();
 						 	  $('#f_'+delet).next().show();
 						 	  
 						 	   $('#f_'+delet).remove(); 
 						 	}else{
-						 		console.log($('#t_'+delet).prev());
-						 		$('#t_'+delet).prev().attr('style','background:url(img/main_img/title_yes.png) 5px 2px no-repeat');	
+						 		
+						 		$('#t_'+delet).prev().attr('style','background:url(img/main_img/title_yes.png) -1px 2px no-repeat');	
 						 	 	$(this).parent().parent().remove();
 						 	 	$('#f_'+delet).prev().show();
 						 	 	$('#f_'+delet).remove(); 
@@ -645,9 +566,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								var str = '';
 								data.obj.forEach(function(v,i){
 									if(v.deptName){
-										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 									}else{
-										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										
+										
+											str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span><img src="img/main_img/man.png" alt=""></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										
+										
 									}
 									
 								});
@@ -655,9 +580,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								var str = '';
 								data.obj.forEach(function(v,i){
 									if(v.deptName){
-										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class=""></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 									}else{
-										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										if(v.sex==0){
+										
+											str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										}else if(v.sex==1){
+											str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="img/main_img/women.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										}
+										
+										
 									}
 									
 								});

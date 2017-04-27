@@ -15,12 +15,12 @@
 	<context:property-placeholder location="classpath:jdbc-sql.properties" />
 
 	<!-- mysql -->
-	<bean id="xoa" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
+	<bean id="xoa1001" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
 		destroy-method="close">
-		<property name="driverClass" value="${mysql.driverClassName}" />
-		<property name="jdbcUrl" value="${mysql.url}" />
-		<property name="user" value="${mysql.uname}" />
-		<property name="password" value="${mysql.password}" />
+		<property name="driverClass" value="${driverClassName1001}" />
+		<property name="jdbcUrl" value="${url1001}" />
+		<property name="user" value="${uname1001}" />
+		<property name="password" value="${password1001}" />
 		<!--连接池中保留的最大连接数。默认值: 15 -->
 		<property name="maxPoolSize" value="${maxPoolSize}" />
 		<!-- 连接池中保留的最小连接数，默认为：3 -->
@@ -42,12 +42,29 @@
 		<property name="autoCommitOnClose" value="${autoCommitOnClose}" />
 	</bean>
     <!-- mysql -->
-    <bean id="xoa1001" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+    <bean id="xoa1002" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
-        <property name="driverClass" value="${mysql.driverClassName1}" />
-        <property name="jdbcUrl" value="${mysql.url1}" />
-        <property name="user" value="${mysql.uname1}" />
-        <property name="password" value="${mysql.password1}" />
+        <property name="driverClass" value="${driverClassName1002}" />
+        <property name="jdbcUrl" value="${url1002}" />
+        <property name="user" value="${uname1002}" />
+        <property name="password" value="${password1002}" />
+        <property name="maxPoolSize" value="${maxPoolSize}" />
+        <property name="minPoolSize" value="${minPoolSize}" />
+        <property name="initialPoolSize" value="${initialPoolSize}" />
+        <property name="maxIdleTime" value="${maxIdleTime}" />
+        <property name="checkoutTimeout" value="${checkoutTimeout}" />
+        <property name="acquireIncrement" value="${acquireIncrement}" />
+        <property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />
+        <property name="acquireRetryDelay" value="${acquireRetryDelay}" />
+        <property name="autoCommitOnClose" value="${autoCommitOnClose}" />
+    </bean>
+    
+      <bean id="xoa1003" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="${driverClassName1003}" />
+        <property name="jdbcUrl" value="${url1003}" />
+        <property name="user" value="${uname1003}" />
+        <property name="password" value="${password1003}" />
         <property name="maxPoolSize" value="${maxPoolSize}" />
         <property name="minPoolSize" value="${minPoolSize}" />
         <property name="initialPoolSize" value="${initialPoolSize}" />
@@ -59,6 +76,39 @@
         <property name="autoCommitOnClose" value="${autoCommitOnClose}" />
     </bean>
 
+<bean id="xoa1004" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="${driverClassName1004}" />
+        <property name="jdbcUrl" value="${url1004}" />
+        <property name="user" value="${uname1004}" />
+        <property name="password" value="${password1004}" />
+        <property name="maxPoolSize" value="${maxPoolSize}" />
+        <property name="minPoolSize" value="${minPoolSize}" />
+        <property name="initialPoolSize" value="${initialPoolSize}" />
+        <property name="maxIdleTime" value="${maxIdleTime}" />
+        <property name="checkoutTimeout" value="${checkoutTimeout}" />
+        <property name="acquireIncrement" value="${acquireIncrement}" />
+        <property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />
+        <property name="acquireRetryDelay" value="${acquireRetryDelay}" />
+        <property name="autoCommitOnClose" value="${autoCommitOnClose}" />
+    </bean>
+    
+    <bean id="xoa1005" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="${driverClassName1005}" />
+        <property name="jdbcUrl" value="${url1005}" />
+        <property name="user" value="${uname1005}" />
+        <property name="password" value="${password1005}" />
+        <property name="maxPoolSize" value="${maxPoolSize}" />
+        <property name="minPoolSize" value="${minPoolSize}" />
+        <property name="initialPoolSize" value="${initialPoolSize}" />
+        <property name="maxIdleTime" value="${maxIdleTime}" />
+        <property name="checkoutTimeout" value="${checkoutTimeout}" />
+        <property name="acquireIncrement" value="${acquireIncrement}" />
+        <property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />
+        <property name="acquireRetryDelay" value="${acquireRetryDelay}" />
+        <property name="autoCommitOnClose" value="${autoCommitOnClose}" />
+    </bean>
 
     <!-- oracle -->
     <!--<bean id="oracleDataSources" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -82,13 +132,16 @@
     <bean id="dynDatasources" class="com.xoa.util.dataSource.DynamicDataSource">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
-                <entry key="xoa" value-ref="xoa" />
-                <entry key="xoa1001" value-ref="xoa1001"/>
+                <entry key="xoa1001" value-ref="xoa1001" />
+                <entry key="xoa1002" value-ref="xoa1002"/>
+                <entry key="xoa1003" value-ref="xoa1003"/>
+                <entry key="xoa1004" value-ref="xoa1004"/>
+                <entry key="xoa1005" value-ref="xoa1005"/>
                 <!--<entry key="oracleDataSources" value-ref="oracleDataSources" />-->
             </map>
         </property>
         <!-- 默认为mysql -->
-        <property name="defaultTargetDataSource" ref="xoa" />
+        <property name="defaultTargetDataSource" ref="xoa1001" />
     </bean>
 	
 		<!-- 配置sql会话工厂：SqlSessionFactoryBean -->

@@ -96,47 +96,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript">
        		 var ue = UE.getEditor('container');
        		 //获取输入框内容
-       		$("#btn1").on("click",function(){
-					//获取html内容，返回: <p>hello</p>
-					//var html = ue.getContent();
-					//获取纯文本内容，返回: hello
+       		 $(function(){
+       		 	$("#btn1").on("click",function(){
+					
+					var userId=$('textarea[name="txt"]').val();
 					var txt = ue.getContentTxt();
 					var val=$('#txt').val();
-					/* if(val==''){
-						alert('请输入邮件主题');
-						return;
-					} 
-					if(txt==''){
-						alert('请输入邮件内容');
-						return;
-					} */
-					
+
 					 var data={
-					 	'bodyId':'18',
-					 	'fromId':'2,',
-					 	'toId2':'3,',
+					 	'fromId':'admin',
+					 	'toId2': 'admin,',
 						'subject':val,
-						'content':txt,
-						'sendTime':'2017-04-11 10:20:35',
-						'fromWebmailId':'1',
-						'recvToId':'0',
-						'secretLevel':'1',
-						'size':'0'
+						'content':txt
 					}
-					
-				//alert(data.subject);
 					
 					$.ajax({
 						 type:'post',    
-						 url:"sendEmail",
+						 url:'sendEmail',
 						 dataType:'json',
-						 async:false,
 						 data:data,
 						 success:function(){
-							alert('123');
+							alert('发送成功');
+							$('.page').find('.div_iframe').remove();
+							$('.up_page_right').css('display','block');
 						}
 					})
 				}) 
+       		 })
+       		
     	</script>
 	</body>
 </html>

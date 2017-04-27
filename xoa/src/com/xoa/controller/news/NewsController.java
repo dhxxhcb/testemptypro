@@ -7,6 +7,7 @@ import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
+import com.xoa.util.common.wrapper.BaseWrapper;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -157,7 +158,7 @@ public class NewsController {
  */
 	@RequestMapping(value = "/newsShow", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	ToJson<News> showNews(
+	ToJson showNews(
 			@RequestParam(value = "format", required = false) String format,
 			@RequestParam(value = "typeId", required = false) String typeId,
 			@RequestParam(value = "top", required = false) String top,
@@ -174,7 +175,7 @@ public class NewsController {
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag,
 			HttpServletRequest request, HttpServletResponse response) {
-		if (typeId.equals("0")) {
+		if ("0".equals(typeId)) {
 			typeId=null;
 		}
 		Map<String, Object> maps = new HashMap<String, Object>();
@@ -190,8 +191,8 @@ public class NewsController {
 		maps.put("clickCount", clickCount);
 		maps.put("click", click);
 		
-		String name = (String) request.getSession().getAttribute("userId");
-		ToJson<News>returnReslt = new ToJson(1,"");
+		String name = "wwwwww";
+		ToJson<News> returnReslt = new ToJson(1,"");
 		try {
 			 if (read.equals("0")) {
 				ToJson<News> tojson= newService.unreadNews(maps, page, pageSize,

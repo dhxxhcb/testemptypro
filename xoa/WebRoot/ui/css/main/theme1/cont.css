@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+@import url(m_reset.css);
+html,body,.wrapper{
+	width:100%;
+	height:100%;
+	
+}
