@@ -20,18 +20,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </script>
     <link rel="stylesheet" type="text/css" href="../css/spirit/style.css">
     <link rel="stylesheet" type="text/css" href="../css/spirit/ipanel.css">
+    <link rel="stylesheet" type="text/css" href="../css/main/theme1/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/main/theme1/index.css"/>
     <link rel="stylesheet" type="text/css" href="../css/spirit/user_online.css">
     <link rel="stylesheet" type="text/css" href="../css/spirit/ui.dynatree.css">
     <!--<script type="text/javascript" src="./js_lang.php"></script>-->
-    <script type="text/javascript" src="../js/spirit/tree.js"></script>
-    <script type="text/javascript" src="../js/ispirit.js"></script>
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui.custom.min.js"></script>
+   <!--  <script type="text/javascript" src="../js/spirit/tree.js"></script>
+    <script type="text/javascript" src="../js/ispirit.js"></script> -->
+    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+   <!--  <script type="text/javascript" src="../js/jquery-ui.custom.min.js"></script>
     <script type="text/javascript" src="../js/jquery.cookie.js"></script>
     <script type="text/javascript" src="../js/jquery.dynatree.min.js"></script>
-    <script type="text/javascript" src="../js/spirit/org.js"></script>
+    <script type="text/javascript" src="../js/spirit/org.js"></script> -->
     <script type="text/javascript">
-        var ispirit = "1";
+       /*  var ispirit = "1";
         var bEmailPriv = true;
         var bSmsPriv = true;
         var online_ui = "1";
@@ -60,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var para_url2 = "";
         var para_id = "ISPIRIT";
         var para_value = "1";
-        var para_target = "_blank";
+        var para_target = "_blank"; */
 
         function init() {
             jQuery("#body").height(jQuery(window).height() - jQuery("#sub_tabs").outerHeight());
@@ -92,12 +94,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="javascript:;" index="0" class="active">我的自定义组</a>
     <a href="javascript:;" index="1" class="">公共自定义组</a>
 </div>
-<div id="body" style="height: 549px;">
+<div id="body" style="height: calc(100% - 40px);">
     <div id="modules">
         <div id="module_org" class="container moduleContainer" style="display: block;">
             <div id="sub_module_org_0" class="module-block" style="">
-                <ul class="dynatree-container dynatree-no-connector">
-                    <li class="dynatree-lastsib"><span
+                <ul class="dynatree-container dynatree-no-connector tab_ctwo" id="deptOrg">
+                   <!--  <li class="dynatree-lastsib"><span
                             class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><img
                             src="../img/spirit/root.png" alt=""><a
                             href="http://192.168.0.23/general/ipanel/user/?ISPIRIT=1&amp;I_VER=2#"
@@ -118,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div id="sub_module_org_1" class="module-block" style="display:none;"></div>
@@ -135,12 +137,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </div>
 <script>
-    if (window.external && typeof window.external.OA_SMS != 'undefined') {
+	//组织
+		$('#sub_module_org_0 .tab_ctwo').on('click','.childdept',function(){
+			var  that = $(this);
+			getChDept(that.next(),that.attr('deptid'));
+		});
+		function getChDept(target,deptId){
+			$.ajax({
+				url:'<%=basePath%>/department/getChDept',
+				type:'get',	
+				data:{
+					deptId:deptId
+				},		
+				dataType:'json',
+				success:function(data){
+					console.log(data);
+					if(deptId==0){
+						var str = '';
+						data.obj.forEach(function(v,i){
+							if(v.deptName){
+								str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:20px;"></ul></li>';
+							}else{
+								str+='<li onclick="openwin()"><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:20px;"></ul></li>';
+							}
+							
+						});
+					}else{
+						var str = '';
+						data.obj.forEach(function(v,i){
+							if(v.deptName){
+								str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:20px;"></ul></li>';
+							}else{
+								str+='<li onclick="openwin()"><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:20px;"></ul></li>';
+							}
+							
+						});
+					}
+					
+					
+					target.html(str);
+				}
+			})
+		}
+			getChDept($('#deptOrg'),0);
+			function openwin(){
+				alert("1");
+			}
+</script>
+<script>
+   /*  if (window.external && typeof window.external.OA_SMS != 'undefined') {
         window.external.OA_SMS('', '', 'FRESH');
         setTimeout(function () {
             window.external.OA_SMS('', '', 'FRESH');
         }, 500);
-    }
+    } */
 </script>
 
 </body>
