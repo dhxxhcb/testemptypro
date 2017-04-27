@@ -466,6 +466,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									if(data2.attachmentName!=''){
 											$(obj).append('<tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>')
 										}
+									if(data2.copyName!=''){
+										$(obj).find('tr').eq(2).after('<tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr>')
+									}
+									
 									$('.span_hr').find('span').eq(0).text(data2.users.userName);
 									$(sName).append('<p>'+data2.content+'</p>');
 									
@@ -581,6 +585,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										//$('#TAD').find('tr').eq(4).append('<td>'+data2.attachmentName+'</td>');
 										if(data2.attachmentName!=''){
 											$('#TAD').append('<tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>')
+										}
+										
+										if(data2.copyName!=''){
+											$(obj).find('tr').eq(2).after('<tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr>')
 										}
 										$('.article2').append('<p>'+data2.content+'</p>');
 									}

@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td width="10%">收件人：</td>
 				<td width="89%">
 					<div class="inPole">
-						<textarea name="txt"></textarea>
+						<textarea name="txt" value="admin" disabled></textarea>
 						<span class="add_img">
 							<span class="addImg">
 								<img src="../img/org_select.png" class="addIcon"/>
