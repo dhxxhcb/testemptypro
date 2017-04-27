@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.xoa.model.common.SysCode;
+import com.xoa.model.common.SysPara;
 import com.xoa.model.department.Department;
 import com.xoa.model.role.Role;
 import com.xoa.model.users.Users;
@@ -191,7 +192,6 @@ public class News implements Serializable {
 	 * 发布者
 	 */
 	private String providerName;
-	
 	
 	
 

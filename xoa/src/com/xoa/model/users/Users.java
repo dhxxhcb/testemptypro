@@ -2,6 +2,7 @@ package com.xoa.model.users;
 
 import java.util.Date;
 
+import com.xoa.model.common.SysPara;
 import com.xoa.model.department.Department;
 import com.xoa.model.role.Role;
 
@@ -311,6 +312,18 @@ public class Users {
 	private String deptName; 
 	
 	private String companyName;
+   private  SysPara para; 
+	
+	
+	
+
+	public SysPara getPara() {
+		return para;
+	}
+
+	public void setPara(SysPara para) {
+		this.para = para;
+	}
 	
 	
 
