@@ -103,7 +103,7 @@ public class loginController {
 		L.a("login:"+loginId);
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		ContextHolder.setConsumerType("xoa"+loginId);
-		Users user=usersService.findUserByName(username, request);
+		Users user=usersService.findUserByName(username,request);
 		if (user==null) {
 				L.a("login erro");
 			request.getSession().setAttribute("message", "errOne");

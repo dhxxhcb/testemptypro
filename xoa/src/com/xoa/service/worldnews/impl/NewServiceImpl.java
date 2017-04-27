@@ -10,6 +10,7 @@ import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.worldnews.NewService;
+import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 
@@ -73,6 +74,7 @@ public class NewServiceImpl implements NewService {
 		maps.put("page", pageParams);
 		List<News> list = newsMapper.selectNews(maps);
 		for (News news : list) {
+			news.setNewsDateTime(DateFormat.getStrDate(news.getNewsTime()));
 				news.setProviderName(news.getUsers().getUserName());
 				news.setTypeName(news.getCodes().getCodeName());
 				
@@ -190,6 +192,7 @@ public class NewServiceImpl implements NewService {
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
 		News news = newsMapper.detailedNews(maps);
+		news.setNewsDateTime(DateFormat.getStrDate(news.getNewsTime()));
 		news.setProviderName(news.getUsers().getUserName());
 		news.setTypeName(news.getCodes().getCodeName());
 		StringBuffer s=new StringBuffer();
