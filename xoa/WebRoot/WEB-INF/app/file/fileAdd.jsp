@@ -55,9 +55,28 @@ table tr td input:not (#fh ){
 <script type="text/javascript">
 
      function closeCurrentWindow(){
-        $("form").submit(function(){
-    alert("Submitted");
-  });
+ 
+      var sortNo=$('#fileNoid').val();
+      var sortName=$('#fileNameid').val();
+        
+         $.ajax({
+                url: "${pageContext.request.contextPath }/file/add",
+                Type: "POST",
+                data:{"sortNo":sortNo,"sortName":sortName},
+                success:function (data){
+                }
+           }); 
+          
+ 		window.opener.location.href = window.opener.location.href;     
+ 		if (window.opener.progressWindow)     
+ 		{         
+ 		window.opener.progressWindow.close();     
+ 		}     
+ 		window.close(); 
+
+  
+  
+  
        // $("#form1").submit();
         
         /*  var sortNo=$('#fileNoid').val();

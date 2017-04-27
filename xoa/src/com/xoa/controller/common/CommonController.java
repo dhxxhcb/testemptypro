@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.xoa.util.dataSource.ContextHolder;
+
 /**
  * 
  * 创建作者:   朱振宇
@@ -29,7 +31,9 @@ public class CommonController {
 	private Logger loger = Logger.getLogger(CommonController.class);
 	
 	@RequestMapping("/selectUser")
-	public String addboxPage() {
+	public String addboxPage(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/common/selectUser";
 	}
 }

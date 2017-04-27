@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
+import com.xoa.util.dataSource.ContextHolder;
 
 
  /**
@@ -40,28 +41,40 @@ public class SpiritController {
 	}*/
 	
 	@RequestMapping("/login") //URL的/index
-	public String login() {
+	public String login(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/spirit/login/login";
 	}
 	
 	@RequestMapping("/main") //URL的/index
-	public String main() {
+	public String main(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/spirit/mains";
 	}
 	@RequestMapping("/menu") //URL的/index
-	public String menu() {
+	public String menu(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/spirit/menu";
 	}
 	@RequestMapping("/dh") //URL的/index
-	public String dh() {
+	public String dh(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/spirit/dh";
 	}
 	@RequestMapping("/bq") //URL的/index
-	public String bq() {
+	public String bq(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/spirit/bq";
 	}
 	@RequestMapping("/zz") //URL的/index
-	public String zz() {
+	public String zz(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/spirit/zz";
 	}
 }

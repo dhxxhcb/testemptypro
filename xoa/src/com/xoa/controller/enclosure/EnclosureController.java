@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.enclosure.EnclosureService;
+import com.xoa.util.dataSource.ContextHolder;
 
  
  /**
@@ -57,6 +58,8 @@ public class EnclosureController {
 	  @RequestMapping("/upload")  
 	    public String FileUpload(  
 	            @RequestParam("file") MultipartFile[] files,HttpServletRequest request) {  
+				ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+						"loginDateSouse"));
 			if(files.length==0){
 				return null;
 			}
@@ -231,7 +234,8 @@ public class EnclosureController {
 						@RequestParam("company") String company ,
 						HttpServletResponse response,
 						HttpServletRequest request) {
-		
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		ResourceBundle rb =  ResourceBundle.getBundle("upload");
 		//String name = rb.getString("mysql.driverClassName");
 		String osName = System.getProperty("os.name");
@@ -289,6 +293,8 @@ public class EnclosureController {
 	@RequestMapping(value={"/downFile"} ,method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
 	public void downFile(HttpServletRequest request,
 			HttpServletResponse response) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		System.out.println("1");
 		// 得到要下载的文件名
 		String fileName = request.getParameter("fileName");
@@ -373,7 +379,9 @@ public class EnclosureController {
 	 * @return     String 返回上传页面
 	 */
 	@RequestMapping("/up") 
-	public String cont() {
+	public String cont(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/upload/updwj";
 	}
 	

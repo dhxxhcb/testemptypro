@@ -27,6 +27,7 @@ import com.xoa.model.file.FileSortModel;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.service.file.FileContentService;
 import com.xoa.service.file.FileSortService;
+import com.xoa.util.dataSource.ContextHolder;
 import com.xoa.util.treeUtil.FileSortTreeUtil;
 import com.xoa.util.treeUtil.HtmlUtil;
 import com.xoa.util.treeUtil.TreeNode;
@@ -57,7 +58,9 @@ public class FileController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/home")
-	public String fileHome() {
+	public String fileHome(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		loger.info("--------home-------");
 		return "app/file/fileHome";
 	}
@@ -70,7 +73,9 @@ public class FileController {
 	 * @return   String
 	 */
 	@RequestMapping(value = "/topFrame")
-	public String topFrame() {
+	public String topFrame(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		loger.info("--------topFrame-------");
 		return "app/file/fileTop";
 	}
@@ -86,7 +91,9 @@ public class FileController {
 	 */
 	@RequestMapping(value = "/writeTree", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
-	public void showFile(FileSortModel file, HttpServletResponse response,HttpSession session) {
+	public void showFile(FileSortModel file, HttpServletResponse response,HttpSession session,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		loger.info("--------writeTree-------");
 		List<TreeNode> treeList = treeFile(file.getSortId(),session);
 		HtmlUtil.writerJson(response, treeList);
@@ -102,7 +109,9 @@ public class FileController {
 	 */
 	@RequestMapping(value = "/writeTreePerson", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
-	public void showFilePerson(FileSortModel file, HttpServletResponse response,HttpSession session) {
+	public void showFilePerson(FileSortModel file, HttpServletResponse response,HttpSession session,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		loger.info("--------writeTreePerson-------");
 		List<TreeNode> treeList = treeFilePerson(file.getSortId(),session);
 		HtmlUtil.writerJson(response, treeList);
@@ -153,7 +162,9 @@ public class FileController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/tree")
-	public String fileIndex() {
+	public String fileIndex(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		loger.info("--------tree-------");
 		return "app/file/fileTree";
 	}
@@ -166,7 +177,9 @@ public class FileController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/main")
-	public String fileHomeOne() {
+	public String fileHomeOne(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		loger.info("--------main-------");
 		return "app/file/fileHomeMain";
 	}
@@ -182,7 +195,9 @@ public class FileController {
 	 */
 	@RequestMapping(value = "/content")
 	@ResponseBody
-	public ModelAndView fileContent(String sortType,String sortId,String text) throws UnsupportedEncodingException {
+	public ModelAndView fileContent(String sortType,String sortId,String text,HttpServletRequest request) throws UnsupportedEncodingException {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		loger.info("--------home-------");
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("sortId", sortId);
@@ -201,7 +216,9 @@ public class FileController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "addContent")
-	public String addContent() {
+	public String addContent(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		loger.info("--------home-------");
 		return "app/file/";
 	}
@@ -215,7 +232,9 @@ public class FileController {
 	 * @return     ModelAndView
 	 */
 	@RequestMapping(value = "/catContent")
-	public ModelAndView catContent(String contentId) {
+	public ModelAndView catContent(String contentId,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		loger.info("--------catContent-------");
 		Map<String, Object> model = new HashMap<String, Object>();
 		FileContentModel fcm=fileContentService.getFileConByContentId(contentId);
@@ -292,7 +311,9 @@ public class FileController {
 	 * @return   void
 	 */
 	@RequestMapping(value="/catalog")
-	public void showFiles(FileSortModel file,HttpServletResponse response,String postType) {
+	public void showFiles(FileSortModel file,HttpServletResponse response,String postType,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
 		List<FileSortModel> fileList =null;
 		List<Object>  tatalList=new ArrayList<Object>();
@@ -334,7 +355,9 @@ public class FileController {
 	 * @return     ModelAndView
 	 */
 	@RequestMapping("/setIndex")
-	public ModelAndView showFileBySort_id(FileSortModel file) {
+	public ModelAndView showFileBySort_id(FileSortModel file,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
 		System.out.println("parent:" + file.getSortParent());
 		List<FileSortModel> list = fileSortService.getFileSortList(file);
@@ -354,8 +377,10 @@ public class FileController {
 	 * @return     ModelAndView
 	 */
 	@RequestMapping("/add")
-	public ModelAndView fileAdd(FileSortModel file)
+	public ModelAndView fileAdd(FileSortModel file,HttpServletRequest request)
 			throws UnsupportedEncodingException {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		Map<String, Object> model = null;
 		ModelAndView modelAndView = null;
 		if("".equals(file.getSortNo())||file.getSortNo()==null){
@@ -401,7 +426,9 @@ public class FileController {
 	 * @return     ModelAndView
 	 */
 	@RequestMapping("/clone")
-	public ModelAndView fileClone(FileSortModel file) {
+	public ModelAndView fileClone(FileSortModel file,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
 		Map<String, Object> model = new HashMap<String, Object>();
 		ModelAndView modelAndView = null;
@@ -420,7 +447,9 @@ public class FileController {
 	 * @return     ModelAndView
 	 */
 	@RequestMapping("/edit")
-	public ModelAndView fileEdit(FileSortModel file) {
+	public ModelAndView fileEdit(FileSortModel file,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
 		Map<String, Object> fileEditMap = new HashMap<String, Object>();
 		List<FileSortModel> fileslist = fileSortService.getFileSortList(file);
@@ -447,7 +476,9 @@ public class FileController {
 	 * @return   ModelAndView
 	 */
 	@RequestMapping("/update")
-	public ModelAndView fileUpdate(FileSortModel file) {
+	public ModelAndView fileUpdate(FileSortModel file,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
 		//修改文件影响行
 		int resultUpdate = fileSortService.updateFileSort(file);
@@ -468,6 +499,8 @@ public class FileController {
 	 */
 	@RequestMapping("/deleteAll")
 	public ModelAndView fileDelete(HttpServletRequest request, FileSortModel file) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 
 		// 所有删除文件夹
 		List<FileSortModel> childrenList = getfilesDeleteList(file);
