@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -16,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.xoa.model.users.UserPriv;
 import com.xoa.service.users.UsersPrivService;
 import com.xoa.util.ToJson;
+import com.xoa.util.dataSource.ContextHolder;
  
  /**
  * 创建作者:   张龙飞
@@ -44,7 +46,9 @@ public class UserPrivController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/addUser",method = RequestMethod.POST)
-    public ToJson<UserPriv> addPriv(UserPriv userPriv) {
+    public ToJson<UserPriv> addPriv(UserPriv userPriv,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<UserPriv> json=new ToJson<UserPriv>(0, null);
 		try {
 			usersPrivService.insertSelective(userPriv);
@@ -68,7 +72,9 @@ public class UserPrivController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/deletePriv",method = RequestMethod.POST)
-    public ToJson<UserPriv> deletePriv(UserPriv userPriv) {
+    public ToJson<UserPriv> deletePriv(UserPriv userPriv,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<UserPriv> json=new ToJson<UserPriv>(0, null);
 		loger.debug("ID"+userPriv.getUserPriv());
 		try {
@@ -93,7 +99,9 @@ public class UserPrivController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/findByuserPriv")
-    public ToJson<UserPriv> findUserByuid(int userPriv) {
+    public ToJson<UserPriv> findUserByuid(int userPriv,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<UserPriv> json=new ToJson<UserPriv>(0, null);
 		try {
 			UserPriv priv=usersPrivService.selectByPrimaryKey(userPriv);
@@ -121,7 +129,9 @@ public class UserPrivController {
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/getAllPriv",produces = {"application/json;charset=UTF-8"})
     public String getAllPriv(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) {
+			Integer pageSize, boolean useFlag,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<UserPriv> json=new ToJson<UserPriv>(0, null);
 		try {
 			List<UserPriv> list=usersPrivService.getAllPriv(maps,page,pageSize,useFlag);  
@@ -146,7 +156,9 @@ public class UserPrivController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/userPriv/getPrivByMany")
-    public ToJson<UserPriv> getPrivByMany(UserPriv userPriv) {
+    public ToJson<UserPriv> getPrivByMany(UserPriv userPriv,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<UserPriv> json=new ToJson<UserPriv>(0, null);
 		try {
 			List<UserPriv> list=usersPrivService.getPrivByMany(userPriv);

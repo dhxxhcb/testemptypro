@@ -8,6 +8,7 @@ import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
 import com.xoa.util.common.wrapper.BaseWrapper;
+import com.xoa.util.dataSource.ContextHolder;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -55,7 +56,9 @@ public class NewsController {
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public String clickNews() {
+	public String clickNews(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "/app/news/center";
 	}
 	/**
@@ -67,7 +70,9 @@ public class NewsController {
 	 * @return    String
 	 */
 	@RequestMapping("/detail")
-	public String News() {
+	public String News(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "/app/news/newsDetail";
 	}
 	/**
@@ -79,7 +84,9 @@ public class NewsController {
 	 * @return    String
 	 */
 	@RequestMapping("/manage")
-	public String sendNews() {
+	public String sendNews(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "/app/news/newsManage";
 	}
 	
@@ -109,6 +116,8 @@ public class NewsController {
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag,
 			HttpServletRequest request, HttpServletResponse response){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("format", format);
 		   if (typeId.equals("0")) {
@@ -175,6 +184,8 @@ public class NewsController {
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag,
 			HttpServletRequest request, HttpServletResponse response) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		if ("0".equals(typeId)) {
 			typeId=null;
 		}
@@ -249,6 +260,8 @@ public class NewsController {
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		Map<String, Object> maps = new HashMap<String, Object>();
 		String name = (String) request.getSession().getAttribute("byname");
 		String returnReslt = null;
@@ -329,7 +342,9 @@ public class NewsController {
 			@RequestParam("userId") String userId,
 			@RequestParam("readers") String readers,
 			@RequestParam("compressContent") String compressContent,
-			@RequestParam("summary") String summary) {
+			@RequestParam("summary") String summary,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		   News news=new News();
 		    news.setNewsId(0);
 		    news.setSubject(this.returnValue(subject));
@@ -423,7 +438,9 @@ public class NewsController {
 			@RequestParam("userId") String userId,
 			@RequestParam("readers") String readers,
 			@RequestParam("compressContent") String compressContent,
-			@RequestParam("summary") String summary){
+			@RequestParam("summary") String summary,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		 News news=new News();
 		    news.setNewsId(newsId);
 		    news.setSubject(this.returnValue(subject));
@@ -470,7 +487,9 @@ public class NewsController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/deleteNews", produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody String deleteNews(@RequestParam("newsId") Integer newsId){
+	public @ResponseBody String deleteNews(@RequestParam("newsId") Integer newsId,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<News> toJson=new ToJson<News>(0, "");
 		try {
 			toJson.setMsg(ok);
@@ -495,6 +514,8 @@ public class NewsController {
 	 */
 	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody ToJson<News> queryNews(@RequestParam("newsId") Integer newsId,HttpServletRequest request){
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);
 		ToJson<News> toJson=new ToJson<News>(0, "");

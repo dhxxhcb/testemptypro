@@ -28,6 +28,7 @@ import com.xoa.model.worldnews.News;
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
+import com.xoa.util.dataSource.ContextHolder;
 
 /**
  * 
@@ -49,23 +50,33 @@ public class NotifyController {
 	private	String err="";
 	
 	@RequestMapping("/index")
-	public String clickNews() {
+	public String clickNews(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/notice/notice";
 	}
 	@RequestMapping("/manage")
-	public String manage() {
+	public String manage(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/notice/administration";
 	}
 	@RequestMapping("/detail")
-	public String details() {
+	public String details(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/notice/noticeDerail";
 	}
 	@RequestMapping("/add")
-	public String add() {
+	public String add(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/notice/add";
 	}
 	@RequestMapping("/noticeQuery")
-	public String noticeQuery() {
+	public String noticeQuery(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/notice/noticeQuery";
 	}
 	/**
@@ -84,7 +95,9 @@ public class NotifyController {
 	  public @ResponseBody ToJson<Notify> notifyManage(
 			  @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
-				@RequestParam("useFlag") Boolean useFlag){
+				@RequestParam("useFlag") Boolean useFlag,HttpServletRequest request) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 			Map<String, Object> maps = new HashMap<String, Object>();
 			
 			ToJson<Notify> tojson = new ToJson<Notify>(0, "");
@@ -137,6 +150,8 @@ public class NotifyController {
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag,
 				HttpServletRequest request, HttpServletResponse response) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 	  Map<String, Object> maps = new HashMap<String, Object>();
 	  if (typeId.equals("0")) {
 			typeId=null;
@@ -249,7 +264,9 @@ public class NotifyController {
 	 */
 	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody ToJson<Notify> getOneById(
-			@RequestParam("notifyId") Integer notifyId) throws Exception{
+			@RequestParam("notifyId") Integer notifyId,HttpServletRequest request) throws Exception{
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
 		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
@@ -338,7 +355,9 @@ public class NotifyController {
 			@RequestParam(value="userId",required=false) String userId,
 			@RequestParam(value="reason",required=false) String reason,
 			@RequestParam(value="compressContent",required=false) String compressContent,
-			@RequestParam(value="summary",required=false) String summary) {
+			@RequestParam(value="summary",required=false) String summary,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		Notify notify=new Notify();	
 		notify.setFromId(this.returnValue(fromId));
 		notify.setTypeId(this.returnValue(typeId));
@@ -452,7 +471,9 @@ public class NotifyController {
 			@RequestParam(value="userId",required=false) String userId,
 			@RequestParam(value="reason",required=false) String reason,
 			@RequestParam(value="compressContent",required=false) String compressContent,
-			@RequestParam(value="summary",required=false) String summary){
+			@RequestParam(value="summary",required=false) String summary,HttpServletRequest request) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
 		Notify notify=new Notify();
 		notify.setFromId(this.returnValue(fromId));
 		notify.setTypeId(this.returnValue(typeId));
@@ -505,7 +526,9 @@ public class NotifyController {
 	 */
 	@RequestMapping(value = "/deleteById", produces = { "application/json;charset=UTF-8" })
 
-	public @ResponseBody ToJson<Notify> deleteById(@RequestParam("notifyId") Integer notifyId){
+	public @ResponseBody ToJson<Notify> deleteById(@RequestParam("notifyId") Integer notifyId,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		ToJson<Notify> toJson = new ToJson<Notify>(0,"");
 		loger.debug("transfersID"+notifyId);
 		try{

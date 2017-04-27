@@ -1,5 +1,7 @@
 package com.xoa.controller.example;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sun.org.apache.regexp.internal.recompile;
 import com.xoa.util.common.wrapper.BaseWrapper;
+import com.xoa.util.dataSource.ContextHolder;
 
 /**
  * 
@@ -25,11 +28,15 @@ public class BodyExample {
 	String b;
 	@ResponseBody
 	@RequestMapping("/json")
-	public BaseWrapper test(){
+	public BaseWrapper test(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return new BaseWrapper();
 	}
 	@RequestMapping("/view")
-	public String testView(Model model){
+	public String testView(Model model,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 //		model.addAttribute("name", "hahaha");
 		model.addAttribute("name", b);
 		return "index";

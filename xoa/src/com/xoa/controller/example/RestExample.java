@@ -1,10 +1,13 @@
 package com.xoa.controller.example;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xoa.util.common.wrapper.BaseWrapper;
+import com.xoa.util.dataSource.ContextHolder;
 /**
  * 
  * @作者 韩东堂
@@ -19,7 +22,9 @@ import com.xoa.util.common.wrapper.BaseWrapper;
 public class RestExample {
 	
 	@RequestMapping("/test")
-	public BaseWrapper test(){
+	public BaseWrapper test(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return new BaseWrapper();
 	}
 }

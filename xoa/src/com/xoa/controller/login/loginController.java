@@ -59,13 +59,17 @@ public class loginController {
 
 	@RequestMapping("/cont")
 	// URL的/cont
-	public String cont() {
+	public String cont(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/main/cont";
 	}
 
 	@RequestMapping("/lunbo")
 	// URL的/lunbo
-	public String lunbo() {
+	public String lunbo(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/main/lunbo";
 	}
 
@@ -94,7 +98,9 @@ public class loginController {
 	 */
 	@RequestMapping("/main")
 	// 登录窗口
-	public String loginSuccess() {
+	public String loginSuccess(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/main/index";
 	}
 
