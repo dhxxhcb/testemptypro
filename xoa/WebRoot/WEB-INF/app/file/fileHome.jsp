@@ -86,8 +86,8 @@ $("#fileTree").tree({
 <div style="height: 100%">
 
     <div  style="width: 20%; float: left;  overflow: auto ;height: 100%;background-color: #F0F4F7;border:1px solid #000;">
-       <div onclick="cabinet('1')" id="personal" style="width:49%;height:30px;line-height:30px;   float: left;border:1px solid #c0c0c0;text-align: center;">个人文件柜</div>
-       <div onclick="cabinet('2')" id="public"  style="width:49%;height:30px;line-height:30px;  float: left;border:1px solid #c0c0c0;text-align: center;">公共文件柜</div>
+       <div onclick="cabinet('1')" id="personal" style="width:49%;height:30px;line-height:30px;   float: left;border:1px solid #c0c0c0;text-align: center;">公共文件柜</div>
+       <div onclick="cabinet('2')" id="public"  style="width:49%;height:30px;line-height:30px;  float: left;border:1px solid #c0c0c0;text-align: center;">个人文件柜</div>
         <div id="fileTransfor" style="margin-top: 28px ;width:100%;overflow-x: hidden;">
                 <ul id="fileTree" class="easyui-tree"
 					data-options="url:'writeTree',method:'get',animate:true" >
