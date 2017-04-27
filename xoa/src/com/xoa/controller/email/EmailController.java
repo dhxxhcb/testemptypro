@@ -90,10 +90,10 @@ public class EmailController {
 			@RequestParam(value = "copyToId", required = false) String copyToId,
 			@RequestParam(value = "subject", required = false) String subject,
 			@RequestParam(value = "content", required = false) String content,
-			@RequestParam(value = "file",required = false) MultipartFile[] files,
-//			@RequestParam(value = "attachmentName", required = false) String attachmentName,
+//			@RequestParam(value = "file",required = false) MultipartFile[] files,
+			@RequestParam(value = "attachmentName", required = false) String attachmentName,
 			@RequestParam(value = "secretToId", required = false) String secretToId,
-//			@RequestParam(value = "attachmentId", required = false) String attachmentId,
+			@RequestParam(value = "attachmentId", required = false) String attachmentId,
 			@RequestParam(value = "smsRemind", required = false) String smsRemind,
 			@RequestParam(value = "important", required = false) String important,
 			@RequestParam(value = "size", required = false) String size,
@@ -117,8 +117,9 @@ public class EmailController {
 			@RequestParam(value = "secretToWebmail", required = false) String secretToWebmail,
 			@RequestParam(value = "praise", required = false) String praise) {
 		try {
-				emailService.sendEmail(this.returnObj(fromId, toId2, copyToId, subject, content,  new Date(), "1", secretToId,  smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
-						,files, new EmailModel());
+				emailService.sendEmail(
+						this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "0", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
+						, new EmailModel());
 			return new ToJson<EmailBodyModel>(0,
 					"ok");
 		} catch (Exception e) {
@@ -176,10 +177,10 @@ public class EmailController {
 			@RequestParam(value = "copyToId", required = false) String copyToId,
 			@RequestParam(value = "subject", required = false) String subject,
 			@RequestParam(value = "content", required = false) String content,
-			@RequestParam(value = "file",required = false) MultipartFile[] files,
-//			@RequestParam(value = "attachmentName", required = false) String attachmentName,
+//			@RequestParam(value = "file",required = false) MultipartFile[] files,
+			@RequestParam(value = "attachmentName", required = false) String attachmentName,
 			@RequestParam(value = "secretToId", required = false) String secretToId,
-//			@RequestParam(value = "attachmentId", required = false) String attachmentId,
+			@RequestParam(value = "attachmentId", required = false) String attachmentId,
 			@RequestParam(value = "smsRemind", required = false) String smsRemind,
 			@RequestParam(value = "important", required = false) String important,
 			@RequestParam(value = "size", required = false) String size,
@@ -203,8 +204,9 @@ public class EmailController {
 			@RequestParam(value = "secretToWebmail", required = false) String secretToWebmail,
 			@RequestParam(value = "praise", required = false) String praise) {
 		try {
-				emailService.saveEmail(this.returnObj(fromId, toId2, copyToId, subject, content,  new Date(), "0", secretToId,  smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
-						,files);
+				emailService.saveEmail(
+						this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "0", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
+						);
 			return new ToJson<EmailBodyModel>(0,
 					"ok");
 		} catch (Exception e) {
@@ -458,7 +460,7 @@ public class EmailController {
 	 */
 	@SuppressWarnings("static-access")
 	public  EmailBodyModel returnObj(String fromId, String toId2, String copyToId,
-			 String subject,String content,
+			 String subject,String content, String attachmentName, String attachmentId,
 			 Date sendTime,String sendFlag,String secretToId,
 			 String smsRemind,String important,
 			 String size,String fromWebmailId,String fromWebmail, String toWebmail,
@@ -475,8 +477,8 @@ public class EmailController {
 		emailBody.setSubject(this.returnValue(subject));
 		emailBody.setContent(this.returnValue(content));
 		emailBody.setSendTime(DateFormat.getTime(DateFormat.getStrDate(sendTime)));
-//		emailBody.setAttachmentId(this.returnValue(attachmentId));
-//		emailBody.setAttachmentName(this.returnValue(attachmentName));
+		emailBody.setAttachmentId(this.returnValue(attachmentId));
+		emailBody.setAttachmentName(this.returnValue(attachmentName));
 		emailBody.setSendFlag(this.returnValue(sendFlag));
 		emailBody.setSmsRemind("0");
 		emailBody.setImportant(this.returnValue(important));

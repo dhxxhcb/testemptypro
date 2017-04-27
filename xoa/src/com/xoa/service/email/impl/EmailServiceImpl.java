@@ -56,21 +56,21 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     void
 	 */
 	@Override
-	public void sendEmail(EmailBodyModel emailBody,MultipartFile[] files, EmailModel email) {
+	public void sendEmail(EmailBodyModel emailBody, EmailModel email) {
 			//判断是否有上传的文件
-			if(files!=null){
-				List<Attachment> upLoad = new ArrayList<Attachment>();
-				upLoad = enclosureService.upload(files, "xoa111", "email");
-				StringBuilder attachName = new StringBuilder();
-				StringBuilder attachmentId = new StringBuilder();
-				int fileUpload = upLoad.size();
-				for(int i = 0 ; i<fileUpload;i++){
-					attachmentId.append(upLoad.get(i).getAid()+"@"+upLoad.get(i).getYm()+"_"+upLoad.get(i).getAttachId()+",");
-					attachName.append(upLoad.get(i).getAttachName()+"*");
-				}
-				emailBody.setAttachmentId(attachmentId.toString());
-				emailBody.setAttachmentName(attachName.toString());
-			}
+//			if(files!=null){
+//				List<Attachment> upLoad = new ArrayList<Attachment>();
+//				upLoad = enclosureService.upload(files, "xoa111", "email");
+//				StringBuilder attachName = new StringBuilder();
+//				StringBuilder attachmentId = new StringBuilder();
+//				int fileUpload = upLoad.size();
+//				for(int i = 0 ; i<fileUpload;i++){
+//					attachmentId.append(upLoad.get(i).getAid()+"@"+upLoad.get(i).getYm()+"_"+upLoad.get(i).getAttachId()+",");
+//					attachName.append(upLoad.get(i).getAttachName()+"*");
+//				}
+//				emailBody.setAttachmentId(attachmentId.toString());
+//				emailBody.setAttachmentName(attachName.toString());
+//			}
 		emailBodyMapper.save(emailBody);
 		String toID = emailBody.getToId2().trim()
 				+ emailBody.getCopyToId().trim()
@@ -102,7 +102,7 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     void
 	 */
 	@Override
-	public void saveEmail(EmailBodyModel emailBody,MultipartFile[] files) {
+	public void saveEmail(EmailBodyModel emailBody) {
 		emailBodyMapper.save(emailBody);
 	}
 
