@@ -193,7 +193,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 -->						</table>
 							<span class="span_hr">
 								<div><img src="../img/p1.jpg"/></div>
-								<p>张兰&nbsp;&nbsp;研发总监</p>
+								<p><span>张兰</span>&nbsp;&nbsp;<span class="zong">研发总监</span></p>
 								<p>研发部</p>
 							</span>
 							<div class="article">
@@ -405,32 +405,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#drafts').click(function(){		
 						$('.drafts').css('display','block').siblings().css('display','none');
 						showAjax2("drafts");
-						/* $('.BTN').remove();
-							var data={
-								"flag":"drafts",
-								"page":1,
-								"pageSize":10,
-								"useFlag":true,
-								"userID":"admin"
-						}
-					
-						$.ajax({
-									type:'get',
-									url:'showEmail',
-									dataType:'json',
-									data:data,
-									success:function(rsp){
-										var data1=rsp.obj;
-										var str='';
-										for(var i=0;i<data1.length;i++){
-											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-											
-												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
-											
-										}
-										$('.main_left ul .befor').after(str);
-									}
-						}); */
+						
 				})
 				
 				//已发送点击事件
@@ -506,6 +481,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									$(obj).find('tr').eq(2).find('td').eq(1).remove();
 									$(obj).find('tr').eq(3).find('td').eq(1).remove();
 									$(obj).find('tr').eq(4).find('td').eq(1).remove();
+									$('.span_hr').find('span').eq(0).text('');
 									$(sName).find('p').remove();
 									
 									$(obj).find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>');
@@ -513,6 +489,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									$(obj).find('tr').eq(2).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td>');
 									$(obj).find('tr').eq(3).append('<td>'+sendTime+'</td>');
 									$(obj).find('tr').eq(4).append('<td>&nbsp</td>');
+									$('.span_hr').find('span').eq(0).text(data2.users.userName);
 									$(sName).append('<p>'+data2.content+'</p>');
 									
 									
@@ -544,15 +521,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 											//alert(data1[i].sendTime);
 											if(data1[i].emailList[0].readFlag==1){
-												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												if(data1[i].attachmentId!=''){
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												}else{
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+												}
+												
 											} else if(data1[i].emailList[0].readFlag==0){
-												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												if(data1[i].attachmentId!=''){
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												}else{
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+												}
+												
 											}
 											
 										}
 										$('.befor').after(str);
 										
-										var mId=$('.BTN').eq(0).find('input').attr('id');
+										var mId=$('li.BTN').eq(0).find('input').attr('id');
 										
 										init(mId,'#TAB','.article');
 									}
@@ -579,11 +566,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var str='';
 										for(var i=0;i<data1.length;i++){
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-											
-												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												if(data1[i].attachmentId!=''){
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												}else{
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+												}
+												
 											
 										}
 										$('.main_left ul .befor').after(str);
+										
 									}
 						});
 				}
