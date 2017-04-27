@@ -1,6 +1,4 @@
 package com.xoa.service.users.impl;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -205,8 +203,8 @@ public class UsersServiceImpl implements UsersService {
 	
 	/**
 	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月21日 上午11:00:05
-	 * 方法介绍:   根据uid串获取用户姓名
+	 * 创建日期:   2017年4月26日 下午5:20:05
+	 * 方法介绍:   根据userId串获取用户姓名
 	 * 参数说明:   @param uids  用户uid串
 	 * 参数说明:   @return
 	 * @return     List<String>  返回用户姓名串

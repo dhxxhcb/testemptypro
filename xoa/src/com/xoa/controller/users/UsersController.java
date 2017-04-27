@@ -224,7 +224,7 @@ public class UsersController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getBySearch" ,produces = {"application/json;charset=UTF-8"})
-    public String getBySearch(HttpServletRequest request,Map<String, Object> maps,Integer page,
+    public ToJson<Users> getBySearch(HttpServletRequest request,Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
@@ -243,7 +243,7 @@ public class UsersController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 	
@@ -302,6 +302,22 @@ public class UsersController {
 			System.out.println(e.getMessage());
 		}
         return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+    }
+	
+	@ResponseBody
+	@RequestMapping(value = "/user/getUserNameById",method = RequestMethod.GET)
+    public ToJson<Users> getUserNameById(String userIds) {
+		ToJson<Users> json=new ToJson<Users>(0, null);
+		//loger.debug("ID"+user.getUid());
+		try {
+		    String userName=usersService.getUserNameById(userIds);
+            json.setObject(userName);
+            json.setMsg("OK");
+            json.setFlag(0);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return json;
     }
 	
 }

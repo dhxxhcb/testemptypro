@@ -4,9 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -45,9 +43,21 @@ public class EnclosureServiceImpl implements EnclosureService {
 		Attachment att = attachmentMapper.findByLast();
 		return att;
 	}
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月26日 下午6:56:58
+	 * 方法介绍:   上传接口
+	 * 参数说明:   @param files 上传文件
+	 * 参数说明:   @param company 公司名
+	 * 参数说明:   @param module 模块名
+	 * 参数说明:   @return
+	 * @return     List<Attachment>  附件信息集合
+	 */
 	@Override
 	public List<Attachment> upload(MultipartFile[] files,String company,String module) {
-		 List<Attachment> list = new ArrayList<Attachment>();
+		
+		List<Attachment> list = new ArrayList<Attachment>();
 		  //当前年月
 	     String ym = new SimpleDateFormat("yyMM").format(new Date());
 	     String basePath="D://upload";
@@ -82,7 +92,8 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            byte b=2;
 	          //获得模块名
 		        int moduleID=com.xoa.util.ModuleEnum.EMAIL.getIndex();
-	            byte mid=(byte)moduleID;	            
+	            byte mid=(byte)moduleID;	
+	            attachment=new Attachment();
 	            attachment.setAttachId(attachID);
 	            attachment.setModule(mid);
 	            attachment.setAttachFile(fileName);
@@ -98,4 +109,15 @@ public class EnclosureServiceImpl implements EnclosureService {
     }
 	 	return list;
   }
+	
+	
+	public String attachmenturl(Attachment att,String company,String module){
+		String attUrl="AID="+att.getAid()+"&"+"Module="+att.getModule()+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
+		String basePath="D://upload";
+	    String path=basePath+"/"+company+"/"+module+"/"+att.getYm();
+	    String fileName=att.getAttachName();
+		String url=path+"/"+fileName;
+		return url;
+		
+	}
 }	
