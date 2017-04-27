@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script type="text/javascript" src="js/jquery.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 body {
@@ -41,35 +40,33 @@ table tr td input:not (#fh ){
 	padding: 2px 5px;
 }
 </style>
-<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
 
     function closeCurrentWindow(){
- 	  var sortNo=$('#fileNoid').val();
-      var sortName=$('#fileNameid').val();
-        
+ 	  var sortNo=$('#sortno').val();
+      var sortName=$('#sortname').val();
+      var sortid=$('#sortid').val();
+        alert(sortNo+sortName+sortid);
          $.ajax({
-                url: "${pageContext.request.contextPath }/file/add",
+                url: "${pageContext.request.contextPath }/file/update",
                 Type: "POST",
-                data:{"sortNo":sortNo,"sortName":sortName},
+                data:{"sortNo":sortNo,"sortName":sortName,"sortId":sortid},
                 success:function (data){
                 }
            }); 
-          
- 		window.opener.location.href = window.opener.location.href;     
+ 		//window.opener.location.href = window.opener.location.href;     
  		if (window.opener.progressWindow)     
  		{         
  		window.opener.progressWindow.close();     
  		}     
  		window.close(); 
-
  	} 
 </script>
 </head>
 <body>
 	<h1>文件夹编辑</h1>
-	<form id="form1"
-		action="${pageContext.request.contextPath }/file/update" method="post">
+	<form id="form1">
 		<table border="1" cellspacing="0" cellpadding="0"
 			style="border-collapse: collapse;" width="50%">
 			<tr>

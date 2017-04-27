@@ -412,7 +412,7 @@ public class FileController {
 		}
 		//添加文件影响行
 		int resultSave = fileSortService.saveFileSort(file);
-		modelAndView = new ModelAndView("redirect:/shows", model);
+		modelAndView = new ModelAndView("redirect:/file/shows", model);
 		return modelAndView;
 	}
 	

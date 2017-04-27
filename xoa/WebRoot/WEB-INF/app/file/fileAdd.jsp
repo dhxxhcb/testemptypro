@@ -64,32 +64,16 @@ table tr td input:not (#fh ){
                 Type: "POST",
                 data:{"sortNo":sortNo,"sortName":sortName},
                 success:function (data){
+                alert("123");
                 }
            }); 
           
- 		window.opener.location.href = window.opener.location.href;     
+ 	  window.opener.location.href = window.opener.location.href;     
  		if (window.opener.progressWindow)     
  		{         
  		window.opener.progressWindow.close();     
  		}     
- 		window.close(); 
-
-  
-  
-  
-       // $("#form1").submit();
-        
-        /*  var sortNo=$('#fileNoid').val();
-         var sortName=$('#sortName').val();
-         $.post("${pageContext.request.contextPath }/file/add",{"sortNo":sortNo,"sortName":sortName},function(data){
-         });
- 		
- 		window.opener.location.href = window.opener.location.href;     
- 		if (window.opener.progressWindow)     
- 		{         
- 		window.opener.progressWindow.close();     
- 		}     
- 		window.close();  */
+ 		window.close();  
  	} 
 </script>
 </head>
