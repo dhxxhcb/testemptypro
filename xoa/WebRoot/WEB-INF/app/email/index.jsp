@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 						<div class="ul_show" style="display: block;">
 							<ul>
-								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/inbox.png"/>收件箱<span>32</span></a></li>
+								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/>收件箱<span>32</span></a></li>
 								<li id="drafts"><a href="javascript:;"><img src="../img/icon_drafts_07.png"/>草稿箱<span>2</span></a></li>
 								<li id="hasBeenSend"><a href="javascript:;"><img src="../img/icon_sent_07.png"/>已发送</a></li>
 								<li id="wastebasket"><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/>废纸篓</a></li>
@@ -125,7 +125,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="up_format">
 							<ul>
-								<!-- <li><img src="../img/icon_list_nor_06.png"/></li> -->
 								<li><img src="../img/icon_shangxia_nor_06.png"/></li>
 								<li class="for_on"><img src="../img/icon_zuoyou_sel_03.png"/></li>
 							</ul>
@@ -369,12 +368,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$(function () {
 			
 				//不同风格页面互调
-				var oLI=$('.up_format ul li').eq(1);
+				var oLI=$('.up_format ul li').eq(0);
 				oLI.click(function () {
 					$(this).addClass('for_on').find('img').attr('src','img/icon_shangxia_sel_06.png');
 					
 					$(this).siblings().removeClass('for_on');
-					$(this).parent().find('li').eq(2).find('img').attr('src','img/icon_zuoyou_nor_06.png');
+					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_zuoyou_nor_06.png');
 					window.location.href='inboxup';
 				});
 				
@@ -451,7 +450,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#wastebasket').click(function(){
 					$('.wastebasket').css('display','block').siblings().css('display','none');
 					showAjax("recycle");
-					init2('419');
+					
+					var aId=$('.main_left .BTN').eq(0).find('input').attr('id');
+					init2(aId);
 					$('.main_left').on('click','.BTN',function(){
 					
 						var nId=$(this).find('input').attr('id');
@@ -540,7 +541,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 										//alert(data1[i].sendTime);
 										if(data1[i].emailList[0].readFlag==1){
-											str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 										} else if(data1[i].emailList[0].readFlag==0){
 											str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 										}
