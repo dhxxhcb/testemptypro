@@ -23,34 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@Scope(value = "prototype")
+@Scope(value = "common")
 @RequestMapping("/diary")
 public class CommonController {
 	private Logger loger = Logger.getLogger(CommonController.class);
-
-	/**
-	 * 日志
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/index")
-
-	public String inboxPage() {
-		return "app/diary/index";
-	}
-
-	/**
-	 * 写日志
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/addbox")
-	public String addboxPage() {
-		return "app/diary/writeMail";
-	}
-	/**
-	 * 根据ID删除一条邮件`
-	 */
 	
-
+	@RequestMapping("/selectUser")
+	public String addboxPage() {
+		return "app/common/selectUser";
+	}
 }
