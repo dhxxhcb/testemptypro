@@ -51,6 +51,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 .name li{
 	list-style-type:none;
 }
+.choose{
+	background','#D6E4EF';
+}
 </style>
 <body>
 	<!-- //开始 -->
@@ -95,10 +98,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="block-right-item" item_id="admin" item_name="系统管理员" user_id="admin" title="OA 管理员 [北方测试研究公司]">
 							<span class="name">系统管理员<span class="status"> (在线)</span></span>
 						</div>
-						<div>
-						<div class="block-right-item" item_id="admin" item_name="系统管理员" user_id="admin" title="OA 管理员 [北方测试研究公司]">
-							<span class="name">系统管理员<span class="status"> (在线)</span></span>
-						</div>
+						<div class="userItem">
+
 						</div>
 					</div>   
 				</div>
@@ -141,10 +142,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class=""></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 									}else{
 										if(v.sex==0){
-										
-											tr+='<div class="block-right-item" item_id="admin" item_name="系统管理员" user_id="admin" title="OA 管理员 [北方测试研究公司]" style="background: rgb(255, 255, 255);"><span class="name"><li><span deptid="undefined" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="李佳">李佳</a></span><ul style="margin-left:10%;"></ul></li><li><span deptid="undefined" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="李佳">李佳</a></span><ul style="margin-left:10%;"></ul></li></span></div>';
+											tr+='<div class="block-right-item" item_id="admin" item_name="'+v.userName+'" user_id="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"> </span></span></div>';
 										}else if(v.sex==1){
-											tr+='<div class="block-right-item" item_id="admin" item_name="系统管理员" user_id="admin" title="OA 管理员 [北方测试研究公司]" style="background: rgb(255, 255, 255);"><span class="name"><li><span deptid="undefined" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="李佳">李佳</a></span><ul style="margin-left:10%;"></ul></li><li><span deptid="undefined" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="李佳">李佳</a></span><ul style="margin-left:10%;"></ul></li></span></div>';
+											tr+='<div class="block-right-item" item_id="admin" item_name="'+v.userName+'" user_id="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"></span></span></div>';
 										}
 										
 										
@@ -155,14 +155,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 							target.html(str);
 							
-							$('.name').html(tr);
+							$('.userItem').html(tr);
 							
 							
 						}
 					})
 				}
-				
-					getChDept($('#deptOrg'),0);
+				$('.userItem').on("click",".block-right-item",function(){
+					var that = $(this)
+					that.addClass('choose');
+				});
+				getChDept($('#deptOrg'),0);
 				$('.tree .dynatree-container').on('click','.childdept',function(){
 								var  that = $(this);
 								
