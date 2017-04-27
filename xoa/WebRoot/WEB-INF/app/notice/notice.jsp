@@ -15,7 +15,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../css/news/page.css">
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
-      <link rel="stylesheet" type="text/css" href="../css/news/addCenter.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/news/add_center.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/notice/add_notice.css"/>
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
@@ -24,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <style type="text/css">
 	</style>
 </head>
-<body>
+<body style="margin:0px;">
 <div class="bx">
     <!--head开始-->
     <div class="head w clearfix">

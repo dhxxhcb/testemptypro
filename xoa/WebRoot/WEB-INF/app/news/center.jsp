@@ -32,8 +32,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
-           <li data_id="0"><span class="one" style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.unread" /></span><img src="../img/02.png" alt="" style="width: 2px;"/></li>
-            <li data_id=""><span  style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.new" /></span><img src="../img/02.png" alt="" style="width: 2px;"/></li>
+           <li data_id="0"><span class="one" style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.unread" /></span></li>
+           <li style="width:1px;"><img src="../img/02.png" alt=""/></li>
+            <li data_id=""><span  style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.new" /></span></li>
+            <li style="width:1px;"><img src="../img/02.png" alt=""/></li>
              <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.query" /></span></li>
         </ul>
     </div>
