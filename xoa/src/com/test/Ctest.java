@@ -129,8 +129,8 @@ public class Ctest {
 				"liumingcai,liuyingwu,wangyun,changbai,chenchangliu,chenqiang,lichang,liuyongkang,liuna,wangde,litian,wuhai,lihai,zhangshan,");
 		emailBody.setCopyToId("wangde,zhaomin,");
 		emailBody.setSecretToId("liuna,");
-		emailBody.setSubject("会议：13增强版内部发布测试大会");
-		emailBody.setContent("通知您于2013-10-22 13:30在一号大会议室开会，会议名称：13增强版内部发布测试大会");
+		emailBody.setSubject("植一株小草于心间");
+		emailBody.setContent("下班回家的时候，我无意间看到了墙头的草。我就惊叹于它的自强和坚韧。于草来说，这应该是最恶劣的环境了吧。砖头墙的中间，上不着天，下不着地，没有及时的雨水，更没有丰厚的土壤。唯一赖以生存的，就是砖头缝里的那一丁点泥土。而它，没有萎蔫，也没有抱怨，鲜嫩的叶子正昭示着它蓬勃的生命力。后来，观察那株小草成为我生活中必不可少的事儿。有一次，因为一个小小的差错，我被主管狠狠地批评了一顿。那天，心情极为黑暗，眼泪随时都有掉下来的冲动。下班回家的时候，我照例观察起了墙角的那棵小草。它一如既往地展示着动人的生命力，与平日并无两样。有那么一瞬间，我被小草感动了。这是一种多么坦然的心境啊，不以物喜，不以己悲，我们都没法做到，可是它做到了。（励志文章）毒辣的阳光、猛烈的暴雨、强劲的阵风……当它们次第在小草身上经过的时候，小草没有妥协，更没有自暴自弃，只是默默地绽放着自己的色彩。这么想着的时候，我的心里顿时舒坦了许多。相对于小草，我的处境显然优越了许多，我又有什么理由不比它更坚强呢？秋天的时候，小草终究枯萎了。而我，并没有悲伤，因为我已经把它植于我的心间。现在的社会，工作忙碌，生活节奏快，人际关系复杂。而我们，正需要这样一棵草，来提醒我们要自立，要坚强，要拼搏！");
 		emailBody.setSendTime(DateFormat.getTime(DateFormat.getStrDate(new Date())));
 		emailBody.setAttachmentId("");
 		emailBody.setAttachmentName("");

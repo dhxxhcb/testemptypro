@@ -121,7 +121,7 @@ public class EmailController {
 				"loginDateSouse"));
 		try {
 				emailService.sendEmail(
-						this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "0", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
+						this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "1", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
 						, new EmailModel());
 			return new ToJson<EmailBodyModel>(0,
 					"ok");
