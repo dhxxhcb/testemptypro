@@ -57,6 +57,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <script language="JavaScript">
+	var menu = {
+		"email":"../email/index",
+		"notify_show":"../notice/index",
+		"news_show":"../news/index",
+		"file_folder/index2.php":"../fileHome",
+		"system/file_folder":"../showFileBySort_id",
+		"diary_show":"../diary/index",
+		"news_manage":"../news/manage",
+		"notify_manage":"../notice/manage",
+		"knowledge_management":"../file/home",
+		"system_file_folder":"../file/setIndex"
+	};
 	$.ajax({
 	     url:'<%=basePath%>/showMenu',
 	     type:'get',      
@@ -95,12 +107,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	});
 	   function opennew(){
-	   	//	console.log($(event.target));
-	   	//	var url=$(event.target).attr("url");
+	   		var url=$(event.currentTarget).attr('url');
+	   		var id=$(event.currentTarget).find('span.appname').attr('id');
+	   		if(menu[url.replace('/','_')]){
+	   			url=menu[url.replace('/','_')];
+	   		}else{
+	   			url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
+	   		}
 			if(typeof(window.external.OA_SMS)!='undefined'){
-				window.external.OA_SMS("/xoa/email/index","MAX","OPEN_URL");
-			}else{
-				window.open('/xoa/email/index');
+				window.external.OA_SMS(url,"MAX","OPEN_URL");
 			}
 		}
 </script>
