@@ -3,6 +3,8 @@ package com.xoa.service.email;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.xoa.model.email.EmailModel;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.util.ToJson;
@@ -28,7 +30,7 @@ public interface EmailService {
 	 * @return     void
 	 */
 	@DynDatasource
-	public void sendEmail(EmailBodyModel emailBody, EmailModel email);
+	public void sendEmail(EmailBodyModel emailBody,MultipartFile[] files, EmailModel email);
 	
 	/**
 	 * 
@@ -39,7 +41,7 @@ public interface EmailService {
 	 * @return     void
 	 */
 	@DynDatasource
-	public void saveEmail(EmailBodyModel emailBody);
+	public void saveEmail(EmailBodyModel emailBody,MultipartFile[] files);
 	
 	/**
 	 * 

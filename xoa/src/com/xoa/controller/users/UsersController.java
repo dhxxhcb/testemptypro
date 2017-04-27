@@ -113,11 +113,11 @@ public class UsersController {
 	 * 方法介绍:   根据uid查询用户
 	 * 参数说明:   @param uid  用户uid号
 	 * 参数说明:   @return
-	 * @return     String  返回用户信息
+	 * @return     ToJson<Users>  返回用户信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/findUserByuid",method = RequestMethod.POST)
-    public String findUserByuid(int uid) {
+    public ToJson<Users> findUserByuid(int uid) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			Users users=usersService.findUserByuid(uid);  
@@ -127,7 +127,7 @@ public class UsersController {
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 
@@ -190,11 +190,11 @@ public class UsersController {
 	 * 参数说明:   @param pageSize  页面大小
 	 * 参数说明:   @param useFlag  是否开启分页
 	 * 参数说明:   @return
-	 * @return     String  返回用户信息
+	 * @return     ToJson<Users>  返回用户信息
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getUserAndDept" ,produces = {"application/json;charset=UTF-8"})
-    public String getUserAndDept( Map<String, Object> maps,Integer page,
+    public ToJson<Users> getUserAndDept( Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
@@ -206,7 +206,7 @@ public class UsersController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 	
@@ -224,7 +224,7 @@ public class UsersController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getBySearch" ,produces = {"application/json;charset=UTF-8"})
-    public String getBySearch(HttpServletRequest request,Map<String, Object> maps,Integer page,
+    public ToJson<Users> getBySearch(HttpServletRequest request,Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
@@ -243,7 +243,7 @@ public class UsersController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 	
@@ -261,7 +261,7 @@ public class UsersController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getByDeptId" ,produces = {"application/json;charset=UTF-8"})
-    public String getByDeptId(HttpServletRequest request,Map<String, Object> maps,Integer page,
+    public ToJson<Users> getByDeptId(HttpServletRequest request,Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
@@ -277,7 +277,7 @@ public class UsersController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
 	
 	/**
@@ -290,7 +290,7 @@ public class UsersController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getByUid" ,produces = {"application/json;charset=UTF-8"})
-    public String getByUid(int uid) {
+    public ToJson<Users> getByUid(int uid) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			Users user=usersService.getByUid(uid);  
@@ -301,7 +301,23 @@ public class UsersController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
+    }
+	
+	@ResponseBody
+	@RequestMapping(value = "/user/getUserNameById",method = RequestMethod.GET)
+    public ToJson<Users> getUserNameById(String userIds) {
+		ToJson<Users> json=new ToJson<Users>(0, null);
+		//loger.debug("ID"+user.getUid());
+		try {
+		    String userName=usersService.getUserNameById(userIds);
+            json.setObject(userName);
+            json.setMsg("OK");
+            json.setFlag(0);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return json;
     }
 	
 }

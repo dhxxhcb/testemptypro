@@ -13,9 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
-import com.alibaba.fastjson.JSON;
 import com.xoa.model.department.Department;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.util.ToJson;

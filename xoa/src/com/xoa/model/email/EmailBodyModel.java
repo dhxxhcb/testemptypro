@@ -1,5 +1,6 @@
 package com.xoa.model.email;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import com.xoa.model.users.Users;
  */
 public class EmailBodyModel implements Serializable {
 	private static final long serialVersionUID = 1076969159692234636L;
+	
 	
 	/**
 	 * 时间段区间查询传入的开始时间
@@ -854,7 +856,5 @@ public class EmailBodyModel implements Serializable {
 	public void setSecretToName(String secretToName) {
 		this.secretToName = secretToName;
 	}
-	
-	
 	
 }
