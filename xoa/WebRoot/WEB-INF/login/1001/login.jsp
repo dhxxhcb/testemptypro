@@ -56,6 +56,7 @@
 				background-size: 100% 100%;
 			}
 			.content .ban1{ width:100%; height:83%; background: url(img/login/bjjt_bg.png) no-repeat;background-size:100% 100%; position: relative;}
+			#loginbtn:hover{background-color:#59a8ff;}
 </style>
 <script src="js/jquery.min.js"></script>
 </head>
@@ -63,6 +64,7 @@
 	$(function() {
 		$('#loginbtn').click(function() {
 			login();
+			$(this).css({"cursor":"default","background":"#1f7de4"});
 		});
 		$(document).keypress(function(e) {  
 		    // 回车键事件  
@@ -126,6 +128,9 @@
 					var banh=$(".ban").height();
 					$(".ban1").height(conh - banh +'px');
 				});
+				
+				
+				
 			});
 				
 			//});
