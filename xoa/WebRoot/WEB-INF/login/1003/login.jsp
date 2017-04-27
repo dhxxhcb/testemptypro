@@ -55,6 +55,7 @@
 				background: url(img/login/bjjt_head.png) no-repeat;
 				background-size: 100% 100%;
 			}
+			#loginbtn:hover{background-color:#59a8ff;}
 			.content .ban1{ width:100%; height:83%; background: url(img/login/hzfgs_bg.png) no-repeat;background-size:100% 100%; position: relative;}
 </style>
 <script src="js/jquery.min.js"></script>
@@ -63,6 +64,7 @@
 	$(function() {
 		$('#loginbtn').click(function() {
 			login();
+			$(this).css({"cursor":"default","background":"#1f7de4"});
 		});
 		 $(document).keypress(function(e) {  
 		    // 回车键事件  
