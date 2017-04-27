@@ -43,7 +43,8 @@ s, i, em {
 /*公共类*/
 .w {
     /*版心 提取 */
-    width: 100%;
+    /* width: 1450px; */
+    width:100%;
     margin: 0 auto;
 }
 
@@ -75,9 +76,9 @@ s, i, em {
 
 /*头部样式*/
 .bx {
-    width: 95%;
+    width: 99%;
    /*  margin: 0 auto; */
-   margin-left:30px;
+   margin-left:10px;
   
 }
 
@@ -102,7 +103,7 @@ s, i, em {
 
 .head .one {
     background-color: #2F8AE3;
-    font-size: 16px;
+    font-size: 18px;
     color: #ffffff;
     border-radius: 20px;
 
@@ -111,40 +112,26 @@ s, i, em {
 /*navigation开始*/
 .navigation {
     heihgt: 70px;
-    line-height: 70px
     display: inline-block;
     float: left;
     /*border: 1px solid red;*/
     width: 100%;
 }
-s
+
 .navigation .left {
     float: left;
     line-height: 71px;
 }
 
-/* .navigation .left .bt {
-	width:60px;
-	height:27px;
-	line-height:27px;
-	border：1px solid red;
-	border-radius: 4px;
-	background-color:#FF7430;
-	color: #fff;
-	text-align: center;
-	margin-top: 18px;
-	margin-left: 10px;
-} */
 .navigation .left img {
     float: left;
     margin-top: 20px;
 }
 
 .navigation .left .news {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     margin: 0 5px;
-    margin-top: 25px;
 }
 
 .navigation .left .button1 {
@@ -234,4 +221,3 @@ tr:hover {
     margin-left: 16px;
     cursor: pointer;
 }
-

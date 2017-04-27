@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +57,20 @@ public class EnclosureController {
 	  @RequestMapping("/upload")  
 	    public String FileUpload(  
 	            @RequestParam("file") MultipartFile[] files,HttpServletRequest request) {  
-	      
+			if(files.length==0){
+				return null;
+			}
+			ResourceBundle rb =  ResourceBundle.getBundle("upload");
+			//String name = rb.getString("mysql.driverClassName");
+			String os = System.getProperty("os.name");
+			StringBuffer sb=new StringBuffer();
+			if(os.toLowerCase().startsWith("win")){  
+			  sb=sb.append(rb.getString("upload.win"));  
+			}else{
+			  sb=sb.append(rb.getString("upload.linux"));
+			}
+			
+			
 	        List<Attachment> list = new ArrayList<Attachment>();
 	        //获得公司名
 	        String company="xoa111";
@@ -209,18 +223,38 @@ public class EnclosureController {
 	 * @return     String 返回是否成功
 	 */
 	@RequestMapping(value={"/download"},method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
-	public String download(String filename,HttpServletResponse response,
-	 HttpServletRequest request) {
+	public String download(@RequestParam("AID") String aid ,
+						@RequestParam("MODULE") String module ,
+						@RequestParam("YM") String ym ,
+						@RequestParam("ATTACHMENT_ID") String attachmentId ,
+						@RequestParam("ATTACHMENT_NAME") String attachmenrName ,
+						@RequestParam("company") String company ,
+						HttpServletResponse response,
+						HttpServletRequest request) {
+		
+		ResourceBundle rb =  ResourceBundle.getBundle("upload");
+		//String name = rb.getString("mysql.driverClassName");
+		String osName = System.getProperty("os.name");
+		StringBuffer sb=new StringBuffer();
+		if(osName.toLowerCase().startsWith("win")){  
+		  sb=sb.append(rb.getString("upload.win"));  
+		}else{
+		  sb=sb.append(rb.getString("upload.linux"));
+		}
+		String basePath=sb.toString();
+	
+		String path=basePath+"/"+company+"/"+module+"/"+ym+"/"+attachmentId+"."+attachmenrName;
+		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
 		response.setHeader("Content-Disposition", "attachment;fileName="
-				+ filename);
+				+ attachmenrName);
 				try {
-					String path = Thread.currentThread().getContextClassLoader()
+				/*	String path = Thread.currentThread().getContextClassLoader()
 							.getResource("").getPath()
 							+ "download";//
-					InputStream inputStream = new FileInputStream(new File(path
-							+ File.separator + filename));
+*/					
+					InputStream inputStream = new FileInputStream(new File(path));
 
 					OutputStream os = response.getOutputStream();
 					byte[] b = new byte[2048];

@@ -420,10 +420,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									//console.log($(this).siblings('.sanji').length>0);
 								}else{
 									//页面不存在，新增 title和iframe
+								
 									
-									var titlestr = '<li class="choose" index="0;" id="t_'+menu_tid+'"><div class="img"><img class="close" src="img/main_img/icon.png"></div><h1>'+$(this).find('h1').html()+'</h1></li>';
+									var titlestr = '<li class="choose" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div class="img"><img class="close" src="img/main_img/icon.png"></div></li>';
+									
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" ><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 									$('.main_title ul').append(titlestr);
+									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) 5px 2px no-repeat; position: relative; z-index: 999;');
+									
+									/* console.log($('#t_'+menu_tid).siblings()); */
 									$('.all_content').append(iframestr);
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
@@ -467,9 +472,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								}else{ 
 									
 									//页面不存在，新增 title和iframe
-									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><div><img class="close" src="img/main_img/icon.png"></div><h1>'+$(this).find('h1').html()+'</h1></li>';
+									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div><img class="close" src="img/main_img/icon.png"></div></li>';
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
-									$('.main_title ul').append(titlestrs);
+									$('.main_title ul').append(titlestrs);	
 									$('.all_content').append(iframestr);
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
@@ -506,25 +511,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});//ajax传入应用数据结束括号 
 			  
 		}//init方法结束
-		
-		
+				
 			
 			init();//调用init()方法
-			var data = {
-						deptId:0
-			};
-			
-		
-		/* 	init_orgnize();  */
-			//组织二级
-			var data1 = {
-						deptId:1
-				};
-			var data2 = {
-						deptId:2
-				};
-								
-
 						//点击标题栏
 						$('.main_title ').on('click','li',function(){
 							
@@ -622,7 +611,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 				});
 				
-				
+				//组织
 				$('.all_ul .tab_ctwo').on('click','.childdept',function(){
 					var  that = $(this);
 					
@@ -636,18 +625,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							deptId:deptId
 						},		
 						dataType:'json',
-						success:function(data){ 
+						success:function(data){
+						/* if() */
 							if(deptId==0){
 								var str = '';
 								data.obj.forEach(function(v,i){
+									if(v.deptName){
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+									}else{
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+									}
 									
-									str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 								});
 							}else{
 								var str = '';
 								data.obj.forEach(function(v,i){
+									if(v.deptName){
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+									}else{
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+									}
 									
-									str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 								});
 							}
 							

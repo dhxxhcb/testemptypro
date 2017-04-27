@@ -6,6 +6,9 @@ import com.xoa.model.email.EmailModel;
 import com.xoa.service.email.EmailService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.L;
+import com.xoa.util.common.StringUtils;
+
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -232,8 +235,15 @@ public class EmailController {
 				"pageSize");
 		boolean useFlag = ServletRequestUtils.getBooleanParameter(request,
 				"useFlag");
-		String userId = ServletRequestUtils.getStringParameter(request,
+		String userId= "";
+		String userFrom = ServletRequestUtils.getStringParameter(request,
 				"userID");
+		if(StringUtils.checkNull(userFrom)){
+			userId = (String)request.getSession().getAttribute("userId");
+		}else{
+			userId = userFrom.trim();
+		}
+		L.e("userId:"+userId);
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("fromId", userId);
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
@@ -274,7 +284,7 @@ public class EmailController {
 		ToJson<EmailBodyModel> queryByID(@RequestParam(value = "emailId",required = false) Integer emailId,@RequestParam("flag")String flag,@RequestParam(value = "bodyId",required = false) Integer bodyId) throws Exception {
 			Map<String, Object> maps = new HashMap<String, Object>();
 			maps.put("emailId", emailId);
-        maps.put("bodyId", bodyId);
+			maps.put("bodyId", bodyId);
 			EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
 			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 			if(!flag.trim().equals("isRead")){

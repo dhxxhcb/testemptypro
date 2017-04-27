@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 						<div class="ul_show" style="display: block;">
 							<ul>
-								<li class="on Inbox"><a href="javascript:;"><img src="../img/inbox.png"/>收件箱<span>32</span></a></li>
+								<li class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/>收件箱<span>32</span></a></li>
 								<li><a href="javascript:;"><img src="../img/icon_drafts_07.png"/>草稿箱<span>2</span></a></li>
 								<li><a href="javascript:;"><img src="../img/icon_sent_07.png"/>已发送</a></li>
 								<li><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/>废纸篓</a></li>
@@ -116,9 +116,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="format">
 							<ul>
-								<!-- <li><img src="../img/icon_list_nor_06.png"/></li> -->
-								<li class="for_on"><img src="../img/icon_shangxia_sel_06.png"/></li>
-								<li><img src="../img/icon_zuoyou_nor_06.png"/></li>
+								<li class="for_on"><img src="../img/icon_list_sel_03.png"/></li>
+								<li><img src="../img/icon_zuoyou_03.png"/></li>
 							</ul>
 						</div>
 						
@@ -223,7 +222,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						"page":1,
 						"pageSize":10,
 						"useFlag":true,
-						"userID":"lijia"
+						"userID":"admin"
 					}
 				
 				$.ajax({
@@ -238,9 +237,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm:ss');
 										//alert(data1[i].sendTime);
 										if(data1[i].emailList[0].readFlag==1){
-											str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_3_07.png"/></td><td width="6%"><img src="../img/icon_collect_nor_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+											str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
 										} else if(data1[i].emailList[0].readFlag==0){
-											str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_notread_1_03.png"/></td><td width="6%"><img src="../img/icon_collect_nor_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+											str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_notread_1_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
 										}
 										
 									}
@@ -271,7 +270,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$(this).addClass('for_on').find('img').attr('src','img/icon_zuoyou_sel_03.png');
 					
 					$(this).siblings().removeClass('for_on');
-					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_shangxia_nor_06.png');
+					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_list_03.png');
 					window.location.href='index';
 				})
 	    		

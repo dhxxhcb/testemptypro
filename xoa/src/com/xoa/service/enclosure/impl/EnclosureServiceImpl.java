@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 
@@ -56,12 +57,23 @@ public class EnclosureServiceImpl implements EnclosureService {
 	 */
 	@Override
 	public List<Attachment> upload(MultipartFile[] files,String company,String module) {
-		
+		if(files.length==0){
+			return null;
+		}
+		ResourceBundle rb =  ResourceBundle.getBundle("upload");
+		//String name = rb.getString("mysql.driverClassName");
+		String os = System.getProperty("os.name");
+		StringBuffer sb=new StringBuffer();
+		if(os.toLowerCase().startsWith("win")){  
+		  sb=sb.append(rb.getString("upload.win"));  
+		}else{
+		  sb=sb.append(rb.getString("upload.linux"));
+		}
 		List<Attachment> list = new ArrayList<Attachment>();
 		  //当前年月
 	     String ym = new SimpleDateFormat("yyMM").format(new Date());
-	     String basePath="D://upload";
-	     String path=basePath+"/"+company+"/"+module+"/"+ym;	 	 
+	     String basePath=sb.toString();
+	     String path=basePath+ System.getProperty("file.separator") +company+ System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
 	 	Attachment attachment=new Attachment();
 	 	 for (int i = 0; i < files.length; i++) {  
 	        	MultipartFile file = files[i];
@@ -112,11 +124,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	
 	
 	public String attachmenturl(Attachment att,String company,String module){
-		String attUrl="AID="+att.getAid()+"&"+"Module="+att.getModule()+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
-		String basePath="D://upload";
-	    String path=basePath+"/"+company+"/"+module+"/"+att.getYm();
-	    String fileName=att.getAttachName();
-		String url=path+"/"+fileName;
+		String attUrl="AID="+att.getAid()+"&"+"MODULE="+module+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
 		return attUrl;
 	}
 }	

@@ -153,10 +153,11 @@ ul{
 	line-height: 52px;
 	font-size: 14px;
 }
-.page .page_left .ul_show li:hover{
-	background-color: #6ea1d5;
+.page .page_left .ul_show li:not(.on):hover{
+		background-color: #6ea1d5;
+	}
    
-}
+
 .page .page_left .ul_show li a{
 	display: block;
 	text-decoration: none;

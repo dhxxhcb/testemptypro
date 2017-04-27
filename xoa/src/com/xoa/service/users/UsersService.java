@@ -3,6 +3,8 @@ package com.xoa.service.users;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.xoa.model.users.Users;
 import com.xoa.util.dataSource.DynDatasource;
 
@@ -107,7 +109,7 @@ public interface UsersService {
 	 * @return     Users  返回用户信息
 	 */
 //	@DynDatasource
-    public Users findUserByName( String byname);
+    public Users findUserByName( String byname,HttpServletRequest req);
 	
 	/**
 	 * 创建作者:   张龙飞
@@ -150,7 +152,7 @@ public interface UsersService {
 	public Users getByUid(int uid);
 	/**
 	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月26日 上午11:00:05
+	 * 创建日期:   2017年4月21日 上午11:00:05
 	 * 方法介绍:   根据uid串获取用户姓名
 	 * 参数说明:   @param userIds 用户userid串
 	 * 参数说明:   @return

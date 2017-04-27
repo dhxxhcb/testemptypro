@@ -144,7 +144,7 @@ public class MenuController {
 	 */
 	@RequestMapping(value = "/getMenu", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	List<MobileApp> getMenu() {
+	ToJson<MobileApp> getMenu() {
 		List<MobileApp> munuList = mobileAppService.getMobileAppList();
 		String msg;
 		if (munuList.size() > 0) {
@@ -157,8 +157,8 @@ public class MenuController {
 		}
 
 		ToJson<MobileApp> menuJson = new ToJson<MobileApp>(flag, msg);
-		menuJson.setObj(munuList);
-		return  munuList;
+	  	menuJson.setObj(munuList);
+		return  menuJson;
 		
 		
 		
