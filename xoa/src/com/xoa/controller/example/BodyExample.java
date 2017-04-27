@@ -1,5 +1,6 @@
 package com.xoa.controller.example;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,8 @@ import com.xoa.util.common.wrapper.BaseWrapper;
 @Controller
 @RequestMapping("/bexa")
 public class BodyExample {
-  
+	@Value("${app_login_path_php}")
+	String b;
 	@ResponseBody
 	@RequestMapping("/json")
 	public BaseWrapper test(){
@@ -28,7 +30,8 @@ public class BodyExample {
 	}
 	@RequestMapping("/view")
 	public String testView(Model model){
-		model.addAttribute("name", "hahaha");
+//		model.addAttribute("name", "hahaha");
+		model.addAttribute("name", b);
 		return "index";
 	}
 }

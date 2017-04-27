@@ -1,5 +1,6 @@
 package com.xoa.controller.example;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import com.xoa.util.common.wrapper.BaseWrapper;
 @RestController
 @RequestMapping("/example")
 public class RestExample {
+	
 	@RequestMapping("/test")
 	public BaseWrapper test(){
 		return new BaseWrapper();

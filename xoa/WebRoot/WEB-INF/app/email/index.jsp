@@ -404,8 +404,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//草稿箱点击事件
 				$('#drafts').click(function(){		
 						$('.drafts').css('display','block').siblings().css('display','none');
-	
-						$('.BTN').remove();
+						showAjax2("drafts");
+						/* $('.BTN').remove();
 							var data={
 								"flag":"drafts",
 								"page":1,
@@ -430,15 +430,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										}
 										$('.main_left ul .befor').after(str);
 									}
-						});
+						}); */
 				})
 				
 				//已发送点击事件
 				$('#hasBeenSend').click(function(){
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
-					showAjax("outbox");
-					var aId=$('.main_left .BTN').eq(0).find('input').attr('id');
-					init3(aId);
+					showAjax2("outbox");
+					
+					init3('124');
 					$('.main_left').on('click','.BTN',function(){
 					
 						var nId=$(this).find('input').attr('nId');
@@ -451,10 +451,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//废纸篓点击事件
 				$('#wastebasket').click(function(){
 					$('.wastebasket').css('display','block').siblings().css('display','none');
-					showAjax("recycle");
 					
-					var aId=$('.main_left .BTN').eq(0).find('input').attr('id');
-					init2(aId);
+					showAjax2("recycle")
+					
+					init2('122');
 					$('.main_left').on('click','.BTN',function(){
 					
 						var nId=$(this).find('input').attr('id');
@@ -471,9 +471,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					showAjax("inbox");
 				})
 				
-				
-				
-				
+				//鼠标移入移出事件
+				$('.main_left').on('mouseover','.BTN',function(){
+					$(this).css('background-color','#c5e9fb');
+				})
+				$('.main_left').on('mouseout','.BTN',function(){
+					$(this).css('background-color','#fff');
+				})
 				
 				 //详情点击事件
 				$('.main_left').on('click','.BTN',function(){
@@ -483,9 +487,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					init(nId,'#TAB','.article');
 					
 				}) 
-				
-				
-				
 			});
 			
 			
@@ -543,26 +544,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 											//alert(data1[i].sendTime);
 											if(data1[i].emailList[0].readFlag==1){
-												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 											} else if(data1[i].emailList[0].readFlag==0){
-												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 											}
 											
 										}
 										$('.befor').after(str);
 										
 										var mId=$('.BTN').eq(0).find('input').attr('id');
-										var sId=$('.BTN').eq(0).find('input').attr('nId');
-										if(mId) {
-											init(mId,'#TAB','.article');
-										} else{
-											init(sId,'#TAB','.article');
-										}
 										
+										init(mId,'#TAB','.article');
 									}
 					});
 				}
 				
+				function showAjax2(flag){
+					$('.BTN').remove();
+							var data={
+								"flag":flag,
+								"page":1,
+								"pageSize":10,
+								"useFlag":true,
+								"userID":"admin"
+						}
+					
+						$.ajax({
+									type:'get',
+									url:'showEmail',
+									dataType:'json',
+									data:data,
+									success:function(rsp){
+										var data1=rsp.obj;
+										var str='';
+										for(var i=0;i<data1.length;i++){
+											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+											
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											
+										}
+										$('.main_left ul .befor').after(str);
+									}
+						});
+				}
 				
 				function init2(id){
 				
