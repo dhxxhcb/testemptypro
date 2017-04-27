@@ -141,7 +141,11 @@ public class EmailServiceImpl implements EmailService {
 				}else{
 				emailBody.setCopyName("");
 				}
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
@@ -195,7 +199,11 @@ public class EmailServiceImpl implements EmailService {
 				}else{
 				emailBody.setCopyName("");
 				}
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			
@@ -237,7 +245,11 @@ public class EmailServiceImpl implements EmailService {
 				}else{
 				emailBody.setCopyName("");
 				}
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
@@ -278,7 +290,11 @@ public class EmailServiceImpl implements EmailService {
 				}else{
 				emailBody.setCopyName("");
 				}
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
@@ -319,7 +335,11 @@ public class EmailServiceImpl implements EmailService {
 				}else{
 				emailBody.setCopyName("");
 				}
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
@@ -350,7 +370,11 @@ public class EmailServiceImpl implements EmailService {
 		maps.put("page", pageParams);
 		EmailBodyModel emailBody = emailBodyMapper.queryById(maps);
 		emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
-		emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+		if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+			}else{
+			emailBody.setSecretToName("");
+			}
 		emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 		emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 		if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
@@ -392,7 +416,12 @@ public class EmailServiceImpl implements EmailService {
 				}else{
 				emailBody.setCopyName("");
 				}
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
@@ -435,7 +464,11 @@ public class EmailServiceImpl implements EmailService {
 				}else{
 				emailBody.setCopyName("");
 				}
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
