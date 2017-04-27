@@ -180,7 +180,7 @@ public class Ctest {
 		email.setIsR("");
 		// 显示不能为空
 		email.setSign("");
-		emailUtilService.sendEmail(emailBody,null, email);
+		emailUtilService.sendEmail(emailBody, email);
 		
 	}
 
