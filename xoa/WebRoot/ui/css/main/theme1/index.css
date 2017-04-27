@@ -53,7 +53,7 @@ body,
     line-height: 40px;
    /*  text-align: center; */
    font-size: 10pt;
-       margin-left: 2%;
+   margin-left: 7%;
 }
 .head_mid ul li div{
 	width:19%;
@@ -70,6 +70,7 @@ body,
 	margin-top: 62%;
     width: 53%;
     height: 28%;
+        margin-right: 72%;
 }
 .head_rig{
 	width:21%;
@@ -200,7 +201,7 @@ body,
 	height:100%;
 	float:left;
 	font-size:10pt;
-	color: #2a588c;
+	color: #2b7fe0;
 	cursor: pointer;
 	text-align:center;
 	line-height:28px;
@@ -244,7 +245,7 @@ body,
 	border:1px solid #999999;
 } */
 .yingy{
-	background: url(../../../img/main_img/blue_hua.png) 0px 0px no-repeat;
+	background: url(../../../img/main_img/blue_hua.png) 4px 2px no-repeat;
 	    color: #fff !important;
 }
 .two_all{
@@ -339,7 +340,7 @@ body,
     z-index: 3;
     margin-left: -18px;
     margin-bottom: 0px;
-    background: url(../../../img/main_img/title_no.png) 5px 2px no-repeat;
+    background: url(../../../img/main_img/title_yes.png) 5px 2px no-repeat;
 }
  .change{
  	width: 119px;
