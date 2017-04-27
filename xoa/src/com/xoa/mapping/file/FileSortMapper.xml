@@ -26,7 +26,7 @@
 	SORT_PARENT,SORT_NO,SORT_NAME,SORT_TYPE,USER_ID,NEW_USER,MANAGE_USER,DEL_USER,DOWN_USER,SHARE_USER,OWNER,SIGN_USER,REVIEW
 	</sql>
 	<select id="getFileSort" resultMap="file_SortResultMap" parameterType="com.xoa.model.file.FileSortModel">
-		select  <include refid="FileSort"></include> ,'folder' as fileType  from file_sort  where  1=1 
+		select  <include refid="FileSort"/> ,'folder' as fileType  from file_sort  where  1=1 
 		<if test="sortId != null and sortId !=''" >
            and SORT_ID=#{sortId}
         </if>
@@ -150,9 +150,10 @@
 	</select>
 	
 	<select id="getChildTree" parameterType="int" resultMap="file_SortResultMap">
-	<![CDATA[
-		select * from file_sort  where SORT_PARENT<>#{sortid};
-		]]>
+		select * from file_sort  where SORT_PARENT in 
+		<foreach collection="list" index="index"  item="sortid" open="(" separator="," close=")">
+		    #{sortid}
+		</foreach>;
 	</select>
 	
 	<insert id="saveFileSortChr" parameterType="com.xoa.model.file.FileSortModel">

@@ -153,8 +153,8 @@ public class FileSortServiceImpl  implements FileSortService{
 	 * @return     List<FileSortModel>
 	 */
 	@Override
-	public List<FileSortModel> getChildTree(int sortid) {
-		return file_SortMapper.getChildTree(sortid);
+	public List<FileSortModel> getChildTree(List<String> sortidList) {
+		return file_SortMapper.getChildTree(sortidList);
 	}
 	/**
      * 
