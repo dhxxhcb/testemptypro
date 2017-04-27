@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/spirit/ispirit_index.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/spirit/sys_function_7a682d434e.js"></script>
-    <script type="text/javascript" src="../js/spirit/ispirit.js"></script>
+    <!-- <script type="text/javascript" src="../js/spirit/ispirit.js"></script> -->
     <script type="text/javascript" src="../js/spirit/ispirit_index.js"></script>
     <script>
         var bIMLogin = false;

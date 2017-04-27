@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </script>
     <link rel="stylesheet" type="text/css" href="../css/spirit/ipanel.css">
     <script src="../js/jquery.min.js"></script>
-    <script src="../js/spirit/ispirit.js"></script>
+   <!--  <script src="../js/spirit/ispirit.js"></script> -->
     <script src="../js/spirit/index_ispirit.js"></script>
     <script>
         var menu_id = "1";

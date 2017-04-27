@@ -21,17 +21,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/spirit/style.css">
     <link rel="stylesheet" type="text/css" href="../css/spirit/ipanel.css">
     <link rel="stylesheet" type="text/css" href="../css/main/theme1/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/main/theme1/index.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/main/theme1/index.css"/>
     <link rel="stylesheet" type="text/css" href="../css/spirit/user_online.css">
     <link rel="stylesheet" type="text/css" href="../css/spirit/ui.dynatree.css">
-    <!--<script type="text/javascript" src="./js_lang.php"></script>-->
-   <!--  <script type="text/javascript" src="../js/spirit/tree.js"></script>
-    <script type="text/javascript" src="../js/ispirit.js"></script> -->
     <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
-   <!--  <script type="text/javascript" src="../js/jquery-ui.custom.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../js/jquery.dynatree.min.js"></script>
-    <script type="text/javascript" src="../js/spirit/org.js"></script> -->
     <script type="text/javascript">
        /*  var ispirit = "1";
         var bEmailPriv = true;
@@ -99,28 +92,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="module_org" class="container moduleContainer" style="display: block;">
             <div id="sub_module_org_0" class="module-block" style="">
                 <ul class="dynatree-container dynatree-no-connector tab_ctwo" id="deptOrg">
-                   <!--  <li class="dynatree-lastsib"><span
-                            class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><img
-                            src="../img/spirit/root.png" alt=""><a
-                            href="http://192.168.0.23/general/ipanel/user/?ISPIRIT=1&amp;I_VER=2#"
-                            class="dynatree-title" title="中国兵器工业集团">中国兵器工业集团</a></span>
-                        <ul>
-                            <li class="dynatree-lastsib"><span
-                                    class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span
-                                    class="dynatree-expander"></span><a
-                                    href="http://192.168.0.23/general/ipanel/user/?ISPIRIT=1&amp;I_VER=2#"
-                                    class="dynatree-title" title="北方测试研究公司">北方测试研究公司</a></span>
-                                <ul>
-                                    <li class="dynatree-lastsib"><span
-                                            class="dynatree-node dynatree-lastsib dynatree-exp-cl dynatree-ico-c"><span
-                                            class="dynatree-connector" style="display: none;"></span><img
-                                            src="../img/spirit/U01.png" alt=""><a
-                                            href="http://192.168.0.23/general/ipanel/user/?ISPIRIT=1&amp;I_VER=2#"
-                                            class="dynatree-title">系统管理员</a></span></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li> -->
                 </ul>
             </div>
             <div id="sub_module_org_1" class="module-block" style="display:none;"></div>
@@ -136,6 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 
 </div>
+
 <script>
 	//组织
 		$('#sub_module_org_0 .tab_ctwo').on('click','.childdept',function(){
@@ -158,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							if(v.deptName){
 								str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:20px;"></ul></li>';
 							}else{
-								str+='<li onclick="openwin()"><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:20px;"></ul></li>';
+								str+='<li onclick="openwin(this)"><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" uid="'+v.uid+'" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:20px;"></ul></li>';
 							}
 							
 						});
@@ -168,7 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							if(v.deptName){
 								str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:20px;"></ul></li>';
 							}else{
-								str+='<li onclick="openwin()"><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:20px;"></ul></li>';
+								str+='<li onclick="openwin(this)"><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" uid="'+v.uid+'" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:20px;"></ul></li>';
 							}
 							
 						});
@@ -180,17 +152,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			})
 		}
 			getChDept($('#deptOrg'),0);
-			function openwin(){
-				alert("1");
+			function openwin(e){
+				var uid=$(e).find("a.dynatree-title").attr("uid");
+				var uname=$(e).find("a.dynatree-title").attr("title");
+				window.external.OA_SMS(uid,uname,"SEND_MSG");
 			}
-</script>
-<script>
-   /*  if (window.external && typeof window.external.OA_SMS != 'undefined') {
-        window.external.OA_SMS('', '', 'FRESH');
-        setTimeout(function () {
-            window.external.OA_SMS('', '', 'FRESH');
-        }, 500);
-    } */
 </script>
 
 </body>
