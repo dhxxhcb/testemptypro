@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
+import com.xoa.model.enclosure.Attachment;
 import com.xoa.model.users.Users;
 
 /**
@@ -221,6 +222,11 @@ public class EmailBodyModel implements Serializable {
 	 * 一对多关联email
 	 */
 	private List<EmailModel> emailList;
+	
+	/**
+	 * 附件对象
+	 */
+	private List<Attachment> attachment;
 
 	/**
 	 * 一对多关联email
@@ -884,6 +890,32 @@ public class EmailBodyModel implements Serializable {
 	public void setProbablyDate(String probablyDate) {
 		this.probablyDate = probablyDate;
 	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-27 下午1:53:18
+	 * 方法介绍:   附件对象
+	 * 参数说明:   @return
+	 * @return     List<Attachment>
+	 */
+	public List<Attachment> getAttachment() {
+		return attachment;
+	}
+
+	/**
+	 * 
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-27 下午1:53:26
+	 * 方法介绍:   附件对象
+	 * 参数说明:   @param attachment
+	 * @return     void
+	 */
+	public void setAttachment(List<Attachment> attachment) {
+		this.attachment = attachment;
+	}
+	
+	
 	
 	
 	
