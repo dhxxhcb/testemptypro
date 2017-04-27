@@ -23,6 +23,7 @@ import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
+import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
 import com.xoa.util.http.HttpClientUtil;
 
@@ -147,6 +148,10 @@ public class loginController {
 				request.getSession().setAttribute("deptId", user.getDeptId());
 				request.getSession().setAttribute("deptIdOther",
 						user.getDeptIdOther());
+				Map<String, Object> params =new HashMap<String, Object>();
+				params.put("paraName", user.getPara().getParaName());
+				params.put("paraValue", user.getPara().getParaValue());
+				SessionUtils.putSession(request.getSession(), params);
 				// }
 				json.setObject(user);
 				json.setMsg("OK");

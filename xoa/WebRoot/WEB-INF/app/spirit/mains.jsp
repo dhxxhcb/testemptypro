@@ -15,8 +15,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <script type="text/javascript">
-        var MYOA_JS_SERVER = "";
-        var MYOA_STATIC_SERVER = "";
+        var MYOA_JS_SERVER = "${paraName}";
+        var MYOA_STATIC_SERVER = "${paraValue}";
+      
     </script>
     <link rel="stylesheet" type="text/css" href="../css/spirit/ispirit_index.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
@@ -47,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var group_no_show_dept = "";
         var group_no_op_dept = "";
         var priv_id_str = "1,";
-        var window_caption = "办公精灵";
+        var window_caption = MYOA_STATIC_SERVER;
         var gbt_new = "1";
         var sns_name = "企业社区";
         var check_sms = "1";
@@ -59,7 +60,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var cur_time = "1492504726";
         (function ($) {
             $(document).ready(function ($) {
-                show_module("taskcenter");
+            
+            
+            window.external.OA_SMS("WINDOW_CAPTION", window_caption, "INIT");
+            
+                //show_module("taskcenter");
             });
         })(jQuery);
     </script>

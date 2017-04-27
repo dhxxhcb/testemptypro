@@ -53,7 +53,6 @@ public class SessionUtils {
 	 * @参数说明 @param obj
 	 * @return
 	 */
-
 	public static void putSession(HttpSession session, Object obj) {
 		if (session == null)
 			throw new SessionException("session is null");
