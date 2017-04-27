@@ -327,7 +327,7 @@ $(function () {
                            var loadindex=setInterval(function(){
 								layer.closeAll();
 								$("#j_tb").html(str);
-								clearInterval(turnindex);
+								clearInterval(loadindex);
 							},1000);
                           
 							if(cb){
