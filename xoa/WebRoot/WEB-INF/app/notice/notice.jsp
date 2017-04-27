@@ -115,6 +115,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		input{
      		border: 1px solid #ccc;
      	}
+     		#cx {
+     		background-image:url(../img/center_q.png);
+     		background-repeat:no-repeat;
+     		width:60px;
+     		hieght:30px;
+     		line-height:30px;
+     		margin-top: 18px;
+     		margin-left: 10px;
+     		text-align:center;
+     		color:#fff;
+     		cursor: pointer;
+     	}
 	</style>
 </head>
 <body>
@@ -150,7 +162,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div style="font-size: 15px; margin-left:28px; "><fmt:message code="global.lang.date" /> :</div>
                 <input class="button1" id="sendTime">
             </div>
-             <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
+             <!-- <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/> -->
+             <div id="cx">查询</div>
         </div>
 
        

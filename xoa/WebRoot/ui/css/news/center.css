@@ -108,17 +108,7 @@ s, i, em {
     border-radius: 20px;
 
 }
-  	#cx {
-     		background-image:url(../img/center_q.png);
-     		background-repeat:no-repeat;
-     		width:60px;
-     		hieght:30px;
-     		line-height:30px;
-     		margin-top: 18px;
-     		margin-left: 10px;
-     		text-align:center;
-     		color:#fff;
-     	}
+
 
 /*navigation开始*/
 .navigation {

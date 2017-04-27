@@ -124,6 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      		margin-left: 10px;
      		text-align:center;
      		color:#fff;
+     		cursor: pointer;
      	}
    
 	</style>
