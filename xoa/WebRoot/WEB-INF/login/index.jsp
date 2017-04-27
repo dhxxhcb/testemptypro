@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.content .left .logo img{display: block;width: 100%;}
 			
 			.content .right{width: 45%;float: left;}
-			.content .right ul{list-style: none;margin-top: 27%;margin-left: 15%;position: relative;}
+			.content .right ul{list-style: none;margin-top: 18%;margin-left: 15%;position: relative;}
 			.content .right ul li.total{width: 384px;height: 50px;background: url(img/1.png) no-repeat;position: relative;border-radius: 25px;background-position:center;margin-bottom: 42px;z-index: 999;}
 			.content .right ul li a{text-decoration: none;display: block;width: 100%;}
 			.content .right ul li.total .round{display: block;width: 16px;height: 16px;border-radius: 50%;background-color: #fff;;margin-left: 25px;position: absolute;top: 17px;}
@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  <a href="?lang=en_US"><fmt:message code="language.en" /></a>
 				<ul>
 					<li class="total">
-						<a href="javascript:;">
+						<a href="login?loginId=1001">
 							<span class="round"></span>
 							<span class="bord">|</span>
 							<span class="txt">
@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 					</li>
 					<li class="div_li one">
-						<a href="login?loginId=1001">
+						<a href="login?loginId=1002">
 							<span class="round"></span>
 							<span class="bord">|</span>
 							<span class="txt">
@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 					</li>
 					<li class="div_li tow">
-						<a href="login?loginId=1002">
+						<a href="login?loginId=1003">
 							<span class="round"></span>
 							<span class="bord">|</span>
 							<span class="txt">
@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 					</li>
 					<li class="div_li three">
-						<a href="javascript:;">
+						<a href="login?loginId=1004">
 							<span class="round"></span>
 							<span class="bord">|</span>
 							<span class="txt">
@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 					</li>
 					<li class="div_li four">
-						<a href="javascript:;">
+						<a href="login?loginId=1004">
 							<span class="round"></span>
 							<span class="bord">|</span>
 							<span class="txt">

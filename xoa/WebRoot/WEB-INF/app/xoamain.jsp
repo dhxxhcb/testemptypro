@@ -605,23 +605,7 @@ a.fmPanel span {
 	<div id="north" class="navwrapper">
 		<div id="infobar" class="navbar pull-right">
 			<ul class="infonav">
-				<li id="mobile_code" class="navin" data-placement="left"
-					data-toggle="tooltip" data-original-title="下载移动版"><a
-					href="javascript:;" id="code" class="nav-item iconfont">&#xe682;</a>
-					<div class="code-wrap">
-						<a href="#"><img src="img/ios_code.png"> </a>
-						<p>iOS版</p>
-						<hr>
-						<a href="#"><img src="img/android_code.png"> </a>
-						<p>Android版</p>
-						<hr>
-						<a href="#"><img src="img/ding_code.jpg"> </a>
-						<p>下载钉钉</p>
-						<hr>
-						<a href="#"><img src="img/wechat.jpg"> </a>
-						<p>通达OA公众号</p>
-					</div>
-				</li>
+
 				<li id="info_avater" class="navin" data-placement="left"
 					data-toggle="tooltip" title="" data-original-title="我的OA账号"
 					data-step="6"
