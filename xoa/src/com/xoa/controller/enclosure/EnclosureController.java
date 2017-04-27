@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +57,20 @@ public class EnclosureController {
 	  @RequestMapping("/upload")  
 	    public String FileUpload(  
 	            @RequestParam("file") MultipartFile[] files,HttpServletRequest request) {  
-	      
+			if(files.length==0){
+				return null;
+			}
+			ResourceBundle rb =  ResourceBundle.getBundle("upload");
+			//String name = rb.getString("mysql.driverClassName");
+			String os = System.getProperty("os.name");
+			StringBuffer sb=new StringBuffer();
+			if(os.toLowerCase().startsWith("win")){  
+			  sb=sb.append(rb.getString("upload.win"));  
+			}else{
+			  sb=sb.append(rb.getString("upload.linux"));
+			}
+			
+			
 	        List<Attachment> list = new ArrayList<Attachment>();
 	        //获得公司名
 	        String company="xoa111";
