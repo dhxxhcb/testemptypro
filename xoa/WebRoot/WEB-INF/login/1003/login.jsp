@@ -20,7 +20,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<title>登录2</title>
+<title></title>
 <style type="text/css">
 * {
 	margin: 0;
@@ -119,6 +119,15 @@ html,body {
 <script type="text/javascript">
 	$(function() {
 		$('#loginbtn').click(function() {
+			login();
+		});
+		 $(document).keypress(function(e) {  
+		    // 回车键事件  
+		 	if(e.which == 13) {  
+		 		$('#loginbtn').click();  
+		    }  
+		 }); 
+		function login(){
 			$.ajax({
 				type : "post",
 				url : "login",
@@ -137,7 +146,7 @@ html,body {
 					}
 				}
 			})
-		});
+		}
 
 	})
 </script>
@@ -146,7 +155,7 @@ html,body {
 		<div class="content">
 			<div class="entry">
 				<div class="div_img">
-					<img src="img/logo.png" />
+					<img src="img/logo2.png" />
 				</div>
 				<p>
 					<fmt:message code="title.beijing" />

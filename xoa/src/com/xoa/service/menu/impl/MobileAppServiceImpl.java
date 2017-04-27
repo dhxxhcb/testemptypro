@@ -67,7 +67,9 @@ public class MobileAppServiceImpl implements MobileAppService {
 			
 		}
 		mList1.add(list1);
-		mList1.add(list2);
+		if (list2.size()>0) {
+			mList1.add(list2);
+		}
 		return mList1;
 	}
 

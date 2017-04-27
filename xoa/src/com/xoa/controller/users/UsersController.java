@@ -230,7 +230,9 @@ public class UsersController {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");	
+			System.out.println("----------------");
 			System.out.println(search);
+			System.out.println("----------------");
 			//String search=URLEncoder.encode(request.getParameter("search"),"UTF-8"); 
 			maps=new HashMap<String, Object>();
 			maps.put("userName", search);

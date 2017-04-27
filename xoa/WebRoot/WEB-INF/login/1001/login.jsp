@@ -119,6 +119,15 @@ html,body {
 <script type="text/javascript">
 	$(function() {
 		$('#loginbtn').click(function() {
+			login();
+		});
+		$(document).keypress(function(e) {  
+		    // 回车键事件  
+		 	if(e.which == 13) {  
+		 		$('#loginbtn').click();  
+		    }  
+		 }); 
+		function login(){
 			$.ajax({
 				type : "post",
 				url : "login",
@@ -137,7 +146,7 @@ html,body {
 					}
 				}
 			})
-		});
+		}
 
 	})
 </script>

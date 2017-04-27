@@ -16,9 +16,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
 <style type="text/css">
 body {
 	background-color: #D6E4EF;
@@ -54,22 +51,32 @@ table tr td input:not (#fh ){
 	padding: 2px 5px;
 }
 </style>
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
+
      function closeCurrentWindow(){
- 		  document.form1.submit();
+        $("form").submit(function(){
+    alert("Submitted");
+  });
+       // $("#form1").submit();
+        
+        /*  var sortNo=$('#fileNoid').val();
+         var sortName=$('#sortName').val();
+         $.post("${pageContext.request.contextPath }/file/add",{"sortNo":sortNo,"sortName":sortName},function(data){
+         });
+ 		
  		window.opener.location.href = window.opener.location.href;     
  		if (window.opener.progressWindow)     
  		{         
  		window.opener.progressWindow.close();     
  		}     
- 		window.close(); 
+ 		window.close();  */
  	} 
-    </script>
+</script>
 </head>
 <body>
 	<h1>新建文件夹</h1>
-	<form id="form1" name="form1"
-		action="${pageContext.request.contextPath }/file/add">
+	<form id="form1" name="form1" >
 		<table border="1" cellspacing="0" cellpadding="0"
 			style="border-collapse: collapse;" width="50%">
 			<tr>
@@ -89,10 +96,6 @@ table tr td input:not (#fh ){
 				</td>
 			</tr>
 		</table>
-		<!--     排序号:    <input id="fileNoid" name="sort_no" type="text"/><br>
-   文件夹名称：    <input id="fileNameid" name="sort_name" type="text"/><br>
-   <input id="qr" type="button" value="" onclick="submit()"/><br>
-   <input id="fh" type="button" value="确认" onclick="closeCurrentWindow()"/> -->
 	</form>
 </body>
 </html>

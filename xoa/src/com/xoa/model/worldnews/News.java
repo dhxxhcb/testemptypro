@@ -159,8 +159,18 @@ public class News implements Serializable {
 	private Role role;
 	
 	 private SysCode codes;
+	 
+	 private String newsDateTime;
 	
 	
+	public String getNewsDateTime() {
+		return newsDateTime;
+	}
+
+	public void setNewsDateTime(String newsDateTime) {
+		this.newsDateTime = newsDateTime;
+	}
+
 	public SysCode getCodes() {
 		return codes;
 	}

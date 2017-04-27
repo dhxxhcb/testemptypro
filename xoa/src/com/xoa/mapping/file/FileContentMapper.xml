@@ -19,16 +19,16 @@
 		<result column="KEYWORD" property="keyword" javaType="string" />
 		<result  column="fileType"  property="fileType" javaType="string" />
 		</resultMap>
-		<sql id="FileConSelect">
-		CONTENT_ID,SORT_ID,SUBJECT,CONTENT,SEND_TIME,ATTACHMENT_ID,ATTACHMENT_NAME,ATTACHMENT_DESC,USER_ID,CONTENT_NO,NEW_PERSON,READERS,
-		CREATER,LOGS,KEYWORD
-		</sql>
 		<sql id="FileConInsert">
 		SORT_ID,SUBJECT,CONTENT,SEND_TIME,ATTACHMENT_ID,ATTACHMENT_NAME,ATTACHMENT_DESC,USER_ID,CONTENT_NO,NEW_PERSON,READERS,
 		CREATER,LOGS,KEYWORD
 		</sql>
+		<sql id="FileConSelect">
+		fc.CONTENT_ID,fc.SORT_ID,fc.SUBJECT,fc.CONTENT,fc.SEND_TIME,fc.ATTACHMENT_ID,fc.ATTACHMENT_NAME,fc.ATTACHMENT_DESC,fc.USER_ID,fc.CONTENT_NO,fc.NEW_PERSON,fc.READERS,
+		 u.USER_NAME as CREATER,fc.LOGS,fc.KEYWORD
+		</sql>
 		<select id="getFileConBySortid" parameterType="int" resultMap="file_ContentResultMap">
-		select <include refid="FileConSelect"/>,'file' as fileType from file_content where SORT_ID=#{tempNo};
+		select <include refid="FileConSelect"/>,'file' as fileType from file_content fc,user u where fc.SORT_ID=#{tempNo} and u.USER_ID=fc.CREATER;
 		</select>
 		<select id="getFileConByContentId" parameterType="string" resultMap="file_ContentResultMap">
 		select * from file_content where CONTENT_ID = #{contentId};

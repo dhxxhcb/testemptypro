@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@Scope(value = "common")
-@RequestMapping("/diary")
+@Scope(value = "prototype")
+@RequestMapping("/common")
 public class CommonController {
 	private Logger loger = Logger.getLogger(CommonController.class);
 	

@@ -143,10 +143,20 @@ public class Notify {
     private Users users;
     private String name;
   private  SysCode codes;
+  
+  private String notifyDateTime;
     
     
     
-    public SysCode getCodes() {
+    public String getNotifyDateTime() {
+	return notifyDateTime;
+}
+
+public void setNotifyDateTime(String notifyDateTime) {
+	this.notifyDateTime = notifyDateTime;
+}
+
+	public SysCode getCodes() {
 	return codes;
 }
 

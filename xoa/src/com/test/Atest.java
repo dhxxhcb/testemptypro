@@ -63,5 +63,18 @@ public class Atest {
 		
 		}*/
 	
+	public static void main(String[] args) {
+		String fils = "2615@1310_598983059";
+		String names = fils.substring(0,fils.lastIndexOf("@"));
+		String nmas1 = fils.substring(fils.indexOf("@")+1,fils.lastIndexOf("_"));
+		String nma = fils.substring(fils.indexOf("_")+1,fils.length());
+		
+		System.out.println(names+"||||"+nmas1+"||||"+nma);
+		
+		
+//		String name = "2615@1310_598983059";
+//		String 
+		
+	}
 
 }

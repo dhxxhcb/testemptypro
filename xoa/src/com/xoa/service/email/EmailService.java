@@ -30,7 +30,7 @@ public interface EmailService {
 	 * @return     void
 	 */
 	@DynDatasource
-	public void sendEmail(EmailBodyModel emailBody,MultipartFile[] files, EmailModel email);
+	public void sendEmail(EmailBodyModel emailBody, EmailModel email);
 	
 	/**
 	 * 
@@ -41,7 +41,7 @@ public interface EmailService {
 	 * @return     void
 	 */
 	@DynDatasource
-	public void saveEmail(EmailBodyModel emailBody,MultipartFile[] files);
+	public void saveEmail(EmailBodyModel emailBody);
 	
 	/**
 	 * 

@@ -123,7 +123,7 @@ public interface FileSortService {
 	 * @return     List<FileSortModel>
 	 */
 	@DynDatasource
-	List<FileSortModel> getChildTree(int sortid);
+	List<FileSortModel> getChildTree(List<String> sortidList);
      /**
       * 
       * 创建作者:   杨 胜

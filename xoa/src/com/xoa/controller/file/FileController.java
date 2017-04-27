@@ -3,14 +3,19 @@ package com.xoa.controller.file;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -81,12 +86,64 @@ public class FileController {
 	 */
 	@RequestMapping(value = "/writeTree", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
-	public void showFile(FileSortModel file, HttpServletResponse response) {
-		loger.info("--------showFile-------");
-		List<TreeNode> treeList = treeMenu(file.getSortId());
+	public void showFile(FileSortModel file, HttpServletResponse response,HttpSession session) {
+		loger.info("--------writeTree-------");
+		List<TreeNode> treeList = treeFile(file.getSortId(),session);
 		HtmlUtil.writerJson(response, treeList);
 	}
-
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午4:09:20
+	 * 方法介绍:   将目录树转换成json数据通过HtmlUtil.writerJson(response, treeList)写到前台页面
+	 * 参数说明:   @param file
+	 * 参数说明:   @param response
+	 * @return     void
+	 */
+	@RequestMapping(value = "/writeTreePerson", produces = { "application/json;charset=UTF-8" })
+	@ResponseBody
+	public void showFilePerson(FileSortModel file, HttpServletResponse response,HttpSession session) {
+		loger.info("--------writeTreePerson-------");
+		List<TreeNode> treeList = treeFilePerson(file.getSortId(),session);
+		HtmlUtil.writerJson(response, treeList);
+	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午4:12:07
+	 * 方法介绍:   构建个人树形目录信息
+	 * 参数说明:   @param sortid
+	 * 参数说明:   @return
+	 * @return     List<TreeNode>
+	 */
+	public List<TreeNode> treeFilePerson(int sortid,HttpSession session) {
+		//Session 获取用户信息
+		String userId=session.getAttribute("userId").toString();
+		
+	
+		//采用 LinkedList 双向列表实现类 操作 在链表中操作对象集合效率高
+		List<FileSortModel> rootTree=new LinkedList<FileSortModel>();
+		FileSortModel fsm=new FileSortModel();
+		fsm.setUserId(userId);
+		fsm.setSortType("4");
+		fsm.setSortParent(0);
+		rootTree = fileSortService.getFileSortList(fsm);// 根节点
+		
+		List<FileSortModel> childTree = new LinkedList<FileSortModel>();
+		List<String> sortidList=new ArrayList<String>();
+		for(FileSortModel f:rootTree){
+			sortidList.add(f.getSortId()+"");
+		}
+		System.out.println("---------------后-------------------"+rootTree.size());
+		
+		// 取子节点
+		if(rootTree.size()>0)
+		childTree = fileSortService.getChildTree(sortidList);// 子节点
+		// 构造方法传值
+		FileSortTreeUtil util = new FileSortTreeUtil(rootTree, childTree);
+		return util.getTreeNode();
+	}
+	
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -135,12 +192,28 @@ public class FileController {
 		ModelAndView modelAndView = new ModelAndView("app/file/fileContent", model);
 		return modelAndView;
 	}
-	
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-26 上午9:06:06
+	 * 方法介绍:   添加子文件夹
+	 * 参数说明:   @return
+	 * @return     String
+	 */
 	@RequestMapping(value = "addContent")
 	public String addContent() {
 		loger.info("--------home-------");
 		return "app/file/";
 	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-26 上午9:06:53
+	 * 方法介绍:   查看文件内容
+	 * 参数说明:   @param contentId
+	 * 参数说明:   @return
+	 * @return     ModelAndView
+	 */
 	@RequestMapping(value = "/catContent")
 	public ModelAndView catContent(String contentId) {
 		loger.info("--------catContent-------");
@@ -160,11 +233,50 @@ public class FileController {
 	 * 参数说明:   @return
 	 * @return     List<TreeNode>
 	 */
-	public List<TreeNode> treeMenu(int sortid) {
-		List<FileSortModel> rootTree = fileSortService.getRootTree(sortid);// 根节点
-		List<FileSortModel> childTree = null;
+	public List<TreeNode> treeFile(int sortid,HttpSession session) {
+		//Session 获取用户信息
+		String userId=session.getAttribute("userId").toString();
+		String userPriv=session.getAttribute("userPriv").toString();
+		String deptId=session.getAttribute("deptId").toString();
+		System.out.println("-----------------------"+userId+"---"+userPriv+"---"+deptId);
+		Map<String,Object> map=new Hashtable<String, Object>();
+		map.put("userId", userId);
+		map.put("userPriv", userPriv);
+		map.put("deptId", deptId);
+		//采用 LinkedList 双向列表实现类 操作 在链表中操作对象集合效率高
+		List<FileSortModel> rootTree=new LinkedList<FileSortModel>();
+		rootTree = fileSortService.getRootTree(sortid);// 根节点
+		System.out.println("-------------------前---------------"+rootTree.size());
+		//利用迭代器删除集合中元素
+		Iterator<FileSortModel> iterator=rootTree.iterator();
+		while(iterator.hasNext()){
+			FileSortModel fsm=iterator.next();
+			System.out.println("-------------------前   ---------------"+fsm.getUserId());
+			//将权限字符串传到checkAll 返回为true时 有权限 为false时无权限
+			if(!this.checkAll(fsm.getUserId(),map)){
+				iterator.remove();
+			}
+		}
+		List<FileSortModel> childTree = new LinkedList<FileSortModel>();
+		List<String> sortidList=new ArrayList<String>();
+		for(FileSortModel fsm:rootTree){
+			sortidList.add(fsm.getSortId()+"");
+		}
+		System.out.println("---------------后-------------------"+rootTree.size());
+		
 		// 取子节点
-		childTree = fileSortService.getChildTree(sortid);// 子节点
+		if(rootTree.size()>0)
+		childTree = fileSortService.getChildTree(sortidList);// 子节点
+		
+		//利用迭代器删除集合中元素
+		Iterator<FileSortModel> iteratorChr=childTree.iterator();
+		while(iteratorChr.hasNext()){
+					FileSortModel fsm=iteratorChr.next();
+					//将权限字符串传到checkAll 返回为true时 有权限 为false时无权限
+					if(!this.checkAll(fsm.getUserId(),map)){
+						iteratorChr.remove();
+			}
+		}
 		// 构造方法传值
 		FileSortTreeUtil util = new FileSortTreeUtil(rootTree, childTree);
 		return util.getTreeNode();
@@ -187,6 +299,7 @@ public class FileController {
 		int tempNo=file.getSortId();
 		//获取文件
 		List<FileContentModel>  fileConList=fileContentService.getFileConBySortid(tempNo);
+		
 		if("1".equals(postType)){
 			for(FileContentModel fcm:fileConList){
 				fcm.setContent("");
@@ -449,6 +562,151 @@ public class FileController {
 			String path = request.getSession().getServletContext()
 					.getRealPath("/");
 		}
+		return false;
+	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-26 上午10:01:17
+	 * 方法介绍:   验证目录树权限公共方法
+	 * 参数说明:   @param checkString
+	 * 参数说明:   @param map
+	 * 参数说明:   @return
+	 * @return     boolean
+	 */
+	public boolean checkAll(String checkString,Map<String,Object> map){
+		//"|"转义字符串  所以必须用\\进行转义 因为 而且取出数组长度不确定
+	   String[] checkStrings=checkString.split("\\|");
+	   if(checkStrings.length==0){
+		   return false;
+	   }
+	     //数组长度为1时 说明此时角色和用户Id权限为空
+	   if(checkStrings.length==1){
+		   String[]  checkDept=checkStrings[0].split(",");
+		   for(int i=0;i<checkDept.length;i++){
+			   //调用校验部门方法  传值为部门id
+			   if(checkDeptPriv(checkDept[i],map.get("deptId").toString())){
+				   return true;
+			   }
+		   }
+	   }
+	     //数组长度为2时 说明此时角色和用户Id权限为空
+	   if(checkStrings.length==2){
+		   String[]  checkDept=checkStrings[0].split(",");
+		   for(int i=0;i<checkDept.length;i++){
+			   //调用校验部门范围方法  传值为部门id
+			   if(checkDeptPriv(checkDept[i],map.get("deptId").toString())){
+				   return true;
+			   }
+		   }
+		   String[]  checkUserPriv=checkStrings[1].split(",");
+		   for(int i=0;i<checkUserPriv.length;i++){
+			   //调用校验角色范围方法  传值为角色id
+			   if(checkUserPriv(checkUserPriv[i],map.get("userPriv").toString())){
+				   return true;
+			   }
+		   }
+	   }
+	     //数组长度为3时 说明此时部门、角色和用户Id权限都不为空
+	   if(checkStrings.length==3){
+		   String[]  checkDept=checkStrings[0].split(",");
+		   for(int i=0;i<checkDept.length;i++){
+			   //调用校验部门范围方法  传值为部门id
+			   if(checkDeptPriv(checkDept[i],map.get("deptId").toString())){
+				   return true;
+			   }
+		   }
+		   String[]  checkUserPriv=checkStrings[1].split(",");
+		   for(int i=0;i<checkUserPriv.length;i++){
+			   //调用校验角色范围方法  传值为角色id
+			   if(checkUserPriv(checkUserPriv[i],map.get("userPriv").toString())){
+				   return true;
+			   }
+		   }
+		   String[]  checkUserId=checkStrings[2].split(",");
+		   for(int i=0;i<checkUserId.length;i++){
+			   //调用校验用户范围方法  传值为用户id
+			   if(checkUserId(checkUserId[i],map.get("userId").toString())){
+				   return true; 
+			   }
+		   }
+	   }
+        //
+		return false;
+	}
+	
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-26 上午9:21:36
+	 * 方法介绍:   检查部门权限Id
+	 * 参数说明:   @param DeptId 
+	 * 参数说明:   @param deptIdOfuser_Id
+	 * 参数说明:   @return
+	 * @return     boolean
+	 */
+	public boolean checkDeptPriv(String DeptId,String deptIdOfuser_Id){
+		//如果部门部分权限为“ALL_DEPT" 则部门范围有访问权限。将直返回return true；停止执行程序
+		if("ALL_DEPT".equals(DeptId)||"ALL_DEPT"==DeptId){
+			return true;
+		}
+		//如果部门部分权限为拼接字符串则将字符串拆开验证 ，如果登录人员匹配得所属部门则将直返回return true；停止执行程序
+		if(DeptId!=null&&!"".equals(DeptId)){
+		    String[] deptIds=DeptId.split(",");
+		    for(int i=0;i<deptIds.length;i++){
+		    	if(deptIdOfuser_Id.equals(deptIds)){
+		    		return true;
+		    	}
+		    }
+		}
+		//如果部门字符串为其他类型 证明其无权限访问return false;
+		return false;
+	}
+	/**
+	 * 
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-26 上午9:54:36
+	 * 方法介绍:   检查角色权限Id
+	 * 参数说明:   @param userPriv 角色id
+	 * 参数说明:   @param userPrivOfuser_Id 角色字符串
+	 * 参数说明:   @return
+	 * @return     boolean
+	 */
+	public boolean checkUserPriv(String userPriv,String userPrivOfuser_Id){
+		//角色部分权限为拼接字符串，将字符串拆开验证 ，如果登录人员匹配得所属部门则将直接返回return true；停止执行程序
+		if(userPriv!=null&&!"".equals(userPriv)){
+		    String[] deptIds=userPriv.split(",");
+		    for(int i=0;i<deptIds.length;i++){
+		    	if(deptIds.equals(userPrivOfuser_Id)){
+		    		return true;
+		    	}
+		    }
+		}
+		//如果角色部分字符串为其他类型  证明其无权限访问return false;
+		return false;
+	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-26 上午9:57:41
+	 * 方法介绍:   人员权限验证
+	 * 参数说明:   @param userId 人员userId
+	 * 参数说明:   @param userIdOfuser_Id
+	 * 参数说明:   @return boolean
+	 * @return     boolean
+	 */
+	public boolean checkUserId(String userId,String userIdOfuser_Id){
+		//如果部门部分权限为拼接字符串则将字符串拆开验证 ，如果登录人员匹配得所属部门则将直返回return true；停止执行程序
+		if(userId!=null&&!"".equals(userId)){
+		    String[] deptIds=userId.split(",");
+		    for(int i=0;i<deptIds.length;i++){
+		    	if(deptIds.equals(userIdOfuser_Id)){
+		    		return true;
+		    	}
+		    }
+		}
+		//如果部门字符串为其他类型 证明其无权限访问return false;
 		return false;
 	}
 }
