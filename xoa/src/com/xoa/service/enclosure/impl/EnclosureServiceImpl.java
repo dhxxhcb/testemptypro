@@ -112,7 +112,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	
 	
 	public String attachmenturl(Attachment att,String company,String module){
-		String attUrl="AID="+att.getAid()+"&"+"Module="+att.getModule()+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
+		String attUrl="AID="+att.getAid()+"&"+"MODULE="+att.getModule()+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
 		String basePath="D://upload";
 	    String path=basePath+"/"+company+"/"+module+"/"+att.getYm();
 	    String fileName=att.getAttachName();

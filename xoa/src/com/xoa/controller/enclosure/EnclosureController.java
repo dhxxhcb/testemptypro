@@ -209,18 +209,27 @@ public class EnclosureController {
 	 * @return     String 返回是否成功
 	 */
 	@RequestMapping(value={"/download"},method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
-	public String download(String filename,HttpServletResponse response,
+	public String download(@RequestParam("AID") String aid ,
+						@RequestParam("MODULE") String module ,
+						@RequestParam("YM") String ym ,
+						@RequestParam("ATTACHMENT_ID") String attachmentId ,
+						@RequestParam("ATTACHMENT_NAME") String attachmenrName ,
+						@RequestParam("company") String company ,
+			HttpServletResponse response,
 	 HttpServletRequest request) {
+	
+		String path="D://upload"+"/"+company+"/"+module+"/"+ym+"/"+attachmentId+"."+attachmenrName;
+		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
 		response.setHeader("Content-Disposition", "attachment;fileName="
-				+ filename);
+				+ attachmenrName);
 				try {
-					String path = Thread.currentThread().getContextClassLoader()
+				/*	String path = Thread.currentThread().getContextClassLoader()
 							.getResource("").getPath()
 							+ "download";//
-					InputStream inputStream = new FileInputStream(new File(path
-							+ File.separator + filename));
+*/					InputStream inputStream = new FileInputStream(new File(path
+							));
 
 					OutputStream os = response.getOutputStream();
 					byte[] b = new byte[2048];
