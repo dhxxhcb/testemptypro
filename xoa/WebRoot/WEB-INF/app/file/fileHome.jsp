@@ -22,7 +22,6 @@
 <script type="text/javascript" src="../js/easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
 $(function(){
-alert("我进来了!");
 $("#fileTree").tree({
 	onClick : function(node){
 		//alert(node.id);  // 在用户点击的时候提示
