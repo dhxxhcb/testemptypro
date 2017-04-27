@@ -1,13 +1,20 @@
 package com.xoa.service.users.impl;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.xoa.dao.common.SyslogMapper;
 import com.xoa.dao.users.UsersMapper;
+import com.xoa.model.common.Syslog;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
+import com.xoa.util.CusAccessObjectUtil;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
 
@@ -23,6 +30,8 @@ public class UsersServiceImpl implements UsersService {
 	
 	@Resource
 	private UsersMapper usersMapper;
+	@Resource
+	private SyslogMapper syslogMapper;
 
 	 /**
 	 * 创建作者:   张龙飞
@@ -139,11 +148,21 @@ public class UsersServiceImpl implements UsersService {
 	 * @return     Users  返回用户
 	 */
 	@Override
-	public Users findUserByName(String byname) {
+	public Users findUserByName(String byname,HttpServletRequest req) {
 		Users user=usersMapper.findUserByName(byname);
 		user.setDeptName(user.getDep().getDeptName());
+		Syslog sysLog=new Syslog();
+	    sysLog.setLogId(0);
+	    sysLog.setUserId(user.getUserId());
+	    sysLog.setTime(new Date());
+	    String ip= CusAccessObjectUtil.getIpAddress(req);
+	    sysLog.setIp(ip);
+	    sysLog.setType(1);
+	    sysLog.setRemark("userName="+user.getUserId());
+	    syslogMapper.save(sysLog);
+	    
 		return user;
-	}
+		}
 	 /**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月21日 上午10:27:07
