@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						'subject':val,
 						'content':txt
 					}
-					alert(data.content)
+					
 					$.ajax({
 						 type:'post',    
 						 url:'sendEmail',
