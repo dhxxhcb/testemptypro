@@ -151,6 +151,7 @@ public class UsersServiceImpl implements UsersService {
 	public Users findUserByName(String byname,HttpServletRequest req) {
 		Users user=usersMapper.findUserByName(byname);
 		user.setDeptName(user.getDep().getDeptName());
+		user.setCompanyName("北京高速波软件有限公司");
 		Syslog sysLog=new Syslog();
 	    sysLog.setLogId(0);
 	    sysLog.setUserId(user.getUserId());
