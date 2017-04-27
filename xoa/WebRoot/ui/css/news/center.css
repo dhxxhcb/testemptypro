@@ -95,7 +95,7 @@ s, i, em {
     display: inline-block;
     float: left;
     font-family: "微软雅黑";
-    font-size: 16px;
+    font-size: 14px;
     margin: 6px;
     cursor: pointer
 
@@ -103,7 +103,7 @@ s, i, em {
 
 .head .one {
     background-color: #2F8AE3;
-    font-size: 18px;
+    font-size: 14px;
     color: #ffffff;
     border-radius: 20px;
 
@@ -129,7 +129,7 @@ s, i, em {
 }
 
 .navigation .left .news {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     margin: 0 5px;
 }
@@ -177,9 +177,9 @@ td {
 
 .th {
     background-color: #fff;
-    font: bold 16px "SimSun";
+   font-size:15px;
     color: #2F5C8F;
-    font-weight: bold;
+    font-weight: bold; 
     border: 0px;
 }
 
