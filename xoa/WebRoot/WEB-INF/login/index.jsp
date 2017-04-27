@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+ <script type="text/javascript" src="js/news/jquery-1.9.1.js"></script>
 <head>
 		<title>心通达OA-登录</title>
 		<style type="text/css">
@@ -17,11 +18,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			html,body{width:100%;height:100%;}
 			.content{width: 100%;height:100%;overflow: hidden;background: url(img/all.png) no-repeat;background-size:cover;}
 			.content .left{width: 55%;min-height:800px;float: left;position: relative;}
-			.content .left .logo{width: 350px;position: absolute;top: 35%;left: 25%;}
+			.content .left .logo{width: 350px;position: absolute;top: 20%;left: 25%;}
 			.content .left .logo img{display: block;width: 100%;}
 			
 			.content .right{width: 45%;float: left;}
-			.content .right ul{list-style: none;margin-top: 18%;margin-left: 15%;position: relative;}
+			.content .right ul{list-style: none;margin-top: 25%;margin-left: 15%;position: relative;}
 			.content .right ul li.total{width: 384px;height: 50px;background: url(img/1.png) no-repeat;position: relative;border-radius: 25px;background-position:center;margin-bottom: 42px;z-index: 999;}
 			.content .right ul li a{text-decoration: none;display: block;width: 100%;}
 			.content .right ul li.total .round{display: block;width: 16px;height: 16px;border-radius: 50%;background-color: #fff;;margin-left: 25px;position: absolute;top: 17px;}
@@ -45,19 +46,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   @media screen and (min-width: 1921px) {
 		 		.content .left .logo{width: 478px;}
 		 }
+		 #lg {
+		 width: 250px;
+   		 height: 50px;
+   		 margin-left:75px;
+   		 margin-top: 48px;
+
+		 }
+		 #zt {
+		 	margin-right:45px;
+		 	margin-top:30px;
+		 	float: right;
+		
+		 
+		 }
+		 
+		 
 		</style>
+		<script type="text/javascript">
+		$(function () {
+			$("#lg").click(function(){
+				
+			});
+		
+		}
+		</script>
+		
 	</head>
 	<body>
 		<div class="content">
 			<div class="left">
 				<div class="logo">
-					<img src="img/logo.png"/>
+					<img  src="img/logo.png"/>
+					<img id="lg" src="img/sy01.png"/>
+					<img id="lg" src="img/sy02.png"/>
+					<img id="lg" src="img/sy04.png"/>
 				</div>
+			
 			</div>
 			<div class="right">
-			<fmt:message code="language" />: <a href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
+				<div id="zt">
+					<fmt:message code="language" />:
+					 <a href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
 					  &nbsp;&nbsp;
 					  <a href="?lang=en_US"><fmt:message code="language.en" /></a>
+					  &nbsp;&nbsp;
+					  <a href="?lang=en_US">繁体</a>
+				</div>
 				<ul>
 					<li class="total">
 						<a href="login?loginId=1001">
