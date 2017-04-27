@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <th nowrap align="center"><fmt:message code="notice.th.type" /></th>
 		      <th nowrap align="center"><fmt:message code="notice.th.title" /></th>
 		   
-		      <th nowrap align="center" style="cursor:pointer;"><u>发布范围</u>
+		      <th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.releasescope" /></u>
 		      	
 		      </th>
 		      <th nowrap align="center"><fmt:message code="notice.th.createTime" />
@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      </th>
 		    </tr>
 		    <tr>
-		    	<td><input type="button" name="Btn" class="Btn" id="Btn" value="返回"></td>
+		    	<td><input type="button" name="Btn" class="Btn" id="Btn" value="<fmt:message code="notice.th.return" />"></td>
 		    </tr>
 		</table>
 	</div> 

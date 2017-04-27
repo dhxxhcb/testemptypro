@@ -337,7 +337,7 @@ textarea {
 					<th nowrap align="center"><fmt:message code="notice.th.title" />
 					</th>
 
-					<th nowrap align="center" style="cursor:pointer;"><u>发布范围</u>
+					<th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.releasescope" /></u>
 
 					</th>
 					<th nowrap align="center"><fmt:message
@@ -369,30 +369,30 @@ textarea {
 										src="../img/org_select1.png" class="addIcon" /> </span> <a
 									href="javascript:;" class="Add"></a> </span> <span class="add_img">
 									<span class="addImg"> <img src="../img/org_select2.png"
-										class="clearIcon" /> </span> <a href="javascript:;" class="clear">清除</a>
+										class="clearIcon" /> </span> <a href="javascript:;" class="clear"><fmt:message code="global.lang.delete" /></a>
 								</span>
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td nowrap="" class="TableData" width="100">格式：</td>
+						<td nowrap="" class="TableData" width="100"><fmt:message code="notice.th.format" />：</td>
 						<td class="TableData"><select name="FORMAT" class="BigSelect">
-								<option value="0" selected="">全部</option>
-								<option value="1">普通格式</option>
-								<option value="2">MHT格式</option>
-								<!--<option value="2">超级链接</option>-->
+								<option value="0" selected=""><fmt:message code="notice.th.all" /></option>
+								<option value="1"><fmt:message code="notice.format.Commonformat" /></option>
+								<option value="2"><fmt:message code="notice.format.MHTformat" /></option>
+								<!--<option value="2">超级链接</option>-->	
 						</select>
 						</td>
 					</tr>
 					<tr>
-						<td nowrap="" class="TableData">类型：</td>
+						<td nowrap="" class="TableData"><fmt:message code="notice.th.type" />：</td>
 						<td class="TableData"><select name="TYPE_ID"
 							class="BigSelect">
-								<option value="" selected="">全部</option>
-								<option value="01">决定</option>
-								<option value="02">通知</option>
-								<option value="03">通报</option>
-								<option value="04">其他</option>
+								<option value="" selected=""><fmt:message code="notice.th.all" /></option>
+		          <option value="01"><fmt:message code="notice.type.Decision" /></option>
+				  <option value="02"><fmt:message code="notice.type.notice" /></option>
+				  <option value="03"><fmt:message code="notice.type.Bulletin" /></option>
+				  <option value="04"><fmt:message code="notice.type.other" /></option>
 						</select>&nbsp;</td>
 					</tr>
 					<tr>
@@ -410,7 +410,7 @@ textarea {
 						</td>
 					</tr>
 					<tr>
-						<td nowrap="" class="TableData" width="100">内容：</td>
+						<td nowrap="" class="TableData" width="100"><fmt:message code="notice.th.content" />：</td>
 						<td class="TableData"><input type="text" name="CONTENT"
 							size="33" maxlength="200" class="BigInput" value="">
 						</td>
@@ -418,9 +418,9 @@ textarea {
 					<tr align="center" class="TableControl">
 						<td colspan="2" nowrap="">
 							<div class="Btn">
-								<input type="submit" value="查询" class="BigButton"
+								<input type="submit" value="<fmt:message code="global.lang.ok" />" class="BigButton"
 									style="cursor: pointer;">&nbsp;&nbsp; <input
-									type="reset" value="重填" class="BigButton"
+									type="reset" value="<fmt:message code="global.lang.refillings" />" class="BigButton"
 									style="cursor: pointer;">&nbsp;&nbsp;
 							</div>
 						</td>
@@ -436,7 +436,7 @@ textarea {
 				class="small" align="center">
 				<tr>
 					<td class="Big"><img src="../img/notify_open.gif"
-						align="absmiddle"> <span class="big3">公告通知查询结束</span>
+						align="absmiddle"> <span class="big3"><fmt:message code="notice.th.queryEnd" /></span>
 					</td>
 
 					<td align="right" valign="bottom" class="small1">
@@ -455,7 +455,7 @@ textarea {
 					<th nowrap align="center"><fmt:message code="notice.th.title" />
 					</th>
 
-					<th nowrap align="center" style="cursor:pointer;"><u>发布范围</u>
+					<th nowrap align="center" style="cursor:pointer;"><u><fmt:message code="notice.th.releasescope" /></u>
 
 					</th>
 					<th nowrap align="center"><fmt:message
@@ -467,7 +467,7 @@ textarea {
 					<td colspan="5">
 						<div class="divBtn">
 							<input type="button" name="iBtn" class="iBtn" id="iBtn"
-								value="返回" style="cursor: pointer;">
+								value="<fmt:message code="notice.th.return" />" style="cursor: pointer;">
 						</div>
 					</td>
 				</tr>
