@@ -115,6 +115,7 @@ public class NewServiceImpl implements NewService {
 		List<News> list = newsMapper.unreadNews(maps);
 		List<News> list1 = new ArrayList<News>();
 		for (News news : list) {
+			news.setNewsDateTime(DateFormat.getStrDate(news.getNewsTime()));
 			news.setProviderName(news.getUsers().getUserName());
 			news.setTypeName(news.getCodes().getCodeName());
 			if (news.getReaders().indexOf(name) == -1) {
@@ -138,6 +139,7 @@ public class NewServiceImpl implements NewService {
 		List<News> list = newsMapper.readNews(maps);
 		List<News> list1 = new ArrayList<News>();
 		for (News news : list) {
+			news.setNewsDateTime(DateFormat.getStrDate(news.getNewsTime()));
 			news.setProviderName(news.getUsers().getUserName());
 			news.setTypeName(news.getCodes().getCodeName());
 			if (news.getReaders().indexOf(name) != -1) {

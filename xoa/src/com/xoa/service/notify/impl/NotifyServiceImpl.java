@@ -23,6 +23,7 @@ import com.xoa.model.notify.Notify;
 
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.notify.NotifyService;
+import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 
@@ -76,6 +77,7 @@ public class NotifyServiceImpl implements  NotifyService{
         maps.put("page", pageParams);  
         List<Notify> list = notifyMapper.selectNotify(maps);//遍历每一条公告
             for (Notify notify1 : list) {
+            	notify1.setNotifyDateTime(DateFormat.getStrDate(notify1.getSendTime()));
             	//查询用户
             	notify1.setName(notify1.getUsers().getUserName());
 				 notify1.setTypeName(notify1.getCodes().getCodeName());
@@ -118,6 +120,7 @@ public class NotifyServiceImpl implements  NotifyService{
     List<Notify> list = notifyMapper.unreadNotify(maps);
     List<Notify> list1 =new ArrayList<Notify>();
     	for (Notify notify : list) {
+    		notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
     		notify.setName(notify.getUsers().getUserName());
 			 notify.setTypeName(notify.getCodes().getCodeName());
 			if (notify.getReaders().indexOf(name)==-1) {
@@ -141,6 +144,7 @@ public class NotifyServiceImpl implements  NotifyService{
     List<Notify> list = notifyMapper.unreadNotify(maps);
     List<Notify> list1 =new ArrayList<Notify>();
     	for (Notify notify : list) {
+    		notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
     		 notify.setName(notify.getUsers().getUserName());
 				 notify.setTypeName(notify.getCodes().getCodeName());
 			if (notify.getReaders().indexOf(name)!=-1) {
@@ -209,6 +213,7 @@ public class NotifyServiceImpl implements  NotifyService{
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);
         Notify notify=notifyMapper.detailedNotify(maps);
+        notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
         notify.setName(notify.getUsers().getUserName());
         notify.setUsers(null);
         SysCode code=sysCodeMapper.getSysCode1(notify.getTypeId());
