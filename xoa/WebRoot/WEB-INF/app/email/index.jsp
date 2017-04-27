@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							<table id="TAB" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 								<tr>
-									<td width="8%">主&nbsp;&nbsp;&nbsp;题：</td>
+									<td width="8%">主题：</td>
 									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
 									
 								</tr>
@@ -174,17 +174,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 								</tr>
 								<tr>
-									<td>时&nbsp;&nbsp;&nbsp;间：</td>
+									<td>时间：</td>
 									<!-- <td>2017年3月30日13:31（星期四）</td> -->
 									
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td>附&nbsp;&nbsp;&nbsp;件：</td>
-									<!-- <td>
+									<td>
 										<p>1个&nbsp;<img src="../img/icon_accessory_03.png"/><span>智能OA移动产品部3月23日任务工单.rar&nbsp;</span>(19.81KB)</p>
-									</td> -->
+									</td>
 									
-								</tr>
+								</tr> -->
 								<!-- <tr>
 									<td>关键词：</td>
 									<td>财务&nbsp;业务&nbsp;信息&nbsp;数据&nbsp;预算&nbsp;&nbsp;&nbsp;(正文共536字)</td>
@@ -283,7 +283,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							<table id="TAC" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 								<tr>
-									<td width="8%">主&nbsp;&nbsp;&nbsp;题：</td>
+									<td width="8%">主题：</td>
 									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
 									
 								</tr>
@@ -299,7 +299,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 								</tr>
 								<tr>
-									<td>时&nbsp;&nbsp;&nbsp;间：</td>
+									<td>时间：</td>
 									<!-- <td>2017年3月30日13:31（星期四）</td> -->
 									
 								</tr>
@@ -316,7 +316,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							<table id="TAD" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 								<tr>
-									<td width="8%">主&nbsp;&nbsp;&nbsp;题：</td>
+									<td width="8%">主题：</td>
 									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
 									
 								</tr>
@@ -337,17 +337,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 								</tr>
 								<tr>
-									<td>时&nbsp;&nbsp;&nbsp;间：</td>
+									<td>时间：</td>
 									<!-- <td>2017年3月30日13:31（星期四）</td> -->
 									
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td>附&nbsp;&nbsp;&nbsp;件：</td>
-									<!-- <td>
+									<td>
 										<p>1个&nbsp;<img src="../img/icon_accessory_03.png"/><span>智能OA移动产品部3月23日任务工单.rar&nbsp;</span>(19.81KB)</p>
-									</td> -->
+									</td>
 									
-								</tr>
+								</tr> -->
 							</table>
 	 							<div class="article2">
 									<!-- <p>随着企业的发展和不断壮大，企业的决策者对如何防止支付风险，加强费用控制，降低企业成本提出了更高的要求。为了满足用户的需求，通达成都研发中心研发了知己者费用管控系统，这款通达OA可选组件把管理制度，报销标准和审批制度相结合，支持第三方CRM、ERP、财务软件数据的调用，支持按预算、按申请单金额、按报销制度标准控制费用。为企业打造统一的财务共享服务信息系统平台，帮助企业实现操作模式标准化、业务流程标准化和财务制度标准化。</p>
@@ -480,7 +480,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									$(obj).find('tr').eq(1).find('td').eq(1).remove();
 									$(obj).find('tr').eq(2).find('td').eq(1).remove();
 									$(obj).find('tr').eq(3).find('td').eq(1).remove();
-									$(obj).find('tr').eq(4).find('td').eq(1).remove();
+									$(obj).find('tr').eq(4).remove();
 									$('.span_hr').find('span').eq(0).text('');
 									$(sName).find('p').remove();
 									
@@ -488,7 +488,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									$(obj).find('tr').eq(1).append('<td>'+data2.users.userName+'</td>');
 									$(obj).find('tr').eq(2).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td>');
 									$(obj).find('tr').eq(3).append('<td>'+sendTime+'</td>');
-									$(obj).find('tr').eq(4).append('<td>&nbsp</td>');
+									//$(obj).find('tr').eq(4).append('<td>'+data2.attachmentName+'</td>');
+									if(data2.attachmentName!=''){
+											$(obj).append('<tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>')
+										}
 									$('.span_hr').find('span').eq(0).text(data2.users.userName);
 									$(sName).append('<p>'+data2.content+'</p>');
 									
@@ -567,9 +570,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										for(var i=0;i<data1.length;i++){
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 												if(data1[i].attachmentId!=''){
-													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 												}else{
-													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
 												}
 												
 											
@@ -594,14 +597,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										$('#TAD').find('tr').eq(1).find('td').eq(1).remove();
 										$('#TAD').find('tr').eq(2).find('td').eq(1).remove();
 										$('#TAD').find('tr').eq(3).find('td').eq(1).remove();
-										$('#TAD').find('tr').eq(4).find('td').eq(1).remove();
+										$('#TAD').find('tr').eq(4).remove();
 										$('.article2').find('p').remove();
 										
 										$('#TAD').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>');
 										$('#TAD').find('tr').eq(1).append('<td>'+data2.users.userName+'</td>');
 										$('#TAD').find('tr').eq(2).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.toName+'</span></td>');
 										$('#TAD').find('tr').eq(3).append('<td>'+sendTime+'</td>');
-										$('#TAD').find('tr').eq(4).append('<td>&nbsp</td>');
+										//$('#TAD').find('tr').eq(4).append('<td>'+data2.attachmentName+'</td>');
+										if(data2.attachmentName!=''){
+											$('#TAD').append('<tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>')
+										}
 										$('.article2').append('<p>'+data2.content+'</p>');
 									}
 						});
