@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 						<div class="ul_show" style="display: block;">
 							<ul>
-								<li class="on Inbox"><a href="javascript:;"><img src="../img/inbox.png"/>收件箱<span>32</span></a></li>
+								<li class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/>收件箱<span>32</span></a></li>
 								<li><a href="javascript:;"><img src="../img/icon_drafts_07.png"/>草稿箱<span>2</span></a></li>
 								<li><a href="javascript:;"><img src="../img/icon_sent_07.png"/>已发送</a></li>
 								<li><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/>废纸篓</a></li>
@@ -116,8 +116,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="format">
 							<ul>
-								<li class="for_on"><img src="../img/icon_shangxia_sel_06.png"/></li>
-								<li><img src="../img/icon_zuoyou_nor_06.png"/></li>
+								<li class="for_on"><img src="../img/icon_list_sel_03.png"/></li>
+								<li><img src="../img/icon_zuoyou_03.png"/></li>
 							</ul>
 						</div>
 						
@@ -222,7 +222,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						"page":1,
 						"pageSize":10,
 						"useFlag":true,
-						"userID":"lijia"
+						"userID":"admin"
 					}
 				
 				$.ajax({
@@ -270,7 +270,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$(this).addClass('for_on').find('img').attr('src','img/icon_zuoyou_sel_03.png');
 					
 					$(this).siblings().removeClass('for_on');
-					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_shangxia_nor_06.png');
+					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_list_03.png');
 					window.location.href='index';
 				})
 	    		

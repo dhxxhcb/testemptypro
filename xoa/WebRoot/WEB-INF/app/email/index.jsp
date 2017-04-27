@@ -125,7 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="up_format">
 							<ul>
-								<li><img src="../img/icon_shangxia_nor_06.png"/></li>
+								<li><img src="../img/icon_list_03.png"/></li>
 								<li class="for_on"><img src="../img/icon_zuoyou_sel_03.png"/></li>
 							</ul>
 						</div>
@@ -370,10 +370,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//不同风格页面互调
 				var oLI=$('.up_format ul li').eq(0);
 				oLI.click(function () {
-					$(this).addClass('for_on').find('img').attr('src','img/icon_shangxia_sel_06.png');
+					$(this).addClass('for_on').find('img').attr('src','img/icon_list_sel_03.png');
 					
 					$(this).siblings().removeClass('for_on');
-					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_zuoyou_nor_06.png');
+					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_zuoyou_03.png');
 					window.location.href='inboxup';
 				});
 				
@@ -390,8 +390,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		})
 	    	
 	    		//页面初始化
-				init('181','#TAB','.article');
+				
 				showAjax("inbox");
+				
 				
 				//查询邮件点击事件
 				$('.liSearch').click(function(){
@@ -436,7 +437,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#hasBeenSend').click(function(){
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
 					showAjax("outbox");
-					init3('124');
+					var aId=$('.main_left .BTN').eq(0).find('input').attr('id');
+					init3(aId);
 					$('.main_left').on('click','.BTN',function(){
 					
 						var nId=$(this).find('input').attr('nId');
@@ -538,16 +540,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var data1=rsp.obj;
 										var str='';
 										for(var i=0;i<data1.length;i++){
-										var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-										//alert(data1[i].sendTime);
-										if(data1[i].emailList[0].readFlag==1){
-											str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
-										} else if(data1[i].emailList[0].readFlag==0){
-											str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+											//alert(data1[i].sendTime);
+											if(data1[i].emailList[0].readFlag==1){
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											} else if(data1[i].emailList[0].readFlag==0){
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											}
+											
+										}
+										$('.befor').after(str);
+										
+										var mId=$('.BTN').eq(0).find('input').attr('id');
+										var sId=$('.BTN').eq(0).find('input').attr('nId');
+										if(mId) {
+											init(mId,'#TAB','.article');
+										} else{
+											init(sId,'#TAB','.article');
 										}
 										
-									}
-										$('.befor').after(str);
 									}
 					});
 				}
