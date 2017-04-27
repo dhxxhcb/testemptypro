@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
  <script type="text/javascript" src="/js/utility.js"></script>
 
-<script type="text/javascript" src="../js/ispirit.js"></script>
+<!-- <script type="text/javascript" src="../js/ispirit.js"></script> -->
 
 
 <script language="JavaScript">
