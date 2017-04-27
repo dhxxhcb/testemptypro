@@ -10,7 +10,7 @@ html, body {
     height: 100%;
     background: #f0f4f7;
     /*overflow: hidden;*/
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
 }
 ul{
 	list-style: none;
@@ -64,14 +64,14 @@ ul{
 	border-bottom: rgba(0,0,0,0.12) 1px solid;
 }
 
-/*鍏朵粬閭*/
+
 .page .page_left .other{
 	width: 100%;
 	overflow: hidden;
 	border-bottom: rgba(0,0,0,0.12) 1px solid;
 }
 
-/*閭欢鏅鸿兘鍒嗙被*/
+
 .page .page_left .classify{
 	width: 100%;
 	overflow: hidden;
@@ -81,7 +81,7 @@ ul{
 	margin-left: 20px;
 }
 
-/*閭璁剧疆*/
+
 .page .page_left .setUp{
 	width: 14.8%;
 	position: fixed;
@@ -115,7 +115,7 @@ ul{
 }
 
 
-/*宸︿晶杈规爮鍏敤鏍峰紡*/
+
 .page .page_left .inbox_btn{
 	display: block;
 	text-decoration: none;
@@ -174,7 +174,7 @@ ul{
 	box-shadow:inset 0 0 10px #4a7aaa;
 }
 
-/*鍙充晶鍖哄煙鏍峰紡*/
+
 .page .page_right .header{
 	width: 100%;
 	height: 56px;
@@ -280,7 +280,7 @@ ul{
 .for_on{
 	background-color: #fff !important;
 }
-/*琛ㄦ牸鍖哄煙*/
+
 .page .page_right .tab{
 	width: 100%;
 }
