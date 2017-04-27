@@ -117,7 +117,6 @@ public class EnclosureServiceImpl implements EnclosureService {
 	    String path=basePath+"/"+company+"/"+module+"/"+att.getYm();
 	    String fileName=att.getAttachName();
 		String url=path+"/"+fileName;
-		return url;
-		
+		return attUrl;
 	}
 }	

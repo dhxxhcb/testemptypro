@@ -115,8 +115,20 @@ public class Department {
    	 * 统计
    	 */
     private String count;
+    
+    private String sex;
+    
+    
    
-    public String getCount() {
+    public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getCount() {
 		return count;
 	}
 
