@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td width="10%">收件人：</td>
 				<td width="89%">
 					<div class="inPole">
-						<textarea name="txt" disabled></textarea>
+						<textarea name="txt"></textarea>
 						<span class="add_img">
 							<span class="addImg">
 								<img src="../img/org_select.png" class="addIcon"/>
@@ -47,14 +47,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!--<a href="javascript:;" class="outside">添加外部收件人</a>-->
 						<a href="javascript:;" class="a1">添加抄送</a>
 						<a href="javascript:;" class="a2">添加密送</a>
-						<a href="javascript:;" class="a3">最近联系人&nbsp;</a>
-						<span class="day">
+						<!-- <a href="javascript:;" class="a3">最近联系人&nbsp;</a> -->
+						<!-- <span class="day">
 							<ul>
 								<li>系统管理员</li>
 								<li>王德</li>
 								<li>王云</li>
 							</ul>
-						</span>
+						</span> -->
 					</div>
 				</td>
 			</tr>
@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>邮件主题：</td>
 				<td>
 					<input type="text" id="txt" value="" class="input_txt" />
-					<span class="import">一般邮件</span>
+					<!-- <span class="import">一般邮件</span> -->
 				</td>
 			</tr>
 			<tr>

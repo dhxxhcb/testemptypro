@@ -6,9 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -50,18 +54,110 @@ public class EnclosureController {
 	     * 参数说明:   @return
 	     * @return     String  返回页面
 	     */
-	    @RequestMapping("/upload")  
+	  @RequestMapping("/upload")  
 	    public String FileUpload(  
 	            @RequestParam("file") MultipartFile[] files,HttpServletRequest request) {  
-	      
+			if(files.length==0){
+				return null;
+			}
+			ResourceBundle rb =  ResourceBundle.getBundle("upload");
+			//String name = rb.getString("mysql.driverClassName");
+			String os = System.getProperty("os.name");
+			StringBuffer sb=new StringBuffer();
+			if(os.toLowerCase().startsWith("win")){  
+			  sb=sb.append(rb.getString("upload.win"));  
+			}else{
+			  sb=sb.append(rb.getString("upload.linux"));
+			}
+			
+			
 	        List<Attachment> list = new ArrayList<Attachment>();
 	        //获得公司名
 	        String company="xoa111";
 	        //获得模块名
 	        String module=com.xoa.util.ModuleEnum.EMAIL.getName();
-	      
-            list=enclosureService.upload(files, company, module);
-	       // request.setAttribute("fileNameMap", fileNameMap); 
+	        //当前年月
+	        String ym = new SimpleDateFormat("yyMM").format(new Date());
+	        // 获得项目的路径  
+	       // ServletContext sc = request.getSession().getServletContext();  
+	        // 上传位置  
+	       // String basePath = sc.getRealPath("/upload"); // 设定文件保存的目录  
+	        String basePath="D://upload";
+	    	String path=basePath+"/"+company+"/"+module+"/"+ym;	
+	    	
+	    	Map<String, String> fileNameMap = new HashMap<String, String>(); 
+	        //File f = new File(path);  
+	       /* if (!f.exists())  
+	            f.mkdirs();*/  	     	      
+	        for (int i = 0; i < files.length; i++) {  
+	        	MultipartFile file = files[i];
+	        	if(!file.isEmpty()){
+	            // 获得原始文件名  
+	        	String fileName=file.getOriginalFilename();	
+	            //String fileName = files[i].getOriginalFilename();  
+	            System.out.println("原始文件名:" + fileName);  
+	            //当前时间戳
+	           // System.currentTimeMillis();
+	    		int attachID=Math.abs((int) System.currentTimeMillis()); 
+		    	 // String attachDate = new SimpleDateFormat("MMddHHmmss").format(new Date());
+		    	  //int attachID=Integer.parseInt(attachDate);
+		    	  String newFileName=Integer.toString(attachID)+"."+fileName; 
+	            if (!file.isEmpty()) {  
+	            	try{
+	            	  if(!new File(path, newFileName).exists()){  
+	    	    		  new File(path, newFileName).mkdirs();  
+                     }  
+	    	        // 转存文件 
+	            file.transferTo(new File(path,newFileName));
+	                } catch (Exception e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            
+	            
+	            byte a=0;
+	            byte b=2;
+	            
+	          //获得模块名
+		        int moduleID=com.xoa.util.ModuleEnum.EMAIL.getIndex();
+	            byte mid=(byte)moduleID;
+	            Attachment attachment=new Attachment();
+	            attachment.setAttachId(attachID);
+	            attachment.setModule(mid);
+	            attachment.setAttachFile(fileName);
+	            attachment.setAttachName(fileName);
+	            attachment.setYm(ym);
+	            attachment.setAttachSign(new Long(0));
+	            attachment.setDelFlag(a);
+	            attachment.setPosition(b);
+	            list.add(attachment);
+	            enclosureService.saveAttachment(attachment);
+	           Attachment att=enclosureService.findByLast();
+	            
+	           //String attUrl="AID="+att.getAid()+"&"+"Module="+att.getModule()+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
+	           //fileNameMap.put(attUrl,fileName);
+	           fileNameMap.put(path+"/"+newFileName,fileName);String attUrl="AID="+att.getAid()+"&"+"Module="+att.getModule()+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
+	           //attachmentMapper.insertSelective(attachment);	            
+	            //System.out.println("上传文件到:" + path + newFileName);  
+	            //list.add(path + newFileName);  
+	        	}
+	        } 
+	        //String url=
+	        // 存储要下载的文件名  
+	       //Map<String, String> fileNameMap = new HashMap<String, String>();  
+	        // 递归遍历filepath目录下的所有文件和目录，将文件的文件名存储到map集合中  
+	        //listfile(new File(path), fileNameMap,path);// File既可以代表一个文件也可以代表一个目录  
+	       // File allfile=new File(path);
+	    	//File allfiles[] = allfile.listFiles();
+	    	//for (File f : allfiles) {
+	    	//	String realName = f.getName().substring(
+			//			f.getName().indexOf(".") + 1);
+			//	// file.getName()得到的是文件的原始名称，这个名称是唯一的，因此可以作为key，realName是处理过后的名称，有可能会重复	
+	    	//	fileNameMap.put(path+"//"+f.getName(),realName);
+	    //	}
+	        // 将Map集合发送到listfile.jsp页面进行显示  
+    
+	        request.setAttribute("fileNameMap", fileNameMap); 
 	        // 保存文件地址，用于JSP页面回显  
 	        //model.addAttribute("fileList", list);  
 	        return "app/upload/listFile";  
@@ -127,18 +223,27 @@ public class EnclosureController {
 	 * @return     String 返回是否成功
 	 */
 	@RequestMapping(value={"/download"},method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
-	public String download(String filename,HttpServletResponse response,
+	public String download(@RequestParam("AID") String aid ,
+						@RequestParam("MODULE") String module ,
+						@RequestParam("YM") String ym ,
+						@RequestParam("ATTACHMENT_ID") String attachmentId ,
+						@RequestParam("ATTACHMENT_NAME") String attachmenrName ,
+						@RequestParam("company") String company ,
+			HttpServletResponse response,
 	 HttpServletRequest request) {
+	
+		String path="D://upload"+"/"+company+"/"+module+"/"+ym+"/"+attachmentId+"."+attachmenrName;
+		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
 		response.setHeader("Content-Disposition", "attachment;fileName="
-				+ filename);
+				+ attachmenrName);
 				try {
-					String path = Thread.currentThread().getContextClassLoader()
+				/*	String path = Thread.currentThread().getContextClassLoader()
 							.getResource("").getPath()
 							+ "download";//
-					InputStream inputStream = new FileInputStream(new File(path
-							+ File.separator + filename));
+*/					InputStream inputStream = new FileInputStream(new File(path
+							));
 
 					OutputStream os = response.getOutputStream();
 					byte[] b = new byte[2048];

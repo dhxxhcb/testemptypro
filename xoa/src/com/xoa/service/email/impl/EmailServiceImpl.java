@@ -8,7 +8,9 @@ import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.email.EmailService;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.service.users.UsersService;
+import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -134,9 +136,18 @@ public class EmailServiceImpl implements EmailService {
 		List<EmailBodyModel> listEmai = emailBodyMapper.selectObjcet(maps);
 		for(EmailBodyModel emailBody:listEmai){
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
-			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
+				emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+				}else{
+				emailBody.setCopyName("");
+				}
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -183,9 +194,19 @@ public class EmailServiceImpl implements EmailService {
 		List<EmailBodyModel> listEmai = emailBodyMapper.listDrafts(maps);
 		for(EmailBodyModel emailBody:listEmai){
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
-			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
+				emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+				}else{
+				emailBody.setCopyName("");
+				}
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
+			
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -219,9 +240,18 @@ public class EmailServiceImpl implements EmailService {
 		List<EmailBodyModel> listEmai = emailBodyMapper.listSendEmail(maps);
 		for(EmailBodyModel emailBody:listEmai){
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
-			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
+				emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+				}else{
+				emailBody.setCopyName("");
+				}
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -255,9 +285,18 @@ public class EmailServiceImpl implements EmailService {
 		List<EmailBodyModel> listEmai =emailBodyMapper.listWastePaperbasket(maps);
 		for(EmailBodyModel emailBody:listEmai){
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
-			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
+				emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+				}else{
+				emailBody.setCopyName("");
+				}
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -291,9 +330,18 @@ public class EmailServiceImpl implements EmailService {
 		List<EmailBodyModel> listEmai = emailBodyMapper.listqueryEmailBody(maps);
 		for(EmailBodyModel emailBody:listEmai){
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
-			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
+				emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+				}else{
+				emailBody.setCopyName("");
+				}
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -322,9 +370,18 @@ public class EmailServiceImpl implements EmailService {
 		maps.put("page", pageParams);
 		EmailBodyModel emailBody = emailBodyMapper.queryById(maps);
 		emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
-		emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
-		emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+		if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+			}else{
+			emailBody.setSecretToName("");
+			}
 		emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+		emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
+		if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
+		emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+		}else{
+			emailBody.setCopyName("");
+		}
 		return emailBody;
 	}
 
@@ -354,9 +411,19 @@ public class EmailServiceImpl implements EmailService {
 		List<EmailBodyModel> listEmai = emailBodyMapper.selectInbox(maps);
 		for(EmailBodyModel emailBody:listEmai){
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
-			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
+				emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+				}else{
+				emailBody.setCopyName("");
+				}
+			
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);
@@ -392,9 +459,18 @@ public class EmailServiceImpl implements EmailService {
 		List<EmailBodyModel> listEmai = emailBodyMapper.selectIsRead(maps);
 		for(EmailBodyModel emailBody:listEmai){
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
-			emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyName()));
-			emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToName()));
+			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
+				emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+				}else{
+				emailBody.setCopyName("");
+				}
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				}else{
+				emailBody.setSecretToName("");
+				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			list.add(emailBody);
 		}
 		tojson.setObj(list);

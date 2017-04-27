@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 						<div class="ul_show" style="display: block;">
 							<ul>
-								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/inbox.png"/>收件箱<span>32</span></a></li>
+								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/>收件箱<span>32</span></a></li>
 								<li id="drafts"><a href="javascript:;"><img src="../img/icon_drafts_07.png"/>草稿箱<span>2</span></a></li>
 								<li id="hasBeenSend"><a href="javascript:;"><img src="../img/icon_sent_07.png"/>已发送</a></li>
 								<li id="wastebasket"><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/>废纸篓</a></li>
@@ -125,8 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="up_format">
 							<ul>
-								<!-- <li><img src="../img/icon_list_nor_06.png"/></li> -->
-								<li><img src="../img/icon_shangxia_nor_06.png"/></li>
+								<li><img src="../img/icon_list_03.png"/></li>
 								<li class="for_on"><img src="../img/icon_zuoyou_sel_03.png"/></li>
 							</ul>
 						</div>
@@ -369,12 +368,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$(function () {
 			
 				//不同风格页面互调
-				var oLI=$('.up_format ul li').eq(1);
+				var oLI=$('.up_format ul li').eq(0);
 				oLI.click(function () {
-					$(this).addClass('for_on').find('img').attr('src','img/icon_shangxia_sel_06.png');
+					$(this).addClass('for_on').find('img').attr('src','img/icon_list_sel_03.png');
 					
 					$(this).siblings().removeClass('for_on');
-					$(this).parent().find('li').eq(2).find('img').attr('src','img/icon_zuoyou_nor_06.png');
+					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_zuoyou_03.png');
 					window.location.href='inboxup';
 				});
 				
@@ -391,8 +390,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		})
 	    	
 	    		//页面初始化
-				init('181','#TAB','.article');
+				
 				showAjax("inbox");
+				
 				
 				//查询邮件点击事件
 				$('.liSearch').click(function(){
@@ -404,8 +404,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//草稿箱点击事件
 				$('#drafts').click(function(){		
 						$('.drafts').css('display','block').siblings().css('display','none');
-	
-						$('.BTN').remove();
+						showAjax2("drafts");
+						/* $('.BTN').remove();
 							var data={
 								"flag":"drafts",
 								"page":1,
@@ -430,13 +430,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										}
 										$('.main_left ul .befor').after(str);
 									}
-						});
+						}); */
 				})
 				
 				//已发送点击事件
 				$('#hasBeenSend').click(function(){
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
-					showAjax("outbox");
+					showAjax2("outbox");
+					
 					init3('124');
 					$('.main_left').on('click','.BTN',function(){
 					
@@ -450,8 +451,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//废纸篓点击事件
 				$('#wastebasket').click(function(){
 					$('.wastebasket').css('display','block').siblings().css('display','none');
-					showAjax("recycle");
-					init2('419');
+					
+					showAjax2("recycle")
+					
+					init2('122');
 					$('.main_left').on('click','.BTN',function(){
 					
 						var nId=$(this).find('input').attr('id');
@@ -468,9 +471,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					showAjax("inbox");
 				})
 				
-				
-				
-				
+				//鼠标移入移出事件
+				$('.main_left').on('mouseover','.BTN',function(){
+					$(this).css('background-color','#c5e9fb');
+				})
+				$('.main_left').on('mouseout','.BTN',function(){
+					$(this).css('background-color','#fff');
+				})
 				
 				 //详情点击事件
 				$('.main_left').on('click','.BTN',function(){
@@ -480,9 +487,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					init(nId,'#TAB','.article');
 					
 				}) 
-				
-				
-				
 			});
 			
 			
@@ -537,20 +541,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var data1=rsp.obj;
 										var str='';
 										for(var i=0;i<data1.length;i++){
-										var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-										//alert(data1[i].sendTime);
-										if(data1[i].emailList[0].readFlag==1){
-											str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_3_07.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
-										} else if(data1[i].emailList[0].readFlag==0){
-											str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+											//alert(data1[i].sendTime);
+											if(data1[i].emailList[0].readFlag==1){
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											} else if(data1[i].emailList[0].readFlag==0){
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											}
+											
 										}
-										
-									}
 										$('.befor').after(str);
+										
+										var mId=$('.BTN').eq(0).find('input').attr('id');
+										
+										init(mId,'#TAB','.article');
 									}
 					});
 				}
 				
+				function showAjax2(flag){
+					$('.BTN').remove();
+							var data={
+								"flag":flag,
+								"page":1,
+								"pageSize":10,
+								"useFlag":true,
+								"userID":"admin"
+						}
+					
+						$.ajax({
+									type:'get',
+									url:'showEmail',
+									dataType:'json',
+									data:data,
+									success:function(rsp){
+										var data1=rsp.obj;
+										var str='';
+										for(var i=0;i<data1.length;i++){
+											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+											
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+											
+										}
+										$('.main_left ul .befor').after(str);
+									}
+						});
+				}
 				
 				function init2(id){
 				

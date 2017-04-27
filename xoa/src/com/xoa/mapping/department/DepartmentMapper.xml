@@ -40,7 +40,7 @@
 	resultType="com.xoa.model.department.Department">
 		SELECT "people" as type,(select  count(*) from department d,user u
 		 where d.DEPT_ID=u.DEPT_ID and d.DEPT_ID=#{deptId} ) count, u.AVATAR as avater,u.USER_NAME as userName,
-		u.UID as uid,u.USER_PRIV_NAME as userPrivName from department d,user u
+		u.UID as uid,u.USER_PRIV_NAME as userPrivName,u.SEX as sex from department d,user u
 		 where d.DEPT_ID=u.DEPT_ID and d.DEPT_ID=#{deptId}
 	</select>
 	
