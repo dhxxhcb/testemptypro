@@ -41,19 +41,28 @@ table tr td input:not (#fh ){
 	padding: 2px 5px;
 }
 </style>
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
-function submit(){
-   
-    }
-    
+
     function closeCurrentWindow(){
- 		 window.form1.submit();
+ 	  var sortNo=$('#fileNoid').val();
+      var sortName=$('#fileNameid').val();
+        
+         $.ajax({
+                url: "${pageContext.request.contextPath }/file/add",
+                Type: "POST",
+                data:{"sortNo":sortNo,"sortName":sortName},
+                success:function (data){
+                }
+           }); 
+          
  		window.opener.location.href = window.opener.location.href;     
  		if (window.opener.progressWindow)     
  		{         
  		window.opener.progressWindow.close();     
  		}     
  		window.close(); 
+
  	} 
 </script>
 </head>
@@ -80,10 +89,7 @@ function submit(){
 					onclick="closeCurrentWindow()" />
 				</td>
 			</tr>
-			<!-- 排序号:  <input id="sortno" name="sort_no" type="text" value="${sortno }"/><br>
-   文件夹名称：<input id="sortname" name="sort_name" type="text" value="${sortname }"/><br> --!>
-  <!--  <input id="qr" type="button" value="确认" onclick="submit()"/> -->
-			<!--   <input id="fh" type="button" value="确认" onclick="closeCurrentWindow()"/>-->
+		
 			<input id="sortid" type="hidden" name="sortId" value="${sortid}" />
 		</table>
 	</form>
