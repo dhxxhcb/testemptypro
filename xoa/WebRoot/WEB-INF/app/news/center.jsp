@@ -307,16 +307,18 @@ $(function () {
 					success: function(obj){
 						layer.closeAll()
 						if(obj.obj.length == 0){
-							
-							layer.msg('没有未读新闻，2秒后自动跳到公告通知', {icon: 6});
-							var turnindex=setInterval(function(){
-								layer.closeAll();
-								$(".index_head li").eq(1).click();
-								clearInterval(turnindex);
-							},2*1000);
+							if($('.index_head .one').parent().attr('data_id') == '0'){
+								layer.msg('没有未读新闻，2秒后自动跳到公告通知', {icon: 6});
+								var turnindex=setInterval(function(){
+									layer.closeAll();
+									$(".index_head li").eq(1).click();
+									clearInterval(turnindex);
+								},2*1000);
+							}else{
+								layer.msg('没有更多数据！', {icon: 6});
+							}
 						}else{
 							var str = "";
-							
                         	for (var i = 0; i < obj.obj.length; i++) {
                                str += "<tr><td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].subject+"</ a></td>"+
                                        "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].typeName+"</ a></td>"+
@@ -327,7 +329,7 @@ $(function () {
                            var loadindex=setInterval(function(){
 								layer.closeAll();
 								$("#j_tb").html(str);
-								clearInterval(turnindex);
+								clearInterval(loadindex);
 							},1000);
                           
 							if(cb){

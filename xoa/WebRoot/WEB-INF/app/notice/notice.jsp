@@ -306,12 +306,19 @@ $(function () {
 						
 						if(data.obj.length == 0){
 							layer.closeAll()
-							layer.msg('没有未读新闻，2秒后自动跳到公告通知', {icon: 6});
-							var turnindex=setInterval(function(){
-								layer.closeAll();
-								$(".index_head li").eq(1).click();
-								clearInterval(turnindex);
-							},2*1000);
+							console.log($('.index_head .one').parent().attr('data_id')=='0');
+							if($('.index_head .one').parent().attr('data_id') == '0'){
+							
+								layer.msg('没有未读公告，2秒后自动跳到公告通知', {icon: 6});
+								var turnindex=setInterval(function(){
+									layer.closeAll();
+									$(".index_head li").eq(1).click();
+									clearInterval(turnindex);
+								},2*1000);
+							}else{
+								layer.msg('没有更多数据！', {icon: 6});
+							}
+							
 						}else{
 							var news = "";
                         	for (var i = 0; i < data.obj.length; i++) {
@@ -325,7 +332,7 @@ $(function () {
 							var loadindex=setInterval(function(){
 								layer.closeAll();
 								$("#j_tb").html(news);
-								clearInterval(turnindex);
+								clearInterval(loadindex);
 							},1000);
 							
 							if(cb){

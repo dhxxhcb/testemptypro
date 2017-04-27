@@ -13,11 +13,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/common/style.css" />
-	<link rel="stylesheet" type="text/css" href="css/common/select.css" />
-	<link rel="stylesheet" type="text/css" href="css/common/ui.dynatree.css">
-	<link rel="stylesheet" type="text/css" href="css/common/org_select.css">
-	
+    <link rel="stylesheet" type="text/css" href="../css/common/style.css" />
+	<link rel="stylesheet" type="text/css" href="../css/common/select.css" />
+	<link rel="stylesheet" type="text/css" href="../css/common/ui.dynatree.css">
+	<link rel="stylesheet" type="text/css" href="../css/common/org_select.css">
+	<script type="text/javascript" src="../js/jquery-1.9.1.js"></script> 
+	<script src="../js/base/base.js"></script> 
 <!-- 	<script src="js/ispirit.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/select.js"></script> -->
@@ -27,26 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-<!-- <script Language="JavaScript"> -->
-<!-- var query_string = "MODULE_ID=5&PRIV_OP="; -->
-<!-- var parent_window = jQuery.browser.msie ? parent.dialogArguments.document : parent.opener.document; -->
-<!-- var form_name = "form1";  -->
-<!-- var context = jQuery(parent_window).find('form[name="' + form_name + '"]'); -->
-<!-- var to_id_field = context.find("[name='TO_ID']").get(0) || jQuery("[name='TO_ID']", parent_window).get(0); -->
-<!-- var to_name_field = context.find("[name='TO_NAME']").get(0) || jQuery("[name='TO_NAME']", parent_window).get(0); -->
-<!-- var item_url = "item.php"; -->
-<!-- var single_select = false; -->
 
-<!-- jQuery.noConflict(); -->
-<!-- (function($){ -->
-   <!-- $(document).ready(function($){ -->
-      <!-- load_init(); -->
-      
-      <!-- //默认加载部门的人员选中状态 -->
-      <!-- init_item('dept'); -->
-   <!-- }); -->
-<!-- })(jQuery); -->
-<!-- </script> -->
 <style>
 #dept_menu{
     overflow-x: auto;
@@ -65,6 +47,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
 .mar{
 	margin-left:10%;
+}
+.name li{
+	list-style-type:none;
 }
 </style>
 <body>
@@ -93,17 +78,101 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- //内容 -->
 		
 		<div class="main-block" id="block_dept" style="display:block;">
-   <div class="left moduleContainer" id="dept_menu">
-<div id="tree"><ul class="dynatree-container dynatree-no-connector"><li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="img/common/root.png" alt=""><a href="#" class="dynatree-title" title="中国兵器工业集团">中国兵器工业集团</a></span><ul><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-exp-cd dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="中国兵器工业信息中心">中国兵器工业信息中心</a></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lazy dynatree-lastsib dynatree-exp-cdl dynatree-ico-cf"><span class="dynatree-expander"></span><span class="dynatree-checkbox"></span><a href="#" class="dynatree-title" title="北方测试研究公司">北方测试研究公司</a></span></li></ul></li></ul></div>
- 
-   </div>
-   <div class="right" id="dept_item">
-<div class="block-right" id="dept_item_2"><div class="block-right-header" title="北方测试研究公司">北方测试研究公司</div><div class="block-right-add">全部添加</div><div class="block-right-remove">全部删除</div><div class="block-right-item" item_id="admin" item_name="系统管理员" user_id="admin" title="OA 管理员 [北方测试研究公司]"><span class="name">系统管理员<span class="status"> (在线)</span></span></div></div>   </div>
-</div>
+			   <div class="left moduleContainer" id="dept_menu">
+				   <div class="tree">
+					   	<ul class="dynatree-container dynatree-no-connector" id="deptOrg">
+					   	</ul>
+				   </div>
+			 
+			   </div>
+			   <div class="right" id="dept_item">
+					<div class="block-right" id="dept_item_2">
+						<!-- 部门名 -->
+						<div class="block-right-header" title="">北京高速波软件按有限公司</div>
+						
+						<div class="block-right-add">全部添加</div>
+						<div class="block-right-remove">全部删除</div>
+						<div class="block-right-item" item_id="admin" item_name="系统管理员" user_id="admin" title="OA 管理员 [北方测试研究公司]">
+							<span class="name">系统管理员<span class="status"> (在线)</span></span>
+						</div>
+					</div>   
+				</div>
+		</div>
 		
 	<!-- //结束 -->
 	<div id="south">
 	   <input type="button" class="BigButtonA" value="确定" onclick="close_window();">&nbsp;&nbsp;
 	</div>
 </body>
+	<script>
+		$(function(){
+				//组织
+				
+				function getChDept(target,deptId){
+					$.ajax({
+						url:'../department/getChDept',
+						type:'get',	
+						data:{
+							deptId:deptId
+						},		
+						dataType:'json',
+						success:function(data){
+						/* if() */
+							if(deptId==0){
+								var str = '';
+								data.obj.forEach(function(v,i){
+									if(v.deptName){
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+									}else{
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+									}
+									
+								});
+							}else{
+								var str = '';
+								var tr = '';
+								data.obj.forEach(function(v,i){
+										if(v.deptName){
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class=""></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+									}else{
+										if(v.sex==0){
+										
+											tr+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										}else if(v.sex==1){
+											tr+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/women.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										}
+										
+										
+									}
+								});
+							}
+							
+							
+							target.html(str);
+							$('.name').html(tr);
+							
+							$('.tree .dynatree-container').on('click','.childdept',function(){
+								var  that = $(this);
+								
+								getChDept(that.next(),that.attr('deptid'));
+								var title=that.find('a').text();
+								$('.block-right-header').html(title);
+							});
+						}
+					})
+				}
+				
+					getChDept($('#deptOrg'),0);
+					
+				$('.block-right').on('mouseover','div',function(){
+					$(this).css('background','#D6E4EF');
+				})	
+				$('.block-right').on('mouseout','div',function(){
+					$(this).css('background','#fff');
+				})	
+					
+		
+		});
+	</script>
+	<script>
 </html>
