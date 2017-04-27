@@ -43,7 +43,7 @@ s, i, em {
 /*公共类*/
 .w {
     /*版心 提取 */
-    width: 100%;
+    width: 1450px;
     margin: 0 auto;
 }
 
@@ -95,13 +95,14 @@ s, i, em {
     float: left;
     font-family: "微软雅黑";
     font-size: 16px;
-    cursor: pointer;
-    margin-bottom:4px;
+    margin: 6px;
+    cursor: pointer
+
 }
 
 .head .one {
     background-color: #2F8AE3;
-    font-size: 16px;
+    font-size: 18px;
     color: #ffffff;
     border-radius: 20px;
 
@@ -110,18 +111,16 @@ s, i, em {
 /*navigation开始*/
 .navigation {
     heihgt: 70px;
-    line-height: 70px
     display: inline-block;
     float: left;
     /*border: 1px solid red;*/
     width: 100%;
 }
-s
+
 .navigation .left {
     float: left;
     line-height: 71px;
 }
-
 
 .navigation .left img {
     float: left;
@@ -129,10 +128,9 @@ s
 }
 
 .navigation .left .news {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     margin: 0 5px;
-    margin-top: 25px;
 }
 
 .navigation .left .button1 {
@@ -222,4 +220,3 @@ tr:hover {
     margin-left: 16px;
     cursor: pointer;
 }
-
