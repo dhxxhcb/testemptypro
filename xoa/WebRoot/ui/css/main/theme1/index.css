@@ -188,7 +188,7 @@ body,
     z-index:999;
 }
 .left_scroll{
-	background: url(../../../img/main_img/tabs_arrow.png) 0px 0px no-repeat;
+	background: url(../../../img/main_img/tabs_arrow.png) -5px 0px no-repeat;
 }
 .right_scroll{
 	background: url(../../../img/main_img/tabs_arrow.png) -37px 0px no-repeat;

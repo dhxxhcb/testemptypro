@@ -349,7 +349,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" ><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 									$('.main_title ul').append(titlestr);
-									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) 5px 2px no-repeat; position: relative; z-index: 999;');
+									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) 5px 2px no-repeat; ');
 									
 									/* console.log($('#t_'+menu_tid).siblings()); */
 									$('.all_content').append(iframestr);
@@ -397,7 +397,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									//页面不存在，新增 title和iframe
 									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div><img class="close" src="img/main_img/icon.png"></div></li>';
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
-									$('.main_title ul').append(titlestrs);	
+									$('.main_title ul').append(titlestrs);
+									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) 5px 2px no-repeat;');	
 									$('.all_content').append(iframestr);
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
