@@ -770,4 +770,12 @@ public class EmailController {
 				"loginDateSouse"));
 		return "app/email/mailQuery";
 	}
+	@RequestMapping("/development")
+	public String develOpment(HttpServletRequest request)
+			throws Exception {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/common/development";
+				}
+	
 }

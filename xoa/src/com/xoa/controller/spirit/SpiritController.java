@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -92,4 +93,5 @@ public class SpiritController {
 				+ (String) request.getSession().getAttribute("loginDateSouse"));
 		return "app/spirit/zz";
 	}
+	
 }
