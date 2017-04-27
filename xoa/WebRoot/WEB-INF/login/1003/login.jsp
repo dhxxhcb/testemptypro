@@ -100,7 +100,7 @@
 			<div class="ban1">
 					<div class="entry">
 						<div class="div_img"><img src="img/login/logo2.png"/></div>
-						<p><fmt:message code="title.beijing" /></p>
+						<p><fmt:message code="title.hangzhou" /></p>
 						<div class="txt">
 							<img src="img/login/account.png" alt="用户名" />
 							<input type="text" id="username" name="txt" placeholder="<fmt:message code="userName" />" />
