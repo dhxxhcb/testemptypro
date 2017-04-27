@@ -51,13 +51,16 @@ table tr td input:not (#fh ){
 	padding: 2px 5px;
 }
 </style>
-<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
-<script  type="text/javascript"  src="../js/jquery-2.1.4.min.js"/></script>
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
 
      function closeCurrentWindow(){
-        alert('hello');
-         var sortNo=$('#fileNoid').val();
+        $("form").submit(function(){
+    alert("Submitted");
+  });
+       // $("#form1").submit();
+        
+        /*  var sortNo=$('#fileNoid').val();
          var sortName=$('#sortName').val();
          $.post("${pageContext.request.contextPath }/file/add",{"sortNo":sortNo,"sortName":sortName},function(data){
          });
@@ -67,7 +70,7 @@ table tr td input:not (#fh ){
  		{         
  		window.opener.progressWindow.close();     
  		}     
- 		window.close(); 
+ 		window.close();  */
  	} 
 </script>
 </head>
