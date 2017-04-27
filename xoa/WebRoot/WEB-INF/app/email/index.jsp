@@ -437,8 +437,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#hasBeenSend').click(function(){
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
 					showAjax("outbox");
-					var aId=$('.main_left .BTN').eq(0).find('input').attr('id');
-					init3(aId);
+					
+					init3('124');
 					$('.main_left').on('click','.BTN',function(){
 					
 						var nId=$(this).find('input').attr('nId');
@@ -453,8 +453,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('.wastebasket').css('display','block').siblings().css('display','none');
 					showAjax("recycle");
 					
-					var aId=$('.main_left .BTN').eq(0).find('input').attr('id');
-					init2(aId);
+					
+					init2('122');
 					$('.main_left').on('click','.BTN',function(){
 					
 						var nId=$(this).find('input').attr('id');
@@ -543,21 +543,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 											//alert(data1[i].sendTime);
 											if(data1[i].emailList[0].readFlag==1){
-												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 											} else if(data1[i].emailList[0].readFlag==0){
-												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 											}
 											
 										}
 										$('.befor').after(str);
 										
 										var mId=$('.BTN').eq(0).find('input').attr('id');
-										var sId=$('.BTN').eq(0).find('input').attr('nId');
-										if(mId) {
-											init(mId,'#TAB','.article');
-										} else{
-											init(sId,'#TAB','.article');
-										}
+										//var sId=$('.BTN').eq(0).find('input').attr('nId');
+										//alert(sId)
+										//if(mId) {
+										init(mId,'#TAB','.article');
+										//} else if(sId){
+										//	init2(sId);
+										//	init3(sId);
+										//}
 										
 									}
 					});
