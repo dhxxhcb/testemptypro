@@ -114,6 +114,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		input{
      		border: 1px solid #ccc;
      	}
+     	  	#cx {
+     		background-image:url(../img/center_q.png);
+     		background-repeat:no-repeat;
+     		width:60px;
+     		hieght:30px;
+     		line-height:30px;
+     		margin-top: 18px;
+     		margin-left: 10px;
+     		text-align:center;
+     		color:#fff;
+     	}
+   
 	</style>
 </head>
 <body>
@@ -148,7 +160,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div style="font-size: 15px; margin-left:28px; "><fmt:message code="global.lang.date" />:</div>
                 <input class="button1" id="sendTime">
             </div>
-            <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
+             <!-- <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/> -->
+            <div id="cx">查询</div>
         </div>
 
 
@@ -308,7 +321,7 @@ $(function () {
 						layer.closeAll()
 						if(obj.obj.length == 0){
 							if($('.index_head .one').parent().attr('data_id') == '0'){
-								layer.msg('没有未读新闻，2秒后自动跳到公告通知', {icon: 6});
+								layer.msg('没有未读新闻，2秒后自动跳到全部新闻', {icon: 6});
 								var turnindex=setInterval(function(){
 									layer.closeAll();
 									$(".index_head li").eq(1).click();

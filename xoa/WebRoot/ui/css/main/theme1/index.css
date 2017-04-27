@@ -51,7 +51,7 @@ body,
     color: #2a588c;
     font-weight: bold;
     line-height: 40px;
-   /*  text-align: center; */
+   text-align: center; 
    font-size: 10pt;
    margin-left: 7%;
 }
@@ -359,10 +359,10 @@ body,
 	margin-left: 35%;
     margin-top: 10%;
 }
-#deptOrg{
+/* #deptOrg{
 	    overflow-x: auto;
     overflow-y: auto;
-}
+} */
 .cont_rig{
 	width:86%;
 	height:100%;
@@ -397,6 +397,11 @@ body,
 	float:left;
 	margin-left:4%;
 	margin-top:5%;
+}
+.tab_ctwo{
+	    height: 91%;
+    width: 100%;
+    overflow-y: scroll;
 }
 .r_one_top{
 	width:100%;
@@ -434,6 +439,7 @@ body,
 }
 .three h1{
 	line-height:30px;
+	width: 55%;
 }
 .three img{
 	margin-left: 34%;

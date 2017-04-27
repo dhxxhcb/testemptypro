@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="main_title">
 						<ul>
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
-							<li class="gongzuoliu" left='0' id='t_0'><div class="img"></div><h1><fmt:message code="global.my.Desktop" /></h1></li>
+							<li class="gongzuoliu" left='0' id='t_0'><h1><fmt:message code="global.my.Desktop" /></h1></li>
 						</ul>
 					</div>
 					<div class="right_scroll"></div>
@@ -345,7 +345,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									//页面不存在，新增 title和iframe
 								
 									
-									var titlestr = '<li class="choose" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div class="img"><img class="close" src="img/main_img/icon.png"></div></li>';
+									var titlestr = '<li class="choose" index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div class="img" style="display:none;"><img class="close"  src="img/main_img/icon.png"></div></li>';
 									
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" ><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 									$('.main_title ul').append(titlestr);
@@ -395,7 +395,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								}else{ 
 									
 									//页面不存在，新增 title和iframe
-									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div><img class="close" src="img/main_img/icon.png"></div></li>';
+									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div><img class="close" style="display:none;" src="img/main_img/icon.png"></div></li>';
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 									$('.main_title ul').append(titlestrs);
 									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) -1px 2px no-repeat;');	
@@ -438,7 +438,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			
 			init();//调用init()方法
-			
+							//移入
+						$('.main_title').on('mouseover','li',function(){
+							
+							$(this).find('.close').attr('src','img/main_img/delet_yuan.png');
+						 	$(this).find('.img').show();
+						}) ;
+						//移出
+						$('.main_title').on('mouseout','li',function(){
+							
+							$(this).find('.img').hide();
+						 
+						}) ;
+						
 						//点击标题栏
 						$('.main_title ').on('click','li',function(){
 							
@@ -466,18 +478,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 						});
 						//删除
-						//移入
-						$('.main_title').on('mouseover','.close',function(){
-							
-							$(this).attr('src','img/main_img/delet_yuan.png');
-						 
-						}) ;
-						//移出
-						$('.main_title').on('mouseout','.close',function(){
-							
-							$(this).attr('src','img/main_img/icon.png');
-						 
-						}) ;
+					
 			
 					//点击删除
 						$('.main_title').on('click','.close',function(){
@@ -485,7 +486,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var re=$(this).parent().parent().attr('id');
 							console.log(re);
 							var delet=re.split('_')[1];
-							console.log(delet)
+							console.log(delet);
 								console.log($('#t_'+delet).prev());
 						 	/*  	console.log($('#f_'+delet).next()); */
 						 	if($('#f_'+delet).next()){
