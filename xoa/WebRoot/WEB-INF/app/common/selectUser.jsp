@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	list-style-type:none;
 }
 .choose{
-	background','#D6E4EF';
+	background:#D6E4EF !important;
 }
 </style>
 <body>
@@ -111,9 +111,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 </body>
 	<script>
+					function close_window(){
+					
+					parent.opener.document.getElementById(parent.opener.user_id).value='admin';
+					window.close();
+				}
 		$(function(){
 				//组织
-				
+
 				function getChDept(target,deptId){
 					$.ajax({
 						url:'../department/getChDept',
@@ -163,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 				$('.userItem').on("click",".block-right-item",function(){
 					var that = $(this)
-					that.addClass('choose');
+					that.attr('style',"background: antiquewhite;");
 				});
 				getChDept($('#deptOrg'),0);
 				$('.tree .dynatree-container').on('click','.childdept',function(){

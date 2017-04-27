@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td width="10%">收件人：</td>
 				<td width="89%">
 					<div class="inPole">
-						<textarea name="txt" value="admin" disabled></textarea>
+						<textarea name="txt" id="senduser" user_id='admin' value="admin" disabled></textarea>
 						<span class="add_img">
 							<span class="addImg">
 								<img src="../img/org_select.png" class="addIcon"/>
@@ -95,15 +95,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		
 		<script type="text/javascript">
+			user = '';
+			user_id='senduser';
        		 var ue = UE.getEditor('container');
        		 //获取输入框内容
        		 $(function(){
        		 	$("#selectUser").on("click",function(){
        		 		$.popWindow("../common/selectUser");
+       		 		 
        		 	});
        		 	$("#btn1").on("click",function(){
 					
-					var userId=$('textarea[name="txt"]').val();
+					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
 					var val=$('#txt').val();
 
