@@ -160,7 +160,6 @@ public class DateFormat {
 		if(TWO_DAY_TIME<nowTime-formatTime) {
 			ret = mouthFat;
 		}
-		
 		Calendar fotCalendar =Calendar.getInstance();
 		fotCalendar.setTime(formatDate);
 		int forYear=fotCalendar.get(Calendar.YEAR);
