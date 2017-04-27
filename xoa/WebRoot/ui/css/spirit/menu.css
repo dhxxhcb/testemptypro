@@ -12,7 +12,7 @@ html,body,.wrap{
 ul,li{
 	list-style:none;
 }
-.tip_font{
+/* .tip_font{
 	font-size:15px;
 	color:#4f4f4f;
 }
@@ -21,7 +21,7 @@ ul,li{
 	height:100%;
 	margin:0 auto;
 	overflow: hidden;
-}
+} */
 
 .li_li{
 	width:100%;
@@ -33,7 +33,7 @@ ul,li{
 .app_connect{
 	float: left;
     width: 100%;
-   height: calc(100% - 32px);
+   height:100%;
    overflow-y: auto;
 }
 .app_connect li{

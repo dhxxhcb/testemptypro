@@ -23,32 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 	<div class="wrap">
-		<!-- <div class="body_top">
-			<ul>
-				<li>
-					<span class="bg_icon icon1"></span>
-				</li>
-				<li>
-					<span class="bg_icon icon2">
-				</li>
-				<li>
-					<span class="bg_icon icon3">
-				</li>
-			</ul>
-		</div> -->
-		<div class="connect">
-				<div class="app_head">
-					<span class="tip_font">应用</span>
-					<div class="tips">
-						<sapn class="fresh_icon" title="刷新"></sapn>
-						<span class="add_icon" title="添加应用"></span>
-					</div>
-				</div>
 				<div class="app_connect yiji">
 					<ul></ul>
 				</div>
-		</div>
-	
 	</div>
 </body>
  <script type="text/javascript" src="/js/utility.js"></script>
@@ -58,16 +35,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script language="JavaScript">
 	var menu = {
-		"email":"../email/index",
-		"notify_show":"../notice/index",
-		"news_show":"../news/index",
-		"file_folder/index2.php":"../fileHome",
-		"system/file_folder":"../showFileBySort_id",
-		"diary_show":"../diary/index",
-		"news_manage":"../news/manage",
-		"notify_manage":"../notice/manage",
-		"knowledge_management":"../file/home",
-		"system_file_folder":"../file/setIndex"
+		"email":"email/index",
+		"notify_show":"notice/index",
+		"news_show":"news/index",
+		"file_folder/index2.php":"fileHome",
+		"system/file_folder":"showFileBySort_id",
+		"diary_show":"diary/index",
+		"news_manage":"news/manage",
+		"notify_manage":"notice/manage",
+		"knowledge_management":"file/home",
+		"system_file_folder":"file/setIndex"
 	};
 	$.ajax({
 	     url:'<%=basePath%>/showMenu',
@@ -87,13 +64,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     					for(var j=0;j<fchild.length;j++){
 	     						var schild=fchild[j].child;
 	     						if(fchild[j].child!=''){
-	     							li+='<li ><div class="yiji_title" url="'+fchild[j].url+'" onClick="opennew()"><span  class="head_pic"><img src="../img/main_img/hei.png" alt="erimg"/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span><span class="dianji before"></span></div><div class="sanji common"><ul>';
+	     							li+='<li ><div class="yiji_title" url="'+fchild[j].url+'" onClick="opennew(this)"><span  class="head_pic"><img src="../img/main_img/hei.png" alt="erimg"/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span><span class="dianji before"></span></div><div class="sanji common"><ul>';
 	     							for(var z=0;z<schild.length;z++){
-	     								li+='<li ><div class="yiji_title" url="'+schild[z].url+'" onClick="opennew()"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+schild[z].name1+'" id="'+schild[z].id+'"  class="appname">'+schild[z].name+'</span></div></li>';
+	     								li+='<li ><div class="yiji_title" url="'+schild[z].url+'" onClick="opennew(this)"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+schild[z].name1+'" id="'+schild[z].id+'"  class="appname">'+schild[z].name+'</span></div></li>';
 	     							}
 	     							li+='</ul></div>';
 	     						}else{
-	     							li+='<li><div class="yiji_title"  url="'+fchild[j].url+'" onClick="opennew()"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span></div></li>';
+	     							li+='<li><div class="yiji_title"  url="'+fchild[j].url+'" onClick="opennew(this)"><span  class="head_pic"><img src="../img/main_img/hei.png" alt=""/></span><span title="'+fchild[j].name1+'" id="'+fchild[j].id+'"  class="appname">'+fchild[j].name+'</span></div></li>';
 	     						}
 	     					}
 	     					li+='</ul></div>';
@@ -106,14 +83,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 }
 		
 	});
-	   function opennew(){
-	   		var url=$(event.currentTarget).attr('url');
+	   function opennew(e){
+	   		var url=$(e).attr('url');
 	   		var id=$(event.currentTarget).find('span.appname').attr('id');
-	   		if(menu[url.replace('/','_')]){
-	   			url=menu[url.replace('/','_')];
-	   		}else{
+	   		if(url.indexOf('/')>0){
+				url = url.replace('/','_')
+			}
+			if(menu[url]){
+				url="/xoa/"+menu[url];
+			}else{
 	   			url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
-	   		}
+	   		}  
 			if(typeof(window.external.OA_SMS)!='undefined'){
 				window.external.OA_SMS(url,"MAX","OPEN_URL");
 			}

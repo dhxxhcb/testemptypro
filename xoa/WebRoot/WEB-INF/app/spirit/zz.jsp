@@ -23,13 +23,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/spirit/user_online.css">
     <link rel="stylesheet" type="text/css" href="../css/spirit/ui.dynatree.css">
     <!--<script type="text/javascript" src="./js_lang.php"></script>-->
-    <script type="text/javascript" src="../jstree.js"></script>
-    <script type="text/javascript" src="../jsispirit.js"></script>
-    <script type="text/javascript" src="../jsjquery.min.js"></script>
-    <script type="text/javascript" src="../jsjquery-ui.custom.min.js"></script>
-    <script type="text/javascript" src="../jsjquery.cookie.js"></script>
-    <script type="text/javascript" src="../jsjquery.dynatree.min.js"></script>
-    <script type="text/javascript" src="../jsorg.js"></script>
+    <script type="text/javascript" src="../js/spirit/tree.js"></script>
+    <script type="text/javascript" src="../js/ispirit.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.custom.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../js/jquery.dynatree.min.js"></script>
+    <script type="text/javascript" src="../js/spirit/org.js"></script>
     <script type="text/javascript">
         var ispirit = "1";
         var bEmailPriv = true;

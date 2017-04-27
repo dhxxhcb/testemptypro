@@ -44,11 +44,11 @@ if(typeof(LoadCss) != "function")
 
 var gz_postfix = typeof(window.top.gz_postfix) == "string" ? window.top.gz_postfix : "";
 
-LoadScript('/static/js/ispirit.js');
-typeof jQuery != "undefined" || LoadScript('/static/js/jquery-1.5.1/jquery.min.js' + gz_postfix);
-LoadScript('/static/js/jquery-1.5.1/jquery-ui.custom.min.js' + gz_postfix);
-LoadScript('/static/js/jquery-1.5.1/jquery.cookie.js' + gz_postfix);
-LoadScript('/static/js/jquery-1.5.1/jquery.dynatree.min.js' + gz_postfix);
+LoadScript('../js/spirit/ispirit.js');
+typeof jQuery != "undefined" || LoadScript('../js/jquery-1.11.1.min.js' + gz_postfix);
+LoadScript('../js/jquery-ui.custom.min.js' + gz_postfix);
+LoadScript('../js/jquery.cookie.js' + gz_postfix);
+LoadScript('../js/jquery.dynatree.min.js' + gz_postfix);
 
 function Tree(id, jsonURL, iconsPath, checkbox, selectMode, options)
 {
@@ -131,7 +131,7 @@ Tree.prototype.BuildTree = function()
          nodeSpan = null;
       },
       strings: {
-         loading: td_lang.inc.msg_84,//"¼ÓÔØÖÐ..."
+         loading: td_lang.inc.msg_84,//"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..."
          loadError: td_lang.inc.msg_85
       }
    });
@@ -234,7 +234,7 @@ Tree.prototype.redrawNode = function(id,action,text,new_id,url)
       if(!node)
          return;
       
-      //--ÐÞ¸Ä,ÅÐ¶Ïµ±Ê÷×Ó½ÚµãµÄ×Ó½ÚµãÎª¿ÕÊ±Ö±½ÓË¢ÐÂÕû¸öÊ÷,--yzx
+      //--ï¿½Þ¸ï¿½,ï¿½Ð¶Ïµï¿½ï¿½ï¿½ï¿½Ó½Úµï¿½ï¿½ï¿½Ó½Úµï¿½Îªï¿½ï¿½Ê±Ö±ï¿½ï¿½Ë¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,--yzx
       if(node.data.children==null||node.data.children=='')
       {
           this.tree.reload();
@@ -296,11 +296,11 @@ function tree_select(select, node)
 function get_client_type(client)
 {
    if(client == "0")
-      return td_lang.inc.msg_86;//"ä¯ÀÀÆ÷"
+      return td_lang.inc.msg_86;//"ï¿½ï¿½ï¿½ï¿½ï¿½"
    else if(client == "1")
-      return td_lang.inc.msg_87;//"ÊÖ»úä¯ÀÀÆ÷"
+      return td_lang.inc.msg_87;//"ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
    else if(client == "2")
-      return td_lang.inc.msg_88;//"OA¾«Áé"
+      return td_lang.inc.msg_88;//"OAï¿½ï¿½ï¿½ï¿½"
    else if(client == "5")
       return td_lang.inc.msg_89;//"iPhone"
    else if(client == "6")
@@ -399,10 +399,10 @@ XML.prototype.getRoot = function()
    if(!this.xmlDOM || this.lastError)
       return null;
    
-   return this.xmlDOM.documentElement; //xmlÎÄµµ¸ù½Úµã
+   return this.xmlDOM.documentElement; //xmlï¿½Äµï¿½ï¿½ï¿½Úµï¿½
 }
 
-XML.prototype.createXMLDom = function() //´´½¨XMLDOM¶ÔÏóº¯Êý£¬¿çä¯ÀÀÆ÷½â¾ö·½°¸
+XML.prototype.createXMLDom = function() //ï¿½ï¿½ï¿½ï¿½XMLDOMï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 {
    if(window.ActiveXObject) //IE
    {
