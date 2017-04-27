@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.xoa.util.dataSource.ContextHolder;
+
 
 
 /**
@@ -35,7 +37,9 @@ public class LogUtilController {
 	 */
 	@RequestMapping("/index")
 
-	public String inboxPage() {
+	public String inboxPage(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/diary/index";
 	}
 
@@ -45,7 +49,9 @@ public class LogUtilController {
 	 * @return
 	 */
 	@RequestMapping("/addbox")
-	public String addboxPage() {
+	public String addboxPage(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return "app/diary/writeMail";
 	}
 	/**

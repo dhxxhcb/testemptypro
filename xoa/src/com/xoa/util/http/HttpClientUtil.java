@@ -19,13 +19,14 @@ import com.xoa.util.common.L;
  * 利用HttpClient进行post请求的工具类 
  */  
 public class HttpClientUtil {  
-    public String doPost(String url,Map<String,String> map,String charset){  
+    public static String doPost(String url,Map<String,String> map,String charset){  
         HttpClient httpClient = null;  
         HttpPost httpPost = null;  
         String result = null;  
         try{  
             httpClient = new SSLClient();  
             httpPost = new HttpPost(url);  
+            L.w("url is",url ,"and param is " ,map);
             //设置参数  
             List<NameValuePair> list = new ArrayList<NameValuePair>();  
             Iterator iterator = map.entrySet().iterator();  
@@ -38,7 +39,6 @@ public class HttpClientUtil {
                 httpPost.setEntity(entity);  
             }  
             HttpResponse response = httpClient.execute(httpPost);  
-            L.w("response",response);
             if(response != null){  
                 HttpEntity resEntity = response.getEntity();  
                 if(resEntity != null){  
@@ -46,7 +46,8 @@ public class HttpClientUtil {
                 }  
             }  
         }catch(Exception ex){  
-            ex.printStackTrace();  
+            ex.printStackTrace(); 
+            L.w("response exception",ex);
         }  
         return result;  
     }  

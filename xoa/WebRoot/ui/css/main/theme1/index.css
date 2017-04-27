@@ -30,7 +30,7 @@ body,
     margin-top: 31.5px;
     position: relative;
     z-index: 999;
-    background: url(../../../img/main_img/title_no.png) -1px 2px no-repeat;
+    background: url(../../../img/main_img/title_yes.png) -1px 2px no-repeat;
 }
 .ul_two{
 	margin-left:10%;
@@ -51,7 +51,7 @@ body,
     color: #2a588c;
     font-weight: bold;
     line-height: 40px;
-   /*  text-align: center; */
+   text-align: center; 
    font-size: 10pt;
    margin-left: 7%;
 }
@@ -140,7 +140,7 @@ body,
 	overflow:hidden;
 }
 .cont_left{
-	width:17%;
+	width:14%;
 	height:100%;
 	background: url(../../../img/main_img/cont_left.png) 0px 0px no-repeat;
 }
@@ -293,11 +293,11 @@ body,
 	/* font-weight: bold; */
 }
 .erji_circle{
-	margin-top: 16px;
+	margin-top: 14px;
     margin-left: 22%;
 }
 .two_all h1{
-	line-height: 40px;
+	line-height: 30px;
     margin-left: 7%;
     width: 67%;
  	/* font-family:'黑体'; */
@@ -359,12 +359,12 @@ body,
 	margin-left: 35%;
     margin-top: 10%;
 }
-#deptOrg{
+/* #deptOrg{
 	    overflow-x: auto;
     overflow-y: auto;
-}
+} */
 .cont_rig{
-	width:83%;
+	width:86%;
 	height:100%;
 	background:#fff;
 }
@@ -398,6 +398,11 @@ body,
 	margin-left:4%;
 	margin-top:5%;
 }
+.tab_ctwo{
+	    height: 91%;
+    width: 100%;
+    overflow-y: scroll;
+}
 .r_one_top{
 	width:100%;
 	height:65%;
@@ -426,15 +431,19 @@ body,
 	float:left;
 }
  .er_img{
-	margin-top:9%;
-	margin-left:-16%;
+	margin-top:7%;
+	margin-left:-17%;
 }
 .three img,.three h1{
 	float:left;	
 }
+.three h1{
+	line-height:30px;
+	width: 55%;
+}
 .three img{
 	margin-left: 34%;
-    margin-top: 17px;
+    margin-top: 14px;
 }
 .cont_left,.cont_rig{
 	float:left;

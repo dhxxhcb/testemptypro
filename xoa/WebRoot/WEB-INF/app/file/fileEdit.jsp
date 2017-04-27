@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script type="text/javascript" src="js/jquery.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 body {
@@ -41,14 +40,22 @@ table tr td input:not (#fh ){
 	padding: 2px 5px;
 }
 </style>
+<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
-function submit(){
-   
-    }
-    
+
     function closeCurrentWindow(){
- 		 window.form1.submit();
- 		window.opener.location.href = window.opener.location.href;     
+ 	  var sortNo=$('#sortno').val();
+      var sortName=$('#sortname').val();
+      var sortid=$('#sortid').val();
+        alert(sortNo+sortName+sortid);
+         $.ajax({
+                url: "${pageContext.request.contextPath }/file/update",
+                Type: "POST",
+                data:{"sortNo":sortNo,"sortName":sortName,"sortId":sortid},
+                success:function (data){
+                }
+           }); 
+ 		//window.opener.location.href = window.opener.location.href;     
  		if (window.opener.progressWindow)     
  		{         
  		window.opener.progressWindow.close();     
@@ -59,8 +66,7 @@ function submit(){
 </head>
 <body>
 	<h1>文件夹编辑</h1>
-	<form id="form1"
-		action="${pageContext.request.contextPath }/file/update" method="post">
+	<form id="form1">
 		<table border="1" cellspacing="0" cellpadding="0"
 			style="border-collapse: collapse;" width="50%">
 			<tr>
@@ -80,10 +86,7 @@ function submit(){
 					onclick="closeCurrentWindow()" />
 				</td>
 			</tr>
-			<!-- 排序号:  <input id="sortno" name="sort_no" type="text" value="${sortno }"/><br>
-   文件夹名称：<input id="sortname" name="sort_name" type="text" value="${sortname }"/><br> --!>
-  <!--  <input id="qr" type="button" value="确认" onclick="submit()"/> -->
-			<!--   <input id="fh" type="button" value="确认" onclick="closeCurrentWindow()"/>-->
+		
 			<input id="sortid" type="hidden" name="sortId" value="${sortid}" />
 		</table>
 	</form>

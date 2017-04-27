@@ -149,7 +149,8 @@ public class DateFormat {
 			ret = "刚刚";
 		}
 		if(THREE_MINUTE_TIME<nowTime-formatTime&&nowTime-formatTime<=ONE_HOUR_TIME) {
-			ret = "几分钟前";
+			int minutes = (int) ((nowTime - formatTime)/(1000 * 60));  
+			ret = minutes+"分钟前";
 		}
 		if(ONE_HOUR_TIME<nowTime-formatTime&&nowTime-formatTime<=ONE_DAY_TIME) {
 			ret = "今天 "+hourFat;

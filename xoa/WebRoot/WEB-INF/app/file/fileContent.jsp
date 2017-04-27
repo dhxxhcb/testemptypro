@@ -47,7 +47,7 @@ $(function(){
 						var files='';
 							for(var i=0;i<data.length;i++){
 							if(data[i].fileType=="folder"){
-							files+="  <tr><td><input type=\"checkbox\" name=\"\" value=\"\" > <a href=\"${pageContext.request.contextPath }\">"+data[i].sortName+ "  </a></td>  <td><img src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td> <img src=\"img/file/cabinet8.png\" alt=\"\"/> </td></tr>" 
+							files+="  <tr><td><input type=\"checkbox\" name=\"\" value=\"\" > <a href=\"${pageContext.request.contextPath }/file/temp\">"+data[i].sortName+ "  </a></td>  <td><img src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td> <img src=\"img/file/cabinet8.png\" alt=\"\"/> </td></tr>" 
 							   }else{
 							   files+="  <tr><td><input type=\"checkbox\" name=\"\" value=\"\" > <a href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td> <img src=\"img/file/cabinet8.png\" alt=\"\"/> </td></tr>" 
 							   }
@@ -74,10 +74,10 @@ function openWindow(sHref,strWidth,strHeight) {
 
 <body style="background-color: #EBEBEB">
 <div class="head w clearfix">
-    <div> <a href="#"><img src="img/file/cabinet01.png" alt="新建文件"/></a></div>
-    <div> <a href="#"><img src="img/file/cabinet02.png" alt="批量上传"/></a></div>
-    <div> <a href="#"><img src="img/file/cabinet03.png" alt="查询"/></a></div>
-    <div> <a href="#"><img src="img/file/cabinet04.png" alt="全局搜索"/></a></div>
+    <div> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet01.png" alt="新建文件"/></a></div>
+    <div> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet02.png" alt="批量上传"/></a></div>
+    <div> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet03.png" alt="查询"/></a></div>
+    <div> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet04.png" alt="全局搜索"/></a></div>
 </div>
 <!--middle部分开始-->
 <div class="w">

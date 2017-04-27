@@ -114,6 +114,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		input{
      		border: 1px solid #ccc;
      	}
+     	  	#cx {
+     		background-image:url(../img/center_q.png);
+     		background-repeat:no-repeat;
+     		width:60px;
+     		hieght:30px;
+     		line-height:30px;
+     		margin-top: 18px;
+     		margin-left: 10px;
+     		text-align:center;
+     		color:#fff;
+     	}
+   
 	</style>
 </head>
 <body>
@@ -148,7 +160,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div style="font-size: 15px; margin-left:28px; "><fmt:message code="global.lang.date" />:</div>
                 <input class="button1" id="sendTime">
             </div>
-            <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/>
+             <!-- <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/> -->
+            <div id="cx">查询</div>
         </div>
 
 
@@ -205,25 +218,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div class="header"><fmt:message code="global.lang.inputquerycondition" /></div>
 	        <div class="middle">
 	            <div class="le publisher">
-	                <div class="color"><fmt:message code="notice.th.publisher" />：</div>
-	                <input style="height:50px;width:279px;margin-left:56px;margin-right: 15px; position: relative;" type="text" />
+	                <div class="color"style="width:105px;"><fmt:message code="notice.th.publisher" />：</div>
+	                <input style="height:50px;width:279px;margin-left:0px;margin-right: 15px; position: relative;" type="text" />
 	                <div style="margin-right:23px; color:#207BD6"><fmt:message code="global.lang.add" /></div>
 	                <div><fmt:message code="global.lang.empty" /></div>
 	            </div>
 	            <div class="le subject">
-	                <div class="color"><fmt:message code="notice.th.title" />：</div>
-	                <input id="subject_query" style="height:26px;width:279px;margin-left:69px;margin-right: 15px;position: relative;" type="text"/>
+	                <div class="color"style="width:105px;"><fmt:message code="notice.th.title" />：</div>
+	                <input id="subject_query" style="height:26px;width:279px;margin-left:0px;margin-right: 15px;position: relative;" type="text"/>
 	            </div>
 				<div class="le date">
-	                <div class="color"><fmt:message code="notice.title.Releasedate" />：</div>
-	                <input id="beginTime" style="height:24px;width:119px;margin-left:36px;margin-right: 11px;position: relative" type="text"/>
+	                <div class="color"style="width:105px;"><fmt:message code="notice.title.Releasedate" />：</div>
+	                <input id="beginTime" style="height:24px;width:119px;margin-left:0px;margin-right: 11px;position: relative" type="text"/>
 	                <div class="color"><fmt:message code="global.lang.to" /></div>
 	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
 	            </div>
 	           	<div class="le ce1">
-	                <div class="color"><fmt:message code="news.title.new" />：</div>
+	                <div class="color"style="width:105px;"><fmt:message code="news.title.new" />：</div>
 	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select_query">
+		                <select name="TYPE" style="height:24px;width:119px;margin-left:0px;" class="button1" style="float: left;" id="select_query">
 							<option value="0" selected=""><fmt:message code="news.th.type" /></option>
 				<option value="01"><fmt:message code="news.th.company" /></option>
 				<option value="02"><fmt:message code="news.th.media" /></option>
@@ -308,7 +321,7 @@ $(function () {
 						layer.closeAll()
 						if(obj.obj.length == 0){
 							if($('.index_head .one').parent().attr('data_id') == '0'){
-								layer.msg('没有未读新闻，2秒后自动跳到公告通知', {icon: 6});
+								layer.msg('没有未读新闻，2秒后自动跳到全部新闻', {icon: 6});
 								var turnindex=setInterval(function(){
 									layer.closeAll();
 									$(".index_head li").eq(1).click();

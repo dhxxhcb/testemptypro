@@ -217,25 +217,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div class="header">输入查询条件</div>
 	        <div class="middle">
 	            <div class="le publisher">
-	                <div class="color">发布人：</div>
-	                <div><input style="height:50px;width:279px;margin-left:56px;margin-right: 15px;" type="text" /></div>
+	                <div class="color"style="width:105px;">发布人：</div>
+	                <div><input style="height:50px;width:279px;margin-left:0px;margin-right: 15px;" type="text" /></div>
 	                <div style="margin-right:23px; color:#207BD6">添加</div>
 	                <div>清空</div>
 	            </div>
 	            <div class="le subject">
-	                <div class="color">标题：</div>
-	                <div><input id="subject" style="height:26px;width:279px;margin-left:69px;margin-right: 15px;" type="text"/></div>
+	                <div class="color"style="width:105px;">标题：</div>
+	                <div><input id="subject" style="height:26px;width:279px;margin-left:0px;margin-right: 15px;" type="text"/></div>
 	            </div>
 				<div class="le date">
-	                <div class="color">发布日期：</div>
-	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:45px;margin-right: 11px;" type="text"/></div>
+	                <div class="color"style="width:105px;">发布日期：</div>
+	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:0px;margin-right: 11px;" type="text"/></div>
 	                <div class="color">至</div>
 	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
 	            </div>
 	           	<div class="le ce1">
-	                <div class="color">类型：</div>
+	                <div class="color"style="width:105px;">类型：</div>
 	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:71px;" class="button1" style="float: left;" id="select">
+		                <select name="TYPE" style="height:24px;width:119px;margin-left:0px;" class="button1" style="float: left;" id="select">
 							<option value="0" selected="">所有类型</option>
 							<option value="01">公司动态</option>
 							<option value="02">媒体关注</option>
@@ -311,7 +311,7 @@ $(function () {
             function initPageList(cb){
             	$.ajax({
 					type: "get",
-					url: "<%=basePath%>news/showNewsManage",
+					url: "<%=basePath%>news/newsShow",
 					dataType: 'JSON',
 					data: data,
 					success: function(data){
@@ -321,9 +321,9 @@ $(function () {
                                	 news = "<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
                                		   "<td>"+data.obj[i].providerName+"</td>"+//发布人
                                        "<td>"+data.obj[i].typeName+"</td>"+//类型
-                                       "<td><div class='break_td' title="+data.obj[i].depName+">"+data.obj[i].depName+"</div></td>"+//发布范围
+                                       "<td><div class='break_td' title="+data.obj[i].depName+">"+'点击详情'+"</div></td>"+//发布范围
                                        "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</a></td>"+//标题
-                                       "<td>"+data.obj[i].newsTime+"</td>"+//发布时间
+                                       "<td>"+data.obj[i].newsDateTime+"</td>"+//发布时间
                                        "<td>"+data.obj[i].clickCount+"</td>"+//点击数
                                        "<td>"+data.obj[i].newsId+"</td>"+//评论（条）
                                        "<td>"+"生效</td>"+//状态

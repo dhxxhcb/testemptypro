@@ -43,7 +43,7 @@ public class loginController {
 	@Value("${app_login_path_php}")
 	private String url;
 	private String charset = "utf-8";
-	private HttpClientUtil httpClientUtil = null;
+	
 
 	/**
 	 * 
@@ -116,46 +116,48 @@ public class loginController {
 				"loginDateSouse");
 		ToJson<Users> json = new ToJson<Users>(0, null);
 		ContextHolder.setConsumerType("xoa" + loginId);
-		// String httpOrgCreateTest = url + "httpOrg/create";
-		// Map<String,String> createMap = new HashMap<String,String>();
-		// createMap.put("userid","username");
-		// createMap.put("password","password");
-		// String httpOrgCreateTestRtn =
-		// httpClientUtil.doPost(httpOrgCreateTest,createMap,charset);
-		// L.a("信息"+httpOrgCreateTestRtn);
-		// if (httpOrgCreateTestRtn.equals("err")) {
-		// request.getSession().setAttribute("message", "errOne");
-		// json.setMsg("err");
-		// json.setFlag(1);
-		// }else if (httpOrgCreateTestRtn.equals("ok"))
+		String httpOrgCreateTest = url;
+		Map<String, String> createMap = new HashMap<String, String>();
+		createMap.put("userid", username);
+		createMap.put("password", password);
+		String httpOrgCreateTestRtn = HttpClientUtil.doPost(httpOrgCreateTest,
+				createMap, charset);
+		L.a("Http response" + httpOrgCreateTestRtn);
+		 if (httpOrgCreateTestRtn.trim().equals("ok")) {
+			Users user = usersService.findUserByName(username, request);
+			if (user == null) {
+				L.a("login erro");
+				request.getSession().setAttribute("message", "errOne");
+				json.setObject(user);
+				json.setMsg("err");
+				json.setFlag(1);
+			} else {
+				// if (user.getByname().equals(username)) {
+				// L.a("login success");
+				request.getSession().setAttribute("uid", user.getUid());
+				request.getSession().setAttribute("userId", user.getUserId());
+				request.getSession().setAttribute("userName", username);
+				request.getSession().setAttribute("byname", user.getByname());
+				request.getSession().setAttribute("password",
+						user.getPassword());
+				request.getSession().setAttribute("userPriv",
+						user.getUserPriv());
+				request.getSession().setAttribute("userPrivNo",
+						user.getUserPriv());
+				request.getSession().setAttribute("deptId", user.getDeptId());
+				request.getSession().setAttribute("deptIdOther",
+						user.getDeptIdOther());
+				// }
+				json.setObject(user);
+				json.setMsg("OK");
+				json.setFlag(0);
 
-		Users user = usersService.findUserByName(username, request);
-		if (user == null) {
-			L.a("login erro");
+			}
+		}else if (httpOrgCreateTestRtn.trim().equals("err")) {
 			request.getSession().setAttribute("message", "errOne");
-			json.setObject(user);
 			json.setMsg("err");
 			json.setFlag(1);
-		} else {
-			// if (user.getByname().equals(username)) {
-			// L.a("login success");
-			request.getSession().setAttribute("uid", user.getUid());
-			request.getSession().setAttribute("userId", user.getUserId());
-			request.getSession().setAttribute("userName", username);
-			request.getSession().setAttribute("byname", user.getByname());
-			request.getSession().setAttribute("password", user.getPassword());
-			request.getSession().setAttribute("userPriv", user.getUserPriv());
-			request.getSession().setAttribute("userPrivNo", user.getUserPriv());
-			request.getSession().setAttribute("deptId", user.getDeptId());
-			request.getSession().setAttribute("deptIdOther",
-					user.getDeptIdOther());
-			// }
-			json.setObject(user);
-			json.setMsg("OK");
-			json.setFlag(0);
-
-		}
-
+		} 
 		return json;
 
 	}
@@ -166,6 +168,7 @@ public class loginController {
 
 	/*
 	 * public void loginCheck(@RequestParam("username") String username,
+	 * 
 	 * @RequestParam("password") String password ){ String httpOrgCreateTest =
 	 * url + "httpOrg/create"; Map<String,String> createMap = new
 	 * HashMap<String,String>(); createMap.put("userid","username");
