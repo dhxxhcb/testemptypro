@@ -395,7 +395,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								}else{ 
 									
 									//页面不存在，新增 title和iframe
-									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div><img class="close" style="display:none;" src="img/main_img/icon.png"></div></li>';
+									var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'"><h1>'+$(this).find('h1').html()+'</h1><div class="img" style="display:none;"><img class="close" src="img/main_img/icon.png"></div></li>';
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
 									$('.main_title ul').append(titlestrs);
 									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) -1px 2px no-repeat;');	
