@@ -138,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<img  src="img/logo.png"/>
 					<a href="#" class="zhuce"><img id="lg"  src="img/sy01.png"/></a>
 					<a href="#" class="zhuce"><img id="lg" src="img/sy02.png"/></a>
-					<img id="lg" src="img/sy04.png"/>
+					<a href="http://192.168.0.17:81/pcapps/ispirit_xoa.exe"><img id="lg" src="img/sy04.png"/></a>
 				</div>
 				<!-- <img id="tp" src="img/sy06.png"/> -->
 			
