@@ -141,7 +141,7 @@ body,
 	float:left;
 }
 .tab_t{
-    width: 96% !important;
+    width: 99% !important;
     height: 45px;
     border-right: 1px solid #e5e5e5;
     margin: auto;
@@ -508,7 +508,7 @@ font-family:'微软雅黑';
 }
 /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
 .tab_cone::-webkit-scrollbar{
-    width: 6px;
+    width: 4px;
     height: 16px;
     background-color: #f5f5f5;
 }
@@ -529,7 +529,7 @@ font-family:'微软雅黑';
 
 /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
 .tab_ctwo::-webkit-scrollbar{
-    width: 6px;
+    width: 4px;
     height: 16px;
     background-color: #f5f5f5;
 }
