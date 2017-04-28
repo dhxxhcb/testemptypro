@@ -22,13 +22,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		//if(uname != ''){
 		//	location.href = "main";
 		//}
-		
+		var data ={
+		  username:uname
+		}
+		if(I_VER !=""&&I_VER!=null){
+		   data["password"]=I_VER;
+		}else{
+		   data["password"]="";
+		  }
         $("#login").click(function () {
         console.log("uname is:"+uname);
-            $.post("/xoa/login",{username:uname,password:I_VER},function(result){
+            $.post("/xoa/login",data,function(result){
                  
                  if(result.flag==true){
                  location.href ="/xoa/spirit/main" ;
+                 }else{
+                   alert("账号密码错误");
                  }
              
             });
