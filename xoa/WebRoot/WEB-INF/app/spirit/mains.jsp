@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- <script type="text/javascript" src="../js/spirit/ispirit.js"></script> -->
 <script type="text/javascript" src="../js/spirit/ispirit_index.js"></script>
 <script>
+  
 	var MYOA_JS_SERVER = "${paraName}";
 	var MYOA_STATIC_SERVER = "${paraValue}";
 	var bIMLogin = false;
