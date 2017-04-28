@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="js/index/bootstrap.min.js"></script>	
  	<script src="js/base/base.js" type="text/javascript" charset="utf-8"></script>
 <head>
-		<title>心通达OA-登录</title>
+		<title><fmt:message code="title.login.txt" /></title>
 		<style type="text/css">
 			*{margin: 0;padding: 0;}
 			body{font-family: "微软雅黑";}
