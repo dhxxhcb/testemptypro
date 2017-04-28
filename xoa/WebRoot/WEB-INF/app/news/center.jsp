@@ -146,7 +146,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <img src="../img/01.png" style="width:25px;height:25px; margin-right:5px;">
+        
+            <img src="../img/la2.png" style="width:25px;height:25px; margin-right:5px;">
 
             <div class="news"><fmt:message code="news.title.new" /></div>
             <select name="TYPE" class="button1" style="float: left;" id="select">
@@ -337,7 +338,7 @@ $(function () {
                         	for (var i = 0; i < obj.obj.length; i++) {
                                str += "<tr><td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].subject+"</ a></td>"+
                                        "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].typeName+"</ a></td>"+
-                                       "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsDateTime.split(' ')[0]+"</ a></td>"+
+                                       "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsDateTime+"</ a></td>"+
                                        "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].clickCount+"</ a></td>"+
                                        "<td><a href='#' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+'0'+"</ a></td>";
                            }

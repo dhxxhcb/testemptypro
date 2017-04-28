@@ -128,9 +128,11 @@ s, i, em {
 
 .navigation .left .news {
     font-size: 17px;
-/*     font-weight: bold; */
-    margin: 0 5px;
+/*  font-weight: bold; */
+    margin-left:5px;
     font-family: "微软雅黑";
+    margin-top: -3px;
+    margin-right: 40px;
 }
 
 .navigation .left .button1 {
