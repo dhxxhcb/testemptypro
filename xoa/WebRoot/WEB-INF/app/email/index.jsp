@@ -260,27 +260,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="main_right hasBeenSend" style="display:none;">
 						
 							<table id="TAC" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-								<!-- <tr class="MAIN2">
+								 <tr class="MAIN2">
 									<td width="8%"><fmt:message code="email.th.main" />：</td>
-									<td width="72%">通达全新OA可选组件-知己者费用管控系统</td>
+									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
 									
 								</tr>
 								<tr class="SEND2">
 									<td><fmt:message code="email.th.recipients" />：</td>
-									<td>
+									<!-- <td>
 										<span><img src="../img/icon_read_3_07.png"/>李佳</span>
 										<span><img src="../img/icon_notread_1_03.png"/>王云</span>
 										<span><img src="../img/icon_read_3_07.png"/>王德</span>
 										<span><img src="../img/icon_notread_1_03.png"/>赵敏</span>
 										<span><img src="../img/icon_read_3_07.png"/>刘娜</span>
-									</td>
+									</td> -->
 									
 								</tr>
 								<tr class="DATE2">
 									<td><fmt:message code="email.th.time" />：</td>
-									<td>2017年3月30日13:31（星期四）</td>
+									<!-- <td>2017年3月30日13:31（星期四）</td> -->
 									
-								</tr> -->
+								</tr>
 							</table>
 							<div class="article1">
 							
@@ -385,13 +385,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//已发送点击事件
 				$('#hasBeenSend').click(function(){
-					//alert('123')
+					
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
 					showAjax2("outbox");
-					//showAjax('outbox','#TAC','.article1')
+					init3('146');
+					
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
-						//init(nId,'#TAC','.article1')
 						init3(nId);
 						
 					}) 
@@ -543,43 +543,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						});
 				}
 				
-				/* function init2(id){
-				
-					$.ajax({
-									type:'get',
-									url:'queryByID',
-									dataType:'json',
-									data:{'emailId':id,'flag':''},
-									success:function(rsp){
-										var data2=rsp.object;
-										var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-										var str='';
-										$('#TAD').find('tr').remove();
-										if(data2.attachmentName!='' && data2.copyName!=''){
-											str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>';
-										} else if(data2.attachmentName=='' && data2.copyName!=''){
-											str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
-										} else if(data2.attachmentName!='' && data2.copyName ==''){
-											str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>';
-										} else{
-											str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
-										}
-										
-										$('#TAD').append(str);
-										$('.article2').append('<p>'+data2.content+'</p>');
-										
-									} 
-						});
-				
-				} */
-				
-				
 				function init3(id){
 					$.ajax({
 									type:'get',
 									url:'queryByID',
 									dataType:'json',
-									data:{'emailId':id,'flag':''},
+									data:{'bodyId':id,'flag':''},
 									success:function(rsp){
 										var data2=rsp.object;
 										var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
