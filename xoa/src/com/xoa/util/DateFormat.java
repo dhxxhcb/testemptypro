@@ -97,9 +97,10 @@ public class DateFormat {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(DateFormat.getStrTime(1492592887));
+		System.out.println(DateFormat.getProbablyDate(1492592887));
 		System.out.println(DateFormat.getProbablyDate(new Date()));
-		System.out.println(DateFormat.getProbablyDate("2016-12-03 23:11:22"));
+		System.out.println(DateFormat.getProbablyDate("2017-04-27 23:11:22"));
+		System.out.println(DateFormat.getProbablyDate("2017-04-28 08:11:22"));
 	}
     
 	/**
@@ -138,34 +139,43 @@ public class DateFormat {
 			formatTime =(Long)obj;
 		}
 		if(formatTime==null) return null;
-		L.w("formatTime is :",formatTime);
+//		L.w("formatTime is :",formatTime);
 		Date formatDate=new Date(formatTime);
 		String hourFat= sdf_hour.format(formatTime);
 		String mouthFat= sdf_mouth.format(formatTime);
 		String yearFat= sdf_year.format(formatTime);
 		String ret = null;
 		
-		if(THREE_MINUTE_TIME<=1000*3*60L) {
+		Calendar fotCalendar =Calendar.getInstance();
+		fotCalendar.setTime(formatDate);
+		int forYear=fotCalendar.get(Calendar.YEAR);
+		int forDay=fotCalendar.get(Calendar.DAY_OF_MONTH);
+		fotCalendar.setTime(nowDate);
+		int nowDay=fotCalendar.get(Calendar.DAY_OF_MONTH);
+		int nowYear=fotCalendar.get(Calendar.YEAR);
+		L.w("forYear",forYear,"forDay",forDay,"nowDay",nowDay,"nowYear",nowYear);
+		if(nowTime-formatTime<=THREE_MINUTE_TIME) {
 			ret = "刚刚";
 		}
 		if(THREE_MINUTE_TIME<nowTime-formatTime&&nowTime-formatTime<=ONE_HOUR_TIME) {
 			int minutes = (int) ((nowTime - formatTime)/(1000 * 60));  
 			ret = minutes+"分钟前";
 		}
-		if(ONE_HOUR_TIME<nowTime-formatTime&&nowTime-formatTime<=ONE_DAY_TIME) {
-			ret = "今天 "+hourFat;
-		}
-		if(ONE_DAY_TIME<nowTime-formatTime&&nowTime-formatTime<=TWO_DAY_TIME) {
-			ret = "昨天 "+hourFat;
+		if(nowDay-forDay>0){
+			if(ONE_DAY_TIME<nowTime-formatTime&&nowTime-formatTime<=TWO_DAY_TIME) {
+				ret = "昨天 "+hourFat;
+			}
+			if(ONE_HOUR_TIME<nowTime-formatTime&&nowTime-formatTime<=ONE_DAY_TIME) {
+				ret = "昨天 "+hourFat;
+			}
+		}else{
+			if(ONE_HOUR_TIME<nowTime-formatTime&&nowTime-formatTime<=ONE_DAY_TIME) {
+				ret = "今天 "+hourFat;
+			}
 		}
 		if(TWO_DAY_TIME<nowTime-formatTime) {
 			ret = mouthFat;
 		}
-		Calendar fotCalendar =Calendar.getInstance();
-		fotCalendar.setTime(formatDate);
-		int forYear=fotCalendar.get(Calendar.YEAR);
-		fotCalendar.setTime(nowDate);
-		int nowYear=fotCalendar.get(Calendar.YEAR);
 		if(nowYear-forYear>0){
 			ret = yearFat;
 		}
