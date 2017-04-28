@@ -64,7 +64,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		 
 		 }
-		 
+		 #la:hover {
+		 	/* text-decoration: block; */
+		 	color:#fff;
+		 	background-color:#0088cc;
+		 	border-radius: 3px;
+		 }
 		 
 		</style>
 <script type="text/javascript">
@@ -133,9 +138,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="right">
 				<div id="zt">
 					<fmt:message code="language" />:
-					 <a href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
+					 <a  id="la" href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
 					  &nbsp;&nbsp;
-					  <a href="?lang=en_US"><fmt:message code="language.en" /></a>
+					  <a id="la" href="?lang=en_US"><fmt:message code="language.en" /></a>
 					  &nbsp;&nbsp;
 					  <!-- <a href="?lang=en_US">繁体</a> -->
 				</div>
