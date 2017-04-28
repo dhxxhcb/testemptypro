@@ -9,7 +9,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
- <script type="text/javascript" src="js/news/jquery-1.9.1.js"></script>
+	<link rel="stylesheet" href="css/index/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/index/login.css"/>
+	<script type="text/javascript" src="js/news/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="js/index/bootstrap.min.js"></script>	
+ 	
 <head>
 		<title>心通达OA-登录</title>
 		<style type="text/css">
@@ -68,18 +72,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#lg").click(function(){
 				$("#tp").slideToggle();
 			});
-		
-		}
+			
+			 $(".zhuce").click(function(){
+			  	$(".btnsq").css("display","block");
+			  	 $(".erweima1").css('overflow-x',"hidden");
+			  	 $(".reg-ye").slideDown();
+			  	 $(".h2_s").animate({top:"100px"},300); 
+			  	 $(".h2_s").show();	
+			  		 var i=60;	
+			  	 		for(var j=-40;j>=-i;j+=20){
+			  	 			var is=i-=20; 	 			
+			  	 			$(".h2_s").animate({left:""+(is)+"px"},150);
+			  	 			$(".h2_s").animate({left:""+(j)+"px"},150);
+			  	 			if(j==0){
+			  	 				break;
+			  	 			}
+			  	 		}
+			  	 $(".erweima").show();
+			  	 $("#css2").css("-webkit-filter","blur(3px)");//谷歌毛玻璃效果
+			  	 $("#css2").css("filter","progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false)");//IE毛玻璃效果	
+			  		$(".erweima1").animate({marginLeft:margins0},800);
+			  		$(".erweima2").animate({marginRight:margins0},800); 		
+			  	 	margins0=-100+"%";
+			  });
+			  
+			   $(".btnsq").click(function(){
+				  	 $(".h2_s").animate({left:"-200%"},300);
+				  	 $(".reg-ye").slideUp();
+				  	 $(".erweima").slideUp(); 	
+				  	 $(".btnsq").slideUp(); 
+				  	 $("#css2").css("-webkit-filter","blur(0px)");//谷歌毛玻璃效果
+				  	 $("#css2").css("filter","progid:DXImageTransform.Microsoft.Blur(PixelRadius=0, MakeShadow=false)");//IE毛玻璃效果	
+				  	 $(".erweima1").animate({marginLeft:margins0},800);
+				  	 $(".erweima2").animate({marginRight:margins0},800);
+			  	 	margins0=0;
+ 			 }); 
+ 			 
+		});
 </script> 
 		
 	</head>
 	<body>
-		<div class="content">
+	<button type="button" class="btn btn-primary btnsq">收起</button>
+	<div id="header"></div>
+		
+		<div class="reg-ye">
+			
+		</div>
+		<div class="content" id="css2" >
 			<div class="left">
 				<div class="logo">
 					<img  src="img/logo.png"/>
-					<img id="lg" src="img/sy01.png"/>
-					<img id="lg" src="img/sy02.png"/>
+					<a href="#" class="zhuce"><img id="lg"  src="img/sy01.png"/></a>
+					<a href="#" class="zhuce"><img id="lg" src="img/sy02.png"/></a>
 					<img id="lg" src="img/sy04.png"/>
 				</div>
 				<!-- <img id="tp" src="img/sy05.png"/> -->
@@ -145,5 +190,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</ul>
 			</div>
 		</div>
+		<!-- 弹出二维码 -->
+			<h2 class="h2_s">微信扫描下载APP注册</h2>
+			<div class="erweima">
+				
+				<div class="erweima1" style="padding-left: 260px;">
+					<img src="img/sy05.png" alt="" />
+					<div class="fonts">扫描下载 或 点击这里下载<!-- <a href="http://www.gsubo.com/app" style="text-decoration: none;color: white;" target="_blank">点击这里下载</a> --></div>
+				</div>
+				
+			</div>
 	</body>
 </html>
