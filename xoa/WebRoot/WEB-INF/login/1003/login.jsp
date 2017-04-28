@@ -20,7 +20,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<title></title>
+<title><fmt:message code="title.hangzhou" /></title>
 <style type="text/css">
 *{margin: 0;padding: 0;}
 			body{font-family: "微软雅黑";}
