@@ -146,11 +146,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="right">
 				<div id="zt">
 					<fmt:message code="language" />:
-					 <a  id="la" href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
+					 <a  id="la" href="?lang=zh_CN">中文</a>
 					  &nbsp;&nbsp;
-					  <a id="la" href="?lang=en_US"><fmt:message code="language.en" /></a>
+					  <a id="la" href="?lang=en_US">English</a>
 					  &nbsp;&nbsp;
-					  <!-- <a href="?lang=en_US">繁体</a> -->
+					  <a href="#">繁体</a> 
 				</div>
 				<ul>
 					<li class="total">
