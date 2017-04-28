@@ -507,8 +507,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 	  
 						 	   $('#f_'+delet).remove(); 
 						 	}else{ */
-						 		
+						 		$('#t_'+delet).siblings().attr('style','background:url(img/main_img/title_no.png) -1px 2px no-repeat; ');	
 						 		$('#t_'+delet).prev().attr('style','background:url(img/main_img/title_yes.png) -1px 2px no-repeat; position: relative; z-index: 99999;');	
+						 	 	
 						 	 	$(this).parent().parent().remove();
 						 	 	$('#f_'+delet).prev().show();
 						 	 	$('#f_'+delet).remove(); 
