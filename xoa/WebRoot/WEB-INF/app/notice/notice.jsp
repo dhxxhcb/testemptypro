@@ -351,7 +351,10 @@ $(function () {
 								cb(data.totleNum);
 							}
 						}
-					}   
+					},
+					error:function(e){
+						layer.closeAll();
+					}
 				})
             }
             
