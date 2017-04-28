@@ -98,6 +98,9 @@ ul,li{
     position: relative;
     top: -10px;
 }
+.appname:hover{
+    background: #abd9fe;
+}
 .head_pic img{
 	position: absolute;
     left: 0;
