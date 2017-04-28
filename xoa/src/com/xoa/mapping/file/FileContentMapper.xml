@@ -31,7 +31,7 @@
 		select <include refid="FileConSelect"/>,'file' as fileType from file_content fc,user u where fc.SORT_ID=#{tempNo} and u.USER_ID=fc.CREATER;
 		</select>
 		<select id="getFileConByContentId" parameterType="string" resultMap="file_ContentResultMap">
-		select * from file_content where CONTENT_ID = #{contentId};
+		select <include refid="FileConSelect"/> from file_content fc,user u where fc.CONTENT_ID = #{contentId} and u.USER_ID=fc.CREATER;
 		</select>
 		<delete id="deleteBySort_id" parameterType="int">
 		delete from  file_content where SORT_ID=#{tempNo};

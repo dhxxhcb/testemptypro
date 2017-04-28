@@ -34,6 +34,9 @@ public class FileContentServiceImpl implements FileContentService{
 
 	@Override
 	public FileContentModel getFileConByContentId(String contentId) {
-		return	file_ContentMapper.getFileConByContentId(contentId);
+		FileContentModel fc=file_ContentMapper.getFileConByContentId(contentId);
+		String temp=fc.getSendTime().substring(0, 19);
+		fc.setSendTime(temp);
+		return	fc;
 	}
 }
