@@ -187,9 +187,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     	<td class="th"><fmt:message code="notice.th.publisher" /></td>
                     	<td class="th"><fmt:message code="notice.th.title" /></td>
                     	<td class="th" style="position: relative"><fmt:message code="notice.th.effectivedate" />
-	                        <img style="position: absolute;margin-left:9px;cursor: pointer;" src="../img/05.png" alt=""/>
-	                        <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
-	                             src="../img/06.png " alt=""/>
+	                        
 	                    </td>
 	                    <td class="th"><fmt:message code="notice.th.releasescope" /></td>
 	                    <td class="th"><fmt:message code="notice.th.type" /></td>
