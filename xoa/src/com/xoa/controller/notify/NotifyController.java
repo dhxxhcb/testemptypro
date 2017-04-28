@@ -162,6 +162,8 @@ public class NotifyController {
 	  maps.put("content", content);
 	  maps.put("format", format);
 	  maps.put("toId", toId);
+	  maps.put("beginDate", beginDate);
+	  maps.put("endDate", endDate);
 	  ToJson<Notify> returnReslt=null;
 	  String name=(String) request.getSession().getAttribute("userId");
 	  try {

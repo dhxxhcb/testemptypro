@@ -20,7 +20,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<title></title>
+<title><fmt:message code="title.company" /></title>
 <style type="text/css">
  			*{margin: 0;padding: 0;}
 			body{font-family: "微软雅黑";}
@@ -55,7 +55,7 @@
 				background: url(img/login/bjjt_head.png) no-repeat;
 				background-size: 100% 100%;
 			}
-			.content .ban1{ width:100%; height:83%; background: url(img/login/bjjt_bg.png) no-repeat;background-size:100% 100%; position: relative;}
+			.content .ban1{ width:100%; height:83%; background: url(img/login/background_zonggongsi_02_02.jpg) no-repeat;background-size:100% 100%; position: relative;}
 			#loginbtn:hover{background-color:#59a8ff;}
 </style>
 <script src="js/jquery.min.js"></script>

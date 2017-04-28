@@ -135,6 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      		text-align:center;
      		color:#fff;
      		cursor: pointer;
+     		font-family: "微软雅黑";
      	}
 	</style>
 </head>
@@ -145,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ul class="index_head">
             <li data_id=""><span class="one" style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.th.newsmanage" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
             <li data_id="0"><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.th.newbuild" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
-            <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.query" /></span></li>
+            <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;margin-top: 4px;"><fmt:message code="news.title.query" /></span></li>
         </ul>
     </div>
     <!--head通栏结束-->

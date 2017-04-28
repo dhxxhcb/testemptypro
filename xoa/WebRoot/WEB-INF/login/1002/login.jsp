@@ -20,7 +20,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<title></title>
+<title><fmt:message code="title.beijing" /></title>
 <style type="text/css">
 			*{margin: 0;padding: 0;}
 			body{font-family: "微软雅黑";}
@@ -56,7 +56,7 @@
 				background-size: 100% 100%;
 			}
 			#loginbtn:hover{background-color:#59a8ff;}
-			.content .ban1{ width:100%; height:83%; background: url(img/login/bgfgs_bg.png) no-repeat;background-size:100% 100%; position: relative;}
+			.content .ban1{ width:100%; height:83%; background: url(img/login/background_1_02_04.jpg) no-repeat;background-size:100% 100%; position: relative;}
 </style>
 <script src="js/jquery.min.js"></script>
 </head>

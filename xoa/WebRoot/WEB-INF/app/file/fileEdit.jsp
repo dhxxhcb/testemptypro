@@ -47,7 +47,6 @@ table tr td input:not (#fh ){
  	  var sortNo=$('#sortno').val();
       var sortName=$('#sortname').val();
       var sortid=$('#sortid').val();
-        alert(sortNo+sortName+sortid);
          $.ajax({
                 url: "${pageContext.request.contextPath }/file/update",
                 Type: "POST",

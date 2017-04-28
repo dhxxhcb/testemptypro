@@ -126,6 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      		text-align:center;
      		color:#fff;
      		cursor: pointer;
+     		font-family: "微软雅黑";
      	}
 	</style>
 </head>
@@ -139,7 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!--  //公告通知 -->
             <li data_id=""><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="notice.title.notify" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
             <!-- //公告查询 -->
-            <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="notice.title.announcementquery" /></span></li>
+            <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;margin-top: 4px;"><fmt:message code="notice.title.announcementquery" /></span></li>
         </ul>
     </div>
     <!--head通栏结束-->
@@ -148,10 +149,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <img src="../img/notice01.png" style="width:25px;height:25px; margin-right:5px;">
+            <img src="../img/la1.png" style="margin-right:5px;">
              
             <div class="news"><fmt:message code="notice.title.notify" /></div><!-- //公告通知 -->
-            <select name="TYPE" class="button1" style="float: left;" id="select">
+            <select name="TYPE" class="button1" style="float: left;font-size: 14px;font-family: 微软雅黑;" id="select">
 				<option value="0" selected=""><fmt:message code="notice.type.alltype" /></option>
 				<option value="01"><fmt:message code="notice.type.Decision"/></option>
 						    <option value="02"><fmt:message code="notice.type.notice" /></option>
@@ -159,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    <option value="04"><fmt:message code="notice.type.other" /></option>
 			</select>
             <div>
-                <div style="font-size: 15px; margin-left:28px; "><fmt:message code="global.lang.date" /> :</div>
+                <div style="font-size: 15px; margin-left:28px;"><fmt:message code="global.lang.date" /> :</div>
                 <input class="button1" id="sendTime">
             </div>
              <!-- <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/> -->
@@ -187,9 +188,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     	<td class="th"><fmt:message code="notice.th.publisher" /></td>
                     	<td class="th"><fmt:message code="notice.th.title" /></td>
                     	<td class="th" style="position: relative"><fmt:message code="notice.th.effectivedate" />
-	                        <img style="position: absolute;margin-left:9px;cursor: pointer;" src="../img/05.png" alt=""/>
-	                        <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
-	                             src="../img/06.png " alt=""/>
+	                        
 	                    </td>
 	                    <td class="th"><fmt:message code="notice.th.releasescope" /></td>
 	                    <td class="th"><fmt:message code="notice.th.type" /></td>
@@ -337,7 +336,7 @@ $(function () {
                         	for (var i = 0; i < data.obj.length; i++) {
                                news += "<tr><td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime+"</ a></td>"+
+                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].toId+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
                                        +news;
@@ -385,14 +384,14 @@ $(function () {
 });
 	 laydate({
      elem: '#sendTime', //目标元素。
-     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+     format: 'YYYY-MM-DD', //日期格式
      istime: true, //显示时、分、秒
    });
    
    //时间控件调用
    var start = {
      elem: '#beginTime',
-     format: 'YYYY-MM-DD hh:mm:ss',
+     format: 'YYYY-MM-DD',
     /* min: laydate.now(), //设定最小日期为当前日期*/
     /* max: '2099-06-16 23:59:59', //最大日期*/
      istime: true,
@@ -422,7 +421,7 @@ $(function () {
             }
    var end = {
      elem: '#endTime',
-     format: 'YYYY-MM-DD hh:mm:ss',
+     format: 'YYYY-MM-DD',
      /*min: laydate.now(),*/
      /*max: '2099-06-16 23:59:59',*/
      istime: true,

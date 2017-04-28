@@ -13,9 +13,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="css/index/login.css"/>
 	<script type="text/javascript" src="js/news/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="js/index/bootstrap.min.js"></script>	
- 	
+ 	<script src="js/base/base.js" type="text/javascript" charset="utf-8"></script>
 <head>
-		<title>心通达OA-登录</title>
+		<title><fmt:message code="title.login.txt" /></title>
 		<style type="text/css">
 			*{margin: 0;padding: 0;}
 			body{font-family: "微软雅黑";}
@@ -24,18 +24,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.content .left{width: 55%;min-height:800px;float: left;position: relative;}
 			.content .left .logo{width: 350px;position: absolute;top: 20%;left: 25%;}
 			.content .left .logo img{display: block;width: 100%;}
-			
+			.content .right ul li{line-height: 24px;}
 			.content .right{width: 45%;float: left;}
 			.content .right ul{list-style: none;margin-top: 26%;margin-left: 15%;position: relative;}
 			.content .right ul li.total{width: 384px;height: 50px;background: url(img/1.png) no-repeat;position: relative;border-radius: 25px;background-position:center;margin-bottom: 42px;z-index: 999;}
 			.content .right ul li a{text-decoration: none;display: block;width: 100%;}
 			.content .right ul li.total .round{display: block;width: 16px;height: 16px;border-radius: 50%;background-color: #fff;;margin-left: 25px;position: absolute;top: 17px;}
 			.content .right ul li.total .bord{display: block;color: #fff;margin-left: 50px;width: 1%;font-size: 20px;line-height: 45px;margin-left: 75px;margin-right: 30px;}
-			.content .right ul li.total .txt{display: block;width: 60%;margin: -34px auto;text-align: center;font-size: 20px;color: #fff;letter-spacing: 3px;float: right;margin-right: 22%;}
+			.content .right ul li.total .txt{
+				    display: block;
+			    width: 75%;
+			    margin: -32px auto;
+			    text-align: left;
+			    font-size: 18px;
+			    color: #fff;
+			    /* letter-spacing: 3px; */
+			    margin-left: 18%;
+			}
 			.content .right ul li.div_li{width: 320px;height: 44px;border-radius: 22px;margin-left: 60px;position: relative;margin-bottom: 42px;}
 			.content .right ul li.div_li .round{display: block;width: 14px;height: 14px;border-radius: 50%;background-color: #fff;;margin-left: 25px;position: absolute;top: 15px;}
 			.content .right ul li.div_li .bord{display: block;color: #fff;margin-left: 50px;width: 1%;font-size: 18px;line-height: 40px;margin-left: 75px;margin-right: 30px;}
-			.content .right ul li.div_li .txt{display: block;width: 60%;margin: -32px auto;text-align: center;font-size: 18px;color: #fff;letter-spacing: 3px;float: right;margin-right: 15%;}
+			.content .right ul li.div_li .txt{display: block;width: 75%;margin: -32px auto;text-align: left;font-size: 18px;color: #fff;margin-left: 20%;}
 			.content .right .div_im{width: 30px;height: 360px;position: absolute;top: 16px;left: 30px;}
 			.content .right .div_im img{display: block;width: 100%;height: 100%;}
 			
@@ -64,7 +73,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		 
 		 }
-		 
+		 .la:hover {
+		 	color:#fff;
+		 	background-color:#0088cc;
+		 	border-radius: 3px;
+		 } 
+		 .bag{
+		 color:#fff;
+		 	background-color:#0088cc;
+		 	border-radius: 3px;
+		 	}
+			 	/*  #la {
+			 	color:#fff;
+			 	background-color:#0088cc;
+			 	border-radius: 3px;
+			 } */
 		 
 		</style>
 <script type="text/javascript">
@@ -72,7 +95,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#lg").click(function(){
 				$("#tp").slideToggle();
 			});
-			
+			var lang = $.getQueryString("lang");
+			$('#'+lang).addClass("bag").siblings().removeClass("bag")
 			 $(".zhuce").click(function(){
 			  	$(".btnsq").css("display","block");
 			  	 $(".erweima1").css('overflow-x',"hidden");
@@ -107,6 +131,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				  	 $(".erweima2").animate({marginRight:margins0},800);
 			  	 	margins0=0;
  			 }); 
+ 			 /* 切换语言 */
+		 /*  $("#qh").click(function(){
+		  $(this).addClass("#la");
+		}); */
  			 
 		});
 </script> 
@@ -125,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<img  src="img/logo.png"/>
 					<a href="#" class="zhuce"><img id="lg"  src="img/sy01.png"/></a>
 					<a href="#" class="zhuce"><img id="lg" src="img/sy02.png"/></a>
-					<img id="lg" src="img/sy04.png"/>
+					<a href="http://192.168.0.17:81/pcapps/ispirit_xoa.exe"><img id="lg" src="img/sy04.png"/></a>
 				</div>
 				<!-- <img id="tp" src="img/sy06.png"/> -->
 			
@@ -133,55 +161,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="right">
 				<div id="zt">
 					<fmt:message code="language" />:
-					 <a href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
+					 <a class="bag" id="zh_CN" class="la" href="?lang=zh_CN">中文</a>
 					  &nbsp;&nbsp;
-					  <a href="?lang=en_US"><fmt:message code="language.en" /></a>
+					  <a class="la" id="en_US" href="?lang=en_US">English</a>
 					  &nbsp;&nbsp;
-					  <!-- <a href="?lang=en_US">繁体</a> -->
+					  <a href="#" id="language_zh_tw" class='la'>繁体</a> 
 				</div>
 				<ul>
 					<li class="total">
 						<a href="login?loginId=1001">
 							<span class="round"></span>
-							<span class="bord">|</span>
-							<span class="txt">
-							<fmt:message code="headQuarters" />
-							</span>
+							<span class="bord">&nbsp;</span>
+							<span class="txt"><fmt:message code="headQuarters" /></span>
 						</a>
 					</li>
 					<li class="div_li one">
 						<a href="login?loginId=1002">
 							<span class="round"></span>
-							<span class="bord">|</span>
-							<span class="txt">
-							<fmt:message code="branchOfficeOne" />
-							</span>
+							<span class="bord">&nbsp;</span>
+							<span class="txt"><fmt:message code="branchOfficeOne" /></span>
 						</a>
 					</li>
 					<li class="div_li tow">
 						<a href="login?loginId=1003">
 							<span class="round"></span>
-							<span class="bord">|</span>
-							<span class="txt">
-							<fmt:message code="branchOfficeTwo"/></span>
+							<span class="bord">&nbsp;</span>
+							<span class="txt"><fmt:message code="branchOfficeTwo"/></span>
 						</a>
 					</li>
 					<li class="div_li three">
 						<a href="login?loginId=1004">
 							<span class="round"></span>
-							<span class="bord">|</span>
-							<span class="txt">
-							<fmt:message code="branchOfficeThree"/>
-							</span>
+							<span class="bord">&nbsp;</span>
+							<span class="txt"><fmt:message code="branchOfficeThree"/></span>
 						</a>
 					</li>
 					<li class="div_li four">
 						<a href="login?loginId=1005">
 							<span class="round"></span>
-							<span class="bord">|</span>
-							<span class="txt">
-							<fmt:message code="branchOfficeFore"/>
-							</span>
+							<span class="bord">&nbsp;</span>
+							<span class="txt"><fmt:message code="branchOfficeFore"/></span>
 						</a>
 					</li>
 					<li class="div_im">
@@ -191,12 +210,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<!-- 弹出二维码 -->
-			<h2 class="h2_s">微信扫描下载APP注册</h2>
+			<h2 class="h2_s">微信扫描下载APP登录</h2>
 			<div class="erweima">
 				
 				<div class="erweima1" style="padding-left: 260px;">
 					<img src="img/sy06.png" alt="" />
-					<div class="fonts">扫描下载 或 点击这里下载<!-- <a href="http://www.gsubo.com/app" style="text-decoration: none;color: white;" target="_blank">点击这里下载</a> --></div>
+					<div class="fonts">扫描下载<!-- <a href="http://www.gsubo.com/app" style="text-decoration: none;color: white;" target="_blank">点击这里下载</a> --></div>
 				</div>
 				
 			</div>

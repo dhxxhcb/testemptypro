@@ -18,7 +18,7 @@ html,body{
 	height:45px;
 	background: #f8f8f8;
     box-shadow: -1px -1px 6px #555;
-    border: 1px solid #aaa;
+   /*  border: 1px solid #aaa; */
 }
 .header ul li{
 	display: inline-block;
@@ -28,10 +28,11 @@ html,body{
 .head_title{
 	display: inline-block;
     margin: 7px 10px;
+    padding: 0 10px;
     height: 30px;
     line-height: 30px;
     text-align: center;
-    font-size: 11pt;
+    font-size: 10pt;
 }
 .active{
     background: #2674dc;
@@ -56,13 +57,17 @@ ul.total{
 	height: 47%;
 	min-height: 200px;
     border: 1px solid #d2d2d2;
-    display: inline-block;
+   /*  display: inline-block; */
     margin-left: 2%;
     margin-top: 1%;
 }
+.total .contain{
+	float:left;
+} 
 .s_container{
-	height: calc(100% - 45px);
+	height: calc(100% - 32px);
 	width:100%;
+	background:#fff;
 }
 .s_container ul{
 	height:100%;
@@ -70,9 +75,12 @@ ul.total{
 }
 .s_container ul li{
 	position:relative;
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid rgba(0,0,0,0.1);
 	height: calc((100% / 5) - 1px);
-	font-size: 15px;
+	font-size: 10pt;
+}
+.s_container ul li span{
+	font-size:9pt;
 }
 .s_container ul li:last-child{
 	border:0;
@@ -91,11 +99,12 @@ ul.total{
     margin: auto;
 }
 .s_head{
-	height: 40px;
-	line-height: 40px;
+	height: 32px;
+	line-height: 32px;
     width: 100%;
-    font-size: 15px;
-    background: rgba(3, 169, 244, 0.78);
+    font-size: 10pt;
+   /*  background: rgba(3, 169, 244, 0.78); */
+    background:url(../../../img/spirit/menu/s_head.png);
     color: #fff;
     position: relative;
 }
@@ -104,6 +113,9 @@ ul.total{
 }
 .s_head span{
 	cursor: pointer;
+}
+.actives{
+	background: #146fd0;
 }
 .model,.more{
 	
@@ -116,15 +128,16 @@ ul.total{
     right: 10px;
 }
 .sort{
-	width: 80px;
-    height: 27px;
-    line-height: 27px;
-    margin: 6px;
+	width: 72px;
+    height: 24px;
+    line-height: 24px;
+    margin: 4px;
+    padding: 0;
 }
 .e_title{
 	position: absolute;
-    left: 100px;
-	width: calc(100% - 220px);
+    left: 90px;
+	width: calc(100% - 190px);
     height: 100%;
     line-height: 100%;
     overflow: hidden;
@@ -135,7 +148,7 @@ ul.total{
 	position: absolute;
     right: 10px;
 	height: 100%;
-    width: 110px;
+    width: 105px;
     text-align: right;
     color: #898989;
 }
@@ -150,6 +163,10 @@ ul.total{
 }
 .e_name{
 	left: 45px;
-    width:60px;
+    width:45px;
     height: 100%;
+}
+.s_container ul li:hover{
+	color:#2674dc;
+	cursor: pointer;
 }

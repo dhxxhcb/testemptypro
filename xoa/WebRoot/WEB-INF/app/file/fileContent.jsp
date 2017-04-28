@@ -35,6 +35,8 @@ input:hover {
 	background: #eaf2ff;
 	padding: 5px;
 }
+.ss{margin-top: 10px;}
+.boto{margin-top: 7px;}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -74,10 +76,10 @@ function openWindow(sHref,strWidth,strHeight) {
 
 <body style="background-color: #EBEBEB">
 <div class="head w clearfix">
-    <div> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet01.png" alt="新建文件"/></a></div>
-    <div> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet02.png" alt="批量上传"/></a></div>
-    <div> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet03.png" alt="查询"/></a></div>
-    <div> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet04.png" alt="全局搜索"/></a></div>
+    <div class="ss"> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet01.png" alt="新建文件"/></a></div>
+    <div class="ss"> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet02.png" alt="批量上传"/></a></div>
+    <div class="ss"> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet03.png" alt="查询"/></a></div>
+    <div class="ss"> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet04.png" alt="全局搜索"/></a></div>
 </div>
 <!--middle部分开始-->
 <div class="w">
@@ -114,16 +116,16 @@ function openWindow(sHref,strWidth,strHeight) {
         全选
 
     </div>
-    <div>
+    <div class="boto">
         <img src="img/file/cabinet9.png" alt=""/>
     </div>
-    <div>
+    <div class="boto">
         <img src="img/file/cabinet10.png" alt=""/>
     </div>
-    <div>
+    <div class="boto">
         <img src="img/file/cabinet11.png" alt=""/>
     </div>
-    <div>
+    <div class="boto">
         <img src="img/file/cabinet12.png" alt=""/>
     </div>
 

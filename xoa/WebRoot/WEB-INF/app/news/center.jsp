@@ -125,6 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      		text-align:center;
      		color:#fff;
      		cursor: pointer;
+     		font-family: "微软雅黑";
      	}
    		
 	</style>
@@ -136,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ul class="index_head">
            <li data_id="0"><span class="one" style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.unread" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
             <li data_id=""><span  style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.new" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
-             <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.query" /></span></li>
+             <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;margin-top: 4px;"><fmt:message code="news.title.query" /></span></li>
         </ul>
     </div>
     <!--head通栏结束-->
@@ -145,10 +146,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <img src="../img/01.png" style="width:25px;height:25px; margin-right:5px;">
+        
+            <img src="../img/la2.png" style="margin-right:5px;">
 
             <div class="news"><fmt:message code="news.title.new" /></div>
-            <select name="TYPE" class="button1" style="float: left;" id="select">
+            <select name="TYPE" class="button1" style="float: left; font-size: 14px;font-family: "微软雅黑";" id="select">
 				<option value="0" selected=""><fmt:message code="news.th.type" /></option>
 				<option value="01"><fmt:message code="news.th.company" /></option>
 				<option value="02"><fmt:message code="news.th.media" /></option>
@@ -158,11 +160,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<option value=""><fmt:message code="news.th.none" /></option>
 			</select>
             <div>
-                <div style="font-size: 15px; margin-left:28px; "><fmt:message code="global.lang.date" />:</div>
+                <div style="font-size: 15px; margin-left:28px;"><fmt:message code="global.lang.date" />:</div>
                 <input class="button1" id="sendTime">
             </div>
              <!-- <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/> -->
-            <div id="cx"  class="submit" >查询</div>
+            <div id="cx"  class="submit" ><fmt:message code="global.lang.query" /></div>
         </div>
 
 
@@ -322,7 +324,7 @@ $(function () {
 						layer.closeAll()
 						if(obj.obj.length == 0){
 							if($('.index_head .one').parent().attr('data_id') == '0'){
-								layer.msg('没有未读新闻，2秒后自动跳到全部新闻', {icon: 6});
+								layer.msg('<fmt:message code="notice.alert.nodatealert" />', {icon: 6});
 								var turnindex=setInterval(function(){
 									layer.closeAll();
 									$(".index_head li").eq(1).click();
@@ -389,8 +391,8 @@ $(function () {
    $('#btn_query').click(function (){
 		
 		data.subject = $('#subject_query').val();
-		data.beginTime = $('#beginTime').val();
-		data.endTime = $('#endTime').val();
+		data.newsTime = $('#beginTime').val();
+		data.lastEditTime = $('#endTime').val();
 		data.typeId =  $('#select_query').val()==0?'':$('#select_query').val();
 		data.content = $('#content').val();
 		initPageList();
