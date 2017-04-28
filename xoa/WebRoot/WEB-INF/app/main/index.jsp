@@ -210,7 +210,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								} 
 								str+='<li class="one person" id="administ"><div class="one_all" title="'+data[i].name+'"><img class="one_logo" src="img/main_img/'+data[i].img+'.png"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="down_jiao" src="img/main_img/down.png"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
 							}   
-							/* style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;" */
 
 						$(".tab_cone").html(str);
 						

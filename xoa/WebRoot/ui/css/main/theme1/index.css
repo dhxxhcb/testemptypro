@@ -415,8 +415,9 @@ body,
 	margin-top:5%;
 }
 .tab_ctwo{
-	    height: 91%;
+	height: 91%;
     width: 100%;
+    margin-left: 8%;
     overflow-y: scroll;
 }
 .r_one_top{
