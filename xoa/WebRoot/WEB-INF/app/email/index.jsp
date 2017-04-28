@@ -416,6 +416,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				 //详情点击事件
 				$('.main_left').on('click','.BTN',function(){
+					$('.BTN').removeClass('backing');
+					$(this).addClass('backing');
 					var nId=$(this).find('input').attr('id');
 					init(nId,'#TAB','.article');
 				}) 
@@ -444,6 +446,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var str='';
 									$(obj).find('tr').remove();
 									$(cName).find('p').remove();
+									$('.span_hr').find('p').find('span').eq(0).html('');
 									if(data2.attachmentName!='' && data2.copyName!=''){
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>';
 									} else if(data2.attachmentName=='' && data2.copyName!=''){
@@ -456,7 +459,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 									$(obj).append(str);
 									$(cName).append('<p>'+data2.content+'</p>');
-								
+									$('.span_hr').find('p').find('span').eq(0).html(data2.users.userName);
 								}
 					});
 				}
