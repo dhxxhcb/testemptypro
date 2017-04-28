@@ -331,13 +331,14 @@ public class FileController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
+		System.out.println("----------------catalog-------------------"+file.getSortId());
 		List<FileSortModel> fileList =new LinkedList<FileSortModel>();
 		List<Object>  tatalList=new ArrayList<Object>();
 		List<FileContentModel>  fileConList=null;
-		Map<String,Object> map=new Hashtable<String, Object>();
+/*		Map<String,Object> map=new Hashtable<String, Object>();
 		map.put("userId", file.getUserId());
 		map.put("userPriv", userPriv);
-		map.put("deptId", deptId);
+		map.put("deptId", deptId);*/
 		int tempNo=file.getSortId();
 		//获取文件
 		if(tempNo!=0){
@@ -350,11 +351,13 @@ public class FileController {
 		}
 		//通过判断获取父文件夹或子文件夹
 		if(file.getSortId()==0){
+			System.out.println("----------------catalog2-------------------");
 			System.out.println("----------getFileSortList------------");
 			FileSortModel fileChr=new FileSortModel();
 			fileChr.setSortParent(file.getSortId());
 			fileChr.setSortType(file.getSortType());
-			if(fileChr.getSortType()=="5"||"5".equals(fileChr.getSortType()))
+			fileList = fileSortService.getFileSortList(fileChr);
+/*			if(fileChr.getSortType()=="5"||"5".equals(fileChr.getSortType()))
 			{
 			fileList = fileSortService.getFileSortList(fileChr);
 			//利用迭代器删除集合中元素
@@ -371,7 +374,7 @@ public class FileController {
 				{
 				fileChr.setUserId(file.getUserId());
 				fileList = fileSortService.getFileSortList(fileChr);
-				}
+				}*/
 		}else{
 			FileSortModel filePar=new FileSortModel();
 			filePar.setSortParent(file.getSortId());
