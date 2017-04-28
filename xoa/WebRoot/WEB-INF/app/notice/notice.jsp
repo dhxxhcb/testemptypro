@@ -140,7 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!--  //公告通知 -->
             <li data_id=""><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="notice.title.notify" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
             <!-- //公告查询 -->
-            <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="notice.title.announcementquery" /></span></li>
+            <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;margin-top: 4px;"><fmt:message code="notice.title.announcementquery" /></span></li>
         </ul>
     </div>
     <!--head通栏结束-->
