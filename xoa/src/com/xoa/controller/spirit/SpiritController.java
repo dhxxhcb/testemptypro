@@ -83,7 +83,7 @@ public class SpiritController {
 	public String bq(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa"
 				+ (String) request.getSession().getAttribute("loginDateSouse"));
-		return "app/spirit/bq";
+		return "app/common/development";
 	}
 
 	@RequestMapping("/zz")
