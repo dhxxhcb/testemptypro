@@ -359,7 +359,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				showAjax('inbox','#TAB','.article');
 			
-				
+				$.extend
 				
 				//查询邮件点击事件
 				$('.liSearch').click(function(){

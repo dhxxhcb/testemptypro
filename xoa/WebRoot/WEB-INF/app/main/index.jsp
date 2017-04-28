@@ -348,8 +348,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									//console.log($(this).siblings('.sanji').length>0);
 								}else{
 									//页面不存在，新增 title和iframe
-								
-									
+
 									var titlestr = '<li class="choose" index="0;" id="t_'+menu_tid+'" title="'+$(this).find('h1').html()+'"><h1>'+$(this).find('h1').html()+'</h1><div class="img" style="display:none;"><img class="close"  src="img/main_img/icon.png"></div></li>';
 									
 									var iframestr = '<div id="f_'+menu_tid+'" class="iItem" ><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';

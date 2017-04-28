@@ -171,13 +171,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					that.attr('style',"background: antiquewhite;");
 				});
 				getChDept($('#deptOrg'),0);
+				
 				$('.tree .dynatree-container').on('click','.childdept',function(){
 								var  that = $(this);
 								
 								getChDept(that.next(),that.attr('deptid'));
+								
 								var title=that.find('a').text();
 								$('.block-right-header').html(title);
-							});
+				});
+							
 				$('.block-right').on('mouseover','div',function(){
 					$(this).css('background','#D6E4EF');
 				})	

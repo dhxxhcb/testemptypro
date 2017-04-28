@@ -141,8 +141,11 @@ body,
 	float:left;
 }
 .tab_t{
-	    width: 64% !important;
+    width: 96% !important;
+    height: 45px;
+    border-right: 1px solid #e5e5e5;
     margin: auto;
+    overflow: hidden;
 }
 .cont{
 	width:100%;
@@ -157,7 +160,7 @@ body,
 }
 .all_ul{
 	width:96%;
-	height:100%;
+	height:102%;
 	margin-left: 4%;
 	overflow:hidden;
 	    background: #fafafa;
@@ -172,13 +175,13 @@ body,
 	    border-top: 1px solid #999;
 }
 .top_ul{
-	width:90%;
-	height:54%;
-	background: url(../../../img/main_img/huakuai.png) 0px -2px no-repeat;
-	/* border:1px solid #5e5e5e; */
-	border-radius:5px;
-	margin-top:4%;
-	margin-left: 3%;
+	width: 70%;
+    height: 57%;
+    background: url(../../../img/main_img/huakuai.png) 2px -2px no-repeat;
+    /* border: 1px solid #5e5e5e; */
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-left: 14%;
 }
 .main_title{
 	    width: 96%;
@@ -221,7 +224,7 @@ body,
 .tab_c{
 	width: 99%;
 	height: 100%;
-	margin-top: 4%;
+	/* margin-top: 4%; */
     margin-left: 2%;
 }
 /* .tab_cone{
@@ -273,7 +276,7 @@ body,
 	float:left;
 }
 .one_logo{
-	margin-left: 16%;
+	margin-left: 9%;
 	margin-top:4%;
 }
 /* .one_all img{
@@ -294,8 +297,8 @@ body,
 }
 .one_name{
 	line-height:35px;
-	margin-left: 6%;
-	width: 47%;
+	margin-left: 4%;
+	width:61%;
 	font-size:10pt;
 	overflow: hidden;
     text-overflow: ellipsis;
@@ -305,7 +308,7 @@ body,
 }
 .erji_circle{
 	margin-top: 14px;
-    margin-left: 22%;
+    margin-left: 25%;
 }
 .head_rig a{
 	cursor: pointer;
@@ -313,7 +316,7 @@ body,
 .two_all h1{
 	line-height: 30px;
     margin-left: 7%;
-    width: 44%;
+    width: 51%;
  	font-family: '微软雅黑';
     font-size: 10pt;
     overflow: hidden;
@@ -462,7 +465,7 @@ body,
     white-space: nowrap;
 }
 .three img{
-	margin-left: 34%;
+	margin-left: 35%;
     margin-top: 14px;
 }
 .cont_left,.cont_rig{
