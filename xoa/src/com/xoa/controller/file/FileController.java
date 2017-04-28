@@ -327,29 +327,51 @@ public class FileController {
 	 * @return   void
 	 */
 	@RequestMapping(value="/catalog")
-	public void showFiles(FileSortModel file,HttpServletResponse response,String postType,HttpServletRequest request) {
+	public void showFiles(FileSortModel file,HttpServletResponse response,String postType,HttpServletRequest request,String deptId,String userPriv) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
-		List<FileSortModel> fileList =null;
+		List<FileSortModel> fileList =new LinkedList<FileSortModel>();
 		List<Object>  tatalList=new ArrayList<Object>();
+		List<FileContentModel>  fileConList=null;
+		Map<String,Object> map=new Hashtable<String, Object>();
+		map.put("userId", file.getUserId());
+		map.put("userPriv", userPriv);
+		map.put("deptId", deptId);
 		int tempNo=file.getSortId();
 		//获取文件
-		List<FileContentModel>  fileConList=fileContentService.getFileConBySortid(tempNo);
-		
+		if(tempNo!=0){
+		fileConList=fileContentService.getFileConBySortid(tempNo);
+		}
 		if("1".equals(postType)){
 			for(FileContentModel fcm:fileConList){
 				fcm.setContent("");
 			}
 		}
-		System.out.println("----------fileConList------------"+fileConList.size());
 		//通过判断获取父文件夹或子文件夹
 		if(file.getSortId()==0){
 			System.out.println("----------getFileSortList------------");
 			FileSortModel fileChr=new FileSortModel();
 			fileChr.setSortParent(file.getSortId());
 			fileChr.setSortType(file.getSortType());
+			if(fileChr.getSortType()=="5"||"5".equals(fileChr.getSortType()))
+			{
 			fileList = fileSortService.getFileSortList(fileChr);
+			//利用迭代器删除集合中元素
+			Iterator<FileSortModel> iteratorChr=fileList.iterator();
+			 while(iteratorChr.hasNext()){
+						 FileSortModel fsm=iteratorChr.next();
+						//将权限字符串传到checkAll 返回为true时 有权限 为false时无权限
+						if(!this.checkAll(fsm.getUserId(),map)){
+							iteratorChr.remove();
+				      }
+			   }
+			}
+			 if(fileChr.getSortType()=="4"||"4".equals(fileChr.getSortType()))
+				{
+				fileChr.setUserId(file.getUserId());
+				fileList = fileSortService.getFileSortList(fileChr);
+				}
 		}else{
 			FileSortModel filePar=new FileSortModel();
 			filePar.setSortParent(file.getSortId());
