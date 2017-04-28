@@ -125,6 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      		text-align:center;
      		color:#fff;
      		cursor: pointer;
+     		font-family: "微软雅黑";
      	}
    		
 	</style>
