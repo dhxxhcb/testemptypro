@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.detailsContent .title{width: 100%;text-align: center;height: 60px;line-height: 60px;color: #2a588c;font-size: 25px;font-weight: bold;}
 			.infor{width: 100%;overflow: hidden;height: 40px;background-color: #d3e7fa;}
 			.infor ul{list-style: none;overflow: hidden;float: right;margin-top: 10px;}
-			.infor ul li{float: left;margin-right: 20px;}
+			.infor ul li{float: left;margin-right: 20px;font-size: 14px;}
 			.infor ul li span{font-size: 14px;}
 			.divContent{width: 100%;}
 			.divContent .divTxt{margin: 20px 20px;}
@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.btnImg{width: 100%;}
 			.btnImg .margin{width: 370px;margin: 20px auto;}
 			.btnImg .margin a{margin-right: 20px;}
-			
+			.spanbreak{    width: 120px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display:  inline-block;}
 		</style>
 		<script type="text/javascript">
 			 $(function () {
@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var data1=rsp.object;
 							var str='';
 							$('.title').text(data1.subject); 
-							str='<li><div style="display: inline-block; position: relative;top: -4px">发布部门：</div><div class="spanbreak" title="'+data1.toId+'">'+data1.depName+'</div></li><li><span>发布人：</span><span>'+data1.name+'</span></li><li><span>发布时间：</span><span>'+data1.notifyDateTime+'</span></li>';
+							str='<li><div style="display: inline-block; position: relative;top: -4px">发布部门：</div><div class="spanbreak" title="'+data1.toId+'">'+data1.toId+'</div></li><li><span>发布人：</span><span>'+data1.name+'</span></li><li><span>发布时间：</span><span>'+data1.notifyDateTime+'</span></li>';
 							$('ul').append(str);
 							$('.divTxt').append('<p>'+data1.content+'</p>');
 						}

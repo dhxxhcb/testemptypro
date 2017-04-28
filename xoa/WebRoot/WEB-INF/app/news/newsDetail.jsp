@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.detailsContent .title{width: 100%;text-align: center;height: 60px;line-height: 60px;color: #2a588c;font-size: 25px;font-weight: bold;}
 			.infor{width: 100%;overflow: hidden;height: 40px;background-color: #d3e7fa;}
 			.infor ul{list-style: none;overflow: hidden;float: right;margin-top: 10px;}
-			.infor ul li{float: left;margin-right: 20px;}
+			.infor ul li{float: left;margin-right: 20px;    font-size: 14px;}
 			.infor ul li span{font-size: 14px;}
 			.divContent{width: 100%;}
 			.divContent .divTxt{margin: 20px 20px;}
