@@ -112,8 +112,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	//组织
 		$('#sub_module_org_0 .tab_ctwo').on('click','.childdept',function(){
 			var  that = $(this);
-			getChDept(that.next(),that.attr('deptid'));
+			console.log(that.attr("drop"));
+			if(that.attr("drop")=="true"){
+			 that.attr("drop",false);
+			 removeChdept(that.next());
+			}else{
+			  that.attr("drop",true);
+			  getChDept(that.next(),that.attr('deptid'));
+			
+			}
+			
+			
 		});
+		function removeChdept(target){
+		
+		   target.html("");
+		}
 		function getChDept(target,deptId){
 			$.ajax({
 				url:'<%=basePath%>/department/getChDept',
