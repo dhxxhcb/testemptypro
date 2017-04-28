@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>邮件查询</title>
+		<title><fmt:message code="email.title.mailquery" /></title><!-- 邮件查询 -->
 		<link rel="stylesheet" type="text/css" href="css/laydate.css"/>
 		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/laydate.js" type="text/javascript" charset="utf-8"></script>
@@ -26,47 +26,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 	<body>
 		<div class="content">
-			<div class="title">查询邮件</div>
+			<div class="title"><fmt:message code="email.title.querymail" /></div>
 			<div class="tab">
 				<form action="" method="get">
 					<table border="1" cellspacing="0" cellpadding="0" width="99%">
 						<tr>
-							<td>邮件表：</td>
+							<td><fmt:message code="email.th.maillist" />：</td>
 							<td>
 								<input type="radio" name="COPY_TIME" value="" id="COPY_TIME" checked="">
-								<label for="COPY_TIME">当前邮件表</label>
+								<label for="COPY_TIME"><fmt:message code="email.th.nowmaillist" /></label>
 							</td>
 						</tr>
 						<tr>
-							<td>选择邮箱：</td>
+							<td><fmt:message code="email.th.chosebox" />：</td>
 							<td>
 								<select name="BOX" class="BigSelect">
-							        <option value="1">收件箱</option>
-							        <option value="2">草稿箱</option>
-							        <option value="3">已发送</option>
-							        <option value="4">废纸篓</option>
+							        <option value="1"><fmt:message code="email.title.inbox" /></option>
+							        <option value="2"><fmt:message code="email.title.draftbox" /></option>
+							        <option value="3"><fmt:message code="email.title.sent" /></option>
+							        <option value="4"><fmt:message code="email.title.wastebasket" /></option>
 						        </select>
 							</td>
 						</tr>
 						<tr>
-							<td>邮件状态：</td>
+							<td><fmt:message code="email.th.mailtype" />：</td>
 							<td>
 								<select name="READ_FLAG" class="BigSelect">
-						          	<option value="">所有</option>
-						          	<option value="0">未读</option>
-						         	<option value="1">已读</option>
+						          	<option value=""><fmt:message code="email.th.own" /></option>
+						          	<option value="0"><fmt:message code="email.th.unread" /></option>
+						         	<option value="1"><fmt:message code="email.th.read" /></option>
 						        </select>
 							</td>
 						</tr>
 						<tr>
-							<td>日期：</td>
+							<td><fmt:message code="global.lang.date" />：</td>
 							<td>
-								<input class="laydate-icon" id="start"> &nbsp;至&nbsp;
+								<input class="laydate-icon" id="start"> &nbsp;<fmt:message code="global.lang.to" />&nbsp;
 								<input class="laydate-icon" id="end">
 							</td>
 						</tr>
 						<tr>
-							<td>发件人：</td>
+							<td><fmt:message code="email.th.sender" />：</td>
 							<td>
 								<input type="text" name="txt" id="txt" value="" />
 							</td>
@@ -78,38 +78,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</td>
 						</tr> -->
 						<tr>
-							<td>邮件主题包含文字：</td>
+							<td><fmt:message code="email.th.mailmajor" />：</td>
 							<td>
 								<input type="text" name="txt" id="txt" value="" />
 							</td>
 						</tr>
 						<tr>
-							<td>邮件内容[查询词1]：</td>
+							<td><fmt:message code="email.th.mailcontent" />：</td>
 							<td>
 								<input type="text" name="txt" id="txt" value="" />
 							</td>
 						</tr>
 						<tr>
-							<td>邮件内容[查询词2]：</td>
+							<td><fmt:message code="email.th.mailcontent" />：</td>
 							<td>
 								<input type="text" name="txt" id="txt" value="" />
 							</td>
 						</tr>
 						<tr>
-							<td>邮件内容[查询词3]：</td>
+							<td><fmt:message code="email.th.mailcontent" />：</td>
 							<td>
 								<input type="text" name="txt" id="txt" value="" />
 							</td>
 						</tr>
 						<tr>
-							<td>附件文件名包含文字：</td>
+							<td><fmt:message code="email.th.filefolder" />：</td>
 							<td>
 								<input type="text" name="txt" id="txt" value="" />
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="button" name="btn" id="btn" value="查询" />
+								<input type="button" name="btn" id="btn" value="<fmt:message code="global.lang.query" />" />
 							</td>
 						</tr>
 					</table>
