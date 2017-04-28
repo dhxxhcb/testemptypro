@@ -40,19 +40,23 @@ body{
    color: #4f4f4f;
 }
  span.yy_icon,span.zz_icon,span.bq_icon{
-	width:18px;
-	height:18px;
-	margin-right: 10px;
+	 height: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 #nav_menu a span.yy_icon{
+	width: 20px;
+   
 	background:url(../../img/spirit/menu/yingyong.png) no-repeat center;
 	background-size: cover;
 }
 #nav_menu a span.zz_icon{
+	width: 26px;
 	background:url(../../img/spirit/menu/zuzhi.png) no-repeat center;
 	background-size: cover;
 }
 #nav_menu a span.bq_icon{
+	width: 23px;
 	background:url(../../img/spirit/menu/bianqian.png) no-repeat center;
 	background-size: cover;
 }
@@ -66,7 +70,6 @@ body{
 }
 #nav_menu a:hover span{
   color: #3093e4;
-   background: url('images/nav_menu_bg_hover.png') left bottom repeat-x;;
 }
 #expand_link{
    position:absolute;
