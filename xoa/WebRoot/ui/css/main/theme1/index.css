@@ -13,12 +13,12 @@ body,
 	 background: url(../../../img/main_img/bg.png) -6px 0px no-repeat;
 }
 .head_left{
-	width:16.9%;
+	width:13.1%;
 	height:100%;
 }
 
 .head_mid{
-	width:62%;
+	width:65.9%;
 	height:100%;
 }
 .gongzuoliu{
@@ -452,7 +452,7 @@ body,
 }
  .er_img{
 	margin-top:7%;
-	margin-left:4%;
+	margin-left:-1%;
 }
 .three img,.three h1{
 	float:left;	
