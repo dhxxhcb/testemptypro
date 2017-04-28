@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="css/index/login.css"/>
 	<script type="text/javascript" src="js/news/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="js/index/bootstrap.min.js"></script>	
- 	
+ 	<script src="js/base/base.js" type="text/javascript" charset="utf-8"></script>
 <head>
 		<title>心通达OA-登录</title>
 		<style type="text/css">
@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.content .left{width: 55%;min-height:800px;float: left;position: relative;}
 			.content .left .logo{width: 350px;position: absolute;top: 20%;left: 25%;}
 			.content .left .logo img{display: block;width: 100%;}
-			
+			.content .right ul li{line-height: 24px;}
 			.content .right{width: 45%;float: left;}
 			.content .right ul{list-style: none;margin-top: 26%;margin-left: 15%;position: relative;}
 			.content .right ul li.total{width: 384px;height: 50px;background: url(img/1.png) no-repeat;position: relative;border-radius: 25px;background-position:center;margin-bottom: 42px;z-index: 999;}
@@ -73,11 +73,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		 
 		 }
-		 #la:hover {
+		 .la:hover {
 		 	color:#fff;
 		 	background-color:#0088cc;
 		 	border-radius: 3px;
 		 } 
+		 .bag{
+		 color:#fff;
+		 	background-color:#0088cc;
+		 	border-radius: 3px;
+		 	}
 			 	/*  #la {
 			 	color:#fff;
 			 	background-color:#0088cc;
@@ -90,7 +95,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#lg").click(function(){
 				$("#tp").slideToggle();
 			});
-			
+			var lang = $.getQueryString("lang");
+			$('#'+lang).addClass("bag").siblings().removeClass("bag")
 			 $(".zhuce").click(function(){
 			  	$(".btnsq").css("display","block");
 			  	 $(".erweima1").css('overflow-x',"hidden");
@@ -155,11 +161,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="right">
 				<div id="zt">
 					<fmt:message code="language" />:
-					 <a  id="la" href="?lang=zh_CN">中文</a>
+					 <a class="bag" id="zh_CN" class="la" href="?lang=zh_CN">中文</a>
 					  &nbsp;&nbsp;
-					  <a id="la" href="?lang=en_US">English</a>
+					  <a class="la" id="en_US" href="?lang=en_US">English</a>
 					  &nbsp;&nbsp;
-					  <a href="#">繁体</a> 
+					  <a href="#" id="language_zh_tw" class='la'>繁体</a> 
 				</div>
 				<ul>
 					<li class="total">
