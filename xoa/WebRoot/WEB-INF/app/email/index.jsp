@@ -44,9 +44,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="ul_show" style="display: block;">
 							<ul>
 								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/><fmt:message code="email.title.inbox" /><span>32</span></a></li>
-								<li><a href="javascript:;"><img src="../img/icon_drafts_07.png"/><fmt:message code="email.title.draftbox" /><span>2</span></a></li>
-								<li><a href="javascript:;"><img src="../img/icon_sent_07.png"/><fmt:message code="email.title.sent" /></a></li>
-								<li><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/><fmt:message code="email.title.wastebasket" /></a></li>
+								<li id="drafts"><a href="javascript:;"><img src="../img/icon_drafts_07.png"/><fmt:message code="email.title.draftbox" /><span>2</span></a></li>
+								<li id="hasBeenSend"><a href="javascript:;"><img src="../img/icon_sent_07.png"/><fmt:message code="email.title.sent" /></a></li>
+								<li id="wastebasket"><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/><fmt:message code="email.title.wastebasket" /></a></li>
 								<li class='liSearch'><a href="javascript:;"><img src="../img/icon_search_03.png"/><fmt:message code="email.title.querymail" /></a></li>
 							</ul>
 						</div>
@@ -150,14 +150,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="main_right InBox">
 						
 							<table id="TAB" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-								<tr class="MAIN">
+								<!-- <tr class="MAIN">
 									<td width="8%"><fmt:message code="email.th.main" />：</td>
-									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
+									<td width="72%">通达全新OA可选组件-知己者费用管控系统</td>
 									
 								</tr>
 								<tr class="SEND">
 									<td><fmt:message code="email.th.sender" />：</td>
-									<!-- <td>张兰</td> -->
+									<td>张兰</td>
 									
 								</tr>
 								<tr class="IN">
@@ -166,20 +166,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</tr>
 								<tr class="DATE">
 									<td><fmt:message code="email.th.time" />：</td>
-									<!-- <td>2017年3月30日13:31（星期四）</td> -->
+									<td>2017年3月30日13:31（星期四）</td>
 									
-								</tr>
+								</tr> -->
 								
-					</table>
+							</table>
 							<span class="span_hr">
 								<div><img src="../img/p1.jpg"/></div>
 								<p><span></span>&nbsp;&nbsp;<span class="zong"><fmt:message code="email.th.subject" /></span></p>
 								<p><fmt:message code="email.th.dept" /></p>
 							</span>
 							<div class="article">
-								<!-- <p>随着企业的发展和不断壮大，企业的决策者对如何防止支付风险，加强费用控制，降低企业成本提出了更高的要求。为了满足用户的需求，通达成都研发中心研发了知己者费用管控系统，这款通达OA可选组件把管理制度，报销标准和审批制度相结合，支持第三方CRM、ERP、财务软件数据的调用，支持按预算、按申请单金额、按报销制度标准控制费用。为企业打造统一的财务共享服务信息系统平台，帮助企业实现操作模式标准化、业务流程标准化和财务制度标准化。</p>
-								<p>知己者费用管控系统将企业的财务控制前移至业务前端，强化了事前的预算控制和业务控制，减少了人为的判断和控制，降低了企业对财务人员数量和质量的需求。系统提供了丰富的决策信息，通过与内外部系统的无缝对接，保证业务信息和财务信息在系统间及时准确的传递，减少业务流程步骤，提高数据传输效率，提升财务质量，便于管理层在流程中控制和监督业务执行情况，及时发现执行中存在的偏差。
-		</p> -->
+								
 							</div>
 				
 						</div>
@@ -262,32 +260,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="main_right hasBeenSend" style="display:none;">
 						
 							<table id="TAC" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-								<tr class="MAIN2">
+								<!-- <tr class="MAIN2">
 									<td width="8%"><fmt:message code="email.th.main" />：</td>
-									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
+									<td width="72%">通达全新OA可选组件-知己者费用管控系统</td>
 									
 								</tr>
 								<tr class="SEND2">
 									<td><fmt:message code="email.th.recipients" />：</td>
-									<!-- <td>
+									<td>
 										<span><img src="../img/icon_read_3_07.png"/>李佳</span>
 										<span><img src="../img/icon_notread_1_03.png"/>王云</span>
 										<span><img src="../img/icon_read_3_07.png"/>王德</span>
 										<span><img src="../img/icon_notread_1_03.png"/>赵敏</span>
 										<span><img src="../img/icon_read_3_07.png"/>刘娜</span>
-									</td> -->
+									</td>
 									
 								</tr>
 								<tr class="DATE2">
 									<td><fmt:message code="email.th.time" />：</td>
-									<!-- <td>2017年3月30日13:31（星期四）</td> -->
+									<td>2017年3月30日13:31（星期四）</td>
 									
-								</tr>
+								</tr> -->
 							</table>
 							<div class="article1">
-								<!-- <p>随着企业的发展和不断壮大，企业的决策者对如何防止支付风险，加强费用控制，降低企业成本提出了更高的要求。为了满足用户的需求，通达成都研发中心研发了知己者费用管控系统，这款通达OA可选组件把管理制度，报销标准和审批制度相结合，支持第三方CRM、ERP、财务软件数据的调用，支持按预算、按申请单金额、按报销制度标准控制费用。为企业打造统一的财务共享服务信息系统平台，帮助企业实现操作模式标准化、业务流程标准化和财务制度标准化。</p>
-								<p>知己者费用管控系统将企业的财务控制前移至业务前端，强化了事前的预算控制和业务控制，减少了人为的判断和控制，降低了企业对财务人员数量和质量的需求。系统提供了丰富的决策信息，通过与内外部系统的无缝对接，保证业务信息和财务信息在系统间及时准确的传递，减少业务流程步骤，提高数据传输效率，提升财务质量，便于管理层在流程中控制和监督业务执行情况，及时发现执行中存在的偏差。
-		</p> -->
+							
 							</div>
 						</div>
 						
@@ -295,14 +291,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="main_right wastebasket" style="display:none;">
 						
 							<table id="TAD" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-								<tr class="MAIN3">
+								<!-- <tr class="MAIN3">
 									<td width="8%"><fmt:message code="email.th.main" />：</td>
-									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
+									<td width="72%">通达全新OA可选组件-知己者费用管控系统</td>
 									
 								</tr>
 								<tr class="SEND3">
 									<td><fmt:message code="email.th.sender" />：</td>
-									<!-- <td>张兰</td> -->
+									<td>张兰</td>
 									
 								</tr>
 								<tr class="IN3">
@@ -310,10 +306,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</tr>
 								<tr class="DATE3">
 									<td><fmt:message code="email.th.time" />：</td>
-									<!-- <td>2017年3月30日13:31（星期四）</td> -->
+									<td>2017年3月30日13:31（星期四）</td>
 									
 								</tr>
-								<!-- <tr>
+								<tr>
 									<td>附&nbsp;&nbsp;&nbsp;件：</td>
 									<td>
 										<p>1个&nbsp;<img src="../img/icon_accessory_03.png"/><span>智能OA移动产品部3月23日任务工单.rar&nbsp;</span>(19.81KB)</p>
@@ -322,9 +318,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</tr> -->
 							</table>
 	 							<div class="article2">
-									<!-- <p>随着企业的发展和不断壮大，企业的决策者对如何防止支付风险，加强费用控制，降低企业成本提出了更高的要求。为了满足用户的需求，通达成都研发中心研发了知己者费用管控系统，这款通达OA可选组件把管理制度，报销标准和审批制度相结合，支持第三方CRM、ERP、财务软件数据的调用，支持按预算、按申请单金额、按报销制度标准控制费用。为企业打造统一的财务共享服务信息系统平台，帮助企业实现操作模式标准化、业务流程标准化和财务制度标准化。</p>
-									<p>知己者费用管控系统将企业的财务控制前移至业务前端，强化了事前的预算控制和业务控制，减少了人为的判断和控制，降低了企业对财务人员数量和质量的需求。系统提供了丰富的决策信息，通过与内外部系统的无缝对接，保证业务信息和财务信息在系统间及时准确的传递，减少业务流程步骤，提高数据传输效率，提升财务质量，便于管理层在流程中控制和监督业务执行情况，及时发现执行中存在的偏差。
-			</p> -->
+									
 								</div>
 						</div>
 						
@@ -363,7 +357,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	
 	    		//页面初始化
 				
-				showAjax("inbox");
+				showAjax('inbox','#TAB','.article');
+			
 				
 				
 				//查询邮件点击事件
@@ -373,23 +368,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			$('.page').append(Ifrmae);
 	    		})
 				
+				
+					//收件箱点击事件
+				$('#InBox').click(function(){
+					$('.InBox').css('display','block').siblings().css('display','none');
+					showAjax('inbox','#TAB','.article');
+				})
+				
+				
 				//草稿箱点击事件
 				$('#drafts').click(function(){		
 						$('.drafts').css('display','block').siblings().css('display','none');
-						showAjax2("drafts");
+						showAjax2('drafts');
 						
 				})
 				
 				//已发送点击事件
 				$('#hasBeenSend').click(function(){
+					//alert('123')
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
 					showAjax2("outbox");
-					
-					init3('124');
+					//showAjax('outbox','#TAC','.article1')
 					$('.main_left').on('click','.BTN',function(){
-					
 						var nId=$(this).find('input').attr('nId');
-					
+						//init(nId,'#TAC','.article1')
 						init3(nId);
 						
 					}) 
@@ -397,26 +399,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//废纸篓点击事件
 				$('#wastebasket').click(function(){
+					//alert('123')
 					$('.wastebasket').css('display','block').siblings().css('display','none');
-					
-					showAjax2("recycle")
-					
-					init2('122');
+					//showAjax("recycle")
+					showAjax('recycle','#TAD','.article2')
 					$('.main_left').on('click','.BTN',function(){
-					
 						var nId=$(this).find('input').attr('id');
-						//alert(nId);
-						init2(nId)
-						
+						init(nId,'#TAD','.article2')
 					}) 
 					
 				})
 				
-				//收件箱点击事件
-				$('#InBox').click(function(){
-					$('.InBox').css('display','block').siblings().css('display','none');
-					showAjax("inbox");
-				})
+			
+				
+				
+				 //详情点击事件
+				$('.main_left').on('click','.BTN',function(){
+					var nId=$(this).find('input').attr('id');
+					init(nId,'#TAB','.article');
+				}) 
 				
 				//鼠标移入移出事件
 				$('.main_left').on('mouseover','.BTN',function(){
@@ -425,21 +426,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('.main_left').on('mouseout','.BTN',function(){
 					$(this).css('background-color','#fff');
 				})
-				
-				 //详情点击事件
-				$('.main_left').on('click','.BTN',function(){
-					$(this).addClass('back').siblings().removeClass('back')
-					
-					var nId=$(this).find('input').attr('id');
-					
-					init(nId,'#TAB','.article');
-					
-				}) 
 			});
 			
 			
 			//详情展示方法
-			function init(id,obj,sName){
+			function init(id,obj,cName){
 				
 					$.ajax({
 								type:'get',
@@ -449,37 +440,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								success:function(rsp){
 									var data2=rsp.object;
 									var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-									$(obj).find('tr').eq(0).find('td').eq(1).remove();
-									$(obj).find('tr').eq(1).find('td').eq(1).remove();
-									$(obj).find('tr').eq(2).find('td').eq(1).remove();
-									$(obj).find('tr').eq(3).find('td').eq(1).remove();
-									$(obj).find('tr').eq(4).remove();
-									$('.span_hr').find('span').eq(0).text('');
-									$(sName).find('p').remove();
-									
-									$(obj).find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>');
-									$(obj).find('tr').eq(1).append('<td>'+data2.users.userName+'</td>');
-									$(obj).find('tr').eq(2).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td>');
-									$(obj).find('tr').eq(3).append('<td>'+sendTime+'</td>');
-									//$(obj).find('tr').eq(4).append('<td>'+data2.attachmentName+'</td>');
-									if(data2.attachmentName!=''){
-											$(obj).append('<tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>')
-										}
-									if(data2.copyName!=''){
-										$(obj).find('tr').eq(2).after('<tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr>')
+									var str='';
+									$(obj).find('tr').remove();
+									$(cName).find('p').remove();
+									if(data2.attachmentName!='' && data2.copyName!=''){
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>';
+									} else if(data2.attachmentName=='' && data2.copyName!=''){
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
+									} else if(data2.attachmentName!='' && data2.copyName ==''){
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>';
+									} else{
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
 									}
 									
-									$('.span_hr').find('span').eq(0).text(data2.users.userName);
-									$(sName).append('<p>'+data2.content+'</p>');
-									
-									
+									$(obj).append(str);
+									$(cName).append('<p>'+data2.content+'</p>');
+								
 								}
 					});
 				}
 				
 				
 				//列表展示方法
-				function showAjax(flag){
+				function showAjax(flag,obj,cName){
 					$('.BTN').remove();
 					var data1={
 						"flag":flag,
@@ -509,9 +492,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												
 											} else if(data1[i].emailList[0].readFlag==0){
 												if(data1[i].attachmentId!=''){
-													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
 												}else{
-													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
 												}
 												
 											}
@@ -521,7 +504,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										
 										var mId=$('li.BTN').eq(0).find('input').attr('id');
 										
-										init(mId,'#TAB','.article');
+										init(mId,obj,cName);
 									}
 					});
 				}
@@ -560,7 +543,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						});
 				}
 				
-				function init2(id){
+				/* function init2(id){
 				
 					$.ajax({
 									type:'get',
@@ -570,30 +553,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									success:function(rsp){
 										var data2=rsp.object;
 										var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-										$('#TAD').find('tr').eq(0).find('td').eq(1).remove();
-										$('#TAD').find('tr').eq(1).find('td').eq(1).remove();
-										$('#TAD').find('tr').eq(2).find('td').eq(1).remove();
-										$('#TAD').find('tr').eq(3).find('td').eq(1).remove();
-										$('#TAD').find('tr').eq(4).remove();
-										$('.article2').find('p').remove();
-										
-										$('#TAD').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>');
-										$('#TAD').find('tr').eq(1).append('<td>'+data2.users.userName+'</td>');
-										$('#TAD').find('tr').eq(2).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.toName+'</span></td>');
-										$('#TAD').find('tr').eq(3).append('<td>'+sendTime+'</td>');
-										//$('#TAD').find('tr').eq(4).append('<td>'+data2.attachmentName+'</td>');
-										if(data2.attachmentName!=''){
-											$('#TAD').append('<tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>')
+										var str='';
+										$('#TAD').find('tr').remove();
+										if(data2.attachmentName!='' && data2.copyName!=''){
+											str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>';
+										} else if(data2.attachmentName=='' && data2.copyName!=''){
+											str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
+										} else if(data2.attachmentName!='' && data2.copyName ==''){
+											str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>';
+										} else{
+											str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
 										}
 										
-										if(data2.copyName!=''){
-											$(obj).find('tr').eq(2).after('<tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr>')
-										}
+										$('#TAD').append(str);
 										$('.article2').append('<p>'+data2.content+'</p>');
-									}
+										
+									} 
 						});
 				
-				}
+				} */
 				
 				
 				function init3(id){
@@ -616,7 +594,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										$('.article1').append('<p>'+data2.content+'</p>');
 									}
 						});
-				}
+				} 
 			
 		</script>
 		
