@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="main_title">
 						<ul>
 						<!-- <li style="background:#eef1f8;"><h1>首页标签</h1><img src="img/main_img/icon.png"></li> -->
-							<li class="gongzuoliu" left='0' id='t_0'><h1><fmt:message code="global.my.Desktop" /></h1></li>
+							<li class="gongzuoliu" left='0' id='t_0' title='我的桌面'><h1><fmt:message code="global.my.Desktop" /></h1></li>
 						</ul>
 					</div>
 					<div class="right_scroll"></div>
