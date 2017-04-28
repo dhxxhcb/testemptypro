@@ -70,9 +70,9 @@ ul.total{
 }
 .s_container ul li{
 	position:relative;
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid rgba(0,0,0,0.1);
 	height: calc((100% / 5) - 1px);
-	font-size: 15px;
+	font-size: 10pt;
 }
 .s_container ul li:last-child{
 	border:0;
@@ -152,4 +152,8 @@ ul.total{
 	left: 45px;
     width:60px;
     height: 100%;
+}
+.s_container ul li:hover{
+	color:#2674dc;
+	cursor: pointer;
 }
