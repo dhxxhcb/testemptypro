@@ -152,7 +152,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img src="../img/la1.png" style="margin-right:5px;">
              
             <div class="news"><fmt:message code="notice.title.notify" /></div><!-- //公告通知 -->
-            <select name="TYPE" class="button1" style="float: left;" id="select">
+            <select name="TYPE" class="button1" style="float: left;font-size: 14px;font-family: 微软雅黑;" id="select">
 				<option value="0" selected=""><fmt:message code="notice.type.alltype" /></option>
 				<option value="01"><fmt:message code="notice.type.Decision"/></option>
 						    <option value="02"><fmt:message code="notice.type.notice" /></option>
@@ -160,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    <option value="04"><fmt:message code="notice.type.other" /></option>
 			</select>
             <div>
-                <div style="font-size: 15px; margin-left:28px;font-family: “微软雅黑”; "><fmt:message code="global.lang.date" /> :</div>
+                <div style="font-size: 15px; margin-left:28px;"><fmt:message code="global.lang.date" /> :</div>
                 <input class="button1" id="sendTime">
             </div>
              <!-- <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/> -->
