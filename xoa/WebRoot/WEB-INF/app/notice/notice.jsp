@@ -148,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <img src="../img/notice01.png" style="width:28px;height:28px; margin-right:5px;">
+            <img src="../img/notice01.png" style="width:25px;height:25px; margin-right:5px;">
              
             <div class="news"><fmt:message code="notice.title.notify" /></div><!-- //公告通知 -->
             <select name="TYPE" class="button1" style="float: left;" id="select">

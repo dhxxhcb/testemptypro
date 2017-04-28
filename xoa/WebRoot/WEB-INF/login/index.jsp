@@ -127,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="#" class="zhuce"><img id="lg" src="img/sy02.png"/></a>
 					<img id="lg" src="img/sy04.png"/>
 				</div>
-				<!-- <img id="tp" src="img/sy05.png"/> -->
+				<!-- <img id="tp" src="img/sy06.png"/> -->
 			
 			</div>
 			<div class="right">
@@ -195,7 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="erweima">
 				
 				<div class="erweima1" style="padding-left: 260px;">
-					<img src="img/sy05.png" alt="" />
+					<img src="img/sy06.png" alt="" />
 					<div class="fonts">扫描下载 或 点击这里下载<!-- <a href="http://www.gsubo.com/app" style="text-decoration: none;color: white;" target="_blank">点击这里下载</a> --></div>
 				</div>
 				
