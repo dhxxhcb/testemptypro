@@ -347,7 +347,7 @@ $(function () {
 							},1000);
 							
 							if(cb){
-								cb(obj.totleNum);
+								cb(data.totleNum);
 							}
 						}
 					}   
