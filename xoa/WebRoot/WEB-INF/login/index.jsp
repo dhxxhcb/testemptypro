@@ -31,11 +31,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.content .right ul li a{text-decoration: none;display: block;width: 100%;}
 			.content .right ul li.total .round{display: block;width: 16px;height: 16px;border-radius: 50%;background-color: #fff;;margin-left: 25px;position: absolute;top: 17px;}
 			.content .right ul li.total .bord{display: block;color: #fff;margin-left: 50px;width: 1%;font-size: 20px;line-height: 45px;margin-left: 75px;margin-right: 30px;}
-			.content .right ul li.total .txt{display: block;width: 60%;margin: -34px auto;text-align: center;font-size: 20px;color: #fff;letter-spacing: 3px;float: right;margin-right: 22%;}
+			.content .right ul li.total .txt{
+				    display: block;
+			    width: 75%;
+			    margin: -32px auto;
+			    text-align: left;
+			    font-size: 18px;
+			    color: #fff;
+			    /* letter-spacing: 3px; */
+			    margin-left: 18%;
+			}
 			.content .right ul li.div_li{width: 320px;height: 44px;border-radius: 22px;margin-left: 60px;position: relative;margin-bottom: 42px;}
 			.content .right ul li.div_li .round{display: block;width: 14px;height: 14px;border-radius: 50%;background-color: #fff;;margin-left: 25px;position: absolute;top: 15px;}
 			.content .right ul li.div_li .bord{display: block;color: #fff;margin-left: 50px;width: 1%;font-size: 18px;line-height: 40px;margin-left: 75px;margin-right: 30px;}
-			.content .right ul li.div_li .txt{display: block;width: 60%;margin: -32px auto;text-align: center;font-size: 18px;color: #fff;letter-spacing: 3px;margin-right: 15%;}
+			.content .right ul li.div_li .txt{display: block;width: 75%;margin: -32px auto;text-align: left;font-size: 18px;color: #fff;margin-left: 20%;}
 			.content .right .div_im{width: 30px;height: 360px;position: absolute;top: 16px;left: 30px;}
 			.content .right .div_im img{display: block;width: 100%;height: 100%;}
 			
@@ -156,35 +165,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li class="total">
 						<a href="login?loginId=1001">
 							<span class="round"></span>
-							<span class="bord">|</span>
+							<span class="bord">&nbsp;</span>
 							<span class="txt"><fmt:message code="headQuarters" /></span>
 						</a>
 					</li>
 					<li class="div_li one">
 						<a href="login?loginId=1002">
 							<span class="round"></span>
-							<span class="bord">|</span>
+							<span class="bord">&nbsp;</span>
 							<span class="txt"><fmt:message code="branchOfficeOne" /></span>
 						</a>
 					</li>
 					<li class="div_li tow">
 						<a href="login?loginId=1003">
 							<span class="round"></span>
-							<span class="bord">|</span>
+							<span class="bord">&nbsp;</span>
 							<span class="txt"><fmt:message code="branchOfficeTwo"/></span>
 						</a>
 					</li>
 					<li class="div_li three">
 						<a href="login?loginId=1004">
 							<span class="round"></span>
-							<span class="bord">|</span>
+							<span class="bord">&nbsp;</span>
 							<span class="txt"><fmt:message code="branchOfficeThree"/></span>
 						</a>
 					</li>
 					<li class="div_li four">
 						<a href="login?loginId=1005">
 							<span class="round"></span>
-							<span class="bord">|</span>
+							<span class="bord">&nbsp;</span>
 							<span class="txt"><fmt:message code="branchOfficeFore"/></span>
 						</a>
 					</li>
