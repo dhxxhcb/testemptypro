@@ -91,7 +91,7 @@ s, i, em {
     line-height: 28px;
     display: inline-block;
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     margin: 6px;
     cursor: pointer
@@ -182,7 +182,7 @@ td {
 }
 
 td {
-    font: 14px "SimSun";
+    font: 14px "微软雅黑";
 }
 
 tr {
