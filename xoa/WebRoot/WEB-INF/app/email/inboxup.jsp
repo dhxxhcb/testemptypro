@@ -19,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/email/inbox.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
+		
 	</head>
 	<body>
 		<div class="page">
@@ -140,79 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 						
 					</table>
-					<!-- <div class="back">
-						<ul>
-							<li class="replay"><img src="../img/icon_replay_03.png"/>回复</li>
-							<li class="replayAll"><img src="../img/icon_replay_03.png"/>回复全部</li>
-							<li><img src="../img/icon_print_07.png"/>打印邮件<img src="../img/icon_more_06.png" class="more_im" /></li>
-						</ul>
-						<div class="pages">
-							<ul>
-								<li class="fulls"><img src="../img/icon_fullscreen_03.png" alt="" /></li>
-								<li>
-									<img src="../img/icon_left_03.png" class="s_im"/>
-									<span class="one">上一封</span>
-									<span>下一封</span>
-									<img src="../img/icon_right_03.png" class="s_im"/>
-								</li>
-								
-							</ul>
-						</div>
-					</div>
-				</div> -->
-				<!-- <div class="details">
-					<table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-						<tr>
-							<td width="8%">主&nbsp;&nbsp;&nbsp;题：</td>
-							<td width="72%">通达全新OA可选组件-知己者费用管控系统</td>
-							
-						</tr>
-						<tr>
-							<td>发件人：</td>
-							<td>张兰</td>
-							
-						</tr>
-						<tr>
-							<td>收件人：</td>
-							<td>
-								<span><img src="../img/icon_read_3_07.png"/>李佳</span>
-								<span><img src="../img/icon_notread_1_03.png"/>王云</span>
-								<span><img src="../img/icon_read_3_07.png"/>王德</span>
-								<span><img src="../img/icon_notread_1_03.png"/>赵敏</span>
-								<span><img src="../img/icon_read_3_07.png"/>刘娜</span>
-							</td>
-							
-						</tr>
-						<tr>
-							<td>时&nbsp;&nbsp;&nbsp;间：</td>
-							<td>2017年3月30日13:31（星期四）</td>
-							
-						</tr>
-						<tr>
-							<td>附&nbsp;&nbsp;&nbsp;件：</td>
-							<td>
-								<p>1个&nbsp;<img src="../img/icon_accessory_03.png"/><span>智能OA移动产品部3月23日任务工单.rar&nbsp;</span>(19.81KB)</p>
-							</td>
-							
-						</tr>
-						<tr>
-							<td>关键词：</td>
-							<td>财务&nbsp;业务&nbsp;信息&nbsp;数据&nbsp;预算&nbsp;&nbsp;&nbsp;(正文共536字)</td>
-							
-						</tr>
-					</table>
-					<span class="span_hr">
-						<div><img src="../img/p1.jpg"/></div>
-						<p>张兰&nbsp;&nbsp;研发总监</p>
-						<p>研发部</p>
-					</span>
-					<div class="article">
-						<p>随着企业的发展和不断壮大，企业的决策者对如何防止支付风险，加强费用控制，降低企业成本提出了更高的要求。为了满足用户的需求，通达成都研发中心研发了知己者费用管控系统，这款通达OA可选组件把管理制度，报销标准和审批制度相结合，支持第三方CRM、ERP、财务软件数据的调用，支持按预算、按申请单金额、按报销制度标准控制费用。为企业打造统一的财务共享服务信息系统平台，帮助企业实现操作模式标准化、业务流程标准化和财务制度标准化。</p>
-						<p>知己者费用管控系统将企业的财务控制前移至业务前端，强化了事前的预算控制和业务控制，减少了人为的判断和控制，降低了企业对财务人员数量和质量的需求。系统提供了丰富的决策信息，通过与内外部系统的无缝对接，保证业务信息和财务信息在系统间及时准确的传递，减少业务流程步骤，提高数据传输效率，提升财务质量，便于管理层在流程中控制和监督业务执行情况，及时发现执行中存在的偏差。
-</p>
-					</div>
-				</div>
-			</div> -->
+					
 			<!--右侧侧边栏 结束-->
 		</div>
 		
@@ -239,9 +168,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm:ss');
 										//alert(data1[i].sendTime);
 										if(data1[i].emailList[0].readFlag==1){
-											str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+											if(data1[i].attachmentId!=''){
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+											}else{
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+											}
+											
 										} else if(data1[i].emailList[0].readFlag==0){
-											str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_notread_1_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+											if(data1[i].attachmentId!=''){
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+											}else{
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+											}
 										}
 										
 									}
@@ -277,6 +215,114 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				})
 	    		
     		});
+    		
+    		
+    		
+    		
+    		
+    		
+    		function showAjax(flag,obj,cName){
+					$('.BTN').remove();
+					var data1={
+						"flag":flag,
+						"page":1,
+						"pageSize":10,
+						"useFlag":true,
+						"userID":"admin"
+					}	
+					
+					$.ajax({
+									type:'get',
+									url:'showEmail',
+									dataType:'json',
+									data:data1,
+									success:function(rsp){
+										var data1=rsp.obj;
+										var str='';
+										for(var i=0;i<data1.length;i++){
+											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+											//alert(data1[i].sendTime);
+											if(data1[i].emailList[0].readFlag==1){
+												if(data1[i].attachmentId!=''){
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												}else{
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+												}
+												
+											} else if(data1[i].emailList[0].readFlag==0){
+												if(data1[i].attachmentId!=''){
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												}else{
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+												}
+												
+											}
+											
+										}
+										$('.befor').after(str);
+										
+										var mId=$('li.BTN').eq(0).find('input').attr('id');
+										
+										init(mId,obj,cName);
+									}
+					});
+				}
+				
+				function showAjax2(flag){
+					$('.BTN').remove();
+							var data={
+								"flag":flag,
+								"page":1,
+								"pageSize":10,
+								"useFlag":true,
+								"userID":"admin"
+						}
+					
+						$.ajax({
+									type:'get',
+									url:'showEmail',
+									dataType:'json',
+									data:data,
+									success:function(rsp){
+										var data1=rsp.obj;
+										var str='';
+										for(var i=0;i<data1.length;i++){
+											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+												if(data1[i].attachmentId!=''){
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												}else{
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+												}
+												
+											
+										}
+										$('.main_left ul .befor').after(str);
+										
+									}
+						});
+				}
+				
+				function init3(id){
+					$.ajax({
+									type:'get',
+									url:'queryByID',
+									dataType:'json',
+									data:{'bodyId':id,'flag':''},
+									success:function(rsp){
+										var data2=rsp.object;
+										var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+										$('#TAC').find('tr').eq(0).find('td').eq(1).remove();
+										$('#TAC').find('tr').eq(1).find('td').eq(1).remove();
+										$('#TAC').find('tr').eq(2).find('td').eq(1).remove();
+										$('.article1').find('p').remove();
+										
+										$('#TAC').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>')
+										$('#TAC').find('tr').eq(1).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.toName+'</span></td>')
+										$('#TAC').find('tr').eq(2).append('<td>'+sendTime+'</td>')
+										$('.article1').append('<p>'+data2.content+'</p>');
+									}
+						});
+				} 
     		
     	</script>
 	</body>
