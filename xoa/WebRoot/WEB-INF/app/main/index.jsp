@@ -198,17 +198,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									if(data[i].child[j].child.length>0){
 										var three='';
 										for(var k=0;k<data[i].child[j].child.length;k++){						
-								 			three +='<li class="three" menu_tid='+data[i].child[j].child[k].id+' url_three='+data[i].child[j].child[k].url+'><img class="sanji_circle" src="img/main_img/hei.png"><h1 style="margin-left:6%;">'+data[i].child[j].child[k].name+'</h1></li>' ; 	
+								 			three +='<li class="three" menu_tid='+data[i].child[j].child[k].id+' url_three='+data[i].child[j].child[k].url+' title="'+data[i].child[j].child[k].name+'"><img class="sanji_circle" src="img/main_img/hei.png"><h1 style="margin-left:6%;">'+data[i].child[j].child[k].name+'</h1></li>' ; 	
 								 		}
-								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"><img class="erji_circle" src="img/main_img/hei.png"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
+								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"  title="'+data[i].child[j].name+'"><img class="erji_circle" src="img/main_img/hei.png"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
 									/*  console.log($('er').find().attr('url')); */
 									}else{
 										/* console.log(data[i].child[j].id); */
-										er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+' class="two_all"><img class="erji_circle" src="img/main_img/hei.png"><h1 class="erji_h1">'+data[i].child[j].name+'</h1></div></li>';
+										er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+' class="two_all" title="'+data[i].child[j].name+'"><img class="erji_circle" src="img/main_img/hei.png"><h1 class="erji_h1">'+data[i].child[j].name+'</h1></div></li>';
 										
 									} 
 								} 
-								str+='<li class="one person" id="administ"><div class="one_all" ><img class="one_logo" src="img/main_img/'+data[i].img+'.png"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="down_jiao" src="img/main_img/down.png"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
+								str+='<li class="one person" id="administ"><div class="one_all" title="'+data[i].name+'"><img class="one_logo" src="img/main_img/'+data[i].img+'.png"><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="down_jiao" src="img/main_img/down.png"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>'; 
 							}   
 							/* style="width:100%;height:55px;border-bottom: 2px solid #e3e3e5;" */
 
