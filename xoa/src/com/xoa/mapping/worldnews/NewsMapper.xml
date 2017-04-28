@@ -72,7 +72,7 @@
 			</if>
 			<if
 				test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''">
-				AND NEWS_TIME between #{newsTime} and #{lastEditTime}
+				AND DATE(NEWS_TIME) between #{newsTime} and #{lastEditTime}
 			</if>
 			<if test="content != null and content != ''">
 				AND CONTENT like CONCAT('%',#{content},'%')
@@ -146,7 +146,7 @@
 			</if>
 			<if
 				test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''">
-				AND NEWS_TIME between #{newsTime} and #{lastEditTime}
+				AND DATE(NEWS_TIME) between #{newsTime} and #{lastEditTime}
 			</if>
 			<if test="content != null and content != ''">
 				AND CONTENT like CONCAT('%',#{content},'%')
@@ -186,7 +186,7 @@
 			</if>
 			<if
 				test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''">
-				AND NEWS_TIME between #{newsTime} and #{lastEditTime}
+				AND DATE(NEWS_TIME) between #{newsTime} and #{lastEditTime}
 			</if>
 			<if test="content != null and content != ''">
 				AND CONTENT like CONCAT('%',#{content},'%')

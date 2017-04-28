@@ -270,12 +270,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="tabs">
     <ul id="nav_menu">
         <li id="li_1"><a id="menu_1" href="javascript:view_menu(&#39;1&#39;);" hidefocus="hidefocus" title="导航菜单"
-                         class="active"><span>应用</span></a></li>
+                         class="active"><span class="yy_icon"></span><span>应用</span></a></li>
         <li id="li_2"><a id="menu_2" href="javascript:view_menu(&#39;2&#39;);" hidefocus="hidefocus" title="组织机构及人员"
-                         class=""><span>组织</span></a></li>
+                         class=""><span class="zz_icon"></span><span>组织</span></a></li>
         <!-- <li id="li_3"><a id="menu_3" href="javascript:view_menu(&#39;3&#39;);" hidefocus="hidefocus" title="微讯" class=""><span>微讯</span></a></li>-->
         <li id="li_4"><a id="menu_4" href="javascript:view_menu(&#39;4&#39;);" hidefocus="hidefocus" title="云便签"
-                         class=""><span>便签</span></a></li>
+                         class=""><span class="bq_icon"></span><span>便签</span></a></li>
     </ul>
 </div>
 <div id="panels_container" style="height: 531px;">

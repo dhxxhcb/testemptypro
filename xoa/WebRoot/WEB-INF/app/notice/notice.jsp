@@ -383,14 +383,14 @@ $(function () {
 });
 	 laydate({
      elem: '#sendTime', //目标元素。
-     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+     format: 'YYYY-MM-DD', //日期格式
      istime: true, //显示时、分、秒
    });
    
    //时间控件调用
    var start = {
      elem: '#beginTime',
-     format: 'YYYY-MM-DD hh:mm:ss',
+     format: 'YYYY-MM-DD',
     /* min: laydate.now(), //设定最小日期为当前日期*/
     /* max: '2099-06-16 23:59:59', //最大日期*/
      istime: true,
@@ -420,7 +420,7 @@ $(function () {
             }
    var end = {
      elem: '#endTime',
-     format: 'YYYY-MM-DD hh:mm:ss',
+     format: 'YYYY-MM-DD',
      /*min: laydate.now(),*/
      /*max: '2099-06-16 23:59:59',*/
      istime: true,
