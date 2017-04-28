@@ -115,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
 </head>
 
-<div id="pageloading" style="display: none;">正在加载...</div>
+<!-- <div id="pageloading" style="display: none;">正在加载...</div> -->
 <div id="submiting" style="display: none;">正在提交...</div>
 <div id="shareModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="shareModal" aria-hidden="true">
     <div class="modal-header">
@@ -187,9 +187,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="feed-avatar">
                             <div class="blog-info">
                                 <a target="_blank" href="../ipanel/user/user_info.php?USER_ID=admin&amp;WINDOW=1"
-                                   data-avatar="/inc/attach_old.php?ATTACHMENT_ID=avatar&amp;ATTACHMENT_NAME=1.jpg&amp;DIRECT_VIEW=1&amp;r=29748"
+                                   data-avatar="/inc/attach_old.php?ATTACHMENT_ID=avatar&amp;ATTACHMENT_NAME=1000.png&amp;DIRECT_VIEW=1&amp;r=29748"
                                    td-user-id="admin" title="系统管理员" class="blog-avatar" hidefocus="hidefocus"> <img
-                                        src="../img/1.jpg"> 系统管理员 </a>
+                                        src="../img/1000.png"> 系统管理员 </a>
                             </div>
                         </div>
                         <div class="feed-content-holder pop">
@@ -286,9 +286,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="feed-avatar">
                             <div class="blog-info">
                                 <a target="_blank" href="../ipanel/user/user_info.php?USER_ID=admin&amp;WINDOW=1"
-                                   data-avatar="/inc/attach_old.php?ATTACHMENT_ID=avatar&amp;ATTACHMENT_NAME=1.jpg&amp;DIRECT_VIEW=1&amp;r=20910"
+                                   data-avatar="/inc/attach_old.php?ATTACHMENT_ID=avatar&amp;ATTACHMENT_NAME=1000.png&amp;DIRECT_VIEW=1&amp;r=20910"
                                    td-user-id="admin" title="系统管理员" class="blog-avatar" hidefocus="hidefocus"> <img
-                                        src="../img/1.jpg"> 系统管理员 </a>
+                                        src="../img/1000.png"> 系统管理员 </a>
                             </div>
                         </div>
                         <div class="feed-content-holder pop">
@@ -386,9 +386,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="feed-avatar">
                             <div class="blog-info">
                                 <a target="_blank" href="../ipanel/user/user_info.php?USER_ID=admin&amp;WINDOW=1"
-                                   data-avatar="/inc/attach_old.php?ATTACHMENT_ID=avatar&amp;ATTACHMENT_NAME=1.jpg&amp;DIRECT_VIEW=1&amp;r=13410"
+                                   data-avatar="/inc/attach_old.php?ATTACHMENT_ID=avatar&amp;ATTACHMENT_NAME=1000.png&amp;DIRECT_VIEW=1&amp;r=13410"
                                    td-user-id="admin" title="系统管理员" class="blog-avatar" hidefocus="hidefocus"><img
-                                        src="../img/1.jpg"> 系统管理员 </a>
+                                        src="../img/1000.png"> 系统管理员 </a>
                             </div>
                         </div>
                         <div class="feed-content-holder pop">
@@ -427,12 +427,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         </div>
                                     </div>
                                     <div class="feed-attachments">
-                                        <span class="attach_link attach_link_block" onmouseover="showMenu(this.id);"
-                                              id="attach_45ca90ed" style="white-space: inherit;"><img
-                                                src="/static/../img/file_type/png.gif" align="absmiddle"/> <a
-                                                class="attach_name"
-                                                href="/inc/attach.php?AID=3691&amp;MODULE=diary&amp;YM=1703&amp;ATTACHMENT_ID=1170903277&amp;ATTACHMENT_NAME=20170307170602.png">20170307170602.png</a></span>
-
                                         <div id="attach_45ca90ed_menu" class="attach_div" title="20170307170602.png">
                                             <a href="/inc/attach.php?AID=3691&amp;MODULE=diary&amp;YM=1703&amp;ATTACHMENT_ID=1170903277&amp;ATTACHMENT_NAME=20170307170602.png">下载</a>
                                             <a href="javascript:;" data-group="45ca90ed"
@@ -499,9 +493,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="feed-avatar">
                             <div class="blog-info">
                                 <a target="_blank" href="../ipanel/user/user_info.php?USER_ID=admin&amp;WINDOW=1"
-                                   data-avatar="/inc/attach_old.php?ATTACHMENT_ID=avatar&amp;ATTACHMENT_NAME=1.jpg&amp;DIRECT_VIEW=1&amp;r=12299"
+                                   data-avatar="/inc/attach_old.php?ATTACHMENT_ID=avatar&amp;ATTACHMENT_NAME=1000.png&amp;DIRECT_VIEW=1&amp;r=12299"
                                    td-user-id="admin" title="系统管理员" class="blog-avatar" hidefocus="hidefocus"> <img
-                                        src="../img/1.jpg">系统管理员 </a>
+                                        src="../img/1000.png">系统管理员 </a>
                             </div>
                         </div>
                         <div class="feed-content-holder pop">
@@ -540,12 +534,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         </div>
                                     </div>
                                     <div class="feed-attachments">
-                                        <span class="attach_link attach_link_block" onmouseover="showMenu(this.id);"
-                                              id="attach_83d5ecd5" style="white-space: inherit;"><img
-                                                src="/static/../img/file_type/png.gif" align="absmiddle"/> <a
-                                                class="attach_name"
-                                                href="/inc/attach.php?AID=3690&amp;MODULE=diary&amp;YM=1703&amp;ATTACHMENT_ID=-2083132203&amp;ATTACHMENT_NAME=20170307170318.png">20170307170318.png</a></span>
-
                                         <div id="attach_83d5ecd5_menu" class="attach_div" title="20170307170318.png">
                                             <a href="/inc/attach.php?AID=3690&amp;MODULE=diary&amp;YM=1703&amp;ATTACHMENT_ID=-2083132203&amp;ATTACHMENT_NAME=20170307170318.png">下载</a>
                                             <a href="javascript:;" data-group="83d5ecd5"
