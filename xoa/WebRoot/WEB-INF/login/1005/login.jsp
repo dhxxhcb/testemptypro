@@ -56,7 +56,7 @@
 				background-size: 100% 100%;
 			}
 			#loginbtn:hover{background-color:#59a8ff;}
-			.content .ban1{ width:100%; height:83%; background: url(img/login/background_5.png) no-repeat;background-size:100% 100%; position: relative;}
+			.content .ban1{ width:100%; height:83%; background: url(img/login/background_4_02_02.jpg) no-repeat;background-size:100% 100%; position: relative;}
 </style>
 <script src="js/jquery.min.js"></script>
 </head>
