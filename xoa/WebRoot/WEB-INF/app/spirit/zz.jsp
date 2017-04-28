@@ -26,37 +26,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/spirit/ui.dynatree.css">
     <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
-       /*  var ispirit = "1";
-        var bEmailPriv = true;
-        var bSmsPriv = true;
-        var online_ui = "1";
-        var online_ui_1 = "0";
-        var online_ui_2 = "";
-        var online_ui_4 = "";
-        var op_sms = "1";
-        var jsonURL0 = '/inc/online.php?PARA_URL2=/general/ipanel/user/user_info.php&PARA_TARGET=_blank&PARA_ID=ISPIRIT&PARA_VALUE=1&SHOW_IP=1&PWD=e60266ac02274b66&OP_SMS=1';
-        var jsonURL1 = '/inc/user_list/tree.php?MANAGE_FLAG=0&DEPT_ID=0&PARA_URL1=&PARA_URL2=/general/ipanel/user/user_info.php&e=&PARA_TARGET=_blank&PRIV_NO=&PARA_ID=ISPIRIT&PARA_VALUE=1&MODULE_ID=2&SHOW_IP=1&PWD=e60266ac02274b66&DEPT_PRIV=1&ROLE_PRIV=2&PRIV_NO_FLAG=0&OP_SMS=1&rand=599191886';
-        var orgTree0 = orgTree1 = null;
-        var online_ref_sec = '120';
-        var online_last_ref = (new Date()).getTime();
-        var online_ref_interval = all_ref_interval = null;
-        var online_uid_str = "";
-        var online_client_str = "";
-        var on_status_str = "";
-        var online_uid_array = new Array();
-        var online_client_array = new Array();
-        var on_status_array = new Array();
-        var useIspiritCache = (typeof(window.external.OA_SMS) == 'undefined' || typeof(window.top.bIMLogin) == 'undefined' || (typeof(window.console) != 'undefined' && typeof(window.console.OaSms) != 'undefined')) ? false : true;
-        var useIspiritCache0 = 1;
-        var useIspiritCache1 = 1;
-        var exclude_uid_str = "";
-        var show_ip = true;
-        var para_url1 = "";
-        var para_url2 = "";
-        var para_id = "ISPIRIT";
-        var para_value = "1";
-        var para_target = "_blank"; */
-
         function init() {
             jQuery("#body").height(jQuery(window).height() - jQuery("#sub_tabs").outerHeight());
         }
@@ -137,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				},		
 				dataType:'json',
 				success:function(data){
-					console.log(data);
+					
 					if(deptId==0){
 						var str = '';
 						data.obj.forEach(function(v,i){

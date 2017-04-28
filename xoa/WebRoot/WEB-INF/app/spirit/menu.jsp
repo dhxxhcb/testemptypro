@@ -5,7 +5,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE html>
-<!-- saved from url=(0069)file:///C:/Users/gaosubo/Desktop/OA%E7%B2%BE%E7%81%B5_files/menu.html -->
 <html><!--<![endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -28,11 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 	</div>
 </body>
- <script type="text/javascript" src="/js/utility.js"></script>
-
-<!-- <script type="text/javascript" src="../js/ispirit.js"></script> -->
-
-
+ 
 <script language="JavaScript">
 	var menu = {
 		"email":"email/index",
