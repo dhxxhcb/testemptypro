@@ -1,7 +1,7 @@
 
 
 .clearfix:before, .clearfix:after {
-    /*娓呴櫎娴姩锛屾渶濂芥渶鏍囧噯鐨勫啓娉�/
+  
     content: "";
     display: table;
 }
@@ -12,11 +12,11 @@
 
 .clearfix {
     *zoom: 1; /*IE/7/6*/
-    /*鍏煎IE6涓嬬殑鍐欐硶*/
+    
 }
 
 a {
-    color: #666; /*a 鏍囩鏄笉缁ф壙棰滆壊 鐨�/
+    color: #666; 
     text-decoration: none;
 }
 
@@ -31,19 +31,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 s, i, em {
-    /*涓�埇鏄捣瑁呴グ浣滅敤*/
-    font-style: normal; /*鍘绘帀鍘熸湁鐨勬牱寮�/
-    text-decoration: none; /*鍘绘帀涓嬪垝绾挎垨鏄垹闄ょ嚎*/
+    
+    font-style: normal; 
+    text-decoration: none; 
 }
 
 .col-red {
-    color: #C81623 !important; /*浜笢涓昏壊璋�/
+    color: #C81623 !important; 
 }
 
-/*鍏叡绫�/
+
 .w {
-    /*鐗堝績 鎻愬彇 */
-    /* width: 1450px; */
+  
     width:100%;
     margin: 0 auto;
 }
@@ -72,12 +71,10 @@ s, i, em {
     display: none;
 }
 
-/*css鍒濆鍖栧畬鎴�/
 
-/*澶撮儴鏍峰紡*/
 .bx {
     width: 99%;
-   /*  margin: 0 auto; */
+  
    margin-left:10px;
   
 }
