@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.btnImg{width: 100%;}
 			.btnImg .margin{width: 370px;margin: 20px auto;}
 			.btnImg .margin a{margin-right: 20px;}
-			
+			.spanbreak{    width: 120px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display:  inline-block;}
 		</style>
 		<script type="text/javascript">
 			 $(function () {
@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var data1=rsp.object;
 							var str='';
 							$('.title').text(data1.subject); 
-							str='<li><span>发布部门：</span><span>'+data1.depName+'</span></li><li>span>发布人：</span><span>'+data1.providerName+'</span></li><li><span>发布时间：</span><span>'+data1.newsDateTime+'</span></li>';
+							str='<li><div style="display: inline-block; position: relative;top: -4px">发布部门：</div><div class="spanbreak" title="'+data1.depName+'">'+data1.depName+'</div></li><li><span>发布人：</span><span>'+data1.providerName+'</span></li><li><span>发布时间：</span><span>'+data1.newsDateTime+'</span></li>';
 							$('ul').append(str);
 							$('.divTxt').append('<p>'+data1.content+'</p>');
 						}
