@@ -162,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="button1" id="sendTime">
             </div>
              <!-- <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/> -->
-            <div id="cx"  class="submit" >查询</div>
+            <div id="cx"  class="submit" ><fmt:message code="global.lang.query" /></div>
         </div>
 
 
@@ -322,7 +322,7 @@ $(function () {
 						layer.closeAll()
 						if(obj.obj.length == 0){
 							if($('.index_head .one').parent().attr('data_id') == '0'){
-								layer.msg('没有未读新闻，2秒后自动跳到全部新闻', {icon: 6});
+								layer.msg('<fmt:message code="notice.alert.nodatealert" />', {icon: 6});
 								var turnindex=setInterval(function(){
 									layer.closeAll();
 									$(".index_head li").eq(1).click();
