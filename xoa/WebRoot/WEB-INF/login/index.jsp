@@ -65,11 +65,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 
 		 }
 		 #la:hover {
-		 	/* text-decoration: block; */
 		 	color:#fff;
 		 	background-color:#0088cc;
 		 	border-radius: 3px;
-		 }
+		 } 
+			 	/*  #la {
+			 	color:#fff;
+			 	background-color:#0088cc;
+			 	border-radius: 3px;
+			 } */
 		 
 		</style>
 <script type="text/javascript">
@@ -112,6 +116,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				  	 $(".erweima2").animate({marginRight:margins0},800);
 			  	 	margins0=0;
  			 }); 
+ 			 /* 切换语言 */
+		 /*  $("#qh").click(function(){
+		  $(this).addClass("#la");
+		}); */
  			 
 		});
 </script> 
@@ -196,12 +204,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<!-- 弹出二维码 -->
-			<h2 class="h2_s">微信扫描下载APP注册</h2>
+			<h2 class="h2_s">微信扫描下载APP登录</h2>
 			<div class="erweima">
 				
 				<div class="erweima1" style="padding-left: 260px;">
 					<img src="img/sy06.png" alt="" />
-					<div class="fonts">扫描下载 或 点击这里下载<!-- <a href="http://www.gsubo.com/app" style="text-decoration: none;color: white;" target="_blank">点击这里下载</a> --></div>
+					<div class="fonts">扫描下载<!-- <a href="http://www.gsubo.com/app" style="text-decoration: none;color: white;" target="_blank">点击这里下载</a> --></div>
 				</div>
 				
 			</div>
