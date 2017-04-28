@@ -19,11 +19,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     //m_strOaUrl = "http://192.168.0.17/xoa/spirit/login?I_VER=2&USERNAME=admin"
 		var uname = $.getQueryString('USERNAME');
 		var I_VER = $.getQueryString('I_VER');
-		if(uname != ''){
-			location.href = "main";
-		}
+		//if(uname != ''){
+		//	location.href = "main";
+		//}
+		
         $("#login").click(function () {
-            location.href = "main.html";
+        console.log("uname is:"+uname);
+            $.post("/xoa/login",{username:uname,password:I_VER},function(result){
+                 
+                 if(result.flag==true){
+                 location.href ="/xoa/spirit/main" ;
+                 }
+             
+            });
+        
+         //   location.href = "main.html";
+         
         })
     });
 
