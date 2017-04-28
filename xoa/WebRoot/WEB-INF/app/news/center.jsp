@@ -150,7 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img src="../img/la2.png" style="margin-right:5px;">
 
             <div class="news"><fmt:message code="news.title.new" /></div>
-            <select name="TYPE" class="button1" style="float: left;" id="select">
+            <select name="TYPE" class="button1" style="float: left; font-size: 14px;font-family: "微软雅黑";" id="select">
 				<option value="0" selected=""><fmt:message code="news.th.type" /></option>
 				<option value="01"><fmt:message code="news.th.company" /></option>
 				<option value="02"><fmt:message code="news.th.media" /></option>
