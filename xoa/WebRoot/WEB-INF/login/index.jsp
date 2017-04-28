@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.content .right ul li.div_li{width: 320px;height: 44px;border-radius: 22px;margin-left: 60px;position: relative;margin-bottom: 42px;}
 			.content .right ul li.div_li .round{display: block;width: 14px;height: 14px;border-radius: 50%;background-color: #fff;;margin-left: 25px;position: absolute;top: 15px;}
 			.content .right ul li.div_li .bord{display: block;color: #fff;margin-left: 50px;width: 1%;font-size: 18px;line-height: 40px;margin-left: 75px;margin-right: 30px;}
-			.content .right ul li.div_li .txt{display: block;width: 60%;margin: -32px auto;text-align: center;font-size: 18px;color: #fff;letter-spacing: 3px;float: right;margin-right: 15%;}
+			.content .right ul li.div_li .txt{display: block;width: 60%;margin: -32px auto;text-align: center;font-size: 18px;color: #fff;letter-spacing: 3px;margin-right: 15%;}
 			.content .right .div_im{width: 30px;height: 360px;position: absolute;top: 16px;left: 30px;}
 			.content .right .div_im img{display: block;width: 100%;height: 100%;}
 			
@@ -138,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<img  src="img/logo.png"/>
 					<a href="#" class="zhuce"><img id="lg"  src="img/sy01.png"/></a>
 					<a href="#" class="zhuce"><img id="lg" src="img/sy02.png"/></a>
-					<img id="lg" src="img/sy04.png"/>
+					<a href="http://192.168.0.17:81/pcapps/ispirit_xoa.exe"><img id="lg" src="img/sy04.png"/></a>
 				</div>
 				<!-- <img id="tp" src="img/sy06.png"/> -->
 			
@@ -146,55 +146,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="right">
 				<div id="zt">
 					<fmt:message code="language" />:
-					 <a  id="la" href="?lang=zh_CN"><fmt:message code="language.cn" /></a>
+					 <a  id="la" href="?lang=zh_CN">中文</a>
 					  &nbsp;&nbsp;
-					  <a id="la" href="?lang=en_US"><fmt:message code="language.en" /></a>
+					  <a id="la" href="?lang=en_US">English</a>
 					  &nbsp;&nbsp;
-					  <!-- <a href="?lang=en_US">繁体</a> -->
+					  <a href="#">繁体</a> 
 				</div>
 				<ul>
 					<li class="total">
 						<a href="login?loginId=1001">
 							<span class="round"></span>
 							<span class="bord">|</span>
-							<span class="txt">
-							<fmt:message code="headQuarters" />
-							</span>
+							<span class="txt"><fmt:message code="headQuarters" /></span>
 						</a>
 					</li>
 					<li class="div_li one">
 						<a href="login?loginId=1002">
 							<span class="round"></span>
 							<span class="bord">|</span>
-							<span class="txt">
-							<fmt:message code="branchOfficeOne" />
-							</span>
+							<span class="txt"><fmt:message code="branchOfficeOne" /></span>
 						</a>
 					</li>
 					<li class="div_li tow">
 						<a href="login?loginId=1003">
 							<span class="round"></span>
 							<span class="bord">|</span>
-							<span class="txt">
-							<fmt:message code="branchOfficeTwo"/></span>
+							<span class="txt"><fmt:message code="branchOfficeTwo"/></span>
 						</a>
 					</li>
 					<li class="div_li three">
 						<a href="login?loginId=1004">
 							<span class="round"></span>
 							<span class="bord">|</span>
-							<span class="txt">
-							<fmt:message code="branchOfficeThree"/>
-							</span>
+							<span class="txt"><fmt:message code="branchOfficeThree"/></span>
 						</a>
 					</li>
 					<li class="div_li four">
 						<a href="login?loginId=1005">
 							<span class="round"></span>
 							<span class="bord">|</span>
-							<span class="txt">
-							<fmt:message code="branchOfficeFore"/>
-							</span>
+							<span class="txt"><fmt:message code="branchOfficeFore"/></span>
 						</a>
 					</li>
 					<li class="div_im">

@@ -137,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ul class="index_head">
            <li data_id="0"><span class="one" style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.unread" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
             <li data_id=""><span  style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.new" /></span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
-             <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message code="news.title.query" /></span></li>
+             <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;margin-top: 4px;"><fmt:message code="news.title.query" /></span></li>
         </ul>
     </div>
     <!--head通栏结束-->
@@ -159,7 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<option value=""><fmt:message code="news.th.none" /></option>
 			</select>
             <div>
-                <div style="font-size: 15px; margin-left:28px; "><fmt:message code="global.lang.date" />:</div>
+                <div style="font-size: 15px; margin-left:28px;font-family: “微软雅黑”;"><fmt:message code="global.lang.date" />:</div>
                 <input class="button1" id="sendTime">
             </div>
              <!-- <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/> -->
@@ -337,7 +337,7 @@ $(function () {
                         	for (var i = 0; i < obj.obj.length; i++) {
                                str += "<tr><td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].subject+"</ a></td>"+
                                        "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].typeName+"</ a></td>"+
-                                       "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsDateTime+"</ a></td>"+
+                                       "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].newsDateTime.split(' ')[0]+"</ a></td>"+
                                        "<td><a href='#' newsId="+obj.obj[i].newsId+" class='windowOpen'>"+obj.obj[i].clickCount+"</ a></td>"+
                                        "<td><a href='#' newsId="+obj.obj[i].newsTime+" class='windowOpen'>"+'0'+"</ a></td>";
                            }

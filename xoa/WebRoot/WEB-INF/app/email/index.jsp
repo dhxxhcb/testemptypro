@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/email/writeMail.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/email/inbox.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -106,19 +107,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="up_header">
 					<div class="up_nav">
 						<ul>
-							<li><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
-							<li><img src="../img/icon_notread_06.png"/><fmt:message code="email.th.unread" /><span>3</span></li>
-							<li><img src="../img/icon_transmit_06.png"/><fmt:message code="email.th.transmit" /></li>
-							<li><img src="../img/icon_move_06.png"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>
-							<li><img src="../img/icon_delete_06.png"/><fmt:message code="global.lang.delete" /><img src="../img/icon_more_06.png" class="more_im"/></li>
-							<li><fmt:message code="email.th.more" /><img src="../img/icon_more_06.png" class="am"/></li>
+							<li onclick="clicked()"><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>
+							<li onclick="clicked()"><img src="../img/icon_transmit_06.png" class="im"/><fmt:message code="email.th.transmit" /></li>
+							<li onclick="clicked()"><img src="../img/icon_move_06.png" class="im"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li onclick="clicked()"><img src="../img/icon_delete_06.png" class="im"/><fmt:message code="global.lang.delete" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li onclick="clicked()"><fmt:message code="email.th.more" /><img src="../img/icon_more_06.png" class="am"/></li>
 						</ul>
 					</div>
 					<div class="up_pages">
 						<div class="up_div_pages">
 							<ul>
-								<li><img src="../img/icon_left_03.png"/><fmt:message code="email.th.beforemail" /><span>|</span></li>
-								<li><fmt:message code="email.th.nextmail" /><img src="../img/icon_right_03.png"/></li>
+								<li onclick="clicked()"><img src="../img/icon_left_03.png"/><fmt:message code="email.th.beforemail" /><span>|</span></li>
+								<li onclick="clicked()"><fmt:message code="email.th.nextmail" /><img src="../img/icon_right_03.png"/></li>
 							</ul>
 						</div>
 						<div class="up_format">
@@ -415,6 +416,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				 //详情点击事件
 				$('.main_left').on('click','.BTN',function(){
+					$('.BTN').removeClass('backing');
+					$(this).addClass('backing');
 					var nId=$(this).find('input').attr('id');
 					init(nId,'#TAB','.article');
 				}) 
@@ -443,6 +446,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var str='';
 									$(obj).find('tr').remove();
 									$(cName).find('p').remove();
+									$('.span_hr').find('p').find('span').eq(0).html('');
 									if(data2.attachmentName!='' && data2.copyName!=''){
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>';
 									} else if(data2.attachmentName=='' && data2.copyName!=''){
@@ -455,7 +459,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 									$(obj).append(str);
 									$(cName).append('<p>'+data2.content+'</p>');
-								
+									$('.span_hr').find('p').find('span').eq(0).html(data2.users.userName);
 								}
 					});
 				}
@@ -564,7 +568,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									}
 						});
 				} 
-			
+				function clicked(){
+					layer.msg('开发中', {icon: 6});
+				}
 		</script>
 		
 	</body>
