@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>写邮件</title>
+		<title><fmt:message code="email.title.waitmail" /></title><!-- 写邮件 -->
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 		<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
 			<tr class="append_tr">
-				<td width="10%">收件人：</td>
+				<td width="10%"><fmt:message code="email.th.sender" />：</td>
 				<td width="89%">
 					<div class="inPole">
 						<textarea name="txt" id="senduser" user_id='admin' value="admin" disabled></textarea>
@@ -33,21 +33,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<span class="addImg">
 								<img src="../img/org_select.png" class="addIcon"/>
 							</span>
-							<a href="javascript:;" id="selectUser" class="Add ">添加</a>
+							<a href="javascript:;" id="selectUser" class="Add "><fmt:message code="global.lang.add" /></a>
 						</span>
 						<span class="add_img">
 							<span class="addImg">
 								<img src="../img/org_select2.png" class="clearIcon"/>
 							</span>
-							<a href="javascript:;" class="clear">清除</a>
+							<a href="javascript:;" class="clear"><fmt:message code="notice.th.delete1" /></a>
 						</span>
 						<!--<input type="checkbox" name="check" id="check" value="向此人发送外部邮件" />
 						<span>向此人发送外部邮件</span>-->
 					</div>
 					<div class="addPepl">
 						<!--<a href="javascript:;" class="outside">添加外部收件人</a>-->
-						<a href="javascript:;" class="a1">添加抄送</a>
-						<a href="javascript:;" class="a2">添加密送</a>
+						<a href="javascript:;" class="a1"><fmt:message code="email.th.addwait" /></a>
+						<a href="javascript:;" class="a2"><fmt:message code="email.th.addbcc" /></a>
 						<!-- <a href="javascript:;" class="a3">最近联系人&nbsp;</a> -->
 						<!-- <span class="day">
 							<ul>
@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</td>
 			</tr>
 			<tr>
-				<td>邮件主题：</td>
+				<td><fmt:message code="email.th.major" />：</td>
 				<td>
 					<input type="text" id="txt" value="" class="input_txt" />
 					<!-- <span class="import">一般邮件</span> -->
@@ -68,25 +68,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 			<tr>
 				<td width="10%">
-					<p>邮件内容：</p>
-					<p class="Color">计算字数：<span>0</span></p>
-					<p class="Color">清空</p>
+					<p><fmt:message code="email.th.content" />：</p>
+					<p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p>
+					<p class="Color"><fmt:message code="global.lang.empty" /></p>
 				</td>
 				<td width="89%">
 					<script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
 				</td>
 			</tr>
 			<tr>
-				<td>附件选择：</td>
+				<td><fmt:message code="email.th.filechose" />：</td>
 				<td>
-					添加附件
+					<fmt:message code="email.th.addfile" />
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
 					<div class="div_btn">
-						<input type="button" id="btn1" value="立即发送" />
-						<input type="button" id="btn2" value="保存到草稿箱" />
+						<input type="button" id="btn1" value="<fmt:message code="email.th.transmitimmediate" />" />
+						<input type="button" id="btn2" value="<fmt:message code="email.th.savedraftbox" />" />
 					</div>
 					
 				</td>

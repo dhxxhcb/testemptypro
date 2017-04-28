@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>收件箱</title>
+		<title><fmt:message code="email.title.inbox" /></title><!-- 收件箱 -->
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -39,26 +39,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!--收件箱-->
 					<div class="inBox">
 						<a href="javascript:;" class="inbox_btn">
-							<div class="inbox_btn_tim div_down">邮件箱</div>
+							<div class="inbox_btn_tim div_down"><fmt:message code="email.title.mailbox" /></div>
 						</a>
 						<div class="ul_show" style="display: block;">
 							<ul>
-								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/>收件箱<span>32</span></a></li>
-								<li id="drafts"><a href="javascript:;"><img src="../img/icon_drafts_07.png"/>草稿箱<span>2</span></a></li>
-								<li id="hasBeenSend"><a href="javascript:;"><img src="../img/icon_sent_07.png"/>已发送</a></li>
-								<li id="wastebasket"><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/>废纸篓</a></li>
-								<li id="liSearch" class='liSearch'><a href="javascript:;"><img src="../img/icon_search_03.png"/>查询邮件</a></li>
+								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/><fmt:message code="email.title.inbox" /><span>32</span></a></li>
+								<li><a href="javascript:;"><img src="../img/icon_drafts_07.png"/><fmt:message code="email.title.draftbox" /><span>2</span></a></li>
+								<li><a href="javascript:;"><img src="../img/icon_sent_07.png"/><fmt:message code="email.title.sent" /></a></li>
+								<li><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/><fmt:message code="email.title.wastebasket" /></a></li>
+								<li class='liSearch'><a href="javascript:;"><img src="../img/icon_search_03.png"/><fmt:message code="email.title.querymail" /></a></li>
 							</ul>
 						</div>
 					</div>
 					<!--其他邮件箱-->
 					<div class="other">
 						<a href="javascript:;" class="inbox_btn">
-							<div class="inbox_btn_tim div_up">其他邮件箱</div>
+							<div class="inbox_btn_tim div_up"><fmt:message code="email.title.othermailbox" /></div>
 						</a>
 						<div class="ul_show">
 							<ul>
-								<li><a href="javascript:;"><img src="../img/icon_file_11.png"/>自己文件夹</a></li>
+								<li><a href="javascript:;"><img src="../img/icon_file_11.png"/><fmt:message code="email.title.oneselffile" /></a></li>
 							</ul>
 						</div>
 						
@@ -66,26 +66,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!--邮件智能分类-->
 					<div class="classify">
 						<a href="javascript:;" class="inbox_btn">
-							<div class="inbox_btn_tim div_up">邮件智能分类</div>
+							<div class="inbox_btn_tim div_up"><fmt:message code="email.title.mailsort" /></div>
 						</a>
 						<div class="ul_show spac_show">
 							<ul>
-								<li><a href="javascript:;"><span>关键词Tag云图</span></a></li>
-								<li><a href="javascript:;"><span>日程</span></a></li>
-								<li><a href="javascript:;"><span>会议</span></a></li>
-								<li><a href="javascript:;"><span>日志</span></a></li>
-								<li><a href="javascript:;"><span>汇报</span></a></li>
-								<li><a href="javascript:;"><span>计划</span></a></li>
-								<li><a href="javascript:;"><span>通知</span></a></li>
-								<li><a href="javascript:;"><span>新闻</span></a></li>
-								<li><a href="javascript:;"><span>公文</span></a></li>
-								<li><a href="javascript:;"><span>项目</span></a></li>
-								<li><a href="javascript:;"><span>人事</span></a></li>
-								<li><a href="javascript:;"><span>考核</span></a></li>
-								<li><a href="javascript:;"><span>报表</span></a></li>
-								<li><a href="javascript:;"><span>工作流</span></a></li>
-								<li><a href="javascript:;"><span>客户</span></a></li>
-								<li><a href="javascript:;"><span>合同</span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.keywordchart" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.agenda" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.meeting" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.log" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.report" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.plan" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.notify" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.news" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.document" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.Project" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.personnel" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.assessment" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.Report" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.workflow" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.client" /></span></a></li>
+								<li><a href="javascript:;"><span><fmt:message code="email.th.contract" /></span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -93,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="setUp">
 						<a href="javascript:;">
 							<img class="setUp_img" src="../img/icon_setmail_11.png"/>
-							<span>邮箱设置</span>
+							<span><fmt:message code="email.th.mailimpost" /></span>
 							<img class="loding" src="../img/icon_refresh_11.png"/>
 						</a>
 					</div>
@@ -106,21 +106,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="up_header">
 					<div class="up_nav">
 						<ul>
-							<li><img src="../img/icon_allmail_06.png" class="im"/>全部邮件<img src="../img/icon_more_06.png" class="am"/></li>
-							<li><img src="../img/icon_notread_06.png" class="im"/>未读<span>3</span></li>
-							<li><img src="../img/icon_replay_03.png" class="im"/>回复</li>
-							<li><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
-							<li><img src="../img/icon_transmit_06.png" class="im"/>转发</li>
-							<li><img src="../img/icon_move_06.png" class="im"/>移动到<img src="../img/icon_more_06.png" class="am"/></li>
-							<li><img src="../img/icon_delete_06.png" class="im"/>删除<img src="../img/icon_more_06.png" class="am"/></li>
-							<li>更多<img src="../img/icon_more_06.png" class="am"/></li>
+							<li><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li><img src="../img/icon_notread_06.png"/><fmt:message code="email.th.unread" /><span>3</span></li>
+							<li><img src="../img/icon_transmit_06.png"/><fmt:message code="email.th.transmit" /></li>
+							<li><img src="../img/icon_move_06.png"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li><img src="../img/icon_delete_06.png"/><fmt:message code="global.lang.delete" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li><fmt:message code="email.th.more" /><img src="../img/icon_more_06.png" class="am"/></li>
 						</ul>
 					</div>
 					<div class="up_pages">
 						<div class="up_div_pages">
 							<ul>
-								<li><img src="../img/icon_left_03.png"/>上一封<span>|</span></li>
-								<li>下一封<img src="../img/icon_right_03.png"/></li>
+								<li><img src="../img/icon_left_03.png"/><fmt:message code="email.th.beforemail" /><span>|</span></li>
+								<li><fmt:message code="email.th.nextmail" /><img src="../img/icon_right_03.png"/></li>
 							</ul>
 						</div>
 						<div class="up_format">
@@ -142,7 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 								</div>
 								<div class="sort_right">
-									<img src="../img/icon_shaixuan_03.png"/>排序
+									<img src="../img/icon_shaixuan_03.png"/><fmt:message code="email.th.order" />
 								</div>
 							</li>
 						</ul>
@@ -153,21 +151,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							<table id="TAB" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 								<tr class="MAIN">
-									<td width="8%">主题：</td>
+									<td width="8%"><fmt:message code="email.th.main" />：</td>
 									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
 									
 								</tr>
 								<tr class="SEND">
-									<td>发件人：</td>
+									<td><fmt:message code="email.th.sender" />：</td>
 									<!-- <td>张兰</td> -->
 									
 								</tr>
 								<tr class="IN">
-									<td>收件人：</td>
+									<td><fmt:message code="email.th.recipients" />：</td>
 									
 								</tr>
 								<tr class="DATE">
-									<td>时间：</td>
+									<td><fmt:message code="email.th.time" />：</td>
 									<!-- <td>2017年3月30日13:31（星期四）</td> -->
 									
 								</tr>
@@ -175,8 +173,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</table>
 							<span class="span_hr">
 								<div><img src="../img/p1.jpg"/></div>
-								<p><span>张兰</span>&nbsp;&nbsp;<span class="zong">研发总监</span></p>
-								<p>研发部</p>
+								<p><span></span>&nbsp;&nbsp;<span class="zong"><fmt:message code="email.th.subject" /></span></p>
+								<p><fmt:message code="email.th.dept" /></p>
 							</span>
 							<div class="article">
 								<!-- <p>随着企业的发展和不断壮大，企业的决策者对如何防止支付风险，加强费用控制，降低企业成本提出了更高的要求。为了满足用户的需求，通达成都研发中心研发了知己者费用管控系统，这款通达OA可选组件把管理制度，报销标准和审批制度相结合，支持第三方CRM、ERP、财务软件数据的调用，支持按预算、按申请单金额、按报销制度标准控制费用。为企业打造统一的财务共享服务信息系统平台，帮助企业实现操作模式标准化、业务流程标准化和财务制度标准化。</p>
@@ -191,7 +189,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
 								<tr class="append_tr">
-									<td width="15%">收件人：</td>
+									<td width="15%"><fmt:message code="email.th.recipients" />：</td>
 									<td width="84%">
 										<div class="inPole">
 											<textarea name="txt" disabled></textarea>
@@ -199,21 +197,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<!-- <span class="addImg">
 													<img src="../img/org_select.png" class="addIcon"/>
 												</span> -->
-												<a href="javascript:;" class="Add">添加</a>
+												<a href="javascript:;" class="Add"><fmt:message code="global.lang.add" /></a>
 											</span>
 											<span class="add_img">
 												<span class="addImg">
 													<img src="../img/org_select2.png" class="clearIcon"/>
 												</span>
-												<a href="javascript:;" class="clear">清除</a>
+												<a href="javascript:;" class="clear"><fmt:message code="notice.th.delete1" /></a>
 											</span>
 											
 										</div>
 										<div class="addPepl">
 											<!--<a href="javascript:;" class="outside">添加外部收件人</a>-->
-											<a href="javascript:;" class="a1">添加抄送</a>
-											<a href="javascript:;" class="a2">添加密送</a>
-											<a href="javascript:;" class="a3">最近联系人&nbsp;</a>
+											<a href="javascript:;" class="a1"><fmt:message code="email.th.addwait" /></a>
+											<a href="javascript:;" class="a2"><fmt:message code="email.th.addbcc" /></a>
+											<a href="javascript:;" class="a3"><fmt:message code="email.th.recentcontacts" />&nbsp;</a>
 											<!-- <span class="day">
 												<ul>
 													<li>系统管理员</li>
@@ -225,33 +223,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</td>
 								</tr>
 								<tr>
-									<td>邮件主题：</td>
+									<td><fmt:message code="email.th.major" />：</td>
 									<td>
 										<input type="text" id="txt" value="" class="input_txt" />
-										<span class="import">一般邮件</span>
+										<span class="import"><fmt:message code="email.th.conmmemail" /></span>
 									</td>
 								</tr>
 								<tr>
 									<td width="15%">
-										<p>邮件内容：</p>
-										<p class="Color">计算字数：<span>0</span></p>
-										<p class="Color">清空</p>
+										<p><fmt:message code="email.th.content" />：</p>
+										<p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p>
+										<p class="Color"><fmt:message code="global.lang.empty" /></p>
 									</td>
 									<td width="84%">
 										<script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
 									</td>
 								</tr>
 								<tr>
-									<td>附件选择：</td>
+									<td><fmt:message code="email.th.filechose" />：</td>
 									<td>
-										添加附件
+										<fmt:message code="email.th.addfile" />
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
 										<div class="div_btn">
-											<input type="button" id="btn1" value="立即发送" />
-											<input type="button" id="btn2" value="保存到草稿箱" />
+											<input type="button" id="btn1" value="<fmt:message code="email.th.transmitimmediate" />" />
+											<input type="button" id="btn2" value="<fmt:message code="email.th.savedraftbox" />" />
 										</div>
 										
 									</td>
@@ -265,12 +263,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							<table id="TAC" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 								<tr class="MAIN2">
-									<td width="8%">主题：</td>
+									<td width="8%"><fmt:message code="email.th.main" />：</td>
 									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
 									
 								</tr>
 								<tr class="SEND2">
-									<td>收件人：</td>
+									<td><fmt:message code="email.th.recipients" />：</td>
 									<!-- <td>
 										<span><img src="../img/icon_read_3_07.png"/>李佳</span>
 										<span><img src="../img/icon_notread_1_03.png"/>王云</span>
@@ -281,7 +279,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 								</tr>
 								<tr class="DATE2">
-									<td>时间：</td>
+									<td><fmt:message code="email.th.time" />：</td>
 									<!-- <td>2017年3月30日13:31（星期四）</td> -->
 									
 								</tr>
@@ -298,20 +296,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							<table id="TAD" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 								<tr class="MAIN3">
-									<td width="8%">主题：</td>
+									<td width="8%"><fmt:message code="email.th.main" />：</td>
 									<!-- <td width="72%">通达全新OA可选组件-知己者费用管控系统</td> -->
 									
 								</tr>
 								<tr class="SEND3">
-									<td>发件人：</td>
+									<td><fmt:message code="email.th.sender" />：</td>
 									<!-- <td>张兰</td> -->
 									
 								</tr>
 								<tr class="IN3">
-									<td>收件人：</td>
+									<td><fmt:message code="email.th.recipients" />：</td>
 								</tr>
 								<tr class="DATE3">
-									<td>时间：</td>
+									<td><fmt:message code="email.th.time" />：</td>
 									<!-- <td>2017年3月30日13:31（星期四）</td> -->
 									
 								</tr>

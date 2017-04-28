@@ -1,7 +1,7 @@
 
 
 .clearfix:before, .clearfix:after {
-    /*清除浮动，最好最标准的写法*/
+    /*娓呴櫎娴姩锛屾渶濂芥渶鏍囧噯鐨勫啓娉�/
     content: "";
     display: table;
 }
@@ -12,11 +12,11 @@
 
 .clearfix {
     *zoom: 1; /*IE/7/6*/
-    /*兼容IE6下的写法*/
+    /*鍏煎IE6涓嬬殑鍐欐硶*/
 }
 
 a {
-    color: #666; /*a 标签是不继承颜色 的*/
+    color: #666; /*a 鏍囩鏄笉缁ф壙棰滆壊 鐨�/
     text-decoration: none;
 }
 
@@ -31,18 +31,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 s, i, em {
-    /*一般是起装饰作用*/
-    font-style: normal; /*去掉原有的样式*/
-    text-decoration: none; /*去掉下划线或是删除线*/
+    /*涓�埇鏄捣瑁呴グ浣滅敤*/
+    font-style: normal; /*鍘绘帀鍘熸湁鐨勬牱寮�/
+    text-decoration: none; /*鍘绘帀涓嬪垝绾挎垨鏄垹闄ょ嚎*/
 }
 
 .col-red {
-    color: #C81623 !important; /*京东主色调*/
+    color: #C81623 !important; /*浜笢涓昏壊璋�/
 }
 
-/*公共类*/
+/*鍏叡绫�/
 .w {
-    /*版心 提取 */
+    /*鐗堝績 鎻愬彇 */
     /* width: 1450px; */
     width:100%;
     margin: 0 auto;
@@ -72,9 +72,9 @@ s, i, em {
     display: none;
 }
 
-/*css初始化完成*/
+/*css鍒濆鍖栧畬鎴�/
 
-/*头部样式*/
+/*澶撮儴鏍峰紡*/
 .bx {
     width: 99%;
    /*  margin: 0 auto; */
@@ -94,7 +94,7 @@ s, i, em {
     line-height: 28px;
     display: inline-block;
     float: left;
-    font-family: "微软雅黑";
+    font-family: "寰蒋闆呴粦";
     font-size: 14px;
     margin: 6px;
     cursor: pointer
@@ -110,7 +110,7 @@ s, i, em {
 }
 
 
-/*navigation开始*/
+/*navigation寮�*/
 .navigation {
     heihgt: 70px;
     display: inline-block;
@@ -164,7 +164,7 @@ s, i, em {
     margin-top: 18px;
 }
 
-/*表格*/
+/*琛ㄦ牸*/
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -202,7 +202,7 @@ tr:hover {
     background-color: #D3E7FA;
 }
 
-/*页脚部分*/
+/*椤佃剼閮ㄥ垎*/
 .footer {
     margin-top: 5px;
     heihgt: 40px;
