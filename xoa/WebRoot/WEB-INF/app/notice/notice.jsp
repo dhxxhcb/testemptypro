@@ -149,7 +149,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <img src="../img/notice01.png" style="width:25px;height:25px; margin-right:5px;">
+            <img src="../img/notice01.png" style="width:23px;height:23px; margin-right:5px;">
              
             <div class="news"><fmt:message code="notice.title.notify" /></div><!-- //公告通知 -->
             <select name="TYPE" class="button1" style="float: left;" id="select">
@@ -160,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    <option value="04"><fmt:message code="notice.type.other" /></option>
 			</select>
             <div>
-                <div style="font-size: 15px; margin-left:28px; "><fmt:message code="global.lang.date" /> :</div>
+                <div style="font-size: 15px; margin-left:28px;font-family: “微软雅黑”; "><fmt:message code="global.lang.date" /> :</div>
                 <input class="button1" id="sendTime">
             </div>
              <!-- <img style="width:60px;height:30px;margin-top: 18px;margin-left: 10px;" class="submit" style="margin-left:24px;margin-top:13px; cursor: pointer;" src="../img/03.png" alt=""/> -->
@@ -348,13 +348,10 @@ $(function () {
 							},1000);
 							
 							if(cb){
-								cb(data.totleNum);
+								cb(obj.totleNum);
 							}
 						}
-					},
-					error:function(e){
-						layer.closeAll();
-					}
+					}   
 				})
             }
             
