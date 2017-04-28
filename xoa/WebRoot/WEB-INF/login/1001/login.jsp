@@ -55,7 +55,7 @@
 				background: url(img/login/bjjt_head.png) no-repeat;
 				background-size: 100% 100%;
 			}
-			.content .ban1{ width:100%; height:83%; background: url(img/login/bjjt_bg.png) no-repeat;background-size:100% 100%; position: relative;}
+			.content .ban1{ width:100%; height:83%; background: url(img/login/background_zonggongs_1.png) no-repeat;background-size:100% 100%; position: relative;}
 			#loginbtn:hover{background-color:#59a8ff;}
 </style>
 <script src="js/jquery.min.js"></script>
