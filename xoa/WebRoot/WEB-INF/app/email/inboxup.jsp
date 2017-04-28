@@ -165,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var data1=rsp.obj;
 									var str='';
 									for(var i=0;i<data1.length;i++){
-										var sendTime=new Date(data1[i].sendTime).Format('yyyy-MM-dd hh:mm:ss');
+										var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm:ss');
 										//alert(data1[i].sendTime);
 										if(data1[i].emailList[0].readFlag==1){
 											if(data1[i].attachmentId!=''){

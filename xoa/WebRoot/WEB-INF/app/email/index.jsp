@@ -25,6 +25,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/email/inbox.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.main_left .BTN:hover{
+				background:#c5e9fb;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="page">
@@ -360,7 +365,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				showAjax('inbox','#TAB','.article');
 			
-				$.extend
+				
 				
 				//查询邮件点击事件
 				$('.liSearch').click(function(){
@@ -413,22 +418,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			
 				
+				//鼠标移入移出事件
+				/* $('.main_left').on('hover','.BTN',function(){
+					$(this).css('background-color','#c5e9fb');
+				}) */
+				/* $('.main_left').on('mouseout','.BTN',function(){
+					$(this).css('background-color','#fff');
+				})  */
 				
 				 //详情点击事件
 				$('.main_left').on('click','.BTN',function(){
-					$('.BTN').removeClass('backing');
-					$(this).addClass('backing');
+					//$('.BTN').removeClass('backing');
+					$(this).addClass("backing").siblings("li").removeClass("backing");
 					var nId=$(this).find('input').attr('id');
 					init(nId,'#TAB','.article');
 				}) 
 				
-				//鼠标移入移出事件
-				$('.main_left').on('mouseover','.BTN',function(){
-					$(this).css('background-color','#c5e9fb');
-				})
-				$('.main_left').on('mouseout','.BTN',function(){
-					$(this).css('background-color','#fff');
-				})
+				
 			});
 			
 			
