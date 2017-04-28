@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.content .right ul li.div_li{width: 320px;height: 44px;border-radius: 22px;margin-left: 60px;position: relative;margin-bottom: 42px;}
 			.content .right ul li.div_li .round{display: block;width: 14px;height: 14px;border-radius: 50%;background-color: #fff;;margin-left: 25px;position: absolute;top: 15px;}
 			.content .right ul li.div_li .bord{display: block;color: #fff;margin-left: 50px;width: 1%;font-size: 18px;line-height: 40px;margin-left: 75px;margin-right: 30px;}
-			.content .right ul li.div_li .txt{display: block;width: 60%;margin: -32px auto;text-align: center;font-size: 18px;color: #fff;letter-spacing: 3px;float: right;margin-right: 15%;}
+			.content .right ul li.div_li .txt{display: block;width: 60%;margin: -32px auto;text-align: center;font-size: 18px;color: #fff;letter-spacing: 3px;margin-right: 15%;}
 			.content .right .div_im{width: 30px;height: 360px;position: absolute;top: 16px;left: 30px;}
 			.content .right .div_im img{display: block;width: 100%;height: 100%;}
 			
