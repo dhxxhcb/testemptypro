@@ -30,9 +30,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="wrapper">
 		<div class="header">
 			<ul>
-				<li><span class="head_title active">个人门户<fmt:message code="main.title.oneself"/></span></li>
-				<li><span class="head_title">企业门户<fmt:message code="main.title.company"/></span></li>
-				<li><span class="head_title">管理门户<fmt:message code="main.title.manage"/></span></li>
+				<li><span class="head_title active"><fmt:message code="main.title.oneself"/></span></li>
+				<li><span class="head_title"><fmt:message code="main.title.company"/></span></li>
+				<li><span class="head_title"><fmt:message code="main.title.manage"/></span></li>
 			</ul>
 		
 		</div>
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class="total">
 				<li class="contain side">
 					 <div class="s_head">
-						<span  class="model">常用功能<fmt:message code="main.th.function"/></span><span class="more"><a>管理<fmt:message code="main.th.manage"/></a></span>
+						<span  class="model"><fmt:message code="main.th.function"/></span><span class="more"><a><fmt:message code="main.th.manage"/></a></span>
 					</div>
 					<div class="s_container">
 						<img style="width:100%;height:100%" src="img/spirit/menu/changyong.png">
@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 				<li class="contain middle">
 				 <div class="s_head">
-						<span  class="model">邮件箱<fmt:message code="email.title.mailbox"/></span><span class="head_title sort active actives">全部邮件<fmt:message code="email.th.allmail"/></span><span class="head_title sort">未读邮件<fmt:message code="email.th.unreadmail"/></span><span class="head_title sort">已读邮件<fmt:message code="email.th.readmail"/></span><span class="more"><a>更多<fmt:message code="email.th.more"/></a></span>
+						<span  class="model"><fmt:message code="email.title.mailbox"/></span><span class="head_title sort active actives"><fmt:message code="email.th.allmail"/></span><span class="head_title sort"><fmt:message code="email.th.unreadmail"/></span><span class="head_title sort"><fmt:message code="email.th.readmail"/></span><span class="more"><a><fmt:message code="email.th.more"/></a></span>
 					</div>
 					<div class="s_container">
 						<ul>
@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 				<li class="contain side">
 					 <div class="s_head">
-						<span  class="model">日志<fmt:message code="email.th.log"/></span><span class="more"><a>更多<fmt:message code="email.th.more"/></a></span>
+						<span  class="model"><fmt:message code="email.th.log"/></span><span class="more"><a><fmt:message code="email.th.more"/></a></span>
 					</div>
 					<div class="s_container">
 						<ul>
@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 				<li class="contain side">
 					 <div class="s_head">
-						<span  class="model">日程安排<fmt:message code="main.schedule"/></span><span class="more"><a>添加<fmt:message code="global.lang.add"/></a></span>
+						<span  class="model"><fmt:message code="main.schedule"/></span><span class="more"><a><fmt:message code="global.lang.add"/></a></span>
 					</div>
 					<div class="s_container">
 						<img style="width:100%;height:100%" src="img/spirit/menu/richenganpai.png">
@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 				<li class="contain middle">
 					 <div class="s_head">
-						<span  class="model">公告<fmt:message code="notice.th.notice"/></span><span class="head_title sort active actives">全部公告<fmt:message code="notice.th.allnotice"/></span><span class="head_title sort">未读公告<fmt:message code="notice.title.unreadannouncement"/></span><span class="more"><a>更多<fmt:message code="email.th.more"/></a></span>
+						<span  class="model"><fmt:message code="notice.th.notice"/></span><span class="head_title sort active actives"><fmt:message code="notice.th.allnotice"/></span><span class="head_title sort"><fmt:message code="notice.title.unreadannouncement"/></span><span class="more"><a><fmt:message code="email.th.more"/></a></span>
 					</div>
 					<div class="s_container">
 						<ul>
@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 				<li class="contain side">
 					 <div class="s_head">
-						<span  class="model">文件柜<fmt:message code="file.th.file"/></span><span class="more"><a>更多<fmt:message code="email.th.more"/></a></span>
+						<span  class="model"><fmt:message code="file.th.file"/></span><span class="more"><a><fmt:message code="email.th.more"/></a></span>
 					</div>
 					<div class="s_container">
 						<img style="width:100%;height:100%" src="img/spirit/menu/wenjiangui.png">
