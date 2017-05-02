@@ -216,8 +216,7 @@ public class NotifyServiceImpl implements  NotifyService{
         notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
         notify.setName(notify.getUsers().getUserName());
         notify.setUsers(null);
-        SysCode code=sysCodeMapper.getSysCode1(notify.getTypeId());
-		notify.setTypeName(code.getCodeName());
+		notify.setTypeName(notify.getCodes().getCodeName());
       if(notify.getReaders().indexOf(name)==-1){
         	StringBuffer str2= new StringBuffer(notify.getReaders());
         	str2.append(",");
@@ -301,8 +300,7 @@ public class NotifyServiceImpl implements  NotifyService{
         List<Notify> list = notifyMapper.selectNotifyManage(maps);
       for (Notify notify : list) {
     	  notify.setName(notify.getUsers().getUserName());
-           SysCode code=sysCodeMapper.getSysCode1(notify.getTypeId());
-            notify.setTypeName(code.getCodeName());
+    	  notify.setTypeName(notify.getCodes().getCodeName());
     	  StringBuffer s=new StringBuffer();
 			if (notify.getToId().equals("ALL_DEPT")) {
 				 List<Department> list1=departmentMapper.getDatagrid();
