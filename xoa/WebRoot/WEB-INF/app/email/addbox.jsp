@@ -76,10 +76,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
 				</td>
 			</tr>
+			<tr class="Attachment" style="display:none;width:100%;">
+				<td width="10%">附件：</td>
+				<td width="89%"   class="files" id="files_txt"></td>
+			</tr>
 			<tr>
 				<td><fmt:message code="email.th.filechose" />：</td>
-				<td>
-					<fmt:message code="email.th.addfile" />
+				<td class="files">
+					<!-- <fmt:message code="email.th.addfile" /> -->
+					<form  method="post" id="form" type="hidden" >
+						<input type="file" name="flies" id="files" onclick="UploadAttachments()" style="display:none;"/>
+					</form>
+					<input type="button" name="button" id="btn3" value="请选择文件">
 				</td>
 			</tr>
 			<tr>
@@ -105,6 +113,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 		$.popWindow("../common/selectUser");
        		 		 
        		 	});
+       		 	
+       		 	//点击立即发送按钮
        		 	$("#btn1").on("click",function(){
 					
 					var userId=$('textarea[name="txt"]').attr('user_id');
@@ -117,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 	'toId2': 'admin,',
 						'subject':val,
 						'content':html
-					}
+					};
 					
 					$.ajax({
 						 type:'post',    
@@ -126,12 +136,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 data:data,
 						 success:function(){
 							alert('发送成功');
-							$('.page').find('.div_iframe').remove();
-							$('.up_page_right').css('display','block');
+							
 						}
-					})
-				}) 
-       		 })
+					});
+				});
+				
+				//点击保存到草稿箱按钮
+				$("#btn2").on("click",function(){
+					var userId=$('textarea[name="txt"]').attr('user_id');
+					var txt = ue.getContentTxt();
+					var html = ue.getContent();
+					var val=$('#txt').val();
+				
+					 var data={
+					 	'fromId':'admin',
+					 	'toId2': 'admin,',
+						'subject':val,
+						'content':html
+					};
+					$.ajax({
+						 type:'post',    
+						 url:'saveEmail',
+						 dataType:'json',
+						 data:data,
+						 success:function(){
+							alert('已保存到草稿箱');
+							
+						}
+					});
+				});
+				
+				$('#btn3').on("click",function(){
+					$('.Attachment').show();
+					//$(this).parent().parent().before(strc);
+					$('#files').trigger('click').trigger('change');
+				})
+				
+				$('#files').change(function(){
+					UploadAttachments ();
+				})
+				 
+       		 });
+       		 
+       		 
+       		 
+       		 function UploadAttachments (){     		      		 
+       		 	$.ajax({
+       		 		type:'post',
+       		 		url:'<%=path%>/upload?module=email',
+       		 		dataType:'json',
+       		 		success:function(rsp){
+       		 			var data=rsp.obj;
+       		 			var str1='';
+       		 			alert(data[0].attachName)
+       		 			for(var i=0;i<data.length;i++){
+       		 				str+='<div><p>'+data[i].attachName+'</p></div>';
+       		 			}
+       		 			
+       		 			$('#btn3').before(str);
+       		 		}
+       		 		
+       		 	})
+       		 }
        		
     	</script>
 	</body>

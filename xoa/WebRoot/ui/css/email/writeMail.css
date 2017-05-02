@@ -136,3 +136,6 @@ textarea{
     cursor: pointer;
     margin-right: 10px;
 }
+.files{
+	padding: 5px;
+}
