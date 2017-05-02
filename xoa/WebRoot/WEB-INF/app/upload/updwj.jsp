@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>Insert title here</title>
 </head>
 <body>
-<form action="upload" method="post" enctype="multipart/form-data">  
+<form action="upload?module=email" method="post" enctype="multipart/form-data">  
     <input type="file" name="file" /> 
     <input type="file" name="file" />
     <input type="file" name="file" />

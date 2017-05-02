@@ -61,7 +61,7 @@ public class EnclosureController {
 	 * @return     ToJson<Attachment> 返回附件信息
 	 */
 	@RequestMapping(value ="/upload",produces = {"application/json;charset=UTF-8"}) 
-	  public String getAlldept( @RequestParam("file") MultipartFile[] files,String module,boolean isAttach,
+	  public ToJson<Attachment> getAlldept( @RequestParam("file") MultipartFile[] files,String module,boolean isAttach,
 			  HttpServletRequest request) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
@@ -74,13 +74,10 @@ public class EnclosureController {
 	            json.setMsg("OK");
 	            json.setFlag(0);
 	            System.out.println(json.toString());
-	            // 将Map集合发送到listfile.jsp页面进行显示  
-	            
-		        request.setAttribute("fileNameMap", json); 
 			} catch (Exception e) {
 				json.setMsg(e.getMessage());
 			}
-	        return "app/upload/listFile"; 
+	        return json;
 	    }
 	
 	    /** 
