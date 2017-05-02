@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.file.FileContentMapper">
+	<resultMap id="file_ContentResultMap" type="com.xoa.model.file.FileContentModel">
+		<id column="CONTENT_ID" property="contentId" javaType="int"  />
+		<result column="SORT_ID" property="sortId" javaType="int" />
+		<result column="SUBJECT" property="subject" javaType="string"/>
+		<result column="CONTENT" property="content" javaType="string" />
+		<result column="SEND_TIME" property="sendTime" javaType="string" />
+		<result column="ATTACHMENT_ID" property="attachmentId" javaType="string" />
+		<result column="ATTACHMENT_NAME" property="attachmentName" javaType="string" />
+		<result column="ATTACHMENT_DESC" property="attachmentDesc" javaType="string" />
+		<result column="USER_ID" property="userId" javaType="string" />
+		<result column="CONTENT_NO" property="contentNo" javaType="int" />
+		<result column="NEW_PERSON" property="newPerson" javaType="string" />
+		<result column="READERS" property="readers" javaType="string" />
+		<result column="CREATER" property="creater" javaType="string" />
+		<result column="LOGS" property="logs" javaType="string" />
+		<result column="KEYWORD" property="keyword" javaType="string" />
+		<result  column="fileType"  property="fileType" javaType="string" />
+		</resultMap>
+		<sql id="FileConInsert">
+		SORT_ID,SUBJECT,CONTENT,SEND_TIME,ATTACHMENT_ID,ATTACHMENT_NAME,ATTACHMENT_DESC,USER_ID,CONTENT_NO,NEW_PERSON,READERS,
+		CREATER,LOGS,KEYWORD
+		</sql>
+		<sql id="FileConSelect">
+		fc.CONTENT_ID,fc.SORT_ID,fc.SUBJECT,fc.CONTENT,fc.SEND_TIME,fc.ATTACHMENT_ID,fc.ATTACHMENT_NAME,fc.ATTACHMENT_DESC,fc.USER_ID,fc.CONTENT_NO,fc.NEW_PERSON,fc.READERS,
+		 u.USER_NAME as CREATER,fc.LOGS,fc.KEYWORD
+		</sql>
+		<select id="getFileConBySortid" parameterType="int" resultMap="file_ContentResultMap">
+		select <include refid="FileConSelect"/>,'file' as fileType from file_content fc,user u where fc.SORT_ID=#{tempNo} and u.USER_ID=fc.CREATER;
+		</select>
+		<select id="getFileConByContentId" parameterType="string" resultMap="file_ContentResultMap">
+		select <include refid="FileConSelect"/> from file_content fc,user u where fc.CONTENT_ID = #{contentId} and u.USER_ID=fc.CREATER;
+		</select>
+		<delete id="deleteBySort_id" parameterType="int">
+		delete from  file_content where SORT_ID=#{tempNo};
+		</delete>
+		<insert id="addContent" parameterType="com.xoa.model.file.FileContentModel">
+		insert into file_content  (<include refid="FileConInsert"/> ) values (
+		 <if test="sortId == null or sortId == ''" >
+        '',
+         </if>
+        <if test="sortId != null and sortId !=''" >
+          #{userId},
+      </if>
+      
+       <if test="subject == null or subject == ''" >
+        '',
+       </if>
+        <if test="subject != null and subject !=''" >
+          #{subject},
+      </if>
+      
+      <if test="content == null or content == ''" >
+        '',
+         </if>
+        <if test="content != null and content !=''" >
+          #{content},
+      </if>
+      <if test="sendTime == null or sendTime == ''" >
+        '',
+         </if>
+        <if test="sendTime != null and sendTime !=''" >
+          #{sendTime},
+      </if>
+      
+      <if test="attachmentId == null or attachmentId == ''" >
+        '',
+         </if>
+        <if test="attachmentId != null and attachmentId !=''" >
+          #{attachmentId},
+      </if>
+      <if test="attachmentName == null or attachmentName == ''" >
+        '',
+         </if>
+        <if test="attachmentName != null and attachmentName !=''" >
+          #{attachmentName},
+      </if>
+      <if test="attachmentDesc == null or attachmentDesc == ''" >
+        '',
+         </if>
+        <if test="attachmentDesc != null and attachmentDesc !=''" >
+          #{attachmentDesc},
+      </if>
+      <if test="userId == null or userId == ''" >
+        '',
+         </if>
+        <if test="userId != null and userId !=''" >
+          #{userId},
+      </if>
+      <if test="contentNo == null or contentNo == ''" >
+        '',
+         </if>
+        <if test="contentNo != null and contentNo !=''" >
+          #{contentNo},
+      </if>
+      <if test="newPerson == null or newPerson == ''" >
+        '',
+         </if>
+        <if test="newPerson != null and newPerson !=''" >
+          #{newPerson},
+      </if>
+      <if test="readers == null or readers == ''" >
+        '',
+         </if>
+        <if test="readers != null and readers !=''" >
+          #{readers},
+      </if>
+      <if test="creater == null or creater == ''" >
+        '',
+         </if>
+        <if test="creater != null and creater !=''" >
+          #{creater},
+      </if>
+      <if test="logs == null or logs == ''" >
+        '',
+         </if>
+        <if test="logs != null and logs !=''" >
+          #{logs},
+      </if>
+      <if test="keyword == null or keyword == ''" >
+        '',
+         </if>
+        <if test="keyword != null and keyword !=''" >
+          #{keyword},
+      </if>
+      )
+		</insert>
+</mapper>
