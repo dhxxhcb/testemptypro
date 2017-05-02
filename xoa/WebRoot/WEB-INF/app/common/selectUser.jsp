@@ -111,8 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 </body>
 	<script>
-					function close_window(){
-					
+				function close_window(){
 					parent.opener.document.getElementById(parent.opener.user_id).value='admin';
 					parent.opener.document.getElementById(parent.opener.user_id).setAttribute('dataid','admin');
 					window.close();
@@ -160,9 +159,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					})
 				}
-				$('.userItem').on("click",".block-right-item",function(){
-					var that = $(this)
-					that.attr('style',"background: antiquewhite;");
+				$('#dept_item').on("click",".block-right-item",function(){
+					var that = $(this);
+					if(that.attr('class').indexOf('active') > 0){
+						that.removeClass("active");
+					}else{
+						that.addClass("active");
+					}
+					
 				});
 				getChDept($('#deptOrg'),0);
 				
@@ -174,11 +178,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});
 							
 				$('.block-right').on('mouseover','div',function(){
-					$(this).css('background','#D6E4EF');
-				})	
+					$(this).addClass('hover');
+				});	
 				$('.block-right').on('mouseout','div',function(){
-					$(this).css('background','#fff');
-				})	
+					$(this).removeClass('hover');
+				});	
 					
 		
 		});
