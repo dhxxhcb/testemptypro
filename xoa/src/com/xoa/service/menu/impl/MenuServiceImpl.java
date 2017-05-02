@@ -43,6 +43,8 @@ public class MenuServiceImpl implements MenuService {
 				sysMenu.setName(sysMenu.getName());
 			} else if (locale.equals("en_US")) {
 				sysMenu.setName(sysMenu.getName1());
+			}else if (locale.equals("zh_TW")) {
+				sysMenu.setName(sysMenu.getName2());
 			}
 			List<SysFunction> list1 = sysFunctionMapper.getDatagrid(sysMenu
 					.getId());
@@ -51,6 +53,8 @@ public class MenuServiceImpl implements MenuService {
 					sysFunction.setName(sysFunction.getName());
 				} else if (locale.equals("en_US")) {
 					sysFunction.setName(sysFunction.getName1());
+				} else if (locale.equals("zh_TW")) {
+					sysFunction.setName(sysFunction.getName2());
 				}
 				List<SysFunction> list2 = sysFunctionMapper
 						.childMenu(sysFunction.getId());
@@ -59,6 +63,8 @@ public class MenuServiceImpl implements MenuService {
 						 sysFunction2.setName(sysFunction2.getName());
 						} else if (locale.equals("en_US")) {
 							sysFunction2.setName(sysFunction2.getName1());
+						}else if (locale.equals("zh_TW")) {
+							sysFunction2.setName(sysFunction2.getName2());
 						}
 					 
 				}

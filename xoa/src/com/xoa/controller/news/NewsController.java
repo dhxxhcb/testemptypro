@@ -122,7 +122,7 @@ public class NewsController {
 				"loginDateSouse"));
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("format", format);
-		   if (typeId.equals("0")) {
+		   if ("0".equals(typeId)) {
 		        typeId=null;
 	     }else {
 	    	 maps.put("typeId", typeId);

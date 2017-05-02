@@ -165,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  &nbsp;&nbsp;
 					  <a class="la" id="en_US" href="?lang=en_US">English</a>
 					  &nbsp;&nbsp;
-					  <a href="#" id="language_zh_tw" class='la'>繁体</a> 
+					   <a class="wyq" id="zh_tw" href="?lang=zh_tw">繁体</a> 
 				</div>
 				<ul>
 					<li class="total">
