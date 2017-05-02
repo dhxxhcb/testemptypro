@@ -142,7 +142,7 @@ public class loginController {
 			} else {
 				// if (user.getByname().equals(username)) {
 				// L.a("login success");
-				request.getSession().setAttribute("uid", user.getUid());
+				/*request.getSession().setAttribute("uid", user.getUid());
 				request.getSession().setAttribute("userId", user.getUserId());
 				request.getSession().setAttribute("userName", username);
 				request.getSession().setAttribute("byname", user.getByname());
@@ -154,7 +154,8 @@ public class loginController {
 						user.getUserPriv());
 				request.getSession().setAttribute("deptId", user.getDeptId());
 				request.getSession().setAttribute("deptIdOther",
-						user.getDeptIdOther());
+						user.getDeptIdOther());*/
+				SessionUtils.putSession(request.getSession(), user);
 				Map<String, Object> params =new HashMap<String, Object>();
 				params.put("paraName", user.getPara().getParaName());
 				params.put("paraValue", user.getPara().getParaValue());
@@ -173,20 +174,11 @@ public class loginController {
 		return json;
 
 	}
-
-	/*
-	 * public loginController(){ httpClientUtil = new HttpClientUtil(); }
-	 */
-
-	/*
-	 * public void loginCheck(@RequestParam("username") String username,
-	 * 
-	 * @RequestParam("password") String password ){ String httpOrgCreateTest =
-	 * url + "httpOrg/create"; Map<String,String> createMap = new
-	 * HashMap<String,String>(); createMap.put("userid","username");
-	 * createMap.put("password","password"); String httpOrgCreateTestRtn =
-	 * httpClientUtil.doPost(httpOrgCreateTest,createMap,charset);
-	 * System.out.println("result:"+httpOrgCreateTestRtn); }
-	 */
-
+	@RequestMapping(value = "/logOut", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+   public String logOut(HttpServletRequest request){
+	   request.getSession().invalidate();
+	   request.getSession().removeAttribute("user");
+	    return "login/index";
+	   
+   }
 }

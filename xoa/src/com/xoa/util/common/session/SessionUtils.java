@@ -154,7 +154,7 @@ public class SessionUtils {
 			return null;
 		try {
 			Field[] fields = Class.forName(clazz.getName()).getDeclaredFields();
-			ret = clazz.cast(deffault);
+			ret = clazz.cast(deffault);//转换当前类型或其子类下的对象
 			for (int i = 0; i < fields.length; i++) {
 				fields[i].setAccessible(true);
 				Method set_Method = clazz.getMethod("set"
@@ -174,6 +174,7 @@ public class SessionUtils {
 		}
 		return ret;
 	}
+	
 
 	// 把一个字符串的第一个字母大写
 	private static String getMethodName(String fildeName) {
