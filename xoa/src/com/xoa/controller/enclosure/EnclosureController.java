@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.xoa.model.department.Department;
 import com.xoa.model.enclosure.Attachment;
@@ -65,6 +66,7 @@ public class EnclosureController {
 			  HttpServletRequest request) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
+			ModelAndView mv = new ModelAndView("redirect:/upload");
 			ToJson<Attachment> json=new ToJson<Attachment>(0, null);
 			try {
 				String company="xoa" + (String) request.getSession().getAttribute(
@@ -341,6 +343,14 @@ public class EnclosureController {
 	 */
 	@RequestMapping("/up") 
 	public String cont(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/upload/updwj";
+	}
+	
+	@RequestMapping("/cd") 
+	public String cont( @RequestParam("file") MultipartFile[] files,String module,boolean isAttach,
+			  HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		return "app/upload/updwj";

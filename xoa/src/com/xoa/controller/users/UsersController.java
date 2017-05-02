@@ -150,9 +150,10 @@ public class UsersController {
 	 * 参数说明:   @param useFlag  是否开启分页
 	 * 参数说明:   @return
 	 * @return     String  返回所有用户信息
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getAlluser",produces = {"application/json;charset=UTF-8"})
-    public String getAllUser( Map<String, Object> maps,Integer page,
+    public ToJson<Users> getAllUser( Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
@@ -164,9 +165,9 @@ public class UsersController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
-	**/
+	
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午6:53:43
