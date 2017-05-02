@@ -85,7 +85,8 @@ public class EnclosureController {
 	       // ServletContext sc = request.getSession().getServletContext();  
 	        // 上传位置  
 	       // String basePath = sc.getRealPath("/upload"); // 设定文件保存的目录  
-	        String basePath="D://upload";
+	        //String basePath="D://upload";
+	        String basePath= request.getContextPath();
 	    	String path=basePath+"/"+company+"/"+module+"/"+ym;	
 	    	
 	    	Map<String, String> fileNameMap = new HashMap<String, String>(); 
@@ -139,7 +140,8 @@ public class EnclosureController {
 	            
 	           //String attUrl="AID="+att.getAid()+"&"+"Module="+att.getModule()+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
 	           //fileNameMap.put(attUrl,fileName);
-	           fileNameMap.put(path+"/"+newFileName,fileName);String attUrl="AID="+att.getAid()+"&"+"Module="+att.getModule()+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
+	           fileNameMap.put(path+"/"+newFileName,fileName);
+	           String attUrl="AID="+att.getAid()+"&"+"Module="+att.getModule()+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
 	           //attachmentMapper.insertSelective(attachment);	            
 	            //System.out.println("上传文件到:" + path + newFileName);  
 	            //list.add(path + newFileName);  
@@ -215,15 +217,21 @@ public class EnclosureController {
 	
 	
 	
+	
 	/**
 	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月24日 上午10:19:22
+	 * 创建日期:   2017年4月30日 上午9:52:41
 	 * 方法介绍:   下载
-	 * 参数说明:   @param filename 文件名
+	 * 参数说明:   @param aid 附件信息主键
+	 * 参数说明:   @param module 模块名
+	 * 参数说明:   @param ym 年月
+	 * 参数说明:   @param attachmentId 附件id
+	 * 参数说明:   @param attachmenrName 附件名字
+	 * 参数说明:   @param company 公司
 	 * 参数说明:   @param response 响应
 	 * 参数说明:   @param request 请求
 	 * 参数说明:   @return
-	 * @return     String 返回是否成功
+	 * @return     String 返回
 	 */
 	@RequestMapping(value={"/download"},method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
 	public String download(@RequestParam("AID") String aid ,
@@ -247,7 +255,7 @@ public class EnclosureController {
 		}
 		String basePath=sb.toString();
 	
-		String path=basePath+"/"+company+"/"+module+"/"+ym+"/"+attachmentId+"."+attachmenrName;
+		String path=basePath+ System.getProperty("file.separator") +company+ System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
 		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
@@ -373,6 +381,49 @@ public class EnclosureController {
 	
 	/**
 	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月30日 上午9:52:22
+	 * 方法介绍:   删除
+	 * 参数说明:   @param aid 附件主键
+	 * 参数说明:   @param module 模块
+	 * 参数说明:   @param ym 年月
+ 	 * 参数说明:   @param attachmentId 附件id
+	 * 参数说明:   @param attachmenrName 附件名字
+	 * 参数说明:   @param company 公司
+	 * 参数说明:   @param response 响应
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @return 
+	 * @return     boolean 是否成功
+	 */
+	@RequestMapping(value={"/delete"} ,method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
+	public boolean delete(@RequestParam("AID") String aid ,
+			@RequestParam("MODULE") String module ,
+			@RequestParam("YM") String ym ,
+			@RequestParam("ATTACHMENT_ID") String attachmentId ,
+			@RequestParam("ATTACHMENT_NAME") String attachmenrName ,
+			@RequestParam("company") String company ,
+			HttpServletResponse response,
+			HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		String basePath=request.getSession().getServletContext().getRealPath(
+				"upload");
+		
+		String path=basePath+ System.getProperty("file.separator") +company+ System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
+		boolean flag = false;
+		File file =new File(path);
+		if (file.exists()) {// 路径为文件且不为空则进行删除
+			file.delete();// 文件删除	
+			flag=true;
+		}
+		return flag;
+	
+	
+	}
+	
+	
+	
+	/**
+	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月24日 下午6:18:16
 	 * 方法介绍:   上传测试入口
 	 * 参数说明:   @return
@@ -385,6 +436,31 @@ public class EnclosureController {
 		return "app/upload/updwj";
 	}
 	
+	
+    /**
+     * 删除单个文件
+     *
+     * @param fileName
+     *            要删除的文件的文件名
+     * @return 单个文件删除成功返回true，否则返回false
+     */
+    public static boolean deleteFile(String fileName) {
+        File file = new File(fileName);
+        // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
+        if (file.exists() && file.isFile()) {
+            if (file.delete()) {
+                System.out.println("删除单个文件" + fileName + "成功！");
+                return true;
+            } else {
+                System.out.println("删除单个文件" + fileName + "失败！");
+                return false;
+            }
+        } else {
+            System.out.println("删除单个文件失败：" + fileName + "不存在！");
+            return false;
+        }
+    }
+
 	
 	
 	
