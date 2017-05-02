@@ -24,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,11 +63,11 @@ public class EnclosureController {
 	 * @return     ToJson<Attachment> 返回附件信息
 	 */
 	@RequestMapping(value ="/upload",produces = {"application/json;charset=UTF-8"}) 
-	  public ToJson<Attachment> getAlldept( @RequestParam("file") MultipartFile[] files,String module,boolean isAttach,
+	  public @ResponseBody ToJson<Attachment> getAlldept( @RequestParam("file") MultipartFile[] files,String module,boolean isAttach,
 			  HttpServletRequest request) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
-			ModelAndView mv = new ModelAndView("redirect:/upload");
+			
 			ToJson<Attachment> json=new ToJson<Attachment>(0, null);
 			try {
 				String company="xoa" + (String) request.getSession().getAttribute(
@@ -353,6 +354,8 @@ public class EnclosureController {
 			  HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
+		ModelAndView mv = new ModelAndView("redirect:/upload");
+		
 		return "app/upload/updwj";
 	}
 	

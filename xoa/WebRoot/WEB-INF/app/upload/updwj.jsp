@@ -9,17 +9,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     function doUpload() {  
-         var file = new FormData($( "#uploadForm" )[0]);  
+         var file = new FormData($( "#uploadForm" )[1]);  
          console.log($( "#uploadForm" ).serialize());
          $.ajax({  
-              url: 'http://127.0.0.1:8080/xoa/upload'+'?module=email',  
+              url: 'http://localhost:8080/xoa/upload'+'?module=email',  
               type: 'POST',  
-              data: $( "#uploadForm" ).serialize(),  
+              data: new FormData($('#uploadForm')[1]),
               dataType:"text",
               success: function (returndata) {  
-              	console.log(returndata);
+              	console.log(returndata.innerHTML);
                  
               },  
               error: function (XMLHttpRequest, textStatus, errorThrown) {  
@@ -30,23 +30,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          });  
     }  
 
-</script>
+</script> -->
 </head>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <body>
-<%-- <form action="upload?module=email" method="post" enctype="multipart/form-data">  
+<form action="upload?module=email" method="post" enctype="multipart/form-data">  
     <input type="file" name="file" /> 
     <input type="file" name="file" />
     <input type="file" name="file" />
     <input type="submit" value="Submit" /></form> 
    
-    <a href="<%=basePath%>WEB-INF/app/updanwenjian.jsp">批量</a> --%>
+    <a href="<%=basePath%>WEB-INF/app/updanwenjian.jsp">批量</a> 
     
-    <form id= "uploadForm">  
+   <!--  <form id= "uploadForm">  
       <p >指定文件名： <input type="text" name="filename" value= ""/></p >  
       <p >上传文件： <input type="file" name="file"/></ p>  
       <input type="button" value="上传" onclick="doUpload()" />  
-</form>
+</form> -->
     
     
 </body>
