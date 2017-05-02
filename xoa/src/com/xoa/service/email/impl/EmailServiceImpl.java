@@ -623,7 +623,7 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     List<Attachment>
 	 */
 	public List<Attachment> returnAttachment(String attachmentId,String attachmentName){
-		Attachment att = new Attachment();
+
 		List<Attachment> list = new ArrayList<Attachment>();
 		if(StringUtils.checkNull(attachmentId) && StringUtils.checkNull(attachmentName)){
 			return list;
@@ -632,6 +632,7 @@ public class EmailServiceImpl implements EmailService {
 			String[] attachmentIds = attachmentId.split("\\*");
 			int attachmentidLength = attachmentIds.length;
 			for(int i = 0 ; i <attachmentidLength ; i++){
+				Attachment att = new Attachment();
 				att.setAttachName(attachmentIds[i]);
 				att.setAid(Integer.valueOf(attachmentNames[i].substring(0, attachmentNames[i].lastIndexOf("@"))));
 				att.setYm(attachmentNames[i].substring(attachmentNames[i].indexOf("@")+1,attachmentNames[i].lastIndexOf("_")));
