@@ -12,7 +12,7 @@ public interface DiaryModelMapper {
 
 	int updateDiary(DiaryModel diaryModel);
 
-	List<DiaryModel> getDiarySelf(Map diaryModel);
+	List<DiaryModel> getDiarySelf(Map<String, Object> diaryMap);
 
 	int getDiaryCount(Map<String, Object> tempNo);
 

@@ -92,7 +92,7 @@ public class DiaryController {
 	public String diaryGet(DiaryModel diaryModel,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		System.out.println("-------------diaryGet------------"+diaryModel.getUserId());
+		System.out.println("----------getIndex-------------");
 		ToJson<DiaryModel> diaryToJson=diaryService.getDiaryIndex(diaryModel);
 		return JSON.toJSONStringWithDateFormat(diaryToJson,"yyyy-MM-dd HH:mm:ss");
 	}
@@ -122,7 +122,7 @@ public class DiaryController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	@RequestMapping("/getOther")
+	@RequestMapping(value="/getOther", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
 	public String  diaryGetOther(DiaryModel diaryModel,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
