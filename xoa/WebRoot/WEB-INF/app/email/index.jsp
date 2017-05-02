@@ -28,6 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<style>
 			.main_left .BTN:hover{background:#c5e9fb;}
 			.attachment a{text-decoration: none;}
+			.attachment a img{vertical-align: middle;}
 		</style>
 	</head>
 	<body>
@@ -48,8 +49,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 						<div class="ul_show" style="display: block;">
 							<ul>
-								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/><fmt:message code="email.title.inbox" /><span>32</span></a></li>
-								<li id="drafts"><a href="javascript:;"><img src="../img/icon_drafts_07.png"/><fmt:message code="email.title.draftbox" /><span>2</span></a></li>
+								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/><fmt:message code="email.title.inbox" /><span></span></a></li>
+								<li id="drafts"><a href="javascript:;"><img src="../img/icon_drafts_07.png"/><fmt:message code="email.title.draftbox" /><span></span></a></li>
 								<li id="hasBeenSend"><a href="javascript:;"><img src="../img/icon_sent_07.png"/><fmt:message code="email.title.sent" /></a></li>
 								<li id="wastebasket"><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/><fmt:message code="email.title.wastebasket" /></a></li>
 								<li class='liSearch'><a href="javascript:;"><img src="../img/icon_search_03.png"/><fmt:message code="email.title.querymail" /></a></li>
@@ -330,7 +331,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					showAjax('inbox','#TAB','.article');
 				});
 				
-				
+				showAjax2('drafts');
 				//草稿箱点击事件
 				$('#drafts').click(function(){		
 						$('.drafts').css('display','block').siblings().css('display','none');
@@ -343,7 +344,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
 					showAjax2("outbox");
-					init3('146');
 					
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
@@ -399,7 +399,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									//$('.attachment').append(stra);
 									if(data2.attachmentName!='' && data2.copyName!=''){
 										for(var i=0;i<(arr.length-1);i++){
-											//stra+='<a href="javascript:;">'+arr[i]+'</a>';
 											stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
 										}
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
@@ -438,7 +437,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var data1={
 						"flag":flag,
 						"page":1,
-						"pageSize":10,
+						"pageSize":100,
 						"useFlag":true,
 						"userID":"admin"
 					};	
@@ -451,6 +450,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									success:function(rsp){
 										var data1=rsp.obj;
 										var str='';
+										$('#InBox a span').text('');
+										$('#InBox a span').append(rsp.totleNum);
 										for(var i=0;i<data1.length;i++){
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 											//alert(data1[i].sendTime);
@@ -472,7 +473,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											
 										}
 										$('.befor').after(str);
-										
+										$('li.BTN').eq(0).addClass("backing");
 										var mId=$('li.BTN').eq(0).find('input').attr('id');
 										
 										init(mId,obj,cName);
@@ -485,7 +486,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var data={
 								"flag":flag,
 								"page":1,
-								"pageSize":10,
+								"pageSize":100,
 								"useFlag":true,
 								"userID":"admin"
 						};
@@ -498,6 +499,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									success:function(rsp){
 										var data1=rsp.obj;
 										var str='';
+										$('#drafts a span').text('');
+										$('#drafts a span').append(rsp.totleNum);
+										
 										for(var i=0;i<data1.length;i++){
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 												if(data1[i].attachmentId!=''){
@@ -509,6 +513,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											
 										}
 										$('.main_left ul .befor').after(str);
+										$('li.BTN').eq(0).addClass("backing");
+										var nID=$('li.BTN').eq(0).find('input').attr('nId');
+										init3(nID);
 										
 									}
 						});
