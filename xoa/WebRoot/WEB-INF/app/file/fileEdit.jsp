@@ -43,23 +43,26 @@ table tr td input:not (#fh ){
 <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
 
+
     function closeCurrentWindow(){
  	  var sortNo=$('#sortno').val();
       var sortName=$('#sortname').val();
       var sortid=$('#sortid').val();
-         $.ajax({
+      $.ajax({
                 url: "${pageContext.request.contextPath }/file/update",
                 Type: "POST",
                 data:{"sortNo":sortNo,"sortName":sortName,"sortId":sortid},
                 success:function (data){
+                if(data=="1"){
+                  window.opener.location.href = window.opener.location.href;     
+ 		          if (window.opener.progressWindow)     
+ 		          {         
+ 		            window.opener.progressWindow.close();     
+ 		          }      
+ 		           window.close();
+                  } 
                 }
            }); 
- 		//window.opener.location.href = window.opener.location.href;     
- 		if (window.opener.progressWindow)     
- 		{         
- 		window.opener.progressWindow.close();     
- 		}     
- 		window.close(); 
  	} 
 </script>
 </head>
@@ -71,7 +74,7 @@ table tr td input:not (#fh ){
 			<tr>
 				<td width="30%">排序号:</td>
 				<td width="70%"><input id="sortno" name="sortNo" type="text"
-					value="${sortno }" />
+					value="${sortno}" />
 				</td>
 			</tr>
 			<tr>

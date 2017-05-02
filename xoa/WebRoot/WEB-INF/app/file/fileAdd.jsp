@@ -64,16 +64,16 @@ table tr td input:not (#fh ){
                 Type: "POST",
                 data:{"sortNo":sortNo,"sortName":sortName},
                 success:function (data){
-                alert("123");
+                 if(data=="1"){
+                  window.opener.location.href = window.opener.location.href;     
+ 		          if (window.opener.progressWindow)     
+ 		          {         
+ 		            window.opener.progressWindow.close();     
+ 		          }      
+ 		           window.close();
+                  } 
                 }
-           }); 
-          
- 	  window.opener.location.href = window.opener.location.href;     
- 		if (window.opener.progressWindow)     
- 		{         
- 		window.opener.progressWindow.close();     
- 		}     
- 		window.close();  
+           });   
  	} 
 </script>
 </head>

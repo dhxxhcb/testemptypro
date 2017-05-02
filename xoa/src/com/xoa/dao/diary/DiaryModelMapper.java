@@ -14,7 +14,7 @@ public interface DiaryModelMapper {
 
 	List<DiaryModel> getDiarySelf(Map diaryModel);
 
-	int getDiaryCount();
+	int getDiaryCount(Map<String, Object> tempNo);
 
 	int getDiarySelfLess(Map<String, Object> tempNo);
 

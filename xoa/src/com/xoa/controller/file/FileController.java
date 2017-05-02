@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.HTML;
 
 import org.apache.log4j.Logger;
 import org.apache.shiro.web.session.HttpServletSession;
@@ -372,7 +373,7 @@ public class FileController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
-		System.out.println("parent:" + file.getSortParent());
+		file.setSortType("5");
 		List<FileSortModel> list = fileSortService.getFileSortList(file);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("parentList", list);
@@ -390,7 +391,7 @@ public class FileController {
 	 * @return     ModelAndView
 	 */
 	@RequestMapping("/add")
-	public ModelAndView fileAdd(FileSortModel file,HttpServletRequest request)
+	public ModelAndView fileAdd(FileSortModel file,HttpServletRequest request,HttpServletResponse response)
 			throws UnsupportedEncodingException {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
@@ -425,8 +426,8 @@ public class FileController {
 		}
 		//添加文件影响行
 		int resultSave = fileSortService.saveFileSort(file);
-		modelAndView = new ModelAndView("redirect:/file/shows", model);
-		return modelAndView;
+		HtmlUtil.writerJson(response, resultSave);
+		return null;
 	}
 	
 	/**
@@ -489,15 +490,12 @@ public class FileController {
 	 * @return   ModelAndView
 	 */
 	@RequestMapping("/update")
-	public ModelAndView fileUpdate(FileSortModel file,HttpServletRequest request) {
+	public void fileUpdate(FileSortModel file,HttpServletRequest request ,HttpServletResponse response) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		// "redirect:/showFile" "file/showFile"
 		//修改文件影响行
 		int resultUpdate = fileSortService.updateFileSort(file);
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("app/file/fileEdit");
-		return modelAndView;
+		HtmlUtil.writerJson(response,resultUpdate);
 	}
 
 	/**

@@ -50,7 +50,7 @@ public class DiaryServiceImpl implements DiaryService{
 	       //我的日志 
 		   List<DiaryModel> diaryList=diaryModelMapper.getDiarySelf(diaryMap);
 		   //取得共享日志数量
-		   int diaryCount=diaryModelMapper.getDiaryCount();
+		   int diaryCount=diaryModelMapper.getDiaryCount(diaryMap);
 		   Map<String, Object> tempNo=new  HashMap<String, Object>();
 	       //用户Id
 		   tempNo.put("userId", diaryModel.getUserId());
