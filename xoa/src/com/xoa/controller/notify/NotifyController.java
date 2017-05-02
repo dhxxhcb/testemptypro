@@ -274,10 +274,10 @@ public class NotifyController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
 		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
-		 Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());
+		String name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
 		loger.debug("transfersID"+notifyId);
 	try {
-		    Notify notify=notifyService.queryById(maps, 1, 5, false, name.getUserId());
+		    Notify notify=notifyService.queryById(maps, 1, 5, false, name);
 			toJson.setMsg("seccess");
 			toJson.setObject(notify);
 			return toJson;
