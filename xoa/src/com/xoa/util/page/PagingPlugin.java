@@ -7,15 +7,13 @@ import java.lang.reflect.Method;
 import java.sql.Connection;  
 import java.sql.PreparedStatement;  
 import java.sql.ResultSet;  
-import java.sql.SQLException;  
-import java.util.Iterator;  
-import java.util.Map;  
-import java.util.Properties;  
-import java.util.Set;  
-  
-import javax.transaction.NotSupportedException;  
-  
-import org.apache.ibatis.executor.parameter.ParameterHandler;  
+import java.sql.SQLException;
+import java.util.*;
+
+import javax.transaction.NotSupportedException;
+
+import com.xoa.util.common.session.SessionUtils;
+import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;  
 import org.apache.ibatis.mapping.BoundSql;  
 import org.apache.ibatis.mapping.MappedStatement;  
@@ -69,10 +67,12 @@ public class PagingPlugin implements Interceptor {
     private Boolean defaultCleanOrderBy;  
     
 //    private DynDatasources dyTypeDate = new DynDatasources();
-  
-    private static final String DB_TYPE_MYSQL = "mysqlDataSources";  
-    private static final String DB_TYPE_ORACLE = "oracleDataSources";  
-  
+//    private static final String DB_TYPE_MYSQL = "mysqlDataSources";
+//    private static final String DB_TYPE_ORACLE = "oracleDataSources";
+    private static final String DB_TYPE_MYSQL = "mysql";
+    private static final String DB_TYPE_ORACLE = "oralce";
+    private static final String DB_TYPE_SQLSERVER = "sqlserver";
+
     /**
      * 
      * 创建作者:   张勇
@@ -92,8 +92,8 @@ public class PagingPlugin implements Interceptor {
         //获取数据源连接类型
 
 //        String dbType = dyTypeDate.determineCurrentLookupKey().toString();  
-        String dbType = "mysqlDataSources";  
-  
+        String dbType = this.returnSqlType();
+        System.out.println("dbType:"+dbType);
 
 //        String dbType = dyTypeDate.determineCurrentLookupKey().toString();  
         BoundSql boundSql = (BoundSql) metaStatementHandler.getValue("delegate.boundSql");  
@@ -470,6 +470,20 @@ public class PagingPlugin implements Interceptor {
 //            throw new NotSupportedException("当前插件未支持此类型数据库");  
 //        }  
 //    }  
-    
+
+    public String returnSqlType(){
+        String retrunSql = "";
+//	   com.microsoft.sqlserver.jdbc.SQLServerDriver
+        String name=  ResourceBundle.getBundle("jdbc-sql").getString("driverClassName");
+        if("com.mysql.jdbc.Driver".equals(name.trim())){
+            retrunSql = "mysql";
+        }else if("oracle.jdbc.driver.OracleDriver".equals(name.trim())){
+            retrunSql = "oralce";
+        }else if("com.microsoft.sqlserver.jdbc.SQLServerDriver".equals(name.trim())){
+            retrunSql = "sqlserver";
+        }
+        return retrunSql;
+    }
+
     
 }
