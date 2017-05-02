@@ -13,122 +13,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="../css/news/page.css">
-    <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
     <link rel="stylesheet" type="text/css" href="../css/base.css" />
+     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/layer/layer.js"></script>
-    <style type="text/css">
-		.head li{
-			width: 154px;
-			text-align: left;
-		}
-		.center .login {
-		    width: 550px;
-		    height: 336px;
-		    margin: 0px auto;
-		}
-		
-		.center .login .header {
-		    height: 31px;
-		    line-height: 31px;
-		    background-color: #3791DA;
-		    color: #fff;
-		    font-size: 14px;
-		    text-align: center;
-		    border-radius: 4px 4px 0px 0px;
-		}
-		.center .login .middle {
-		    /*border-bottom:2px solid #DCDCDC;*/
-		    border: 1px solid #DCDCDC;
-		
-		}
-		.center .login .middle .color{
-		    color:#2A588C;
-		}
-		.center .login .middle .le{
-		    margin-left:25px;
-		
-		}
-		.center .login .publisher {
-		    height:50px;
-		    line-height:50px;
-		    /*border:2px dashed black;*/
-		    margin-top:20px;
-		}
-		.center .login .publisher div{
-		    float: left;
-		}
-		.center .login .subject {
-		    height:26px;
-		    line-height:26px;
-		    /*border:2px dashed black;*/
-		    margin-top:18px;
-		}
-		.center .login .subject div {
-		    float: left;
-		
-		}
-		.center .login .date {
-		    height:24px;
-		    line-height:24px;
-		    /*border:2px dashed black;*/
-		    margin-top:13px;
-		}
-		.center .login .date div {
-		    float: left;
-		}
-		.center .login .ce1 {
-		    height:25px;
-		    line-height:25px;
-		    /*border:2px dashed black;*/
-		    margin-top:13px;
-		}
-		.center .login .ce1 div {
-		    float: left;
-		}
-		.center .login .ce2 {
-		    height:26px;
-		    line-height:26px;
-		    /*border:2px dashed black;*/
-		    margin-top:17px;
-		    margin-bottom:15px;
-		}
-		.center .login .ce2 div {
-		    float: left;
-		}
-		.center .login .icons {
-		    height:58px;
-		    line-height:58px;
-		    text-align: center;
-		    border:1px solid #DCDCDC;
-		
-		}
-		.center .logins .icon .img {
-		    float: left;
-		}
-		input{
-     		border: 1px solid #ccc;
-     	}
-     		#cx {
-     		background-image:url(../img/center_q.png);
-     		background-repeat:no-repeat;
-     		width:60px;
-     		hieght:30px;
-     		line-height:30px;
-     		margin-top: 18px;
-     		margin-left: 10px;
-     		text-align:center;
-     		color:#fff;
-     		cursor: pointer;
-     		font-family: "微软雅黑";
-     	}
-	</style>
+  
 </head>
 <body>
 <div class="bx">
