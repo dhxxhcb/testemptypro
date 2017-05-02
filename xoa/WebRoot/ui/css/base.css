@@ -49,6 +49,7 @@ img {
 }
 
 table {
+	width:100%;
     border-collapse: collapse; /*合并外连线*/
 }
 

@@ -79,13 +79,14 @@ s, i, em {
   
 }
 
+/*head头部开始  */
 .head {
     border-bottom: 1px solid #9E9E9E;
     padding-bottom: 3px;
 }
 
 .head li {
-    width: 112px;
+    width: 156px;
     text-align: center;
     height: 28px;
     line-height: 28px;
@@ -94,9 +95,44 @@ s, i, em {
     font-family: "微软雅黑";
     font-size: 14px;
     margin: 6px;
-    cursor: pointer
+    cursor: pointer;
 
 }
+
+.head .headli1_1 {
+	width: 112px;
+	display: inline-block;
+	text-align: center;
+}
+.head .headli1_2 {
+	width: 2px;
+	width: 2px;
+	margin: 0 10px;
+	margin-left: 30px;
+	
+}
+.head .headli2_1 {
+	width: 112px;
+	display: inline-block;
+	text-align: center;
+
+}
+.head .headli2_2 {
+	width: 2px;
+	width: 2px;
+	margin: 0 10px;
+	margin-left: 30px;
+
+}
+.head .headli3 {
+	width: 112px;
+	display: inline-block;
+	text-align: center;
+	margin-top: 4px;
+	
+}
+
+
 
 .head .one {
     background-color: #2F8AE3;
@@ -107,7 +143,7 @@ s, i, em {
 }
 
 
-/*navigation寮�*/
+/*navigation部分开始*/
 .navigation {
     heihgt: 70px;
     display: inline-block;
@@ -119,11 +155,13 @@ s, i, em {
 .navigation .left {
     float: left;
     line-height: 71px;
+   
 }
 
 .navigation .left img {
     float: left;
     margin-top: 20px;
+     margin-right:5px;
 }
 
 .navigation .left .news {
@@ -141,11 +179,20 @@ s, i, em {
     border: 1px solid #d0d0d0;
     border-radius: 3px;
     margin: 20px 10px;
-
+    
+}
+.navigation .left  .nav_type {
+	float: left;
+    font-size: 14px;
+    font-family: '微软雅黑';
 }
 
 .navigation .left .button1 div {
     margin-left: 12px;
+}
+.navigation .left .nav_date {
+	font-size: 15px;
+	 margin-left:28px;
 }
 
 .navigation .left .button1 img {
@@ -225,8 +272,8 @@ tr:hover {
 /*center.jsp 样式  */
 
 .head li{
-			width: 154px;
-			text-align: left;
+			/* width: 154px;
+			text-align: left; */
 		}
 		#qt {
 			width:100%;

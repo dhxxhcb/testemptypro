@@ -29,16 +29,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
-            <li data_id="0"><span class="one" style="width: 112px;display: inline-block;text-align: center;"><fmt:message
-                    code="news.title.unread"/></span><img src="../img/02.png" alt=""
-                                                          style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/>
+           <li data_id="0"><span class="one headli1_1"><fmt:message
+                    code="news.title.unread"/></span><img class="headli1_2" src="../img/02.png" alt=""/>
             </li>
-            <li data_id=""><span style="width: 112px;display: inline-block;text-align: center;"><fmt:message
-                    code="news.title.new"/></span><img src="../img/02.png" alt=""
-                                                       style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/>
+            
+            <li data_id=""><span class="headli2_1"><fmt:message
+                    code="news.title.new"/></span><img src="../img/02.png" alt="" class="headli2_2"/>
             </li>
-            <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;margin-top: 4px;"><fmt:message
-                    code="news.title.query"/></span></li>
+                    
+           <li data_id="1"><span class="headli3"><fmt:message code="news.title.query"/></span></li> 
+           
         </ul>
     </div>
     <!--head通栏结束-->
@@ -48,13 +48,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="navigation  clearfix">
             <div class="left">
 
-                <img src="../img/la2.png" style="margin-right:5px;">
-
+                <img src="../img/la2.png"> 
+                
                 <div class="news">
                     <fmt:message code="news.title.new"/>
-                </div>
-                <select name="TYPE" class="button1" style="float: left; font-size: 14px;font-family: '微软雅黑';"
-                        id="select">
+                </div>                
+               <select name="TYPE" class="button1 nav_type" id="select">
                     <option value="0" selected="">
                         <fmt:message code="news.th.type"/>
                     </option>
@@ -77,9 +76,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <fmt:message code="news.th.none"/>
                     </option>
                 </select>
-
                 <div>
-                    <div style="font-size: 15px; margin-left:28px;">
+                    <div class="nav_date">
                         <fmt:message code="global.lang.date"/>
                         :
                     </div>
@@ -90,10 +88,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <fmt:message code="global.lang.query"/>
                 </div>
             </div>
-
-
+            
             <div class="right">
-
                 <!-- 分页按钮-->
                 <div class="M-box3">
                 </div>
@@ -105,9 +101,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!--navigation结束-->
 
         <!--content部分开始-->
-        <div class="w">
+        <div>
             <div class="wrap">
-                <table class="w">
+                <table>
                     <thead>
                     <tr>
                         <td class="th">
@@ -156,7 +152,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <fmt:message code="notice.th.publisher"/>
                    	 ：
                 </div>
-                <!-- <input style="height:50px;width:279px;margin-left:0px;margin-right: 15px; position: relative;"type="text"/> -->
                 
                 <input id="input_text1" type="text"/>
 
@@ -172,7 +167,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <fmt:message code="notice.th.title"/>
                     	：
                 </div>
-                <!-- <input id="subject_query"style="height:26px;width:279px;margin-left:0px;margin-right: 15px;position: relative;"type="text"/> -->
                 
                 <input id="subject_query " class="input_text2" type="text"/>
                 
@@ -182,16 +176,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <fmt:message code="notice.title.Releasedate"/>
                    	 ：
                 </div>
-                <!-- <input id="beginTime "
-                       style="height:24px;width:119px;margin-left:0px;margin-right: 11px;position: relative"
-                       type="text"/> -->
+              
                        
                  <input id="beginTime "class="input_text3" type="text"/>
 
                 <div class="color">
                     <fmt:message code="global.lang.to"/>
                 </div>
-                <!-- <div><input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div> -->
+                
                <div><input id="endTime" class="input_text4" type="text"/></div> 
             </div>
             <div class="le ce1">
@@ -200,8 +192,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   	  ：
                 </div>
                 <div>
-                    <!--  <select name="TYPE" style="height:24px;width:119px;margin-left:0px;float: left;" class="button1"
-                             id="select_query">  -->
+                   
                  <select name="TYPE"  class="button1 input_text5" id="select_query">
                         <option value="0" selected="">
                             <fmt:message code="news.th.type"/>
@@ -233,7 +224,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <fmt:message code="notice.th.content"/>
                     :
                 </div>
-                <!-- <input id="content" style="height:25px;width:279px;margin-left:0px;position: relative;" type="text"/> -->
+               
               	<input id="content" class="input_text6" type="text"/>
 
             </div>
