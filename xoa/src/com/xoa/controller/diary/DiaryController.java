@@ -94,7 +94,7 @@ public class DiaryController {
 	 */
 	@RequestMapping(value="/getIndex", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
-	public String diaryGet(DiaryModel diaryModel,HttpServletRequest request, 
+	public ToJson<DiaryModel>  diaryGet(DiaryModel diaryModel,HttpServletRequest request, 
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag) {
@@ -110,7 +110,7 @@ public class DiaryController {
 			diaryModel.setUserId(session.getAttribute("userId").toString());
 		}
 		ToJson<DiaryModel> diaryToJson=diaryService.getDiaryIndex(diaryModel,pageParams);
-		return JSON.toJSONStringWithDateFormat(diaryToJson,"yyyy-MM-dd HH:mm:ss");
+		return diaryToJson;
 	}
 	/**
 	 * 
@@ -151,7 +151,7 @@ public class DiaryController {
 	 */
 	@RequestMapping(value="/getOther", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
-	public String  diaryGetOther(DiaryModel diaryModel,HttpServletRequest request,
+	public ToJson<DiaryModel>  diaryGetOther(DiaryModel diaryModel,HttpServletRequest request,
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag) {
@@ -167,6 +167,6 @@ public class DiaryController {
 			diaryModel.setUserId(session.getAttribute("userId").toString());
 		}
 		ToJson<DiaryModel> diaryOtherToJson = diaryService.getDiaryOther(diaryModel,pageParams);
-		return JSON.toJSONStringWithDateFormat(diaryOtherToJson,"yyyy-MM-dd HH:mm:ss");
+		return diaryOtherToJson;
 	}
 }

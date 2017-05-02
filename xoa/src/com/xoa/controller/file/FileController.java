@@ -332,7 +332,6 @@ public class FileController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
-		System.out.println("----------------catalog-------------------"+file.getSortId());
 		List<FileSortModel> fileList =new LinkedList<FileSortModel>();
 		List<Object>  tatalList=new LinkedList<Object>();
 		List<FileContentModel>  fileConList=null;
