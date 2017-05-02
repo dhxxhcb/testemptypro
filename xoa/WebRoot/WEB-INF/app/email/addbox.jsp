@@ -98,6 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			user = '';
 			user_id='senduser';
        		 var ue = UE.getEditor('container');
+       		 
        		 //获取输入框内容
        		 $(function(){
        		 	$("#selectUser").on("click",function(){
@@ -108,13 +109,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
+					var html = ue.getContent();
 					var val=$('#txt').val();
-
+				
 					 var data={
 					 	'fromId':'admin',
 					 	'toId2': 'admin,',
 						'subject':val,
-						'content':txt
+						'content':html
 					}
 					
 					$.ajax({
