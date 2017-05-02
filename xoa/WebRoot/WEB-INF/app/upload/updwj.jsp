@@ -12,20 +12,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
     function doUpload() {  
          var file = new FormData($( "#uploadForm" )[0]);  
+         console.log($( "#uploadForm" ).serialize());
          $.ajax({  
-              url: 'http://localhost:8080/xoa/upload'+'?module=email',  
+              url: 'http://127.0.0.1:8080/xoa/upload'+'?module=email',  
               type: 'POST',  
-              data: file,  
-              async: false,  
-              cache: false,  
-              contentType: false,  
-              processData: false,  
+              data: $( "#uploadForm" ).serialize(),  
+              dataType:"text",
               success: function (returndata) {  
-              console.log(returndata);
-                  alert(returndata.toString);  
+              	console.log(returndata);
+                 
               },  
-              error: function (returndata) {  
-                  alert(returndata);  
+              error: function (XMLHttpRequest, textStatus, errorThrown) {  
+                  console.log(XMLHttpRequest.status);
+				console.log(XMLHttpRequest.readyState);
+				console.log(textStatus);
               }  
          });  
     }  
