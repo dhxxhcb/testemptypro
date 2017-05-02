@@ -1,12 +1,14 @@
 package com.xoa.service.diary;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.xoa.model.diary.DiaryModel;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.DynDatasource;
+import com.xoa.util.page.PageParams;
 /**
  * 创建作者:   杨 胜
  * 创建日期:   2017-4-19 上午9:21:03
@@ -47,7 +49,7 @@ public interface DiaryService {
 	 * @return     List<DiaryModel>
 	 */
 	@DynDatasource
-	ToJson<DiaryModel> getDiaryIndex(DiaryModel diaryModel);
+	ToJson<DiaryModel> getDiaryIndex(DiaryModel diaryModel,PageParams pageParams );
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -58,7 +60,7 @@ public interface DiaryService {
 	 * @return   ToJson<DiaryModel>
 	 */
 	@DynDatasource
-	List<DiaryModel> getDiaryAll(DiaryModel diaryModel);
+	List<DiaryModel> getDiaryAll(DiaryModel diaryModel,PageParams pageParams );
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -69,5 +71,5 @@ public interface DiaryService {
 	 * @return     ToJson<DiaryModel>
 	 */
 	@DynDatasource
-	ToJson<DiaryModel> getDiaryOther(DiaryModel diaryModel);
+	ToJson<DiaryModel> getDiaryOther(DiaryModel diaryModel,PageParams pageParams);
 }

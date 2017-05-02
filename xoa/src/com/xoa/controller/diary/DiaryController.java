@@ -2,15 +2,19 @@ package com.xoa.controller.diary;
 
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -19,6 +23,7 @@ import com.xoa.model.diary.DiaryModel;
 import com.xoa.service.diary.DiaryService;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
+import com.xoa.util.page.PageParams;
 import com.xoa.util.treeUtil.HtmlUtil;
 
 @Controller
@@ -89,11 +94,22 @@ public class DiaryController {
 	 */
 	@RequestMapping(value="/getIndex", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
-	public String diaryGet(DiaryModel diaryModel,HttpServletRequest request) {
+	public String diaryGet(DiaryModel diaryModel,HttpServletRequest request, 
+			@RequestParam("page") Integer page,
+			@RequestParam("pageSize") Integer pageSize,
+			@RequestParam("useFlag") Boolean useFlag) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		System.out.println("----------getIndex-------------");
-		ToJson<DiaryModel> diaryToJson=diaryService.getDiaryIndex(diaryModel);
+		System.out.println("----------getIndex-------------"+useFlag+"----------"+useFlag);
+		 PageParams pageParams = new PageParams();  
+	        pageParams.setUseFlag(useFlag);  
+	        pageParams.setPage(page);  
+	        pageParams.setPageSize(pageSize);
+		if(diaryModel.getUserId()==null){
+			HttpSession	session=request.getSession();
+			diaryModel.setUserId(session.getAttribute("userId").toString());
+		}
+		ToJson<DiaryModel> diaryToJson=diaryService.getDiaryIndex(diaryModel,pageParams);
 		return JSON.toJSONStringWithDateFormat(diaryToJson,"yyyy-MM-dd HH:mm:ss");
 	}
 	/**
@@ -105,10 +121,21 @@ public class DiaryController {
 	 * @return   void
 	 */
 	@RequestMapping("/getAll")
-	public void  diaryGetAll(DiaryModel diaryModel,HttpServletResponse response,HttpServletRequest request) {
+	public void  diaryGetAll(DiaryModel diaryModel,HttpServletResponse response,HttpServletRequest request,
+			@RequestParam("page") Integer page,
+			@RequestParam("pageSize") Integer pageSize,
+			@RequestParam("useFlag") Boolean useFlag) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		List<DiaryModel> diaryAllToJson=diaryService.getDiaryAll(diaryModel);
+		  PageParams pageParams = new PageParams();  
+	        pageParams.setUseFlag(useFlag);  
+	        pageParams.setPage(page);  
+	        pageParams.setPageSize(pageSize);
+		if(diaryModel.getUserId()==null){
+			HttpSession	session=request.getSession();
+			diaryModel.setUserId(session.getAttribute("userId").toString());
+		}
+		List<DiaryModel> diaryAllToJson=diaryService.getDiaryAll(diaryModel,pageParams);
 		HtmlUtil.writerJson(response, diaryAllToJson);
 	}
 	
@@ -124,10 +151,22 @@ public class DiaryController {
 	 */
 	@RequestMapping(value="/getOther", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
-	public String  diaryGetOther(DiaryModel diaryModel,HttpServletRequest request) {
+	public String  diaryGetOther(DiaryModel diaryModel,HttpServletRequest request,
+			@RequestParam("page") Integer page,
+			@RequestParam("pageSize") Integer pageSize,
+			@RequestParam("useFlag") Boolean useFlag) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		ToJson<DiaryModel> diaryOtherToJson = diaryService.getDiaryOther(diaryModel);
+		    PageParams pageParams = new PageParams();  
+	        pageParams.setUseFlag(useFlag);  
+	        pageParams.setPage(page);  
+	        pageParams.setPageSize(pageSize);
+		
+		if(diaryModel.getUserId()==null){
+			HttpSession	session=request.getSession();
+			diaryModel.setUserId(session.getAttribute("userId").toString());
+		}
+		ToJson<DiaryModel> diaryOtherToJson = diaryService.getDiaryOther(diaryModel,pageParams);
 		return JSON.toJSONStringWithDateFormat(diaryOtherToJson,"yyyy-MM-dd HH:mm:ss");
 	}
 }

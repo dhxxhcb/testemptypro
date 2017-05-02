@@ -84,19 +84,19 @@
     </set>
   </update>
   <select id="getDiarySelfLess" parameterType="map" resultType="Integer"> 
-   select count(*) from  diary  where TO_ALL=#{toAll} and  USER_ID=#{userId} ;
+   select count(*) from  diary  where   USER_ID=#{userId} ;
   </select>
   <select id="getDiarySelf"  parameterType="map" resultMap="BaseResultMap">
-    select <include refid="diaryList"/>  from  diary d,user u  where  d.USER_ID=#{userId} and d.USER_ID=u.USER_ID;
+    select <include refid="diaryList"/>  from  diary d,user u  where  d.USER_ID=#{userId} and d.USER_ID=u.USER_ID and d.DIA_TYPE=#{diaType}
   </select>
   <select id="getDiaryCount" resultType="Integer">
-   select count(*) from  diary where TO_ALL=#{toAll};
+   select count(*) from  diary  where DIA_TYPE=#{diaType};
   </select>
   <select id="getDiaryList" resultMap="BaseResultMap">
-   select  <include refid="diaryList"/>  from  diary d,user u  where  u.USER_ID=d.USER_ID;
+   select  <include refid="diaryList"/>  from  diary d,user u  where  u.USER_ID=d.USER_ID and d.DIA_TYPE=#{diaType}
   </select>
   <select id="getDiaryOtherList" parameterType="map" resultMap="BaseResultMap">
-  select <include refid="diaryList"/>  from diary d,user u where d.USER_ID <![CDATA[<>]]>  #{userId} and TO_ALL=#{toAll} and u.USER_ID=d.USER_ID;
+  select <include refid="diaryList"/>  from diary d,user u where d.USER_ID <![CDATA[<>]]>  #{userId} and u.USER_ID=d.USER_ID and d.DIA_TYPE=#{diaType}
   </select>
   <!-- <insert id="insert" parameterType="com.xoa.model.diary.DiaryModelWithBLOBs" >
     insert into diary (DIA_ID, USER_ID, DIA_DATE, 
