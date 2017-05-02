@@ -39,8 +39,30 @@ public class Attachment {
   	 * 删除标记(0-未删除,1-已删除)
   	 */
     private Byte delFlag;
+    
+    private String attUrl;
+    
+    private String url;
+    
+    
 
-    public Integer getAid() {
+    public String getAttUrl() {
+		return attUrl;
+	}
+
+	public void setAttUrl(String attUrl) {
+		this.attUrl = attUrl;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public Integer getAid() {
         return aid;
     }
 
