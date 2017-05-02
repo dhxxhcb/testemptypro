@@ -169,9 +169,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
        
         <div class="right">
-			<div class="M-box3"></div>
-            <!-- 分页按钮-->
-            <ul class="page" maxshowpageitem="0" pagelistcount="1" id="page"></ul>
+			 <!-- 分页按钮-->
+            <div class="M-box3">
+            </div>
 
         </div>
 
@@ -348,7 +348,7 @@ $(function () {
 							},1000);
 							
 							if(cb){
-								cb(obj.totleNum);
+								cb(data.totleNum);
 							}
 						}
 					}   
@@ -381,7 +381,7 @@ $(function () {
 		$('.step1').show();
 		$('.center').hide();
 	});
-});
+
 	 laydate({
      elem: '#sendTime', //目标元素。
      format: 'YYYY-MM-DD', //日期格式
@@ -401,7 +401,7 @@ $(function () {
         end.start = datas; //将结束日的初始值设定为开始日
      }
    };
-            function initPagination(totalData,pageSize){
+     function initPagination(totalData,pageSize){
             	$('.M-box3').pagination({
 							    totalData:totalData,
 							    showData:pageSize,
@@ -419,6 +419,8 @@ $(function () {
 							    }
 							});
             }
+            });
+          
    var end = {
      elem: '#endTime',
      format: 'YYYY-MM-DD',
