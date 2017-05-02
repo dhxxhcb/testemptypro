@@ -1,6 +1,8 @@
 package com.xoa.controller.common;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xoa.model.common.SysCode;
 import com.xoa.service.common.SysCodeService;
 import com.xoa.util.ToJson;
+import com.xoa.util.dataSource.ContextHolder;
 
 @Controller
 @Scope(value = "prototype")
@@ -38,7 +41,9 @@ public class SysCodeController {
 	 */
 	@RequestMapping("/getCode")
 	public  @ResponseBody
-	ToJson<SysCode> getCode(String parentNo){
+	ToJson<SysCode> getCode(String parentNo,HttpServletRequest request,HttpServletResponse response){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		return sysCodeService.getSysCode(parentNo);
 	}
 	
