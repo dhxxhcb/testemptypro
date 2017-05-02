@@ -6,10 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -26,9 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.xoa.model.department.Department;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.util.ToJson;
@@ -348,17 +342,6 @@ public class EnclosureController {
 				"loginDateSouse"));
 		return "app/upload/updwj";
 	}
-	
-	@RequestMapping("/cd") 
-	public String cont( @RequestParam("file") MultipartFile[] files,String module,boolean isAttach,
-			  HttpServletRequest request) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
-		ModelAndView mv = new ModelAndView("redirect:/upload");
-		
-		return "app/upload/updwj";
-	}
-	
 	
     /**
      * 删除单个文件

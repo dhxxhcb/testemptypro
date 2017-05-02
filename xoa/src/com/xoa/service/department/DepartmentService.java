@@ -131,5 +131,16 @@ public interface DepartmentService {
 	 */
 	@DynDatasource
 	public List<Department> getChDeptUser(int deptId);
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月2日 下午3:52:49
+	 * 方法介绍:   获取部门人员
+	 * 参数说明:   @param deptId 部门id
+	 * 参数说明:   @return
+	 * @return     List<Department> 返回部门信息
+	 */
+	@DynDatasource
+	public List<Department> getChDtUser(int deptId);
 
 }
