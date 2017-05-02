@@ -149,12 +149,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="middle">
             <div class="le publisher">
                 <div class="color" style="width:105px;">
-                    <fmt:message code="notice.th.publisher"/>
-                   	 ：
+                    <fmt:message code="notice.th.publisher"/> ：
                 </div>
-                
                 <input id="input_text1" type="text"/>
-
                 <div style="margin-right:23px; color:#207BD6">
                     <fmt:message code="global.lang.add"/>
                 </div>
@@ -164,22 +161,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="le subject">
                 <div class="color" style="width:105px;">
-                    <fmt:message code="notice.th.title"/>
-                    	：
-                </div>
-                
+                    <fmt:message code="notice.th.title"/> ：</div>
                 <input id="subject_query " class="input_text2" type="text"/>
-                
             </div>
             <div class="le date">
-                <div class="color" style="width:105px;">
-                    <fmt:message code="notice.title.Releasedate"/>
-                   	 ：
-                </div>
-              
-                       
-                 <input id="beginTime "class="input_text3" type="text"/>
-
+                <div class="color" style="width:105px;"><fmt:message code="notice.title.Releasedate"/> ：</div>  
+                <input id="beginTime "class="input_text3" type="text"/>
                 <div class="color">
                     <fmt:message code="global.lang.to"/>
                 </div>
@@ -187,12 +174,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <div><input id="endTime" class="input_text4" type="text"/></div> 
             </div>
             <div class="le ce1">
-                <div class="color" style="width:105px;">
-                    <fmt:message code="news.title.new"/>
-                  	  ：
-                </div>
-                <div>
-                   
+                <div class="color" style="width:105px;"><fmt:message code="news.title.new"/> ：</div>
+            <div> 
                  <select name="TYPE"  class="button1 input_text5" id="select_query">
                         <option value="0" selected="">
                             <fmt:message code="news.th.type"/>
@@ -220,13 +203,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
             </div>
             <div class="le ce2">
-                <div class="color" style="width:105px;">
-                    <fmt:message code="notice.th.content"/>
-                    :
-                </div>
-               
+                <div class="color" style="width:105px;"><fmt:message code="notice.th.content"/>:</div>          
               	<input id="content" class="input_text6" type="text"/>
-
             </div>
         </div>
         <div class="icons">
@@ -236,8 +214,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </div>
 </div>
-
-
 <!--footer部分结束-->
 </div>
 <script>
