@@ -85,11 +85,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td><fmt:message code="email.th.filechose" />：</td>
 				<td class="files">
 					<!-- <fmt:message code="email.th.addfile" /> -->
-					<form  action="upload?module=email" method="post" enctype="multipart/form-data" id="uploadform" >
-						 <input type="file" name="file" />
+					<form id="uploadimgform" target="uploadiframe"  action="../upload?module=email" enctype="multipart/form-data" method="post" >
+						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
+						<button id="uploadimg">上传</button>
 					</form>
-					<!-- <input type="button" name="button" id="btn3" value="请选择文件"> -->
-						<button id="addLabProdPic">选择图片</button>
+					
 				</td>
 			</tr>
 			<tr>
@@ -101,32 +101,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 				</td>
 			</tr>
-		</table>
-		<script type="text/javascript">
-$(function(){
-	//上传图片
-	new AjaxUpload('#addLabProdPic', {
-		action: '<%=path%>/upload?module=email',
-		name: 'file',
-		responseType: 'json',
-		onSubmit : function(file , ext){
-			if (true){
-				this.setData({
-					'picName': file
-				});
-			} 
-		},
-		onComplete : function(file,response){
-			if(response.error) {
-				alert(response.error);
-				return;
-			}
-			$('#viewImg').attr('src',response.picUrl);
-		}		
-	});
-})
-</script>
-		
+		</table>		
+		<iframe id="uploadiframe" style="display:block;"  class="uploadiframe" name="uploadiframe" ></iframe>
 		<script type="text/javascript">
 			user = '';
 			user_id='senduser';
@@ -138,7 +114,23 @@ $(function(){
        		 		$.popWindow("../common/selectUser");
        		 		 
        		 	});
-       		 	
+       		 	$('#uploadimg').on('click', function(ele) {
+					$('#uploadinputimg').click();    
+				})
+       		 	$('#uploadinputimg').change(function(e){
+					var target = $(e.target);
+					var file;
+					if(target[0].files && target[0].files[0]){
+						file=target[0].files[0];
+					}
+					console.log(file);
+					if(file){
+						alert(2);
+						$.upload($('#uploadimgform'),function(res){
+							console.log(res);
+						});
+					}
+				});
        		 	//点击立即发送按钮
        		 	$("#btn1").on("click",function(){
 					

@@ -18,6 +18,31 @@
 	        return null;
 	    }
 	});
+	$.extend({
+		upload:function(e,cb){
+			if(!$('#uploadiframe').is('iframe')){
+				$("body").append('<iframe id="uploadiframe" style="display:none;"  class="uploadiframe" name="uploadiframe" ></iframe>');
+			}
+			e.submit();
+			var l = $('#uploadiframe'),a=null;
+			 var f = setInterval(function(){
+				 try{
+					 a = l.contents().find("body").text()
+				 }catch(i){
+					 console.log("上传接口存在跨域", i);
+					 clearInterval(f);
+				 }
+				 if(a){
+					 //console.log(a);
+					clearInterval(f);
+					//l.contents().find("body").html("");
+					var c = {};
+					try{ c = JSON.parse(a); a={} } catch (i) {a = {};alert("你的上传大小超出上限", i) } 
+					cb(c);
+				 }
+			 },300);
+		}
+	});
 })
 Date.prototype.Format = function(fmt)   
 { //author: meizz   
