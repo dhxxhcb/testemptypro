@@ -69,8 +69,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td width="10%">
 					<p><fmt:message code="email.th.content" />：</p>
-					<p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p>
-					<p class="Color"><fmt:message code="global.lang.empty" /></p>
+					<!-- <p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p> -->
+					<p class="Color"><a href="javascript:;" onclick="empty()"><fmt:message code="global.lang.empty" /></a></p>
 				</td>
 				<td width="89%">
 					<script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
@@ -187,7 +187,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 		dataType:'json',
        		 		success:function(rsp){
        		 			var data=rsp.obj;
-       		 			var str1='';
+       		 			var str='';
        		 			alert(data[0].attachName)
        		 			for(var i=0;i<data.length;i++){
        		 				str+='<div><p>'+data[i].attachName+'</p></div>';
@@ -199,6 +199,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 	})
        		 }
        		
+       		function empty(){
+       			//alert(txt)
+       			//$('#container').text().empty();
+       		}
     	</script>
 	</body>
 </html>

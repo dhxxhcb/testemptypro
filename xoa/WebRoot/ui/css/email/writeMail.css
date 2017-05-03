@@ -15,7 +15,10 @@ table{
 	width: 98%;
 	margin: 0 auto;
 	font-size: 14px;
-	border-color: #ccc;
+	border-color: #eee;
+}
+table tr td:first-of-type{
+	padding-left:10px;
 }
 .inPole{
 	font-size: 14px;
@@ -118,6 +121,10 @@ textarea{
 	border-radius: 5px;
 }
 .Color{
+	color: #207BD6;
+}
+.Color a{
+	text-decoration: none;
 	color: #207BD6;
 }
 .sendReady input{
