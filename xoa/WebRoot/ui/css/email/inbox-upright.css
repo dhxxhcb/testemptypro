@@ -319,3 +319,6 @@ html,body{
 	background-color: #9fbdee;
 	color: #fff;
 }
+.drafts table tr td:first-of-type{
+	padding-left:10px;
+}
