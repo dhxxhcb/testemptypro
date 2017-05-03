@@ -34,7 +34,7 @@ public class SysCodeController {
 	 * 
 	 * 创建作者:   王曰岐
 	 * 创建日期:   2017-5-2 下午4:59:42
-	 * 方法介绍:   得到系统代码
+	 * 方法介绍:   得到系统类型信息
 	 * 参数说明:   @param parentNo
 	 * 参数说明:   @return
 	 * @return     ToJson<SysCode>
