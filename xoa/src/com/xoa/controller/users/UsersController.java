@@ -239,16 +239,14 @@ public class UsersController {
 	@ResponseBody
 	@RequestMapping(value = "/user/getBySearch" ,produces = {"application/json;charset=UTF-8"})
     public ToJson<Users> getBySearch(HttpServletRequest request,Map<String, Object> maps,Integer page,
-			Integer pageSize, boolean useFlag,String search) {
+			Integer pageSize, boolean useFlag) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
-			//String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");	
-			System.out.println("----------------");
-			System.out.println(search);
-			System.out.println("----------------");
+			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");				
+			//System.out.println(search);
 			//String search=URLEncoder.encode(request.getParameter("search"),"UTF-8"); 
 			maps=new HashMap<String, Object>();
 			maps.put("userName", search);
