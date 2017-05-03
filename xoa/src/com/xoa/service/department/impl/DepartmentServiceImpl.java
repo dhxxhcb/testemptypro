@@ -240,10 +240,18 @@ public class DepartmentServiceImpl implements DepartmentService {
 		}
 		return list;
 	}
-	
-	public void downFile(HttpServletRequest request,
-			HttpServletResponse response) {
-		
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月3日 上午9:04:34
+	 * 方法介绍:   获取部门下人数
+	 * 参数说明:   @param deptNo 部门排序号
+	 * 参数说明:   @return
+	 * @return     int 数量
+	 */
+	@Override
+	public int getCountChDeptUser(String deptNo) {
+		int count=departmentMapper.getCountChDeptUser(deptNo);
+		return count;
 	}
 	
 

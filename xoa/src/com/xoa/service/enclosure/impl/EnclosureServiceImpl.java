@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 
@@ -75,11 +74,14 @@ public class EnclosureServiceImpl implements EnclosureService {
 	     String basePath="D://";
 	     StringBuffer sb=new StringBuffer();
 	     if(isAttach){
+	    	 //直接显示路径
 	    	 sb.append("attach_web");
 	     }else{
+	    	 //隐藏路径
 	    	 sb.append("attach");
 	     }
-	     String path=basePath+sb.toString()+System.getProperty("file.separator")+company+ System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
+	     String path=basePath+sb.toString()+System.getProperty("file.separator")+company+
+	    		 System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
 	 	Attachment attachment=new Attachment();
 	 	 for (int i = 0; i < files.length; i++) {  
 	        	MultipartFile file = files[i];

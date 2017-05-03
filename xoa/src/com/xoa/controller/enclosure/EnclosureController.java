@@ -48,16 +48,17 @@ public class EnclosureController {
 	  /**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年5月2日 上午11:12:17
-	 * 方法介绍:   上传
+	 * 方法介绍:   附件上传
 	 * 参数说明:   @param files 文件
 	 * 参数说明:   @param module 模块名
-	 * 参数说明:   @param isAttach 是否暴露路径
+	 * 参数说明:   @param isAttach 是否直接显示上传路径
 	 * 参数说明:   @param request 请求
 	 * 参数说明:   @return
 	 * @return     ToJson<Attachment> 返回附件信息
 	 */
 	@RequestMapping(value ="/upload",produces = {"application/json;charset=UTF-8"}) 
-	  public @ResponseBody ToJson<Attachment> getAlldept( @RequestParam("file") MultipartFile[] files,String module,boolean isAttach,
+	  public @ResponseBody ToJson<Attachment> getAlldept( @RequestParam("file") MultipartFile[] files,String module,
+			  boolean isAttach,
 			  HttpServletRequest request) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));

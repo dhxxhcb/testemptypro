@@ -38,23 +38,20 @@
 	
 	<select id="getChDeptUser" 
 	resultType="com.xoa.model.department.Department">
-		SELECT "people" as type,(select  count(*) from department d,user u
-		 where d.DEPT_ID=u.DEPT_ID and d.DEPT_ID=#{deptId} ) count, u.AVATAR as avater,u.USER_NAME as userName,
+		SELECT "people" as type, u.AVATAR as avater,u.USER_NAME as userName,
 		u.UID as uid,u.USER_PRIV_NAME as userPrivName,u.SEX as sex from department d,user u
 		 where d.DEPT_ID=u.DEPT_ID and d.DEPT_ID=#{deptId}
-	</select>
-	
+	</select>	
 		<select id="getCountChDeptUser" 
-	resultType="com.xoa.model.department.Department">
-		SELECT count(*) from department d,user u
-		 where d.DEPT_ID=u.DEPT_ID and d.DEPT_ID=#{deptId}
+						resultType="Integer">
+		select count(*) from user where DEPT_ID in 
+	(select DEPT_ID from department where DEPT_NO LIKE CONCAT(#{deptNo},'%'))
 	</select>
-	
 	<select id="getDeptNameById" resultType="java.lang.String">
 		SELECT DEPT_NAME from department where DEPT_ID=#{deptId}
 	</select>
-	<select id="getDeptById" resultType="com.xoa.model.department.Department">
-		SELECT * from department where DEPT_ID=#{deptId}
+	<select id="getDeptById" resultMap="DepResultMap">
+		SELECT DEPT_NAME,DEPT_NO,DEPT_ID,DEPT_ADDRESS from department where DEPT_ID=#{deptId}
 	</select>
     <select id="getDeptByMany" parameterType="com.xoa.model.department.Department" resultType="map">  
         select * from department  
