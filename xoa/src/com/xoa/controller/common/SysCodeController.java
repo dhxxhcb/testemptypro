@@ -28,7 +28,7 @@ import com.xoa.util.dataSource.ContextHolder;
  */
 public class SysCodeController {
 	@Resource
-	private SysCodeService sysCodeService;
+	private SysCodeService sysCodeService;//系统代码Service
 	
 	/**
 	 * 
