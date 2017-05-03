@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
 		 <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/email/writeMail.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/ajaxupload.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
@@ -87,7 +88,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<form  action="upload?module=email" method="post" enctype="multipart/form-data" id="uploadform" >
 						 <input type="file" name="file" />
 					</form>
-					<input type="button" name="button" id="btn3" value="请选择文件">
+					<!-- <input type="button" name="button" id="btn3" value="请选择文件"> -->
+						<button id="addLabProdPic">选择图片</button>
 				</td>
 			</tr>
 			<tr>
@@ -100,7 +102,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</td>
 			</tr>
 		</table>
-		
+		<script type="text/javascript">
+$(function(){
+	//上传图片
+	new AjaxUpload('#addLabProdPic', {
+		action: '<%=path%>/upload?module=email',
+		name: 'file',
+		responseType: 'json',
+		onSubmit : function(file , ext){
+			if (true){
+				this.setData({
+					'picName': file
+				});
+			} 
+		},
+		onComplete : function(file,response){
+			if(response.error) {
+				alert(response.error);
+				return;
+			}
+			$('#viewImg').attr('src',response.picUrl);
+		}		
+	});
+})
+</script>
 		
 		<script type="text/javascript">
 			user = '';

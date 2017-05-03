@@ -214,14 +214,25 @@ td {
 tr {
     border: 1px solid #c0c0c0;
 }
-tr:nth-child(even) {
+/* tr:nth-child(even) {
     background-color: #fff;
 }
-tr:nth-child(odd) {
+ tr:nth-child(odd) {
     background-color: #F6F7F9;
 }
 
-tr:hover {
+ tr:hover {
+    background-color: #D3E7FA;
+} */
+
+#tr_td tr:nth-child(even) {
+    background-color: #fff;
+}
+ #tr_td  tr:nth-child(odd) {
+    background-color: #F6F7F9;
+}
+
+ #tr_td  tr:hover {
     background-color: #D3E7FA;
 }
 

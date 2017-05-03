@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!--content部分开始-->
         <div>
             <div class="wrap">
-                <table>
+                <table id="tr_td">
                     <thead>
                     <tr>
                         <td class="th">
@@ -120,6 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </tr>
                     </thead>
                     <tbody id="j_tb">
+                    
                     </tbody>
                 </table>
             </div>

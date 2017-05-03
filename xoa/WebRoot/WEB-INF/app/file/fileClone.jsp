@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -30,11 +33,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
     </script>
 <body>
-	<h1>克隆文件夹</h1>
+	<h1><fmt:message code="file.th.clone"/></h1>
 	<form id="form1" name="form1"
 		action="${pageContext.request.contextPath }/fileUpdate">
-		排序号: <input id="fileNoid" name="sort_no" type="text"
-			value="${sort_no}" /><br> 文件夹名称：<input id="fileNameid"
+		<fmt:message code="file.th.Sort"/>: <input id="fileNoid" name="sort_no" type="text"
+			value="${sort_no}" /><br> <fmt:message code="file.th.filename"/>：<input id="fileNameid"
 			name="sort_name" type="text" value="${sort_name }" /><br> <input
 			id="qr" type="button" value="确认" onclick="submit()" /><br> <input
 			id="fh" type="button" value="返回" onclick="close()" />

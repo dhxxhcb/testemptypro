@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
 	
 		<link rel="stylesheet" type="text/css" href=../lib/laydate.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/notice/notice.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/news/new_news.css"/>
 		<script src="../js/notice/attach.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/notice/wdatepicker.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
@@ -35,14 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <div class="bx">
     <!--head开始-->
-    <!-- <div class="head w clearfix">
-        <ul class="index_head">
-            <li data_id=""><span class="one" style="width: 112px;display: inline-block;text-align: center;">新闻管理</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
-            <li data_id="0"><span style="width: 112px;display: inline-block;text-align: center;">新建新闻</span><img src="../img/02.png" alt="" style="width: 2px;width: 2px;margin: 0 10px;margin-left: 30px;"/></li>
-            <li data_id="1"><span style="width: 112px;display: inline-block;text-align: center;">新闻查询</span></li>
-        </ul>
-    </div> -->
-    
     <div class="head w clearfix">
         <ul class="index_head">
            <li data_id=""><span class="one headli1_1"><fmt:message
@@ -58,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </ul>
     </div>
     <!--head通栏结束-->
-
+    
     <!--navigation开始-->
     <div class="step1"> 
     <div class="navigation  clearfix">
@@ -107,8 +99,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!--content部分开始-->
     <div>
-        <div class="wrap">
-            <table>
+        <div>
+            <table id="tr_td">
                 <thead>
                 	<tr>
                 		<td class="th">选择</td>
@@ -133,33 +125,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     
     <!--content部分结束-->
-
-    <!--footer部分开始-->
-  <!--   <div class="footer w clearfix">
-        <div><input id='input1' name="" type="checkbox" value="" />全选</div>
-        <div>删除所选新闻</div>
-        <div>查阅情况</div>
-        <div>取消置顶</div>
-        <div>删除全部新闻</div>
-        <div>终止所选新闻</div>
-        <div>生效所选新闻</div>
-
-    </div> -->
     </div>
     <!-- 新建新闻 -->
-	<div class="step2"  style="width:100%;margin-top: 50px;display: none;">
+	<!-- <div class="step2"  style="width:100%;margin-top: 50px;display: none;"> -->
+	<div class="step2" style="display: none;">
 	
+	<div class="navigation  clearfix">
+        <div class="left">           
+			<img src="../img/newsManages2_1.png"> 
+            <div class="news">
+                    <fmt:message code="news.title.new"/>
+            </div>  
+             <select name="" class="" id="">          
+				<option value="0" selected="">选择格式</option>
+				<option value="01">公司动态</option>
+				<option value="02">媒体关注</option>
+				<option value="03">行业资讯</option>
+				<option value="04">合作伙伴新闻</option>
+				<option value="05">客户新闻</option>
+				<option value="">无类型</option>
+			</select>
+			 
+        </div>
+
+    </div>
+    
 	<div class="content">
-			<div class="title">
-				<img src="img/notify_new.gif" alt="" />
-				<span><fmt:message code="notice.th.buildnotify" /></span>
-				<a href="javascript:;" id="noty"><fmt:message code="notice.th.choseformat" /></a>
-				<div class="div_form" style="display: none;">
-					<a href="javascript:;"><fmt:message code="notice.format.Commonformat" /></a>
-					<a href="javascript:;"><fmt:message code="notice.format.MHTformat" /></a>
-					<a href="javascript:;"><fmt:message code="notice.format.hyperlink" /></a>
-				</div>
-			</div>
 			
 			<form action="" method="post" name="form1">
 				<table cellspacing="0" cellpadding="0" class="tab">
@@ -173,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<option value="04"><fmt:message code="notice.type.other" /></option>
 					         </select>
 						</td>
-						<td width="70%">
+						<td width="85%">
 							<input type="text" class="in_title" id="txt_id" placeholder="请输入公告标题" styl="outline: none;"/><font color=red>(*)</font>
 							 <a id="font_color_link" href="javascript:;" class="dropdown" >
 							 	<span><fmt:message code="notice.th.SetTitlecolor" /></span>
@@ -223,7 +214,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a href="javascript:resetTime();" class="reset"><fmt:message code="notice.th.ResetToCurrentTime" /></a>
 						</td>
 					</tr>
-					<!--<tr>
+					<tr>
 						<td width="15%">提醒：</td>
 						<td width="70%">
 							<input type="checkbox" name="SMS_REMIND1" id="SMS_REMIND1" checked>
@@ -232,7 +223,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<input type="checkbox" name="SNS_REMIND" id="SNS_REMIND" checked>分享到企业社区
 							</label>
 						</td>
-					</tr>-->
+					</tr>
 					<tr>
 						<td width="15%"><fmt:message code="notice.th.top" />：</td>
 						<td width="70%">
