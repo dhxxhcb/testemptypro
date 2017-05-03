@@ -72,4 +72,15 @@ public interface DiaryService {
 	 */
 	@DynDatasource
 	ToJson<DiaryModel> getDiaryOther(DiaryModel diaryModel,PageParams pageParams);
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-5-3 下午2:13:55
+	 * 方法介绍:    通过id获取详情
+	 * 参数说明:   @param diaryModel
+	 * 参数说明:   @return
+	 * @return     ToJson<DiaryModel>
+	 */
+	@DynDatasource
+	ToJson<DiaryModel> getDiaryByDiaId(DiaryModel diaryModel);
 }

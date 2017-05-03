@@ -169,4 +169,27 @@ public class DiaryController {
 		ToJson<DiaryModel> diaryOtherToJson = diaryService.getDiaryOther(diaryModel,pageParams);
 		return diaryOtherToJson;
 	}
+	
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-5-3 下午2:12:36
+	 * 方法介绍:   通过id获取详情
+	 * 参数说明:   @param diaryModel
+	 * 参数说明:   @param request
+	 * 参数说明:   @return
+	 * @return     ToJson<DiaryModel>
+	 */
+	@RequestMapping(value="/getConByDiaId", produces = { "application/json;charset=UTF-8" })
+	@ResponseBody
+	public ToJson<DiaryModel>  diaryGetOther(DiaryModel diaryModel,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		if(diaryModel.getUserId()==null||"".equals(diaryModel.getUserId())){
+			HttpSession	session=request.getSession();
+			diaryModel.setUserId(session.getAttribute("userId").toString());
+		 }
+		ToJson<DiaryModel> diaryOtherToJson = diaryService.getDiaryByDiaId(diaryModel);
+		return diaryOtherToJson;
+	}
 }

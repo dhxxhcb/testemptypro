@@ -54,9 +54,29 @@ public class DiaryServiceImpl implements DiaryService{
 	       diaryMap.put("pageParams", pageParams);
 	       //我的日志 
 		   List<DiaryModel> diaryList=diaryModelMapper.getDiarySelf(diaryMap);
-		   Iterator<DiaryModel> iterator=diaryList.iterator();
+		   for(DiaryModel dm:diaryList){
+				String tempDiaTime=dm.getDiaTime().substring(0, 19);
+				String tempReaders=this.readerFlag(diaryModel.getUserId(), dm.getReaders());//\\s*|\t|\r|\n
+				if(diaryModel.getPostType()!=null&&"1".equals(diaryModel.getPostType())){
+				String tempContent=dm.getContent().replaceAll("\\&[a-zA-Z]{1,10};", "").replaceAll("<[^>]*>", "").
+						replaceAll("\\s*|\t|\r|\n", "").substring(0, 59);
+				  dm.setContent(tempContent);
+				}
+				dm.setReaders(tempReaders);
+				dm.setDiaTime(tempDiaTime);
+				
+				dm.setToId("");
+		   }
+		   //取得别人日志日志数量
+		   Map<String, Object>  otherdiaryMap=new  HashMap<String, Object>();
+		   otherdiaryMap.put("userIdOther", diaryModel.getUserId());
+		   otherdiaryMap.put("diaTypeOther", "1");
+		   List<DiaryModel> otherdiaryList=diaryModelMapper.getDiaryOtherList(otherdiaryMap);
+		   Iterator<DiaryModel> iterator=otherdiaryList.iterator();
 			while(iterator.hasNext()){
 				DiaryModel dm=iterator.next();
+				String temp=dm.getDiaTime().substring(0, 19);
+				dm.setDiaTime(temp);
 				if(!"1".equals(dm.getToAll())){
 					 String[] dmStrings=dm.getToId().split(",");
 					 List<String> userList = Arrays.asList(dmStrings);
@@ -65,11 +85,7 @@ public class DiaryServiceImpl implements DiaryService{
 						}
 				}
 			}
-		   //取得共享日志数量
-		   diaryModel.setDiaType("1");
-		   int diaryCount=diaryModelMapper.getDiaryCount(diaryModel);
-		   int  sharListSelf=diaryModelMapper.getDiarySelfLess(diaryModel);
-		   ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, diaryCount+","+diaryList.size()+","+(diaryCount-sharListSelf));
+		   ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, (otherdiaryList.size()+diaryList.size())+","+diaryList.size()+","+otherdiaryList.size());
 		   diaryListToJson.setObj(diaryList);
 		   return diaryListToJson;
 	}
@@ -91,12 +107,16 @@ public class DiaryServiceImpl implements DiaryService{
 		   Iterator<DiaryModel> iterator=diaryAllList.iterator();
 			while(iterator.hasNext()){
 				DiaryModel dm=iterator.next();
+				String temp=dm.getDiaTime().substring(0, 19);
+				dm.setDiaTime(temp);
+				if(dm.getUserId()!=diaryModel.getUserId()||!dm.getUserId().equals(diaryModel.getUserId())){
 				if(!"1".equals(dm.getToAll())){
 					 String[] dmStrings=dm.getToId().split(",");
 					 List<String> userList = Arrays.asList(dmStrings);
 					if(!userList.contains(diaryModel.getUserId())){
 						iterator.remove();
-					}
+					  }
+				 }
 				}
 			}
 		   return diaryAllList;
@@ -113,14 +133,19 @@ public class DiaryServiceImpl implements DiaryService{
 	 */
 	public ToJson<DiaryModel> getDiaryOther(DiaryModel diaryModel,PageParams pageParams) {
 	       Map<String, Object> diaryMap=new  HashMap<String, Object>();
-	       diaryMap.put("userId", diaryModel.getUserId());
-	       diaryMap.put("diaType", "1");
+	       diaryMap.put("userIdOther", diaryModel.getUserId());
+	       diaryMap.put("diaTypeOther", "1");
 	       diaryMap.put("pageParams", pageParams);
-	       //我的日志 
-		   List<DiaryModel> diaryList=diaryModelMapper.getDiaryOtherList(diaryMap);
-		   Iterator<DiaryModel> iterator=diaryList.iterator();
+	       //他人日志 
+		   List<DiaryModel> otherdiaryList=diaryModelMapper.getDiaryOtherList(diaryMap);
+		   //加入权限处理字段
+		   Iterator<DiaryModel> iterator=otherdiaryList.iterator();
 			while(iterator.hasNext()){
 				DiaryModel dm=iterator.next();
+				//去除日期后面.0
+				String temp=dm.getDiaTime().substring(0, 19);
+				dm.setDiaTime(temp);
+				//抛出不符合的记录
 				if(!"1".equals(dm.getToAll())){
 					 String[] dmStrings=dm.getToId().split(",");
 					 List<String> userList = Arrays.asList(dmStrings);
@@ -129,8 +154,21 @@ public class DiaryServiceImpl implements DiaryService{
 						}
 				}
 			}
+			  for(DiaryModel dm:otherdiaryList){
+					String tempDiaTime=dm.getDiaTime().substring(0, 19);
+					String tempReaders=this.readerFlag(diaryModel.getUserId(), dm.getReaders());//\\s*|\t|\r|\n
+					if(diaryModel.getPostType()!=null&&"1".equals(diaryModel.getPostType())){
+					String tempContent=dm.getContent().replaceAll("\\&[a-zA-Z]{1,10};", "").replaceAll("<[^>]*>", "").
+							replaceAll("\\s*|\t|\r|\n", "").substring(0, 59);
+					  dm.setContent(tempContent);
+					}
+					dm.setReaders(tempReaders);
+					dm.setDiaTime(tempDiaTime);
+					
+					dm.setToId("");
+			   }
 		   ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, "");
-		   diaryListToJson.setObj(diaryList);
+		   diaryListToJson.setObj(otherdiaryList);
 		   return diaryListToJson;
 	}
 	/**
@@ -157,6 +195,40 @@ public class DiaryServiceImpl implements DiaryService{
 	public int updateDiary(DiaryModel diaryModel) {
 		return diaryModelMapper.updateDiary(diaryModel);
 	}
+	
+	public ToJson<DiaryModel> getDiaryByDiaId(DiaryModel diaryModel) {
+		ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, "");
+		DiaryModel diary=diaryModelMapper.getDiaryByDiaId(diaryModel);
+		if("0".equals(readerFlag(diaryModel.getUserId(),diary.getReaders()))){
+		   diary.setReaders(diary.getReaders()+diaryModel.getUserId()+",");
+		   diaryModelMapper.updateReadersByDiaId(diary);
+		}
+		String temp=diary.getDiaTime().substring(0, 19);
+		diary.setDiaTime(temp);
+		diary.setDiaType("");
+		diary.setToId("");
+		diary.setReaders("");
+		diaryListToJson.setObject(diary);
+		return diaryListToJson;
+	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-5-3 下午2:54:56
+	 * 方法介绍:   判断已读未读
+	 * 参数说明:   @param userId
+	 * 参数说明:   @param readers
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	   public String readerFlag(String userId,String readers){
+	    	 String[] readersStrings=readers.split(",");
+			 List<String> userList = Arrays.asList(readersStrings);
+			 if(userList.contains(userId)){
+				 return "1";
+			 }
+			return "0";
+	     }
     public static String decompress(String data) throws UnsupportedEncodingException {
         return decompress(data,"ISO-8859-1");
         
@@ -231,4 +303,6 @@ public static String decompress(String data, String charset) throws UnsupportedE
 //		}
 //		return compressString;
 //	} 
+  
+	
 }
