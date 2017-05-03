@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.xoa.dao.users.UserPrivMapper;
 import com.xoa.model.users.UserPriv;
 import com.xoa.service.users.UsersPrivService;
