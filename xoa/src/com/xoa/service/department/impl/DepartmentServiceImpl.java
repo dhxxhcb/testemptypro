@@ -57,6 +57,34 @@ public class DepartmentServiceImpl implements DepartmentService {
 		     list.add(sb.toString());
 				return list;		
 	}
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月3日 上午11:39:25
+	 * 方法介绍:   根据部门id串获取部门名称串
+	 * 参数说明:   @param deptIds
+	 * 参数说明:   @return
+	 * @return     String 部门名称串
+	 */
+	@Override
+	public String getDpNameById(int... deptID){
+		//定义用户拼接部门名称的字符串
+		StringBuffer sb=new StringBuffer();
+		  for (int i = 0; i < deptID.length; i++) { 			  
+			     if(deptID.length==1){
+			            String deptName=departmentMapper.getDeptNameById(deptID[i]);
+			            return deptName;
+			            }else{
+			            String deptName=departmentMapper.getDeptNameById(deptID[i]);
+			            if(i<deptID.length-1){
+			            sb.append(deptName).append(",");
+			            }else{
+			            sb.append(deptName);
+			            } 
+			            } 
+			        }  
+				return sb.toString();		
+	}
 
 	
 	 /**

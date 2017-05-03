@@ -28,6 +28,17 @@ public interface DepartmentService {
 	
 	/**
 	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月3日 上午11:39:25
+	 * 方法介绍:   根据部门id串获取部门名称串
+	 * 参数说明:   @param deptIds
+	 * 参数说明:   @return
+	 * @return     String 部门名称串
+	 */
+	@DynDatasource
+	public String getDpNameById(int... deptIds);
+	
+	/**
+	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:37:25
 	 * 方法介绍:   获取所有部门
 	 * 参数说明:   @return
