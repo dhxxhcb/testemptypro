@@ -259,7 +259,7 @@ public class UsersServiceImpl implements UsersService {
 	 * @return     String  返回用户姓名串
 	 */
 	@Override
-	public String findUserByuid(int... uid) {
+	public String findUsersByuid(int... uid) {
 		if(uid==null){
 			return null;
 		}

@@ -169,5 +169,5 @@ public interface UsersService {
 	 * @return     String 用户姓名串
 	 */
 	@DynDatasource
-	public String findUserByuid(int... uid);
+	public String findUsersByuid(int... uid);
 }
