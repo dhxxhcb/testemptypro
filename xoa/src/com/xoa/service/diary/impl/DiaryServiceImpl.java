@@ -98,7 +98,7 @@ public class DiaryServiceImpl implements DiaryService{
 	 * 参数说明:   @return
 	 * @return   ToJson<DiaryModel>
 	 */
-	public List<DiaryModel> getDiaryAll(DiaryModel diaryModel, PageParams pageParams ) {
+	public ToJson<DiaryModel> getDiaryAll(DiaryModel diaryModel, PageParams pageParams ) {
 	       Map<String, Object> diaryMap=new  HashMap<String, Object>();
 	       diaryMap.put("userId", diaryModel.getUserId());
 	       diaryMap.put("diaType", "1");
@@ -119,7 +119,10 @@ public class DiaryServiceImpl implements DiaryService{
 				 }
 				}
 			}
-		   return diaryAllList;
+			ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0,"");
+			diaryListToJson.setObj(diaryAllList);
+			diaryListToJson.setTotleNum(pageParams.getTotal());
+		   return diaryListToJson;
 	}
 	 
 	/**
@@ -169,6 +172,7 @@ public class DiaryServiceImpl implements DiaryService{
 			   }
 		   ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, "");
 		   diaryListToJson.setObj(otherdiaryList);
+		   diaryListToJson.setTotleNum(pageParams.getTotal());
 		   return diaryListToJson;
 	}
 	/**

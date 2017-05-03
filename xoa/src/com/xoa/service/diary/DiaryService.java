@@ -60,7 +60,7 @@ public interface DiaryService {
 	 * @return   ToJson<DiaryModel>
 	 */
 	@DynDatasource
-	List<DiaryModel> getDiaryAll(DiaryModel diaryModel,PageParams pageParams );
+	ToJson<DiaryModel> getDiaryAll(DiaryModel diaryModel,PageParams pageParams );
 	/**
 	 * 
 	 * 创建作者:   杨 胜

@@ -121,7 +121,7 @@ public class DiaryController {
 	 * @return   void
 	 */
 	@RequestMapping("/getAll")
-	public void  diaryGetAll(DiaryModel diaryModel,HttpServletResponse response,HttpServletRequest request,
+	public ToJson<DiaryModel>  diaryGetAll(DiaryModel diaryModel,HttpServletResponse response,HttpServletRequest request,
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag) {
@@ -135,8 +135,8 @@ public class DiaryController {
 			HttpSession	session=request.getSession();
 			diaryModel.setUserId(session.getAttribute("userId").toString());
 		}
-		List<DiaryModel> diaryAllToJson=diaryService.getDiaryAll(diaryModel,pageParams);
-		HtmlUtil.writerJson(response, diaryAllToJson);
+		ToJson<DiaryModel> diaryToJson=diaryService.getDiaryAll(diaryModel,pageParams);
+		return diaryToJson;
 	}
 	
 	/**
