@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			   <div class="right" id="dept_item">
 					<div class="block-right" id="dept_item_2">
 						<!-- 部门名 -->
-						<div class="block-right-header" title="">北京高速波软件按有限公司</div>
+						<div class="block-right-header" title=""></div>
 						
 						<div class="block-right-add">全部添加</div>
 						<div class="block-right-remove">全部删除</div>
@@ -111,9 +111,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 </body>
 	<script>
-					function close_window(){
-					
+				function close_window(){
 					parent.opener.document.getElementById(parent.opener.user_id).value='admin';
+					parent.opener.document.getElementById(parent.opener.user_id).setAttribute('dataid','admin');
 					window.close();
 				}
 		$(function(){
@@ -151,45 +151,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										}else if(v.sex==1){
 											tr+='<div class="block-right-item" item_id="admin" item_name="'+v.userName+'" user_id="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"></span></span></div>';
 										}
-										
-										
 									}
 								});
 							}
-							
-							
 							target.html(str);
-							
 							$('.userItem').html(tr);
-							
-							
 						}
 					})
 				}
-				$('.userItem').on("click",".block-right-item",function(){
-					var that = $(this)
-					that.attr('style',"background: antiquewhite;");
+				$('#dept_item').on("click",".block-right-item",function(){
+					var that = $(this);
+					if(that.attr('class').indexOf('active') > 0){
+						that.removeClass("active");
+					}else{
+						that.addClass("active");
+					}
+					
 				});
 				getChDept($('#deptOrg'),0);
 				
 				$('.tree .dynatree-container').on('click','.childdept',function(){
 								var  that = $(this);
-								
 								getChDept(that.next(),that.attr('deptid'));
-								
 								var title=that.find('a').text();
 								$('.block-right-header').html(title);
 				});
 							
 				$('.block-right').on('mouseover','div',function(){
-					$(this).css('background','#D6E4EF');
-				})	
+					$(this).addClass('hover');
+				});	
 				$('.block-right').on('mouseout','div',function(){
-					$(this).css('background','#fff');
-				})	
+					$(this).removeClass('hover');
+				});	
 					
 		
 		});
 	</script>
-	<script>
 </html>

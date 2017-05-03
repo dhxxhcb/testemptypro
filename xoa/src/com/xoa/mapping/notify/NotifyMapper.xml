@@ -58,7 +58,7 @@
 	<!-- 条件查询 -->
 	<select id="selectNotify" resultMap="BaseResultMap"
 		parameterType="Map">
-		SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.END_Date,n.CONTENT,n.FORMAT,n.TO_ID,
+		SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.END_Date,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID,
        n.READERS,n.NOTIFY_ID,u.USER_NAME,s.CODE_NAME from notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
       and s.PARENT_NO='Notify' and s.CODE_ORDER=n.TYPE_ID
 
@@ -95,10 +95,10 @@
 
 	<!-- 查询未读已读信息并返回 列表 -->
 	<select id="unreadNotify" parameterType="Map" resultMap="BaseResultMap">
-		SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.END_Date,n.CONTENT,n.FORMAT,n.TO_ID,
+		SELECT n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.END_Date,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID,
        n.READERS,n.NOTIFY_ID,u.USER_NAME,s.CODE_NAME from notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
       and s.PARENT_NO='Notify' and s.CODE_ORDER=n.TYPE_ID
-
+      
 		<if test="format != null and format != ''"> AND FORMAT = #{format} </if>
 		<if test="toId != null and toId != ''"> AND TO_ID = #{toId} </if>
 		<if test="typeId != null and typeId != ''"> AND TYPE_ID = #{typeId} </if>
@@ -117,19 +117,23 @@
 
 	<!-- 公告详情查询 -->
 	<select id="detailedNotify" resultMap="BaseResultMap">
-		<!-- SELECT NOTIFY_ID,FROM_DEPT,FROM_ID,TO_ID,`SUBJECT`,CONTENT, SEND_TIME,BEGIN_DATE,END_DATE,ATTACHMENT_ID, 
-			ATTACHMENT_NAME,READERS, PRINT,PRIV_ID,USER_ID, TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON, 
-			IF(AUDIT_DATE='0000-00-00','null',AUDIT_DATE)AUDIT_DATE, DOWNLOAD,LAST_EDITOR,LAST_EDIT_TIME, 
-			SUBJECT_COLOR,SUMMARY, KEYWORD,IS_FW FROM notify WHERE NOTIFY_ID=${notifyId} -->
+	SELECT n.NOTIFY_ID,n.FROM_DEPT,n.FROM_ID,n.TO_ID,n.`SUBJECT`,
+		n.CONTENT, n.SEND_TIME,n.BEGIN_DATE,n.END_DATE,n.ATTACHMENT_ID,
+		n.ATTACHMENT_NAME,n.READERS,n.PRINT,n.PRIV_ID,n.USER_ID, n.TYPE_ID,
+		n.TOP,n.TOP_DAYS,n.FORMAT,n.PUBLISH,n.AUDITER,n.REASON, n.DOWNLOAD,
+		n.LAST_EDITOR,n.LAST_EDIT_TIME, n.SUBJECT_COLOR,n.SUMMARY,n.KEYWORD,S.CODE_NAME,
+		n.IS_FW,u.USER_ID,u.USER_NAME FROM notify n,`user` u,sys_code S WHERE
+		NOTIFY_ID=${notifyId}
+		AND n.FROM_ID=u.USER_ID  and s.PARENT_NO='Notify' and s.CODE_ORDER=n.TYPE_ID
 
-		SELECT n.NOTIFY_ID,n.FROM_DEPT,n.FROM_ID,n.TO_ID,n.`SUBJECT`,
+		<!-- SELECT n.NOTIFY_ID,n.FROM_DEPT,n.FROM_ID,n.TO_ID,n.`SUBJECT`,
 		n.CONTENT, n.SEND_TIME,n.BEGIN_DATE,n.END_DATE,n.ATTACHMENT_ID,
 		n.ATTACHMENT_NAME,n.READERS,n.PRINT,n.PRIV_ID,n.USER_ID, n.TYPE_ID,
 		n.TOP,n.TOP_DAYS,n.FORMAT,n.PUBLISH,n.AUDITER,n.REASON, n.DOWNLOAD,
 		n.LAST_EDITOR,n.LAST_EDIT_TIME, n.SUBJECT_COLOR,n.SUMMARY,n.KEYWORD,
 		n.IS_FW,u.USER_ID,u.USER_NAME FROM notify n,`user` u WHERE
 		NOTIFY_ID=${notifyId}
-		AND n.FROM_ID=u.USER_ID
+		AND n.FROM_ID=u.USER_ID -->
 	</select>
 
 	<!-- 保存公告信息 -->

@@ -434,6 +434,7 @@ public class EmailServiceImpl implements EmailService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<EmailBodyModel>
 	 */
+	@SuppressWarnings("all")
 	@Override
 	public ToJson<EmailBodyModel> selectInbox(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception {

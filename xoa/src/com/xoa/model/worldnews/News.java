@@ -162,32 +162,13 @@ public class News implements Serializable {
 	 private SysCode codes;
 	 
 	 private String newsDateTime;
+	 
+		private String userrange;
+		private String rolerange;
+		private String deprange;
 	
 	
-	public String getNewsDateTime() {
-		return newsDateTime;
-	}
 
-	public void setNewsDateTime(String newsDateTime) {
-		this.newsDateTime = newsDateTime;
-	}
-
-	public SysCode getCodes() {
-		return codes;
-	}
-
-	public void setCodes(SysCode codes) {
-		this.codes = codes;
-	}
-	private String  typeName;
-
-	public String getTypeName() {
-		return typeName;
-	}
-
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
-	}
 	/**
 	 * 发布者
 	 */
@@ -195,22 +176,7 @@ public class News implements Serializable {
 	
 	
 
-	public String getProviderName() {
-		return providerName;
-	}
-
-	public void setProviderName(String providerName) {
-		this.providerName = providerName;
-	}
-	private String depName;
-
-	public String getDepName() {
-		return depName;
-	}
-
-	public void setDepName(String depName) {
-		this.depName = depName;
-	}
+	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -718,6 +684,70 @@ public class News implements Serializable {
 	 */
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	public String getNewsDateTime() {
+		return newsDateTime;
+	}
+
+	public void setNewsDateTime(String newsDateTime) {
+		this.newsDateTime = newsDateTime;
+	}
+
+	public SysCode getCodes() {
+		return codes;
+	}
+
+	public void setCodes(SysCode codes) {
+		this.codes = codes;
+	}
+	private String  typeName;
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+	public String getProviderName() {
+		return providerName;
+	}
+
+	public void setProviderName(String providerName) {
+		this.providerName = providerName;
+	}
+	private String depName;
+
+	public String getDepName() {
+		return depName;
+	}
+
+	public void setDepName(String depName) {
+		this.depName = depName;
+	}
+
+	public String getUserrange() {
+		return userrange;
+	}
+
+	public void setUserrange(String userrange) {
+		this.userrange = userrange;
+	}
+
+	public String getRolerange() {
+		return rolerange;
+	}
+
+	public void setRolerange(String rolerange) {
+		this.rolerange = rolerange;
+	}
+
+	public String getDeprange() {
+		return deprange;
+	}
+
+	public void setDeprange(String deprange) {
+		this.deprange = deprange;
 	}
 
 

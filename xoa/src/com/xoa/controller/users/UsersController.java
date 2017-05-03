@@ -150,9 +150,10 @@ public class UsersController {
 	 * 参数说明:   @param useFlag  是否开启分页
 	 * 参数说明:   @return
 	 * @return     String  返回所有用户信息
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/getAlluser",produces = {"application/json;charset=UTF-8"})
-    public String getAllUser( Map<String, Object> maps,Integer page,
+    public ToJson<Users> getAllUser( Map<String, Object> maps,Integer page,
 			Integer pageSize, boolean useFlag) {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
@@ -164,9 +165,9 @@ public class UsersController {
 			json.setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}
-        return JSON.toJSONStringWithDateFormat(json,"yyyy-MM-dd HH:mm:ss");
+        return json;
     }
-	**/
+	
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午6:53:43
@@ -244,10 +245,8 @@ public class UsersController {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");	
-			System.out.println("----------------");
-			System.out.println(search);
-			System.out.println("----------------");
+			String search=new String(request.getParameter("search").getBytes("ISO-8859-1"),"UTF-8");				
+			//System.out.println(search);
 			//String search=URLEncoder.encode(request.getParameter("search"),"UTF-8"); 
 			maps=new HashMap<String, Object>();
 			maps.put("userName", search);

@@ -1,5 +1,6 @@
 package com.xoa.dao.common;
 
+import java.util.List;
 import java.util.Map;
 
 import com.xoa.model.common.SysCode;
@@ -21,9 +22,5 @@ public interface SysCodeMapper {
      * 参数说明:   @return
      * @return    String
      */
-    public SysCode getSysCode(String codeOrder);
-    
-    public SysCode getSysCode1(String codeNo);
-    
-    public SysCode getSysCodeName(Map<String, Object> maps);
+    public List<SysCode> getSysCode(String parentNo);
 }

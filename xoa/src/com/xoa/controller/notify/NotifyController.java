@@ -23,11 +23,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.notify.Notify;
+import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
 
 /**
@@ -165,10 +167,10 @@ public class NotifyController {
 	  maps.put("beginDate", beginDate);
 	  maps.put("endDate", endDate);
 	  ToJson<Notify> returnReslt=null;
-	  String name=(String) request.getSession().getAttribute("userId");
+	  Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());
 	  try {
 		  if (read.equals("0")) {
-				ToJson<Notify> tojson= notifyService.unreadNotify(maps, page, pageSize, useFlag, name);
+				ToJson<Notify> tojson= notifyService.unreadNotify(maps, page, pageSize, useFlag, name.getUserId());
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg("ok");
 					
@@ -177,7 +179,7 @@ public class NotifyController {
 				}
 				returnReslt=tojson;
 			}else if (read.equals("1")) {//已读
-				ToJson<Notify> tojson= notifyService.readNotify(maps, page, pageSize, useFlag, name);
+				ToJson<Notify> tojson= notifyService.readNotify(maps, page, pageSize, useFlag, name.getUserId());
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg("ok");
 					
@@ -188,7 +190,7 @@ public class NotifyController {
 			}
 				else 
 				{
-				ToJson<Notify> tojson= notifyService.selectNotify(maps, page, pageSize, useFlag, name);
+				ToJson<Notify> tojson= notifyService.selectNotify(maps, page, pageSize, useFlag, name.getUserId());
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg("ok");
 					
@@ -272,7 +274,8 @@ public class NotifyController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
 		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
-		String name=(String) request.getSession().getAttribute("userId");
+		//String name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+		String name="www";
 		loger.debug("transfersID"+notifyId);
 	try {
 		    Notify notify=notifyService.queryById(maps, 1, 5, false, name);

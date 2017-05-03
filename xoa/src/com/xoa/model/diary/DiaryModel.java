@@ -18,7 +18,17 @@ public class DiaryModel {
      * 用户ID
      */
     private String userId;
-   /**
+    /**
+     * 用户name
+     */
+    private String userName;
+   public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+/**
     * 日志日期  '0000-00-00'
     */
     private String diaDate;
@@ -70,8 +80,21 @@ public class DiaryModel {
      * 阅读人员ID串
      */
     private String readers;
-
     /**
+     * 标识
+     */
+    private String postType;
+    
+    
+    //标识发送请求方式
+    public String getPostType() {
+		return postType;
+	}
+	public void setPostType(String postType) {
+		this.postType = postType;
+	}
+	//标识发送请求方式
+	/**
      * 
      * 创建作者:   杨 胜
      * 创建日期:   2017-4-19 上午10:36:20

@@ -17,7 +17,7 @@
 	<!-- mysql -->
 	<bean id="xoa1001" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
 		destroy-method="close">
-		<property name="driverClass" value="${driverClassName1001}" />
+		<property name="driverClass" value="${driverClassName}" />
 		<property name="jdbcUrl" value="${url1001}" />
 		<property name="user" value="${uname1001}" />
 		<property name="password" value="${password1001}" />
@@ -44,7 +44,7 @@
     <!-- mysql -->
     <bean id="xoa1002" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
-        <property name="driverClass" value="${driverClassName1002}" />
+        <property name="driverClass" value="${driverClassName}" />
         <property name="jdbcUrl" value="${url1002}" />
         <property name="user" value="${uname1002}" />
         <property name="password" value="${password1002}" />
@@ -61,7 +61,7 @@
     
       <bean id="xoa1003" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
-        <property name="driverClass" value="${driverClassName1003}" />
+        <property name="driverClass" value="${driverClassName}" />
         <property name="jdbcUrl" value="${url1003}" />
         <property name="user" value="${uname1003}" />
         <property name="password" value="${password1003}" />
@@ -78,7 +78,7 @@
 
 <bean id="xoa1004" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
-        <property name="driverClass" value="${driverClassName1004}" />
+        <property name="driverClass" value="${driverClassName}" />
         <property name="jdbcUrl" value="${url1004}" />
         <property name="user" value="${uname1004}" />
         <property name="password" value="${password1004}" />
@@ -95,7 +95,7 @@
     
     <bean id="xoa1005" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
-        <property name="driverClass" value="${driverClassName1005}" />
+        <property name="driverClass" value="${driverClassName}" />
         <property name="jdbcUrl" value="${url1005}" />
         <property name="user" value="${uname1005}" />
         <property name="password" value="${password1005}" />

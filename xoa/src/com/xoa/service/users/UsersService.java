@@ -153,11 +153,21 @@ public interface UsersService {
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月21日 上午11:00:05
-	 * 方法介绍:   根据uid串获取用户姓名
+	 * 方法介绍:   根据userid串获取用户姓名
 	 * 参数说明:   @param userIds 用户userid串
 	 * 参数说明:   @return
 	 * @return     List<String>  返回用户姓名集合
 	 */
 	@DynDatasource
 	public String getUserNameById(String userIds);
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月3日 下午12:48:12
+	 * 方法介绍:   根据uid串获取用户姓名
+	 * 参数说明:   @param uid 用户uid串
+	 * 参数说明:   @return
+	 * @return     String 用户姓名串
+	 */
+	@DynDatasource
+	public String findUsersByuid(int... uid);
 }

@@ -21,12 +21,12 @@ public interface UsersPrivService {
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午6:31:24
 	 * 方法介绍:   根据角色编号数组获取角色
-	 * 参数说明:   @param priv_id_str
+	 * 参数说明:   @param privId
 	 * 参数说明:   @return
-	 * @return     JSONObject
+	 * @return     String
 	 */
 	@DynDatasource
-	public JSONObject getPrivNameById(int... priv_id_str);
+	public String getPrivNameById(int... privId);
 	
 	/**
 	 * 创建作者:   张龙飞

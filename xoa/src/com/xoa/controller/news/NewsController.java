@@ -2,11 +2,13 @@ package com.xoa.controller.news;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.email.EmailBodyModel;
+import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
+import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.common.wrapper.BaseWrapper;
 import com.xoa.util.dataSource.ContextHolder;
 
@@ -120,7 +122,7 @@ public class NewsController {
 				"loginDateSouse"));
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("format", format);
-		   if (typeId.equals("0")) {
+		   if ("0".equals(typeId)) {
 		        typeId=null;
 	     }else {
 	    	 maps.put("typeId", typeId);
@@ -201,13 +203,13 @@ public class NewsController {
 		maps.put("publish", publish);
 		maps.put("clickCount", clickCount);
 		maps.put("click", click);
-		String name = (String) request.getSession().getAttribute("byname");
+		Users name = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users());
 		ToJson<News> returnReslt = new ToJson(1,"");
 		L.a("sasasasasa"+subject);
 		try {
 			 if (read.equals("0")) {
 				ToJson<News> tojson= newService.unreadNews(maps, page, pageSize,
-						useFlag, name);
+						useFlag, name.getUserId());
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg(ok);
 					returnReslt = tojson;
@@ -216,7 +218,7 @@ public class NewsController {
 				}
 			}else if (read.equals("1")) {//已读
 				ToJson<News> tojson= newService.readNews(maps, page, pageSize,
-						useFlag, name);
+						useFlag, name.getUserId());
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg(ok);
 					returnReslt = tojson;
@@ -226,7 +228,7 @@ public class NewsController {
 			}
 				else 
 				{
-				ToJson<News> tojson= newService.selectNews(maps, page, pageSize,useFlag, name);
+				ToJson<News> tojson= newService.selectNews(maps, page, pageSize,useFlag, name.getUserId());
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg(ok);
 					returnReslt =tojson;
@@ -519,9 +521,9 @@ public class NewsController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);
 		ToJson<News> toJson=new ToJson<News>(0, "");
-		String name =(String) request.getSession().getAttribute("byname");
+		Users name = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users());
 	try {
-			News news=newService.queryById(maps, 1, 5, false, name);
+			News news=newService.queryById(maps, 1, 5, false, name.getUserId());
 			toJson.setMsg(ok);
 			toJson.setObject(news);
 			return toJson;

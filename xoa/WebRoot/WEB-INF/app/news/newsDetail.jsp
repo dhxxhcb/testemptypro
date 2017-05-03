@@ -16,7 +16,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			body{padding: 0;margin: 0;font-family: "微软雅黑";width: 100%;}
-			.detailsContent{width: 100%;overflow: hidden;background-color: #f6f7f9;}
+			/* .detailsContent{width: 100%;overflow: hidden;background-color: #f6f7f9;} */
+			.detailsContent{width: 100%;overflow: hidden;}
 			.detailsContent .title{width: 100%;text-align: center;height: 60px;line-height: 60px;color: #2a588c;font-size: 25px;font-weight: bold;}
 			.infor{width: 100%;overflow: hidden;height: 40px;background-color: #d3e7fa;}
 			.infor ul{list-style: none;overflow: hidden;float: right;margin-top: 10px;}
@@ -46,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var data1=rsp.object;
 							var str='';
 							$('.title').text(data1.subject); 
-							str='<li><div style="display: inline-block; position: relative;top: -4px">发布部门：</div><div class="spanbreak" title="'+data1.depName+'">'+data1.depName+'</div></li><li><span>发布人：</span><span>'+data1.providerName+'</span></li><li><span>发布时间：</span><span>'+data1.newsDateTime+'</span></li>';
+							str='<li><div style="display: inline-block; position: relative;top: -4px"><fmt:message code="news.th.postdept" />：</div><div class="spanbreak" title="'+data1.deprange+'">'+data1.deprange+'</div></li><li><span><fmt:message code="notice.th.publisher" />：</span><span>'+data1.providerName+'</span></li><li><span><fmt:message code="notice.th.PostedTime" />：</span><span>'+data1.newsDateTime+'</span></li>';
 							$('ul').append(str);
 							$('.divTxt').append('<p>'+data1.content+'</p>');
 						}

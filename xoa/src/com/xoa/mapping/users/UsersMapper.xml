@@ -174,13 +174,13 @@
 		 d.DEPT_NAME as deptName from user u
 		,department d  where  u.DEPT_ID= d.DEPT_ID 
         <if test="userName != null and userName !=''">
-			and ( u.USER_NAME = #{userName}
+			and  u.USER_NAME like CONCAT(CONCAT('%', #{userName}), '%')
 		</if> 
        <if test="userPrivName != null and userPrivName !=''">
-			or u.USER_PRIV_NAME = #{userPrivName}
+			or u.USER_PRIV_NAME like CONCAT(CONCAT('%', #{userPrivName}), '%')
 		</if> 
         <if test="deptName != null and deptName !=''">
-			or d.DEPT_NAME = #{deptName} )
+			or d.DEPT_NAME like CONCAT(CONCAT('%', #{deptName}), '%')
 		</if> 
 	</select>
 	<select id="getUserAndDept" parameterType="java.lang.Integer"
@@ -197,7 +197,7 @@
 		from user u,department d,sys_para s WHERE
 		u.USER_ID= #{byname} and u.DEPT_ID=d.DEPT_ID and s.PARA_NAME='IM_WINDOW_CAPTION'
 	</select>
-	<select id="getUsernameById" resultMap="UserResultMap">
+	<select id="getUsernameById" resultType="java.lang.String">
 		select USER_NAME FROM user
 		WHERE UID= #{uid}
 	</select>

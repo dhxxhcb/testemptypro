@@ -8,17 +8,31 @@ import com.xoa.model.diary.DiaryModel;
 
 public interface DiaryModelMapper {
 
-	int saveDiary(DiaryModel diaryModel);
 
-	int updateDiary(DiaryModel diaryModel);
 
-	List<DiaryModel> getDiarySelf(Map diaryModel);
+	List<DiaryModel> getDiarySelf(Map<String, Object> diaryMap);
 
-	int getDiaryCount();
 
-	int getDiarySelfLess(Map<String, Object> tempNo);
 
 	List<DiaryModel> getDiaryList(Map<String, Object> diaryMap);
 
 	List<DiaryModel> getDiaryOtherList(Map<String, Object> diaryMap);
+
+
+	DiaryModel getDiaryByDiaId(DiaryModel diaryModel);
+
+
+
+	int updateDiary(DiaryModel diaryModel);
+
+
+
+	int saveDiary(DiaryModel diaryModel);
+
+
+
+	int updateReadersByDiaId(DiaryModel diaryModel);
+
+
+
 }

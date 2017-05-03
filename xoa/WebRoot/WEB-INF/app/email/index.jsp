@@ -25,6 +25,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/email/inbox.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.main_left .BTN:hover{background:#c5e9fb;}
+			.attachment a{text-decoration: none;}
+			.attachment a img{vertical-align: middle;}
+		</style>
 	</head>
 	<body>
 		<div class="page">
@@ -44,8 +49,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 						<div class="ul_show" style="display: block;">
 							<ul>
-								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/><fmt:message code="email.title.inbox" /><span>32</span></a></li>
-								<li id="drafts"><a href="javascript:;"><img src="../img/icon_drafts_07.png"/><fmt:message code="email.title.draftbox" /><span>2</span></a></li>
+								<li id="InBox" class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/><fmt:message code="email.title.inbox" /><span></span></a></li>
+								<li id="drafts"><a href="javascript:;"><img src="../img/icon_drafts_07.png"/><fmt:message code="email.title.draftbox" /><span></span></a></li>
 								<li id="hasBeenSend"><a href="javascript:;"><img src="../img/icon_sent_07.png"/><fmt:message code="email.title.sent" /></a></li>
 								<li id="wastebasket"><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/><fmt:message code="email.title.wastebasket" /></a></li>
 								<li class='liSearch'><a href="javascript:;"><img src="../img/icon_search_03.png"/><fmt:message code="email.title.querymail" /></a></li>
@@ -151,25 +156,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="main_right InBox">
 						
 							<table id="TAB" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-								<!-- <tr class="MAIN">
-									<td width="8%"><fmt:message code="email.th.main" />：</td>
-									<td width="72%">通达全新OA可选组件-知己者费用管控系统</td>
-									
-								</tr>
-								<tr class="SEND">
-									<td><fmt:message code="email.th.sender" />：</td>
-									<td>张兰</td>
-									
-								</tr>
-								<tr class="IN">
-									<td><fmt:message code="email.th.recipients" />：</td>
-									
-								</tr>
-								<tr class="DATE">
-									<td><fmt:message code="email.th.time" />：</td>
-									<td>2017年3月30日13:31（星期四）</td>
-									
-								</tr> -->
 								
 							</table>
 							<span class="span_hr">
@@ -268,13 +254,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</tr>
 								<tr class="SEND2">
 									<td><fmt:message code="email.th.recipients" />：</td>
-									<!-- <td>
-										<span><img src="../img/icon_read_3_07.png"/>李佳</span>
-										<span><img src="../img/icon_notread_1_03.png"/>王云</span>
-										<span><img src="../img/icon_read_3_07.png"/>王德</span>
-										<span><img src="../img/icon_notread_1_03.png"/>赵敏</span>
-										<span><img src="../img/icon_read_3_07.png"/>刘娜</span>
-									</td> -->
 									
 								</tr>
 								<tr class="DATE2">
@@ -292,31 +271,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="main_right wastebasket" style="display:none;">
 						
 							<table id="TAD" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-								<!-- <tr class="MAIN3">
-									<td width="8%"><fmt:message code="email.th.main" />：</td>
-									<td width="72%">通达全新OA可选组件-知己者费用管控系统</td>
-									
-								</tr>
-								<tr class="SEND3">
-									<td><fmt:message code="email.th.sender" />：</td>
-									<td>张兰</td>
-									
-								</tr>
-								<tr class="IN3">
-									<td><fmt:message code="email.th.recipients" />：</td>
-								</tr>
-								<tr class="DATE3">
-									<td><fmt:message code="email.th.time" />：</td>
-									<td>2017年3月30日13:31（星期四）</td>
-									
-								</tr>
-								<tr>
-									<td>附&nbsp;&nbsp;&nbsp;件：</td>
-									<td>
-										<p>1个&nbsp;<img src="../img/icon_accessory_03.png"/><span>智能OA移动产品部3月23日任务工单.rar&nbsp;</span>(19.81KB)</p>
-									</td>
-									
-								</tr> -->
+								
 							</table>
 	 							<div class="article2">
 									
@@ -346,7 +301,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//与写邮件页面互调
 				$('.d_im img').click(function(){
-					var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+					var Ifrmae='<div class="div_iframe" style="width: 85%;overflow: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
 	    			//var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
 	    			$('.up_page_right').css('display','none');
 	    			$('.page').append(Ifrmae);
@@ -354,81 +309,70 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		$('.Inbox').click(function(){
 	    			$('.page').find('.div_iframe').remove();
 	    			$('.up_page_right').css('display','block');
-	    		})
+	    		});
 	    	
 	    		//页面初始化
 				
 				showAjax('inbox','#TAB','.article');
 			
-				$.extend
+				
 				
 				//查询邮件点击事件
 				$('.liSearch').click(function(){
 	    			var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="development" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
 	    			$('.up_page_right').css('display','none');
 	    			$('.page').append(Ifrmae);
-	    		})
+	    		});
 				
 				
 					//收件箱点击事件
 				$('#InBox').click(function(){
 					$('.InBox').css('display','block').siblings().css('display','none');
 					showAjax('inbox','#TAB','.article');
-				})
+				});
 				
-				
+				showAjax2('drafts');
 				//草稿箱点击事件
 				$('#drafts').click(function(){		
 						$('.drafts').css('display','block').siblings().css('display','none');
 						showAjax2('drafts');
 						
-				})
+				});
 				
 				//已发送点击事件
 				$('#hasBeenSend').click(function(){
 					
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
 					showAjax2("outbox");
-					init3('146');
 					
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
 						init3(nId);
 						
-					}) 
-				})
+					}); 
+				});
 				
 				//废纸篓点击事件
 				$('#wastebasket').click(function(){
-					//alert('123')
 					$('.wastebasket').css('display','block').siblings().css('display','none');
 					//showAjax("recycle")
-					showAjax('recycle','#TAD','.article2')
+					showAjax('recycle','#TAD','.article2');
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('id');
-						init(nId,'#TAD','.article2')
-					}) 
+						init(nId,'#TAD','.article2');
+					});
 					
-				})
-				
-			
-				
+				});
 				
 				 //详情点击事件
 				$('.main_left').on('click','.BTN',function(){
-					$('.BTN').removeClass('backing');
-					$(this).addClass('backing');
+					//$('.BTN').removeClass('backing');
+					$(this).addClass("backing").siblings("li").removeClass("backing");
 					var nId=$(this).find('input').attr('id');
 					init(nId,'#TAB','.article');
-				}) 
+				}); 
 				
-				//鼠标移入移出事件
-				$('.main_left').on('mouseover','.BTN',function(){
-					$(this).css('background-color','#c5e9fb');
-				})
-				$('.main_left').on('mouseout','.BTN',function(){
-					$(this).css('background-color','#fff');
-				})
+				
 			});
 			
 			
@@ -444,10 +388,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var data2=rsp.object;
 									var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 									var str='';
+									var stra='';
+									//alert(data2.attachmentName);
+									var arr=new Array();
+									arr=data2.attachmentName.split('*');
 									$(obj).find('tr').remove();
 									$(cName).find('p').remove();
 									$('.span_hr').find('p').find('span').eq(0).html('');
+									
+									//$('.attachment').append(stra);
 									if(data2.attachmentName!='' && data2.copyName!=''){
+										for(var i=0;i<(arr.length-1);i++){
+											stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
+										}
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
+									} else if(data2.attachmentName=='' && data2.copyName!=''){
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
+									} else if(data2.attachmentName!='' && data2.copyName ==''){
+										for(var i=0;i<(arr.length-1);i++){
+											stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
+										}
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
+									} else{
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
+									}
+									
+									/* if(data2.attachmentName!='' && data2.copyName!=''){
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>';
 									} else if(data2.attachmentName=='' && data2.copyName!=''){
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
@@ -455,7 +421,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td>'+data2.attachmentName+'</td></tr>';
 									} else{
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
-									}
+									} */
 									
 									$(obj).append(str);
 									$(cName).append('<p>'+data2.content+'</p>');
@@ -471,10 +437,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var data1={
 						"flag":flag,
 						"page":1,
-						"pageSize":10,
+						"pageSize":100,
 						"useFlag":true,
 						"userID":"admin"
-					}	
+					};	
 					
 					$.ajax({
 									type:'get',
@@ -484,6 +450,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									success:function(rsp){
 										var data1=rsp.obj;
 										var str='';
+										$('#InBox a span').text('');
+										$('#InBox a span').append(rsp.totleNum);
 										for(var i=0;i<data1.length;i++){
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 											//alert(data1[i].sendTime);
@@ -505,7 +473,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											
 										}
 										$('.befor').after(str);
-										
+										$('li.BTN').eq(0).addClass("backing");
 										var mId=$('li.BTN').eq(0).find('input').attr('id');
 										
 										init(mId,obj,cName);
@@ -518,10 +486,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var data={
 								"flag":flag,
 								"page":1,
-								"pageSize":10,
+								"pageSize":100,
 								"useFlag":true,
 								"userID":"admin"
-						}
+						};
 					
 						$.ajax({
 									type:'get',
@@ -531,6 +499,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									success:function(rsp){
 										var data1=rsp.obj;
 										var str='';
+										$('#drafts a span').text('');
+										$('#drafts a span').append(rsp.totleNum);
+										
 										for(var i=0;i<data1.length;i++){
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 												if(data1[i].attachmentId!=''){
@@ -542,6 +513,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											
 										}
 										$('.main_left ul .befor').after(str);
+										$('li.BTN').eq(0).addClass("backing");
+										var nID=$('li.BTN').eq(0).find('input').attr('nId');
+										init3(nID);
 										
 									}
 						});
@@ -561,9 +535,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										$('#TAC').find('tr').eq(2).find('td').eq(1).remove();
 										$('.article1').find('p').remove();
 										
-										$('#TAC').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>')
-										$('#TAC').find('tr').eq(1).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.toName+'</span></td>')
-										$('#TAC').find('tr').eq(2).append('<td>'+sendTime+'</td>')
+										$('#TAC').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>');
+										$('#TAC').find('tr').eq(1).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.toName+'</span></td>');
+										$('#TAC').find('tr').eq(2).append('<td>'+sendTime+'</td>');
 										$('.article1').append('<p>'+data2.content+'</p>');
 									}
 						});

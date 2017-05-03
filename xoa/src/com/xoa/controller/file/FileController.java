@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.HTML;
 
 import org.apache.log4j.Logger;
 import org.apache.shiro.web.session.HttpServletSession;
@@ -327,35 +328,70 @@ public class FileController {
 	 * @return   void
 	 */
 	@RequestMapping(value="/catalog")
-	public void showFiles(FileSortModel file,HttpServletResponse response,String postType) {
+	public void showFiles(FileSortModel file,HttpServletResponse response,String postType,HttpServletRequest request,String deptId,String userPriv) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
-		List<FileSortModel> fileList =null;
-		List<Object>  tatalList=new ArrayList<Object>();
+		List<FileSortModel> fileList =new LinkedList<FileSortModel>();
+		List<Object>  tatalList=new LinkedList<Object>();
+		List<FileContentModel>  fileConList=null;
+		Map<String,Object> map=new Hashtable<String, Object>();
+		map.put("userId", file.getUserId()==null?"":file.getUserId());
+		map.put("userPriv", userPriv==null?"":userPriv);
+		map.put("deptId", deptId==null?"":deptId);
 		int tempNo=file.getSortId();
 		//获取文件
-		List<FileContentModel>  fileConList=fileContentService.getFileConBySortid(tempNo);
-		
+		if(tempNo!=0){
+		fileConList=fileContentService.getFileConBySortid(tempNo);
+		}
 		if("1".equals(postType)){
 			for(FileContentModel fcm:fileConList){
 				fcm.setContent("");
 			}
 		}
-		System.out.println("----------fileConList------------"+fileConList.size());
 		//通过判断获取父文件夹或子文件夹
 		if(file.getSortId()==0){
-			System.out.println("----------getFileSortList------------");
 			FileSortModel fileChr=new FileSortModel();
 			fileChr.setSortParent(file.getSortId());
 			fileChr.setSortType(file.getSortType());
+		if(fileChr.getSortType()=="5"||"5".equals(fileChr.getSortType()))
+			{
 			fileList = fileSortService.getFileSortList(fileChr);
+			//利用迭代器删除集合中元素
+			Iterator<FileSortModel> iteratorChr=fileList.iterator();
+			 while(iteratorChr.hasNext()){
+						 FileSortModel fsm=iteratorChr.next();
+						//将权限字符串传到checkAll 返回为true时 有权限 为false时无权限
+						if(!this.checkAll(fsm.getUserId(),map)){
+							iteratorChr.remove();
+				      }
+			   }
+			}
+			 if(fileChr.getSortType()=="4"||"4".equals(fileChr.getSortType()))
+				{
+				fileChr.setUserId(file.getUserId());
+				fileList = fileSortService.getFileSortList(fileChr);
+			}
 		}else{
 			FileSortModel filePar=new FileSortModel();
 			filePar.setSortParent(file.getSortId());
 			filePar.setSortType(file.getSortType());
 			fileList = fileSortService.getFileSortList(filePar);
+			Iterator<FileSortModel> iteratorChr=fileList.iterator();
+			 while(iteratorChr.hasNext()){
+						 FileSortModel fsm=iteratorChr.next();
+						//将权限字符串传到checkAll 返回为true时 有权限 为false时无权限
+						if(!this.checkAll(fsm.getUserId(),map)){
+							iteratorChr.remove();
+				      }
+			   }
 		}
+		if(fileConList!=null){
 		tatalList.addAll(fileConList);
+		}
+		if(fileList!=null){
 		tatalList.addAll(fileList);
+		}
 		HtmlUtil.writerJson(response,tatalList);
 	}
 	/**
@@ -372,7 +408,7 @@ public class FileController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
-		System.out.println("parent:" + file.getSortParent());
+		file.setSortType("5");
 		List<FileSortModel> list = fileSortService.getFileSortList(file);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("parentList", list);
@@ -390,7 +426,7 @@ public class FileController {
 	 * @return     ModelAndView
 	 */
 	@RequestMapping("/add")
-	public ModelAndView fileAdd(FileSortModel file,HttpServletRequest request)
+	public ModelAndView fileAdd(FileSortModel file,HttpServletRequest request,HttpServletResponse response)
 			throws UnsupportedEncodingException {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
@@ -425,8 +461,8 @@ public class FileController {
 		}
 		//添加文件影响行
 		int resultSave = fileSortService.saveFileSort(file);
-		modelAndView = new ModelAndView("redirect:/file/shows", model);
-		return modelAndView;
+		HtmlUtil.writerJson(response, resultSave);
+		return null;
 	}
 	
 	/**
@@ -489,15 +525,12 @@ public class FileController {
 	 * @return   ModelAndView
 	 */
 	@RequestMapping("/update")
-	public ModelAndView fileUpdate(FileSortModel file,HttpServletRequest request) {
+	public void fileUpdate(FileSortModel file,HttpServletRequest request ,HttpServletResponse response) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		// "redirect:/showFile" "file/showFile"
 		//修改文件影响行
 		int resultUpdate = fileSortService.updateFileSort(file);
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("app/file/fileEdit");
-		return modelAndView;
+		HtmlUtil.writerJson(response,resultUpdate);
 	}
 
 	/**

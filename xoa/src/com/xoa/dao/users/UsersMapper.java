@@ -34,7 +34,7 @@ public interface UsersMapper {
 	 * 参数说明:   @return
 	 * @return     String  用户姓名
 	 */
-	public String getUsernameById(@Param("uid") int uid);
+	public String getUsernameById(int uid);
 	
 	/**
 	 * 创建作者:   张龙飞

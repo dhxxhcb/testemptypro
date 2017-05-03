@@ -28,6 +28,17 @@ public interface DepartmentService {
 	
 	/**
 	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月3日 上午11:39:25
+	 * 方法介绍:   根据部门id串获取部门名称串
+	 * 参数说明:   @param deptIds
+	 * 参数说明:   @return
+	 * @return     String 部门名称串
+	 */
+	@DynDatasource
+	public String getDpNameById(int... deptIds);
+	
+	/**
+	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:37:25
 	 * 方法介绍:   获取所有部门
 	 * 参数说明:   @return
@@ -131,5 +142,26 @@ public interface DepartmentService {
 	 */
 	@DynDatasource
 	public List<Department> getChDeptUser(int deptId);
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月2日 下午3:52:49
+	 * 方法介绍:   获取部门人员
+	 * 参数说明:   @param deptId 部门id
+	 * 参数说明:   @return
+	 * @return     List<Department> 返回部门信息
+	 */
+	@DynDatasource
+	public List<Department> getChDtUser(int deptId);
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月3日 上午9:04:34
+	 * 方法介绍:   获取部门下人数
+	 * 参数说明:   @param deptNo 部门排序号
+	 * 参数说明:   @return
+	 * @return     int 数量
+	 */
+	@DynDatasource
+	public int getCountChDeptUser(String deptNo);
 
 }

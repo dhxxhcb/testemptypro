@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -21,8 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 </head>
 <body>
-	<a>文档中心</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	<a>知识地图</a>&nbsp;&nbsp;&nbsp;
-	<a>学习中心</a>
+	<a><fmt:message code="file.th.filecenter"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a><fmt:message code="file.th.msp"/></a>&nbsp;&nbsp;&nbsp;
+	<a><fmt:message code="file.th.learn"/></a>
 </body>
 </html>

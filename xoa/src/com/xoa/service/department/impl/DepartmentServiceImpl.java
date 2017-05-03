@@ -57,6 +57,34 @@ public class DepartmentServiceImpl implements DepartmentService {
 		     list.add(sb.toString());
 				return list;		
 	}
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月3日 上午11:39:25
+	 * 方法介绍:   根据部门id串获取部门名称串
+	 * 参数说明:   @param deptIds
+	 * 参数说明:   @return
+	 * @return     String 部门名称串
+	 */
+	@Override
+	public String getDpNameById(int... deptID){
+		//定义用户拼接部门名称的字符串
+		StringBuffer sb=new StringBuffer();
+		  for (int i = 0; i < deptID.length; i++) { 			  
+			     if(deptID.length==1){
+			            String deptName=departmentMapper.getDeptNameById(deptID[i]);
+			            return deptName;
+			            }else{
+			            String deptName=departmentMapper.getDeptNameById(deptID[i]);
+			            if(i<deptID.length-1){
+			            sb.append(deptName).append(",");
+			            }else{
+			            sb.append(deptName);
+			            } 
+			            } 
+			        }  
+				return sb.toString();		
+	}
 
 	
 	 /**
@@ -196,7 +224,20 @@ public class DepartmentServiceImpl implements DepartmentService {
 //			return list;
 //		}		
 	}
-
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月2日 下午3:52:49
+	 * 方法介绍:   获取部门人员
+	 * 参数说明:   @param deptId 部门id
+	 * 参数说明:   @return
+	 * @return     List<Department> 返回部门信息
+	 */
+	public List<Department> getChDtUser(int deptId){
+		List<Department> list=departmentMapper.getChDeptUser(deptId);
+		
+		return list;
+		
+	}
 
 	/**
 	 * 创建作者:   张龙飞
@@ -227,10 +268,18 @@ public class DepartmentServiceImpl implements DepartmentService {
 		}
 		return list;
 	}
-	
-	public void downFile(HttpServletRequest request,
-			HttpServletResponse response) {
-		
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月3日 上午9:04:34
+	 * 方法介绍:   获取部门下人数
+	 * 参数说明:   @param deptNo 部门排序号
+	 * 参数说明:   @return
+	 * @return     int 数量
+	 */
+	@Override
+	public int getCountChDeptUser(String deptNo) {
+		int count=departmentMapper.getCountChDeptUser(deptNo);
+		return count;
 	}
 	
 

@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -43,9 +46,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
  <div class="lunbo">
 	 <ul id="status_text">					
-		<li>心通达OA</li>
-		<li>中国协同OA软件领跑者</li>
-		<li>体验科技关怀   共创美好未来</li>
+		<li><fmt:message code="title.login.txt" /></li>
+		<li><fmt:message code="title.login.tex" /></li>
+		<li><fmt:message code="title.login.text" /></li>
 	</ul>
  </div>
    

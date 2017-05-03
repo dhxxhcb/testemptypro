@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.xoa.dao.common.SyslogMapper;
 import com.xoa.dao.users.UsersMapper;
@@ -248,6 +247,36 @@ public class UsersServiceImpl implements UsersService {
 	            }
 			}
 		}
+		}
+		return sb.toString();
+	}
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年4月26日 下午5:20:05
+	 * 方法介绍:   根据uId串获取用户姓名
+	 * 参数说明:   @param uids  用户uid串
+	 * 参数说明:   @return
+	 * @return     String  返回用户姓名串
+	 */
+	@Override
+	public String findUsersByuid(int... uid) {
+		if(uid==null){
+			return null;
+		}
+		//定义用于拼接用户姓名的字符串
+		StringBuffer sb=new StringBuffer();
+		for(int i=0;i<uid.length;i++){
+			if(uid.length==1){
+				String userName=usersMapper.getUsernameById(uid[i]);
+				return userName;
+			}else{
+				String userName=usersMapper.getUsernameById(uid[i]);
+				if(i<uid.length-1){
+					sb.append(userName).append(",");
+				}else{
+					sb.append(userName);
+				}
+			}
 		}
 		return sb.toString();
 	}

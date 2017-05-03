@@ -3,11 +3,13 @@ package com.xoa.controller.email;
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.email.EmailModel;
+import com.xoa.model.users.Users;
 import com.xoa.service.email.EmailService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
 import com.xoa.util.common.StringUtils;
+import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
 
 import org.apache.log4j.Logger;
@@ -248,7 +250,8 @@ public class EmailController {
 		String userFrom = ServletRequestUtils.getStringParameter(request,
 				"userID");
 		if(StringUtils.checkNull(userFrom)){
-			userId = (String)request.getSession().getAttribute("userId");
+//			userId = (String)request.getSession().getAttribute("userId");
+			userId = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users()).getUserId();
 		}else{
 			userId = userFrom.trim();
 		}

@@ -316,6 +316,9 @@ public class DepartmentController {
 			request.setCharacterEncoding("UTF-8");
 			int deptId=Integer.parseInt(new String(request.getParameter("deptId").getBytes("ISO-8859-1"),"UTF-8"));
 			List<Department> list=departmentService.getChDeptUser(deptId);
+			Department dep=departmentService.getDeptById(deptId);
+			int count =departmentService.getCountChDeptUser(dep.getDeptNo());
+			json.setTotleNum(count);
             json.setObj(list);
             json.setMsg("OK");
             json.setFlag(0);

@@ -1,4 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
+<%
+ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,39 +48,42 @@ table tr td input:not (#fh ){
 <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
 
+
     function closeCurrentWindow(){
  	  var sortNo=$('#sortno').val();
       var sortName=$('#sortname').val();
       var sortid=$('#sortid').val();
-         $.ajax({
+      $.ajax({
                 url: "${pageContext.request.contextPath }/file/update",
                 Type: "POST",
                 data:{"sortNo":sortNo,"sortName":sortName,"sortId":sortid},
                 success:function (data){
+                if(data=="1"){
+                  window.opener.location.href = window.opener.location.href;     
+ 		          if (window.opener.progressWindow)     
+ 		          {         
+ 		            window.opener.progressWindow.close();     
+ 		          }      
+ 		           window.close();
+                  } 
                 }
            }); 
- 		//window.opener.location.href = window.opener.location.href;     
- 		if (window.opener.progressWindow)     
- 		{         
- 		window.opener.progressWindow.close();     
- 		}     
- 		window.close(); 
  	} 
 </script>
 </head>
 <body>
-	<h1>文件夹编辑</h1>
+	<h1><fmt:message code="file.th.fileEdit"/></h1>
 	<form id="form1">
 		<table border="1" cellspacing="0" cellpadding="0"
 			style="border-collapse: collapse;" width="50%">
 			<tr>
-				<td width="30%">排序号:</td>
+				<td width="30%"><fmt:message code="file.th.Sort"/>:</td>
 				<td width="70%"><input id="sortno" name="sortNo" type="text"
-					value="${sortno }" />
+					value="${sortno}" />
 				</td>
 			</tr>
 			<tr>
-				<td width="30%">文件夹名称：</td>
+				<td width="30%"><fmt:message code="file.th.filename"/>：</td>
 				<td width="70%"><input id="sortname" name="sortName"
 					type="text" value="${sortname }" />
 				</td>

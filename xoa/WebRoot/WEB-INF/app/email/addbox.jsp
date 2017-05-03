@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
 		 <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/email/writeMail.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/ajaxupload.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
@@ -69,17 +70,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td width="10%">
 					<p><fmt:message code="email.th.content" />：</p>
-					<p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p>
-					<p class="Color"><fmt:message code="global.lang.empty" /></p>
+					<!-- <p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p> -->
+					<p class="Color"><a href="javascript:;" onclick="empty()"><fmt:message code="global.lang.empty" /></a></p>
 				</td>
 				<td width="89%">
 					<script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
 				</td>
 			</tr>
+			<tr class="Attachment" style="display:none;width:100%;">
+				<td width="10%">附件：</td>
+				<td width="89%"   class="files" id="files_txt"></td>
+			</tr>
 			<tr>
 				<td><fmt:message code="email.th.filechose" />：</td>
-				<td>
-					<fmt:message code="email.th.addfile" />
+				<td class="files">
+					<!-- <fmt:message code="email.th.addfile" /> -->
+					<form  action="upload?module=email" method="post" enctype="multipart/form-data" id="uploadform" >
+						 <input type="file" name="file" />
+					</form>
+					<!-- <input type="button" name="button" id="btn3" value="请选择文件"> -->
+						<button id="addLabProdPic">选择图片</button>
 				</td>
 			</tr>
 			<tr>
@@ -92,30 +102,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</td>
 			</tr>
 		</table>
-		
+		<script type="text/javascript">
+$(function(){
+	//上传图片
+	new AjaxUpload('#addLabProdPic', {
+		action: '<%=path%>/upload?module=email',
+		name: 'file',
+		responseType: 'json',
+		onSubmit : function(file , ext){
+			if (true){
+				this.setData({
+					'picName': file
+				});
+			} 
+		},
+		onComplete : function(file,response){
+			if(response.error) {
+				alert(response.error);
+				return;
+			}
+			$('#viewImg').attr('src',response.picUrl);
+		}		
+	});
+})
+</script>
 		
 		<script type="text/javascript">
 			user = '';
 			user_id='senduser';
        		 var ue = UE.getEditor('container');
+       		 
        		 //获取输入框内容
        		 $(function(){
        		 	$("#selectUser").on("click",function(){
        		 		$.popWindow("../common/selectUser");
        		 		 
        		 	});
+       		 	
+       		 	//点击立即发送按钮
        		 	$("#btn1").on("click",function(){
 					
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
+					var html = ue.getContent();
 					var val=$('#txt').val();
-
+				
 					 var data={
 					 	'fromId':'admin',
 					 	'toId2': 'admin,',
 						'subject':val,
-						'content':txt
-					}
+						'content':html
+					};
 					
 					$.ajax({
 						 type:'post',    
@@ -124,13 +161,84 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 data:data,
 						 success:function(){
 							alert('发送成功');
-							$('.page').find('.div_iframe').remove();
-							$('.up_page_right').css('display','block');
+							
 						}
-					})
-				}) 
-       		 })
+					});
+				});
+				
+				//点击保存到草稿箱按钮
+				$("#btn2").on("click",function(){
+					var userId=$('textarea[name="txt"]').attr('user_id');
+					var txt = ue.getContentTxt();
+					var html = ue.getContent();
+					var val=$('#txt').val();
+				
+					 var data={
+					 	'fromId':'admin',
+					 	'toId2': 'admin,',
+						'subject':val,
+						'content':html
+					};
+					$.ajax({
+						 type:'post',    
+						 url:'saveEmail',
+						 dataType:'json',
+						 data:data,
+						 success:function(){
+							alert('已保存到草稿箱');
+							
+						}
+					});
+				});
+				
+				$('#btn3').on("click",function(){
+					$('.Attachment').show();
+					//$(this).parent().parent().before(strc);
+					$('#files').trigger('click');
+				})
+				
+				$('#files').change(function(){
+					alert(2);
+					UploadAttachments ();
+				})
+				 
+       		 });
+       		 
+       		 
+       		 
+       		 function UploadAttachments (){   
+       		 	
+       		 	var file = $('#uploadform').serialize();    
+       		 	console.log(file); 		 
+       		 	$.ajax({
+       		 		type:'post',
+       		 		url:'<%=path%>/upload?module=email',
+       		 		data:file, 
+       		 		dataType:'text',
+       		 		success:function(rsp){
+       		 			//var data=rsp.obj;
+       		 			console.log(rsp)
+       		 			/* var str='';
+       		 			alert(data[0].attachName)
+       		 			for(var i=0;i<data.length;i++){
+       		 				str+='<div><p>'+data[i].attachName+'</p></div>';
+       		 			} */
+       		 			
+       		 			$('#btn3').before(str);
+       		 		},
+       		 		error:function(XMLHttpRequest, textStatus, errorThrown){
+       		 			 alert(XMLHttpRequest.status);
+						 alert(XMLHttpRequest.readyState);
+						 alert(textStatus);
+       		 		}
+       		 		
+       		 	})
+       		 }
        		
+       		function empty(){
+       			//alert(txt)
+       			//$('#container').text().empty();
+       		}
     	</script>
 	</body>
 </html>

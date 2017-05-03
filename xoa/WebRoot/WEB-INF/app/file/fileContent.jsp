@@ -1,4 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -87,21 +90,21 @@ function openWindow(sHref,strWidth,strHeight) {
         <table class="w">
             <thead>
             <tr>
-                <td class="th">文件 名称</td>
-                <td class="th">附件</td>
+                <td class="th"><fmt:message code="file.th.name"/></td>
+                <td class="th"><fmt:message code="email.th.file"/></td>
                 <td class="th" style="position: relative">
-                    发布时间
+                    <fmt:message code="notice.th.PostedTime"/>
                     <img style="position: absolute;margin-left:9px;cursor: pointer;" src="img/file/cabinet05.png" alt=""/>
                     <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
                          src="img/file/cabinet06.png " alt=""/>
                 </td>
                 <td class="th" style="position: relative">
-                    排序号
+                    <fmt:message code="file.th.Sort"/>
                     <img style="position: absolute;margin-left:9px;cursor: pointer;" src="img/file/cabinet05.png" alt=""/>
                     <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
                          src="img/file/cabinet06.png " alt=""/>
                 </td>
-                <td class="th">操作</td>
+                <td class="th"><fmt:message code="notice.th.operation"/></td>
             </tr>
             </thead>
             <tbody id="file_Tachr">
@@ -113,7 +116,7 @@ function openWindow(sHref,strWidth,strHeight) {
 <div class="bottom w">
     <div>
         <input type="checkbox" name="" value="" >
-        全选
+        <fmt:message code="notice.th.allchose"/>
 
     </div>
     <div class="boto">

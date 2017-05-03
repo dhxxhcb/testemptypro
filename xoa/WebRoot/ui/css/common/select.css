@@ -243,7 +243,7 @@ div.main-block div.right div.block-right div.block-right-item span.dept{
    padding-left:20px;
 }
 div.main-block div.right div.block-right div.active span.name{
-   background:url('../10/images/dropdown_menu_checked.png') 5px center no-repeat;
+   background:url('../../img/common/dropdown_menu_checked.png') 5px center no-repeat;
 }
 div.main-block div.right div.block-right div.block-right-item span.status{
    display:inline;
