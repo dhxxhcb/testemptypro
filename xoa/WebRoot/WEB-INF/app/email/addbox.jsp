@@ -31,15 +31,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="inPole">
 						<textarea name="txt" id="senduser" user_id='admin' value="admin" disabled></textarea>
 						<span class="add_img">
-							<span class="addImg">
+							<!-- <span class="addImg">
 								<img src="../img/org_select.png" class="addIcon"/>
-							</span>
+							</span> -->
 							<a href="javascript:;" id="selectUser" class="Add "><fmt:message code="global.lang.add" /></a>
 						</span>
 						<span class="add_img">
-							<span class="addImg">
+							<!-- <span class="addImg">
 								<img src="../img/org_select2.png" class="clearIcon"/>
-							</span>
+							</span> -->
 							<a href="javascript:;" class="clear"><fmt:message code="notice.th.delete1" /></a>
 						</span>
 						<!--<input type="checkbox" name="check" id="check" value="向此人发送外部邮件" />
