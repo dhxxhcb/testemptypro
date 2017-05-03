@@ -35,7 +35,7 @@ html,body{
     font-size: 10pt;
 }
 .active{
-    background: #2674dc;
+	background: #146fd0;
     border-radius: 10px;
     color: #fff;
 }
@@ -63,7 +63,35 @@ ul.total{
 }
 .total .contain{
 	float:left;
-} 
+}
+.every_logo{
+    width: 28%;
+    height: 43%;
+    float: left;
+    margin-top: 1%;
+    margin-left: 3%;
+}
+.every_logo img{
+	width: 65%;
+    height: 51px;
+    margin-left: 21%;
+     margin-top: 16%;
+}
+.every_logo h2{
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    line-height: 20px;
+}
+.all_mail li{
+	width:100%;
+	height:30px;
+}
+.e_img,.e_name,.e_title,.e_time{
+	float:left;
+	width:25%;
+	height:100%;
+}
 .s_container{
 	height: calc(100% - 32px);
 	width:100%;
@@ -85,10 +113,10 @@ ul.total{
 .s_container ul li:last-child{
 	border:0;
 }
-.s_container ul li span{
+/* .s_container ul li span{
 	display:inline-block;
 	position: absolute;
-}
+} */
 .s_container ul li span img{
 	height: 30px;
     width: 30px;
@@ -114,11 +142,18 @@ ul.total{
 .s_head span{
 	cursor: pointer;
 }
-.actives{
+/* .actives{
 	background: #146fd0;
-}
-.model,.more{
+} */
+/* .model,.more{
 	
+} */
+.e_mail li{
+	    width: 100%;
+    height: 30px;
+}
+.s_head li{
+	 cursor:pointer;
 }
 .model{
 	margin-left: 10px;
@@ -134,30 +169,32 @@ ul.total{
     margin: 4px;
     padding: 0;
 }
+.mail_title,.model,.more{
+	float:left;
+}
+.mail_title li{
+	float:left;
+}
 .e_title{
-	position: absolute;
-    left: 90px;
-	width: calc(100% - 190px);
-    height: 100%;
-    line-height: 100%;
+
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 .e_time{
-	position: absolute;
+	/* position: absolute;
     right: 10px;
 	height: 100%;
     width: 105px;
-    text-align: right;
+    text-align: right; */
     color: #898989;
 }
 .e_img{
-	position: absolute;
+	/* position: absolute;
     top: 0;
     left: 10px;
     bottom: 0;
-    margin: auto;
+    margin: auto; */
     height: 100%;
     width: 30px;
 }

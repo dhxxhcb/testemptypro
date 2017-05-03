@@ -14,10 +14,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title></title>
     <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/base/base.js"></script>
 	<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 	<link rel="stylesheet" type="text/css" href="css/main/theme1/m_reset.css"/>
 	<link rel="stylesheet" type="text/css" href="css/main/theme1/cont.css"/>
+	
 	<style>
 		@import url(m_reset.css);
 	</style>
@@ -40,7 +42,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span  class="model">常用功能</span><span class="more"><a>管理</a></span>
 					</div>
 					<div class="s_container">
-						<img style="width:100%;height:100%" src="img/spirit/menu/changyong.png">
+						<div class="every_logo" menu_tid="0116"><img src="img/spirit/menu/notice.png"><h2>公告</h2></div>
+						<div class="every_logo" menu_tid="0101"><img src="img/spirit/menu/mail.png"><h2>邮件</h2></div>
+						<div class="every_logo" menu_tid="0124"><img src="img/spirit/menu/data.png"><h2>日程</h2></div>
+						<div class="every_logo" menu_tid="2013"><img src="img/spirit/menu/news.png"><h2>新闻</h2></div>
+						<div class="every_logo" menu_tid="3001"><img src="img/spirit/menu/nor.png"><h2>文件柜</h2></div>
+						<div class="every_logo" menu_tid="0128"><img src="img/spirit/menu/daily.png"><h2>日志</h2></div>
 					</div>
 				</li>
 				<li class="contain middle">
@@ -104,15 +111,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 		</div>
     </div>
-  
+ 
 </body>
 	<script>
-		var lh=$(".s_container ul li").height();
-		$(".s_container ul li span").css("line-height",lh + 'px');
-		$(window).resize(function(){
-			var lh=$(".s_container ul li").height();
-			$(".s_container ul li span").css("line-height",lh + 'px');
-		});
+			$(function(){
+				var lh=$(".s_container ul li").height();
+				$(".s_container ul li span").css("line-height",lh + 'px');
+				$(window).resize(function(){
+					var lh=$(".s_container ul li").height();
+					$(".s_container ul li span").css("line-height",lh + 'px');
+				});
+				//点击常用功能里面的div,进行页面跳转。
+				$('.s_container').on('click','.every_logo',function(){
+					var  tid=$(this).attr('menu_tid');
+					console.log(tid);
+				})
+				
+			})
+			
+		
+		
 	</script>
 </html>
 
