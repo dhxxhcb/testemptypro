@@ -38,7 +38,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <input type="file" name="file" /> 
     <input type="file" name="file" />
     <input type="file" name="file" />
-    <input type="submit" value="Submit" /></form> 
+    <input type="submit" value="Submit" />
+</form> 
    
     <a href="<%=basePath%>WEB-INF/app/updanwenjian.jsp">批量</a> 
     

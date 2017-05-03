@@ -84,8 +84,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td><fmt:message code="email.th.filechose" />：</td>
 				<td class="files">
 					<!-- <fmt:message code="email.th.addfile" /> -->
-					<form  method="post" id="form" type="hidden" >
-						<input type="file" name="flies" id="files" onclick="UploadAttachments()" style="display:none;"/>
+					<form  action="upload?module=email" method="post" enctype="multipart/form-data" id="uploadform" >
+						 <input type="file" name="file" />
 					</form>
 					<input type="button" name="button" id="btn3" value="请选择文件">
 				</td>
@@ -169,10 +169,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#btn3').on("click",function(){
 					$('.Attachment').show();
 					//$(this).parent().parent().before(strc);
-					$('#files').trigger('click').trigger('change');
+					$('#files').trigger('click');
 				})
 				
 				$('#files').change(function(){
+					alert(2);
 					UploadAttachments ();
 				})
 				 
@@ -180,20 +181,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 
        		 
        		 
-       		 function UploadAttachments (){     		      		 
+       		 function UploadAttachments (){   
+       		 	
+       		 	var file = $('#uploadform').serialize();    
+       		 	console.log(file); 		 
        		 	$.ajax({
        		 		type:'post',
        		 		url:'<%=path%>/upload?module=email',
-       		 		dataType:'json',
+       		 		data:file, 
+       		 		dataType:'text',
        		 		success:function(rsp){
-       		 			var data=rsp.obj;
-       		 			var str='';
+       		 			//var data=rsp.obj;
+       		 			console.log(rsp)
+       		 			/* var str='';
        		 			alert(data[0].attachName)
        		 			for(var i=0;i<data.length;i++){
        		 				str+='<div><p>'+data[i].attachName+'</p></div>';
-       		 			}
+       		 			} */
        		 			
        		 			$('#btn3').before(str);
+       		 		},
+       		 		error:function(XMLHttpRequest, textStatus, errorThrown){
+       		 			 alert(XMLHttpRequest.status);
+						 alert(XMLHttpRequest.readyState);
+						 alert(textStatus);
        		 		}
        		 		
        		 	})
