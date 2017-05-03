@@ -9,6 +9,8 @@ import com.xoa.model.department.Department;
 import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.department.DepartmentService;
+import com.xoa.service.users.UsersPrivService;
+import com.xoa.service.users.UsersService;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
@@ -36,16 +38,11 @@ public class NewServiceImpl implements NewService {
 	private NewsMapper newsMapper;//新闻DAO
 
 	@Resource
-	private DepartmentMapper departmentMapper;//部门DAO
-	
-	@Resource
-	private UsersMapper UsersMapper; 
-	
-	@Resource
 	private DepartmentService  departmentService;
-	
 	@Resource
-	private SysCodeMapper sysCodeMapper;
+	private UsersService  usersService;
+	@Resource
+	private UsersPrivService  usersPrivService;
 	
 	
 	
@@ -187,42 +184,65 @@ public class NewServiceImpl implements NewService {
 	@Override
 	public News queryById(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
-		String[] strArray = null;
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
+		    String[] strArray = null;
+	        String[] strArray1 = null;
+	        String[] strArray2 = null;
 		News news = newsMapper.detailedNews(maps);
 		news.setNewsDateTime(DateFormat.getStrDate(news.getNewsTime()));
 		news.setProviderName(news.getUsers().getUserName());
 		news.setTypeName(news.getCodes().getCodeName());
 		StringBuffer s=new StringBuffer();
-		if (news.getToId().equals("ALL_DEPT")) {
-			List<Department> list1 = departmentMapper.getDatagrid();
-			for (Department department : list1) {
-				if (department.getDeptName()!=null) {
-					s.append(department.getDeptName());
-					s.append(",");
-					news.setDepName(s.toString());
+		StringBuffer s1=new StringBuffer();
+		StringBuffer s2=new StringBuffer();
+		
+		  String depId=news.getToId();
+	      
+	      if (depId.equals("ALL_DEPT")) {
+	    	  news.setDeprange("全体部门");
+			}else  {
+				strArray=depId.split(",");
+				for (int i = 0; i < strArray.length; i++) {
+					String name1=departmentService.getDpNameById(Integer.parseInt(strArray[i]));
+				if (name1!=null) {
+					s.append(name1);
+	        		s.append(",");
+	        		news.setDeprange(s.toString());
 				}
-				
-			}
-		} else {
-			strArray = news.getToId().split(",");
-			for (int i = 0; i < strArray.length; i++) {
-				List<String> depname = departmentService.getDeptNameById(Integer.parseInt(strArray[i]));
-				for (String string : depname) {
-					if (string!=null) {
-						s.append(string);
-						s.append(",");
-						news.setDepName(s.toString());
-					}
 					
 				}
 				
 			}
-		}
+	      String userId=news.getUserId();
+	      if (userId!=null&&!userId.equals("")) {
+	    	  strArray1=userId.split(",");
+	    	  for (int i = 0; i < strArray1.length; i++) {
+	    		  System.out.println(Integer.parseInt(strArray1[i]));
+	    		  String name2=usersService.findUsersByuid(Integer.parseInt(strArray1[i]));
+					 if (name2!=null) {
+						 s1.append(name2);
+						 s1.append(",");
+						 news.setUserrange(s1.toString());
+					}
+				}
+		  }
+	      String roleId=news.getPrivId();
+	      if (roleId!=null&&!roleId.equals("")) {
+	    	  strArray2=roleId.split(",");
+	    	  for (int i = 0; i < strArray2.length; i++) {
+	    		  String name3=usersPrivService.getPrivNameById(Integer.parseInt(strArray2[i]));
+	    		    if (name3!=null) {
+	    			  s2.append(name3);
+						 s2.append(",");
+						 news.setRolerange(s2.toString());
+				}
+				}
+	  	   
+		  }
 		if (news.getReaders().indexOf(name) == -1) {
 			StringBuffer str2 = new StringBuffer(news.getReaders());
 			str2.append(",");

@@ -23,6 +23,8 @@ import com.xoa.model.notify.Notify;
 
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.notify.NotifyService;
+import com.xoa.service.users.UsersPrivService;
+import com.xoa.service.users.UsersService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
@@ -46,6 +48,10 @@ public class NotifyServiceImpl implements  NotifyService{
 	
 	@Resource
 	private DepartmentService  departmentService;
+	@Resource
+	private UsersService  usersService;
+	@Resource
+	private UsersPrivService  usersPrivService;
 	
  
 	
@@ -212,11 +218,17 @@ public class NotifyServiceImpl implements  NotifyService{
         pageParams.setPage(page);  
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);
+        String[] strArray = null;
+        String[] strArray1 = null;
+        String[] strArray2 = null;
         Notify notify=notifyMapper.detailedNotify(maps);
         notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
         notify.setName(notify.getUsers().getUserName());
         notify.setUsers(null);
 		notify.setTypeName(notify.getCodes().getCodeName());
+		StringBuffer s=new StringBuffer();
+		StringBuffer s1=new StringBuffer();
+		StringBuffer s2=new StringBuffer();
       if(notify.getReaders().indexOf(name)==-1){
         	StringBuffer str2= new StringBuffer(notify.getReaders());
         	str2.append(",");
@@ -227,7 +239,51 @@ public class NotifyServiceImpl implements  NotifyService{
         	Notify1.setReaders(str1);
         	notifyMapper.updateReaders(Notify1);
 		}
-	
+      String depId=notify.getToId();
+      
+      if (depId.equals("ALL_DEPT")) {
+    	  notify.setDeprange("全体部门");
+		}else  {
+			strArray=depId.split(",");
+			for (int i = 0; i < strArray.length; i++) {
+				String name1=departmentService.getDpNameById(Integer.parseInt(strArray[i]));
+				if (name1!=null) {
+					s.append(name1);
+	        		s.append(",");
+	        		notify.setDeprange(s.toString());
+				}
+				
+			}
+			
+		}
+      String userId=notify.getUserId();
+      if (userId!=null&&!userId.equals("")) {
+    	  strArray1=userId.split(",");
+    	  for (int i = 0; i < strArray1.length; i++) {
+    		  System.out.println(Integer.parseInt(strArray1[i]));
+    		  String name2=usersService.findUsersByuid(Integer.parseInt(strArray1[i]));
+    		  if (name2!=null) {
+					 s1.append(name2);
+					 s1.append(",");
+					 notify.setUserrange(s1.toString());
+				}
+				
+			}
+	  }
+      String roleId=notify.getPrivId();
+      if (roleId!=null&&!roleId.equals("")) {
+    	  strArray2=roleId.split(",");
+    	  for (int i = 0; i < strArray2.length; i++) {
+    		  String name3=usersPrivService.getPrivNameById(Integer.parseInt(strArray2[i]));
+    		  if (name3!=null) {
+    			  s2.append(name3);
+					 s2.append(",");
+					 notify.setRolerange(s2.toString());
+			}
+				
+			}
+  	   
+	  }
 	   return notify;
 	  
         	
