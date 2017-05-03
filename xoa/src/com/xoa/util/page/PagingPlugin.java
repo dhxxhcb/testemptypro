@@ -471,6 +471,13 @@ public class PagingPlugin implements Interceptor {
 //        }  
 //    }  
 
+    /**
+     *
+     * 创建作者:   张勇
+     * 创建日期:   2017-5-2 下午14:10:10
+     * 方法介绍:   数据库连接类型
+     * @return     String 数据库类型
+     */
     public String returnSqlType(){
         String retrunSql = "";
 //	   com.microsoft.sqlserver.jdbc.SQLServerDriver
