@@ -57,7 +57,7 @@ public class EnclosureController {
 	 * @return     ToJson<Attachment> 返回附件信息
 	 */
 	@RequestMapping(value ="/upload",produces = {"application/json;charset=UTF-8"}) 
-	  public @ResponseBody ToJson<Attachment> getAlldept( @RequestParam("file") MultipartFile[] files,String module,
+	public @ResponseBody ToJson<Attachment> getAlldept( @RequestParam("file") MultipartFile[] files,String module,
 			  boolean isAttach,
 			  HttpServletRequest request) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
