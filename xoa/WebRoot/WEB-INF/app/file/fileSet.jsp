@@ -1,6 +1,7 @@
-<%@ page language="java" import="java.util.*"
-	contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -11,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath%>">
 
-<title>文件柜设置</title>
+<title><fmt:message code="file.th.fileset"/></title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -104,7 +105,7 @@ function openWindow(sHref,strWidth,strHeight) {
 	</script>
 </head>
 <body>
-	<h1>文件柜设置</h1>
+	<h1><fmt:message code="file.th.fileset"/></h1>
 	<form id="form2" name="form2" method="get">
 		<input id="newFile" type="button"
 			onclick="openWindow('${pageContext.request.contextPath }/file/add','700','500')"
@@ -112,9 +113,9 @@ function openWindow(sHref,strWidth,strHeight) {
 		<hr>
 		<table id="table" cellspacing="0" cellpadding="0">
 			<tr>
-				<th class="css_td">排序号</th>
-				<th class="css_td">文件夹名称</th>
-				<th class="css_td">操作</th>
+				<th class="css_td"><fmt:message code="file.th.Sort"/></th>
+				<th class="css_td"><fmt:message code="file.th.filename"/></th>
+				<th class="css_td"><fmt:message code="notice.th.operation"/></th>
 			</tr>
 			<c:forEach items="${parentList}" var="parent">
 				<tr>

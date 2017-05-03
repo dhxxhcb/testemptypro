@@ -1,5 +1,7 @@
-<%@ page language="java" import="java.util.*"
-	contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath%>">
 
-<title>新建文件夹</title>
+<title><fmt:message code="file.th.newfile"/></title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -78,17 +80,17 @@ table tr td input:not (#fh ){
 </script>
 </head>
 <body>
-	<h1>新建文件夹</h1>
+	<h1><fmt:message code="file.th.newfile"/></h1>
 	<form id="form1" name="form1" >
 		<table border="1" cellspacing="0" cellpadding="0"
 			style="border-collapse: collapse;" width="50%">
 			<tr>
-				<td width="30%">排序号:</td>
+				<td width="30%"><fmt:message code="file.th.Sort"/>:</td>
 				<td width="70%"><input id="fileNoid" name="sortNo" type="text" />
 				</td>
 			</tr>
 			<tr>
-				<td width="30%">文件夹名称：</td>
+				<td width="30%"><fmt:message code="file.th.filename"/>：</td>
 				<td width="70%"><input id="fileNameid" name="sortName"
 					type="text" />
 				</td>

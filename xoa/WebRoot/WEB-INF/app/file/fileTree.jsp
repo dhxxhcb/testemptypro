@@ -1,5 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -24,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- <script type="text/javascript" src="/ui/easyui/tree.js"></script> -->
 <script type="text/javascript">
 $(function(){
-alert("我进来了!");
+alert("<fmt:message code="file.th.come"/>");
 $("#fileTree").tree({
 	onClick : function(node){
 		alert(node.id);  // 在用户点击的时候提示

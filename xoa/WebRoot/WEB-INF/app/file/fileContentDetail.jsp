@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>文件内容</title>
+		<title><fmt:message code="file.th.filecontent"/></title>
 		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 $(function () {
 				var str='';
 							$('.title').text(${subject}); 
-							str='<li><span>'+${fcm.creater}+'</span></li><li><span>发布于：</span><span>'+${fcm.sendTime}+'</span></li>';
+							str='<li><span>'+${fcm.creater}+'</span></li><li><span><fmt:message code="notice.th.postedto"/>：</span><span>'+${fcm.sendTime}+'</span></li>';
 							$('ul').append(str);
 							$('.divTxt').append('<p>'+${fcm.content}+'</p>');
 							$('.newer').append('<p>'+${fcm.creater}+'</p>');
@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="infor">
 				<ul>
 					 <li><span>${fcm.creater}</span></li> 
-					<li><span>发布于：</span><span>${fcm.sendTime}</span></li>
+					<li><span><fmt:message code="notice.th.postedto"/>：</span><span>${fcm.sendTime}</span></li>
 				</ul>
 			</div>
 			<div class="divContent">
@@ -68,10 +68,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>总结：工作是永远干不完的，追求健康与精神愉快比追求物质回报更有价值。找到合适的方法，减少无谓的时间消耗，或许就可以让你少加班，多些休息娱乐时间，心情好、身体好最重要！</p> -->
 				</div>
 				<div class="newer">
-					<b>创建人：</b>${fcm.creater}
+					<b><fmt:message code="file.th.builder"/>：</b>${fcm.creater}
 				</div> 
 				<div class="logs">
-					<b>修改记录：</b>${fcm.logs}
+					<b><fmt:message code="file.th.modify"/>：</b>${fcm.logs}
 				</div> 
 			</div>
 		</div>
