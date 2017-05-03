@@ -15,21 +15,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/base.css" />
-     <link rel="stylesheet" type="text/css" href="../css/news/news.css" />
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />     <link rel="stylesheet" type="text/css" href="../css/news/news.css" /> 
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
 	
-		<link rel="stylesheet" type="text/css" href=../lib/laydate.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/news/new_news.css"/>
-		<script src="../js/notice/attach.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/notice/wdatepicker.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/news/new_news.css"/>		
 		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/notice/notice.js" type="text/javascript" charset="utf-8"></script>
+
 		
 </head>
 <body>
@@ -38,11 +34,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="head w clearfix">
         <ul class="index_head">
            <li data_id=""><span class="one headli1_1"><fmt:message
-                    code="news.title.unread"/></span><img class="headli1_2" src="../img/02.png" alt=""/>
+                    code="news.th.newsmanage"/></span><img class="headli1_2" src="../img/02.png" alt=""/>
             </li>
             
             <li data_id="0"><span class="headli2_1"><fmt:message
-                    code="news.title.new"/></span><img src="../img/02.png" alt="" class="headli2_2"/>
+                    code="news.th.newbuild"/></span><img src="../img/02.png" alt="" class="headli2_2"/>
             </li>
                     
            <li data_id="1"><span class="headli3"><fmt:message code="news.title.query"/></span></li> 
@@ -129,150 +125,142 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- 新建新闻 -->
 	<!-- <div class="step2"  style="width:100%;margin-top: 50px;display: none;"> -->
 	<div class="step2" style="display: none;">
-	
-	<div class="navigation  clearfix">
-        <div class="left">           
-			<img src="../img/newsManages2_1.png"> 
-            <div class="news">
-                    <fmt:message code="news.title.new"/>
-            </div>  
-             <select name="" class="" id="">          
-				<option value="0" selected="">选择格式</option>
-				<option value="01">公司动态</option>
-				<option value="02">媒体关注</option>
-				<option value="03">行业资讯</option>
-				<option value="04">合作伙伴新闻</option>
-				<option value="05">客户新闻</option>
-				<option value="">无类型</option>
-			</select>
-			 
-        </div>
+	<!-- 中间部分 -->
+	 <table class="newNews">
+        <div class="nav_box clearfix">
+            <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
+            <div class="nav_t2" class="news">全部新闻</div>
 
-    </div>
-    
-	<div class="content">
-			
-			<form action="" method="post" name="form1">
-				<table cellspacing="0" cellpadding="0" class="tab">
-					<tr>
-						<td width="15%">
-							<select name="type_name" id="type_id" title="公告" style="width: 70%;">
-					            <option value="00"><fmt:message code="notice.th.chosenotifytype" /></option>           
-					            <option value="01"><fmt:message code="notice.type.Decision" /></option>
-								<option value="02"><fmt:message code="notice.type.notice" /></option>
-								<option value="03"><fmt:message code="notice.type.Bulletin" /></option>
-								<option value="04"><fmt:message code="notice.type.other" /></option>
-					         </select>
-						</td>
-						<td width="85%">
-							<input type="text" class="in_title" id="txt_id" placeholder="请输入公告标题" styl="outline: none;"/><font color=red>(*)</font>
-							 <a id="font_color_link" href="javascript:;" class="dropdown" >
-							 	<span><fmt:message code="notice.th.SetTitlecolor" /></span>
-							 	
-							 </a>
-							 <div class="worldColor" style="display: none;">
-							 	<ul>
-							 		<li class="black"></li>
-							 		<li class="green"></li>
-							 		<li class="blue"></li>
-							 		<li class="blueviolet"></li>
-							 		<li class="sandybrown"></li>
-							 		<li class="red"></li>
-							 	</ul>
-							 </div>
-						</td>
-					</tr>
-					<tr>
-						<td width="15%">
-							<fmt:message code="notice.th.IssuedByDepartment"/>
-							：<br>
-							<a href="javascript:;" id="href_txt">
-							<fmt:message code="notice.th.PostedByPersonnelOrRoles" /></a>
-						</td>
-						<td width="70%">
-							<div class="inPole">
-								<textarea name="txt" disabled></textarea>
-								<span class="add_img">
-									<span class="addImg">
-										<img src="img/org_select1.png" class="addIcon"/>
-									</span>
-									<a href="javascript:;" class="Add"><fmt:message code="global.lang.add" /></a>
-								</span>
-								<span class="add_img">
-									<span class="addImg">
-										<img src="img/org_select2.png" class="clearIcon"/>
-									</span>
-									<a href="javascript:;" class="clear"><fmt:message code="global.lang.empty" /></a>
-								</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td width="15%"><fmt:message code="notice.th.PostedTime" />：</td>
-						<td width="70%">
-							<input id="test" name="SEND_TIME" class="laydate-icon">
-							<a href="javascript:resetTime();" class="reset"><fmt:message code="notice.th.ResetToCurrentTime" /></a>
-						</td>
-					</tr>
-					<tr>
-						<td width="15%">提醒：</td>
-						<td width="70%">
-							<input type="checkbox" name="SMS_REMIND1" id="SMS_REMIND1" checked>
-							<label for="SMS_REMIND1">发送事务提醒消息</label>&nbsp;
-							<label class='sms-remind-label'>
-								<input type="checkbox" name="SNS_REMIND" id="SNS_REMIND" checked>分享到企业社区
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td width="15%"><fmt:message code="notice.th.top" />：</td>
-						<td width="70%">
-							<input type="checkbox" name="TOP" id="TOP">
-							<label for="TOP"><fmt:message code="notice.th.topMajor" /></label>
-      						<input type="text" name="TOP_DAYS" size="3" maxlength="4" onkeyup="this.value=this.value.replace(/\D/g,'')" class="BigInput" value="0">&nbsp;<fmt:message code="notice.th.endTop" /> 
-						</td>
-					</tr>
-					<tr>
-						<td width="15%"><fmt:message code="notice.th.contentValidity" />：</td>
-						<td width="70%">
-							<input class="BigInput" type="text" name="SUMMARY" cols="46" rows="2" size=60 maxlength="30" value=""><fmt:message code="notice.th.contentHigh" />
-						</td>
-					</tr>
-					<tr>
-						<td width="15%"><fmt:message code="notice.th.fileUpload" />：</td>
-						<td width="70%">
-					    <fmt:message code="notice.th.fileUpload" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							 <script id="container" name="content" type="text/plain" style="width: 99.9%;min-height: 200px;">
-						    </script>
-						</td>
-						
-					</tr>
-					<tr>
-						<td width="15%"><fmt:message code="notice.th.keyWord" />：</td>
-						<td width="70%">
-							<input type="text" name="KEYWORD" id='KEYWORD' class="BigInput"  size=50>
-					      	<span id="tishi"></span>
-					      	<a href='javascript:get_keyword();' class='A1'><fmt:message code="notice.th.AutomaticKeywordAcquisition" />
-					      	</a>&nbsp;&nbsp;&nbsp;<fmt:message code="notice.th.keyContent" />
-						</td>
-					</tr>
-					<tr class="last_tr">
-						<td colspan="2">
-							<div class="div_btn">
-								<input type="button" id="btn1" value="发布" />
-								<input type="button" id="btn2" value="保存" />
-							</div>
-							
-						</td>
-					</tr>
-				</table>
-			</form>
-			
-		</div>
+            <div class="nav_t3">选择格式</div>
+            <div class="nav_t4"><img src="../img/mg1.png" alt=""/></div>
+        </div>
+        <tbody>
+        <tr>
+            <td class="td_w">
+                <div class="text1 blue_text">请选择新闻类型</div>
+                <img class="text2" src="../img/mg1.png" alt=""/>
+            </td>
+            <td>
+                <div class="td_title1">请输入发布时间...</div>
+                <img class="td_title2" src="../img/mg2.png" alt=""/>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                按照部门发布：
+            </td>
+            <td>
+                <div class="td_title1  release1"></div>
+                <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
+
+                <div class="release3">添加</div>
+                <div class="release4 empty">清空</div>
+
+            </td>
+
+        </tr>
+        <tr>
+            <td class="blue_text">
+                发布时间：
+            </td>
+            <td>
+                <div class="td_title1">请输入新闻标题...</div>
+                <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
+
+                <div class="release3">设置为当前时间</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                评论:
+            </td>
+            <td>
+                <div class="comment1">实名评论</div>
+                <img class="comment2" src="../img/mg1.png" alt=""/>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                提醒：
+            </td>
+            <td class="remind">
+                <!--<div><input type="checkbox" checked/></div>-->
+                <div><img src="../img/mg3.png" alt=""/></div>
+                <div class="news_t">发送事物提醒消息</div>
+                <!--<div><input type="checkbox" checked/></div>-->
+                <div><img src="../img/mg4.png" alt=""/></div>
+                <div>分享到企业社区</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                置顶：
+            </td>
+            <td class="top_box">
+                <!--<div><input type="checkbox"/></div>-->
+                <div><img src="../img/mg4.png" alt=""/></div>
+                <div>使新闻置顶，显示为重要</div>
+                <div class="t_box">0</div>
+                <div>天后结束置顶（0表示一直置顶）</div>
+            </td>
+
+
+        </tr>
+        <tr>
+            <td class="blue_text">
+                内容简介：
+            </td>
+            <td class="abstract">
+                <div class="abstract1">请选择新闻类型</div>
+                <div class="abstract2">(最多输入39个字)</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                附件上传：
+            </td>
+            <td class="enclosure">
+                <div><img src="../img/mg11.png" alt=""/></div>
+                <div class="enclosure_t">添加附件</div>
+                <div><img src="../img/mg12.png" alt=""/></div>
+                <div class="enclosure_t">从文件柜和网络硬盘选择附件</div>
+                <div><img src="../img/mg13.png" alt=""/></div>
+                <div class="enclosure_t">批量插入图片</div>
+                <div><img src="../img/mg14.png" alt=""/></div>
+                <div class="enclosure_t">批量上传过</div>
+
+            </td>
+
+
+        </tr>
+        <!--word编辑器-->
+        <tr>
+            <td colspan="2">
+
+
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                关键字：
+            </td>
+            <td class="keyword">
+                <div class="keyword_ip">请输入关键字</div>
+                <div class="keyword_t">自动获取关键字</div>
+                <div>（您可以调整关键字内容，多个关键词请用" , "分割）</div>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</div>
+<!--content部分结束-->
+	
+	
+	
+	
 	
 	
 	<!-- <div class="login">
