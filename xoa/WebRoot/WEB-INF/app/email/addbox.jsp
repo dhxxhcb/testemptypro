@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
 				</td>
 			</tr>
-			<tr class="Attachment" style="display:none;width:100%;">
+			<tr class="Attachment" style="width:100%;">
 				<td width="10%">附件：</td>
 				<td width="89%"   class="files" id="files_txt"></td>
 			</tr>
@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</td>
 			</tr>
 		</table>		
-		<iframe id="uploadiframe" style="display:block;"  class="uploadiframe" name="uploadiframe" ></iframe>
+		<!-- <iframe id="uploadiframe" style="display:block;"  class="uploadiframe" name="uploadiframe" ></iframe> -->
 		<script type="text/javascript">
 			user = '';
 			user_id='senduser';
@@ -125,9 +125,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					console.log(file);
 					if(file){
-						alert(2);
 						$.upload($('#uploadimgform'),function(res){
 							console.log(res);
+							var data=res.obj;
+							var str='';
+							//console.log(data[0].attachName);
+							 for(var i=0;i<data.length;i++){
+								str+='<a href="javascript:;">'+data[i].attachName+'</a>';
+							} 
+							$('.Attachment td').eq(1).append(str);
+							
 						});
 					}
 				});
@@ -138,8 +145,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();
 					var val=$('#txt').val();
+					var attach=$('.Attachment td').eq(1).find('a').text();
+					
+					alert(attach);
 				
-					 var data={
+					 /* var data={
 					 	'fromId':'admin',
 					 	'toId2': 'admin,',
 						'subject':val,
@@ -155,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							alert('发送成功');
 							
 						}
-					});
+					}); */
 				});
 				
 				//点击保存到草稿箱按钮
@@ -182,54 +192,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					});
 				});
-				
-				$('#btn3').on("click",function(){
-					$('.Attachment').show();
-					//$(this).parent().parent().before(strc);
-					$('#files').trigger('click');
-				})
-				
-				$('#files').change(function(){
-					alert(2);
-					UploadAttachments ();
-				})
 				 
        		 });
        		 
-       		 
-       		 
-       		 function UploadAttachments (){   
-       		 	
-       		 	var file = $('#uploadform').serialize();    
-       		 	console.log(file); 		 
-       		 	$.ajax({
-       		 		type:'post',
-       		 		url:'<%=path%>/upload?module=email',
-       		 		data:file, 
-       		 		dataType:'text',
-       		 		success:function(rsp){
-       		 			//var data=rsp.obj;
-       		 			console.log(rsp)
-       		 			/* var str='';
-       		 			alert(data[0].attachName)
-       		 			for(var i=0;i<data.length;i++){
-       		 				str+='<div><p>'+data[i].attachName+'</p></div>';
-       		 			} */
-       		 			
-       		 			$('#btn3').before(str);
-       		 		},
-       		 		error:function(XMLHttpRequest, textStatus, errorThrown){
-       		 			 alert(XMLHttpRequest.status);
-						 alert(XMLHttpRequest.readyState);
-						 alert(textStatus);
-       		 		}
-       		 		
-       		 	})
-       		 }
        		
+       		//清空UE内容
        		function empty(){
-       			//alert(txt)
-       			//$('#container').text().empty();
+       			ue.setContent('');
        		}
     	</script>
 	</body>

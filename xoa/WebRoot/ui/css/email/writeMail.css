@@ -17,6 +17,9 @@ table{
 	font-size: 14px;
 	border-color: #eee;
 }
+table tr.Attachment td{
+	padding:6px 0;
+}
 table tr td:first-of-type{
 	padding-left:10px;
 }
@@ -145,4 +148,9 @@ textarea{
 }
 .files{
 	padding: 5px;
+}
+tr.Attachment td a{
+	display: inline-block;
+	text-decoration: none;
+	margin: 0 5px;
 }

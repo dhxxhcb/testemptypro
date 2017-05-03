@@ -217,8 +217,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<tr>
 									<td width="15%">
 										<p><fmt:message code="email.th.content" />：</p>
-										<p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p>
-										<p class="Color"><fmt:message code="global.lang.empty" /></p>
+										<!-- <p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p> -->
+										<p class="Color"><a href="javascript:;" onclick="deleted()"><fmt:message code="global.lang.empty" /></a></p>
 									</td>
 									<td width="84%">
 										<script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
@@ -598,6 +598,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 	return false; 
 					 } 	
 					
+				}
+				function deleted(){
+					ue.setContent('');
 				}
 		</script>
 		
