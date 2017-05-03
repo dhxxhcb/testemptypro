@@ -35,7 +35,7 @@
 				 if(a){
 					 //console.log(a);
 					clearInterval(f);
-					//l.contents().find("body").html("");
+					l.contents().find("body").html("");
 					var c = {};
 					try{ c = JSON.parse(a); a={} } catch (i) {a = {};alert("你的上传大小超出上限", i) } 
 					cb(c);
