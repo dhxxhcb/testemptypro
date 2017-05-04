@@ -185,7 +185,7 @@ public class DiaryController {
 	public ToJson<DiaryModel>  diaryGetOther(DiaryModel diaryModel,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		if(diaryModel.getUserId()==null||"".equals(diaryModel.getUserId())){
+		if(diaryModel.getUserId()==null || "".equals(diaryModel.getUserId())){
 			HttpSession	session=request.getSession();
 			diaryModel.setUserId(session.getAttribute("userId").toString());
 		 }
