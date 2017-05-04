@@ -423,8 +423,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//回复事件
 				$('#Replay').click(function(){
-					
-				})
+					var sId=$('#delete').attr('uId');
+					//alert(sId);
+					$.ajax({
+						type:'get',
+						url:'queryByID',
+						dataType:'json',
+						data:{'emailId':sId,'flag':''},
+						success:function(rsp){
+							var data2=rsp.object;
+							var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');							
+							var str='';
+							var stra='';
+							var arr=new Array();
+							arr=data2.attachmentName.split('*');
+							if(data2.attachmentName!='' && data2.copyName!=''){
+								for(var i=0;i<(arr.length-1);i++){
+									stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
+							}
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+								
+							} else if(data2.attachmentName=='' && data2.copyName!=''){
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+								
+							} else if(data2.attachmentName!='' && data2.copyName ==''){
+								for(var i=0;i<(arr.length-1);i++){
+									stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
+								}
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+								
+							} else{
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+								
+							}
+						}
+					});
+				});
 				
 				//条件查询
 				/* $('.befor .sort .Search').click(function(){
@@ -726,7 +760,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 				
 				//单条回复方法
-				function REPLAY(){
+				function REPLAY(id){
 					$.ajax({
 						type:'get',
 						url:'queryByID',
@@ -743,18 +777,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								for(var i=0;i<(arr.length-1);i++){
 									stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
 							}
-								str='<div><p><span>主题：</span><span></span><span>发件人：</span><span></span><span>收件人：</span><span></span><span>抄送人：</span><span></span><span>时间：</span><span></span><span>附件：</span><span></span></p></div>'
-								//str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+								
 							} else if(data2.attachmentName=='' && data2.copyName!=''){
-								str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+								
 							} else if(data2.attachmentName!='' && data2.copyName ==''){
 								for(var i=0;i<(arr.length-1);i++){
 									stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
 								}
-								str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+								
 							} else{
-								str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
-							}		
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+								
+							}	
+							return str;
 						}
 					});
 				}
