@@ -5,9 +5,26 @@ import java.util.Map;
 
 import com.xoa.model.schedule.Calendar;
 
+ /**
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年5月4日 下午5:46:45
+ * 类介绍  :   
+ * 构造参数:   
+ *
+ */
 public interface CalendarMapper {
+	
+	
     int insert(Calendar record);
 
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年5月4日 下午5:46:54
+     * 方法介绍:   新增日程安排
+     * 参数说明:   @param record 日程安排
+     * 参数说明:   @return
+     * @return     void 无
+     */
     int insertSelective(Calendar record);
     
     /**
