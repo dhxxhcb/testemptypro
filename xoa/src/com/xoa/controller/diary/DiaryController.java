@@ -66,7 +66,9 @@ public class DiaryController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"UTF-8");
+		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"UTF-8");
 		diaryModel.setContent(string);
+		diaryModel.setSubject(stringSubject);
 		int temp=diaryService.saveDiary(diaryModel);
 		 ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0,temp+"");
 		return diaryListToJson;
@@ -79,12 +81,17 @@ public class DiaryController {
 	 * 参数说明:   @param diaryModel
 	 * 参数说明:   @return
 	 * @return   String  返回数据库操作影响行
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping("/update")
 	@ResponseBody
-	public ToJson<DiaryModel> diaryUpdate(DiaryModel diaryModel,HttpServletRequest request) {
+	public ToJson<DiaryModel> diaryUpdate(DiaryModel diaryModel,HttpServletRequest request) throws UnsupportedEncodingException {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
+		String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"UTF-8");
+		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"UTF-8");
+		diaryModel.setContent(string);
+		diaryModel.setSubject(stringSubject);
 		int temp=diaryService.updateDiary(diaryModel);
 		 ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0,temp+"");
 		return diaryListToJson;
