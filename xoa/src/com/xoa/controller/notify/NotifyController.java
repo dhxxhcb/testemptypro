@@ -61,7 +61,7 @@ public class NotifyController {
 	public String manage(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		return "app/notice/administration";
+		return "app/notice/noticeManage";
 	}
 	@RequestMapping("/detail")
 	public String details(HttpServletRequest request) {
