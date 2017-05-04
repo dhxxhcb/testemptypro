@@ -147,12 +147,10 @@ ul.total{
 .s_head span{
 	cursor: pointer;
 }
-/* .actives{
-	background: #146fd0;
-} */
-/* .model,.more{
-	
-} */
+
+.more_daily{
+	    margin-left: 80%;
+}
 .e_mail li{
 	    width: 100%;
     height: 30px;

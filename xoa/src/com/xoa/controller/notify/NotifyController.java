@@ -155,7 +155,7 @@ public class NotifyController {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
 	  Map<String, Object> maps = new HashMap<String, Object>();
-	  if (typeId.equals("0")) {
+	  if ("0".equals(typeId)) {
 			typeId=null;
 		}
 	  maps.put("typeId", typeId);

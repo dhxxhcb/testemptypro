@@ -34,13 +34,16 @@
            and SORT_PARENT=#{sortParent}
         </if>
          <if test="sortNo != null and sortNo !=''" >
-           and sort_no=#{sortNo}
+           and SORT_NO=#{sortNo}
         </if>
          <if test="sortName != null and sortName !=''" >
-           and sort_name=#{sortName}
+           and SORT_NAME=#{sortName}
+        </if>
+         <if test="userId != null and userId !=''" >
+           and USER_ID=#{userId}
         </if>
         <if test="sortType != null and sortType !=''" >
-           and sort_type=#{sortType}
+           and SORT_TYPE=#{sortType}
           </if>
 	</select>
 	<!-- ajax  -->

@@ -28,6 +28,7 @@ import com.xoa.model.file.FileSortModel;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.service.file.FileContentService;
 import com.xoa.service.file.FileSortService;
+import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
 import com.xoa.util.treeUtil.FileSortTreeUtil;
 import com.xoa.util.treeUtil.HtmlUtil;
@@ -144,17 +145,19 @@ public class FileController {
 	 */
 	public List<TreeNode> treeFilePerson(int sortid,HttpSession session) {
 		//Session 获取用户信息
-		String userId=session.getAttribute("userId").toString();
+		String userId=SessionUtils.getSessionInfo(session, "userId", String.class);
+//		String userId=session.getAttribute("userId")==null?"":session.getAttribute("userId").toString();
 		
 	
 		//采用 LinkedList 双向列表实现类 操作 在链表中操作对象集合效率高
 		List<FileSortModel> rootTree=new LinkedList<FileSortModel>();
+		if(!"".equals(userId)&&userId!=null){
 		FileSortModel fsm=new FileSortModel();
 		fsm.setUserId(userId);
 		fsm.setSortType("4");
 		fsm.setSortParent(0);
 		rootTree = fileSortService.getFileSortList(fsm);// 根节点
-		
+		}
 		List<FileSortModel> childTree = new LinkedList<FileSortModel>();
 		List<String> sortidList=new ArrayList<String>();
 		for(FileSortModel f:rootTree){

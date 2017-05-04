@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			user = '';
 			user_id='senduser';
        		 var ue = UE.getEditor('container');
-       		 
+       		 var res
        		 //获取输入框内容
        		 $(function(){
        		 	$("#selectUser").on("click",function(){
@@ -126,14 +126,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					console.log(file);
 					if(file){
 						$.upload($('#uploadimgform'),function(res){
-							console.log(res);
+							//console.log(res);
 							var data=res.obj;
 							var str='';
-							//console.log(data[0].attachName);
+							var str1='';
 							 for(var i=0;i<data.length;i++){
-								str+='<a href="javascript:;">'+data[i].attachName+'</a>';
+								str+='<a href="javascript:;" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
+								str1+='<input type="hidden" class="inHidden" value="'+data[i].aid+'@'+data[i].ym+'_'+data[i].attachId+',">';
 							} 
-							$('.Attachment td').eq(1).append(str);
+							
+							$('.Attachment td').eq(1).append(str+str1);
 							
 						});
 					}
@@ -145,15 +147,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();
 					var val=$('#txt').val();
-					var attach=$('.Attachment td').eq(1).find('a').text();
-					
-					alert(attach);
-				
-					 /* var data={
+					var attach=$('.Attachment td').eq(1).find('a');
+					var aId='';
+					var uId='';
+					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+						aId += $('.Attachment td .inHidden').eq(i).val();
+					}
+					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+						uId += attach.eq(i).attr('NAME');
+					}
+					//alert(aId+uId);
+					var data={
 					 	'fromId':'admin',
 					 	'toId2': 'admin,',
 						'subject':val,
-						'content':html
+						'content':html,
+						'attachmentId':aId,
+						'attachmentName':uId
 					};
 					
 					$.ajax({
@@ -165,7 +175,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							alert('发送成功');
 							
 						}
-					}); */
+					}); 
 				});
 				
 				//点击保存到草稿箱按钮
