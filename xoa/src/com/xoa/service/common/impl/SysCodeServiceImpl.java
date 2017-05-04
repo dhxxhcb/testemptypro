@@ -52,11 +52,23 @@ public class SysCodeServiceImpl implements SysCodeService {
 	 * 参数说明:   @return
 	 * @return     List<SysCode>
 	 */
-@Override
-public List<SysCode> getAllSysCode() {
-	List<SysCode> list=sysCodeMapper.getAllSysCode();
-	return list;
+	@Override
+	public List<SysCode> getAllSysCode() {
+		List<SysCode> list=sysCodeMapper.getAllSysCode();
+		return list;
 }
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月4日 上午10:06:41
+	 * 方法介绍:   更新系统代码设置表
+	 * 参数说明:   @param sysCode 系统代码设置表
+	 * @return     void 无
+	 */
+	@Override
+	public void update(SysCode sysCode) {
+		sysCodeMapper.update(sysCode);
+		
+	}
    
 
 }

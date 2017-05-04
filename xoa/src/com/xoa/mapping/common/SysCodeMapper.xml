@@ -22,5 +22,21 @@
   <delete id="delete" parameterType="com.xoa.model.common.SysCode">
   delete from sys_code where CODE_ID=#{codeId} or PARENT_NO=#{codeNo} and CODE_FLAG=1
   </delete>
+  <update id="update">
+  update sys_code 
+   <set>
+      <if test="codeId != null">
+        CODE_NO= #{codeNo},
+      </if>
+      <if test="codeName != null">
+        CODE_NAME = #{codeName},
+      </if>
+      <if test="codeOrder != null">
+        CODE_ORDER = #{codeOrder},
+      </if>
+      </set>
+      where CODE_ID = #{codeId}
+  
+  </update>
   
 </mapper>
