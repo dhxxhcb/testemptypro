@@ -50,16 +50,18 @@ public class DiaryServiceImpl implements DiaryService{
 	       Map<String, Object> diaryMap=new  HashMap<String, Object>();
 	       //用户Id
 	       diaryMap.put("userId", diaryModel.getUserId());
-	       diaryMap.put("diaType", "1");
 	       diaryMap.put("pageParams", pageParams);
 	       //我的日志 
 		   List<DiaryModel> diaryList=diaryModelMapper.getDiarySelf(diaryMap);
 		   for(DiaryModel dm:diaryList){
 				String tempDiaTime=dm.getDiaTime().substring(0, 19);
-				String tempReaders=this.readerFlag(diaryModel.getUserId(), dm.getReaders());//\\s*|\t|\r|\n
+				String tempReaders=this.readerFlag(diaryModel.getUserId(), dm.getReaders());//\\s*|\t|\r|\n   .substring(0, 59)
 				if(diaryModel.getPostType()!=null&&"1".equals(diaryModel.getPostType())){
 				String tempContent=dm.getContent().replaceAll("\\&[a-zA-Z]{1,10};", "").replaceAll("<[^>]*>", "").
-						replaceAll("\\s*|\t|\r|\n", "").substring(0, 59);
+						replaceAll("\\s*|\t|\r|\n", "");
+				if(tempContent.length()>60){
+					tempContent.substring(0, 59);
+				}
 				  dm.setContent(tempContent);
 				}
 				dm.setReaders(tempReaders);

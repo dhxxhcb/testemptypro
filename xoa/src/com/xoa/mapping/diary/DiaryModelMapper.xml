@@ -25,8 +25,8 @@
   <sql id="diaryAllList" >
    USER_ID,DIA_DATE,DIA_TIME,DIA_TYPE,SUBJECT,LAST_COMMENT_TIME,TO_ALL,CRM_DIARY,CONTENT, ATTACHMENT_ID, ATTACHMENT_NAME, TO_ID, COMPRESS_CONTENT, READERS
   </sql>
-  <insert id="addDiary" parameterType="com.xoa.model.diary.DiaryModel"> 
-    insert into diary (<include refid="diaryAllList"/>) values
+  <insert id="saveDiary" parameterType="com.xoa.model.diary.DiaryModel"> 
+    insert into diary (<include refid="diaryAllList"/>) 
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId == null or userId == ''" >
         '',
@@ -41,7 +41,7 @@
         #{diaDate},
       </if>
        <if test="diaTime == null or diaTime == ''" >
-        '',
+        '0000-00-00 00:00:00',
       </if>
       <if test="diaTime != null and diaTime !=''" >
         #{diaTime},
@@ -61,22 +61,22 @@
       </if>
        
         <if test="lastCommentTime == null or lastCommentTime == ''" >
-        '',
+        '0000-00-00 00:00:00',
       </if>
       <if test="lastCommentTime != null and lastCommentTime !=''" >
         #{lastCommentTime},
       </if>
       
-        <if test="toAll == null or toAll == ''" >
-        '',
+      <if test="toAll == null" >
+        0,
       </if>
-      <if test="toAll != null and toAll !=''" >
+      <if test="toAll != null" >
         #{toAll},
       </if>
-       <if test="crmDiary == null or crmDiary == ''" >
-        '',
+       <if test="crmDiary == null" >
+        0,
       </if>
-      <if test="crmDiary != null and crmDiary !=''" >
+      <if test="crmDiary != null" >
         #{crmDiary},
       </if>
     <if test="content == null or content == ''" >
@@ -184,7 +184,7 @@
 
   
   <select id="getDiarySelf"  parameterType="map" resultMap="BaseResultMap">
-    select <include refid="diaryList"/>  from  diary d,user u  where  d.USER_ID=#{userId} and d.USER_ID=u.USER_ID and d.DIA_TYPE=#{diaType}
+    select <include refid="diaryList"/>  from  diary d,user u  where  d.USER_ID=#{userId} and d.USER_ID=u.USER_ID 
   </select>
   
   <select id="getDiaryByDiaId"  parameterType="map" resultMap="BaseResultMap">
