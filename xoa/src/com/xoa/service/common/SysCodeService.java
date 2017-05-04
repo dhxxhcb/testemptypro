@@ -2,8 +2,6 @@ package com.xoa.service.common;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.xoa.model.common.SysCode;
 import com.xoa.util.ToJson;
 
