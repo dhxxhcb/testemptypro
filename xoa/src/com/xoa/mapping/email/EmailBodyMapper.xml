@@ -178,82 +178,27 @@
 	<!-- 邮件条件查询 -->
 	<select id="selectObjcet" resultMap="BaseResultMap"
 		parameterType="Map">
-		SELECT
-		emb.BODY_ID,
-		emb.FROM_ID,
-		emb.SUBJECT,
-		emb.SEND_TIME,
-		emb.SEND_FLAG,
-		emb.SMS_REMIND,
-		emb.IMPORTANT,
-		emb.SIZE,
-		emb.FROM_WEBMAIL_ID,
-		emb.FROM_WEBMAIL,
-		emb.WEBMAIL_FLAG,
-		emb.RECV_FROM_NAME,
-		emb.RECV_FROM,
-		emb.RECV_TO_ID,
-		emb.RECV_TO,
-		emb.IS_WEBMAIL,
-		emb.IS_WF,
-		emb.KEYWORD,
-		emb.SECRET_LEVEL,
-		emb.AUDIT_MAN,
-		emb.TO_ID2,
-		emb.COPY_TO_ID,
-		emb.SECRET_TO_ID,
-		emb.CONTENT,
-		emb.ATTACHMENT_ID,
-		emb.ATTACHMENT_NAME,
-		emb.TO_WEBMAIL,
-		emb.AUDIT_REMARK,
-		emb.COPY_TO_WEBMAIL,
-		emb.SECRET_TO_WEBMAIL,
-		emb.PRAISE,
-		e.DELETE_FLAG,
-		e.TO_ID,
-		e.READ_FLAG,
-		e.BOX_ID,
-		e.RECEIPT,
-		e.IS_F,
-		e.IS_R,
-		e.SIGN,
-		u.USER_NAME
-		FROM
-		email_body emb LEFT JOIN email e ON
-		emb.BODY_ID = e.BODY_ID
-		LEFT JOIN user u on
-		u.USER_ID=emb.FROM_ID
-		<where>
-			<if test="fromId != null">
-				emb.FROM_ID = #{fromId}
-			</if>
-			<if test="sendFlag!=null">
-				AND emb.SEND_FLAG = #{sendFlag}
-			</if>
-			<if test="firstFlag != null and firstFlag != '' and secondFlag!=null">
-				AND e.DELETE_FLAG NOT IN (#{firstFlag},#{secondFlag})
-			</if>
-			<if
-				test="startTime != null and startTime != '' and endTime != null and endTime != ''">
-				AND emb.SEND_TIME between #{startTime} and #{endTime}
-			</if>
-			<if test="readFlag!=null">
-				AND e.READ_FLAG=''
-			</if>
-			<if test="boxId != null">
-				AND e.BOX_ID=#{boxId}
-			</if>
-			<if test="sign != null">
-				AND e.SIGN=#{sign}
-			</if>
-			<if test="keyword != null">
-				AND emb.KEYWORD LIKE CONCAT(CONCAT('%',#{keyword}),'%')
-			</if>
-		</where>
-		GROUP BY emb.BODY_ID ORDER BY
-		emb.BODY_ID DESC
-		<!-- order by BODY_ID  DESC -->
+		select
+		eb.FROM_ID,
+		eb.BODY_ID,eb.SUBJECT,e.EMAIL_ID,eb.SEND_TIME,eb.ATTACHMENT_ID,eb.ATTACHMENT_NAME,e.DELETE_FLAG,eb.TO_ID2,e.READ_FLAG,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
+		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
+		LEFT JOIN user as u on
+		u.USER_ID=eb.FROM_ID where
+		e.TO_ID=#{fromId}
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			AND eb.SEND_TIME between #{startTime} and #{endTime}
+		</if>
+		<if test="subject != null and subject != ''">
+			AND eb.SUBJECT like CONCAT('%',#{subject},'%')
+		</if>
+		<if test="content != null and content != ''">
+			AND eb.CONTENT like CONCAT('%',#{content},'%')
+		</if>
+		<if test="attachmentName != null and attachmentName != ''">
+			AND eb.ATTACHMENT_NAME like CONCAT('%',#{attachmentName},'%')
+		</if>
+		GROUP BY eb.BODY_ID ORDER BY
+		eb.BODY_ID DESC
 	</select>
 
 
@@ -267,7 +212,20 @@
 		u.USER_ID=eb.FROM_ID
 		where 
 		eb.FROM_ID=#{fromId}
-		AND SEND_FLAG="0" GROUP BY eb.BODY_ID order by
+		AND SEND_FLAG="0"
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			AND eb.SEND_TIME between #{startTime} and #{endTime}
+		</if>
+		<if test="subject != null and subject != ''">
+			AND eb.SUBJECT like CONCAT('%',#{subject},'%')
+		</if>
+		<if test="content != null and content != ''">
+			AND eb.CONTENT like CONCAT('%',#{content},'%')
+		</if>
+		<if test="attachmentName != null and attachmentName != ''">
+			AND eb.ATTACHMENT_NAME like CONCAT('%',#{attachmentName},'%')
+		</if>
+		 GROUP BY eb.BODY_ID order by
 		SEND_TIME DESC
 	</select>
 	<!-- 发件箱查询 -->
@@ -281,8 +239,21 @@
 		AND SEND_FLAG="1"
 		AND( e.DELETE_FLAG="" OR
 		e.DELETE_FLAG="0" OR
-		e.DELETE_FLAG="3" OR e.DELETE_FLAG="1") AND
-		BOX_ID="0" GROUP BY eb.BODY_ID
+		e.DELETE_FLAG="3" OR e.DELETE_FLAG="1")
+		AND  BOX_ID="0"
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			AND eb.SEND_TIME between #{startTime} and #{endTime}
+		</if>
+		<if test="subject != null and subject != ''">
+			AND eb.SUBJECT like CONCAT('%',#{subject},'%')
+		</if>
+		<if test="content != null and content != ''">
+			AND eb.CONTENT like CONCAT('%',#{content},'%')
+		</if>
+		<if test="attachmentName != null and attachmentName != ''">
+			AND eb.ATTACHMENT_NAME like CONCAT('%',#{attachmentName},'%')
+		</if>
+		 GROUP BY eb.BODY_ID
 		ORDER BY eb.BODY_ID DESC
 	</select>
 
@@ -300,6 +271,18 @@
 			e.DELETE_FLAG = '3'
 			OR e.DELETE_FLAG = '4'
 		)
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			AND eb.SEND_TIME between #{startTime} and #{endTime}
+		</if>
+		<if test="subject != null and subject != ''">
+			AND eb.SUBJECT like CONCAT('%',#{subject},'%')
+		</if>
+		<if test="content != null and content != ''">
+			AND eb.CONTENT like CONCAT('%',#{content},'%')
+		</if>
+		<if test="attachmentName != null and attachmentName != ''">
+			AND eb.ATTACHMENT_NAME like CONCAT('%',#{attachmentName},'%')
+		</if>
 		GROUP BY
 			eb.BODY_ID
 		ORDER BY
@@ -315,6 +298,18 @@
 		u.USER_ID=eb.FROM_ID where 
 		e.TO_ID=#{fromId}
 		and (e.DELETE_FLAG ='0' or e.DELETE_FLAG='' or e.DELETE_FLAG='2')
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			AND eb.SEND_TIME between #{startTime} and #{endTime}
+		</if>
+		<if test="subject != null and subject != ''">
+			AND eb.SUBJECT like CONCAT('%',#{subject},'%')
+		</if>
+		<if test="content != null and content != ''">
+			AND eb.CONTENT like CONCAT('%',#{content},'%')
+		</if>
+		<if test="attachmentName != null and attachmentName != ''">
+			AND eb.ATTACHMENT_NAME like CONCAT('%',#{attachmentName},'%')
+		</if>
 		GROUP BY eb.BODY_ID ORDER BY
 		eb.BODY_ID DESC
 	</select>
@@ -364,6 +359,47 @@
 	<delete id="deleteDrafts" parameterType="java.lang.Integer">
 		delete from
 		email_body where BODY_ID = #{bodyId}
+	</delete>
+
+	<!-- 发件箱删除 变为2 -->
+	<update id="updateOutbox" parameterType="java.lang.Integer">
+	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='2' 
+	where eb.BODY_ID = #{bodyId} AND (e.DELETE_FLAG !='1'  OR e.DELETE_FLAG !='2' OR e.DELETE_FLAG !='3' OR e.DELETE_FLAG !='4')
+	</update>
+	<!-- 发件箱删除 变为4 -->
+	<update id="updateOutboxs" parameterType="java.lang.Integer">
+	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='4' 
+	where eb.BODY_ID = #{bodyId} AND (e.DELETE_FLAG !='' OR e.DELETE_FLAG !='0' OR e.DELETE_FLAG !='1'  OR e.DELETE_FLAG !='2' OR e.DELETE_FLAG !='4')
+	</update>
+	
+	<!--  发件箱为1时删除  -->
+	<delete id="deleteOutbox" parameterType="java.lang.Integer">
+		DELETE FROM	email WHERE BODY_ID = #{bodyId}
+		AND DELETE_FLAG = '1'
+	</delete> 
+	
+	<!-- 收件箱删除 ，变为3 -->
+	<update id="updateInbox" parameterType="java.lang.Integer">
+	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='3' 
+	where e.EMAIL_ID=#{emailId}  AND (e.DELETE_FLAG =''  OR e.DELETE_FLAG ='0')
+	</update> 
+	
+	<!-- 收件箱删除 ，变为4 -->
+	<update id="updateInboxs" parameterType="java.lang.Integer">
+	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='4' 
+	where e.EMAIL_ID=#{emailId}  AND e.DELETE_FLAG ='2'
+	</update>
+	
+	<!-- 废纸篓删除，变为1 -->
+	<update id="updateRecycle" parameterType="java.lang.Integer">
+	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='1' 
+	where e.EMAIL_ID=#{emailId}  AND e.DELETE_FLAG ='3'
+	</update>
+	
+	<!-- 废纸篓删除，delete -->
+	<delete id="deleteRecycle" parameterType="java.lang.Integer">
+		DELETE FROM	email  WHERE EMAIL_ID=#{emailId}
+		AND DELETE_FLAG = '4'
 	</delete>
 
 	<update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBodyModel">
@@ -473,46 +509,4 @@
 	</update>
 
 
-
-
-	<!-- 发件箱删除 变为2 -->
-	<update id="updateOutbox" parameterType="java.lang.Integer">
-	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='2' 
-	where eb.BODY_ID = #{bodyId} AND (e.DELETE_FLAG !='1'  OR e.DELETE_FLAG !='2' OR e.DELETE_FLAG !='3' OR e.DELETE_FLAG !='4')
-	</update>
-	<!-- 发件箱删除 变为4 -->
-	<update id="updateOutboxs" parameterType="java.lang.Integer">
-	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='4' 
-	where eb.BODY_ID = #{bodyId} AND (e.DELETE_FLAG !='' OR e.DELETE_FLAG !='0' OR e.DELETE_FLAG !='1'  OR e.DELETE_FLAG !='2' OR e.DELETE_FLAG !='4')
-	</update>
-	
-	<!--  发件箱为1时删除  -->
-	<delete id="deleteOutbox" parameterType="java.lang.Integer">
-		DELETE FROM	email WHERE BODY_ID = #{bodyId}
-		AND DELETE_FLAG = '1'
-	</delete> 
-	
-	<!-- 收件箱删除 ，变为3 -->
-	<update id="updateInbox" parameterType="java.lang.Integer">
-	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='3' 
-	where e.EMAIL_ID=#{emailId}  AND (e.DELETE_FLAG =''  OR e.DELETE_FLAG ='0')
-	</update> 
-	
-	<!-- 收件箱删除 ，变为4 -->
-	<update id="updateInboxs" parameterType="java.lang.Integer">
-	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='4' 
-	where e.EMAIL_ID=#{emailId}  AND e.DELETE_FLAG ='2'
-	</update>
-	
-	<!-- 废纸篓删除，变为1 -->
-	<update id="updateRecycle" parameterType="java.lang.Integer">
-	update email_body eb LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID set e.DELETE_FLAG='1' 
-	where e.EMAIL_ID=#{emailId}  AND e.DELETE_FLAG ='3'
-	</update>
-	
-	<!-- 废纸篓删除，delete -->
-	<delete id="deleteRecycle" parameterType="java.lang.Integer">
-		DELETE FROM	email WHERE EMAIL_ID=#{emailId}
-		AND DELETE_FLAG = '4'
-	</delete> 
 </mapper>

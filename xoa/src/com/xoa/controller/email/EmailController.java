@@ -246,6 +246,11 @@ public class EmailController {
 				"pageSize");
 		boolean useFlag = ServletRequestUtils.getBooleanParameter(request,
 				"useFlag");
+		String startDate = ServletRequestUtils.getStringParameter(request,"startDate");
+		String endDate = ServletRequestUtils.getStringParameter(request,"endDate");
+		String subject = ServletRequestUtils.getStringParameter(request,"subject");
+		String content = ServletRequestUtils.getStringParameter(request,"content");
+		String attachmentName = ServletRequestUtils.getStringParameter(request,"attachmentName");
 		String userId= "";
 		String userFrom = ServletRequestUtils.getStringParameter(request,
 				"userID");
@@ -258,6 +263,16 @@ public class EmailController {
 		L.e("userId:"+userId);
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("fromId", userId);
+		maps.put("subject",subject);
+		maps.put("content",content);
+		maps.put("attachmentName",attachmentName);
+		if(!StringUtils.checkNull(startDate)){
+			maps.put("startTime",DateFormat.getTime(startDate));
+		}
+		if(!StringUtils.checkNull(endDate)){
+			maps.put("startTime",DateFormat.getTime(endDate));
+		}
+
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		if (flag.trim().equals("inbox")) {
 			tojson = emailService.selectInbox(maps, page, pageSize, useFlag);
@@ -270,6 +285,8 @@ public class EmailController {
 					useFlag);
 		} else if (flag.trim().equals("noRead")) {
 			tojson = emailService.selectIsRead(maps, page, pageSize, useFlag);
+		} else{
+			tojson = emailService.selectEmail(maps,page,pageSize,useFlag);
 		}
 		if (tojson.getObj().size()>0) {
 			tojson.setFlag(0);

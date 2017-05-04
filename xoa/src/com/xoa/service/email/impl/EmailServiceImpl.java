@@ -112,7 +112,7 @@ public class EmailServiceImpl implements EmailService {
 	 * 
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:48:04
-	 * 方法介绍:   查询邮件
+	 * 方法介绍:   全部查询邮件
 	 * 参数说明:   @param maps 相关条件参数传值
 	 * 参数说明:   @param page 当前页
 	 * 参数说明:   @param pageSize 每页显示条数
@@ -121,17 +121,16 @@ public class EmailServiceImpl implements EmailService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<EmailBodyModel>
 	 */
+	@SuppressWarnings("all")
 	@Override
 	public ToJson<EmailBodyModel> selectEmail(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag) throws Exception {
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
-		logger.info("查询邮件!");
 		PageParams pageParams = new PageParams();
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		pageParams.setUseFlag(useFlag);
 		maps.put("page", pageParams);
-		logger.info("邮件查询emailService赋值！");
 		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
 		List<EmailBodyModel> listEmai = emailBodyMapper.selectObjcet(maps);
 		for(EmailBodyModel emailBody:listEmai){
