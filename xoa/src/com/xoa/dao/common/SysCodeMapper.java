@@ -1,7 +1,6 @@
 package com.xoa.dao.common;
 
 import java.util.List;
-import java.util.Map;
 
 import com.xoa.model.common.SysCode;
 

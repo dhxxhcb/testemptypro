@@ -2,6 +2,7 @@ package com.xoa.controller.diary;
 
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,7 @@ import com.xoa.util.page.PageParams;
 import com.xoa.util.treeUtil.HtmlUtil;
 
 @Controller
-@RequestMapping("/diary_")
+@RequestMapping("/diary")
 public class DiaryController {
 	private Logger loger = Logger.getLogger(DiaryController.class);
 	@Resource
@@ -57,14 +58,20 @@ public class DiaryController {
 	 * 参数说明:   @param diaryModel
 	 * 参数说明:   @return
 	 * @return   String  返回数据库操作影响行
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public String diaryAdd(DiaryModel diaryModel,HttpServletRequest request) {
+	public ToJson<DiaryModel> diaryAdd(DiaryModel diaryModel,HttpServletRequest request) throws UnsupportedEncodingException {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
+		String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"UTF-8");
+		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"UTF-8");
+		diaryModel.setContent(string);
+		diaryModel.setSubject(stringSubject);
 		int temp=diaryService.saveDiary(diaryModel);
-		return temp+"";
+		 ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0,temp+"");
+		return diaryListToJson;
 	}
 	/**
 	 * 
@@ -74,14 +81,20 @@ public class DiaryController {
 	 * 参数说明:   @param diaryModel
 	 * 参数说明:   @return
 	 * @return   String  返回数据库操作影响行
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping("/update")
 	@ResponseBody
-	public String diaryUpdate(DiaryModel diaryModel,HttpServletRequest request) {
+	public ToJson<DiaryModel> diaryUpdate(DiaryModel diaryModel,HttpServletRequest request) throws UnsupportedEncodingException {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
+		String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"UTF-8");
+		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"UTF-8");
+		diaryModel.setContent(string);
+		diaryModel.setSubject(stringSubject);
 		int temp=diaryService.updateDiary(diaryModel);
-		return temp+"";
+		 ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0,temp+"");
+		return diaryListToJson;
 	}
 	/**
 	 * 

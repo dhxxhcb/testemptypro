@@ -26,7 +26,7 @@ import com.xoa.util.dataSource.ContextHolder;
  */
 @Controller
 @Scope(value = "prototype")
-@RequestMapping("/diary")
+@RequestMapping("/diary_")
 public class LogUtilController {
 	private Logger loger = Logger.getLogger(LogUtilController.class);
 
