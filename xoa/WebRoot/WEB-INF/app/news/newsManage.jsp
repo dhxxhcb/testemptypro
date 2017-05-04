@@ -215,7 +215,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="news_t">发送事物提醒消息</div>
                 <!--<div><input type="checkbox" checked/></div>-->
                 <div><img src="../img/mg4.png" alt=""/></div>
-                <div>分享到企业社区</div>
+                <div class="news_t2">分享到企业社区</div>
             </td>
         </tr>
         <tr>
@@ -225,9 +225,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="top_box">
                 <!--<div><input type="checkbox"/></div>-->
                 <div><img src="../img/mg4.png" alt=""/></div>
-                <div>使新闻置顶，显示为重要</div>
+                <div class="news_t3">使新闻置顶，显示为重要</div>
                 <div class="t_box">0</div>
-                <div>天后结束置顶（0表示一直置顶）</div>
+                <div class="news_t4">天后结束置顶（0表示一直置顶）</div>
             </td>
 
 
@@ -237,7 +237,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 内容简介：
             </td>
             <td class="abstract">
-                <div class="abstract1">请选择新闻类型</div>
+                <div class="abstract1">请输入内容...</div>
                 <div class="abstract2">(最多输入39个字)</div>
             </td>
         </tr>
@@ -273,9 +273,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 关键字：
             </td>
             <td class="keyword">
-                <div class="keyword_ip">请输入关键字</div>
+                <div class="keyword_ip">请输入关键词...</div>
                 <div class="keyword_t">自动获取关键字</div>
-                <div>（您可以调整关键字内容，多个关键词请用" , "分割）</div>
+                <div class="keyword_t2">（您可以调整关键字内容，多个关键词请用" , "分割）</div>
         </tr>
         </tbody>
         
@@ -289,111 +289,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </div>
 <!--content部分结束-->
-	
-	
-	
-	
-	
-	
-	<!-- <div class="login">
-	        <div class="header">输入查询条件</div>
-	        <div class="middle">
-	            <div class="le publisher">
-	                <div class="color"style="width:105px;">发布人：</div>
-	                <div><input style="height:50px;width:279px;margin-left:0px;margin-right: 15px;" type="text" /></div>
-	                <div style="margin-right:23px; color:#207BD6">添加</div>
-	                <div>清空</div>
-	            </div>
-	            <div class="le subject">
-	                <div class="color"style="width:105px;">标题：</div>
-	                <div><input id="subject" style="height:26px;width:279px;margin-left:0px;margin-right: 15px;" type="text"/></div>
-	            </div>
-				<div class="le date">
-	                <div class="color"style="width:105px;">发布日期：</div>
-	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:0px;margin-right: 11px;" type="text"/></div>
-	                <div class="color">至</div>
-	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
-	            </div>
-	           	<div class="le ce1">
-	                <div class="color"style="width:105px;">类型：</div>
-	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:0px;" class="button1" style="float: left;" id="select">
-							<option value="0" selected="">所有类型</option>
-							<option value="01">公司动态</option>
-							<option value="02">媒体关注</option>
-							<option value="03">行业资讯</option>
-							<option value="04">合作伙伴新闻</option>
-							<option value="05">客户新闻</option>
-							<option value="">无类型</option>
-						</select>
-					</div>
-	
-	            </div>
-	            <div class="le ce2">
-	                <div class="color">内容:</div>
-	                <div><input id="content"  style="height:25px;width:279px;margin-left:80px;" type="text"/></div>
-	
-	            </div>
-	        </div>
-	        <div class="icons">
-	            <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
-	            <img style="margin-right:30px; cursor: pointer;"  src="../img/4query.png" alt=""/>
-	            <img style=" cursor: pointer;" src="../img/5query.png" alt=""/>
-	        </div>
-	    </div> -->
-	</div>
-    
-   <!--  <div class="center" style="width:100%;margin-top: 50px;display: none;"> -->
-   <!-- <div class="center" id="qt">
-    	 <div class="login">
-	        <div class="header">输入查询条件</div>
-	        <div class="middle">
-	            <div class="le publisher">
-	                <div class="color"style="width:105px;">发布人：</div>
-	                <div><input style="height:50px;width:279px;margin-left:0px;margin-right: 15px;" type="text" /></div>
-	                <div style="margin-right:23px; color:#207BD6">添加</div>
-	                <div>清空</div>
-	            </div>
-	            <div class="le subject">
-	                <div class="color"style="width:105px;">标题：</div>
-	                <div><input id="subject" style="height:26px;width:279px;margin-left:0px;margin-right: 15px;" type="text"/></div>
-	            </div>
-				<div class="le date">
-	                <div class="color"style="width:105px;">发布日期：</div>
-	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:0px;margin-right: 11px;" type="text"/></div>
-	                <div class="color">至</div>
-	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
-	            </div>
-	           	<div class="le ce1">
-	                <div class="color"style="width:105px;">类型：</div>
-	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:0px;" class="button1" style="float: left;" id="select">
-							<option value="0" selected="">所有类型</option>
-							<option value="01">公司动态</option>
-							<option value="02">媒体关注</option>
-							<option value="03">行业资讯</option>
-							<option value="04">合作伙伴新闻</option>
-							<option value="05">客户新闻</option>
-							<option value="">无类型</option>
-						</select>
-					</div>
-	
-	            </div>
-	            <div class="le ce2">
-	                <div class="color">内容:</div>
-	                <div><input id="content"  style="height:25px;width:279px;margin-left:80px;" type="text"/></div>
-	
-	            </div>
-	        </div>
-	        <div class="icons">
-	            <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
-	            <img style="margin-right:30px; cursor: pointer;"  src="../img/4query.png" alt=""/>
-	            <img style=" cursor: pointer;" src="../img/5query.png" alt=""/>
-	        </div>
-	    </div>
-    </div> -->
-    
-    <!-- 新闻查询 -->
+	 
+ <!-- 新闻查询 -->
     <div class="center" id="qt">
     <div class="login">
         <div class="header">
