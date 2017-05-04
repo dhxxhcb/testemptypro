@@ -21,16 +21,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
-	
-		<link rel="stylesheet" type="text/css" href="../css/news/new_news.css"/>		
-		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
-<style type="text/css">
-.sel {
+	<link rel="stylesheet" type="text/css" href="../css/news/new_news.css"/>	
+	<!-- word文本编辑器 -->	
+	<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
 
-  /*  background: url(../img/mg1.png) no-repeat 100% 0 transparent; */
-}
-</style>
 		
 </head>
 <body>
@@ -267,7 +262,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!--word编辑器-->
         <tr>
             <td colspan="2">
-
+            
+				<script id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script>
+				
 
             </td>
         </tr>
@@ -478,6 +475,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <script>
 $(function () {
+			/* word文本编辑器 */
+			 var ue = UE.getEditor('container');
+		 
             var data = {
                 read : $('.index_head .one').parent().attr('data_id'),
 				typeId : $('#select').val()==0?'':$('#select').val(),
