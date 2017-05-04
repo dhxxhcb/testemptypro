@@ -32,4 +32,13 @@ public interface SysCodeMapper {
      * @return     List<SysCode> 返回所有系统代码设置表主分类
      */
     public List<SysCode> getAllSysCode();
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月4日 上午10:06:41
+	 * 方法介绍:   更新系统代码设置表
+	 * 参数说明:   @param sysCode 系统代码设置表
+	 * @return     void 无
+	 */
+	public void update(SysCode sysCode);
+
 }
