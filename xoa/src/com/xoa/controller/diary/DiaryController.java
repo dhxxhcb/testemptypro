@@ -27,7 +27,7 @@ import com.xoa.util.page.PageParams;
 import com.xoa.util.treeUtil.HtmlUtil;
 
 @Controller
-@RequestMapping("/diary_")
+@RequestMapping("/diary")
 public class DiaryController {
 	private Logger loger = Logger.getLogger(DiaryController.class);
 	@Resource
