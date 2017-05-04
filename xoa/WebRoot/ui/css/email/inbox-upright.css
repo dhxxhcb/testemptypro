@@ -322,3 +322,8 @@ html,body{
 .drafts table tr td:first-of-type{
 	padding-left:10px;
 }
+
+.befor .sort img{
+	display: inline-block;
+	cursor: pointer;
+}
