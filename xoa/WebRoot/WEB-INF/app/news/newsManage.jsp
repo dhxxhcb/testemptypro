@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/base.css" />     <link rel="stylesheet" type="text/css" href="../css/news/news.css" /> 
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />     
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
@@ -25,7 +25,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="../css/news/new_news.css"/>		
 		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+.sel {
 
+  /*  background: url(../img/mg1.png) no-repeat 100% 0 transparent; */
+}
+</style>
 		
 </head>
 <body>
@@ -131,14 +136,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
             <div class="nav_t2" class="news">全部新闻</div>
 
-            <div class="nav_t3">选择格式</div>
-            <div class="nav_t4"><img src="../img/mg1.png" alt=""/></div>
+            <!-- <div class="nav_t3">选择格式 -->
+             <div class="nav_t3" > 
+            	<select name="" class="sel">
+                    <option value="" selected="">选择格式</option>
+                    <option value="">1</option>
+                    <option value="">2 </option>
+                    <option value="">2 </option>
+                    
+                </select>
+            
+            </div>                
+          <!--   <div class="nav_t4"><img src="../img/mg1.png" alt=""/></div> -->
         </div>
         <tbody>
         <tr>
             <td class="td_w">
-                <div class="text1 blue_text">请选择新闻类型</div>
-                <img class="text2" src="../img/mg1.png" alt=""/>
+                <!-- <div class="text1 blue_text">请选择新闻类型</div>
+                <img class="text2" src="../img/mg1.png" alt=""/> -->
+                <select name="" class="">
+                    <option value="" selected="">请选择新闻类型</option>
+                    <option value="">1</option>
+                    <option value="">2 </option>
+                    <option value="">2 </option>
+                    
+                </select>
             </td>
             <td>
                 <div class="td_title1">请输入发布时间...</div>
@@ -175,9 +197,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 评论:
             </td>
             <td>
-                <div class="comment1">实名评论</div>
-                <img class="comment2" src="../img/mg1.png" alt=""/>
-
+               <!--  <div class="comment1">实名评论</div>
+                <img class="comment2" src="../img/mg1.png" alt=""/>-->
+                
+                <select name="" class="">
+                    <option value="" selected="">实名评论</option>
+                    <option value="">1</option>
+                    <option value="">2 </option>
+                    <option value="">2 </option>
+                    
+                </select>
+                
             </td>
         </tr>
         <tr>
@@ -251,7 +281,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div>（您可以调整关键字内容，多个关键词请用" , "分割）</div>
         </tr>
         </tbody>
+        
     </table>
+    <div class="foot_mg">
+        <img class="fot_1" src="../img/mg5.png" alt=""/>
+        <img src="../img/mg6.png" alt=""/>
+    </div>
 </div>
 
 

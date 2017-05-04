@@ -17,12 +17,12 @@
     margin-left:10px;
     margin-right:20px;
 }
-.nav_box .nav_t3 {
+.nav_box .nav_t3 .sel {
     border:1px solid #d9d9d9;
-    width:55px;
+    width:85px;
     height:23px;
     line-height: 23px;
-    margin-top:23px;
+    /* margin-top:23px; */
 }
 .nav_box .nav_t4 img{
     width:25px;
@@ -56,7 +56,7 @@ td {
 .text1 {
     display: inline-block;
     float: left;
-    border: 1px solid #000;
+    border: 1px solid #d9d9d9;
     width: 105px;
     height: 20px;
     line-height: 20px;
@@ -72,7 +72,7 @@ td {
 .td_title1 {
     display: inline-block;
     float: left;
-    border: 1px solid #000;
+    border: 1px solid #d9d9d9;
     width: 250px;
     height: 20px;
     line-height: 20px;
@@ -116,7 +116,7 @@ td {
     height: 20px;
     line-height: 20px;
     padding-left: 5px;
-    border: 1px solid #000;
+    border: 1px solid #d9d9d9;
 }
 
 .comment2 {
@@ -141,7 +141,7 @@ td {
 }
 
 .top_box .t_box {
-    border: 1px solid #000;
+    border: 1px solid #d9d9d9;
     width: 35px;
     height: 20px;
     line-height: 20px;
@@ -157,7 +157,7 @@ td {
 }
 
 .abstract .abstract1 {
-    border: 1px solid #000;
+    border: 1px solid #d9d9d9;
     width: 250px;
     height: 20px;
     line-height: 20px;
@@ -168,6 +168,10 @@ td {
     float: left;
     color: #207bd6;
     font-size: 14px;
+    
+}
+.enclosure div img {
+	/* vertical-align:middle; */
 }
 
 .enclosure_t {
@@ -181,7 +185,7 @@ td {
 }
 
 .keyword .keyword_ip {
-    border: 1px solid #000;
+    border: 1px solid #d9d9d9;
     width: 250px;
     height: 20px;
     line-height: 20px;
@@ -204,3 +208,16 @@ td {
     font-weight: bold;
 
 }
+    .foot_mg {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .foot_mg .fot_1 {
+        margin-right: 40px;
+    }
+  /* 新建新闻页面的多选框 */  
+  #input1 {
+  	width：12px;
+  	height:12px;
+  }
+    
