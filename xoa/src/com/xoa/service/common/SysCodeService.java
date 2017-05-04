@@ -27,5 +27,14 @@ public interface SysCodeService {
 	 * @return     List<SysCode>
 	 */
 	 public ToJson<SysCode> getSysCode(String parentNo);
+	 
+	 /**
+	  * 创建作者:   张龙飞
+	  * 创建日期:   2017年5月3日 下午4:50:09
+	  * 方法介绍:   获取所有系统代码
+	  * 参数说明:   @return
+	  * @return     List<SysCode>
+	  */
+	public List<SysCode> getAllSysCode();
 
 }

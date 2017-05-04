@@ -13,6 +13,14 @@
   <select id="getSysCode"  parameterType="string" resultMap="BaseResultMap"> 
     select  s.CODE_NAME,s.CODE_ID,s.CODE_NO,s.CODE_EXT,s.CODE_FLAG,s.CODE_ORDER  from sys_code s WHERE s.PARENT_NO=#{parentNo}
   </select>
-  
+   <select id="getAllSysCode"  parameterType="java.lang.String" resultMap="BaseResultMap" >
+  	select  s.CODE_NAME,s.CODE_ID,s.CODE_NO,s.CODE_EXT,s.CODE_FLAG,s.CODE_ORDER from sys_code s where PARENT_NO='' order by CODE_ORDER
+  </select>
+  <select id="getCode" resultMap="BaseResultMap" >
+  select * from sys_code where PARENT_NO=#{codeNo} order by CODE_ORDER
+  </select>
+  <delete id="delete" parameterType="com.xoa.model.common.SysCode">
+  delete from sys_code where CODE_ID=#{codeId} or PARENT_NO=#{codeNo} and CODE_FLAG=1
+  </delete>
   
 </mapper>

@@ -42,10 +42,21 @@ public class SysCodeServiceImpl implements SysCodeService {
 		}
 		codeJson.setFlag(1);
 		codeJson.setMsg("err");
-		
-		     
 		return codeJson;
 	}
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月3日 下午4:50:09
+	 * 方法介绍:   获取所有系统代码
+	 * 参数说明:   @return
+	 * @return     List<SysCode>
+	 */
+@Override
+public List<SysCode> getAllSysCode() {
+	List<SysCode> list=sysCodeMapper.getAllSysCode();
+	return list;
+}
    
 
 }

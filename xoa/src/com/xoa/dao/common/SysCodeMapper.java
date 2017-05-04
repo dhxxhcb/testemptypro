@@ -23,4 +23,13 @@ public interface SysCodeMapper {
      * @return    String
      */
     public List<SysCode> getSysCode(String parentNo);
+    
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年5月3日 下午5:03:15
+     * 方法介绍:   获取所有系统代码设置表主分类
+     * 参数说明:   @return
+     * @return     List<SysCode> 返回所有系统代码设置表主分类
+     */
+    public List<SysCode> getAllSysCode();
 }
