@@ -22,15 +22,16 @@ body,
 	height:100%;
 }
 .gongzuoliu{
-    width: 121px;
+    width: 132px;
     height: 40px;
     float: left;
+    color: #2a588c;
     cursor:pointer;
     line-height: 40px;
     margin-top: 31.5px;
    /*  position: relative;
     z-index: 9; */
-    background: url(../../../img/main_img/title_yes.png) -1px 2px no-repeat;
+    background: url(../../../img/main_img/title_yes.png) 0px 4px no-repeat;
 }
 .tab_ctwo a{
 	font-weight:normal;
@@ -55,7 +56,7 @@ body,
 .head_mid ul li h1{
 
 	width: 61%;
-    color: #2a588c;
+   /*  color: #2a588c; */
     font-weight: bold;
     line-height: 40px;
   /*  text-align: center;  */
@@ -66,7 +67,7 @@ body,
     white-space: nowrap;
 }
 .head_mid ul li div{
-	width:19%;
+	width:30%;
 }
 .iItem{
 	width: 100%;
@@ -77,8 +78,8 @@ body,
     margin-bottom:2%;
 } 
 .head_mid ul li img{
-	margin-top: 52%;
-    margin-right: 49%;
+	    margin-top: 35%;
+    margin-right: 33%;
    /*  width: 53%;
     height: 28%; */
 
@@ -349,26 +350,27 @@ body,
     background-position: 0 -32px;
 }
 .choose{
-	width: 121px;
+	width: 132px;
     height: 40px;
     float: left;
+        color: #2a588c;
     line-height: 40px;
     margin-top: 31.5px;
     cursor:pointer;
     position:initial; 
     z-index: 999;
-    margin-left: -18px;
+   /*  margin-left: -18px; */
     margin-bottom: 0px;
-    background: url(../../../img/main_img/title_yes.png) -1px 2px no-repeat;
+    background: url(../../../img/main_img/title_yes.png) 0px 4px no-repeat;
 }
  .change{
- 	width: 121px;
+ 	width: 132px;
     height: 40px;  
     cursor:pointer; 
     position: relative;
     z-index: 999; 
     line-height: 40px;
-	background: url(../../../img/main_img/title_yes.png) -1px 2px no-repeat;
+	background: url(../../../img/main_img/title_yes.png) 0px 4px no-repeat;
 } 
 .person_logo{
 	margin-left: 5%;

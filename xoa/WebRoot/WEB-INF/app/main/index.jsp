@@ -106,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													<div class="s_container">
 														<div class="every_logo" menu_tid="0116" url="notice/index"><img src="img/spirit/menu/notice.png"><h2>公告</h2></div>
 														<div class="every_logo" menu_tid="0101" url="email/index"><img src="img/spirit/menu/mail.png"><h2>邮件</h2></div>
-														<div class="every_logo" menu_tid="0124" url="arrange/"><img src="img/spirit/menu/data.png"><h2>日程</h2></div>
+														<div class="every_logo" menu_tid="0124" url="http://192.168.0.17:81/gotophp.php?uid=admin&url=calendar"><img src="img/spirit/menu/data.png"><h2>日程</h2></div>
 														<div class="every_logo" menu_tid="0117" url="news/index"><img src="img/spirit/menu/news.png"><h2>新闻</h2></div>
 														<div class="every_logo" menu_tid="3001" url="file/home"><img src="img/spirit/menu/nor.png"><h2>文件柜</h2></div>
 														<div class="every_logo" menu_tid="0128" url="diary/index"><img src="img/spirit/menu/daily.png"><h2>日志</h2></div>
@@ -143,13 +143,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													 <div class="s_head">
 														<span  class="model">日志</span><span class="more"><a>更多</a></span>
 													</div>
-													<div class="s_container">
-														<ul>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/990557262.180238795.png"></span><span class="e_name">朱红</span><span class="e_title">人力资源变更备忘<i style="background:url(http://devapp.gsubo.com/ui/img/mail/fileflag.png)"></i></span><span class="e_time">3月20日</span></li>
+													<div class="daily">
+														<ul class="all_daily">
+															<!-- <li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/990557262.180238795.png"></span><span class="e_name">朱红</span><span class="e_title">人力资源变更备忘<i style="background:url(http://devapp.gsubo.com/ui/img/mail/fileflag.png)"></i></span><span class="e_time">3月20日</span></li>
 															<li><span class="e_img"><img src="http://app.gsubo.com/file0/E101000001/photo/115438796.997410756.jpg"></span><span class="e_name">王媛</span><span  class="e_title">修改开发规范<i></i></span><span class="e_time">2月04日</span></li>
 															<li><span class="e_img"><img src="http://app.gsubo.com/file0/E101000001/photo/1367380632.1000119131.jpg"></span><span class="e_name">张咪</span><span  class="e_title">市场调查结果分析<i></i></span><span class="e_time">1月11日</span></li>
 															<li><span class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></span><span class="e_name">刘芳妮</span><span  class="e_title">售后服务问题反馈<i></i></span><span class="e_time">2016年10月21日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1721260475.1180844205.png"></span><span class="e_name">鲁平平</span><span  class="e_title">项目开发进度演示<i></i></span><span class="e_time">2016年10月07日</span></li>
+															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1721260475.1180844205.png"></span><span class="e_name">鲁平平</span><span  class="e_title">项目开发进度演示<i></i></span><span class="e_time">2016年10月07日</span></li> -->
 														</ul>
 													</div>
 												</li>
@@ -437,12 +437,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$('#f_'+menu_tid).show();
 								
 								$('#t_'+menu_tid).css({
-									'background':'url(img/main_img/title_yes.png) -1px 2px no-repeat',
+									'background':'url(img/main_img/title_yes.png) 0px 4px no-repeat',
+									'color':'#2a588c',
 									'position':'relative',
 									'z-index':99999
 								})
 								$('#t_'+menu_tid).siblings().css({
-									'background':'url(img/main_img/title_no.png) -1px 2px no-repeat',
+									'background':'url(img/main_img/title_no.png) 0px 4px no-repeat',
+									'color':'#fff',
 									'position':'relative',
 									'z-index':999
 								})
@@ -459,8 +461,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 									$('.main_title ul').append(titlestr);
 									
-									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) -1px 2px no-repeat;');
-									
+									$('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) 0px 4px no-repeat;');
+									$('#t_'+menu_tid).siblings().css('color','#fff');
 									/* console.log($('#t_'+menu_tid).siblings()); */
 									$('.all_content').append(iframestr);
 									$('.all_content .iItem').hide();
@@ -492,12 +494,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									$('.all_content .iItem').hide();
 									$('#f_'+menu_tid).show();
 										$('#t_'+menu_tid).css({
-										'background':'url(img/main_img/title_yes.png) -1px 2px no-repeat',
+										'background':'url(img/main_img/title_yes.png) 0px 4px no-repeat',
+										'color':'#2a588c',
 										'position':'relative',
 										'z-index':99999
 									})
 									$('#t_'+menu_tid).siblings().css({
-										'background':'url(img/main_img/title_no.png) -1px 2px no-repeat',
+										'background':'url(img/main_img/title_no.png) 0px 4px no-repeat',
+										'color':'#fff',
 										'position':'relative',
 										'z-index':999
 									})
@@ -579,12 +583,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 							} 
 							$(this).siblings().css({
-										'background':'url(img/main_img/title_no.png) -1px 2px no-repeat',
+										'background':'url(img/main_img/title_no.png) 0px 4px no-repeat',
+										'color':'#fff',
 										'position':'relative',
 										'z-index':999
 									})
 							$(this).css({
-										'background':'url(img/main_img/title_yes.png) -1px 2px no-repeat',
+										'background':'url(img/main_img/title_yes.png) 0px 4px no-repeat',
+										'color':'#2a588c',
 										'position':'relative',
 										'z-index':99999
 							})
@@ -609,8 +615,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 	  
 						 	   $('#f_'+delet).remove(); 
 						 	}else{ */
-						 		$('#t_'+delet).siblings().attr('style','background:url(img/main_img/title_no.png) -1px 2px no-repeat; ');	
-						 		$('#t_'+delet).prev().attr('style','background:url(img/main_img/title_yes.png) -1px 2px no-repeat; position: relative; z-index: 99999;');	
+						 		$('#t_'+delet).siblings().attr('style','background:url(img/main_img/title_no.png) 0px 4px no-repeat; ');	
+						 		$('#t_'+delet).prev().attr('style','background:url(img/main_img/title_yes.png) 0px 4px no-repeat; position: relative; z-index: 99999;');	
 						 	 	
 						 	 	$(this).parent().parent().remove();
 						 	 	$('#f_'+delet).prev().show();
@@ -738,12 +744,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$('#f_'+tid).show();
 								
 								$('#t_'+tid).css({
-									'background':'url(img/main_img/title_yes.png) -1px 2px no-repeat',
+									'background':'url(img/main_img/title_yes.png) 0px 4px no-repeat',
+									'color':'#2a588c',
 									'position':'relative',
 									'z-index':99999
 								})
 								$('#t_'+tid).siblings().css({
-									'background':'url(img/main_img/title_no.png) -1px 2px no-repeat',
+									'background':'url(img/main_img/title_no.png) 0px 4px no-repeat',
+									'color':'#fff',
 									'position':'relative',
 									'z-index':999
 								})
