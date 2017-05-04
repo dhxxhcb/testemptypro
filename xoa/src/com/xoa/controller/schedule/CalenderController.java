@@ -19,6 +19,16 @@ public class CalenderController {
 	@Resource
 	private CalenderService calenderService;
 	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月4日 下午5:28:10
+	 * 方法介绍:   根据日程安排的起始和结束时间查询日程
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @param calTime 起始时间
+	 * 参数说明:   @param endime 结束时间
+	 * 参数说明:   @return
+	 * @return     ToJson<Calendar>  返回日程安排
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/schedule/getschedule",produces = {"application/json;charset=UTF-8"})
 	public ToJson<Calendar> getschedule(HttpServletRequest request,String calTime,String endime){
@@ -38,7 +48,7 @@ public class CalenderController {
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年5月4日 下午5:02:21
-	 * 方法介绍:   根据userId 查询用户
+	 * 方法介绍:   根据userId 查询日程安排
 	 * 参数说明:   @param request 请求
 	 * 参数说明:   @param userId 用户Id
 	 * 参数说明:   @return
