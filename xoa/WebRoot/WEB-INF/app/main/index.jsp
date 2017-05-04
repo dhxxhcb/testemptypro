@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</li>
 												<li class="contain side">
 													 <div class="s_head">
-														<span  class="model">日志</span><span class="more"><a>更多</a></span>
+														<span  class="model" >日志</span><span class="more_daily"><a class="daily_more" tid="0128" url="diary/index">更多</a></span>
 													</div>
 													<div class="daily">
 														<ul class="all_daily">
@@ -763,6 +763,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 							$('.main_title ul').append(titlestrs);
 							$('#t_'+tid).siblings().attr('style','background: url(img/main_img/title_no.png) -1px 2px no-repeat; ');	
+							$('#t_'+tid).siblings().css('color','#fff');
 							$('.all_content').append(iframestr);
 							$('.all_content .iItem').hide();
 							$('#f_'+tid).show();
