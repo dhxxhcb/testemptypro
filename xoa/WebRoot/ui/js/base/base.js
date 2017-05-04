@@ -33,7 +33,7 @@
 					 clearInterval(f);
 				 }
 				 if(a){
-					 console.log(a);
+//					console.log(a);
 					clearInterval(f);
 					l.contents().find("body").html("");
 					var c = {};
