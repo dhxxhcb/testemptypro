@@ -20,7 +20,7 @@ public class JobClassifyController {
     public JobSelectorWrapper getSeletorInfo(){
         return   service.getJobSelector();
     }
-    @RequestMapping("/flowsort/flow")
+    @RequestMapping("/flowclassify/flow")
     public JobSelectorWrapper getFlowInfo(){
         return   service.getFlowsort();
     }
