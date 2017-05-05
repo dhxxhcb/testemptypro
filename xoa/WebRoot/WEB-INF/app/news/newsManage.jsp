@@ -11,20 +11,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title></title> 	
+   
+    
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/base.css" />     
+    <link rel="stylesheet" type="text/css" href="../css/base.css" /> 
+    <link rel="stylesheet" type="text/css" href="../css/news/new_news.css"/> 
+    <!-- 新闻管理  --> 
+    <link rel="stylesheet" type="text/css" href="../css/news/management_query.css" />          
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
-	<link rel="stylesheet" type="text/css" href="../css/news/new_news.css"/>	
 	<!-- word文本编辑器 -->	
 	<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
+	
+	
 
 		
 </head>
@@ -124,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <!-- 新建新闻 -->
 	<!-- <div class="step2"  style="width:100%;margin-top: 50px;display: none;"> -->
-	<div class="step2" style="display: none;">
+	<div class="step2" style="display: none;margin-left: 10px;">
 	<!-- 中间部分 -->
 	 <table class="newNews">
         <div class="nav_box clearfix">
@@ -291,8 +297,140 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--content部分结束-->
 	 
  <!-- 新闻查询 -->
-    <div class="center" id="qt">
-    <div class="login">
+    <div class="center" id="qt">   	
+   <!--content部分开始-->
+    <table class="clearfix total">
+        <tbody>
+        <tr>
+            <td colspan="2" class="query_title">
+                输入查询条件
+            </td>
+        </tr>
+        <tr>
+            <td class="td_w">
+                格式：
+            </td>
+            <td>
+                <select name="" class="se_1">
+                    <option value="" selected="">全部</option>
+                    <option value="">1</option>
+                    <option value="">2 </option>
+                    <option value="">2 </option>
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+               类型：
+            </td>
+            <td>
+                <select name="" class="se_2">
+                    <option value="" selected="">全部</option>
+                    <option value="">1</option>
+                    <option value="">2 </option>
+                    <option value="">2 </option>
+
+                </select>
+
+            </td>
+
+        </tr>
+        <tr>
+            <td class="blue_text">
+               状态：
+            </td>
+            <td>
+                <select name="" class="se_3">
+                    <option value="" selected="">全部</option>
+                    <option value="">1</option>
+                    <option value="">2 </option>
+                    <option value="">2 </option>
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                是否置顶:
+            </td>
+            <td>
+                <select name="" class="se_4">
+                    <option value="" selected="">全部</option>
+                    <option value="">1</option>
+                    <option value="">2 </option>
+                    <option value="">2 </option>
+
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td>标题:</td>
+            <td>
+                <div class="title_"></div>
+            </td>
+        </tr>
+        <tr class="release">
+            <td>发布日期</td>
+            <td>
+                <div class="date"></div>
+                <div  class="c_t">至</div>
+                <div class="date"></div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>内容</td>
+            <td>
+                <div class="content_"></div>
+            </td>
+        </tr>
+        <tr class="clack_t">
+            <td>点击次数</td>
+            <td>
+                <div class="c_time"></div>
+                <div class="c_t">至</div>
+                <div class="c_time"></div>
+            </td>
+        </tr>
+        <tr class="operation">
+            <td>操作</td>
+            <td>
+            	<div><input type="radio" name="radio"></div>
+            	<div class="operation1">查询</div>
+            	<div><input type="radio" name="radio"></div>
+            	<div class="operation1">删除</div>
+               <!--  <input type="radio" name="radio"></input>
+                <input type="radio" name="radio">删除</input> -->
+            </td>
+        </tr>
+        <tr class="table_b">
+            <td colspan="2">
+                    <div class="bt">确定</div>
+                    <div>重填</div>
+              
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<!--content部分结束-->
+    	
+    
+
+    	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- <div class="login">
         <div class="header">
             <fmt:message code="global.lang.inputquerycondition"/>
         </div>
@@ -326,7 +464,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="le ce1">
                 <div class="color" style="width:105px;"><fmt:message code="news.title.new"/> ：</div>
             <div> 
-                 <!-- <select name="TYPE"  class="button1 input_text5" id="select_query"> --> 
+                 <select name="TYPE"  class="button1 input_text5" id="select_query"> 
                    <select name="TYPE"  class="button1 input_text5" id="select"> 
                  
                         <option value="0" selected="">
@@ -364,12 +502,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img style="margin-right:30px; cursor: pointer;" src="../img/4query.png" alt=""/>
             <img style=" cursor: pointer;" src="../img/5query.png" alt=""/>
         </div>
-    </div>
+    </div> -->
 </div>
 
 
     <!--footer部分结束-->
-</div>
 <script>
 $(function () {
 			/* word文本编辑器 */
