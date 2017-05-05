@@ -36,8 +36,6 @@ public class JobClassifyService {
          return  wrapper;
      }
 
-
-
     private List<FormSort> sortDatas(List<FormSort> nosortDatas,Integer sortIda) {
         if(nosortDatas==null) return null;
         List<FormSort> datas = new ArrayList<FormSort>();

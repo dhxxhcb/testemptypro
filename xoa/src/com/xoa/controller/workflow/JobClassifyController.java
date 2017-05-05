@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by 王曰岐 on 2017/5/4.
  */
 @RestController
-@RequestMapping("/workfolw")
+@RequestMapping("/workflow")
 public class JobClassifyController {
 
     @Autowired
