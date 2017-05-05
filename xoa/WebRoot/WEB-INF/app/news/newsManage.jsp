@@ -424,6 +424,16 @@ $(function () {
 				}
 				
             });
+            
+           /* 修改功能跳转新建页面 */
+            $(".modify").click(function(){
+            		$('.step1').hide();
+					$('.step2').show();
+					$('.center').hide();
+					alert(1);
+            
+            });
+            
             function initPageList(cb){
             	$.ajax({
 					type: "get",
@@ -434,7 +444,7 @@ $(function () {
 						console.log(data);
 						var news = "";
                            for (var i = 0; i < data.obj.length; i++) {
-                               	 news = "<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
+                               	/*  news = "<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
                                		   "<td>"+data.obj[i].providerName+"</td>"+//发布人
                                        "<td>"+data.obj[i].typeName+"</td>"+//类型
                                        "<td><div class='break_td' title="+data.obj[i].depName+">"+'点击详情'+"</div></td>"+//发布范围
@@ -444,6 +454,24 @@ $(function () {
                                        "<td>"+data.obj[i].newsId+"</td>"+//评论（条）
                                        "<td>"+"生效</td>"+//状态
                                        "<td>"+"修改  管理评论  终止  删除</td>"+//操作
+                                       news; */
+                                       
+                                        news = "<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
+                               		   "<td>"+data.obj[i].providerName+"</td>"+//发布人
+                                       "<td>"+data.obj[i].typeName+"</td>"+//类型
+                                       "<td><div class='break_td' title="+data.obj[i].depName+">"+'点击详情'+"</div></td>"+//发布范围
+                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</a></td>"+//标题
+                                       "<td>"+data.obj[i].newsDateTime+"</td>"+//发布时间
+                                       "<td>"+data.obj[i].clickCount+"</td>"+//点击数
+                                       "<td>"+data.obj[i].newsId+"</td>"+//评论（条）
+                                       "<td>"+"生效</td>"+//状态
+                                        "<td>"+
+                                       		 "<a href='#' class='modify'>"+"修改"+"</a>&nbsp"+
+											 "<a href='#'>"+"管理评论"+"</a>&nbsp"+
+											 "<a href='#'>"+"终止"+"</a>&nbsp"+
+											 "<a href='#'>"+"删除"+"</a>&nbsp"+
+                                       "</td>"+//操作 
+                                      /*  "<td>"+"修改  管理评论  终止  删除</td>"+//操作 */
                                        news;
                            }
                            
