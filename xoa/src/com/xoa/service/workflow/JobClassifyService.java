@@ -21,9 +21,18 @@ public class JobClassifyService {
 
 	 public JobSelectorWrapper getJobSelector(){
          JobSelectorWrapper wrapper =new JobSelectorWrapper();
-         List<FormSort> nosortDatas= sortMapper.selectByExample(new FormSortExample());
+         List<FormSort> nosortDatas= sortMapper.selectAllFormSort();
+         Integer noform=sortMapper.selectNoformSort();
+         List<FormSort>  resultdatas =new ArrayList<>();
+         FormSort formSort =new FormSort();
+         formSort.setSortName("未定义");
+         formSort.setFormcounts(noform);
+         formSort.setHaveChild("0");
+         formSort.setSortNo(0);
+         resultdatas.add(formSort);
          List<FormSort>  datasMap =   sortDatas(nosortDatas,0);
-         wrapper.setDatas(datasMap);
+         resultdatas.addAll(datasMap);
+         wrapper.setDatas(resultdatas);
          return  wrapper;
      }
 

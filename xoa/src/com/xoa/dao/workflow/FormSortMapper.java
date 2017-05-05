@@ -17,6 +17,9 @@ public interface FormSortMapper {
     int insertSelective(FormSort record);
 
     List<FormSort> selectByExample(FormSortExample example);
+    List<FormSort> selectAllFormSort();
+
+    int selectNoformSort();
 
     FormSort selectByPrimaryKey(Integer sortId);
 

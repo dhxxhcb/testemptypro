@@ -16,7 +16,7 @@ public class JobClassifyController {
     @Autowired
     JobClassifyService service;
 
-    @RequestMapping("/jobselector")
+    @RequestMapping("/flowclassify/datas")
     public JobSelectorWrapper getSeletorInfo(){
         return   service.getJobSelector();
     }

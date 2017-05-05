@@ -15,6 +15,45 @@ public class FormSort {
 
     private Integer deptId;
 
+    private Integer formcounts;
+
+    private String departName;
+
+    private Integer departId;
+
+    public String getDepartName() {
+        if(departName==null){
+            departName="全部部门";
+        }
+        return departName;
+    }
+
+    public void setDepartName(String departName) {
+        this.departName = departName;
+    }
+
+    public Integer getDepartId() {
+        if(departId==null){
+            departId=0;
+        }
+        return departId;
+    }
+
+    public void setDepartId(Integer departId) {
+        this.departId = departId;
+    }
+
+    public Integer getFormcounts() {
+        if(formcounts==null){
+            formcounts=0;
+        }
+        return formcounts;
+    }
+
+    public void setFormcounts(Integer formcounts) {
+        this.formcounts = formcounts;
+    }
+
     private List<FormSort> childs;
 
     public List<FormSort> getChilds() {

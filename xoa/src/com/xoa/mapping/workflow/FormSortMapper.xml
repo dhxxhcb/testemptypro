@@ -9,6 +9,11 @@
     <result column="HAVE_CHILD" property="haveChild" jdbcType="CHAR" />
     <result column="DEPT_ID" property="deptId" jdbcType="INTEGER" />
   </resultMap>
+  <resultMap id="CountsFormMap" type="com.xoa.model.workflow.FormSort" extends="BaseResultMap">
+    <result column="FORM_COUNTS" property="formcounts" jdbcType="INTEGER" />
+    <result column="DEPT_ID" property="departId" jdbcType="INTEGER" />
+    <result column="DEPT_NAME" property="departName" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -225,4 +230,18 @@
       DEPT_ID = #{deptId,jdbcType=INTEGER}
     where SORT_ID = #{sortId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllFormSort" resultMap="CountsFormMap">
+   SELECT form_sort.*,countform.FORM_COUNTS,department.DEPT_ID,department.DEPT_NAME FROM form_sort
+LEFT JOIN (
+ SELECT COUNT(flow_form_type.FORM_ID) AS FORM_COUNTS,flow_form_type.FORM_SORT FROM flow_form_type  GROUP BY flow_form_type.FORM_SORT
+) AS countform ON countform.FORM_SORT=form_sort.SORT_ID
+LEFT JOIN department ON department.DEPT_ID=form_sort.DEPT_ID
+ORDER BY SORT_ID,SORT_NO ASC
+  </select>
+  <select id="selectNoformSort" resultType="Integer">
+    SELECT COUNT(flow_form_type.FORM_ID) AS FORM_COUNTS FROM flow_form_type WHERE flow_form_type.FORM_SORT=0 or flow_form_type.FORM_SORT IS NULL
+  </select>
+
+
 </mapper>
