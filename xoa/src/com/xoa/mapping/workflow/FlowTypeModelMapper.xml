@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.workflow.FlowTypeModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowTypeModel" >
+    <id column="FLOW_ID" property="flowId" jdbcType="INTEGER" />
+    <result column="FLOW_NAME" property="flowName" jdbcType="VARCHAR" />
+    <result column="FORM_ID" property="formId" jdbcType="INTEGER" />
+    <result column="FLOW_DOC" property="flowDoc" jdbcType="CHAR" />
+    <result column="FLOW_TYPE" property="flowType" jdbcType="CHAR" />
+    <result column="FLOW_NO" property="flowNo" jdbcType="INTEGER" />
+    <result column="FLOW_SORT" property="flowSort" jdbcType="INTEGER" />
+    <result column="AUTO_NUM" property="autoNum" jdbcType="INTEGER" />
+    <result column="AUTO_LEN" property="autoLen" jdbcType="INTEGER" />
+    <result column="AUTO_EDIT" property="autoEdit" jdbcType="VARCHAR" />
+    <result column="COMMENT_PRIV" property="commentPriv" jdbcType="CHAR" />
+    <result column="DEPT_ID" property="deptId" jdbcType="INTEGER" />
+    <result column="FREE_PRESET" property="freePreset" jdbcType="CHAR" />
+    <result column="FREE_OTHER" property="freeOther" jdbcType="CHAR" />
+    <result column="ALLOW_PRE_SET" property="allowPreSet" jdbcType="CHAR" />
+    <result column="FORCE_PRE_SET" property="forcePreSet" jdbcType="CHAR" />
+    <result column="VIEW_PRIV" property="viewPriv" jdbcType="INTEGER" />
+    <result column="IS_VERSION" property="isVersion" jdbcType="INTEGER" />
+    <result column="FLOW_ACTION" property="flowAction" jdbcType="VARCHAR" />
+    <result column="AUTO_NUM_YEAR" property="autoNumYear" jdbcType="INTEGER" />
+    <result column="AUTO_NUM_MONTH" property="autoNumMonth" jdbcType="INTEGER" />
+    <result column="AUTO_NUM_TIME" property="autoNumTime" jdbcType="TIMESTAMP" />
+    <result column="MANAGE_USER" property="manageUser" jdbcType="LONGVARCHAR" />
+    <result column="AUTO_NAME" property="autoName" jdbcType="LONGVARCHAR" />
+    <result column="QUERY_USER" property="queryUser" jdbcType="LONGVARCHAR" />
+    <result column="FLOW_DESC" property="flowDesc" jdbcType="LONGVARCHAR" />
+    <result column="NEW_USER" property="newUser" jdbcType="LONGVARCHAR" />
+    <result column="QUERY_ITEM" property="queryItem" jdbcType="LONGVARCHAR" />
+    <result column="QUERY_USER_DEPT" property="queryUserDept" jdbcType="LONGVARCHAR" />
+    <result column="MANAGE_USER_DEPT" property="manageUserDept" jdbcType="LONGVARCHAR" />
+    <result column="EDIT_PRIV" property="editPriv" jdbcType="LONGVARCHAR" />
+    <result column="LIST_FLDS_STR" property="listFldsStr" jdbcType="LONGVARCHAR" />
+    <result column="MODEL_ID" property="modelId" jdbcType="LONGVARCHAR" />
+    <result column="MODEL_NAME" property="modelName" jdbcType="LONGVARCHAR" />
+    <result column="ATTACHMENT_ID" property="attachmentId" jdbcType="LONGVARCHAR" />
+    <result column="ATTACHMENT_NAME" property="attachmentName" jdbcType="LONGVARCHAR" />
+    <result column="VIEW_USER" property="viewUser" jdbcType="LONGVARCHAR" />
+    <result column="VIEW_DEPT" property="viewDept" jdbcType="LONGVARCHAR" />
+    <result column="VIEW_ROLE" property="viewRole" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FLOW_ID, FLOW_NAME, FORM_ID, FLOW_DOC, FLOW_TYPE, FLOW_NO, FLOW_SORT, AUTO_NUM, AUTO_LEN, 
+    AUTO_EDIT, COMMENT_PRIV, DEPT_ID, FREE_PRESET, FREE_OTHER, ALLOW_PRE_SET, FORCE_PRE_SET, 
+    VIEW_PRIV, IS_VERSION, FLOW_ACTION, AUTO_NUM_YEAR, AUTO_NUM_MONTH, AUTO_NUM_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    MANAGE_USER, AUTO_NAME, QUERY_USER, FLOW_DESC, NEW_USER, QUERY_ITEM, QUERY_USER_DEPT, 
+    MANAGE_USER_DEPT, EDIT_PRIV, LIST_FLDS_STR, MODEL_ID, MODEL_NAME, ATTACHMENT_ID, 
+    ATTACHMENT_NAME, VIEW_USER, VIEW_DEPT, VIEW_ROLE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from flow_type
+    where FLOW_ID = #{flowId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from flow_type
+    where FLOW_ID = #{flowId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xoa.model.workflow.FlowTypeModelWithBLOBs" >
+    insert into flow_type (FLOW_ID, FLOW_NAME, FORM_ID, 
+      FLOW_DOC, FLOW_TYPE, FLOW_NO, 
+      FLOW_SORT, AUTO_NUM, AUTO_LEN, 
+      AUTO_EDIT, COMMENT_PRIV, DEPT_ID, 
+      FREE_PRESET, FREE_OTHER, ALLOW_PRE_SET, 
+      FORCE_PRE_SET, VIEW_PRIV, IS_VERSION, 
+      FLOW_ACTION, AUTO_NUM_YEAR, AUTO_NUM_MONTH, 
+      AUTO_NUM_TIME, MANAGE_USER, AUTO_NAME, 
+      QUERY_USER, FLOW_DESC, NEW_USER, 
+      QUERY_ITEM, QUERY_USER_DEPT, MANAGE_USER_DEPT, 
+      EDIT_PRIV, LIST_FLDS_STR, MODEL_ID, 
+      MODEL_NAME, ATTACHMENT_ID, ATTACHMENT_NAME, 
+      VIEW_USER, VIEW_DEPT, VIEW_ROLE
+      )
+    values (#{flowId,jdbcType=INTEGER}, #{flowName,jdbcType=VARCHAR}, #{formId,jdbcType=INTEGER}, 
+      #{flowDoc,jdbcType=CHAR}, #{flowType,jdbcType=CHAR}, #{flowNo,jdbcType=INTEGER}, 
+      #{flowSort,jdbcType=INTEGER}, #{autoNum,jdbcType=INTEGER}, #{autoLen,jdbcType=INTEGER}, 
+      #{autoEdit,jdbcType=VARCHAR}, #{commentPriv,jdbcType=CHAR}, #{deptId,jdbcType=INTEGER}, 
+      #{freePreset,jdbcType=CHAR}, #{freeOther,jdbcType=CHAR}, #{allowPreSet,jdbcType=CHAR}, 
+      #{forcePreSet,jdbcType=CHAR}, #{viewPriv,jdbcType=INTEGER}, #{isVersion,jdbcType=INTEGER}, 
+      #{flowAction,jdbcType=VARCHAR}, #{autoNumYear,jdbcType=INTEGER}, #{autoNumMonth,jdbcType=INTEGER}, 
+      #{autoNumTime,jdbcType=TIMESTAMP}, #{manageUser,jdbcType=LONGVARCHAR}, #{autoName,jdbcType=LONGVARCHAR}, 
+      #{queryUser,jdbcType=LONGVARCHAR}, #{flowDesc,jdbcType=LONGVARCHAR}, #{newUser,jdbcType=LONGVARCHAR}, 
+      #{queryItem,jdbcType=LONGVARCHAR}, #{queryUserDept,jdbcType=LONGVARCHAR}, #{manageUserDept,jdbcType=LONGVARCHAR}, 
+      #{editPriv,jdbcType=LONGVARCHAR}, #{listFldsStr,jdbcType=LONGVARCHAR}, #{modelId,jdbcType=LONGVARCHAR}, 
+      #{modelName,jdbcType=LONGVARCHAR}, #{attachmentId,jdbcType=LONGVARCHAR}, #{attachmentName,jdbcType=LONGVARCHAR}, 
+      #{viewUser,jdbcType=LONGVARCHAR}, #{viewDept,jdbcType=LONGVARCHAR}, #{viewRole,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xoa.model.workflow.FlowTypeModelWithBLOBs" >
+    insert into flow_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="flowId != null" >
+        FLOW_ID,
+      </if>
+      <if test="flowName != null" >
+        FLOW_NAME,
+      </if>
+      <if test="formId != null" >
+        FORM_ID,
+      </if>
+      <if test="flowDoc != null" >
+        FLOW_DOC,
+      </if>
+      <if test="flowType != null" >
+        FLOW_TYPE,
+      </if>
+      <if test="flowNo != null" >
+        FLOW_NO,
+      </if>
+      <if test="flowSort != null" >
+        FLOW_SORT,
+      </if>
+      <if test="autoNum != null" >
+        AUTO_NUM,
+      </if>
+      <if test="autoLen != null" >
+        AUTO_LEN,
+      </if>
+      <if test="autoEdit != null" >
+        AUTO_EDIT,
+      </if>
+      <if test="commentPriv != null" >
+        COMMENT_PRIV,
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID,
+      </if>
+      <if test="freePreset != null" >
+        FREE_PRESET,
+      </if>
+      <if test="freeOther != null" >
+        FREE_OTHER,
+      </if>
+      <if test="allowPreSet != null" >
+        ALLOW_PRE_SET,
+      </if>
+      <if test="forcePreSet != null" >
+        FORCE_PRE_SET,
+      </if>
+      <if test="viewPriv != null" >
+        VIEW_PRIV,
+      </if>
+      <if test="isVersion != null" >
+        IS_VERSION,
+      </if>
+      <if test="flowAction != null" >
+        FLOW_ACTION,
+      </if>
+      <if test="autoNumYear != null" >
+        AUTO_NUM_YEAR,
+      </if>
+      <if test="autoNumMonth != null" >
+        AUTO_NUM_MONTH,
+      </if>
+      <if test="autoNumTime != null" >
+        AUTO_NUM_TIME,
+      </if>
+      <if test="manageUser != null" >
+        MANAGE_USER,
+      </if>
+      <if test="autoName != null" >
+        AUTO_NAME,
+      </if>
+      <if test="queryUser != null" >
+        QUERY_USER,
+      </if>
+      <if test="flowDesc != null" >
+        FLOW_DESC,
+      </if>
+      <if test="newUser != null" >
+        NEW_USER,
+      </if>
+      <if test="queryItem != null" >
+        QUERY_ITEM,
+      </if>
+      <if test="queryUserDept != null" >
+        QUERY_USER_DEPT,
+      </if>
+      <if test="manageUserDept != null" >
+        MANAGE_USER_DEPT,
+      </if>
+      <if test="editPriv != null" >
+        EDIT_PRIV,
+      </if>
+      <if test="listFldsStr != null" >
+        LIST_FLDS_STR,
+      </if>
+      <if test="modelId != null" >
+        MODEL_ID,
+      </if>
+      <if test="modelName != null" >
+        MODEL_NAME,
+      </if>
+      <if test="attachmentId != null" >
+        ATTACHMENT_ID,
+      </if>
+      <if test="attachmentName != null" >
+        ATTACHMENT_NAME,
+      </if>
+      <if test="viewUser != null" >
+        VIEW_USER,
+      </if>
+      <if test="viewDept != null" >
+        VIEW_DEPT,
+      </if>
+      <if test="viewRole != null" >
+        VIEW_ROLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="flowId != null" >
+        #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="flowName != null" >
+        #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="formId != null" >
+        #{formId,jdbcType=INTEGER},
+      </if>
+      <if test="flowDoc != null" >
+        #{flowDoc,jdbcType=CHAR},
+      </if>
+      <if test="flowType != null" >
+        #{flowType,jdbcType=CHAR},
+      </if>
+      <if test="flowNo != null" >
+        #{flowNo,jdbcType=INTEGER},
+      </if>
+      <if test="flowSort != null" >
+        #{flowSort,jdbcType=INTEGER},
+      </if>
+      <if test="autoNum != null" >
+        #{autoNum,jdbcType=INTEGER},
+      </if>
+      <if test="autoLen != null" >
+        #{autoLen,jdbcType=INTEGER},
+      </if>
+      <if test="autoEdit != null" >
+        #{autoEdit,jdbcType=VARCHAR},
+      </if>
+      <if test="commentPriv != null" >
+        #{commentPriv,jdbcType=CHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="freePreset != null" >
+        #{freePreset,jdbcType=CHAR},
+      </if>
+      <if test="freeOther != null" >
+        #{freeOther,jdbcType=CHAR},
+      </if>
+      <if test="allowPreSet != null" >
+        #{allowPreSet,jdbcType=CHAR},
+      </if>
+      <if test="forcePreSet != null" >
+        #{forcePreSet,jdbcType=CHAR},
+      </if>
+      <if test="viewPriv != null" >
+        #{viewPriv,jdbcType=INTEGER},
+      </if>
+      <if test="isVersion != null" >
+        #{isVersion,jdbcType=INTEGER},
+      </if>
+      <if test="flowAction != null" >
+        #{flowAction,jdbcType=VARCHAR},
+      </if>
+      <if test="autoNumYear != null" >
+        #{autoNumYear,jdbcType=INTEGER},
+      </if>
+      <if test="autoNumMonth != null" >
+        #{autoNumMonth,jdbcType=INTEGER},
+      </if>
+      <if test="autoNumTime != null" >
+        #{autoNumTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manageUser != null" >
+        #{manageUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="autoName != null" >
+        #{autoName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="queryUser != null" >
+        #{queryUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="flowDesc != null" >
+        #{flowDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newUser != null" >
+        #{newUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="queryItem != null" >
+        #{queryItem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="queryUserDept != null" >
+        #{queryUserDept,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="manageUserDept != null" >
+        #{manageUserDept,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="editPriv != null" >
+        #{editPriv,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="listFldsStr != null" >
+        #{listFldsStr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="modelName != null" >
+        #{modelName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachmentId != null" >
+        #{attachmentId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachmentName != null" >
+        #{attachmentName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="viewUser != null" >
+        #{viewUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="viewDept != null" >
+        #{viewDept,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="viewRole != null" >
+        #{viewRole,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowTypeModelWithBLOBs" >
+    update flow_type
+    <set >
+      <if test="flowName != null" >
+        FLOW_NAME = #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="formId != null" >
+        FORM_ID = #{formId,jdbcType=INTEGER},
+      </if>
+      <if test="flowDoc != null" >
+        FLOW_DOC = #{flowDoc,jdbcType=CHAR},
+      </if>
+      <if test="flowType != null" >
+        FLOW_TYPE = #{flowType,jdbcType=CHAR},
+      </if>
+      <if test="flowNo != null" >
+        FLOW_NO = #{flowNo,jdbcType=INTEGER},
+      </if>
+      <if test="flowSort != null" >
+        FLOW_SORT = #{flowSort,jdbcType=INTEGER},
+      </if>
+      <if test="autoNum != null" >
+        AUTO_NUM = #{autoNum,jdbcType=INTEGER},
+      </if>
+      <if test="autoLen != null" >
+        AUTO_LEN = #{autoLen,jdbcType=INTEGER},
+      </if>
+      <if test="autoEdit != null" >
+        AUTO_EDIT = #{autoEdit,jdbcType=VARCHAR},
+      </if>
+      <if test="commentPriv != null" >
+        COMMENT_PRIV = #{commentPriv,jdbcType=CHAR},
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="freePreset != null" >
+        FREE_PRESET = #{freePreset,jdbcType=CHAR},
+      </if>
+      <if test="freeOther != null" >
+        FREE_OTHER = #{freeOther,jdbcType=CHAR},
+      </if>
+      <if test="allowPreSet != null" >
+        ALLOW_PRE_SET = #{allowPreSet,jdbcType=CHAR},
+      </if>
+      <if test="forcePreSet != null" >
+        FORCE_PRE_SET = #{forcePreSet,jdbcType=CHAR},
+      </if>
+      <if test="viewPriv != null" >
+        VIEW_PRIV = #{viewPriv,jdbcType=INTEGER},
+      </if>
+      <if test="isVersion != null" >
+        IS_VERSION = #{isVersion,jdbcType=INTEGER},
+      </if>
+      <if test="flowAction != null" >
+        FLOW_ACTION = #{flowAction,jdbcType=VARCHAR},
+      </if>
+      <if test="autoNumYear != null" >
+        AUTO_NUM_YEAR = #{autoNumYear,jdbcType=INTEGER},
+      </if>
+      <if test="autoNumMonth != null" >
+        AUTO_NUM_MONTH = #{autoNumMonth,jdbcType=INTEGER},
+      </if>
+      <if test="autoNumTime != null" >
+        AUTO_NUM_TIME = #{autoNumTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manageUser != null" >
+        MANAGE_USER = #{manageUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="autoName != null" >
+        AUTO_NAME = #{autoName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="queryUser != null" >
+        QUERY_USER = #{queryUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="flowDesc != null" >
+        FLOW_DESC = #{flowDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newUser != null" >
+        NEW_USER = #{newUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="queryItem != null" >
+        QUERY_ITEM = #{queryItem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="queryUserDept != null" >
+        QUERY_USER_DEPT = #{queryUserDept,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="manageUserDept != null" >
+        MANAGE_USER_DEPT = #{manageUserDept,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="editPriv != null" >
+        EDIT_PRIV = #{editPriv,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="listFldsStr != null" >
+        LIST_FLDS_STR = #{listFldsStr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="modelId != null" >
+        MODEL_ID = #{modelId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="modelName != null" >
+        MODEL_NAME = #{modelName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachmentId != null" >
+        ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachmentName != null" >
+        ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="viewUser != null" >
+        VIEW_USER = #{viewUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="viewDept != null" >
+        VIEW_DEPT = #{viewDept,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="viewRole != null" >
+        VIEW_ROLE = #{viewRole,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where FLOW_ID = #{flowId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.workflow.FlowTypeModelWithBLOBs" >
+    update flow_type
+    set FLOW_NAME = #{flowName,jdbcType=VARCHAR},
+      FORM_ID = #{formId,jdbcType=INTEGER},
+      FLOW_DOC = #{flowDoc,jdbcType=CHAR},
+      FLOW_TYPE = #{flowType,jdbcType=CHAR},
+      FLOW_NO = #{flowNo,jdbcType=INTEGER},
+      FLOW_SORT = #{flowSort,jdbcType=INTEGER},
+      AUTO_NUM = #{autoNum,jdbcType=INTEGER},
+      AUTO_LEN = #{autoLen,jdbcType=INTEGER},
+      AUTO_EDIT = #{autoEdit,jdbcType=VARCHAR},
+      COMMENT_PRIV = #{commentPriv,jdbcType=CHAR},
+      DEPT_ID = #{deptId,jdbcType=INTEGER},
+      FREE_PRESET = #{freePreset,jdbcType=CHAR},
+      FREE_OTHER = #{freeOther,jdbcType=CHAR},
+      ALLOW_PRE_SET = #{allowPreSet,jdbcType=CHAR},
+      FORCE_PRE_SET = #{forcePreSet,jdbcType=CHAR},
+      VIEW_PRIV = #{viewPriv,jdbcType=INTEGER},
+      IS_VERSION = #{isVersion,jdbcType=INTEGER},
+      FLOW_ACTION = #{flowAction,jdbcType=VARCHAR},
+      AUTO_NUM_YEAR = #{autoNumYear,jdbcType=INTEGER},
+      AUTO_NUM_MONTH = #{autoNumMonth,jdbcType=INTEGER},
+      AUTO_NUM_TIME = #{autoNumTime,jdbcType=TIMESTAMP},
+      MANAGE_USER = #{manageUser,jdbcType=LONGVARCHAR},
+      AUTO_NAME = #{autoName,jdbcType=LONGVARCHAR},
+      QUERY_USER = #{queryUser,jdbcType=LONGVARCHAR},
+      FLOW_DESC = #{flowDesc,jdbcType=LONGVARCHAR},
+      NEW_USER = #{newUser,jdbcType=LONGVARCHAR},
+      QUERY_ITEM = #{queryItem,jdbcType=LONGVARCHAR},
+      QUERY_USER_DEPT = #{queryUserDept,jdbcType=LONGVARCHAR},
+      MANAGE_USER_DEPT = #{manageUserDept,jdbcType=LONGVARCHAR},
+      EDIT_PRIV = #{editPriv,jdbcType=LONGVARCHAR},
+      LIST_FLDS_STR = #{listFldsStr,jdbcType=LONGVARCHAR},
+      MODEL_ID = #{modelId,jdbcType=LONGVARCHAR},
+      MODEL_NAME = #{modelName,jdbcType=LONGVARCHAR},
+      ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
+      ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
+      VIEW_USER = #{viewUser,jdbcType=LONGVARCHAR},
+      VIEW_DEPT = #{viewDept,jdbcType=LONGVARCHAR},
+      VIEW_ROLE = #{viewRole,jdbcType=LONGVARCHAR}
+    where FLOW_ID = #{flowId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.workflow.FlowTypeModel" >
+    update flow_type
+    set FLOW_NAME = #{flowName,jdbcType=VARCHAR},
+      FORM_ID = #{formId,jdbcType=INTEGER},
+      FLOW_DOC = #{flowDoc,jdbcType=CHAR},
+      FLOW_TYPE = #{flowType,jdbcType=CHAR},
+      FLOW_NO = #{flowNo,jdbcType=INTEGER},
+      FLOW_SORT = #{flowSort,jdbcType=INTEGER},
+      AUTO_NUM = #{autoNum,jdbcType=INTEGER},
+      AUTO_LEN = #{autoLen,jdbcType=INTEGER},
+      AUTO_EDIT = #{autoEdit,jdbcType=VARCHAR},
+      COMMENT_PRIV = #{commentPriv,jdbcType=CHAR},
+      DEPT_ID = #{deptId,jdbcType=INTEGER},
+      FREE_PRESET = #{freePreset,jdbcType=CHAR},
+      FREE_OTHER = #{freeOther,jdbcType=CHAR},
+      ALLOW_PRE_SET = #{allowPreSet,jdbcType=CHAR},
+      FORCE_PRE_SET = #{forcePreSet,jdbcType=CHAR},
+      VIEW_PRIV = #{viewPriv,jdbcType=INTEGER},
+      IS_VERSION = #{isVersion,jdbcType=INTEGER},
+      FLOW_ACTION = #{flowAction,jdbcType=VARCHAR},
+      AUTO_NUM_YEAR = #{autoNumYear,jdbcType=INTEGER},
+      AUTO_NUM_MONTH = #{autoNumMonth,jdbcType=INTEGER},
+      AUTO_NUM_TIME = #{autoNumTime,jdbcType=TIMESTAMP}
+    where FLOW_ID = #{flowId,jdbcType=INTEGER}
+  </update>
+</mapper>
