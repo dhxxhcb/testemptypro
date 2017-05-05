@@ -36,7 +36,7 @@
 		<delete id="deleteBySort_id" parameterType="int">
 		delete from  file_content where SORT_ID=#{tempNo};
 		</delete>
-		<insert id="addContent" parameterType="com.xoa.model.file.FileContentModel">
+		<insert id="saveContent" parameterType="com.xoa.model.file.FileContentModel">
 		insert into file_content  (<include refid="FileConInsert"/> ) values (
 		 <if test="sortId == null or sortId == ''" >
         '',

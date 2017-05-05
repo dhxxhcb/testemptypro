@@ -22,12 +22,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.xoa.model.diary.DiaryModel;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.model.file.FileContentModel;
 import com.xoa.model.file.FileSortModel;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.service.file.FileContentService;
 import com.xoa.service.file.FileSortService;
+import com.xoa.util.ToJson;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
 import com.xoa.util.treeUtil.FileSortTreeUtil;
@@ -235,12 +237,13 @@ public class FileController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	@RequestMapping(value = "addContent")
-	public String addContent(FileContentModel fileContentModel,HttpServletRequest request) {
+	@RequestMapping(value = "save")
+	public ToJson<DiaryModel> addContent(FileContentModel fileContentModel,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		
-		return "app/file/";
+		 ToJson diaryListToJson=new ToJson(0,"");
+		   int i=fileContentService.saveContent(fileContentModel);
+		  return diaryListToJson;
 	}
 	/**
 	 * 
