@@ -31,7 +31,7 @@ public class JobClassificationService {
 
     private List<FormSort> sortDatas(List<FormSort> nosortDatas,Integer sortIda) {
         if(nosortDatas==null) return null;
-        List<FormSort> datas = new ArrayList<>();
+        List<FormSort> datas = new ArrayList<FormSort>();
         for(FormSort sort:nosortDatas ){
              if(sort!=null) {
                  if (sort.getSortParent() == sortIda) {
