@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			line-height: 25px;
 		}
 		.new_liucheng{
-			    margin-left: 65px;
+			    margin-left: 83%;
 			    background: #138eee;
 			    color: #fff;
 			    border-radius: 6px;
@@ -67,15 +67,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		#liucheng{
 			width: 85px !important; 
+			    margin-left: 78px;
+			        margin-top: 7px;
 		}
 		#biaodan{
 			    width: 85px !important;
     			margin-left: 15px;
+    			margin-top: 9px;
 		}
 		#liucheng h1,#biaodan h1{
 			width:100%;
 			text-align:center;
 			line-height:26px;
+		}
+		.headli1_2{
+			    margin-left: -137px !important;
+    			margin-top: 5px !important;
 		}
 	</style>
 </head>
@@ -98,8 +105,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div>
             <div class="wrap">
             	<div class="table_head">
-            		<div class="sort_liucheng"><h1>流程分类列表</h1></div>
-            		<div class="new_liucheng"><h1>新建流程分类</h1></div>
+            		<div class="sort_liucheng"><h1>表单分类列表</h1></div>
+            		<div class="new_liucheng"><h1>新建表单分类</h1></div>
             	</div>
             	<div class="tab_t">
             		<div class="tab_tone">
@@ -189,11 +196,14 @@ $(function () {
 				
 					$('.tab_tone').css("display","block");
 					$('.tab_ttwo').css("display","none");
+					$('.sort_liucheng h1').html('表单分类列表');
+					$('.new_liucheng h1').html('新建表单分类');
 				
 				}else{
 					$('.tab_ttwo').css("display","block");
 					$('.tab_tone').css("display","none");
-
+					$('.sort_liucheng h1').html('流程分类列表');
+					$('.new_liucheng h1').html('新建流程分类');
 				} 
 			})
 			//表单分类接口
