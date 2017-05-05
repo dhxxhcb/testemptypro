@@ -244,6 +244,7 @@ public class EmailController {
 		Integer page = ServletRequestUtils.getIntParameter(request, "page");
 		Integer pageSize = ServletRequestUtils.getIntParameter(request,
 				"pageSize");
+
 		boolean useFlag = ServletRequestUtils.getBooleanParameter(request,
 				"useFlag");
 		String startDate = ServletRequestUtils.getStringParameter(request,"startDate");
