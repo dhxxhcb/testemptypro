@@ -236,10 +236,10 @@ public class FileController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "addContent")
-	public String addContent(HttpServletRequest request) {
+	public String addContent(FileContentModel fileContentModel,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		loger.info("--------home-------");
+		
 		return "app/file/";
 	}
 	/**
