@@ -15,7 +15,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * 
+ * @作者 韩东堂
+ * @创建日期 2017-5-5 下午5:56:37 
+ * @类介绍  工作流分类 服务类
+ * @构造参数 无
+ *
+ */
 @Service
 public class JobClassifyService {
     @Autowired
@@ -24,7 +31,14 @@ public class JobClassifyService {
     @Autowired
     FlowSortMapper flowSortMapper;
 
-
+     /**
+      * 
+      * @作者 韩东堂
+      * @创建日期 2017-5-5 下午5:56:33 
+      * @方法介绍  获取表单分类
+      * @参数说明 @return
+      * @return
+      */
 	 public JobSelectorWrapper getJobSelector(){
          JobSelectorWrapper wrapper =new JobSelectorWrapper();
          List<FormSort> nosortDatas= sortMapper.selectAllFormSort();
@@ -41,7 +55,14 @@ public class JobClassifyService {
          wrapper.setDatas(resultdatas);
          return  wrapper;
      }
-
+     /**
+      * 
+      * @作者 韩东堂
+      * @创建日期 2017-5-5 下午5:57:20 
+      * @方法介绍 获取流程分类
+      * @参数说明 @return
+      * @return
+      */
      public JobSelectorWrapper getFlowsort(){
          JobSelectorWrapper wrapper =new JobSelectorWrapper();
          List<FlowSort> nosortDatas= flowSortMapper.selectAllFlowSort();
@@ -59,7 +80,16 @@ public class JobClassifyService {
          return  wrapper;
      }
 
-
+   /**
+    * 
+    * @作者 韩东堂
+    * @创建日期 2017-5-5 下午5:57:42 
+    * @方法介绍 对流程分类进行组装
+    * @参数说明 @param nosortDatas
+    * @参数说明 @param sortIda
+    * @参数说明 @return
+    * @return
+    */
     private List<FlowSort> sortDatasFlow(List<FlowSort> nosortDatas,Integer sortIda) {
         if(nosortDatas==null) return null;
         List<FlowSort> datas = new ArrayList<FlowSort>();
@@ -74,7 +104,16 @@ public class JobClassifyService {
         return datas;
     }
 
-
+   /**
+    * 
+    * @作者 韩东堂
+    * @创建日期 2017-5-5 下午5:58:06 
+    * @方法介绍 对表单分类进行组装
+    * @参数说明 @param nosortDatas
+    * @参数说明 @param sortIda
+    * @参数说明 @return
+    * @return
+    */
 
     private List<FormSort> sortDatas(List<FormSort> nosortDatas,Integer sortIda) {
         if(nosortDatas==null) return null;
