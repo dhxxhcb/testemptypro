@@ -225,6 +225,7 @@ public class DiaryController {
 			diaryResult.setMsg("无该条记录");
 			return diaryResult;
 		}
+		diaryResult.setFlag(0);
 		diaryResult.setMsg(i+"");
 		return diaryResult;
 	}
