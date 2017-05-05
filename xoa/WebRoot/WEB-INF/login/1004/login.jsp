@@ -44,7 +44,7 @@
 			.content .entry .txt{width: 80%;margin: 20px auto 0;border-bottom: #bfbfbf 1px solid;padding-bottom: 5px;}
 			.content .entry .txt input{font-family:微软雅黑;}
 			.txt img{vertical-align:middle}
-			.content .entry .txt input{border: none;font-size: 16px;padding-left: 5px;line-height: 29px;}
+			.content .entry .txt input{border: none;outline:none;font-size: 16px;padding-left: 5px;line-height: 29px;}
 			.content .entry .div_log{width: 80%;margin: 30px auto;height: 52px;}
 			.content .entry .div_log a{text-decoration: none;display: block;width: 100%;height: 100%;text-align: center;background-color: #3696ff;color: #fff;border-radius: 6px;letter-spacing: 3px;line-height: 52px;font-size: 18px;box-shadow: -1px 1px 3px #aaa;}
 	
