@@ -39,6 +39,7 @@ public interface EnclosureService {
 	 * 参数说明:   @param files 上传文件
 	 * 参数说明:   @param company 公司名
 	 * 参数说明:   @param module 模块名
+	 * 参数说明:   @param basePath 上传路径
 	 * 参数说明:   @param isAttach 是否暴露路径
 	 * 参数说明:   @return
 	 * @return     List<Attachment>  附件信息集合

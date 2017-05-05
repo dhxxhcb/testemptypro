@@ -29,10 +29,15 @@
   CAL_TIME&gt;=#{calTime} and CAL_TIME&lt;=#{endTime} 
   || END_TIME&gt;=#{calTime} and END_TIME&lt;=#{endTime}
   </select>
-   <select id="getscheduleBycId"  resultMap="BaseResultMap">
-  select CAL_ID,CAL_LEVEL,CAL_TIME,END_TIME,CONTENT,TAKER from calendar where USER_ID=#{userId}
-  </select>
   
+   <select id="getscheduleByDate" parameterType="Map" resultMap="BaseResultMap">
+  select CAL_ID,USER_ID,CAL_LEVEL,CAL_TIME,END_TIME,CONTENT from calendar where 
+  CAL_TIME&lt;=#{calTime} and END_TIME&gt;=#{calTime} 
+  </select> 
+   <select id="getscheduleBycId" parameterType="Map" resultMap="BaseResultMap">
+  select CAL_ID,CAL_LEVEL,CAL_TIME,END_TIME,CONTENT,TAKER from calendar where USER_ID=#{userId} and
+  CAL_TIME&lt;=#{calTime} and END_TIME&gt;=#{calTime} 
+  </select>
   <insert id="insert" parameterType="com.xoa.model.schedule.Calendar">
     insert into calendar (CAL_ID, USER_ID, CAL_TIME, 
       END_TIME, CAL_TYPE, CAL_LEVEL, 

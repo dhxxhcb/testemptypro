@@ -70,8 +70,8 @@ public class EnclosureServiceImpl implements EnclosureService {
 		}*/
 		List<Attachment> list = new ArrayList<Attachment>();
 		  //当前年月
-	     String ym = new SimpleDateFormat("yyMM").format(new Date());
-	     String basePath="D://";
+	     String ym = new SimpleDateFormat("yyMM").format(new Date());	
+	     String basePath="D:"+System.getProperty("file.separator");
 	     StringBuffer sb=new StringBuffer();
 	     if(isAttach){
 	    	 //直接显示路径
@@ -80,7 +80,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	    	 //隐藏路径
 	    	 sb.append("attach");
 	     }
-	     String path=basePath+sb.toString()+System.getProperty("file.separator")+company+
+	     String path=basePath+System.getProperty("file.separator")+sb.toString()+System.getProperty("file.separator")+company+
 	    		 System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
 	 	Attachment attachment=new Attachment();
 	 	 for (int i = 0; i < files.length; i++) {  

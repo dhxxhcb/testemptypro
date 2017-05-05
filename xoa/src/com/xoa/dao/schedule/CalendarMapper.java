@@ -45,5 +45,5 @@ public interface CalendarMapper {
      * 参数说明:   @return
      * @return     List<Calendar> 返回日程安排
      */
-    List<Calendar> getscheduleBycId(String userId);
+    List<Calendar> getscheduleBycId(Map<String, Object> maps);
 }

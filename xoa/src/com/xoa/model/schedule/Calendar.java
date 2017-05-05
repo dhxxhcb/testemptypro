@@ -1,6 +1,7 @@
 package com.xoa.model.schedule;
 
 import java.util.Date;
+import java.util.List;
 
  /**
  * 创建作者:   张龙飞
@@ -113,8 +114,30 @@ public class Calendar {
      * 参与者
      */ 
     private String taker;
+    
+    private String calData;
+    
+    private List<Calendar> calMessage;
+    
+    
 
-    public String getContent() {
+    public String getCalData() {
+		return calData;
+	}
+
+	public void setCalData(String calData) {
+		this.calData = calData;
+	}
+
+	public List<Calendar> getCalMessage() {
+		return calMessage;
+	}
+
+	public void setCalMessage(List<Calendar> calMessage) {
+		this.calMessage = calMessage;
+	}
+
+	public String getContent() {
         return content;
     }
 

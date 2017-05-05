@@ -1,6 +1,9 @@
 package com.xoa.controller.schedule;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -57,12 +60,12 @@ public class CalenderController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/schedule/getscheduleBycId",produces = {"application/json;charset=UTF-8"})
-	public ToJson<Calendar> getscheduleBycId(HttpServletRequest request,String userId){
+	public ToJson<Calendar> getscheduleBycId(HttpServletRequest request,String userId,String calTime){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 	ToJson<Calendar> json=new ToJson<Calendar>(0, null);
-	try{
-		List<Calendar> list= calenderService.getscheduleBycId(userId);
+	try{		
+		List<Calendar> list= calenderService.getscheduleBycId(userId,Integer.parseInt(calTime));
 		json.setObj(list);
 		json.setMsg("OK");
 		json.setFlag(0);
@@ -113,5 +116,23 @@ public class CalenderController {
 		}
 		return json;
 		}
+	
+	@ResponseBody
+	@RequestMapping(value = "/schedule/getscheduleByDate",produces = {"application/json;charset=UTF-8"})
+	public ToJson<Calendar> getscheduleByDate(HttpServletRequest request,Date date){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		ToJson<Calendar> json=new ToJson<Calendar>(0, null);
+		try{
+			//int a= calenderService.insertSelective(c);
+			//json.setObject(c);
+			//json.setMsg("OK");
+			//json.setFlag(0);
+		}catch(Exception e){
+			json.setMsg(e.getMessage());
+		}
+		return json;
+		}
+	
 }
 
