@@ -33,8 +33,6 @@ $("#fileTree").tree({
 
 <frame id="tree" src="${pageContext.request.contextPath}/fileIndex"  marginwidth=0 marginheight=0  designMode='on'  >
 
-
-
 <frame name="mainFrame" src="${pageContext.request.contextPath}/fileContent">
 </FRAMESET>
 
