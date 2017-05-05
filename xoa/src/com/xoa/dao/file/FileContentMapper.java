@@ -10,4 +10,6 @@ public interface FileContentMapper {
 	List<FileContentModel> getFileConBySortid(int tempNo);
 
 	FileContentModel getFileConByContentId(String contentId);
+
+	int saveContent(FileContentModel fileContentModel);
 }

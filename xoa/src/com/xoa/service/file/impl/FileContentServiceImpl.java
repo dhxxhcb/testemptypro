@@ -39,4 +39,10 @@ public class FileContentServiceImpl implements FileContentService{
 		fc.setSendTime(temp);
 		return	fc;
 	}
+
+
+	@Override
+	public int saveContent(FileContentModel fileContentModel) {
+		return file_ContentMapper.saveContent(fileContentModel);
+	}
 }

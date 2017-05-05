@@ -169,8 +169,6 @@ public class DiaryServiceImpl implements DiaryService{
 					}
 					dm.setReaders(tempReaders);
 					dm.setDiaTime(tempDiaTime);
-					
-					dm.setToId("");
 			   }
 		   ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, "");
 		   diaryListToJson.setObj(otherdiaryList);
@@ -218,8 +216,6 @@ public class DiaryServiceImpl implements DiaryService{
 		}
 		String temp=diary.getDiaTime().substring(0, 19);
 		diary.setDiaTime(temp);
-		diary.setDiaType("");
-		diary.setToId("");
 		diary.setReaders("");
 		diaryListToJson.setObject(diary);
 		return diaryListToJson;
