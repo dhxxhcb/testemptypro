@@ -205,4 +205,22 @@ public class DiaryController {
 		ToJson<DiaryModel> diaryOtherToJson = diaryService.getDiaryByDiaId(diaryModel);
 		return diaryOtherToJson;
 	}
+	@RequestMapping(value="/delete", produces = { "application/json;charset=UTF-8" })
+	@ResponseBody
+	public ToJson<DiaryModel>  deletDiaById(DiaryModel diaryModel,HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		ToJson<DiaryModel> diaryResult= new ToJson<DiaryModel>();
+		if(diaryModel.getDiaId()==null||"".equals(diaryModel.getDiaId())){
+		 diaryResult.setMsg("删除失败");
+		 return  diaryResult;
+		}
+		int i=diaryService.deletDiaById(diaryModel);
+		if(i==0){
+			diaryResult.setMsg("无该条记录");
+			return diaryResult;
+		}
+		diaryResult.setMsg(i+"");
+		return diaryResult;
+	}
 }

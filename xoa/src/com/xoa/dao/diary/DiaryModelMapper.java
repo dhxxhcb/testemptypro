@@ -35,4 +35,6 @@ public interface DiaryModelMapper {
 
 
 
+	int deletDiaById(DiaryModel diaryModel);
+
 }

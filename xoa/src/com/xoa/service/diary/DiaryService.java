@@ -83,4 +83,15 @@ public interface DiaryService {
 	 */
 	@DynDatasource
 	ToJson<DiaryModel> getDiaryByDiaId(DiaryModel diaryModel);
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-5-5 上午10:34:24
+	 * 方法介绍:   通过DiaId删除一条日志
+	 * 参数说明:   @param diaryModel
+	 * 参数说明:   @return
+	 * @return     int
+	 */
+	@DynDatasource
+	int deletDiaById(DiaryModel diaryModel);
 }
