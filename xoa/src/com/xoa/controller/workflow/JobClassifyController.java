@@ -16,11 +16,11 @@ public class JobClassifyController {
     @Autowired
     JobClassifyService service;
 
-    @RequestMapping("/flowclassify/datas")
+    @RequestMapping("/flowclassify/form")
     public JobSelectorWrapper getSeletorInfo(){
         return   service.getJobSelector();
     }
-    @RequestMapping("/flowsort/datas")
+    @RequestMapping("/flowsort/flow")
     public JobSelectorWrapper getFlowInfo(){
         return   service.getFlowsort();
     }
