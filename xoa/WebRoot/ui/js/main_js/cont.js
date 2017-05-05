@@ -152,7 +152,7 @@ $(function(){
 	
 	//日志接口
 	$.ajax({
-		url:'diary_/getIndex',
+		url:'diary/getIndex',
 		type:'get',
 		data:{
 			page:1,

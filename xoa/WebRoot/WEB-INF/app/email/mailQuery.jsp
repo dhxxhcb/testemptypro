@@ -12,9 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="UTF-8">
 		<title><fmt:message code="email.title.mailquery" /></title><!-- 邮件查询 -->
-		<link rel="stylesheet" type="text/css" href="css/laydate.css"/>
-		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
+		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			html,body{width: 100%;font-family: "微软雅黑";font-size: 14px;}
 			.content{width: 600px;margin: 0 auto;}
@@ -71,12 +71,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<input type="text" name="txt" id="txt" value="" />
 							</td>
 						</tr>
-						<!-- <tr>
-							<td>邮件关键词：</td>
-							<td>
-								<input type="text" name="txt" id="txt" value="" />
-							</td>
-						</tr> -->
 						<tr>
 							<td><fmt:message code="email.th.mailmajor" />：</td>
 							<td>
@@ -143,6 +137,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			};
 			laydate(start);
 			laydate(end);
+			
+			
+			
+			
 		</script>
 	</body>
 </html>

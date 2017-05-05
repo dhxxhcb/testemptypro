@@ -15,11 +15,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="../css/writeMail.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/email/writeMail.css"/>
 		<script src="../lib/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/writeMail.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/email/writeMail.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/ajaxupload.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			table{margin-top:10px;}
+			table tr td{padding-left:10px;}
+			/* .div_Re{width:500px;height:100px;border:#000 1px solid;} */
+			.div_Re span a{}
+		</style>
 	</head>
 	<body>
 		<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
@@ -27,12 +35,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td width="10%"><fmt:message code="email.th.sender" />：</td>
 				<td width="89%">
 					<div class="inPole">
-						<textarea name="txt" disabled></textarea>
+						<textarea name="txt" id="senduser" user_id='admin' value="" disabled></textarea>
 						<span class="add_img">
 							<span class="addImg">
 								<img src="../img/org_select.png" class="addIcon"/>
 							</span>
-							<a href="javascript:;" class="Add"><fmt:message code="global.lang.add" /></a>
+							<a href="javascript:;" id="selectUser" class="Add"><fmt:message code="global.lang.add" /></a>
 						</span>
 						<span class="add_img">
 							<span class="addImg">
@@ -68,28 +76,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td width="10%">
 					<p><fmt:message code="email.th.content" />：</p>
-					<p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p>
-					<p class="Color"><fmt:message code="global.lang.empty" /></p>
+					<!-- <p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p> -->
+					<!-- <p class="Color"><fmt:message code="global.lang.empty" /></p> -->
 				</td>
 				<td width="89%">
 					<script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
 				</td>
 			</tr>
-			<tr>
-				<td><fmt:message code="email.th.filechose" />：</td>
-				<td>
-					<fmt:message code="email.th.addfile" />
-				</td>
+			<tr class="Attachment" style="width:100%;">
+				<td width="10%">附件：</td>
+				<td width="89%"   class="files" id="files_txt"></td>
 			</tr>
 			<tr>
-				<!--<td>提醒：</td>
-				<td class="sendReady">
-					<input type="checkbox" name="remind" id="remind" value="" />
-					<span>发送事物提醒消息</span>
-					<input type="checkbox" name="read" id="read" value="" />
-					<span>请求阅读收条</span>
+				<td><fmt:message code="email.th.filechose" />：</td>
+				<td class="files">
+					
+					<form id="uploadimgform" target="uploadiframe"  action="../upload?module=email" enctype="multipart/form-data" method="post" >
+						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
+						<button id="uploadimg">上传</button>
+					</form>
+					
 				</td>
-			</tr>-->
+			</tr>
+			
 			<tr>
 				<td colspan="2">
 					<div class="div_btn">
@@ -104,41 +113,164 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<script type="text/javascript">
        		 var ue = UE.getEditor('container');
+       		 user = '';
+			user_id='senduser';
        		 //获取输入框内容
-       		$("#btn1").on("click",function(){
-					//获取html内容，返回: <p>hello</p>
-					//var html = ue.getContent();
-					//获取纯文本内容，返回: hello
-					var txt = ue.getContentTxt();
-					var val=$('#txt').val();
+       	 $(function () {
+       	 	$("#selectUser").on("click",function(){
+       		 		$.popWindow("../common/selectUser");
+       		 		 
+       		 	});
+       		 ue.ready(function(){
+       		 	var sId=$.getQueryString('sId');
+       		 	$.ajax({
+						type:'get',
+						url:'queryByID',
+						dataType:'json',
+						data:{'emailId':sId,'flag':''},
+						success:function(rsp){
+							console.log(rsp);
+							var data2=rsp.object;
+							var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+							var str='';
+							var str1='';
+							var stra='';
+							var arr=new Array();
+							arr=data2.attachmentName.split('*');
+							$('#txt').val('');
+							ue.setContent('');
+							$('#senduser').val('');
+							if(data2.attachmentName!='' && data2.copyName!=''){
+								for(var i=0;i<(arr.length-1);i++){
+									stra+='<span><a href="javascript:;" style="text-decoration:none;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></span>';
+							}
+								str='<br><br><br><br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+								
+							} else if(data2.attachmentName=='' && data2.copyName!=''){
+								str='<br><br><br><br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+								
+							} else if(data2.attachmentName!='' && data2.copyName ==''){
+								for(var i=0;i<(arr.length-1);i++){
+									stra+='<span><a href="javascript:;" style="text-decoration:none;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></span>';
+								}
+								str='<br><br><br><br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+								
+							} else{
+								str='<br><br><br><br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+								
+							}
+							str1='<p>'+data2.content+'</p>';
+							ue.setContent(str+str1);
+							$('#txt').val('Re:'+data2.subject);
+							$('#senduser').val(data2.emailList[0].toName);
+						}
+					});
+				})
 					
-					
-					 var data={
-					 	'bodyId':'18',
-					 	'fromId':'2,',
-					 	'toId2':'3,',
-						'subject':val,
-						'content':txt,
-						'sendTime':'2017-04-11 10:20:35',
-						'fromWebmailId':'1',
-						'recvToId':'0',
-						'secretLevel':'1',
-						'size':'0'
+				//附件上传方法	
+				$('#uploadimg').on('click', function(ele) {
+					$('#uploadinputimg').click();    
+				})
+       		 	$('#uploadinputimg').change(function(e){
+					var target = $(e.target);
+					var file;
+					if(target[0].files && target[0].files[0]){
+						file=target[0].files[0];
 					}
 					
-				//alert(data.subject);
+					if(file){
+						$.upload($('#uploadimgform'),function(res){
+							//console.log(res);
+							var data=res.obj;
+							var str='';
+							var str1='';
+							 for(var i=0;i<data.length;i++){
+								str+='<a href="javascript:;" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
+								str1+='<input type="hidden" class="inHidden" value="'+data[i].aid+'@'+data[i].ym+'_'+data[i].attachId+',">';
+							} 
+							
+							$('.Attachment td').eq(1).append(str+str1);
+							
+						});
+					}
+				});	
+				
+       		 	
+       		 	$("#btn1").on("click",function(){
+					var userId=$('textarea[name="txt"]').attr('user_id');
+					var txt = ue.getContentTxt();
+					var html = ue.getContent();
+					var val=$('#txt').val();
+					var attach=$('.Attachment td').eq(1).find('a');
+					var aId='';
+					var uId='';
+					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+						aId += $('.Attachment td .inHidden').eq(i).val();
+					}
+					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+						uId += attach.eq(i).attr('NAME');
+					}
+					
+					 var data={
+					 	'fromId':'admin',
+					 	'toId2': 'admin,',
+						'subject':val,
+						'content':html,
+						'attachmentId':aId,
+						'attachmentName':uId
+					};
 					
 					$.ajax({
 						 type:'post',    
-						 url:"sendEmail",
+						 url:'sendEmail',
 						 dataType:'json',
-						 async:false,
 						 data:data,
 						 success:function(){
-							alert('123');
+							alert('回复成功');
+							window.location.href='index';
 						}
-					})
+					}); 
 				}) 
+				
+				//点击保存到草稿箱按钮
+				$("#btn2").on("click",function(){
+					var userId=$('textarea[name="txt"]').attr('user_id');
+					var txt = ue.getContentTxt();
+					var html = ue.getContent();
+					var val=$('#txt').val();
+					var attach=$('.Attachment td').eq(1).find('a');
+					var aId='';
+					var uId='';
+					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+						aId += $('.Attachment td .inHidden').eq(i).val();
+					}
+					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+						uId += attach.eq(i).attr('NAME');
+					}
+					
+					 var data={
+					 	'fromId':'admin',
+					 	'toId2': 'admin,',
+						'subject':val,
+						'content':html,
+						'attachmentId':aId,
+						'attachmentName':uId
+					};
+					$.ajax({
+						 type:'post',    
+						 url:'saveEmail',
+						 dataType:'json',
+						 data:data,
+						 success:function(){
+							alert('已保存到草稿箱');
+							window.location.href='index';
+						}
+					});
+				});
+       		 })
+       		 
+       	
+				
     	</script>
 	</body>
 </html>
