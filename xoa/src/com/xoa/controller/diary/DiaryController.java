@@ -23,6 +23,7 @@ import com.xoa.controller.file.FileController;
 import com.xoa.model.diary.DiaryModel;
 import com.xoa.service.diary.DiaryService;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.L;
 import com.xoa.util.dataSource.ContextHolder;
 import com.xoa.util.page.PageParams;
 import com.xoa.util.treeUtil.HtmlUtil;
@@ -65,6 +66,8 @@ public class DiaryController {
 	public ToJson<DiaryModel> diaryAdd(DiaryModel diaryModel,HttpServletRequest request) throws UnsupportedEncodingException {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
+		L.a("日志详情"+diaryModel.getContent());
+		L.a("日志详情"+diaryModel.getSubject());
 		/*String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"UTF-8");
 		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"UTF-8");
 		diaryModel.setContent(string);
