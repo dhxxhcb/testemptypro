@@ -23,7 +23,7 @@ public class JobClassifyService {
          JobSelectorWrapper wrapper =new JobSelectorWrapper();
          List<FormSort> nosortDatas= sortMapper.selectAllFormSort();
          Integer noform=sortMapper.selectNoformSort();
-         List<FormSort>  resultdatas =new ArrayList<>();
+         List<FormSort>  resultdatas =new ArrayList<FormSort>();
          FormSort formSort =new FormSort();
          formSort.setSortName("未定义");
          formSort.setFormcounts(noform);
