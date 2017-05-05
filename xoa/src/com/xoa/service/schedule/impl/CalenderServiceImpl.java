@@ -58,16 +58,6 @@ public class CalenderServiceImpl implements CalenderService {
 		//System.out.println(date.toString());
 		//下个月的时间戳
 		Long time=date.getTime();
-		
-		
-		/*java.util.Calendar cal= java.util.Calendar.getInstance();
-		//设置年
-		cal.set(cal.YEAR,date.getYear());
-		//设置月
-		cal.set(cal.MONTH,date.getMonth()+1);	
-		//设置日
-		cal.set(cal.DAY_OF_MONTH,date.getDay());
-	    String MonthDay = format.format(cal.getTime());*/
 		for(int i=0;i<list.size();i++){
 			
 			Calendar calendar=list.get(i);

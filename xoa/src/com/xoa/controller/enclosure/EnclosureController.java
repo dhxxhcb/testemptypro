@@ -148,22 +148,31 @@ public class EnclosureController {
 						@RequestParam("ATTACHMENT_ID") String attachmentId ,
 						@RequestParam("ATTACHMENT_NAME") String attachmenrName ,
 						@RequestParam("company") String company ,
+						boolean isAttach,
 						HttpServletResponse response,
 						HttpServletRequest request) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
-		ResourceBundle rb =  ResourceBundle.getBundle("upload");
+		//ResourceBundle rb =  ResourceBundle.getBundle("upload");
 		//String name = rb.getString("mysql.driverClassName");
-		String osName = System.getProperty("os.name");
+		//String osName = System.getProperty("os.name");
 		StringBuffer sb=new StringBuffer();
-		if(osName.toLowerCase().startsWith("win")){  
+	/*	if(osName.toLowerCase().startsWith("win")){  
 		  sb=sb.append(rb.getString("upload.win"));  
 		}else{
 		  sb=sb.append(rb.getString("upload.linux"));
-		}
-		String basePath=sb.toString();
+		}*/
+		String basePath="D:"+System.getProperty("file.separator");
+		 if(isAttach){
+	    	 //直接显示路径
+	    	 sb.append("attach_web");
+	     }else{
+	    	 //隐藏路径
+	    	 sb.append("attach");
+	     }
 	
-		String path=basePath+ System.getProperty("file.separator") +company+ System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
+		 String path=basePath+System.getProperty("file.separator")+sb.toString()+System.getProperty("file.separator")+company+
+	    		 System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	  	 
 		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
