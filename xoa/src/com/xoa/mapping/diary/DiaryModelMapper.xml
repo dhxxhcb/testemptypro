@@ -179,7 +179,7 @@
 
   
   <select id="getDiarySelf"  parameterType="map" resultMap="BaseResultMap">
-    select <include refid="diaryList"/>  from  diary d,user u  where  d.USER_ID=#{userId} and d.USER_ID=u.USER_ID 
+    select <include refid="diaryList"/>  from  diary d,user u  where  d.USER_ID=#{userId} and d.USER_ID=u.USER_ID order  by d.DIA_ID desc
   </select>
   
   <select id="getDiaryByDiaId"  parameterType="map" resultMap="BaseResultMap">
@@ -187,12 +187,15 @@
   </select>
   
   <select id="getDiaryList" resultMap="BaseResultMap">
-   select  <include refid="diaryList"/>  from  diary d,user u  where  u.USER_ID=d.USER_ID and d.DIA_TYPE=#{diaType}
+   select  <include refid="diaryList"/>  from  diary d,user u  where  u.USER_ID=d.USER_ID and d.DIA_TYPE=#{diaType} order  by d.DIA_ID desc
   </select>
   
   <select id="getDiaryOtherList"  parameterType="map" resultMap="BaseResultMap">
-  select <include refid="diaryList"/>  from diary d,user u where d.USER_ID <![CDATA[<>]]>#{userIdOther} and u.USER_ID=d.USER_ID  and d.DIA_TYPE=#{diaTypeOther}
+  select <include refid="diaryList"/>  from diary d,user u where d.USER_ID <![CDATA[<>]]>#{userIdOther} and u.USER_ID=d.USER_ID  and d.DIA_TYPE=#{diaTypeOther} order  by d.DIA_ID desc
   </select>
+  <delete id="deletDiaById" parameterType="com.xoa.model.diary.DiaryModel">
+  delete from diary where DIA_ID=#{diaId}
+  </delete>
   <!-- <insert id="insert" parameterType="com.xoa.model.diary.DiaryModelWithBLOBs" >
     insert into diary (DIA_ID, USER_ID, DIA_DATE, 
       DIA_TIME, DIA_TYPE, SUBJECT, 

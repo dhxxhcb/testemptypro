@@ -202,6 +202,13 @@ public class DiaryServiceImpl implements DiaryService{
 		return diaryModelMapper.updateDiary(diaryModel);
 	}
 	
+	@Override
+	public int deletDiaById(DiaryModel diaryModel) {
+		return diaryModelMapper.deletDiaById(diaryModel);
+	}
+	/**
+	 * 日志详情
+	 */
 	public ToJson<DiaryModel> getDiaryByDiaId(DiaryModel diaryModel) {
 		ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, "");
 		DiaryModel diary=diaryModelMapper.getDiaryByDiaId(diaryModel);
@@ -280,6 +287,7 @@ public static String decompress(String data, String charset) throws UnsupportedE
         decompresser.end();
         return new String(output);
     }
+
 	
 //	public String transfor(String s){
 //		byte[] compressByte=s.getBytes();
