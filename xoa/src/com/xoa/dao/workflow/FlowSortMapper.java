@@ -3,6 +3,9 @@ package com.xoa.dao.workflow;
 import com.xoa.model.workflow.FlowSort;
 import com.xoa.model.workflow.FlowSortExample;
 import java.util.List;
+
+import com.xoa.model.workflow.FormSort;
+import com.xoa.model.workflow.FormSortExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface FlowSortMapper {
@@ -17,6 +20,10 @@ public interface FlowSortMapper {
     int insertSelective(FlowSort record);
 
     List<FlowSort> selectByExample(FlowSortExample example);
+
+    List<FlowSort> selectAllFlowSort();
+
+    int selectNoflowSort();
 
     FlowSort selectByPrimaryKey(Integer sortId);
 

@@ -1,6 +1,8 @@
 package com.xoa.service.workflow;
 
+import com.xoa.dao.workflow.FlowSortMapper;
 import com.xoa.dao.workflow.FormSortMapper;
+import com.xoa.model.workflow.FlowSort;
 import com.xoa.model.workflow.FormSort;
 import com.xoa.model.workflow.FormSortExample;
 import com.xoa.service.workflow.wrapper.JobSelectorModel;
@@ -19,6 +21,10 @@ public class JobClassifyService {
     @Autowired
     FormSortMapper sortMapper;
 
+    @Autowired
+    FlowSortMapper flowSortMapper;
+
+
 	 public JobSelectorWrapper getJobSelector(){
          JobSelectorWrapper wrapper =new JobSelectorWrapper();
          List<FormSort> nosortDatas= sortMapper.selectAllFormSort();
@@ -35,6 +41,40 @@ public class JobClassifyService {
          wrapper.setDatas(resultdatas);
          return  wrapper;
      }
+
+     public JobSelectorWrapper getFlowsort(){
+         JobSelectorWrapper wrapper =new JobSelectorWrapper();
+         List<FlowSort> nosortDatas= flowSortMapper.selectAllFlowSort();
+         Integer noform=flowSortMapper.selectNoflowSort();
+         List<FlowSort>  resultdatas =new ArrayList<FlowSort>();
+         FlowSort flowSort =new FlowSort();
+         flowSort.setSortName("未定义");
+         flowSort.setFlowcounts(noform);
+         flowSort.setHaveChild("0");
+         flowSort.setSortNo(0);
+         resultdatas.add(flowSort);
+         List<FlowSort>  datasMap =   sortDatasFlow(nosortDatas,0);
+         resultdatas.addAll(datasMap);
+         wrapper.setDatas(resultdatas);
+         return  wrapper;
+     }
+
+
+    private List<FlowSort> sortDatasFlow(List<FlowSort> nosortDatas,Integer sortIda) {
+        if(nosortDatas==null) return null;
+        List<FlowSort> datas = new ArrayList<FlowSort>();
+        for(FlowSort sort:nosortDatas ){
+            if(sort!=null) {
+                if (sort.getSortParent() == sortIda) {
+                    sort.setChilds(sortDatasFlow(nosortDatas, sort.getSortId()));
+                    datas.add(sort);
+                }
+            }
+        }
+        return datas;
+    }
+
+
 
     private List<FormSort> sortDatas(List<FormSort> nosortDatas,Integer sortIda) {
         if(nosortDatas==null) return null;
