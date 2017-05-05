@@ -1,4 +1,5 @@
 $(function () {
+	alert('123')
 	
 	$('.inbox_btn').on('click',function () {
 		
@@ -11,10 +12,11 @@ $(function () {
 		}
 					
 	})
-	
 	$('.page_left li').click(function () {
 		$('.page_left li').removeClass('on');
 		$(this).addClass('on');
 	})
+	
+	
 	
 })

@@ -63,8 +63,11 @@ body {
  .head {
     border-bottom: 1px solid #9E9E9E;
     padding-bottom: 3px;
+    height:43px;
 }
-
+.step1{
+	    margin-left: 1%;
+}
 .head li {
     width: 156px;
     text-align: center;
@@ -138,12 +141,12 @@ body {
 
 .navigation .left img {
     float: left;
-    margin-top: 20px;
+    margin-top: 21px;
      margin-right:5px;
 }
 
 .navigation .left .news {
-    font-size: 16px;
+    font-size: 14px;
     margin-left:5px;
     font-family: "微软雅黑";
     margin-top: -3px;
@@ -158,6 +161,14 @@ body {
     border-radius: 3px;
     margin: 20px 10px;
     
+}
+#sendTime{
+	    height: 24px !important;
+    margin-top: 20px !important;
+}
+.nav_date{
+	    margin-top: -3px;
+    font-size: 14px;
 }
 .navigation .left  .nav_type {
 	float: left;
@@ -370,7 +381,7 @@ tr {
      		margin-left:0px;
      		position: relative;
      	}  	
-	     #cx {
+	   /*   #cx {
 	     	width:60px;
 	     	hieght:30px;
 	     	line-height:30px;
@@ -382,7 +393,23 @@ tr {
 	        color:#fff; 
 	     	cursor: pointer;
 	     	font-family: "微软雅黑";
-	     	}
+	     	} */
    		
-
-
+		.submit{
+			width:63px;
+	     	height:33px;
+	     	line-height:28px;
+	     	margin-top: 18px;
+	     	margin-left: 10px;
+	     	text-align:center;
+	     	background-image:url(../img/center_q.png);
+	     	background-repeat:no-repeat;
+	        color:#fff; 
+	     	cursor: pointer;
+	     	font-family: "微软雅黑";
+		}
+		.news{
+			    font-size: 17px;
+			    color: rgb(47, 92, 143);
+			    font-weight: bold;
+		}

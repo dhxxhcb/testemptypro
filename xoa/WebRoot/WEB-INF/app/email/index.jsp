@@ -29,6 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.main_left .BTN:hover{background:#c5e9fb;}
 			.attachment a{text-decoration: none;}
 			.attachment a img{vertical-align: middle;}
+			.befor .searchTxt{width:90%;height:30px;padding-left:5px;margin-bottom:5px;}
 		</style>
 	</head>
 	<body>
@@ -114,6 +115,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul>
 							<li onclick="clicked()"><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
 							<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>
+							<li id="Replay"><img src="../img/icon_replay_03.png" class="im"/>回复</li>
+							<li onclick="clicked()"><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
 							<li onclick="clicked()"><img src="../img/icon_transmit_06.png" class="im"/><fmt:message code="email.th.transmit" /></li>
 							<li onclick="clicked()"><img src="../img/icon_move_06.png" class="im"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>
 							<li id="delete"><img src="../img/icon_delete_06.png" class="im"/><fmt:message code="global.lang.delete" /><img src="../img/icon_more_06.png" class="more_im"/></li>
@@ -140,13 +143,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul>
 							<li class="befor">
 								<div class="sort">
-									<img src="../img/icon_search_03(1).png"/>
+									<img class="Search" src="../img/icon_search_03(1).png"/>
 									<img src="../img/icon_shuaxin_03.png"/>
 									<img src="../img/icon_duoxuan_03.png"/>
-									
 								</div>
 								<div class="sort_right">
 									<img src="../img/icon_shaixuan_03.png"/><fmt:message code="email.th.order" />
+								</div>
+								<div style="display:none;" class="search_div">
+									<input type="text" name="text" value="" class="searchTxt">
 								</div>
 							</li>
 						</ul>
@@ -277,9 +282,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 								</div>
 						</div>
-						
-						
-						
 					</div>
 				</div>
 			</div>
@@ -311,11 +313,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			$('.up_page_right').css('display','block');
 	    		});
 	    	
-	    		//页面初始化
-				
-				showAjax('inbox','#TAB','.article');
-			
-				
 				
 				//查询邮件点击事件
 				$('.liSearch').click(function(){
@@ -325,12 +322,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		});
 				
 				
-					//收件箱点击事件
+				//页面初始化
+				showAjax('inbox','#TAB','.article');
+				
+				
+				//收件箱点击事件
 				$('#InBox').click(function(){
 					$('.InBox').css('display','block').siblings().css('display','none');
 					showAjax('inbox','#TAB','.article');
-					
-					
 					
 				});
 				
@@ -341,7 +340,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					showAjax2('drafts');
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
-						//init3(nId);
+						
 						$.ajax({
 									type:'get',
 									url:'queryByID',
@@ -359,6 +358,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									}
 						});
 						
+						$('#delete').attr('uId',nId);
+						
 					});	
 				});
 				
@@ -366,23 +367,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#hasBeenSend').click(function(){
 					
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
-					showAjax2("outbox");
+					showAjax3("outbox");
 					
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
 						init3(nId);
-					}); 
-					
+						var dele=$(this).find('input').attr('ueId');
+						$('#delete').attr({'uId':nId,'del':dele});
+					});
 				});
 				
 				//废纸篓点击事件
 				$('#wastebasket').click(function(){
 					$('.wastebasket').css('display','block').siblings().css('display','none');
-					//showAjax("recycle")
-					showAjax('recycle','#TAD','.article2');
+					
+					showAjax1('recycle','#TAD','.article2');
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('id');
+						var dele=$(this).find('input').attr('ueId');
 						init(nId,'#TAD','.article2');
+						$('#delete').attr({'uId':nId,'del':dele});
 					});
 					
 				});
@@ -397,63 +401,78 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('#delete').attr({'uId':nId,'del':dele});
 				}); 
 				
-				//收件箱删除事件
-				$('#delete').click(function(){
+				//删除事件
+				 $('#delete').click(function(){
 					var sId=$('#delete').attr('uId');
 					var ueID=$('#delete').attr('del');
-					//alert(sId+':::::'+ueID);
-					deleted('inbox',sId,ueID);
+					//alert(sId);
+					if($('.InBox').css('display')=='block'){
+						deleted('inbox',sId,ueID);
+						$('.InBox').css('display','block').siblings().css('display','none');
+					} else if($('.hasBeenSend').css('display')=='block'){
+						deleted('outbox',sId,ueID);
+						$('.hasBeenSend').css('display','block').siblings().css('display','none');
+					} else if($('.wastebasket').css('display')=='block'){
+						deleted('recycle',sId,ueID);
+						$('.wastebasket').css('display','block').siblings().css('display','none');
+					} else if($('.drafts').css('display')=='block'){
+						deleted1(sId);
+						$('.drafts').css('display','block').siblings().css('display','none');
+					} 
 				})
+				
+				//回复事件
+				$('#Replay').click(function(){
+					var sId=$('#delete').attr('uId');
+					//alert(sId);
+					$.ajax({
+						type:'get',
+						url:'queryByID',
+						dataType:'json',
+						data:{'emailId':sId,'flag':''},
+						success:function(rsp){
+							var data2=rsp.object;
+							var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');							
+							var str='';
+							var stra='';
+							var arr=new Array();
+							arr=data2.attachmentName.split('*');
+							if(data2.attachmentName!='' && data2.copyName!=''){
+								for(var i=0;i<(arr.length-1);i++){
+									stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
+							}
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+								
+							} else if(data2.attachmentName=='' && data2.copyName!=''){
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+								
+							} else if(data2.attachmentName!='' && data2.copyName ==''){
+								for(var i=0;i<(arr.length-1);i++){
+									stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
+								}
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+								
+							} else{
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+								
+							}
+						}
+					});
+				});
+				
+				//条件查询
+				/* $('.befor .sort .Search').click(function(){
+					
+					$('.befor .search_div').toggle();
+				})
+				
+				$.ajax */
 				
 			});
 			
 			
-			//详情展示方法
-			function init(id,obj,cName){
 				
-					$.ajax({
-								type:'get',
-								url:'queryByID',
-								dataType:'json',
-								data:{'emailId':id,'flag':''},
-								success:function(rsp){
-									var data2=rsp.object;
-									var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-									var str='';
-									var stra='';
-									//alert(data2.attachmentName);
-									var arr=new Array();
-									arr=data2.attachmentName.split('*');
-									$(obj).find('tr').remove();
-									$(cName).find('p').remove();
-									$('.span_hr').find('p').find('span').eq(0).html('');
-									
-									//$('.attachment').append(stra);
-									if(data2.attachmentName!='' && data2.copyName!=''){
-										for(var i=0;i<(arr.length-1);i++){
-											stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
-										}
-										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
-									} else if(data2.attachmentName=='' && data2.copyName!=''){
-										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
-									} else if(data2.attachmentName!='' && data2.copyName ==''){
-										for(var i=0;i<(arr.length-1);i++){
-											stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
-										}
-										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
-									} else{
-										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
-									}
-									
-									$(obj).append(str);
-									$(cName).append('<p>'+data2.content+'</p>');
-									$('.span_hr').find('p').find('span').eq(0).html(data2.users.userName);
-								}
-					});
-				}
-				
-				
-				//列表展示方法
+				//收件箱列表初始化展示方法
 				function showAjax(flag,obj,cName){
 					$('.BTN').remove();
 					var data1={
@@ -503,6 +522,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					});
 				}
 				
+				//废纸篓列表展示方法
+				function showAjax1(flag,obj,cName){
+					$('.BTN').remove();
+					var data1={
+						"flag":flag,
+						"page":1,
+						"pageSize":100,
+						"useFlag":true,
+						"userID":"admin"
+					};	
+					
+					$.ajax({
+									type:'get',
+									url:'showEmail',
+									dataType:'json',
+									data:data1,
+									success:function(rsp){
+										var data1=rsp.obj;
+										var str='';
+										for(var i=0;i<data1.length;i++){
+											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+											//alert(data1[i].sendTime);
+											if(data1[i].emailList[0].readFlag==1){
+												if(data1[i].attachmentId!=''){
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												}else{
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+												}
+												
+											} else if(data1[i].emailList[0].readFlag==0){
+												if(data1[i].attachmentId!=''){
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												}else{
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+												}
+												
+											}
+											
+										}
+										$('.befor').after(str);
+										$('li.BTN').eq(0).addClass("backing");
+										var mId=$('li.BTN').eq(0).find('input').attr('id');
+										
+										init(mId,obj,cName);
+									}
+					});
+				}
+				
+				//草稿箱列表展示方法
 				function showAjax2(flag){
 					$('.BTN').remove();
 							var data={
@@ -512,7 +580,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								"useFlag":true,
 								"userID":"admin"
 						};
-					
 						$.ajax({
 									type:'get',
 									url:'showEmail',
@@ -531,18 +598,93 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												}else{
 													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
 												}
-												
-											
 										}
 										$('.main_left ul .befor').after(str);
 										$('li.BTN').eq(0).addClass("backing");
 										var nID=$('li.BTN').eq(0).find('input').attr('nId');
 										init3(nID);
-										
 									}
 						});
 				}
 				
+				//已发送列表展示方法
+				function showAjax3(flag){
+					$('.BTN').remove();
+							var data={
+								"flag":flag,
+								"page":1,
+								"pageSize":100,
+								"useFlag":true,
+								"userID":"admin"
+						};
+						$.ajax({
+									type:'get',
+									url:'showEmail',
+									dataType:'json',
+									data:data,
+									success:function(rsp){
+										var data1=rsp.obj;
+										var str='';
+										for(var i=0;i<data1.length;i++){
+											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+												if(data1[i].attachmentId!=''){
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+												}else{
+													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_collect_nor_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+												}
+										}
+										$('.main_left ul .befor').after(str);
+										$('li.BTN').eq(0).addClass("backing");
+										var nID=$('li.BTN').eq(0).find('input').attr('nId');
+										init3(nID);
+									}
+						});
+				}
+				
+				
+			//收件箱、废纸篓详情展示方法
+			function init(id,obj,cName){
+				
+					$.ajax({
+								type:'get',
+								url:'queryByID',
+								dataType:'json',
+								data:{'emailId':id,'flag':''},
+								success:function(rsp){
+									var data2=rsp.object;
+									var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+									var str='';
+									var stra='';
+									var arr=new Array();
+									arr=data2.attachmentName.split('*');
+									$(obj).find('tr').remove();
+									$(cName).find('p').remove();
+									$('.span_hr').find('p').find('span').eq(0).html('');
+									
+									if(data2.attachmentName!='' && data2.copyName!=''){
+										for(var i=0;i<(arr.length-1);i++){
+											stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
+										}
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
+									} else if(data2.attachmentName=='' && data2.copyName!=''){
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
+									} else if(data2.attachmentName!='' && data2.copyName ==''){
+										for(var i=0;i<(arr.length-1);i++){
+											stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
+										}
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
+									} else{
+										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
+									}
+									
+									$(obj).append(str);
+									$(cName).append('<p>'+data2.content+'</p>');
+									$('.span_hr').find('p').find('span').eq(0).html(data2.users.userName);
+								}
+					});
+				}
+				
+				//已发送详情展示方法
 				function init3(id){
 					$.ajax({
 									type:'get',
@@ -565,21 +707,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						});
 				} 
 				
-				
-				function clicked(){
-					layer.msg('开发中', {icon: 6});
-				}
-				
 				//单条数据删除事件
 				function deleted(flag,sId,ueID){
-					
-					/* var sId=$('#delete').attr('uId');
-					var ueID=$('#delete').attr('del'); */
 					
 					 var data={
 						"flag":flag,
 						"emailID":sId,
 						"deleteFlag":ueID
+					}
+					var msg='是否确认删除?';
+					if (confirm(msg)==true){ 
+			  	
+					  	$.ajax({
+							type:'get',
+							url:'deleteEmail',
+							dataType:'json',
+							data:data,
+							success:function(){
+								//location.reload();
+								window.location.href=window.location.href;
+							}
+						}) ; 
+						return true;
+					 }else{ 
+					 	return false; 
+					 } 	
+					
+				}
+				
+				//草稿箱单条数据
+				function deleted1(bId){
+					 var data={
+						"bodyId":bId,
 					}
 					var msg='是否确认删除?';
 					if (confirm(msg)==true){ 
@@ -599,8 +758,54 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 } 	
 					
 				}
+				
+				//单条回复方法
+				function REPLAY(id){
+					$.ajax({
+						type:'get',
+						url:'queryByID',
+						dataType:'json',
+						data:{'bodyId':id,'flag':''},
+						success:function(rsp){
+							var data2=rsp.object;
+							var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+							var str='';
+							var stra='';
+							var arr=new Array();
+							arr=data2.attachmentName.split('*');
+							if(data2.attachmentName!='' && data2.copyName!=''){
+								for(var i=0;i<(arr.length-1);i++){
+									stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
+							}
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+								
+							} else if(data2.attachmentName=='' && data2.copyName!=''){
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+								
+							} else if(data2.attachmentName!='' && data2.copyName ==''){
+								for(var i=0;i<(arr.length-1);i++){
+									stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
+								}
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+								
+							} else{
+								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+								
+							}	
+							return str;
+						}
+					});
+				}
+				
+				
+				//ue编辑器清空方法
 				function empty(){
 					ue.setContent('');
+				}
+				
+				//正在开发中
+				function clicked(){
+					layer.msg('开发中', {icon: 6});
 				}
 		</script>
 		

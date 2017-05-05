@@ -97,7 +97,13 @@ ul.total{
 	/* width:25%; */
 	height:100%;
 }
-.s_container{
+.n_img,.n_name,.n_title,.n_time{
+	float:left;
+	/* width:25%; */
+	height:100%;
+	
+}
+.s_container,.tainer，,.s_cont{
 	height: calc(100% - 32px);
 	width:100%;
 	background:#fff;
@@ -105,6 +111,13 @@ ul.total{
 .s_container ul{
 	height:100%;
 	position:relative;
+}
+.all_li{
+	width: 22%;
+    height: 89px;
+    float:left;
+    margin-top:3%;
+    margin-left:3%;
 }
 .s_container ul li{
 	position:relative;
@@ -131,7 +144,7 @@ ul.total{
     bottom: 0;
     margin: auto;
 }
-.s_head{
+.s_head,.notice_head,.wenjian_head{
 	height: 32px;
 	line-height: 32px;
     width: 100%;
@@ -140,6 +153,13 @@ ul.total{
     background:url(../../../img/spirit/menu/s_head.png);
     color: #fff;
     position: relative;
+}
+.model,.wenjian_list,.wenjian_span{
+	float:left;
+}
+.no_notice h1{
+	/* font-size:14px; */
+	margin-left:3%;
 }
 .s_head a{
 	color:#fff;
@@ -178,13 +198,16 @@ ul.total{
 .mail_title li{
 	float:left;
 }
-.e_title,.d_title{
+.e_title,.d_title,.n_title{
 	width:41%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.e_time,.d_time{
+.model,.notice_list,.more_notice{
+	float:left;
+}
+.e_time,.d_time,.n_time{
 	/* position: absolute;
     right: 10px;
 	height: 100%;
@@ -192,8 +215,12 @@ ul.total{
     text-align: right; */
     color: #898989;
     width:30%;
+    text-align: center;
 }
-.e_img,.d_img{
+.more_notice{
+	    margin-left: 40%;
+}
+.e_img,.d_img,.n_img{
 	/* position: absolute;
     top: 0;
     left: 10px;
@@ -202,7 +229,7 @@ ul.total{
     height: 100%;
     width: 7%;
 }
-.e_name,.d_name{
+.e_name,.d_name,.n_name{
 	left: 45px;
     width:20%;
     height: 100%;
