@@ -12,364 +12,273 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
-    <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/base.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
-    <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
-    <script src="../js/news/page.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../lib/laydate.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/pagination/style/pagination.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/news/center.css"/>
+    <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
+    <script src="../../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/layer/layer.js"></script>
+	<style>
+		.wrap{
+			    margin-left: 1%;
+    			margin-top: 1%;
+		}
+		.head .headli1_1 {
+			  width:99px !important;
 
+		}
+		.sort_liucheng,.new_liucheng{
+		    width: 100px;
+		    height: 25px;
+		    margin-bottom: 5px;
+		    background: #red;
+		    float: left;
+		    margin-top: -3px;
+		}
+		.sort_liucheng h1,.new_liucheng h1{
+			text-align:center;
+			line-height: 25px;
+		}
+		.new_liucheng{
+			    margin-left: 65px;
+			    background: #138eee;
+			    color: #fff;
+			    border-radius: 6px;
+		}
+		#tr_td{
+			    text-align: center;
+		}
+		.levelleft1{
+		   margin-left:30%;
+		}
+		.levelleft2{
+		   margin-left:60%;
+		}
+		.change{
+				width:85px;
+			    background-color: #2F8AE3;
+			    font-size: 14px;
+			    color: #ffffff;
+			    border-radius: 20px;
+		}
+		#liucheng{
+			width: 85px !important; 
+		}
+		#biaodan{
+			    width: 85px !important;
+    			margin-left: 15px;
+		}
+		#liucheng h1,#biaodan h1{
+			width:100%;
+			text-align:center;
+			line-height:26px;
+		}
+	</style>
 </head>
 <body>
 <div class="bx">
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
-           <li data_id="0"><span class="one headli1_1"><fmt:message
-                    code="notice.title.unreadannouncement"/></span><img class="headli1_2" src="../img/02.png" alt=""/>
-            </li>
-            
-            <li data_id=""><span class="headli2_1"><fmt:message
-                    code="notice.title.notify"/></span><img src="../img/02.png" alt="" class="headli2_2"/>
-            </li>
+           <li data_id="0" id="biaodan" class="change"><h1>表单分类</h1></li>
+             </span><img class="headli1_2" src="../../img/02.png" alt=""/>
+            <li data_id="" id="liucheng"><h1 class="headli2_1">流程分类</h1></li>
                     
-           <li data_id="1"><span class="headli3"><fmt:message code="notice.title.announcementquery"/></span></li> 
+           
            
         </ul>
     </div>
     <!--head通栏结束-->
-
-    <!--navigation开始-->
-    <div class="step1">
-        <div class="navigation  clearfix">
-            <div class="left">
-
-                <img src="../img/la1.png"> 
-                
-                <div class="news">
-                    <fmt:message code="notice.title.notify"/>
-                </div>                
-               <select name="TYPE" class="button1 nav_type" id="select">
-                    <option value="0" selected="">
-                        <fmt:message code="notice.type.alltype"/>
-                    </option>
-                    <option value="01">
-                        <fmt:message code="notice.type.Decision"/>
-                    </option>
-                    <option value="02">
-                        <fmt:message code="notice.type.notice"/>
-                    </option>
-                    <option value="03">
-                        <fmt:message code="notice.type.Bulletin"/>
-                    </option>
-                    <option value="04">
-                        <fmt:message code="notice.type.other"/>
-                    </option>
-	                </select>
-                <div>
-                    <div class="nav_date">
-                        <fmt:message code="global.lang.date"/>
-                        :
-                    </div>
-                    <input class="button1" id="sendTime">
-                </div>
-                <!-- 查询按钮 -->
-                <div id="cx" class="submit">
-                    <fmt:message code="global.lang.query"/>
-                </div>
-            </div>
-            
-            <div class="right">
-                <!-- 分页按钮-->
-                <div class="M-box3">
-                </div>
-
-            </div>
-
-        </div>
-
-        <!--navigation结束-->
-
-        <!--content部分开始-->
+	
+	        <!--content部分开始-->
         <div>
             <div class="wrap">
-                <table id="tr_td">
-                    <thead>
-                    <tr>
-                        <td class="th">
-                            <fmt:message code="notice.th.publisher"/>
-                        </td>
-                        <td class="th">
-                            <fmt:message code="notice.th.title" />
-                        </td>
-                        <td class="th">
-                            <fmt:message code="notice.th.effectivedate"/>
-                        </td>
+            	<div class="table_head">
+            		<div class="sort_liucheng"><h1>流程分类列表</h1></div>
+            		<div class="new_liucheng"><h1>新建流程分类</h1></div>
+            	</div>
+            	<div class="tab_t">
+            		<div class="tab_tone">
+            			<table id="tr_td">
+		                    <thead>
+		                    <tr>
+		                        <td class="th">
+		                         	  序号
+		                        </td>
+		                        <td class="th">
+		                           		名称		
+		                        </td>
+		                        <td class="th">
+		                          	表单数量
+		                        </td>
+		
+		                        <td class="th">
+		                            		所属部门
+		                        </td>
+		                        <td class="th">
+		                            	操作
+		                        </td>
+		                        <!-- <td class="th">发布部门</td> -->
+		                    </tr>
+		                    </thead>
+		                    <tbody id="j_tb">
+								
+		                    </tbody>
+		                    
+		                </table>
+            		</div>
+            		 
+	                
+	                <div class="tab_ttwo" style="display:none;">
+            			<table id="tr_td">
+		                    <thead>
+		                    <tr>
+		                        <td class="th">
+		                         	  序号
+		                        </td>
+		                        <td class="th">
+		                           		名称		
+		                        </td>
+		                        <td class="th">
+		                          	表单数量
+		                        </td>
+		
+		                        <td class="th">
+		                            		所属部门
+		                        </td>
+		                        <td class="th">
+		                            	操作
+		                        </td>
+		                        <!-- <td class="th">发布部门</td> -->
+		                    </tr>
+		                    </thead>
+		                    <tbody id="c_biaodan">
+								<!-- <tr><td><a  notifyId="" class="windowOpen '+className+'">1</a></td>
+			                        <td><a notifyId="" class="windowOpen '+className+'">行政管理</a></td>
+			                        <td><a notifyId="" class="windowOpen '+className+'">3</a></td>
+			                        <td><a notifyId="" class="windowOpen '+className+'">全部部门</a></td>
+			                        <td><a notifyId="" class="windowOpen '+className+'">编辑|删除</a></td>
+		                        </tr> -->
+		                    </tbody>
+		                    
+		                </table>
+            		</div>
+            	</div>
 
-                        <td class="th">
-                            <fmt:message code="notice.th.releasescope"/>
-                        </td>
-                        <td class="th">
-                            <fmt:message code="notice.th.type"/>
-                        </td>
-                        <!-- <td class="th">发布部门</td> -->
-                    </tr>
-                    </thead>
-                    <tbody id="j_tb">
-                    
-                    </tbody>
-                </table>
             </div>
 
 
         </div>
         <!--content部分结束-->
-
-    </div>
+    
 </div>
-<!-- <div class="center" style="width:100%;margin-top: 50px;display: none;"> -->
-<div class="center" id="qt">
-    <div class="login">
-        <div class="header">
-            <fmt:message code="global.lang.inputquerycondition"/>
-        </div>
-        <div class="middle">
-            <div class="le publisher">
-                <div class="color" style="width:105px;">
-                    <fmt:message code="notice.th.publisher"/> ：
-                </div>
-                <input id="input_text1" type="text"/>
-                <div style="margin-right:23px; color:#207BD6">
-                    <fmt:message code="global.lang.add"/>
-                </div>
-                <div>
-                    <fmt:message code="global.lang.empty"/>
-                </div>
-            </div>
-            <div class="le subject">
-                <div class="color" style="width:105px;">
-                    <fmt:message code="notice.th.title"/> ：</div>
-                <input id="subject_query " class="input_text2" type="text"/>
-            </div>
-            <div class="le date">
-                <div class="color" style="width:105px;"><fmt:message code="notice.title.Releasedate"/> ：</div>  
-                <input id="beginTime "class="input_text3" type="text"/>
-                <div class="color">
-                    <fmt:message code="global.lang.to"/>
-                </div>
-                
-               <div><input id="endTime" class="input_text4" type="text"/></div> 
-            </div>
-            <div class="le ce1">
-                <div class="color" style="width:105px;"><fmt:message code="notice.th.type"/> ：</div>
-            <div> 
-                 <select name="TYPE"  class="button1 input_text5" id="select_query">
-                         <option value="0" selected="">
-                        <fmt:message code="notice.type.alltype"/>
-                    </option>
-                    <option value="01">
-                        <fmt:message code="notice.type.Decision"/>
-                    </option>
-                    <option value="02">
-                        <fmt:message code="notice.type.notice"/>
-                    </option>
-                    <option value="03">
-                        <fmt:message code="notice.type.Bulletin"/>
-                    </option>
-                    <option value="04">
-                        <fmt:message code="notice.type.other"/>
-                    </option>
-                    </select>
-                </div>
 
-            </div>
-            <div class="le ce2">
-                <div class="color" style="width:105px;"><fmt:message code="notice.th.content"/>:</div>          
-              	<input id="content" class="input_text6" type="text"/>
-            </div>
-        </div>
-        <div class="icons">
-            <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
-            <img style="margin-right:30px; cursor: pointer;" src="../img/4query.png" alt=""/>
-            <img style=" cursor: pointer;" src="../img/5query.png" alt=""/>
-        </div>
-    </div>
-</div>
 <!--footer部分结束-->
 </div>
 <script>
 $(function () {
-            var data = {
-                read : $('.index_head .one').parent().attr('data_id'),
-				typeId : $('#select').val()==0?'':$('#select').val(),
-				sendTime : $('#sendTime').val(),
-				page:1,
-				pageSize:5,
-				useFlag:true,
-				beginDate:'',
-				endDate:'',
-				content:'',
-				subject:''
-
-            };
-            initPageList(function(pageCount){
-           		 initPagination(pageCount,data.pageSize);
-            });
-
-           $(".index_head li").click(function (){
-				console.log('qqq');
-                $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
-                $(".news").html($(this).find('span').text());
-				data.read = $(this).attr('data_id');
-				data.typeId = $('#select').val()==0?'':$('#select').val();
-				data.sendTime = $('#sendTime').val();
-				console.log(data);
-				if(data.read == ''||data.read == 0){
-					$('.step1').show();
-					$('.center').hide();
-					initPageList(function(pageCount){
-		           		 initPagination(pageCount,data.pageSize);
-		            });
-				}else if(data.read == 1){
-					$('.step1').hide();
-					$('.center').show('');
-					$('#subject').val('');
-					$('#beginTime').val('');
-					$('#endTime').val('');
-					$('#select').val()==0?'':$('#select').val();
-					$('#content').val('');
-				}
+			//tab切换
+			$('.clearfix').on('click','li',function(){
+				$(".clearfix li").removeClass("change");
+				$(this).addClass('change');
+				 if($(this).attr('id')=='biaodan'){
 				
-            })
-            function initPageList(cb){
-            	var layerIndex = layer.load(0, {shade: false});
-            	$.ajax({
-					type: "get",
-					url: "<%=basePath%>notice/notifyList",
-					dataType: 'JSON',
-					data: data,
-					success: function(data){
+					$('.tab_tone').css("display","block");
+					$('.tab_ttwo').css("display","none");
+				
+				}else{
+					$('.tab_ttwo').css("display","block");
+					$('.tab_tone').css("display","none");
+
+				} 
+			})
+			//表单分类接口
+          function queryChild(datas,str_li,level){
+              for(var i=0;i<datas.length;i++){
+                var className="levelleft"+level;
+               
+                 str_li+='<tr><td><a  notifyId="" class="windowOpen '+className+'">'+datas[i].sortNo+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen '+className+'">'+datas[i].sortName+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen ">'+datas[i].formcounts+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen ">'+datas[i].departName+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen ">编辑|删除</a></td></tr>'
+                 console.log(datas[i].childs);
+                 if(datas[i].haveChild!=null&&datas[i].haveChild==1){
+                    str_li = queryChild(datas[i].childs,str_li,level+1);
+                 }
+              }
+              return str_li;
+          }
+
+
+				//表单分类接口
+			function item(){
+					$.ajax({
+						url:'form',
+						type:'get',
+						dataType:'json',
+						success:function(obj){
+							var data=obj.datas;
+							console.log(data);
+							var str_li='';
+							str_li=queryChild(data,str_li,0);
+							
 						
-						if(data.obj.length == 0){
-							layer.closeAll()
-							console.log($('.index_head .one').parent().attr('data_id')=='0');
-							if($('.index_head .one').parent().attr('data_id') == '0'){
-							
-								layer.msg('没有未读公告，2秒后自动跳到公告通知', {icon: 6});
-								var turnindex=setInterval(function(){
-									layer.closeAll();
-									$(".index_head li").eq(1).click();
-									clearInterval(turnindex);
-								},2*1000);
-							}else{
-								layer.msg('没有更多数据！', {icon: 6});
-							}
-							
-						}else{
-							var news = "";
-                        	for (var i = 0; i < data.obj.length; i++) {
-                               news += "<tr><td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].toId+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
-                                       +news;
-                           }
-							var loadindex=setInterval(function(){
-								layer.closeAll();
-								$("#j_tb").html(news);
-								clearInterval(loadindex);
-							},1000);
-							
-							if(cb){
-								cb(obj.totleNum);
-							}
+							$('#j_tb').html(str_li);
 						}
-					}   
-				})
-            }
-            
-            /* 新闻详情页 */
-               $("#j_tb").on('click','.windowOpen',function(){
-		            var nid=$(this).attr('notifyId');
-		            $.popWindow('detail?notifyId='+nid);
-		        });
-        		$('.submit').click(function (){
-					data.read = $('.index_head .one').parent().attr('data_id');
-					data.typeId = $('#select').val();
-					data.sendTime = $('#sendTime').val();
-					//console.log(read,typeId,nTime);
-					initPageList();
-				});
-				//时间控件调用
-				
+					});
+			}
+			
+			item();
+			
+			
+			
+			
+				//流程分类接口
+          function queryChild_biaodan(datas,str_li,level){
+              for(var i=0;i<datas.length;i++){
+                var className="levelleft"+level;
+               
+                 str_li+='<tr><td><a  notifyId="" class="windowOpen '+className+'">'+datas[i].sortNo+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen '+className+'">'+datas[i].sortName+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen ">'+datas[i].flowcounts+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen ">'+datas[i].departName+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen ">编辑|删除</a></td></tr>'
+                 console.log(datas[i].childs);
+                 if(datas[i].haveChild!=null&&datas[i].haveChild==1){
+                    str_li = queryChild_biaodan(datas[i].childs,str_li,level+1);
+                 }
+              }
+              return str_li;
+          }
 
-   $('#btn_query').click(function (){
-		data.read='';
-		data.subject = $('#subject').val();
-		data.beginDate = $('#beginTime').val();
-		data.endDate = $('#endTime').val();
-		data.typeId =  $('#select_query').val()==0?'':$('#select_query').val();
-		data.content = $('#content').val();
-		initPageList();
-		$('.step1').show();
-		$('.center').hide();
-	});
+
+				//流程分类接口
+			function items(){
+					$.ajax({
+						url:'flow',
+						type:'get',
+						dataType:'json',
+						success:function(obj){
+							var data=obj.datas;
+							console.log(data);
+							var str_li='';
+							str_li=queryChild_biaodan(data,str_li,0);
+							
+						
+							$('#c_biaodan').html(str_li);
+						}
+					});
+			}
+			
+			items();
+
 });
-	 laydate({
-     elem: '#sendTime', //目标元素。
-     format: 'YYYY-MM-DD', //日期格式
-     istime: true, //显示时、分、秒
-   });
-   
-   //时间控件调用
-   var start = {
-     elem: '#beginTime',
-     format: 'YYYY-MM-DD',
-    /* min: laydate.now(), //设定最小日期为当前日期*/
-    /* max: '2099-06-16 23:59:59', //最大日期*/
-     istime: true,
-     istoday: false,
-     choose: function(datas){
-        end.min = datas; //开始日选好后，重置结束日的最小日期
-        end.start = datas; //将结束日的初始值设定为开始日
-     }
-   };
-            function initPagination(totalData,pageSize){
-            	$('.M-box3').pagination({
-							    totalData:totalData,
-							    showData:pageSize,
-							    jump:true,
-							    coping:true,
-							    homePage:'<fmt:message code="global.page.first" />',
-							    endPage:'<fmt:message code="global.page.last" />',
-							    prevContent:'<fmt:message code="global.page.pre" />',
-							    nextContent:'<fmt:message code="global.page.next" />',
-							    jumpBtn:'<fmt:message code="global.page.jump" />',
-							    callback:function(index){
-							    	data.page = index.getCurrent();
-							    	console.log(index.getCurrent());
-							    	initPageList();
-							    }
-							});
-            }
-   var end = {
-     elem: '#endTime',
-     format: 'YYYY-MM-DD',
-     /*min: laydate.now(),*/
-     /*max: '2099-06-16 23:59:59',*/
-     istime: true,
-     istoday: false,
-     choose: function(datas){
-       start.max = datas; //结束日选好后，重置开始日的最大日期
-     }
-   };
-   laydate(start);
-   laydate(end);
+
 </script>
 </body>
 
