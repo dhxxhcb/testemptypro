@@ -13,12 +13,12 @@ body,
 	 background: url(../../../img/main_img/bg.png) -6px 0px no-repeat;
 }
 .head_left{
-	width:13.1%;
+	width:14%;
 	height:100%;
 }
 
 .head_mid{
-	width:65.9%;
+	width:65%;
 	height:100%;
 }
 .gongzuoliu{
@@ -203,7 +203,7 @@ body,
     z-index:999;
 }
 .left_scroll{
-	background: url(../../../img/main_img/tabs_arrow.png) -5px 0px no-repeat;
+	background: url(../../../img/main_img/tabs_arrow.png) -10px 0px no-repeat;
 }
 .right_scroll{
 	background: url(../../../img/main_img/tabs_arrow.png) -37px 0px no-repeat;

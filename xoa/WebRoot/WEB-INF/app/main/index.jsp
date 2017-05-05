@@ -12,7 +12,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="UTF-8">
 		<title><fmt:message code="global.page.first" /></title>
-		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		
@@ -101,7 +100,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<ul class="total">
 												<li class="contain side">
 													 <div class="s_head">
-														<span  class="model">常用功能</span><span class="more"><a>管理</a></span>
+														<span  class="model">常用功能</span>
+														<!-- <span class="more"><a>管理</a></span> -->
 													</div>
 													<div class="s_container">
 														<div class="every_logo" menu_tid="0116" url="notice/index"><img src="img/spirit/menu/notice.png"><h2>公告</h2></div>
@@ -162,25 +162,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													</div>
 												</li>
 												<li class="contain middle">
-													 <div class="s_head">
-														<span  class="model">公告</span><span class="head_title sort active actives">全部公告</span><span class="head_title sort">未读公告</span><span class="more"><a>更多</a></span>
+													 <div class="notice_head">
+														<span  class="model">公告</span>
+														<ul class="notice_list">
+															<li class="head_title sort active actives" id="all_notice">全部公告</li>
+															<li class="head_title sort" id="weidu_notice">未读公告</li>
+														</ul>
+														
+														<span class="more_notice" tid="0116" url="notice/index"><a style="    color: #fff;">更多</a></span>
 													</div>
-													<div class="s_container">
-														<ul>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1898498514.1379470215.png"></span><span class="e_name">于青</span><span class="e_title">2017年公司五一放假通知<i style="background:url(http://devapp.gsubo.com/ui/img/mail/fileflag.png)"></i></span><span class="e_time">4月27日</span></li>
+													<div class="tainer">
+														<ul class="notify">
+															<!-- <li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1898498514.1379470215.png"></span><span class="e_name">于青</span><span class="e_title">2017年公司五一放假通知<i style="background:url(http://devapp.gsubo.com/ui/img/mail/fileflag.png)"></i></span><span class="e_time">4月27日</span></li>
 															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1988893313.2124360565.png"></span><span class="e_name">刘敏</span><span  class="e_title">通知：关于加班申请，大家仔细阅读<i></i></span><span class="e_time">4月24日</span></li>
 															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1476383706.601542059.png"></span><span class="e_name">王伟</span><span  class="e_title">关于差旅制度完善的通知<i></i></span><span class="e_time">2016年5月27日</span></li>
 															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/912559279.204126377.jpg"></span><span class="e_name">陈彤</span><span  class="e_title">月度部门奖励公告<i></i></span><span class="e_time">2016年4月21日</span></li>
-															<li><span class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></span><span class="e_name">张兰</span><span  class="e_title">全员测试要求<i></i></span><span class="e_time">2016年1月20日</span></li>
+															<li><span class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></span><span class="e_name">张兰</span><span  class="e_title">全员测试要求<i></i></span><span class="e_time">2016年1月20日</span></li> -->
 														</ul>
+														<ul class="no_read_notice" style="display:none;">
+														
+														</ul>	
 													</div>
 												</li>
 												<li class="contain side">
-													 <div class="s_head">
-														<span  class="model">文件柜</span><span class="more"><a>更多</a></span>
+													 <div class="wenjian_head">
+														<span  class="model">文件柜</span>
+														<ul class="wenjian_list">
+															<li class="head_title sort active actives" id="pets">公共文件</li>
+															<li class="head_title sort"  id="person">个人文件</li>
+														</ul>
+														
+														<span class="wenjian_span"><a style="color: #fff;" class="more_wenjian" tid="0116" url="notice/index">更多</a></span>
 													</div>
-													<div class="s_container">
-														<img style="width:100%;height:100%" src="img/spirit/menu/wenjiangui.png">
+													<div class="s_cont">
+														<ul class="pets_wenjian" >
+														</ul>
+														<ul class="people_wenjian" style="display:none;">
+														</ul>
+														
 													</div>
 												</li>
 											</ul>
@@ -234,6 +253,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$(this).addClass('infame');
 				
 			});
+			
+			//鼠标移入左三角，变色
+			$('.left_scroll').on('mouseover',function(){
+				$(this).css('background','url(img/main_img/tabs_arrow.png) -71px 0px no-repeat'); 
+			});
+			
+			$('.left_scroll').on('mouseout',function(){
+				$(this).css('background','url(img/main_img/tabs_arrow.png) -10px 0px no-repeat'); 
+			})
+			
+			//鼠标移入右三角，变色
+			$('.right_scroll').on('mouseover',function(){
+				$(this).css('background','url(img/main_img/tabs_arrow.png) -98px 0px no-repeat'); 
+			});
+			
+			$('.right_scroll').on('mouseout',function(){
+				$(this).css('background','url(img/main_img/tabs_arrow.png) -37px 0px no-repeat'); 
+			})
+			
+			
 			//鼠标移入，右边logo变颜色，移出变回。
 			//one
 			$('#task_center').on('mouseover',function(){
