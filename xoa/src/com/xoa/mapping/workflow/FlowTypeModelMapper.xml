@@ -2,45 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.workflow.FlowTypeModelMapper" >
   <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowTypeModel" >
-    <id column="FLOW_ID" property="flowId" jdbcType="INTEGER" />
-    <result column="FLOW_NAME" property="flowName" jdbcType="VARCHAR" />
-    <result column="FORM_ID" property="formId" jdbcType="INTEGER" />
-    <result column="FLOW_DOC" property="flowDoc" jdbcType="CHAR" />
-    <result column="FLOW_TYPE" property="flowType" jdbcType="CHAR" />
-    <result column="FLOW_NO" property="flowNo" jdbcType="INTEGER" />
-    <result column="FLOW_SORT" property="flowSort" jdbcType="INTEGER" />
-    <result column="AUTO_NUM" property="autoNum" jdbcType="INTEGER" />
-    <result column="AUTO_LEN" property="autoLen" jdbcType="INTEGER" />
-    <result column="AUTO_EDIT" property="autoEdit" jdbcType="VARCHAR" />
-    <result column="COMMENT_PRIV" property="commentPriv" jdbcType="CHAR" />
-    <result column="DEPT_ID" property="deptId" jdbcType="INTEGER" />
-    <result column="FREE_PRESET" property="freePreset" jdbcType="CHAR" />
-    <result column="FREE_OTHER" property="freeOther" jdbcType="CHAR" />
-    <result column="ALLOW_PRE_SET" property="allowPreSet" jdbcType="CHAR" />
-    <result column="FORCE_PRE_SET" property="forcePreSet" jdbcType="CHAR" />
-    <result column="VIEW_PRIV" property="viewPriv" jdbcType="INTEGER" />
-    <result column="IS_VERSION" property="isVersion" jdbcType="INTEGER" />
-    <result column="FLOW_ACTION" property="flowAction" jdbcType="VARCHAR" />
-    <result column="AUTO_NUM_YEAR" property="autoNumYear" jdbcType="INTEGER" />
-    <result column="AUTO_NUM_MONTH" property="autoNumMonth" jdbcType="INTEGER" />
-    <result column="AUTO_NUM_TIME" property="autoNumTime" jdbcType="TIMESTAMP" />
-    <result column="MANAGE_USER" property="manageUser" jdbcType="LONGVARCHAR" />
-    <result column="AUTO_NAME" property="autoName" jdbcType="LONGVARCHAR" />
-    <result column="QUERY_USER" property="queryUser" jdbcType="LONGVARCHAR" />
-    <result column="FLOW_DESC" property="flowDesc" jdbcType="LONGVARCHAR" />
-    <result column="NEW_USER" property="newUser" jdbcType="LONGVARCHAR" />
-    <result column="QUERY_ITEM" property="queryItem" jdbcType="LONGVARCHAR" />
-    <result column="QUERY_USER_DEPT" property="queryUserDept" jdbcType="LONGVARCHAR" />
-    <result column="MANAGE_USER_DEPT" property="manageUserDept" jdbcType="LONGVARCHAR" />
-    <result column="EDIT_PRIV" property="editPriv" jdbcType="LONGVARCHAR" />
-    <result column="LIST_FLDS_STR" property="listFldsStr" jdbcType="LONGVARCHAR" />
-    <result column="MODEL_ID" property="modelId" jdbcType="LONGVARCHAR" />
-    <result column="MODEL_NAME" property="modelName" jdbcType="LONGVARCHAR" />
-    <result column="ATTACHMENT_ID" property="attachmentId" jdbcType="LONGVARCHAR" />
-    <result column="ATTACHMENT_NAME" property="attachmentName" jdbcType="LONGVARCHAR" />
-    <result column="VIEW_USER" property="viewUser" jdbcType="LONGVARCHAR" />
-    <result column="VIEW_DEPT" property="viewDept" jdbcType="LONGVARCHAR" />
-    <result column="VIEW_ROLE" property="viewRole" jdbcType="LONGVARCHAR" />
+    <id column="FLOW_ID" property="flowId" javaType="java.lang.Integer" />
+    <result column="FLOW_NAME" property="flowName" javaType="java.lang.String" />
+    <result column="FORM_ID" property="formId" javaType="java.lang.Integer" />
+    <result column="FLOW_DOC" property="flowDoc" javaType="java.lang.String" />
+    <result column="FLOW_TYPE" property="flowType" javaType="java.lang.String" />
+    <result column="FLOW_NO" property="flowNo" javaType="java.lang.Integer" />
+    <result column="FLOW_SORT" property="flowSort" javaType="java.lang.Integer" />
+    <result column="AUTO_NUM" property="autoNum" javaType="java.lang.Integer" />
+    <result column="AUTO_LEN" property="autoLen" javaType="java.lang.Integer" />
+    <result column="AUTO_EDIT" property="autoEdit" javaType="java.lang.String" />
+    <result column="COMMENT_PRIV" property="commentPriv" javaType="java.lang.String" />
+    <result column="DEPT_ID" property="deptId" javaType="java.lang.Integer" />
+    <result column="FREE_PRESET" property="freePreset" javaType="java.lang.String" />
+    <result column="FREE_OTHER" property="freeOther" javaType="java.lang.String" />
+    <result column="ALLOW_PRE_SET" property="allowPreSet" javaType="java.lang.String" />
+    <result column="FORCE_PRE_SET" property="forcePreSet" javaType="java.lang.String" />
+    <result column="VIEW_PRIV" property="viewPriv" javaType="java.lang.Integer" />
+    <result column="IS_VERSION" property="isVersion" javaType="java.lang.Integer" />
+    <result column="FLOW_ACTION" property="flowAction" javaType="java.lang.Integer" />
+    <result column="AUTO_NUM_YEAR" property="autoNumYear" javaType="java.lang.Integer" />
+    <result column="AUTO_NUM_MONTH" property="autoNumMonth" javaType="java.lang.Integer" />
+    <result column="AUTO_NUM_TIME" property="autoNumTime" javaType="java.util.Date" />
+    <result column="MANAGE_USER" property="manageUser" javaType="java.lang.String" />
+    <result column="AUTO_NAME" property="autoName" javaType="java.lang.String" />
+    <result column="QUERY_USER" property="queryUser" javaType="java.lang.String" />
+    <result column="FLOW_DESC" property="flowDesc" javaType="java.lang.String" />
+    <result column="NEW_USER" property="newUser" javaType="java.lang.String" />
+    <result column="QUERY_ITEM" property="queryItem" javaType="java.lang.String" />
+    <result column="QUERY_USER_DEPT" property="queryUserDept" javaType="java.lang.String" />
+    <result column="MANAGE_USER_DEPT" property="manageUserDept" javaType="java.lang.String" />
+    <result column="EDIT_PRIV" property="editPriv" javaType="java.lang.String" />
+    <result column="LIST_FLDS_STR" property="listFldsStr" javaType="java.lang.String" />
+    <result column="MODEL_ID" property="modelId" javaType="java.lang.String" />
+    <result column="MODEL_NAME" property="modelName" javaType="java.lang.String" />
+    <result column="ATTACHMENT_ID" property="attachmentId" javaType="java.lang.String" />
+    <result column="ATTACHMENT_NAME" property="attachmentName" javaType="java.lang.String" />
+    <result column="VIEW_USER" property="viewUser" javaType="java.lang.String" />
+    <result column="VIEW_DEPT" property="viewDept" javaType="java.lang.String" />
   </resultMap>
+  <!-- 新建流程 -->
+  <insert id="save" parameterType="com.xoa.model.workflow.FlowTypeModel" useGeneratedKeys="true" keyProperty="flowId" >
+      insert into flow_type (FLOW_NAME,FORM_ID,FLOW_DOC,FLOW_TYPE,FLOW_NO,FLOW_SORT,AUTO_NUM,
+    AUTO_LEN,AUTO_EDIT,COMMENT_PRIV,DEPT_ID,FREE_PRESET,FREE_OTHER,ALLOW_PRE_SET,FORCE_PRE_SET,
+    VIEW_PRIV,IS_VERSION,FLOW_ACTION,AUTO_NUM_YEAR,AUTO_NUM_MONTH,AUTO_NUM_TIME,MANAGE_USER,AUTO_NAME,
+    QUERY_USER,FLOW_DESC,NEW_USER,QUERY_ITEM,QUERY_USER_DEPT,MANAGE_USER_DEPT,EDIT_PRIV,
+    LIST_FLDS_STR,MODEL_ID,MODEL_NAME,ATTACHMENT_ID,ATTACHMENT_NAME,VIEW_USER,VIEW_DEPT)
+     VALUES
+      (#{flowName},#{formId},#{flowDoc},#{flowType},#{flowNo},#{flowSort},#{autoNum},#{autoLen},
+    #{autoEdit},#{commentPriv},#{deptId},#{freePreset},#{freeOther},#{allowPreSet},#{forcePreSet},
+    #{viewPriv},#{isVersion},#{flowAction},#{autoNumYear},#{autoNumMonth},#{autoNumTime},
+    #{manageUser},#{autoName},#{queryUser},#{flowDesc},#{newUser},#{queryItem},#{queryUserDept},
+    #{manageUserDept},#{editPriv},#{listFldsStr},#{modelId},#{modelName},#{attachmentId},
+    #{attachmentName},#{viewUser},#{viewDept});
+
+
+  </insert>
+
   
 </mapper>
