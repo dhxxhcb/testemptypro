@@ -57,7 +57,6 @@ public class ToJson<T> {
 	 * 
 	 */
 	public ToJson() {
-		// TODO Auto-generated constructor stub
 	}
 
     /**
