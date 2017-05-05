@@ -1,5 +1,5 @@
 $(function () {
-	alert('123')
+	
 	
 	$('.inbox_btn').on('click',function () {
 		

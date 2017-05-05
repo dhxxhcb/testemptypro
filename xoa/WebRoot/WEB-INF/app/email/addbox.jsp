@@ -173,7 +173,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 data:data,
 						 success:function(){
 							alert('发送成功');
-							
+							//window.location.href='index';
+							$('.append_tr').parents('.div_iframe').remove();
+							$('.up_page_right').css('display','block');
 						}
 					}); 
 				});
@@ -184,12 +186,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();
 					var val=$('#txt').val();
-				
-					 var data={
+					var attach=$('.Attachment td').eq(1).find('a');
+					var aId='';
+					var uId='';
+					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+						aId += $('.Attachment td .inHidden').eq(i).val();
+					}
+					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+						uId += attach.eq(i).attr('NAME');
+					}
+					
+					var data={
 					 	'fromId':'admin',
 					 	'toId2': 'admin,',
 						'subject':val,
-						'content':html
+						'content':html,
+						'attachmentId':aId,
+						'attachmentName':uId
 					};
 					$.ajax({
 						 type:'post',    
