@@ -393,7 +393,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				 //详情点击事件
 				$('.main_left').on('click','.BTN',function(){
-					//$('.BTN').removeClass('backing');
+				
 					$(this).addClass("backing").siblings("li").removeClass("backing");
 					var nId=$(this).find('input').attr('id');
 					var dele=$(this).find('input').attr('ueId');
@@ -405,7 +405,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 $('#delete').click(function(){
 					var sId=$('#delete').attr('uId');
 					var ueID=$('#delete').attr('del');
-					//alert(sId);
+					
 					if($('.InBox').css('display')=='block'){
 						deleted('inbox',sId,ueID);
 						$('.InBox').css('display','block').siblings().css('display','none');
@@ -424,49 +424,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//回复事件
 				$('#Replay').click(function(){
 					var sId=$('#delete').attr('uId');
-					//alert(sId);
-					$.ajax({
-						type:'get',
-						url:'queryByID',
-						dataType:'json',
-						data:{'emailId':sId,'flag':''},
-						success:function(rsp){
-							var data2=rsp.object;
-							var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');							
-							var str='';
-							var stra='';
-							var arr=new Array();
-							arr=data2.attachmentName.split('*');
-							if(data2.attachmentName!='' && data2.copyName!=''){
-								for(var i=0;i<(arr.length-1);i++){
-									stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
-							}
-								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
-								
-							} else if(data2.attachmentName=='' && data2.copyName!=''){
-								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
-								
-							} else if(data2.attachmentName!='' && data2.copyName ==''){
-								for(var i=0;i<(arr.length-1);i++){
-									stra+='<div><a href="javascript:;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></div>';
-								}
-								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
-								
-							} else{
-								str='<div><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
-								
-							}
-						}
-					});
+					
+					window.location.href='writeEmail?sid='+sId;
+					
 				});
 				
-				//条件查询
-				/* $('.befor .sort .Search').click(function(){
-					
-					$('.befor .search_div').toggle();
-				})
 				
-				$.ajax */
 				
 			});
 			
@@ -495,7 +458,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										$('#InBox a span').append(rsp.totleNum);
 										for(var i=0;i<data1.length;i++){
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-											//alert(data1[i].sendTime);
+											
 											if(data1[i].emailList[0].readFlag==1){
 												if(data1[i].attachmentId!=''){
 													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
@@ -543,7 +506,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var str='';
 										for(var i=0;i<data1.length;i++){
 											var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-											//alert(data1[i].sendTime);
+											
 											if(data1[i].emailList[0].readFlag==1){
 												if(data1[i].attachmentId!=''){
 													str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
@@ -724,8 +687,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							dataType:'json',
 							data:data,
 							success:function(){
-								//location.reload();
-								window.location.href=window.location.href;
+								location.reload();
+								//window.location.href=window.location.href;
 							}
 						}) ; 
 						return true;

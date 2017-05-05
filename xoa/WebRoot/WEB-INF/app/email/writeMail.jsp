@@ -111,14 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					//获取纯文本内容，返回: hello
 					var txt = ue.getContentTxt();
 					var val=$('#txt').val();
-					/* if(val==''){
-						alert('请输入邮件主题');
-						return;
-					} 
-					if(txt==''){
-						alert('请输入邮件内容');
-						return;
-					} */
+					
 					
 					 var data={
 					 	'bodyId':'18',
