@@ -36,4 +36,10 @@ public class CommonController {
 				"loginDateSouse"));
 		return "app/common/selectUser";
 	}
+	@RequestMapping("/abc")
+	public String addboxPage1(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/ArticleEdit/ArticleEdit";
+	}
 }
