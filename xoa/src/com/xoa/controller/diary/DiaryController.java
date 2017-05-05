@@ -68,8 +68,8 @@ public class DiaryController {
 				"loginDateSouse"));
 		L.a("日志详情"+diaryModel.getContent());
 		L.a("日志详情"+diaryModel.getSubject());
-		/*String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"UTF-8");
-		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"UTF-8");
+		/*String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"GBK");
+		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"GBK");
 		diaryModel.setContent(string);
 		diaryModel.setSubject(stringSubject);*/
 		int temp=diaryService.saveDiary(diaryModel);
@@ -91,8 +91,10 @@ public class DiaryController {
 	public ToJson<DiaryModel> diaryUpdate(DiaryModel diaryModel,HttpServletRequest request) throws UnsupportedEncodingException {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-	/*	String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"UTF-8");
-		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"UTF-8");
+		L.a("日志详情"+diaryModel.getContent());
+		L.a("日志详情"+diaryModel.getSubject());
+	   /* String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"GBK");
+		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"GBK");
 		diaryModel.setContent(string);
 		diaryModel.setSubject(stringSubject);*/
 		int temp=diaryService.updateDiary(diaryModel);
