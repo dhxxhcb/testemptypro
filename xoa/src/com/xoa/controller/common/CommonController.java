@@ -29,6 +29,7 @@ import com.xoa.util.dataSource.ContextHolder;
 @RequestMapping("/common")
 public class CommonController {
 	private Logger loger = Logger.getLogger(CommonController.class);
+
 	
 	@RequestMapping("/selectUser")
 	public String addboxPage(HttpServletRequest request) {
