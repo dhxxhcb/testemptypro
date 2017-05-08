@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.netdisk.NetdiskMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.netdisk.Netdisk" >
+    <id column="DISK_ID" property="diskId" jdbcType="INTEGER" />
+    <result column="DISK_NO" property="diskNo" jdbcType="INTEGER" />
+    <result column="SPACE_LIMIT" property="spaceLimit" jdbcType="INTEGER" />
+    <result column="ORDER_BY" property="orderBy" jdbcType="VARCHAR" />
+    <result column="ASC_DESC" property="ascDesc" jdbcType="VARCHAR" />
+    <result column="DISK_NAME" property="diskName" jdbcType="LONGVARCHAR" />
+    <result column="DISK_PATH" property="diskPath" jdbcType="LONGVARCHAR" />
+    <result column="NEW_USER" property="newUser" jdbcType="LONGVARCHAR" />
+    <result column="MANAGE_USER" property="manageUser" jdbcType="LONGVARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="LONGVARCHAR" />
+    <result column="DOWN_USER" property="downUser" jdbcType="LONGVARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+    DISK_ID, DISK_NO, SPACE_LIMIT, ORDER_BY, ASC_DESC, DISK_NAME,
+     DISK_PATH, NEW_USER, MANAGE_USER, USER_ID, DOWN_USER, REMARK
+  </sql>
+  
+  <select id="selectNetdisk" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from netdisk  
+  </select>
+  
+  
+  <delete id="delete" parameterType="java.lang.Integer" >
+    delete from netdisk
+    where DISK_ID = #{diskId}
+  </delete>
+  
+   
+  <insert id="addNetdisk" parameterType="com.xoa.model.netdisk.Netdisk" >
+    insert into netdisk (DISK_ID, DISK_NO, SPACE_LIMIT, 
+      ORDER_BY, ASC_DESC, DISK_NAME, 
+      DISK_PATH, NEW_USER, MANAGE_USER, 
+      USER_ID, DOWN_USER, REMARK
+      )
+    values (#{diskId,jdbcType=INTEGER}, #{diskNo,jdbcType=INTEGER}, #{spaceLimit,jdbcType=INTEGER}, 
+      #{orderBy,jdbcType=VARCHAR}, #{ascDesc,jdbcType=VARCHAR}, #{diskName,jdbcType=LONGVARCHAR}, 
+      #{diskPath,jdbcType=LONGVARCHAR}, #{newUser,jdbcType=LONGVARCHAR}, #{manageUser,jdbcType=LONGVARCHAR}, 
+      #{userId,jdbcType=LONGVARCHAR}, #{downUser,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert> 
+  <!-- 
+  <insert id="addNetdisk" parameterType="com.xoa.model.netdisk.Netdisk" >
+    insert into netdisk
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="diskId != null" >
+        DISK_ID,
+      </if>
+      <if test="diskNo != null" >
+        DISK_NO,
+      </if>
+      <if test="spaceLimit != null" >
+        SPACE_LIMIT,
+      </if>
+      <if test="orderBy != null" >
+        ORDER_BY,
+      </if>
+      <if test="ascDesc != null" >
+        ASC_DESC,
+      </if>
+      <if test="diskName != null" >
+        DISK_NAME,
+      </if>
+      <if test="diskPath != null" >
+        DISK_PATH,
+      </if>
+      <if test="newUser != null" >
+        NEW_USER,
+      </if>
+      <if test="manageUser != null" >
+        MANAGE_USER,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="downUser != null" >
+        DOWN_USER,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="diskId != null" >
+        #{diskId,jdbcType=INTEGER},
+      </if>
+      <if test="diskNo != null" >
+        #{diskNo,jdbcType=INTEGER},
+      </if>
+      <if test="spaceLimit != null" >
+        #{spaceLimit,jdbcType=INTEGER},
+      </if>
+      <if test="orderBy != null" >
+        #{orderBy,jdbcType=VARCHAR},
+      </if>
+      <if test="ascDesc != null" >
+        #{ascDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="diskName != null" >
+        #{diskName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="diskPath != null" >
+        #{diskPath,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newUser != null" >
+        #{newUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="manageUser != null" >
+        #{manageUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="downUser != null" >
+        #{downUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert> -->
+  <!-- <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.netdisk.NetdiskWithBLOBs" >
+    update netdisk
+    <set >
+      <if test="diskNo != null" >
+        DISK_NO = #{diskNo,jdbcType=INTEGER},
+      </if>
+      <if test="spaceLimit != null" >
+        SPACE_LIMIT = #{spaceLimit,jdbcType=INTEGER},
+      </if>
+      <if test="orderBy != null" >
+        ORDER_BY = #{orderBy,jdbcType=VARCHAR},
+      </if>
+      <if test="ascDesc != null" >
+        ASC_DESC = #{ascDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="diskName != null" >
+        DISK_NAME = #{diskName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="diskPath != null" >
+        DISK_PATH = #{diskPath,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newUser != null" >
+        NEW_USER = #{newUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="manageUser != null" >
+        MANAGE_USER = #{manageUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="downUser != null" >
+        DOWN_USER = #{downUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where DISK_ID = #{diskId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.netdisk.NetdiskWithBLOBs" >
+    update netdisk
+    set DISK_NO = #{diskNo,jdbcType=INTEGER},
+      SPACE_LIMIT = #{spaceLimit,jdbcType=INTEGER},
+      ORDER_BY = #{orderBy,jdbcType=VARCHAR},
+      ASC_DESC = #{ascDesc,jdbcType=VARCHAR},
+      DISK_NAME = #{diskName,jdbcType=LONGVARCHAR},
+      DISK_PATH = #{diskPath,jdbcType=LONGVARCHAR},
+      NEW_USER = #{newUser,jdbcType=LONGVARCHAR},
+      MANAGE_USER = #{manageUser,jdbcType=LONGVARCHAR},
+      USER_ID = #{userId,jdbcType=LONGVARCHAR},
+      DOWN_USER = #{downUser,jdbcType=LONGVARCHAR},
+      REMARK = #{remark,jdbcType=LONGVARCHAR}
+    where DISK_ID = #{diskId,jdbcType=INTEGER}
+  </update> -->
+  <update id="editNetdisk" parameterType="com.xoa.model.netdisk.Netdisk" >
+    update netdisk
+    set DISK_NO = #{diskNo,jdbcType=INTEGER},
+      SPACE_LIMIT = #{spaceLimit,jdbcType=INTEGER},
+      ORDER_BY = #{orderBy,jdbcType=VARCHAR},
+      ASC_DESC = #{ascDesc,jdbcType=VARCHAR},
+      DISK_NAME = #{diskName,jdbcType=LONGVARCHAR},
+      DISK_PATH = #{diskPath,jdbcType=LONGVARCHAR},
+      REMARK = #{remark,jdbcType=LONGVARCHAR}
+    where DISK_ID = #{diskId,jdbcType=INTEGER}
+  </update>
+</mapper>
