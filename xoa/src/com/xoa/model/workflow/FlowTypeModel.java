@@ -19,7 +19,7 @@ public class FlowTypeModel implements Serializable{
      */
 	private Integer flowId;
 
-    /**
+    /**	
      * 流程名称
      */
     private String flowName;

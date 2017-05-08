@@ -230,19 +230,15 @@
 							<div id="widget-group-task-custom" class="widget-group-content">
 								<ul class="widget-group-items-list">
 									<li id="td_custom_yyaccount"
-										onclick="exec_cmd('td_custom_yyaccount')"><i
-										style="background-image:url(/general/system/workflow/flow_form/cool_form/custom_controls/yyaccount/image/yyaccount.png);"></i><span>用友ERP账套记账</span>
+										onclick="exec_cmd('td_custom_yyaccount')"><span>用友ERP账套记账</span>
 									</li>
 									<li id="td_custom_kdaccount"
-										onclick="exec_cmd('td_custom_kdaccount')"><i
-										style="background-image:url(/general/system/workflow/flow_form/cool_form/custom_controls/kdaccount/image/kdaccount.png);"></i><span>金蝶ERP账套记账</span>
+										onclick="exec_cmd('td_custom_kdaccount')"><span>金蝶ERP账套记账</span>
 									</li>
 									<li id="td_custom_wfpreview"
-										onclick="exec_cmd('td_custom_wfpreview')"><i
-										style="background-image:url(/general/system/workflow/flow_form/cool_form/custom_controls/wfpreview/image/wfpreview.png);"></i><span>指定工作查看控件</span>
+										onclick="exec_cmd('td_custom_wfpreview')"><span>指定工作查看控件</span>
 									</li>
-									<li id="td_custom_help" onclick="exec_cmd('td_custom_help')"><i
-										style="background-image:url(/general/system/workflow/flow_form/cool_form/custom_controls/help/image/help.png);"></i><span>帮助控件</span>
+									<li id="td_custom_help" onclick="exec_cmd('td_custom_help')"><span>帮助控件</span>
 									</li>
 									<input type='hidden' id='custom_controls_json'
 										value='[ { "PKEY": "td_custom_yyaccount", "NAME": "用友ERP账套记账" }, { "PKEY": "td_custom_kdaccount", "NAME": "金蝶ERP账套记账" }, { "PKEY": "td_custom_wfpreview", "NAME": "指定工作查看控件" }, { "PKEY": "td_custom_help", "NAME": "帮助控件" } ]'>

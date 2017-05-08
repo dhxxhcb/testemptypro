@@ -13,5 +13,9 @@
     <result column="SCRIPT" property="script" javaType="string" />
     <result column="CSS" property="css"  javaType="string" />
   </resultMap>
+
+  <select id="selectFlowFormType"  resultMap="BaseResultMap" >
+    SELECT f.FORM_ID,f.FORM_NAME,f.PRINT_MODEL,f.PRINT_MODEL_SHORT,f.DEPT_ID,f.SCRIPT,f.CSS,f.ITEM_MAX,f.FORM_SORT,f.is_new from flow_form_type f
+  </select>
      
 </mapper>
