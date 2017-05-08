@@ -121,6 +121,78 @@ public class FileController {
 	/**
 	 * 
 	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午4:12:07
+	 * 方法介绍:   构建树形目录信息
+	 * 参数说明:   @param sortid
+	 * 参数说明:   @return
+	 * @return     List<TreeNode>
+	 */
+	public List<TreeNode> treeFile(int sortid,HttpSession session) {
+		//Session 获取用户信息
+		String userId=session.getAttribute("userId").toString();
+		String userPriv=session.getAttribute("userPriv").toString();
+		String deptId=session.getAttribute("deptId").toString();
+		System.out.println("-----------------------"+userId+"---"+userPriv+"---"+deptId);
+		Map<String,Object> map=new Hashtable<String, Object>();
+		map.put("userId", userId);
+		map.put("userPriv", userPriv);
+		map.put("deptId", deptId);
+		//采用 LinkedList 双向列表实现类 操作 在链表中操作对象集合效率高
+		List<FileSortModel> rootTree=new LinkedList<FileSortModel>();
+		rootTree = fileSortService.getRootTree(sortid);// 根节点
+		//利用迭代器删除集合中元素
+		List<FileSortModel> childTree = new LinkedList<FileSortModel>();
+		if(rootTree.size()>0){
+		Iterator<FileSortModel> iterator=rootTree.iterator();
+		while(iterator.hasNext()){
+			FileSortModel fsm=iterator.next();
+			//将权限字符串传到checkAll 返回为true时 有权限 为false时无权限
+			if(!this.checkAll(fsm.getUserId(),map)){
+				iterator.remove();
+			}
+		}
+		}
+		for(FileSortModel fsm:rootTree){
+			childTree.addAll(getchildTrees(fsm,map));
+		}
+		// 构造方法传值
+		FileSortTreeUtil util = new FileSortTreeUtil(rootTree, childTree);
+		return util.getTreeNode();
+	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午4:15:03
+	 * 方法介绍:   根据权限递归循环获取文件夹对象
+	 * 参数说明:   @param file
+	 * 参数说明:   @return
+	 * @return     List<FileSortModel>
+	 */
+	public List<FileSortModel> getchildTrees(FileSortModel file,Map<String,Object> map) {
+		// 传值查询子节点数据
+		List<FileSortModel> parentList = new ArrayList<FileSortModel>();
+		int tempNo = file.getSortId();
+		List<FileSortModel> childrenList = new ArrayList<FileSortModel>();
+		childrenList = fileSortService.getSortChrildren(tempNo);
+		if(childrenList.size()>0){
+		Iterator<FileSortModel> iteratorChr=childrenList.iterator();
+		while(iteratorChr.hasNext()){
+					FileSortModel fsm=iteratorChr.next();
+					//将权限字符串传到checkAll 返回为true时 有权限 为false时无权限
+					if(!this.checkAll(fsm.getUserId(),map)){
+						iteratorChr.remove();
+			}
+		}
+		for (FileSortModel fs : childrenList){
+			parentList.addAll(getchildTrees(fs,map));
+		}
+		parentList.addAll(childrenList);
+		}
+		return parentList;
+	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
 	 * 创建日期:   2017-4-18 下午4:09:20
 	 * 方法介绍:   将目录树转换成json数据通过HtmlUtil.writerJson(response, treeList)写到前台页面
 	 * 参数说明:   @param file
@@ -161,19 +233,38 @@ public class FileController {
 		rootTree = fileSortService.getFileSortList(fsm);// 根节点
 		}
 		List<FileSortModel> childTree = new LinkedList<FileSortModel>();
-		List<String> sortidList=new ArrayList<String>();
-		for(FileSortModel f:rootTree){
-			sortidList.add(f.getSortId()+"");
-		}
 		
 		// 取子节点
-		if(rootTree.size()>0)
-		childTree = fileSortService.getChildTree(sortidList);// 子节点
+		for(FileSortModel fsm:rootTree){
+			childTree.addAll(getchildTreePerson(fsm));
+		}
 		// 构造方法传值
 		FileSortTreeUtil util = new FileSortTreeUtil(rootTree, childTree);
 		return util.getTreeNode();
 	}
-	
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-5-8 下午3:45:58
+	 * 方法介绍:   递归个人文件柜
+	 * 参数说明:   @param file
+	 * 参数说明:   @return
+	 * @return     List<FileSortModel>
+	 */
+	public List<FileSortModel> getchildTreePerson(FileSortModel file) {
+		// 传值查询子节点数据
+		List<FileSortModel> parentList = new ArrayList<FileSortModel>();
+		int tempNo = file.getSortId();
+		List<FileSortModel> childrenList = new ArrayList<FileSortModel>();
+		childrenList = fileSortService.getSortChrildren(tempNo);
+		if(childrenList.size()>0){
+		for (FileSortModel fs : childrenList){
+			parentList.addAll(getchildTreePerson(fs));
+		}
+		parentList.addAll(childrenList);
+		}
+		return parentList;
+	}
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -199,8 +290,7 @@ public class FileController {
 	 */
 	@RequestMapping(value = "/main")
 	public String fileHomeOne(HttpServletRequest request) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute("loginDateSouse"));
 		loger.info("--------main-------");
 		return "app/file/fileHomeMain";
 	}
@@ -242,6 +332,8 @@ public class FileController {
 				"loginDateSouse"));
 		 ToJson diaryListToJson=new ToJson(0,"");
 		   int i=fileContentService.saveContent(fileContentModel);
+		   diaryListToJson.setFlag(0);
+		   diaryListToJson.setMsg(""+i);
 		  return diaryListToJson;
 	}
 	/**
@@ -265,63 +357,7 @@ public class FileController {
 		return modelAndView;
 	}
 	
-	/**
-	 * 
-	 * 创建作者:   杨 胜
-	 * 创建日期:   2017-4-18 下午4:12:07
-	 * 方法介绍:   构建树形目录信息
-	 * 参数说明:   @param sortid
-	 * 参数说明:   @return
-	 * @return     List<TreeNode>
-	 */
-	public List<TreeNode> treeFile(int sortid,HttpSession session) {
-		//Session 获取用户信息
-		String userId=session.getAttribute("userId").toString();
-		String userPriv=session.getAttribute("userPriv").toString();
-		String deptId=session.getAttribute("deptId").toString();
-		System.out.println("-----------------------"+userId+"---"+userPriv+"---"+deptId);
-		Map<String,Object> map=new Hashtable<String, Object>();
-		map.put("userId", userId);
-		map.put("userPriv", userPriv);
-		map.put("deptId", deptId);
-		//采用 LinkedList 双向列表实现类 操作 在链表中操作对象集合效率高
-		List<FileSortModel> rootTree=new LinkedList<FileSortModel>();
-		rootTree = fileSortService.getRootTree(sortid);// 根节点
-		System.out.println("-------------------前---------------"+rootTree.size());
-		//利用迭代器删除集合中元素
-		Iterator<FileSortModel> iterator=rootTree.iterator();
-		while(iterator.hasNext()){
-			FileSortModel fsm=iterator.next();
-			System.out.println("-------------------前   ---------------"+fsm.getUserId());
-			//将权限字符串传到checkAll 返回为true时 有权限 为false时无权限
-			if(!this.checkAll(fsm.getUserId(),map)){
-				iterator.remove();
-			}
-		}
-		List<FileSortModel> childTree = new LinkedList<FileSortModel>();
-		List<String> sortidList=new ArrayList<String>();
-		for(FileSortModel fsm:rootTree){
-			sortidList.add(fsm.getSortId()+"");
-		}
-		System.out.println("---------------后-------------------"+rootTree.size());
-		
-		// 取子节点
-		if(rootTree.size()>0)
-		childTree = fileSortService.getChildTree(sortidList);// 子节点
-		
-		//利用迭代器删除集合中元素
-		Iterator<FileSortModel> iteratorChr=childTree.iterator();
-		while(iteratorChr.hasNext()){
-					FileSortModel fsm=iteratorChr.next();
-					//将权限字符串传到checkAll 返回为true时 有权限 为false时无权限
-					if(!this.checkAll(fsm.getUserId(),map)){
-						iteratorChr.remove();
-			}
-		}
-		// 构造方法传值
-		FileSortTreeUtil util = new FileSortTreeUtil(rootTree, childTree);
-		return util.getTreeNode();
-	}
+	
 
 	/**
 	 * 
@@ -600,7 +636,6 @@ public class FileController {
 		int tempNo = file.getSortId();
 		List<FileSortModel> childrenList = new ArrayList<FileSortModel>();
 		childrenList = fileSortService.getSortChrildren(tempNo);
-		// 将父节点数据加入
 		if (childrenList.size() > 0) {
 			for (FileSortModel fs : childrenList) {
 				parentList.addAll(getfilesDeleteList(fs));
