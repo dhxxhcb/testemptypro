@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * 构造参数:
  */
 @Controller
-@RequestMapping("flow")
+@RequestMapping("/flow")
 public class FlowTypeController {
 
     @Resource
@@ -41,11 +41,11 @@ public class FlowTypeController {
     }
 
 
-    @RequestMapping("/flow*")
+    @RequestMapping("/flowNews")
     public String flow(HttpServletRequest request){
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
-        return "app/workflow/flowtype/flow*";
+        return "app/workflow/flowtype/flowNews";
     }
 
 }

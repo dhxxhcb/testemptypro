@@ -13,9 +13,9 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/flowtypeY/style.css" />
     <!--[if lte IE 8]>
-    <script type="text/javascript" src="/static/js/ccorrect_btn.js"></script>
+    <script type="text/javascript" src="../../js/flowtypeY/ccorrect_btn.js"></script>
     <![endif]-->
 
     <script type="text/javascript" >
@@ -23,52 +23,52 @@
         var MYOA_STATIC_SERVER = "";
     </script>
 </head>
-<link rel="stylesheet"type="text/css" href="css/validationEngine.jquery.min.css">
+<link rel="stylesheet"type="text/css" href="../../css/flowtypeY/validationEngine.jquery.min.css">
 <script type="text/javascript" src="/inc/js_lang.php"></script>
-<script src="js/jquery-1.10.2/jquery.min.js"></script>
-<script src="js/jquery.validationEngine.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/flowtypeY/jquery-1.10.2/jquery.min.js"></script>
+<script src="../../js/flowtypeY/jquery.validationEngine.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
     jQuery(document).ready(function(){
         jQuery("#form").validationEngine({promptPosition:"centerRight"});
     });
 </script>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
-<link rel="stylesheet" type="text/css" href="css/dialog.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/workflow/style.css" />
-<link rel="stylesheet" type="text/css" href="css/navigate.css" />
-<link rel="stylesheet" type="text/css" href="css//autocomplete.css">
-<link rel="stylesheet" type="text/css" href="css/workflow/cssstyle/style.css">
-<link rel="stylesheet" type="text/css" href="css/new_flow.css">
+<link rel="stylesheet" type="text/css" href="../../css/flowtypeY/dialog.css">
+<link rel="stylesheet" type="text/css" href="../../css/flowtypeY/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../css/flowtypeY/workflow/style.css" />
+<link rel="stylesheet" type="text/css" href="../../css/flowtypeY/navigate.css" />
+<link rel="stylesheet" type="text/css" href="../../css/flowtypeY/autocomplete.css">
+<link rel="stylesheet" type="text/css" href="../../css/flowtypeY/workflow/cssstyle/style.css">
+<link rel="stylesheet" type="text/css" href="../../css/flowtypeY/new_flow.css">
 
-<script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootstrap/contextmenu/bootstrap.contextmenu.min.js"></script>
-<script type="text/javascript" src="js/attach.js"></script>
-<script type="text/javascript" src="js/utility.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/bootstrap/contextmenu/bootstrap.contextmenu.min.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/attach.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/utility.js"></script>
 
 <script src="js/module.js?v=150805"></script>
 <!-- 未引该文件 -->
 <!-- <script language="javascript" src="js/jquery.browser.js"></script> -->
 
-<script type="text/javascript" src="js/jquery.curcss.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/jquery.curcss.js"></script>
 <!--<script type="text/javascript" src="/static/js/jquery-1.5.1/jquery-ui.custom.min.js"></script>-->
-<script language="javascript" src="js/jquery/jquery.ui.core.js"></script>
-<script language="javascript" src="js/jquery.ui.widget.js"></script>
-<script language="javascript" src="js/jquery.ui.position.js"></script>
-<script type="text/javascript" src="js/jquery.ui.autocomplete.min.js"></script>
-<script language="javascript" src="js/common.js"></script>
-<script language="javascript" src="js/combobox.js"></script>
+<script language="javascript" src="../../js/flowtypeY/jquery.ui.core.js"></script>
+<script language="javascript" src="../../js/flowtypeY/jquery.ui.widget.js"></script>
+<script language="javascript" src="../../js/flowtypeY/jquery.ui.position.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/jquery.ui.autocomplete.min.js"></script>
+<script language="javascript" src="../../js/flowtypeY/common.js"></script>
+<script language="javascript" src="../../js/flowtypeY/combobox.js"></script>
 
 
 
 
-<script type="text/javascript" src="js/custom_plug.js"></script>
-<script type="text/javascript" src="js/navigate.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/custom_plug.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/navigate.js"></script>
 
-<script type="text/javascript" src="js/new_flow.js"></script>
-<script type="text/javascript" src="js/jquery.ui.mouse.js"></script>
-<script type="text/javascript" src="js/jquery.ui.selectable.js"></script>
-<script type="text/javascript" src="js/selectableScroll.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/new_flow.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/jquery.ui.selectable.js"></script>
+<script type="text/javascript" src="../../js/flowtypeY/selectableScroll.js"></script>
 <style>
     #feedback { font-size: 1.4em; }
     .ui-selecting { background: rgb(114, 176, 207); }
@@ -564,8 +564,8 @@
                         <script type="text/javascript">//<![CDATA[
                         window.HTML_MODEL_TYPE='01';
                         //]]></script>
-                        <script type="text/javascript" src="js/ueditor.config.min.js?t=D5AC"></script>
-                        <script type="text/javascript" src="js/ueditor.all.min.js?t=D5AC"></script>
+                        <script type="text/javascript" src="../../js/flowtypeY/ueditor.config.min.js?t=D5AC"></script>
+                        <script type="text/javascript" src="../../js/flowtypeY/ueditor.all.min.js?t=D5AC"></script>
                         <script type="text/javascript">//<![CDATA[
                         UE.dom.domUtils.on(window, 'load', function(){var ue = UE.getEditor('TD_HTML_EDITOR_FLOW_DESC', {"model_type":"01","initialFrameWidth":"830","initialFrameHeight":"150","attachmentId":"ATTACHMENT_ID_OLD","attachmentName":"ATTACHMENT_NAME_OLD","toolbars":[["bold","italic","insertorderedlist","insertunorderedlist","|","justifyleft","justifycenter","justifyright","justifyjustify","link","unlink","fontfamily","fontsize","forecolor","backcolor","insertimage","emotion","|","template","source","fullscreen"]],"lang":"zh-cn"});ue.ready(function(){typeof(editorLoaded) == 'function' && editorLoaded({editor:ue});ue.dirty = false;ue.on('contentChange',function(){ue.dirty = true;});});});
                         //]]></script>
