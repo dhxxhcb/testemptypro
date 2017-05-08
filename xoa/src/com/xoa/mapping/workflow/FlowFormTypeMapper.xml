@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.workflow.FlowFormTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowFormType" >
+    <id column="FORM_ID" property="formId"  javaType="int" />
+    <result column="FORM_NAME" property="formName"  javaType="string" />
+    <result column="DEPT_ID" property="deptId"  javaType="int" />
+    <result column="ITEM_MAX" property="itemMax"  javaType="int" />
+    <result column="FORM_SORT" property="formSort" javaType="int" />
+    <result column="is_new" property="isNew" javaType="int" />
+    <result column="PRINT_MODEL" property="printModel"  javaType="string" />
+    <result column="PRINT_MODEL_SHORT" property="printModelShort"  javaType="string" />
+    <result column="SCRIPT" property="script" javaType="string" />
+    <result column="CSS" property="css"  javaType="string" />
+  </resultMap>
+     
+</mapper>

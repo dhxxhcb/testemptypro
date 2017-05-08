@@ -47,8 +47,8 @@
 	</resultMap>
 	<!-- 查询信息并返回 列表 -->
 	<select id="selectNews" parameterType="Map" resultMap="BaseResultMap">
-		select
-		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID
+	select
+		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID
 		FROM
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
@@ -120,8 +120,8 @@
 	</select>
 	<!-- 查询未读已读信息并返回 列表 -->
 	<select id="unreadNews" parameterType="Map" resultMap="BaseResultMap">
-			select
-		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID
+	select
+		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID
 		FROM
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
@@ -160,8 +160,8 @@
 
 	<!-- 查询未读已读信息并返回 列表 -->
 	<select id="readNews" parameterType="Map" resultMap="BaseResultMap">
-			select
-		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID
+		select
+		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID
 		FROM
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
