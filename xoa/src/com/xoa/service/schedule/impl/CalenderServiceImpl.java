@@ -2,6 +2,7 @@ package com.xoa.service.schedule.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.xoa.dao.schedule.CalendarMapper;
 import com.xoa.model.schedule.Calendar;
 import com.xoa.service.schedule.CalenderService;
+import com.xoa.util.dataSource.DynDatasource;
 @Service
 public class CalenderServiceImpl implements CalenderService {
 	@Resource
@@ -37,7 +39,7 @@ public class CalenderServiceImpl implements CalenderService {
 	}
 	/**
 	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年5月4日 下午5:24:26+-
+	 * 创建日期:   2017年5月5日 下午5:24:26
 	 * 方法介绍:   根据userId 查询日程安排
 	 * 参数说明:   @param Map<String, Object> maps 用户userId和当天时间戳
 	 * 参数说明:   @return
@@ -50,31 +52,32 @@ public class CalenderServiceImpl implements CalenderService {
 		maps.put("userId", userId);
 		maps.put("calTime", calTime);
 		List<Calendar> list =calendarMapper.getscheduleBycId(maps);
-		Long day=Long.valueOf(calTime);
+		//当前时间戳
+		//Long day=Long.valueOf(calTime);
 		SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		String d = format.format(day);  
-		Date date=format.parse(d);  
-		date.setMonth(date.getMonth()+1);
-		//System.out.println(date.toString());
-		//下个月的时间戳
-		Long time=date.getTime();
-		for(int i=0;i<list.size();i++){
-			
-			Calendar calendar=list.get(i);
-			int cT=calendar.getCalTime();
-			int eT=calendar.getEndTime();
-			
-			
-			
-			
-			
-			
-			
-			
+		List<Calendar> listAll=new ArrayList<Calendar>();
+		List<Calendar> list1=null;
+		for(int i=0;i<30;i++){
+		Calendar Allcal=new Calendar();		  
+			int pd=calTime+86400*i;
+			Long t=(long) (pd*1000L);
+			list1=new ArrayList<Calendar>();
+			String data = format.format(t); 
+			for(int j=0;j<list.size();j++){
+				Calendar calendar=list.get(j);
+				int cT=calendar.getCalTime();
+				int eT=calendar.getEndTime();
+				if(pd>=cT&&pd<=eT){			
+					Calendar cal=new Calendar();
+					cal.setCalData(data);
+					list1.add(calendar);
+				}
+			}
+			Allcal.setCalData(data);
+			Allcal.setCalMessage(list1);
+			listAll.add(Allcal);
 		}
-		
-		
-		return list;
+		return listAll;
 	}
 	/**
      * 创建作者:   张龙飞
@@ -89,5 +92,17 @@ public class CalenderServiceImpl implements CalenderService {
 		int count=calendarMapper.insertSelective(record);
 		return count;
 	}
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月5日 下午6:17:56
+	 * 方法介绍:   根据calId删除日程安排
+	 * 参数说明:   @param calId 主键
+	 * @return     void 无
+	 */
+	public void delete(int calId){
+	calendarMapper.delete(calId);	
+	}
+
 
 }

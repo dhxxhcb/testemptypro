@@ -12,6 +12,13 @@ import com.xoa.model.schedule.Calendar;
  * 构造参数:   
  *
  */
+ /**
+ * 创建作者:   张龙飞
+ * 创建日期:   2017年5月5日 下午6:19:35
+ * 类介绍  :   
+ * 构造参数:   
+ *
+ */
 public interface CalendarMapper {
 	
 	
@@ -46,4 +53,14 @@ public interface CalendarMapper {
      * @return     List<Calendar> 返回日程安排
      */
     List<Calendar> getscheduleBycId(Map<String, Object> maps);
+    
+    
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年5月5日 下午6:19:39
+     * 方法介绍:   根据calId删除
+     * 参数说明:   @param calId
+     * @return     void 无
+     */
+    void delete(int calId);
 }

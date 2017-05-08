@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 
@@ -59,7 +60,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 		if(files.length==0){
 			return null;
 		}
-		/*ResourceBundle rb =  ResourceBundle.getBundle("upload");
+		ResourceBundle rb =  ResourceBundle.getBundle("upload");
 		//String name = rb.getString("mysql.driverClassName");
 		String os = System.getProperty("os.name");
 		StringBuffer sb=new StringBuffer();
@@ -67,20 +68,20 @@ public class EnclosureServiceImpl implements EnclosureService {
 		  sb=sb.append(rb.getString("upload.win"));  
 		}else{
 		  sb=sb.append(rb.getString("upload.linux"));
-		}*/
+		}
 		List<Attachment> list = new ArrayList<Attachment>();
 		  //当前年月
 	     String ym = new SimpleDateFormat("yyMM").format(new Date());	
-	     String basePath="D:"+System.getProperty("file.separator");
-	     StringBuffer sb=new StringBuffer();
+	    // String basePath="D:"+System.getProperty("file.separator");
+	     //StringBuffer sb=new StringBuffer();
 	     if(isAttach){
 	    	 //直接显示路径
-	    	 sb.append("attach_web");
+	    	 sb.append(System.getProperty("file.separator")).append("attach_web");
 	     }else{
 	    	 //隐藏路径
-	    	 sb.append("attach");
+	    	 sb.append(System.getProperty("file.separator")).append("attach");
 	     }
-	     String path=basePath+System.getProperty("file.separator")+sb.toString()+System.getProperty("file.separator")+company+
+	     String path=sb.toString()+System.getProperty("file.separator")+company+
 	    		 System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
 	 	Attachment attachment=new Attachment();
 	 	 for (int i = 0; i < files.length; i++) {  
@@ -91,8 +92,8 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            //String fileName = files[i].getOriginalFilename();  
 	           // System.out.println("原始文件名:" + fileName); 
 	            //后缀名
-	        	String Suffix = fileName.substring(
-	        			fileName.indexOf(".") + 1);
+//	        	String Suffix = fileName.substring(
+//	        			fileName.indexOf(".") + 1);
 	            //当前时间戳
 	           // System.currentTimeMillis();
 	    		int attachID=Math.abs((int) System.currentTimeMillis()); 
@@ -124,7 +125,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            attachment.setPosition(b);            
 	            saveAttachment(attachment);
 	            attachment=findByLast();
-	        	String attUrl="AID="+attachment.getAid()+"&"+"MODULE="+module+"&"+"YM="+attachment.getYm()+"&"+"ATTACHMENT_ID="+attachment.getAttachId()+"&"+"ATTACHMENT_NAME="+attachment.getAttachName();
+	        	String attUrl="AID="+attachment.getAid()+"&"+"MODULE="+module+"&"+"COMPANY="+company+"&"+"YM="+attachment.getYm()+"&"+"ATTACHMENT_ID="+attachment.getAttachId()+"&"+"ATTACHMENT_NAME="+attachment.getAttachName();
 	            attachment.setAttUrl(attUrl);
 	            if(isAttach){
 	            	String url=path+System.getProperty("file.separator")+fileName;

@@ -146,23 +146,23 @@ public class EnclosureController {
 						@RequestParam("MODULE") String module ,
 						@RequestParam("YM") String ym ,
 						@RequestParam("ATTACHMENT_ID") String attachmentId ,
-						@RequestParam("ATTACHMENT_NAME") String attachmenrName ,
-						@RequestParam("company") String company ,
+						@RequestParam("ATTACHMENT_NAME") String attachmentName ,
+						@RequestParam("COMPANY") String company ,
 						boolean isAttach,
 						HttpServletResponse response,
 						HttpServletRequest request) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
-		//ResourceBundle rb =  ResourceBundle.getBundle("upload");
+		ResourceBundle rb =  ResourceBundle.getBundle("upload");
 		//String name = rb.getString("mysql.driverClassName");
-		//String osName = System.getProperty("os.name");
+		String osName = System.getProperty("os.name");
 		StringBuffer sb=new StringBuffer();
-	/*	if(osName.toLowerCase().startsWith("win")){  
+		if(osName.toLowerCase().startsWith("win")){  
 		  sb=sb.append(rb.getString("upload.win"));  
 		}else{
 		  sb=sb.append(rb.getString("upload.linux"));
-		}*/
-		String basePath="D:"+System.getProperty("file.separator");
+		}
+		//String basePath="D:"+System.getProperty("file.separator");
 		 if(isAttach){
 	    	 //直接显示路径
 	    	 sb.append("attach_web");
@@ -171,13 +171,13 @@ public class EnclosureController {
 	    	 sb.append("attach");
 	     }
 	
-		 String path=basePath+System.getProperty("file.separator")+sb.toString()+System.getProperty("file.separator")+company+
-	    		 System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	  	 
+		 String path=sb.toString()+System.getProperty("file.separator")+company+
+	    		 System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym+ System.getProperty("file.separator")+attachmentId+"."+attachmentName;	 	  	 
 		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
 		response.setHeader("Content-Disposition", "attachment;fileName="
-				+ attachmenrName);
+				+ attachmentName);
 				try {
 				/*	String path = Thread.currentThread().getContextClassLoader()
 							.getResource("").getPath()
@@ -295,6 +295,15 @@ public class EnclosureController {
 
 		}
 	}
+	
+	public void dld(@RequestParam("ATTACHMENT_ID") String attachmentId ,
+			@RequestParam("ATTACHMENT_NAME") String attachmentName,
+			HttpServletRequest request){
+		
+		
+	}
+	
+	
 	
 	/**
 	 * 创建作者:   张龙飞

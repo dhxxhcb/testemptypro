@@ -3,6 +3,8 @@ package com.xoa.model.schedule;
 import java.util.Date;
 import java.util.List;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
  /**
  * 创建作者:   张龙飞
  * 创建日期:   2017年5月4日 上午10:50:11
@@ -128,11 +130,11 @@ public class Calendar {
 	public void setCalData(String calData) {
 		this.calData = calData;
 	}
-
+	
 	public List<Calendar> getCalMessage() {
 		return calMessage;
 	}
-
+	
 	public void setCalMessage(List<Calendar> calMessage) {
 		this.calMessage = calMessage;
 	}

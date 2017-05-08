@@ -38,6 +38,9 @@
   select CAL_ID,CAL_LEVEL,CAL_TIME,END_TIME,CONTENT,TAKER from calendar where USER_ID=#{userId} and
   CAL_TIME&lt;=#{calTime} and END_TIME&gt;=#{calTime} 
   </select>
+  <delete id="delete">
+  delete from calendar where CAL_ID=#{calId}
+  </delete>
   <insert id="insert" parameterType="com.xoa.model.schedule.Calendar">
     insert into calendar (CAL_ID, USER_ID, CAL_TIME, 
       END_TIME, CAL_TYPE, CAL_LEVEL, 

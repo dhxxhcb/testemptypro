@@ -1,7 +1,6 @@
 package com.xoa.service.schedule;
 
 import java.util.List;
-import java.util.Map;
 
 import com.xoa.model.schedule.Calendar;
 import com.xoa.util.dataSource.DynDatasource;
@@ -32,5 +31,14 @@ public interface CalenderService {
      */
 	@DynDatasource
 	public int insertSelective(Calendar record);
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月5日 下午6:17:56
+	 * 方法介绍:   根据calId删除日程安排
+	 * 参数说明:   @param calId 主键
+	 * @return     void 无
+	 */
+	@DynDatasource
+	public void delete(int calId);
 
 }

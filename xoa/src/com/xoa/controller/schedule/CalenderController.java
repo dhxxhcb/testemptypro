@@ -1,9 +1,7 @@
 package com.xoa.controller.schedule;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.xoa.model.schedule.Calendar;
 import com.xoa.service.schedule.CalenderService;
 import com.xoa.util.ToJson;
@@ -117,6 +116,32 @@ public class CalenderController {
 		return json;
 		}
 	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月5日 下午6:21:28
+	 * 方法介绍:   根据主键删除
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @param calId 主键
+	 * 参数说明:   @return
+	 * @return     ToJson<Calendar> 信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/schedule/delete",produces = {"application/json;charset=UTF-8"})
+	public ToJson<Calendar> delete(HttpServletRequest request,String calId){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+	ToJson<Calendar> json=new ToJson<Calendar>(0, null);
+	try{		
+		calenderService.delete(Integer.parseInt(calId));
+		json.setMsg("OK");
+		json.setFlag(0);
+	}catch(Exception e){
+		json.setMsg(e.getMessage());
+	}
+	return json;
+	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/schedule/getscheduleByDate",produces = {"application/json;charset=UTF-8"})
 	public ToJson<Calendar> getscheduleByDate(HttpServletRequest request,Date date){
@@ -133,6 +158,10 @@ public class CalenderController {
 		}
 		return json;
 		}
+	
+	
+	
+	
 	
 }
 
