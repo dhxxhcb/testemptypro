@@ -35,6 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 </head>
 <body>
+
 <div class="bx">
     <!--head开始-->
     <div class="head w clearfix">
@@ -55,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <!--navigation开始-->
     <div class="step1"> 
-    <div class="navigation  clearfix">
+    	<div class="navigation  clearfix">
         <div class="left">
             <!-- <img src="../img/01.png" style="width:28px;height:28px; margin-right:5px;"> -->
 			 <img src="../img/la2.png"> 
@@ -93,6 +94,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
 
             </div>
+            
+          
         
 
     </div>
@@ -417,8 +420,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <!--content部分结束-->
     	
-
-    
 <script>
 $(function () {
 			/* word文本编辑器 */
@@ -474,33 +475,7 @@ $(function () {
 				
             });
             
-           /* 修改功能跳转新建页面 */
-           function updateData(id){
-            		$('.step1').hide();
-					$('.step2').show();
-					$('.center').hide();
-					alert(id);
-            
-            };
-            /*删除时 调用的方法*/
-            function deleteData(id){
-            	var data = {
-            		"id":id
-            	};
-            	$.ajax({
-            		data:data,
-            		type:"GET",
-            		dataType:"JSON",
-            		URL:"",
-            		error:function(){
-	            		alert("请求数据出错");
-	            		return;
-            		},
-            		success:function(data){
-            			alert(data);
-            		}
-            	});
-            }
+       
             
             function initPageList(cb){
             	$.ajax({
@@ -510,10 +485,11 @@ $(function () {
 					data: data,
 					success: function(data){
 						console.log(data);
+						
 						var news = "";
                            for (var i = 0; i < data.obj.length; i++) {                          
                                        
-                                        news = "<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
+                                        news = "<tr><input class='input_hide' type='hidden' newsID='"+data.obj[i].newsId+"'><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
                                		   "<td>"+data.obj[i].providerName+"</td>"+//发布人
                                        "<td>"+data.obj[i].typeName+"</td>"+//类型
                                        "<td><div class='break_td' title="+data.obj[i].depName+">"+'点击详情'+"</div></td>"+//发布范围
@@ -523,12 +499,15 @@ $(function () {
                                        "<td>"+data.obj[i].newsId+"</td>"+//评论（条）
                                        "<td>"+"生效</td>"+//状态
                                         "<td>"+
-                                       		 "<a href='#' onclick='updateData("+data.obj[i].id+")'>"+"修改"+"</a>&nbsp"+
-											 "<a href='#'>"+"管理评论"+"</a>&nbsp"+
-											 "<a href='#'>"+"终止"+"</a>&nbsp"+
-											 "<a href='#' onclick='deleteData("+data.obj[i].id+"))'>"+"删除"+"</a>&nbsp"+
+                                       		/*  "<a onclick='updateData("+data.obj[i].newsId+")'>"+"修改"+"</a>&nbsp"+ */
+                                       	 	"<a  href='javascript:;' class='xg'>"+"修改"+"</a>&nbsp"+ 
+											 "<a  href='javascript:;'>"+"管理评论"+"</a>&nbsp"+
+											 "<a  href='javascript:;'>"+"终止"+"</a>&nbsp"+
+											 /*"<a href='javascript:;' onclick='deleteData("+data.obj[i].newsId+"))'>"+"删除"+"</a>&nbsp"+ */
+										 	 "<a href='javascript:;' id='deleteData'>"+"删除"+"</a>&nbsp"+ 
                                        "</td>"+//操作 
                                       /*  "<td>"+"修改  管理评论  终止  删除</td>"+//操作 */
+                                     /*  "<td style='overflow: hidden;'>"+data.obj[i].newsId+"</td>"+ */
                                        news;
                            }
                            
@@ -563,7 +542,39 @@ $(function () {
                $("#j_tb").on('click','.windowOpen',function(){
 		            var nid=$(this).attr('newsId');
 		            $.popWindow('detail?newsId='+nid);
+		        });		        
+		    /*删除时 调用的方法*/
+			 $("#j_tb").on('click','#deleteData',function(){
+			 		var attR=$(this).parents('tr').find('input.input_hide').attr('newsID');
+			 		
+		          	 alert(attR);
+		           
+			       var data = {
+		           		"newsId":attR
+		           	};
+		           	$.ajax({
+		           		data:data,
+		           		type:"GET",
+		           		dataType:"JSON",
+		           		url:"<%=basePath%>news/deleteNews",
+		           		success:function(){
+		           			location.reload();
+		           			//alert(data);
+		           		}	           		
+		           	});	           
 		        });
+		        
+		        /* 新闻管理修改页面 */
+		         $("#j_tb").on('click','.xg',function(){	          
+		           $('.step1').hide();
+					$('.step2').show();
+					$('.center').hide();
+		           
+		           
+		           
+		        });		
+		        
+		             
 		        /* 新闻查询按钮 */
         		$('.submit').click(function (){
 					data.read = $('.index_head .one').parent().attr('data_id');
@@ -618,6 +629,8 @@ $(function () {
    };
    laydate(start);
    laydate(end);
+   
+  
 </script>
 </body>
 
