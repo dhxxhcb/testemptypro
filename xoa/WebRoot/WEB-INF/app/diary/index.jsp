@@ -154,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="row">
                     <div class="span3">
                         <button class="btn btn-info btn-large" type="button" onclick="location='default.html'">
-                            写日志
+                                写日志
                         </button>
                     </div>
                     <div id="diary-type-switcher" class="span6">
