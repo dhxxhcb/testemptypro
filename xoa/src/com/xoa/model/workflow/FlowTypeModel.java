@@ -1,25 +1,27 @@
 package com.xoa.model.workflow;
 
+import com.xoa.util.DateFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
+ *
  * 创建作者:   张勇
  * 创建日期:   2017-5-5 下午2:33:50
  * 类介绍  :   创建工作流
- * 构造参数:   
+ * 构造参数:
  *
  */
 public class FlowTypeModel implements Serializable{
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 主键ID
      */
-	private Integer flowId;
+    private Integer flowId;
 
-    /**	
+    /**
      * 流程名称
      */
     private String flowName;
@@ -222,7 +224,7 @@ public class FlowTypeModel implements Serializable{
 
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:32:35
      * 方法介绍:   主键ID
@@ -234,7 +236,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:32:47
      * 方法介绍:   主键ID
@@ -246,7 +248,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:32:58
      * 方法介绍:   流程名称
@@ -258,7 +260,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:33:17
      * 方法介绍:   流程名称
@@ -266,11 +268,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFlowName(String flowName) {
-        this.flowName = flowName == null ? null : flowName.trim();
+        this.flowName = flowName == null ? "": flowName.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:33:21
      * 方法介绍:   表单ID
@@ -282,7 +284,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:33:40
      * 方法介绍:   表单ID
@@ -294,7 +296,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:33:44
      * 方法介绍:   是否允许附件(0-否,1-是)
@@ -306,7 +308,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:34:16
      * 方法介绍:   是否允许附件(0-否,1-是)
@@ -314,11 +316,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFlowDoc(String flowDoc) {
-        this.flowDoc = flowDoc == null ? null : flowDoc.trim();
+        this.flowDoc = flowDoc == null ? "1" : flowDoc.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:34:24
      * 方法介绍:   流程类型(1-固定流程,2-自由流程)
@@ -330,7 +332,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:34:30
      * 方法介绍:   流程类型(1-固定流程,2-自由流程)
@@ -342,7 +344,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:34:38
      * 方法介绍:   流程排序号
@@ -354,7 +356,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:34:44
      * 方法介绍:   流程排序号
@@ -362,11 +364,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFlowNo(Integer flowNo) {
-        this.flowNo = flowNo;
+        this.flowNo = flowNo == 0 ? 1:flowNo;
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:34:50
      * 方法介绍:   流程分类ID
@@ -378,7 +380,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:34:55
      * 方法介绍:   流程分类ID
@@ -390,7 +392,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:35:02
      * 方法介绍:   自动编号计数器
@@ -402,7 +404,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:35:08
      * 方法介绍:   自动编号计数器
@@ -414,7 +416,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:35:16
      * 方法介绍:   自动编号显示长度
@@ -426,7 +428,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:35:24
      * 方法介绍:   自动编号显示长度
@@ -438,7 +440,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:35:38
      * 方法介绍:   新建工作时是否允许手工修改文号：
@@ -452,7 +454,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:35:58
      * 方法介绍:   新建工作时是否允许手工修改文号：
@@ -462,11 +464,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAutoEdit(String autoEdit) {
-        this.autoEdit = autoEdit == null ? null : autoEdit.trim();
+        this.autoEdit = autoEdit == null ? "1" : autoEdit.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:36:09
      * 方法介绍:   点评权限-已废弃
@@ -478,7 +480,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:36:16
      * 方法介绍:   点评权限-已废弃
@@ -486,11 +488,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setCommentPriv(String commentPriv) {
-        this.commentPriv = commentPriv == null ? null : commentPriv.trim();
+        this.commentPriv = commentPriv == null ? "3" : commentPriv.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:36:25
      * 方法介绍:   所属部门ID
@@ -502,7 +504,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:36:35
      * 方法介绍:   所属部门ID
@@ -510,11 +512,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setDeptId(Integer deptId) {
-        this.deptId = deptId;
+        this.deptId = deptId == 0 ? 1:deptId;
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:36:42
      * 方法介绍:   是否允许预设步骤(0-否,1-是)
@@ -526,7 +528,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:36:47
      * 方法介绍:   是否允许预设步骤(0-否,1-是)
@@ -534,11 +536,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFreePreset(String freePreset) {
-        this.freePreset = freePreset == null ? null : freePreset.trim();
+        this.freePreset = freePreset == null ? "1" : freePreset.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:37:03
      * 方法介绍:   委托类型(0-禁止委托,1-仅允许委托当前步骤经办人
@@ -553,7 +555,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:37:19
      * 方法介绍:   委托类型(0-禁止委托,1-仅允许委托当前步骤经办人
@@ -564,11 +566,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFreeOther(String freeOther) {
-        this.freeOther = freeOther == null ? null : freeOther.trim();
+        this.freeOther = freeOther == null ? "2" : freeOther.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:37:32
      * 方法介绍:   待定 '0'
@@ -580,7 +582,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:37:37
      * 方法介绍:   待定 '0'
@@ -588,11 +590,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAllowPreSet(String allowPreSet) {
-        this.allowPreSet = allowPreSet == null ? null : allowPreSet.trim();
+        this.allowPreSet = allowPreSet == null ? "0" : allowPreSet.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:37:57
      * 方法介绍:   是否强制修改文号(1-是,其他-否),
@@ -607,7 +609,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:38:13
      * 方法介绍:   是否强制修改文号(1-是,其他-否),
@@ -618,11 +620,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setForcePreSet(String forcePreSet) {
-        this.forcePreSet = forcePreSet == null ? null : forcePreSet.trim();
+        this.forcePreSet = forcePreSet == null ? "0" : forcePreSet.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:38:31
      * 方法介绍:   允许传阅(0-不允许,1-允许)
@@ -634,7 +636,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:38:40
      * 方法介绍:   允许传阅(0-不允许,1-允许)
@@ -646,7 +648,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:38:48
      * 方法介绍:   是否启用版本控制(0-否,1-是)
@@ -658,7 +660,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:38:56
      * 方法介绍:   是否启用版本控制(0-否,1-是)
@@ -670,7 +672,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:39:02
      * 方法介绍:   更多选项(1公告通知,2内部邮件,3转存,4归档)
@@ -682,7 +684,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:39:07
      * 方法介绍:   更多选项(1公告通知,2内部邮件,3转存,4归档)
@@ -694,7 +696,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:39:14
      * 方法介绍:   自动编号计数器年刷新
@@ -706,7 +708,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:39:19
      * 方法介绍:   自动编号计数器年刷新
@@ -718,7 +720,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:39:36
      * 方法介绍:   自动编号计数器月刷新
@@ -730,7 +732,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:39:41
      * 方法介绍:   自动编号计数器月刷新
@@ -742,7 +744,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:40:09
      * 方法介绍:   年月编号刷新标记
@@ -754,7 +756,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:40:16
      * 方法介绍:   年月编号刷新标记
@@ -762,11 +764,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAutoNumTime(Date autoNumTime) {
-        this.autoNumTime = autoNumTime;
+        this.autoNumTime = autoNumTime == null ? DateFormat.getDate("0000-00-00 00:00:00"):autoNumTime;
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:40:25
      * 方法介绍:   管理与监控权限[全局]-已废弃
@@ -778,7 +780,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:40:37
      * 方法介绍:   管理与监控权限[全局]-已废弃
@@ -786,11 +788,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setManageUser(String manageUser) {
-        this.manageUser = manageUser == null ? null : manageUser.trim();
+        this.manageUser = manageUser == null ? "" : manageUser.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:41:05
      * 方法介绍:   自动文号表达式
@@ -802,7 +804,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:41:21
      * 方法介绍:   自动文号表达式
@@ -810,11 +812,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAutoName(String autoName) {
-        this.autoName = autoName == null ? null : autoName.trim();
+        this.autoName = autoName == null ? "" : autoName.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:45:06
      * 方法介绍:   查询权限[全局]-已废弃
@@ -826,7 +828,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:45:34
      * 方法介绍:   查询权限[全局]-已废弃
@@ -834,11 +836,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setQueryUser(String queryUser) {
-        this.queryUser = queryUser == null ? null : queryUser.trim();
+        this.queryUser = queryUser == null ? "" : queryUser.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:46:01
      * 方法介绍:   查询权限[全局]-已废弃
@@ -850,7 +852,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:46:10
      * 方法介绍:   查询权限[全局]-已废弃
@@ -858,11 +860,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFlowDesc(String flowDesc) {
-        this.flowDesc = flowDesc == null ? null : flowDesc.trim();
+        this.flowDesc = flowDesc == null ? "" : flowDesc.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:46:21
      * 方法介绍:   自由流程新建权限：分为按用户、按部门、
@@ -876,7 +878,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:46:37
      * 方法介绍:   自由流程新建权限：分为按用户、按部门、
@@ -886,11 +888,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setNewUser(String newUser) {
-        this.newUser = newUser == null ? null : newUser.trim();
+        this.newUser = newUser == null ? "" : newUser.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:46:48
      * 方法介绍:   查询字段串
@@ -902,7 +904,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:46:57
      * 方法介绍:   查询字段串
@@ -910,11 +912,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setQueryItem(String queryItem) {
-        this.queryItem = queryItem == null ? null : queryItem.trim();
+        this.queryItem = queryItem == null ? "" : queryItem.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:47:06
      * 方法介绍:   本部门发起查询权限-已废弃
@@ -926,7 +928,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:48:01
      * 方法介绍:   本部门发起查询权限-已废弃
@@ -934,11 +936,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setQueryUserDept(String queryUserDept) {
-        this.queryUserDept = queryUserDept == null ? null : queryUserDept.trim();
+        this.queryUserDept = queryUserDept == null ? "" : queryUserDept.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:48:09
      * 方法介绍:   本部门发起查询权限-已废弃
@@ -950,7 +952,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:48:20
      * 方法介绍:   本部门管理与监控权限-已废弃
@@ -958,11 +960,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setManageUserDept(String manageUserDept) {
-        this.manageUserDept = manageUserDept == null ? null : manageUserDept.trim();
+        this.manageUserDept = manageUserDept == null ? "" : manageUserDept.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:48:36
      * 方法介绍:   编辑权限-已废弃
@@ -974,7 +976,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:48:44
      * 方法介绍:   编辑权限-已废弃
@@ -982,11 +984,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setEditPriv(String editPriv) {
-        this.editPriv = editPriv == null ? null : editPriv.trim();
+        this.editPriv = editPriv == null ? "" : editPriv.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:48:57
      * 方法介绍:   列表扩展字段串查询页面仅查询该流程时生效
@@ -998,7 +1000,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:49:02
      * 方法介绍:   列表扩展字段串查询页面仅查询该流程时生效
@@ -1006,11 +1008,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setListFldsStr(String listFldsStr) {
-        this.listFldsStr = listFldsStr == null ? null : listFldsStr.trim();
+        this.listFldsStr = listFldsStr == null ? "" : listFldsStr.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:49:11
      * 方法介绍:   流程对应模块ID
@@ -1022,7 +1024,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:49:16
      * 方法介绍:   流程对应模块ID
@@ -1030,11 +1032,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setModelId(String modelId) {
-        this.modelId = modelId == null ? null : modelId.trim();
+        this.modelId = modelId == null ? "" : modelId.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:49:26
      * 方法介绍:   流程对应模块名称
@@ -1046,7 +1048,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:50:03
      * 方法介绍:   流程对应模块名称
@@ -1054,11 +1056,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setModelName(String modelName) {
-        this.modelName = modelName == null ? null : modelName.trim();
+        this.modelName = modelName == null ? "" : modelName.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:50:15
      * 方法介绍:   说明文档附件ID串
@@ -1070,7 +1072,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:50:25
      * 方法介绍:   说明文档附件ID串
@@ -1078,11 +1080,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAttachmentId(String attachmentId) {
-        this.attachmentId = attachmentId == null ? null : attachmentId.trim();
+        this.attachmentId = attachmentId == null ? "" : attachmentId.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:50:38
      * 方法介绍:   说明文档附件名称串
@@ -1094,7 +1096,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:50:44
      * 方法介绍:   说明文档附件名称串
@@ -1102,11 +1104,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAttachmentName(String attachmentName) {
-        this.attachmentName = attachmentName == null ? null : attachmentName.trim();
+        this.attachmentName = attachmentName == null ? "" : attachmentName.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:50:56
      * 方法介绍:   传阅人ID串
@@ -1118,7 +1120,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:54:25
      * 方法介绍:   传阅人ID串
@@ -1126,11 +1128,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setViewUser(String viewUser) {
-        this.viewUser = viewUser == null ? null : viewUser.trim();
+        this.viewUser = viewUser == null ? "" : viewUser.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:54:52
      * 方法介绍:   传阅部门ID串
@@ -1142,7 +1144,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:55:01
      * 方法介绍:   传阅部门ID串
@@ -1150,11 +1152,11 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setViewDept(String viewDept) {
-        this.viewDept = viewDept == null ? null : viewDept.trim();
+        this.viewDept = viewDept == null ? "" : viewDept.trim();
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:55:40
      * 方法介绍:   传阅角色ID串
@@ -1166,7 +1168,7 @@ public class FlowTypeModel implements Serializable{
     }
 
     /**
-     * 
+     *
      * 创建作者:   张勇
      * 创建日期:   2017-5-5 下午3:55:46
      * 方法介绍:   传阅角色ID串
@@ -1174,6 +1176,6 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setViewRole(String viewRole) {
-        this.viewRole = viewRole == null ? null : viewRole.trim();
+        this.viewRole = viewRole == null ? "" : viewRole.trim();
     }
 }
