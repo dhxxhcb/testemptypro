@@ -164,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </select>
             </td>
             <td>
-                <div class="td_title1">请输入发布时间...</div>
+                <input class="td_title1" type="text" value="请输入发布时间..."/>
                 <img class="td_title2" src="../img/mg2.png" alt=""/>
             </td>
         </tr>
@@ -173,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 按照部门发布：
             </td>
             <td>
-                <div class="td_title1  release1"></div>
+                <input class="td_title1  release1" type="text"/>
                 <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
 
                 <div class="release3">添加</div>
@@ -187,9 +187,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 发布时间：
             </td>
             <td>
-                <div class="td_title1">请输入新闻标题...</div>
-                <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
-
+                <input class="td_title1" type="text" value="请输入发布时间..."/>
                 <div class="release3">设置为当前时间</div>
             </td>
         </tr>
@@ -197,10 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="blue_text">
                 评论:
             </td>
-            <td>
-               <!--  <div class="comment1">实名评论</div>
-                <img class="comment2" src="../img/mg1.png" alt=""/>-->
-                
+            <td>            
                 <select name="" class="">
                     <option value="" selected="">实名评论</option>
                     <option value="">1</option>
@@ -216,11 +211,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 提醒：
             </td>
             <td class="remind">
-                <!--<div><input type="checkbox" checked/></div>-->
-                <div><img src="../img/mg3.png" alt=""/></div>
+                <div><input class="news_t1"  type="checkbox" checked/></div>
+               <!--  <div><img src="../img/mg3.png" alt=""/></div> -->
                 <div class="news_t">发送事物提醒消息</div>
-                <!--<div><input type="checkbox" checked/></div>-->
-                <div><img src="../img/mg4.png" alt=""/></div>
+                <div><input class="news_t1" type="checkbox" checked/></div>
+                <!-- <div><img src="../img/mg4.png" alt=""/></div> -->
                 <div class="news_t2">分享到企业社区</div>
             </td>
         </tr>
@@ -229,10 +224,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 置顶：
             </td>
             <td class="top_box">
-                <!--<div><input type="checkbox"/></div>-->
-                <div><img src="../img/mg4.png" alt=""/></div>
+                <div><input class="news_t1" type="checkbox"/></div>
+                <!-- <div><input type="checkbox" style="height:14px;width:14px;margin-top: 4px;"/></div> -->
+                <!-- <div><img src="../img/mg4.png" alt=""/></div> -->
                 <div class="news_t3">使新闻置顶，显示为重要</div>
-                <div class="t_box">0</div>
+                <input class="t_box" type="text" value="0"/>
                 <div class="news_t4">天后结束置顶（0表示一直置顶）</div>
             </td>
 
@@ -243,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 内容简介：
             </td>
             <td class="abstract">
-                <div class="abstract1">请输入内容...</div>
+                <input class="abstract1" type="text"  maxlength="39" value="请输入内容..."/>
                 <div class="abstract2">(最多输入39个字)</div>
             </td>
         </tr>
@@ -253,13 +249,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
             <td class="enclosure">
                 <div><img src="../img/mg11.png" alt=""/></div>
-                <div class="enclosure_t">添加附件</div>
+                <div class="enclosure_t"><a href="#">添加附件</a></div>
                 <div><img src="../img/mg12.png" alt=""/></div>
-                <div class="enclosure_t">从文件柜和网络硬盘选择附件</div>
+                <div class="enclosure_t"><a href="#">从文件柜和网络硬盘选择附件</a></div>
                 <div><img src="../img/mg13.png" alt=""/></div>
-                <div class="enclosure_t">批量插入图片</div>
+                <div class="enclosure_t"><a href="#">批量插入图片</a></div>
                 <div><img src="../img/mg14.png" alt=""/></div>
-                <div class="enclosure_t">批量上传过</div>
+                <div class="enclosure_t"><a href="#">批量上传过</a></div>
 
             </td>
 
@@ -279,7 +275,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 关键字：
             </td>
             <td class="keyword">
-                <div class="keyword_ip">请输入关键词...</div>
+                <input class="keyword_ip" type="text" value="请输入关键词..."/>
                 <div class="keyword_t">自动获取关键字</div>
                 <div class="keyword_t2">（您可以调整关键字内容，多个关键词请用" , "分割）</div>
         </tr>
@@ -368,30 +364,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
             <td>标题:</td>
             <td>
-                <div class="title_"></div>
+                <input class="title_" type="text"/>
             </td>
         </tr>
         <tr class="release">
             <td>发布日期</td>
             <td>
-                <div class="date"></div>
+                <!-- <div class="date"></div> -->
+                <input id="beginTime "class="date" type="text"/>
                 <div  class="c_t">至</div>
-                <div class="date"></div>
+               <!--  <div class="date"></div> -->
+               <input id="endTime" class="date" type="text"/>
 
             </td>
         </tr>
         <tr>
             <td>内容</td>
             <td>
-                <div class="content_"></div>
+                <!-- <div class="content_"></div> -->
+                <input class="content_" type="text"/>
             </td>
         </tr>
         <tr class="clack_t">
             <td>点击次数</td>
             <td>
-                <div class="c_time"></div>
+                <input class="c_time" type="text"/>
                 <div class="c_t">至</div>
-                <div class="c_time"></div>
+                <input class="c_time" type="text"/>
             </td>
         </tr>
         <tr class="operation">
@@ -418,95 +417,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <!--content部分结束-->
     	
-    
 
-    	
     
-    
-    
-    
-    
-    
-    
-    
-    
-    <!-- <div class="login">
-        <div class="header">
-            <fmt:message code="global.lang.inputquerycondition"/>
-        </div>
-        <div class="middle">
-            <div class="le publisher">
-                <div class="color" style="width:105px;">
-                    <fmt:message code="notice.th.publisher"/> ：
-                </div>
-                <input id="input_text1" type="text"/>
-                <div style="margin-right:23px; color:#207BD6">
-                    <fmt:message code="global.lang.add"/>
-                </div>
-                <div>
-                    <fmt:message code="global.lang.empty"/>
-                </div>
-            </div>
-            <div class="le subject">
-                <div class="color" style="width:105px;">
-                    <fmt:message code="notice.th.title"/> ：</div>
-                <input id="subject_query " class="input_text2" type="text"/>
-            </div>
-            <div class="le date">
-                <div class="color" style="width:105px;"><fmt:message code="notice.title.Releasedate"/> ：</div>  
-                <input id="beginTime "class="input_text3" type="text"/>
-                <div class="color">
-                    <fmt:message code="global.lang.to"/>
-                </div>
-                
-               <div><input id="endTime" class="input_text4" type="text"/></div> 
-            </div>
-            <div class="le ce1">
-                <div class="color" style="width:105px;"><fmt:message code="news.title.new"/> ：</div>
-            <div> 
-                 <select name="TYPE"  class="button1 input_text5" id="select_query"> 
-                   <select name="TYPE"  class="button1 input_text5" id="select"> 
-                 
-                        <option value="0" selected="">
-                            <fmt:message code="news.th.type"/>
-                        </option>
-                        <option value="01">
-                            <fmt:message code="news.th.company"/>
-                        </option>
-                        <option value="02">
-                            <fmt:message code="news.th.media"/>
-                        </option>
-                        <option value="03">
-                            <fmt:message code="news.th.industry"/>
-                        </option>
-                        <option value="04">
-                            <fmt:message code="news.th.partner"/>
-                        </option>
-                        <option value="05">
-                            <fmt:message code="news.th.client"/>
-                        </option>
-                        <option value="">
-                            <fmt:message code="news.th.none"/>
-                        </option>
-                    </select>
-                </div>
-
-            </div>
-            <div class="le ce2">
-                <div class="color" style="width:105px;"><fmt:message code="notice.th.content"/>:</div>          
-              	<input id="content" class="input_text6" type="text"/>
-            </div>
-        </div>
-        <div class="icons">
-            <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
-            <img style="margin-right:30px; cursor: pointer;" src="../img/4query.png" alt=""/>
-            <img style=" cursor: pointer;" src="../img/5query.png" alt=""/>
-        </div>
-    </div> -->
-</div>
-
-
-    <!--footer部分结束-->
 <script>
 $(function () {
 			/* word文本编辑器 */
@@ -563,13 +475,32 @@ $(function () {
             });
             
            /* 修改功能跳转新建页面 */
-            $(".modify").click(function(){
+           function updateData(id){
             		$('.step1').hide();
 					$('.step2').show();
 					$('.center').hide();
-					alert(1);
+					alert(id);
             
-            });
+            };
+            /*删除时 调用的方法*/
+            function deleteData(id){
+            	var data = {
+            		"id":id
+            	};
+            	$.ajax({
+            		data:data,
+            		type:"GET",
+            		dataType:"JSON",
+            		URL:"",
+            		error:function(){
+	            		alert("请求数据出错");
+	            		return;
+            		},
+            		success:function(data){
+            			alert(data);
+            		}
+            	});
+            }
             
             function initPageList(cb){
             	$.ajax({
@@ -580,18 +511,7 @@ $(function () {
 					success: function(data){
 						console.log(data);
 						var news = "";
-                           for (var i = 0; i < data.obj.length; i++) {
-                               	/*  news = "<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
-                               		   "<td>"+data.obj[i].providerName+"</td>"+//发布人
-                                       "<td>"+data.obj[i].typeName+"</td>"+//类型
-                                       "<td><div class='break_td' title="+data.obj[i].depName+">"+'点击详情'+"</div></td>"+//发布范围
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</a></td>"+//标题
-                                       "<td>"+data.obj[i].newsDateTime+"</td>"+//发布时间
-                                       "<td>"+data.obj[i].clickCount+"</td>"+//点击数
-                                       "<td>"+data.obj[i].newsId+"</td>"+//评论（条）
-                                       "<td>"+"生效</td>"+//状态
-                                       "<td>"+"修改  管理评论  终止  删除</td>"+//操作
-                                       news; */
+                           for (var i = 0; i < data.obj.length; i++) {                          
                                        
                                         news = "<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
                                		   "<td>"+data.obj[i].providerName+"</td>"+//发布人
@@ -603,10 +523,10 @@ $(function () {
                                        "<td>"+data.obj[i].newsId+"</td>"+//评论（条）
                                        "<td>"+"生效</td>"+//状态
                                         "<td>"+
-                                       		 "<a href='#' class='modify'>"+"修改"+"</a>&nbsp"+
+                                       		 "<a href='#' onclick='updateData("+data.obj[i].id+")'>"+"修改"+"</a>&nbsp"+
 											 "<a href='#'>"+"管理评论"+"</a>&nbsp"+
 											 "<a href='#'>"+"终止"+"</a>&nbsp"+
-											 "<a href='#'>"+"删除"+"</a>&nbsp"+
+											 "<a href='#' onclick='deleteData("+data.obj[i].id+"))'>"+"删除"+"</a>&nbsp"+
                                        "</td>"+//操作 
                                       /*  "<td>"+"修改  管理评论  终止  删除</td>"+//操作 */
                                        news;
