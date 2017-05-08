@@ -1,9 +1,10 @@
 package com.xoa.dao.workflow;
 
+import com.xoa.dao.base.BaseMapper;
 import com.xoa.model.workflow.FlowTypeModel;
 
-public interface FlowTypeModelMapper {
-    int deleteByPrimaryKey(Integer flowId);
+public interface FlowTypeModelMapper extends BaseMapper<FlowTypeModel>{
+//    int deleteByPrimaryKey(Integer flowId);
 
 //    int insert(FlowTypeModelWithBLOBs record);
 //
