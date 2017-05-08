@@ -54,7 +54,7 @@ public class JobClassifyController {
 
     @RequestMapping("/flowclassify/flowSave")
     public BaseWrapper insertFlow(@RequestParam(defaultValue = "0",required = false)Integer parentId,Integer sortNo,String flowName,@RequestParam(defaultValue = "0",required = false)Integer departmentId){
-        return  null;
+        return  service.insertFlow(parentId,sortNo,flowName,departmentId);
     }
 
     @RequestMapping("/flowclassify/FormUpdate")

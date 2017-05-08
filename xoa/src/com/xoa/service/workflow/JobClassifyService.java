@@ -2,9 +2,11 @@ package com.xoa.service.workflow;
 
 import com.xoa.dao.workflow.FlowSortMapper;
 import com.xoa.dao.workflow.FormSortMapper;
+import com.xoa.model.department.Department;
 import com.xoa.model.workflow.FlowSort;
 import com.xoa.model.workflow.FormSort;
 import com.xoa.model.workflow.FormSortExample;
+import com.xoa.service.department.DepartmentService;
 import com.xoa.service.workflow.wrapper.JobSelectorModel;
 import com.xoa.service.workflow.wrapper.JobSelectorWrapper;
 import com.xoa.util.common.CheckCallBack;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +38,9 @@ public class JobClassifyService {
 
     @Autowired
     FlowSortMapper flowSortMapper;
+
+    @Autowired
+    private DepartmentService departmentService;
 
      /**
       * 
@@ -167,6 +173,27 @@ public class JobClassifyService {
           wrapper.setMsg(res);
           return wrapper;
       }
+      if(departmentId!=0){
+          //查询部门是否存在
+          Department department =departmentService.getDeptById(departmentId);
+          if(department==null||department.getDeptId()==null){
+              wrapper.setFlag(false);
+              wrapper.setStatus(true);
+              wrapper.setMsg("所属部门不存在");
+              return wrapper;
+          }
+      }
+        if(parentId!=0){
+            //查询父分类是否存在
+            FormSort formSort =sortMapper.selectByPrimaryKey(parentId);
+            if(formSort==null||formSort.getSortId()==null){
+                wrapper.setFlag(false);
+                wrapper.setStatus(true);
+                wrapper.setMsg("所属分类不存在");
+                return wrapper;
+            }
+
+        }
       try{
           FormSort sortParent =new FormSort();
           sortParent.setSortId(parentId);
@@ -189,6 +216,81 @@ public class JobClassifyService {
           L.w("数据回滚");
           throw new JobClassifyException("数据插入异常，执行回滚");
       }
+        return  wrapper;
+
+    }
+
+
+
+    @Transactional(rollbackFor = JobClassifyException.class)
+    public BaseWrapper insertFlow(Integer parentId,Integer sortNo,String flowName,Integer departmentId){
+        BaseWrapper wrapper =   new BaseWrapper();
+        String res=  StringUtils.checkNullUtils(new CheckCallBack() {
+            @Override
+            public boolean isNull(Object obj) {
+                if (obj instanceof String) {
+                    String a = (String) obj;
+                    if (a == null || "".equals(a)
+                            || a.length() == 0)
+                        return true;
+                }
+                if (obj instanceof Integer) {
+                    Integer a = (Integer) obj;
+                    if (a == null)
+                        return true;
+                }
+                return false;
+            }
+        },sortNo,"流程分类序号不能为空",flowName,"流程分类名称不能为空");
+        if(res!=null){
+            wrapper.setFlag(false);
+            wrapper.setStatus(true);
+            wrapper.setMsg(res);
+            return wrapper;
+        }
+        if(departmentId!=0){
+            //查询部门是否存在
+            Department department =departmentService.getDeptById(departmentId);
+            if(department==null||department.getDeptId()==null){
+                wrapper.setFlag(false);
+                wrapper.setStatus(true);
+                wrapper.setMsg("所属部门不存在");
+                return wrapper;
+            }
+        }
+        if(parentId!=0){
+            //查询父分类是否存在
+            FlowSort flowSort=flowSortMapper.selectByPrimaryKey(parentId);
+            if(flowSort==null||flowSort.getSortId()==null){
+                wrapper.setFlag(false);
+                wrapper.setStatus(true);
+                wrapper.setMsg("所属分类不存在");
+                return wrapper;
+            }
+
+        }
+        try{
+            FlowSort flowParent =new FlowSort();
+            flowParent.setSortId(parentId);
+            flowParent.setHaveChild("1");
+            flowSortMapper.updateByPrimaryKeySelective(flowParent);
+            FlowSort flow =new FlowSort();
+            flow.setSortNo(sortNo);
+            flow.setSortName(flowName);
+            flow.setSortParent(parentId);
+            flow.setDeptId(departmentId);
+            flow.setHaveChild("0");
+            Integer insertRes = flowSortMapper.insertSelective(flow);
+            if(insertRes<0) throw new JobClassifyException("数据插入异常，进入回滚");
+            wrapper.setStatus(true);
+            wrapper.setFlag(true);
+            wrapper.setMsg("操作执行成功");
+
+        }catch (Exception e){
+            e.printStackTrace();
+            L.w("数据回滚");
+            throw new JobClassifyException("数据插入异常，执行回滚");
+        }
         return  wrapper;
 
     }
