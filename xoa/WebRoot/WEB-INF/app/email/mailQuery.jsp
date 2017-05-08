@@ -41,10 +41,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td><fmt:message code="email.th.chosebox" />：</td>
 							<td>
 								<select name="BOX" class="BigSelect">
-							        <option value="1"><fmt:message code="email.title.inbox" /></option>
-							        <option value="2"><fmt:message code="email.title.draftbox" /></option>
-							        <option value="3"><fmt:message code="email.title.sent" /></option>
-							        <option value="4"><fmt:message code="email.title.wastebasket" /></option>
+							        <option value="1" ATTR="inbox"><fmt:message code="email.title.inbox" /></option>
+							        <option value="2" ATTR="drafts"><fmt:message code="email.title.draftbox" /></option>
+							        <option value="3" ATTR="outbox"><fmt:message code="email.title.sent" /></option>
+							        <option value="4" ATTR="recycle"><fmt:message code="email.title.wastebasket" /></option>
 						        </select>
 							</td>
 						</tr>
@@ -68,37 +68,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tr>
 							<td><fmt:message code="email.th.sender" />：</td>
 							<td>
-								<input type="text" name="txt" id="txt" value="" />
+								<input type="text" name="txt" id="txt1" value="" />
 							</td>
 						</tr>
 						<tr>
 							<td><fmt:message code="email.th.mailmajor" />：</td>
 							<td>
-								<input type="text" name="txt" id="txt" value="" />
+								<input type="text" name="txt" id="txt2" value="" />
 							</td>
 						</tr>
 						<tr>
 							<td><fmt:message code="email.th.mailcontent" />：</td>
 							<td>
-								<input type="text" name="txt" id="txt" value="" />
+								<input type="text" name="txt" id="txt3" value="" />
+							</td>
+						</tr>
+						<!-- <tr>
+							<td><fmt:message code="email.th.mailcontent" />：</td>
+							<td>
+								<input type="text" name="txt" id="txt4" value="" />
 							</td>
 						</tr>
 						<tr>
 							<td><fmt:message code="email.th.mailcontent" />：</td>
 							<td>
-								<input type="text" name="txt" id="txt" value="" />
+								<input type="text" name="txt" id="txt5" value="" />
 							</td>
-						</tr>
-						<tr>
-							<td><fmt:message code="email.th.mailcontent" />：</td>
-							<td>
-								<input type="text" name="txt" id="txt" value="" />
-							</td>
-						</tr>
+						</tr> -->
 						<tr>
 							<td><fmt:message code="email.th.filefolder" />：</td>
 							<td>
-								<input type="text" name="txt" id="txt" value="" />
+								<input type="text" name="txt" id="txt6" value="" />
 							</td>
 						</tr>
 						<tr>
@@ -138,6 +138,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			laydate(start);
 			laydate(end);
 			
+			$(function(){
+				$('#btn').click(function(){
+					var ATTR=$('.BigSelect option:checked').attr('ATTR');
+					var startTime=$('#start').val();
+					var endTime=$('#end').val();
+					var Title=$('#txt2').val();
+					var cont=$('#txt3').val();
+					var Attach=$('#txt6').val();
+					//alert(Title+':::::'+cont+'::::::'+Attach);
+					var data={
+						'flag':ATTR,
+						'page':1,
+						'pageSize':10,
+						'useFlag':true,
+						'userID':'admin',
+						'startDate':startTime,
+						'endDate':endTime,
+						'subject':Title,
+						'content':cont,
+						'attachmentName':Attach
+					}
+					$.ajax({
+							type:'get',
+							url:'showEmail',
+							dataType:'json',
+							data:data,
+							success:function(rsp){
+								var data1=rsp.obj;
+							}
+					}) 
+				})
+			})
 			
 			
 			

@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title><fmt:message code="email.title.waitmail" /></title>
+		<title><fmt:message code="global.lang.reply" /></title>
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -122,7 +122,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 		 
        		 	});
        		 ue.ready(function(){
+       		 	
        		 	var sId=$.getQueryString('sId');
+       		 	alert(sId);
        		 	$.ajax({
 						type:'get',
 						url:'queryByID',
