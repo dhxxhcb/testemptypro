@@ -8,6 +8,7 @@ import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.common.wrapper.BaseWrapper;
 import com.xoa.util.dataSource.ContextHolder;
@@ -93,63 +94,6 @@ public class NewsController {
 	}
 	
 	
-	
-	/**
-	 * 
-	 * 创建作者:   王曰岐
-	 * 创建日期:   2017-4-19 下午3:51:58
-	 * 方法介绍:   新闻管理信息展示 返回json 
-	 * 参数说明:   @return
-	 * @return     String 返回新闻管理列表
-	 */
-@RequestMapping(value = "/showNewsManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-  public @ResponseBody ToJson<News> selectNewsManage(
-			@RequestParam(value = "format", required = false) String format,
-			@RequestParam(value = "typeId", required = false) String typeId,
-			@RequestParam(value = "top", required = false) String top,
-			@RequestParam(value = "publish", required = false) String publish,
-			@RequestParam(value = "clickCount", required = false) String clickCount,
-			@RequestParam(value = "click", required = false) String click,
-			@RequestParam(value = "subject", required = false) String subject,
-			@RequestParam(value = "newsTime", required = false) String newsTime,
-			@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
-			@RequestParam(value = "content", required = false) String content,
-			@RequestParam("page") Integer page,
-			@RequestParam("pageSize") Integer pageSize,
-			@RequestParam("useFlag") Boolean useFlag,
-			HttpServletRequest request, HttpServletResponse response){
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
-		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("format", format);
-		   if ("0".equals(typeId)) {
-		        typeId=null;
-	     }else {
-	    	 maps.put("typeId", typeId);
-		}
-		maps.put("top", top);
-		maps.put("publish", publish);
-		maps.put("clickCount", clickCount);
-		maps.put("click", click);
-		maps.put("subject", subject);
-		maps.put("newsTime", newsTime);
-		maps.put("lastEditTime", lastEditTime);
-		maps.put("content", content);
-		ToJson<News> returnReslt = new ToJson(1,"");
-		try {
-			ToJson<News> tojson =newService.selectNewsManage(maps, 1, 5, true);
-			if (tojson.getObj().size() > 0) {
-				tojson.setMsg(ok);
-				returnReslt = tojson;
-			} else {
-				returnReslt = tojson;
-			}
-		} catch (Exception e) {
-			loger.debug("NewsMessage:" + e);
-		}
-
-		return returnReslt;
-	}
 /**
  * 
  * 创建作者:   王曰岐
@@ -243,50 +187,6 @@ public class NewsController {
 		return returnReslt;
 	}
 
-	/**
-	 * 
-	 * 创建作者:   王曰岐
-	 * 创建日期:   2017-4-19 下午3:54:11
-	 * 方法介绍:   未读信息展示
-	 * 参数说明:   @param request
-	 * 参数说明:   @param response
-	 * 参数说明:   @param page
-	 * 参数说明:   @param pageSize
-	 * 参数说明:   @param useFlag
-	 * 参数说明:   @return
-	 * @return     String
-	 */
-	@RequestMapping(value = "/unreadShow", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody
-	String unreadNews(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam("page") Integer page,
-			@RequestParam("pageSize") Integer pageSize,
-			@RequestParam("useFlag") Boolean useFlag) {
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));
-		Map<String, Object> maps = new HashMap<String, Object>();
-		String name = (String) request.getSession().getAttribute("byname");
-		String returnReslt = null;
-		try {
-			ToJson<News> tojson= newService.unreadNews(maps, page, pageSize,
-					useFlag, name);
-			if (tojson.getObj().size() > 0) {
-				tojson.setMsg(ok);
-				returnReslt = JSON.toJSONStringWithDateFormat(tojson,
-						"yyyy-MM-dd HH:mm:ss");
-			} else {
-				returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(
-						1, err), "yyyy-MM-dd HH:mm:ss");
-			}
-		} catch (Exception e) {
-			loger.debug("NewsMessage:" + e);
-			returnReslt = JSON.toJSONStringWithDateFormat(new ToJson<News>(1,
-					""), "yyyy-MM-dd HH:mm:ss");
-		}
-
-		return returnReslt;
-	}
-
 	
 	 /**
 	  * 
@@ -322,29 +222,29 @@ public class NewsController {
 	@RequestMapping(value = "/sendNews", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String insertNews(
-			@RequestParam("subject") String subject,
-			@RequestParam("provider") String provider,
-			@RequestParam("newsTime") String newsTime,
-			@RequestParam("clickCount") Integer clickCount,
-			@RequestParam("anonymityYn") String anonymityYn,
-			@RequestParam("format") String format,
-			@RequestParam("typeId") String typeId,
-			@RequestParam("publish") String publish,
-			@RequestParam("top") String top,
-			@RequestParam("lastEditor") String lastEditor,
-			@RequestParam("lastEditTime") String lastEditTime,
-			@RequestParam("subjectColor") String subjectColor,
-			@RequestParam("keyword") String keyword,
-			@RequestParam("topDays") String topDays,
-			@RequestParam("content") String content,
-			@RequestParam("attachmentId") String attachmentId,
-			@RequestParam("attachmentName") String attachmentName,
-			@RequestParam("toId") String toId,
-			@RequestParam("privId") String privId,
-			@RequestParam("userId") String userId,
-			@RequestParam("readers") String readers,
-			@RequestParam("compressContent") String compressContent,
-			@RequestParam("summary") String summary,HttpServletRequest request) {
+			@RequestParam(name="subject",required=false) String subject,
+			@RequestParam(name="provider",required=false) String provider,
+			@RequestParam(name="newsTime",required=false) String newsTime,
+			@RequestParam(name="clickCount",required=false) Integer clickCount,
+			@RequestParam(name="anonymityYn",required=false) String anonymityYn,
+			@RequestParam(name="format",required=false) String format,
+			@RequestParam(name="typeId",required=false) String typeId,
+			@RequestParam(name="publish",required=false) String publish,
+			@RequestParam(name="top",required=false) String top,
+			@RequestParam(name="lastEditor",required=false) String lastEditor,
+			@RequestParam(name="lastEditTime",required=false) String lastEditTime,
+			@RequestParam(name="subjectColor",required=false) String subjectColor,
+			@RequestParam(name="keyword",required=false) String keyword,
+			@RequestParam(name="topDays",required=false) String topDays,
+			@RequestParam(name="content",required=false) String content,
+			@RequestParam(name="attachmentId",required=false) String attachmentId,
+			@RequestParam(name="attachmentName",required=false) String attachmentName,
+			@RequestParam(name="toId",required=false) String toId,
+			@RequestParam(name="privId",required=false) String privId,
+			@RequestParam(name="userId",required=false) String userId,
+			@RequestParam(name="readers",required=false) String readers,
+			@RequestParam(name="compressContent",required=false) String compressContent,
+			@RequestParam(name="summary",required=false) String summary,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		   News news=new News();
@@ -545,7 +445,7 @@ public class NewsController {
 	 * @return     String
 	 */
 	public static String returnValue(String value) {
-		if (value != null) {
+		if (!StringUtils.checkNull(value)) {
 			return value;
 		} else {
 			return "";
