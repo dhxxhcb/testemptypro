@@ -42,7 +42,7 @@ public class NetdiskController {
 	/**
 	 * 
 	 * @Title: selectNetdisk
-	 * @Description: TODO
+	 * @Description: 网路硬盘查询接口
 	 * @author(作者): 张丽军
 	 * @param: @param request
 	 * @param: @return   
@@ -68,7 +68,7 @@ public class NetdiskController {
 	/**
 	 * 
 	 * @Title: addNetdisk
-	 * @Description: TODO
+	 * @Description: 网盘新建
 	 * @author(作者): 张丽军
 	 * @param: @param diskNo
 	 * @param: @param diskName
@@ -109,6 +109,22 @@ public class NetdiskController {
 		
 	}
 	
+	/**
+	 * 
+	 * @Title: editNetdisk
+	 * @Description: 网盘编辑
+	 * @author(作者): 张丽军
+	 * @param: @param diskNo
+	 * @param: @param diskName
+	 * @param: @param diskPath
+	 * @param: @param spaceLimit
+	 * @param: @param orderBy
+	 * @param: @param remark
+	 * @param: @param request
+	 * @param: @return   
+	 * @return: ToJson<Netdisk>   
+	 * @throws
+	 */
 	@ResponseBody
 	@RequestMapping(value="/editNetdisk",produces = {"application/json;charset=UTF-8"})
 	public ToJson<Netdisk> editNetdisk(
@@ -146,7 +162,7 @@ public class NetdiskController {
 	/**
 	 * 
 	 * @Title: deleteByDiskId
-	 * @Description: TODO
+	 * @Description: 网盘删除
 	 * @author(作者): 张丽军
 	 * @param: @param diskId
 	 * @param: @param request

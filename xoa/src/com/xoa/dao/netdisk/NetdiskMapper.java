@@ -7,7 +7,7 @@ import com.xoa.model.netdisk.Netdisk;
 /**
  * 
  * @ClassName (类名):  NetdiskMapper
- * @Description(简述): TODO
+ * @Description(简述): 实现接口
  * @author(作者):      张丽军
  * @date(日期):        2017-5-8 下午4:08:29
  *
@@ -18,7 +18,7 @@ public interface NetdiskMapper {
    /**
     * 
     * @Title: addNetdisk
-    * @Description: TODO
+    * @Description: 新建
     * @author(作者): 张丽军
     * @param: @param netdisk   
     * @return: void   
@@ -28,7 +28,7 @@ public interface NetdiskMapper {
    /**
     * 
     * @Title: selectNetdisk
-    * @Description: TODO
+    * @Description: 查询
     * @author(作者): 张丽军
     * @param: @return   
     * @return: List<Netdisk>   
@@ -38,7 +38,7 @@ public interface NetdiskMapper {
 	/**
 	 * 
 	 * @Title: delete
-	 * @Description: TODO
+	 * @Description: 查询
 	 * @author(作者): 张丽军
 	 * @param: @param diskId   
 	 * @return: void   
@@ -48,7 +48,7 @@ public interface NetdiskMapper {
      /**
       * 
       * @Title: editNetdisk
-      * @Description: TODO
+      * @Description: 编辑
       * @author(作者): 张丽军
       * @param: @param netdisk   
       * @return: void   

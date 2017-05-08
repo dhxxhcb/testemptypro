@@ -18,7 +18,7 @@ public interface NetdiskService {
 	/**
 	 * 
 	 * @Title: addNetdisk
-	 * @Description: TODO
+	 * @Description: 新建
 	 * @author(作者): 张丽军
 	 * @param: @param netdisk   
 	 * @return: void   
@@ -30,7 +30,7 @@ public interface NetdiskService {
 	/**
 	 * 
 	 * @Title: selectNetdisk
-	 * @Description: TODO
+	 * @Description: 查询
 	 * @author(作者): 张丽军
 	 * @param: @return   
 	 * @return: List<Netdisk>   
@@ -42,7 +42,7 @@ public interface NetdiskService {
 	/**
 	 * 
 	 * @Title: delete
-	 * @Description: TODO
+	 * @Description: 删除
 	 * @author(作者): 张丽军
 	 * @param: @param diskId   
 	 * @return: void   
@@ -54,7 +54,7 @@ public interface NetdiskService {
 	/**
 	 * 
 	 * @Title: editNetdisk
-	 * @Description: TODO
+	 * @Description: 编辑
 	 * @author(作者): 张丽军
 	 * @param: @param netdisk   
 	 * @return: void   

@@ -14,7 +14,7 @@ import com.xoa.service.netdisk.NetdiskService;
 /**
  * 
  * @ClassName (类名):  NetdiskServiceImpl
- * @Description(简述): TODO
+ * @Description(简述): 网盘设置实现类
  * @author(作者):      张丽军
  * @date(日期):        2017-5-8 下午4:03:32
  *
@@ -26,7 +26,7 @@ public class NetdiskServiceImpl  implements NetdiskService{
     /**
      * 
      * <p>Title: addNetdisk</p>
-     * <p>Description: </p>
+     * <p>Description:新建 </p>
      * @param netdisk
      * @author(作者):  张丽军
      * @see com.xoa.service.netdisk.NetdiskService#addNetdisk(com.xoa.model.netdisk.Netdisk)
@@ -39,7 +39,7 @@ public class NetdiskServiceImpl  implements NetdiskService{
     /**
      * 
      * <p>Title: selectNetdisk</p>
-     * <p>Description: </p>
+     * <p>Description:查询 </p>
      * @return
      * @author(作者):  张丽军
      * @see com.xoa.service.netdisk.NetdiskService#selectNetdisk()
@@ -50,15 +50,30 @@ public class NetdiskServiceImpl  implements NetdiskService{
 		
 		return netdiskMapper.selectNetdisk();
 	}
-	
+	/**
+	 * 
+	 * <p>Title: delete</p>
+	 * <p>Description:删除 </p>
+	 * @param diskId
+	 * @author(作者):  张丽军
+	 * @see com.xoa.service.netdisk.NetdiskService#delete(java.lang.Integer)
+	 */
 	@Override
 	public void delete(Integer diskId) {
 		
 		netdiskMapper.delete(diskId);
 	}
-	
+	/**
+	 * 
+	 * <p>Title: editNetdisk</p>
+	 * <p>Description: 编辑</p>
+	 * @param netdisk
+	 * @author(作者):  张丽军
+	 * @see com.xoa.service.netdisk.NetdiskService#editNetdisk(com.xoa.model.netdisk.Netdisk)
+	 */
 	@Override
 	public void editNetdisk(Netdisk netdisk){
+		
 		netdiskMapper.editNetdisk(netdisk);
 	}
 }
