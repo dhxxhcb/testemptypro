@@ -2,8 +2,10 @@ package com.xoa.controller.workflow;
 
 import com.xoa.service.workflow.JobClassifyService;
 import com.xoa.service.workflow.wrapper.JobSelectorWrapper;
+import com.xoa.util.common.wrapper.BaseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -44,5 +46,26 @@ public class JobClassifyController {
     public JobSelectorWrapper getFlowInfo(){
         return   service.getFlowsort();
     }
+
+    @RequestMapping("/flowclassify/formSave")
+    public BaseWrapper insertForm(@RequestParam(defaultValue = "0",required = false) Integer parentId, Integer sortNo, String formName, @RequestParam(defaultValue = "0",required = false)Integer departmentId){
+        return  service.insertForm(parentId,sortNo,formName,departmentId);
+    }
+
+    @RequestMapping("/flowclassify/flowSave")
+    public BaseWrapper insertFlow(@RequestParam(defaultValue = "0",required = false)Integer parentId,Integer sortNo,String flowName,@RequestParam(defaultValue = "0",required = false)Integer departmentId){
+        return  null;
+    }
+
+    @RequestMapping("/flowclassify/FormUpdate")
+    public BaseWrapper updateForm(@RequestParam(defaultValue = "0",required = false)Integer parentId,Integer sortNo,String formName,@RequestParam(defaultValue = "0",required = false)Integer departmentId){
+        return  null;
+    }
+    @RequestMapping("/flowclassify/flowUpdate")
+    public BaseWrapper updateFlow(@RequestParam(defaultValue = "0",required = false)Integer parentId,Integer sortNo,String formName,@RequestParam(defaultValue = "0",required = false)Integer departmentId){
+        return  null;
+    }
+
+
 
 }

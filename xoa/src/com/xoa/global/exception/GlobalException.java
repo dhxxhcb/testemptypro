@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.xoa.service.workflow.JobClassifyException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,7 +35,16 @@ public class GlobalException implements HandlerExceptionResolver {
 			Map<String, Object> ex =new HashMap<String, Object>();
 			ex.put("status", false);
 			ex.put("flag", false);
-			ex.put("message", "操作失败");
+			ex.put("message", "Im操作失败");
+			view.setAttributesMap(ex);
+			modelAndView.setView(view);
+		}
+		//分类异常处理
+		if(arg3 instanceof JobClassifyException){
+			Map<String, Object> ex =new HashMap<String, Object>();
+			ex.put("status", false);
+			ex.put("flag", false);
+			ex.put("message", "分类操作失败");
 			view.setAttributesMap(ex);
 			modelAndView.setView(view);
 		}

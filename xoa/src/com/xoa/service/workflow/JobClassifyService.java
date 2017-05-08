@@ -7,8 +7,13 @@ import com.xoa.model.workflow.FormSort;
 import com.xoa.model.workflow.FormSortExample;
 import com.xoa.service.workflow.wrapper.JobSelectorModel;
 import com.xoa.service.workflow.wrapper.JobSelectorWrapper;
+import com.xoa.util.common.CheckCallBack;
+import com.xoa.util.common.L;
+import com.xoa.util.common.StringUtils;
+import com.xoa.util.common.wrapper.BaseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +58,9 @@ public class JobClassifyService {
          List<FormSort>  datasMap =   sortDatas(nosortDatas,0);
          resultdatas.addAll(datasMap);
          wrapper.setDatas(resultdatas);
+         wrapper.setFlag(true);
+         wrapper.setStatus(true);
+         wrapper.setMsg("获取数据成功");
          return  wrapper;
      }
      /**
@@ -77,6 +85,9 @@ public class JobClassifyService {
          List<FlowSort>  datasMap =   sortDatasFlow(nosortDatas,0);
          resultdatas.addAll(datasMap);
          wrapper.setDatas(resultdatas);
+         wrapper.setFlag(true);
+         wrapper.setStatus(true);
+         wrapper.setMsg("获取数据成功");
          return  wrapper;
      }
 
@@ -127,6 +138,59 @@ public class JobClassifyService {
              }
         }
         return datas;
+    }
+
+
+    @Transactional(rollbackFor = JobClassifyException.class)
+    public BaseWrapper insertForm(Integer parentId,Integer sortNo,String formName,Integer departmentId){
+        BaseWrapper wrapper =   new BaseWrapper();
+      String res=  StringUtils.checkNullUtils(new CheckCallBack() {
+            @Override
+            public boolean isNull(Object obj) {
+                if (obj instanceof String) {
+                    String a = (String) obj;
+                    if (a == null || "".equals(a)
+                            || a.length() == 0)
+                        return true;
+                }
+                if (obj instanceof Integer) {
+                    Integer a = (Integer) obj;
+                    if (a == null)
+                        return true;
+                }
+                return false;
+            }
+        },sortNo,"表单分类序号不能为空",formName,"表单分类名称不能为空");
+      if(res!=null){
+          wrapper.setFlag(false);
+          wrapper.setStatus(true);
+          wrapper.setMsg(res);
+          return wrapper;
+      }
+      try{
+          FormSort sortParent =new FormSort();
+          sortParent.setSortId(parentId);
+          sortParent.setHaveChild("1");
+          sortMapper.updateByPrimaryKeySelective(sortParent);
+          FormSort sort =new FormSort();
+          sort.setSortNo(sortNo);
+          sort.setSortName(formName);
+          sort.setSortParent(parentId);
+          sort.setDeptId(departmentId);
+          sort.setHaveChild("0");
+          Integer insertRes = sortMapper.insertSelective(sort);
+          if(insertRes<0) throw new JobClassifyException("数据插入异常，进入回滚");
+          wrapper.setStatus(true);
+          wrapper.setFlag(true);
+          wrapper.setMsg("操作执行成功");
+
+      }catch (Exception e){
+          e.printStackTrace();
+          L.w("数据回滚");
+          throw new JobClassifyException("数据插入异常，执行回滚");
+      }
+        return  wrapper;
+
     }
 
 
