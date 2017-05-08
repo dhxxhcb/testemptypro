@@ -40,5 +40,15 @@ public interface CalenderService {
 	 */
 	@DynDatasource
 	public void delete(int calId);
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月8日 下午5:41:36
+	 * 方法介绍:   修改
+	 * 参数说明:   @param calendar
+	 * @return     void  无
+	 */
+	@DynDatasource
+	public void update(Calendar calendar);
 
 }

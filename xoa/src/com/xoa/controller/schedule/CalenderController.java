@@ -6,18 +6,19 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.xoa.model.schedule.Calendar;
 import com.xoa.service.schedule.CalenderService;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
 @Controller
 public class CalenderController {
+	private Logger loger = Logger.getLogger(CalenderController.class);
 	
 	@Resource
 	private CalenderService calenderService;
@@ -92,9 +93,10 @@ public class CalenderController {
 	public ToJson<Calendar> addCalender(HttpServletRequest request,
 			@RequestParam("calType") String calType ,
 			@RequestParam("content") String content ,
-			@RequestParam("calTime") String calTime,
+			@RequestParam("calTime") String calTime ,
 			@RequestParam("endTime") String endTime ,
-			@RequestParam("userId") String userId 
+			@RequestParam("userId") String userId ,
+			@RequestParam("calLevel") String calLevel 
 						){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
@@ -105,8 +107,9 @@ public class CalenderController {
 			c.setEndTime(Integer.parseInt(endTime));
 			c.setCalTime(Integer.parseInt(calTime));
 			c.setContent(content);
-			c.setCalType(calType);			
-			int a= calenderService.insertSelective(c);
+			c.setCalType(calType);
+			c.setCalLevel(calLevel);
+			calenderService.insertSelective(c);
 			json.setObject(c);
 			json.setMsg("OK");
 			json.setFlag(0);
@@ -140,6 +143,55 @@ public class CalenderController {
 	}
 	return json;
 	}
+	
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月8日 下午4:17:59
+	 * 方法介绍:   编辑日程
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @param calType 类型
+	 * 参数说明:   @param content 食物内容
+	 * 参数说明:   @param calTime 开始时间
+	 * 参数说明:   @param endTime 结束时间
+	 * 参数说明:   @param userId 用户id
+	 * 参数说明:   @param calLevel 优先级
+	 * 参数说明:   @param calId 主键
+	 * 参数说明:   @return
+	 * @return     ToJson<Calendar> 日程信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/schedule/editCalender",produces = {"application/json;charset=UTF-8"})
+	public ToJson<Calendar> editCalender(HttpServletRequest request,
+			@RequestParam("calType") String calType ,
+			@RequestParam("content") String content ,
+			@RequestParam("calTime") String calTime ,
+			@RequestParam("endTime") String endTime ,
+			@RequestParam("userId") String userId ,
+			@RequestParam("calLevel") String calLevel ,
+			@RequestParam("calId") String calId 
+						){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		ToJson<Calendar> json=new ToJson<Calendar>(0, null);
+		try{
+			Calendar c=new Calendar();
+			c.setUserId(userId);
+			c.setEndTime(Integer.parseInt(endTime));
+			c.setCalTime(Integer.parseInt(calTime));
+			c.setContent(content);
+			c.setCalType(calType);
+			c.setCalLevel(calLevel);
+			c.setCalId(Integer.parseInt(calId));
+			calenderService.update(c);
+			json.setObject(c);
+			json.setMsg("OK");
+			json.setFlag(0);
+		}catch(Exception e){
+			json.setMsg(e.getMessage());
+		}
+		return json;
+		}
 	
 	
 	@ResponseBody

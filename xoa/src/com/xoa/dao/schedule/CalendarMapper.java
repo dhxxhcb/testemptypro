@@ -7,13 +7,6 @@ import com.xoa.model.schedule.Calendar;
 
  /**
  * 创建作者:   张龙飞
- * 创建日期:   2017年5月4日 下午5:46:45
- * 类介绍  :   
- * 构造参数:   
- *
- */
- /**
- * 创建作者:   张龙飞
  * 创建日期:   2017年5月5日 下午6:19:35
  * 类介绍  :   
  * 构造参数:   
@@ -63,4 +56,13 @@ public interface CalendarMapper {
      * @return     void 无
      */
     void delete(int calId);
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年5月8日 下午6:09:18
+     * 方法介绍:   修改
+     * 参数说明:   @param calendar
+     * @return     void 无
+     */
+    void update(Calendar calendar);
 }

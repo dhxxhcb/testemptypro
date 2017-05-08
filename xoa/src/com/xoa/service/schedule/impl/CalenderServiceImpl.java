@@ -100,6 +100,20 @@ public class CalenderServiceImpl implements CalenderService {
 	public void delete(int calId){
 	calendarMapper.delete(calId);	
 	}
+	
+	/**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年5月4日 下午5:46:54
+     * 方法介绍:   更新日程安排
+     * 参数说明:   @param record 日程安排
+     * 参数说明:   @return
+     * @return     int 插入条数
+     */
+	@Override
+	public void update(Calendar calendar) {
+		calendarMapper.update(calendar);
+		
+	}
 
 
 }
