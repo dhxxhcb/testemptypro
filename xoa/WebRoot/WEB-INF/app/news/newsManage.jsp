@@ -167,7 +167,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </select>
             </td>
             <td>
-                <input class="td_title1" type="text" value="请输入发布时间..."/>
+                <input class="td_title1" id="ip1" type="text" value="请输入新闻标题..."/>
                 <img class="td_title2" src="../img/mg2.png" alt=""/>
             </td>
         </tr>
@@ -177,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
             <td>
                 <input class="td_title1  release1" type="text"/>
-                <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
+                <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
 
                 <div class="release3">添加</div>
                 <div class="release4 empty">清空</div>
@@ -190,7 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 发布时间：
             </td>
             <td>
-                <input class="td_title1" type="text" value="请输入发布时间..."/>
+                <input class="td_title1" id="ip3" type="text" value="请输入发布时间..."/>
                 <div class="release3">设置为当前时间</div>
             </td>
         </tr>
@@ -242,7 +242,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 内容简介：
             </td>
             <td class="abstract">
-                <input class="abstract1" type="text"  maxlength="39" value="请输入内容..."/>
+                <input class="abstract1" id="ip4" type="text"  maxlength="39" value="请输入内容..."/>
                 <div class="abstract2">(最多输入39个字)</div>
             </td>
         </tr>
@@ -278,7 +278,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 关键字：
             </td>
             <td class="keyword">
-                <input class="keyword_ip" type="text" value="请输入关键词..."/>
+                <input class="keyword_ip" id="ip5" type="text" value="请输入关键词..."/>
                 <div class="keyword_t">自动获取关键字</div>
                 <div class="keyword_t2">（您可以调整关键字内容，多个关键词请用" , "分割）</div>
         </tr>
@@ -286,8 +286,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
     </table>
     <div class="foot_mg">
-        <img class="fot_1" src="../img/mg5.png" alt=""/>
-        <img src="../img/mg6.png" alt=""/>
+        <img  id="hd" class="fot_1" src="../img/mg5.png" alt=""/> <!-- 发布 -->
+        <img  id="rs"  src="../img/mg6.png" alt=""/> <!-- 保存 -->
     </div>
 </div>
 
@@ -566,12 +566,10 @@ $(function () {
 		        
 		        /* 新闻管理修改页面 */
 		         $("#j_tb").on('click','.xg',function(){	          
-		           $('.step1').hide();
+		            $('.step1').hide();
 					$('.step2').show();
 					$('.center').hide();
-		           
-		           
-		           
+		                      
 		        });		
 		        
 		             
@@ -629,6 +627,36 @@ $(function () {
    };
    laydate(start);
    laydate(end);
+   /* 保存数据 */
+    $("#rs").on("click",function(){
+         var data ={
+                     subject:$("#ip1").val(), //新闻标题
+	                 toId:$("#ip2").val(),	//发布部门
+	                 newsDateTime:$("#ip3").val(),	//时间
+	                 deprange:$("#ip4").val(),	//内容
+	                 message:$("#ip5").val()	//关键字
+                    }
+                    console.log(data);
+			alert(111);
+                $.ajax({
+                    url:"<%=basePath%>news/sendNews",
+                    type:'get',
+    
+	       		data : data,
+                   
+                   success:function(){
+	           			$('.step1').show();
+						$('.step2').hide();
+						$('.center').hide();
+	           		},	  
+	           		error:function(){
+	            		alert("请求数据出错");
+	            		return;
+            		}   		
+                   
+                });
+                alert(222);
+        });
    
   
 </script>
