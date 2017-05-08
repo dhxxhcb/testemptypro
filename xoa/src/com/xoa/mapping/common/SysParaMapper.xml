@@ -5,57 +5,43 @@
     <id column="PARA_NAME" property="paraName" javaType="string" />
     <result column="PARA_VALUE" property="paraValue" javaType="string" />
   </resultMap>
+  
+  
+  
   <select id="getSysPara" resultType="String" >
   SELECT s.PARA_VALUE FROM sys_para s WHERE s.PARA_NAME='MOBILE_SCREEN';
   </select>
   <sql id="Base_Column_List" >
     PARA_NAME, PARA_VALUE
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.xoa.model.common.SysPara" >
     select 
     <include refid="Base_Column_List" />
     from sys_para
     where PARA_NAME = #{paraName,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from sys_para
-    where PARA_NAME = #{paraName,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.xoa.model.common.SysPara" >
-    insert into sys_para (PARA_NAME, PARA_VALUE)
-    values (#{paraName,jdbcType=VARCHAR}, #{paraValue,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.common.SysPara" >
-    insert into sys_para
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="paraName != null" >
-        PARA_NAME,
-      </if>
-      <if test="paraValue != null" >
-        PARA_VALUE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="paraName != null" >
-        #{paraName,jdbcType=VARCHAR},
-      </if>
-      <if test="paraValue != null" >
-        #{paraValue,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.common.SysPara" >
-    update sys_para
+
+
+
+  
+    <select id="getIeTitle" resultMap="BaseResultMap" >
+     SELECT  PARA_NAME,PARA_VALUE
+      FROM sys_para 
+      where PARA_NAME='STATUS_TEXT_MARQUEE'
+   
+  </select>
+  
+  
+ 
+  <update id="updateSysPara" parameterType="com.xoa.model.common.SysPara" >
+    update sys_para 
     <set >
       <if test="paraValue != null" >
-        PARA_VALUE = #{paraValue,jdbcType=VARCHAR},
+        PARA_VALUE = #{paraValue},
       </if>
     </set>
-    where PARA_NAME = #{paraName,jdbcType=VARCHAR}
+    where PARA_NAME = #{paraName}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.common.SysPara" >
-    update sys_para
-    set PARA_VALUE = #{paraValue,jdbcType=VARCHAR}
-    where PARA_NAME = #{paraName,jdbcType=VARCHAR}
-  </update>
+  
+  
 </mapper>

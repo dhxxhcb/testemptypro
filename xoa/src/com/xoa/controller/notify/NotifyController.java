@@ -95,13 +95,42 @@ public class NotifyController {
 	
 	@RequestMapping(value = "/notifyManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	  public @ResponseBody ToJson<Notify> notifyManage(
-			  @RequestParam("page") Integer page,
+			    @RequestParam(value = "format", required = false) String format,
+				@RequestParam(value = "typeId", required = false) String typeId,
+				@RequestParam(value = "top", required = false) String top,
+				@RequestParam(value = "publish", required = false) String publish,
+				@RequestParam(value = "subject", required = false) String subject,
+				@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
+				@RequestParam(value = "content", required = false) String content,
+				@RequestParam(value = "fromDept", required = false) String fromDept,
+				@RequestParam(value = "sendTime", required = false) String sendTime,
+				@RequestParam(value = "fromId", required = false) String fromId,
+				@RequestParam(value = "toId", required = false) String toId,
+				@RequestParam(value ="beginDate", required = false) String beginDate,
+			    @RequestParam(value ="endDate", required = false) String endDate,
+			    @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag,HttpServletRequest request) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
 			Map<String, Object> maps = new HashMap<String, Object>();
-			
+			maps.put("format", format);
+			if("0".equals(typeId)){
+				typeId=null;
+			}else{
+				maps.put("typeId", typeId);
+			}
+			maps.put("top", top);
+			maps.put("publish", publish);
+			maps.put("subject", subject);
+			maps.put("lastEditTime", lastEditTime);
+			maps.put("content",content);
+			maps.put("fromDept", fromDept);
+			maps.put("sendTime", sendTime);
+			maps.put("fromId", fromId);
+			maps.put("toId", toId);
+			maps.put("beginDate", beginDate);
+			maps.put("endDate", endDate);
 			ToJson<Notify> tojson = new ToJson<Notify>(0, "");
 			try {
 				List<Notify> list =notifyService.selectNotifyManage(maps, page, pageSize, useFlag);
@@ -139,41 +168,50 @@ public class NotifyController {
      */
 	@RequestMapping(value = "/notifyList",method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	 public @ResponseBody
-	 ToJson<Notify> notifyList(@RequestParam(value = "typeId", required = false)String typeId,
-			 @RequestParam(value = "sendTime", required = false) String sendTime,
-			 @RequestParam(value = "subject", required = false) String subject,
-			 @RequestParam(value = "format", required = false) String format,
-			 @RequestParam(value = "content", required = false) String content,
-			 @RequestParam(value = "toId", required = false) String toId,
-			 @RequestParam(value ="read", required = false) String read,
-			 @RequestParam(value ="beginDate", required = false) String beginDate,
-			 @RequestParam(value ="endDate", required = false) String endDate,
-			 @RequestParam("page") Integer page,
+	 ToJson<Notify> notifyList(@RequestParam(value = "format", required = false) String format,
+				@RequestParam(value = "typeId", required = false) String typeId,
+				@RequestParam(value = "top", required = false) String top,
+				@RequestParam(value = "publish", required = false) String publish,
+				@RequestParam(value = "subject", required = false) String subject,
+				@RequestParam(value = "lastEditTime", required = false) String lastEditTime,
+				@RequestParam(value = "content", required = false) String content,
+				@RequestParam(value = "fromDept", required = false) String fromDept,
+				@RequestParam(value = "sendTime", required = false) String sendTime,
+				@RequestParam(value = "fromId", required = false) String fromId,
+			    @RequestParam(value = "toId", required = false) String toId,
+			    @RequestParam(value ="read", required = false) String read,
+			    @RequestParam(value ="beginDate", required = false) String beginDate,
+			    @RequestParam(value ="endDate", required = false) String endDate,
+			    @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag,
 				HttpServletRequest request, HttpServletResponse response) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
 	  Map<String, Object> maps = new HashMap<String, Object>();
+	  maps.put("format", format);
 	  if ("0".equals(typeId)) {
 			typeId=null;
 		}
 	  maps.put("typeId", typeId);
-	  maps.put("sendTime", sendTime);
+	  maps.put("top", top);
+	  maps.put("publish", publish);
 	  maps.put("subject", subject);
-	  maps.put("content", content);
-	  maps.put("format", format);
+	  maps.put("lastEditTime", lastEditTime);
+	  maps.put("content",content);
+	  maps.put("fromDept", fromDept);
+	  maps.put("sendTime", sendTime);
+	  maps.put("fromId", fromId);
 	  maps.put("toId", toId);
 	  maps.put("beginDate", beginDate);
 	  maps.put("endDate", endDate);
-	  ToJson<Notify> returnReslt=null;
-	  Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());
+	  ToJson<Notify> returnReslt=new ToJson(1,"");
+	  Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());	 
 	  try {
 		  if (read.equals("0")) {
 				ToJson<Notify> tojson= notifyService.unreadNotify(maps, page, pageSize, useFlag, name.getUserId());
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg("ok");
-					
 				} else {
 					tojson.setFlag(1);
 				}
@@ -182,7 +220,6 @@ public class NotifyController {
 				ToJson<Notify> tojson= notifyService.readNotify(maps, page, pageSize, useFlag, name.getUserId());
 				if (tojson.getObj().size() > 0) {
 					tojson.setMsg("ok");
-					
 				} else {
 					tojson.setFlag(1);
 				}
@@ -192,22 +229,17 @@ public class NotifyController {
 				{
 				ToJson<Notify> tojson= notifyService.selectNotify(maps, page, pageSize, useFlag, name.getUserId());
 				if (tojson.getObj().size() > 0) {
-					tojson.setMsg("ok");
-					
+					tojson.setMsg("ok");	
 				} else {
 					tojson.setFlag(1);
 				}
 				returnReslt=tojson;
-			}
-		  
+			} 
 	  }catch (Exception e) {
-	   loger.debug("notifyList:"+e);
-	   
+	   loger.debug("notifyMessage:"+e);	   
 	  }
-	 
 	  return returnReslt;
-	 }
-	
+	 }	
 	/**
 	 * 
 	 * 创建作者:   张丽军
@@ -219,7 +251,7 @@ public class NotifyController {
 	 * 参数说明:   @param pageSize 页面数
 	 * 参数说明:   @param useFlag  是否启用分页插件
 	 * 参数说明:   @return Json
-	 * @return     String(true：seccess false：fail)
+	 * @return     String(true：success false：fail)
 	 */
 	/*@RequestMapping(value = "/unreadNotify", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
@@ -228,7 +260,7 @@ public class NotifyController {
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag) {
 		Map<String, Object> maps = new HashMap<String, Object>();
-		String name = "wangyun";
+		String name = (String) request.getSession().getAttribute("byname");
 		String returnReslt = null;
 		String err = null;
 		try {
@@ -274,12 +306,12 @@ public class NotifyController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
 		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
-		//String name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+		//Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
 		String name="www";
 		loger.debug("transfersID"+notifyId);
 	try {
 		    Notify notify=notifyService.queryById(maps, 1, 5, false, name);
-			toJson.setMsg("seccess");
+			toJson.setMsg("success");
 			toJson.setObject(notify);
 			return toJson;
 		} catch (Exception e) {
@@ -364,6 +396,7 @@ public class NotifyController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		Notify notify=new Notify();	
+		notify.setNotifyId(0);
 		notify.setFromId(this.returnValue(fromId));
 		notify.setTypeId(this.returnValue(typeId));
 		notify.setSubject(this.returnValue(subject));
@@ -399,7 +432,7 @@ public class NotifyController {
 	    	return 
 					new ToJson<Notify>(0, "");
 		} catch (Exception e) {
-			loger.debug("notifyList:" + e);
+			loger.debug("notifyMessage:" + e);
 			return 
 					new ToJson<Notify>(1, "");
 		}
@@ -480,6 +513,7 @@ public class NotifyController {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
 		Notify notify=new Notify();
+		notify.setNotifyId(0);
 		notify.setFromId(this.returnValue(fromId));
 		notify.setTypeId(this.returnValue(typeId));
 		notify.setSubject(this.returnValue(subject));
@@ -514,7 +548,7 @@ public class NotifyController {
 			notifyService.addNotify(notify);
 			return new ToJson<Notify>(0, "");
 		} catch (Exception e) {
-			loger.debug("notifyList:"+e);
+			loger.debug("notifyMessage:"+e);
 			return new ToJson<Notify>(1, "");
 		}
 		
@@ -530,15 +564,14 @@ public class NotifyController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/deleteById", produces = { "application/json;charset=UTF-8" })
-
 	public @ResponseBody ToJson<Notify> deleteById(@RequestParam("notifyId") Integer notifyId,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		ToJson<Notify> toJson = new ToJson<Notify>(0,"");
-		loger.debug("transfersID"+notifyId);
+		//loger.debug("transfersID"+notifyId);
 		try{
 			notifyService.delete(notifyId);
-			toJson.setMsg("delete seccess");
+			toJson.setMsg("delete success");
 			return toJson;
 		}catch(Exception e){
 			toJson.setMsg("delete fail");
@@ -563,10 +596,7 @@ public class NotifyController {
 			return "";
 		}
 	}
-	/*@RequestMapping("/index")
-	public String emailIndex(){
-		return "app/notice/notify";
-	}*/
+
 
 
 }

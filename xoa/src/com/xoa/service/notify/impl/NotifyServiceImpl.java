@@ -53,10 +53,6 @@ public class NotifyServiceImpl implements  NotifyService{
 	@Resource
 	private UsersPrivService  usersPrivService;
 	
- 
-	
-	@Resource
-	private SysCodeMapper sysCodeMapper;
 	
 	
 	/**
@@ -94,8 +90,8 @@ public class NotifyServiceImpl implements  NotifyService{
 				     notify1.setReaders("0");
 			}
 		}
-            json.setObj(list);
-            json.setTotleNum(pageParams.getTotal());
+        json.setObj(list);
+        json.setTotleNum(pageParams.getTotal());
 		return json;
 	}
 
@@ -138,16 +134,31 @@ public class NotifyServiceImpl implements  NotifyService{
         json.setTotleNum(pageParams.getTotal());
     return json;
 }
+    
+    /**
+	 * 
+	 * 创建作者:   张丽军
+	 * 创建日期:   2017-4-19 上午12:03:54
+	 * 方法介绍:   已读信息
+	 * 参数说明:   @param maps
+	 * 参数说明:   @param page
+	 * 参数说明:   @param pageSize
+	 * 参数说明:   @param useFlag
+	 * 参数说明:   @param name
+	 * 参数说明:   @return
+	 * 参数说明:   @throws Exception
+	 * @return     List<Notify>
+	 */
     @Override
 	public ToJson<Notify> readNotify(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag, String name) throws Exception {
-    	ToJson<Notify>   json=new ToJson<Notify>();
+    	ToJson<Notify> json=new ToJson<Notify>();
     	PageParams pageParams = new PageParams();  
     pageParams.setUseFlag(useFlag);  
     pageParams.setPage(page);  
     pageParams.setPageSize(pageSize);  
     maps.put("page", pageParams);  
-    List<Notify> list = notifyMapper.unreadNotify(maps);
+    List<Notify> list = notifyMapper.readNotify(maps);
     List<Notify> list1 =new ArrayList<Notify>();
     	for (Notify notify : list) {
     		notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
@@ -172,13 +183,10 @@ public class NotifyServiceImpl implements  NotifyService{
      * 参数说明:   @param notify
      * @return     void
      */
-    @Transactional
+    @Override
     public void updateNotify(Notify notify) {
-	     if(notify.getNotifyId()!=-1){
-	    	notifyMapper.updateNotify(notify);
-	     }else{
-		    notifyMapper.addNotify(notify);
-	     }
+	  
+	    	notifyMapper.updateNotify(notify);   
     }
 
     /**
@@ -190,7 +198,6 @@ public class NotifyServiceImpl implements  NotifyService{
      * @return     void
      */
 	@Override
-	@Transactional
 	public void addNotify(Notify notify) {
 
 			notifyMapper.addNotify(notify);
@@ -224,7 +231,7 @@ public class NotifyServiceImpl implements  NotifyService{
         Notify notify=notifyMapper.detailedNotify(maps);
         notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
         notify.setName(notify.getUsers().getUserName());
-        notify.setUsers(null);
+        //notify.setUsers(null);
 		notify.setTypeName(notify.getCodes().getCodeName());
 		StringBuffer s=new StringBuffer();
 		StringBuffer s1=new StringBuffer();
@@ -353,6 +360,7 @@ public class NotifyServiceImpl implements  NotifyService{
         pageParams.setPage(page);  
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);  
+        ToJson<Notify> json=new ToJson<Notify>();
         List<Notify> list = notifyMapper.selectNotifyManage(maps);
       for (Notify notify : list) {
     	  notify.setName(notify.getUsers().getUserName());
@@ -382,10 +390,9 @@ public class NotifyServiceImpl implements  NotifyService{
 				}
 			}
 		}
+      json.setObj(list);
+      json.setTotleNum(pageParams.getTotal());
 		return list;
 	}
-
-	
-
 
 }

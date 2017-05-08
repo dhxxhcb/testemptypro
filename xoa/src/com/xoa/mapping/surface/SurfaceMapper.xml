@@ -35,6 +35,17 @@
   select * from interface i  
   </select>
   
+  
+  <select id="getIeTitle1" resultMap="BaseResultMap">
+   SELECT STATUS_TEXT
+     from  interface where IE_TITLE=#{ieTitle} 
+  </select>
+  
+  
+  <update id="updateSysPara1" parameterType="com.xoa.model.surface.Surface" >
+    update interface
+     set STATUS_TEXT=#{statusText}  
+  </update>
  
   <insert id="updateSurf" parameterType="com.xoa.model.surface.Surface" >
     update interface

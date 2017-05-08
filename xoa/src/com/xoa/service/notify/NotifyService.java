@@ -67,7 +67,21 @@ public interface NotifyService {
 	 */
 	@DynDatasource
 	public ToJson<Notify>  unreadNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
-	
+	/**
+	 * 
+	 * 创建作者:   张丽军
+	 * 创建日期:   2017-4-19 上午12:03:54
+	 * 方法介绍:   已读信息
+	 * 参数说明:   @param maps
+	 * 参数说明:   @param page
+	 * 参数说明:   @param pageSize
+	 * 参数说明:   @param useFlag
+	 * 参数说明:   @param name
+	 * 参数说明:   @return
+	 * 参数说明:   @throws Exception
+	 * @return     List<Notify>
+	 */
+	@DynDatasource
 	public ToJson<Notify>  readNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
    /**
    * 
@@ -78,6 +92,7 @@ public interface NotifyService {
    * 参数说明:   @return
    * @return     List<Notify>
    */
+	@DynDatasource
    public List<Notify> getNotifyById(String id);
    
    /**
@@ -100,6 +115,7 @@ public interface NotifyService {
     * 参数说明:   @return
     * @return     Notify
     */
+   @DynDatasource
    public Notify getNotifyById(Integer id);
   /**
    * 
