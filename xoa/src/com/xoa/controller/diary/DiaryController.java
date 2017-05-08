@@ -201,13 +201,14 @@ public class DiaryController {
 	@RequestMapping(value="/getConByDiaId", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
 	public ToJson<Attachment>  getConByDiaId(DiaryModel diaryModel,HttpServletRequest request) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
+		String sqlType = "xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
 		if(diaryModel.getUserId()==null || "".equals(diaryModel.getUserId())){
 			HttpSession	session=request.getSession();
 			diaryModel.setUserId(session.getAttribute("userId").toString());
 		 }
-		ToJson<Attachment> diaryOtherToJson = diaryService.getDiaryByDiaId(diaryModel);
+		ToJson<Attachment> diaryOtherToJson = diaryService.getDiaryByDiaId(diaryModel,sqlType);
 		return diaryOtherToJson;
 	}
     /**

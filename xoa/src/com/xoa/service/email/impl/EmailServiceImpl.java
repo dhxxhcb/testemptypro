@@ -125,7 +125,7 @@ public class EmailServiceImpl implements EmailService {
 	@SuppressWarnings("all")
 	@Override
 	public ToJson<EmailBodyModel> selectEmail(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) throws Exception {
+			Integer pageSize, boolean useFlag,String sqlType) throws Exception {
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setPage(page);
@@ -149,7 +149,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -189,7 +189,7 @@ public class EmailServiceImpl implements EmailService {
 	 */
 	@Override
 	public ToJson<EmailBodyModel> listDrafts(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) {
+			Integer pageSize, boolean useFlag,String sqlType) {
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
@@ -213,7 +213,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -241,7 +241,7 @@ public class EmailServiceImpl implements EmailService {
 	 */
 	@Override
 	public ToJson<EmailBodyModel> listSendEmail(Map<String, Object> maps,
-			Integer page, Integer pageSize, boolean useFlag) throws Exception {
+			Integer page, Integer pageSize, boolean useFlag,String sqlType) throws Exception {
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
@@ -265,7 +265,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -292,7 +292,7 @@ public class EmailServiceImpl implements EmailService {
 	 */
 	@Override
 	public ToJson<EmailBodyModel> listWastePaperbasket(Map<String, Object> maps,
-			Integer page, Integer pageSize, boolean useFlag) throws Exception {
+			Integer page, Integer pageSize, boolean useFlag,String sqlType) throws Exception {
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
@@ -316,7 +316,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -343,7 +343,7 @@ public class EmailServiceImpl implements EmailService {
 	 */
 	@Override
 	public ToJson<EmailBodyModel> selectEmailBody(Map<String, Object> maps,
-			Integer page, Integer pageSize, boolean useFlag) throws Exception {
+			Integer page, Integer pageSize, boolean useFlag,String sqlType) throws Exception {
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
@@ -367,7 +367,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -392,7 +392,7 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     EmailBodyModel
 	 */
 	@Override
-	public EmailBodyModel queryById(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag) {
+	public EmailBodyModel queryById(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag,String sqlType) {
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
@@ -413,7 +413,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setCopyName("");
 		}
 		if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-			emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+			emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
 		}else{
 			emailBody.setAttachmentName("");
 			emailBody.setAttachmentId("");
@@ -437,7 +437,7 @@ public class EmailServiceImpl implements EmailService {
 	@SuppressWarnings("all")
 	@Override
 	public ToJson<EmailBodyModel> selectInbox(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) throws Exception {
+			Integer pageSize, boolean useFlag,String sqlType) throws Exception {
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
@@ -462,7 +462,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -491,7 +491,7 @@ public class EmailServiceImpl implements EmailService {
 	 */
 	@Override
 	public ToJson<EmailBodyModel> selectIsRead(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) throws Exception {
+			Integer pageSize, boolean useFlag,String sqlType) throws Exception {
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
@@ -514,7 +514,7 @@ public class EmailServiceImpl implements EmailService {
 				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");

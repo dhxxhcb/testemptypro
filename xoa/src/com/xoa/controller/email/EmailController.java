@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 
+ *
  * 创建作者:   张勇
  * 创建日期:   2017-4-20 上午10:32:14
  * 类介绍  :   邮件
@@ -46,7 +46,7 @@ public class EmailController {
 	private EmailService emailService;
 
 	/**
-	 * 
+	 *
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:33:59
 	 * 方法介绍:   发送邮件并保存
@@ -122,9 +122,9 @@ public class EmailController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		try {
-				emailService.sendEmail(
-						this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "1", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
-						, new EmailModel());
+			emailService.sendEmail(
+					this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "1", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
+					, new EmailModel());
 			return new ToJson<EmailBodyModel>(0,
 					"ok");
 		} catch (Exception e) {
@@ -135,7 +135,7 @@ public class EmailController {
 	}
 
 	/**
-	 * 
+	 *
 	 * 创建作者:      张勇
 	 * 创建日期:      2017-4-18 下午2:11:13
 	 * 类介绍:       保存草稿箱
@@ -211,9 +211,9 @@ public class EmailController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		try {
-				emailService.saveEmail(
-						this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "0", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
-						);
+			emailService.saveEmail(
+					this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "0", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
+			);
 			return new ToJson<EmailBodyModel>(0,
 					"ok");
 		} catch (Exception e) {
@@ -222,10 +222,10 @@ public class EmailController {
 					"errorSendEmail");
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:35:16
@@ -238,8 +238,9 @@ public class EmailController {
 	@RequestMapping(value = "/showEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	ToJson<EmailBodyModel> queryEmail(HttpServletRequest request) throws Exception {
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));
+		String sqlType = "xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
 		String flag = ServletRequestUtils.getStringParameter(request, "flag");
 		Integer page = ServletRequestUtils.getIntParameter(request, "page");
 		Integer pageSize = ServletRequestUtils.getIntParameter(request,
@@ -276,18 +277,18 @@ public class EmailController {
 
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		if (flag.trim().equals("inbox")) {
-			tojson = emailService.selectInbox(maps, page, pageSize, useFlag);
+			tojson = emailService.selectInbox(maps, page, pageSize, useFlag,sqlType);
 		} else if (flag.trim().equals("drafts")) {
-			tojson = emailService.listDrafts(maps, page, pageSize, useFlag);
+			tojson = emailService.listDrafts(maps, page, pageSize, useFlag,sqlType);
 		} else if (flag.trim().equals("outbox")) {
-			tojson = emailService.listSendEmail(maps, page, pageSize, useFlag);
+			tojson = emailService.listSendEmail(maps, page, pageSize, useFlag,sqlType);
 		} else if (flag.trim().equals("recycle")) {
 			tojson = emailService.listWastePaperbasket(maps, page, pageSize,
-					useFlag);
+					useFlag,sqlType);
 		} else if (flag.trim().equals("noRead")) {
-			tojson = emailService.selectIsRead(maps, page, pageSize, useFlag);
+			tojson = emailService.selectIsRead(maps, page, pageSize, useFlag,sqlType);
 		} else{
-			tojson = emailService.selectEmail(maps,page,pageSize,useFlag);
+			tojson = emailService.selectEmail(maps,page,pageSize,useFlag,sqlType);
 		}
 		if (tojson.getObj().size()>0) {
 			tojson.setFlag(0);
@@ -300,7 +301,7 @@ public class EmailController {
 	}
 
 	/**
-	 * 
+	 *
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:35:48
 	 * 方法介绍:   根据ID查询内容
@@ -311,36 +312,37 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/queryByID", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-		ToJson<EmailBodyModel> queryByID(HttpServletRequest request,@RequestParam(value = "emailId",required = false) Integer emailId,@RequestParam("flag")String flag,@RequestParam(value = "bodyId",required = false) Integer bodyId) throws Exception {
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));	
+	ToJson<EmailBodyModel> queryByID(HttpServletRequest request,@RequestParam(value = "emailId",required = false) Integer emailId,@RequestParam("flag")String flag,@RequestParam(value = "bodyId",required = false) Integer bodyId) throws Exception {
+		String sqlType = "xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
 		Map<String, Object> maps = new HashMap<String, Object>();
-			maps.put("emailId", emailId);
-			maps.put("bodyId", bodyId);
-			EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false);
-			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
-			if(!flag.trim().equals("isRead")){
-				if (emailBody.getBodyId() != null) {
-					tojson.setFlag(0);
-					tojson.setMsg("ok");
-					tojson.setObject(emailBody);
-				} else {
-					tojson.setFlag(1);
-					tojson.setMsg("errorQueryByID");
-				}
-			}else{
-				EmailModel email = new EmailModel();
-				email.setEmailId(emailId);
-				email.setReadFlag("1");
-				emailService.updateIsRead(email);
+		maps.put("emailId", emailId);
+		maps.put("bodyId", bodyId);
+		EmailBodyModel emailBody = emailService.queryById(maps, 1, 5, false,sqlType);
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
+		if(!flag.trim().equals("isRead")){
+			if (emailBody.getBodyId() != null) {
 				tojson.setFlag(0);
 				tojson.setMsg("ok");
 				tojson.setObject(emailBody);
+			} else {
+				tojson.setFlag(1);
+				tojson.setMsg("errorQueryByID");
 			}
-			return tojson;
+		}else{
+			EmailModel email = new EmailModel();
+			email.setEmailId(emailId);
+			email.setReadFlag("1");
+			emailService.updateIsRead(email);
+			tojson.setFlag(0);
+			tojson.setMsg("ok");
+			tojson.setObject(emailBody);
+		}
+		return tojson;
 	}
 
-	
+
 	/**
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:35:16
@@ -352,7 +354,7 @@ public class EmailController {
 	 */
 	@RequestMapping(value = "/deleteEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody ToJson<EmailBodyModel> deleteEmail(@RequestParam("flag")String flag,@RequestParam("deleteFlag") String deleteFlag,
-			@RequestParam("emailID") Integer emailId,HttpServletRequest request) {
+															@RequestParam("emailID") Integer emailId,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
@@ -363,7 +365,7 @@ public class EmailController {
 			returnRes = emailService.deleteOutEmail(emailId, deleteFlag);
 		} else if (flag.trim().equals("recycle")) {
 			returnRes = emailService.deleteRecycleEmail(emailId, deleteFlag);
-		} 
+		}
 //		else if (flag.trim().equals("drafts")) {
 //			emailService.deleteRecycleEmail(emailBodyModel, deleteFlag);
 //		}
@@ -377,34 +379,34 @@ public class EmailController {
 		return tojson;
 	}
 
-    /**
-     *
-     * 创建作者:   张勇
-     * 创建日期:   2017-4-20 上午10:35:16
-     * 方法介绍:   草稿箱删除
-     * 参数说明:   @param  bodyId 邮箱内容ID
-     * 参数说明:   @return json
-     * @return     String
-     */
-    @RequestMapping(value = "/deleteDraftsEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
-    public @ResponseBody ToJson<EmailBodyModel> deleteDraftsEmail(@RequestParam("bodyId") Integer bodyId,
-    	HttpServletRequest request) {
-    		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-    				"loginDateSouse"));
-    	try {
-            ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (0,"ok");
-            emailService.deleteByID(bodyId);
-           return tojson;
-        }catch (Exception e){
-            ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (1,"error");
-            return  tojson;
-        }
-    }
+	/**
+	 *
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:35:16
+	 * 方法介绍:   草稿箱删除
+	 * 参数说明:   @param  bodyId 邮箱内容ID
+	 * 参数说明:   @return json
+	 * @return     String
+	 */
+	@RequestMapping(value = "/deleteDraftsEmail", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody ToJson<EmailBodyModel> deleteDraftsEmail(@RequestParam("bodyId") Integer bodyId,
+																  HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		try {
+			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (0,"ok");
+			emailService.deleteByID(bodyId);
+			return tojson;
+		}catch (Exception e){
+			ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel> (1,"error");
+			return  tojson;
+		}
+	}
 
 
 
 	/**
-	 * 
+	 *
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:38:04
 	 * 方法介绍:   多条件查询邮件
@@ -415,8 +417,9 @@ public class EmailController {
 	@RequestMapping(value = "/querylistEmailBody", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	ToJson<EmailBodyModel> querylistEmailBody(HttpServletRequest request) throws Exception {
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));
+		String sqlType = "xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
 		Map<String, Object> maps = new HashMap<String, Object>();
 		// maps.put("startTime",starttime);
 		// maps.put("endTime", endtime);
@@ -426,7 +429,7 @@ public class EmailController {
 		maps.put("sign", "");
 		maps.put("keyword", "通知");
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
-		tojson = emailService.selectEmailBody(maps, 1,10, true);
+		tojson = emailService.selectEmailBody(maps, 1,10, true,sqlType);
 		if (tojson.getObj().size() > 0) {
 			tojson.setFlag(0);
 			tojson.setMsg("ok");
@@ -439,7 +442,7 @@ public class EmailController {
 	}
 
 	/**
-	 * 
+	 *
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:39:24
 	 * 方法介绍:   为null时转换为""
@@ -456,7 +459,7 @@ public class EmailController {
 	}
 
 	/**
-	 * 
+	 *
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:40:01
 	 * 方法介绍:   参数获取方法
@@ -497,15 +500,15 @@ public class EmailController {
 	 */
 	@SuppressWarnings("static-access")
 	public  EmailBodyModel returnObj(String fromId, String toId2, String copyToId,
-			 String subject,String content, String attachmentName, String attachmentId,
-			 Date sendTime,String sendFlag,String secretToId,
-			 String smsRemind,String important,
-			 String size,String fromWebmailId,String fromWebmail, String toWebmail,
-			 String compressContent,String webmailContent,String webmailFlag,
-			 String recvFromName,String recvFrom, String recvToId,
-			 String recvTo,String isWebmail, String isWf, String keyword,
-			 String secretLevel, String auditMan, String auditRemark,
-			 String copyToWebmail,String secretToWebmail,String praise){
+									 String subject,String content, String attachmentName, String attachmentId,
+									 Date sendTime,String sendFlag,String secretToId,
+									 String smsRemind,String important,
+									 String size,String fromWebmailId,String fromWebmail, String toWebmail,
+									 String compressContent,String webmailContent,String webmailFlag,
+									 String recvFromName,String recvFrom, String recvToId,
+									 String recvTo,String isWebmail, String isWf, String keyword,
+									 String secretLevel, String auditMan, String auditRemark,
+									 String copyToWebmail,String secretToWebmail,String praise){
 		EmailBodyModel emailBody = new EmailBodyModel();
 		emailBody.setFromId(this.returnValue(fromId));
 		emailBody.setToId2(this.returnValue(toId2));
@@ -545,8 +548,8 @@ public class EmailController {
 		emailBody.setPraise(this.returnValue(praise));
 		return emailBody;
 	}
-	
-	
+
+
 //	/**
 //	 * 
 //	 * @Title: isRead
@@ -766,7 +769,7 @@ public class EmailController {
 	// return JSON.toJSONStringWithDateFormat(tojson,"yyyy-MM-dd HH:mm:ss");
 	// }
 	// }
-	
+
 	@RequestMapping("/inboxup")
 	public String inboxUp(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
@@ -804,5 +807,5 @@ public class EmailController {
 				"loginDateSouse"));
 		return "app/email/writeMail";
 	}
-	
+
 }

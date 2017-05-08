@@ -83,7 +83,7 @@ public interface DiaryService {
 	 * @return     ToJson<DiaryModel>
 	 */
 	@DynDatasource
-	ToJson<Attachment> getDiaryByDiaId(DiaryModel diaryModel);
+	ToJson<Attachment> getDiaryByDiaId(DiaryModel diaryModel,String sqlType);
 	/**
 	 * 
 	 * 创建作者:   杨 胜

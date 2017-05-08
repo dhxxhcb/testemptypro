@@ -68,7 +68,7 @@ public interface EmailService {
 	 */
 	@DynDatasource
 	public ToJson<EmailBodyModel> selectEmail(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) throws Exception;
+			Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
 	/**
 	 * 
@@ -94,7 +94,7 @@ public interface EmailService {
 	 * @return     EmailBodyModel
 	 */
 	@DynDatasource
-	public EmailBodyModel queryById(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag);
+	public EmailBodyModel queryById(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag,String sqlType);
 
 	/**
 	 * 
@@ -111,7 +111,7 @@ public interface EmailService {
 	 */
 	@DynDatasource
 	ToJson<EmailBodyModel> selectInbox(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) throws Exception;
+			Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
 	/**
 	 * 
@@ -128,7 +128,7 @@ public interface EmailService {
 	 */
 	@DynDatasource
 	ToJson<EmailBodyModel> listDrafts(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) throws Exception;
+			Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
 	/**
 	 * 
@@ -145,7 +145,7 @@ public interface EmailService {
 	 */
 	@DynDatasource
 	ToJson<EmailBodyModel> listSendEmail(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) throws Exception;
+			Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
 	/**
 	 * 
@@ -162,7 +162,7 @@ public interface EmailService {
 	 */
 	@DynDatasource
 	ToJson<EmailBodyModel> listWastePaperbasket(Map<String, Object> maps,
-			Integer page, Integer pageSize, boolean useFlag) throws Exception;
+			Integer page, Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
 	/**
 	 * 
@@ -179,7 +179,7 @@ public interface EmailService {
 	 */
 	@DynDatasource
 	public ToJson<EmailBodyModel> selectEmailBody(Map<String, Object> maps,
-			Integer page, Integer pageSize, boolean useFlag) throws Exception;
+			Integer page, Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
 	/**
 	 * 
@@ -196,7 +196,7 @@ public interface EmailService {
 	 */
 	@DynDatasource
 	public ToJson<EmailBodyModel> selectIsRead(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) throws Exception;
+			Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 	
 	/**
 	 * 

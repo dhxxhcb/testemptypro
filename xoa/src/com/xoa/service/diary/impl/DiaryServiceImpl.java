@@ -216,7 +216,7 @@ public class DiaryServiceImpl implements DiaryService{
 	    * 参数说明:   @return
 	    * @return   ToJson<DiaryModel> 详情单条列表对象
 	    */
-	public ToJson<Attachment> getDiaryByDiaId(DiaryModel diaryModel) {
+	public ToJson<Attachment> getDiaryByDiaId(DiaryModel diaryModel,String sqlType) {
 		ToJson<Attachment> diaryListToJson=new ToJson<Attachment>(0, "");
 		DiaryModel diary=diaryModelMapper.getDiaryByDiaId(diaryModel);
 		if(diary==null){
@@ -231,7 +231,7 @@ public class DiaryServiceImpl implements DiaryService{
 		diary.setReaders("");
 		diaryListToJson.setObject(diary);
 		List<Attachment> attachmentList=null;
-		attachmentList=GetAttachmentListUtil.returnAttachment(diary.getAttachmentName(),diary.getAttachmentId());
+		attachmentList=GetAttachmentListUtil.returnAttachment(diary.getAttachmentName(),diary.getAttachmentId(),sqlType);
 		diaryListToJson.setObj(attachmentList);
 		return diaryListToJson;
 	}

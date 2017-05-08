@@ -17,7 +17,7 @@ public class GetAttachmentListUtil {
 	 * 参数说明:   @return
 	 * @return     List<Attachment>
 	 */
-	public static List<Attachment> returnAttachment(String attachmentName,String attachmentId){
+	public static List<Attachment> returnAttachment(String attachmentName,String attachmentId,String sqlType){
 		List<Attachment> list = new ArrayList<Attachment>();
 		if(StringUtils.checkNull(attachmentId) && StringUtils.checkNull(attachmentName)){
 			return list;
@@ -31,6 +31,7 @@ public class GetAttachmentListUtil {
 				att.setAid(Integer.valueOf(attachmentIds[i].substring(0, attachmentIds[i].lastIndexOf("@"))));
 				att.setYm(attachmentIds[i].substring(attachmentIds[i].indexOf("@")+1,attachmentIds[i].lastIndexOf("_")));
 				att.setAttachId(Integer.valueOf(attachmentIds[i].substring(attachmentIds[i].indexOf("_")+1,attachmentIds[i].length())));
+				att.setAttUrl("AID="+att.getAid()+"&COMPANY="+sqlType+"&YM="+att.getYm()+"&ATTACHMENT_ID="+att.getAttachId()+"&ATTACHMENT_NAME="+att.getAttachName());
 				list.add(att);
 			}
 			return list;
