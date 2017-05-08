@@ -23,6 +23,8 @@ public interface FlowSortMapper {
 
     List<FlowSort> selectAllFlowSort();
 
+    int getChildNumber(Integer sortId);
+
     int selectNoflowSort();
 
     FlowSort selectByPrimaryKey(Integer sortId);

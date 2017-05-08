@@ -57,13 +57,13 @@ public class JobClassifyController {
         return  service.insertFlow(parentId,sortNo,flowName,departmentId);
     }
 
-    @RequestMapping("/flowclassify/FormUpdate")
-    public BaseWrapper updateForm(@RequestParam(defaultValue = "0",required = false)Integer parentId,Integer sortNo,String formName,@RequestParam(defaultValue = "0",required = false)Integer departmentId){
-        return  null;
+    @RequestMapping("/flowclassify/formUpdate")
+    public BaseWrapper updateForm(Integer formId,Integer parentId,Integer sortNo,String formName,Integer departmentId){
+        return  service.formUpdate(formId,parentId,sortNo,formName,departmentId);
     }
     @RequestMapping("/flowclassify/flowUpdate")
-    public BaseWrapper updateFlow(@RequestParam(defaultValue = "0",required = false)Integer parentId,Integer sortNo,String formName,@RequestParam(defaultValue = "0",required = false)Integer departmentId){
-        return  null;
+    public BaseWrapper updateFlow(Integer flowId,Integer parentId,Integer sortNo,String flowName,Integer departmentId){
+        return  service.flowUpdate(flowId,parentId,sortNo,flowName,departmentId);
     }
 
 

@@ -242,6 +242,8 @@ ORDER BY SORT_ID,SORT_NO ASC
   <select id="selectNoformSort" resultType="Integer">
     SELECT COUNT(flow_form_type.FORM_ID) AS FORM_COUNTS FROM flow_form_type WHERE flow_form_type.FORM_SORT=0 or flow_form_type.FORM_SORT IS NULL
   </select>
-
+  <select id="getChildNumber" resultType="Integer" parameterType="Integer">
+    SELECT COUNT(*) FROM form_sort WHERE form_sort.SORT_PARENT=#{sordId}
+  </select>
 
 </mapper>

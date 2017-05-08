@@ -39,6 +39,11 @@ public class JobClassifyService {
     @Autowired
     FlowSortMapper flowSortMapper;
 
+
+
+    private static final int CHECK_TYPE_FLOW=0x11;
+    private static final int CHECK_TYPE_FORM=0x12;
+
     @Autowired
     private DepartmentService departmentService;
 
@@ -150,6 +155,8 @@ public class JobClassifyService {
     @Transactional(rollbackFor = JobClassifyException.class)
     public BaseWrapper insertForm(Integer parentId,Integer sortNo,String formName,Integer departmentId){
         BaseWrapper wrapper =   new BaseWrapper();
+        wrapper.setFlag(false);
+        wrapper.setStatus(true);
       String res=  StringUtils.checkNullUtils(new CheckCallBack() {
             @Override
             public boolean isNull(Object obj) {
@@ -167,33 +174,16 @@ public class JobClassifyService {
                 return false;
             }
         },sortNo,"表单分类序号不能为空",formName,"表单分类名称不能为空");
-      if(res!=null){
-          wrapper.setFlag(false);
-          wrapper.setStatus(true);
-          wrapper.setMsg(res);
-          return wrapper;
-      }
-      if(departmentId!=0){
-          //查询部门是否存在
-          Department department =departmentService.getDeptById(departmentId);
-          if(department==null||department.getDeptId()==null){
-              wrapper.setFlag(false);
-              wrapper.setStatus(true);
-              wrapper.setMsg("所属部门不存在");
-              return wrapper;
-          }
-      }
-        if(parentId!=0){
-            //查询父分类是否存在
-            FormSort formSort =sortMapper.selectByPrimaryKey(parentId);
-            if(formSort==null||formSort.getSortId()==null){
-                wrapper.setFlag(false);
-                wrapper.setStatus(true);
-                wrapper.setMsg("所属分类不存在");
-                return wrapper;
-            }
-
+        if(res!=null){
+            wrapper.setMsg(res);
+            return wrapper;
         }
+        String  resc=  checkParentOrDepartment(parentId,departmentId,CHECK_TYPE_FORM);
+        if(resc!=null){
+            wrapper.setMsg(resc);
+            return wrapper;
+        }
+
       try{
           FormSort sortParent =new FormSort();
           sortParent.setSortId(parentId);
@@ -225,6 +215,8 @@ public class JobClassifyService {
     @Transactional(rollbackFor = JobClassifyException.class)
     public BaseWrapper insertFlow(Integer parentId,Integer sortNo,String flowName,Integer departmentId){
         BaseWrapper wrapper =   new BaseWrapper();
+        wrapper.setFlag(false);
+        wrapper.setStatus(true);
         String res=  StringUtils.checkNullUtils(new CheckCallBack() {
             @Override
             public boolean isNull(Object obj) {
@@ -243,31 +235,13 @@ public class JobClassifyService {
             }
         },sortNo,"流程分类序号不能为空",flowName,"流程分类名称不能为空");
         if(res!=null){
-            wrapper.setFlag(false);
-            wrapper.setStatus(true);
             wrapper.setMsg(res);
             return wrapper;
         }
-        if(departmentId!=0){
-            //查询部门是否存在
-            Department department =departmentService.getDeptById(departmentId);
-            if(department==null||department.getDeptId()==null){
-                wrapper.setFlag(false);
-                wrapper.setStatus(true);
-                wrapper.setMsg("所属部门不存在");
-                return wrapper;
-            }
-        }
-        if(parentId!=0){
-            //查询父分类是否存在
-            FlowSort flowSort=flowSortMapper.selectByPrimaryKey(parentId);
-            if(flowSort==null||flowSort.getSortId()==null){
-                wrapper.setFlag(false);
-                wrapper.setStatus(true);
-                wrapper.setMsg("所属分类不存在");
-                return wrapper;
-            }
-
+        String  resc=  checkParentOrDepartment(parentId,departmentId,CHECK_TYPE_FLOW);
+        if(resc!=null){
+            wrapper.setMsg(resc);
+            return wrapper;
         }
         try{
             FlowSort flowParent =new FlowSort();
@@ -295,6 +269,133 @@ public class JobClassifyService {
 
     }
 
+    @Transactional(rollbackFor = JobClassifyException.class)
+    public BaseWrapper formUpdate(Integer formId,Integer parentId,Integer sortNo,String formName,Integer departmentId){
+        BaseWrapper wrapper =   new BaseWrapper();
+        wrapper.setFlag(false);
+        wrapper.setStatus(true);
+        if(formId==null){
+            wrapper.setMsg("表单id不能为空");
+            return wrapper;
+        }
+        FormSort exeSort=sortMapper.selectByPrimaryKey(formId);
+        if(exeSort==null){
+            wrapper.setMsg("无效的请求id");
+            return wrapper;
+        }
+        //更新当前表单
+        FormSort sortCur=new FormSort();
+        sortCur.setDeptId(departmentId);
+        sortCur.setSortId(formId);
+        sortCur.setSortName(formName);
+        sortCur.setSortNo(sortNo);
+        sortCur.setSortParent(parentId);
+        Integer curRes= sortMapper.updateByPrimaryKeySelective(sortCur);
+        if(curRes<0) throw  new JobClassifyException("表单更新失败");
+        if(exeSort.getSortParent()!=0){
+            //判断父表单是否还有儿子有不操作，没有更新成无儿子
+            Integer childSize=  sortMapper.getChildNumber(exeSort.getSortParent());
+            L.w("o==||===========================>"+childSize);
+            if(childSize>2){
+                //不用更新
+            }else{
+                FormSort sortParent=new FormSort();
+                sortParent.setHaveChild("0");
+                sortParent.setSortId(exeSort.getSortParent());
+                Integer parRes  =  sortMapper.updateByPrimaryKeySelective(sortParent);
+                if(parRes<1) throw  new JobClassifyException("表单更新失败");
+            }
+        }
+
+        wrapper.setFlag(true);
+        wrapper.setStatus(true);
+        wrapper.setMsg("更新成功");
+        return  wrapper;
+    }
+
+
+    @Transactional(rollbackFor = JobClassifyException.class)
+    public BaseWrapper flowUpdate(Integer flowId,Integer parentId,Integer sortNo,String flowName,Integer departmentId){
+        BaseWrapper wrapper =   new BaseWrapper();
+        wrapper.setFlag(false);
+        wrapper.setStatus(true);
+        if(flowId==null){
+            wrapper.setMsg("表单id不能为空");
+            return wrapper;
+        }
+        FlowSort exeSort=flowSortMapper.selectByPrimaryKey(flowId);
+        if(exeSort==null){
+            wrapper.setMsg("无效的请求id");
+            return wrapper;
+        }
+        //更新当前表单
+        FlowSort sortCur=new FlowSort();
+        sortCur.setDeptId(departmentId);
+        sortCur.setSortId(flowId);
+        sortCur.setSortName(flowName);
+        sortCur.setSortNo(sortNo);
+        sortCur.setSortParent(parentId);
+        Integer curRes= flowSortMapper.updateByPrimaryKeySelective(sortCur);
+        if(curRes<0) throw  new JobClassifyException("表单更新失败");
+        if(exeSort.getSortParent()!=0){
+            //判断父表单是否还有儿子有不操作，没有更新成无儿子
+            Integer childSize=  flowSortMapper.getChildNumber(exeSort.getSortParent());
+            L.w("o==||===========================>"+childSize);
+            if(childSize>2){
+                //不用更新
+            }else{
+                FlowSort sortParent=new FlowSort();
+                sortParent.setHaveChild("0");
+                sortParent.setSortId(exeSort.getSortParent());
+                Integer parRes  =  flowSortMapper.updateByPrimaryKeySelective(sortParent);
+                if(parRes<1) throw  new JobClassifyException("表单更新失败");
+            }
+        }
+
+        wrapper.setFlag(true);
+        wrapper.setStatus(true);
+        wrapper.setMsg("更新成功");
+        return  wrapper;
+    }
+
+
+
+
+
+
+
+    private String checkParentOrDepartment(Integer parentId,Integer departmentId,Integer type){
+        if(departmentId!=0){
+            //查询部门是否存在
+            Department department =departmentService.getDeptById(departmentId);
+            if(department==null||department.getDeptId()==null){
+                return "所属部门不存在";
+            }
+        }
+        if(parentId!=0){
+            //查询父分类是否存在
+            return null;
+        }
+        switch (type){
+            case CHECK_TYPE_FORM:
+                    //查询父分类是否存在
+                    FormSort formSort =sortMapper.selectByPrimaryKey(parentId);
+                    if(formSort==null||formSort.getSortId()==null){
+                        return "所属分类不存在";
+                    }
+                break;
+            case CHECK_TYPE_FLOW:
+                FlowSort flowSort=flowSortMapper.selectByPrimaryKey(parentId);
+                if(flowSort==null||flowSort.getSortId()==null){
+                    return "所属分类不存在";
+                }
+                break;
+            default:
+                return "发生未知程序错误！";
+
+        }
+        return null;
+    }
 
 
 }
