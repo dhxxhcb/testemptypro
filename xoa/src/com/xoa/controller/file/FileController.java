@@ -165,7 +165,6 @@ public class FileController {
 		for(FileSortModel f:rootTree){
 			sortidList.add(f.getSortId()+"");
 		}
-		System.out.println("---------------后-------------------"+rootTree.size());
 		
 		// 取子节点
 		if(rootTree.size()>0)
@@ -328,10 +327,10 @@ public class FileController {
 	 * 
 	 * 创建作者:   杨 胜
 	 * 创建日期:   2017-4-18 下午4:12:25
-	 * 方法介绍:   输出到页面File_Sort：json类型
+	 * 方法介绍:   通过循环获取条判断返回不同类型数据 从而一个请求接口处理多种业务
 	 * 参数说明:   @param file
 	 * 参数说明:   @return
-	 * @return   void
+	 * @return   void  通过HtmlUtil.writerJson() 方法中out对象写到response中返回json数据
 	 */
 	@RequestMapping(value="/catalog")
 	public void showFiles(FileSortModel file,HttpServletResponse response,String postType,HttpServletRequest request,String deptId,String userPriv) {

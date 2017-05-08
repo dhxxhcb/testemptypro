@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.xoa.controller.file.FileController;
 import com.xoa.model.diary.DiaryModel;
+import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.diary.DiaryService;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
@@ -108,7 +109,7 @@ public class DiaryController {
 	 * 方法介绍:   动态查询日志操作
 	 * 参数说明:   @param diaryModel
 	 * 参数说明:   @return
-	 * @return   getAll
+	 * @return   ToJson<DiaryModel> 自己的日志内容
 	 */
 	@RequestMapping(value="/getIndex", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
@@ -143,8 +144,7 @@ public class DiaryController {
 			@RequestParam("page") Integer page,
 			@RequestParam("pageSize") Integer pageSize,
 			@RequestParam("useFlag") Boolean useFlag) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute("loginDateSouse"));
 		  PageParams pageParams = new PageParams();  
 	        pageParams.setUseFlag(useFlag);  
 	        pageParams.setPage(page);  
@@ -200,16 +200,26 @@ public class DiaryController {
 	 */
 	@RequestMapping(value="/getConByDiaId", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
-	public ToJson<DiaryModel>  diaryGetOther(DiaryModel diaryModel,HttpServletRequest request) {
+	public ToJson<Attachment>  getConByDiaId(DiaryModel diaryModel,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		if(diaryModel.getUserId()==null || "".equals(diaryModel.getUserId())){
 			HttpSession	session=request.getSession();
 			diaryModel.setUserId(session.getAttribute("userId").toString());
 		 }
-		ToJson<DiaryModel> diaryOtherToJson = diaryService.getDiaryByDiaId(diaryModel);
+		ToJson<Attachment> diaryOtherToJson = diaryService.getDiaryByDiaId(diaryModel);
 		return diaryOtherToJson;
 	}
+    /**
+     * 
+     * 创建作者:   杨 胜
+     * 创建日期:   2017-5-8 上午9:55:01
+     * 方法介绍:   通过日志ID删除一条日志信息
+     * 参数说明:   @param diaryModel
+     * 参数说明:   @param request
+     * 参数说明:   @return
+     * @return     ToJson<DiaryModel>  删除日志信息
+     */
 	@RequestMapping(value="/delete", produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
 	public ToJson<DiaryModel>  deletDiaById(DiaryModel diaryModel,HttpServletRequest request) {

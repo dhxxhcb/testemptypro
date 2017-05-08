@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.xoa.model.diary.DiaryModel;
+import com.xoa.model.enclosure.Attachment;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.DynDatasource;
 import com.xoa.util.page.PageParams;
@@ -82,7 +83,7 @@ public interface DiaryService {
 	 * @return     ToJson<DiaryModel>
 	 */
 	@DynDatasource
-	ToJson<DiaryModel> getDiaryByDiaId(DiaryModel diaryModel);
+	ToJson<Attachment> getDiaryByDiaId(DiaryModel diaryModel);
 	/**
 	 * 
 	 * 创建作者:   杨 胜

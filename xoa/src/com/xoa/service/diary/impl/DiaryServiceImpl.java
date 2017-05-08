@@ -3,6 +3,7 @@ package com.xoa.service.diary.impl;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,8 +19,10 @@ import org.springframework.stereotype.Service;
 
 import com.xoa.dao.diary.DiaryModelMapper;
 import com.xoa.model.diary.DiaryModel;
+import com.xoa.model.enclosure.Attachment;
 import com.xoa.model.file.FileSortModel;
 import com.xoa.service.diary.DiaryService;
+import com.xoa.util.GetAttachmentListUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 /**
@@ -44,7 +47,7 @@ public class DiaryServiceImpl implements DiaryService{
 	 * 方法介绍:   工作日志首页接口
 	 * 参数说明:   @param diaryModel
 	 * 参数说明:   @return
-	 * @return   ToJson<DiaryModel>
+	 * @return   ToJson<DiaryModel> 取得的首页加载内容
 	 */
 	public ToJson<DiaryModel> getDiaryIndex(DiaryModel diaryModel,PageParams pageParams ) {
 	       Map<String, Object> diaryMap=new  HashMap<String, Object>();
@@ -204,12 +207,21 @@ public class DiaryServiceImpl implements DiaryService{
 	public int deletDiaById(DiaryModel diaryModel) {
 		return diaryModelMapper.deletDiaById(diaryModel);
 	}
-	/**
-	 * 日志详情
-	 */
-	public ToJson<DiaryModel> getDiaryByDiaId(DiaryModel diaryModel) {
-		ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0, "");
+	 /**
+	    * 
+	    * 创建作者:   杨 胜
+	    * 创建日期:   2017-4-19 下午3:39:29
+	    * 方法介绍:   通过DiaId取得日志详情 并设置已读未读
+	    * 参数说明:   @param diaryModel
+	    * 参数说明:   @return
+	    * @return   ToJson<DiaryModel> 详情单条列表对象
+	    */
+	public ToJson<Attachment> getDiaryByDiaId(DiaryModel diaryModel) {
+		ToJson<Attachment> diaryListToJson=new ToJson<Attachment>(0, "");
 		DiaryModel diary=diaryModelMapper.getDiaryByDiaId(diaryModel);
+		if(diary==null){
+			return diaryListToJson;
+		}
 		if("0".equals(readerFlag(diaryModel.getUserId(),diary.getReaders()))){
 		   diary.setReaders(diary.getReaders()+diaryModel.getUserId()+",");
 		   diaryModelMapper.updateReadersByDiaId(diary);
@@ -218,6 +230,9 @@ public class DiaryServiceImpl implements DiaryService{
 		diary.setDiaTime(temp);
 		diary.setReaders("");
 		diaryListToJson.setObject(diary);
+		List<Attachment> attachmentList=null;
+		attachmentList=GetAttachmentListUtil.returnAttachment(diary.getAttachmentName(),diary.getAttachmentId());
+		diaryListToJson.setObj(attachmentList);
 		return diaryListToJson;
 	}
 	/**
@@ -228,7 +243,7 @@ public class DiaryServiceImpl implements DiaryService{
 	 * 参数说明:   @param userId
 	 * 参数说明:   @param readers
 	 * 参数说明:   @return
-	 * @return     String
+	 * @return     String 返回字符串“1”为已读 “0”为未读通过前端判断进行辨别
 	 */
 	   public String readerFlag(String userId,String readers){
 	    	 String[] readersStrings=readers.split(",");

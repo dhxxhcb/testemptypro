@@ -9,6 +9,7 @@ import com.xoa.service.email.EmailService;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.DateFormat;
+import com.xoa.util.GetAttachmentListUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
@@ -148,7 +149,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(this.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -212,7 +213,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(this.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -264,7 +265,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(this.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -315,7 +316,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(this.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -366,7 +367,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(this.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -412,7 +413,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setCopyName("");
 		}
 		if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-			emailBody.setAttachment(this.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+			emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
 		}else{
 			emailBody.setAttachmentName("");
 			emailBody.setAttachmentId("");
@@ -461,7 +462,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(this.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -513,7 +514,7 @@ public class EmailServiceImpl implements EmailService {
 				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(this.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId()));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -612,37 +613,7 @@ public class EmailServiceImpl implements EmailService {
 		return returnRes;
 	}
 	
-	/**
-	 * 
-	 * 创建作者:   张勇
-	 * 创建日期:   2017-4-27 下午1:56:05
-	 * 方法介绍:   返回附件集合
-	 * 参数说明:   @param attachmentName
-	 * 参数说明:   @param attachmentId
-	 * 参数说明:   @return
-	 * @return     List<Attachment>
-	 */
-	public List<Attachment> returnAttachment(String attachmentId,String attachmentName){
-		List<Attachment> list = new ArrayList<Attachment>();
-		if(StringUtils.checkNull(attachmentId) && StringUtils.checkNull(attachmentName)){
-			return list;
-		}else{
-			String[] attachmentNames = attachmentName.split(",");
-			String[] attachmentIds = attachmentId.split("\\*");
-			int attachmentidLength = attachmentIds.length;
-			for(int i = 0 ; i <attachmentidLength ; i++){
-				Attachment att = new Attachment();
-				att.setAttachName(attachmentIds[i]);
-				att.setAid(Integer.valueOf(attachmentNames[i].substring(0, attachmentNames[i].lastIndexOf("@"))));
-				att.setYm(attachmentNames[i].substring(attachmentNames[i].indexOf("@")+1,attachmentNames[i].lastIndexOf("_")));
-				att.setAttachId(Integer.valueOf(attachmentNames[i].substring(attachmentNames[i].indexOf("_")+1,attachmentNames[i].length())));
-				list.add(att);
-			}
-			return list;
-		}
-		
-		
-	}
+
 	/**
 	 * 
 	 * 创建作者:   张勇
