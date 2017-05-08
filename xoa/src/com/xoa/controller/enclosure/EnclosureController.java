@@ -6,6 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -67,7 +71,7 @@ public class EnclosureController {
 			try {
 				String company="xoa" + (String) request.getSession().getAttribute(
 						"loginDateSouse");
-				List<Attachment> list=enclosureService.upload(files, company, module,isAttach);  
+				List<Attachment> list=enclosureService.upload(files, company, module);  
 				json.setObj(list);
 	            json.setMsg("OK");
 	            json.setFlag(0);
@@ -148,7 +152,6 @@ public class EnclosureController {
 						@RequestParam("ATTACHMENT_ID") String attachmentId ,
 						@RequestParam("ATTACHMENT_NAME") String attachmentName ,
 						@RequestParam("COMPANY") String company ,
-						boolean isAttach,
 						HttpServletResponse response,
 						HttpServletRequest request) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
@@ -163,17 +166,10 @@ public class EnclosureController {
 		  sb=sb.append(rb.getString("upload.linux"));
 		}
 		//String basePath="D:"+System.getProperty("file.separator");
-		 if(isAttach){
-	    	 //直接显示路径
-	    	 sb.append("attach_web");
-	     }else{
-	    	 //隐藏路径
-	    	 sb.append("attach");
-	     }
-	
-		 String path=sb.toString()+System.getProperty("file.separator")+company+
+	  	
+		 String path=sb.toString()+System.getProperty("file.separator")+"attach"+System.getProperty("file.separator")+company+
 	    		 System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym+ System.getProperty("file.separator")+attachmentId+"."+attachmentName;	 	  	 
-		
+		System.out.println(path.toString());
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
 		response.setHeader("Content-Disposition", "attachment;fileName="
@@ -295,16 +291,7 @@ public class EnclosureController {
 
 		}
 	}
-	
-	public void dld(@RequestParam("ATTACHMENT_ID") String attachmentId ,
-			@RequestParam("ATTACHMENT_NAME") String attachmentName,
-			HttpServletRequest request){
-		
-		
-	}
-	
-	
-	
+
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月30日 上午9:52:22
@@ -386,7 +373,53 @@ public class EnclosureController {
         }
     }
 
-	
+    @RequestMapping(value={"/xs"},method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
+    public void loadImage(@RequestParam("AID") String aid ,
+			@RequestParam("MODULE") String module ,
+			@RequestParam("YM") String ym ,
+			@RequestParam("ATTACHMENT_ID") String attachmentId ,
+			@RequestParam("ATTACHMENT_NAME") String attachmentName ,
+			@RequestParam("COMPANY") String company ,
+			HttpServletResponse response,
+			HttpServletRequest request) throws Exception { 
+    	
+    	ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+	ResourceBundle rb =  ResourceBundle.getBundle("upload");
+	String osName = System.getProperty("os.name");
+	StringBuffer sb=new StringBuffer();
+	if(osName.toLowerCase().startsWith("win")){  
+	  sb=sb.append(rb.getString("upload.win"));  
+	}else{
+	  sb=sb.append(rb.getString("upload.linux"));
+	}
+	//String basePath="D:"+System.getProperty("file.separator");
+    String path=sb.toString()+System.getProperty("file.separator")+"attach"+System.getProperty("file.separator")+company+
+   		 System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym+ System.getProperty("file.separator")+attachmentId+"."+attachmentName;	 	  	 
+    	
+    try {
+			
+			InputStream inputStream = new FileInputStream(new File(path));
+
+			OutputStream os = response.getOutputStream();
+			byte[] b = new byte[2048];
+			int length;
+			while ((length = inputStream.read(b)) > 0) {
+				os.write(b, 0, length);
+			}
+			 // 这里主要关闭。
+			os.close();
+			inputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
+     
+    }  
+    
+
 	
 	
    }

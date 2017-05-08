@@ -1,9 +1,7 @@
 package com.xoa.service.schedule.impl;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.xoa.dao.schedule.CalendarMapper;
 import com.xoa.model.schedule.Calendar;
 import com.xoa.service.schedule.CalenderService;
-import com.xoa.util.dataSource.DynDatasource;
+
 @Service
 public class CalenderServiceImpl implements CalenderService {
 	@Resource
@@ -67,8 +65,8 @@ public class CalenderServiceImpl implements CalenderService {
 				int cT=calendar.getCalTime();
 				int eT=calendar.getEndTime();
 				if(pd>=cT&&pd<=eT){			
-					Calendar cal=new Calendar();
-					cal.setCalData(data);
+					//Calendar cal=new Calendar();
+					//calendar.setCalData(data);
 					list1.add(calendar);
 				}
 			}

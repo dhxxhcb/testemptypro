@@ -43,10 +43,20 @@ public class Attachment {
     private String attUrl;
     
     private String url;
-    
-    
+    /**
+  	 * 是否是图片(0-是,1-不是)
+  	 */
+    private Byte isImage;
 
-    public String getAttUrl() {
+    public Byte getIsImage() {
+		return isImage;
+	}
+
+	public void setIsImage(Byte isImage) {
+		this.isImage = isImage;
+	}
+
+	public String getAttUrl() {
 		return attUrl;
 	}
 

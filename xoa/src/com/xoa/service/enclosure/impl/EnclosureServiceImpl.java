@@ -3,6 +3,7 @@ package com.xoa.service.enclosure.impl;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -56,14 +57,14 @@ public class EnclosureServiceImpl implements EnclosureService {
 	 * @return     List<Attachment>  附件信息集合
 	 */
 	@Override
-	public List<Attachment> upload(MultipartFile[] files,String company,String module,boolean isAttach) {
+	public List<Attachment> upload(MultipartFile[] files,String company,String module) {
 		if(files.length==0){
 			return null;
 		}
 		ResourceBundle rb =  ResourceBundle.getBundle("upload");
 		String os = System.getProperty("os.name");
 		StringBuffer sb=new StringBuffer();
-		if(os.toLowerCase().startsWith("win")){  
+		if(os.toLowerCase().startsWith("win")){  			
 		  sb=sb.append(rb.getString("upload.win"));  
 		}else{
 		  sb=sb.append(rb.getString("upload.linux"));
@@ -73,15 +74,9 @@ public class EnclosureServiceImpl implements EnclosureService {
 	     String ym = new SimpleDateFormat("yyMM").format(new Date());	
 	    // String basePath="D:"+System.getProperty("file.separator");
 	     //StringBuffer sb=new StringBuffer();
-	     if(isAttach){
-	    	 //直接显示路径
-	    	 sb.append(System.getProperty("file.separator")).append("attach_web");
-	     }else{
-	    	 //隐藏路径
-	    	 sb.append(System.getProperty("file.separator")).append("attach");
-	     }
-	     String path=sb.toString()+System.getProperty("file.separator")+company+
-	    		 System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
+	    //sb.append(System.getProperty("file.separator")).append("attach");
+	     String path=sb.toString()+System.getProperty("file.separator")+"attach"+System.getProperty("file.separator")+
+	    		 company+System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
 	 	Attachment attachment=new Attachment();
 	 	 for (int i = 0; i < files.length; i++) {  
 	        	MultipartFile file = files[i];
@@ -93,8 +88,6 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            //后缀名
 //	        	String Suffix = fileName.substring(
 //	        			fileName.indexOf(".") + 1);
-	            //当前时间戳
-	           // System.currentTimeMillis();
 	    		int attachID=Math.abs((int) System.currentTimeMillis()); 
 		    	String newFileName=Integer.toString(attachID)+"."+fileName; 
 	            if (!file.isEmpty()) {  
@@ -108,6 +101,15 @@ public class EnclosureServiceImpl implements EnclosureService {
 	                    e.printStackTrace();  
 	                }  
 	            }  
+	            byte isImg=3;
+	            String type=fileName.substring(fileName.indexOf(".") + 1);
+	            String[] imagType={"jpg","png","bmp","gif","JPG","PNG","BMP","GIF"};
+	            List<String> imageTyepLists=Arrays.asList(imagType);
+	            if(imageTyepLists.contains(type)){
+	                isImg=0;
+	            }else{
+	            	isImg=1;
+	            }
 	            byte a=0;
 	            byte b=2;
 	          //获得模块名
@@ -126,10 +128,9 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            attachment=findByLast();
 	        	String attUrl="AID="+attachment.getAid()+"&"+"MODULE="+module+"&"+"COMPANY="+company+"&"+"YM="+attachment.getYm()+"&"+"ATTACHMENT_ID="+attachment.getAttachId()+"&"+"ATTACHMENT_NAME="+attachment.getAttachName();
 	            attachment.setAttUrl(attUrl);
-	            if(isAttach){
-	            	String url=path+System.getProperty("file.separator")+fileName;
-	            	attachment.setUrl(url);
-	            }
+	            String url=path+System.getProperty("file.separator")+fileName;
+	            attachment.setUrl(url);
+	            attachment.setIsImage(isImg);
 	            list.add(attachment);
 	  }
     }
