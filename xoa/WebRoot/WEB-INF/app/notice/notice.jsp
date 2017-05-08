@@ -272,11 +272,23 @@ $(function () {
 						}else{
 							var news = "";
                         	for (var i = 0; i < data.obj.length; i++) {
+                        		var toTypeName = ""
+                        		if(data.obj[i].toId != ""){
+                        			toTypeName+="部门";
+                        		}
+                        		if(data.obj[i].privId != ""){
+                        			toTypeName+=",角色";
+                        		}
+                        		if(data.obj[i].userId != ""){
+                        			toTypeName+=",用户";
+                        		}
+                        	  // var toTypeName = data.obj[i].toId==""?(data.obj[i].privId==""?"用户":"角色"):"部门";
+                        	   
                                news += "<tr><td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].toId+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
+                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class=''>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
+                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class=''>"+toTypeName+"</ a></td>"+
+                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class=''>"+data.obj[i].typeName+"</ a></td>"+
                                        +news;
                            }
 							var loadindex=setInterval(function(){
@@ -286,7 +298,7 @@ $(function () {
 							},1000);
 							
 							if(cb){
-								cb(obj.totleNum);
+								cb(data.totleNum);
 							}
 						}
 					}   
