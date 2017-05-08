@@ -56,12 +56,11 @@ public class CalenderServiceImpl implements CalenderService {
 		//Long day=Long.valueOf(calTime);
 		SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		List<Calendar> listAll=new ArrayList<Calendar>();
-		List<Calendar> list1=null;
 		for(int i=0;i<30;i++){
-		Calendar Allcal=new Calendar();		  
+			Calendar Allcal=new Calendar();		  
 			int pd=calTime+86400*i;
 			Long t=(long) (pd*1000L);
-			list1=new ArrayList<Calendar>();
+			List<Calendar> list1=new ArrayList<Calendar>();
 			String data = format.format(t); 
 			for(int j=0;j<list.size();j++){
 				Calendar calendar=list.get(j);

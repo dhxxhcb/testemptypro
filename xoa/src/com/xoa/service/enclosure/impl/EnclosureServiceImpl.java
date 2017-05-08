@@ -61,7 +61,6 @@ public class EnclosureServiceImpl implements EnclosureService {
 			return null;
 		}
 		ResourceBundle rb =  ResourceBundle.getBundle("upload");
-		//String name = rb.getString("mysql.driverClassName");
 		String os = System.getProperty("os.name");
 		StringBuffer sb=new StringBuffer();
 		if(os.toLowerCase().startsWith("win")){  
