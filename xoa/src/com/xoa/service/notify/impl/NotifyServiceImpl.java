@@ -226,24 +226,17 @@ public class NotifyServiceImpl implements  NotifyService{
         Notify notify=notifyMapper.detailedNotify(maps);
         notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
         notify.setName(notify.getUsers().getUserName());
+        notify.setTypeName(notify.getCodes().getCodeName());
         //notify.setUsers(null);
-        if (notify.getAttachmentName()!=null&&notify.getAttachmentId()!=null) {
-        	notify.setAttachment(GetAttachmentListUtil.returnAttachment(notify.getAttachmentName(), notify.getAttachmentId(), sqlType));
-		}
-		notify.setTypeName(notify.getCodes().getCodeName());
+       if (!"".equals(notify.getAttachmentName())) {
+      	notify.setAttachment(GetAttachmentListUtil.returnAttachment(notify.getAttachmentName(), notify.getAttachmentId(), sqlType));
+	  }
+	
 		StringBuffer s=new StringBuffer();
 		StringBuffer s1=new StringBuffer();
 		StringBuffer s2=new StringBuffer();
-      if(notify.getReaders().indexOf(name)==-1){
-        	StringBuffer str2= new StringBuffer(notify.getReaders());
-        	str2.append(",");
-        	str2.append(name);
-        	String str1=str2.toString();
-        	Notify Notify1=new Notify();
-        	Notify1.setNotifyId(notify.getNotifyId());
-        	Notify1.setReaders(str1);
-        	notifyMapper.updateReaders(Notify1);
-		}
+		
+     
       String depId=notify.getToId();
       
       if (depId.equals("ALL_DEPT")) {
@@ -289,6 +282,17 @@ public class NotifyServiceImpl implements  NotifyService{
 			}
   	   
 	  }
+      if(notify.getReaders().indexOf(name)==-1){
+      	StringBuffer str2= new StringBuffer(notify.getReaders());
+      	str2.append(",");
+      	str2.append(name);
+      	String str1=str2.toString();
+      	notify.setNotifyId(notify.getNotifyId());
+      	notify.setReaders(str1);
+      	notifyMapper.updateReaders(notify);
+		} else {
+			notify.setNotifyId(notify.getNotifyId());
+		}
 	   return notify;
 	  
         	

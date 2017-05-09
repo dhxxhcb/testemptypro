@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
+
 import com.xoa.model.notify.Notify;
 import com.xoa.model.users.Users;
-import com.xoa.model.worldnews.News;
+
 
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.DateFormat;
@@ -299,8 +299,7 @@ public class NotifyController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody ToJson<Notify> getOneById(
-			@RequestParam("notifyId") Integer notifyId,HttpServletRequest request) throws Exception{
+	public @ResponseBody ToJson<Notify> getOneById(@RequestParam("notifyId") Integer notifyId,HttpServletRequest request){
 			String sqlType = "xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse");
 			ContextHolder.setConsumerType(sqlType);
@@ -311,7 +310,7 @@ public class NotifyController {
 		String name="www";
 		loger.debug("transfersID"+notifyId);
 	try {
-		    Notify notify=notifyService.queryById(maps, 1, 5, false, name,sqlType);
+		    Notify notify=notifyService.queryById(maps, 1, 20, false, name,sqlType);
 			toJson.setMsg("success");
 			toJson.setObject(notify);
 			return toJson;
@@ -361,6 +360,7 @@ public class NotifyController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
+	@SuppressWarnings("static-access")
 	@ResponseBody
 	@RequestMapping(value = "/updateNotify", produces = { "application/json;charset=UTF-8" })
 	public ToJson<Notify> updateNotify(
@@ -478,6 +478,7 @@ public class NotifyController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
+	@SuppressWarnings("static-access")
 	@RequestMapping(value = "/addNotify", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	 ToJson<Notify> addNotify(
