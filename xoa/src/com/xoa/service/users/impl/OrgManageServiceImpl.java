@@ -1,5 +1,7 @@
 package com.xoa.service.users.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -14,9 +16,9 @@ public class OrgManageServiceImpl implements OrgManageService {
 	@Resource
 	private OrgManageMapper orgManageMapper;
 	@Override
-	public ToJson<OrgManage> queryId(Integer oid) {
+	public ToJson<OrgManage> queryId() {
 		ToJson<OrgManage>  toJson=new ToJson<OrgManage>(0, "");
-		 OrgManage org=orgManageMapper.queryId(oid);
+		List<OrgManage> org=orgManageMapper.queryId();
 		 if (org!=null) {
 			 toJson.setMsg("ok");
 			 toJson.setObject(org);

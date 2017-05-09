@@ -9,6 +9,6 @@
   </resultMap>
   
   <select id="queryId" resultMap="BaseResultMap">
-  SELECT o.OID,o.`NAME`,o.VERSION,o.IS_ORG FROM org_manage o where o.OID=#{oid}
+    SELECT o.OID,o.`NAME`,o.VERSION,o.IS_ORG FROM org_manage o 
   </select>
 </mapper>

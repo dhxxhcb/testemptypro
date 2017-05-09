@@ -5,6 +5,6 @@ import com.xoa.util.ToJson;
 
 public interface OrgManageService {
 	
-	public ToJson<OrgManage> queryId(Integer oid);
+	public ToJson<OrgManage> queryId();
 
 }

@@ -89,7 +89,6 @@ public class loginController {
 				.getName() + ".LOCALE";
 		Object locale = request.getSession().getAttribute(
 				LOCALE_SESSION_ATTRIBUTE_NAME);
-		        orgManageService.queryId(Integer.parseInt(loginId));
 		return "login/" + loginId + "/login";
 	}
 	/**
@@ -99,8 +98,8 @@ public class loginController {
 	 */
 	@RequestMapping(value = "logins", method = RequestMethod.GET)
 	// 登录窗口
-	public @ResponseBody ToJson<OrgManage> logins(@RequestParam("loginId") String loginId) {
-		   return  orgManageService.queryId(Integer.parseInt(loginId));
+	public @ResponseBody ToJson<OrgManage> logins() {
+		   return  orgManageService.queryId();
 	}
 
 	/**
