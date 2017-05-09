@@ -139,11 +139,11 @@ function CheckCtrlProp()
 function BuildCtrlProp()
 {
     var txtNameVal = jQuery.trim(jQuery("#txtName").val()) ? jQuery.trim(jQuery("#txtName").val()) : '';
-    var txtFontSizeVal = jQuery.trim(jQuery("#txtFontSize").val()) ? 'font-size:'+jQuery.trim(jQuery("#txtFontSize").val())+'px;' : '';
+    var txtFontSizeVal = jQuery.trim(jQuery("#txtFontSize").val()) ? 'font-size:'+jQuery.trim(jQuery("#txtFontSize").val())+';' : '';
     var txtAlignVal = jQuery("#txtAlign").val() ? 'text-align:'+jQuery("#txtAlign").val()+';' : '';
     var txtAlignVal1 = jQuery("#txtAlign").val() ? jQuery("#txtAlign").val() : '';
-    var txtSizeVal = jQuery.trim(jQuery("#txtSize").val()) ? 'width:'+jQuery.trim(jQuery("#txtSize").val())+'px;' : '';
-    var txtHeightVal = jQuery.trim(jQuery("#txtHeight").val()) ? 'height:'+jQuery.trim(jQuery("#txtHeight").val())+'px;' : '';
+    var txtSizeVal = jQuery.trim(jQuery("#txtSize").val()) ? 'width:'+jQuery.trim(jQuery("#txtSize").val())+';' : '';
+    var txtHeightVal = jQuery.trim(jQuery("#txtHeight").val()) ? 'height:'+jQuery.trim(jQuery("#txtHeight").val())+';' : '';
     var txtMaxVal = jQuery.trim(jQuery("#txtMax").val()) ? jQuery.trim(jQuery("#txtMax").val()) : '';
     var lenVal = jQuery.trim(jQuery("#len").val()) ? 'len:'+jQuery.trim(jQuery("#len").val()) : '';
     var txtDataTypeVal = jQuery("#txtDataType").val() ? 'type:'+jQuery("#txtDataType").val()+';' : '';
@@ -178,7 +178,7 @@ function BuildCtrlHTML()
     
     if(jQuery.trim(jQuery("#txtFontSize").val()) != "")
     {
-        var txtFontSizeVal = "font-size:"+jQuery.trim(jQuery("#txtFontSize").val())+"px;";
+        var txtFontSizeVal = "font-size:"+jQuery.trim(jQuery("#txtFontSize").val())+";";
     }
     else
     {
@@ -187,7 +187,7 @@ function BuildCtrlHTML()
     
     if(jQuery.trim(jQuery("#txtSize").val()) != "")
     {
-        var txtSizeVal = "width:"+jQuery.trim(jQuery("#txtSize").val())+"px;";
+        var txtSizeVal = "width:"+jQuery.trim(jQuery("#txtSize").val())+";";
     }
     else
     {
@@ -196,7 +196,7 @@ function BuildCtrlHTML()
     
     if(jQuery.trim(jQuery("#txtHeight").val()) != "")
     {
-        var txtHeightVal = "height:"+jQuery.trim(jQuery("#txtHeight").val())+"px;";
+        var txtHeightVal = "height:"+jQuery.trim(jQuery("#txtHeight").val())+";";
     }
     else
     {
@@ -303,9 +303,9 @@ function InitCtrlProp(el)
                 var objLength = obj.length;
                 var styleType = obj.substring(0, chat);
                 var value = obj.substring(chat+1, objLength);
-                if(value.indexOf('px') != -1)
+                if(value.indexOf('') != -1)
                 {
-                    value = value.replace('px', '');
+                    value = value.replace('', '');
                 }
                 else if(value.indexOf('p') != -1)
                 {
@@ -374,66 +374,66 @@ function InitCtrlProp(el)
 			<table cellspacing="3" cellpadding="0" border="0">
 				<tr>
 					<td colspan="3">
-						<span fcklang="DlgTextName"><%="控件名称" %></span><br />
+						<span fcklang="DlgTextName">控件名称</span><br />
 						<input id="txtName" type="text" style="width:100%;" size="10" />
 					</td>
                 </tr>
                 <tr>
 					<td>
-						<span fcklang="DlgImgAlign"><%="对齐方式" %></span><br />
+						<span fcklang="DlgImgAlign">对齐方式</span><br />
 						<select id="txtAlign">
-							<option value="left" fcklang="DlgTableAlignLeft"><%="左对齐" %></option>
-							<option value="center" fcklang="DlgTableAlignCenter"><%="居中" %></option>
-							<option value="right" fcklang="DlgTableAlignRight"><%="右对齐" %></option>
+							<option value="left" fcklang="DlgTableAlignLeft">左对齐</option>
+							<option value="center" fcklang="DlgTableAlignCenter">居中</option>
+							<option value="right" fcklang="DlgTableAlignRight">右对齐</option>
 						</select>
 					</td>
                     <td width="20%">&nbsp;</td>
                     <td>
-						<span fcklang="DlgTextSize"><%="字体大小" %></span><br />
-						<input id="txtFontSize" type="text" size="10" style="width:80%"/> px
+						<span fcklang="DlgTextSize">字体大小</span><br />
+						<input id="txtFontSize" type="text" size="10" style="width:80%"/> 
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<span fcklang="DlgTextMaxChars"><%="最多字符数" %></span><br />
+						<span fcklang="DlgTextMaxChars">最多字符数</span><br />
 						<input id="txtMax" type="text" size="10" />
 					</td>
                     <td width="20%">&nbsp;</td>
                     <td>
-						<%="输入框宽度" %><br />
-						<input id="txtSize" type="text" size="10" style="width:80%"/> px
+						输入框宽度<br />
+						<input id="txtSize" type="text" size="10" style="width:80%"/> 
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<%="输入框宽度" %><br />
-						<input id="txtHeight" type="text" size="10" style="width:80%"> px
+						输入框宽度<br />
+						<input id="txtHeight" type="text" size="10" style="width:80%"> 
 					</td>
                     <td width="20%">&nbsp;</td>
-                    <td><%="数据类型" %><br />
+                    <td>数据类型<br />
                         <select id="txtDataType">
                             <option value=""></option>
-                            <option value="int"><%="整型" %></option>
-                            <option value="float"><%="浮点型" %></option>
-                            <option value="date"><%="日期型" %></option>
-                            <option value="email"><%="电子邮件" %></option>
+                            <option value="int">整型</option>
+                            <option value="float">浮点型</option>
+                            <option value="date">日期型</option>
+                            <option value="email">电子邮件</option>
                         </select>
                     </td>
 				</tr>
                 <tr>
 					<td>
-						<span><%="最小长度" %></span><br />
+						<span>最小长度</span><br />
 						<input id="len" type="text" style="width:100%" />
 					</td>
                     <td width="20%">&nbsp;</td>
                     <td>
-						<span fcklang="DlgTextValue"><%="初始值" %></span><br />
+						<span fcklang="DlgTextValue">初始值</span><br />
 						<input id="txtValue" type="text" style="width:100%" />
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<span><%="隐藏" %></span><br />
+						<span>隐藏</span><br />
 						<input id="hidden" type="checkbox" />
 					</td>
 				</tr>				
