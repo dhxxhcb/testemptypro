@@ -30,6 +30,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.attachment a{text-decoration: none;}
 			.attachment a img{vertical-align: middle;}
 			.befor .searchTxt{width:90%;height:30px;padding-left:5px;margin-bottom:5px;}
+			.Hover{cursor: pointer;}
+			.Hover:hover{background-color:#c5e9fb;}
+			.on_tr{background-color: #c5e9fb;}
+			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table{width: 100%}
+			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table tr th.theme{text-align: center}
+			.UP_INBOX .tab table .theme_a a{text-decoration: none;color: #000;text-align: left;display: block;}
 		</style>
 	</head>
 	<body>
@@ -132,13 +138,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="up_format">
 							<ul>
-								<li><img src="../img/icon_list_03.png"/></li>
 								<li class="for_on"><img src="../img/icon_zuoyou_sel_03.png"/></li>
+								<li><img src="../img/icon_list_03.png"/></li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="main">
+				<div class="main" style="display: block">
 					<div class="main_left">
 						<ul>
 							<li class="befor">
@@ -173,6 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 				
 						</div>
+
 						
 						<!-- 草稿箱 -->
 						<div class="main_right drafts" style="display:none;">
@@ -284,22 +291,101 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 				</div>
+
+                 <%--收件箱列表--%>
+				<div class="main_right UP_INBOX" style="display:none;">
+                       <div class="tab">
+                             <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+                                   <tr class='tr_befor'>
+                                        <th width="6%">
+                                        <input type="checkbox" name="checkbox" id="checkbox" value="" />
+                                        </th>
+                                        <th width="6%"><fmt:message code="notice.th.state" /></th>
+                                        <th width="6%"><fmt:message code="email.th.sign" /></th>
+                                        <th width="16%"><fmt:message code="email.th.sender" /></th>
+                                        <th width="40%" class="theme"><fmt:message code="email.th.main" /></th>
+                                        <th width="16%"><fmt:message code="global.lang.date" /></th>
+                                        <th width="10%"><fmt:message code="email.th.file" /></th>
+									</tr>
+
+                              </table>
+                        </div>
+                    </div>
 			</div>
 		</div>
 		
 		<script type="text/javascript">
 			 var ue = UE.getEditor('container');
 			$(function () {
-			
-				//不同风格页面互调
-				var oLI=$('.up_format ul li').eq(0);
+				//切换横版收件箱页面
+				var oLI=$('.up_format ul li').eq(1);
 				oLI.click(function () {
-					$(this).addClass('for_on').find('img').attr('src','img/icon_list_sel_03.png');
-					
+					$(this).addClass('for_on').find('img').attr('src','../img/icon_list_sel_03.png');
 					$(this).siblings().removeClass('for_on');
-					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_zuoyou_03.png');
-					window.location.href='inboxup';
-				});
+					$(this).parent().find('li').eq(0).find('img').attr('src','../img/icon_zuoyou_03.png');
+					//window.location.href='inboxup';
+					$('.main').hide();
+					$('.UP_INBOX').show();
+                    $('.UP_INBOX').find('tr.Hover').remove();
+                    var data={
+                        "flag":"inbox",
+                        "page":1,
+                        "pageSize":10,
+                        "useFlag":true,
+                        "userID":"admin"
+                    }
+
+                    $.ajax({
+                        type:'get',
+                        url:'showEmail',
+                        dataType:'json',
+                        data:data,
+                        success:function(rsp){
+                            var data1=rsp.obj;
+                            var str='';
+
+                            for(var i=0;i<data1.length;i++){
+                                var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd');
+                                //alert(data1[i].sendTime);
+                                if(data1[i].emailList[0].readFlag==1){
+                                    if(data1[i].attachmentId!=''){
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+                                    }else{
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+                                    }
+
+                                } else if(data1[i].emailList[0].readFlag==0){
+                                    if(data1[i].attachmentId!=''){
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+                                    }else{
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+                                    }
+                                }
+
+                            }
+                            $('.tr_befor').after(str);
+                        }
+                    });
+                });
+				//横版列表页面的列表详情
+                $('.tab').on('click','tr.Hover',function () {
+                    $(this).addClass('on_tr').siblings().removeClass('on_tr');
+                    var atr=$(this).attr('Attr');
+                    $.popWindow('details?id='+atr);
+                })
+
+                //切换竖版收件箱页面
+                $('.up_format ul li:first-of-type').click(function () {
+                    $(this).addClass('for_on').find('img').attr('src','../img/icon_zuoyou_sel_03.png');
+
+                    $(this).siblings().removeClass('for_on');
+                    $(this).parent().find('li').eq(1).find('img').attr('src','../img/icon_list_03.png');
+                    $('.main').show();
+                    $('.UP_INBOX').hide();
+
+                    //window.location.href='index';
+                })
+
 				
 				//与写邮件页面互调
 				$('.d_im img').click(function(){
@@ -323,7 +409,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				
 				//页面初始化
-				showAjax('inbox','#TAB','.article');
+                showAjax('inbox','#TAB','.article');
+
+
 				
 				
 				//收件箱点击事件
