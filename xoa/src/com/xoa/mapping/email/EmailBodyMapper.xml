@@ -333,6 +333,7 @@
 	<select id="queryById" resultMap="BaseResultMap" parameterType="Map">
 	 select
 	 eb.FROM_ID,
+	 e.EMAIL_ID,
 		eb.BODY_ID,eb.SUBJECT,eb.SEND_TIME,eb.TO_ID2,eb.COPY_TO_ID,eb.ATTACHMENT_ID,eb.ATTACHMENT_NAME,eb.SECRET_TO_ID,u.USER_ID,eb.CONTENT,
 		e.TO_ID,u.USER_NAME,
 		e.READ_FLAG,
