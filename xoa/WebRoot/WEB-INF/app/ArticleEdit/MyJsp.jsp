@@ -1,15 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 	<meta http-equiv='X-UA-Compatible' content='IE=10,chrome=1' />
-	<link rel="stylesheet" type="text/css"
-		  href="../css/ueditor/bootstrap.css" />
-	<link rel="stylesheet" type="text/css"
-		  href="../css/ueditor/cool_form.css" />
+	<link rel="stylesheet" type="text/css" href="../css/ueditor/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="../css/ueditor/cool_form.css" />
 	<title>222</title>
 	<script src="../js/jquery-1.10.2/jquery.min.js"></script>
 	<script src="../js/ueditor/bootstrap.min.js"></script>
