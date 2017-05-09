@@ -47,7 +47,7 @@ $(function(){
 						type:'post',
 						url:'<%=basePath%>file/catalog',
 						dataType:'json',
-						data:{'sortId':${sortId},'sortType':${sortType},'postType':"1"},
+						data:{'sortId':${sortId},'sortType':${sortType},'postType':${postType}},
 						success:function(data){
 						var files='';
 							for(var i=0;i<data.length;i++){

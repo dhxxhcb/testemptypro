@@ -69,10 +69,6 @@ public class DiaryController {
 				"loginDateSouse"));
 		L.a("日志详情"+diaryModel.getContent());
 		L.a("日志详情"+diaryModel.getSubject());
-		/*String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"GBK");
-		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"GBK");
-		diaryModel.setContent(string);
-		diaryModel.setSubject(stringSubject);*/
 		int temp=diaryService.saveDiary(diaryModel);
 		 ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0,temp+"");
 		return diaryListToJson;
@@ -94,10 +90,6 @@ public class DiaryController {
 				"loginDateSouse"));
 		L.a("日志详情"+diaryModel.getContent());
 		L.a("日志详情"+diaryModel.getSubject());
-	   /* String string=new String(diaryModel.getContent().getBytes("ISO-8859-1"),"GBK");
-		String stringSubject=new String(diaryModel.getSubject().getBytes("ISO-8859-1"),"GBK");
-		diaryModel.setContent(string);
-		diaryModel.setSubject(stringSubject);*/
 		int temp=diaryService.updateDiary(diaryModel);
 		 ToJson<DiaryModel> diaryListToJson=new ToJson<DiaryModel>(0,temp+"");
 		return diaryListToJson;

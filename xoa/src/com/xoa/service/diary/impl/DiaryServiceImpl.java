@@ -230,8 +230,10 @@ public class DiaryServiceImpl implements DiaryService{
 		diary.setDiaTime(temp);
 		diary.setReaders("");
 		diaryListToJson.setObject(diary);
-		List<Attachment> attachmentList=null;
+		List<Attachment> attachmentList=new ArrayList<Attachment>();
+		if(diary.getAttachmentName()!=null&&!"".equals(diary.getAttachmentName())){
 		attachmentList=GetAttachmentListUtil.returnAttachment(diary.getAttachmentName(),diary.getAttachmentId(),sqlType);
+		}
 		diaryListToJson.setObj(attachmentList);
 		return diaryListToJson;
 	}

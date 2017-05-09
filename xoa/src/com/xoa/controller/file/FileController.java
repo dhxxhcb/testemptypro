@@ -306,7 +306,7 @@ public class FileController {
 	 */
 	@RequestMapping(value = "/content")
 	@ResponseBody
-	public ModelAndView fileContent(String sortType,String sortId,String text,HttpServletRequest request) throws UnsupportedEncodingException {
+	public ModelAndView fileContent(String sortType,String sortId,String text,String postType,HttpServletRequest request) throws UnsupportedEncodingException {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
 		loger.info("--------home-------");
@@ -315,6 +315,7 @@ public class FileController {
 		model.put("sortType", sortType);
 		String sname = new String(text.getBytes("ISO-8859-1"),"utf-8");
 		model.put("text", sname);
+		model.put("postType", postType);
 		ModelAndView modelAndView = new ModelAndView("app/file/fileContent", model);
 		return modelAndView;
 	}
@@ -370,8 +371,7 @@ public class FileController {
 	 */
 	@RequestMapping(value="/catalog")
 	public void showFiles(FileSortModel file,HttpServletResponse response,String postType,HttpServletRequest request,String deptId,String userPriv) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute("loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
 		List<FileSortModel> fileList =new LinkedList<FileSortModel>();
 		List<Object>  tatalList=new LinkedList<Object>();
@@ -385,7 +385,7 @@ public class FileController {
 		if(tempNo!=0){
 		fileConList=fileContentService.getFileConBySortid(tempNo);
 		}
-		if("1".equals(postType)){
+		if("1".equals(postType)||"2".equals(postType)){
 			for(FileContentModel fcm:fileConList){
 				fcm.setContent("");
 			}
@@ -418,6 +418,7 @@ public class FileController {
 			filePar.setSortParent(file.getSortId());
 			filePar.setSortType(file.getSortType());
 			fileList = fileSortService.getFileSortList(filePar);
+			if(!"2".equals(postType)){
 			Iterator<FileSortModel> iteratorChr=fileList.iterator();
 			 while(iteratorChr.hasNext()){
 						 FileSortModel fsm=iteratorChr.next();
@@ -426,6 +427,7 @@ public class FileController {
 							iteratorChr.remove();
 				      }
 			   }
+			}
 		}
 		if(fileConList!=null){
 		tatalList.addAll(fileConList);
@@ -517,8 +519,7 @@ public class FileController {
 	 */
 	@RequestMapping("/clone")
 	public ModelAndView fileClone(FileSortModel file,HttpServletRequest request) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute("loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
 		Map<String, Object> model = new HashMap<String, Object>();
 		ModelAndView modelAndView = null;
