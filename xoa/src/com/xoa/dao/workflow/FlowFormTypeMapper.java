@@ -10,6 +10,8 @@ import java.util.Map;
 public interface FlowFormTypeMapper extends BaseMapper<FlowFormType> {
 
 	List<FlowFormType> selectFlowFormType(Map<String, Object> maps);
+
+	 FlowFormType seleItemMax(Map<String, Object> maps);
 	
         
    

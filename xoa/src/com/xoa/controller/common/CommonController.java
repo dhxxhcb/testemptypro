@@ -49,4 +49,11 @@ public class CommonController {
 				"loginDateSouse"));
 		return "app/ArticleEdit/MyJsp";
 	}
+	@RequestMapping("/wyq")
+	public String addboxPage3(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/ArticleEdit/text/propUniline";
+	}
+
 }
