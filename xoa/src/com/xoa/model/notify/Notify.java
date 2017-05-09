@@ -1,8 +1,10 @@
 package com.xoa.model.notify;
 
 import java.util.Date;
+import java.util.List;
 
 import com.xoa.model.common.SysCode;
+import com.xoa.model.enclosure.Attachment;
 import com.xoa.model.users.Users;
 
 /**
@@ -149,7 +151,10 @@ public class Notify {
 	private String rolerange;
 	private String deprange;
 	
-
+	/**
+	 * 附件对象
+	 */
+	private List<Attachment> attachment;
 	
 
 	/**
@@ -270,7 +275,7 @@ public class Notify {
 	 * @return void
 	 */
 	public void setAttachmentId(String attachmentId) {
-		this.attachmentId = attachmentId == null ? null : attachmentId.trim();
+		this.attachmentId = attachmentId;
 	}
 
 	/**
@@ -291,8 +296,7 @@ public class Notify {
 	 * @return void
 	 */
 	public void setAttachmentName(String attachmentName) {
-		this.attachmentName = attachmentName == null ? null : attachmentName
-				.trim();
+		this.attachmentName = attachmentName;
 	}
 
 	/**
@@ -889,5 +893,12 @@ public class Notify {
 		this.rolerange = rolerange;
 	}
 
+	public List<Attachment> getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(List<Attachment> attachment) {
+		this.attachment = attachment;
+	}
 	
 }

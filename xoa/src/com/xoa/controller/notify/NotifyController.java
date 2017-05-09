@@ -301,8 +301,9 @@ public class NotifyController {
 	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody ToJson<Notify> getOneById(
 			@RequestParam("notifyId") Integer notifyId,HttpServletRequest request) throws Exception{
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));
+			String sqlType = "xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse");
+			ContextHolder.setConsumerType(sqlType);
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
 		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
@@ -310,7 +311,7 @@ public class NotifyController {
 		String name="www";
 		loger.debug("transfersID"+notifyId);
 	try {
-		    Notify notify=notifyService.queryById(maps, 1, 5, false, name);
+		    Notify notify=notifyService.queryById(maps, 1, 5, false, name,sqlType);
 			toJson.setMsg("success");
 			toJson.setObject(notify);
 			return toJson;

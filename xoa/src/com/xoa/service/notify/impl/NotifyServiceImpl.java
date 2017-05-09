@@ -7,25 +7,20 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.xoa.dao.common.SysCodeMapper;
+
 import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.notify.NotifyMapper;
 
-import com.xoa.model.common.SysCode;
 import com.xoa.model.department.Department;
 import com.xoa.model.notify.Notify;
-
-
-
-
 
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.notify.NotifyService;
 import com.xoa.service.users.UsersPrivService;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.DateFormat;
+import com.xoa.util.GetAttachmentListUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 
@@ -219,7 +214,7 @@ public class NotifyServiceImpl implements  NotifyService{
 	    * @return     Notify
 	    */
 	@Override
-	public Notify queryById(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception {
+	public Notify queryById(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception {
 		PageParams pageParams = new PageParams();  
         pageParams.setUseFlag(useFlag);  
         pageParams.setPage(page);  
@@ -232,6 +227,9 @@ public class NotifyServiceImpl implements  NotifyService{
         notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
         notify.setName(notify.getUsers().getUserName());
         //notify.setUsers(null);
+        if (notify.getAttachmentName()!=null&&notify.getAttachmentId()!=null) {
+        	notify.setAttachment(GetAttachmentListUtil.returnAttachment(notify.getAttachmentName(), notify.getAttachmentId(), sqlType));
+		}
 		notify.setTypeName(notify.getCodes().getCodeName());
 		StringBuffer s=new StringBuffer();
 		StringBuffer s1=new StringBuffer();
