@@ -24,7 +24,6 @@ public class FlowTypeController {
 
     @Resource
     private FlowTypeService flowTypeService;
-
     /**
      * 创建作者:   张勇
      * 创建日期:   2017/5/8 16:55
