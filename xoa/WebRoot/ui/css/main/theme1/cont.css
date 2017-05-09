@@ -24,7 +24,9 @@ html,body{
 	display: inline-block;
     height: 45px;
     min-width: 110px;
+	margin-left: 14px;
 }
+
 .head_title{
 	display: inline-block;
     margin: 7px 10px;

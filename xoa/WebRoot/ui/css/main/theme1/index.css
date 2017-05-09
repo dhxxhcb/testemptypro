@@ -175,14 +175,16 @@ body,
 .tab_cone .one:nth-child(1) {
 	    border-top: 1px solid #999;
 }
+/*.left_scroll,.right_scroll{
+	display:none;
+}*/
 .top_ul{
 	width: 133px;
-    height: 57%;
+	height: 29px;
     background: url(../../../img/main_img/huakuai.png) 2px -2px no-repeat;
     /* border: 1px solid #5e5e5e; */
     border-radius: 5px;
-    margin-top: 5%;
-    margin-left: 14%;
+	margin: 5% auto;
 }
 .main_title{
 	    width: 96%;
