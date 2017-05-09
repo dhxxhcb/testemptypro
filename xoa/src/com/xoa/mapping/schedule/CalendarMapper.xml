@@ -24,6 +24,27 @@
   <sql id="Blob_Column_List">
     CONTENT, OWNER, TAKER
   </sql>
+  <update id="update" parameterType="com.xoa.model.schedule.Calendar">
+  update  calendar where 
+   <set>
+      <if test="calTime != null">
+        CAL_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="calType != null">
+        CAL_TYPE,
+      </if>
+      <if test="calLevel != null">
+        CAL_LEVEL,
+      </if>
+       <if test="content != null">
+        CONTENT,
+      </if>
+      </set>
+      where CAL_ID=#{calId}
+  </update>
   <select id="getschedule" parameterType="Map" resultMap="BaseResultMap">
   select CAL_ID,CAL_LEVEL,CAL_TIME,END_TIME,CONTENT from calendar where 
   CAL_TIME&gt;=#{calTime} and CAL_TIME&lt;=#{endTime} 

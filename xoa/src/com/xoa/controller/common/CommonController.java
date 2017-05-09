@@ -29,6 +29,7 @@ import com.xoa.util.dataSource.ContextHolder;
 @RequestMapping("/common")
 public class CommonController {
 	private Logger loger = Logger.getLogger(CommonController.class);
+
 	
 	@RequestMapping("/selectUser")
 	public String addboxPage(HttpServletRequest request) {
@@ -48,4 +49,11 @@ public class CommonController {
 				"loginDateSouse"));
 		return "app/ArticleEdit/MyJsp";
 	}
+	@RequestMapping("/wyq")
+	public String addboxPage3(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/ArticleEdit/text/propUniline";
+	}
+
 }

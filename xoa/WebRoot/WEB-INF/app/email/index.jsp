@@ -316,7 +316,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//查询邮件点击事件
 				$('.liSearch').click(function(){
-	    			var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="mailQuery" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+	    			var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: hidden;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="mailQuery" frameborder="0" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
 	    			$('.up_page_right').css('display','none');
 	    			$('.page').append(Ifrmae);
 	    		});
@@ -424,7 +424,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//回复事件
 				$('#Replay').click(function(){
 					var sId=$('#delete').attr('uId');
-					alert(sId);
+					//alert(sId);
 					$.popWindow('writeEmail?sId=' + sId,'<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
 					//window.location.href="http://localhost:8080/xoa/email/writeEmail?sId="+sId;
 					

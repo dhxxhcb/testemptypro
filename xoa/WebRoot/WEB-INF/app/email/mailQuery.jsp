@@ -13,15 +13,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta charset="UTF-8">
 		<title><fmt:message code="email.title.mailquery" /></title><!-- 邮件查询 -->
 		<link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
+		
 		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			html,body{width: 100%;font-family: "微软雅黑";font-size: 14px;}
-			.content{width: 600px;margin: 0 auto;}
-			.title{width: 100%;text-align: center;line-height: 40px;}
-			table tr td{padding: 5px 5px;border-color: #ddd;}
+			.content{width: 80%;margin: 0 auto;}
+			.title{width: 100%;text-align: left;line-height: 40px;}
+			.tab table tr td{padding: 5px 5px;border-color: #ddd;}
 			#btn{display: block;margin: 0 auto;outline: none;border: none;border-radius: 3px;padding: 3px 8px;cursor: pointer;}
 			#btn:hover{background-color: #9fbdee;color: #fff;}
+			.tac table{border-color:#ddd;}
+			.tac table tr th{padding: 5px 5px;border-color: #ddd;font-size:16px;font-weight: normal;}
+			.tac table tr td{padding: 5px 5px;border-color: #ddd;}
+			.tac table tr td #but{cursor: pointer;margin-left:50%;}
 		</style>
 	</head>
 	<body>
@@ -109,6 +115,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</table>
 				</form>
 			</div>
+			<div class="tac" style="display:none;">
+					<table border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+						<tr class='befor'>
+							<th width="6%">
+								<input type="checkbox" name="checkbox" id="checkbox" value="" />
+							</th>
+							<th width="6%"><fmt:message code="notice.th.state" /></th>
+							<th width="6%"><fmt:message code="email.th.sign" /></th>
+							<th width="16%"><fmt:message code="email.th.sender" /></th>
+							<th width="40%" class="theme"><fmt:message code="email.th.main" /></th>
+							<th width="16%"><fmt:message code="global.lang.date" /></th>
+							<th width="10%"><fmt:message code="email.th.file" /></th>
+						</tr>
+						<tr>
+							<td colspan="7"><input type="button" name="but" id="but" value="返回"></td>
+						</tr>
+					</table>
+			</div>
 		</div>
 		<script type="text/javascript">
 			//时间控件调用
@@ -140,13 +164,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			$(function(){
 				$('#btn').click(function(){
+					$('.tab').css('display','none');
+					$('.tac').css('display','block');
 					var ATTR=$('.BigSelect option:checked').attr('ATTR');
 					var startTime=$('#start').val();
 					var endTime=$('#end').val();
 					var Title=$('#txt2').val();
 					var cont=$('#txt3').val();
 					var Attach=$('#txt6').val();
-					//alert(Title+':::::'+cont+'::::::'+Attach);
+					//alert(ATTR);
 					var data={
 						'flag':ATTR,
 						'page':1,
@@ -159,16 +185,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						'content':cont,
 						'attachmentName':Attach
 					}
-					$.ajax({
+					 $.ajax({
 							type:'get',
 							url:'showEmail',
 							dataType:'json',
 							data:data,
 							success:function(rsp){
 								var data1=rsp.obj;
+								var str='';
+								for(var i=0;i<data1.length;i++){
+										var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd');
+										if(data1[i].emailList[0].readFlag==1){
+											if(data1[i].attachmentId!=''){
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+											}else{
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+											}
+											
+										} else if(data1[i].emailList[0].readFlag==0){
+											if(data1[i].attachmentId!=''){
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+											}else{
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+											}
+										}
+										
+									}
+									$('.befor').after(str);
 							}
-					}) 
+					})
 				})
+				
+				$('#but').click(function(){
+					$('.Hover').remove();
+					$('.tac').css('display','none');
+					$('.tab').css('display','block');
+				})
+				
 			})
 			
 			
