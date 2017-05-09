@@ -76,7 +76,7 @@ public class loginController {
 	 * 
 	 * @return 登录窗口
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCompanyAll", method = RequestMethod.GET)
 	// 登录窗口
 	public String logins(@RequestParam("loginId") String loginId,
 			HttpServletRequest request, HttpServletResponse response) {

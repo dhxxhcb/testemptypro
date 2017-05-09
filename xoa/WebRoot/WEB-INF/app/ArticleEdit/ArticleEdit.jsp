@@ -315,11 +315,11 @@
 
                     var ue = UE.getEditor('myEditor');
                 </script>
+           
             </div>
-            <div>
-               <textarea id="myEditor" name="content">
-		</textarea>
-                </div>
+            
+              
+              
 
 
 
