@@ -164,6 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			$(function(){
 				$('#btn').click(function(){
+                    $('.tac').find('.Hover').remove();
 					$('.tab').css('display','none');
 					$('.tac').css('display','block');
 					var ATTR=$('.BigSelect option:checked').attr('ATTR');
@@ -193,6 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							success:function(rsp){
 								var data1=rsp.obj;
 								var str='';
+
 								for(var i=0;i<data1.length;i++){
 										var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd');
 										if(data1[i].emailList[0].readFlag==1){
@@ -217,7 +219,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				})
 				
 				$('#but').click(function(){
-					$('.Hover').remove();
+					$('.tac').find('.Hover').remove();
 					$('.tac').css('display','none');
 					$('.tab').css('display','block');
 				})

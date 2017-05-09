@@ -32,6 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.befor .searchTxt{width:90%;height:30px;padding-left:5px;margin-bottom:5px;}
 			.Hover{cursor: pointer;}
 			.Hover:hover{background-color:#c5e9fb;}
+			.Hover img{width:16px;}
 			.on_tr{background-color: #c5e9fb;}
 			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table{width: 100%}
 			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table tr th.theme{text-align: center}
@@ -423,7 +424,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				showAjax2('drafts');
 				//草稿箱点击事件
-				$('#drafts').click(function(){		
+				$('#drafts').click(function(){
+					if ($('.UP_INBOX').css('display')=='block'){
+						$('.UP_INBOX').hide();
+						$('.main').show().find('.drafts').show().siblings().hide();
+					}
 					$('.drafts').css('display','block').siblings().css('display','none');
 					showAjax2('drafts');
 					$('.main_left').on('click','.BTN',function(){
@@ -453,6 +458,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//已发送点击事件
 				$('#hasBeenSend').click(function(){
+
+                    if ($('.UP_INBOX').css('display')=='block'){
+                        $('.UP_INBOX').hide();
+                        $('.main').show().find('.hasBeenSend').show().siblings().hide();
+                    }
 					
 					$('.hasBeenSend').css('display','block').siblings().css('display','none');
 					showAjax3("outbox");
@@ -467,6 +477,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//废纸篓点击事件
 				$('#wastebasket').click(function(){
+                    if ($('.UP_INBOX').css('display')=='block'){
+                        $('.UP_INBOX').hide();
+                        $('.main').show().find('.wastebasket').show().siblings().hide();
+                    }
+
 					$('.wastebasket').css('display','block').siblings().css('display','none');
 					
 					showAjax1('recycle','#TAD','.article2');
