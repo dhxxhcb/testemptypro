@@ -459,7 +459,7 @@ public class EmailController {
 	 *
 	 * 创建作者:   张勇
 	 * 创建日期:   2017-4-20 上午10:33:59
-	 * 方法介绍:   发送邮件并保存
+	 * 方法介绍:   回复或转发简历
 	 * 参数说明:	   @param fromId 发件人USER_ID,如(lisi,zhangsan,)
 	 * 参数说明:      @param toId2 收件人 USER_ID串，每个ID后带一个逗号，如：(lisi,zhangsan,)
 	 * 参数说明:      @param copyToId 抄送人USER_ID串,如(lisi,zhangsan,)
