@@ -217,7 +217,6 @@ public interface EmailService {
 	 * 参数说明:   @param emailBodyModel
 	 * @return     void
 	 */
-	@DynDatasource
 	public String deleteInEmail(Integer emailId,String flag);
 	
 	/**
@@ -228,7 +227,24 @@ public interface EmailService {
 	 * 参数说明:   @param emailBodyModel
 	 * @return     void
 	 */
-	@DynDatasource
 	public String deleteRecycleEmail(Integer emailId,String flag);
+
+
+	/**
+	 *
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-5-9 下午14:20:42
+	 * 方法介绍:   回复或转发返回信息处理
+	 * 参数说明:   @param maps 相关条件参数传值
+	 * 参数说明:   @param page 当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return 字符串
+	 */
+	public String queryByIdCss(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag,String sqlType);
+
+
+
+
 
 }

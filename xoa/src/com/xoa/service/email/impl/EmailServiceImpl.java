@@ -15,6 +15,7 @@ import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -58,20 +59,6 @@ public class EmailServiceImpl implements EmailService {
 	 */
 	@Override
 	public void sendEmail(EmailBodyModel emailBody, EmailModel email) {
-			//判断是否有上传的文件
-//			if(files!=null){
-//				List<Attachment> upLoad = new ArrayList<Attachment>();
-//				upLoad = enclosureService.upload(files, "xoa111", "email");
-//				StringBuilder attachName = new StringBuilder();
-//				StringBuilder attachmentId = new StringBuilder();
-//				int fileUpload = upLoad.size();
-//				for(int i = 0 ; i<fileUpload;i++){
-//					attachmentId.append(upLoad.get(i).getAid()+"@"+upLoad.get(i).getYm()+"_"+upLoad.get(i).getAttachId()+",");
-//					attachName.append(upLoad.get(i).getAttachName()+"*");
-//				}
-//				emailBody.setAttachmentId(attachmentId.toString());
-//				emailBody.setAttachmentName(attachName.toString());
-//			}
 		emailBodyMapper.save(emailBody);
 		String toID = emailBody.getToId2().trim()
 				+ emailBody.getCopyToId().trim()
@@ -612,7 +599,50 @@ public class EmailServiceImpl implements EmailService {
 		}
 		return returnRes;
 	}
-	
+
+	/**
+	 *
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-5-9 下午14:20:42
+	 * 方法介绍:   回复或转发返回信息处理
+	 * 参数说明:   @param maps 相关条件参数传值
+	 * 参数说明:   @param page 当前页
+	 * 参数说明:   @param pageSize 每页显示条数
+	 * 参数说明:   @param useFlag 是否开启分页插件
+	 * 参数说明:   @return 字符串
+	 */
+	@Override
+	public String queryByIdCss(Map<String, Object> maps, Integer page, Integer pageSize, boolean useFlag, String sqlType) {
+		EmailBodyModel emailBodyModel = this.queryById(maps,page,pageSize,useFlag,sqlType);
+		StringBuffer fwReEmail = new StringBuffer();
+		fwReEmail.append("&nbsp;");
+		fwReEmail.append("<div style=\"margin: 5px auto; height: 0px; border-bottom-color: rgb(192, 194, 207); border-bottom-width: 1px; border-bottom-style: solid;\">&nbsp;</div>\n");
+		fwReEmail.append("<div style=\"background: rgb(237, 246, 219); padding: 5px 15px; font-size: 12px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: solid;\"><span style=\"line-height: 16px;\"><b>发件人：</b>&nbsp;");
+		fwReEmail.append(emailBodyModel.getUsers().getUserName());
+		fwReEmail.append("</span><br />");
+		fwReEmail.append("<span style=\"line-height: 16px;\"><b>收件人：</b>&nbsp;");
+		fwReEmail.append(emailBodyModel.getToName());
+		fwReEmail.append("</span><br />");
+		if (emailBodyModel.getCopyName() != ""){
+			fwReEmail.append("<span style=\"line-height: 16px;\"><b>抄送人：</b>&nbsp;");
+			fwReEmail.append(emailBodyModel.getCopyName());
+			fwReEmail.append("</span><br />");
+		}
+		if(emailBodyModel.getSecretToName() != ""){
+			fwReEmail.append("<span style=\"line-height: 16px;\"><b>密送人：</b>&nbsp;");
+			fwReEmail.append(emailBodyModel.getSecretToName());
+			fwReEmail.append("</span><br />");
+		}
+		fwReEmail.append("<span style=\"line-height: 16px;\"><b>发送时间：</b>&nbsp;");
+		fwReEmail.append(DateFormat.getStrTime(emailBodyModel.getSendTime()));
+		fwReEmail.append("</span><br />");
+		fwReEmail.append("<span style=\"line-height: 16px;\"><b>主题：</b>&nbsp;");
+		fwReEmail.append(emailBodyModel.getSubject());
+		fwReEmail.append("</span></div>");
+		fwReEmail.append(emailBodyModel.getContent());
+		return fwReEmail.toString();
+	}
+
 
 	/**
 	 * 
@@ -631,6 +661,9 @@ public class EmailServiceImpl implements EmailService {
 		}
 		return list;
 	}
-	
+
+
+
+//	queryById
 	
 }
