@@ -8,5 +8,6 @@ import com.xoa.util.ToJson;
  */
 public interface FlowFormTypeService {
 
-    public ToJson<FlowFormType> selectFlowFormType();
+     public ToJson<FlowFormType> qureyItemMax(Integer formId);
+  
 }

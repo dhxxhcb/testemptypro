@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.workflow.FlowFormTypeMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowFormType" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowFormType">
     <id column="FORM_ID" property="formId"  javaType="int" />
     <result column="FORM_NAME" property="formName"  javaType="string" />
     <result column="DEPT_ID" property="deptId"  javaType="int" />
@@ -18,8 +18,12 @@
     SELECT f.FORM_ID,f.FORM_NAME,f.PRINT_MODEL,f.PRINT_MODEL_SHORT,f.DEPT_ID,f.SCRIPT,f.CSS,f.ITEM_MAX,f.FORM_SORT,f.is_new from flow_form_type f
   </select>
 
-  <select id="seleItemMax"  resultMap="BaseResultMap" >
-     SELECT ITEM_MAX from FLOW_FORM_TYPE where FORM_ID=#{fromId}
+  <select id="qureyItemMax"  resultMap="BaseResultMap">
+      SELECT f.FORM_ID,f.ITEM_MAX,f.FORM_NAME,f.FORM_SORT,f.PRINT_MODEL,f.PRINT_MODEL_SHORT,f.DEPT_ID,f.SCRIPT,f.CSS,f.is_new  from FLOW_FORM_TYPE f where FORM_ID=#{formId}
   </select>
+  
+  <update id="updateItemMax"  parameterType="com.xoa.model.workflow.FlowFormType">
+    UPDATE flow_form_type SET ITEM_MAX=#{itemMax}  where FORM_ID=#{formId}
+  </update>
 
 </mapper>

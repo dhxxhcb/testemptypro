@@ -325,7 +325,7 @@ function GetCtrlMaxId()
     jQuery.ajax({
         type: 'GET',
         async: false,
-        url: './controls/inc/get_item.php',
+        url: 'form/formType',
         data: {
             FORM_ID: window.form_id || 0
         },

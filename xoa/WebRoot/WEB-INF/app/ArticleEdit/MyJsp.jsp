@@ -462,25 +462,6 @@
             }
         });
         popup.render();
-		/*
-		 me.addListener( 'mouseover', function( t, evt ) {
-		 evt = evt || window.event;
-		 var el = evt.target || evt.srcElement;
-		 var plugins = GetFieldTypeByTag(el);
-		 if ( plugins==thePlugins) {
-		 var html = popup.formatHtml(
-		 '<nobr>单行输入框: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
-		 if ( html ) {
-		 popup.getDom( 'content' ).innerHTML = html;
-		 popup.anchorEl = el;
-		 //popup.showAnchor( popup.anchorEl );
-		 popup.showPop( popup.anchorEl );
-		 } else {
-		 popup.hide();
-		 }
-		 }
-		 });
-		 */
         jQuery(popup.getDom('content')).on('mouseover', function(t, evt) {
             popup.clearHideTimer();
         });
