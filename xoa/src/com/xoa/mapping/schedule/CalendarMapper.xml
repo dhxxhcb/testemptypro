@@ -25,22 +25,22 @@
     CONTENT, OWNER, TAKER
   </sql>
   <update id="update" parameterType="com.xoa.model.schedule.Calendar">
-  update  calendar where 
+  update  calendar
    <set>
       <if test="calTime != null">
-        CAL_TIME,
+        CAL_TIME=#{calId},
       </if>
       <if test="endTime != null">
-        END_TIME,
+        END_TIME=#{endTime},
       </if>
       <if test="calType != null">
-        CAL_TYPE,
+        CAL_TYPE=#{calType},
       </if>
       <if test="calLevel != null">
-        CAL_LEVEL,
+        CAL_LEVEL=#{calLevel},
       </if>
        <if test="content != null">
-        CONTENT,
+        CONTENT=#{content}
       </if>
       </set>
       where CAL_ID=#{calId}
