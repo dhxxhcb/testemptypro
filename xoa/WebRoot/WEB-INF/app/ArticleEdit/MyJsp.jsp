@@ -43,10 +43,7 @@
                 'editorLoaded',
                 function(e, ue) {
                     if (ue && ue.editor) {
-                        UE.utils
-                            .loadFile(
-                                ue.editor.document,
-                                {
+                        UE.utils.loadFile(ue.editor.document,{
                                     tag : "link",
                                     rel : "stylesheet",
                                     type : "text/css",
@@ -121,6 +118,7 @@
                 });
 
         editorLoaded = function(ue) {
+        	
             FormDesigner.trigger('editorLoaded', ue);
         }
 	</script>
@@ -147,14 +145,14 @@
 						<h3 class="widget-group-title" id="standard_div"
 							onclick="hideDiv(1, this);"
 							style="cursor:pointer; line-height:28px;">
-							<span class="icon-arrow" style="margin-left:4px;">标准控件</span>
+							<span class="icon-arrow" style="margin-left:4px;height: 30px;line-height: 30px;">标准控件</span>
 						</h3>
 					</div>
 					<div class="widget-group">
 						<h3 class="widget-group-title" id="custom_div"
 							onclick="hideDiv(2, this);"
 							style="cursor:pointer; line-height:28px; background-image:none; background-color:rgb(221, 221, 221);">
-							<span class="icon-arrow" style="margin-left:7px;">扩展控件</span>
+							<span class="icon-arrow" style="margin-left:7px;height: 30px;line-height: 30px;">扩展控件</span>
 						</h3>
 					</div>
 				</div>
@@ -292,105 +290,88 @@
 				<div id="flow-ueditor-wrapper">
 						<textarea id="TD_HTML_EDITOR_CONTENT"
 								  name="TD_HTML_EDITOR_CONTENT" rows="8" cols="60"></textarea>
-					<script type="text/javascript">
-                        //
-                        window.UEDITOR_CONFIG = {
-                            "UEDITOR_HOME_URL" : "\/module\/ueditor\/"
-                        };
-                        //
-					</script>
-					<script type="text/javascript">
-                        //
-                        window.HTML_MODEL_TYPE = '';
-                        //
-					</script>
-					<script type="text/javascript"
-							src="../lib/ueditor/ueditor.config.js"></script>
-					<script type="text/javascript" src="../lib/ueditor/ueditor.all.js"></script>
-					<script type="text/javascript">
-                        //
-                        UE.dom.domUtils
-                            .on(
-                                window,
-                                'load',
-                                function() {
-                                    var ue = UE
-                                        .getEditor(
-                                            'TD_HTML_EDITOR_CONTENT',
-                                            {
-                                                "initialFrameWidth" : "100%",
-                                                "initialFrameHeight" : "550",
-                                                "attachmentId" : "ATTACHMENT_ID_OLD",
-                                                "attachmentName" : "ATTACHMENT_NAME_OLD",
-                                                "toolbars" : [ [
-                                                    "source",
-                                                    "td_js_script",
-                                                    "pasteplain",
-                                                    "undo",
-                                                    "redo",
-                                                    "|",
-                                                    "searchreplace",
-                                                    "selectall",
-                                                    "cleardoc",
-                                                    "removeformat",
-                                                    "|",
-                                                    "bold",
-                                                    "italic",
-                                                    "underline",
-                                                    "strikethrough",
-                                                    "forecolor",
-                                                    "backcolor",
-                                                    "paragraph",
-                                                    "fontfamily",
-                                                    "fontsize",
-                                                    "insertcode",
-                                                    "insertorderedlist",
-                                                    "insertunorderedlist",
-                                                    "|",
-                                                    "autotypeset",
-                                                    "indent",
-                                                    "lineheight",
-                                                    "justifyleft",
-                                                    "justifycenter",
-                                                    "justifyright",
-                                                    "justifyjustify",
-                                                    "rowspacingtop",
-                                                    "rowspacingbottom",
-                                                    "|",
-                                                    "insertimage",
-                                                    "inserttable",
-                                                    "link",
-                                                    "unlink",
-                                                    "emotion",
-                                                    "template",
-                                                    "|",
-                                                    "horizontal",
-                                                    "spechars",
-                                                    "fullscreen" ] ],
-                                                "lang" : "zh-cn"
-                                            });
-                                    ue
-                                        .ready(function() {
-                                            typeof (editorLoaded) == 'function'
-                                            && editorLoaded({
-                                                editor : ue
-                                            });
-                                            ue.dirty = false;
-                                            ue
-                                                .on(
-                                                    'contentChange',
-                                                    function() {
-                                                        ue.dirty = true;
-                                                    });
-                                        });
-                                });
-                        //
-					</script>
+
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+    window.UEDITOR_CONFIG = {
+        "UEDITOR_HOME_URL" : "\/module\/ueditor\/"
+    };
+     window.HTML_MODEL_TYPE = '';
+</script>
+<script type="text/javascript" src="../lib/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="../lib/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    //
+    UE.dom.domUtils
+        .on(window,'load',function() {
+                var ue = UE.getEditor('TD_HTML_EDITOR_CONTENT',{
+                            "initialFrameWidth" : "100%",
+                            "initialFrameHeight" : "550",
+                            "attachmentId" : "ATTACHMENT_ID_OLD",
+                            "attachmentName" : "ATTACHMENT_NAME_OLD",
+                            "toolbars" : [ [
+                                "source",
+                                "td_js_script",
+                                "pasteplain",
+                                "undo",
+                                "redo",
+                                "|",
+                                "searchreplace",
+                                "selectall",
+                                "cleardoc",
+                                "removeformat",
+                                "|",
+                                "bold",
+                                "italic",
+                                "underline",
+                                "strikethrough",
+                                "forecolor",
+                                "backcolor",
+                                "paragraph",
+                                "fontfamily",
+                                "fontsize",
+                                "insertcode",
+                                "insertorderedlist",
+                                "insertunorderedlist",
+                                "|",
+                                "autotypeset",
+                                "indent",
+                                "lineheight",
+                                "justifyleft",
+                                "justifycenter",
+                                "justifyright",
+                                "justifyjustify",
+                                "rowspacingtop",
+                                "rowspacingbottom",
+                                "|",
+                                "insertimage",
+                                "inserttable",
+                                "link",
+                                "unlink",
+                                "emotion",
+                                "template",
+                                "|",
+                                "horizontal",
+                                "spechars",
+                                "fullscreen" ] ],
+                            "lang" : "zh-cn"
+                        });
+                ue.ready(function() {
+                        typeof (editorLoaded) == 'function' && editorLoaded({
+                            editor : ue
+                        });
+                        ue.dirty = false;
+                        ue.on('contentChange',function() {
+                                    ue.dirty = true;
+                        });
+                    });
+            });
+    
+</script>
 <script>
     UEDITOR_CONFIG.iframeCssUrl = '/general/workflow/assets/form.css';
     UEDITOR_CONFIG.allHtmlEnabled = true;
@@ -418,6 +399,7 @@
                             className : 'edui-okbutton',
                             label : '确定',
                             onclick : function() {
+                            	
                                 dialog.close(true);
                             }
                         }, {

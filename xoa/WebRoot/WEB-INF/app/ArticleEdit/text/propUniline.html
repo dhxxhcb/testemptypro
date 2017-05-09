@@ -24,7 +24,7 @@ function CheckCtrlProp()
     //验证控件名称是否为空
     if(txtNameVal == "")
     {
-        alert(<%="控件名称不能为空！" %>);
+        alert("控件名称不能为空！");
        
         jQuery('#txtName').focus();
         return false;
@@ -40,7 +40,7 @@ function CheckCtrlProp()
     //验证字体大小是否是数字
     if(isNaN(txtFontSizeVal))
     {
-        alert("<%="字体大小必须是数字！" %>");
+        alert("字体大小必须是数字");
          
         jQuery('#txtFontSize').focus();
         return false;
@@ -49,7 +49,7 @@ function CheckCtrlProp()
     //验证控件宽度是否是数字
     if(isNaN(txtSizeVal))
     {
-        alert("<?=_('控件宽度必须是数字！')?>");
+        alert("控件宽度必须是数字！");
         jQuery('#txtSize').focus();
         return false;
     }
@@ -57,7 +57,7 @@ function CheckCtrlProp()
     //验证控件高度是否是数字
     if(isNaN(txtHeightVal))
     {
-        alert("<?=_('控件高度必须是数字！')?>");
+        alert("控件高度必须是数字！");
         jQuery('#txtHeight').focus();
         return false;
     }
@@ -65,7 +65,7 @@ function CheckCtrlProp()
     //验证最多字符数是否是数字
     if(isNaN(txtMaxVal))
     {
-        alert("<?=_('最多字符数必须是数字！')?>");
+        alert("最多字符数必须是数字！");
         jQuery('#txtMax').focus();
         return false;
     }
@@ -73,7 +73,7 @@ function CheckCtrlProp()
     //验证最小长度是否是数字
     if(isNaN(lenVal))
     {
-        alert("<?=_('最小长度必须是数字！')?>");
+        alert("最小长度必须是数字！");
         jQuery('#len').focus();
         return false;
     }
@@ -81,7 +81,7 @@ function CheckCtrlProp()
     //验证初始值是否是整型
     if(txtDataTypeVal == "int" && txtValueVal.search(/^-?\d*$/) != 0)
     {
-        alert("<?=_('初始值必须是整数！')?>");
+        alert(" 初始值必须是整数！ ");
         jQuery('#txtValue').focus();
         return false;
     }
@@ -89,7 +89,7 @@ function CheckCtrlProp()
     //验证初始值是否是浮点型
     if(txtDataTypeVal == "float" && txtValueVal.search(/^-?(\d*\.)?\d*$/) != 0)
     {
-        alert("<?=_('初始值必须是浮点数！')?>");
+        alert(" 初始值必须是浮点数！ ");
         jQuery('#txtValue').focus();
         return false;
     }
@@ -109,7 +109,7 @@ function CheckCtrlProp()
         }
         catch(e)
         {
-			alert("<?=_('初始值必须是日期！')?>");
+			alert(" 初始值必须是日期！ ");
             jQuery('#txtValue').focus();
             return false;
         }
@@ -118,7 +118,7 @@ function CheckCtrlProp()
     //验证初始值是否是电子邮件类型
     if(txtDataTypeVal == "email" && txtValueVal != '' && txtValueVal.search(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/) != 0)
     {
-        alert("<?=_('初始值必须是电子邮件地址！')?>");
+        alert(" 初始值必须是电子邮件地址！ ");
         jQuery('#txtValue').focus();
         return false;
     }
@@ -129,7 +129,7 @@ function CheckCtrlProp()
         get_ctrl_id();
         if(ctrl_id == '')
         {
-            alert("<?=_("获取控件ID失败")?>");
+            alert(" 获取控件ID失败");
             return false;
         }
     }
