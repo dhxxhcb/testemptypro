@@ -191,7 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
             <td>
                 <input class="td_title1" id="ip3" type="text" value="请输入发布时间..."/>
-                <div class="release3">设置为当前时间</div>
+                <a href="javascript:;" id="step_release2"><div class="release3">设置为当前时间</div></a>
             </td>
         </tr>
         <tr>
@@ -265,12 +265,167 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         </tr>
         <!--word编辑器-->
-        <tr>
+         <tr>
             <td colspan="2">
             
 				<script id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script>
 				
 
+            </td>
+        </tr> 
+        <tr>
+            <td class="blue_text">
+                关键字：
+            </td>
+            <td class="keyword">
+                <input class="keyword_ip" id="ip5" type="text" value="请输入关键词..."/>
+                <div class="keyword_t">自动获取关键字</div>
+                <div class="keyword_t2">（您可以调整关键字内容，多个关键词请用" , "分割）</div>
+        </tr>
+        </tbody>
+        
+    </table>
+    <div class="foot_mg">
+        <img  id="hd" class="fot_1" src="../img/mg5.png" alt=""/> <!-- 发布 -->
+        <img  id="rs"  src="../img/mg6.png" alt=""/> <!-- 保存 -->
+    </div>
+</div>
+
+<div class="step3" style="display: none;margin-left: 10px;">
+	<!-- 中间部分 -->
+	 <table class="newNews">
+        <div class="nav_box clearfix">
+            <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
+            <div class="nav_t2" class="news">全部新闻</div>
+
+            <!-- <div class="nav_t3">选择格式 -->
+             <div class="nav_t3" > 
+            	<select name="" class="sel">
+                    <option value="" selected="">选择格式</option>
+                    <option value="">1</option>
+                    <option value="">2 </option>
+                    <option value="">2 </option>
+                    
+                </select>
+            
+            </div>                
+          <!--   <div class="nav_t4"><img src="../img/mg1.png" alt=""/></div> -->
+        </div>
+        <tbody>
+        <tr>
+            <td class="td_w">
+                <!-- <div class="text1 blue_text">请选择新闻类型</div>
+                <img class="text2" src="../img/mg1.png" alt=""/> -->
+                <select name="" id="step3_type" class="">
+                    <option value="" selected="">请选择新闻类型</option>
+                    <option value="">1</option>
+                    <option value="">2 </option>
+                    <option value="">2 </option>
+                    
+                </select>
+            </td>
+            <td>
+                <input class="td_title1" id="step3_ip1" type="text" value="请输入新闻标题..."/>
+                <img class="td_title2" src="../img/mg2.png" alt=""/>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                按照部门发布：
+            </td>
+            <td>
+                <input class="td_title1  release1" type="text"/>
+                <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
+
+                <div class="release3">添加</div>
+                <div class="release4 empty">清空</div>
+
+            </td>
+
+        </tr>
+        <tr>
+            <td class="blue_text">
+                发布时间：
+            </td>
+            <td>
+                <input class="td_title1" id="step3_ip3" type="text" value="请输入发布时间..."/>
+                <a href="javascript:;" id="step_release3"><div class="release3" >设置为当前时间</div></a>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                评论:
+            </td>
+            <td>            
+                <select name="" class="">
+                    <option value="" selected="">实名评论</option>
+                    <option value="">1</option>
+                    <option value="">2 </option>
+                    <option value="">2 </option>
+                    
+                </select>
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                提醒：
+            </td>
+            <td class="remind">
+                <div><input class="news_t1"  type="checkbox" checked/></div>
+               <!--  <div><img src="../img/mg3.png" alt=""/></div> -->
+                <div class="news_t">发送事物提醒消息</div>
+                <div><input class="news_t1" type="checkbox" checked/></div>
+                <!-- <div><img src="../img/mg4.png" alt=""/></div> -->
+                <div class="news_t2">分享到企业社区</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                置顶：
+            </td>
+            <td class="top_box">
+                <div><input class="news_t1" type="checkbox"/></div>
+                <!-- <div><input type="checkbox" style="height:14px;width:14px;margin-top: 4px;"/></div> -->
+                <!-- <div><img src="../img/mg4.png" alt=""/></div> -->
+                <div class="news_t3">使新闻置顶，显示为重要</div>
+                <input class="t_box" type="text" value="0"/>
+                <div class="news_t4">天后结束置顶（0表示一直置顶）</div>
+            </td>
+
+
+        </tr>
+        <tr>
+            <td class="blue_text">
+                内容简介：
+            </td>
+            <td class="abstract">
+                <input class="abstract1" id="step3_ip4" type="text"  maxlength="39" value="请输入内容..."/>
+                <div class="abstract2">(最多输入39个字)</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                附件上传：
+            </td>
+            <td class="enclosure">
+                <div><img src="../img/mg11.png" alt=""/></div>
+                <div class="enclosure_t"><a href="#">添加附件</a></div>
+                <div><img src="../img/mg12.png" alt=""/></div>
+                <div class="enclosure_t"><a href="#">从文件柜和网络硬盘选择附件</a></div>
+                <div><img src="../img/mg13.png" alt=""/></div>
+                <div class="enclosure_t"><a href="#">批量插入图片</a></div>
+                <div><img src="../img/mg14.png" alt=""/></div>
+                <div class="enclosure_t"><a href="#">批量上传过</a></div>
+
+            </td>
+
+
+        </tr>
+        <!--word编辑器-->
+        <tr>
+            <td colspan="2">
+				<script id="container3" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script>
             </td>
         </tr>
         <tr>
@@ -287,7 +442,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </table>
     <div class="foot_mg">
         <img  id="hd" class="fot_1" src="../img/mg5.png" alt=""/> <!-- 发布 -->
-        <img  id="rs"  src="../img/mg6.png" alt=""/> <!-- 保存 -->
+        <img  id="step3_rs"  src="../img/mg6.png" alt=""/> <!-- 保存 -->
     </div>
 </div>
 
@@ -423,7 +578,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 $(function () {
 			/* word文本编辑器 */
-			 var ue = UE.getEditor('container');
+			 var ue = UE.getEditor('container');//新建新闻页面
+			 var ue = UE.getEditor('container3');//修改新闻页面
 		 
             var data = {
                 read : $('.index_head .one').parent().attr('data_id'),
@@ -489,18 +645,18 @@ $(function () {
 						var news = "";
                            for (var i = 0; i < data.obj.length; i++) {                          
                                        
-                                        news = "<tr><input class='input_hide' type='hidden' newsID='"+data.obj[i].newsId+"'><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
-                               		   "<td>"+data.obj[i].providerName+"</td>"+//发布人
-                                       "<td>"+data.obj[i].typeName+"</td>"+//类型
-                                       "<td><div class='break_td' title="+data.obj[i].depName+">"+'点击详情'+"</div></td>"+//发布范围
-                                       "<td><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'>"+data.obj[i].subject+"</a></td>"+//标题
-                                       "<td>"+data.obj[i].newsDateTime+"</td>"+//发布时间
-                                       "<td>"+data.obj[i].clickCount+"</td>"+//点击数
-                                       "<td>"+data.obj[i].newsId+"</td>"+//评论（条）
-                                       "<td>"+"生效</td>"+//状态
+                                        news = "<tr class='trs' rid='"+data.obj[i].newsId+"'><input class='input_hide' type='hidden' newsID='"+data.obj[i].newsId+"'><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
+                               		   "<td class='name' nid='"+data.obj[i].newsId+"'>"+data.obj[i].providerName+"</td>"+//发布人
+                                       "<td class='type' nid='"+data.obj[i].newsId+"'>"+data.obj[i].typeName+"</td>"+//类型
+                                       "<td class='cli' name='"+data.obj[i].depName+"'><div id='break"+data.obj[i].newsId+"' class='break_td' title="+data.obj[i].depName+">"+'点击详情'+"</div></td>"+//发布范围
+                                       "<td time='"+data.obj[i].subject+"'><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'><div id='subject"+data.obj[i].newsId+"'>"+data.obj[i].subject+"</div></a></td>"+//标题
+                                       "<td  class='tim'>"+data.obj[i].newsDateTime+"</td>"+//发布时间
+                                       "<td class='data'>"+data.obj[i].clickCount+"</td>"+//点击数
+                                       "<td class='num'>"+data.obj[i].newsId+"</td>"+//评论（条）
+                                       "<td class='state'>生效</td>"+//状态
                                         "<td>"+
                                        		/*  "<a onclick='updateData("+data.obj[i].newsId+")'>"+"修改"+"</a>&nbsp"+ */
-                                       	 	"<a  href='javascript:;' class='xg'>"+"修改"+"</a>&nbsp"+ 
+                                       	 	"<a  href='javascript:;' id='xg' tid='"+data.obj[i].newsId+"'>"+"修改"+"</a>&nbsp"+ 
 											 "<a  href='javascript:;'>"+"管理评论"+"</a>&nbsp"+
 											 "<a  href='javascript:;'>"+"终止"+"</a>&nbsp"+
 											 /*"<a href='javascript:;' onclick='deleteData("+data.obj[i].newsId+"))'>"+"删除"+"</a>&nbsp"+ */
@@ -520,7 +676,7 @@ $(function () {
 				})
             }
             function initPagination(totalData,pageSize){
-            	console.log(totalData+'---'+pageSize);
+            	/* console.log(totalData+'---'+pageSize); */
             	$('.M-box3').pagination({
 							    totalData:totalData,
 							    showData:pageSize,
@@ -533,7 +689,7 @@ $(function () {
 							    jumpBtn:'<fmt:message code="global.page.jump" />',
 							    callback:function(index){
 							    	data.page = index.getCurrent();
-							    	console.log(index.getCurrent());
+							    /* 	console.log(index.getCurrent()); */
 							    	initPageList();
 							    }
 							});
@@ -565,12 +721,135 @@ $(function () {
 		        });
 		        
 		        /* 新闻管理修改页面 */
-		         $("#j_tb").on('click','.xg',function(){	          
-		            $('.step1').hide();
-					$('.step2').show();
-					$('.center').hide();
-		                      
-		        });		
+		         $("#j_tb").on('click', '#xg', function(){
+		         	/* var attR=$(this).parents('tr').find('input.input_hide').attr('newsID'); */
+		          	/* var newID=$(this).parents('tr').find('.input_hide').attr('newsID');//获取每一行的id */
+		          	
+		          	
+		         	/*alert(newID); */
+		         	var id=$(this).attr('tid');
+		         	alert(id);
+		       		alert($(this).parent().parent().attr('rid')); 
+		         	 if(id==$(this).parent().parent().attr('rid')){	
+						 /* $("select:[id='step3_type'] option"). each( function () {
+		                  	 if($(this).text()==$(this).parent().siblings('.type').text())
+								{
+								    $(this).attr("selected","selected"); 
+								             
+								}                 
+                		});  */
+						$(this).parent().siblings('.name').text(); //发布人
+						alert($(this).parent().siblings('.name').text()); //发布人
+						//$(this).parent().siblings('.type').text(); //类型
+						/* $("#step3_ip4").val($('#break"+newID+"').text());//发布范围 
+						alert($('#break"+newID+"').text());//发布范围 
+						$("#step3_ip1").val($('#subject"+newID+"').text());//标题
+						$("#step3_ip3").val($(this).parent().siblings('.tim').text());//发布时间
+						$(this).parent().siblings('.data').text();//点击数
+						$(this).parent().siblings('.num').text();//评论(条)
+						$(this).parent().siblings('.state').text();//状态  */
+						
+						 $('.step1').hide();
+			          	 $('.center').hide();
+						 $('.step2').hide();
+						 $('.step3').show();
+					 } 
+		          	/*  alert(attR); */
+		          	 /* $('.step1').hide();
+		          	 $('.center').hide();
+					 $('.step2').show(); */
+					 
+				/* 	if(id==$(this).parent('.name').attr(nid)){
+						/* alert($(this).parent().parent().attr('rid')+"===");
+						alert($(this).parent().parent('.name').text()); 
+						 alert($(this).parent().parent.find().$('.name').text());
+						$(elem).parent().find('input').get(0).val();
+						$(this).parent().find().children(".type").text(); */
+						/* alert($(this).parent('.name').text())
+					}   */
+ 					 
+		          	<%-- $.ajax({
+		           		data:{
+		           			
+		           		},
+		           		type:"GET",
+		           		dataType:"JSON",
+		           		url:"<%=basePath%>news/updateNews",
+		           		success:function(){
+		           			location.reload();
+		           			//alert(data);
+		           			 $('.step1').hide();
+							$('.step2').show();
+							$('.center').hide();
+		           		}	           		
+		           	}); --%>	           
+        
+		        });	
+		        
+		        //修改页面保存时调用的方法
+		        $("#step3_rs").click(function(){
+		         
+					  var data = {
+		           		"newsId":id,
+		           		"providerName":$(this).parent().siblings('.name').text(),//发布人
+		           		"typeName":$("#step3_ip4").val(),//发布范围
+		           		"depName":$('#break"+newID+"').text(),//标题
+		           		"subject":$('#subject"+newID+"').text(),//时间
+		           		"tim":$(this).parent().siblings('.tim').text(),//点击数
+		           		"data":$(this).parent().siblings('.data').text()//评论（条）
+			           	};
+			           	$.ajax({
+			           		data:data,
+			           		type:"GET",
+			           		dataType:"JSON",
+			           		url:"<%=basePath%>news/updateNews",
+			           		success:function(){
+			           			location.reload();
+			           			//alert(data);
+			           			 initPageList();
+			           			 $('.step1').show();
+					          	 $('.center').hide();
+								 $('.step2').hide();
+			           		}	           		
+			           	});	
+		        
+		        });
+		        
+		        
+		        
+		        
+				var now = null;
+		        
+		        function queryTime(){
+			         function p(s) {
+					    return s < 10 ? '0' + s: s;
+					}
+					
+					var myDate = new Date();
+					//获取当前年
+					var year=myDate.getFullYear();
+					//获取当前月
+					var month=myDate.getMonth()+1;
+					//获取当前日
+					var date=myDate.getDate(); 
+					var h=myDate.getHours();       //获取当前小时数(0-23)
+					var m=myDate.getMinutes();     //获取当前分钟数(0-59)
+					var s=myDate.getSeconds();  
+					
+					now=year+'-'+p(month)+"-"+p(date)+" "+p(h)+':'+p(m)+":"+p(s);
+		        }
+		        
+		        //获取当前时间 修改时页面
+		        $("#step_release3").click(function(){
+		          queryTime();
+		      	  $("#step3_ip3").val(now);
+		        });
+		        
+		         //获取当前时间 新建时页面
+		        $("#step_release2").click(function(){
+		          queryTime();
+		      	  $("#ip3").val(now);
+		        });
 		        
 		             
 		        /* 新闻查询按钮 */
@@ -635,8 +914,8 @@ $(function () {
 	                 newsDateTime:$("#ip3").val(),	//时间
 	                 deprange:$("#ip4").val(),	//内容
 	                 message:$("#ip5").val()	//关键字
-                    }
-                    console.log(data);
+                    };
+                   /*  console.log(data); */
 			alert(111);
                 $.ajax({
                     url:"<%=basePath%>news/sendNews",
@@ -644,7 +923,8 @@ $(function () {
     
 	       		data : data,
                    
-                   success:function(){
+                   success:function(json){
+                        console.log(json+"111");
 	           			$('.step1').show();
 						$('.step2').hide();
 						$('.center').hide();
@@ -657,6 +937,9 @@ $(function () {
                 });
                 alert(222);
         });
+        
+        
+        
    
   
 </script>
