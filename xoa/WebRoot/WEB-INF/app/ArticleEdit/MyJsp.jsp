@@ -408,7 +408,8 @@
             execCommand : function() {
                 var dialog = new UE.ui.Dialog(
                     {
-                        iframeUrl : 'wyq',
+                       /*  iframeUrl : '../lib/ueditor/formdesign/text.html', */
+                        iframeUrl : '../app/ArticleEdit/text/propUniline.html', 
                         name : thePlugins,
                         editor : this,
                         title : '单行输入框',

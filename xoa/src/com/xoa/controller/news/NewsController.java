@@ -424,7 +424,7 @@ public class NewsController {
 		ToJson<News> toJson=new ToJson<News>(0, "");
 		Users name = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users());
 	try {
-			News news=newService.queryById(maps, 1, 5, false, name.getUserId(),sqlType);
+			News news=newService.queryById(maps, 1, 5, false, "ww",sqlType);
 			toJson.setMsg(ok);
 			toJson.setObject(news);
 			return toJson;
