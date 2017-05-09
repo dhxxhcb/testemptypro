@@ -239,11 +239,17 @@ LEFT JOIN (
 LEFT JOIN department ON department.DEPT_ID=flow_sort.DEPT_ID
 ORDER BY SORT_ID,SORT_NO ASC
   </select>
-  <select id="selectNoflowSort" resultType="Integer">
-   SELECT COUNT(flow_type.FLOW_ID) AS FLOW_COUNTS,flow_type.FLOW_SORT FROM flow_type  WHERE flow_type.FLOW_SORT=0 or flow_type.FLOW_SORT IS NULL
+  <select id="selectNoflowSort" resultType="Integer" >
+   SELECT COUNT(flow_type.FLOW_ID) AS FLOW_COUNTS,flow_type.FLOW_SORT FROM flow_type  WHERE  flow_type.FLOW_SORT=0 or flow_type.FLOW_SORT IS NULL
   </select>
 
   <select id="getChildNumber" resultType="Integer" parameterType="Integer">
     SELECT COUNT(*) FROM flow_sort WHERE flow_sort.SORT_PARENT=#{sordId}
   </select>
+
+  <select id="selectflowSortNum" resultType="Integer" parameterType="Integer" >
+    SELECT COUNT(flow_type.FLOW_ID) AS FLOW_COUNTS,flow_type.FLOW_SORT FROM flow_type  WHERE  flow_type.FLOW_SORT=#{flowId}
+  </select>
+
+
 </mapper>

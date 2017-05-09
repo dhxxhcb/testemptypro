@@ -46,7 +46,18 @@ public class JobClassifyController {
     public JobSelectorWrapper getFlowInfo(){
         return   service.getFlowsort();
     }
-
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-8 下午5:32:18 
+     * @方法介绍  表单分类添加
+     * @参数说明 @param parentId 父分类Id
+     * @参数说明 @param sortNo  序号
+     * @参数说明 @param formName 分类名称
+     * @参数说明 @param departmentId  部门Id
+     * @参数说明 @return
+     * @return
+     */
     @RequestMapping("/flowclassify/formSave")
     public BaseWrapper insertForm(@RequestParam(defaultValue = "0",required = false) Integer parentId, Integer sortNo, String formName, @RequestParam(defaultValue = "0",required = false)Integer departmentId){
         return  service.insertForm(parentId,sortNo,formName,departmentId);
@@ -66,6 +77,14 @@ public class JobClassifyController {
         return  service.flowUpdate(flowId,parentId,sortNo,flowName,departmentId);
     }
 
+    @RequestMapping("/flowclassify/flowDelete")
+    public BaseWrapper deleteFlow(Integer flowId){
+        return  service.deleteFlow(flowId);
+    }
+    @RequestMapping("/flowclassify/formDelete")
+    public BaseWrapper deleteForm(Integer formId){
+        return   service.deleteForm(formId);
+    }
 
 
 }
