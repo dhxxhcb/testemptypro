@@ -3,22 +3,6 @@ package com.xoa.model.schedule;
 import java.util.Date;
 import java.util.List;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
- /**
- * 创建作者:   张龙飞
- * 创建日期:   2017年5月4日 上午10:50:11
- * 类介绍  :    日程安排表
- * 构造参数:   无
- *
- */
- /**
- * 创建作者:   张龙飞
- * 创建日期:   2017年5月4日 上午10:52:17
- * 类介绍  :   
- * 构造参数:   
- *
- */
  /**
  * 创建作者:   张龙飞
  * 创建日期:   2017年5月4日 上午10:52:18
