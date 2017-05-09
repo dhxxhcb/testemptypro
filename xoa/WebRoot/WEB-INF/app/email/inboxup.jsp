@@ -44,9 +44,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="ul_show" style="display: block;">
 							<ul>
 								<li class="on Inbox"><a href="javascript:;"><img src="../img/icon_inbox_07.png"/><fmt:message code="email.title.inbox" /><span></span></a></li>
-								<li><a href="javascript:;"><img src="../img/icon_drafts_07.png"/><fmt:message code="email.title.draftbox" /><span></span></a></li>
-								<li><a href="javascript:;"><img src="../img/icon_sent_07.png"/><fmt:message code="email.title.sent" /></a></li>
-								<li><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/><fmt:message code="email.title.wastebasket" /></a></li>
+								<li id="drafts"><a href="javascript:;"><img src="../img/icon_drafts_07.png"/><fmt:message code="email.title.draftbox" /><span></span></a></li>
+								<li id="outbox"><a href="javascript:;"><img src="../img/icon_sent_07.png"/><fmt:message code="email.title.sent" /></a></li>
+								<li id="recycle"><a href="javascript:;"><img src="../img/icon_dustbin_07.png"/><fmt:message code="email.title.wastebasket" /></a></li>
 								<li class='liSearch'><a href="javascript:;"><img src="../img/icon_search_03.png"/><fmt:message code="email.title.querymail" /></a></li>
 							</ul>
 						</div>
@@ -145,10 +145,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 						
 					</table>
-					
-			<!--右侧侧边栏 结束-->
+				</div>
+
 		</div>
-		
+				<!--右侧侧边栏 结束-->
 		<script type="text/javascript">
     		
     		$(function(){

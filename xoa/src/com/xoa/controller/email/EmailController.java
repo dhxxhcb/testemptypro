@@ -699,4 +699,10 @@ public class EmailController {
 		return "app/email/writeMail";
 	}
 
+	@RequestMapping("/details")
+	public String details(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/email/details";
+	}
 }
