@@ -297,12 +297,15 @@ $(function () {
 						  			'<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类名称</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name"></div></div>'+
 						  			'<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">所属部门</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id"><option>所有部门</option></select></div></div>'+
 						  			'</div></div>',
-                            btn: [ '保存', '关闭'],
-                            yes: function(index, layero){
-                            //按钮【按钮一】的回调
 
-                        	}
+						  btn:['保存', '关闭'],
+						  btn1: function(index, layero){
+                              //按钮【按钮二】的回调
+
+                              //return false 开启该代码可禁止点击该按钮关闭
+                          }
 						});
+
                         /*<option value="1">├中国兵器工业信息中心</option>*/
                        /* <option value="3">│└北京通达信科科技有限公司</option><option value="17">│　└总经理</option><option value="4">│　　├综合管理部</option>*/
                        /* <option value="18">│　　│├人力资源部</option><option value="19">│　　│├财务部</option><option value="20">│　　│└行政部</option><option value="5">│　　├市场营销部</option><option value="39">│　　│├市场部</option><option value="33">│　　││├品牌部</option>*/
