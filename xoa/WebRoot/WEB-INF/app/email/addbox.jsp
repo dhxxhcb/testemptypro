@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 		<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
 			<tr class="append_tr">
-				<td width="10%"><fmt:message code="email.th.sender" />：</td>
+				<td width="10%"><fmt:message code="email.th.recipients" />：</td>
 				<td width="89%">
 					<div class="inPole">
 						<textarea name="txt" id="senduser" user_id='admin' value="admin" disabled></textarea>
@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});
        		 	//点击立即发送按钮
        		 	$("#btn1").on("click",function(){
-					
+					alert('123')
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();
@@ -155,7 +155,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
 						uId += attach.eq(i).attr('NAME');
 					}
-					//alert(aId+uId);
 					var data={
 					 	'fromId':'admin',
 					 	'toId2': 'admin,',
@@ -164,6 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						'attachmentId':aId,
 						'attachmentName':uId
 					};
+                    alert(toId2);
 					
 					$.ajax({
 						 type:'post',    
@@ -176,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							$('.append_tr').parents('.div_iframe').remove();
 							$('.up_page_right').css('display','block');
 						}
-					}); 
+					});
 				});
 				
 				//点击保存到草稿箱按钮

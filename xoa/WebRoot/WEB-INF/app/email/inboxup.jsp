@@ -22,6 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<style>
 			.Hover{cursor: pointer;}
 			.Hover:hover{background-color:#c5e9fb;}
+			.on_tr{background-color: #c5e9fb;}
 		</style>
 	</head>
 	<body>
@@ -179,7 +180,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$(this).parent().find('li').eq(1).find('img').attr('src','img/icon_list_03.png');
 					window.location.href='index';
 				})
-	    		
+
+
+				$('.tab').on('click','tr.Hover',function () {
+					$(this).addClass('on_tr').siblings().removeClass('on_tr');
+					var atr=$(this).attr('Attr');
+                    $.popWindow('details?id='+atr);
+                })
+
     		});
     		
     		
@@ -210,16 +218,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										//alert(data1[i].sendTime);
 										if(data1[i].emailList[0].readFlag==1){
 											if(data1[i].attachmentId!=''){
-												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+												str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
 											}else{
-												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+												str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
 											}
 											
 										} else if(data1[i].emailList[0].readFlag==0){
 											if(data1[i].attachmentId!=''){
-												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+												str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
 											}else{
-												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+												str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
 											}
 										}
 										
