@@ -169,35 +169,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<ul>
 					<li class="total">
-						<a href="login?loginId=1001">
+						<a href="getCompanyAll?loginId=1001">
 							<span class="round"></span>
 							<span class="bord">&nbsp;</span>
 							<span class="txt"><fmt:message code="headQuarters" /></span>
 						</a>
 					</li>
 					<li class="div_li one">
-						<a href="login?loginId=1002">
+						<a href="getCompanyAll?loginId=1002">
 							<span class="round"></span>
 							<span class="bord">&nbsp;</span>
 							<span class="txt"><fmt:message code="branchOfficeOne" /></span>
 						</a>
 					</li>
 					<li class="div_li tow">
-						<a href="login?loginId=1003">
+						<a href="getCompanyAll?loginId=1003">
 							<span class="round"></span>
 							<span class="bord">&nbsp;</span>
 							<span class="txt"><fmt:message code="branchOfficeTwo"/></span>
 						</a>
 					</li>
 					<li class="div_li three">
-						<a href="login?loginId=1004">
+						<a href="getCompanyAll?loginId=1004">
 							<span class="round"></span>
 							<span class="bord">&nbsp;</span>
 							<span class="txt"><fmt:message code="branchOfficeThree"/></span>
 						</a>
 					</li>
 					<li class="div_li four">
-						<a href="login?loginId=1005">
+						<a href="getCompanyAll?loginId=1005">
 							<span class="round"></span>
 							<span class="bord">&nbsp;</span>
 							<span class="txt"><fmt:message code="branchOfficeFore"/></span>
