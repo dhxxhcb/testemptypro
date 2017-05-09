@@ -202,7 +202,15 @@ public class DiaryServiceImpl implements DiaryService{
 	public int updateDiary(DiaryModel diaryModel) {
 		return diaryModelMapper.updateDiary(diaryModel);
 	}
-	
+	 /**
+	    * 
+	    * 创建作者:   杨 胜
+	    * 创建日期:   2017-4-19 下午3:39:29
+	    * 方法介绍:   工作日志根据ID删除
+	    * 参数说明:   @param diaryModel
+	    * 参数说明:   @return
+	    * @return   int  修改
+	    */
 	@Override
 	public int deletDiaById(DiaryModel diaryModel) {
 		return diaryModelMapper.deletDiaById(diaryModel);
@@ -229,12 +237,12 @@ public class DiaryServiceImpl implements DiaryService{
 		String temp=diary.getDiaTime().substring(0, 19);
 		diary.setDiaTime(temp);
 		diary.setReaders("");
-		diaryListToJson.setObject(diary);
 		List<Attachment> attachmentList=new ArrayList<Attachment>();
 		if(diary.getAttachmentName()!=null&&!"".equals(diary.getAttachmentName())){
 		attachmentList=GetAttachmentListUtil.returnAttachment(diary.getAttachmentName(),diary.getAttachmentId(),sqlType);
 		}
-		diaryListToJson.setObj(attachmentList);
+		diary.setAttachment(attachmentList);
+		diaryListToJson.setObject(diary);
 		return diaryListToJson;
 	}
 	/**

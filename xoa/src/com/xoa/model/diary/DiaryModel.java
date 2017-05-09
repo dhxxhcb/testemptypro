@@ -1,6 +1,9 @@
 package com.xoa.model.diary;
 
 import java.util.Date;
+import java.util.List;
+
+import com.xoa.model.enclosure.Attachment;
 /**
  * 
  * 创建作者:   杨 胜
@@ -85,8 +88,17 @@ public class DiaryModel {
      */
     private String postType;
     
-    
-    //标识发送请求方式
+    //附件生成json转换
+    private List<Attachment> attachment;
+    public List<Attachment> getAttachment() {
+		return attachment;
+	}
+	public void setAttachment(List<Attachment> attachment) {
+		this.attachment = attachment;
+	}
+	//附件生成json转换
+
+	//标识发送请求方式
     public String getPostType() {
 		return postType;
 	}
