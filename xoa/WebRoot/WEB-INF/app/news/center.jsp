@@ -143,7 +143,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <!-- 新闻查询 -->
 <!-- <div class="center" style="width:100%;margin-top: 50px;display: none;"> -->
+<!-- 新闻nav部分 -->
+	   
 <div class="center" id="qt">
+	 <div class="navigation  clearfix">
+            <div class="left">
+                <img src="../img/la2.png">                 
+                <div class="news">
+                    	新闻查询
+                </div>                              
+	</div> 
     <div class="login">
         <div class="header">
             <fmt:message code="global.lang.inputquerycondition"/>
