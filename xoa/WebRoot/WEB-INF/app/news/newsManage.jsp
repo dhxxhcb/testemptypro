@@ -428,7 +428,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!--word编辑器-->
         <tr>
             <td colspan="2">
-				<script id="container3" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script>
+				<script id="container3" name="content" type="text/plain" style="width: 100%;min-height: 200px;">
+
+
+				</script>
             </td>
         </tr>
         <tr>
@@ -756,15 +759,12 @@ $(function () {
 		                    type:'get',
 		                
 			       			data : {
-			       				"newsId":id,
-			       				
+			       				"newsId":id,			
 			       				
 			       			},		                   
 		                   success:function(data){
-		                       alert(data.object.content);
-		                      
-		                       
-		                       
+		                       /* alert(data.object.content); */
+		                       $("#container3").html(data.object.content)
 			           		},	  
 			           		error:function(){
 			            		alert("请求数据出错");
@@ -773,11 +773,11 @@ $(function () {
 		                   
 		                });
 						
-					/* 	
+					 	
 						 $('.step1').hide();
 			          	 $('.center').hide();
 						 $('.step2').hide();
-						 $('.step3').show(); */
+						 $('.step3').show(); 
 					 } 
 
 		        });	
