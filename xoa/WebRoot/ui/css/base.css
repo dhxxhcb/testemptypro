@@ -147,11 +147,13 @@ body {
 }
 
 .navigation .left .news {
-    font-size: 14px;
+    /* font-size: 14px; */
     margin-left:5px;
     font-family: "微软雅黑";
     margin-top: -3px;
     margin-right: 40px;
+    font-size: 22px;
+    color: #494d59;
 }
 
 .navigation .left .button1 {
@@ -412,5 +414,5 @@ tr {
 		.news{
 			    font-size: 17px;
 			    color: rgb(47, 92, 143);
-			    font-weight: bold;
+			    /* font-weight: bold; */
 		}
