@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.btnImg{width: 100%;}
 			.btnImg .margin{width: 370px;margin: 20px auto;}
 			.btnImg .margin a{margin-right: 20px;}
-			.spanbreak{    width: 120px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display:  inline-block;}
+			.spanbreak{    width: 60px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display:  inline-block;}
 		</style>
 		<script type="text/javascript">
 			 $(function () {
