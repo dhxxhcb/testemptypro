@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						dataType:'json',
 						success:function(data){
 						/* if() */
-							if(deptId==0){
+							if(deptId==20){
 								var str = '';
 								data.obj.forEach(function(v,i){
 									if(v.deptName){
@@ -168,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					
 				});
-				getChDept($('#deptOrg'),0);
+				getChDept($('#deptOrg'),20);
 				
 				$('.tree .dynatree-container').on('click','.childdept',function(){
 								var  that = $(this);

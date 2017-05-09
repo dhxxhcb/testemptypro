@@ -12,16 +12,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../../lib/laydate.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/ueditor/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../../lib/pagination/style/pagination.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/base.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/news/center.css"/>
     <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
     <script src="../../js/news/page.js"></script>
-    <script src="../lib/laydate.js"></script>
-    <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../lib/layer/layer.js"></script>
+    <script src="../../lib/laydate.js"></script>
+    <script src="../../js/base/base.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/layer/layer.js"></script>
 	<style>
 		.wrap{
 			    margin-left: 1%;
@@ -83,6 +83,75 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		.headli1_2{
 			    margin-left: -137px !important;
     			margin-top: 5px !important;
+		}
+		.conter{
+			width:500px;
+			height:800px;
+			margin:auto;
+		}
+		.f_field_title {
+		    font-size: 12px;
+		    font-weight: bold;
+		    margin-left: 2px;
+		    margin-right: 2px;
+		}
+		.f_field_required {
+		    color: red;
+		    font-size: 12px;
+		    margin-top: 0px;
+		    margin-left: 2px;
+		    margin-right: 2px;
+		}
+		.f_field_ctrl {
+		    margin-top: 5px;
+		    margin-left: 2px;
+		}
+		select {
+
+			height: 32px;
+			width: 220px;
+			border-radius: 4px;
+		    border: 1px solid #cccccc;
+		    background-color: #ffffff;
+		}
+		.f_field_title {
+		    font-size: 12px;
+		    font-weight: bold;
+		    margin-left: 2px;
+		    margin-right: 2px;
+		}
+		.f_field_required {
+		    color: red;
+		    font-size: 12px;
+		    margin-top: 0px;
+		    margin-left: 2px;
+		    margin-right: 2px;
+		}
+		.f_field_ctrl {
+		    margin-top: 5px;
+		    margin-left: 2px;
+		}
+		.f_field_ctrl input{
+			color:#000;
+		}
+		.f_field_block {
+			width: 100%;
+    		height: 68px;
+		    margin-top: 4px;
+		    margin-bottom: 4px;
+		    display: block;
+		    text-align: left;
+		}
+		.inp{
+			width: 221px;
+			height: 32px;
+			border-radius: 4px;
+		}
+	/*	#layui-layer2{
+			border-radius:10px;
+		}*/
+		.center{
+			height:400px !important;
 		}
 	</style>
 </head>
@@ -181,6 +250,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         </div>
         <!--content部分结束-->
+        
+                  <!--  内容 -->
+                  
+                  
     
 </div>
 
@@ -205,7 +278,88 @@ $(function () {
 					$('.sort_liucheng h1').html('流程分类列表');
 					$('.new_liucheng h1').html('新建流程分类');
 				} 
-			})
+			});
+			
+					//新增	
+					$('.new_liucheng').on('click',function(){
+					
+					
+					
+						layer.open({
+						  type: 1,
+						  /* skin: 'layui-layer-rim', //加上边框 */
+						  offset: '80px',
+						  area: ['600px', '400px'], //宽高
+						  title:'新建表单分类',
+						  content: '<div class="conter"><div class="f_title"><span class="f_field_title">表单父分类</span><span class="f_field_required">*</span>'+
+						  			'<div class="f_field_ctrl clear"><select name="SORT_PARENT" id="sort_parent"></select><span>（为空为一级分类）</span></div>'+
+						  			'<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类排序号</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" name="SORT_NO" class="inp" value="0" id="sort_no"></div></div>'+
+						  			'<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类名称</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name"></div></div>'+
+						  			'<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">所属部门</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id"><option>所有部门</option></select></div></div>'+
+						  			'</div></div>',
+                            btn: [ '保存', '关闭'],
+                            yes: function(index, layero){
+                            //按钮【按钮一】的回调
+
+                        	}
+						});
+                        /*<option value="1">├中国兵器工业信息中心</option>*/
+                       /* <option value="3">│└北京通达信科科技有限公司</option><option value="17">│　└总经理</option><option value="4">│　　├综合管理部</option>*/
+                       /* <option value="18">│　　│├人力资源部</option><option value="19">│　　│├财务部</option><option value="20">│　　│└行政部</option><option value="5">│　　├市场营销部</option><option value="39">│　　│├市场部</option><option value="33">│　　││├品牌部</option>*/
+                      /*  <option value="31">│　　││├网络营销中心</option><option value="32">│　　││└商务中心</option><option value="40">│　　│└销售部</option><option value="7">│　　│　├北京销售部</option><option value="28">│　　│　│├销售一组</option><option value="29">│　　│　│├销售二组</option><option value="30">│　　│　│├销售三组</option><option value="27">│　　│　│└销售协作组</option><option value="8">│　　│　└上海销售部</option><option value="6">│　　├研发部</option><option value="34">│　　│├产品部</option><option value="9">│　　│├开发一部</option><option value="10">│　　│├开发二部</option><option value="11">│　　│├质量保证部</option><option value="15">│　　│└设计部</option><option value="41">│　　├项目部</option><option value="42">│　　│├项目一部</option><option value="43">│　　│└项目二部</option><option value="16">│　　└生产部</option><option value="38">│　　　├采购部</option><option value="35">│　　　├生产一部</option><option value="37">│　　　├生产二部</option><option value="36">│　　　└质检部</option><option value="2">└北方测试研究公司</option><option value="14">　└北一测试研究院</option>*/
+						var opt_li='<option value="0"  class="levelleft0"></option>';
+						opt_li=Child(formdata,opt_li,0);
+						$('#sort_parent').html(opt_li);
+                        var opt_li_dep='<option value="0"  class="levelleft0">所有部门</option>';
+
+                        opt_li_dep = departmentChild(departmentData,opt_li_dep,0);
+                        console.log(departmentData)
+                        $('#dept_id').html(opt_li_dep);
+
+					});	
+					//编辑
+						$('#j_tb').on('click','.edit_biaodan',function(){
+							
+							layer.open({
+							  type: 1,
+							  /* skin: 'layui-layer-rim', //加上边框 */
+							  area: ['600px', '400px'], //宽高
+							  title:'编辑表单分类',
+							  content:  '<div class="conter"><div class="f_title"><span class="f_field_title">表单父分类</span><span class="f_field_required">*</span>'+
+                              '<div class="f_field_ctrl clear"><select name="SORT_PARENT" id="sort_parent"></select><span>（为空为一级分类）</span></div>'+
+                              '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类排序号</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" name="SORT_NO" class="inp" value="0" id="sort_no"></div></div>'+
+                              '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类名称</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name"></div></div>'+
+                              '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">所属部门</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id"><option>所有部门</option></select></div></div>'+
+                              '</div></div>'
+							}); 
+						/* 	$('.conter') */
+					
+						});
+    var departmentData =new Array();
+    //部门接口
+    function departmentAjax(){
+        $.ajax({
+            url:'/department/getAlldept',
+            type:'get',
+            dataType:'json',
+            success:function(obj){
+                var data=obj.obj;
+                departmentData= digui(data,0);
+            }
+        });
+    }
+    departmentAjax();
+    function digui(datas,departId) {
+        var data=new Array();
+        for(var i=0;i<datas.length;i++){
+            if(datas[i].deptParent==departId){
+                datas[i]["childs"]=digui(datas,datas[i].deptId);
+                data.push(datas[i]);
+            }
+        }
+        return data;
+    }
+			
 			//表单分类接口
           function queryChild(datas,str_li,level){
               for(var i=0;i<datas.length;i++){
@@ -215,16 +369,73 @@ $(function () {
 		                        '<td><a notifyId="" class="windowOpen '+className+'">'+datas[i].sortName+'</a></td>'+
 		                        '<td><a notifyId="" class="windowOpen ">'+datas[i].formcounts+'</a></td>'+
 		                        '<td><a notifyId="" class="windowOpen ">'+datas[i].departName+'</a></td>'+
-		                        '<td><a notifyId="" class="windowOpen ">编辑|删除</a></td></tr>'
-                 console.log(datas[i].childs);
+		                        '<td class="tds"><a notifyId="" class="edit_biaodan">编辑</a><a notifyId="" class="delete_biaodan">|删除</a></td></tr>'
+		                   
+                 /* console.log(datas[i].childs); */
                  if(datas[i].haveChild!=null&&datas[i].haveChild==1){
                     str_li = queryChild(datas[i].childs,str_li,level+1);
+          
                  }
               }
               return str_li;
+          
+          }
+    //部门遍历方法
+    function departmentChild(datas,opt_li,level){
+        for(var i=0;i<datas.length;i++){
+            var String="";
+            var space=""
+            for(var j=0;j<level;j++){
+                space+="├&nbsp;&nbsp;&nbsp;";
+            }
+            console.log("kongge"+space+"kongge")
+            if(i==0){
+                String=space+"┌";
+            }else
+            if(i!=0){
+                String=space+"├";
+            }else
+            if(i==datas.length-1){
+                String=space+"└";
+            }
+
+            opt_li+='<option value="'+datas[i].deptId+'">'+String+datas[i].deptName+'</option>';
+        	console.log(datas[i].childs);
+            if(datas[i].childs!=null){
+                opt_li = departmentChild(datas[i].childs,opt_li,level+1);
+            }
+        }
+        return opt_li;
+    }
+          //父表单方法
+          function Child(datas,opt_li,level){
+              for(var i=1;i<datas.length;i++){
+                var String="";
+                  var space=""
+                for(var j=0;j<level;j++){
+                        space+="├&nbsp;&nbsp;&nbsp;";
+                }
+                console.log("kongge"+space+"kongge")
+                  if(i==1){
+                      String=space+"┌";
+                  }
+                  if(i!=1){
+                      String=space+"├";
+                  }
+                  if(i==datas.length-1){
+                      String=space+"└";
+                  }
+		          opt_li+='<option value="'+datas[i].sortId+'">'+String+datas[i].sortName+'</option>';
+                 /* console.log(datas[i].childs); */
+                 if(datas[i].haveChild!=null&&datas[i].haveChild==1){
+                    opt_li = Child(datas[i].childs,opt_li,level+1);
+                 }
+              }
+        
+              return opt_li;
           }
 
-
+           var formdata={};
 				//表单分类接口
 			function item(){
 					$.ajax({
@@ -232,33 +443,34 @@ $(function () {
 						type:'get',
 						dataType:'json',
 						success:function(obj){
-							var data=obj.datas;
-							console.log(data);
-							var str_li='';
-							str_li=queryChild(data,str_li,0);
-							
-						
-							$('#j_tb').html(str_li);
+						   if(obj.flag){
+						   		var data=obj.datas;
+						   		/* console.log(data); */
+								var str_li='';
+								
+								
+								str_li=queryChild(data,str_li,0);
+								formdata=data;
+								
+								$('#j_tb').html(str_li);
+						   }
 						}
 					});
 			}
-			
+
 			item();
-			
-			
-			
-			
+
 				//流程分类接口
           function queryChild_biaodan(datas,str_li,level){
               for(var i=0;i<datas.length;i++){
                 var className="levelleft"+level;
                
-                 str_li+='<tr><td><a  notifyId="" class="windowOpen '+className+'">'+datas[i].sortNo+'</a></td>'+
+                 str_li+='<tr ><td><a  notifyId="" class="windowOpen '+className+'">'+datas[i].sortNo+'</a></td>'+
 		                        '<td><a notifyId="" class="windowOpen '+className+'">'+datas[i].sortName+'</a></td>'+
 		                        '<td><a notifyId="" class="windowOpen ">'+datas[i].flowcounts+'</a></td>'+
 		                        '<td><a notifyId="" class="windowOpen ">'+datas[i].departName+'</a></td>'+
-		                        '<td><a notifyId="" class="windowOpen ">编辑|删除</a></td></tr>'
-                 console.log(datas[i].childs);
+		                        '<td><a notifyId="" class="edit_liucheng">编辑</a><a notifyId="" class="delete">|删除</a></td></tr>'
+               /*   console.log(datas[i].childs); */
                  if(datas[i].haveChild!=null&&datas[i].haveChild==1){
                     str_li = queryChild_biaodan(datas[i].childs,str_li,level+1);
                  }
@@ -275,7 +487,7 @@ $(function () {
 						dataType:'json',
 						success:function(obj){
 							var data=obj.datas;
-							console.log(data);
+							/* console.log(data); */
 							var str_li='';
 							str_li=queryChild_biaodan(data,str_li,0);
 							
@@ -286,6 +498,52 @@ $(function () {
 			}
 			
 			items();
+			
+
+			
+			
+			
+	/* 	//新建表单中表父单接口的数据
+		 function addChild_biaodan(datas,str_li,level){
+              for(var i=0;i<datas.length;i++){
+                var className="levelleft"+level;
+               
+                 str_li+='<tr ><td><a  notifyId="" class="windowOpen '+className+'">'+datas[i].sortNo+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen '+className+'">'+datas[i].sortName+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen ">'+datas[i].flowcounts+'</a></td>'+
+		                        '<td><a notifyId="" class="windowOpen ">'+datas[i].departName+'</a></td>'+
+		                        '<td><a notifyId="" class="edit_liucheng">编辑</a><a notifyId="" class="delete">|删除</a></td></tr>'
+               /*   console.log(datas[i].childs); */
+               /*   if(datas[i].haveChild!=null&&datas[i].haveChild==1){
+                    str_li = addChild_biaodan(datas[i].childs,str_li,level+1);
+                 }
+              }
+              return str_li;
+          }
+
+
+				//新建表单中表父单接口
+			function add_biaodan(){
+					$.ajax({
+						url:'form',
+						type:'get',
+						dataType:'json',
+						success:function(obj){
+							var data=obj.datas;
+							/* console.log(data); */
+						/* 	var str_li='';
+							str_li=addChild_biaodan(data,str_li,0);
+							
+						
+							$('#sort_parent').html(str_li);
+						}
+					});
+			}
+			
+			add_biaodan();  */
+
+		
+
 
 });
 

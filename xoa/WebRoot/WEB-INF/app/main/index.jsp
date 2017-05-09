@@ -207,7 +207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  <!--   </div> -->
 							
 							</div>
-							<!-- 嵌套 -->
+
 							<div id='' class="iItem"><iframe  id="every_module" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
 							
 					</div>
@@ -655,12 +655,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 	  
 						 	   $('#f_'+delet).remove(); 
 						 	}else{ */
-						 		$('#t_'+delet).siblings().attr('style','background:url(img/main_img/title_no.png) 0px 4px no-repeat; ');	
-						 		$('#t_'+delet).prev().attr('style','background:url(img/main_img/title_yes.png) 0px 4px no-repeat; position: relative; z-index: 99999;');	
+						 		$('#t_'+delet).siblings().attr('style','background:url(img/main_img/title_no.png) 0px 4px no-repeat; ');
+                            	$('#t_'+delet).siblings().css('color','#fff');
+						 		$('#t_'+delet).prev().attr('style','background:url(img/main_img/title_yes.png) 0px 4px no-repeat; position: relative; z-index: 99999;');
 						 	 	
 						 	 	$(this).parent().parent().remove();
-						 	 	$('#f_'+delet).prev().show();
-						 	 	$('#f_'+delet).remove(); 
+						 	 	if($('#f_'+delet).prev().find('iframe').attr('src')==''){
+						 	 	    $('#f_0').show();
+                                    $('#f_'+delet).remove();
+								}else{
+                                    $('#f_'+delet).prev().show();
+                                    $('#f_'+delet).remove();
+                                }
+
 						 	 	
 						 	/*     
 						 	} */
@@ -723,7 +730,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						dataType:'json',
 						success:function(data){
 						/* if() */
-							if(deptId==0){
+							if(deptId==20){
 								var str = '';
 								data.obj.forEach(function(v,i){
 									if(v.deptName){
@@ -762,7 +769,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					})
 				}
 				
-					getChDept($('#deptOrg'),0);
+					getChDept($('#deptOrg'),20);
 					
 					/* 我的桌面的 js代码 */
 					
