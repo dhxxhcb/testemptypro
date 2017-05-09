@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.users.OrgManageMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.users.OrgManage" >
+    <id column="OID" property="oid"  javaType="int" />
+    <result column="VERSION" property="version"  javaType="string" />
+    <result column="IS_ORG" property="isOrg" javaType="string" />
+    <result column="NAME" property="name"  javaType="string" />
+  </resultMap>
+  
+  <select id="queryId" resultMap="BaseResultMap">
+  SELECT o.OID,o.`NAME`,o.VERSION,o.IS_ORG FROM org_manage o where o.OID=#{oid}
+  </select>
+</mapper>

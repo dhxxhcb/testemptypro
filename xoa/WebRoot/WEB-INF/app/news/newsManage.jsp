@@ -727,7 +727,7 @@ $(function () {
 		        /* 新闻管理修改页面 */
 		         $("#j_tb").on('click', '#xg', function(){  
 		         	var id=$(this).attr('tid');
-		         	alert(id);
+		         	alert(id+"-------------");
 		       		alert($(this).parent().parent().attr('rid')); 
 		         	 if(id==$(this).parent().parent().attr('rid')){	
 						 /* $("select:[id='step3_type'] option"). each( function () {
@@ -743,17 +743,39 @@ $(function () {
 						//alert( $(this).parent().siblings('.cli').find('.break_td').text());//发布范围 
 						$("#step3_ip4").val( $(this).parent().siblings('.cli').find('.break_td').text());//发布范围 
 						//alert( $(this).parent().siblings().find('.windowOpen div').text());//标题
-						$("#step3_ip1").val($(this).parent().siblings().find('.windowOpen div').text());//标题
-						
-						//$(".step3_te").val($(this).parent().siblings('.tim').text());//发布时间
+						$("#step3_ip1").val($(this).parent().siblings().find('.windowOpen div').text());//标题						
+						$("#step3_ip3").val($(this).parent().siblings('.tim').text());//发布时间
 						alert($(this).parent().siblings('.data').text());//点击数
 						alert($(this).parent().siblings('.num').text());//评论(条)
 						alert($(this).parent().siblings('.state').text());//状态  
+						//新闻详情获得内容：
+						alert(8888888888);
+						alert(id);
+						$.ajax({
+		                    url:"<%=basePath%>news/getOneById ",
+		                    type:'get',
+		                
+			       			data : {
+			       				"newsId":id,
+			       				
+			       				
+			       			},		                   
+		                   success:function(json){
+		                       console.log(json);
+		                       
+			           		},	  
+			           		error:function(){
+			            		alert("请求数据出错");
+			            		return;
+		            		}   		
+		                   
+		                });
 						
+					/* 	
 						 $('.step1').hide();
 			          	 $('.center').hide();
 						 $('.step2').hide();
-						 $('.step3').show();
+						 $('.step3').show(); */
 					 } 
 
 		        });	

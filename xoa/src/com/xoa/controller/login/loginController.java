@@ -19,7 +19,9 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.alibaba.fastjson.JSON;
 import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+import com.xoa.model.users.OrgManage;
 import com.xoa.model.users.Users;
+import com.xoa.service.users.OrgManageService;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
@@ -42,6 +44,8 @@ public class loginController {
 	private Logger loger = Logger.getLogger(loginController.class);
 	@Resource
 	private UsersService usersService;
+	@Resource
+	private OrgManageService  orgManageService;
 	@Value("${app_login_path_php}")
 	private String url;
 	private String charset = "utf-8";
@@ -78,14 +82,25 @@ public class loginController {
 	 */
 	@RequestMapping(value = "/getCompanyAll", method = RequestMethod.GET)
 	// 登录窗口
-	public String logins(@RequestParam("loginId") String loginId,
+	public String getCompanyAll(@RequestParam("loginId") String loginId,
 			HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().setAttribute("loginDateSouse", loginId);
 		String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class
 				.getName() + ".LOCALE";
 		Object locale = request.getSession().getAttribute(
 				LOCALE_SESSION_ATTRIBUTE_NAME);
+		        orgManageService.queryId(Integer.parseInt(loginId));
 		return "login/" + loginId + "/login";
+	}
+	/**
+	 * 分公司登录窗口
+	 * 
+	 * @return 登录窗口
+	 */
+	@RequestMapping(value = "logins", method = RequestMethod.GET)
+	// 登录窗口
+	public @ResponseBody ToJson<OrgManage> logins(@RequestParam("loginId") String loginId) {
+		   return  orgManageService.queryId(Integer.parseInt(loginId));
 	}
 
 	/**
