@@ -7,17 +7,14 @@ import java.util.List;
 import com.xoa.model.common.SysCode;
 import com.xoa.model.common.SysPara;
 import com.xoa.model.department.Department;
+import com.xoa.model.enclosure.Attachment;
 import com.xoa.model.role.Role;
 import com.xoa.model.users.Users;
 
-
 /**
  * 
- * 创建作者:   王曰岐
- * 创建日期:   2017-4-19 下午3:25:09
- * 类介绍  :    新闻实体类
- * 构造参数:   无
- *
+ * 创建作者: 王曰岐 创建日期: 2017-4-19 下午3:25:09 类介绍 : 新闻实体类 构造参数: 无
+ * 
  */
 public class News implements Serializable {
 
@@ -158,25 +155,28 @@ public class News implements Serializable {
 	 * 角色关联
 	 */
 	private Role role;
+
+	private SysCode codes;
+
+	private String newsDateTime;
+
+	private String userrange;
+
+	private String rolerange;
+
+	private String deprange;
 	
-	 private SysCode codes;
-	 
-	 private String newsDateTime;
-	 
-		private String userrange;
-		private String rolerange;
-		private String deprange;
-	
-	
+	/**
+	 * 附件对象
+	 */
+	private List<Attachment> attachment;
+
+
 
 	/**
 	 * 发布者
 	 */
 	private String providerName;
-	
-	
-
-	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -685,6 +685,7 @@ public class News implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
 	public String getNewsDateTime() {
 		return newsDateTime;
 	}
@@ -700,7 +701,8 @@ public class News implements Serializable {
 	public void setCodes(SysCode codes) {
 		this.codes = codes;
 	}
-	private String  typeName;
+
+	private String typeName;
 
 	public String getTypeName() {
 		return typeName;
@@ -709,6 +711,7 @@ public class News implements Serializable {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
+
 	public String getProviderName() {
 		return providerName;
 	}
@@ -716,6 +719,7 @@ public class News implements Serializable {
 	public void setProviderName(String providerName) {
 		this.providerName = providerName;
 	}
+
 	private String depName;
 
 	public String getDepName() {
@@ -750,5 +754,12 @@ public class News implements Serializable {
 		this.deprange = deprange;
 	}
 
+	public List<Attachment> getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(List<Attachment> attachment) {
+		this.attachment = attachment;
+	}
 
 }

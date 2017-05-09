@@ -416,14 +416,15 @@ public class NewsController {
 	 */
 	@RequestMapping(value = "/getOneById",method = RequestMethod.GET,produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody ToJson<News> queryNews(@RequestParam("newsId") Integer newsId,HttpServletRequest request){
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));
+		String sqlType = "xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("newsId", newsId);
 		ToJson<News> toJson=new ToJson<News>(0, "");
 		Users name = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users());
 	try {
-			News news=newService.queryById(maps, 1, 5, false, name.getUserId());
+			News news=newService.queryById(maps, 1, 5, false, name.getUserId(),sqlType);
 			toJson.setMsg(ok);
 			toJson.setObject(news);
 			return toJson;

@@ -134,7 +134,7 @@ public interface NewService {
      * @return     News
      */
     @DynDatasource
-    public News queryById(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+    public News queryById(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
     
     /**
      * 

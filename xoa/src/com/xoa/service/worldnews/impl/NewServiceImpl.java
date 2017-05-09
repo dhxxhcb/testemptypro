@@ -13,6 +13,7 @@ import com.xoa.service.users.UsersPrivService;
 import com.xoa.service.users.UsersService;
 import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;
+import com.xoa.util.GetAttachmentListUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 
@@ -183,7 +184,7 @@ public class NewServiceImpl implements NewService {
      */
 	@Override
 	public News queryById(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag, String name) throws Exception {
+			Integer pageSize, boolean useFlag, String name,String sqlType) throws Exception {
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
@@ -196,6 +197,9 @@ public class NewServiceImpl implements NewService {
 		news.setNewsDateTime(DateFormat.getStrDate(news.getNewsTime()));
 		news.setProviderName(news.getUsers().getUserName());
 		news.setTypeName(news.getCodes().getCodeName());
+		if (news.getAttachmentName()!=null&&news.getAttachmentId()!=null) {
+			news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType));
+		}
 		StringBuffer s=new StringBuffer();
 		StringBuffer s1=new StringBuffer();
 		StringBuffer s2=new StringBuffer();
