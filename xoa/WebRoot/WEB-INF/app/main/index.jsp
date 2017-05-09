@@ -694,17 +694,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					})
 				//向左移动
 				$('.right_scroll').on('click',function(){
-					/* console.log($('.main_title li').length>=8); */
-					 if($('.main_title li').length>=8 && $('.main_title li').next() ){
+					/* console.log($('.main_title li').length>=6); */
+					 if($('.main_title li').length>=6 && $('.main_title li').next() ){
+					     	$('.left_scroll').show();
 							$('.main_title li').animate({left:"-=100px"});
 							$('.main_title ul').animate({width:"+=110px"});
 
-					} 
+					}
 				})
 				//向右移动
 					$('.left_scroll').on('click',function(){
 					console.log($('.main_title li').length>=8);
-					if($('.main_title li').length>=8){
+					if($('.main_title li').length>=6){
+                        $('.right_scroll').show();
 						$('.main_title li').animate({left:"+=100px"});
 						
 						if($('.main_title li:nth-child(1)').attr('left')==0){

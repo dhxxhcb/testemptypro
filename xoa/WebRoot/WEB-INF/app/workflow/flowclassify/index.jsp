@@ -291,25 +291,47 @@ $(function () {
 						  offset: '80px',
 						  area: ['600px', '400px'], //宽高
 						  title:'新建表单分类',
+							closeBtn: 0,
 						  content: '<div class="conter"><div class="f_title"><span class="f_field_title">表单父分类</span><span class="f_field_required">*</span>'+
 						  			'<div class="f_field_ctrl clear"><select name="SORT_PARENT" id="sort_parent"></select><span>（为空为一级分类）</span></div>'+
-						  			'<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类排序号</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" name="SORT_NO" class="inp" value="0" id="sort_no"></div></div>'+
-						  			'<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类名称</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name"></div></div>'+
+						  			'<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类排序号</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="number" name="SORT_NO" class="inp" value="0" id="sort_no"></div></div>'+
+						  			'<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类名称</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp name_biaodan" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name"></div></div>'+
 						  			'<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">所属部门</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id"><option>所有部门</option></select></div></div>'+
 						  			'</div></div>',
 
 						  btn:['保存', '关闭'],
-						  btn1: function(index, layero){
-                              //按钮【按钮二】的回调
+                          yes: function(index, layero){
+                                //按钮【按钮三】的回调
+								/*alert($('.name_biaodan').val());*/
+								if($('.name_biaodan').val()==''){
+                                    alert('表单名称不能为空');
+								}else{
+                                   /* alert('0k');*/
+                               /*     alert($('#sort_parent  option:checked').attr('value'));*/
+                                    var layerIndex = layer.load(0, {shade: false});
+                                    $.ajax({
+                                        url:'formSave',
+                                        type:'get',
+                                        data:{
+                                            sortNo:$('#sort_no').val(),
+                                            formName:$('#sort_name').val(),
+                                            parentId:$('#sort_parent  option:checked').attr('value'),
+                                            departmentId:$('#dept_id  option:checked').attr('value')
+										},
+                                        dataType:'json',
+                                        success:function(obj){
+                                            /*layer.closeAll();*/
+												if(obj.flag==true){
+                                                    window.location.reload();
 
-                              //return false 开启该代码可禁止点击该按钮关闭
-                          }
+												}
+                                        }
+                                    });
+                                    layer.closeAll();
+								}
+                            }
 						});
 
-                        /*<option value="1">├中国兵器工业信息中心</option>*/
-                       /* <option value="3">│└北京通达信科科技有限公司</option><option value="17">│　└总经理</option><option value="4">│　　├综合管理部</option>*/
-                       /* <option value="18">│　　│├人力资源部</option><option value="19">│　　│├财务部</option><option value="20">│　　│└行政部</option><option value="5">│　　├市场营销部</option><option value="39">│　　│├市场部</option><option value="33">│　　││├品牌部</option>*/
-                      /*  <option value="31">│　　││├网络营销中心</option><option value="32">│　　││└商务中心</option><option value="40">│　　│└销售部</option><option value="7">│　　│　├北京销售部</option><option value="28">│　　│　│├销售一组</option><option value="29">│　　│　│├销售二组</option><option value="30">│　　│　│├销售三组</option><option value="27">│　　│　│└销售协作组</option><option value="8">│　　│　└上海销售部</option><option value="6">│　　├研发部</option><option value="34">│　　│├产品部</option><option value="9">│　　│├开发一部</option><option value="10">│　　│├开发二部</option><option value="11">│　　│├质量保证部</option><option value="15">│　　│└设计部</option><option value="41">│　　├项目部</option><option value="42">│　　│├项目一部</option><option value="43">│　　│└项目二部</option><option value="16">│　　└生产部</option><option value="38">│　　　├采购部</option><option value="35">│　　　├生产一部</option><option value="37">│　　　├生产二部</option><option value="36">│　　　└质检部</option><option value="2">└北方测试研究公司</option><option value="14">　└北一测试研究院</option>*/
 						var opt_li='<option value="0"  class="levelleft0"></option>';
 						opt_li=Child(formdata,opt_li,0);
 						$('#sort_parent').html(opt_li);
@@ -391,7 +413,7 @@ $(function () {
             for(var j=0;j<level;j++){
                 space+="├&nbsp;&nbsp;&nbsp;";
             }
-            console.log("kongge"+space+"kongge")
+           /* console.log("kongge"+space+"kongge")*/
             if(i==0){
                 String=space+"┌";
             }else
@@ -403,7 +425,7 @@ $(function () {
             }
 
             opt_li+='<option value="'+datas[i].deptId+'">'+String+datas[i].deptName+'</option>';
-        	console.log(datas[i].childs);
+       /* 	console.log(datas[i].childs);*/
             if(datas[i].childs!=null){
                 opt_li = departmentChild(datas[i].childs,opt_li,level+1);
             }
@@ -418,7 +440,7 @@ $(function () {
                 for(var j=0;j<level;j++){
                         space+="├&nbsp;&nbsp;&nbsp;";
                 }
-                console.log("kongge"+space+"kongge")
+               /* console.log("kongge"+space+"kongge")*/
                   if(i==1){
                       String=space+"┌";
                   }
