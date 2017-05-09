@@ -424,7 +424,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//回复事件
 				$('#Replay').click(function(){
 					var sId=$('#delete').attr('uId');
-					alert(sId);
+					//alert(sId);
 					$.popWindow('writeEmail?sId=' + sId,'<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
 					//window.location.href="http://localhost:8080/xoa/email/writeEmail?sId="+sId;
 					

@@ -124,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 ue.ready(function(){
        		 	
        		 	var sId=$.getQueryString('sId');
-       		 	alert(sId);
+       		 	//alert(sId);
        		 	$.ajax({
 						type:'get',
 						url:'queryByID',
