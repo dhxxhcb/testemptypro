@@ -176,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 按照部门发布：
             </td>
             <td>
-                <input class="td_title1  release1" type="text"/>
+                <input class="td_title1  release1" id="" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
 
                 <div class="release3">添加</div>
@@ -290,7 +290,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <img  id="rs"  src="../img/mg6.png" alt=""/> <!-- 保存 -->
     </div>
 </div>
-
+<!--新建新闻页面的修改页面  -->
 <div class="step3" style="display: none;margin-left: 10px;">
 	<!-- 中间部分 -->
 	 <table class="newNews">
@@ -334,7 +334,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 按照部门发布：
             </td>
             <td>
-                <input class="td_title1  release1" type="text"/>
+                <input class="td_title1  release1" type="text"id="step3_ip2"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
 
                 <div class="release3">添加</div>
@@ -389,7 +389,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!-- <div><input type="checkbox" style="height:14px;width:14px;margin-top: 4px;"/></div> -->
                 <!-- <div><img src="../img/mg4.png" alt=""/></div> -->
                 <div class="news_t3">使新闻置顶，显示为重要</div>
-                <input class="t_box" type="text" value="0"/>
+                <input class="t_box" id="step3_ip6" type="text" value="0"/>
                 <div class="news_t4">天后结束置顶（0表示一直置顶）</div>
             </td>
 
@@ -433,7 +433,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 关键字：
             </td>
             <td class="keyword">
-                <input class="keyword_ip" id="ip5" type="text" value="请输入关键词..."/>
+                <input class="keyword_ip step3_5"" id="ip5" type="text" value="请输入关键词..."/>
                 <div class="keyword_t">自动获取关键字</div>
                 <div class="keyword_t2">（您可以调整关键字内容，多个关键词请用" , "分割）</div>
         </tr>
@@ -612,6 +612,7 @@ $(function () {
 					$('.step1').show();
 					$('.step2').hide();
 					$('.center').hide();
+					$('.step3').hide();
 					initPageList();
 				}else if(data.read == 1){
 					$('.step1').hide();
@@ -644,20 +645,11 @@ $(function () {
 						
 						var news = "";
                            for (var i = 0; i < data.obj.length; i++) {                          
-                                var toTypeName = ""
-                        		if(data.obj[i].toId != ""){
-                        			toTypeName+="部门";
-                        		}
-                        		if(data.obj[i].privId != ""){
-                        			toTypeName+=",角色";
-                        		}
-                        		if(data.obj[i].userId != ""){
-                        			toTypeName+=",用户";
-                        		}
+                                       
                                         news = "<tr class='trs' rid='"+data.obj[i].newsId+"'><input class='input_hide' type='hidden' newsID='"+data.obj[i].newsId+"'><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
                                		   "<td class='name' nid='"+data.obj[i].newsId+"'>"+data.obj[i].providerName+"</td>"+//发布人
                                        "<td class='type' nid='"+data.obj[i].newsId+"'>"+data.obj[i].typeName+"</td>"+//类型
-                                       "<td class='cli' name='"+data.obj[i].depName+"'><div id='break"+data.obj[i].newsId+"' class='break_td' title="+data.obj[i].depName+">"+toTypeName+"</div></td>"+//发布范围
+                                       "<td class='cli' name='"+data.obj[i].depName+"'><div id='break"+data.obj[i].newsId+"' class='break_td' title="+data.obj[i].depName+">"+'点击详情'+"</div></td>"+//发布范围
                                        "<td time='"+data.obj[i].subject+"'><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'><div id='subject"+data.obj[i].newsId+"'>"+data.obj[i].subject+"</div></a></td>"+//标题
                                        "<td  class='tim'>"+data.obj[i].newsDateTime+"</td>"+//发布时间
                                        "<td class='data'>"+data.obj[i].clickCount+"</td>"+//点击数
@@ -730,12 +722,7 @@ $(function () {
 		        });
 		        
 		        /* 新闻管理修改页面 */
-		         $("#j_tb").on('click', '#xg', function(){
-		         	/* var attR=$(this).parents('tr').find('input.input_hide').attr('newsID'); */
-		          	/* var newID=$(this).parents('tr').find('.input_hide').attr('newsID');//获取每一行的id */
-		          	
-		          	
-		         	/*alert(newID); */
+		         $("#j_tb").on('click', '#xg', function(){  
 		         	var id=$(this).attr('tid');
 		         	alert(id);
 		       		alert($(this).parent().parent().attr('rid')); 
@@ -747,65 +734,61 @@ $(function () {
 								             
 								}                 
                 		});  */
-						$(this).parent().siblings('.name').text(); //发布人
+						$("#step3_ip2").val($(this).parent().siblings('.name').text()); //发布人
 						alert($(this).parent().siblings('.name').text()); //发布人
 						//$(this).parent().siblings('.type').text(); //类型
-						/* $("#step3_ip4").val($('#break"+newID+"').text());//发布范围 
-						alert($('#break"+newID+"').text());//发布范围 
-						$("#step3_ip1").val($('#subject"+newID+"').text());//标题
-						$("#step3_ip3").val($(this).parent().siblings('.tim').text());//发布时间
-						$(this).parent().siblings('.data').text();//点击数
-						$(this).parent().siblings('.num').text();//评论(条)
-						$(this).parent().siblings('.state').text();//状态  */
+						alert( $(this).parent().siblings('.cli').find('.break_td').text());//发布范围 
+						alert( $(this).parent().siblings().find('.windowOpen div').text());//标题
+						 $("#step3_ip1").val($(this).parent().siblings().find('.windowOpen div').text());//标题
+						//alert($('#subject"+newID+"').text());
+						//$("#step3_ip3").val($(this).parent().siblings('.tim').text());//发布时间
+						alert($(this).parent().siblings('.data').text());//点击数
+						alert($(this).parent().siblings('.num').text());//评论(条)
+						alert($(this).parent().siblings('.state').text());//状态  
 						
 						 $('.step1').hide();
 			          	 $('.center').hide();
 						 $('.step2').hide();
 						 $('.step3').show();
 					 } 
-		          	/*  alert(attR); */
-		          	 /* $('.step1').hide();
-		          	 $('.center').hide();
-					 $('.step2').show(); */
-					 
-				/* 	if(id==$(this).parent('.name').attr(nid)){
-						/* alert($(this).parent().parent().attr('rid')+"===");
-						alert($(this).parent().parent('.name').text()); 
-						 alert($(this).parent().parent.find().$('.name').text());
-						$(elem).parent().find('input').get(0).val();
-						$(this).parent().find().children(".type").text(); */
-						/* alert($(this).parent('.name').text())
-					}   */
- 					 
-		          	<%-- $.ajax({
-		           		data:{
-		           			
-		           		},
-		           		type:"GET",
-		           		dataType:"JSON",
-		           		url:"<%=basePath%>news/updateNews",
-		           		success:function(){
-		           			location.reload();
-		           			//alert(data);
-		           			 $('.step1').hide();
-							$('.step2').show();
-							$('.center').hide();
-		           		}	           		
-		           	}); --%>	           
-        
+
 		        });	
 		        
 		        //修改页面保存时调用的方法
 		        $("#step3_rs").click(function(){
+		        alert(111);
 		         
 					  var data = {
-		           		"newsId":id,
+					  
+					  "newsId":id,
+					 	
+					  
+		           		/* "newsId":id,
 		           		"providerName":$(this).parent().siblings('.name').text(),//发布人
 		           		"typeName":$("#step3_ip4").val(),//发布范围
 		           		"depName":$('#break"+newID+"').text(),//标题
 		           		"subject":$('#subject"+newID+"').text(),//时间
 		           		"tim":$(this).parent().siblings('.tim').text(),//点击数
-		           		"data":$(this).parent().siblings('.data').text()//评论（条）
+		           		"data":$(this).parent().siblings('.data').text()//评论（条） */
+		           
+		           		
+									           		
+						 "subject": $("#step3_ip1").val(),    //标题 
+							"newTime": $("#step3_ip3").val(),        //发布时间 
+							"anonymityYn": 0 ,//评论类型(0-实名评论,1-匿名评论,2-禁止评论)
+							 "format":  0 ,//新闻格式(0-普通格式,1-MHT格式,2-超链接)
+							"typeId" :1,  //新闻类型
+							"Publish":0,   //发布标识(0-未发布,1-已发布,2-已终止)
+							"Top":0,   //是否置顶(0-否,1-是)
+							"Keyword":$(".step3_5").val(),  //内容关键词
+							"topDays": $("#step3_ip6").vla(),// 限制新闻置顶时间
+							"Content":  00  ,//  新闻内容
+							"attachmentId": 00,// 附件ID串
+							"attachmentName": 00 ,//附件名称串
+							"toId":  $("#step3_ip2").val(),//发布部门
+							"privId": 0, //发布角色
+							"userId":0,  //发布人员 */
+		           		
 			           	};
 			           	$.ajax({
 			           		data:data,
@@ -815,11 +798,17 @@ $(function () {
 			           		success:function(){
 			           			location.reload();
 			           			//alert(data);
-			           			 initPageList();
-			           			 $('.step1').show();
+			           			 initPageList();			           			
+								 $('.step1').show();
 					          	 $('.center').hide();
 								 $('.step2').hide();
-			           		}	           		
+								 $('.step3').hide();
+			           		},
+				         	error:function(){
+		            			alert("请求数据出错");
+		            			return;
+            		}   		
+                       		
 			           	});	
 		        
 		        });
