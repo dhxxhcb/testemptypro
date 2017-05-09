@@ -1,5 +1,6 @@
 package com.xoa.controller.schedule;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -96,19 +97,45 @@ public class CalenderController {
 			@RequestParam("calTime") String calTime ,
 			@RequestParam("endTime") String endTime ,
 			@RequestParam("userId") String userId ,
-			@RequestParam("calLevel") String calLevel 
+			@RequestParam("calLevel") String calLevel
+//			@RequestParam(value="managerId",required = false) String managerId ,
+//			@RequestParam(value="overStatus",required = false) String overStatus ,
+//			@RequestParam(value="beforeRemaind",required = false) String beforeRemaind,
+//			@RequestParam(value="addTime",required = false,defaultValue="") Date addTime,			
+//			@RequestParam(value="owner",required = false,defaultValue="") String owner,
+//			@RequestParam(value="taker",required = false,defaultValue="") String taker,
+//			@RequestParam(value="allday",required = false,defaultValue="") byte allday,
+//			@RequestParam(value="fromModule",required = false,defaultValue="") byte fromModule,
+//			@RequestParam(value="url",required = false,defaultValue="") String url,
+//			@RequestParam(value="mId",required = false,defaultValue="") Integer mId,
+//			@RequestParam(value="resId",required = false,defaultValue="") Integer resId
 						){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		ToJson<Calendar> json=new ToJson<Calendar>(0, null);
 		try{
 			Calendar c=new Calendar();
+			SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			//String addTime = format.format((long) (Integer.parseInt(calTime)*1000L)); 
+			//Date d=format.parse(addTime);
 			c.setUserId(userId);
 			c.setEndTime(Integer.parseInt(endTime));
 			c.setCalTime(Integer.parseInt(calTime));
 			c.setContent(content);
 			c.setCalType(calType);
 			c.setCalLevel(calLevel);
+			c.setManagerId("");
+			c.setOverStatus("");
+			c.setBeforeRemaind("");
+			c.setAddTime(new Date());
+			c.setOwner("");
+			c.setTaker("");
+			byte a=0;
+			c.setAllday(a);
+			c.setFromModule(a);
+			c.setUrl("");
+			c.setmId(1);
+			c.setResId(1);
 			calenderService.insertSelective(c);
 			json.setObject(c);
 			json.setMsg("OK");

@@ -93,7 +93,7 @@ public class Calendar {
     private String url;
 
     /**  
-     * 关联的模块的id', 
+     * 关联的模块的id
      */ 
     private Integer mId;
 
