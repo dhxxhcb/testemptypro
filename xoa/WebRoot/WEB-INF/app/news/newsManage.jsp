@@ -290,6 +290,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <img  id="rs"  src="../img/mg6.png" alt=""/> <!-- 保存 -->
     </div>
 </div>
+
+
+
 <!--新建新闻页面的修改页面  -->
 <div class="step3" style="display: none;margin-left: 10px;">
 	<!-- 中间部分 -->
@@ -348,7 +351,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 发布时间：
             </td>
             <td>
-                <input class="td_title1" id="step3_ip3" type="text" value="请输入发布时间..."/>
+                <input class="td_title1" id="step3_ip3"  class="step3_te" type="text" value="请输入发布时间..."/>
                 <a href="javascript:;" id="step_release3"><div class="release3" >设置为当前时间</div></a>
             </td>
         </tr>
@@ -737,11 +740,12 @@ $(function () {
 						$("#step3_ip2").val($(this).parent().siblings('.name').text()); //发布人
 						alert($(this).parent().siblings('.name').text()); //发布人
 						//$(this).parent().siblings('.type').text(); //类型
-						alert( $(this).parent().siblings('.cli').find('.break_td').text());//发布范围 
-						alert( $(this).parent().siblings().find('.windowOpen div').text());//标题
-						 $("#step3_ip1").val($(this).parent().siblings().find('.windowOpen div').text());//标题
-						//alert($('#subject"+newID+"').text());
-						//$("#step3_ip3").val($(this).parent().siblings('.tim').text());//发布时间
+						//alert( $(this).parent().siblings('.cli').find('.break_td').text());//发布范围 
+						$("#step3_ip4").val( $(this).parent().siblings('.cli').find('.break_td').text());//发布范围 
+						//alert( $(this).parent().siblings().find('.windowOpen div').text());//标题
+						$("#step3_ip1").val($(this).parent().siblings().find('.windowOpen div').text());//标题
+						
+						//$(".step3_te").val($(this).parent().siblings('.tim').text());//发布时间
 						alert($(this).parent().siblings('.data').text());//点击数
 						alert($(this).parent().siblings('.num').text());//评论(条)
 						alert($(this).parent().siblings('.state').text());//状态  
@@ -756,13 +760,8 @@ $(function () {
 		        
 		        //修改页面保存时调用的方法
 		        $("#step3_rs").click(function(){
-		        alert(111);
-		         
-					  var data = {
-					  
-					  "newsId":id,
-					 	
-					  
+		        	alert(111);		         
+					  var data = {	   
 		           		/* "newsId":id,
 		           		"providerName":$(this).parent().siblings('.name').text(),//发布人
 		           		"typeName":$("#step3_ip4").val(),//发布范围
@@ -772,46 +771,38 @@ $(function () {
 		           		"data":$(this).parent().siblings('.data').text()//评论（条） */
 		           
 		           		
-									           		
+						 "newsId":id,		           		
 						 "subject": $("#step3_ip1").val(),    //标题 
-							"newTime": $("#step3_ip3").val(),        //发布时间 
-							"anonymityYn": 0 ,//评论类型(0-实名评论,1-匿名评论,2-禁止评论)
-							 "format":  0 ,//新闻格式(0-普通格式,1-MHT格式,2-超链接)
-							"typeId" :1,  //新闻类型
-							"Publish":0,   //发布标识(0-未发布,1-已发布,2-已终止)
-							"Top":0,   //是否置顶(0-否,1-是)
+							"newTime": $("#step3_ip3").val(),        //发布时间 					
 							"Keyword":$(".step3_5").val(),  //内容关键词
 							"topDays": $("#step3_ip6").vla(),// 限制新闻置顶时间
-							"Content":  00  ,//  新闻内容
-							"attachmentId": 00,// 附件ID串
-							"attachmentName": 00 ,//附件名称串
+							"Content":  $("#step3_ip4").val()  ,//  新闻内容							
 							"toId":  $("#step3_ip2").val(),//发布部门
-							"privId": 0, //发布角色
-							"userId":0,  //发布人员 */
-		           		
+								           		
 			           	};
-			           	$.ajax({
-			           		data:data,
-			           		type:"GET",
-			           		dataType:"JSON",
-			           		url:"<%=basePath%>news/updateNews",
-			           		success:function(){
-			           			location.reload();
-			           			//alert(data);
-			           			 initPageList();			           			
-								 $('.step1').show();
-					          	 $('.center').hide();
-								 $('.step2').hide();
-								 $('.step3').hide();
-			           		},
-				         	error:function(){
-		            			alert("请求数据出错");
-		            			return;
-            		}   		
-                       		
-			           	});	
-		        
-		        });
+		                $.ajax({
+		                    url:"<%=basePath%>news/updateNews",
+		                    type:'get',
+		    
+			       			data : data,
+		                   
+		                   success:function(json){
+		                        console.log(json+"111");
+		           			 		initPageList();			           			
+									 $('.step1').show();
+						          	 $('.center').hide();
+									 $('.step2').hide();
+									 $('.step3').hide();
+			           		},	  
+			           		error:function(){
+			            		alert("请求数据出错");
+			            		return;
+		            		}   		
+		                   
+		                });
+		                alert(222);
+			        
+			        });
 		        
 		        
 		        
