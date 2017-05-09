@@ -644,11 +644,20 @@ $(function () {
 						
 						var news = "";
                            for (var i = 0; i < data.obj.length; i++) {                          
-                                       
+                                var toTypeName = ""
+                        		if(data.obj[i].toId != ""){
+                        			toTypeName+="部门";
+                        		}
+                        		if(data.obj[i].privId != ""){
+                        			toTypeName+=",角色";
+                        		}
+                        		if(data.obj[i].userId != ""){
+                        			toTypeName+=",用户";
+                        		}
                                         news = "<tr class='trs' rid='"+data.obj[i].newsId+"'><input class='input_hide' type='hidden' newsID='"+data.obj[i].newsId+"'><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
                                		   "<td class='name' nid='"+data.obj[i].newsId+"'>"+data.obj[i].providerName+"</td>"+//发布人
                                        "<td class='type' nid='"+data.obj[i].newsId+"'>"+data.obj[i].typeName+"</td>"+//类型
-                                       "<td class='cli' name='"+data.obj[i].depName+"'><div id='break"+data.obj[i].newsId+"' class='break_td' title="+data.obj[i].depName+">"+'点击详情'+"</div></td>"+//发布范围
+                                       "<td class='cli' name='"+data.obj[i].depName+"'><div id='break"+data.obj[i].newsId+"' class='break_td' title="+data.obj[i].depName+">"+toTypeName+"</div></td>"+//发布范围
                                        "<td time='"+data.obj[i].subject+"'><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'><div id='subject"+data.obj[i].newsId+"'>"+data.obj[i].subject+"</div></a></td>"+//标题
                                        "<td  class='tim'>"+data.obj[i].newsDateTime+"</td>"+//发布时间
                                        "<td class='data'>"+data.obj[i].clickCount+"</td>"+//点击数

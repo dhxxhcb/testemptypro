@@ -537,10 +537,20 @@ $(function () {
 						console.log(data);
 						var news = "";
                            for (var i = 0; i < data.obj.length; i++) {
+                           	var toTypeName = ""
+                        		if(data.obj[i].toId != ""){
+                        			toTypeName+="部门";
+                        		}
+                        		if(data.obj[i].privId != ""){
+                        			toTypeName+=",角色";
+                        		}
+                        		if(data.obj[i].userId != ""){
+                        			toTypeName+=",用户";
+                        		}
                                	 news ="<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
                                	       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].deprange+"</ a></td>"+
+                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+toTypeName+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
