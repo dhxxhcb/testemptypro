@@ -85,9 +85,8 @@ public class CalenderServiceImpl implements CalenderService {
      * @return     int 插入条数
      */
 	@Override
-	public int insertSelective(Calendar record) {
-		int count=calendarMapper.insertSelective(record);
-		return count;
+	public void insertSelective(Calendar record) {
+		calendarMapper.insertSelective(record);
 	}
 	
 	/**

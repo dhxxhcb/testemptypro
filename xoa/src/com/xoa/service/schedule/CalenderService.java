@@ -30,7 +30,7 @@ public interface CalenderService {
      * @return     int 插入条数
      */
 	@DynDatasource
-	public int insertSelective(Calendar record);
+	public void insertSelective(Calendar record);
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年5月5日 下午6:17:56

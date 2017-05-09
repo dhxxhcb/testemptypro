@@ -25,7 +25,7 @@ public interface CalendarMapper {
      * 参数说明:   @return
      * @return     void 无
      */
-    int insertSelective(Calendar record);
+    void insertSelective(Calendar record);
     
     /**
      * 创建作者:   张龙飞
