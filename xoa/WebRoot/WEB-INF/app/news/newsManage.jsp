@@ -748,7 +748,7 @@ $(function () {
 						alert($(this).parent().siblings('.data').text());//点击数
 						alert($(this).parent().siblings('.num').text());//评论(条)
 						alert($(this).parent().siblings('.state').text());//状态  
-						//新闻详情获得内容：
+					//新闻详情获得内容：
 						alert(8888888888);
 						alert(id);
 						$.ajax({
@@ -760,8 +760,10 @@ $(function () {
 			       				
 			       				
 			       			},		                   
-		                   success:function(json){
-		                       console.log(json);
+		                   success:function(data){
+		                       alert(data.object.content);
+		                      
+		                       
 		                       
 			           		},	  
 			           		error:function(){
