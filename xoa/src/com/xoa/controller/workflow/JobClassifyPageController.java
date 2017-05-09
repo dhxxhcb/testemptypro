@@ -28,4 +28,6 @@ public class JobClassifyPageController {
     public String showPage(Model model){
         return "app/workflow/flowclassify/index";
     }
+
+
 }

@@ -23,6 +23,8 @@ public interface FormSortMapper {
 
     int getChildNumber(Integer sortId);
 
+    int selectflowSortNum(Integer formId);
+
     FormSort selectByPrimaryKey(Integer sortId);
 
     int updateByExampleSelective(@Param("record") FormSort record, @Param("example") FormSortExample example);

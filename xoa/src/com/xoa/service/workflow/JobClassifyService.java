@@ -358,6 +358,122 @@ public class JobClassifyService {
         return  wrapper;
     }
 
+    @Transactional(rollbackFor = JobClassifyException.class)
+    public BaseWrapper deleteFlow(Integer flowId) {
+        BaseWrapper wrapper =new BaseWrapper();
+        wrapper.setFlag(false);
+        wrapper.setStatus(true);
+        try{
+            if(flowId==null){
+                wrapper.setMsg("流程id不能为空");
+                return wrapper;
+            }
+            FlowSort exeSort=flowSortMapper.selectByPrimaryKey(flowId);
+            if(exeSort==null){
+                wrapper.setMsg("无效的请求id");
+                return wrapper;
+            }
+            //判断有没有儿子元素
+            Integer childSize=  flowSortMapper.getChildNumber(flowId);
+            if(childSize>0){
+                wrapper.setMsg("请先删除子分类");
+                return wrapper;
+            }
+            //判断有没有流程
+            Integer  flowSize =  flowSortMapper.selectflowSortNum(flowId);
+            if(flowSize>0){
+                wrapper.setMsg("请先删除流程");
+                return wrapper;
+            }
+            //删除流程分类
+            int deleteRes=  flowSortMapper.deleteByPrimaryKey(flowId);
+            if(deleteRes>0){
+                wrapper.setFlag(true);
+                wrapper.setStatus(true);
+                wrapper.setMsg("操作成功");
+            }else {
+                throw  new JobClassifyException("流程删除失败");
+            }
+            //判断父类有没有儿子
+            if(exeSort.getSortParent()!=0){
+                //判断父表单是否还有儿子有不操作，没有更新成无儿子
+                Integer pchildSize=  flowSortMapper.getChildNumber(exeSort.getSortParent());
+                L.w("o==||===========================>"+pchildSize);
+                if(pchildSize>2){
+                    //不用更新
+                }else{
+                    FlowSort sortParent=new FlowSort();
+                    sortParent.setHaveChild("0");
+                    sortParent.setSortId(exeSort.getSortParent());
+                    Integer parRes  =  flowSortMapper.updateByPrimaryKeySelective(sortParent);
+                    if(parRes<1) throw  new JobClassifyException("流程删除失败");
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw  new JobClassifyException("流程删除失败");
+        }
+
+        return wrapper;
+    }
+    @Transactional(rollbackFor = JobClassifyException.class)
+    public BaseWrapper deleteForm(Integer formId) {
+        BaseWrapper wrapper =new BaseWrapper();
+        wrapper.setFlag(false);
+        wrapper.setStatus(true);
+        try{
+            if(formId==null){
+                wrapper.setMsg("表单id不能为空");
+                return wrapper;
+            }
+            FormSort exeSort=sortMapper.selectByPrimaryKey(formId);
+            if(exeSort==null){
+                wrapper.setMsg("无效的请求id");
+                return wrapper;
+            }
+            //判断有没有儿子元素
+            Integer childSize=  sortMapper.getChildNumber(formId);
+            if(childSize>0){
+                wrapper.setMsg("请先删除子分类");
+                return wrapper;
+            }
+            //判断有没有流程
+            Integer  flowSize =  sortMapper.selectflowSortNum(formId);
+            if(flowSize>0){
+                wrapper.setMsg("请先删除表单");
+                return wrapper;
+            }
+            //删除流程分类
+            int deleteRes=  sortMapper.deleteByPrimaryKey(formId);
+            if(deleteRes>0){
+                wrapper.setFlag(true);
+                wrapper.setStatus(true);
+                wrapper.setMsg("操作成功");
+            }else {
+                throw  new JobClassifyException("流程删除失败");
+            }
+            //判断父类有没有儿子
+            if(exeSort.getSortParent()!=0){
+                //判断父表单是否还有儿子有不操作，没有更新成无儿子
+                Integer pchildSize=  sortMapper.getChildNumber(exeSort.getSortParent());
+                L.w("o==||===========================>"+pchildSize);
+                if(pchildSize>2){
+                    //不用更新
+                }else{
+                    FormSort sortParent=new FormSort();
+                    sortParent.setHaveChild("0");
+                    sortParent.setSortId(exeSort.getSortParent());
+                    Integer parRes  =  sortMapper.updateByPrimaryKeySelective(sortParent);
+                    if(parRes<1) throw  new JobClassifyException("流程删除失败");
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw  new JobClassifyException("流程删除失败");
+        }
+
+        return wrapper;
+    }
 
 
 
@@ -396,6 +512,7 @@ public class JobClassifyService {
         }
         return null;
     }
+
 
 
 }
