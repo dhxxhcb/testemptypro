@@ -22,6 +22,17 @@ public class FlowProcessController {
 	@Resource
 	private FlowProcessService flowProcessService; 
 	
+		/**
+		 * 创建作者:   张龙飞
+		 * 创建日期:   2017年5月10日 上午9:49:53
+		 * 方法介绍:   查询设计流程步骤
+		 * 参数说明:   @param listType 
+		 * 参数说明:   @param flowId 流程id
+		 * 参数说明:   @param id 主键id
+		 * 参数说明:   @param request 请求
+		 * 参数说明:   @return
+		 * @return     ToJson<FlowProcess>  流程步骤信息
+		 */
 		@ResponseBody
 	  	@RequestMapping(value = "findFlow",produces = {"application/json;charset=UTF-8"})
 	    public ToJson<FlowProcess> findFlow(
@@ -43,7 +54,34 @@ public class FlowProcessController {
 		    return json;
 	  		
 	  	}
-	
-	
+		
+		
+		/**
+		 * 创建作者:   张龙飞
+		 * 创建日期:   2017年5月10日 上午11:18:20
+		 * 方法介绍:   编辑
+		 * 参数说明:   @param flowProcess 设计流程实体类
+		 * 参数说明:   @param request 请求
+		 * 参数说明:   @return
+		 * @return     ToJson<FlowProcess> 
+		 */
+		@ResponseBody
+	  	@RequestMapping(value = "editFlow",produces = {"application/json;charset=UTF-8"})
+	    public ToJson<FlowProcess> editFlow(FlowProcess flowProcess,	   
+	    		HttpServletRequest request){
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
+			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
+			try {
+				request.setCharacterEncoding("utf-8");
+				flowProcessService.updateByPrimaryKey(flowProcess);
+		        json.setObject(flowProcess);
+		        json.setMsg("OK");
+		        json.setFlag(0);
+			} catch (Exception e) {
+				json.setMsg(e.getMessage());
+			}
+		    return json;
+		}
 
 }

@@ -26,4 +26,9 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		return flowProcess;
 	}
 
+	@Override
+	public void updateByPrimaryKey(FlowProcess record) {
+		flowProcessMapper.updateByPrimaryKey(record);	
+	}
+
 }

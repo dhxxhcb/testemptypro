@@ -25,18 +25,26 @@ input {
     padding-top: 0;
     padding-bottom: 0;
     font-family: "微软雅黑"; /*字体的自动识别*/
+    width: 180px;
+    height: 25px;
+    border: 1px solid #c0c0c0;
 }
 
 select, input {
     vertical-align: middle;
 }
 
+
 /*输入字居中显示*/
 select, input, textarea {
     font-size: 12px;
     margin: 0;
 }
-
+select{
+	width: 110px;
+    height: 25px;
+    border: 1px solid #c0c0c0;
+}
 /**/
 textarea {
     resize: none; /*不可以随意拖动*/

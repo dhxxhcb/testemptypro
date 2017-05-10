@@ -151,7 +151,18 @@ public class JobClassifyService {
         return datas;
     }
 
-
+   /**
+    * 
+    * @作者 韩东堂
+    * @创建日期 2017-5-9 下午4:24:21 
+    * @方法介绍 添加表单服务
+    * @参数说明 @param parentId 表单父分类Id
+    * @参数说明 @param sortNo 序号
+    * @参数说明 @param formName 表单分类名称
+    * @参数说明 @param departmentId 部门id
+    * @参数说明 @return
+    * @return
+    */
     @Transactional(rollbackFor = JobClassifyException.class)
     public BaseWrapper insertForm(Integer parentId,Integer sortNo,String formName,Integer departmentId){
         BaseWrapper wrapper =   new BaseWrapper();
@@ -210,7 +221,18 @@ public class JobClassifyService {
 
     }
 
-
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-9 下午4:25:26 
+     * @方法介绍 流程分类添加
+     * @参数说明 @param parentId  父id
+     * @参数说明 @param sortNo  序号
+     * @参数说明 @param flowName  分类名字
+     * @参数说明 @param departmentId 部门Id
+     * @参数说明 @return
+     * @return
+     */
 
     @Transactional(rollbackFor = JobClassifyException.class)
     public BaseWrapper insertFlow(Integer parentId,Integer sortNo,String flowName,Integer departmentId){
@@ -268,7 +290,20 @@ public class JobClassifyService {
         return  wrapper;
 
     }
-
+  
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-9 下午4:26:24 
+     * @方法介绍 表单分类更新
+     * @参数说明 @param formId 表单ID
+     * @参数说明 @param parentId 父id
+     * @参数说明 @param sortNo 序号
+     * @参数说明 @param formName 表单名称
+     * @参数说明 @param departmentId 部门id
+     * @参数说明 @return
+     * @return
+     */
     @Transactional(rollbackFor = JobClassifyException.class)
     public BaseWrapper formUpdate(Integer formId,Integer parentId,Integer sortNo,String formName,Integer departmentId){
         BaseWrapper wrapper =   new BaseWrapper();
@@ -296,6 +331,7 @@ public class JobClassifyService {
             //判断父表单是否还有儿子有不操作，没有更新成无儿子
             Integer childSize=  sortMapper.getChildNumber(exeSort.getSortParent());
             L.w("o==||===========================>"+childSize);
+
             if(childSize>2){
                 //不用更新
             }else{
@@ -307,12 +343,38 @@ public class JobClassifyService {
             }
         }
 
+        //移动的父分类是否有儿子
+        if(parentId!=0){
+            Integer childSize=  sortMapper.getChildNumber(parentId);
+            if(childSize==0){
+                FormSort sortParent=new FormSort();
+                sortParent.setHaveChild("1");
+                sortParent.setSortId(parentId);
+                Integer parRes  =  sortMapper.updateByPrimaryKeySelective(sortParent);
+                if(parRes<1) throw  new JobClassifyException("表单更新失败");
+            }
+        }
+
+
         wrapper.setFlag(true);
         wrapper.setStatus(true);
         wrapper.setMsg("更新成功");
         return  wrapper;
     }
 
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-9 下午4:29:39 
+     * @方法介绍 流程分类修改
+     * @参数说明 @param flowId 流程id
+     * @参数说明 @param parentId 父Id
+     * @参数说明 @param sortNo 序号
+     * @参数说明 @param flowName 流程分类名称
+     * @参数说明 @param departmentId 部门Id
+     * @参数说明 @return
+     * @return
+     */
 
     @Transactional(rollbackFor = JobClassifyException.class)
     public BaseWrapper flowUpdate(Integer flowId,Integer parentId,Integer sortNo,String flowName,Integer departmentId){
@@ -351,13 +413,32 @@ public class JobClassifyService {
                 if(parRes<1) throw  new JobClassifyException("表单更新失败");
             }
         }
-
+        //移动的父分类是否有儿子
+        if(parentId!=0){
+            Integer childSize=  flowSortMapper.getChildNumber(parentId);
+            if(childSize==0){
+                FlowSort sortParent=new FlowSort();
+                sortParent.setHaveChild("1");
+                sortParent.setSortId(parentId);
+                Integer parRes  =  flowSortMapper.updateByPrimaryKeySelective(sortParent);
+                if(parRes<1) throw  new JobClassifyException("表单更新失败");
+            }
+        }
         wrapper.setFlag(true);
         wrapper.setStatus(true);
         wrapper.setMsg("更新成功");
         return  wrapper;
     }
-
+    
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-9 下午4:32:39 
+     * @方法介绍 删除流程分类
+     * @参数说明 @param flowId 流程分类Id
+     * @参数说明 @return
+     * @return
+     */
     @Transactional(rollbackFor = JobClassifyException.class)
     public BaseWrapper deleteFlow(Integer flowId) {
         BaseWrapper wrapper =new BaseWrapper();
@@ -416,6 +497,17 @@ public class JobClassifyService {
 
         return wrapper;
     }
+    
+    
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-9 下午4:33:12 
+     * @方法介绍  删除表单分类流程
+     * @参数说明 @param formId 表单分类Id
+     * @参数说明 @return
+     * @return
+     */
     @Transactional(rollbackFor = JobClassifyException.class)
     public BaseWrapper deleteForm(Integer formId) {
         BaseWrapper wrapper =new BaseWrapper();
@@ -478,8 +570,18 @@ public class JobClassifyService {
 
 
 
-
-
+    
+  /**
+   * 
+   * @作者 韩东堂
+   * @创建日期 2017-5-9 下午4:33:36 
+   * @方法介绍  检查用户信息十分课考
+   * @参数说明 @param parentId  父Id
+   * @参数说明 @param departmentId 部门id
+   * @参数说明 @param type
+   * @参数说明 @return
+   * @return
+   */
     private String checkParentOrDepartment(Integer parentId,Integer departmentId,Integer type){
         if(departmentId!=0){
             //查询部门是否存在
