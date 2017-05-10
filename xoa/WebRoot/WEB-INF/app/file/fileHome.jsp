@@ -22,7 +22,6 @@ pageEncoding="UTF-8"%>
 		    height: 100%;
 		    background-color: #F0F4F7;
 		    border:1px solid #d9d9d9;
-		   border-radius: 8px;
 	}
 	.cabinet_right {
 		 width:79%;
@@ -49,13 +48,13 @@ $("#fileTree").tree({
 	}
    });
 });       
- function cabinet(num){
+ /*function cabinet(num){
             if(num=='1'){
                $("#fileTransfor").empty();
-               /*  $("#personal").css("background-color","#F0F4F7");
-                $("#public").css("background-color","#fff"); */
+               /!*  $("#personal").css("background-color","#F0F4F7");
+                $("#public").css("background-color","#fff"); *!/
                 $("#personal").css({backgroundColor:"#F0F4F7"});
-                $("#public").css({backgroundColor:"#FFF"}); 
+                $("#public").css({backgroundColor:"#FFF"});
                 
                 
                 
@@ -79,8 +78,8 @@ $("#fileTree").tree({
              }
              if(num=='2'){
               $("#fileTransfor").empty();
-                $("#public").css("background-color","#F0F4F7");
-                $("#personal").css("background-color","#fff");
+                $("#public").css({"background-color":"#F0F4F7"});
+                $("#personal").css({"background-color":"#fff"});
                $.ajax({
                  Type: "GET",
                 url: "${pageContext.request.contextPath}/file/writeTreePerson",
@@ -100,7 +99,7 @@ $("#fileTree").tree({
                   });        
             }
     
-    }
+    }*/
         
 
      
@@ -113,10 +112,10 @@ $("#fileTree").tree({
       <!--  <div onclick="cabinet('1')" id="personal" style="width:49%;height:30px;line-height:30px;   float: left;border:1px solid #c0c0c0;text-align: center;"><fmt:message code="main.public"/></div>
        <div onclick="cabinet('2')" id="public"  style="width:49%;height:30px;line-height:30px;  float: left;border:1px solid #c0c0c0;text-align: center;"><fmt:message code="main.personnel"/></div> -->
        
-       <div onclick="cabinet('1')" id="personal" style="width:49%;height:30px;line-height:30px;   float: left;text-align: center;"><fmt:message code="main.public"/></div>
-       <div onclick="cabinet('2')" id="public"  style="width:49%;height:30px;line-height:30px;  float: left;text-align: center;"><fmt:message code="main.personnel"/></div> 
-       
-        <div id="fileTransfor" style="margin-top: 28px ;width:100%;overflow-x: hidden;">
+       <div onclick="" id="personal" style="width:100%;height:40px;line-height:40px;padding-left: 15px;   float: left;text-align: left;"><fmt:message code="main.public"/></div>
+      <%-- <div onclick="cabinet('2')" id="public"  style="width:50%;height:40px;line-height:40px;  float: left;text-align: center;"><fmt:message code="main.personnel"/></div>
+      --%>
+        <div id="fileTransfor" style="margin-left: 15px;margin-top: 28px ;width:100%;overflow-x: hidden;">
                 <ul id="fileTree" class="easyui-tree"
 					data-options="url:'writeTree',method:'get',animate:true" >
 				</ul>

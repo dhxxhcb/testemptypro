@@ -128,7 +128,11 @@
 <div name="body">
     <!-- 左侧导航部分开始 -->
     <div class="span3 bs-docs-sidebar" id="nav_left">
-        <ul class="nav nav-list bs-docs-sidenav">
+        <ul></ul>
+
+
+
+       <%-- <ul class="nav nav-list bs-docs-sidenav">
             <li class="active" name="basic" item="first">
                 <a href="#basic" data-toggle="tab">
                     <i class="icon-chevron-right" style="margin-top:8px;"></i>
@@ -153,7 +157,7 @@
                     <span class="icon20-expand_field">扩展字段</span>
                 </a>
             </li>
-        </ul>
+        </ul>--%>
     </div>
     <!-- 左侧导航部分结束 -->
     <!-- 右侧body主要部分的开始 -->
@@ -175,7 +179,6 @@
                         <div class="step_name_intro">
                             <span  class="flow_intro">流程名称:</span>
                             <span class="flow_name"></span>
-
                         </div>
                     </div>
                     <!-- 基本属性页面 右侧头部的结束-->
@@ -190,6 +193,7 @@
                             <div class="f_field_block_small">
                                 <div class="f_field_label"><span class="f_field_title">流程分类</span><span  class="f_field_required">*</span></div>
                                 <div class="f_field_ctrl_small clear">
+                                   <%-- 需获取后台参数并遍历
                                     <select name="FLOW_SORT" style="width:220px;" id="FLOW_SORT">
                                         <option value=1>├公文管理</option>
                                         <option value=2>├行政管理</option>
@@ -232,16 +236,78 @@
                                         <option value=25>│├售后管理</option>
                                         <option value=26>│└销售相关</option>
                                         <option value=8>└其他</option>
-                                    </select>
+                                    </select>--%>
                                 </div>
                             </div>
                             <div class="f_field_block_small">
                                 <div class="f_field_label"><span class="f_field_title">表单</span><span  class="f_field_required">*</span></div>
                                 <div class="f_field_ctrl_small clear" id="form_select">
+                                    <%--  表单需获取后台动态数据
                                     <select id="FORM_ID" name="FORM_ID" onchange="getFormField();"class="select_form">
                                         <option value="0" category="" node="root" level=""></option>
-                                        <option value="62" category="财务管控">专项资金申请单</option><option value="58" category="财务管控">日常收支记录单</option><option value="56" category="财务管控">部门内资金划拨单</option><option value="25" category="财务管控">库存现金盘点表</option><option value="113" category="采购报价">采购及支出申请</option><option value="104" category="采购报价">采购报价审批单</option><option value="114" category="差旅管理">出差申请单</option><option value="109" category="差旅管理">出差申请单</option><option value="38" category="差旅管理">出差申请表</option><option value="107" category="订货生产管理">基层生产调度周报</option><option value="81" category="订货生产管理">异常报告处理单</option><option value="80" category="订货生产管理">项目（产品）执行下单表</option><option value="79" category="订货生产管理">品质异常通知单</option><option value="78" category="订货生产管理">生产变更通知单</option><option value="74" category="订货生产管理">产品测试问题报告</option><option value="73" category="订货生产管理">不合格品罚款通知单</option><option value="72" category="订货生产管理">生产事故调查表</option><option value="29" category="工程项目">工程变更申请通知单(ECN)</option><option value="20" category="公文管理">工作督办表</option><option value="13" category="公文管理">请示处理单</option><option value="12" category="公文管理">普通文件传阅单</option><option value="11" category="公文管理">会议纪要</option><option value="10" category="公文管理">公文会稿签发单</option><option value="9" category="公文管理">内部事项报批单</option><option value="8" category="公文管理">报告</option><option value="7" category="公文管理">签报</option><option value="6" category="公文管理">发文单-政府风格</option><option value="5" category="公文管理">收文单-政府风格</option><option value="4" category="公文管理">发文单-简洁风格</option><option value="3" category="公文管理">收文单-简洁风格</option><option value="2" category="公文管理">发文单-深沉风格</option><option value="1" category="公文管理">收文单-深沉风格</option><option value="48" category="固定资产">固定资产变动表</option><option value="27" category="固定资产">固定资产报废申请表</option><option value="26" category="固定资产">固定资产报修单</option><option value="24" category="固定资产">固定资产申请表</option><option value="23" category="固定资产">固定资产请购单</option><option value="86" category="客户管理">客户跟踪记录单</option><option value="99" category="售前跟进">市场活动企划单</option><option value="92" category="售前跟进">销售调查计划表</option><option value="89" category="售前跟进">市场信息反馈表</option><option value="84" category="售前跟进">潜在客户调查表</option><option value="45" category="招聘管理">增员申请表</option><option value="55" category="采购合同">合同审批单</option><option value="15" category="采购合同">采购申请表</option><option value="77" category="存货生产管理">设备故障维护工作申请单</option><option value="76" category="存货生产管理">事故登记表</option><option value="75" category="存货生产管理">工作改进报告</option><option value="93" category="订单管理">促销活动申请表</option><option value="112" category="费用管理">备用金申请</option><option value="111" category="费用管理">报销申请单</option><option value="103" category="费用管理">付款审批单</option><option value="102" category="费用管理">差旅报销单</option><option value="101" category="费用管理">差旅费报销清单</option><option value="95" category="费用管理">广告预算审批单</option><option value="61" category="费用管理">支票申领单</option><option value="60" category="费用管理">支出证明单</option><option value="59" category="费用管理">医疗费报销单</option><option value="57" category="费用管理">请款(借支)申请单</option><option value="54" category="费用管理">付款申请单</option><option value="53" category="费用管理">常用备用金申请单</option><option value="51" category="费用管理">报销申请单</option><option value="50" category="费用管理">预支工资申请</option><option value="49" category="费用管理">借款单</option><option value="105" category="科研项目">项目内部请示报告</option><option value="19" category="流动资产">计算机类设备报废申请表</option><option value="39" category="培训管理">培训需求表</option><option value="143" category="印章管理">xoa123</option><option value="142" category="印章管理">xoa</option><option value="122" category="印章管理">用印申请单</option><option value="32" category="印章管理">用印申请表</option><option value="108" category="采购到货">进存单</option><option value="131" category="岗位管理">固定资产处置表 </option><option value="120" category="岗位管理">人员转正申请单</option><option value="115" category="岗位管理">岗位说明书</option><option value="47" category="岗位管理">转正申请表</option><option value="46" category="岗位管理">职务任免审批表</option><option value="44" category="岗位管理">员工考核评定表</option><option value="40" category="岗位管理">人员异动表</option><option value="34" category="岗位管理">员工入职单</option><option value="87" category="合同管理">合同评审表</option><option value="85" category="合同管理">销售协议审批书</option><option value="31" category="其他">信息系统需求确认表</option><option value="30" category="其他">名片印刷登记单</option><option value="28" category="其他">会议使用申请表</option><option value="22" category="其他">公共活动场所使用申请单</option><option value="21" category="其他">工作请示处理表</option><option value="18" category="其他">档案查阅申请表</option><option value="17" category="其他">部门工作汇报单</option><option value="16" category="其他">用车申请表</option><option value="14" category="其他">办公用品申领表</option><option value="97" category="售后管理">客户投诉登记表</option><option value="90" category="售后管理">退换货申请单</option><option value="88" category="售后管理">客户投诉处理表</option><option value="82" category="报价管理">报价单</option><option value="117" category="考勤管理">请假登记单</option><option value="116" category="考勤管理">加班申请单</option><option value="43" category="考勤管理">外出登记单</option><option value="36" category="考勤管理">加班登记表</option><option value="35" category="考勤管理">请假申请表</option><option value="33" category="考勤管理">值班登记表</option><option value="91" category="销售相关">销售人员外出登记单</option><option value="83" category="销售相关">销售业绩评估表</option><option value="121" category="研发项目">项目费用预算单</option><option value="69" category="研发项目">研发项目立项申请报告</option><option value="68" category="研发项目">研发评估</option><option value="67" category="研发项目">需求处理</option><option value="66" category="研发项目">项目阶段考核</option><option value="64" category="研发项目">立项申请</option><option value="63" category="研发项目">BUG处理</option><option value="71" category="质检">产品质量检查报告</option><option value="65" category="其他">项目级别评估表</option><option value="106" category="薪酬管理">月绩效考核-自评表</option><option value="42" category="薪酬管理">停薪留职申请表</option><option value="41" category="薪酬管理">调薪申请表</option><option value="119" category="离职管理">人员离职申请单</option><option value="118" category="离职管理">人员离职交接</option><option value="37" category="离职管理">离职申请表</option><option value="127" category="其他">合同付款申请单</option><option value="126" category="其他">日常费用报销单</option><option value="100" category="其他">网站信息发布审批表</option><option value="98" category="其他">软件业务申请单</option><option value="96" category="其他">法律文件审核表</option><option value="94" category="其他">法律咨询表</option><option value="70" category="其他">智能测试表单</option><option value="145" category="未分类">222</option><option value="144" category="未分类">321</option><option value="136" category="未分类">员工培训班申请表</option><option value="133" category="未分类">员工外出学习审批表</option><option value="125" category="未分类">项目任务审批</option><option value="124" category="未分类">项目立项申请</option><option value="123" category="未分类">项目资金申请</option>
-                                    </select>
+                                        <option value="62" category="财务管控">专项资金申请单</option>
+                                        <option value="58" category="财务管控">日常收支记录单</option>
+                                        <option value="56" category="财务管控">部门内资金划拨单</option>
+                                        <option value="25" category="财务管控">库存现金盘点表</option>
+                                        <option value="113" category="采购报价">采购及支出申请</option>
+                                        <option value="104" category="采购报价">采购报价审批单</option>
+                                        <option value="114" category="差旅管理">出差申请单</option>
+                                        <option value="109" category="差旅管理">出差申请单</option>
+                                        <option value="38" category="差旅管理">出差申请表</option>
+                                        <option value="107" category="订货生产管理">基层生产调度周报</option>
+                                        <option value="81" category="订货生产管理">异常报告处理单</option>
+                                        <option value="80" category="订货生产管理">项目（产品）执行下单表</option>
+                                        <option value="79" category="订货生产管理">品质异常通知单</option>
+                                        <option value="78" category="订货生产管理">生产变更通知单</option>
+                                        <option value="74" category="订货生产管理">产品测试问题报告</option>
+                                        <option value="73" category="订货生产管理">不合格品罚款通知单</option>
+                                        <option value="72" category="订货生产管理">生产事故调查表</option>
+                                        <option value="29" category="工程项目">工程变更申请通知单(ECN)</option>
+                                        <option value="20" category="公文管理">工作督办表</option>
+                                        <option value="13" category="公文管理">请示处理单</option>
+                                        <option value="12" category="公文管理">普通文件传阅单</option>
+                                        <option value="11" category="公文管理">会议纪要</option>
+                                        <option value="10" category="公文管理">公文会稿签发单</option>
+                                        <option value="9" category="公文管理">内部事项报批单</option>
+                                        <option value="8" category="公文管理">报告</option>
+                                        <option value="7" category="公文管理">签报</option>
+                                        <option value="6" category="公文管理">发文单-政府风格</option>
+                                        <option value="5" category="公文管理">收文单-政府风格</option>
+                                        <option value="4" category="公文管理">发文单-简洁风格</option>
+                                        <option value="3" category="公文管理">收文单-简洁风格</option>
+                                        <option value="2" category="公文管理">发文单-深沉风格</option>
+                                        <option value="1" category="公文管理">收文单-深沉风格</option>
+                                        <option value="48" category="固定资产">固定资产变动表</option>
+                                        <option value="27" category="固定资产">固定资产报废申请表</option>
+                                        <option value="26" category="固定资产">固定资产报修单</option>
+                                        <option value="24" category="固定资产">固定资产申请表</option>
+                                        <option value="23" category="固定资产">固定资产请购单</option>
+                                        <option value="86" category="客户管理">客户跟踪记录单</option>
+                                        <option value="99" category="售前跟进">市场活动企划单</option>
+                                        <option value="92" category="售前跟进">销售调查计划表</option>
+                                        <option value="89" category="售前跟进">市场信息反馈表</option>
+                                        <option value="84" category="售前跟进">潜在客户调查表</option>
+                                        <option value="45" category="招聘管理">增员申请表</option>
+                                        <option value="55" category="采购合同">合同审批单</option>
+                                        <option value="15" category="采购合同">采购申请表</option>
+                                        <option value="77" category="存货生产管理">设备故障维护工作申请单</option>
+                                        <option value="76" category="存货生产管理">事故登记表</option>
+                                        <option value="75" category="存货生产管理">工作改进报告</option>
+                                        <option value="93" category="订单管理">促销活动申请表</option>
+                                        <option value="112" category="费用管理">备用金申请</option>
+                                        <option value="111" category="费用管理">报销申请单</option>
+                                        <option value="103" category="费用管理">付款审批单</option>
+                                        <option value="102" category="费用管理">差旅报销单</option>
+                                        <option value="101" category="费用管理">差旅费报销清单</option>
+                                        <option value="95" category="费用管理">广告预算审批单</option>
+                                        <option value="61" category="费用管理">支票申领单</option>
+                                        <option value="60" category="费用管理">支出证明单</option>
+                                        <option value="59" category="费用管理">医疗费报销单</option>
+                                        <option value="57" category="费用管理">请款(借支)申请单</option>
+                                        <option value="54" category="费用管理">付款申请单</option>
+                                        <option value="53" category="费用管理">常用备用金申请单</option>
+                                        <option value="51" category="费用管理">报销申请单</option><option value="50" category="费用管理">预支工资申请</option><option value="49" category="费用管理">借款单</option><option value="105" category="科研项目">项目内部请示报告</option><option value="19" category="流动资产">计算机类设备报废申请表</option><option value="39" category="培训管理">培训需求表</option><option value="143" category="印章管理">xoa123</option><option value="142" category="印章管理">xoa</option><option value="122" category="印章管理">用印申请单</option><option value="32" category="印章管理">用印申请表</option><option value="108" category="采购到货">进存单</option><option value="131" category="岗位管理">固定资产处置表 </option><option value="120" category="岗位管理">人员转正申请单</option><option value="115" category="岗位管理">岗位说明书</option><option value="47" category="岗位管理">转正申请表</option><option value="46" category="岗位管理">职务任免审批表</option><option value="44" category="岗位管理">员工考核评定表</option><option value="40" category="岗位管理">人员异动表</option><option value="34" category="岗位管理">员工入职单</option><option value="87" category="合同管理">合同评审表</option><option value="85" category="合同管理">销售协议审批书</option><option value="31" category="其他">信息系统需求确认表</option><option value="30" category="其他">名片印刷登记单</option><option value="28" category="其他">会议使用申请表</option><option value="22" category="其他">公共活动场所使用申请单</option><option value="21" category="其他">工作请示处理表</option><option value="18" category="其他">档案查阅申请表</option><option value="17" category="其他">部门工作汇报单</option><option value="16" category="其他">用车申请表</option><option value="14" category="其他">办公用品申领表</option><option value="97" category="售后管理">客户投诉登记表</option><option value="90" category="售后管理">退换货申请单</option><option value="88" category="售后管理">客户投诉处理表</option><option value="82" category="报价管理">报价单</option><option value="117" category="考勤管理">请假登记单</option><option value="116" category="考勤管理">加班申请单</option><option value="43" category="考勤管理">外出登记单</option><option value="36" category="考勤管理">加班登记表</option><option value="35" category="考勤管理">请假申请表</option><option value="33" category="考勤管理">值班登记表</option><option value="91" category="销售相关">销售人员外出登记单</option><option value="83" category="销售相关">销售业绩评估表</option><option value="121" category="研发项目">项目费用预算单</option><option value="69" category="研发项目">研发项目立项申请报告</option><option value="68" category="研发项目">研发评估</option><option value="67" category="研发项目">需求处理</option><option value="66" category="研发项目">项目阶段考核</option><option value="64" category="研发项目">立项申请</option><option value="63" category="研发项目">BUG处理</option><option value="71" category="质检">产品质量检查报告</option><option value="65" category="其他">项目级别评估表</option><option value="106" category="薪酬管理">月绩效考核-自评表</option><option value="42" category="薪酬管理">停薪留职申请表</option><option value="41" category="薪酬管理">调薪申请表</option><option value="119" category="离职管理">人员离职申请单</option><option value="118" category="离职管理">人员离职交接</option><option value="37" category="离职管理">离职申请表</option><option value="127" category="其他">合同付款申请单</option><option value="126" category="其他">日常费用报销单</option><option value="100" category="其他">网站信息发布审批表</option><option value="98" category="其他">软件业务申请单</option><option value="96" category="其他">法律文件审核表</option><option value="94" category="其他">法律咨询表</option><option value="70" category="其他">智能测试表单</option><option value="145" category="未分类">222</option><option value="144" category="未分类">321</option><option value="136" category="未分类">员工培训班申请表</option><option value="133" category="未分类">员工外出学习审批表</option><option value="125" category="未分类">项目任务审批</option><option value="124" category="未分类">项目立项申请</option><option value="123" category="未分类">项目资金申请</option>
+                                    </select>--%>
                                     <input type="hidden" value="" name="form_id_work" />
                                     <a href="javascript:;" onclick="formView();return false;" class="view_form"><span class="icon18-void">预览表单</span></a>
                                 </div>
@@ -302,7 +368,8 @@
                             <div class="f_field_block_small">
                                 <div class="f_field_label"><span class="f_field_title">所属部门</span><span  class="f_field_required">*</span></div>
                                 <div class="f_field_ctrl_small clear">
-                                    <select style="width:220px;" name="DEPT_ID" id="DEPT_ID">
+                                   <%--  部门数据需动态获取后台
+                                   <select style="width:220px;" name="DEPT_ID" id="DEPT_ID">
                                         <option value="0">系统(仅由系统管理员管理)</option>
                                         <option value=1>├中国兵器工业信息中心</option>
                                         <option value=3>│└北京通达信科科技有限公司</option>
@@ -339,7 +406,7 @@
                                         <option value=36>│　　　└质检部</option>
                                         <option value=2>└北方测试研究公司</option>
                                         <option value=14>　└北一测试研究院</option>
-                                    </select>
+                                    </select>--%>
                                 </div>
                             </div>
                             <input type="hidden" name="DEPT_ID_OLD" value="">
@@ -361,6 +428,8 @@
                                         <input type="radio"  name="VIEW_PRIV" value="0" checked> 否    				</label>
                                 </div>
                             </div>
+
+                            <%--  当前页未发现
                             <div class="f_field_label clear" style="display:none;" id="view_user">
                                 <div class="f_field_label"><span class="f_field_title">传阅人</span></div>
                                 <div class="f_field_ctrl_small clear">
@@ -387,7 +456,7 @@
                                     <a href="javascript:;" class="orgAdd" onClick="SelectPriv('','VIEW_ROLE_ID', 'VIEW_ROLE_NAME','','flow_type')">选择</a>
                                     <a href="javascript:;" class="orgClear" onClick="ClearUser('VIEW_ROLE_ID', 'VIEW_ROLE_NAME')">清空</a>
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="f_field_label clear" >
                                 <div class="f_field_label"><span class="f_field_title">更多操作项设置</span></div>
                                 <div class="f_field_ctrl_small clear">
@@ -661,7 +730,8 @@
             <button class="btn btn-warning"  type="button" onclick="close_flow()">关闭</button>
         </div>
         <div class="btn_save">
-            <button class="btn btn-success" type="button" onclick="popping();">保存</button>
+            <!-- 新建流程补充ID -->
+            <button class="btn btn-success" type="button" id="btn1" onclick="popping();">保存</button>
         </div>
         <div class="btn_next" name="btn_next">
             <button class="btn btn-primary next_step" type="button" >下一步</button>
@@ -672,6 +742,7 @@
     </div>
 </div>
 <!-- 页面底部的结束 -->
+<!--
 <script type="text/javascript">
     function ShowDialog(id,vTopOffset)
     {
@@ -719,6 +790,54 @@
         jQuery("#overlay").hide();
         jQuery("#"+id).hide();
     }
+</script>-->
+
+
+<!-- 新建流程js事件 -->
+<script type="text/javascript">
+    $(function() {
+        //点击立即发送按钮
+        $("#btn1").on("click", function () {
+
+            var userId = $('textarea[name="txt"]').attr('user_id');
+            var txt = ue.getContentTxt();
+            var html = ue.getContent();
+            var val = $('#txt').val();
+            var attach = $('.Attachment td').eq(1).find('a');
+            var aId = '';
+            var uId = '';
+            for (var i = 0; i < $('.Attachment td .inHidden').length; i++) {
+                aId += $('.Attachment td .inHidden').eq(i).val();
+            }
+            for (var i = 0; i < $('.Attachment td .inHidden').length; i++) {
+                uId += attach.eq(i).attr('NAME');
+            }
+            var data = {
+                'fromId': 'admin',
+                'toId2': 'admin,',
+                'subject': val,
+                'content': html,
+                'attachmentId': aId,
+                'attachmentName': uId
+            };
+            alert(toId2);
+
+            $.ajax({
+                type: 'post',
+                url: 'sendEmail',
+                dataType: 'json',
+                data: data,
+                success: function () {
+                    alert('发送成功');
+                    //window.location.href='index';
+                    $('.append_tr').parents('.div_iframe').remove();
+                    $('.up_page_right').css('display', 'block');
+                }
+            });
+        });
+    })
+
 </script>
+
 </body>
 </html>

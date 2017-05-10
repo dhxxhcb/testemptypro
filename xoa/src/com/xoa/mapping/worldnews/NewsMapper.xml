@@ -261,76 +261,76 @@
 		
 		insert into news
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="newsId != null" >
+      <if test="newsId != null" ><!-- 唯一自增ID -->
         NEWS_ID,
       </if>
-      <if test="subject != null" >
+      <if test="subject != null" ><!-- 新闻标题 -->
         SUBJECT,
       </if>
-      <if test="provider != null" >
+      <if test="provider != null" ><!-- 发布者-->
         PROVIDER,
       </if>
-      <if test="newsTime != null" >
+      <if test="newsTime != null" ><!-- 发布时间-->
         NEWS_TIME,
       </if>
-      <if test="clickCount != null" >
+      <if test="clickCount != null" ><!-- 点击数 -->
         CLICK_COUNT,
       </if>
-      <if test="anonymityYn != null" >
+      <if test="anonymityYn != null" ><!-- 评论类型(0-实名评论,1-匿名评论,2-禁止评论) -->
         ANONYMITY_YN,
       </if>
-      <if test="format != null" >
+      <if test="format != null" ><!-- 新闻格式(0-普通格式,1-MHT格式,2-超链接 -->
         FORMAT,
       </if>
-      <if test="typeId != null" >
+      <if test="typeId != null" ><!-- 新闻类型 -->
         TYPE_ID,
       </if>
-      <if test="publish != null" >
+      <if test="publish != null" ><!-- 发布标识(0-未发布,1-已发布,2-已终止) -->
         PUBLISH,
       </if>
-      <if test="top != null" >
+      <if test="top != null" ><!--是否置顶(0-否,1-是) -->
         TOP,
       </if>
-      <if test="lastEditor != null" >
+      <if test="lastEditor != null" ><!-- 最后编辑人 -->
         LAST_EDITOR,
       </if>
-      <if test="lastEditTime != null" >
+      <if test="lastEditTime != null" ><!-- 最后编辑时间-->
         LAST_EDIT_TIME,
       </if>
-      <if test="subjectColor != null" >
+      <if test="subjectColor != null" ><!-- 新闻标题颜色 -->
         SUBJECT_COLOR,
       </if>
-      <if test="keyword != null" >
+      <if test="keyword != null" ><!-- 内容关键词 -->
         KEYWORD,
       </if>
-      <if test="topDays != null" >
+      <if test="topDays != null" ><!-- 限制新闻置顶时间-->
         TOP_DAYS,
       </if>
-      <if test="content != null" >
+      <if test="content != null" ><!-- 新闻内容 -->
         CONTENT,
       </if>
-      <if test="attachmentId != null" >
+      <if test="attachmentId != null" ><!-- 附件ID串-->
         ATTACHMENT_ID,
       </if>
-      <if test="attachmentName != null" >
+      <if test="attachmentName != null" ><!-- 附件名称串 -->
         ATTACHMENT_NAME,
       </if>
-      <if test="toId != null" >
+      <if test="toId != null" ><!-- 发布部门 -->
         TO_ID,
       </if>
-      <if test="privId != null" >
+      <if test="privId != null" ><!-- 发布角色 -->
         PRIV_ID,
       </if>
-      <if test="userId != null" >
+      <if test="userId != null" ><!-- 发布人员-->
         USER_ID,
       </if>
-      <if test="readers != null" >
+      <if test="readers != null" ><!-- 阅读人员ID串 -->
         READERS,
       </if>
-      <if test="compressContent != null" >
+      <if test="compressContent != null" ><!-- 压缩后的新闻内容-->
         COMPRESS_CONTENT,
       </if>
-      <if test="summary != null" >
+      <if test="summary != null" ><!-- 新闻内容简介 -->
         SUMMARY,
       </if>
     </trim>

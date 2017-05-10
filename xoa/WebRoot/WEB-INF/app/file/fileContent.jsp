@@ -27,19 +27,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/easyui/jquery.min.js"></script>
 
 <style>
-input {
-	border: none;
-	outline: none;
-	display: inline-block;
-	background: #fff;
-}
-
-input:hover {
-	background: #eaf2ff;
-	padding: 5px;
-}
-.ss{margin-top: 10px;}
-.boto{margin-top: 7px;}
+input {border: none;outline: none;display: inline-block;background: #fff;}
+input:hover {background: #eaf2ff;padding: 5px;}
+.ss{margin-top:6px;position: relative;}
+.ss a{font-size: 14px;display: block;font-family: 微软雅黑;letter-spacing: 1px;position: absolute;left: 25px;top: 1px;color: #fff;}
+.one{width:90px;height: 28px;background: url("img/file/cabinet01.png") no-repeat;}
+.one a{height: 28px;  line-height: 28px;}
+.two{width:90px;height: 28px;background: url("img/file/cabinet02.png") no-repeat;}
+.two a{height: 28px;  line-height: 28px;}
+.three{width: 70px;height: 28px;background: url("img/file/cabinet03.png") no-repeat;}
+.three a{height: 28px;  line-height: 26px;color:#000;left:30px;}
+.four{width: 90px;height: 28px;background: url("img/file/cabinet04.png") no-repeat;}
+.four a{height: 28px;  line-height: 26px;color:#000;}
+#file_Tachr tr td:last-of-type a{display:block;width:40px;height:22px;background: url("img/file/cabinet08.png") no-repeat;text-align:center;line-height:22px;}
+.boto{margin-top: 8px;}
+.boto a{display:inline-block;width: 56px;height:24px;position: relative;}
+.boto a span{position:absolute;display:block;height:24px;top:0px;left:22px;line-height:24px;text-align: center;letter-spacing: 2px;}
+.boto a.ONE{background: url("img/file/cabinet07.png") no-repeat;}
+.boto a.TWO{background: url("img/file/cabinet09.png") no-repeat;}
+.boto a.THREE{background: url("img/file/cabinet10.png") no-repeat;}
+.boto a.FOUR{background: url("img/file/cabinet12.png") no-repeat;}
+.boto a.FIVE{background: url("img/file/cabinet11.png") no-repeat;}
+.TITLE{margin-left: 10px}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -52,9 +61,9 @@ $(function(){
 						var files='';
 							for(var i=0;i<data.length;i++){
 							if(data[i].fileType=="folder"){
-							files+="  <tr><td><input type=\"checkbox\" name=\"\" value=\"\" > <a href=\"${pageContext.request.contextPath }/file/temp\">"+data[i].sortName+ "  </a></td>  <td><img src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td> <img src=\"img/file/cabinet8.png\" alt=\"\"/> </td></tr>" 
+							files+="  <tr><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/temp\">"+data[i].sortName+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
 							   }else{
-							   files+="  <tr><td><input type=\"checkbox\" name=\"\" value=\"\" > <a href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td> <img src=\"img/file/cabinet8.png\" alt=\"\"/> </td></tr>" 
+							   files+="  <tr><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
 							   }
 							}
 							$("#file_Tachr").html(files);
@@ -79,10 +88,10 @@ function openWindow(sHref,strWidth,strHeight) {
 
 <body style="background-color: #EBEBEB">
 <div class="head w clearfix">
-    <div class="ss"> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet01.png" alt="新建文件"/></a></div>
-    <div class="ss"> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet02.png" alt="批量上传"/></a></div>
-    <div class="ss"> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet03.png" alt="查询"/></a></div>
-    <div class="ss"> <a href="${pageContext.request.contextPath }/file/temp"><img src="img/file/cabinet04.png" alt="全局搜索"/></a></div>
+    <div class="ss one"> <a href="${pageContext.request.contextPath }/file/temp">新建文件</a></div>
+    <div class="ss two"> <a href="${pageContext.request.contextPath }/file/temp">批量上传</a></div>
+    <div class="ss three"> <a  class="SEARCH" href="${pageContext.request.contextPath }/file/temp">查询</a></div>
+    <div class="ss four"> <a href="${pageContext.request.contextPath }/file/temp">全局搜索</a></div>
 </div>
 <!--middle部分开始-->
 <div class="w">
@@ -95,13 +104,13 @@ function openWindow(sHref,strWidth,strHeight) {
                 <td class="th" style="position: relative">
                     <fmt:message code="notice.th.PostedTime"/>
                     <img style="position: absolute;margin-left:9px;cursor: pointer;" src="img/file/cabinet05.png" alt=""/>
-                    <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
+                    <img style="position: absolute;margin-top:10px;margin-left:9px;cursor: pointer;"
                          src="img/file/cabinet06.png " alt=""/>
                 </td>
                 <td class="th" style="position: relative">
                     <fmt:message code="file.th.Sort"/>
                     <img style="position: absolute;margin-left:9px;cursor: pointer;" src="img/file/cabinet05.png" alt=""/>
-                    <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;"
+                    <img style="position: absolute;margin-top:10px;margin-left:9px;cursor: pointer;"
                          src="img/file/cabinet06.png " alt=""/>
                 </td>
                 <td class="th"><fmt:message code="notice.th.operation"/></td>
@@ -120,16 +129,19 @@ function openWindow(sHref,strWidth,strHeight) {
 
     </div>
     <div class="boto">
-        <img src="img/file/cabinet9.png" alt=""/>
+        <a class="ONE" href="javascript:;"><span>签阅</span></a>
     </div>
     <div class="boto">
-        <img src="img/file/cabinet10.png" alt=""/>
+        <a class="TWO" href="javascript:;"><span>复制</span></a>
     </div>
     <div class="boto">
-        <img src="img/file/cabinet11.png" alt=""/>
+        <a class="THREE" href="javascript:;"><span>剪切</span></a>
     </div>
     <div class="boto">
-        <img src="img/file/cabinet12.png" alt=""/>
+        <a class="FOUR" href="javascript:;"><span>删除</span></a>
+    </div>
+    <div class="boto">
+        <a class="FIVE" href="javascript:;"><span>下载</span></a>
     </div>
 
 </div>

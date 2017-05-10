@@ -13,7 +13,7 @@ public interface FlowProcessService {
 	
 	public FlowProcess find(int flowId,int id);
 	
-	public void updateByPrimaryKey(FlowProcess record);
+	public void updateByPrimaryKeySelective(FlowProcess record);
 	
 	
 	
