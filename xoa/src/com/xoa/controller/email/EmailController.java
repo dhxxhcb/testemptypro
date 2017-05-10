@@ -626,7 +626,6 @@ public class EmailController {
 				"loginDateSouse");
 		ContextHolder.setConsumerType(sqlType);
 		try {
-
 			Map<String, Object> maps = new HashMap<String, Object>();
 			maps.put("emailId", emailId);
 			String fwRwEmail = emailService.queryByIdCss(maps,1,5,false,sqlType);

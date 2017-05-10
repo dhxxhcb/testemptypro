@@ -149,7 +149,6 @@ public class NewsController {
 		maps.put("click", click);
 		Users name = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users());
 		ToJson<News> returnReslt = new ToJson(1,"");
-		L.a("sasasasasa"+subject);
 		try {
 			 if (read.equals("0")) {
 				ToJson<News> tojson= newService.unreadNews(maps, page, pageSize,
@@ -219,59 +218,13 @@ public class NewsController {
 	  * 参数说明:   @return
 	  * @return     String
 	  */
-	@RequestMapping(value = "/sendNews", produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/sendNews",method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String insertNews(
-			@RequestParam(name="subject",required=false) String subject,
-			@RequestParam(name="provider",required=false) String provider,
-			@RequestParam(name="newsTime",required=false) String newsTime,
-			@RequestParam(name="clickCount",required=false) Integer clickCount,
-			@RequestParam(name="anonymityYn",required=false) String anonymityYn,
-			@RequestParam(name="format",required=false) String format,
-			@RequestParam(name="typeId",required=false) String typeId,
-			@RequestParam(name="publish",required=false) String publish,
-			@RequestParam(name="top",required=false) String top,
-			@RequestParam(name="lastEditor",required=false) String lastEditor,
-			@RequestParam(name="lastEditTime",required=false) String lastEditTime,
-			@RequestParam(name="subjectColor",required=false) String subjectColor,
-			@RequestParam(name="keyword",required=false) String keyword,
-			@RequestParam(name="topDays",required=false) String topDays,
-			@RequestParam(name="content",required=false) String content,
-			@RequestParam(name="attachmentId",required=false) String attachmentId,
-			@RequestParam(name="attachmentName",required=false) String attachmentName,
-			@RequestParam(name="toId",required=false) String toId,
-			@RequestParam(name="privId",required=false) String privId,
-			@RequestParam(name="userId",required=false) String userId,
-			@RequestParam(name="readers",required=false) String readers,
-			@RequestParam(name="compressContent",required=false) String compressContent,
-			@RequestParam(name="summary",required=false) String summary,HttpServletRequest request) {
+		News news,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		   News news=new News();
 		    news.setNewsId(0);
-		    news.setSubject(this.returnValue(subject));
-		    news.setProvider(this.returnValue(provider));
-		    news.setNewsTime(DateFormat.getDate(newsTime));
-		    news.setClickCount(Integer.valueOf(clickCount));
-		    news.setAnonymityYn(this.returnValue(anonymityYn));
-		    news.setFormat(this.returnValue(format));
-		    news.setTypeId(this.returnValue(typeId));
-		    news.setPublish(this.returnValue(publish));
-		    news.setTop(this.returnValue(top));
-		    news.setLastEditor(this.returnValue(lastEditor));
-		    news.setLastEditTime(DateFormat.getDate(lastEditTime));
-		    news.setSubjectColor(this.returnValue(subjectColor));
-		    news.setKeyword(this.returnValue(keyword));
-		    news.setTopDays(this.returnValue(topDays));
-		    news.setContent(this.returnValue(content));
-		    news.setAttachmentId(this.returnValue(attachmentId));
-		    news.setAnonymityYn(this.returnValue(anonymityYn));
-		    news.setToId(this.returnValue(toId));
-		    news.setPrivId(this.returnValue(privId));
-		    news.setUserId(this.returnValue(userId));
-		    news.setReaders(this.returnValue(readers));
-		    news.setCompressContent(compressContent.getBytes());
-		    news.setSummary(this.returnValue(summary));
 		    try {
 		    	newService.sendNews(news);
 		    	return JSON.toJSONStringWithDateFormat(
@@ -317,57 +270,12 @@ public class NewsController {
 	  * @return     String
 	  */
 	@RequestMapping(value = "/updateNews", produces = { "application/json;charset=UTF-8" })
-	public String updateNews(@RequestParam("newsId") Integer newsId,
-			@RequestParam(name="subject",required=false) String subject,
-			@RequestParam(name="provider",required=false) String provider,
-			@RequestParam(name="newsTime",required=false) String newsTime,
-			@RequestParam(name="clickCount",required=false) Integer clickCount,
-			@RequestParam(name="anonymityYn",required=false) String anonymityYn,
-			@RequestParam(name="format",required=false) String format,
-			@RequestParam(name="typeId",required=false) String typeId,
-			@RequestParam(name="publish",required=false) String publish,
-			@RequestParam(name="top",required=false) String top,
-			@RequestParam(name="lastEditor",required=false) String lastEditor,
-			@RequestParam(name="lastEditTime",required=false) String lastEditTime,
-			@RequestParam(name="subjectColor",required=false) String subjectColor,
-			@RequestParam(name="keyword",required=false) String keyword,
-			@RequestParam(name="topDays",required=false) String topDays,
-			@RequestParam(name="content",required=false) String content,
-			@RequestParam(name="attachmentId",required=false) String attachmentId,
-			@RequestParam(name="attachmentName",required=false) String attachmentName,
-			@RequestParam(name="toId",required=false) String toId,
-			@RequestParam(name="privId",required=false) String privId,
-			@RequestParam(name="userId",required=false) String userId,
-			@RequestParam(name="readers",required=false) String readers,
-			@RequestParam(name="compressContent",required=false) String compressContent,
-			@RequestParam(name="summary",required=false) String summary,HttpServletRequest request) {
+	public  	@ResponseBody String
+             updateNews(
+			News news,HttpServletRequest request,@RequestParam("newsId") Integer newsId) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		 News news=new News();
 		    news.setNewsId(newsId);
-		    news.setSubject(this.returnValue(subject));
-		    news.setProvider(this.returnValue(provider));
-		    news.setNewsTime(DateFormat.getDate(newsTime));
-		    news.setClickCount(Integer.valueOf(clickCount));
-		    news.setAnonymityYn(this.returnValue(anonymityYn));
-		    news.setFormat(this.returnValue(format));
-		    news.setTypeId(this.returnValue(typeId));
-		    news.setPublish(this.returnValue(publish));
-		    news.setTop(this.returnValue(top));
-		    news.setLastEditor(this.returnValue(lastEditor));
-		    news.setLastEditTime(DateFormat.getDate(lastEditTime));
-		    news.setSubjectColor(this.returnValue(subjectColor));
-		    news.setKeyword(this.returnValue(keyword));
-		    news.setTopDays(this.returnValue(topDays));
-		    news.setContent(this.returnValue(content));
-		    news.setAttachmentId(this.returnValue(attachmentId));
-		    news.setAnonymityYn(this.returnValue(anonymityYn));
-		    news.setToId(this.returnValue(toId));
-		    news.setPrivId(this.returnValue(privId));
-		    news.setUserId(this.returnValue(userId));
-		    news.setReaders(this.returnValue(readers));
-		    news.setCompressContent(compressContent.getBytes());
-		    news.setSummary(this.returnValue(summary));
 		    try {
 		    	newService.updateNews(news);
 		    	return JSON.toJSONStringWithDateFormat(

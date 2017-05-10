@@ -227,7 +227,7 @@
 		NEWS_ID = ${newsId}
 	</delete>
 	<insert id="save" parameterType="com.xoa.model.worldnews.News">
-		insert into news (NEWS_ID,
+		<!-- insert into news (NEWS_ID,
 		SUBJECT, PROVIDER,
 		NEWS_TIME, CLICK_COUNT, ANONYMITY_YN,
 		FORMAT,
@@ -257,10 +257,160 @@
 		#{readers},
 		#{compressContent},
 		#{summary}
-		)
+		) -->
+		
+		insert into news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        NEWS_ID,
+      </if>
+      <if test="subject != null" >
+        SUBJECT,
+      </if>
+      <if test="provider != null" >
+        PROVIDER,
+      </if>
+      <if test="newsTime != null" >
+        NEWS_TIME,
+      </if>
+      <if test="clickCount != null" >
+        CLICK_COUNT,
+      </if>
+      <if test="anonymityYn != null" >
+        ANONYMITY_YN,
+      </if>
+      <if test="format != null" >
+        FORMAT,
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID,
+      </if>
+      <if test="publish != null" >
+        PUBLISH,
+      </if>
+      <if test="top != null" >
+        TOP,
+      </if>
+      <if test="lastEditor != null" >
+        LAST_EDITOR,
+      </if>
+      <if test="lastEditTime != null" >
+        LAST_EDIT_TIME,
+      </if>
+      <if test="subjectColor != null" >
+        SUBJECT_COLOR,
+      </if>
+      <if test="keyword != null" >
+        KEYWORD,
+      </if>
+      <if test="topDays != null" >
+        TOP_DAYS,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="attachmentId != null" >
+        ATTACHMENT_ID,
+      </if>
+      <if test="attachmentName != null" >
+        ATTACHMENT_NAME,
+      </if>
+      <if test="toId != null" >
+        TO_ID,
+      </if>
+      <if test="privId != null" >
+        PRIV_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="readers != null" >
+        READERS,
+      </if>
+      <if test="compressContent != null" >
+        COMPRESS_CONTENT,
+      </if>
+      <if test="summary != null" >
+        SUMMARY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        #{newsId},
+      </if>
+      <if test="subject != null" >
+        #{subject},
+      </if>
+      <if test="provider != null" >
+        #{provider},
+      </if>
+      <if test="newsTime != null" >
+        #{newsTime},
+      </if>
+      <if test="clickCount != null" >
+        #{clickCount},
+      </if>
+      <if test="anonymityYn != null" >
+        #{anonymityYn},
+      </if>
+      <if test="format != null" >
+        #{format},
+      </if>
+      <if test="typeId != null" >
+        #{typeId},
+      </if>
+      <if test="publish != null" >
+        #{publish},
+      </if>
+      <if test="top != null" >
+        #{top},
+      </if>
+      <if test="lastEditor != null" >
+        #{lastEditor},
+      </if>
+      <if test="lastEditTime != null" >
+        #{lastEditTime},
+      </if>
+      <if test="subjectColor != null" >
+        #{subjectColor},
+      </if>
+      <if test="keyword != null" >
+        #{keyword},
+      </if>
+      <if test="topDays != null" >
+        #{topDays},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="attachmentId != null" >
+        #{attachmentId},
+      </if>
+      <if test="attachmentName != null" >
+        #{attachmentName},
+      </if>
+      <if test="toId != null" >
+        #{toId},
+      </if>
+      <if test="privId != null" >
+        #{privId},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="readers != null" >
+        #{readers},
+      </if>
+      <if test="compressContent != null" >
+        #{compressContent},
+      </if>
+      <if test="summary != null" >
+        #{summary},
+      </if>
+    </trim>
 	</insert>
 	<update id="update" parameterType="com.xoa.model.worldnews.News">
-		update news
+		<!-- update news
 		set
 		SUBJECT =
 		#{subject},
@@ -291,7 +441,80 @@
 		SUMMARY=#{summary}
 		where
 		NEWS_ID =
-		#{newsId}
+		#{newsId} -->
+		 update news
+    <set >
+      <if test="subject != null" >
+        SUBJECT = #{subject},
+      </if>
+      <if test="provider != null" >
+        PROVIDER = #{provider},
+      </if>
+      <if test="newsTime != null" >
+        NEWS_TIME = #{newsTime},
+      </if>
+      <if test="clickCount != null" >
+        CLICK_COUNT = #{clickCount},
+      </if>
+      <if test="anonymityYn != null" >
+        ANONYMITY_YN = #{anonymityYn},
+      </if>
+      <if test="format != null" >
+        FORMAT = #{format},
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID = #{typeId},
+      </if>
+      <if test="publish != null" >
+        PUBLISH = #{publish},
+      </if>
+      <if test="top != null" >
+        TOP = #{top},
+      </if>
+      <if test="lastEditor != null" >
+        LAST_EDITOR = #{lastEditor},
+      </if>
+      <if test="lastEditTime != null" >
+        LAST_EDIT_TIME = #{lastEditTime},
+      </if>
+      <if test="subjectColor != null" >
+        SUBJECT_COLOR = #{subjectColor},
+      </if>
+      <if test="keyword != null" >
+        KEYWORD = #{keyword},
+      </if>
+      <if test="topDays != null" >
+        TOP_DAYS = #{topDays},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content},
+      </if>
+      <if test="attachmentId != null" >
+        ATTACHMENT_ID = #{attachmentId},
+      </if>
+      <if test="attachmentName != null" >
+        ATTACHMENT_NAME = #{attachmentName},
+      </if>
+      <if test="toId != null" >
+        TO_ID = #{toId},
+      </if>
+      <if test="privId != null" >
+        PRIV_ID = #{privId},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId},
+      </if>
+      <if test="readers != null" >
+        READERS = #{readers},
+      </if>
+      <if test="compressContent != null" >
+        COMPRESS_CONTENT = #{compressContent},
+      </if>
+      <if test="summary != null" >
+        SUMMARY = #{summary},
+      </if>
+    </set>
+    where NEWS_ID = #{newsId}
 	</update>
 	<update id="updateNews" parameterType="com.xoa.model.worldnews.News">
 		update news set

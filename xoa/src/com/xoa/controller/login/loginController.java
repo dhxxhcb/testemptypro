@@ -19,6 +19,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.alibaba.fastjson.JSON;
 import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+import com.xoa.model.menu.MobileApp;
 import com.xoa.model.users.OrgManage;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.OrgManageService;
@@ -117,7 +118,9 @@ public class loginController {
 	/**
 	 * 
 	 * 创建作者: 王曰岐 创建日期: 2017-4-19 下午3:51:00 方法介绍: 匹配用户名和用户密码 参数说明: @param
-	 * username 用户名 参数说明: @param password 密码 参数说明: @param request 参数说明: @param
+	 * username 用户名 参数说明: @param password 密码
+     * 参数说明: @param request 
+     * 参数说明: @param userAgent mobile 移动   pc 网页
 	 * response 参数说明: @return 参数说明: @throws Exception
 	 * 
 	 * @return String
@@ -125,11 +128,16 @@ public class loginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	ToJson<Users> loginEnter(@RequestParam("username") String username,
-			@RequestParam("password") String password,
+			@RequestParam("password") String password, String loginId,String userAgent,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		String loginId = (String) request.getSession().getAttribute(
-				"loginDateSouse");
+		if(StringUtils.checkNull(loginId)){
+			loginId = (String) request.getSession().getAttribute(
+					"loginDateSouse");
+		}else if ("mobile".equals(userAgent)){
+			SessionUtils.putSession(request.getSession(), "loginDateSouse", loginId);
+//			request.getSession().setAttribute("loginDateSouse", loginId);
+		}
 		ToJson<Users> json = new ToJson<Users>(0, null);
 		if(StringUtils.checkNull(username)){
 			json.setFlag(1);
