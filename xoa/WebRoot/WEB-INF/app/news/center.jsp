@@ -318,7 +318,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         function initPagination(totalData, pageSize) {
             $('.M-box3').pagination({
-                totalData: totalData,
+                totalData: totalData,  
                 showData: pageSize,
                 jump: true,
                 coping: true,
