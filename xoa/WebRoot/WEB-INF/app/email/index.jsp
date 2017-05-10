@@ -289,7 +289,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 
-                 <%--收件箱列表--%>
+                 <%--横版收件箱列表--%>
 				<div class="main_right UP_INBOX" style="display:none;">
                        <div class="tab">
                              <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
@@ -346,16 +346,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 //alert(data1[i].sendTime);
                                 if(data1[i].emailList[0].readFlag==1){
                                     if(data1[i].attachmentId!=''){
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
                                     }else{
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
                                     }
 
                                 } else if(data1[i].emailList[0].readFlag==0){
                                     if(data1[i].attachmentId!=''){
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
                                     }else{
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
                                     }
                                 }
 
@@ -367,9 +367,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//横版列表页面的列表详情
                 $('.tab').on('click','tr.Hover',function () {
                     $(this).addClass('on_tr').siblings().removeClass('on_tr');
-                    var atr=$(this).attr('Attr');
-                    $.popWindow('details?id='+atr);
+					var sId=$(this).attr('Attr');
+					var flagId=$(this).attr('uId');
+                    $('#delete').attr({'uId':sId,'del':flagId});
+
                 })
+				$('.tab').on('click','.theme_a',function(){
+
+                    var atr=$(this).parents('tr').attr('Attr');
+                    $.popWindow('details?id='+atr);
+				})
 
                 //切换竖版收件箱页面
                 $('.up_format ul li:first-of-type').click(function () {
@@ -523,7 +530,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					} else if($('.drafts').css('display')=='block'){
 						deleted1(sId);
 						$('.drafts').css('display','block').siblings().css('display','none');
-					} 
+					} else if($('.UP_INBOX').css('display')=='block'){
+                        deleted('inbox',sId,ueID);
+                        $('.UP_INBOX').show();
+                        $('.main').hide();
+					}
 				})
 				
 				//回复事件
