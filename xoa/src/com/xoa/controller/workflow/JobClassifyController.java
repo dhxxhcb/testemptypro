@@ -62,25 +62,85 @@ public class JobClassifyController {
     public BaseWrapper insertForm(@RequestParam(defaultValue = "0",required = false) Integer parentId, Integer sortNo, String formName, @RequestParam(defaultValue = "0",required = false)Integer departmentId){
         return  service.insertForm(parentId,sortNo,formName,departmentId);
     }
-
+    
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-8 下午5:33:17 
+     * @方法介绍 流程分类添加
+     * @参数说明 @param parentId 父分类Id
+     * @参数说明 @param sortNo 序号
+     * @参数说明 @param flowName 分类名称
+     * @参数说明 @param departmentId 部门Id
+     * @参数说明 @return
+     * @return
+     */
     @RequestMapping("/flowclassify/flowSave")
     public BaseWrapper insertFlow(@RequestParam(defaultValue = "0",required = false)Integer parentId,Integer sortNo,String flowName,@RequestParam(defaultValue = "0",required = false)Integer departmentId){
         return  service.insertFlow(parentId,sortNo,flowName,departmentId);
     }
-
+    
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-9 下午4:20:16 
+     * @方法介绍 表单分类修改
+     * @参数说明 @param formId 需要修改的id
+     * @参数说明 @param parentId 父Id
+     * @参数说明 @param sortNo  序号
+     * @参数说明 @param formName 表单名字
+     * @参数说明 @param departmentId 部门id
+     * @参数说明 @return
+     * @return
+     */
     @RequestMapping("/flowclassify/formUpdate")
     public BaseWrapper updateForm(Integer formId,Integer parentId,Integer sortNo,String formName,Integer departmentId){
         return  service.formUpdate(formId,parentId,sortNo,formName,departmentId);
     }
+    
+    
+    
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-9 下午4:21:14 
+     * @方法介绍 流程分类编辑
+     * @参数说明 @param flowId 流程Id
+     * @参数说明 @param parentId 父Id
+     * @参数说明 @param sortNo 序号
+     * @参数说明 @param flowName 流程分类名字
+     * @参数说明 @param departmentId 部门Id
+     * @参数说明 @return
+     * @return
+     */
     @RequestMapping("/flowclassify/flowUpdate")
     public BaseWrapper updateFlow(Integer flowId,Integer parentId,Integer sortNo,String flowName,Integer departmentId){
         return  service.flowUpdate(flowId,parentId,sortNo,flowName,departmentId);
     }
 
+    
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-9 下午4:22:11 
+     * @方法介绍 删除流程分类
+     * @参数说明 @param flowId 流程Id
+     * @参数说明 @return
+     * @return
+     */
     @RequestMapping("/flowclassify/flowDelete")
     public BaseWrapper deleteFlow(Integer flowId){
         return  service.deleteFlow(flowId);
     }
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-9 下午4:22:37 
+     * @方法介绍 删除表单分类
+     * @参数说明 @param formId 表单Id
+     * @参数说明 @return
+     * @return
+     */
     @RequestMapping("/flowclassify/formDelete")
     public BaseWrapper deleteForm(Integer formId){
         return   service.deleteForm(formId);
