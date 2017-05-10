@@ -10,11 +10,11 @@
 <head>
     <title>设计流程</title>
     <meta http-equiv="Content-Type" content="text/html; charset=GBK">
-    <link rel="stylesheet" type="text/css" href="./index_new_files/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./index_new_files/bootstrap-responsive.min.css">
-    <link rel="stylesheet" type="text/css" href="./index_new_files/demo.css">
-    <script type="text/javascript" src="./index_new_files/jquery-2.1.2.min.js"></script>
-    <script type="text/javascript" src="./index_new_files/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/flowtypeY/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/flowtypeY/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/flowtypeY/css/demo.css">
+    <script type="text/javascript" src="../../js/flowtypeY/js/jquery-2.1.2.min.js"></script>
+    <script type="text/javascript" src="../../js/flowtypeY/js/bootstrap.min.js"></script>
     <style type="text/css">
         .zt {
             position: absolute;
@@ -99,18 +99,34 @@
                     <h4 style="text-align:left;line-height:50px;text-indent: 30px;    color: #457dc1;">编辑应用</h4>
                 </div>
                 <div class="zt">
-                    <a href="" url="" class="s1 active">应用类型设置</a>
-                    <a href="" url="" class="s2">基础参数设置</a>
-                    <a class="fazer" href="" url="" style="display: none;">工作流子流程设置</a>
-                    <a class="fazer" href="#" url="">应用外流程设置</a>
-                    <a class="fazers" href="" url="" style="">工作流节点设置</a>
-                    <a href="" url="" class="glyy">关联应用设置</a>
-                    <a href="#" url="" class="xzgt">协作沟通设置</a>
-                    <input type="hidden" id="bbsp" value="">
-                    <a href="" id="qiye" url=""> 发布到本企业 </a>
-
+                    <a href="" url="" class="s1 active">设计流程</a>
+                    <ul>
+                        <li>定义流程属性</li>
+                        <li>设计流程步骤</li>
+                        <li>预览表单</li>
+                        <li>导入</li>
+                    </ul>
+                    <a href="" url="" class="s2">管理权限</a>
+                    <ul>
+                        <li></li>
+                    </ul>
+                    <a class="fazer" href="" url="" >定时任务</a>
+                    <ul>
+                        <li></li>
+                    </ul>
+                    <a class="fazer" href="#" url="">配置查询模板</a>
+                    <ul>
+                        <li></li>
+                    </ul>
+                    <a class="fazers" href="" url="" style="">应用版式文件</a>
+                    <ul>
+                        <li></li>
+                    </ul>
+                    <%--<a href="" url="" class="glyy">关联应用设置</a>--%>
+                    <%--<a href="#" url="" class="xzgt">协作沟通设置</a>--%>
+                    <%--<input type="hidden" id="bbsp" value="">--%>
+                    <%--<a href="" id="qiye" url=""> 发布到本企业 </a>--%>
                 </div>
-
             </div>
         </div>
     </div>
@@ -118,10 +134,8 @@
         <div class="mod_con_d">
             <div class="mod_con_di">
                 <div class="window_1" id="iframe_if">
-                    <!-- <iframe src="./index_new_files/new.html" class="window_1" id="iframe_if"></iframe>  -->
                     <div class="head_right">
                         <div class="head_right_top">
-                            <span style="position: absolute;font-size: 20px;/* border-bottom: 4px solid #447cc0; */height: 47px;display: inline-block;">111</span>
                             <a class="b_but right head_right_but"
                                style="top: 10px;position: absolute;/* display: inline-block; */font-weight: 500;right: 32px;border-color: #fd9162;color: #fff;background-color: #fd9162;width: 100px;height: 30px;line-height: 30px;font-size: 16px;border-radius: 3px;/* float: right; */"
                                href="" onclick="">返回</a>
@@ -820,17 +834,7 @@
                                     </button>
                                 </li>
                             </div>
-                            <div class="modal-body" id="d2"></div>
-                            <div class="modal-footer"
-                                 style="text-align: right;padding: 10px;border-top: 1px solid #e5e5e5;">
-                                <a href="https://app.gsubo.com/gapp/gapp_manage/new.php?gid=101014930268333273668317&amp;step=1&amp;tids=0&amp;gname=111#"
-                                   class="n_but" data-dismiss="modal" aria-hidden="true"
-                                   style="font-weight: 500;border: 1px solid #4192ee;color: #4192ee;background-color: #fff;width: 56px!important;height: 20px;line-height: 20px;font-size: 15px; border-radius: 4px;text-align: center;margin-bottom: 5px;">取消</a>
-                                <a href="https://app.gsubo.com/gapp/gapp_manage/new.php?gid=101014930268333273668317&amp;step=1&amp;tids=0&amp;gname=111#"
-                                   class="n_but" onclick="tcc_btn_sub1($(this))" data-dismiss="modal" aria-hidden="true"
-                                   style="font-weight: 500;border: 1px solid #4192ee;color: #fff;background-color: #4093f3;width: 86px!important;height: 20px;line-height: 20px;font-size: 15px; border-radius: 4px;text-align: center;margin-bottom: 5px;">确定</a>
-
-                            </div>
+                            <div class="modal-body" id="d3"></div>
                         </div>
                     </div>
 
