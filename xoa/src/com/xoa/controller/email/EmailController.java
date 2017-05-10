@@ -548,6 +548,98 @@ public class EmailController {
 		}
 	}
 
+	/**
+	 *
+	 * 创建作者:   张勇
+	 * 创建日期:   2017-4-20 上午10:33:59
+	 * 方法介绍:   回复或转发简历
+	 * 参数说明:	   @param fromId 发件人USER_ID,如(lisi,zhangsan,)
+	 * 参数说明:      @param toId2 收件人 USER_ID串，每个ID后带一个逗号，如：(lisi,zhangsan,)
+	 * 参数说明:      @param copyToId 抄送人USER_ID串,如(lisi,zhangsan,)
+	 * 参数说明:      @param subject 邮件主题
+	 * 参数说明:      @param content 邮件内容
+	 * 参数说明:      @param sendTime 发送时间,如：2017-04-04 10:20:35
+	 * 参数说明:      @param attachmentName 附件文件名串
+	 * 参数说明:      @param secretToId 密送人USER_ID串,如(lisi,zhangsan,)
+	 * 参数说明:      @param attachmentId 附件ID串
+	 * 参数说明:      @param sendFlag 是否已发送(0-未发送,1-已发送)
+	 * 参数说明:      @param smsRemind 是否使用短信提醒(0-不提醒,1-提醒)
+	 * 参数说明:      @param important 重要程度(空-一般邮件,1-重要,2-非常重要)
+	 * 参数说明:      @param size 邮件大小
+	 * 参数说明:      @param fromWebmailId 从自己的哪个外部邮箱ID对应emailbox中id
+	 * 参数说明:      @param fromWebmail 从自己的哪个外部邮箱向外发送
+	 * 参数说明:      @param toWebmail 外部收件人邮箱串
+	 * 参数说明:      @param compressContent 压缩后的邮件内容
+	 * 参数说明:      @param webmailContent 外部邮件内容
+	 * 参数说明:      @param webmailFlag 外部邮件标记(0-未发送,1-正在准备发送,2-发送成功,3-发送失败)
+	 * 参数说明:      @param recvFromName 接收外部邮箱名称
+	 * 参数说明:      @param recvFrom 接收外部邮箱ID
+	 * 参数说明:      @param recvToId 发送外部邮件ID
+	 * 参数说明:      @param recvTo 发送外部邮箱名称
+	 * 参数说明:      @param isWebmail 是否为外部邮件(0-内部邮件,1-外部邮件)
+	 * 参数说明:      @param isWf 是否同时外发(0-不外发,1-勾选向此人发送外部邮件)
+	 * 参数说明:      @param keyword 内容关键词
+	 * 参数说明:      @param secretLevel 邮件密级等级
+	 * 参数说明:      @param auditMan 审核人USER_ID
+	 * 参数说明:      @param auditRemark 审核不通过备注
+	 * 参数说明:      @param copyToWebmail 抄送外部邮箱串
+	 * 参数说明:      @param secretToWebmail 抄送外部邮箱串
+	 * 参数说明:      @param praise 点赞人user_id串
+	 * 参数说明:   @return
+	 * @return     String
+	 */
+	@RequestMapping(value = "/saveMessageEmail", produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody
+	ToJson<EmailBodyModel> fwRwSaveEmailBody(
+			@RequestParam(value = "emailId") Integer emailId,
+			@RequestParam(value = "fromId") String fromId,
+			@RequestParam(value = "toId2", required = false) String toId2,
+			@RequestParam(value = "copyToId", required = false) String copyToId,
+			@RequestParam(value = "subject", required = false) String subject,
+			@RequestParam(value = "content", required = false) String content,
+			@RequestParam(value = "attachmentName", required = false) String attachmentName,
+			@RequestParam(value = "secretToId", required = false) String secretToId,
+			@RequestParam(value = "attachmentId", required = false) String attachmentId,
+			@RequestParam(value = "smsRemind", required = false) String smsRemind,
+			@RequestParam(value = "important", required = false) String important,
+			@RequestParam(value = "size", required = false) String size,
+			@RequestParam(value = "fromWebmailId", required = false) String fromWebmailId,
+			@RequestParam(value = "fromWebmail", required = false) String fromWebmail,
+			@RequestParam(value = "toWebmail", required = false) String toWebmail,
+			@RequestParam(value = "compressContent", required = false) String compressContent,
+			@RequestParam(value = "webmailContent", required = false) String webmailContent,
+			@RequestParam(value = "webmailFlag", required = false) String webmailFlag,
+			@RequestParam(value = "recvFromName", required = false) String recvFromName,
+			@RequestParam(value = "recvFrom", required = false) String recvFrom,
+			@RequestParam(value = "recvToId", required = false) String recvToId,
+			@RequestParam(value = "recvTo", required = false) String recvTo,
+			@RequestParam(value = "isWebmail", required = false) String isWebmail,
+			@RequestParam(value = "isWf", required = false) String isWf,
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "secretLevel", required = false) String secretLevel,
+			@RequestParam(value = "auditMan", required = false) String auditMan,
+			@RequestParam(value = "auditRemark", required = false) String auditRemark,
+			@RequestParam(value = "copyToWebmail", required = false) String copyToWebmail,
+			@RequestParam(value = "secretToWebmail", required = false) String secretToWebmail,
+			@RequestParam(value = "praise", required = false) String praise,HttpServletRequest request) {
+		String sqlType = "xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
+		try {
+
+			Map<String, Object> maps = new HashMap<String, Object>();
+			maps.put("emailId", emailId);
+			String fwRwEmail = emailService.queryByIdCss(maps,1,5,false,sqlType);
+			emailService.saveEmail(
+					this.returnObj(fromId, toId2, copyToId, subject, content+fwRwEmail, attachmentName, attachmentId, new Date(), "0", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
+			);
+			return new ToJson<EmailBodyModel>(0,
+					"ok");
+		} catch (Exception e) {
+			return new ToJson<EmailBodyModel>(1,
+					"errorSaveMessage");
+		}
+	}
 
 
 
