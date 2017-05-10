@@ -48,7 +48,8 @@ table {
 }
 
 body {
-    font: 12px/150% Arial, Verdana, "\5b8b\4f53"; /*unitedCode的写法，宋体的写法  */
+    font-size: 12px;
+    font-family: 微软雅黑;
     color: #666; /*150%基于当前字体尺寸的百分比行间距*/
     background: #fff;
 }
@@ -128,8 +129,8 @@ s, i, em {
 
 /*head开始*/
 .head {
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     border-bottom: 2px solid #A8C9EA;
     background-color: #F0F4F7;
 }
@@ -148,19 +149,20 @@ table {
 .th,
 td {
     color: #404060;
-    padding: 10px;
+    padding: 5px;
 }
 
 .th {
+    font-family: 微软雅黑;
+    font-size: 14px;
     background-color: #fff;
-    font: bold 16px "SimSun";
     color: #2F5C8F;
-    font-weight: bold;
     border: 0px;
 }
 
 td {
-    font: 14px "SimSun";
+    font-family: 微软雅黑;
+    font-size: 12px;
 }
 
 tr {
