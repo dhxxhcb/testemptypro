@@ -386,6 +386,7 @@
             execCommand : function() {
                 var dialog = new UE.ui.Dialog(
                     {
+                 
                        /*  iframeUrl : '../lib/ueditor/formdesign/text.html', */
                         iframeUrl : '../lib/ueditor/formdesign/text.html', 
                         name : thePlugins,
@@ -451,7 +452,8 @@
         me.commands[thePlugins] = {
             execCommand : function() {
                 var dialog = new UE.ui.Dialog(
-                    {
+                    {   
+                       
                         iframeUrl : './controls/textarea/prop_dialog.php?e=ue&FORM_ID=145',
                         name : thePlugins,
                         editor : this,

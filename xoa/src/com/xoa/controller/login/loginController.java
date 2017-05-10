@@ -80,7 +80,7 @@ public class loginController {
 	 * 
 	 * @return 登录窗口
 	 */
-	@RequestMapping(value = "/getCompanyAll", method = RequestMethod.GET)
+	@RequestMapping(value = "/branchOfLanding", method = RequestMethod.GET)
 	// 登录窗口
 	public String getCompanyAll(@RequestParam("loginId") String loginId,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -96,7 +96,7 @@ public class loginController {
 	 * 
 	 * @return 登录窗口
 	 */
-	@RequestMapping(value = "logins", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCompanyAll", method = RequestMethod.GET)
 	// 登录窗口
 	public @ResponseBody ToJson<OrgManage> logins() {
 		   return  orgManageService.queryId();
