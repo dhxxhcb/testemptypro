@@ -74,7 +74,7 @@ public class FlowProcessController {
 			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
 			try {
 				request.setCharacterEncoding("utf-8");
-				flowProcessService.updateByPrimaryKey(flowProcess);
+				flowProcessService.updateByPrimaryKeySelective(flowProcess);
 		        json.setObject(flowProcess);
 		        json.setMsg("OK");
 		        json.setFlag(0);

@@ -58,14 +58,14 @@ public class EnclosureController {
 	 */
 	@RequestMapping(value ="/upload",produces = {"application/json;charset=UTF-8"}) 
 	public @ResponseBody ToJson<Attachment> upload( @RequestParam("file") MultipartFile[] files,String module,
-			  HttpServletRequest request) {
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));
-			
+			  HttpServletRequest request) {			
+		String company="xoa"+(String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(company);			
 			ToJson<Attachment> json=new ToJson<Attachment>(0, null);
 			try {
-				String company="xoa" + (String) request.getSession().getAttribute(
-						"loginDateSouse");
+//				String company="xoa"+(String) request.getSession().getAttribute(
+//						"loginDateSouse");
 				List<Attachment> list=enclosureService.upload(files, company, module);  
 				json.setObj(list);
 	            json.setMsg("OK");

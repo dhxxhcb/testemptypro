@@ -27,8 +27,8 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	}
 
 	@Override
-	public void updateByPrimaryKey(FlowProcess record) {
-		flowProcessMapper.updateByPrimaryKey(record);	
+	public void updateByPrimaryKeySelective(FlowProcess record) {
+		flowProcessMapper.updateByPrimaryKeySelective(record);	
 	}
 
 }
