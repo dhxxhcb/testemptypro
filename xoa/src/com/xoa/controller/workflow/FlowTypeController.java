@@ -46,5 +46,11 @@ public class FlowTypeController {
                 "loginDateSouse"));
         return "app/workflow/flowtype/flowNews";
     }
+    @RequestMapping("/flowNew")
+    public String newflow(HttpServletRequest request){
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        return "app/workflow/flowtype/flownew";
+    }
 
 }
