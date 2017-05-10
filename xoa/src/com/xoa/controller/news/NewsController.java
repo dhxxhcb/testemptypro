@@ -192,29 +192,6 @@ public class NewsController {
 	  * 创建作者:   王曰岐
 	  * 创建日期:   2017-4-19 下午3:54:51
 	  * 方法介绍:   添加新闻
-	  * 参数说明:   @param subject
-	  * 参数说明:   @param provider
-	  * 参数说明:   @param newsTime
-	  * 参数说明:   @param clickCount
-	  * 参数说明:   @param anonymityYn
-	  * 参数说明:   @param format
-	  * 参数说明:   @param typeId
-	  * 参数说明:   @param publish
-	  * 参数说明:   @param top
-	  * 参数说明:   @param lastEditor
-	  * 参数说明:   @param lastEditTime
-	  * 参数说明:   @param subjectColor
-	  * 参数说明:   @param keyword
-	  * 参数说明:   @param topDays
-	  * 参数说明:   @param content
-	  * 参数说明:   @param attachmentId
-	  * 参数说明:   @param attachmentName
-	  * 参数说明:   @param toId
-	  * 参数说明:   @param privId
-	  * 参数说明:   @param userId
-	  * 参数说明:   @param readers
-	  * 参数说明:   @param compressContent
-	  * 参数说明:   @param summary
 	  * 参数说明:   @return
 	  * @return     String
 	  */
@@ -224,7 +201,9 @@ public class NewsController {
 		News news,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
+		Users name = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users());
 		    news.setNewsId(0);
+		    news.setProvider(name.getUserId());
 		    try {
 		    	newService.sendNews(news);
 		    	return JSON.toJSONStringWithDateFormat(
@@ -242,30 +221,6 @@ public class NewsController {
 	  * 创建作者:   王曰岐
 	  * 创建日期:   2017-4-19 下午3:55:20
 	  * 方法介绍:   修改新闻
-	  * 参数说明:   @param newsId
-	  * 参数说明:   @param subject
-	  * 参数说明:   @param provider
-	  * 参数说明:   @param newsTime
-	  * 参数说明:   @param clickCount
-	  * 参数说明:   @param anonymityYn
-	  * 参数说明:   @param format
-	  * 参数说明:   @param typeId
-	  * 参数说明:   @param publish
-	  * 参数说明:   @param top
-	  * 参数说明:   @param lastEditor
-	  * 参数说明:   @param lastEditTime
-	  * 参数说明:   @param subjectColor
-	  * 参数说明:   @param keyword
-	  * 参数说明:   @param topDays
-	  * 参数说明:   @param content
-	  * 参数说明:   @param attachmentId
-	  * 参数说明:   @param attachmentName
-	  * 参数说明:   @param toId
-	  * 参数说明:   @param privId
-	  * 参数说明:   @param userId
-	  * 参数说明:   @param readers
-	  * 参数说明:   @param compressContent
-	  * 参数说明:   @param summary
 	  * 参数说明:   @return
 	  * @return     String
 	  */
