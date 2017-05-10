@@ -22,6 +22,17 @@ public class FlowProcessController {
 	@Resource
 	private FlowProcessService flowProcessService; 
 	
+		/**
+		 * 创建作者:   张龙飞
+		 * 创建日期:   2017年5月10日 上午9:49:53
+		 * 方法介绍:   查询设计流程步骤
+		 * 参数说明:   @param listType 
+		 * 参数说明:   @param flowId 流程id
+		 * 参数说明:   @param id 主键id
+		 * 参数说明:   @param request 请求
+		 * 参数说明:   @return
+		 * @return     ToJson<FlowProcess>  流程步骤信息
+		 */
 		@ResponseBody
 	  	@RequestMapping(value = "findFlow",produces = {"application/json;charset=UTF-8"})
 	    public ToJson<FlowProcess> findFlow(
