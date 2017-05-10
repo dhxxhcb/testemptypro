@@ -30,31 +30,10 @@
     border-left:none;
     border-right:none;
 }
-.total .se_1 {
-     width: 110px;
-     height: 25px;
-    border: 1px solid #c0c0c0;
- }
-.total .se_2 {
-    width: 130px;
-    height: 25px;
-    border: 1px solid #c0c0c0;
-}
-.total .se_3 {
-    width: 80px;
-    height: 25px;
-    border: 1px solid #c0c0c0;
-}
-.total .se_4 {
-    width: 80px;
-    height: 25px;
-    border: 1px solid #c0c0c0;
-}
+
 .total .title_ {
     width: 270px;
-    height: 25px;
-    border:1px solid #c0c0c0;
-}
+  }
 .total .release div {
     float: left;
 }

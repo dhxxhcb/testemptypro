@@ -473,11 +473,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 格式：
             </td>
             <td>
-                <select name="" class="se_1">
+                <select name="" class="format">
                     <option value="" selected="">全部</option>
-                    <option value="">1</option>
-                    <option value="">2 </option>
-                    <option value="">2 </option>
+			        <option value="0">普通格式</option>
+			        <option value="1">MHT格式</option>
+			        <option value="2">超链接格式</option>
 
                 </select>
             </td>
@@ -487,11 +487,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                类型：
             </td>
             <td>
-                <select name="" class="se_2">
+                <select name="" class="typeId">
                     <option value="" selected="">全部</option>
-                    <option value="">1</option>
-                    <option value="">2 </option>
-                    <option value="">2 </option>
+		          	<option value="01">公司动态</option>
+					<option value="02">媒体关注</option>
+					<option value="03">行业资讯</option>
+					<option value="04">合作伙伴新闻</option>
+					<option value="05">客户新闻</option>
 
                 </select>
 
@@ -503,12 +505,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                状态：
             </td>
             <td>
-                <select name="" class="se_3">
+                <select name="" class="publish">
                     <option value="" selected="">全部</option>
-                    <option value="">1</option>
-                    <option value="">2 </option>
-                    <option value="">2 </option>
-
+			        <option value="0">未发布</option>
+			        <option value="1">已发布</option>
                 </select>
             </td>
         </tr>
@@ -517,12 +517,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 是否置顶:
             </td>
             <td>
-                <select name="" class="se_4">
-                    <option value="" selected="">全部</option>
-                    <option value="">1</option>
-                    <option value="">2 </option>
-                    <option value="">2 </option>
-
+                <select name="" class="top">
+				    <option value="" selected="">全部</option>
+			        <option value="0">未置顶</option>
+			        <option value="1">已置顶</option>
                 </select>
 
             </td>
@@ -530,16 +528,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
             <td>标题:</td>
             <td>
-                <input class="title_" type="text"/>
+                <input class="title_" id="subject" type="text"/>
             </td>
         </tr>
         <tr class="release">
             <td>发布日期</td>
             <td>
-                <!-- <div class="date"></div> -->
-                <input id="beginTime "class="date" type="text"/>
+                <input id="beginTime"class="date" type="text"/>
                 <div  class="c_t">至</div>
-               <!--  <div class="date"></div> -->
                <input id="endTime" class="date" type="text"/>
 
             </td>
@@ -554,9 +550,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr class="clack_t">
             <td>点击次数</td>
             <td>
-                <input class="c_time" type="text"/>
+                <input class="c_time c_time1" type="text"/>
                 <div class="c_t">至</div>
-                <input class="c_time" type="text"/>
+                <input class="c_time c_time2" type="text"/>
             </td>
         </tr>
         <tr class="operation">
@@ -572,7 +568,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr class="table_b">
             <td colspan="2">
-                    <div class="bt">确定</div>
+                    <div class="bt determine">确定</div>
                     <div>重填</div>
               
             </td>
@@ -758,7 +754,7 @@ $(function () {
 						$.ajax({
 		                    url:"<%=basePath%>news/getOneById ",
 		                    type:'get',
-		                
+		                	dataType:"JSON",
 			       			data : {
 			       				"newsId":id,			
 			       			},		                   
@@ -784,35 +780,24 @@ $(function () {
 		        
 		        //修改页面保存时调用的方法
 		        $("#step3_rs").click(function(){
-		        	alert(111);		         
-					  var data = {	   
-		           		/* "newsId":id,
-		           		"providerName":$(this).parent().siblings('.name').text(),//发布人
-		           		"typeName":$("#step3_ip4").val(),//发布范围
-		           		"depName":$('#break"+newID+"').text(),//标题
-		           		"subject":$('#subject"+newID+"').text(),//时间
-		           		"tim":$(this).parent().siblings('.tim').text(),//点击数
-		           		"data":$(this).parent().siblings('.data').text()//评论（条） */
-		           
-		           		
-							 "newsId":id,			           		
-							 "subject": $("#step3_ip1").val(),    //标题 
+		        			         
+					  var data = {	  		       			           		
+							"newsId":id,			           		
+							"subject": $("#step3_ip1").val(),    //标题 
 							"newTime": $("#step3_ip3").val(),        //发布时间 					
 							"Keyword":$(".step3_5").val(),  //内容关键词
 							"topDays": $("#step3_ip6").vla(),// 限制新闻置顶时间
 							"Content":  $("#step3_ip4").val()  ,//  新闻内容							
-							"toId":  $("#step3_ip2").val(),//发布部门
-								           		
+							"toId":  $("#step3_ip2").val()//发布部门									           		
 			           	};
+			           console.log(data);
 		                $.ajax({
 		                    url:"<%=basePath%>news/updateNews",
 		                    type:'get',
-		                    		    
-			       			data : data,
-		                   
-		                   success:function(){
-		                        alert("888888888888888");
-		           			 				           			
+		                    dataType:"JSON",		    
+			       			data : data,		                   
+		                   	success:function(data){
+		                        console.log(data);		           			 				           			
 									 $('.step1').show();
 						          	 $('.center').hide();
 									 $('.step2').hide();
@@ -820,9 +805,9 @@ $(function () {
 									/*  initPageList(); */
 									 location.reload();
 			           		},	  
-			           		error:function(){
-			            		alert("99999999999999999");
-			            		return;
+			           		error:function(e){
+			            		console.log(e)
+			            		
 		            		}   		
 		                   
 		                });      
@@ -896,9 +881,9 @@ $(function () {
    //时间控件调用
    var start = {
      elem: '#beginTime',
-     format: 'YYYY/MM/DD hh:mm:ss',
-    /* min: laydate.now(), //设定最小日期为当前日期*/
-    /* max: '2099-06-16 23:59:59', //最大日期*/
+     format: 'YYYY/MM/DD',
+     min: laydate.now(), //设定最小日期为当前日期*/
+     max: '2099-06-16 23:59:59', //最大日期*/
      istime: true,
      istoday: false,
      choose: function(datas){
@@ -908,9 +893,9 @@ $(function () {
    };
    var end = {
      elem: '#endTime',
-     format: 'YYYY/MM/DD hh:mm:ss',
-     /*min: laydate.now(),*/
-     /*max: '2099-06-16 23:59:59',*/
+     format: 'YYYY/MM/DD',
+     min: laydate.now(),
+     max: '2099-06-16 23:59:59',
      istime: true,
      istoday: false,
      choose: function(datas){
@@ -928,7 +913,7 @@ $(function () {
 	                 deprange:$("#ip4").val(),	//内容
 	                 message:$("#ip5").val()	//关键字
                     };
-                   /*  console.log(data); */
+                   
 			alert(111);
                 $.ajax({
                     url:"<%=basePath%>news/sendNews",
@@ -949,6 +934,42 @@ $(function () {
                    
                 });
                 alert(222);
+        });
+        
+       /* 新闻管理查询的确定按钮 */
+          $('.determine').click(function () {
+               var data ={
+					"format":$(".format").val(),  //新闻格式(0-普通格式,1-MHT格式,2-超链接)
+					"typeId":$(".typeId").val(),
+					"publish":$(".publish").val(),//发布标识(0-未发布,1-已发布,2-已终止)
+					"top":$(".top").val(), //是否置顶(0-否,1-是)
+					"subject": $("#subject").val(),//标题
+					"newsTime": $("#beginTime").val(), 
+					"lastEditTime":$("#endTime").val(), //发布日期
+					"content":$("#beginTime").val(), //内容
+					"clickCount":$(".c_time1").val(),
+					"click":$(".c_time2").val(),//点击次数   
+					"page":1,
+					"pageSize":10,
+					"useFlag":true
+                };
+				console.log(data);
+                $.ajax({
+                    url:"<%=basePath%>news/newsShow",
+                    type:'get',    
+	       			data : data,
+	       			dataType:"JSON",            
+                   	success:function(data){
+                        console.log(data);
+	           			$('.step1').show();
+						$('.step2').hide();
+						$('.center').hide();
+	           		},	  
+	           		error:function(e){
+	            		console.log(e)
+            		}   		
+                });
+               
         });
         
         
