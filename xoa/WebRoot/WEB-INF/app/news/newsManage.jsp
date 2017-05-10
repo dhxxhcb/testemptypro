@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- <div class="nav_t3">选择格式 -->
              <div class="nav_t3" > 
             	<select name="" class="sel format" id="query_format">
-                     <option value="" selected="">全部</option>
+                    <option value="" selected="">全部</option>
 			        <option value="0">普通格式</option>
 			        <option value="1">MHT格式</option>
 			        <option value="2">超链接格式</option>
@@ -170,30 +170,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </select>
             </td>
             <td>
-                <input class="td_title1" id="ip1" type="text"  placeholder="请输入新闻标题..."/>
+                <input class="td_title1" id="query_subject" type="text"  placeholder="请输入新闻标题..."/>
                 <img class="td_title2" src="../img/mg2.png" alt=""/>
             </td>
         </tr>
         <tr>
-            <td class="blue_text">
-                按照部门发布：
-            </td>
+            <td class="blue_text">  按照部门发布：</td>
             <td>
-                <input class="td_title1  release1" id="" type="text"/>
+                <input class="td_title1  release1" id="query_toId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-
                 <div class="release3">添加</div>
                 <div class="release4 empty">清空</div>
-
             </td>
-
+        </tr>
+        <tr>
+            <td class="blue_text">  按照角色发布：</td>
+            <td>
+                <input class="td_title1  release1" id="query_privId" type="text"/>
+                <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
+                <div class="release3">添加</div>
+                <div class="release4 empty">清空</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">  按照人员发布：</td>
+            <td>
+                <input class="td_title1  release1" id="query_userId" type="text"/>
+                <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
+                <div class="release3">添加</div>
+                <div class="release4 empty">清空</div>
+            </td>
         </tr>
         <tr>
             <td class="blue_text">
                 发布时间：
             </td>
             <td>
-                <input class="td_title1 time_coumon" id="ip3" type="text" placeholder="请输入发布时间..."/>
+                <input class="td_title1 time_coumon" id="query_newTime" type="text" placeholder="请输入发布时间..."/>
                 <a href="javascript:;" id="step_release2"><div class="release3">设置为当前时间</div></a>
             </td>
         </tr>
@@ -288,8 +301,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
     </table>
     <div class="foot_mg">
-        <img  id="hd" class="fot_1" src="../img/mg5.png" alt=""/> <!-- 发布 -->
-        <img  id="rs"  src="../img/mg6.png" alt=""/> <!-- 保存 -->
+        <img  id="hd" type="publish" class="fot_1 btn_ok" src="../img/mg5.png" alt=""/> <!-- 发布 -->
+        <img  id="rs" type="save" class="btn_ok"  src="../img/mg6.png" alt=""/> <!-- 保存 -->
     </div>
 </div>
 
@@ -589,7 +602,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 $(function () {
 			/* word文本编辑器 */
 			 var ue = UE.getEditor('container');//新建新闻页面
-			 var ue = UE.getEditor('container3');//修改新闻页面
+			 var ue3 = UE.getEditor('container3');//修改新闻页面
 			 
 			
 
@@ -790,7 +803,7 @@ $(function () {
 		        });	
 		        
 		        //修改页面保存时调用的方法
-		        $("#step3_rs").click(function(){		        			         
+		       /*  $("#step3_rs").click(function(){		        			         
 					  var data = {	  		       			           		
 							"newsId":id,			           		
 							"subject": $(".subject").val(),    //标题 
@@ -799,7 +812,7 @@ $(function () {
 							"topDays": $(".topDays").vla(),// 限制新闻置顶时间
 							"content":  $(".content").val()  ,//  新闻内容							
 							"toId":  $(".toId").val(),//发布部门	
-							"anonymityYn": $(".anonymityYn").val(),
+							"anonymityYn": $("#query_anonymityYn").val(),
 							"format":$(".format").val(),//新闻格式(0-普通格式,1-MHT格式,2-超链接)
 							"typeId":$(".typeId").val(),
 							"publish":$(".Publish").val(),  // 发布标识(0-未发布,1-已发布,2-已终止)							
@@ -810,33 +823,33 @@ $(function () {
 							  "lastEditTime":$(".newTime").val(),//最后编辑时间
                       		"subjectColor":'1',//新闻标题颜色
                       		 "compressContent":'1',//压缩后的新闻内容
-                            "summary":'1',//新闻内容简介  */
+                            "summary":'1',//新闻内容简介  
                               "attachmentId":'1',//附件ID串
                       		"attachmentName":'1',//附件名称串
                         	"privId":'1',//发布部门 -
                          	"userId":'1',//发布用户 -
                          	 "readers":'1'//发布角色 					           		
-			           	};
-			           console.log(data);
-		                $.ajax({
-		                    url:"<%=basePath%>news/updateNews",
-		                    type:'get',
-		                    dataType:"JSON",		    
-			       			data : data,		                   
+			           	}; */
+			            console.log(data);
+		               // $.ajax({
+		                   // url:"<%=basePath%>news/updateNews",
+		                  //  type:'get',
+		                   // dataType:"JSON",		    
+			       			/* data : data,		                   
 		                   	success:function(data){
 		                        console.log(data);		           			 				           			
 									 $('.step1').show();
 						          	 $('.center').hide();
 									 $('.step2').hide();
-									 $('.step3').hide();
+									 $('.step3').hide(); */
 									/*  initPageList(); */
-									 location.reload();
+									/*  location.reload();
 			           		},	  
 			           		error:function(e){
 			            		console.log(e)			            		
 		            		}   		                  
 		                });      
-			        });
+			        });  */
 		        
 		        
 		        
@@ -877,7 +890,7 @@ $(function () {
 		         //获取当前时间 新建时页面
 		        $("#step_release2").click(function(){
 		          queryTime();
-		      	  $("#ip3").val(now);
+		      	  $("#query_newTime").val(now);
 		        });
 		        
 		             
@@ -903,21 +916,20 @@ $(function () {
 		$('.center').hide();
 	});
 	/* 保存数据 */
-    $("#rs").on("click",function(){
+    $(".btn_ok").on("click",function(){
         var data = {	  		       			           		
 										           		
 							"subject": $("#query_subject").val(),    //标题 
-							"newTime": $("#query_newTime").val(),        //发布时间 					
+							"newTime": $("#query_newTime").val(),      //发布时间 					
 							"keyword":$("#query_keyword").val(),  //内容关键词
 							"topDays": $("#query_topDays").val(),// 限制新闻置顶时间
-							"content":  $(".content").val()  ,//  新闻内容							
-							"toId":  $(".toId").val(),//发布部门	
-							"anonymityYn": $(".anonymityYn").val(),
+							"content":  ue.getContent()  ,//  新闻内容							
+							"toId":  $("#query_toId").val(),//发布部门	
+							"anonymityYn": $("#query_format").val(),
 							"format":$("#query_format").val(),//新闻格式(0-普通格式,1-MHT格式,2-超链接)
 							"typeId":$("#query_typeId").val(),
-							"publish":$(".Publish").val(),  // 发布标识(0-未发布,1-已发布,2-已终止)							
-							"top":$('#query_top').eq(0).is(':checked')==false?0:1,//是否置顶(0-否,1-是)
-							
+							"publish":0,  // 发布标识(0-未发布,1-已发布,2-已终止)							
+							"top":$("#query_top").eq(0).is(':checked')==false?0:1,//是否置顶(0-否,1-是)
 							"clickCount":'0',//点击数
 							"lastEditor":'1',//最后编辑人
 							"lastEditTime":new Date().Format('yyyy-MM-dd hh:mm:ss'),//最后编辑时间
@@ -926,10 +938,13 @@ $(function () {
                             "summary":'1',//新闻内容简介  */
                             "attachmentId":'1',//附件ID串
                       		"attachmentName":'1',//附件名称串
-                        	"privId":'1',//发布部门 -
-                         	"userId":'1',//发布用户 -
-                         	"readers":'1'//发布角色 					           		
+                        	"privId":$("#query_privId").val(),//发布 -
+                         	"userId":$("#query_userId").val(),//发布用户 -
+                         	"readers": ''//发布角色 					           		
 			           	};
+			           	if($(this).attr("type") == "publish"){
+			           		data.publish = '1';
+			           	}
 			           console.log(data);
 		                $.ajax({
 		                    url:"<%=basePath%>news/sendNews",
@@ -971,8 +986,9 @@ $(function () {
 					$('.center').hide();
         });
 });
+
 	laydate({
-	     elem: '#ip3', //目标元素。
+	     elem: '#query_newTime', //目标元素。
 	     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
 	     istime: true, //显示时、分、秒
 	   });
