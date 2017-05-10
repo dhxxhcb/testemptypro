@@ -71,8 +71,9 @@ public class FlowProcessController {
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
-			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);
+			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
 			try {
+				request.setCharacterEncoding("utf-8");
 				flowProcessService.updateByPrimaryKey(flowProcess);
 		        json.setObject(flowProcess);
 		        json.setMsg("OK");
