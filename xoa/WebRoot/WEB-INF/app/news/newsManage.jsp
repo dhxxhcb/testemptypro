@@ -695,7 +695,7 @@ $(function () {
                                        "<td  class='tim'>"+data.obj[i].newsDateTime+"</td>"+//发布时间
                                        "<td class='data'>"+data.obj[i].clickCount+"</td>"+//点击数
                                        "<td class='num'>"+data.obj[i].newsId+"</td>"+//评论（条）
-                                       "<td class='state'>生效</td>"+//状态
+                                       "<td class='state'>"+data.obj[i].publish+"</td>"+//状态
                                         "<td>"+
                                        		/*  "<a onclick='updateData("+data.obj[i].newsId+")'>"+"修改"+"</a>&nbsp"+ */
                                        	 	"<a  href='javascript:;' id='xg' tid='"+data.obj[i].newsId+"'>"+"修改"+"</a>&nbsp"+ 
