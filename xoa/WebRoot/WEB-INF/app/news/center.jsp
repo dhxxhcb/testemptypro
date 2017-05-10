@@ -177,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="le date">
                 <div class="color" style="width:105px;"><fmt:message code="notice.title.Releasedate"/> ：</div>  
-                <input id="beginTime "class="input_text3" type="text"/>
+                <input id="beginTime"class="input_text3" type="text"/>
                 <div class="color">
                     <fmt:message code="global.lang.to"/>
                 </div>
@@ -361,13 +361,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $('.center').hide();
         });
     });
+ 
     laydate({
         elem: '#sendTime', //目标元素。
         format: 'YYYY-MM-DD', //日期格式
         istime: true, //显示时、分、秒
     });
-
-    //时间控件调用
+  //时间控件调用
     var start = {
         elem: '#beginTime',
         format: 'YYYY-MM-DD',
