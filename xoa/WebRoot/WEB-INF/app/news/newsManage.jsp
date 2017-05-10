@@ -907,21 +907,25 @@ $(function () {
    /* 保存数据 */
     $("#rs").on("click",function(){
          var data ={
-                     subject:$("#ip1").val(), //新闻标题
+                   /*   subject:$("#ip1").val(), //新闻标题
 	                 toId:$("#ip2").val(),	//发布部门
 	                 newsDateTime:$("#ip3").val(),	//时间
 	                 deprange:$("#ip4").val(),	//内容
-	                 message:$("#ip5").val()	//关键字
+	                 message:$("#ip5").val()	//关键字 */	           
+                     subject:'111', //新闻标题
+	                 toId:'111',	//发布部门
+	                 newsDateTime:'111',	//时间
+	                 deprange:'111',	//内容
+	                 message:'111'	//关键字
                     };
                    
 			alert(111);
                 $.ajax({
                     url:"<%=basePath%>news/sendNews",
                     type:'get',
-    
-	       		data : data,
-                   
-                   success:function(json){
+                    dataType:'json',
+	       		    data : data,
+                   success:function(){
                         console.log(json+"111");
 	           			$('.step1').show();
 						$('.step2').hide();
