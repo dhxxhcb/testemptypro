@@ -131,7 +131,6 @@ public class loginController {
 			@RequestParam("password") String password, String loginId,String userAgent,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		L.w("0=||==============》"+request.getSession().getId());
 		if(StringUtils.checkNull(loginId)){
 			loginId = (String) request.getSession().getAttribute(
 					"loginDateSouse");

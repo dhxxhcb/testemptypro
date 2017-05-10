@@ -932,7 +932,7 @@ $(function () {
 							"top":$("#query_top").eq(0).is(':checked')==false?0:1,//是否置顶(0-否,1-是)
 							"clickCount":'0',//点击数
 							"lastEditor":'1',//最后编辑人
-							"lastEditTime":new Date().Format('yyyy-MM-dd hh:mm:ss'),//最后编辑时间
+							"lastTime":new Date().Format('yyyy-MM-dd hh:mm:ss'),//最后编辑时间
                       		"subjectColor":'1',//新闻标题颜色
                       		"compressContent":'1',//压缩后的新闻内容
                             "summary":'1',//新闻内容简介  */

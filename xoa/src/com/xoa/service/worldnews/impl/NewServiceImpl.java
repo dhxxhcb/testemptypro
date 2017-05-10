@@ -207,9 +207,9 @@ public class NewServiceImpl implements NewService {
 		
 		  String depId=news.getToId();
 	      
-	      if (depId.equals("ALL_DEPT")) {
+	      if ("ALL_DEPT".equals(depId)) {
 	    	  news.setDeprange("全体部门");
-			}else  {
+			}else if(depId!=null&&!"".equals(depId)) {
 				strArray=depId.split(",");
 				for (int i = 0; i < strArray.length; i++) {
 					String name1=departmentService.getDpNameById(Integer.parseInt(strArray[i]));

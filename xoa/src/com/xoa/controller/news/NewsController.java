@@ -198,12 +198,15 @@ public class NewsController {
 	@RequestMapping(value = "/sendNews",method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String insertNews(
-		News news,HttpServletRequest request) {
+		News news,@RequestParam("newTime") String newTime,@RequestParam("lastTime") String lastTime,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		Users name = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users());
 		    news.setNewsId(0);
 		    news.setProvider(name.getUserId());
+		    news.setReaders(name.getUserId()+",");
+		    news.setNewsTime(DateFormat.getDate(newTime));
+		    news.setLastEditTime(DateFormat.getDate(lastTime));
 		    try {
 		    	newService.sendNews(news);
 		    	return JSON.toJSONStringWithDateFormat(
@@ -227,10 +230,11 @@ public class NewsController {
 	@RequestMapping(value = "/updateNews", produces = { "application/json;charset=UTF-8" })
 	public  	@ResponseBody String
              updateNews(
-			News news,HttpServletRequest request,@RequestParam("newsId") Integer newsId) {
+			News news,HttpServletRequest request,@RequestParam("newsId") Integer newsId,@RequestParam(name="lastTime",required=false) String lastTime) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		    news.setNewsId(newsId);
+		    news.setLastEditTime(DateFormat.getDate(lastTime));
 		    try {
 		    	newService.updateNews(news);
 		    	return JSON.toJSONStringWithDateFormat(
