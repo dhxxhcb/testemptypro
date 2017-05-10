@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td width="10%"><fmt:message code="email.th.recipients" />：</td>
 				<td width="89%">
 					<div class="inPole">
-						<textarea name="txt" id="senduser" user_id='admin' value="admin" disabled></textarea>
+						<textarea name="txt" id="senduser" user_id='admin' disabled></textarea>
 						<span class="add_img">
 							<!-- <span class="addImg">
 								<img src="../img/org_select.png" class="addIcon"/>
@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});
        		 	//点击立即发送按钮
        		 	$("#btn1").on("click",function(){
-					alert('123')
+
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();

@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li onclick="clicked()"><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
 							<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>
 							<li id="Replay"><img src="../img/icon_replay_03.png" class="im"/><fmt:message code="global.lang.reply" /></li>
-							<li onclick="clicked()"><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
+							<li id="ReplayAll"><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
 							<li onclick="clicked()"><img src="../img/icon_transmit_06.png" class="im"/><fmt:message code="email.th.transmit" /></li>
 							<li onclick="clicked()"><img src="../img/icon_move_06.png" class="im"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>
 							<li id="delete"><img src="../img/icon_delete_06.png" class="im"/><fmt:message code="global.lang.delete" /><img src="../img/icon_more_06.png" class="more_im"/></li>
@@ -175,13 +175,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<p><span></span>&nbsp;&nbsp;<span class="zong"><fmt:message code="email.th.subject" /></span></p>
 								<p><fmt:message code="email.th.dept" /></p>
 							</span>
-							<div class="article">
-								
-							</div>
-				
+							<div class="article"></div>
 						</div>
 
-						
 						<!-- 草稿箱 -->
 						<div class="main_right drafts" style="display:none;">
 						
@@ -386,6 +382,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                     //window.location.href='index';
                 })
+				if ($('.main').css('display')=='block'){
+                    $('.up_format ul li:first-of-type').addClass('for_on').find('img').attr('src','../img/icon_zuoyou_sel_03.png');
+
+                    $('.up_format ul li:first-of-type').siblings().removeClass('for_on');
+                    $('.up_format ul li:first-of-type').parent().find('li').eq(1).find('img').attr('src','../img/icon_list_03.png');
+				}
 
 				
 				//与写邮件页面互调
@@ -527,12 +529,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//回复事件
 				$('#Replay').click(function(){
 					var sId=$('#delete').attr('uId');
-					//alert(sId);
 					$.popWindow('writeEmail?sId=' + sId,'<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
-					//window.location.href="http://localhost:8080/xoa/email/writeEmail?sId="+sId;
-					
 				});
-				
+				//回复全部事件
+				$('#ReplayAll').click(function(){
+                    var sId=$('#delete').attr('uId');
+                    $.popWindow('writeEmail?sId=' + sId,'<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+				})
 				
 				
 			});
