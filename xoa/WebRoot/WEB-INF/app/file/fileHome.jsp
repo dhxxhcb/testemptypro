@@ -22,7 +22,6 @@ pageEncoding="UTF-8"%>
 		    height: 100%;
 		    background-color: #F0F4F7;
 		    border:1px solid #d9d9d9;
-		   border-radius: 8px;
 	}
 	.cabinet_right {
 		 width:79%;
