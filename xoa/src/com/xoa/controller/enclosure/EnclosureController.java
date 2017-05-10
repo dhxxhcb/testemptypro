@@ -60,9 +60,8 @@ public class EnclosureController {
 	@RequestMapping(value ="/upload",produces = {"application/json;charset=UTF-8"}) 
 	public @ResponseBody ToJson<Attachment> upload( @RequestParam("file") MultipartFile[] files,String module,
 			  HttpServletRequest request) {	
-		L.w("0=||==============》"+request.getSession().getId());
-		String company="xoa"+(String) request.getSession().getAttribute(
-				"loginDateSouse");
+//		L.w("0=||==============》"+request.getSession().getId());
+		String company="xoa1001";
 		ContextHolder.setConsumerType(company);			
 			ToJson<Attachment> json=new ToJson<Attachment>(0, null);
 			try {
