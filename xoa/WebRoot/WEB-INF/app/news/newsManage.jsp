@@ -936,8 +936,8 @@ $(function () {
                       		"subjectColor":'1',//新闻标题颜色
                       		"compressContent":'1',//压缩后的新闻内容
                             "summary":'1',//新闻内容简介  */
-                            "attachmentId":'1',//附件ID串
-                      		"attachmentName":'1',//附件名称串
+                            "attachmentId":'',//附件ID串
+                      		"attachmentName":'',//附件名称串
                         	"privId":$("#query_privId").val(),//发布 -
                          	"userId":$("#query_userId").val(),//发布用户 -
                          	"readers": ''//发布角色 					           		
