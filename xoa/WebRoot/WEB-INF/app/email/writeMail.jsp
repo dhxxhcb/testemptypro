@@ -37,15 +37,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="inPole">
 						<textarea name="txt" id="senduser" user_id='admin' value="" disabled></textarea>
 						<span class="add_img">
-							<span class="addImg">
+							<%--<span class="addImg">
 								<img src="../img/org_select.png" class="addIcon"/>
-							</span>
+							</span>--%>
 							<a href="javascript:;" id="selectUser" class="Add"><fmt:message code="global.lang.add" /></a>
 						</span>
 						<span class="add_img">
-							<span class="addImg">
+							<%--<span class="addImg">
 								<img src="../img/org_select2.png" class="clearIcon"/>
-							</span>
+							</span>--%>
 							<a href="javascript:;" class="clear"><fmt:message code="notice.th.delete1" /></a>
 						</span>
 						<!--<input type="checkbox" name="check" id="check" value="向此人发送外部邮件" />
@@ -122,16 +122,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 		 
        		 	});
        		 ue.ready(function(){
-       		 	
        		 	var sId=$.getQueryString('sId');
-       		 	//alert(sId);
+				var TYPE=$.getQueryString('type');
        		 	$.ajax({
 						type:'get',
 						url:'queryByID',
 						dataType:'json',
 						data:{'emailId':sId,'flag':''},
 						success:function(rsp){
-							console.log(rsp);
 							var data2=rsp.object;
 							var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
 							var str='';
@@ -161,10 +159,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								str='<br><br><br><br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
 								
 							}
+							if (TYPE==1&&data2.copyName!=''){
+                                var str1='<tr class="tian"><td>抄送：</td><td><textarea name="txt" id="copyName" disabled></textarea><span class="add_img"><span class="addImg"></span><a href="javascript:;" class="Add">添加</a><span class="add_img"><span class="addImg"><img src="img/org_select2.png" class="clearIcon"/></span><a href="javascript:;" class="clear">清除</a></span></td></tr>';
+                                $('.append_tr').after(str1);
+								$('.a1').text('隐藏抄送');
+							}
 							str1='<p>'+data2.content+'</p>';
 							ue.setContent(str+str1);
 							$('#txt').val('Re:'+data2.subject);
 							$('#senduser').val(data2.emailList[0].toName);
+							$('#copyName').val(data2.copyName)
 						}
 					});
 				})
@@ -197,7 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 				});	
 				
-       		 	
+       		 	//点击立即发送
        		 	$("#btn1").on("click",function(){
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
@@ -229,7 +233,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 data:data,
 						 success:function(){
 							alert('回复成功');
-							window.location.href='index';
+                             window.close()
+                            // window.location.href='index';
+                             //location.reload('index');
 						}
 					}); 
 				}) 

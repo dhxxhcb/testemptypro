@@ -529,12 +529,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//回复事件
 				$('#Replay').click(function(){
 					var sId=$('#delete').attr('uId');
-					$.popWindow('writeEmail?sId=' + sId,'<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+					$.popWindow('writeEmail?sId=' + sId+'&type=0','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
 				});
 				//回复全部事件
 				$('#ReplayAll').click(function(){
                     var sId=$('#delete').attr('uId');
-                    $.popWindow('writeEmail?sId=' + sId,'<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+                    $.popWindow('writeEmail?sId=' + sId+'&type=1','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
 				})
 				
 				
