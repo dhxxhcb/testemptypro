@@ -167,7 +167,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </select>
             </td>
             <td>
-                <input class="td_title1" id="ip1" type="text" value="请输入新闻标题..."/>
+                <input class="td_title1" id="ip1" type="text"  value="请输入新闻标题..."/>
                 <img class="td_title2" src="../img/mg2.png" alt=""/>
             </td>
         </tr>
@@ -203,10 +203,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <option value="" selected="">实名评论</option>
                     <option value="">1</option>
                     <option value="">2 </option>
-                    <option value="">2 </option>
-                    
+                    <option value="">2 </option>    
                 </select>
-                
             </td>
         </tr>
         <tr>
@@ -261,8 +259,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="enclosure_t"><a href="#">批量上传过</a></div>
 
             </td>
-
-
         </tr>
         <!--word编辑器-->
          <tr>
