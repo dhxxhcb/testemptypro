@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.L;
 import com.xoa.util.dataSource.ContextHolder;
 
  
@@ -58,7 +59,8 @@ public class EnclosureController {
 	 */
 	@RequestMapping(value ="/upload",produces = {"application/json;charset=UTF-8"}) 
 	public @ResponseBody ToJson<Attachment> upload( @RequestParam("file") MultipartFile[] files,String module,
-			  HttpServletRequest request) {			
+			  HttpServletRequest request) {	
+		L.w("0=||==============》"+request.getSession().getId());
 		String company="xoa"+(String) request.getSession().getAttribute(
 				"loginDateSouse");
 		ContextHolder.setConsumerType(company);			

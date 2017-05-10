@@ -125,12 +125,13 @@ public class loginController {
 	 * 
 	 * @return String
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/login", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	ToJson<Users> loginEnter(@RequestParam("username") String username,
 			@RequestParam("password") String password, String loginId,String userAgent,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		L.w("0=||==============》"+request.getSession().getId());
 		if(StringUtils.checkNull(loginId)){
 			loginId = (String) request.getSession().getAttribute(
 					"loginDateSouse");
