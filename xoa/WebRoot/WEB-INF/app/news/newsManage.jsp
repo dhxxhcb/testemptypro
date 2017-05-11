@@ -225,8 +225,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
             <td class="enclosure">
             	<div id="query_uploadArr">
-            	<a href="#">111.txt</a><br>
-            	<a href="#">eee</a><br>
+
             	</div><br>
                 <div><img src="../img/mg11.png" alt=""/></div>
                <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
