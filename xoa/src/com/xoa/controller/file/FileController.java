@@ -92,12 +92,12 @@ public class FileController {
 	 * 参数说明:   @return
 	 * @return   String
 	 */
-	@RequestMapping(value = "/topFrame")
+	@RequestMapping(value = "/homePerson")
 	public String topFrame(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		loger.info("--------topFrame-------");
-		return "app/file/fileTop";
+		loger.info("--------homePerson-------");
+		return "app/file/fileHomePerson";
 	}
 
 	/**
