@@ -442,7 +442,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					showAjax2('drafts');
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
-						
+						alert(nId);
 						$.ajax({
 									type:'get',
 									url:'queryByID',
@@ -529,6 +529,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						$('.wastebasket').css('display','block').siblings().css('display','none');
 					} else if($('.drafts').css('display')=='block'){
 						deleted1(sId);
+						alert(sId);
 						$('.drafts').css('display','block').siblings().css('display','none');
 					} else if($('.UP_INBOX').css('display')=='block'){
                         deleted('inbox',sId,ueID);
@@ -820,7 +821,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 				}
 				
-				//草稿箱单条数据
+				//草稿箱删除单条数据
 				function deleted1(bId){
 					 var data={
 						"bodyId":bId,
@@ -843,11 +844,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 } 	
 					
 				}
-				
-				
-				
-				
-				
+
 				//ue编辑器清空方法
 				function empty(){
 					ue.setContent('');
