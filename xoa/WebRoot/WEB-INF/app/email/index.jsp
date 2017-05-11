@@ -120,23 +120,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="up_header">
 					<div class="up_nav">
 						<ul>
-							<li onclick="clicked()"><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
-							<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>
+							<%--<li onclick="clicked()"><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>--%>
 							<li id="Replay"><img src="../img/icon_replay_03.png" class="im"/><fmt:message code="global.lang.reply" /></li>
 							<li id="ReplayAll"><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
 							<li id="Forward"><img src="../img/icon_transmit_06.png" class="im"/><fmt:message code="email.th.transmit" /></li>
-							<li onclick="clicked()"><img src="../img/icon_move_06.png" class="im"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<%--<li onclick="clicked()"><img src="../img/icon_move_06.png" class="im"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>--%>
 							<li id="delete"><img src="../img/icon_delete_06.png" class="im"/><fmt:message code="global.lang.delete" /><img src="../img/icon_more_06.png" class="more_im"/></li>
-							<li onclick="clicked()"><fmt:message code="email.th.more" /><img src="../img/icon_more_06.png" class="am"/></li>
+							<%--<li onclick="clicked()"><fmt:message code="email.th.more" /><img src="../img/icon_more_06.png" class="am"/></li>--%>
 						</ul>
 					</div>
 					<div class="up_pages">
-						<div class="up_div_pages">
+						<%--<div class="up_div_pages">
 							<ul>
 								<li onclick="clicked()"><img src="../img/icon_left_03.png"/><fmt:message code="email.th.beforemail" /><span>|</span></li>
 								<li onclick="clicked()"><fmt:message code="email.th.nextmail" /><img src="../img/icon_right_03.png"/></li>
 							</ul>
-						</div>
+						</div>--%>
 						<div class="up_format">
 							<ul>
 								<li class="for_on"><img src="../img/icon_zuoyou_sel_03.png"/></li>
@@ -191,7 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<!-- <span class="addImg">
 													<img src="../img/org_select.png" class="addIcon"/>
 												</span> -->
-												<a href="javascript:;" class="Add"><fmt:message code="global.lang.add" /></a>
+												<a href="javascript:;" id="selectUser" class="Add"><fmt:message code="global.lang.add" /></a>
 											</span>
 											<span class="add_img">
 												<span class="addImg">
@@ -233,17 +233,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
 									</td>
 								</tr>
+                                 <tr class="Attachmen" style="width:100%;">
+                                     <td width="10%">附件：</td>
+                                    <td width="89%"   class="files" id="files_txt"></td>
+								</tr>
 								<tr>
 									<td><fmt:message code="email.th.filechose" />：</td>
 									<td>
-										<fmt:message code="email.th.addfile" />
+                                    	<form id="uploadimgform" target="uploadiframe" action="../upload?module=email" enctype="multipart/form-data" method="post" >
+                                        	<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
+                                        	<button id="uploadimg">上传</button>
+                                        </form>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-										<div class="div_btn">
-											<input type="button" id="btn1" value="<fmt:message code="email.th.transmitimmediate" />" />
-											<input type="button" id="btn2" value="<fmt:message code="email.th.savedraftbox" />" />
+										<div class="div_btn" style="margin-left:46%;">
+											<input type="button" id="btn1" style="cursor: pointer;" value="<fmt:message code="email.th.transmitimmediate" />" />
 										</div>
 										
 									</td>
@@ -312,8 +318,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
 		<script type="text/javascript">
+             user = '';
+             user_id='senduser';
 			 var ue = UE.getEditor('container');
+			 var res
 			$(function () {
+                //选人控件
+                $("#selectUser").on("click",function(){
+                    $.popWindow("../common/selectUser");
+                });
 				//切换横版收件箱页面
 				var oLI=$('.up_format ul li').eq(1);
 				oLI.click(function () {
@@ -387,7 +400,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('.main').show();
                     $('.UP_INBOX').hide();
 
-                    //window.location.href='index';
                 })
 				if ($('.main').css('display')=='block'){
                     $('.up_format ul li:first-of-type').addClass('for_on').find('img').attr('src','../img/icon_zuoyou_sel_03.png');
@@ -442,7 +454,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					showAjax2('drafts');
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
-						alert(nId);
+						//alert(nId);
 						$.ajax({
 									type:'get',
 									url:'queryByID',
@@ -529,7 +541,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						$('.wastebasket').css('display','block').siblings().css('display','none');
 					} else if($('.drafts').css('display')=='block'){
 						deleted1(sId);
-						alert(sId);
 						$('.drafts').css('display','block').siblings().css('display','none');
 					} else if($('.UP_INBOX').css('display')=='block'){
                         deleted('inbox',sId,ueID);
@@ -553,6 +564,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     var sId=$('#delete').attr('uId');
                     $.popWindow('writeEmail?sId=' + sId+'&type=2','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
 				})
+
+				//附件上传
+                /*$('#uploadimg').on('click', function(ele) {
+                    $('#uploadinputimg').click();
+                })
+                $('#uploadinputimg').change(function(e){
+                    var target = $(e.target);
+                    var file;
+                    if(target[0].files && target[0].files[0]){
+                        file=target[0].files[0];
+                    }
+                    if(file){
+                        $.upload($('#uploadimgform'),function(res){
+                            var data=res.obj;
+                            var str='';
+                            var str1='';
+                            for(var i=0;i<data.length;i++){
+                                str+='<a href="javascript:;" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
+                                str1+='<input type="hidden" class="inHidden" value="'+data[i].aid+'@'+data[i].ym+'_'+data[i].attachId+',">';
+                            }
+                            $('.Attachmen td').eq(1).append(str+str1);
+                        });
+                    }*/
+
+					//点击立即发送
+					$('#btn1').click(function(){
+                        var userId=$('textarea[name="txt"]').attr('user_id');
+                        var txt = ue.getContentTxt();
+                        var html = ue.getContent();
+                        var val=$('#txt').val();
+                        var attach=$('.Attachment td').eq(1).find('a');
+                        var aId='';
+                        var uId='';
+                        for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+                            aId += $('.Attachment td .inHidden').eq(i).val();
+                        }
+                        for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+                            uId += attach.eq(i).attr('NAME');
+                        }
+                        var data={
+                            'fromId':'admin',
+                            'toId2': 'admin,',
+                            'subject':val,
+                            'content':html,
+                            'attachmentId':aId,
+                            'attachmentName':uId
+                        };
+                        $.ajax({
+                            type:'post',
+                            url:'sendEmail',
+                            dataType:'json',
+                            data:data,
+                            success:function(rsp){
+                                if(rsp.flag == true){
+                                    alert('发送成功');
+                                    location.reload();
+                                }else{
+                                    alert('发送失败');
+                                }
+                            }
+                        });
+					})
 				
 			});
 			
@@ -730,7 +803,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			//收件箱、废纸篓详情展示方法
 			function init(id,obj,cName){
-				
 					$.ajax({
 								type:'get',
 								url:'queryByID',
@@ -795,15 +867,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//单条数据删除事件
 				function deleted(flag,sId,ueID){
-					
 					 var data={
 						"flag":flag,
 						"emailID":sId,
 						"deleteFlag":ueID
 					}
 					var msg='是否确认删除?';
-					if (confirm(msg)==true){ 
-			  	
+					if (confirm(msg)==true){
 					  	$.ajax({
 							type:'get',
 							url:'deleteEmail',
@@ -811,14 +881,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							data:data,
 							success:function(){
 								location.reload();
-								//window.location.href=window.location.href;
 							}
 						}) ; 
 						return true;
 					 }else{ 
 					 	return false; 
-					 } 	
-					
+					 }
 				}
 				
 				//草稿箱删除单条数据
@@ -827,11 +895,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						"bodyId":bId,
 					}
 					var msg='是否确认删除?';
-					if (confirm(msg)==true){ 
-			  	
+					if (confirm(msg)==true){
 					  	$.ajax({
 							type:'get',
-							url:'deleteEmail',
+							url:'deleteDraftsEmail',
 							dataType:'json',
 							data:data,
 							success:function(){
@@ -841,8 +908,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						return true;
 					 }else{ 
 					 	return false; 
-					 } 	
-					
+					 }
 				}
 
 				//ue编辑器清空方法

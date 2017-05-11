@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/ajaxupload.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+		<table class="TABLE" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
 			<tr class="append_tr">
 				<td width="10%"><fmt:message code="email.th.recipients" />：</td>
 				<td width="89%">
@@ -100,8 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 				</td>
 			</tr>
-		</table>		
-		<!-- <iframe id="uploadiframe" style="display:block;"  class="uploadiframe" name="uploadiframe" ></iframe> -->
+		</table>
 		<script type="text/javascript">
 			user = '';
 			user_id='senduser';
@@ -109,9 +108,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 var res
        		 //获取输入框内容
        		 $(function(){
+				 //选人控件
        		 	$("#selectUser").on("click",function(){
        		 		$.popWindow("../common/selectUser");
        		 	});
+				 $('.TABLE').on('click','#selectUserO',function(){
+                     $.popWindow("../common/selectUser");
+				 })
+                 $('.TABLE').on('click','#selectUserT',function(){
+                     $.popWindow("../common/selectUser");
+                 })
+				 //附件上传
        		 	$('#uploadimg').on('click', function(ele) {
 					$('#uploadinputimg').click();    
 				})
