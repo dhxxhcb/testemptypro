@@ -730,7 +730,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                		   "<td class='name' nid='"+data.obj[i].newsId+"'>"+data.obj[i].providerName+"</td>"+//发布人
                                        "<td class='type' nid='"+data.obj[i].newsId+"'>"+data.obj[i].typeName+"</td>"+//类型
                                        "<td class='cli' name='"+data.obj[i].depName+"'><div id='break"+data.obj[i].newsId+"' class='break_td' title="+data.obj[i].depName+">"+'点击详情'+"</div></td>"+//发布范围
-                                       "<td time='"+data.obj[i].subject+"'><a href='' newsId="+data.obj[i].newsId+" class='windowOpen'><div id='subject"+data.obj[i].newsId+"'>"+data.obj[i].subject+"</div></a></td>"+//标题
+                                       "<td time='"+data.obj[i].subject+"'><a  style='color:#2B7FE0'  href='' newsId="+data.obj[i].newsId+" class='windowOpen'><div id='subject"+data.obj[i].newsId+"'>"+data.obj[i].subject+"</div></a></td>"+//标题
                                        "<td  class='tim'>"+data.obj[i].newsDateTime+"</td>"+//发布时间
                                        "<td class='data'>"+data.obj[i].clickCount+"</td>"+//点击数
                                        "<td class='num'>"+data.obj[i].newsId+"</td>"+//评论（条）

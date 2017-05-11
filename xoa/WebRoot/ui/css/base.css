@@ -40,7 +40,7 @@ select, input {
 select, input, textarea {
     font-size: 12px;
     margin: 0;
-        font-family: "微软雅黑";
+    font-family: "微软雅黑";
 }
 select{
 	width: 110px;
