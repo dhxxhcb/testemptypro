@@ -159,7 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <input class="td_title1  release1" id="query_userId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3">添加</div>
+                <div class="release3" id="query_adduser">添加</div>
                 <div class="release4 empty">清空</div>
             </td>
         </tr>
@@ -256,10 +256,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tbody>        
     </table>
     <div class="foot_mg">
-        <img  id="hd" type="publish" class="fot_1 btn_ok" src="../img/mg5.png" alt=""/> 
-        <img  id="rs" type="save" class="btn_ok"  src="../img/mg6.png" alt=""/> 
-        <!-- <div  id="hd" type="publish" class="fot_1 btn_ok">发布</div>
-		<div  id="rs" type="save" class="btn_ok">保存</div> -->
+       <!--<img  id="hd" type="publish" class="fot_1 btn_ok" src="../img/mg5.png" alt=""/> 
+        <img  id="rs" type="save" class="btn_ok"  src="../img/mg6.png" alt=""/>  -->
+        <div  id="hd" type="publish" class="fot_1 btn_ok">发布</div>
+		<div  id="rs" type="save" class="btn_ok">保存</div>
         
     </div>
 </div>
@@ -920,7 +920,8 @@ $(function () {
 		            		}   		                  
 		                });     
    				 });
-   				$("#selectUser").on("click",function(){
+   				$("#query_adduser").on("click",function(){
+   					user_id = "query_userId";
        		 		$.popWindow("../common/selectUser");
        		 		 
        		 	});
