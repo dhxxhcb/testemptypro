@@ -241,6 +241,16 @@ public class NewsController {
 		news.setReaders(name.getUserId() + ",");
 		news.setNewsTime(DateFormat.getDate(newTime));
 		news.setLastEditTime(DateFormat.getDate(lastTime));
+		if (news.getAttachmentId()==null) {
+			news.setAttachmentId("");
+		}
+		if (news.getAttachmentName()==null) {
+			news.setAttachmentName("");
+		}
+		if (news.getTopDays()==null) {
+			news.setTopDays("");
+		}
+		
 		try {
 			newService.sendNews(news);
 			return JSON.toJSONStringWithDateFormat(new ToJson<News>(0, ok),
