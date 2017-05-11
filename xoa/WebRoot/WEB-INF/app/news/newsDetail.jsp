@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var str='';
 							var publiharea = ""
 							$('.title').text(data1.subject); 
-							str='<li><div style="display: inline-block; position: relative;top: -4px"><fmt:message code="news.th.postdept" />：</div><div class="spanbreak" title="'+data1.deprange+'">'+data1.deprange+'</div></li><li><span><fmt:message code="notice.th.publisher" />：</span><span>'+publiharea+'</span></li><li><span><fmt:message code="notice.th.PostedTime" />：</span><span>'+data1.newsDateTime+'</span></li>';
+							str='<li><div style="display: inline-block; position: relative;top: -4px"><fmt:message code="news.th.postdept" />：</div><div class="spanbreak" title="'+data1.userrange+'">'+data1.userrange+'</div></li><li><span><fmt:message code="notice.th.publisher" />：</span><span>'+publiharea+'</span></li><li><span><fmt:message code="notice.th.PostedTime" />：</span><span>'+data1.newsDateTime+'</span></li>';
 							$('ul').append(str);
 							$('.divTxt').append('<p>'+data1.content+'</p>');
 						}
