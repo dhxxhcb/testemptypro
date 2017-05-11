@@ -273,9 +273,11 @@ td {
         background: url(../../img/save.png) no-repeat;
         padding-left: 40px;
         padding-top: 7px;
+        cursor:pointer;
     }
       .btn_ .btn_style {
       	 background: url(../../img/publish.png) no-repeat;
+      	 
       }
   /* 新建新闻页面的多选框 */  
   #input1 {

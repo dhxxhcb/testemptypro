@@ -684,10 +684,9 @@ $(function () {
                                        "<td class='num'>"+data.obj[i].newsId+"</td>"+//评论（条）
                                        "<td class='state'>"+data.obj[i].publish+"</td>"+//状态
                                         "<td>"+
-                                       		/*  "<a onclick='updateData("+data.obj[i].newsId+")'>"+"修改"+"</a>&nbsp"+ */
                                        	 	"<a  href='javascript:;' id='xg' tid='"+data.obj[i].newsId+"'>"+"修改"+"</a>&nbsp"+ 
-											 "<a  href='javascript:;'>"+"管理评论"+"</a>&nbsp"+
-											 "<a  href='javascript:;'>"+"终止"+"</a>&nbsp"+
+											 /* "<a  href='javascript:;'>"+"管理评论"+"</a>&nbsp"+
+											 "<a  href='javascript:;'>"+"终止"+"</a>&nbsp"+ */
 											 /*"<a href='javascript:;' onclick='deleteData("+data.obj[i].newsId+"))'>"+"删除"+"</a>&nbsp"+ */
 										 	 "<a href='javascript:;' id='deleteData'>"+"删除"+"</a>&nbsp"+ 
                                        "</td>"+//操作 
