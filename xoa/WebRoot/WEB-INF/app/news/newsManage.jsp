@@ -337,7 +337,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <input class="td_title1  release1 toId" type="text"id="userId_"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3" id="adduser_">添加</div>
+                <div class="release3" id="adduser_" style="cursor: pointer;">添加</div>
                 <div class="release4 empty">清空</div>
             </td>
         </tr>
@@ -404,8 +404,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div><br>
                 <div><img src="../img/mg11.png" alt=""/></div>
                <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
-                <div>
-	                <form id="uploadimgform_" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
+                <div style="cursor: pointer;">
+	                <form  id="uploadimgform_" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
 						<input type="file" name="file" id="uploadinputimg_"  class="w-icon5" style="display:none;">
 						<a id="uploadimg_">添加附件</a>
 					</form>
@@ -491,7 +491,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                类型：
             </td>
             <td>
-                <select name="" class="typeId">
+                <select name="" class="typeId" id="type_id">
                     <option value="" selected="">全部</option>
 		          	<option value="01">公司动态</option>
 					<option value="02">媒体关注</option>
@@ -785,7 +785,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			     var data = {
 		           		"newsId":attR
 		           	};
-		          $.ajax({
+		           	
+		           	var msg='是否确认删除?';
+					if (confirm(msg)==true){
+					    $.ajax({
 		           		data:data,
 		           		type:"GET",
 		           		dataType:"JSON",
@@ -795,6 +798,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		           			//alert(data);
 		           		}	           		
 		           	});	           
+						return true;
+					 }else{ 
+					 	return false; 
+					 }
+		           	
+		        
 		        });
 		        
 		        /* 新闻管理修改页面 */
@@ -975,12 +984,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					console.log(uId);
 			        var data = {	  		       			           												           		
 							"subject": $("#query_subject").val(),    //标题 
-							
 							"newTime": $("#query_newTime").val(),      //发布时间 					
 							"keyword":$("#query_keyword").val(),  //内容关键词
 							"topDays": $("#add_topDate").val(),// 限制新闻置顶时间
 							"content":  ue.getContent()  ,//  新闻内容							
-							"toId":  $("#query_toId").val(),//发布部门	
+							"toId":  'ALL_DEPT',//发布部门	
 							"anonymityYn": $("#query_format").val(),
 							"format":$("#query_format").val(),//新闻格式(0-普通格式,1-MHT格式,2-超链接)
 							"typeId":$("#query_typeId").val(),
@@ -994,8 +1002,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             "summary":'1',//新闻内容简介  */
                             "attachmentId":aId,//附件ID串
                       		"attachmentName":uId,//附件名称串
-                        	"privId":$("#query_privId").attr("dataid"),//发布 -
-                         	"userId":$("#query_userId").attr("dataid"),//发布用户 -
+                        	"privId":'',//发布 -
+                         	"userId":'',//发布用户 -
                          	"readers": ''//发布角色 					           		
 			           	};
 			           	if($(this).attr("type") == "publish"){
@@ -1008,7 +1016,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                    dataType:"JSON",		    
 			       			data : data,		                   
 		                   	success:function(data){
-		                        console.log(data);		           			 				           			
+		                        	alert("发布成功");	           			 				           			
 									 $('.step1').show();
 						          	 $('.center').hide();
 									 $('.step2').hide();
@@ -1030,7 +1038,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        /* 新闻管理查询的确定按钮 */
           $('.determine').click(function () {
 					data.format=$(".format").val(); //新闻格式(0-普通格式,1-MHT格式,2-超链接)
-					data.typeId=$(".typeId").val();
+					data.typeId=$("#type_id").val();
 					data.publish=$(".publish").val();//发布标识(0-未发布,1-已发布,2-已终止)
 					data.top=$(".top").val(); //是否置顶(0-否,1-是)
 					data.subject=$("#subject").val();//标题

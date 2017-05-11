@@ -101,6 +101,9 @@ td {
     margin-left: 10px;
     margin-top: 10px;
 }
+#query_adduser {
+ 	    cursor: pointer;
+ }
 
 .release4 {
     display: inline-block;
