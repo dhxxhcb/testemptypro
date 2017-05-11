@@ -196,8 +196,10 @@ body,
 .main_title ul li{
 	float:left;
 }
+
+
 .left_scroll,.right_scroll{
-	width: 2%;
+	width: 3%;
     height: 38%;
     margin-top: 42px;
     background: red;

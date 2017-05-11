@@ -695,7 +695,7 @@ $(function () {
                                        "<td  class='tim'>"+data.obj[i].newsDateTime+"</td>"+//发布时间
                                        "<td class='data'>"+data.obj[i].clickCount+"</td>"+//点击数
                                        "<td class='num'>"+data.obj[i].newsId+"</td>"+//评论（条）
-                                       "<td class='state'>生效</td>"+//状态
+                                       "<td class='state'>"+data.obj[i].publish+"</td>"+//状态
                                         "<td>"+
                                        		/*  "<a onclick='updateData("+data.obj[i].newsId+")'>"+"修改"+"</a>&nbsp"+ */
                                        	 	"<a  href='javascript:;' id='xg' tid='"+data.obj[i].newsId+"'>"+"修改"+"</a>&nbsp"+ 
@@ -932,12 +932,12 @@ $(function () {
 							"top":$("#query_top").eq(0).is(':checked')==false?0:1,//是否置顶(0-否,1-是)
 							"clickCount":'0',//点击数
 							"lastEditor":'1',//最后编辑人
-							"lastEditTime":new Date().Format('yyyy-MM-dd hh:mm:ss'),//最后编辑时间
+							"lastTime":new Date().Format('yyyy-MM-dd hh:mm:ss'),//最后编辑时间
                       		"subjectColor":'1',//新闻标题颜色
                       		"compressContent":'1',//压缩后的新闻内容
                             "summary":'1',//新闻内容简介  */
-                            "attachmentId":'1',//附件ID串
-                      		"attachmentName":'1',//附件名称串
+                            "attachmentId":'',//附件ID串
+                      		"attachmentName":'',//附件名称串
                         	"privId":$("#query_privId").val(),//发布 -
                          	"userId":$("#query_userId").val(),//发布用户 -
                          	"readers": ''//发布角色 					           		

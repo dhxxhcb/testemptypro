@@ -45,6 +45,10 @@ html,body{
 	width: 100%;
    height: calc(100% - 50px);
 }
+.notice_list{
+	position: relative;
+}
+
 .side{
 	width:30%;
 }
@@ -220,7 +224,11 @@ ul.total{
     text-align: center;
 }
 .more_notice{
-	    margin-left: 40%;
+	width: 32px;
+	height: 100%;
+	position: absolute;
+	lright: 10px;
+	right: 10px;
 }
 .e_img,.d_img,.n_img{
 	/* position: absolute;
@@ -229,12 +237,18 @@ ul.total{
     bottom: 0;
     margin: auto; */
     height: 100%;
-    width: 7%;
+    width: 9%;
+}
+.e_img img,.d_img img,.n_img img{
+	width: 73%;
+	margin-left: 20%;
+	margin-top: 13%;
 }
 .e_name,.d_name,.n_name{
 	left: 45px;
     width:20%;
     height: 100%;
+	text-align: center;
 }
 .s_container ul li:hover{
 	color:#2674dc;
