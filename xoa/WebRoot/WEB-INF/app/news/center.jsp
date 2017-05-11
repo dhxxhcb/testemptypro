@@ -276,7 +276,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var layerIndex = layer.load(0, {shade: false}); /* 0代表加载的风格，支持0-2 */
             $.ajax({
                 type: "get",
-                url: "<%=basePath%>news/newsShow",
+                url: "<%=basePath%>news/newsManage",
                 dataType: 'JSON',
                 data: data,
                 success: function (obj) {

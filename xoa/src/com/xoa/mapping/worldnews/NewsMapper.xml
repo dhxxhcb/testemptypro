@@ -81,7 +81,7 @@
 				test="clickCount != null and clickCount != '' and click != null and click != ''">
 				AND CLICK_COUNT between #{clickCount} and #{click}
 			</if>
-		ORDER BY NEWS_TIME ASC
+		ORDER BY NEWS_TIME DESC
 	</select>
 	<!-- 查询新闻管理信息并返回 列表 -->
 	<select id="selectNewsManage" parameterType="Map" resultMap="BaseResultMap">
@@ -119,7 +119,7 @@
 				test="clickCount != null and clickCount != '' and click != null and click != ''">
 				AND CLICK_COUNT between #{clickCount} and #{click}
 			</if>
-		ORDER BY NEWS_TIME ASC
+		ORDER BY NEWS_TIME DESC
 	</select>
 	<!-- 查询未读已读信息并返回 列表 -->
 	<select id="unreadNews" parameterType="Map" resultMap="BaseResultMap">
@@ -157,7 +157,7 @@ select
 				test="clickCount != null and clickCount != '' and click != null and click != ''">
 				AND CLICK_COUNT between #{clickCount} and #{click}
 			</if>
-		ORDER BY NEWS_TIME ASC
+		ORDER BY NEWS_TIME DESC
 	</select>
 
 	<!-- 查询未读已读信息并返回 列表 -->
@@ -197,7 +197,7 @@ select
 				test="clickCount != null and clickCount != '' and click != null and click != ''">
 				AND CLICK_COUNT between #{clickCount} and #{click}
 			</if>
-		ORDER BY NEWS_TIME ASC
+		ORDER BY NEWS_TIME DESC
 	</select>
 
 	<select id="showAllCountNews" parameterType="com.xoa.model.worldnews.News"
