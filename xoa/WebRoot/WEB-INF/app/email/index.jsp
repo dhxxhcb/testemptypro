@@ -124,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>
 							<li id="Replay"><img src="../img/icon_replay_03.png" class="im"/><fmt:message code="global.lang.reply" /></li>
 							<li id="ReplayAll"><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
-							<li onclick="clicked()"><img src="../img/icon_transmit_06.png" class="im"/><fmt:message code="email.th.transmit" /></li>
+							<li id="Forward"><img src="../img/icon_transmit_06.png" class="im"/><fmt:message code="email.th.transmit" /></li>
 							<li onclick="clicked()"><img src="../img/icon_move_06.png" class="im"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>
 							<li id="delete"><img src="../img/icon_delete_06.png" class="im"/><fmt:message code="global.lang.delete" /><img src="../img/icon_more_06.png" class="more_im"/></li>
 							<li onclick="clicked()"><fmt:message code="email.th.more" /><img src="../img/icon_more_06.png" class="am"/></li>
@@ -547,7 +547,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     var sId=$('#delete').attr('uId');
                     $.popWindow('writeEmail?sId=' + sId+'&type=1','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
 				})
-				
+				//转发事件
+				$('#Forward').click(function(){
+                    var sId=$('#delete').attr('uId');
+                    $.popWindow('writeEmail?sId=' + sId+'&type=2','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+				})
 				
 			});
 			
