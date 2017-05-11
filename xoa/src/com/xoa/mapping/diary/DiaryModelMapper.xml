@@ -154,11 +154,8 @@
       <if test="attachmentName != null" >
         ATTACHMENT_NAME=#{attachmentName},
       </if>
-      <if test="toId != null" >
+      <if test="toId != null">
         TO_ID= #{toId},
-      </if>
-      <if test="compressContent != null" >
-        COMPRESS_CONTENT=#{compressContent},
       </if>
       <if test="readers != null" >
         READERS=#{readers},
