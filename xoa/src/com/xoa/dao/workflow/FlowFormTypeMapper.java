@@ -6,6 +6,7 @@ import com.xoa.model.workflow.FlowFormType;
 import java.util.List;
 import java.util.Map;
 
+import com.xoa.model.workflow.FlowTypeModel;
 import org.apache.ibatis.annotations.Param;
 
 
@@ -19,7 +20,7 @@ public interface FlowFormTypeMapper extends BaseMapper<FlowFormType> {
 
 
 	 List<FlowFormType> selectFormBySort(@Param("sortId")Integer sortId);
-	
-        
+
+
    
 }

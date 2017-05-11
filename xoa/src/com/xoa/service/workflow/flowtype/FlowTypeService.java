@@ -20,4 +20,6 @@ public interface FlowTypeService {
          */
         public ToJson<FlowTypeModel> saveFlow(FlowTypeModel flowTypeModel);
 
+
+        public ToJson<FlowTypeModel> quertBySortId(Integer flowId);
 }

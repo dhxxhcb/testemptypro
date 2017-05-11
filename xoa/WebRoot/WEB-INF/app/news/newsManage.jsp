@@ -229,11 +229,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div><br>
                 <div><img src="../img/mg11.png" alt=""/></div>
                <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
-                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
-					<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
-					<a id="uploadimg">添加附件</a>
-				</form>
-                <div><img src="../img/mg12.png" alt=""/></div>
+                <div>
+	                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
+						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
+						<a id="uploadimg">添加附件</a>
+					</form>
+				</div>
+                <div><img class="left_img" src="../img/mg12.png" alt=""/></div>
                 <div class="enclosure_t"><a href="#">从文件柜和网络硬盘选择附件</a></div>
                 <div><img src="../img/mg13.png" alt=""/></div>
                 <div class="enclosure_t"><a href="#">批量插入图片</a></div>
@@ -261,9 +263,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="foot_mg">
        <!--<img  id="hd" type="publish" class="fot_1 btn_ok" src="../img/mg5.png" alt=""/> 
         <img  id="rs" type="save" class="btn_ok"  src="../img/mg6.png" alt=""/>  -->
-        <div  id="hd" type="publish" class="fot_1 btn_ok">发布</div>
-		<div  id="rs" type="save" class="btn_ok">保存</div>
-        
+        <div class="btn_">
+	        <div  id="hd" type="publish" class="fot_1 btn_ok">发布</div>
+			<div  id="rs" type="save" class="btn_style btn_ok">保存</div>
+        </div>
     </div>
 </div>
 
@@ -331,7 +334,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <input class="td_title1  release1 toId" type="text"id="userId_"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3">添加</div>
+                <div class="release3" id="adduser_">添加</div>
                 <div class="release4 empty">清空</div>
             </td>
         </tr>
@@ -567,7 +570,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--content部分结束-->
     	
 <script>
-user_id='query_userId';
+user_id='query_userId';//选人控件
 $(function () {
 	$('#uploadimg').click(function(){
 		$('#uploadinputimg').click();  
@@ -681,10 +684,9 @@ $(function () {
                                        "<td class='num'>"+data.obj[i].newsId+"</td>"+//评论（条）
                                        "<td class='state'>"+data.obj[i].publish+"</td>"+//状态
                                         "<td>"+
-                                       		/*  "<a onclick='updateData("+data.obj[i].newsId+")'>"+"修改"+"</a>&nbsp"+ */
                                        	 	"<a  href='javascript:;' id='xg' tid='"+data.obj[i].newsId+"'>"+"修改"+"</a>&nbsp"+ 
-											 "<a  href='javascript:;'>"+"管理评论"+"</a>&nbsp"+
-											 "<a  href='javascript:;'>"+"终止"+"</a>&nbsp"+
+											 /* "<a  href='javascript:;'>"+"管理评论"+"</a>&nbsp"+
+											 "<a  href='javascript:;'>"+"终止"+"</a>&nbsp"+ */
 											 /*"<a href='javascript:;' onclick='deleteData("+data.obj[i].newsId+"))'>"+"删除"+"</a>&nbsp"+ */
 										 	 "<a href='javascript:;' id='deleteData'>"+"删除"+"</a>&nbsp"+ 
                                        "</td>"+//操作 
@@ -759,7 +761,7 @@ $(function () {
 			       			},		                   
 		                   success:function(data){
 		                        $('#step3_type  option:checked').attr(data.object.codes.codeName),//类型
-								$("#step3_ip2").val(data.object.providerName); //发布人
+								$("#step3_ip2").val(); //发布人
 								$("#step3_ip4").val();//发布范围 
 								$("#step3_ip1").val(data.object.subject);//标题	
 								$("#anonymityYn  option:checked").attr(data.object.anonymityYn),//类型					
@@ -836,10 +838,14 @@ $(function () {
 			            		console.log(e);			            		
 		            		}   		                  
 		                });      
-			        });  
-		        
-				var now = null;
-		        
+			        }); 
+			        /* 选人控件修改页面 */
+			        $("#adduser_").on("click",function(){
+   					user_id = "privId_";
+       		 		$.popWindow("../common/selectUser");
+       		 		 
+       		 		}); 		        
+				var now = null;		        
 		        function queryTime(){
 			         function p(s) {
 					    return s < 10 ? '0' + s: s;
@@ -974,11 +980,16 @@ $(function () {
         		});
 			});
 
-	laydate({
-	     elem: '#query_newTime', //目标元素。
-	     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
-	     istime: true, //显示时、分、秒
-	   });
+		laydate({
+		     elem: '#query_newTime', //目标元素。
+		     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+		     istime: true, //显示时、分、秒
+		   });
+   		laydate({
+		     elem: '#step3_ip3', //目标元素。
+		     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+		     istime: true, //显示时、分、秒
+		   });
    
    //时间控件调用
    var start = {

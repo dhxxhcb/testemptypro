@@ -2,10 +2,12 @@ package com.xoa.service.worldnews.impl;
 
 import com.xoa.dao.common.SysCodeMapper;
 import com.xoa.dao.department.DepartmentMapper;
+import com.xoa.dao.users.UserPrivMapper;
 import com.xoa.dao.users.UsersMapper;
 import com.xoa.dao.worldnews.NewsMapper;
 import com.xoa.model.common.SysCode;
 import com.xoa.model.department.Department;
+import com.xoa.model.users.UserPriv;
 import com.xoa.model.users.Users;
 import com.xoa.model.worldnews.News;
 import com.xoa.service.department.DepartmentService;
@@ -42,9 +44,15 @@ public class NewServiceImpl implements NewService {
 	@Resource
 	private DepartmentService  departmentService;
 	@Resource
+	private DepartmentMapper DepartmentMapper;
+	@Resource
 	private UsersService  usersService;
 	@Resource
 	private UsersPrivService  usersPrivService;
+	@Resource
+	private UserPrivMapper  userPrivMapper;
+	@Resource
+	private UsersMapper  usersMapper;
 	
 	
 	
@@ -104,48 +112,133 @@ public class NewServiceImpl implements NewService {
 	 */
 	@Override
 	public ToJson<News> unreadNews(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag, String name) throws Exception {
+			Integer pageSize, boolean useFlag, String name,String sqlType) throws Exception {
+		     String[] strArray = null;
+	        String[] strArray1 = null;
+	        String[] strArray2 = null;
 		ToJson<News>  newJson=new ToJson<News>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
+		Users users=usersMapper.findUserByName(name);
 		List<News> list = newsMapper.unreadNews(maps);
 		List<News> list1 = new ArrayList<News>();
+		List<News> list2 = new ArrayList<News>();
 		for (News news : list) {
 			news.setNewsDateTime(DateFormat.getStrDate(news.getNewsTime()));
 			news.setProviderName(news.getUsers().getUserName());
 			news.setTypeName(news.getCodes().getCodeName());
-			if (news.getReaders().indexOf(name) == -1) {
-				list1.add(news);
+			if (news.getAttachmentName()!=null&&news.getAttachmentId()!=null) {
+				news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType));
+			}
+			 String depId=news.getToId();
+				if ("ALL_DEPT".equals(depId)) {
+					list1.add(news);
+				}else if(depId!=null&&!"".equals(depId)){
+					strArray=depId.split(",");
+				   for (int j = 0; j < strArray.length; j++) {
+					if (users.getDeptId().toString().equals(strArray[j])) {
+						  list1.add(news);
+					}
+				}
+				}
+				  String userId=news.getUserId();
+			     if (userId!=null&&!userId.equals("")){
+			    	if (users.getUserId()!=null&&!"".equals(users.getUserId())) {
+			    	 strArray1=userId.split(",");
+			    	  for (int j = 0; j < strArray1.length; j++) {
+							if (users.getUserId().toString().equals(strArray1[j])) {
+								  list1.add(news);
+							}
+						}
+			    	 }
+			     }
+			    	String roleId=news.getPrivId();
+			      if (roleId!=null&&!roleId.equals("")) {
+			    	  if (users.getUserPriv()!=null&&!"".equals(users.getUserPriv())) {
+			    		  strArray2=depId.split(",");
+			    	  for (int j = 0; j < strArray2.length; j++) {
+							if (users.getUserPriv().toString().equals(strArray2[j])) {
+								  list1.add(news);
+							}
+						}
+				}}
+			
+		}
+		for (News newss : list1) {
+			if (newss.getReaders().indexOf(name) == -1) {
+				list2.add(newss);
 			}
 		}
-		newJson.setObj(list1);
+		newJson.setObj(list2);
 		newJson.setTotleNum(pageParams.getTotal());
 		return newJson;
 	}
 	
 	@Override
 	public ToJson<News> readNews(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag, String name) throws Exception {
+			Integer pageSize, boolean useFlag, String name,String sqlType) throws Exception {
+		   String[] strArray = null;
+	        String[] strArray1 = null;
+	        String[] strArray2 = null;
 		ToJson<News>  newJson=new ToJson<News>();
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<News> list = newsMapper.readNews(maps);
+		Users users=usersMapper.findUserByName(name);
+		List<News> list = newsMapper.unreadNews(maps);
 		List<News> list1 = new ArrayList<News>();
+		List<News> list2 = new ArrayList<News>();
 		for (News news : list) {
 			news.setNewsDateTime(DateFormat.getStrDate(news.getNewsTime()));
 			news.setProviderName(news.getUsers().getUserName());
 			news.setTypeName(news.getCodes().getCodeName());
-			if (news.getReaders().indexOf(name) != -1) {
-				list1.add(news);
+			if (news.getAttachmentName()!=null&&news.getAttachmentId()!=null) {
+				news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType));
+			}
+			 String depId=news.getToId();
+				if ("ALL_DEPT".equals(depId)) {
+					list1.add(news);
+				}else if(depId!=null&&!"".equals(depId)){
+					strArray=depId.split(",");
+				   for (int j = 0; j < strArray.length; j++) {
+					if (users.getDeptId().toString().equals(strArray[j])) {
+						  list1.add(news);
+					}
+				}
+				} String userId=news.getUserId();
+			     if (userId!=null&&!userId.equals("")){
+			    	if (users.getUserId()!=null&&!"".equals(users.getUserId())) {
+			    	 strArray1=userId.split(",");
+			    	  for (int j = 0; j < strArray1.length; j++) {
+							if (users.getUserId().toString().equals(strArray1[j])) {
+								  list1.add(news);
+							}
+						}
+			    	 }
+			     }
+			    	String roleId=news.getPrivId();
+			      if (roleId!=null&&!roleId.equals("")) {
+			    	  if (users.getUserPriv()!=null&&!"".equals(users.getUserPriv())) {
+			    		  strArray2=roleId.split(",");
+			    	  for (int j = 0; j < strArray2.length; j++) {
+							if (users.getUserPriv().toString().equals(strArray2[j])) {
+								  list1.add(news);
+							}
+						}
+				}}
+			
+		}
+		for (News newss : list1) {
+			if (newss.getReaders().indexOf(name) != -1) {
+				list2.add(newss);
 			}
 		}
-		newJson.setObj(list1);
+		newJson.setObj(list2);
 		newJson.setTotleNum(pageParams.getTotal());
 		return newJson;
 	}
@@ -292,21 +385,69 @@ public class NewServiceImpl implements NewService {
 	 */
 	@Override
 	public ToJson<News> selectNewsManage(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag) throws Exception {
+			Integer pageSize, boolean useFlag,String name,String sqlType ) throws Exception {
 		ToJson<News>  newJson=new ToJson<News>();
-		
+		    String[] strArray = null;
+	        String[] strArray1 = null;
+	        String[] strArray2 = null;
 		PageParams pageParams = new PageParams();
 		pageParams.setUseFlag(useFlag);
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
-		List<News> list = newsMapper.selectNewsManage(maps);
+		List<News> list = newsMapper.selectNews(maps);
+		List<News> list1=new  ArrayList<News>();
+		Users users=usersMapper.findUserByName(name);
+		if (users!=null) {
 		for (News news : list) {
-			news.setProviderName(news.getUsers().getUserName());
-			news.setTypeName(news.getCodes().getCodeName());
-			
+			news.setNewsDateTime(DateFormat.getStrDate(news.getNewsTime()));
+				news.setProviderName(news.getUsers().getUserName());
+				news.setTypeName(news.getCodes().getCodeName());
+				if (news.getAttachmentName()!=null&&news.getAttachmentId()!=null) {
+					news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType));
+				}
+				 String depId=news.getToId();
+				if ("ALL_DEPT".equals(depId)) {
+					list1.add(news);
+				}else if(depId!=null&&!"".equals(depId)){
+					strArray=depId.split(",");
+				   for (int j = 0; j < strArray.length; j++) {
+					if (users.getDeptId().toString().equals(strArray[j])) {
+						  list1.add(news);
+					}
+				}
+				}
+				 String userId=news.getUserId();
+			     if (userId!=null&&!userId.equals("")){
+			    	if (users.getUserId()!=null&&!"".equals(users.getUserId())) {
+			    	 strArray1=userId.split(",");
+			    	  for (int j = 0; j < strArray1.length; j++) {
+							if (users.getUserId().toString().equals(strArray1[j])) {
+								  list1.add(news);
+							}
+						}
+			    	 }
+			     }
+			    	String roleId=news.getPrivId();
+			      if (roleId!=null&&!roleId.equals("")) {
+			    	  if (users.getUserPriv()!=null&&!"".equals(users.getUserPriv())) {
+			    		  strArray2=roleId.split(",");
+			    	  for (int j = 0; j < strArray2.length; j++) {
+							if (users.getUserPriv().toString().equals(strArray2[j])) {
+								  list1.add(news);
+							}
+						}
+				}}
+			if (news.getReaders().indexOf(name) != -1) {
+				news.setRead(1);
+			} else {
+				news.setRead(0);
+			}
 		}
-		newJson.setObj(list);
+		}
+		
+		
+		  newJson.setObj(list1);
 		newJson.setTotleNum(pageParams.getTotal());
 		return newJson;
 	}

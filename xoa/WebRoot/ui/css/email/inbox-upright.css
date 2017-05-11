@@ -11,7 +11,7 @@ html,body{
 	height: 56px;
 	border-bottom: #2f80d1 1px solid;
 	overflow: hidden;
-	padding-left: 2%;
+	padding-left: 1%;
 	
 }
 .up_page_right .up_header .up_nav{
@@ -26,14 +26,15 @@ html,body{
 .up_page_right .up_header .up_nav ul li{
 	font-size: 10pt;
     float: left;
-    padding: 0px 4px;
-    border: #999 1px solid;
+    padding: 0px 8px;
+    border: #ccc 1px solid;
     margin-top: 12px;
-    margin-right: 0.5%;
+    margin-right: 8px;
     border-radius: 3px;
     cursor: pointer;
     height: 28px;
     line-height: 28px;
+	background-color:#fff;
 }
 .up_page_right .up_header .up_nav ul li span{
 	display: inline-block;
@@ -48,10 +49,10 @@ html,body{
     margin-right: 5px;
     font-size:12px;
 }
- .up_page_right .up_header .up_nav ul li:nth-child(2){
-	margin-right: 3%;
+/* .up_page_right .up_header .up_nav ul li:nth-child(2){
+	margin-right: 12px;
     
-} 
+} */
 .up_page_right .up_header .up_nav ul li img.im{
 	width: 16px;
 	height: 16px;
@@ -101,10 +102,10 @@ html,body{
 
 .up_pages .up_format{
 	float: left;
-    margin-left: 10%;
+    margin-left: 60%;
     margin-top: 10px;
     border-radius: 3px;
-    border: #999 1px solid;
+    border: #ccc 1px solid;
 }
 .up_pages .up_format ul{
 	overflow: hidden;

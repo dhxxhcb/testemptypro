@@ -53,4 +53,11 @@ public class FlowTypeController {
         return "app/workflow/flowtype/flownew";
     }
 
+    @RequestMapping("/flowlistbysort")
+    @ResponseBody
+    public ToJson<FlowTypeModel> flowListBySort(Integer flowId){
+//        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+//                "loginDateSouse"));
+        return flowTypeService.quertBySortId(flowId);
+    }
 }

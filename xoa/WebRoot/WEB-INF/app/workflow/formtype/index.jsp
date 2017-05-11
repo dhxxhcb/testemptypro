@@ -39,16 +39,10 @@
     <div class="cont">
         <div class="cont_left">
             <div class="left_all">
-                <h1 class="sort">流程分类</h1>
+                <h1 class="sort">表单分类</h1>
                 <ul class="ul_all">
                     <li><img src="/../img/workflow/wenjian.png"><h1>公文管理</h1></li>
-                    <li><img src="../img/workflow/wenjian.png"><h1>公文管理</h1>
-                        <!-- <ul class="two_ul> -->
-
-                        <!-- <li><img src="img/wenjian.png"><h1>差旅管理</h1></li> -->
-                        <!-- <li><img src="img/wenjian.png"><h1>差旅管理</h1></li> -->
-
-                        <!-- </ul> -->
+                    <li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1>
                     </li>
                     <li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1></li>
                     <li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1></li>
@@ -81,5 +75,14 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    $(function () {
+       //获取左侧分类
+        $.post("/workflow/flowclassify/form",{} ,function (ret) {
+              console.log(ret);
+        },"json");
+    })
+</script>
+
 </html>
 

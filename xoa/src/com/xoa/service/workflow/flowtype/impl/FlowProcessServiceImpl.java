@@ -1,6 +1,7 @@
 package com.xoa.service.workflow.flowtype.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -18,9 +19,8 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	private FlowProcessMapper flowProcessMapper;
  	
 	@Override
-	public FlowProcess find(int flowId, int id) {
+	public FlowProcess find( int id) {
 		Map<String, Object> maps =new HashMap<String, Object>();
-		maps.put("flowId", flowId);
 		maps.put("id", id);
 		FlowProcess flowProcess=flowProcessMapper.find(maps);
 		return flowProcess;
@@ -29,6 +29,12 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	@Override
 	public void updateByPrimaryKeySelective(FlowProcess record) {
 		flowProcessMapper.updateByPrimaryKeySelective(record);	
+	}
+
+	@Override
+	public List<FlowProcess> findFlowId(int flowId) {
+		List<FlowProcess> list=flowProcessMapper.findFlowId(flowId);
+		return list;
 	}
 
 }

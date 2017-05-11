@@ -1,5 +1,6 @@
 package com.xoa.dao.workflow;
 
+import java.util.List;
 import java.util.Map;
 
 import com.xoa.model.workflow.FlowProcess;
@@ -19,4 +20,6 @@ public interface FlowProcessMapper {
     int updateByPrimaryKey(FlowProcess record);
     
     FlowProcess find(Map<String, Object> maps);
+    
+    List<FlowProcess> findFlowId(int flowId);
 }
