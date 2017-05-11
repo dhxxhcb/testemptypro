@@ -146,26 +146,25 @@ public class NewServiceImpl implements NewService {
 				}
 				  String userId=news.getUserId();
 			     if (userId!=null&&!userId.equals("")){
-			    	if (users.getUid()!=null&&!"".equals(users.getUid())) {
+			    	if (users.getUserId()!=null&&!"".equals(users.getUserId())) {
 			    	 strArray1=userId.split(",");
 			    	  for (int j = 0; j < strArray1.length; j++) {
-							if (users.getUid().toString().equals(strArray1[j])) {
+							if (users.getUserId().toString().equals(strArray1[j])) {
 								  list1.add(news);
 							}
 						}
 			    	 }
-			    	  
 			     }
 			    	String roleId=news.getPrivId();
 			      if (roleId!=null&&!roleId.equals("")) {
-			    	  strArray2=depId.split(",");
+			    	  if (users.getUserPriv()!=null&&!"".equals(users.getUserPriv())) {
+			    		  strArray2=depId.split(",");
 			    	  for (int j = 0; j < strArray2.length; j++) {
 							if (users.getUserPriv().toString().equals(strArray2[j])) {
 								  list1.add(news);
 							}
 						}
-					   
-				}
+				}}
 			
 		}
 		for (News newss : list1) {
@@ -211,29 +210,27 @@ public class NewServiceImpl implements NewService {
 						  list1.add(news);
 					}
 				}
-				}
-				  String userId=news.getUserId();
+				} String userId=news.getUserId();
 			     if (userId!=null&&!userId.equals("")){
-			    	if (users.getUid()!=null&&!"".equals(users.getUid())) {
+			    	if (users.getUserId()!=null&&!"".equals(users.getUserId())) {
 			    	 strArray1=userId.split(",");
 			    	  for (int j = 0; j < strArray1.length; j++) {
-							if (users.getUid().toString().equals(strArray1[j])) {
+							if (users.getUserId().toString().equals(strArray1[j])) {
 								  list1.add(news);
 							}
 						}
 			    	 }
-			    	  
 			     }
 			    	String roleId=news.getPrivId();
 			      if (roleId!=null&&!roleId.equals("")) {
-			    	  strArray2=depId.split(",");
+			    	  if (users.getUserPriv()!=null&&!"".equals(users.getUserPriv())) {
+			    		  strArray2=roleId.split(",");
 			    	  for (int j = 0; j < strArray2.length; j++) {
 							if (users.getUserPriv().toString().equals(strArray2[j])) {
 								  list1.add(news);
 							}
 						}
-					   
-				}
+				}}
 			
 		}
 		for (News newss : list1) {
@@ -420,28 +417,27 @@ public class NewServiceImpl implements NewService {
 					}
 				}
 				}
-				  String userId=news.getUserId();
+				 String userId=news.getUserId();
 			     if (userId!=null&&!userId.equals("")){
-			    	if (users.getUid()!=null&&!"".equals(users.getUid())) {
+			    	if (users.getUserId()!=null&&!"".equals(users.getUserId())) {
 			    	 strArray1=userId.split(",");
 			    	  for (int j = 0; j < strArray1.length; j++) {
-							if (users.getUid().toString().equals(strArray1[j])) {
+							if (users.getUserId().toString().equals(strArray1[j])) {
 								  list1.add(news);
 							}
 						}
 			    	 }
-			    	  
 			     }
 			    	String roleId=news.getPrivId();
 			      if (roleId!=null&&!roleId.equals("")) {
-			    	  strArray2=depId.split(",");
+			    	  if (users.getUserPriv()!=null&&!"".equals(users.getUserPriv())) {
+			    		  strArray2=roleId.split(",");
 			    	  for (int j = 0; j < strArray2.length; j++) {
 							if (users.getUserPriv().toString().equals(strArray2[j])) {
 								  list1.add(news);
 							}
 						}
-					   
-				}
+				}}
 			if (news.getReaders().indexOf(name) != -1) {
 				news.setRead(1);
 			} else {
