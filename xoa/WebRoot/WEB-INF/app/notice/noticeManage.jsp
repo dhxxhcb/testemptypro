@@ -46,6 +46,62 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             height: 50px;
             margin: 10px auto;
         }
+        .start_end_time{
+            display: inline-block;
+            float: left;
+            border: none;
+            width: 400px;
+            height: 20px;
+
+
+        }
+        .td_title1{
+            border:none !important;
+            color:#000 !important;
+        }
+        .step2{
+            margin-left:2%;
+        }
+        .news_t{
+            width: 139px !important;
+        }
+        .news_t h1,.news_two h1{
+            line-height: 23px;
+            text-align: center;
+        }
+        .news_two{
+            width: 139px;
+            margin-top: 3px;
+        }
+        .add_print,.add_down,.add_nochose{
+            float:left;
+            margin-top:10px;
+        }
+        .add_print,.add_down{
+            width: 152px;
+
+        }
+        .add_nochose{
+            width: 195px;
+            text-align: center;
+           line-height:20px;
+        }
+        .add_print h1,.add_down h1{
+            color: #000;
+            line-height: 20px;
+            text-align: center;
+        }
+        .add_show,.textTop{
+            float:left;
+        }
+        .add_show{
+            line-height: 24px;
+            /* text-align: -webkit-auto; */
+            text-align: center;
+        }
+        .zhiding{
+            margin-top:3px;
+        }
     </style>
 </head>
 <body>
@@ -227,11 +283,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
             <td class="blue_text">有效期：</td>
             <td>
-                <div class="td_title1">
+                <div class="td_title1 start_end_time">
                     <!-- 引入时间控件 和 css 调整  -->
-                    <input type="text"  name="startTime" id="start_add" class="startTime" style="height: 20px; width: 50px; margin-left: -4.2px; margin-top: -1px;">
+                    <input type="text"  name="startTime" id="start_add" class="startTime" style="height: 20px; width: 130px; margin-left: -4.2px; margin-top: -1px;">
                     至
-                    <input type="text"  name="endTime" id="end_add" class="endTime" style="height: 20px;width: 50px;  margin-top: -1px;">
+                    <input type="text"  name="endTime" id="end_add" class="endTime" style="height: 20px;width: 130px;  margin-top: -1px;">
                     为空为手动终止
                 </div>
             </td>
@@ -255,13 +311,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="top_box">
                 <div>
                     <input type="checkbox" name="textTop" id="textTop" class="textTop">
-                    使新闻置顶，显示为重要
+                    <h1 class="add_show">使新闻置顶，显示为重要</h1>
                 </div>
                 <div class="t_box">
                     <input type="text" name="textDay" id="textDay" class="textDay" value="0"
                            style="height: 20px; width: 40px; margin-left: -5.2px; margin-top: -1px;">
                 </div>
-                <div>天后结束置顶,0表示一直置顶</div>
+                <div class="zhiding">天后结束置顶,0表示一直置顶</div>
             </td>
         </tr>
         <tr>
@@ -286,13 +342,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="enclosure_t">批量插入图片</div>
                 <div><img src="../img/mg14.png" alt=""/></div>
                 <div class="enclosure_t">批量上传过</div><br/>
-                <input type="checkbox" name="textEnclosure" class="textEnclosure">
-                允许下载Office附件
-                <input type="checkbox" name="textEnclosure" class="textEnclosure" >
-                允许打印Office附件
+                <div class="add_down">
+                    <input type="checkbox" name="textEnclosure" class="textEnclosure">
+                    <h1>允许下载Office附件</h1>
+                </div>
+                <div class="add_print">
+                    <input type="checkbox" name="textEnclosure" class="textEnclosure" >
+                    <h1>允许打印Office附件</h1>
+                </div>
+
                 <%--<input >--%>
-                <br/>
-                都不选中则只能阅读附件内容
+                <h1 class="add_nochose"> 都不选中则只能阅读附件内容</h1>
+
             </td>
         </tr>
 
@@ -307,7 +368,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 关键字：
             </td>
             <td class="keyword">
-                <div class="keyword_ip">请输入关键字</div>
+                <input class="keyword_ip">请输入关键字</input>
                 <div class="keyword_t">自动获取关键字</div>
                 <div>您可以调整关键字内容多个关键词请用分割</div>
         </tr>
