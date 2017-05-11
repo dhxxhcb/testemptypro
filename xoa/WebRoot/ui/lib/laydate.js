@@ -29,7 +29,7 @@ function(a) {
     e = "createElement",
     f = "getElementById",
     g = "getElementsByTagName",
-    h = ["laydate_box", "laydate_void", "laydate_click", "LayDateSkin", "skins/", "/laydate.css"];
+    h = ["laydate_box", "laydate_void", "laydate_click", "LayDateSkin", "skins/", "laydate.css"];
     a.laydate = function(b) {
         b = b || {};
         try {

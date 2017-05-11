@@ -246,7 +246,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"notify_manage":"notice/manage",
 				"knowledge_management":"file/home",
 				"system_file_folder":"file/setIndex",
-				"system/workflow/flow_sort":"workflow/flowclassify/index"
+				"system/workflow/flow_sort":"workflow/flowclassify/index",
+				"system/workflow/flow_form":"workflow/formtype/index"
 			}
 			
 			$('.cont_nav').on('click','li',function(){

@@ -232,9 +232,13 @@ body,
 	/* margin-top: 4%; */
     margin-left: 2%;
 }
-/* .tab_cone{
-	width:100%;
-} */
+.wenjian_list,.model{
+	position: relative;
+}
+.wenjian_span,.more_daily{
+	position: absolute;
+	right: 10px;
+}
 .dynatree-title{
 	font-weight:bold;
 	color:#000;
