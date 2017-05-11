@@ -308,16 +308,25 @@ public class EnclosureController {
 			@RequestParam("MODULE") String module ,
 			@RequestParam("YM") String ym ,
 			@RequestParam("ATTACHMENT_ID") String attachmentId ,
-			@RequestParam("ATTACHMENT_NAME") String attachmenrName ,
-			@RequestParam("company") String company ,
+			@RequestParam("ATTACHMENT_NAME") String attachmentName ,
+			@RequestParam("COMPANY") String company ,
 			HttpServletResponse response,
 			HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		String basePath=request.getSession().getServletContext().getRealPath(
-				"upload");
-		
-		String path=basePath+ System.getProperty("file.separator") +company+ System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
+		ResourceBundle rb =  ResourceBundle.getBundle("upload");
+		//String name = rb.getString("mysql.driverClassName");
+		String osName = System.getProperty("os.name");
+		StringBuffer sb=new StringBuffer();
+		if(osName.toLowerCase().startsWith("win")){  
+		  sb=sb.append(rb.getString("upload.win"));  
+		}else{
+		  sb=sb.append(rb.getString("upload.linux"));
+		}
+		//String basePath="D:"+System.getProperty("file.separator");
+	  	
+		 String path=sb.toString()+System.getProperty("file.separator")+"attach"+System.getProperty("file.separator")+company+
+	    		 System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym+ System.getProperty("file.separator")+attachmentId+"."+attachmentName;	 	  	 
 		boolean flag = false;
 		File file =new File(path);
 		if (file.exists()) {// 路径为文件且不为空则进行删除

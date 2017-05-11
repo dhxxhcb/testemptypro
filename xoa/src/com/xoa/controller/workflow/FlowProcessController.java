@@ -1,5 +1,7 @@
 package com.xoa.controller.workflow;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -44,7 +46,7 @@ public class FlowProcessController {
 					"loginDateSouse"));
 			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);
 			try {
-				FlowProcess flowProcess=flowProcessService.find(flowId, id);
+				FlowProcess flowProcess=flowProcessService.find(id);
 		        json.setObject(flowProcess);
 		        json.setMsg("OK");
 		        json.setFlag(0);
@@ -73,7 +75,7 @@ public class FlowProcessController {
 					"loginDateSouse"));
 			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
 			try {
-				request.setCharacterEncoding("utf-8");
+				//request.setCharacterEncoding("utf-8");
 				flowProcessService.updateByPrimaryKeySelective(flowProcess);
 		        json.setObject(flowProcess);
 		        json.setMsg("OK");
@@ -83,5 +85,58 @@ public class FlowProcessController {
 			}
 		    return json;
 		}
+		
+		
+		@ResponseBody
+	  	@RequestMapping(value = "doedit",produces = {"application/json;charset=UTF-8"})
+	    public ToJson<FlowProcess> doedit(int id,	   
+	    		HttpServletRequest request){
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
+			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
+			try {
+				FlowProcess flowProcess=flowProcessService.find(id);
+				//request.setCharacterEncoding("utf-8");
+				//flowProcessService.updateByPrimaryKeySelective(flowProcess);
+		        json.setObject(flowProcess);
+		        json.setMsg("OK");
+		        json.setFlag(0);
+			} catch (Exception e) {
+				json.setMsg(e.getMessage());
+			}
+		    return json;
+		}
+		
+		
+		
+		@ResponseBody
+	  	@RequestMapping(value = "findFlowId",produces = {"application/json;charset=UTF-8"})
+	    public ToJson<FlowProcess> findFlowId(
+	    		@RequestParam("flowId") int flowId, 
+	    		HttpServletRequest request){
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
+			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
+			try {
+				List<FlowProcess> list=flowProcessService.findFlowId(flowId);
+		        json.setObj(list);
+		        json.setMsg("OK");
+		        json.setFlag(0);
+			} catch (Exception e) {
+				json.setMsg(e.getMessage());
+			}
+		    return json;
+		}
+	
 
+		
+
+	  	@RequestMapping(value = "xs",produces = {"application/json;charset=UTF-8"})
+		public String xs(){
+			
+			return "app/workflow/flowprocess/flowProcess";
+			
+		}
+		
+		
 }

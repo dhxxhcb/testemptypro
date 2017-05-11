@@ -86,8 +86,15 @@
     LIST_COLUMN_PRIV, FILEUPLOAD_PRIV, IMGUPLOAD_PRIV
   </sql>
   <select id="find" parameterType="Map" resultMap="BaseResultMap">
-  select * from flow_process where  ID = #{id} and FLOW_ID=#{flowId}
+  select * from flow_process where  ID = #{id} 
   </select>
+  
+  <select id="findFlowId" resultMap="BaseResultMap">
+  select Id,PRCS_ID,PRCS_TO,PRCS_NAME from flow_process where FLOW_ID=#{flowId}
+  </select>
+  
+  
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -870,4 +877,8 @@
       WORKINGDAYS_TYPE = #{workingdaysType,jdbcType=CHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+  
+  
 </mapper>
