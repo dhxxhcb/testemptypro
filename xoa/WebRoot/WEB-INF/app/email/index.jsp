@@ -120,13 +120,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="up_header">
 					<div class="up_nav">
 						<ul>
-							<%--<li onclick="clicked()"><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
-							<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>--%>
-							<li id="Replay"><img src="../img/icon_replay_03.png" class="im"/><fmt:message code="global.lang.reply" /></li>
+							<li onclick="clicked()"><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<%--<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>--%>
+							<li id="Replay" style="margin-left: 26%;"><img src="../img/icon_replay_03.png" class="im"/><fmt:message code="global.lang.reply" /></li>
 							<li id="ReplayAll"><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
 							<li id="Forward"><img src="../img/icon_transmit_06.png" class="im"/><fmt:message code="email.th.transmit" /></li>
 							<%--<li onclick="clicked()"><img src="../img/icon_move_06.png" class="im"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>--%>
-							<li id="delete"><img src="../img/icon_delete_06.png" class="im"/><fmt:message code="global.lang.delete" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li id="delete"><img src="../img/icon_delete_06.png" class="im"/><fmt:message code="global.lang.delete" /></li><%--<img src="../img/icon_more_06.png" class="more_im"/>--%>
 							<%--<li onclick="clicked()"><fmt:message code="email.th.more" /><img src="../img/icon_more_06.png" class="am"/></li>--%>
 						</ul>
 					</div>
