@@ -953,11 +953,16 @@ $(function () {
         		});
 			});
 
-	laydate({
-	     elem: '#query_newTime', //目标元素。
-	     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
-	     istime: true, //显示时、分、秒
-	   });
+		laydate({
+		     elem: '#query_newTime', //目标元素。
+		     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+		     istime: true, //显示时、分、秒
+		   });
+   		laydate({
+		     elem: '#step3_ip3', //目标元素。
+		     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+		     istime: true, //显示时、分、秒
+		   });
    
    //时间控件调用
    var start = {
