@@ -20,7 +20,7 @@
     <result column="FORCE_PRE_SET" property="forcePreSet" javaType="java.lang.String" />
     <result column="VIEW_PRIV" property="viewPriv" javaType="java.lang.Integer" />
     <result column="IS_VERSION" property="isVersion" javaType="java.lang.Integer" />
-    <result column="FLOW_ACTION" property="flowAction" javaType="java.lang.Integer" />
+    <result column="FLOW_ACTION" property="flowAction" javaType="java.lang.String" />
     <result column="AUTO_NUM_YEAR" property="autoNumYear" javaType="java.lang.Integer" />
     <result column="AUTO_NUM_MONTH" property="autoNumMonth" javaType="java.lang.Integer" />
     <result column="AUTO_NUM_TIME" property="autoNumTime" javaType="java.util.Date" />
@@ -55,9 +55,18 @@
     #{manageUser},#{autoName},#{queryUser},#{flowDesc},#{newUser},#{queryItem},#{queryUserDept},
     #{manageUserDept},#{editPriv},#{listFldsStr},#{modelId},#{modelName},#{attachmentId},
     #{attachmentName},#{viewUser},#{viewDept});
-
-
   </insert>
 
-  
+  <select id="selectBySortid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT  * FROM  flow_type
+    <where>
+      <if test="flowId != null">
+        flow_type.FLOW_SORT =#{flowId}
+      </if>
+      <if test="flowId ==null">
+
+        flow_type.FLOW_SORT =0 OR flow_type IS NULL
+      </if>
+    </where>
+  </select>
 </mapper>
