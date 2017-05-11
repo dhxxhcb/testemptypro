@@ -511,7 +511,6 @@ public class NotifyController {
 		ContextHolder.setConsumerType("xoa"
 				+ (String) request.getSession().getAttribute("loginDateSouse"));
 		Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());
-		notify.setNotifyId(0);
 		notify.setPrivId(name.getUserId());
 		notify.setReaders(name.getUserId() + ",");
 		notify.setSendTime(DateFormat.getDate(sendTime));
