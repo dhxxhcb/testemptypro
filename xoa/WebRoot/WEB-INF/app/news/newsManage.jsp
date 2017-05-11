@@ -224,11 +224,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                	 附件上传：
             </td>
             <td class="enclosure">
+            	<div id="query_uploadArr">
+            	<a href="#">111.txt</a><br>
+            	<a href="#">eee</a><br>
+            	</div><br>
                 <div><img src="../img/mg11.png" alt=""/></div>
                <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
                 <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
-						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
-						<button id="uploadimg">添加附件</button>
+					<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
+					<a id="uploadimg">添加附件</a>
 				</form>
                 <div><img src="../img/mg12.png" alt=""/></div>
                 <div class="enclosure_t"><a href="#">从文件柜和网络硬盘选择附件</a></div>
@@ -566,6 +570,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 user_id='query_userId';
 $(function () {
+	$('#uploadimg').click(function(){
+		$('#uploadinputimg').click();  
+	});
+	$('#uploadinputimg').change(function(e){
+		var target = $(e.target);
+		var file;
+		if(target[0].files && target[0].files[0]){
+			file=target[0].files[0];
+		}
+		console.log(file);
+		if(file){
+			$.upload($('#uploadimgform'),function(res){
+				console.log(res);
+				var str = "";
+				res.obj.forEach(function(v,i){
+					console.log(v.attachName);
+					str+='<a href="<%=basePath %>download?'+v.attUrl+'">'+v.attachName+'</a><br>';
+				});
+				console.log(str);
+				$('#query_uploadArr').append(str);
+				
+			});
+		}
+	});
 			/* word文本编辑器 */
 			 var ue = UE.getEditor('container');//新建新闻页面
 			 var sue = UE.getEditor('container3');//修改新闻页面
