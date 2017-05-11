@@ -19,19 +19,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			html,body{width: 100%;font-family: "微软雅黑";font-size: 14px;}
-			.content{width: 80%;margin: 0 auto;}
+			.content{width: 99%;margin: 0 auto;}
 			.title{width: 100%;text-align: left;line-height: 40px;}
 			.tab table tr td{padding: 5px 5px;border-color: #ddd;}
 			#btn{display: block;margin: 0 auto;outline: none;border: none;border-radius: 3px;padding: 3px 8px;cursor: pointer;}
 			#btn:hover{background-color: #9fbdee;color: #fff;}
-			.tac table{border-color:#ddd;}
-			.tac table tr th{padding: 5px 5px;border-color: #ddd;font-size:14px;font-weight: normal;}
-			.tac table tr td{padding: 5px 5px;border-color: #ddd;font-size: 12px;text-align:center;}
+			/*.tac table{border-color:#ddd;}*/
+			.tac table tr{border: 1px solid #c0c0c0;}
+			.tac table tr:nth-child(odd){background-color: #F6F7F9;}
+			.tac table tr:nth-child(even){background-color: #fff;}
+			.tac table tr th{padding: 10px;border-color: #ddd;font-size:14px;font-weight: normal;color: #2F5C8F;}
+			.tac table tr td{padding: 10px;border-color: #ddd;font-size: 12px;text-align:center;}
 			.tac table tr td a{text-decoration: none;}
 			.tac table tr td #but{cursor: pointer;}
 			.tac table tr:last-of-type td{text-align: right;}
 			.Hover td img{width: 16px;}
 			.Hover td:last-of-type img{width: 18px}
+			.tac table .Hover:hover{background-color: #dbecff;}
 		</style>
 	</head>
 	<body>
@@ -120,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form>
 			</div>
 			<div class="tac" style="display:none;">
-					<table border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+					<table cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:99%;">
 						<tr class='befor'>
 							<th width="6%">
 								<input type="checkbox" name="checkbox" id="checkbox" value="" />
