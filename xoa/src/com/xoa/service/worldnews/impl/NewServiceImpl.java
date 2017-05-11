@@ -146,10 +146,10 @@ public class NewServiceImpl implements NewService {
 				}
 				  String userId=news.getUserId();
 			     if (userId!=null&&!userId.equals("")){
-			    	if (users.getUserId()!=null&&!"".equals(users.getUserId())) {
+			    	if (users.getUid()!=null&&!"".equals(users.getUid())) {
 			    	 strArray1=userId.split(",");
 			    	  for (int j = 0; j < strArray1.length; j++) {
-							if (users.getUserId().toString().equals(strArray1[j])) {
+							if (users.getUid().toString().equals(strArray1[j])) {
 								  list1.add(news);
 							}
 						}
@@ -212,10 +212,10 @@ public class NewServiceImpl implements NewService {
 				}
 				} String userId=news.getUserId();
 			     if (userId!=null&&!userId.equals("")){
-			    	if (users.getUserId()!=null&&!"".equals(users.getUserId())) {
+			    	if (users.getUid()!=null&&!"".equals(users.getUid())) {
 			    	 strArray1=userId.split(",");
 			    	  for (int j = 0; j < strArray1.length; j++) {
-							if (users.getUserId().toString().equals(strArray1[j])) {
+							if (users.getUid().toString().equals(strArray1[j])) {
 								  list1.add(news);
 							}
 						}
@@ -419,10 +419,10 @@ public class NewServiceImpl implements NewService {
 				}
 				 String userId=news.getUserId();
 			     if (userId!=null&&!userId.equals("")){
-			    	if (users.getUserId()!=null&&!"".equals(users.getUserId())) {
+			    	if (users.getUid()!=null&&!"".equals(users.getUid())) {
 			    	 strArray1=userId.split(",");
 			    	  for (int j = 0; j < strArray1.length; j++) {
-							if (users.getUserId().toString().equals(strArray1[j])) {
+							if (users.getUid().toString().equals(strArray1[j])) {
 								  list1.add(news);
 							}
 						}
