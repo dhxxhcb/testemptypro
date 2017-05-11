@@ -46,9 +46,9 @@ select{
     border: 1px solid #c0c0c0;
 }
 /**/
-textarea {
-    resize: none; /*不可以随意拖动*/
-}
+/*textarea {
+    resize: none; !*不可以随意拖动*!
+}*/
 
 /*防止拖动*/
 img {
