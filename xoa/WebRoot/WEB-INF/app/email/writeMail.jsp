@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</style>
 	</head>
 	<body>
-		<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+		<table class="TABLE" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
 			<tr class="append_tr">
 				<td width="10%"><fmt:message code="email.th.recipients" />：</td>
 				<td width="89%">
@@ -119,8 +119,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        	 $(function () {
        	 	$("#selectUser").on("click",function(){
        		 		$.popWindow("../common/selectUser");
-       		 		 
        		 	});
+             $('.TABLE').on('click','#selectUserO',function(){
+                 $.popWindow("../common/selectUser");
+             })
        		 ue.ready(function(){
        		 	var sId=$.getQueryString('sId');
 				var TYPE=$.getQueryString('type');
@@ -160,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 							}
 							if (TYPE==1&&data2.copyName!=''){
-                                var str1='<tr class="tian"><td>抄送：</td><td><textarea name="txt" id="copyName" disabled></textarea><span class="add_img"><span class="addImg"></span><a href="javascript:;" class="Add">添加</a><span class="add_img"><span class="addImg"><img src="img/org_select2.png" class="clearIcon"/></span><a href="javascript:;" class="clear">清除</a></span></td></tr>';
+                                var str1='<tr class="tian"><td>抄送：</td><td><textarea name="txt" id="copyName" disabled></textarea><span class="add_img"><span class="addImg"></span><a href="javascript:;" id="selectUserO" class="Add">添加</a><span class="add_img"><span class="addImg"><img src="img/org_select2.png" class="clearIcon"/></span><a href="javascript:;" class="clear">清除</a></span></td></tr>';
                                 $('.append_tr').after(str1);
 								$('.a1').text('隐藏抄送');
 							}

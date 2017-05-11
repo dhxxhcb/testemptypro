@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<!--其他邮件箱-->
-					<div class="other">
+					<%--<div class="other">
 						<a href="javascript:;" class="inbox_btn">
 							<div class="inbox_btn_tim div_up"><fmt:message code="email.title.othermailbox" /></div>
 						</a>
@@ -82,9 +82,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</div>
 						
-					</div>
+					</div>--%>
 					<!--邮件智能分类-->
-					<div class="classify">
+					<%--<div class="classify">
 						<a href="javascript:;" class="inbox_btn">
 							<div class="inbox_btn_tim div_up"><fmt:message code="email.title.mailsort" /></div>
 						</a>
@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li><a href="javascript:;"><span><fmt:message code="email.th.contract" /></span></a></li>
 							</ul>
 						</div>
-					</div>
+					</div>--%>
 					<!--邮箱设置-->
 					<div class="setUp">
 						<a href="javascript:;">
@@ -126,9 +126,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="up_header">
 					<div class="up_nav">
 						<ul>
-							<li><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li id="allEmail" style="margin-right: 27%;"><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
 							<%--<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>--%>
-							<li id="Replay" style="margin-left: 26%;"><img src="../img/icon_replay_03.png" class="im"/><fmt:message code="global.lang.reply" /></li>
+							<li id="Replay"><img src="../img/icon_replay_03.png" class="im"/><fmt:message code="global.lang.reply" /></li>
 							<li id="ReplayAll"><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
 							<li id="Forward"><img src="../img/icon_transmit_06.png" class="im"/><fmt:message code="email.th.transmit" /></li>
 							<%--<li onclick="clicked()"><img src="../img/icon_move_06.png" class="im"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>--%>
@@ -453,7 +453,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				showAjax2('drafts');
 				//草稿箱点击事件
 				$('#drafts').click(function(){
-					$('#delete').css('display','block').siblings().css('display','none');
+					$('#allEmail').css('display','block');
+					$('#delete').css('display','block');
+                    $('#Replay').css('display','none');
+                    $('#ReplayAll').css('display','none');
+                    $('#Forward').css('display','none');
 					if ($('.UP_INBOX').css('display')=='block'){
 						$('.UP_INBOX').hide();
 						$('.main').show().find('.drafts').show().siblings().hide();
@@ -509,7 +513,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//废纸篓点击事件
 				$('#wastebasket').click(function(){
-                    $('#delete').css('display','block').siblings().css('display','none');
+                    $('#allEmail').css('display','block');
+                    $('#delete').css('display','block');
+                    $('#Replay').css('display','none');
+                    $('#ReplayAll').css('display','none');
+                    $('#Forward').css('display','none');
                     if ($('.UP_INBOX').css('display')=='block'){
                         $('.UP_INBOX').hide();
                         $('.main').show().find('.wastebasket').show().siblings().hide();
