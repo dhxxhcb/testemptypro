@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 	<script>
 				function close_window(){
-					parent.opener.document.getElementById(parent.opener.user_id).value='admin';
+					parent.opener.document.getElementById(parent.opener.user_id).value='admin,';
 					parent.opener.document.getElementById(parent.opener.user_id).setAttribute('dataid','admin');
 					window.close();
 				}
