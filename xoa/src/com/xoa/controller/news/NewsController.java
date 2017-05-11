@@ -250,6 +250,15 @@ public class NewsController {
 		if (news.getTopDays()==null) {
 			news.setTopDays("");
 		}
+		if (news.getToId()==null) {
+			news.setToId("");
+		}
+		if (news.getUserId()==null) {
+			news.setUserId("");
+			
+		}if (news.getPrivId()==null) {
+			news.setPrivId("");
+		}
 		
 		try {
 			newService.sendNews(news);
