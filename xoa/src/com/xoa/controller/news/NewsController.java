@@ -90,7 +90,7 @@ public class NewsController {
 		return "/app/news/newsManage";
 	}
 
-	@RequestMapping(value = "/NewsManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/newsManage", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	ToJson<News> showManage(
 			@RequestParam(value = "typeId", required = false) String typeId,
