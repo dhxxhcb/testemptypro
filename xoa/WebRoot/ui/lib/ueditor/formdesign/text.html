@@ -173,6 +173,7 @@ dialog.onok = function (){
             }
             //oNode.setAttribute('style',style );
             //oNode.style.cssText=style;//ie7
+            console.log(oNode.outerHTML);
             editor.execCommand('insertHtml',oNode.outerHTML);
         } catch (e) {
             try {

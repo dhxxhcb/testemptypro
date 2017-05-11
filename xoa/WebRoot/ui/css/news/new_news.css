@@ -280,8 +280,10 @@ td {
       	 
       }
   /* 新建新闻页面的多选框 */  
-  #input1 {
-  	width：12px;
+  #input1{
+  	width:12px;
   	height:12px;
   }
-    
+ /* .texta {
+      resize: none;
+  }*/

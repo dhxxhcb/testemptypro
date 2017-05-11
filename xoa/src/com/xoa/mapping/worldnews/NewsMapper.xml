@@ -48,7 +48,7 @@
 	<!-- 查询信息并返回 列表 -->
 	<select id="selectNews" parameterType="Map" resultMap="BaseResultMap">
 	select
-		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID,n.PUBLISH
+		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME
 		FROM
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
@@ -85,12 +85,15 @@
 	</select>
 	<!-- 查询新闻管理信息并返回 列表 -->
 	<select id="selectNewsManage" parameterType="Map" resultMap="BaseResultMap">
-		select
-		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID,n.PUBLISH
+	select
+		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME
 		FROM
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
-	     	<if test="format != null and format != ''">
+			<if test="nTime != null and nTime != ''">
+				AND DATE(NEWS_TIME) = #{nTime}
+			</if>
+			<if test="format != null and format != ''">
 				 AND FORMAT = #{format}
 			</if>
 			<if test="typeId != null and typeId != ''">
@@ -107,7 +110,7 @@
 			</if>
 			<if
 				test="newsTime != null and newsTime != '' and lastEditTime != null and lastEditTime != ''">
-				AND NEWS_TIME between #{newsTime} and #{lastEditTime}
+				AND DATE(NEWS_TIME) between #{newsTime} and #{lastEditTime}
 			</if>
 			<if test="content != null and content != ''">
 				AND CONTENT like CONCAT('%',#{content},'%')
@@ -116,12 +119,12 @@
 				test="clickCount != null and clickCount != '' and click != null and click != ''">
 				AND CLICK_COUNT between #{clickCount} and #{click}
 			</if>
-			ORDER BY NEWS_TIME ASC
+		ORDER BY NEWS_TIME ASC
 	</select>
 	<!-- 查询未读已读信息并返回 列表 -->
 	<select id="unreadNews" parameterType="Map" resultMap="BaseResultMap">
 select
-		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID,n.PUBLISH
+		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME
 		FROM
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
@@ -160,7 +163,7 @@ select
 	<!-- 查询未读已读信息并返回 列表 -->
 	<select id="readNews" parameterType="Map" resultMap="BaseResultMap">
 		select
-		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID,n.PUBLISH
+		n.NEWS_ID,n.`SUBJECT`,n.TYPE_ID,n.NEWS_TIME,n.CLICK_COUNT,n.PROVIDER,n.CONTENT,n.READERS,u.USER_NAME,s.CODE_NAME,n.PRIV_ID,n.USER_ID,n.TO_ID,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME
 		FROM
 		news n,`user` u,sys_code s WHERE n.PROVIDER=u.USER_ID and
 		s.PARENT_NO='NEWS' and s.CODE_ORDER=n.TYPE_ID
@@ -443,73 +446,73 @@ select
 		#{newsId} -->
 		 update news
     <set >
-      <if test="subject != null" >
+      <if test="subject != null and subject != ''" >
         SUBJECT = #{subject},
       </if>
-      <if test="provider != null" >
+      <if test="provider != null and provider != ''" >
         PROVIDER = #{provider},
       </if>
-      <if test="newsTime != null" >
+      <if test="newsTime != null and newsTime != ''" >
         NEWS_TIME = #{newsTime},
       </if>
-      <if test="clickCount != null" >
+      <if test="clickCount != null and clickCount != ''" >
         CLICK_COUNT = #{clickCount},
       </if>
-      <if test="anonymityYn != null" >
+      <if test="anonymityYn != null and anonymityYn != ''" >
         ANONYMITY_YN = #{anonymityYn},
       </if>
-      <if test="format != null" >
+      <if test="format != null and format != ''" >
         FORMAT = #{format},
       </if>
-      <if test="typeId != null" >
+      <if test="typeId != null and typeId != ''" >
         TYPE_ID = #{typeId},
       </if>
-      <if test="publish != null" >
+      <if test="publish != null and publish != ''" >
         PUBLISH = #{publish},
       </if>
-      <if test="top != null" >
+      <if test="top != null and top != ''" >
         TOP = #{top},
       </if>
-      <if test="lastEditor != null" >
+      <if test="lastEditor != null and lastEditor != ''" >
         LAST_EDITOR = #{lastEditor},
       </if>
-      <if test="lastEditTime != null" >
+      <if test="lastEditTime != null and lastEditTime != ''" >
         LAST_EDIT_TIME = #{lastEditTime},
       </if>
-      <if test="subjectColor != null" >
+      <if test="subjectColor != null and subjectColor != ''" >
         SUBJECT_COLOR = #{subjectColor},
       </if>
-      <if test="keyword != null" >
+      <if test="keyword != null and keyword != ''" >
         KEYWORD = #{keyword},
       </if>
-      <if test="topDays != null" >
+      <if test="topDays != null and topDays != ''" >
         TOP_DAYS = #{topDays},
       </if>
-      <if test="content != null" >
+      <if test="content != null and content != ''" >
         CONTENT = #{content},
       </if>
-      <if test="attachmentId != null" >
+      <if test="attachmentId != null and attachmentId != ''" >
         ATTACHMENT_ID = #{attachmentId},
       </if>
-      <if test="attachmentName != null" >
+      <if test="attachmentName != null and attachmentName != ''" >
         ATTACHMENT_NAME = #{attachmentName},
       </if>
-      <if test="toId != null" >
+      <if test="toId != null and toId != ''" >
         TO_ID = #{toId},
       </if>
-      <if test="privId != null" >
+      <if test="privId != null and privId != ''" >
         PRIV_ID = #{privId},
       </if>
-      <if test="userId != null" >
+      <if test="userId != null and userId != ''" >
         USER_ID = #{userId},
       </if>
-      <if test="readers != null" >
+      <if test="readers != null and readers != ''" >
         READERS = #{readers},
       </if>
-      <if test="compressContent != null" >
+      <if test="compressContent != null and compressContent != ''" >
         COMPRESS_CONTENT = #{compressContent},
       </if>
-      <if test="summary != null" >
+      <if test="summary != null and summary != ''" >
         SUMMARY = #{summary},
       </if>
     </set>

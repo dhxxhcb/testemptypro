@@ -18,7 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/base.css" />     
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />
+
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
@@ -29,7 +30,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
 
-		
 </head>
 <body>
 <div class="bx">
@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <%--<fmt:message code="news.title.query"/>--%>
            公告查询
            </span></li>
-            <li data_id="2"><span class="headli4">
+            <li data_id="2" style="display:none;"><span class="headli4">
                <%--<fmt:message code="news.title.query"/>--%>
            公告统计
            </span></li>
@@ -70,11 +70,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            </div>  
              <select name="TYPE" class="button1 nav_type" id="select">
 				<option value="0" selected="">所有类型</option>
-				<option value="01">决定</option>
-				<option value="02">通知</option>
-				<option value="03">通报</option>
-				<option value="04">其他</option>
-				<option value="">无类型</option>
+				<option tid="01">决定</option>
+				<option tid="02">通知</option>
+				<option tid="03">通报</option>
+				<option tid="04">其他</option>
+				<option tid="">无类型</option>
 			</select>
 			 <div id="cx" class="submit">
                     <fmt:message code="global.lang.query"/>
@@ -122,11 +122,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
             <!-- <div class="nav_t3">选择格式 -->
              <div class="nav_t3" > 
-            	<select name="" class="sel">
-                    <option value="" selected="">选择格式</option>
-                    <option value="">普通格式</option>
-                    <option value="">MHT格式</option>
-                    <option value="">超级链接</option>
+            	<select name="" class="sel" id="add_sel">
+
+                    <option value="0" selected>普通格式</option>
+                    <option value="1">MHT格式</option>
+                    <option value="2">超级链接</option>
                 </select>
             </div>
         </div>
@@ -134,19 +134,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tbody>
         <tr>
             <td class="td_w">
-                <select name="" class="">
-                    <option value="" selected="">选择公告类型</option>
-                    <option value="">决定</option>
-                    <option value="">通知 </option>
-                    <option value="">通报</option>
-                    <option value="">其他</option>
+                <select name="" class="type_notice" id="add_type_notice">
+                    <option value="">选择公告类型</option>
+                    <option value="01">决定</option>
+                    <option value="02">通知</option>
+                    <option value="03">通报</option>
+                    <option value="04">其他</option>
                 </select>
             </td>
             <td>
                 <div class="td_title1">
                     <!-- 需调整 -->
-                    <input type="text" name="titileTime" id="titileTime"  style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;"
-                           placeholder="请输入发布时间..." >
+                    <input type="text" name="titileTime" id="add_titileTime"  style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;"
+                           placeholder="请输入标题..." >
                     <!-- 后续需要调整 -->
                     <button ></button>
                     <%--请输入发布时间...--%>
@@ -159,9 +159,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 按部门发布：
             </td>
             <td>
-                <div class="td_title1  release1"></div>
+                <textarea readonly="readonly" class=" td_title1  release1" id="add_texta"  dataid=""   resize="auto" ></textarea>
                 <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
-                <div class="release3">添加</div>
+                <div class="release3" >添加</div>
                 <div class="release4 empty">清空</div>
             </td>
         </tr>
@@ -175,9 +175,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 按人员发布：
             </td>
             <td>
-                <div class="td_title1  release1"></div>
+                <textarea readonly="readonly" id="add_selectUser" class="td_title1  release1"></textarea>
                 <img class="td_title2 release3" src="../img/mg2.png" alt=""/>
-                <div class="release3">添加</div>
+                <div class="release3" id="add_selectUserbtn">添加</div>
                 <div class="release4 empty">清空</div>
             </td>
         </tr>
@@ -186,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 按角色发布：
             </td>
             <td>
-                <div class="td_title1  release1"></div>
+                <textarea readonly="readonly" class="td_title1  release1"></textarea>
                 <img class="td_title2 release4" src="../img/mg2.png" alt=""/>
                 <div class="release3">添加</div>
                 <div class="release4 empty">清空</div>
@@ -194,16 +194,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <!--- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
 
-
         <tr>
-            <td class="blue_text">
-                发布时间：
-            </td>
+            <td class="blue_text">发布时间：</td>
             <td>
                 <div class="td_title1">
                     <!-- 需引入时间插件 -->
-                    <input type="text"  name="publishTime" class="publishTime"
-                            style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
+                    <input type="text" id="add_newDate"  name="publishTime" class="publishTime" style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
                 </div>
                 <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
 
@@ -212,17 +208,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
 
         <tr>
-            <td class="blue_text">
-                有效期：
-            </td>
+            <td class="blue_text">有效期：</td>
             <td>
                 <div class="td_title1">
                     <!-- 引入时间控件 和 css 调整  -->
-                    <input type="text"  name="startTime" class="startTime"
-                           style="height: 20px; width: 50px; margin-left: -4.2px; margin-top: -1px;">
+                    <input type="text"  name="startTime" id="start_add" class="startTime" style="height: 20px; width: 50px; margin-left: -4.2px; margin-top: -1px;">
                     至
-                    <input type="text"  name="endTime" class="endTime"
-                           style="height: 20px;width: 50px;  margin-top: -1px;">
+                    <input type="text"  name="endTime" id="end_add" class="endTime" style="height: 20px;width: 50px;  margin-top: -1px;">
                     为空为手动终止
                 </div>
             </td>
@@ -230,23 +222,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         <!-- 复选框样式调整  -->
         <tr>
-            <td class="blue_text">
-                事物提醒：
-            </td>
+            <td class="blue_text">事物提醒：</td>
             <td class="remind">
                 <div class="news_t">
-                    <input type="checkbox" name="remind" >发送事务提醒消息
+                    <input type="checkbox" name="remind" ><h1>发送事务提醒消息</h1>
                 </div>
-                <div>
-                    <input type="checkbox" name="remind" >分享到企业社区
+                <div class="news_two">
+                    <input type="checkbox" name="remind" ><h1>分享到企业社区</h1>
                 </div>
             </td>
         </tr>
 
         <tr>
-            <td class="blue_text">
-                置顶：
-            </td>
+            <td class="blue_text">置顶：</td>
             <td class="top_box">
                 <div>
                     <input type="checkbox" name="textTop" id="textTop" class="textTop">
@@ -260,23 +248,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
         <tr>
-            <td class="blue_text">
-                内容简介：
-            </td>
+            <td class="blue_text">内容简介：</td>
             <td class="abstract">
                 <div class="abstract1">
-                    <input type="text"  name="summny" class="summny"
-                           style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
-                    </div>
+                    <input type="text"  name="summny" id="add_summny" class="summny" style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
+                </div>
                 <div class="abstract2">(最多输入39个字)</div>
             </td>
         </tr>
 
         <!-- 需调整 -->
         <tr>
-            <td class="blue_text">
-                附件与权限：
-            </td>
+            <td class="blue_text">附件与权限：</td>
             <td class="enclosure">
                 <div><img src="../img/mg11.png" alt=""/></div>
                 <div class="enclosure_t">添加附件</div>
@@ -296,23 +279,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
 
-
-
-
-
-
-
-
-
-
-
-
-        <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
-        <!---   上面字段 和 表格已添加 ，需要调整相关css  -->
         <!--word编辑器-->
         <tr>
             <td colspan="2">
-				<script id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script>
+				<div id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></div>
             </td>
         </tr>
         <tr>
@@ -322,14 +292,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="keyword">
                 <div class="keyword_ip">请输入关键字</div>
                 <div class="keyword_t">自动获取关键字</div>
-                <div>（您可以调整关键字内容，多个关键词请用" , "分割）</div>
+                <div>您可以调整关键字内容多个关键词请用分割</div>
         </tr>
         </tbody>
         
     </table>
     <div class="foot_mg">
-        <img class="fot_1" src="../img/mg5.png" alt=""/>
-        <img src="../img/mg6.png" alt=""/>
+        <div  id="hd" type="publish" class="fot_1 btn_ok">发布</div>
+        <div  id="rs" type="save" class="btn_ok">保存</div>
     </div>
 </div>
 </div>
@@ -337,103 +307,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <!--content部分结束-->
-	<!-- <div class="login">
-	        <div class="header">输入查询条件</div>
-	        <div class="middle">
-	            <div class="le publisher">
-	                <div class="color"style="width:105px;">发布人：</div>
-	                <div><input style="height:50px;width:279px;margin-left:0px;margin-right: 15px;" type="text" /></div>
-	                <div style="margin-right:23px; color:#207BD6">添加</div>
-	                <div>清空</div>
-	            </div>
-	            <div class="le subject">
-	                <div class="color"style="width:105px;">标题：</div>
-	                <div><input id="subject" style="height:26px;width:279px;margin-left:0px;margin-right: 15px;" type="text"/></div>
-	            </div>
-				<div class="le date">
-	                <div class="color"style="width:105px;">发布日期：</div>
-	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:0px;margin-right: 11px;" type="text"/></div>
-	                <div class="color">至</div>
-	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
-	            </div>
-	           	<div class="le ce1">
-	                <div class="color"style="width:105px;">类型：</div>
-	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:0px;" class="button1" style="float: left;" id="select">
-							<option value="0" selected="">所有类型</option>
-							<option value="01">公司动态</option>
-							<option value="02">媒体关注</option>
-							<option value="03">行业资讯</option>
-							<option value="04">合作伙伴新闻</option>
-							<option value="05">客户新闻</option>
-							<option value="">无类型</option>
-						</select>
-					</div>
-	
-	            </div>
-	            <div class="le ce2">
-	                <div class="color">内容:</div>
-	                <div><input id="content"  style="height:25px;width:279px;margin-left:80px;" type="text"/></div>
-	
-	            </div>
-	        </div>
-	        <div class="icons">
-	            <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
-	            <img style="margin-right:30px; cursor: pointer;"  src="../img/4query.png" alt=""/>
-	            <img style=" cursor: pointer;" src="../img/5query.png" alt=""/>
-	        </div>
-	    </div> -->
-	</div>
-    
-   <!--  <div class="center" style="width:100%;margin-top: 50px;display: none;"> -->
-   <!-- <div class="center" id="qt">
-    	 <div class="login">
-	        <div class="header">输入查询条件</div>
-	        <div class="middle">
-	            <div class="le publisher">
-	                <div class="color"style="width:105px;">发布人：</div>
-	                <div><input style="height:50px;width:279px;margin-left:0px;margin-right: 15px;" type="text" /></div>
-	                <div style="margin-right:23px; color:#207BD6">添加</div>
-	                <div>清空</div>
-	            </div>
-	            <div class="le subject">
-	                <div class="color"style="width:105px;">标题：</div>
-	                <div><input id="subject" style="height:26px;width:279px;margin-left:0px;margin-right: 15px;" type="text"/></div>
-	            </div>
-				<div class="le date">
-	                <div class="color"style="width:105px;">发布日期：</div>
-	                <div><input id="beginTime" style="height:24px;width:119px;margin-left:0px;margin-right: 11px;" type="text"/></div>
-	                <div class="color">至</div>
-	                <div> <input id="endTime" style="height:24px;width:119px;margin-left:11px;" type="text"/></div>
-	            </div>
-	           	<div class="le ce1">
-	                <div class="color"style="width:105px;">类型：</div>
-	                <div>            
-		                <select name="TYPE" style="height:24px;width:119px;margin-left:0px;" class="button1" style="float: left;" id="select">
-							<option value="0" selected="">所有类型</option>
-							<option value="01">公司动态</option>
-							<option value="02">媒体关注</option>
-							<option value="03">行业资讯</option>
-							<option value="04">合作伙伴新闻</option>
-							<option value="05">客户新闻</option>
-							<option value="">无类型</option>
-						</select>
-					</div>
-	
-	            </div>
-	            <div class="le ce2">
-	                <div class="color">内容:</div>
-	                <div><input id="content"  style="height:25px;width:279px;margin-left:80px;" type="text"/></div>
-	
-	            </div>
-	        </div>
-	        <div class="icons">
-	            <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
-	            <img style="margin-right:30px; cursor: pointer;"  src="../img/4query.png" alt=""/>
-	            <img style=" cursor: pointer;" src="../img/5query.png" alt=""/>
-	        </div>
-	    </div>
-    </div> -->
+
     
     <!-- 新闻查询 -->
     <div class="center" id="qt">
@@ -461,7 +335,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="le date">
                 <div class="color" style="width:105px;"><fmt:message code="notice.title.Releasedate"/> ：</div>  
-                <input id="beginTime "class="input_text3" type="text"/>
+                <input id="beginTime"class="input_text3" type="text"/>
                 <div class="color">
                     <fmt:message code="global.lang.to"/>
                 </div>
@@ -516,7 +390,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--footer部分结束-->
 </div>
 <script>
+    user_id='';
 $(function () {
+    $('#add_selectUserbtn').click(function(){
+        user_id='add_selectUser';
+        $.popWindow("../common/selectUser");
+    });
+
+
+
 			/* word文本编辑器 */
 			 var ue = UE.getEditor('container');
 		 
@@ -589,16 +471,16 @@ $(function () {
                         		if(data.obj[i].userId != ""){
                         			toTypeName+=",用户";
                         		}
-                               	 news ="<tr><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
+                               	 news ="<tr notifyId="+data.obj[i].notifyId+"><td><input  id='input1' name='' type='checkbox' value=''/></td>"+
                                	       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+toTypeName+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
+                                       "<td class='title' notifyId="+data.obj[i].notifyId+"><a href='#'  class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
                                        "<td>"+"生效</td>"+//状态
-                                       "<td>"+"修改  管理评论  终止  删除</td>"+//操作
+                                       "<td>"+"修改    删除</td>"+//操作
                                        news;
                            }
                            
@@ -629,10 +511,12 @@ $(function () {
 							    }
 							});
             }
-            /* 新闻详情页 */
-               $("#j_tb").on('click','.windowOpen',function(){
-		            var nid=$(this).attr('newsId');
-		            $.popWindow('detail?newsId='+nid);
+            /*公告详情页 */
+               $("#j_tb").on('click','.title',function(){
+                   alert('111');
+		            var nid=$(this).attr('notifyId');
+		            alert(nid);
+		            $.popWindow('detail?notifyId='+nid);
 		        });
 		        /* 新闻查询按钮 */
         		$('.submit').click(function (){
@@ -644,30 +528,64 @@ $(function () {
 				});
 				//时间控件调用
   
-   $('#btn_query').click(function (){
-		
-		data.subject = $('#subject').val();
-		data.beginTime = $('#beginTime').val();
-		data.endTime = $('#endTime').val();
-		data.typeId =  $('#select').val()==0?'':$('#select').val();
-		data.content = $('#content').val();
-		initPageList();
-		$('.step1').show();
-		$('.center').hide();
-	});
+       $('#btn_query').click(function (){
+
+            data.subject = $('#subject').val();
+            data.beginTime = $('#beginTime').val();
+            data.endTime = $('#endTime').val();
+            data.typeId =  $('#select').val()==0?'':$('#select').val();
+            data.content = $('#content').val();
+            initPageList();
+            $('.step1').show();
+            $('.center').hide();
+        });
+
+       //新建公告通知
+
+        $('.fot_1').on('click',function(){
+         var data={
+         subject:$('#add_titileTime').val(),
+             toId:$('#add_texta').val(),
+             format:$('#add_sel option:checked').attr('value'),
+             typeId:$('#add_type_notice option:checked').attr('value'),
+             userId:'',
+             privId:'',
+             sendTime:$('#add_newDate').val(),
+             beginDate:$('#start_add').val(),
+             endDate:$('#end_add').val(),
+             top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
+             topDays:$('#textDay').val(),
+             summary:$('#add_summny').val,
+             content:ue.getContent(),
+         }
+         })
+         function add_notice(){
+         $.ajax({
+         type: "get",
+         url: "<%=basePath%>notice/addNotify",
+         dataType: 'JSON',
+         data: data,
+         success: function (data) {
+
+         }
+
+         });
+         }
+
+
 });
-	 laydate({
-     elem: '#sendTime', //目标元素。
-     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
-     istime: true, //显示时、分、秒
-   });
+    laydate({
+         elem: '#add_newDate', //目标元素。
+         format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+         istime: true, //显示时、分、秒
+    });
    
-   //时间控件调用
+   //查询公告时间控件调用
    var start = {
      elem: '#beginTime',
      format: 'YYYY/MM/DD hh:mm:ss',
-    /* min: laydate.now(), //设定最小日期为当前日期*/
-    /* max: '2099-06-16 23:59:59', //最大日期*/
+    min: laydate.now(), //设定最小日期为当前日期
+    max: '2099-06-16 23:59:59', //最大日期
      istime: true,
      istoday: false,
      choose: function(datas){
@@ -678,17 +596,49 @@ $(function () {
    var end = {
      elem: '#endTime',
      format: 'YYYY/MM/DD hh:mm:ss',
-     /*min: laydate.now(),*/
-     /*max: '2099-06-16 23:59:59',*/
+     min: laydate.now(),
+     max: '2099-06-16 23:59:59',
      istime: true,
      istoday: false,
      choose: function(datas){
        start.max = datas; //结束日选好后，重置开始日的最大日期
      }
    };
+
+    /*新建公告时间控件调用*/
+
+    var starts = {
+        elem: '#start_add',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas; //将结束日的初始值设定为开始日
+        }
+    };
+    var ends = {
+        elem: '#end_add',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        min: laydate.now(),
+        max: '2099-06-16 23:59:59',
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            start.max = datas; //结束日选好后，重置开始日的最大日期
+        }
+    };
+
    laydate(start);
    laydate(end);
+    laydate(starts);
+    laydate(ends);
+
 </script>
+
+
 </body>
 
 

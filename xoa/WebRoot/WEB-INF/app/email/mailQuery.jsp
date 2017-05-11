@@ -25,9 +25,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			#btn{display: block;margin: 0 auto;outline: none;border: none;border-radius: 3px;padding: 3px 8px;cursor: pointer;}
 			#btn:hover{background-color: #9fbdee;color: #fff;}
 			.tac table{border-color:#ddd;}
-			.tac table tr th{padding: 5px 5px;border-color: #ddd;font-size:16px;font-weight: normal;}
-			.tac table tr td{padding: 5px 5px;border-color: #ddd;}
-			.tac table tr td #but{cursor: pointer;margin-left:50%;}
+			.tac table tr th{padding: 5px 5px;border-color: #ddd;font-size:14px;font-weight: normal;}
+			.tac table tr td{padding: 5px 5px;border-color: #ddd;font-size: 12px;text-align:center;}
+			.tac table tr td a{text-decoration: none;}
+			.tac table tr td #but{cursor: pointer;}
+			.tac table tr:last-of-type td{text-align: right;}
+			.Hover td img{width: 16px;}
+			.Hover td:last-of-type img{width: 18px}
 		</style>
 	</head>
 	<body>

@@ -120,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="up_header">
 					<div class="up_nav">
 						<ul>
-							<li onclick="clicked()"><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
+							<li><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
 							<%--<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>--%>
 							<li id="Replay" style="margin-left: 26%;"><img src="../img/icon_replay_03.png" class="im"/><fmt:message code="global.lang.reply" /></li>
 							<li id="ReplayAll"><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
@@ -438,6 +438,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//收件箱点击事件
 				$('#InBox').click(function(){
+					$('.up_nav').find('li').css('display','block');
 					$('.InBox').css('display','block').siblings().css('display','none');
 					showAjax('inbox','#TAB','.article');
 					
@@ -446,6 +447,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				showAjax2('drafts');
 				//草稿箱点击事件
 				$('#drafts').click(function(){
+					$('#delete').css('display','block').siblings().css('display','none');
 					if ($('.UP_INBOX').css('display')=='block'){
 						$('.UP_INBOX').hide();
 						$('.main').show().find('.drafts').show().siblings().hide();
@@ -479,7 +481,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//已发送点击事件
 				$('#hasBeenSend').click(function(){
-
+					$('#Forward').css('display','block');
+                    $('#delete').css('display','block');
+                    $('#Replay').css('display','none');
+                    $('#ReplayAll').css('display','none');
                     if ($('.UP_INBOX').css('display')=='block'){
                         $('.UP_INBOX').hide();
                         $('.main').show().find('.hasBeenSend').show().siblings().hide();
@@ -498,6 +503,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//废纸篓点击事件
 				$('#wastebasket').click(function(){
+                    $('#delete').css('display','block').siblings().css('display','none');
                     if ($('.UP_INBOX').css('display')=='block'){
                         $('.UP_INBOX').hide();
                         $('.main').show().find('.wastebasket').show().siblings().hide();

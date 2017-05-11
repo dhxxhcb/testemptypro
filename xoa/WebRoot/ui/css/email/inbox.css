@@ -53,6 +53,7 @@ ul{
 /*	height: 40px;*/
 	margin: 0 auto;
 	margin-top: 13px;
+	cursor: pointer;
 }
 .page .page_left .write .d_im img{
 	width: 100%;
