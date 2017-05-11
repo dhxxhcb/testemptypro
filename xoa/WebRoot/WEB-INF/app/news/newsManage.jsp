@@ -234,7 +234,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div>
 	                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
 						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
-						<a id="uploadimg">添加附件</a>
+						<a id="uploadimg" style="cursor: pointer;">添加附件</a>
 					</form>
 				</div>
                 <div><img class="left_img" src="../img/mg12.png" alt=""/></div>
@@ -469,7 +469,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tbody>
         <tr>
             <td colspan="2" class="query_title">
-                输入查询条件：
+                输入查询条件
             </td>
         </tr>
         <tr>
@@ -785,7 +785,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			     var data = {
 		           		"newsId":attR
 		           	};
-		           	
+		           	/* 调用插件弹窗 */
 		           	var msg='是否确认删除?';
 					if (confirm(msg)==true){
 					    $.ajax({
@@ -868,7 +868,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							"content":  sue.getContent(),//  新闻内容							
 							"toId":  $("#step3_ip2").val(),//发布部门	
 							"anonymityYn": $("#anonymityYn_").val(), //评论类型(0-实名评论,1-匿名评论,2-禁止评论)							
-							"format":$("#format_").val(),//新闻格式(0-普通格式,1-MHT格式,2-超链接)
+							"format":$("#format_ option:checked").attr('value'),//新闻格式(0-普通格式,1-MHT格式,2-超链接)
 							"typeId":$("#query_typeId").val(),
 							"publish":0,  // 发布标识(0-未发布,1-已发布,2-已终止)							
 							"top":$("top_").eq(0).is(':checked')==false?0:1,//是否置顶(0-否,1-是)
