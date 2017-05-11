@@ -77,18 +77,20 @@
 .total .table_b div {
     display: inline-block;
     float: left;
-    height:25px;
-    line-height:25px;
+    height:30px;
+    line-height:30px;
     width:56px;
     text-align: center;
     margin-right:15px;
-    border: 1px solid #c0c0c0;
-    border-radius: 5px;
-    background: #F4F4F4;
+   /*   border: 1px solid #c0c0c0;
+    border-radius: 5px;  */
+    background: url(../../img/gobbing.png) no-repeat;
     cursor:pointer;
+    padding-left:20px;
 }
 .total .table_b .bt {
     margin-left: 38%;
+    background: url(../../img/confirm.png) no-repeat;
 }
 .total color_{
 	font-size: 14px;

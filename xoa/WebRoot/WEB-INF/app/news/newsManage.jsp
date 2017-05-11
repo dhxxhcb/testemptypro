@@ -402,7 +402,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div><img src="../img/mg11.png" alt=""/></div>
                <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
                 <div>
-	                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
+	                <form id="uploadimgform_" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
 						<input type="file" name="file" id="uploadinputimg_"  class="w-icon5" style="display:none;">
 						<a id="uploadimg_">添加附件</a>
 					</form>
@@ -623,7 +623,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 				console.log(file);
 				if(file){
-					$.upload($('#uploadimgform'),function(res){
+					$.upload($('#uploadimgform_'),function(res){
 						console.log(res);
 						var str = "";
 						var str1="";
@@ -864,8 +864,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             "summary":'1',//新闻内容简介  */
                            "attachmentId":aId_,//附件ID串
                       		"attachmentName":uId_,//附件名称串
-                        	"privId":$("#privId_").val(),//发布 -
-                         	"userId":$("#userId_").val(),//发布用户 -
+                        	"privId":$("#privId_").attr("dataid"),//发布 -
+                         	"userId":$("#userId_").attr("dataid"),//发布用户 -
                          	"readers": ''//发布角色 						           		
 			           	}; 
 			            console.log(data);
