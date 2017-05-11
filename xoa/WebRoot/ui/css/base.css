@@ -354,6 +354,7 @@ tr {
 		}
 		input{
      		border: 1px solid #ccc;
+     		    width: 12px;
      	}
      	/* 查询输入框 */
      	#input_text1 {
