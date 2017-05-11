@@ -19,9 +19,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <link rel="stylesheet" type="text/css" href="css/workflow/index.css"/>
-    <script type="text/javascript" src="js/jquery-1.9.1.js" ></script>
-    <script type="text/javascript" src="js/index.js" ></script>
+    <link rel="stylesheet" type="text/css" href="../../css/workflow/index.css"/>
+    <script type="text/javascript" src="../../js/jquery-1.9.1.js" ></script>
+    <script type="text/javascript" src="../js/index.js" ></script>
     <title>s首页</title>
 </head>
 <body>
@@ -41,8 +41,8 @@
             <div class="left_all">
                 <h1 class="sort">流程分类</h1>
                 <ul class="ul_all">
-                    <li><img src="img/workflow/wenjian.png"><h1>公文管理</h1></li>
-                    <li><img src="img/workflow/wenjian.png"><h1>公文管理</h1>
+                    <li><img src="/../img/workflow/wenjian.png"><h1>公文管理</h1></li>
+                    <li><img src="../img/workflow/wenjian.png"><h1>公文管理</h1>
                         <!-- <ul class="two_ul> -->
 
                         <!-- <li><img src="img/wenjian.png"><h1>差旅管理</h1></li> -->
@@ -50,10 +50,10 @@
 
                         <!-- </ul> -->
                     </li>
-                    <li><img src="img/workflow/wenjian.png"><h1>公文管理</h1></li>
-                    <li><img src="img/workflow/wenjian.png"><h1>公文管理</h1></li>
-                    <li><img src="img/workflow/wenjian.png"><h1>公文管理</h1></li>
-                    <li><img src="img/workflow/wenjian.png"><h1>公文管理</h1></li>
+                    <li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1></li>
+                    <li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1></li>
+                    <li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1></li>
+                    <li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1></li>
                 </ul>
             </div>
 
