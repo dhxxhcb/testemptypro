@@ -132,7 +132,6 @@ public class FileController {
 		String userId=session.getAttribute("userId").toString();
 		String userPriv=session.getAttribute("userPriv").toString();
 		String deptId=session.getAttribute("deptId").toString();
-		System.out.println("-----------------------"+userId+"---"+userPriv+"---"+deptId);
 		Map<String,Object> map=new Hashtable<String, Object>();
 		map.put("userId", userId);
 		map.put("userPriv", userPriv);
@@ -451,8 +450,24 @@ public class FileController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		// "redirect:/showFile" "file/showFile"
+		HttpSession session=request.getSession();
+		String userId=session.getAttribute("userId").toString();
+		String userPriv=session.getAttribute("userPriv").toString();
+		String deptId=session.getAttribute("deptId").toString();
+		Map<String,Object> map=new Hashtable<String, Object>();
+		map.put("userId", userId);
+		map.put("userPriv", userPriv);
+		map.put("deptId", deptId);
 		file.setSortType("5");
 		List<FileSortModel> list = fileSortService.getFileSortList(file);
+		Iterator<FileSortModel> iteratorChr=list.iterator();
+		 while(iteratorChr.hasNext()){
+					 FileSortModel fsm=iteratorChr.next();
+					//将权限字符串传到checkAll 返回为true时 有权限 为false时无权限
+					if(!this.checkAll(fsm.getUserId(),map)){
+						iteratorChr.remove();
+			      }
+		   }
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("parentList", list);
 		ModelAndView modelAndView = new ModelAndView("app/file/fileSet", model);

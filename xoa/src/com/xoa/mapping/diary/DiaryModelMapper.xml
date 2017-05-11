@@ -152,7 +152,7 @@
         ATTACHMENT_ID=#{attachmentId},
       </if>
       <if test="attachmentName != null" >
-        ATTACHMENT_NAME=, #{attachmentName},
+        ATTACHMENT_NAME=#{attachmentName},
       </if>
       <if test="toId != null" >
         TO_ID= #{toId},
