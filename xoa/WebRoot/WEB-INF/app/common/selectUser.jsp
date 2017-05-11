@@ -186,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					};
 					parent.opener.document.getElementById(parent.opener.user_id).value=selectItemsName;
 					parent.opener.document.getElementById(parent.opener.user_id).setAttribute('dataid',selectItemsId);
-					//window.close();
+					window.close();
 				}
 		$(function(){
 				//组织
