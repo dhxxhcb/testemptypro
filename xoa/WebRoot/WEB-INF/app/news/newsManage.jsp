@@ -328,7 +328,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <input class="td_title1  release1 toId" type="text"id="userId_"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3">添加</div>
+                <div class="release3" id="adduser_">添加</div>
                 <div class="release4 empty">清空</div>
             </td>
         </tr>
@@ -732,7 +732,7 @@ $(function () {
 			       			},		                   
 		                   success:function(data){
 		                        $('#step3_type  option:checked').attr(data.object.codes.codeName),//类型
-								$("#step3_ip2").val(data.object.providerName); //发布人
+								$("#step3_ip2").val(); //发布人
 								$("#step3_ip4").val();//发布范围 
 								$("#step3_ip1").val(data.object.subject);//标题	
 								$("#anonymityYn  option:checked").attr(data.object.anonymityYn),//类型					
@@ -809,7 +809,13 @@ $(function () {
 			            		console.log(e);			            		
 		            		}   		                  
 		                });      
-			        });  
+			        }); 
+			        /* 选人控件修改页面 */
+			        $("#adduser_").on("click",function(){
+   					user_id = "privId_";
+       		 		$.popWindow("../common/selectUser");
+       		 		 
+       		 		}); 
 		        
 				var now = null;
 		        
