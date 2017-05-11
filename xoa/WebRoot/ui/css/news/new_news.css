@@ -194,7 +194,7 @@ td {
 
 .enclosure div {
     display: inline-block;
-    float: left;
+   /*  float: left; */
     color: #207bd6;
     font-size: 14px;
     
@@ -202,6 +202,9 @@ td {
 .enclosure div img {
 	/* vertical-align:middle; */
 	    margin-top: -7px;
+}
+.enclosure div .left_img {	
+	margin-left:17px;
 }
 
 .enclosure_t {
@@ -249,8 +252,14 @@ td {
         margin-top: 10px;
         margin-bottom: 10px;
     }
-    .foot_mg .fot_1 {
+  /*   .foot_mg .fot_1 {
         margin-right: 40px;
+        width:30px;
+        height:20
+    } */
+      .foot_mg .btn_style{       
+        width:30px;
+        height:20
     }
   /* 新建新闻页面的多选框 */  
   #input1 {

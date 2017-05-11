@@ -229,11 +229,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div><br>
                 <div><img src="../img/mg11.png" alt=""/></div>
                <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
-                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
-					<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
-					<a id="uploadimg">添加附件</a>
-				</form>
-                <div><img src="../img/mg12.png" alt=""/></div>
+                <div>
+	                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
+						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
+						<a id="uploadimg">添加附件</a>
+					</form>
+				</div>
+                <div><img class="left_img" src="../img/mg12.png" alt=""/></div>
                 <div class="enclosure_t"><a href="#">从文件柜和网络硬盘选择附件</a></div>
                 <div><img src="../img/mg13.png" alt=""/></div>
                 <div class="enclosure_t"><a href="#">批量插入图片</a></div>
@@ -261,8 +263,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="foot_mg">
        <!--<img  id="hd" type="publish" class="fot_1 btn_ok" src="../img/mg5.png" alt=""/> 
         <img  id="rs" type="save" class="btn_ok"  src="../img/mg6.png" alt=""/>  -->
-        <div  id="hd" type="publish" class="fot_1 btn_ok">发布</div>
-		<div  id="rs" type="save" class="btn_ok">保存</div>
+        <div  id="hd" type="publish" class="fot_1 btn_style btn_ok">发布</div>
+		<div  id="rs" type="save" class="btn_style btn_ok">保存</div>
         
     </div>
 </div>
