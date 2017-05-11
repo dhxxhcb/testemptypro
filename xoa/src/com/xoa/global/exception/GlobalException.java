@@ -31,6 +31,13 @@ public class GlobalException implements HandlerExceptionResolver {
 		FastJsonJsonView view = new FastJsonJsonView();
 		ModelAndView modelAndView =new ModelAndView();
 
+
+		Map<String, Object> all =new HashMap<String, Object>();
+		all.put("status", false);
+		all.put("flag", false);
+		all.put("message", arg3.getMessage());
+		view.setAttributesMap(all);
+
 		//Im异常处理 其他类型异常参照着写
 		if(arg3 instanceof ImDataException){
 			Map<String, Object> ex =new HashMap<String, Object>();
@@ -38,7 +45,6 @@ public class GlobalException implements HandlerExceptionResolver {
 			ex.put("flag", false);
 			ex.put("message", "Im操作失败");
 			view.setAttributesMap(ex);
-			modelAndView.setView(view);
 		}
 		//分类异常处理
 		if(arg3 instanceof JobClassifyException){
@@ -47,10 +53,9 @@ public class GlobalException implements HandlerExceptionResolver {
 			ex.put("flag", false);
 			ex.put("message", "分类操作失败");
 			view.setAttributesMap(ex);
-			modelAndView.setView(view);
 		}
 		arg3.printStackTrace();
-	
+		modelAndView.setView(view);
 		return modelAndView;
 	}
 
