@@ -219,9 +219,8 @@ html,body{
 .main_right table{
 	width: 97%;
 	height:100%;
-	margin-left: 2%;
-	margin-top: 13px;
-	line-height: 30px;
+	margin-left: 1%;
+	margin-top: 20px;
 }
 .main_right table tr td{
 	font-size: 10pt;

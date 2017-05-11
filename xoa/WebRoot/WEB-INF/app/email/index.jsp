@@ -31,12 +31,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.attachment a img{vertical-align: middle;}
 			.befor .searchTxt{width:90%;height:30px;padding-left:5px;margin-bottom:5px;}
 			.Hover{cursor: pointer;}
-			.Hover:hover{background-color:#c5e9fb;}
+			.UP_INBOX .tab table .Hover:hover{background-color:#c5e9fb;}
 			.Hover img{width:16px;}
 			.on_tr{background-color: #c5e9fb;}
-			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table{width: 100%}
+			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table{width: 99%;}
+			.UP_INBOX .tab table tr{border: 1px solid #c0c0c0;}
+			.UP_INBOX .tab table tr th{color: #2F5C8F;font-weight: normal;}
+			.UP_INBOX .tab table tr:nth-child(even){background-color: #fff;}
+			.UP_INBOX .tab table tr:nth-child(odd){background-color: #F6F7F9;}
+			.UP_INBOX .tab table tr th,.UP_INBOX .tab table tr td{padding:10px;}
 			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table tr th.theme{text-align: center}
 			.UP_INBOX .tab table .theme_a a{text-decoration: none;color: #000;text-align: left;display: block;}
+
 		</style>
 	</head>
 	<body>
