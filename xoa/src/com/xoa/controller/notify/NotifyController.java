@@ -22,13 +22,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
+import com.alibaba.fastjson.JSON;
+import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.notify.Notify;
 import com.xoa.model.users.Users;
+import com.xoa.model.worldnews.News;
 
 
 import com.xoa.service.notify.NotifyService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.L;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
 
@@ -48,8 +52,9 @@ public class NotifyController {
 	private Logger loger = Logger.getLogger(NotifyController.class);
 	@Resource
 	private NotifyService notifyService;
-
-	private	String err="";
+	private String err = "err";
+	private String ok = "ok";
+	
 	
 	@RequestMapping("/index")
 	public String clickNews(HttpServletRequest request) {
@@ -306,8 +311,8 @@ public class NotifyController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("notifyId", notifyId);
 		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
-		//Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
-		String name="www";
+		String name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+			//String name="www";
 		loger.debug("transfersID"+notifyId);
 	try {
 		    Notify notify=notifyService.queryById(maps, 1, 20, false, name,sqlType);
@@ -358,12 +363,31 @@ public class NotifyController {
 	 * 参数说明:   @param compressContent  压缩后的公告通知内容
 	 * 参数说明:   @param summary  内容简介
 	 * 参数说明:   @return
+	 * @param notifyId 
 	 * @return     String
 	 */
-	@SuppressWarnings("static-access")
+	
 	@ResponseBody
 	@RequestMapping(value = "/updateNotify", produces = { "application/json;charset=UTF-8" })
-	public ToJson<Notify> updateNotify(
+	public String updateNotify(Notify notify, HttpServletRequest request,
+			@RequestParam("notifyId") Integer notifyId,
+			@RequestParam(name = "lastEditTime", required = false) String lastEditTime) {
+		ContextHolder.setConsumerType("xoa"
+				+ (String) request.getSession().getAttribute("loginDateSouse"));
+		L.a("0==||>>>>>>>>>>>>>>>" + notify.getToId());
+		notify.setNotifyId(notifyId);
+		notify.setLastEditTime(DateFormat.getDate(lastEditTime));
+		try {
+			notifyService.updateNotify(notify);
+			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
+					0, ok), "yyyy-MM-dd HH:mm:ss");
+		} catch (Exception e) {
+			loger.debug("addNotify:" + e);
+			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
+					1, err), "yyyy-MM-dd HH:mm:ss");
+		}
+	}
+	/*public ToJson<Notify> updateNotify(
 			@RequestParam(value="fromId",required=false)String fromId,
 			@RequestParam(value="typeId",required=false)String typeId,
 			@RequestParam(value="subject",required=false)String subject,
@@ -438,7 +462,7 @@ public class NotifyController {
 					new ToJson<Notify>(1, "");
 		}
 		
-	}
+	}*/
 
 	/**
 	 * 
@@ -478,10 +502,21 @@ public class NotifyController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	@SuppressWarnings("static-access")
-	@RequestMapping(value = "/addNotify", produces = { "application/json;charset=UTF-8" })
+
+	@RequestMapping(value = "/addNotify", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	 ToJson<Notify> addNotify(
+	String addNotify(Notify notify, @RequestParam("sendTime") String sendTime,
+			@RequestParam("lastEditTime") String lastEditTime,
+			HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa"
+				+ (String) request.getSession().getAttribute("loginDateSouse"));
+		Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());
+		notify.setNotifyId(0);
+		notify.setPrivId(name.getUserId());
+		notify.setReaders(name.getUserId() + ",");
+		notify.setSendTime(DateFormat.getDate(sendTime));
+		notify.setLastEditTime(DateFormat.getDate(lastEditTime));
+/*	 ToJson<Notify> addNotify(
 			@RequestParam(value="fromId",required=false)String fromId,
 			@RequestParam(value="typeId",required=false)String typeId,
 			@RequestParam(value="subject",required=false)String subject,
@@ -491,7 +526,7 @@ public class NotifyController {
 			@RequestParam(value="sendTime",required=false) String sendTime,
 			@RequestParam(value="beginDate",required=false) String beginDate,
 			@RequestParam(value="endDate",required=false) String endDate,
-			@RequestParam(value="print",required=false) String print,
+			//@RequestParam(value="print",required=false) String print,
 			@RequestParam(value="top",required=false) String top,
 			@RequestParam(value="topDays",required=false) String topDays,
 			@RequestParam(value="publish",required=false) String publish,
@@ -506,14 +541,15 @@ public class NotifyController {
 			@RequestParam(value="toId",required=false) String toId,
 			@RequestParam(value="attachmentId",required=false) String attachmentId,
 			@RequestParam(value="attachmentName",required=false) String attachmentName,
-			@RequestParam(value="readers",required=false) String readers,
+			//@RequestParam(value="readers",required=false) String readers,
 			@RequestParam(value="privId",required=false) String privId,
 			@RequestParam(value="userId",required=false) String userId,
-			@RequestParam(value="reason",required=false) String reason,
+			//@RequestParam(value="reason",required=false) String reason,
 			@RequestParam(value="compressContent",required=false) String compressContent,
 			@RequestParam(value="summary",required=false) String summary,HttpServletRequest request) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
+			String name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
 		Notify notify=new Notify();
 		notify.setNotifyId(0);
 		notify.setFromId(this.returnValue(fromId));
@@ -525,7 +561,7 @@ public class NotifyController {
 		notify.setSendTime(DateFormat.getDate(sendTime));
 		notify.setBeginDate(DateFormat.getTime(beginDate));
 		notify.setEndDate(DateFormat.getTime(endDate));
-	    notify.setPrint(this.returnValue(print));
+	   // notify.setPrint(this.returnValue(print));
 	    notify.setTop(this.returnValue(top));
 	    notify.setTopDays( DateFormat.getTime(topDays));
 	    notify.setPublish(this.returnValue(publish));
@@ -540,20 +576,29 @@ public class NotifyController {
 	    notify.setToId(this.returnValue(toId));
 	    notify.setAttachmentId(this.returnValue(attachmentId));
 	    notify.setAttachmentName(this.returnValue(attachmentName));
-	    notify.setReaders(this.returnValue(readers));
+	    notify.setReaders(name+",");
 	    notify.setPrivId(this.returnValue(privId));
 	    notify.setUserId(this.returnValue(userId));
-	    notify.setReason(this.returnValue(reason));
+	   // notify.setReason(this.returnValue(reason));
 	    notify.setCompressContent(compressContent.getBytes());
 	    notify.setSummary(this.returnValue(summary));
 		try {
 			notifyService.addNotify(notify);
 			return new ToJson<Notify>(0, "");
 		} catch (Exception e) {
-			loger.debug("notifyMessage:"+e);
+			loger.debug("addNotify:"+e);
 			return new ToJson<Notify>(1, "");
+		}*/
+		try {
+			notifyService.addNotify(notify);
+			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(0, ok),
+					"yyyy-MM-dd HH:mm:ss");
+		} catch (Exception e) {
+			loger.debug("addNotify:" + e);
+			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1, err),
+					"yyyy-MM-dd HH:mm:ss");
 		}
-		
+
 	}
 	
 	/**
