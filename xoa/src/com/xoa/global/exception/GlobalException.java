@@ -30,6 +30,7 @@ public class GlobalException implements HandlerExceptionResolver {
 		// TODO Auto-generated method stub
 		FastJsonJsonView view = new FastJsonJsonView();
 		ModelAndView modelAndView =new ModelAndView();
+
 		//Im异常处理 其他类型异常参照着写
 		if(arg3 instanceof ImDataException){
 			Map<String, Object> ex =new HashMap<String, Object>();
@@ -48,7 +49,7 @@ public class GlobalException implements HandlerExceptionResolver {
 			view.setAttributesMap(ex);
 			modelAndView.setView(view);
 		}
-		
+		arg3.printStackTrace();
 	
 		return modelAndView;
 	}

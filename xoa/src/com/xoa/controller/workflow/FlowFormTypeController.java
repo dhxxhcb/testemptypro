@@ -3,6 +3,9 @@ package com.xoa.controller.workflow;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.xoa.service.workflow.flowformtype.FlowFormService;
+import com.xoa.service.workflow.wrapper.FlowFormWrappers;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +23,9 @@ import com.xoa.util.dataSource.ContextHolder;
 public class FlowFormTypeController {
 	@Resource
 	private FlowFormTypeService  flowFormTypeService;
-	
-	
+	@Autowired
+	FlowFormService flowFormService;
+
 	@RequestMapping(value = "formType",produces = {"application/json;charset=UTF-8"})
 	public @ResponseBody ToJson<FlowFormType> qureyItemMax(@RequestParam("fromId") String fromId,HttpServletRequest request){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
@@ -44,7 +48,13 @@ public class FlowFormTypeController {
 	public String addboxPage3(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		return "app/ArticleEdit/formDesigner";
+		return "app/ArticleEdit/text/propUniline";
+	}
+
+	@RequestMapping("/formlistbysort")
+	@ResponseBody
+	public FlowFormWrappers formBysort(Integer sortId){
+		return flowFormService.getFormBySortId(sortId);
 	}
 
 }
