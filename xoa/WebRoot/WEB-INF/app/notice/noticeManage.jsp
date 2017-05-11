@@ -29,7 +29,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- word文本编辑器 -->	
 	<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
-
+    <style>
+        .btn_ok{
+            width:100px;
+            height:40px;
+            background: #f0f0f0;
+            float:left;
+            margin-left:30px;
+            border-radius: 4px;
+            font-size:18px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .foot_mg{
+            width: 23%;
+            height: 50px;
+            margin: 10px auto;
+        }
+    </style>
 </head>
 <body>
 <div class="bx">
@@ -298,8 +315,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
     </table>
     <div class="foot_mg">
-        <div  id="hd" type="publish" class="fot_1 btn_ok">发布</div>
-        <div  id="rs" type="save" class="btn_ok">保存</div>
+        <div  id="add_send" value="1" type="publish" class="fot_1 btn_ok">发布</div>
+        <div  id="add_baocun" value="0" type="save" class="btn_ok">保存</div>
     </div>
 </div>
 </div>
@@ -542,35 +559,54 @@ $(function () {
 
        //新建公告通知
 
-        $('.fot_1').on('click',function(){
-         var data={
-         subject:$('#add_titileTime').val(),
-             toId:$('#add_texta').val(),
-             format:$('#add_sel option:checked').attr('value'),
-             typeId:$('#add_type_notice option:checked').attr('value'),
-             userId:'',
-             privId:'',
+        $('#add_send').on('click',function(){
+            alert('111');
+         var data_notice={
+             notify:{
+                    subject:$('#add_titileTime').val(),
+                    toId:$('#add_texta').val(),
+                    format:$('#add_sel option:checked').attr('value'),
+                    typeId:$('#add_type_notice option:checked').attr('value'),
+                    userId:'',
+                    privId:'',
+                    fromDept:'',
+                    notifyId:'',
+                    top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
+                    topDays:$('#textDay').val(),
+                    summary:$('#add_summny').val(),
+                    content:ue.getContent()
+            },
              sendTime:$('#add_newDate').val(),
-             beginDate:$('#start_add').val(),
-             endDate:$('#end_add').val(),
-             top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
-             topDays:$('#textDay').val(),
-             summary:$('#add_summny').val,
-             content:ue.getContent(),
+             lastEditTime:new Date().Format('yyyy-MM-dd hh:mm:ss')+"",
          }
+
+         console.log(data_notice);
+            add_notice(data_notice);
+
          })
-         function add_notice(){
-         $.ajax({
-         type: "get",
-         url: "<%=basePath%>notice/addNotify",
-         dataType: 'JSON',
-         data: data,
-         success: function (data) {
 
+         function add_notice(data_notice){
+              alert("asjdadj")
+            /* var layerIndex = layer.load(0, {shade: false});*/
+             $.ajax({
+                 type: "post",
+                 url: "<%=basePath%>notice/addNotify",
+                 dataType: 'json',
+                 data: data_notice,
+                 success: function (obj) {
+                     console.log(obj);
+                   if(obj.flag==true){
+                       window.location.reload();
+                   }
+
+
+
+                 },
+
+             });
          }
 
-         });
-         }
+     /*add_notice();*/
 
 
 });

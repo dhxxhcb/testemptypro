@@ -503,9 +503,9 @@ public class NotifyController {
 	 * @return     String
 	 */
 
-	@RequestMapping(value = "/addNotify", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/addNotify", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String addNotify(Notify notify, @RequestParam("sendTime") String sendTime,
+	String addNotify(@RequestParam("notify")Notify notify, @RequestParam("sendTime") String sendTime,
 			@RequestParam("lastEditTime") String lastEditTime,
 			HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa"
