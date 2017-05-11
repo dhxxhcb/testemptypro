@@ -1,5 +1,7 @@
 package com.xoa.service.workflow.flowtype;
 
+import java.util.List;
+
 import com.xoa.model.workflow.FlowProcess;
 
 /**
@@ -11,9 +13,11 @@ import com.xoa.model.workflow.FlowProcess;
  */
 public interface FlowProcessService {
 	
-	public FlowProcess find(int flowId,int id);
+	public FlowProcess find(int id);
 	
 	public void updateByPrimaryKeySelective(FlowProcess record);
+	
+	public List<FlowProcess> findFlowId(int flowId);
 	
 	
 	
