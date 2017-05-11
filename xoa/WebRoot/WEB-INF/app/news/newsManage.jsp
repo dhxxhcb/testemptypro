@@ -397,8 +397,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 附件上传：
             </td>
             <td class="enclosure">
+            	<div id="query_uploadArr">
+            	</div><br>
                 <div><img src="../img/mg11.png" alt=""/></div>
-                <div class="enclosure_t"><a href="#">添加附件</a></div>
+               <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
+                <div>
+	                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
+						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
+						<a id="uploadimg">添加附件</a>
+					</form>
+				</div>
+            	
+                <!-- <div><img src="../img/mg11.png" alt=""/></div>
+                <div class="enclosure_t"><a href="#">添加附件</a></div> -->
                 <div><img src="../img/mg12.png" alt=""/></div>
                 <div class="enclosure_t"><a href="#">从文件柜和网络硬盘选择附件</a></div>
                 <div><img src="../img/mg13.png" alt=""/></div>
@@ -586,16 +597,25 @@ $(function () {
 			$.upload($('#uploadimgform'),function(res){
 				console.log(res);
 				var str = "";
+				var str1="";
 				res.obj.forEach(function(v,i){
-					console.log(v.attachName);
-					str+='<a href="<%=basePath %>download?'+v.attUrl+'">'+v.attachName+'</a><br>';
+					console.log(v.attachId);
+					
+					str+='<a class="ATTACH_a" NAME="'+v.attachName+'*" href="<%=basePath %>download?'+v.attUrl+'">'+v.attachName+'</a><br>';
+					str1+='<input type="hidden" class="inHidden" value="'+v.aid+'@'+v.ym+'_'+v.attachId+',">';
 				});
 				console.log(str);
-				$('#query_uploadArr').append(str);
+				$('#query_uploadArr').append(str+str1);
 				
 			});
 		}
 	});
+	/* 修改页面的附件插件 */
+	
+	
+	
+	
+	
 			/* word文本编辑器 */
 			 var ue = UE.getEditor('container');//新建新闻页面
 			 var sue = UE.getEditor('container3');//修改新闻页面
@@ -906,6 +926,14 @@ $(function () {
 				});
 				/* 保存数据 */
 			    $(".btn_ok").on("click",function(){
+			    	var aId='';
+					var uId='';
+					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+						aId += $('#query_uploadArr .inHidden').eq(i).val();
+					}
+					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+						uId += $('#query_uploadArr').find('.ATTACH_a').attr('NAME');
+					}
 			        var data = {	  		       			           												           		
 							"subject": $("#query_subject").val(),    //标题 
 							"newTime": $("#query_newTime").val(),      //发布时间 					
@@ -924,8 +952,8 @@ $(function () {
                       		"subjectColor":'1',//新闻标题颜色
                       		"compressContent":'1',//压缩后的新闻内容
                             "summary":'1',//新闻内容简介  */
-                            "attachmentId":'',//附件ID串
-                      		"attachmentName":'',//附件名称串
+                            "attachmentId":aId,//附件ID串
+                      		"attachmentName":uId,//附件名称串
                         	"privId":$("#query_privId").val(),//发布 -
                          	"userId":$("#query_userId").val(),//发布用户 -
                          	"readers": ''//发布角色 					           		
