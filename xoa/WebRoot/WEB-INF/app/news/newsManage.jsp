@@ -564,7 +564,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--content部分结束-->
     	
 <script>
-user_id='query_userId';
+user_id='query_userId';//选人控件
 $(function () {
 			/* word文本编辑器 */
 			 var ue = UE.getEditor('container');//新建新闻页面
@@ -815,10 +815,8 @@ $(function () {
    					user_id = "privId_";
        		 		$.popWindow("../common/selectUser");
        		 		 
-       		 		}); 
-		        
-				var now = null;
-		        
+       		 		}); 		        
+				var now = null;		        
 		        function queryTime(){
 			         function p(s) {
 					    return s < 10 ? '0' + s: s;
