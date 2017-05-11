@@ -257,10 +257,26 @@ td {
         width:30px;
         height:20
     } */
-      .foot_mg .btn_style{       
-        width:30px;
-        height:20
+    .btn_ {
+    	display: inline-block;
+    	 margin: 0 auto;
+    
     }
+  .btn_ div{ 
+        display: inline-block;
+        float: left; 
+        width:47px;
+        height:27px;
+        margin-right: 40px;
+        margin-top:10px;
+        margin-bottom:20px;
+        background: url(../../img/save.png) no-repeat;
+        padding-left: 40px;
+        padding-top: 7px;
+    }
+      .btn_ .btn_style {
+      	 background: url(../../img/publish.png) no-repeat;
+      }
   /* 新建新闻页面的多选框 */  
   #input1 {
   	width：12px;

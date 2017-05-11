@@ -263,9 +263,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="foot_mg">
        <!--<img  id="hd" type="publish" class="fot_1 btn_ok" src="../img/mg5.png" alt=""/> 
         <img  id="rs" type="save" class="btn_ok"  src="../img/mg6.png" alt=""/>  -->
-        <div  id="hd" type="publish" class="fot_1 btn_style btn_ok">发布</div>
-		<div  id="rs" type="save" class="btn_style btn_ok">保存</div>
-        
+        <div class="btn_">
+	        <div  id="hd" type="publish" class="fot_1 btn_ok">发布</div>
+			<div  id="rs" type="save" class="btn_style btn_ok">保存</div>
+        </div>
     </div>
 </div>
 
