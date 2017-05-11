@@ -4,14 +4,8 @@
     <title>文本框</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <!--[if lte IE 6]>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-ie6.css">
-    <![endif]-->
-    <!--[if lte IE 7]>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
-    <![endif]-->
-    <link rel="stylesheet" href="leipi.style.css">
+    <link rel="stylesheet" href="../formdesign/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ueditor/site.css">
     <script type="text/javascript" src="../dialogs/internal.js"></script>
     <script type="text/javascript">
 /* Thank you by  
@@ -94,6 +88,7 @@ function createElement(type, name)
 <script type="text/javascript">
 var oNode = null,thePlugins = 'text';
 window.onload = function() {
+
     if( UE.plugins[thePlugins].editdom ){
         oNode = UE.plugins[thePlugins].editdom;
 		var gValue = oNode.getAttribute('value').replace(/&quot;/g,"\""),gName=oNode.getAttribute('fieldname'),gFlow=oNode.getAttribute('fieldflow'),gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gHidden=oNode.getAttribute('orghide'),gFontSize=oNode.getAttribute('orgfontsize'),gAlign=oNode.getAttribute('orgalign'),gWidth=oNode.getAttribute('orgwidth'),gHeight=oNode.getAttribute('orgheight'),gType=oNode.getAttribute('orgtype');

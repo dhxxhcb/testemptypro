@@ -141,6 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});
        		 	//点击立即发送按钮
        		 	$("#btn1").on("click",function(){
+
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();
@@ -155,23 +156,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						uId += attach.eq(i).attr('NAME');
 					}
 					var data={
-//					 	'fromId':'admin',
+					 	'fromId':'admin',
 					 	'toId2': 'admin,',
 						'subject':val,
 						'content':html,
 						'attachmentId':aId,
 						'attachmentName':uId
 					};
-//                    alert(data.);
+                    alert(toId2);
 					
 					$.ajax({
 						 type:'post',    
 						 url:'sendEmail',
 						 dataType:'json',
 						 data:data,
-						 success:function(data){
-//							alert(data.flag);
-//                            url: email/index
+						 success:function(){
+							alert('发送成功');
 							//window.location.href='index';
 							$('.append_tr').parents('.div_iframe').remove();
 							$('.up_page_right').css('display','block');
