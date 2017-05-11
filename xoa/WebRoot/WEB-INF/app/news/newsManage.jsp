@@ -987,8 +987,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             "summary":'1',//新闻内容简介  */
                             "attachmentId":aId,//附件ID串
                       		"attachmentName":uId,//附件名称串
-                        	"privId":$("#query_privId").val(),//发布 -
-                         	"userId":$("#query_userId").val(),//发布用户 -
+                        	"privId":$("#query_privId").attr("dataid"),//发布 -
+                         	"userId":$("#query_userId").attr("dataid"),//发布用户 -
                          	"readers": ''//发布角色 					           		
 			           	};
 			           	if($(this).attr("type") == "publish"){
