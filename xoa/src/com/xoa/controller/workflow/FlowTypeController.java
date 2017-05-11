@@ -60,4 +60,9 @@ public class FlowTypeController {
 //                "loginDateSouse"));
         return flowTypeService.quertBySortId(flowId);
     }
+
+    @RequestMapping("/type/index")
+    public String flowTypeIndex(HttpServletRequest request){
+        return "app/workflow/flowtype/index";
+    }
 }

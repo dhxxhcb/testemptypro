@@ -14,6 +14,7 @@ import com.xoa.model.users.Users;
  */
 public class Notify {
 
+
 	private Integer notifyId;
 	/**
 	 * 发布部门id

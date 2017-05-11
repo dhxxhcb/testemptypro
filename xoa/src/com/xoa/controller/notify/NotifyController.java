@@ -505,16 +505,16 @@ public class NotifyController {
 
 	@RequestMapping(value = "/addNotify", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String addNotify(@RequestParam("notify")Notify notify, @RequestParam("sendTime") String sendTime,
-			@RequestParam("lastEditTime") String lastEditTime,
+	String addNotify(Notify notify, @RequestParam("sendTime1") String sendTime1,
+			@RequestParam("lastEditTime1") String lastEditTime1,
 			HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa"
 				+ (String) request.getSession().getAttribute("loginDateSouse"));
 		Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());
 		notify.setPrivId(name.getUserId());
 		notify.setReaders(name.getUserId() + ",");
-		notify.setSendTime(DateFormat.getDate(sendTime));
-		notify.setLastEditTime(DateFormat.getDate(lastEditTime));
+		notify.setSendTime(DateFormat.getDate(sendTime1));
+		notify.setLastEditTime(DateFormat.getDate(lastEditTime1));
 /*	 ToJson<Notify> addNotify(
 			@RequestParam(value="fromId",required=false)String fromId,
 			@RequestParam(value="typeId",required=false)String typeId,

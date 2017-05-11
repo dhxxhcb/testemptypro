@@ -31,7 +31,7 @@ public class ImDataController {
 	/**
 	 * @作者 韩东堂
 	 * @创建日期 2017-4-25 下午5:20:24
-	 * @方法介绍 ip:/im/putMessage
+	 * @方法介绍 /
 	 * @参数说明 @param flag 接口判断
 	 * @参数说明 @param from_uid 发送人UID
 	 * @参数说明 @param to_uid 接收人UID
