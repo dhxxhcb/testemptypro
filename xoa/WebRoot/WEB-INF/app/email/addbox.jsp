@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td width="10%"><fmt:message code="email.th.recipients" />：</td>
 				<td width="89%">
 					<div class="inPole">
-						<textarea name="txt" id="senduser" user_id='admin' disabled></textarea>
+						<textarea name="txt" id="senduser" user_id='admin' value="admin" disabled></textarea>
 						<span class="add_img">
 							<!-- <span class="addImg">
 								<img src="../img/org_select.png" class="addIcon"/>
@@ -111,7 +111,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 $(function(){
        		 	$("#selectUser").on("click",function(){
        		 		$.popWindow("../common/selectUser");
-       		 		 
        		 	});
        		 	$('#uploadimg').on('click', function(ele) {
 					$('#uploadinputimg').click();    
@@ -132,16 +131,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							 for(var i=0;i<data.length;i++){
 								str+='<a href="javascript:;" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
 								str1+='<input type="hidden" class="inHidden" value="'+data[i].aid+'@'+data[i].ym+'_'+data[i].attachId+',">';
-							} 
-							
+							}
 							$('.Attachment td').eq(1).append(str+str1);
-							
 						});
 					}
 				});
        		 	//点击立即发送按钮
        		 	$("#btn1").on("click",function(){
-
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();
@@ -163,18 +159,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						'attachmentId':aId,
 						'attachmentName':uId
 					};
-                    alert(toId2);
-					
 					$.ajax({
 						 type:'post',    
 						 url:'sendEmail',
 						 dataType:'json',
 						 data:data,
-						 success:function(){
-							alert('发送成功');
-							//window.location.href='index';
-							$('.append_tr').parents('.div_iframe').remove();
-							$('.up_page_right').css('display','block');
+						 success:function(rsp){
+							 if(rsp.flag == true){
+								 alert('发送成功');
+								 parent.location.reload();
+							 }else{
+								 alert('发送失败');
+							 }
 						}
 					});
 				});
@@ -194,7 +190,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					for(var i=0;i<$('.Attachment td .inHidden').length;i++){
 						uId += attach.eq(i).attr('NAME');
 					}
-					
 					var data={
 					 	'fromId':'admin',
 					 	'toId2': 'admin,',
@@ -210,14 +205,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 data:data,
 						 success:function(){
 							alert('已保存到草稿箱');
-							
+                             parent.location.reload()
 						}
 					});
 				});
 				 
        		 });
-       		 
-       		
+
        		//清空UE内容
        		function empty(){
        			ue.setContent('');
