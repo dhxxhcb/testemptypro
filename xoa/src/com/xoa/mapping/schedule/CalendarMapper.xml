@@ -57,7 +57,8 @@
   </select> 
    <select id="getscheduleBycId" parameterType="Map" resultMap="BaseResultMap">
   select CAL_ID,CAL_LEVEL,CAL_TIME,END_TIME,CONTENT,TAKER from calendar where USER_ID=#{userId} and
-  CAL_TIME&lt;=#{calTime} and END_TIME&gt;=#{calTime} 
+  (CAL_TIME&gt;=#{calTime} and CAL_TIME&lt;=#{calTime}+86400*30) or (#{calTime}&gt;=CAL_TIME and #{calTime}&lt;=END_TIME) 
+ 	
   </select>
   <delete id="delete">
   delete from calendar where CAL_ID=#{calId}

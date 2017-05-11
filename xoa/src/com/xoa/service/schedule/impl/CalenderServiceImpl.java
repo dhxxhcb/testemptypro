@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.xoa.dao.schedule.CalendarMapper;
 import com.xoa.model.schedule.Calendar;
+import com.xoa.model.schedule.CalendarAll;
 import com.xoa.service.schedule.CalenderService;
 
 @Service
@@ -45,29 +46,41 @@ public class CalenderServiceImpl implements CalenderService {
 	 * @throws Exception 
 	 */
 	@Override
-	public List<Calendar> getscheduleBycId(String userId,int calTime) throws Exception {
+	public List<Calendar> getscheduleBycId(String userId) throws Exception {
 		Map<String, Object> maps =new HashMap<String, Object>();
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		cal.set(java.util.Calendar.HOUR_OF_DAY, 0);
+		cal.set(java.util.Calendar.SECOND, 0);
+		cal.set(java.util.Calendar.MINUTE, 0);
+		cal.set(java.util.Calendar.MILLISECOND, 0);
+		int calTime=(int) (cal.getTimeInMillis()/1000);
 		maps.put("userId", userId);
 		maps.put("calTime", calTime);
 		List<Calendar> list =calendarMapper.getscheduleBycId(maps);
 		//当前时间戳
 		//Long day=Long.valueOf(calTime);
-		SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
 		List<Calendar> listAll=new ArrayList<Calendar>();
 		for(int i=0;i<30;i++){
 			Calendar Allcal=new Calendar();		  
 			int pd=calTime+86400*i;
 			Long t=(long) (pd*1000L);
-			List<Calendar> list1=new ArrayList<Calendar>();
-		String data = format.format(t); 	
+			List<CalendarAll> list1=new ArrayList<CalendarAll>();
+			String data = format.format(t); 	
 			for(int j=0;j<list.size();j++){
 				Calendar calendar=list.get(j);
+				CalendarAll ca=new CalendarAll();
 				int cT=calendar.getCalTime();
 				int eT=calendar.getEndTime();
-				if(pd>=cT&&pd<=eT){			
-					//Calendar cal=new Calendar();
-					//calendar.setCalData(data);
-					list1.add(calendar);
+				if(pd<=cT&&cT<=pd+86400||pd<=eT&&pd>=cT){	
+					ca.setAddTime(calendar.getAddTime());
+					ca.setCalId(calendar.getCalId());
+					ca.setEndTime(calendar.getEndTime());
+					ca.setContent(calendar.getContent());
+					ca.setCalLevel(calendar.getCalLevel());
+					ca.setCalTime(calendar.getCalTime());
+					ca.setTaker(calendar.getTaker());
+					list1.add(ca);
 				}
 			}
 			Allcal.setCalData(data);

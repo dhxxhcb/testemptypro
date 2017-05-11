@@ -61,12 +61,12 @@ public class CalenderController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/schedule/getscheduleBycId",produces = {"application/json;charset=UTF-8"})
-	public ToJson<Calendar> getscheduleBycId(HttpServletRequest request,String userId,String calTime){
+	public ToJson<Calendar> getscheduleBycId(HttpServletRequest request,String userId){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 	ToJson<Calendar> json=new ToJson<Calendar>(0, null);
 	try{		
-		List<Calendar> list= calenderService.getscheduleBycId(userId,Integer.parseInt(calTime));
+		List<Calendar> list= calenderService.getscheduleBycId(userId);
 		json.setObj(list);
 		json.setMsg("OK");
 		json.setFlag(0);

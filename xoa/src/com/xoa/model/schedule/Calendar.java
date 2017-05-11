@@ -103,7 +103,7 @@ public class Calendar {
     
     private String calData;
     
-    private List<Calendar> calMessage;
+    private List<CalendarAll> calMessage;
     
     
 
@@ -115,11 +115,11 @@ public class Calendar {
 		this.calData = calData;
 	}
 	
-	public List<Calendar> getCalMessage() {
+	public List<CalendarAll> getCalMessage() {
 		return calMessage;
 	}
 	
-	public void setCalMessage(List<Calendar> calMessage) {
+	public void setCalMessage(List<CalendarAll> calMessage) {
 		this.calMessage = calMessage;
 	}
 

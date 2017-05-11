@@ -19,7 +19,7 @@ public interface CalenderService {
 	 * @throws Exception 
 	 */
 	@DynDatasource
-	public List<Calendar> getscheduleBycId(String userId,int calTime) throws Exception;
+	public List<Calendar> getscheduleBycId(String userId) throws Exception;
 	
 	 /**
      * 创建作者:   张龙飞
