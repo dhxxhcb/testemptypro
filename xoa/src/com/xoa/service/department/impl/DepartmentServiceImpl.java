@@ -24,6 +24,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Resource
 	private DepartmentMapper departmentMapper;
 	
+	
+	static int times=0;
 	 /**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:42:08
@@ -280,5 +282,55 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return count;
 	}
 	
+	public List<Department> listDept(){
+		List<Department> resultList = new ArrayList<Department>();
+		List<Department> allDept=this.getDatagrid();
+		for(Department department : allDept){
+			if(department.getDeptParent()==0){//父级菜单开始添加
+				resultList.add(department);
+				if(ifChilds(allDept, department.getDeptId())){//存在子集
+					List<Department> childs = new ArrayList<Department>();
+					childs=getChildList(allDept, department.getDeptId(), resultList);
+					
+					
+					
+				}
+			}
+			
+		}
+		return allDept;
+		
+	}
+	
+	
+	 /**
+     *   获取父id下的子集合
+     */
+    private static List<Department> getChildList(List<Department> list,int deptId,List<Department> reList) {
+        for (Department department : list) {
+            if (department.getDeptParent()==deptId) {//查询下级菜单
+                reList.add(department);
+                if (ifChilds(list, department.getDeptId())) {
+                    getChildList(list, department.getDeptId(), reList);
+                }
+            }
+        }
+        return reList;
+    }
+
+
+    /**
+     * 判断是否存在子集
+     */
+    private static boolean ifChilds(List<Department> list,int deptId) {
+        boolean flag = false;
+        for (Department department : list) {
+            if (department.getDeptParent()==deptId) {
+                flag=true;
+                break;
+            }
+        }
+        return flag;
+    }
 
 }
