@@ -226,7 +226,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="enclosure">
                 <div><img src="../img/mg11.png" alt=""/></div>
                <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
-                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=email" enctype="multipart/form-data" method="post" >
+                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
 						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
 						<button id="uploadimg">添加附件</button>
 				</form>
@@ -564,7 +564,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--content部分结束-->
     	
 <script>
-
+user_id='query_userId';
 $(function () {
 			/* word文本编辑器 */
 			 var ue = UE.getEditor('container');//新建新闻页面
@@ -920,6 +920,10 @@ $(function () {
 		            		}   		                  
 		                });     
    				 });
+   				$("#selectUser").on("click",function(){
+       		 		$.popWindow("../common/selectUser");
+       		 		 
+       		 	});
         
        /* 新闻管理查询的确定按钮 */
           $('.determine').click(function () {
