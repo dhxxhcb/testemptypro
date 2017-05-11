@@ -90,3 +90,8 @@
 .total .table_b .bt {
     margin-left: 38%;
 }
+.total color_{
+	font-size: 14px;
+    color: #2a588c;
+    font-weight: bold;
+}

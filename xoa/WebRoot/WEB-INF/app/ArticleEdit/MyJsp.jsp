@@ -388,7 +388,7 @@
                     {
                  
                        /*  iframeUrl : '../lib/ueditor/formdesign/text.html', */
-                        iframeUrl : '../lib/ueditor/formdesign/text.html', 
+                        iframeUrl : '../lib/ueditor/formdesign/propUniline.html', 
                         name : thePlugins,
                         editor : this,
                         title : '单行输入框',

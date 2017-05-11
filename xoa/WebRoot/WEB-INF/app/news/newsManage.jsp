@@ -6,14 +6,11 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title> 	
-   
-    
+    <title></title> 	      
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
@@ -28,28 +25,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
 	<!-- word文本编辑器 -->	
 	<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
-	
-	
-
-		
+	<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>				
 </head>
 <body>
-
 <div class="bx">
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
            <li data_id=""><span class="one headli1_1"><fmt:message
                     code="news.th.newsmanage"/></span><img class="headli1_2" src="../img/02.png" alt=""/>
-            </li>
-            
+            </li>            
             <li data_id="0"><span class="headli2_1"><fmt:message
                     code="news.th.newbuild"/></span><img src="../img/02.png" alt="" class="headli2_2"/>
-            </li>
-                    
-           <li data_id="1"><span class="headli3"><fmt:message code="news.title.query"/></span></li> 
-           
+            </li>                    
+           <li data_id="1"><span class="headli3"><fmt:message code="news.title.query"/></span></li>            
         </ul>
     </div>
     <!--head通栏结束-->
@@ -57,15 +46,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--navigation开始-->
     <div class="step1"> 
     	<div class="navigation  clearfix">
-        <div class="left">
-            <!-- <img src="../img/01.png" style="width:28px;height:28px; margin-right:5px;"> -->
-			 <img src="../img/la2.png"> 
-           <!--  <div class="news">全部新闻</div> -->
+        <div class="left">            
+			<img src="../img/la2.png">           
            <div class="news">
                     <fmt:message code="news.title.new"/>
-           </div>  
-            <!-- <select name="TYPE" class="button1" style="float: left;" id="select"> -->
-             <select name="TYPE" class="button1 nav_type" id="select">          
+           </div>            
+           <select name="TYPE" class="button1 nav_type" id="select">          
 				<option value="0" selected="">所有类型</option>
 				<option value="01">公司动态</option>
 				<option value="02">媒体关注</option>
@@ -79,80 +65,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 <div id="cx" class="submit">
                     <fmt:message code="global.lang.query"/>
              </div>
-        </div>
-
-
-       <!--   <div class="right">
-            分页按钮
-            <div class="M-box3"></div>
-        </div> -->
-        
-        
+        </div>            
        	<div class="right">
                 <!-- 分页按钮-->
                 <div class="M-box3">
                 </div>
-
-            </div>
-            
-          
-        
-
+        </div>                             
     </div>
-
     <!--navigation结束-->
 
     <!--content部分开始-->
-    <div>
-        <div>
-            <table id="tr_td">
-                <thead>
-                	<tr>
-                		<td class="th">选择</td>
-                    	<td class="th">发布人</td>
-                    	<td class="th">类型</td>
-                    	<td class="th" style="position: relative">发布范围</td>
-	                    <td class="th">标题</td>
-	                    <td class="th">发布时间</td>
-	                    <td class="th">点击数</td>
-	                    <td class="th">评论（条）</td>
-	                    <td class="th">状态</td>
-	                    <td class="th">操作</td>
-	                   
-	                </tr>
-                </thead>
-                <tbody id="j_tb">
-	                                                            
-                </tbody>
-                
-            </table>
-        </div>
-    </div>
-    
+	    <div>
+	        <div>
+	            <table id="tr_td">
+	                <thead>
+	                	<tr>
+	                		<td class="th">选择</td>
+	                    	<td class="th">发布人</td>
+	                    	<td class="th">类型</td>
+	                    	<td class="th" style="position: relative">发布范围</td>
+		                    <td class="th">标题</td>
+		                    <td class="th">发布时间</td>
+		                    <td class="th">点击数</td>
+		                    <td class="th">评论（条）</td>
+		                    <td class="th">状态</td>
+		                    <td class="th">操作</td>	                   
+		                </tr>
+	                </thead>
+	                <tbody id="j_tb">
+		                                                            
+	                </tbody>                
+	            </table>
+	        </div>
+	    </div>    
     <!--content部分结束-->
     </div>
     
     <!-- 新建新闻 -->
-	<!-- <div class="step2"  style="width:100%;margin-top: 50px;display: none;"> -->
 	<div class="step2" style="display: none;margin-left: 10px;">
 	<!-- 中间部分 -->
 	 <table class="newNews">
         <div class="nav_box clearfix">
             <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
             <div class="nav_t2" class="news">新建新闻</div>
-
-            <!-- <div class="nav_t3">选择格式 -->
              <div class="nav_t3" > 
             	<select name="" class="sel format" id="query_format">
                     <option value="" selected="">全部</option>
 			        <option value="0">普通格式</option>
 			        <option value="1">MHT格式</option>
-			        <option value="2">超链接格式</option>
-                    
-                </select>
-            
+			        <option value="2">超链接格式</option>                    
+                </select>            
             </div>                
-          <!--   <div class="nav_t4"><img src="../img/mg1.png" alt=""/></div> -->
         </div>
         <tbody>
         <tr>
@@ -165,8 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option value="02">媒体关注</option>
 					<option value="03">行业资讯</option>
 					<option value="04">合作伙伴新闻</option>
-					<option value="05">客户新闻</option>
-                    
+					<option value="05">客户新闻</option>                    
                 </select>
             </td>
             <td>
@@ -203,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text">
-                发布时间：
+           		  发布时间：
             </td>
             <td>
                 <input class="td_title1 time_coumon" id="query_newTime" type="text" placeholder="请输入发布时间..."/>
@@ -212,7 +174,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text">
-                评论:
+           		 评论:
             </td>
             <td>            
                 <select name="" class="anonymityYn" id="query_anonymityYn">
@@ -224,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text">
-                提醒：
+              	  提醒：
             </td>
             <td class="remind">
                 <div><input class="news_t1"  type="checkbox" checked/></div>
@@ -237,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text">
-                置顶：
+               	 置顶：
             </td>
             <td class="top_box">
                 <div><input class="news_t1 " id="query_top" type="checkbox"/></div>
@@ -246,13 +208,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="news_t3">使新闻置顶，显示为重要</div>
                 <input class="t_box" type="text" value="0"/>
                 <div class="news_t4">天后结束置顶（0表示一直置顶）</div>
-            </td>
-
-
+            </td>		
         </tr>
         <tr>
             <td class="blue_text">
-                内容简介：
+              	  内容简介：
             </td>
             <td class="abstract">
                 <input class="abstract1" id="ip4" type="text"  maxlength="39" placeholder="请输入内容..."/>
@@ -261,12 +221,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text">
-                附件上传：
+               	 附件上传：
             </td>
             <td class="enclosure">
                 <div><img src="../img/mg11.png" alt=""/></div>
                <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
-                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=email" enctype="multipart/form-data" method="post" >
+                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
 						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
 						<button id="uploadimg">添加附件</button>
 				</form>
@@ -276,57 +236,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="enclosure_t"><a href="#">批量插入图片</a></div>
                 <div><img src="../img/mg14.png" alt=""/></div>
                 <div class="enclosure_t"><a href="#">批量上传过</a></div>
-
             </td>
         </tr>
         <!--word编辑器-->
          <tr>
-            <td colspan="2">
-            
-				<script class="content" id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script>
-				
-
+            <td colspan="2">            
+				<script class="content" id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script>			
             </td>
         </tr> 
         <tr>
             <td class="blue_text">
-                关键字：
+               	 关键字：
             </td>
             <td class="keyword">
                 <input class="keyword_ip" id="query_keyword" type="text" placeholder="请输入关键词..."/>
                 <div class="keyword_t">自动获取关键字</div>
                 <div class="keyword_t2">（您可以调整关键字内容，多个关键词请用" , "分割）</div>
         </tr>
-        </tbody>
-        
+        </tbody>        
     </table>
     <div class="foot_mg">
-        <img  id="hd" type="publish" class="fot_1 btn_ok" src="../img/mg5.png" alt=""/> <!-- 发布 -->
-        <img  id="rs" type="save" class="btn_ok"  src="../img/mg6.png" alt=""/> <!-- 保存 -->
+        <img  id="hd" type="publish" class="fot_1 btn_ok" src="../img/mg5.png" alt=""/> 
+        <img  id="rs" type="save" class="btn_ok"  src="../img/mg6.png" alt=""/> 
+        <!-- <div  id="hd" type="publish" class="fot_1 btn_ok">发布</div>
+		<div  id="rs" type="save" class="btn_ok">保存</div> -->
+        
     </div>
 </div>
 
-
-
 <!--新建新闻页面的修改页面  -->
-<div class="step3" style="display: none;margin-left: 10px;">
+<div class="step3" style="display:none ;margin-left: 10px;">
 	<!-- 中间部分 -->
 	 <table class="newNews">
         <div class="nav_box clearfix">
             <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
-            <div class="nav_t2" class="news">全部新闻</div>
-
-            <!-- <div class="nav_t3">选择格式 -->
+            <div class="nav_t2" class="news">全部新闻</div>           
              <div class="nav_t3" > 
-            	<select name="" class="sel">
+            	<select name="" class="sel" id="format_">
                     <option value="" selected="">全部</option>
 			        <option value="0">普通格式</option>
 			        <option value="1">MHT格式</option>
 			        <option value="2">超链接格式</option>        
-                </select>
-            
-            </div>                
-          <!--   <div class="nav_t4"><img src="../img/mg1.png" alt=""/></div> -->
+                </select>            
+            </div>                        
         </div>
         <tbody>
         <tr>
@@ -339,54 +291,71 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option value="02">媒体关注</option>
 					<option value="03">行业资讯</option>
 					<option value="04">合作伙伴新闻</option>
-					<option value="05">客户新闻</option>
-                    
+					<option value="05">客户新闻</option>                    
                 </select>
             </td>
             <td>
-                <input class="td_title1 subject" id="step3_ip1" type="text" value="请输入新闻标题..."/>
+                <input class="td_title1 subject" id="step3_ip1" type="text" placeholder="请输入新闻标题..."/>
                 <img class="td_title2" src="../img/mg2.png" alt=""/>
             </td>
         </tr>
         <tr>
             <td class="blue_text">
-                按照部门发布：
+                	按照部门发布：
             </td>
             <td>
                 <input class="td_title1  release1 toId" type="text"id="step3_ip2"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-
                 <div class="release3">添加</div>
                 <div class="release4 empty">清空</div>
-
             </td>
-
         </tr>
         <tr>
             <td class="blue_text">
-                发布时间：
+                	按照角色发布：
             </td>
             <td>
-                <input class="td_title1 newTime" id="step3_ip3"  class="step3_te" type="text" value="请输入发布时间..."/>
+                <input class="td_title1  release1 toId" type="text"id="privId_"/>
+                <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
+                <div class="release3">添加</div>
+                <div class="release4 empty">清空</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                	按照人员发布：
+            </td>
+            <td>
+                <input class="td_title1  release1 toId" type="text"id="userId_"/>
+                <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
+                <div class="release3">添加</div>
+                <div class="release4 empty">清空</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                	发布时间：
+            </td>
+            <td>
+                <input class="td_title1 newTime" id="step3_ip3"  class="step3_te" type="text" placeholder="请输入发布时间..."/>
                 <a href="javascript:;" id="step_release3"><div class="release3" >设置为当前时间</div></a>
             </td>
         </tr>
         <tr>
             <td class="blue_text">
-                评论:
+                	评论:
             </td>
             <td>            
-                <select name="" class="">
+                <select name="step3_anonymityYn" class="" id="anonymityYn_">
                     <option value="0">实名评论</option>
 			        <option value="1">匿名评论</option>
 			        <option value="2">禁止评论</option>                    
-                </select>
-                
+                </select>                
             </td>
         </tr>
         <tr>
             <td class="blue_text">
-                提醒：
+               	 提醒：
             </td>
             <td class="remind">
                 <div><input class="news_t1"  type="checkbox" checked/></div>
@@ -399,25 +368,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text">
-                置顶：
+                	置顶：
             </td>
             <td class="top_box">
-                <div><input class="news_t1" type="checkbox"/></div>
-                <!-- <div><input type="checkbox" style="height:14px;width:14px;margin-top: 4px;"/></div> -->
-                <!-- <div><img src="../img/mg4.png" alt=""/></div> -->
+                <div><input class="news_t1" id="top_" type="checkbox"/></div>             
                 <div class="news_t3">使新闻置顶，显示为重要</div>
-                <input class="t_box topDays" id="query_topDays" type="text" value="0"/>
+                <input class="t_box topDays" id="topDays" type="text" placeholder="0"/>
                 <div class="news_t4">天后结束置顶（0表示一直置顶）</div>
             </td>
-
-
         </tr>
         <tr>
             <td class="blue_text">
-                内容简介：
+              	  内容简介：
             </td>
             <td class="abstract">
-                <input class="abstract1 Content" id="step3_ip4" type="text"  maxlength="39" value="请输入内容..."/>
+                <input class="abstract1 Content" id="step3_ip4" type="text"  maxlength="39" placeholder="请输入内容..."/>
                 <div class="abstract2">(最多输入39个字)</div>
             </td>
         </tr>
@@ -453,7 +418,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 关键字：
             </td>
             <td class="keyword">
-                <input class="keyword_ip step3_5 Keyword" id="ip5" type="text" value="请输入关键词..."/>
+                <input class="keyword_ip step3_5 Keyword" id="ip5" type="text" placeholder="请输入关键词..."/>
                 <div class="keyword_t">自动获取关键字</div>
                 <div class="keyword_t2">（您可以调整关键字内容，多个关键词请用" , "分割）</div>
         </tr>
@@ -461,8 +426,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
     </table>
     <div class="foot_mg">
-        <img  id="hd" class="fot_1" src="../img/mg5.png" alt=""/> <!-- 发布 -->
-        <img  id="step3_rs"  src="../img/mg6.png" alt=""/> <!-- 保存 -->
+        <img  id="hd" class="fot_1 submit_ok" src="../img/mg5.png" alt=""/> <!-- 发布 -->
+        <img  id="step3_rs" class="submit_ok"   src="../img/mg6.png" alt=""/> <!-- 保存 -->
+       	<input id="hidden_id" type='hidden' value="">
     </div>
 </div>
 
@@ -532,7 +498,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text">
-                是否置顶:
+                	是否置顶:
             </td>
             <td>
                 <select name="" class="top">
@@ -598,14 +564,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--content部分结束-->
     	
 <script>
-
+user_id='query_userId';
 $(function () {
 			/* word文本编辑器 */
 			 var ue = UE.getEditor('container');//新建新闻页面
-			 var ue3 = UE.getEditor('container3');//修改新闻页面
-			 
+			 var sue = UE.getEditor('container3');//修改新闻页面
 			
-
             var data = {
                 read : $('.index_head .one').parent().attr('data_id'),
 				typeId : $('#select').val()==0?'':$('#select').val(),
@@ -642,9 +606,7 @@ $(function () {
            }
            initPageList(function(pageCount){
            		 initPagination(pageCount,data.pageSize);
-           });
-          
-		  
+           });          		  
            $(".index_head li").click(function (){
                 $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
                 $(".news").html($(this).find('span').text());
@@ -670,14 +632,9 @@ $(function () {
 				}else  if( data.read == 0){
 					$('.step1').hide();
 					$('.step2').show();
-					$('.center').hide();
-				
-				}
-				
-            });
-            
-       
-            
+					$('.center').hide();				
+				}				
+            });                               
             function initPageList(cb){
             	$.ajax({
 					type: "get",
@@ -716,7 +673,7 @@ $(function () {
 						}
 					}   
 				})
-            }
+            };
             function initPagination(totalData,pageSize){
             	$('.M-box3').pagination({
 							    totalData:totalData,
@@ -736,18 +693,18 @@ $(function () {
 							});
             }
             /* 新闻详情页 */
-               $("#j_tb").on('click','.windowOpen',function(){
-		            var nid=$(this).attr('newsId');
-		            $.popWindow('detail?newsId='+nid);
-		        });		        
+              $("#j_tb").on('click','.windowOpen',function(){
+	            var nid=$(this).attr('newsId');
+	            $.popWindow('detail?newsId='+nid);
+	        });		        
 		    /*删除时 调用的方法*/
 			 $("#j_tb").on('click','#deleteData',function(){
-			 		var attR=$(this).parents('tr').find('input.input_hide').attr('newsID');
-		          	 alert(attR);		           
-			       var data = {
+			 	 var attR=$(this).parents('tr').find('input.input_hide').attr('newsID');
+		        /*  alert(attR); */		           
+			     var data = {
 		           		"newsId":attR
 		           	};
-		           	$.ajax({
+		          $.ajax({
 		           		data:data,
 		           		type:"GET",
 		           		dataType:"JSON",
@@ -761,20 +718,11 @@ $(function () {
 		        
 		        /* 新闻管理修改页面 */
 		         $("#j_tb").on('click', '#xg', function(){  
+		         	var sue = UE.getEditor('container3');//修改新闻页面
 		         	var id=$(this).attr('tid');
-		         	//alert(id+"-------------");
-		       		alert($(this).parent().parent().attr('rid')); 
-		         	 if(id==$(this).parent().parent().attr('rid')){	
-                		$('#step3_type  option:checked').attr("$(this).parent().siblings('.type').text()"),//类型
-						$("#step3_ip2").val($(this).parent().siblings('.name').text()); //发布人
-						$("#step3_ip4").val( $(this).parent().siblings('.cli').find('.break_td').text());//发布范围 
-						$("#step3_ip1").val($(this).parent().siblings().find('.windowOpen div').text());//标题						
-						$("#step3_ip3").val($(this).parent().siblings('.tim').text());//发布时间
-						$(this).parent().siblings('.data').text();//点击数
-						$(this).parent().siblings('.num').text();//评论(条)
-						$(this).parent().siblings('.state').text();//状态  
-					//新闻详情获得内容：						
-						alert(id);
+		         	 if(id==$(this).parent().parent().attr('rid')){	               		
+					//新闻详情获得内容：
+					sue.ready(function(){
 						$.ajax({
 		                    url:"<%=basePath%>news/getOneById ",
 		                    type:'get',
@@ -783,76 +731,85 @@ $(function () {
 			       				"newsId":id,			
 			       			},		                   
 		                   success:function(data){
-		                       /* alert(data.object.content); */
-		                       $("#container3").html(data.object.content)
+		                        $('#step3_type  option:checked').attr(data.object.codes.codeName),//类型
+								$("#step3_ip2").val(data.object.providerName); //发布人
+								$("#step3_ip4").val();//发布范围 
+								$("#step3_ip1").val(data.object.subject);//标题	
+								$("#anonymityYn  option:checked").attr(data.object.anonymityYn),//类型					
+								$("#step3_ip3").val(data.object.newsDateTime);//发布时间
+								/* $(this).parent().siblings('.data').text();//点击数
+								$(this).parent().siblings('.num').text();//评论(条)
+								$(this).parent().siblings('.state').text();//状态  
+								*/	
+								$("#hidden_id").val(data.object.newsId);
+								$(".step3_5").val(data.object.keyword);                     
+		                        sue.setContent(data.object.content);
+		                        		                       
 			           		},	  
 			           		error:function(){
 			            		alert("请求数据出错");
 			            		return;
-		            		}   		
-		                   
-		                });
-						
-					 	
+		            		}   				                   
+		                });															
+					});																 	
 						 $('.step1').hide();
 			          	 $('.center').hide();
 						 $('.step2').hide();
 						 $('.step3').show(); 
 					 } 
-
 		        });	
+		     
 		        
 		        //修改页面保存时调用的方法
-		       /*  $("#step3_rs").click(function(){		        			         
-					  var data = {	  		       			           		
-							"newsId":id,			           		
-							"subject": $(".subject").val(),    //标题 
-							"newTime": $(".newTime").val(),        //发布时间 					
-							"keyword":$(".keyword").val(),  //内容关键词
-							"topDays": $(".topDays").vla(),// 限制新闻置顶时间
-							"content":  $(".content").val()  ,//  新闻内容							
-							"toId":  $(".toId").val(),//发布部门	
-							"anonymityYn": $("#query_anonymityYn").val(),
-							"format":$(".format").val(),//新闻格式(0-普通格式,1-MHT格式,2-超链接)
-							"typeId":$(".typeId").val(),
-							"publish":$(".Publish").val(),  // 发布标识(0-未发布,1-已发布,2-已终止)							
-							"top":$('.top').eq(0).is(':checked')==false?0:1,//是否置顶(0-否,1-是)
-							
-							 "clickCount":'0',//点击数
-							 "lastEditor":'1',//最后编辑人
-							  "lastEditTime":$(".newTime").val(),//最后编辑时间
+		         $(".submit_ok").click(function(){		        			         
+					  var data = {	
+					  		"newsId":$("#hidden_id").val(),	 		       			           		
+							"subject": $("#step3_ip1").val(),    //标题 
+							"newTime": $("#step3_ip3").val(),      //发布时间 					
+							"keyword":$("#ip5").val(),  //内容关键词
+							"topDays": $("#topDays").val(),// 限制新闻置顶时间
+							"content":  sue.getContent(),//  新闻内容							
+							"toId":  $("#step3_ip2").val(),//发布部门	
+							"anonymityYn": $("#anonymityYn_").val(), //评论类型(0-实名评论,1-匿名评论,2-禁止评论)							
+							"format":$("#format_").val(),//新闻格式(0-普通格式,1-MHT格式,2-超链接)
+							"typeId":$("#query_typeId").val(),
+							"publish":0,  // 发布标识(0-未发布,1-已发布,2-已终止)							
+							"top":$("top_").eq(0).is(':checked')==false?0:1,//是否置顶(0-否,1-是)
+							"clickCount":'0',//点击数
+							"lastEditor":'1',//最后编辑人
+							"lastTime":new Date().Format('yyyy-MM-dd hh:mm:ss'),//最后编辑时间
                       		"subjectColor":'1',//新闻标题颜色
-                      		 "compressContent":'1',//压缩后的新闻内容
-                            "summary":'1',//新闻内容简介  
-                              "attachmentId":'1',//附件ID串
-                      		"attachmentName":'1',//附件名称串
-                        	"privId":'1',//发布部门 -
-                         	"userId":'1',//发布用户 -
-                         	 "readers":'1'//发布角色 					           		
-			           	}; */
+                      		"compressContent":'1',//压缩后的新闻内容
+                            "summary":'1',//新闻内容简介  */
+                            "attachmentId":'',//附件ID串
+                      		"attachmentName":'',//附件名称串
+                        	"privId":$("#privId_").val(),//发布 -
+                         	"userId":$("#userId_").val(),//发布用户 -
+                         	"readers": ''//发布角色 						           		
+			           	}; 
 			            console.log(data);
-		               // $.ajax({
-		                   // url:"<%=basePath%>news/updateNews",
-		                  //  type:'get',
-		                   // dataType:"JSON",		    
-			       			/* data : data,		                   
+			            if($(this).attr("step3_type") == "publish"){
+			           		data.publish = '1';
+			           	}
+		                $.ajax({
+		                    url:"<%=basePath%>news/updateNews",
+		                    type:'get',
+		                    dataType:"JSON",		    
+			       			 data : data,		                   
 		                   	success:function(data){
 		                        console.log(data);		           			 				           			
 									 $('.step1').show();
 						          	 $('.center').hide();
 									 $('.step2').hide();
-									 $('.step3').hide(); */
+									 $('.step3').hide(); 
 									/*  initPageList(); */
-									/*  location.reload();
+								  location.reload();
 			           		},	  
 			           		error:function(e){
-			            		console.log(e)			            		
+			            		console.log(e);			            		
 		            		}   		                  
 		                });      
-			        });  */
-		        
-		        
-		        
+			        });  
 		        
 				var now = null;
 		        
@@ -902,23 +859,21 @@ $(function () {
 					//console.log(read,typeId,nTime);
 					initPageList();
 				});
-				//时间控件调用
-  
-   $('#btn_query').click(function (){
-		
-		data.subject = $('#subject').val();
-		data.beginTime = $('#beginTime').val();
-		data.endTime = $('#endTime').val();
-		data.typeId =  $('#select').val()==0?'':$('#select').val();
-		data.content = $('#content').val();
-		initPageList();
-		$('.step1').show();
-		$('.center').hide();
-	});
-	/* 保存数据 */
-    $(".btn_ok").on("click",function(){
-        var data = {	  		       			           		
-										           		
+				//时间控件调用  
+			   $('#btn_query').click(function (){
+					
+					data.subject = $('#subject').val();
+					data.beginTime = $('#beginTime').val();
+					data.endTime = $('#endTime').val();
+					data.typeId =  $('#select').val()==0?'':$('#select').val();
+					data.content = $('#content').val();
+					initPageList();
+					$('.step1').show();
+					$('.center').hide();
+				});
+				/* 保存数据 */
+			    $(".btn_ok").on("click",function(){
+			        var data = {	  		       			           												           		
 							"subject": $("#query_subject").val(),    //标题 
 							"newTime": $("#query_newTime").val(),      //发布时间 					
 							"keyword":$("#query_keyword").val(),  //内容关键词
@@ -945,7 +900,7 @@ $(function () {
 			           	if($(this).attr("type") == "publish"){
 			           		data.publish = '1';
 			           	}
-			           console.log(data);
+			          /*  console.log(data); */
 		                $.ajax({
 		                    url:"<%=basePath%>news/sendNews",
 		                    type:'get',
@@ -964,7 +919,11 @@ $(function () {
 			            		console.log(e)			            		
 		            		}   		                  
 		                });     
-    });
+   				 });
+   				$("#selectUser").on("click",function(){
+       		 		$.popWindow("../common/selectUser");
+       		 		 
+       		 	});
         
        /* 新闻管理查询的确定按钮 */
           $('.determine').click(function () {
@@ -984,8 +943,8 @@ $(function () {
                		$('.step1').show();
 					$('.step2').hide();
 					$('.center').hide();
-        });
-});
+        		});
+			});
 
 	laydate({
 	     elem: '#query_newTime', //目标元素。

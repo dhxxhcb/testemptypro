@@ -26,4 +26,19 @@
     UPDATE flow_form_type SET ITEM_MAX=#{itemMax}  where FORM_ID=#{formId}
   </update>
 
+  <select id="selectFormBySort"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+
+    SELECT * from flow_form_type
+    <where>
+      <if test="sortId != null">
+        flow_form_type.FORM_SORT = #{sortId}
+      </if>
+      <if test="sortId == null">
+        flow_form_type.FORM_SORT = 0 OR flow_form_type.FORM_SORT IS NULL
+      </if>
+    </where>
+
+  </select>
+
+
 </mapper>

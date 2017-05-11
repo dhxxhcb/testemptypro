@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 		<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
 			<tr class="append_tr">
-				<td width="10%"><fmt:message code="email.th.sender" />：</td>
+				<td width="10%"><fmt:message code="email.th.recipients" />：</td>
 				<td width="89%">
 					<div class="inPole">
 						<textarea name="txt" id="senduser" user_id='admin' value="" disabled></textarea>
@@ -167,7 +167,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							str1='<p>'+data2.content+'</p>';
 							ue.setContent(str+str1);
 							$('#txt').val('Re:'+data2.subject);
-							$('#senduser').val(data2.emailList[0].toName);
+							if (TYPE!=2){
+                                $('#senduser').val(data2.emailList[0].toName);
+							}else{
+                                $('#senduser').val('');
+							}
+
 							$('#copyName').val(data2.copyName)
 						}
 					});
@@ -203,6 +208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
        		 	//点击立即发送
        		 	$("#btn1").on("click",function(){
+                    var TYPE=$.getQueryString('type');
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();
@@ -232,10 +238,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 dataType:'json',
 						 data:data,
 						 success:function(){
-							alert('回复成功');
+							 if (TYPE!=2){
+                                 alert('回复成功');
+							 }else{
+                                 alert('转发成功');
+							 }
+
                              window.close()
-                            // window.location.href='index';
-                             //location.reload('index');
+                             parent.opener.location.reload()
 						}
 					}); 
 				}) 

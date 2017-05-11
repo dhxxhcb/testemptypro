@@ -17,8 +17,7 @@ import com.xoa.util.ToJson;
 public class FlowFormTypeServiceImpl implements FlowFormTypeService {
 	 @Resource
 	 private FlowFormTypeMapper  flowFormTypeMapper;
-	
-	@Transactional
+
 	@Override
 	public ToJson<FlowFormType> qureyItemMax(Integer formId) {
 		ToJson<FlowFormType>  toJson=new ToJson<FlowFormType>(0, "");

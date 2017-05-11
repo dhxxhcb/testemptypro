@@ -16,7 +16,9 @@ public interface FlowFormTypeMapper extends BaseMapper<FlowFormType> {
 	 FlowFormType qureyItemMax(@Param("formId")Integer formId);
 	 
 	 int updateItemMax(FlowFormType flowFormType);
-	 
+
+
+	 List<FlowFormType> selectFormBySort(@Param("sortId")Integer sortId);
 	
         
    
