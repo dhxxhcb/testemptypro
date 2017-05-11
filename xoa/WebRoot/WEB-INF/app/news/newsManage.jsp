@@ -141,8 +141,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <input class="td_title1  release1" id="query_toId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3">添加</div>
-                <div class="release4 empty">清空</div>
+               <!--  <div class="release3">添加</div>
+                <div class="release4 empty">清空</div> -->
+                <div class="release3" style="color:#dfdfdf">添加</div>
+                <div class="release4 empty" style="color:#dfdfdf">清空</div> 
             </td>
         </tr>
         <tr>
@@ -150,8 +152,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <input class="td_title1  release1" id="query_privId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3">添加</div>
-                <div class="release4 empty">清空</div>
+                <div class="release3" style="color:#dfdfdf">添加</div>
+                <div class="release4 empty" style="color:#dfdfdf">清空</div>
             </td>
         </tr>
         <tr>
@@ -160,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="td_title1  release1" id="query_userId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3" id="query_adduser">添加</div>
-                <div class="release4 empty">清空</div>
+                <div class="release4 empty" style="color:#dfdfdf;">清空</div>
             </td>
         </tr>
         <tr>
@@ -314,6 +316,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3">添加</div>
                 <div class="release4 empty">清空</div>
+                 
             </td>
         </tr>
         <tr>
@@ -459,18 +462,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <!-- 新闻nav部分 -->
 	<div class="nav_box clearfix">
         <div class="nav_t1"><img src="../img/la2.png"></div>
-        <div class="nav_t2" class="news">新建新闻</div>
+        <div class="nav_t2" class="news">新闻查询</div>
 	</div>     
                           
     <table class="clearfix total">
         <tbody>
         <tr>
             <td colspan="2" class="query_title">
-                输入查询条件
+                输入查询条件：
             </td>
         </tr>
         <tr>
-            <td class="td_w">
+            <td class="td_w size_color">
                 格式：
             </td>
             <td>
@@ -484,7 +487,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
         <tr>
-            <td class="blue_text">
+            <td class="blue_text size_color">
                类型：
             </td>
             <td>
@@ -502,7 +505,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         </tr>
         <tr>
-            <td class="blue_text">
+            <td class="blue_text size_color">
                状态：
             </td>
             <td>
@@ -514,7 +517,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
         <tr>
-            <td class="blue_text">
+            <td class="blue_text size_color">
                 	是否置顶:
             </td>
             <td>
@@ -527,13 +530,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
         <tr>
-            <td>标题:</td>
+            <td class="size_color">
+           		 标题:
+            </td>
             <td>
                 <input class="title_" id="subject" type="text"/>
             </td>
         </tr>
         <tr class="release">
-            <td>发布日期</td>
+            <td class="size_color">
+           		 发布日期:
+            </td>
             <td>
                 <input id="beginTime"class="date" type="text"/>
                 <div  class="c_t">至</div>
@@ -542,14 +549,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
         <tr>
-            <td>内容</td>
+            <td class="size_color">内容:</td>
             <td>
                 <!-- <div class="content_"></div> -->
                 <input class="content_" type="text"/>
             </td>
         </tr>
         <tr class="clack_t">
-            <td>点击次数</td>
+            <td class="size_color">点击次数:</td>
             <td>
                 <input class="c_time c_time1" type="text"/>
                 <div class="c_t">至</div>
@@ -557,7 +564,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
         <tr class="operation">
-            <td>操作</td>
+            <td class="size_color">操作:</td>
             <td>
             	<div><input type="radio" name="radio"></div>
             	<div class="operation1">查询</div>
@@ -1007,7 +1014,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									 $('.step2').hide();
 									 $('.step3').hide();
 									/*  initPageList(); */
-									 //location.reload();
+									 location.reload();
 			           		},	  
 			           		error:function(e){
 			            		console.log(e)			            		

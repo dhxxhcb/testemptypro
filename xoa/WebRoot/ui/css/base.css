@@ -32,6 +32,7 @@ input {
 
 select, input {
     vertical-align: middle;
+        font-family: "微软雅黑";
 }
 
 
@@ -39,6 +40,7 @@ select, input {
 select, input, textarea {
     font-size: 12px;
     margin: 0;
+        font-family: "微软雅黑";
 }
 select{
 	width: 110px;
@@ -398,20 +400,7 @@ tr {
      		margin-left:0px;
      		position: relative;
      	}  	
-	   /*   #cx {
-	     	width:60px;
-	     	hieght:30px;
-	     	line-height:30px;
-	     	margin-top: 18px;
-	     	margin-left: 10px;
-	     	text-align:center;
-	     	background-image:url(../img/center_q.png);
-	     	background-repeat:no-repeat;
-	        color:#fff; 
-	     	cursor: pointer;
-	     	font-family: "微软雅黑";
-	     	} */
-   		
+	 
 		.submit{
 			width:63px;
 	     	height:33px;

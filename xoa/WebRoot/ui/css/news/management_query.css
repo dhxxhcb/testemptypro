@@ -17,9 +17,19 @@
 .total .td_w {
     width: 25%;
 }
+.total .size_color {
+	font-size: 14px;
+    color: rgb(42, 88, 140);
+    font-weight: bold;
+    font-family:"微软雅黑"
+}
 
 .total tr td {
     border: 1px solid #c0c0c0;
+     font-family: "微软雅黑";
+}
+.total td option {
+	 font-family: "微软雅黑";
 }
 .total .query_title {
     text-align: center;
@@ -29,6 +39,8 @@
     border-top:none;
     border-left:none;
     border-right:none;
+    font-size: 16px;
+    letter-spacing:3px;
 }
 
 .total .title_ {
