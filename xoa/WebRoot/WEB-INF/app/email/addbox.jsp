@@ -161,6 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var data={
 					 	'fromId':'admin',
 					 	'toId2': 'admin,',
+						'copyToId':'admin',
 						'subject':val,
 						'content':html,
 						'attachmentId':aId,

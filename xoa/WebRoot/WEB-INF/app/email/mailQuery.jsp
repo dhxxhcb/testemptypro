@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			html,body{width: 100%;font-family: "微软雅黑";font-size: 14px;}
 			.content{width: 99%;margin: 0 auto;}
 			.title{width: 100%;text-align: left;line-height: 40px;}
-			.tab table tr td{padding: 5px 5px;border-color: #ddd;}
+			/*.tab table tr td{padding: 5px 5px;border-color: #ddd;}*/
 			#btn{display: block;margin: 0 auto;outline: none;border: none;border-radius: 3px;padding: 3px 8px;cursor: pointer;}
 			#btn:hover{background-color: #9fbdee;color: #fff;}
 			/*.tac table{border-color:#ddd;}*/
@@ -30,20 +30,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.tac table tr:nth-child(even){background-color: #fff;}
 			.tac table tr th{padding: 10px;border-color: #ddd;font-size:14px;font-weight: normal;color: #2F5C8F;}
 			.tac table tr td{padding: 10px;border-color: #ddd;font-size: 12px;text-align:center;}
-			.tac table tr td a{text-decoration: none;}
+			.tac table tr td a{text-decoration: none;color:#2B7FE0;}
 			.tac table tr td #but{cursor: pointer;}
 			.tac table tr:last-of-type td{text-align: right;}
 			.Hover td img{width: 16px;}
 			.Hover td:last-of-type img{width: 18px}
 			.tac table .Hover:hover{background-color: #dbecff;}
+			.title{height: 60px;width:100%;}
+			.title .title_img img{width: 23px;margin-right:10px;float: left;margin-top: 9px;}
+			.title .div_span{font-size: 22px;float: left;}
+			.tab{width: 100%}
+			.tab table{margin:0 auto;}
+			.tab table tr{border: 1px solid #c0c0c0;}
+			.tab table tr td,.tab table tr th{padding: 10px;}
+			.tab table tr td{border-right: 1px solid #c0c0c0;}
+			.tab table tr td input{height: 22px;}
+			.tab table tr td select{height: 25px;}
 		</style>
 	</head>
 	<body>
 		<div class="content">
-			<div class="title"><fmt:message code="email.title.querymail" /></div>
+			<div class="title">
+				<div class="title_img">
+					<img src="../img/icon_QUERY.png">
+				</div>
+				<div class="div_span"><fmt:message code="email.title.querymail" /></div>
+			</div>
 			<div class="tab">
 				<form action="" method="get">
-					<table border="1" cellspacing="0" cellpadding="0" width="99%">
+					<table cellspacing="0" cellpadding="0" width="60%" style="border-collapse:collapse;">
+						<tr>
+							<th colspan="2" style="text-align: center;background-color: #3691DA;color: #fff;font-weight: normal;">输入查询条件</th>
+						</tr>
 						<tr>
 							<td><fmt:message code="email.th.maillist" />：</td>
 							<td>
@@ -207,16 +225,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd');
 										if(data1[i].emailList[0].readFlag==1){
 											if(data1[i].attachmentId!=''){
-												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
 											}else{
-												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
 											}
 											
 										} else if(data1[i].emailList[0].readFlag==0){
 											if(data1[i].attachmentId!=''){
-												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
 											}else{
-												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:center;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+												str+='<tr class="Hover"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
 											}
 										}
 										

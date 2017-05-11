@@ -30,7 +30,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.attachment a{text-decoration: none;}
 			.attachment a img{vertical-align: middle;}
 			.befor .searchTxt{width:90%;height:30px;padding-left:5px;margin-bottom:5px;}
-			.Hover{cursor: pointer;}
+			/*.Hover{cursor: pointer;}*/
+			/*.Hover  a{text-decoration: none;}*/
 			.UP_INBOX .tab table .Hover:hover{background-color:#c5e9fb;}
 			.Hover img{width:16px;}
 			.on_tr{background-color: #c5e9fb;}
@@ -41,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.UP_INBOX .tab table tr:nth-child(odd){background-color: #F6F7F9;}
 			.UP_INBOX .tab table tr th,.UP_INBOX .tab table tr td{padding:10px;}
 			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table tr th.theme{text-align: center}
-			.UP_INBOX .tab table .theme_a a{text-decoration: none;color: #000;text-align: left;display: block;}
+			.UP_INBOX .tab table .theme_a a{text-decoration: none;text-align: left;display: block;color:#2B7FE0;}
 
 		</style>
 	</head>
@@ -110,13 +111,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>--%>
 					<!--邮箱设置-->
-					<div class="setUp">
+					<%--<div class="setUp">
 						<a href="javascript:;">
 							<img class="setUp_img" src="../img/icon_setmail_11.png"/>
 							<span><fmt:message code="email.th.mailimpost" /></span>
 							<img class="loding" src="../img/icon_refresh_11.png"/>
 						</a>
-					</div>
+					</div>--%>
 				</div>
 			
 			<!--左侧侧边栏 结束-->
@@ -365,16 +366,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 //alert(data1[i].sendTime);
                                 if(data1[i].emailList[0].readFlag==1){
                                     if(data1[i].attachmentId!=''){
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
                                     }else{
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
                                     }
 
                                 } else if(data1[i].emailList[0].readFlag==0){
                                     if(data1[i].attachmentId!=''){
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
                                     }else{
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;">'+data1[i].subject+'</td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
                                     }
                                 }
 
