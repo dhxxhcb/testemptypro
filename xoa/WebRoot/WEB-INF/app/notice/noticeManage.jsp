@@ -102,6 +102,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         .zhiding{
             margin-top:3px;
         }
+        .title a{
+            color: #2F5C8F;
+        }
+        /*table{
+            text-align: center;
+        }*/
     </style>
 </head>
 <body>
@@ -311,7 +317,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="top_box">
                 <div>
                     <input type="checkbox" name="textTop" id="textTop" class="textTop">
-                    <h1 class="add_show">使新闻置顶，显示为重要</h1>
+                    <h1 class="add_show">使公告置顶，显示为重要</h1>
                 </div>
                 <div class="t_box">
                     <input type="text" name="textDay" id="textDay" class="textDay" value="0"
@@ -599,7 +605,7 @@ $(function () {
 		        /* 新闻查询按钮 */
         		$('.submit').click(function (){
 					data.read = $('.index_head .one').parent().attr('data_id');
-					data.typeId = $('#select').val();
+					data.typeId = $('#select option:checked').attr("tid");
 					data.nTime = $('#sendTime').val();
 					//console.log(read,typeId,nTime);
 					initPageList();
@@ -620,10 +626,42 @@ $(function () {
 
        //新建公告通知
 
+   /* notifyId
+    fromDept
+    fromId
+    subject
+    sendTime
+    beginDate
+    endDate
+    print
+    typeId
+    top
+    topDays
+    format
+    publish
+    auditer
+    auditDate
+
+    download
+    lastEditor
+    lastEditTime
+    subjectColor
+    keyword
+    isFw
+    toId
+    content
+    attachmentId
+    attachmentName
+    readers
+    privId
+    userId
+    reason
+    compressContent
+    summary*/
+
         $('#add_send').on('click',function(){
             alert('111');
          var data_notice={
-             notify:{
                     subject:$('#add_titileTime').val(),
                     toId:$('#add_texta').val(),
                     format:$('#add_sel option:checked').attr('value'),
@@ -631,14 +669,31 @@ $(function () {
                     userId:'',
                     privId:'',
                     fromDept:'',
+                     reason:'',
+                     readers:'',
+                     attachmentId:'',
+                     attachmentName:'',
+                     auditer:'',
+                     auditDate:'',
+                     compressContent:'',
+                     download:'',
+                     lastEditor:'',
+                     lastEditTime:'',
+                     subjectColor:'',
+                     keyword:'',
+                     isFw:'',
+                     topDays:'',
+                     format:'',
+                     publish:'',
+
                     notifyId:'',
                     top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
                     topDays:$('#textDay').val(),
                     summary:$('#add_summny').val(),
-                    content:ue.getContent()
-            },
-             sendTime:$('#add_newDate').val(),
-             lastEditTime:new Date().Format('yyyy-MM-dd hh:mm:ss')+"",
+                    content:ue.getContent(),
+
+             sendTime1:$('#add_newDate').val(),
+             lastEditTime1:new Date().Format('yyyy-MM-dd hh:mm:ss')+"",
          }
 
          console.log(data_notice);
