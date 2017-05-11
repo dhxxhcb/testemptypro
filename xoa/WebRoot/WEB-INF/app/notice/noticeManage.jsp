@@ -1,3 +1,6 @@
+<%--需把局部样式归并为一个通用或符合公告管理的公共样式，
+接口对完需调整--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
@@ -30,70 +33,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <div class="bx">
-    <!--head开始-->
+    <!--标题栏-->
     <div class="head w clearfix">
         <ul class="index_head">
-           <li data_id=""><span class="one headli1_1"><fmt:message
-                    code="news.th.newsmanage"/></span><img class="headli1_2" src="../img/02.png" alt=""/>
+           <li data_id=""><span class="one headli1_1">
+               <%--<fmt:message  code="news.th.newsmanage"/>--%>
+               公告管理
+           </span><img class="headli1_2" src="../img/02.png" alt=""/>
             </li>
-            
-            <li data_id="0"><span class="headli2_1"><fmt:message
-                    code="news.th.newbuild"/></span><img src="../img/02.png" alt="" class="headli2_2"/>
+            <li data_id="0"><span class="headli2_1">
+                <%--<fmt:message code="news.th.newbuild"/>--%>
+            新建公告
+            </span><img src="../img/02.png" alt="" class="headli2_2"/>
             </li>
                     
-           <li data_id="1"><span class="headli3"><fmt:message code="news.title.query"/></span></li> 
+           <li data_id="1"><span class="headli3">
+               <%--<fmt:message code="news.title.query"/>--%>
+           公告查询
+           </span></li>
+            <li data_id="2"><span class="headli4">
+               <%--<fmt:message code="news.title.query"/>--%>
+           公告统计
+           </span></li>
            
         </ul>
     </div>
-    <!--head通栏结束-->
-    
-    <!--navigation开始-->
+
+    <!--表单选项显示-->
     <div class="step1"> 
     <div class="navigation  clearfix">
         <div class="left">
-            <!-- <img src="../img/01.png" style="width:28px;height:28px; margin-right:5px;"> -->
-			 <img src="../img/la2.png"> 
-           <!--  <div class="news">全部新闻</div> -->
+			 <img src="../img/la2.png">
            <div class="news">
-                    <fmt:message code="news.title.new"/>
+                    <%--<fmt:message code="news.title.new"/>--%>
+               管理公告通知
            </div>  
-            <!-- <select name="TYPE" class="button1" style="float: left;" id="select"> -->
-             <select name="TYPE" class="button1 nav_type" id="select">          
+             <select name="TYPE" class="button1 nav_type" id="select">
 				<option value="0" selected="">所有类型</option>
-				<option value="01">公司动态</option>
-				<option value="02">媒体关注</option>
-				<option value="03">行业资讯</option>
-				<option value="04">合作伙伴新闻</option>
-				<option value="05">客户新闻</option>
+				<option value="01">决定</option>
+				<option value="02">通知</option>
+				<option value="03">通报</option>
+				<option value="04">其他</option>
 				<option value="">无类型</option>
 			</select>
-			<!-- 查询按钮 -->
-			 <!-- <div id="cx" class="submit">查询</div>	 -->
 			 <div id="cx" class="submit">
                     <fmt:message code="global.lang.query"/>
              </div>
         </div>
 
-
-       <!--   <div class="right">
-            分页按钮
-            <div class="M-box3"></div>
-        </div> -->
-        
-        
-       	<div class="right">
-                <!-- 分页按钮-->
-                <div class="M-box3">
-                </div>
-
+        <!-- 分页按钮-->
+        <div class="right">
+                <div class="M-box3"></div>
             </div>
-        
-
     </div>
 
-    <!--navigation结束-->
-
-    <!--content部分开始-->
+    <!--table表单  标题栏 -->
     <div>
         <div>
             <table id="tr_td">
@@ -102,148 +96,186 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		<td class="th">选择</td>
                     	<td class="th">发布人</td>
                     	<td class="th">类型</td>
-                    	<td class="th" style="position: relative">发布范围</td>
+                    	<td class="th" >发布范围</td>
 	                    <td class="th">标题</td>
 	                    <td class="th">发布时间</td>
 	                    <td class="th">生效日期</td>
 	                    <td class="th">终止日期</td>
 	                    <td class="th">状态</td>
 	                    <td class="th">操作</td>
-	                   
 	                </tr>
                 </thead>
-                <tbody id="j_tb">
-	                                                            
-                </tbody>
-                
-            </table>
+                <tbody id="j_tb"></tbody>
+                </table>
+            </div>
         </div>
     </div>
-    
-    <!--content部分结束-->
-    </div>
-    <!-- 新建新闻 -->
-	<!-- <div class="step2"  style="width:100%;margin-top: 50px;display: none;"> -->
+
+
+    <!-- ************************************ -->
+    <!-- 新建公告 -->
 	<div class="step2" style="display: none;">
-	<!-- 中间部分 -->
 	 <table class="newNews">
         <div class="nav_box clearfix">
             <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
-            <div class="nav_t2" class="news">全部新闻</div>
+            <div class="nav_t2" class="news">新建公告通知 </div>
 
             <!-- <div class="nav_t3">选择格式 -->
              <div class="nav_t3" > 
             	<select name="" class="sel">
                     <option value="" selected="">选择格式</option>
-                    <option value="">1</option>
-                    <option value="">2 </option>
-                    <option value="">2 </option>
-                    
+                    <option value="">普通格式</option>
+                    <option value="">MHT格式</option>
+                    <option value="">超级链接</option>
                 </select>
-            
-            </div>                
-          <!--   <div class="nav_t4"><img src="../img/mg1.png" alt=""/></div> -->
+            </div>
         </div>
+         <!-- 二级选项 -->
         <tbody>
         <tr>
             <td class="td_w">
-                <!-- <div class="text1 blue_text">请选择新闻类型</div>
-                <img class="text2" src="../img/mg1.png" alt=""/> -->
                 <select name="" class="">
-                    <option value="" selected="">请选择新闻类型</option>
-                    <option value="">1</option>
-                    <option value="">2 </option>
-                    <option value="">2 </option>
-                    
+                    <option value="" selected="">选择公告类型</option>
+                    <option value="">决定</option>
+                    <option value="">通知 </option>
+                    <option value="">通报</option>
+                    <option value="">其他</option>
                 </select>
             </td>
             <td>
-                <div class="td_title1">请输入发布时间...</div>
+                <div class="td_title1">
+                    <!-- 需调整 -->
+                    <input type="text" name="titileTime" id="titileTime"  style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;"
+                           placeholder="请输入发布时间..." >
+                    <!-- 后续需要调整 -->
+                    <button ></button>
+                    <%--请输入发布时间...--%>
+                </div>
                 <img class="td_title2" src="../img/mg2.png" alt=""/>
             </td>
         </tr>
         <tr>
             <td class="blue_text">
-                按照部门发布：
+                按部门发布：
             </td>
             <td>
                 <div class="td_title1  release1"></div>
                 <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
-
                 <div class="release3">添加</div>
                 <div class="release4 empty">清空</div>
-
             </td>
-
         </tr>
+
+
+
+        <!--- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+        <!-- 需调整样式 建议采取div展示和隐藏模式  或者可以采取盒子格式 -->
+        <tr>
+            <td class="blue_text">
+                按人员发布：
+            </td>
+            <td>
+                <div class="td_title1  release1"></div>
+                <img class="td_title2 release3" src="../img/mg2.png" alt=""/>
+                <div class="release3">添加</div>
+                <div class="release4 empty">清空</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                按角色发布：
+            </td>
+            <td>
+                <div class="td_title1  release1"></div>
+                <img class="td_title2 release4" src="../img/mg2.png" alt=""/>
+                <div class="release3">添加</div>
+                <div class="release4 empty">清空</div>
+            </td>
+        </tr>
+        <!--- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+
+
         <tr>
             <td class="blue_text">
                 发布时间：
             </td>
             <td>
-                <div class="td_title1">请输入新闻标题...</div>
+                <div class="td_title1">
+                    <!-- 需引入时间插件 -->
+                    <input type="text"  name="publishTime" class="publishTime"
+                            style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
+                </div>
                 <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
 
-                <div class="release3">设置为当前时间</div>
+                <div class="release3">重置当前时间</div>
             </td>
         </tr>
+
         <tr>
             <td class="blue_text">
-                评论:
+                有效期：
             </td>
             <td>
-               <!--  <div class="comment1">实名评论</div>
-                <img class="comment2" src="../img/mg1.png" alt=""/>-->
-                
-                <select name="" class="">
-                    <option value="" selected="">实名评论</option>
-                    <option value="">1</option>
-                    <option value="">2 </option>
-                    <option value="">2 </option>
-                    
-                </select>
-                
+                <div class="td_title1">
+                    <!-- 引入时间控件 和 css 调整  -->
+                    <input type="text"  name="startTime" class="startTime"
+                           style="height: 20px; width: 50px; margin-left: -4.2px; margin-top: -1px;">
+                    至
+                    <input type="text"  name="endTime" class="endTime"
+                           style="height: 20px;width: 50px;  margin-top: -1px;">
+                    为空为手动终止
+                </div>
             </td>
         </tr>
+
+        <!-- 复选框样式调整  -->
         <tr>
             <td class="blue_text">
-                提醒：
+                事物提醒：
             </td>
             <td class="remind">
-                <!--<div><input type="checkbox" checked/></div>-->
-                <div><img src="../img/mg3.png" alt=""/></div>
-                <div class="news_t">发送事物提醒消息</div>
-                <!--<div><input type="checkbox" checked/></div>-->
-                <div><img src="../img/mg4.png" alt=""/></div>
-                <div>分享到企业社区</div>
+                <div class="news_t">
+                    <input type="checkbox" name="remind" >发送事务提醒消息
+                </div>
+                <div>
+                    <input type="checkbox" name="remind" >分享到企业社区
+                </div>
             </td>
         </tr>
+
         <tr>
             <td class="blue_text">
                 置顶：
             </td>
             <td class="top_box">
-                <!--<div><input type="checkbox"/></div>-->
-                <div><img src="../img/mg4.png" alt=""/></div>
-                <div>使新闻置顶，显示为重要</div>
-                <div class="t_box">0</div>
-                <div>天后结束置顶（0表示一直置顶）</div>
+                <div>
+                    <input type="checkbox" name="textTop" id="textTop" class="textTop">
+                    使新闻置顶，显示为重要
+                </div>
+                <div class="t_box">
+                    <input type="text" name="textDay" id="textDay" class="textDay" value="0"
+                           style="height: 20px; width: 40px; margin-left: -5.2px; margin-top: -1px;">
+                </div>
+                <div>天后结束置顶,0表示一直置顶</div>
             </td>
-
-
         </tr>
         <tr>
             <td class="blue_text">
                 内容简介：
             </td>
             <td class="abstract">
-                <div class="abstract1">请选择新闻类型</div>
+                <div class="abstract1">
+                    <input type="text"  name="summny" class="summny"
+                           style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
+                    </div>
                 <div class="abstract2">(最多输入39个字)</div>
             </td>
         </tr>
+
+        <!-- 需调整 -->
         <tr>
             <td class="blue_text">
-                附件上传：
+                附件与权限：
             </td>
             <td class="enclosure">
                 <div><img src="../img/mg11.png" alt=""/></div>
@@ -253,19 +285,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div><img src="../img/mg13.png" alt=""/></div>
                 <div class="enclosure_t">批量插入图片</div>
                 <div><img src="../img/mg14.png" alt=""/></div>
-                <div class="enclosure_t">批量上传过</div>
-
+                <div class="enclosure_t">批量上传过</div><br/>
+                <input type="checkbox" name="textEnclosure" class="textEnclosure">
+                允许下载Office附件
+                <input type="checkbox" name="textEnclosure" class="textEnclosure" >
+                允许打印Office附件
+                <%--<input >--%>
+                <br/>
+                都不选中则只能阅读附件内容
             </td>
-
-
         </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+        <!---   上面字段 和 表格已添加 ，需要调整相关css  -->
         <!--word编辑器-->
         <tr>
             <td colspan="2">
-            
 				<script id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script>
-				
-
             </td>
         </tr>
         <tr>
@@ -285,16 +332,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <img src="../img/mg6.png" alt=""/>
     </div>
 </div>
-
-
 </div>
+
+
+
 <!--content部分结束-->
-	
-	
-	
-	
-	
-	
 	<!-- <div class="login">
 	        <div class="header">输入查询条件</div>
 	        <div class="middle">
