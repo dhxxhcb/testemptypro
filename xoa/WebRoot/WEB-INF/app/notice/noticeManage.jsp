@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             margin-top:3px;
         }
         .title a{
-            color: #2F5C8F;
+            color: #287fe0;
         }
         /*table{
             text-align: center;
