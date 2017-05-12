@@ -230,7 +230,6 @@ public class NewsController {
 	@RequestMapping(value = "/sendNews", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	String insertNews(News news, @RequestParam("newTime") String newTime,
-			@RequestParam("lastTime") String lastTime,
 			HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa"
 				+ (String) request.getSession().getAttribute("loginDateSouse"));
@@ -240,7 +239,8 @@ public class NewsController {
 		news.setProvider(name.getUserId());
 		news.setReaders(name.getUserId() + ",");
 		news.setNewsTime(DateFormat.getDate(newTime));
-		news.setLastEditTime(DateFormat.getDate(lastTime));
+		Date   curDate   =   new   Date(System.currentTimeMillis());//获取当前时间  
+		news.setLastEditTime(curDate);
 		if (news.getAttachmentId()==null) {
 			news.setAttachmentId("");
 		}

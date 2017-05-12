@@ -131,7 +131,7 @@ public class NewServiceImpl implements NewService {
 			news.setProviderName(news.getUsers().getUserName());
 			news.setTypeName(news.getCodes().getCodeName());
 			if (news.getAttachmentName()!=null&&news.getAttachmentId()!=null) {
-				news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType));
+				news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType,GetAttachmentListUtil.MODULE_NEWS));
 			}
 			 String depId=news.getToId();
 				if ("ALL_DEPT".equals(depId)) {
@@ -198,7 +198,7 @@ public class NewServiceImpl implements NewService {
 			news.setProviderName(news.getUsers().getUserName());
 			news.setTypeName(news.getCodes().getCodeName());
 			if (news.getAttachmentName()!=null&&news.getAttachmentId()!=null) {
-				news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType));
+				news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType,GetAttachmentListUtil.MODULE_NEWS));
 			}
 			 String depId=news.getToId();
 				if ("ALL_DEPT".equals(depId)) {
@@ -292,7 +292,7 @@ public class NewServiceImpl implements NewService {
 		news.setProviderName(news.getUsers().getUserName());
 		news.setTypeName(news.getCodes().getCodeName());
 		if (news.getAttachmentName()!=null&&news.getAttachmentId()!=null) {
-			news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType));
+			news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType,GetAttachmentListUtil.MODULE_NEWS));
 		}
 		StringBuffer s=new StringBuffer();
 		StringBuffer s1=new StringBuffer();
@@ -404,7 +404,7 @@ public class NewServiceImpl implements NewService {
 				news.setProviderName(news.getUsers().getUserName());
 				news.setTypeName(news.getCodes().getCodeName());
 				if (news.getAttachmentName()!=null&&news.getAttachmentId()!=null) {
-					news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType));
+					news.setAttachment(GetAttachmentListUtil.returnAttachment(news.getAttachmentName(), news.getAttachmentId(), sqlType,GetAttachmentListUtil.MODULE_NEWS));
 				}
 				 String depId=news.getToId();
 				if ("ALL_DEPT".equals(depId)) {
