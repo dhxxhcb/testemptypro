@@ -136,7 +136,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_EMAIL));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -200,7 +200,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_EMAIL));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -252,7 +252,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_EMAIL));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -303,7 +303,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_EMAIL));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -354,7 +354,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_EMAIL));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -400,7 +400,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setCopyName("");
 		}
 		if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-			emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
+			emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_EMAIL));
 		}else{
 			emailBody.setAttachmentName("");
 			emailBody.setAttachmentId("");
@@ -450,7 +450,7 @@ public class EmailServiceImpl implements EmailService {
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_EMAIL));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
@@ -502,7 +502,7 @@ public class EmailServiceImpl implements EmailService {
 				}
 			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
 			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType));
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_EMAIL));
 			}else{
 				emailBody.setAttachmentName("");
 				emailBody.setAttachmentId("");
