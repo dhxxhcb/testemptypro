@@ -196,6 +196,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//点击保存到草稿箱按钮
 				$("#btn2").on("click",function(){
+                    var dataId1=$('.inPole').find('#senduser').attr('dataid');
+                    var dataId2=$('.tian').find('#copeNameText').attr('dataid');
+                    var dataId3=$('.mis').find('#secritText').attr('dataid');
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();

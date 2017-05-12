@@ -25,8 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<style>
 			table{margin-top:10px;}
 			table tr td{padding-left:10px;}
-			/* .div_Re{width:500px;height:100px;border:#000 1px solid;} */
-			.div_Re span a{}
+			.files a{text-decoration: none;}
 		</style>
 	</head>
 	<body>
@@ -93,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					<form id="uploadimgform" target="uploadiframe"  action="../upload?module=email" enctype="multipart/form-data" method="post" >
 						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
-						<button id="uploadimg">上传</button>
+						<a href="javascript:;" id="uploadimg">上传</a>
 					</form>
 					
 				</td>
@@ -114,15 +113,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript">
        		 var ue = UE.getEditor('container');
        		 user = '';
-			user_id='senduser';
+
        		 //获取输入框内容
        	 $(function () {
        	 	$("#selectUser").on("click",function(){
        		 		$.popWindow("../common/selectUser");
        		 	});
-             $('.TABLE').on('click','#selectUserO',function(){
-                 $.popWindow("../common/selectUser");
-             })
+
        		 ue.ready(function(){
        		 	var sId=$.getQueryString('sId');
 				var TYPE=$.getQueryString('type');
@@ -144,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							$('#senduser').val('');
 							if(data2.attachmentName!='' && data2.copyName!=''){
 								for(var i=0;i<(arr.length-1);i++){
-									stra+='<span><a href="javascript:;" style="text-decoration:none;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></span>';
+									stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></span>';
 							}
 								str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
 								
@@ -153,7 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 							} else if(data2.attachmentName!='' && data2.copyName ==''){
 								for(var i=0;i<(arr.length-1);i++){
-									stra+='<span><a href="javascript:;" style="text-decoration:none;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></span>';
+									stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></span>';
 								}
 								str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
 								
@@ -182,8 +179,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 				//附件上传方法	
 				$('#uploadimg').on('click', function(ele) {
+                    user_id='senduser';
 					$('#uploadinputimg').click();    
 				})
+				 $('.TABLE').on('click','#selectUserO',function(){
+					 user_id='copeNameText';
+					 $.popWindow("../common/selectUser");
+				 })
+				 $('.TABLE').on('click','#selectUserT',function(){
+					 user_id='secritText';
+					 $.popWindow("../common/selectUser");
+				 })
        		 	$('#uploadinputimg').change(function(e){
 					var target = $(e.target);
 					var file;
@@ -210,6 +216,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
        		 	//点击立即发送
        		 	$("#btn1").on("click",function(){
+                    var dataId1=$('.inPole').find('#senduser').attr('dataid');
+                    var dataId2=$('.tian').find('#copeNameText').attr('dataid');
+                    var dataId3=$('.mis').find('#secritText').attr('dataid');
                     var TYPE=$.getQueryString('type');
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
@@ -227,7 +236,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					 var data={
 					 	'fromId':'admin',
-					 	'toId2': 'admin,',
+                         'toId2': dataId1,
+                         'copyToId':dataId2,
+                         'secretToId':dataId3,
 						'subject':val,
 						'content':html,
 						'attachmentId':aId,
@@ -254,6 +265,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//点击保存到草稿箱按钮
 				$("#btn2").on("click",function(){
+                    var dataId1=$('.inPole').find('#senduser').attr('dataid');
+                    var dataId2=$('.tian').find('#copeNameText').attr('dataid');
+                    var dataId3=$('.mis').find('#secritText').attr('dataid');
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();
