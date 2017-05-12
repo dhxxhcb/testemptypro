@@ -179,7 +179,9 @@ $(function(){
 	//点击邮日志更多，显示邮件页面
 	$('.daily_more').on('click',function(){
 		var tid=$(this).attr('tid');
+
 		var url=$(this).attr('url');
+
 		if($('#f_'+tid).length>0){
 			$('.all_content .iItem').hide();
 				$('#f_'+tid).show();
@@ -358,6 +360,8 @@ $(function(){
     $('.more_wenjian').on('click',function(){
         var tid=$(this).attr('tid');
         var url=$(this).attr('url');
+        alert(tid);
+        alert(url);
         if($('#f_'+tid).length>0){
             $('.all_content .iItem').hide();
             $('#f_'+tid).show();
