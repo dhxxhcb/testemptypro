@@ -630,40 +630,6 @@ $(function () {
         });
 
        //新建公告通知
-
-   /* notifyId
-    fromDept
-    fromId
-    subject
-    sendTime
-    beginDate
-    endDate
-    print
-    typeId
-    top
-    topDays
-    format
-    publish
-    auditer
-    auditDate
-
-    download
-    lastEditor
-    lastEditTime
-    subjectColor
-    keyword
-    isFw
-    toId
-    content
-    attachmentId
-    attachmentName
-    readers
-    privId
-    userId
-    reason
-    compressContent
-    summary*/
-
         $('#add_send').on('click',function(){
 
          var data_notice={
@@ -707,14 +673,30 @@ $(function () {
                        window.location.reload();
                    }
 
-
-
                  },
 
              });
          }
 
      /*add_notice();*/
+            //修改公告通知管理
+       /*     $('#j_tb').on('click','.notice_change',function(){
+                alert('111');
+                var tid=$(this).attr('notifyId');
+                $.ajax({
+                    url: "notice/deleteById",
+                    type: "get",
+                    data:{
+                        notifyId:tid,
+                        fromDept:'',
+
+                    },
+                    dataType: 'json',
+                    success: function (obj) {
+                        window.location.reload();
+                    }
+                })
+            });*/
             //删除公告通知管理
             $('#j_tb').on('click','.notice_delete',function(){
 
