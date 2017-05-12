@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						<div class="block-right-add">全部添加</div>
 						<div class="block-right-remove">全部删除</div>
-						<div class="block-right-item" item_id="admin" item_name="系统管理员" user_id="admin" title="OA管理员 ">
+						<div class="block-right-item" item_id="1" item_name="系统管理员" user_id="1" title="OA管理员 ">
 							<span class="name">系统管理员<span class="status"> (在线)</span></span>
 						</div>
 						<div class="userItem">

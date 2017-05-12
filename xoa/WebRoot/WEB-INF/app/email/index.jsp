@@ -861,11 +861,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//已发送详情展示方法
 				function init3(id){
+					
 					$.ajax({
 									type:'get',
 									url:'queryByID',
 									dataType:'json',
-									data:{'bodyId ':id,'flag':''},
+									data:{'bodyId':id,'flag':''},
 									success:function(rsp){
 										var data2=rsp.object;
 										var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
