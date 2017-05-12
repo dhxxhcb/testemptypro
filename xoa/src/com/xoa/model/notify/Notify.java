@@ -225,7 +225,7 @@ public class Notify {
 	 * @return String
 	 */
 	public String getToId() {
-		return toId;
+		return toId==null?"":toId;
 	}
 
 	/**
@@ -245,7 +245,7 @@ public class Notify {
 	 * @return String
 	 */
 	public String getContent() {
-		return content;
+		return content==null?"":content;
 	}
 
 	/**
@@ -265,6 +265,9 @@ public class Notify {
 	 * @return String
 	 */
 	public String getAttachmentId() {
+		if(attachmentId==null){
+			attachmentId="";
+		}
 		return attachmentId;
 	}
 
@@ -286,7 +289,7 @@ public class Notify {
 	 * @return String
 	 */
 	public String getAttachmentName() {
-		return attachmentName;
+		return attachmentName==null?"":attachmentName;
 	}
 
 	/**
@@ -307,7 +310,9 @@ public class Notify {
 	 * @return String
 	 */
 	public String getReaders() {
-		return readers;
+
+
+		return readers==null?"":readers;
 	}
 
 	/**
@@ -327,7 +332,8 @@ public class Notify {
 	 * @return String
 	 */
 	public String getPrivId() {
-		return privId;
+
+		return privId==null?"":privId;
 	}
 
 	/**
@@ -347,7 +353,8 @@ public class Notify {
 	 * @return String
 	 */
 	public String getUserId() {
-		return userId;
+
+		return userId==null?"":userId;
 	}
 
 	/**
@@ -367,7 +374,7 @@ public class Notify {
 	 * @return String
 	 */
 	public String getReason() {
-		return reason;
+		return reason==null?"":reason;
 	}
 
 	/**
@@ -387,7 +394,7 @@ public class Notify {
 	 * @return byte[]
 	 */
 	public byte[] getCompressContent() {
-		return compressContent;
+		return compressContent==null?new byte[0]:compressContent;
 	}
 
 	/**
@@ -448,6 +455,7 @@ public class Notify {
 	 * 
 	 * @return Integer
 	 */
+
 	public Integer getFromDept() {
 		return fromDept;
 	}
@@ -718,7 +726,7 @@ public class Notify {
 	 * @return String
 	 */
 	public String getLastEditor() {
-		return lastEditor;
+		return lastEditor==null?"":lastEditor;
 	}
 
 	/**

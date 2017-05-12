@@ -505,14 +505,19 @@ public class NotifyController {
 
 	@RequestMapping(value = "/addNotify", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	String addNotify(Notify notify, @RequestParam("sendTime1") String sendTime1,
+	ToJson addNotify(Notify notify, @RequestParam("sendTime1") String sendTime1,
 			@RequestParam("lastEditTime1") String lastEditTime1,
 			HttpServletRequest request) {
+		ToJson toJson = new ToJson();
 		ContextHolder.setConsumerType("xoa"
 				+ (String) request.getSession().getAttribute("loginDateSouse"));
 		Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());
 		notify.setPrivId(name.getUserId());
 		notify.setReaders(name.getUserId() + ",");
+		Long a=	(Long)DateFormat.getDate(sendTime1).getTime();
+
+		notify.setEndDate(1000);
+		notify.setBeginDate(1000);
 		notify.setSendTime(DateFormat.getDate(sendTime1));
 		notify.setLastEditTime(DateFormat.getDate(lastEditTime1));
 /*	 ToJson<Notify> addNotify(
@@ -589,15 +594,19 @@ public class NotifyController {
 			return new ToJson<Notify>(1, "");
 		}*/
 		try {
-			notifyService.addNotify(notify);
-			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(0, ok),
-					"yyyy-MM-dd HH:mm:ss");
+		 int b=	notifyService.addNotify(notify);
+          if(b>0){
+			  toJson.setFlag(0);
+			  toJson.setMsg("success");
+		  }else{
+			  toJson.setFlag(1);
+			  toJson.setMsg("success");
+		  }
 		} catch (Exception e) {
 			loger.debug("addNotify:" + e);
-			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(1, err),
-					"yyyy-MM-dd HH:mm:ss");
+			e.printStackTrace();
 		}
-
+      return toJson;
 	}
 	
 	/**

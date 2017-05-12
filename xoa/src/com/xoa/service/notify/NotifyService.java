@@ -126,7 +126,7 @@ public interface NotifyService {
    * @return     void
    */
    @DynDatasource
-   public  void addNotify(Notify notify);
+   public  int addNotify(Notify notify);
    
    /**
     * 

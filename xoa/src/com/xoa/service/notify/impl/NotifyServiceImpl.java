@@ -193,9 +193,9 @@ public class NotifyServiceImpl implements  NotifyService{
      * @return     void
      */
 	@Override
-	public void addNotify(Notify notify) {
+	public int addNotify(Notify notify) {
 
-			notifyMapper.addNotify(notify);
+		return	notifyMapper.addNotify(notify);
 			
 	}
 

@@ -99,7 +99,7 @@ public interface NotifyMapper extends BaseMapper<Notify>{
      * 参数说明:   @param notify
      * @return     void
      */
-   public void addNotify (Notify notify);
+    int addNotify (Notify notify);
     /**
      * 
      * 创建作者:   张丽军
