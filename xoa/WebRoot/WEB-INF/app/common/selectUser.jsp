@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						<div class="block-right-add">全部添加</div>
 						<div class="block-right-remove">全部删除</div>
-						<div class="block-right-item" item_id="1" item_name="系统管理员" user_id="1" title="OA管理员 ">
+						<div class="block-right-item" item_id="1" item_name="系统管理员" user_id="admin" title="OA管理员 ">
 							<span class="name">系统管理员<span class="status"> (在线)</span></span>
 						</div>
 						<div class="userItem">
@@ -181,7 +181,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var selectItemsName = '';
 					for(var i=0;i<itemsArr.length;i++){
 						var obj = itemsArr.eq(i);
-						selectItemsId+=(obj.attr("item_id")+',');
+						selectItemsId+=(obj.attr("user_id")+',');
 						selectItemsName+=(obj.attr("item_name")+',')
 					};
 					parent.opener.document.getElementById(parent.opener.user_id).value=selectItemsName;
@@ -239,9 +239,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class=""></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 									}else{
 										if(v.sex==0){
-											tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"> </span></span></div>';
+											tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"> </span></span></div>';
 										}else if(v.sex==1){
-											tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"></span></span></div>';
+											tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"></span></span></div>';
 										}
 									}
 								});
