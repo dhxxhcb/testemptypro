@@ -503,7 +503,7 @@ public class NotifyController {
 	 * @return     String
 	 */
 
-	@RequestMapping(value = "/addNotify", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/addNotify", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
 	ToJson addNotify(Notify notify, @RequestParam("sendTimes") String sendTimes,
 			
