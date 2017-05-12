@@ -518,7 +518,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text size_color">
-                	是否置顶:
+                是否置顶：
             </td>
             <td>
                 <select name="" class="top">
@@ -531,7 +531,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="size_color">
-           		 标题:
+           		 标题：
             </td>
             <td>
                 <input class="title_" id="subject" type="text"/>
@@ -539,7 +539,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr class="release">
             <td class="size_color">
-           		 发布日期:
+           		 发布日期：
             </td>
             <td>
                 <input id="beginTime"class="date" type="text"/>
@@ -549,14 +549,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
         <tr>
-            <td class="size_color">内容:</td>
+            <td class="size_color">内容：</td>
             <td>
                 <!-- <div class="content_"></div> -->
                 <input class="content_" type="text"/>
             </td>
         </tr>
         <tr class="clack_t">
-            <td class="size_color">点击次数:</td>
+            <td class="size_color">点击次数：</td>
             <td>
                 <input class="c_time c_time1" type="text"/>
                 <div class="c_t">至</div>
@@ -564,7 +564,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
         <tr class="operation">
-            <td class="size_color">操作:</td>
+            <td class="size_color">操作：</td>
             <td>
             	<div><input type="radio" name="radio"></div>
             	<div class="operation1">查询</div>

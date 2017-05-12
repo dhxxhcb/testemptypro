@@ -219,9 +219,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
         <div class="icons">
-            <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
+          <!--   <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
             <img style="margin-right:30px; cursor: pointer;" src="../img/4query.png" alt=""/>
-            <img style=" cursor: pointer;" src="../img/5query.png" alt=""/>
+            <img style=" cursor: pointer;" src="../img/5query.png" alt=""/> -->
+            <div id="btn_query">查询</div>
+            <div class="export">充填</div>
+            <div class="filling">刷新</div>
         </div>
     </div>
 </div>

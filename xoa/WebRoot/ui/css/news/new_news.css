@@ -20,8 +20,8 @@
 .nav_box .nav_t3 .sel {
     border:1px solid #d9d9d9;
     width:85px;
-    height:23px;
-    line-height: 23px;
+   /*  height:23px;
+    line-height: 23px; */
     /* margin-top:23px; */
 }
 .nav_box .nav_t4 img{
@@ -74,8 +74,8 @@ td {
     float: left;
     border: 1px solid #d9d9d9;
     width: 250px;
-    height: 20px;
-    line-height: 20px;
+  /*   height: 20px;
+    line-height: 20px; */
     color: #999999;
     padding-left: 3px;
 }
@@ -167,8 +167,8 @@ td {
 .top_box .t_box {
     border: 1px solid #d9d9d9;
     width: 35px;
-    height: 20px;
-    line-height: 20px;
+    height: 23px;
+    line-height: 23px;
     padding-left: 5px;
     margin-left:5px;
     margin-right:5px;
@@ -183,8 +183,8 @@ td {
 .abstract .abstract1 {
     border: 1px solid #d9d9d9;
     width: 250px;
-    height: 20px;
-    line-height: 20px;
+   /*  height: 20px;
+    line-height: 20px; */
     color: #999999;
     padding-left: 3px;
 }
@@ -223,8 +223,8 @@ td {
 .keyword .keyword_ip {
     border: 1px solid #d9d9d9;
     width: 250px;
-    height: 20px;
-    line-height: 20px;
+   /*  height: 20px;
+    line-height: 20px; */
     color: #999999;
     padding-left: 3px;
 }
@@ -268,7 +268,7 @@ td {
   .btn_ div{ 
         display: inline-block;
         float: left; 
-        width:47px;
+        width: 50px;
         height:27px;
         margin-right: 40px;
         margin-top:10px;
