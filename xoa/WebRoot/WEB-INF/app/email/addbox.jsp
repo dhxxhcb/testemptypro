@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 		</table>
 		<script type="text/javascript">
-			user = '';
+			
 			user_id='senduser';
        		 var ue = UE.getEditor('container');
        		 var res
@@ -110,13 +110,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 $(function(){
 				 //选人控件
        		 	$("#selectUser").on("click",function(){
+       		 		user_id='senduser';
        		 		$.popWindow("../common/selectUser");
        		 	});
 				 $('.TABLE').on('click','#selectUserO',function(){
-                     $.popWindow("../common/selectUser");
+				 	user_id='copeNameText';
+                    $.popWindow("../common/selectUser");
 				 })
                  $('.TABLE').on('click','#selectUserT',function(){
-                     $.popWindow("../common/selectUser");
+                 	user_id='secritText';
+                    $.popWindow("../common/selectUser");
                  })
 				 //附件上传
        		 	$('#uploadimg').on('click', function(ele) {
