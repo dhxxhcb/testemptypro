@@ -241,7 +241,7 @@ public class NotifyServiceImpl implements  NotifyService{
       
       if (depId.equals("ALL_DEPT")) {
     	  notify.setDeprange("全体部门");
-		}else  {
+		}else  if(depId!=null&&!"".equals(depId)){
 			strArray=depId.split(",");
 			for (int i = 0; i < strArray.length; i++) {
 				String name1=departmentService.getDpNameById(Integer.parseInt(strArray[i]));
