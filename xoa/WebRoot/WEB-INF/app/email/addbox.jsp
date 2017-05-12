@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!-- <fmt:message code="email.th.addfile" /> -->
 					<form id="uploadimgform" target="uploadiframe"  action="../upload?module=email" enctype="multipart/form-data" method="post" >
 						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
-						<button id="uploadimg">上传</button>
+						<a href="#" id="uploadimg">上传</a>
 					</form>
 					
 				</td>
@@ -139,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var str='';
 							var str1='';
 							 for(var i=0;i<data.length;i++){
-								str+='<a href="javascript:;" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
+								str+='<a href="<%=basePath %>download?'+data[i].attUrl+'" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
 								str1+='<input type="hidden" class="inHidden" value="'+data[i].aid+'@'+data[i].ym+'_'+data[i].attachId+',">';
 							}
 							$('.Attachment td').eq(1).append(str+str1);
