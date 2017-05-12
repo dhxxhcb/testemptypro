@@ -831,20 +831,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var stra='';
 									var arr=new Array();
 									arr=data2.attachment;
-
+									
 									$(obj).find('tr').remove();
 									$(cName).find('p').remove();
 									$('.span_hr').find('p').find('span').eq(0).html('');
 									
 									if(data2.attachmentName!='' && data2.copyName!=''){
-										for(var i=0;i<(arr.length-1);i++){
+										for(var i=0;i<arr.length;i++){
 											stra+='<div><a href="<%=basePath %>download?'+arr[i].attUrl+'"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></div>';
 										}
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
 									} else if(data2.attachmentName=='' && data2.copyName!=''){
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
 									} else if(data2.attachmentName!='' && data2.copyName ==''){
-										for(var i=0;i<(arr.length-1);i++){
+										for(var i=0;i<arr.length;i++){
 											stra+='<div><a href="<%=basePath %>download?'+arr[i].attUrl+'"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></div>';
 										}
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
