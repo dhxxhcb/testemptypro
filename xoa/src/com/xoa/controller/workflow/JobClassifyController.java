@@ -145,6 +145,17 @@ public class JobClassifyController {
     public BaseWrapper deleteForm(Integer formId){
         return   service.deleteForm(formId);
     }
+//
+//
+    @RequestMapping("/flowclassify/formJsTree")
+    public JobSelectorWrapper formJsData(){
+        return   service.easyFormTree();
+    }
+
+    @RequestMapping("/flowclassify/flowJsTree")
+    public JobSelectorWrapper flowJsData(){
+        return   service.easyFlowTree();
+    }
 
 
 }

@@ -616,5 +616,43 @@ public class JobClassifyService {
     }
 
 
+     public JobSelectorWrapper easyFormTree(){
+         JobSelectorWrapper wrapper =new JobSelectorWrapper();
+         List<FormSort>  resultdatas =new ArrayList<FormSort>();
+         List<FormSort> nosortDatas= sortMapper.selectAllFormSort();
+         Integer noform=sortMapper.selectNoformSort();
+         FormSort formSort =new FormSort();
+         formSort.setSortName("未定义");
+         formSort.setFormcounts(noform);
+         formSort.setHaveChild("0");
+         formSort.setSortNo(0);
+         formSort.setSortId(-1);
+         resultdatas.add(formSort);
+         resultdatas.addAll(nosortDatas);
+         wrapper.setDatas(resultdatas);
+         wrapper.setFlag(true);
+         wrapper.setStatus(true);
+         wrapper.setMsg("获取数据成功");
+         return wrapper;
+     }
+    public JobSelectorWrapper easyFlowTree(){
+        JobSelectorWrapper wrapper =new JobSelectorWrapper();
+        List<FlowSort> nosortDatas= flowSortMapper.selectAllFlowSort();
+        Integer noform=flowSortMapper.selectNoflowSort();
+        List<FlowSort>  resultdatas =new ArrayList<FlowSort>();
+        FlowSort flowSort =new FlowSort();
+        flowSort.setSortName("未定义");
+        flowSort.setFlowcounts(noform);
+        flowSort.setHaveChild("0");
+        flowSort.setSortNo(0);
+        flowSort.setSortId(-1);
+        resultdatas.add(flowSort);
+        resultdatas.addAll(nosortDatas);
+        wrapper.setDatas(resultdatas);
+        wrapper.setFlag(true);
+        wrapper.setStatus(true);
+        wrapper.setMsg("获取数据成功");
+        return  wrapper;
+    }
 
 }
