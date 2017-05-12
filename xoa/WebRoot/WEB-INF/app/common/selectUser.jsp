@@ -179,14 +179,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					console.log(itemsArr.length);
 					var selectItemsId = '';
 					var selectItemsName = '';
+					var selectUid = '';
 					for(var i=0;i<itemsArr.length;i++){
 						var obj = itemsArr.eq(i);
 						selectItemsId+=(obj.attr("user_id")+',');
-						selectItemsName+=(obj.attr("item_name")+',')
+						selectItemsName+=(obj.attr("item_name")+',');
+						selectUid+=(obj.attr("uid")+',');
 					};
 					//alert(selectItemsId);
 					parent.opener.document.getElementById(parent.opener.user_id).value=selectItemsName;
-					parent.opener.document.getElementById(parent.opener.user_id).setAttribute('dataid',selectItemsId);
+					parent.opener.document.getElementById(parent.opener.user_id).setAttribute('dataid',selectUid);
+					parent.opener.document.getElementById(parent.opener.user_id).setAttribute('user_id',selectItemsId);
 					window.close();
 				}
 		$(function(){

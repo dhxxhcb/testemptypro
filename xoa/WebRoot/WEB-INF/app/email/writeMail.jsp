@@ -135,12 +135,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var str1='';
 							var stra='';
 							var arr=new Array();
-							arr=data2.attachmentName.split('*');
+							arr=data2.attachment;
 							$('#txt').val('');
 							ue.setContent('');
 							$('#senduser').val('');
 							if(data2.attachmentName!='' && data2.copyName!=''){
-								for(var i=0;i<(arr.length-1);i++){
+								for(var i=0;i<arr.length;i++){
 									stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></span>';
 							}
 								str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
@@ -149,7 +149,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
 								
 							} else if(data2.attachmentName!='' && data2.copyName ==''){
-								for(var i=0;i<(arr.length-1);i++){
+								for(var i=0;i<arr.length;i++){
 									stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></span>';
 								}
 								str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
@@ -159,7 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 							}
 							if (TYPE==1&&data2.copyName!=''){
-                                var str1='<tr class="tian"><td>抄送：</td><td><textarea name="txt" id="copyName" disabled></textarea><span class="add_img"><span class="addImg"></span><a href="javascript:;" id="selectUserO" class="Add">添加</a><span class="add_img"><span class="addImg"><img src="img/org_select2.png" class="clearIcon"/></span><a href="javascript:;" class="clear">清除</a></span></td></tr>';
+                                var str1='<tr class="tian"><td>抄送：</td><td><textarea user_id="'+data2.fromId+'" value="'+data2.fromId+'" name="txt" id="copyName" disabled></textarea><span class="add_img"><span class="addImg"></span><a href="javascript:;" id="selectUserO" class="Add">添加</a><span class="add_img"><span class="addImg"><img src="img/org_select2.png" class="clearIcon"/></span><a href="javascript:;" class="clear">清除</a></span></td></tr>';
                                 $('.append_tr').after(str1);
 								$('.a1').text('隐藏抄送');
 							}
@@ -216,9 +216,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
        		 	//点击立即发送
        		 	$("#btn1").on("click",function(){
-                    var dataId1=$('.inPole').find('#senduser').attr('dataid');
-                    var dataId2=$('.tian').find('#copeNameText').attr('dataid');
-                    var dataId3=$('.mis').find('#secritText').attr('dataid');
+                    var dataId1=$('.inPole').find('#senduser').attr('user_id');
+                    var dataId2=$('.tian').find('#copeNameText').attr('user_id');
+                    var dataId3=$('.mis').find('#secritText').attr('user_id');
                     var TYPE=$.getQueryString('type');
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
@@ -265,9 +265,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//点击保存到草稿箱按钮
 				$("#btn2").on("click",function(){
-                    var dataId1=$('.inPole').find('#senduser').attr('dataid');
-                    var dataId2=$('.tian').find('#copeNameText').attr('dataid');
-                    var dataId3=$('.mis').find('#secritText').attr('dataid');
+                    var dataId1=$('.inPole').find('#senduser').attr('user_id');
+                    var dataId2=$('.tian').find('#copeNameText').attr('user_id');
+                    var dataId3=$('.mis').find('#secritText').attr('user_id');
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();
