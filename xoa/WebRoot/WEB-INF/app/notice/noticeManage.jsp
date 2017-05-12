@@ -682,27 +682,54 @@ $(function () {
             //修改公告通知管理
            $('#j_tb').on('click','.notice_change',function(){
                var tid=$(this).attr('notifyId');
+               $('.step1').hide();
+               $('.step2').show();
+               $('.center').hide();
+                //公告详情
+               $.ajax({
+                   url: "getOneById",
+                   type: "get",
+                   data:{
+                       notifyId:tid
+                   },
+                   dataType: 'json',
+                   success: function (obj) {
+                       console.log(obj.object);
+                       var data=obj.object;
+                       var sendTime=new Date((data.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                       var beginDate=new Date((data.beginDate)*1000).Format('yyyy-MM-dd hh:mm');
+                       $('#add_titileTime').val(data.subject);
+                       $('#add_texta').val(data.toId);
+                       $('#add_selectUser').val(data.userId);
+                       $('.td_title1').val(data.privId);//角色
+                       $('#add_newDate').val(data.sendTime);
+                       $('#start_add').val(data.beginDate);
+                       $('#end_add').val(data.endDate);
+                       $('#add_selectUser').val(data.userId);
+                   }
 
-               var title=$(this).parent().siblings('.title').find('a').text();
+               })
+
+              /* var title=$(this).parent().siblings('.title').find('a').text();
                alert(title);
                var send_time=$(this).parent().siblings('.send_time').find('a').text();
                var start_time=$(this).parent().siblings('.start_time').find('a').text();
-               var end_time=$(this).parent().siblings('.end_time').find('a').text();
-
+               var end_time=$(this).parent().siblings('.end_time').find('a').text();*/
+               /*  window.location.reload();
                 //跳转页面
-               $('.step1').hide();
+                $('.step1').hide();
                 $('.step2').show();
-                $('.center').hide();
+                $('.center').hide();*/
 
-               //添加到修改页面
-               $('#add_titileTime').html(title);
-               $('#add_newDate').html(send_time);
-               $('#start_add').html(start_time);
-               $('#endTime').html(end_time);
+                //添加到修改页面
+
+
+
                $.ajax({
-                    url: "notice/deleteById",
+                    url: "updateNotify",
                     type: "get",
                     data:{
+                        notifyId:tid,
                         subject:$('#add_titileTime').val(),//标题
                         toId:$('#add_texta').val(),//部门发布范围
                         format:$('#add_sel option:checked').attr('value'),//格式
@@ -726,10 +753,17 @@ $(function () {
                     },
                     dataType: 'json',
                     success: function (obj) {
-                        window.location.reload();
+
+                        if(obj.flag==true){
+                            window.location.reload();
+                        }
+
                     }
                 })
             });
+
+
+
             //删除公告通知管理
             $('#j_tb').on('click','.notice_delete',function(){
 
