@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/ajaxupload.js" type="text/javascript" charset="utf-8"></script>
 		<style>
 			.files a{text-decoration: none;}
-		</style>>
+		</style>
 	</head>
 	<body>
 		<table class="TABLE" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
