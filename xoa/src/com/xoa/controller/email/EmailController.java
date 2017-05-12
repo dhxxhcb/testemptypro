@@ -267,8 +267,14 @@ public class EmailController {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("fromId", userId);
 		maps.put("subject",subject);
-		maps.put("content",content);
-		maps.put("attachmentName",attachmentName);
+		if(!StringUtils.checkNull(content)){
+			maps.put("content",content);
+		}
+		if(!StringUtils.checkNull(attachmentName)){
+			maps.put("attachmentName",attachmentName);
+		}else{
+			maps.put("attachmentName","");
+		}
 		if(!StringUtils.checkNull(startDate)){
 			maps.put("startTime",DateFormat.getTime(startDate));
 		}

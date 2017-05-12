@@ -433,6 +433,7 @@ public class EmailServiceImpl implements EmailService {
 		maps.put("page", pageParams);
 		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
 		List<EmailBodyModel> listEmai = emailBodyMapper.selectInbox(maps);
+		//FIXME 联表查询，不要这样循环弄，效率低
 		for(EmailBodyModel emailBody:listEmai){
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
 			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
