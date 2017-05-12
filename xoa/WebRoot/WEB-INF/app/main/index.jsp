@@ -192,7 +192,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 															<li class="head_title sort"  id="person">个人文件</li>
 														</ul>
 														
-														<span class="wenjian_span more_wenjian"  tid="0116" url="file/home"><a style="color: #fff;" >更多</a></span>
+														<span class="wenjian_span more_wenjian"  tid="3001" url="file/home"><a style="color: #fff;" >更多</a></span>
 													</div>
 													<div class="s_cont">
 														<ul class="pets_wenjian" >
