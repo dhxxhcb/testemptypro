@@ -218,7 +218,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
             <td class="abstract">
                 <input class="abstract1" id="ip4" type="text"  maxlength="39" placeholder="请输入内容..."/>
-                <div class="abstract2">(最多输入39个字)</div>
+                <div class="abstract2">(最多输入30个字)</div>
             </td>
         </tr>
         <tr>
@@ -477,7 +477,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 格式：
             </td>
             <td>
-                <select name="" class="format">
+                <select name="" class="format" id="format">
                     <option value="" selected="">全部</option>
 			        <option value="0">普通格式</option>
 			        <option value="1">MHT格式</option>
@@ -877,7 +877,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							"lastTime":new Date().Format('yyyy-MM-dd hh:mm:ss'),//最后编辑时间
                       		"subjectColor":'1',//新闻标题颜色
                       		"compressContent":'1',//压缩后的新闻内容
-                            "summary":'1',//新闻内容简介  */
+                            "summary":$("#ip4").val(),//新闻内容简介  */
                            "attachmentId":aId_,//附件ID串
                       		"attachmentName":uId_,//附件名称串
                         	"privId":$("#privId_").attr("dataid"),//发布 -
@@ -988,23 +988,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							"keyword":$("#query_keyword").val(),  //内容关键词
 							"topDays": $("#add_topDate").val(),// 限制新闻置顶时间
 							"content":  ue.getContent()  ,//  新闻内容							
-							"toId":  'ALL_DEPT',//发布部门	
+							"toId":  '',//发布部门	
 							"anonymityYn": $("#query_format").val(),
 							"format":$("#query_format").val(),//新闻格式(0-普通格式,1-MHT格式,2-超链接)
 							"typeId":$("#query_typeId").val(),
 							"publish":0,  // 发布标识(0-未发布,1-已发布,2-已终止)							
 							"top":$("#query_top").eq(0).is(':checked')==false?0:1,//是否置顶(0-否,1-是)
-							"clickCount":'0',//点击数
-							"lastEditor":'1',//最后编辑人
-							"lastTime":new Date().Format('yyyy-MM-dd hh:mm:ss'),//最后编辑时间
-                      		"subjectColor":'1',//新闻标题颜色
-                      		"compressContent":'1',//压缩后的新闻内容
-                            "summary":'1',//新闻内容简介  */
+                      		"subjectColor":'',//新闻标题颜色
+                            "summary":' ',//新闻内容简介  */
                             "attachmentId":aId,//附件ID串
                       		"attachmentName":uId,//附件名称串
                         	"privId":'',//发布 -
-                         	"userId":'',//发布用户 -
-                         	"readers": ''//发布角色 					           		
+                         	"userId":$("#query_userId").attr("dataid"),//发布用户 -
 			           	};
 			           	if($(this).attr("type") == "publish"){
 			           		data.publish = '1';
@@ -1037,7 +1032,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
        /* 新闻管理查询的确定按钮 */
           $('.determine').click(function () {
-					data.format=$(".format").val(); //新闻格式(0-普通格式,1-MHT格式,2-超链接)
+					data.format=$("#format").val(); //新闻格式(0-普通格式,1-MHT格式,2-超链接)
 					data.typeId=$("#type_id").val();
 					data.publish=$(".publish").val();//发布标识(0-未发布,1-已发布,2-已终止)
 					data.top=$(".top").val(); //是否置顶(0-否,1-是)

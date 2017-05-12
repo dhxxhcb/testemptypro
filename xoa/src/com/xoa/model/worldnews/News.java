@@ -219,7 +219,7 @@ public class News implements Serializable {
 	}
 
 	/**
-	 * 新闻内容
+	 * 发布人
 	 * 
 	 * @return
 	 */
@@ -228,7 +228,7 @@ public class News implements Serializable {
 	}
 
 	/**
-	 * 新闻内容
+	 * 发布人
 	 * 
 	 * @param provider
 	 */
@@ -260,7 +260,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public Integer getClickCount() {
-		return clickCount;
+		return clickCount==null?0:clickCount;
 	}
 
 	/**
@@ -314,7 +314,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getTypeId() {
-		return typeId;
+		return typeId==null?"":typeId;
 	}
 
 	/**
@@ -368,7 +368,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getLastEditor() {
-		return lastEditor;
+		return lastEditor==null?"":lastEditor;
 	}
 
 	/**
@@ -404,7 +404,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getSubjectColor() {
-		return subjectColor;
+		return subjectColor==null?"":subjectColor;
 	}
 
 	/**
@@ -422,7 +422,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getKeyword() {
-		return keyword;
+		return keyword==null?"":keyword;
 	}
 
 	/**
@@ -440,8 +440,8 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getTopDays() {
-		return topDays;
-	}
+		return topDays==null?"":topDays;
+		}
 
 	/**
 	 * 限制新闻置顶时间
@@ -458,7 +458,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getContent() {
-		return content;
+		return content==null?"":content;
 	}
 
 	/**
@@ -476,7 +476,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getAttachmentId() {
-		return attachmentId;
+		return attachmentId==null?"":attachmentId;
 	}
 
 	/**
@@ -494,7 +494,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getAttachmentName() {
-		return attachmentName;
+		return attachmentName==null?"":attachmentName;
 	}
 
 	/**
@@ -512,7 +512,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getToId() {
-		return toId;
+		return toId==null?"":toId;
 	}
 
 	/**
@@ -530,7 +530,8 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getPrivId() {
-		return privId;
+		return privId==null?"":privId;
+	
 	}
 
 	/**
@@ -548,7 +549,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getUserId() {
-		return userId;
+		return userId==null?"":userId;
 	}
 
 	/**
@@ -566,7 +567,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getReaders() {
-		return readers;
+		return readers==null?"":readers;
 	}
 
 	/**
@@ -602,7 +603,7 @@ public class News implements Serializable {
 	 * @return
 	 */
 	public String getSummary() {
-		return summary;
+		return summary==null?"":summary;
 	}
 
 	/**

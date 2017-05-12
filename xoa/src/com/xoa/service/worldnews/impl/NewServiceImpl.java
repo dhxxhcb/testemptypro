@@ -17,6 +17,7 @@ import com.xoa.service.worldnews.NewService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.GetAttachmentListUtil;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
 
 import org.springframework.stereotype.Service;
@@ -341,10 +342,10 @@ public class NewServiceImpl implements NewService {
 				}
 	  	   
 		  }
-		if (news.getReaders().indexOf(name) == -1) {
+		if (news.getReaders().indexOf(name) == -1||StringUtils.checkNull(news.getReaders())) {
 			StringBuffer str2 = new StringBuffer(news.getReaders());
-			str2.append(",");
 			str2.append(name);
+			str2.append(",");
 			String str1 =str2.toString();
 			news.setNewsId(news.getNewsId());
 			news.setReaders(str1);

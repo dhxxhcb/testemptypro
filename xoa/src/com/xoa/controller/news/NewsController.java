@@ -237,29 +237,11 @@ public class NewsController {
 				Users.class, new Users());
 		news.setNewsId(0);
 		news.setProvider(name.getUserId());
-		news.setReaders(name.getUserId() + ",");
 		news.setNewsTime(DateFormat.getDate(newTime));
 		Date   curDate   =   new   Date(System.currentTimeMillis());//获取当前时间  
 		news.setLastEditTime(curDate);
-		if (news.getAttachmentId()==null) {
-			news.setAttachmentId("");
-		}
-		if (news.getAttachmentName()==null) {
-			news.setAttachmentName("");
-		}
-		if (news.getTopDays()==null) {
-			news.setTopDays("");
-		}
-		if (news.getToId()==null) {
-			news.setToId("");
-		}
-		if (news.getUserId()==null) {
-			news.setUserId("");
-			
-		}if (news.getPrivId()==null) {
-			news.setPrivId("");
-		}
-		
+		byte[] srtbyte = news.getContent().getBytes();
+		news.setCompressContent(srtbyte);
 		try {
 			newService.sendNews(news);
 			return JSON.toJSONStringWithDateFormat(new ToJson<News>(0, ok),
