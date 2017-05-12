@@ -239,7 +239,7 @@ public class DiaryServiceImpl implements DiaryService{
 		diary.setReaders("");
 		List<Attachment> attachmentList=new ArrayList<Attachment>();
 		if(diary.getAttachmentName()!=null&&!"".equals(diary.getAttachmentName())){
-		attachmentList=GetAttachmentListUtil.returnAttachment(diary.getAttachmentName(),diary.getAttachmentId(),sqlType);
+		attachmentList=GetAttachmentListUtil.returnAttachment(diary.getAttachmentName(),diary.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_DIARY);
 		}
 		diary.setAttachment(attachmentList);
 		diaryListToJson.setObject(diary);
