@@ -518,7 +518,7 @@ public class Notify {
 	 * @return Integer
 	 */
 	public Integer getBeginDate() {
-		return beginDate;
+		return beginDate==null?0:beginDate;
 	}
 
 	/**
@@ -538,7 +538,7 @@ public class Notify {
 	 * @return Integer
 	 */
 	public Integer getEndDate() {
-		return endDate;
+		return endDate==null?0:endDate;
 	}
 
 	/**
@@ -849,7 +849,7 @@ public class Notify {
 	 * @return String
 	 */
 	public String getIsFw() {
-		return isFw;
+		return isFw==null?"":isFw;
 	}
 
 	/**
