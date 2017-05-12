@@ -68,6 +68,13 @@ public class FileController {
 		loger.info("--------home-------");
 		return "app/file/fileHome";
 	}
+	@RequestMapping(value = "/persionBox")
+	public String persionBox(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		loger.info("--------home-------");
+		return "app/file/fileHome";
+	}
 	/**
 	 * 
 	 * 创建作者:   杨 胜

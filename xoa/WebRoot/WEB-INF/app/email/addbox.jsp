@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/ajaxupload.js" type="text/javascript" charset="utf-8"></script>
 		<style>
 			.files a{text-decoration: none;}
-		</style>>
+		</style>
 	</head>
 	<body>
 		<table class="TABLE" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
@@ -170,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					var data={
 					 	'fromId':'admin',
-					 	'toId2': dataId1,
+					 	'toId': dataId1,
 						'copyToId':dataId2,
 						'secretToId':dataId3,
 						'subject':val,
@@ -214,7 +214,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					var data={
 					 	'fromId':'admin',
-                        'toId2': dataId1,
+                        'toId': dataId1,
                         'copyToId':dataId2,
                         'secretToId':dataId3,
 						'subject':val,

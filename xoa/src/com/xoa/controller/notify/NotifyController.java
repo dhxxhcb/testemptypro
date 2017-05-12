@@ -503,96 +503,20 @@ public class NotifyController {
 	 * @return     String
 	 */
 
-	@RequestMapping(value = "/addNotify", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/addNotify", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	ToJson addNotify(Notify notify, @RequestParam("sendTime1") String sendTime1,
-			@RequestParam("lastEditTime1") String lastEditTime1,
+	ToJson addNotify(Notify notify, @RequestParam("sendTimes") String sendTimes,
+			
 			HttpServletRequest request) {
 		ToJson toJson = new ToJson();
 		ContextHolder.setConsumerType("xoa"
 				+ (String) request.getSession().getAttribute("loginDateSouse"));
 		Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());
-		notify.setPrivId(name.getUserId());
+		notify.setFromId(name.getUserId());
 		notify.setReaders(name.getUserId() + ",");
-		Long a=	(Long)DateFormat.getDate(sendTime1).getTime();
-
-		notify.setEndDate(1000);
-		notify.setBeginDate(1000);
-		notify.setSendTime(DateFormat.getDate(sendTime1));
-		notify.setLastEditTime(DateFormat.getDate(lastEditTime1));
-/*	 ToJson<Notify> addNotify(
-			@RequestParam(value="fromId",required=false)String fromId,
-			@RequestParam(value="typeId",required=false)String typeId,
-			@RequestParam(value="subject",required=false)String subject,
-			@RequestParam(value="content",required=false)String content,
-			@RequestParam(value="format",required=false)String format,
-			@RequestParam(value="fromDept",required=false) String fromDept,
-			@RequestParam(value="sendTime",required=false) String sendTime,
-			@RequestParam(value="beginDate",required=false) String beginDate,
-			@RequestParam(value="endDate",required=false) String endDate,
-			//@RequestParam(value="print",required=false) String print,
-			@RequestParam(value="top",required=false) String top,
-			@RequestParam(value="topDays",required=false) String topDays,
-			@RequestParam(value="publish",required=false) String publish,
-			@RequestParam(value="auditer",required=false) String auditer,
-			@RequestParam(value="auditDate",required=false) String auditDate,
-			@RequestParam(value="download",required=false) String download,
-			@RequestParam(value="lastEditor",required=false) String lastEditor,
-			@RequestParam(value="lastEditTime",required=false) String lastEditTime,
-			@RequestParam(value="subjectColor",required=false) String subjectColor,
-			@RequestParam(value="keyword",required=false) String keyword,
-			@RequestParam(value="isFw",required=false) String isFw,
-			@RequestParam(value="toId",required=false) String toId,
-			@RequestParam(value="attachmentId",required=false) String attachmentId,
-			@RequestParam(value="attachmentName",required=false) String attachmentName,
-			//@RequestParam(value="readers",required=false) String readers,
-			@RequestParam(value="privId",required=false) String privId,
-			@RequestParam(value="userId",required=false) String userId,
-			//@RequestParam(value="reason",required=false) String reason,
-			@RequestParam(value="compressContent",required=false) String compressContent,
-			@RequestParam(value="summary",required=false) String summary,HttpServletRequest request) {
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));
-			String name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
-		Notify notify=new Notify();
-		notify.setNotifyId(0);
-		notify.setFromId(this.returnValue(fromId));
-		notify.setTypeId(this.returnValue(typeId));
-		notify.setSubject(this.returnValue(subject));
-		notify.setContent(this.returnValue(content));
-		notify.setFormat(this.returnValue(format));
-		notify.setFromDept(Integer.valueOf(fromDept));
-		notify.setSendTime(DateFormat.getDate(sendTime));
-		notify.setBeginDate(DateFormat.getTime(beginDate));
-		notify.setEndDate(DateFormat.getTime(endDate));
-	   // notify.setPrint(this.returnValue(print));
-	    notify.setTop(this.returnValue(top));
-	    notify.setTopDays( DateFormat.getTime(topDays));
-	    notify.setPublish(this.returnValue(publish));
-	    notify.setAuditer(this.returnValue(auditer));
-	    notify.setAuditDate(auditDate);
-	    notify.setDownload(this.returnValue(download));
-	    notify.setLastEditor(this.returnValue(lastEditor));
-	    notify.setLastEditTime(DateFormat.getDate(lastEditTime));
-	    notify.setSubjectColor(this.returnValue(subjectColor));
-	    notify.setKeyword(this.returnValue(keyword));
-	    notify.setIsFw(this.returnValue(isFw));
-	    notify.setToId(this.returnValue(toId));
-	    notify.setAttachmentId(this.returnValue(attachmentId));
-	    notify.setAttachmentName(this.returnValue(attachmentName));
-	    notify.setReaders(name+",");
-	    notify.setPrivId(this.returnValue(privId));
-	    notify.setUserId(this.returnValue(userId));
-	   // notify.setReason(this.returnValue(reason));
-	    notify.setCompressContent(compressContent.getBytes());
-	    notify.setSummary(this.returnValue(summary));
-		try {
-			notifyService.addNotify(notify);
-			return new ToJson<Notify>(0, "");
-		} catch (Exception e) {
-			loger.debug("addNotify:"+e);
-			return new ToJson<Notify>(1, "");
-		}*/
+		notify.setSendTime(DateFormat.getDate(sendTimes));
+		Date  curDate=new Date(System.currentTimeMillis());
+		notify.setLastEditTime((curDate));
 		try {
 		 int b=	notifyService.addNotify(notify);
           if(b>0){
