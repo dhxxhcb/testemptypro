@@ -50,5 +50,8 @@ public interface CalenderService {
 	 */
 	@DynDatasource
 	public void update(Calendar calendar);
+	
+	@DynDatasource
+	public List<Calendar> getscheduleByDay(String userId,int time);
 
 }

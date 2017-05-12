@@ -291,14 +291,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 				if(ifChilds(allDept, department.getDeptId())){//存在子集
 					List<Department> childs = new ArrayList<Department>();
 					childs=getChildList(allDept, department.getDeptId(), resultList);
-					
-					
-					
+					resultList.addAll(childs);
 				}
 			}
 			
 		}
-		return allDept;
+		return resultList;
 		
 	}
 	

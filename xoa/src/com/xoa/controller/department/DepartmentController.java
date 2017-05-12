@@ -17,6 +17,7 @@ import com.xoa.model.department.Department;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
+import com.xoa.util.dataSource.DynDatasource;
 
 
  /**
@@ -325,6 +326,25 @@ public class DepartmentController {
 		}
         return json;
     }
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/listDept",produces = {"application/json;charset=UTF-8"})
+    public ToJson<Department> listDept(HttpServletRequest request) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
+		ToJson<Department> json=new ToJson<Department>(0, null);
+		try {
+			List<Department> list=departmentService.listDept();
+            json.setObj(list);
+            json.setMsg("OK");
+            json.setFlag(0);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return json;
+    }
+	
 	
 	
 	 /**

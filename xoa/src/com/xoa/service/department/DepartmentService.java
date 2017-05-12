@@ -163,5 +163,7 @@ public interface DepartmentService {
 	 */
 	@DynDatasource
 	public int getCountChDeptUser(String deptNo);
+	@DynDatasource
+	public List<Department> listDept();
 
 }

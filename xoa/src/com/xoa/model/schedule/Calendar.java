@@ -105,9 +105,27 @@ public class Calendar {
     
     private List<CalendarAll> calMessage;
     
+    private String stim;
     
+    private String etim;
+    
+	public String getStim() {
+		return stim;
+	}
 
-    public String getCalData() {
+	public void setStim(String stim) {
+		this.stim = stim;
+	}
+
+	public String getEtim() {
+		return etim;
+	}
+
+	public void setEtim(String etim) {
+		this.etim = etim;
+	}
+
+	public String getCalData() {
 		return calData;
 	}
 

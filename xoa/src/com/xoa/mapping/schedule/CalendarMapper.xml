@@ -51,6 +51,13 @@
   || END_TIME&gt;=#{calTime} and END_TIME&lt;=#{endTime}
   </select>
   
+  <select id="getscheduleByDay" parameterType="Map" resultMap="BaseResultMap">
+  select CAL_ID,USER_ID,CAL_LEVEL,CAL_TIME,END_TIME,CONTENT from calendar where 
+  USER_ID=#{userId} and
+  (CAL_TIME&gt;=#{calTime} and CAL_TIME&lt;=#{calTime}+86400) 
+  or (#{calTime}&gt;=CAL_TIME and #{calTime}&lt;=END_TIME) 
+  </select>
+  
    <select id="getscheduleByDate" parameterType="Map" resultMap="BaseResultMap">
   select CAL_ID,USER_ID,CAL_LEVEL,CAL_TIME,END_TIME,CONTENT from calendar where 
   CAL_TIME&lt;=#{calTime} and END_TIME&gt;=#{calTime} 

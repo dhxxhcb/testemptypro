@@ -65,4 +65,6 @@ public interface CalendarMapper {
      * @return     void 无
      */
     void update(Calendar calendar);
+    
+    List<Calendar> getscheduleByDay(Map<String, Object> maps);
 }

@@ -93,6 +93,29 @@ public class CalendarAll {
      * 参与者
      */ 
     private String taker;
+    
+    private String stim;
+    
+    private String etim;
+    
+	public String getStim() {
+		return stim;
+	}
+
+	public void setStim(String stim) {
+		this.stim = stim;
+	}
+
+	public String getEtim() {
+		return etim;
+	}
+
+	public void setEtim(String etim) {
+		this.etim = etim;
+	}
+
+    
+    
 
 	public Integer getCalId() {
 		return calId;

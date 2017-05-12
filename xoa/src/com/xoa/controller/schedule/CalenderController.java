@@ -76,6 +76,34 @@ public class CalenderController {
 	return json;
 	}
 	
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月12日 上午10:47:22
+	 * 方法介绍:   获取当天的日程安排
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @param userId 用户id
+	 * 参数说明:   @param time 当天时间
+	 * 参数说明:   @return 
+	 * @return     ToJson<Calendar>
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/schedule/getscheduleByDay",produces = {"application/json;charset=UTF-8"})
+	public ToJson<Calendar> getscheduleByDay(HttpServletRequest request,String userId,int time){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+	ToJson<Calendar> json=new ToJson<Calendar>(0, null);
+	try{		
+		List<Calendar> list= calenderService.getscheduleByDay(userId, time);
+		json.setObj(list);
+		json.setMsg("OK");
+		json.setFlag(0);
+	}catch(Exception e){
+		json.setMsg(e.getMessage());
+	}
+	return json;
+	}
+	
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年5月4日 下午6:10:50

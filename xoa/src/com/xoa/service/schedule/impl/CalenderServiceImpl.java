@@ -60,6 +60,7 @@ public class CalenderServiceImpl implements CalenderService {
 		//当前时间戳
 		//Long day=Long.valueOf(calTime);
 		SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat f =  new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		List<Calendar> listAll=new ArrayList<Calendar>();
 		for(int i=0;i<30;i++){
 			Calendar Allcal=new Calendar();		  
@@ -72,6 +73,12 @@ public class CalenderServiceImpl implements CalenderService {
 				CalendarAll ca=new CalendarAll();
 				int cT=calendar.getCalTime();
 				int eT=calendar.getEndTime();
+				Long ct=(long) (cT*1000L);
+				Long et=(long) (eT*1000L);
+				String s=f.format(ct);
+				String e=f.format(et);
+				calendar.setStim(s);
+				calendar.setEtim(e);
 				if(pd<=cT&&cT<=pd+86400||pd<=eT&&pd>=cT){	
 					ca.setAddTime(calendar.getAddTime());
 					ca.setCalId(calendar.getCalId());
@@ -80,6 +87,8 @@ public class CalenderServiceImpl implements CalenderService {
 					ca.setCalLevel(calendar.getCalLevel());
 					ca.setCalTime(calendar.getCalTime());
 					ca.setTaker(calendar.getTaker());
+					ca.setStim(calendar.getStim());
+					ca.setEtim(calendar.getEtim());
 					list1.add(ca);
 				}
 			}
@@ -125,6 +134,40 @@ public class CalenderServiceImpl implements CalenderService {
 	public void update(Calendar calendar) {
 		calendarMapper.update(calendar);
 		
+	}
+	
+	
+	@Override
+	public List<Calendar> getscheduleByDay(String userId, int time) {
+		Map<String, Object> maps =new HashMap<String, Object>();
+		maps.put("userId", userId);
+		maps.put("calTime", time);
+		List<Calendar> list =calendarMapper.getscheduleByDay(maps);
+ 		for(int i=0;i<list.size();i++){
+ 			SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			Calendar cal=list.get(i);
+			int cT=cal.getCalTime();
+			int eT=cal.getEndTime();
+			Long ct=(long) (cT*1000L);
+			Long et=(long) (eT*1000L);
+			String s=format.format(ct);
+			String e=format.format(et);
+			cal.setStim(s);
+			cal.setEtim(e);
+		}
+		
+	   
+		//当前时间戳
+	/*	Long t=(long) (time*1000L);
+		SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
+		String data = format.format(t); 
+		List<Calendar> listAll=new ArrayList<Calendar>();
+			Calendar Allcal=new Calendar();				
+			Allcal.setCalData(data);
+			Allcal.setCalMessage(list1);
+			listAll.add(Allcal);
+		*/
+		return list;
 	}
 
 
