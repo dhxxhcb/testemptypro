@@ -92,9 +92,6 @@
   <select id="findFlowId" resultMap="BaseResultMap">
   select Id,PRCS_ID,PRCS_TO,PRCS_NAME from flow_process where FLOW_ID=#{flowId}
   </select>
-  
-  
-  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

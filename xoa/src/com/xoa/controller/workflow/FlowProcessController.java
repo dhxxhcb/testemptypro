@@ -129,14 +129,13 @@ public class FlowProcessController {
 		@ResponseBody
 	  	@RequestMapping(value = "delete",produces = {"application/json;charset=UTF-8"})
 	    public ToJson<FlowProcess> delete(
-	    		@RequestParam("flowId") int flowId, 
+	    		@RequestParam("id") int id, 
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
 			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
 			try {
-				List<FlowProcess> list=flowProcessService.findFlowId(flowId);
-		        json.setObj(list);
+				flowProcessService.delete(id);
 		        json.setMsg("OK");
 		        json.setFlag(0);
 			} catch (Exception e) {

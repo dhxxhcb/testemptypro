@@ -3,6 +3,7 @@ package com.xoa.service.workflow.flowtype;
 import java.util.List;
 
 import com.xoa.model.workflow.FlowProcess;
+import com.xoa.util.dataSource.DynDatasource;
 
 /**
  * 创建作者:   张龙飞
@@ -12,12 +13,14 @@ import com.xoa.model.workflow.FlowProcess;
  *
  */
 public interface FlowProcessService {
-	
+	@DynDatasource
 	public FlowProcess find(int id);
-	
+	@DynDatasource
 	public void updateByPrimaryKeySelective(FlowProcess record);
-	
+	@DynDatasource
 	public List<FlowProcess> findFlowId(int flowId);
+	@DynDatasource
+	public void delete(int id);
 	
 	
 	

@@ -37,4 +37,9 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		return list;
 	}
 
+	@Override
+	public void delete(int id) {
+		flowProcessMapper.deleteByPrimaryKey(id);
+	}
+
 }
