@@ -277,7 +277,7 @@
 				SUBJECT_COLOR ,
 			</if>
 			<if test="keyword != null">
-				KEY_WORD ,
+				KEYWORD ,
 			</if>
 			<if test="endDate != null">
 				END_DATE ,
@@ -466,7 +466,7 @@
 				SUBJECT_COLOR = #{subjectColor},
 			</if>
 			<if test="keyword != null">
-				KEY_WORD = #{keyword},
+				KEYWORD = #{keyword},
 			</if>
 			<if test="endDate != null">
 				END_DATE = #{endDate},

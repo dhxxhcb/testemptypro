@@ -229,7 +229,7 @@ public class NotifyServiceImpl implements  NotifyService{
         notify.setTypeName(notify.getCodes().getCodeName());
         //notify.setUsers(null);
        if (!"".equals(notify.getAttachmentName())) {
-      	notify.setAttachment(GetAttachmentListUtil.returnAttachment(notify.getAttachmentName(), notify.getAttachmentId(), sqlType));
+      	notify.setAttachment(GetAttachmentListUtil.returnAttachment(notify.getAttachmentName(), notify.getAttachmentId(), sqlType,GetAttachmentListUtil.MODULE_NOTIFY));
 	  }
 	
 		StringBuffer s=new StringBuffer();
