@@ -565,9 +565,9 @@ $(function () {
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+toTypeName+"</ a></td>"+
                                        "<td class='title' notifyId="+data.obj[i].notifyId+"><a href='#'  class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
-                                       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</ a></td>"+
+                                       "<td class='send_time'><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</a></td>"+
+                                       "<td class='start_time'><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</a></td>"+
+                                       "<td class='end_time'><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</a></td>"+
                                        "<td>"+"生效</td>"+//状态
                                        "<td>"+"<a notifyId="+data.obj[i].notifyId+" class='notice_change'>修改</a>    <a class='notice_delete' notifyId="+data.obj[i].notifyId+">删除</a></td>"+//操作
                                        news;
@@ -680,15 +680,48 @@ $(function () {
 
      /*add_notice();*/
             //修改公告通知管理
-       /*     $('#j_tb').on('click','.notice_change',function(){
-                alert('111');
-                var tid=$(this).attr('notifyId');
-                $.ajax({
+           $('#j_tb').on('click','.notice_change',function(){
+               var tid=$(this).attr('notifyId');
+
+               var title=$(this).parent().siblings('.title').find('a').text();
+               alert(title);
+               var send_time=$(this).parent().siblings('.send_time').find('a').text();
+               var start_time=$(this).parent().siblings('.start_time').find('a').text();
+               var end_time=$(this).parent().siblings('.end_time').find('a').text();
+
+                //跳转页面
+               $('.step1').hide();
+                $('.step2').show();
+                $('.center').hide();
+
+               //添加到修改页面
+               $('#add_titileTime').html(title);
+               $('#add_newDate').html(send_time);
+               $('#start_add').html(start_time);
+               $('#endTime').html(end_time);
+               $.ajax({
                     url: "notice/deleteById",
                     type: "get",
                     data:{
-                        notifyId:tid,
-                        fromDept:'',
+                        subject:$('#add_titileTime').val(),//标题
+                        toId:$('#add_texta').val(),//部门发布范围
+                        format:$('#add_sel option:checked').attr('value'),//格式
+                        typeId:$('#add_type_notice option:checked').attr('value'),//公告类型
+                        userId:$('#add_selectUser').val(),//按人员发布
+                        privId:'',//按角色发布
+                        attachmentId:'',//附件ID串
+                        attachmentName:'',//附件名称串
+                        download:$(".textEnclosure").is(':checked')==false?0:1,//是否允许下载office附件(0-不允许,1-允许)
+                        subjectColor:'',//标题颜色
+                        keyword:$('.keyword_ip').val(),//内容关键词
+                        topDays:$('#textDay').val(),//置顶天数
+                        publish:$(this).attr('value'),//发布标识(0-未发布,1-已发布,2-待审批,3-未通过)
+                        top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
+                        summary:$('#add_summny').val(),//内容简介
+                        content:ue.getContent(),//内容
+                        sendTimes:$('#add_newDate').val(),//发布时间
+                        beginDates:$('#start_add').val(),//开始日期
+                        endDates:$('#end_add').val()  //结束日期
 
                     },
                     dataType: 'json',
@@ -696,7 +729,7 @@ $(function () {
                         window.location.reload();
                     }
                 })
-            });*/
+            });
             //删除公告通知管理
             $('#j_tb').on('click','.notice_delete',function(){
 
