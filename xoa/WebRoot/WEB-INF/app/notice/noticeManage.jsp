@@ -637,7 +637,7 @@ $(function () {
              toId:$('#add_texta').val(),//部门发布范围
              format:$('#add_sel option:checked').attr('value'),//格式
              typeId:$('#add_type_notice option:checked').attr('value'),//公告类型
-             userId:$('#add_selectUser').val(),//按人员发布
+             userId:$('#add_selectUser').attr("dataid"),//按人员发布
              privId:'',//按角色发布
              attachmentId:'',//附件ID串
              attachmentName:'',//附件名称串
@@ -663,7 +663,7 @@ $(function () {
 
             /* var layerIndex = layer.load(0, {shade: false});*/
              $.ajax({
-                 type: "post",
+                 type: "get",
                  url: "<%=basePath%>notice/addNotify",
                  dataType: 'json',
                  data: data_notice,
