@@ -170,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					var data={
 					 	'fromId':'admin',
-					 	'toId': dataId1,
+					 	'toId2': dataId1,
 						'copyToId':dataId2,
 						'secretToId':dataId3,
 						'subject':val,
@@ -214,7 +214,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					var data={
 					 	'fromId':'admin',
-                        'toId': dataId1,
+                        'toId2': dataId1,
                         'copyToId':dataId2,
                         'secretToId':dataId3,
 						'subject':val,

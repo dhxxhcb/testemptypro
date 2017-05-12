@@ -112,8 +112,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<script type="text/javascript">
        		 var ue = UE.getEditor('container');
-       		 user = '';
-
+       		 user = 'senduser';
+			user_id='senduser';
        		 //获取输入框内容
        	 $(function () {
        	 	$("#selectUser").on("click",function(){

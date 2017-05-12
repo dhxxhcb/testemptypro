@@ -184,6 +184,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						selectItemsId+=(obj.attr("user_id")+',');
 						selectItemsName+=(obj.attr("item_name")+',')
 					};
+					//alert(selectItemsId);
 					parent.opener.document.getElementById(parent.opener.user_id).value=selectItemsName;
 					parent.opener.document.getElementById(parent.opener.user_id).setAttribute('dataid',selectItemsId);
 					window.close();
