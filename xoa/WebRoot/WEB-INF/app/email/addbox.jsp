@@ -21,6 +21,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/email/writeMail.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/ajaxupload.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.files a{text-decoration: none;}
+		</style>>
 	</head>
 	<body>
 		<table class="TABLE" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
@@ -148,6 +151,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});
        		 	//点击立即发送按钮
        		 	$("#btn1").on("click",function(){
+					var dataId1=$('.inPole').find('#senduser').attr('dataid');
+					var dataId2=$('.tian').find('#copeNameText').attr('dataid');
+					var dataId3=$('.mis').find('#secritText').attr('dataid');
+
 					var userId=$('textarea[name="txt"]').attr('user_id');
 					var txt = ue.getContentTxt();
 					var html = ue.getContent();
@@ -163,8 +170,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					var data={
 					 	'fromId':'admin',
-					 	'toId2': 'admin,',
-						'copyToId':'admin',
+					 	'toId2': dataId1,
+						'copyToId':dataId2,
+						'secretToId':dataId3,
 						'subject':val,
 						'content':html,
 						'attachmentId':aId,
@@ -203,7 +211,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					var data={
 					 	'fromId':'admin',
-					 	'toId2': 'admin,',
+                        'toId2': dataId1,
+                        'copyToId':dataId2,
+                        'secretToId':dataId3,
 						'subject':val,
 						'content':html,
 						'attachmentId':aId,
