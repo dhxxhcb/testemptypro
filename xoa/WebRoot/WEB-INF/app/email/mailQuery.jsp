@@ -22,8 +22,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.content{width: 99%;margin: 0 auto;}
 			.title{width: 100%;text-align: left;line-height: 40px;}
 			/*.tab table tr td{padding: 5px 5px;border-color: #ddd;}*/
-			#btn{display: block;margin: 0 auto;outline: none;border: none;border-radius: 3px;padding: 3px 8px;cursor: pointer;}
-			#btn:hover{background-color: #9fbdee;color: #fff;}
+			#btn{display: block;margin: 0 auto;width:70px;height:28px;background-color: #f6f6f6;border:#ccc 1px solid;border-radius: 3px;cursor: pointer;text-align: center;line-height: 28px;}
+			#btn:hover{background-color: #fff;border-color:bbb;}
+			#btn .DIV_Img,#btn .DIV_Txt{float: left}
+			#btn .DIV_Img{margin: 3px 5px 3px 10px;}
+			#btn .DIV_Txt{height:28px;line-height: 28px;}
 			/*.tac table{border-color:#ddd;}*/
 			.tac table tr{border: 1px solid #c0c0c0;}
 			.tac table tr:nth-child(odd){background-color: #F6F7F9;}
@@ -58,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="tab">
 				<form action="" method="get">
-					<table cellspacing="0" cellpadding="0" width="60%" style="border-collapse:collapse;">
+					<table cellspacing="0" cellpadding="0" width="60%" style="border-collapse:collapse;background-color: #fff">
 						<tr>
 							<th colspan="2" style="text-align: center;background-color: #3691DA;color: #fff;font-weight: normal;">输入查询条件</th>
 						</tr>
@@ -135,7 +138,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="button" name="btn" id="btn" value="<fmt:message code="global.lang.query" />" />
+								<div name="btn" id="btn" >
+									<div class="DIV_Img"><img src="../img/icon_refer.png" alt=""></div>
+									<div class="DIV_Txt"><fmt:message code="global.lang.query" /></div></div>
 							</td>
 						</tr>
 					</table>
