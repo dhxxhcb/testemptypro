@@ -831,9 +831,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var stra='';
 									var arr=new Array();
 									arr=data2.attachment;
-									
 									$(obj).find('tr').remove();
 									$(cName).find('p').remove();
+
+                                    $(cName).find('div').remove();
 									$('.span_hr').find('p').find('span').eq(0).html('');
 									
 									if(data2.attachmentName!='' && data2.copyName!=''){
