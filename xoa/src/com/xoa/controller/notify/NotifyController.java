@@ -503,10 +503,10 @@ public class NotifyController {
 	 * @return     String
 	 */
 
-	@RequestMapping(value = "/addNotify", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/addNotify", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	ToJson addNotify(Notify notify, @RequestParam("sendTime1") String sendTime1,
-			@RequestParam("lastEditTime1") String lastEditTime1,
+	ToJson addNotify(Notify notify, @RequestParam("sendTimes") String sendTimes,
+			
 			HttpServletRequest request) {
 		ToJson toJson = new ToJson();
 		ContextHolder.setConsumerType("xoa"
@@ -514,12 +514,13 @@ public class NotifyController {
 		Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());
 		notify.setPrivId(name.getUserId());
 		notify.setReaders(name.getUserId() + ",");
-		Long a=	(Long)DateFormat.getDate(sendTime1).getTime();
+		Long a=	(Long)DateFormat.getDate(sendTimes).getTime();
 
-		notify.setEndDate(1000);
-		notify.setBeginDate(1000);
-		notify.setSendTime(DateFormat.getDate(sendTime1));
-		notify.setLastEditTime(DateFormat.getDate(lastEditTime1));
+	//	notify.setEndDate(DateFormat.getTime(notify.getNotifyDateTime()));
+	//	notify.setBeginDate(DateFormat.getTime(notify.getNotifyDateTime()));
+		notify.setSendTime(DateFormat.getDate(sendTimes));
+		Date  curDate=new Date(System.currentTimeMillis());
+		notify.setLastEditTime((curDate));
 /*	 ToJson<Notify> addNotify(
 			@RequestParam(value="fromId",required=false)String fromId,
 			@RequestParam(value="typeId",required=false)String typeId,
