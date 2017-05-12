@@ -82,7 +82,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	        	MultipartFile file = files[i];
 	        	if(!file.isEmpty()){
 	            // 获得原始文件名  
-	        	String fileName=file.getOriginalFilename();	
+	        	String fileName=file.getOriginalFilename().trim();		        	
 	            //String fileName = files[i].getOriginalFilename();  
 	           // System.out.println("原始文件名:" + fileName); 
 	            //后缀名
