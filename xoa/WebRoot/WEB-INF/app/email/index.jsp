@@ -875,6 +875,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										$('#TAC').find('tr').eq(1).find('td').eq(1).remove();
 										$('#TAC').find('tr').eq(2).find('td').eq(1).remove();
 										$('.article1').find('p').remove();
+										$('.article1').find('div').remove();
 										
 										$('#TAC').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>');
 										$('#TAC').find('tr').eq(1).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.toName+'</span></td>');
