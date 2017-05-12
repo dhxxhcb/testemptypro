@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			/*.Hover  a{text-decoration: none;}*/
 			.UP_INBOX .tab table .Hover:hover{background-color:#c5e9fb;}
 			.Hover img{width:16px;}
-			.on_tr{background-color: #c5e9fb;}
+			.on_tr{background-color: #c5e9fb !important;}
 			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table{width: 99%;}
 			.UP_INBOX .tab table tr{border: 1px solid #c0c0c0;}
 			.UP_INBOX .tab table tr th{color: #2F5C8F;font-weight: normal;}
