@@ -38,8 +38,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table{width: 99%;}
 			.UP_INBOX .tab table tr{border: 1px solid #c0c0c0;}
 			.UP_INBOX .tab table tr th{color: #2F5C8F;font-weight: normal;}
-			.UP_INBOX .tab table tr:nth-child(even){background-color: #fff;}
-			.UP_INBOX .tab table tr:nth-child(odd){background-color: #F6F7F9;}
+			.UP_INBOX .tab table tr:nth-child(odd){background-color: #fff;}
+			.UP_INBOX .tab table tr:nth-child(even){background-color: #F6F7F9;}
 			.UP_INBOX .tab table tr th,.UP_INBOX .tab table tr td{padding:10px;}
 			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table tr th.theme{text-align: center}
 			.UP_INBOX .tab table .theme_a a{text-decoration: none;text-align: left;display: block;color:#2B7FE0;}
