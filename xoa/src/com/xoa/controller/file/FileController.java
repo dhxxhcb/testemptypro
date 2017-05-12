@@ -73,7 +73,7 @@ public class FileController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		loger.info("--------home-------");
-		return "app/file/fileHome";
+		return "app/file/fileHomePerson";
 	}
 	/**
 	 * 
