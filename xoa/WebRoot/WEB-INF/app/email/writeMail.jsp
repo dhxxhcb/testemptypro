@@ -204,7 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var str='';
 							var str1='';
 							 for(var i=0;i<data.length;i++){
-								str+='<a href="javascript:;" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
+								str+='<a href="<%=basePath %>download?'+data[i].attUrl+'" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
 								str1+='<input type="hidden" class="inHidden" value="'+data[i].aid+'@'+data[i].ym+'_'+data[i].attachId+',">';
 							} 
 							
