@@ -61,15 +61,15 @@ public class FlowProcessController {
 		/**
 		 * 创建作者:   张龙飞
 		 * 创建日期:   2017年5月10日 上午11:18:20
-		 * 方法介绍:   编辑
+		 * 方法介绍:   保存
 		 * 参数说明:   @param flowProcess 设计流程实体类
 		 * 参数说明:   @param request 请求
 		 * 参数说明:   @return
 		 * @return     ToJson<FlowProcess> 
 		 */
 		@ResponseBody
-	  	@RequestMapping(value = "editFlow",produces = {"application/json;charset=UTF-8"})
-	    public ToJson<FlowProcess> editFlow(FlowProcess flowProcess,	   
+	  	@RequestMapping(value = "saveFlow",produces = {"application/json;charset=UTF-8"})
+	    public ToJson<FlowProcess> saveFlow(FlowProcess flowProcess,	   
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
@@ -96,8 +96,6 @@ public class FlowProcessController {
 			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
 			try {
 				FlowProcess flowProcess=flowProcessService.find(id);
-				//request.setCharacterEncoding("utf-8");
-				//flowProcessService.updateByPrimaryKeySelective(flowProcess);
 		        json.setObject(flowProcess);
 		        json.setMsg("OK");
 		        json.setFlag(0);
