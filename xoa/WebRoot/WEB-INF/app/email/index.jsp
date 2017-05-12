@@ -865,7 +865,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									type:'get',
 									url:'queryByID',
 									dataType:'json',
-									data:{'bodyId':id,'flag':''},
+									data:{'emailId ':id,'flag':''},
 									success:function(rsp){
 										var data2=rsp.object;
 										var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
