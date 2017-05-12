@@ -346,13 +346,14 @@
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on
 		u.USER_ID=eb.FROM_ID
-		 where
-		 <if test="emailId != null and emailId != ''">
-		e.EMAIL_ID=#{emailId}
-         </if>
-        <if test="bodyId != null and bodyId != ''">
-         eb.BODY_ID = #{bodyId}
-        </if>
+		<where>
+			<if test="emailId != null and emailId != ''">
+				e.EMAIL_ID=#{emailId}
+			</if>
+			<if test="bodyId != null and bodyId != ''">
+				eb.BODY_ID = #{bodyId}
+			</if>
+		</where>
 		GROUP BY eb.BODY_ID
 	</select>
 	
