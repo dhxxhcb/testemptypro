@@ -778,7 +778,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										$('.main_left ul .befor').after(str);
 										$('li.BTN').eq(0).addClass("backing");
 										var nID=$('li.BTN').eq(0).find('input').attr('nId');
-										init3(nID);
+										//init3(nID);
 									}
 						});
 				}
@@ -851,7 +851,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									} else{
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
 									}
-									console.log(':::::'+arr[i].attUrl);
+									//console.log(':::::'+arr[i].attUrl);
 									$(obj).append(str);
 									$(cName).append('<p>'+data2.content+'</p>');
 									$('.span_hr').find('p').find('span').eq(0).html(data2.users.userName);
@@ -861,7 +861,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//已发送详情展示方法
 				function init3(id){
-					
+					//alert(id)
 					$.ajax({
 									type:'get',
 									url:'queryByID',
