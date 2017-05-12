@@ -94,11 +94,11 @@ $(function(){
 						li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><h2 class="e_title">'+data[i].content+'</h2><h3 class="e_time">'+sendTime+'</h3></li>'
 					}else if(data[i].emailList[j].readFlag==1){
 						var sendTime=new Date((data[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-						read_li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><h2 class="e_title">'+data[i].content+'</h2><h3 class="e_time">'+sendTime+'</h3></li>'
+						read_li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><h2 class="e_title">'+data[i].subject+'</h2><h3 class="e_time">'+sendTime+'</h3></li>'
 					}
 					
 					var sendTime=new Date((data[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-					all_li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><h2 class="e_title">'+data[i].content+'</h2><h3 class="e_time">'+sendTime+'</h3></li>'
+					all_li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><h2 class="e_title">'+data[i].subject+'</h2><h3 class="e_time">'+sendTime+'</h3></li>'
 				}
 				
 				
@@ -174,7 +174,7 @@ $(function(){
 			$('.all_daily').html(str_li);
 		}
 	})
-	
+
 	
 	//点击邮日志更多，显示邮件页面
 	$('.daily_more').on('click',function(){
@@ -255,7 +255,7 @@ $(function(){
 				for(var i=0;i<data.length;i++){
 					var time=data[i].notifyDateTime.slice(0,10);
 					/*console.log(time);*/
-					str_li += '<li><div class="n_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="n_name">'+data[i].name+'</h1><h2 class="n_title">'+data[i].content+'</h2><h3 class="n_time">'+time+'</h3></li>'
+					str_li += '<li><div class="n_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="n_name">'+data[i].name+'</h1><h2 class="n_title">'+data[i].subject+'</h2><h3 class="n_time">'+time+'</h3></li>'
 				/*	console.log(str_li);*/
 				}
 				
@@ -314,7 +314,7 @@ $(function(){
 			if(obj.length>0){
 				for(var i=0;i<obj.length;i++){
 					
-					wenjian_li += '<li class="all_li"><div><img src="img/main_img/wenjian.png"></div><h1>'+obj[i].text+'</h1></li>'
+					wenjian_li += '<li class="all_li"><div><img src="img/main_img/wenjian.png" style="    margin-left: 8%;"></div><h1 style="    height: 20px;    line-height: 20px; text-align: center;">'+obj[i].text+'</h1></li>'
 					/*console.log(str_li);*/
 				}
 				
@@ -340,7 +340,7 @@ $(function(){
 			if(obj.length>0){
 				for(var i=0;i<obj.length;i++){
 					
-					wenjian_li += '<li class="all_li"><div><img src="img/main_img/wenjian.png"></div><h1>'+obj[i].text+'</h1></li>'
+					wenjian_li += '<li class="all_li"><div><img src="img/main_img/wenjian.png" style="    margin-left: 8%;"></div><h1 style="    height: 20px;    line-height: 20px; text-align: center;">'+obj[i].text+'</h1></li>'
 					/*console.log(str_li);*/
 				}
 				
@@ -352,6 +352,39 @@ $(function(){
 			
 		}
 	})
+
+
+    //点击文件柜更多，显示文件柜页面
+    $('.more_wenjian').on('click',function(){
+        var tid=$(this).attr('tid');
+        var url=$(this).attr('url');
+        if($('#f_'+tid).length>0){
+            $('.all_content .iItem').hide();
+            $('#f_'+tid).show();
+
+            $('#t_'+tid).css({
+                'background':'url(img/main_img/title_yes.png) 0px 4px no-repeat',
+                'color':'#2a588c',
+                'position':'relative',
+                'z-index':99999
+            })
+            $('#t_'+tid).siblings().css({
+                'background':'url(img/main_img/title_no.png) 0px 4px no-repeat',
+                'color':'#fff',
+                'position':'relative',
+                'z-index':999
+            })
+        }else{
+            var titlestrs = '<li class="choose " index="0;" id="t_'+tid+'" title="文件柜"><h1>公共文件柜</h1><div class="img" style="display:none;"><img class="close" src="img/main_img/icon.png"></div></li>';
+            var iframestr = '<div id="f_'+tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
+            $('.main_title ul').append(titlestrs);
+            $('#t_'+tid).siblings().attr('style','background: url(img/main_img/title_no.png) 0px 4px no-repeat; ');
+            $('#t_'+tid).siblings().css('color','#fff');
+            $('.all_content').append(iframestr);
+            $('.all_content .iItem').hide();
+            $('#f_'+tid).show();
+        }
+    })
 	
 })
 
