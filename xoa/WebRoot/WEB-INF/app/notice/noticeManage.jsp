@@ -663,7 +663,7 @@ $(function () {
 
             /* var layerIndex = layer.load(0, {shade: false});*/
              $.ajax({
-                 type: "get",
+                 type: "post",
                  url: "<%=basePath%>notice/addNotify",
                  dataType: 'json',
                  data: data_notice,
