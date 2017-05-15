@@ -15,8 +15,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="renderer" content="webkit">
 	    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/email/inbox.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/email/inbox-upright.css"/>
+
 		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
@@ -25,6 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/email/inbox.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
 		<style>
 			.main_left .BTN:hover{background:#c5e9fb;}
 			.attachment a{text-decoration: none;}
@@ -43,7 +46,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.UP_INBOX .tab table tr th,.UP_INBOX .tab table tr td{padding:10px;}
 			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table tr th.theme{text-align: center}
 			.UP_INBOX .tab table .theme_a a{text-decoration: none;text-align: left;display: block;color:#2B7FE0;}
-
+			.M-box3{margin-top:10px;float:right;margin-right: 7px;}
+			.M-box3 a{margin: 0 3px;width: 29px;height: 29px;line-height: 29px;font-size: 12px;text-decoration: none;}
+			.M-box3 .active{margin: 0px 3px;width: 29px;height: 29px;line-height: 29px;background: #2b7fe0;font-size: 12px;border: 1px solid #2b7fe0;}
+			.jump-ipt{margin: 0 3px;width: 29px;height: 29px;line-height: 29px;font-size: 12px;}
+			.M-box3 a:hover{background: #2b7fe0;}
 		</style>
 	</head>
 	<body>
@@ -308,7 +315,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                              <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
                                    <tr class='tr_befor'>
                                         <th width="6%">
-                                        <input type="checkbox" name="checkbox" id="checkbox" value="" />
+                                        <input type="checkbox" name="checkbox" id="checkbox" value="" style="width:13px;height:13px;" />
                                         </th>
                                         <th width="6%"><fmt:message code="notice.th.state" /></th>
                                         <th width="6%"><fmt:message code="email.th.sign" /></th>
@@ -320,6 +327,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                               </table>
                         </div>
+						<div>
+                              <div class="M-box3"></div>
+						</div>
                     </div>
 			</div>
 		</div>
@@ -330,6 +340,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 var ue = UE.getEditor('container');
 			 var res
 			$(function () {
+                var data={
+                    "flag":"inbox",
+                    "page":1,
+                    "pageSize":10,
+                    "useFlag":true
+                }
                 //选人控件
                 $("#selectUser").on("click",function(){
                     $.popWindow("../common/selectUser");
@@ -340,16 +356,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$(this).addClass('for_on').find('img').attr('src','../img/icon_list_sel_03.png');
 					$(this).siblings().removeClass('for_on');
 					$(this).parent().find('li').eq(0).find('img').attr('src','../img/icon_zuoyou_03.png');
-					//window.location.href='inboxup';
+
 					$('.main').hide();
 					$('.UP_INBOX').show();
                     $('.UP_INBOX').find('tr.Hover').remove();
-                    var data={
-                        "flag":"inbox",
-                        "page":1,
-                        "pageSize":10,
-                        "useFlag":true
-                    }
+                    HVersion (function(pageCount){
+                        initPagination(pageCount,data.pageSize);
+					});
+                });
+                //横版数据展示方法
+                function HVersion(cb) {
 
                     $.ajax({
                         type:'get',
@@ -359,30 +375,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         success:function(rsp){
                             var data1=rsp.obj;
                             var str='';
-
+							$('.tab').find('.Hover').remove();
                             for(var i=0;i<data1.length;i++){
                                 var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd');
-                                //alert(data1[i].sendTime);
                                 if(data1[i].emailList[0].readFlag==1){
                                     if(data1[i].attachmentId!=''){
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" style="width:13px;height:13px;" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
                                     }else{
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" style="width:13px;height:13px;" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
                                     }
 
                                 } else if(data1[i].emailList[0].readFlag==0){
                                     if(data1[i].attachmentId!=''){
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" style="width:13px;height:13px;" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td><img src="../img/icon_accessory_03.png"/></td></tr>';
                                     }else{
-                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
+                                        str+='<tr class="Hover" Attr="'+data1[i].emailList[0].emailId+'" uId="'+data1[i].emailList[0].deleteFlag+'"><td><input type="checkbox" name="checkbox" id="checkbox" style="width:13px;height:13px;" value="" /></td><td><img src="../img/icon_read_2_03.png"/></td><td width="6%"><img src="../img/icon_star_kong_03.png"/></td><td width="6%">'+data1[i].users.userName+'</td><td class="theme_a" style="text-align:left;"><a href="javascript:;">'+data1[i].subject+'</a></td><td>'+sendTime+'</td><td>&nbsp</td></tr>';
                                     }
                                 }
 
                             }
                             $('.tr_befor').after(str);
+                            if(cb){
+                                cb(rsp.totleNum);
+                            }
+                            //initPagination(rsp.totleNum,data.pageSize);
                         }
                     });
-                });
+                }
+                //分页
+                function initPagination(totalData,pageSize){
+                    $('.M-box3').pagination({
+                        totalData:totalData, //数据总条数
+                        showData:pageSize,   //每页条目数
+                        jump:true,
+                        coping:true,
+                        homePage:'<fmt:message code="global.page.first" />',
+                        endPage:'<fmt:message code="global.page.last" />',
+                        prevContent:'<fmt:message code="global.page.pre" />',
+                        nextContent:'<fmt:message code="global.page.next" />',
+                        jumpBtn:'<fmt:message code="global.page.jump" />',
+                        callback:function(index){
+                            data.page = index.getCurrent();
+                            console.log(index.getCurrent());
+                            HVersion();
+                        }
+                    });
+                }
 				//横版列表页面的列表详情
                 $('.tab').on('click','tr.Hover',function () {
                     $(this).addClass('on_tr').siblings().removeClass('on_tr');
@@ -550,18 +588,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                      var sId=$('.main_left .backing input').attr('id');
                      var ueID=$('.main_left .backing input').attr('ueId');
-					
+					 var bodyId=$('.main_left .backing input').attr('nId');
+
 					if($('.InBox').css('display')=='block'){
 						deleted('inbox',sId,ueID);
 						$('.InBox').css('display','block').siblings().css('display','none');
 					} else if($('.hasBeenSend').css('display')=='block'){
-						deleted('outbox',sId,ueID);
+						deleted('outbox',bodyId,ueID);
 						$('.hasBeenSend').css('display','block').siblings().css('display','none');
 					} else if($('.wastebasket').css('display')=='block'){
 						deleted('recycle',sId,ueID);
 						$('.wastebasket').css('display','block').siblings().css('display','none');
 					} else if($('.drafts').css('display')=='block'){
-						deleted1(sId);
+						deleted1(bodyId);
 						$('.drafts').css('display','block').siblings().css('display','none');
 					} else if($('.UP_INBOX').css('display')=='block'){
                         deleted('inbox',sId,ueID);
@@ -931,6 +970,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 	return false; 
 					 }
 				}
+
+
 
 				//ue编辑器清空方法
 				function empty(){
