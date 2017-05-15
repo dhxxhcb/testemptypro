@@ -185,10 +185,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 data:data,
 						 success:function(rsp){
 							 if(rsp.flag == true){
-								 alert('发送成功');
+								 alert('<fmt:message code="global.lang.send" />');
 								 parent.location.reload();
 							 }else{
-								 alert('发送失败');
+								 alert('<fmt:message code="global.lang.err" />');
 							 }
 						}
 					});

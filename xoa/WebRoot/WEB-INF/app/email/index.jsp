@@ -130,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li id="allEmail" style="margin-right: 27%;"><img src="../img/icon_allmail_06.png" class="im"/><fmt:message code="email.th.allmail" /><img src="../img/icon_more_06.png" class="more_im"/></li>
 							<%--<li onclick="clicked()"><img src="../img/icon_notread_06.png" class="im"/><fmt:message code="email.th.unread" /><span>3</span></li>--%>
 							<li id="Replay"><img src="../img/icon_replay_03.png" class="im"/><fmt:message code="global.lang.reply" /></li>
-							<li id="ReplayAll"><img src="../img/icon_replay_03.png" class="im"/>回复全部</li>
+							<li id="ReplayAll"><img src="../img/icon_replay_03.png" class="im"/><fmt:message code="email.th.replyall" /></li>
 							<li id="Forward"><img src="../img/icon_transmit_06.png" class="im"/><fmt:message code="email.th.transmit" /></li>
 							<%--<li onclick="clicked()"><img src="../img/icon_move_06.png" class="im"/><fmt:message code="email.th.remove" /><img src="../img/icon_more_06.png" class="more_im"/></li>--%>
 							<li id="delete"><img src="../img/icon_delete_06.png" class="im"/><fmt:message code="global.lang.delete" /></li><%--<img src="../img/icon_more_06.png" class="more_im"/>--%>
@@ -892,7 +892,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						"emailID":sId,
 						"deleteFlag":ueID
 					}
-					var msg='是否确认删除?';
+					var msg='<fmt:message code="global.lang.sure" />';
 					if (confirm(msg)==true){
 					  	$.ajax({
 							type:'get',
@@ -914,7 +914,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 var data={
 						"bodyId":bId,
 					}
-					var msg='是否确认删除?';
+					var msg='<fmt:message code="global.lang.sure" />';
 					if (confirm(msg)==true){
 					  	$.ajax({
 							type:'get',
@@ -938,7 +938,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//正在开发中
 				function clicked(){
-					layer.msg('开发中', {icon: 6});
+					layer.msg('<fmt:message code="global.lang.doing" />', {icon: 6});
 				}
 		</script>
 		
