@@ -246,7 +246,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"notify_manage":"notice/manage",
 				"knowledge_management":"file/home",
 				"system_file_folder":"file/setIndex",
-				"system/workflow/flow_sort":"workflow/flowclassify/index",
+				"system_workflow_flow_guide":"flow/type/index",
 				"system_workflow_flow_form":"workflow/formtype/index",
 				"file_folder_index2.php":"file/persionBox"
 			}
@@ -495,14 +495,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							//点击三级菜单，跳转页面。
 							$('.sanji').on('click','li',function(){
-								var url=$(this).attr('url_three'); 
-								
-							 var menu_tid=$(this).attr('menu_tid');  
+								var url=$(this).attr('url'); 
 								console.log(url);
-								if(menu[url]){
-									url = menu[url];
+							 	var menu_tid=$(this).attr('menu_tid');  
+								console.log(url.split);
+								console.log(menu[url.split('/').join('_')]);
+								if(menu[url.split('/').join('_')]){
+									url = menu[url.split('/').join('_')];
 								}else{
-								url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
+									url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
 								}
 								
 								console.log(menu_tid);
