@@ -2,6 +2,7 @@ package com.xoa.controller.file;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -29,6 +30,7 @@ import com.xoa.model.file.FileSortModel;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.service.file.FileContentService;
 import com.xoa.service.file.FileSortService;
+import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
@@ -338,6 +340,7 @@ public class FileController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		 ToJson diaryListToJson=new ToJson(0,"");
+		 fileContentModel.setSendTime(DateFormat.getStrDate(new Date()));
 		   int i=fileContentService.saveContent(fileContentModel);
 		   diaryListToJson.setFlag(0);
 		   diaryListToJson.setMsg(""+i);

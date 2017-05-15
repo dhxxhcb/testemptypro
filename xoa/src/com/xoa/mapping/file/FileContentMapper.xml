@@ -36,14 +36,15 @@
 		<delete id="deleteBySort_id" parameterType="int">
 		delete from  file_content where SORT_ID=#{tempNo};
 		</delete>
+		<!-- SORT_ID,SUBJECT,CONTENT,SEND_TIME,ATTACHMENT_ID,ATTACHMENT_NAME,ATTACHMENT_DESC,USER_ID,CONTENT_NO,NEW_PERSON,READERS,
+		CREATER,LOGS,KEYWORD -->
 		<insert id="saveContent" parameterType="com.xoa.model.file.FileContentModel">
 		insert into file_content  (<include refid="FileConInsert"/> ) values (
-		 <if test="sortId == null or sortId == ''" >
-        '',
-         </if>
-        <if test="sortId != null and sortId !=''" >
-          #{userId},
-      </if>
+		<trim suffixOverrides=",">
+		
+        
+          #{sortId},
+      
       
        <if test="subject == null or subject == ''" >
         '',
@@ -90,7 +91,7 @@
           #{userId},
       </if>
       <if test="contentNo == null or contentNo == ''" >
-        '',
+        0,
          </if>
         <if test="contentNo != null and contentNo !=''" >
           #{contentNo},
@@ -125,6 +126,7 @@
         <if test="keyword != null and keyword !=''" >
           #{keyword},
       </if>
+      </trim>
       )
 		</insert>
 </mapper>

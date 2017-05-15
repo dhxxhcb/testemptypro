@@ -229,7 +229,7 @@
             }
         });
 
-
+        getFlowList(null);
 
         //处理树结构
         function convert(rows){
@@ -278,9 +278,17 @@
                 console.log(ret);
                 if(ret.flag==true){
                    renderDatas(ret.obj);
+                }else{
+                    renderNoDatas();
                 }
             },"json");
         }
+
+        function renderNoDatas() {
+            var html="抱歉暂时还没有流程，您可以前往新建";
+            $(".cont_rig").html(html);
+        }
+
 
         function renderDatas(data) {
             var html="";
@@ -318,10 +326,10 @@
                     '<img src="" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
                     '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">'+data[i].depName+'</span>'+
                    ' </div>'+
-                    '<div style="float: right;margin-left: 30px;">'+
-                   ' <img src="/ui/erp_img/new_excell_info_time_pic.png" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
-                   ' <span class="new_excell_info_time" style="font-size: 12px;margin-left: 5px;color: #999;">2015-09-29</span>'+
-                    '</div>'+
+//                    '<div style="float: right;margin-left: 30px;">'+
+//                   ' <img src="/ui/erp_img/new_excell_info_time_pic.png" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
+//                   ' <span class="new_excell_info_time" style="font-size: 12px;margin-left: 5px;color: #999;">2015-09-29</span>'+
+//                    '</div>'+
                    ' </div>'+
                    ' </div>'+
                     '</a>'+
