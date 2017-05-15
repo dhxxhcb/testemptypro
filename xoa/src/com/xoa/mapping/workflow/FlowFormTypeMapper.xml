@@ -13,6 +13,9 @@
     <result column="SCRIPT" property="script" javaType="string" />
     <result column="CSS" property="css"  javaType="string" />
   </resultMap>
+  <resultMap id="FormWithDep" type="com.xoa.model.workflow.FlowFormType" extends="BaseResultMap">
+    <result column="DEPT_NAME" property="depName"  javaType="string" />
+  </resultMap>
 
   <select id="selectFlowFormType"  resultMap="BaseResultMap" >
     SELECT f.FORM_ID,f.FORM_NAME,f.PRINT_MODEL,f.PRINT_MODEL_SHORT,f.DEPT_ID,f.SCRIPT,f.CSS,f.ITEM_MAX,f.FORM_SORT,f.is_new from flow_form_type f
@@ -26,9 +29,8 @@
     UPDATE flow_form_type SET ITEM_MAX=#{itemMax}  where FORM_ID=#{formId}
   </update>
 
-  <select id="selectFormBySort"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
-
-    SELECT * from flow_form_type
+  <select id="selectFormBySort"  resultMap="FormWithDep" parameterType="java.lang.Integer">
+    SELECT flow_form_type.*,department.DEPT_NAME from flow_form_type LEFT JOIN department ON department.DEPT_ID=flow_form_type.DEPT_ID
     <where>
       <if test="sortId != null">
         flow_form_type.FORM_SORT = #{sortId}
@@ -37,7 +39,6 @@
         flow_form_type.FORM_SORT = 0 OR flow_form_type.FORM_SORT IS NULL
       </if>
     </where>
-
   </select>
 
 
