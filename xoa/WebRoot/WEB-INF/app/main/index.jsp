@@ -739,7 +739,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						dataType:'json',
 						success:function(data){
 						/* if() */
-							if(deptId==20){
+							if(deptId==30){
 								var str = '';
 								data.obj.forEach(function(v,i){
 									if(v.deptName){

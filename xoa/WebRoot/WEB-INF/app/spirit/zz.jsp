@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 			})
 		}
-			getChDept($('#deptOrg'),0);
+			getChDept($('#deptOrg'),20);
 			function openwin(e){
 				var uid=$(e).find("a.dynatree-title").attr("uid");
 				var uname=$(e).find("a.dynatree-title").attr("title");

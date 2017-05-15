@@ -139,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
             <td class="blue_text">  按照部门发布：</td>
             <td>
-                <input class="td_title1  release1" id="query_toId" type="text"/>
+                <input class="td_title1  release1"  id="query_toId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                <!--  <div class="release3">添加</div>
                 <div class="release4 empty">清空</div> -->
@@ -159,7 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
             <td class="blue_text">  按照人员发布：</td>
             <td>
-                <input class="td_title1  release1" id="query_userId" type="text"/>
+                <input class="td_title1  release1" id="query_userId" dataid="" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3" id="query_adduser">添加</div>
                 <div class="release4 empty" style="color:#dfdfdf;">清空</div>
