@@ -1089,7 +1089,7 @@ user_id='query_userId';//选人控件
 			
 			/* 终止和生效方法 */	
 
-	function stop(id,publishId,stopId){
+		function stop(id,publishId,stopId){
 			/* alert(1111); */
 			var pulbish ;
 			/*  alert($(stopId).html()); */
