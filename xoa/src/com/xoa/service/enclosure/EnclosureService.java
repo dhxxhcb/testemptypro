@@ -1,5 +1,6 @@
 package com.xoa.service.enclosure;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -44,7 +45,7 @@ public interface EnclosureService {
 	 * @return     List<Attachment>  附件信息集合
 	 */
 	@DynDatasource
-	public List<Attachment>  upload(MultipartFile[] files,String company,String module);
+	public List<Attachment>  upload(MultipartFile[] files,String company,String module) throws UnsupportedEncodingException;
 	
 	
 	/**
