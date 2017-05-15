@@ -43,11 +43,14 @@ public class FlowTypeServiceImpl  implements FlowTypeService{
         ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
 
         List<FlowTypeModel> datas=flowTypeModelMapper.selectBySortid(flowId);
-
+        if(datas!=null&&datas.size()>0){
             toJson.setObj(datas);
             toJson.setFlag(0);
             toJson.setMsg("success");
-
+        }else{
+            toJson.setFlag(1);
+            toJson.setMsg("no data");
+        }
 
         return toJson;
     }
