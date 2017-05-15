@@ -305,7 +305,7 @@ user_id='input_text1';//选人控件
                         var str = "";
                         for (var i = 0; i < obj.obj.length; i++) {
                             str += "<tr><td><a href='#' newsId=" + obj.obj[i].newsId + " class='windowOpen'>" + obj.obj[i].subject + "</ a></td>" +
-                                    "<td><a href='#' newsId=" + obj.obj[i].newsId + " class='windowOpen'>" + obj.obj[i].typeName + "</ a></td>" +
+                                    "<td><a href='#' style='color:#2B7FE0' newsId=" + obj.obj[i].newsId + " class='windowOpen'>" + obj.obj[i].typeName + "</ a></td>" +
                                     "<td><a href='#' newsId=" + obj.obj[i].newsId + " class='windowOpen'>" + obj.obj[i].newsDateTime + "</ a></td>" +
                                     "<td><a href='#' newsId=" + obj.obj[i].newsId + " class='windowOpen'>" + obj.obj[i].clickCount + "</ a></td>" +
                                     "<td><a href='#' newsId=" + obj.obj[i].newsTime + " class='windowOpen'>" + '0' + "</ a></td>";
