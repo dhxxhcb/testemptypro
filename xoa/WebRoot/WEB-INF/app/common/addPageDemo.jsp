@@ -14,11 +14,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<link rel="stylesheet" type="text/css" href="../css/common/addpage.css"/> 	
 	<link rel="stylesheet" href="../lib/pagination/style/pagination.css" />
-	
-	
-	
-	
-	
 	<title>首页</title>
 	</head>
 	<body>
