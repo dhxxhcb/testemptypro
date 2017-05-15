@@ -212,16 +212,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				this.id = id;
 				this.text = text;
 				this.state = state;
-				this.children = children;
+				//this.children = children;
 			}
 			function convert(data){
 				console.log(data);
 				var arr = [];
+				var tr = '';
 				data.forEach(function(v,i){
-					var node = new TreeNode(v.deptId,v.deptName,"closed") 
-					
-					arr.push(node);
+					if(v.deptId){
+						var node = new TreeNode(v.deptId,v.deptName,"closed") 
+						arr.push(node);
+					}else if(v.userId){
+						if(v.sex==0){
+							tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"> </span></span></div>';
+						}else if(v.sex==1){
+							tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"></span></span></div>';
+						}	
+					}					
 				});
+				$('#deptBox .userItem').html(tr);
+				console.log(arr)
 				return arr;
 			}
 				//组织
