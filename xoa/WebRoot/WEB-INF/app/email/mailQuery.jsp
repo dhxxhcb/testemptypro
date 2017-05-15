@@ -13,10 +13,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta charset="UTF-8">
 		<title><fmt:message code="email.title.mailquery" /></title><!-- 邮件查询 -->
 		<link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
-		
+		<%--<link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>--%>
 		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
+		<%--<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>--%>
 		<style type="text/css">
 			html,body{width: 100%;font-family: "微软雅黑";font-size: 14px;}
 			.content{width: 99%;margin: 0 auto;}
@@ -49,6 +50,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.tab table tr td{border-right: 1px solid #c0c0c0;}
 			.tab table tr td input{height: 22px;}
 			.tab table tr td select{height: 25px;}
+			.M-box3{margin-top:10px;float:right;margin-right: 7px;}
+			.M-box3 a{margin: 0 3px;width: 29px;height: 29px;line-height: 29px;font-size: 12px;text-decoration: none;}
+			.M-box3 .active{margin: 0px 3px;width: 29px;height: 29px;line-height: 29px;background: #2b7fe0;font-size: 12px;border: 1px solid #2b7fe0;}
+			.jump-ipt{margin: 0 3px;width: 29px;height: 29px;line-height: 29px;font-size: 12px;}
+			.M-box3 a:hover{background: #2b7fe0;}
 		</style>
 	</head>
 	<body>
@@ -160,7 +166,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th width="10%"><fmt:message code="email.th.file" /></th>
 						</tr>
 						<tr>
-							<td colspan="7"><input type="button" name="but" id="but" value="返回"></td>
+							<td colspan="7">
+								<div class="M-box3"></div>
+								<input type="button" name="but" id="but" value="返回">
+							</td>
 						</tr>
 					</table>
 			</div>
@@ -254,7 +263,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('.tac').css('display','none');
 					$('.tab').css('display','block');
 				})
-				
+
+                //分页
+                function initPagination(totalData,pageSize){
+                    $('.M-box3').pagination({
+                        totalData:totalData, //数据总条数
+                        showData:pageSize,   //每页条目数
+                        jump:true,
+                        coping:true,
+                        homePage:'<fmt:message code="global.page.first" />',
+                        endPage:'<fmt:message code="global.page.last" />',
+                        prevContent:'<fmt:message code="global.page.pre" />',
+                        nextContent:'<fmt:message code="global.page.next" />',
+                        jumpBtn:'<fmt:message code="global.page.jump" />',
+                        callback:function(index){
+                            data.page = index.getCurrent();
+                            console.log(index.getCurrent());
+                            HVersion();
+                        }
+                    });
+                }
 			})
 			
 			
