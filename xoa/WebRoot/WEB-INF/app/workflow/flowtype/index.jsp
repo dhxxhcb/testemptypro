@@ -96,16 +96,17 @@
             margin: auto;
             margin-top: 10px;
             border-radius: 5px;
+			margin-left: 15px;
         }
         .new_excell_main:hover {
             border: 2px solid #59bdf0;
         }
         .new_excell {
-            width: 350px;
+            width: 360px;
             height: 191px;
-            float: left;
+           float:left;
         }
-
+		
         .new_excell_info_other span {
             margin-left: 10px;
         }
@@ -320,6 +321,7 @@
                     '<span class="footer_span_space">&nbsp;|&nbsp;</span>'+
                 '<span class="edit" >编辑</span>'+
                    '<img src="/ui/erp_img/new_excell_info_img_bianji.png" class="edit_img">'+
+                    '</div>'+
                     '</div>'+
                     '</div>';
             }
