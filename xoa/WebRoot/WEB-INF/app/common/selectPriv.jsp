@@ -197,8 +197,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				url: '../department/getChDept?deptId=20',
 				animate:true, 
 				
-				loadFilter: function(rows){
-					return convert(rows.obj);
+				loadFilter: function(node){
+					var data = convert(node.obj);
+					console.log($('#tree').tree(node.target) )
+					if(data.length == 0){
+						$('#tree').tree('isLeaf',node.target) = false;
+					}
+					return data;
 				},
 				onClick:function(node){
 		            alert(node.id);
@@ -212,16 +217,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				this.id = id;
 				this.text = text;
 				this.state = state;
-				this.children = children;
+				//this.children = children;
 			}
 			function convert(data){
 				console.log(data);
 				var arr = [];
+				var tr = '';
 				data.forEach(function(v,i){
-					var node = new TreeNode(v.deptId,v.deptName,"closed") 
-					
-					arr.push(node);
+					if(v.deptId){
+						var node = new TreeNode(v.deptId,v.deptName,"closed") 
+						arr.push(node);
+					}else if(v.userId){
+						if(v.sex==0){
+							tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"> </span></span></div>';
+						}else if(v.sex==1){
+							tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"></span></span></div>';
+						}	
+					}					
 				});
+				if(arr.length == 0){
+					console.log();
+				}
+				$('#deptBox .userItem').html(tr);
+				console.log(arr)
 				return arr;
 			}
 				//组织

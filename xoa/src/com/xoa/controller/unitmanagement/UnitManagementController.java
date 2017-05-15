@@ -1,8 +1,5 @@
 package com.xoa.controller.unitmanagement;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
 import com.xoa.controller.news.NewsController;
 import com.xoa.model.unitmanagement.UnitManage;
 import com.xoa.service.unitmanagement.UnitManageService;
@@ -32,16 +28,21 @@ public class UnitManagementController {
 	 * @return
 	 */
 	@RequestMapping(value = "/showUnitManage", produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody String showUnitManage(HttpServletRequest request) {
+	public @ResponseBody ToJson<UnitManage>showUnitManage(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		UnitManage um = unitManageService.showUnitManage();
-		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("showNews", JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
-		return JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss");
-	}
-
+		ToJson<UnitManage> json=new ToJson<UnitManage>(0, null);
+		
+		try{
+			UnitManage um = unitManageService.showUnitManage();
+			json.setObject(um);
+			json.setMsg("OK");
+			json.setFlag(0);
+		}catch(Exception e){
+			json.setMsg(e.getMessage());
+		}
+		return json;
+		}
 
 	/**
 	 * 保存信息
