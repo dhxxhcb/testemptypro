@@ -80,7 +80,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <table id="tr_td">
 	                <thead>
 	                	<tr>
-                             
 	                		<td class="th"><fmt:message code="global.lang.select"/></td>
 	                    	<td class="th"><fmt:message code="notice.th.publisher"/></td>
 	                    	<td class="th"><fmt:message code="notice.th.type"/></td>
@@ -142,8 +141,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <input class="td_title1  release1"  id="query_toId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3" style="color:#dfdfdf"><fmt:message code="global.lang.add"/></div>
-                <div class="release4 empty" style="color:#dfdfdf"><fmt:message code="global.lang.empty"/></div> 
+                <div class="release3"><fmt:message code="global.lang.add"/></div>
+                <div class="release4 empty"onclick="empty('query_toId')"><fmt:message code="global.lang.empty"/></div> 
                
             </td>
         </tr>
@@ -152,8 +151,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <input class="td_title1  release1" id="query_privId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3" style="color:#dfdfdf"><fmt:message code="global.lang.add"/></div>
-                <div class="release4 empty" style="color:#dfdfdf"><fmt:message code="global.lang.empty"/></div> 
+                <div class="release3"><fmt:message code="global.lang.add"/></div>
+                <div class="release4 empty" onclick="empty('query_privId')"><fmt:message code="global.lang.empty"/></div> 
             </td>
         </tr>
         <tr id="man">
@@ -161,8 +160,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <input class="td_title1  release1" id="query_userId" dataid="" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3" style="color:#dfdfdf"><fmt:message code="global.lang.add"/></div>
-                <div class="release4 empty" style="color:#dfdfdf"><fmt:message code="global.lang.empty"/></div> 
+                <div class="release3"  id="query_adduser"><fmt:message code="global.lang.add"/></div>
+                <div class="release4 empty" onclick="empty('query_userId')"><fmt:message code="global.lang.empty"/></div> 
             </td>
         </tr>
         <tr>
@@ -315,7 +314,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="td_title1  release1 toId" type="text"id="step3_ip2"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3"><fmt:message code="global.lang.add"/></div>
-                <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
+                <div class="release4 empty" onclick="empty('step3_ip2')"><fmt:message code="global.lang.empty"/></div>
                  
             </td>
         </tr>
@@ -327,7 +326,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="td_title1  release1 toId" type="text"id="privId_"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3"><fmt:message code="global.lang.add"/></div>
-                <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
+                <div class="release4 empty" onclick="empty('privId_')"><fmt:message code="global.lang.empty"/></div>
             </td>
         </tr>
         <tr id="man_">
@@ -337,8 +336,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <input class="td_title1  release1 toId" type="text"id="userId_"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3" id="adduser_" style="cursor: pointer;"><fmt:message code="global.lang.add"/></div>
-                <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
+                <div class="release3" id="adduser_"><fmt:message code="global.lang.add"/></div>
+                <div class="release4 empty" onclick="empty('userId_')"><fmt:message code="global.lang.empty"/></div>
             </td>
         </tr>
         <tr>
@@ -583,7 +582,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr class="table_b">
             <td colspan="2">
                     <div class="bt determine"><fmt:message code="global.lang.ok"/></div>
-                    <div><fmt:message code="global.lang.refillings"/></div>                              
+                    <div onclick="Refillings('queryNews')"><fmt:message code="global.lang.refillings"/></div>                              
             </td>
         </tr>
 
@@ -593,7 +592,54 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <!--content部分结束-->
     	
-<script>	           	
+<script>
+/* 终止和生效方法 */	
+
+	function stop(id,publishId,stopId){
+		var a=document.getElementById("stopId");
+  			alert($(a).html());
+			alert(1111);
+			var pulbish ;
+			 
+			if($("#"+stopId).html()=='终止'){
+				pulbish = "1";
+				alert(2);
+			}else if($("#"+stopId).html() == '生效'){
+				publish = "2";
+			}
+			
+			var data={
+					"newsId":id,	 		       			           		
+					"publish":pulbish,  // 发布标识(0-未发布,1-已发布,2-已终止)	
+					};
+				  $.ajax({
+		                    url:"<%=basePath%>news/updateNews",
+		                    type:'get',
+		                    dataType:"JSON",		    
+			       			 data : data,		                   
+		                   	success:function(data){
+		                   	alert(data);
+		                        console.log(data);	
+		                        alert("修改完成");
+		                        if($("#"+stopId).html()=='终止'){
+									$("#"+publishId).html("终止"); 
+									$("#"+stopId).html("生效"); 
+								}else if($("#"+stopId).html() == '生效'){
+									$("#"+publishId).html("生效"); 
+									$("#"+stopId).html("终止"); 
+								}	
+								// location.reload();
+			           		},	  
+			           		error:function(e){
+			            		console.log(e);			            		
+		            		}   		                  
+		                });
+			
+			}
+			
+
+
+	           	
 user_id='query_userId';//选人控件
 	/* 保存页面附件添加 */
 	$(function () {	
@@ -742,11 +788,11 @@ user_id='query_userId';//选人控件
                                        "<td  class='tim'>"+data.obj[i].newsDateTime+"</td>"+//发布时间
                                        "<td class='data'>"+data.obj[i].clickCount+"</td>"+//点击数
                                        "<td class='num'>"+data.obj[i].newsId+"</td>"+//评论（条）
-                                       "<td class='state' id='publish"+data.obj[i].newsId+"'>"+data.obj[i].publish+"</td>"+//状态
+                                        "<td class='state' id=publish"+data.obj[i].newsId+">"+data.obj[i].publish+"</td>"+//状态
                                         "<td>"+
                                        	 	"<a  href='javascript:;' id='xg' tid='"+data.obj[i].newsId+"'>"+"修改"+"</a>&nbsp"+ 
 											 "<a  href='javascript:;'>"+"管理评论"+"</a>&nbsp"+
-											 "<a  href='javascript:;' id='stop"+data.obj[i].newsId+"' onclick='stop("+data.obj[i].newsId+",'publish"+data.obj[i].newsId+"','stop"+data.obj[i].newsId+"')'>"+"终止"+"</a>&nbsp"+ 
+											  "<a  href='javascript:;' id=stop"+data.obj[i].newsId+" onclick=\"stop("+data.obj[i].newsId+",publish"+data.obj[i].newsId+",stop"+data.obj[i].newsId+")\">终止</a>&nbsp"+ 
 											 /*"<a href='javascript:;' onclick='deleteData("+data.obj[i].newsId+"))'>"+"删除"+"</a>&nbsp"+ */
 										 	 "<a href='javascript:;' id='deleteData' >"+"删除"+"</a>&nbsp"+ 
                                        "</td>"+//操作 
@@ -1086,44 +1132,6 @@ user_id='query_userId';//选人控件
 					$("#"+man).hide();
 				}
 			}
-			/* 终止和生效方法 */	
-			function stop(id,publishId,stopId){
-			var pulbish ;
-			if($("#"+publishId).html()=='终止'){
-				pulbish = "1";
-			}else if($("#"+publishId).html() == '生效'){
-				publish = "2";
-			}
-			
-			var data={
-					"newsId":id,	 		       			           		
-					"publish":pulbish,  // 发布标识(0-未发布,1-已发布,2-已终止)	
-					};
-				  $.ajax({
-		                    url:"<%=basePath%>news/updateNews",
-		                    type:'get',
-		                    dataType:"JSON",		    
-			       			 data : data,		                   
-		                   	success:function(data){
-		                        console.log(data);	
-		                        alert("修改完成");
-		                        if($("#"+stopId).html()=='终止'){
-									$("#"+publishId).html("终止"); 
-									$("#"+stopId).html("生效"); 
-								}else if($("#"+stopId).html() == '生效'){
-									$("#"+publishId).html("生效"); 
-									$("#"+stopId).html("终止"); 
-								}	
-								// location.reload();
-			           		},	  
-			           		error:function(e){
-			            		console.log(e);			            		
-		            		}   		                  
-		                });
-			
-			}
-			
-			
 
 		laydate({
 		     elem: '#query_newTime', //目标元素。
