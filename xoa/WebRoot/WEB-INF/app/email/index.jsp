@@ -547,8 +547,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//删除事件
 				 $('#delete').click(function(){
-					var sId=$('#delete').attr('uId');
-					var ueID=$('#delete').attr('del');
+
+                     var sId=$('.main_left .backing input').attr('id');
+                     var ueID=$('.main_left .backing input').attr('ueId');
 					
 					if($('.InBox').css('display')=='block'){
 						deleted('inbox',sId,ueID);

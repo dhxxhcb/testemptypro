@@ -57,12 +57,12 @@
         </div>
 
         <div class="cont_rig">
-            <div class="rig_every"></div>
-            <div class="rig_every"></div>
-            <div class="rig_every"></div>
-            <div class="rig_every"></div>
-            <div class="rig_every"></div>
-            <div class="rig_every"></div>
+            <%--<div class="rig_every"></div>--%>
+            <%--<div class="rig_every"></div>--%>
+            <%--<div class="rig_every"></div>--%>
+            <%--<div class="rig_every"></div>--%>
+            <%--<div class="rig_every"></div>--%>
+            <%--<div class="rig_every"></div>--%>
         </div>
 
 
@@ -81,14 +81,23 @@
 <script type="text/javascript">
     $(function () {
        //获取左侧分类
+        var data=[{"dataId":"1","children":[{"dataId":"13","children":[],"checked":false,"attributes":{"id":13,"type":"0"},"id":"13","state":null,"text":"行政办公制度","url":null,"parentId":"1"},{"dataId":"43","children":[],"checked":false,"attributes":{"id":43,"type":"0"},"id":"43","state":null,"text":"人力资源开发与管理制度","url":null,"parentId":"1"},{"dataId":"44","children":[],"checked":false,"attributes":{"id":44,"type":"0"},"id":"44","state":null,"text":"采购报销和备用金制度","url":null,"parentId":"1"}],"checked":false,"attributes":{"id":1,"type":"0"},"id":"1","state":null,"text":"公司管理制度","url":null,"parentId":"0"},{"dataId":"39","children":[{"dataId":"45","children":[],"checked":false,"attributes":{"id":45,"type":"0"},"id":"45","state":null,"text":"综合管理部职能分配","url":null,"parentId":"39"},{"dataId":"46","children":[],"checked":false,"attributes":{"id":46,"type":"0"},"id":"46","state":null,"text":"财务管理制度","url":null,"parentId":"39"},{"dataId":"47","children":[],"checked":false,"attributes":{"id":47,"type":"0"},"id":"47","state":null,"text":"项目部项目管理规范","url":null,"parentId":"39"}],"checked":false,"attributes":{"id":39,"type":"0"},"id":"39","state":null,"text":"部门管理制度","url":null,"parentId":"0"},{"dataId":"3","children":[],"checked":false,"attributes":{"id":3,"type":"0"},"id":"3","state":null,"text":"公司大事记","url":null,"parentId":"0"},{"dataId":"40","children":[{"dataId":"41","children":[],"checked":false,"attributes":{"id":41,"type":"0"},"id":"41","state":null,"text":"系统使用","url":null,"parentId":"40"},{"dataId":"42","children":[],"checked":false,"attributes":{"id":42,"type":"0"},"id":"42","state":null,"text":"公司知识库","url":null,"parentId":"40"}],"checked":false,"attributes":{"id":40,"type":"0"},"id":"40","state":null,"text":"学习资料","url":null,"parentId":"0"},{"dataId":"10","children":[],"checked":false,"attributes":{"id":10,"type":"0"},"id":"10","state":null,"text":"文档标准","url":null,"parentId":"0"}]
         $('#li_parent').tree({
-            url: '/workflow/flowclassify/flowJsTree',
+            url: '../../workflow/flowclassify/flowJsTree',
+            animate:true,
+            lines:true,
             loadFilter: function(rows){
                 console.log(rows);
                 return convert(rows.datas);
+            },
+            onClick:function(node){
+                getFlowList(node.id);
             }
         });
 
+
+
+        //处理树结构
         function convert(rows){
             function exists(rows, parentId){
                 for(var i=0; i<rows.length; i++){
@@ -130,49 +139,24 @@
             return nodes;
         }
 
-//        $.post("/workflow/flowclassify/flowJsTree",{} ,function (ret) {
-//              console.log(ret);
-//              if(ret.flag==true){
-//
-//
-////                  var str_li="";
-////                  console.log(ret.datas)
-////                  str_li=  queryChild(ret.datas,str_li,0);
-////                  console.log(str_li)
-////                  $("#li_parent").html(str_li);
-////                  $("#li_parent ul li").hide();
-////                  $(".show").click(function(event)
-////                  {
-////                      event.stopPropagation();
-////                  var level=    $(this).attr("level");
-////                      console.log(level);
-////                      if($(this).find(".show").attr("showable")=="true"){
-////                          if(level==0){
-////                              $(this).find(".show").hide();
-////                              $(this).find(".show").attr("showable",false);
-////                          }
-////                      }else{
-////                          $(this).find(".show").show();
-////                          $(this).find(".show").attr("showable",true);
-////                      }
-////                  });
-//              }
-//        },"json");
+        function getFlowList(sortId) {
+            $.post("../../flow/flowlistbysort",{flowId:sortId} ,function (ret) {
+                console.log(ret);
+                if(ret.flag==true){
+                   renderDatas(ret.obj);
+                }
+            },"json");
+        }
 
-//        //表单分类递归
-//        function queryChild(datas,str_li,level){
-//            for(var i=0;i<datas.length;i++){
-//                var className=datas[i].sortId+level;
-//                str_li+='<li class="show" level="'+level+'" showable="false"><img src="/../img/workflow/wenjian.png"><h1>'+datas[i].sortName+'</h1>' +
-//                         '<ul id="'+className+'" class="hideOrToggle">'  ;
-//                if(datas[i].childs!=null){
-//                    console.log($("#"+className));
-//                    str_li = queryChild(datas[i].childs,str_li,level+1);
-//                }
-//                str_li += '</ul></li>';
-//            }
-//            return str_li;
-//        }//表单递归结束
+        function renderDatas(data) {
+            var html="";
+            for(var i =0 ;i<data.length;i++){
+                
+            }
+        }
+
+
+
 
 
 

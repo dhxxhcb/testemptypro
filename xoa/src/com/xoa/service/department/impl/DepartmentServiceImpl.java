@@ -248,8 +248,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * @return     List<Department> 返回部门编号
 	 */
 	@Override
-	public List<Department> getChDeptUser(int deptId) {
-		Department dep=departmentMapper.getDeptById(deptId);	
+	public List<Department> getChDeptUser(int deptId) {	
 		List<Department> list=departmentMapper.getChDeptUser(deptId);
 		List<Department> list1=departmentMapper.getChDept(deptId); 	
 		if(list.size()!=0&&list1.size()!=0){

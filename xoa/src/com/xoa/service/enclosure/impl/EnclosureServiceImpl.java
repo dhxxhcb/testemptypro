@@ -1,6 +1,7 @@
 package com.xoa.service.enclosure.impl;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,9 +56,10 @@ public class EnclosureServiceImpl implements EnclosureService {
 	 * 参数说明:   @param module 模块名
 	 * 参数说明:   @return
 	 * @return     List<Attachment>  附件信息集合
+	 * @throws UnsupportedEncodingException 
 	 */
 	@Override
-	public List<Attachment> upload(MultipartFile[] files,String company,String module) {
+	public List<Attachment> upload(MultipartFile[] files,String company,String module) throws UnsupportedEncodingException {
 		if(files.length==0){
 			return null;
 		}
@@ -71,25 +73,25 @@ public class EnclosureServiceImpl implements EnclosureService {
 		}
 		List<Attachment> list = new ArrayList<Attachment>();
 		  //当前年月
-	     String ym = new SimpleDateFormat("yyMM").format(new Date());	
-	    // String basePath="D:"+System.getProperty("file.separator");
-	     //StringBuffer sb=new StringBuffer();
-	    //sb.append(System.getProperty("file.separator")).append("attach");
+	     String ym = new SimpleDateFormat("yyMM").format(new Date());		     
+	     //存储路径
 	     String path=sb.toString()+System.getProperty("file.separator")+"attach"+System.getProperty("file.separator")+
 	    		 company+System.getProperty("file.separator") +module+ System.getProperty("file.separator") +ym;	 	 
-	 	Attachment attachment=new Attachment();
+	 	 Attachment attachment=new Attachment();
 	 	 for (int i = 0; i < files.length; i++) {  
 	        	MultipartFile file = files[i];
 	        	if(!file.isEmpty()){
 	            // 获得原始文件名  
-	        	String fileName=file.getOriginalFilename().trim();		        	
-	            //String fileName = files[i].getOriginalFilename();  
-	           // System.out.println("原始文件名:" + fileName); 
-	            //后缀名
-//	        	String Suffix = fileName.substring(
-//	        			fileName.indexOf(".") + 1);
-	    		int attachID=Math.abs((int) System.currentTimeMillis()); 
-		    	String newFileName=Integer.toString(attachID)+"."+fileName; 
+	        	String fileName=file.getOriginalFilename().trim();	
+	        	//String fileName = new String(file.getOriginalFilename().getBytes("gbk"),"utf-8");
+	    		int attachID=Math.abs((int) System.currentTimeMillis()); 	    		
+	    		StringBuffer s=new StringBuffer();
+	    		if(os.toLowerCase().startsWith("win")){  			
+	    			  s=s.append(fileName);  
+	    			}else{
+	    			  s=s.append(new String(fileName.getBytes("ISO8859-1"),"utf-8"));
+	    			}	    		
+		    	String newFileName=Integer.toString(attachID)+"."+s.toString(); 
 	            if (!file.isEmpty()) {  
 	            	try{
 	            	  if(!new File(path, newFileName).exists()){  
@@ -102,6 +104,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	                }  
 	            }  
 	            byte isImg=3;
+	            //获取后缀名
 	            String type=fileName.substring(fileName.indexOf(".") + 1);
 	            String[] imagType={"jpg","png","bmp","gif","JPG","PNG","BMP","GIF"};
 	            List<String> imageTyepLists=Arrays.asList(imagType);
@@ -112,7 +115,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            }
 	            byte a=0;
 	            byte b=2;
-	          //获得模块名
+	            //获得模块名
 		        int moduleID=com.xoa.util.ModuleEnum.EMAIL.getIndex();
 	            byte mid=(byte)moduleID;	
 	            attachment=new Attachment();
@@ -128,7 +131,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            attachment=findByLast();
 	        	String attUrl="AID="+attachment.getAid()+"&"+"MODULE="+module+"&"+"COMPANY="+company+"&"+"YM="+attachment.getYm()+"&"+"ATTACHMENT_ID="+attachment.getAttachId()+"&"+"ATTACHMENT_NAME="+attachment.getAttachName();
 	            attachment.setAttUrl(attUrl);
-	            String url=path+System.getProperty("file.separator")+fileName;
+	            String url=path+System.getProperty("file.separator")+file.getOriginalFilename().trim();
 	            attachment.setUrl(url);
 	            attachment.setIsImage(isImg);
 	            list.add(attachment);
