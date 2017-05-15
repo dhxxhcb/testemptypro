@@ -64,7 +64,7 @@ public class EnclosureController {
 //		L.w("0=||==============》"+request.getSession().getId());
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		String pd="xoa"+(String) request.getSession().getAttribute(
+		String pd=(String) request.getSession().getAttribute(
 				"loginDateSouse");
 		StringBuffer sb=new StringBuffer();
 			if(pd==null){
