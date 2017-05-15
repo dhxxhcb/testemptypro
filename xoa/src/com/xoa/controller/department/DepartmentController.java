@@ -17,7 +17,6 @@ import com.xoa.model.department.Department;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
-import com.xoa.util.dataSource.DynDatasource;
 
 
  /**
