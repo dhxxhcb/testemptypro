@@ -16,12 +16,12 @@
 }
 
 a {
-    color: #666; 
+   /*  color: #666;  */
     text-decoration: none;
 }
 
 a:hover {
-    color: #C81623;
+    /* color: #C81623; */
 }
 
 h1, h2, h3, h4, h5, h6 {

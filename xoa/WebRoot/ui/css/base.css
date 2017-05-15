@@ -194,6 +194,8 @@ body {
 	float: left;
     font-size: 14px;
     font-family: '微软雅黑';
+    height: 30px;
+    line-height: 30px;
 }
 
 .navigation .left .button1 div {

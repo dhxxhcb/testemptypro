@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--content部分结束-->
     </div>
     
-    <!-- 新建新闻 -->
+    <!-- 新建新闻页面********************* -->
 	<div class="step2" style="display: none;margin-left: 10px;">
 	<!-- 中间部分 -->
 	 <table class="newNews">
@@ -137,32 +137,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
         </tr>
         <tr>
-            <td class="blue_text">  按照部门发布：</td>
+            <td class="blue_text">  按照部门发布：<br/><a href="javaScript:;" id="personnel" onclick="showAndHidden('personnel','role','man')"> 隐藏按人员或角色发布</a></td>
             <td>
                 <input class="td_title1  release1" id="query_toId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-               <!--  <div class="release3">添加</div>
-                <div class="release4 empty">清空</div> -->
-                <div class="release3" style="color:#dfdfdf">添加</div>
-                <div class="release4 empty" style="color:#dfdfdf">清空</div> 
+                <div class="release3">添加</div>
+                <div class="release4 empty" onclick="empty('query_toId')">清空</div> 
+               
             </td>
         </tr>
-        <tr>
+        <tr id="role">
             <td class="blue_text">  按照角色发布：</td>
             <td>
                 <input class="td_title1  release1" id="query_privId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
-                <div class="release3" style="color:#dfdfdf">添加</div>
-                <div class="release4 empty" style="color:#dfdfdf">清空</div>
+                <div class="release3">添加</div>
+                <div class="release4 empty" onclick="empty('query_privId')">清空</div>
             </td>
         </tr>
-        <tr>
+        <tr id="man">
             <td class="blue_text">  按照人员发布：</td>
             <td>
                 <input class="td_title1  release1" id="query_userId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3" id="query_adduser">添加</div>
-                <div class="release4 empty" style="color:#dfdfdf;">清空</div>
+                <div class="release4 empty" onclick="empty('query_userId')">清空</div>
             </td>
         </tr>
         <tr>
@@ -272,7 +271,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 </div>
 
-<!--新建新闻页面的修改页面  -->
+<!--修改新建新闻页面*************************  -->
 <div class="step3" style="display:none ;margin-left: 10px;">
 	<!-- 中间部分 -->
 	 <table class="newNews">
@@ -309,17 +308,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text">
-                	按照部门发布：
+                	按照部门发布：<br/><a href="javaScript:;" id="personnel_" onclick="showAndHidden('personnel_','role_','man_')"> 隐藏按人员或角色发布</a>
             </td>
             <td>
                 <input class="td_title1  release1 toId" type="text"id="step3_ip2"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3">添加</div>
-                <div class="release4 empty">清空</div>
+                <div class="release4 empty" onclick="empty('step3_ip2')">清空</div>
                  
             </td>
         </tr>
-        <tr>
+        <tr id="role_">
             <td class="blue_text">
                 	按照角色发布：
             </td>
@@ -327,10 +326,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="td_title1  release1 toId" type="text"id="privId_"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3">添加</div>
-                <div class="release4 empty">清空</div>
+                <div class="release4 empty" onclick="empty('privId_')" >清空</div>
             </td>
         </tr>
-        <tr>
+        <tr id="man_">
             <td class="blue_text">
                 	按照人员发布：
             </td>
@@ -338,7 +337,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="td_title1  release1 toId" type="text"id="userId_"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3" id="adduser_" style="cursor: pointer;">添加</div>
-                <div class="release4 empty">清空</div>
+                <div class="release4 empty"  onclick="empty('userId_')">清空</div>
             </td>
         </tr>
         <tr>
@@ -446,8 +445,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
     </table>
     <div class="foot_mg">
-        <img  id="hd" class="fot_1 submit_ok" src="../img/mg5.png" alt=""/> <!-- 发布 -->
-        <img  id="step3_rs" class="submit_ok"   src="../img/mg6.png" alt=""/> <!-- 保存 -->
+        <!-- <img  id="hd" class="fot_1 submit_ok" src="../img/mg5.png" alt=""/> 发布
+        <img  id="step3_rs" class="submit_ok"   src="../img/mg6.png" alt=""/> 保存 -->
+         <div class="btn_">
+	        <div  id="" type_="publish" class="fot_1 submit_ok">发布</div>
+			<div  id="rs" type_="save" class="btn_style btn_ok">保存</div>
+			<div  id="goBack">返回</div>
+        
        	<input id="hidden_id" type='hidden' value="">
     </div>
 </div>
@@ -456,7 +460,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <!--content部分结束-->
 	 
- <!-- 新闻查询 -->
+ <!-- 新闻查询 ***********************-->
     <div class="center" id="qt">   	
    <!--content部分开始-->
    <!-- 新闻nav部分 -->
@@ -464,7 +468,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="nav_t1"><img src="../img/la2.png"></div>
         <div class="nav_t2" class="news">新闻查询</div>
 	</div>     
-                          
+    <form id="queryNews">                  
     <table class="clearfix total">
         <tbody>
         <tr>
@@ -472,6 +476,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 输入查询条件
             </td>
         </tr>
+        
         <tr>
             <td class="td_w size_color">
                 格式：
@@ -577,20 +582,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr class="table_b">
             <td colspan="2">
                     <div class="bt determine">确定</div>
-                    <div>重填</div>
-              
+                    <div onclick="Refillings('queryNews')" >重填</div>                              
             </td>
         </tr>
 
         </tbody>
     </table>
+    </form>  
 </div>
 <!--content部分结束-->
     	
-<script>
-	user_id='query_userId';//选人控件
+<script>	           	
+user_id='query_userId';//选人控件
 	/* 保存页面附件添加 */
-	$(function () {
+	$(function () {	
 			$('#uploadimg').click(function(){
 				$('#uploadinputimg').click();  
 			});
@@ -700,11 +705,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('.step1').show();
 					$('.step2').hide();
 					$('.center').hide();
-					$('.step3').hide();
+					$('.step3').s();
 					initPageList();
 				}else if(data.read == 1){
 					$('.step1').hide();
 					$('.step2').hide();
+					$('.step3').hide();
 					$('.center').show('');
 					$('#subject').val('');
 					$('#beginTime').val('');
@@ -714,6 +720,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}else  if( data.read == 0){
 					$('.step1').hide();
 					$('.step2').show();
+					$('.step3').hide();
 					$('.center').hide();				
 				}				
             });                               
@@ -734,13 +741,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                        "<td  class='tim'>"+data.obj[i].newsDateTime+"</td>"+//发布时间
                                        "<td class='data'>"+data.obj[i].clickCount+"</td>"+//点击数
                                        "<td class='num'>"+data.obj[i].newsId+"</td>"+//评论（条）
-                                       "<td class='state'>"+data.obj[i].publish+"</td>"+//状态
+                                       "<td class='state' id='publish"+data.obj[i].newsId+"'>"+data.obj[i].publish+"</td>"+//状态
                                         "<td>"+
                                        	 	"<a  href='javascript:;' id='xg' tid='"+data.obj[i].newsId+"'>"+"修改"+"</a>&nbsp"+ 
-											 /* "<a  href='javascript:;'>"+"管理评论"+"</a>&nbsp"+
-											 "<a  href='javascript:;'>"+"终止"+"</a>&nbsp"+ */
+											 "<a  href='javascript:;'>"+"管理评论"+"</a>&nbsp"+
+											 "<a  href='javascript:;' id='stop"+data.obj[i].newsId+"' onclick='stop("+data.obj[i].newsId+",'publish"+data.obj[i].newsId+"','stop"+data.obj[i].newsId+"')'>"+"终止"+"</a>&nbsp"+ 
 											 /*"<a href='javascript:;' onclick='deleteData("+data.obj[i].newsId+"))'>"+"删除"+"</a>&nbsp"+ */
-										 	 "<a href='javascript:;' id='deleteData'>"+"删除"+"</a>&nbsp"+ 
+										 	 "<a href='javascript:;' id='deleteData' >"+"删除"+"</a>&nbsp"+ 
                                        "</td>"+//操作 
                                       /*  "<td>"+"修改  管理评论  终止  删除</td>"+//操作 */
                                      /*  "<td style='overflow: hidden;'>"+data.obj[i].newsId+"</td>"+ */
@@ -850,7 +857,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        });	
 		     
 		        
-		        //修改页面保存时调用的方法
+		        //修改新闻页面  保存时调用的方法***************
 		         $(".submit_ok").click(function(){	
 		         	var aId_='';
 					var uId_='';
@@ -885,9 +892,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                          	"readers": ''//发布角色 						           		
 			           	}; 
 			            console.log(data);
-			            if($(this).attr("step3_type") == "publish"){
+			            if($(this).attr("type_") == "publish"){
 			           		data.publish = '1';
-			           	}
+			           	};
+			           
 		                $.ajax({
 		                    url:"<%=basePath%>news/updateNews",
 		                    type:'get',
@@ -907,9 +915,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            		}   		                  
 		                });      
 			        }); 
+			        /* 返回按钮 */
+			        $("#goBack").click(function(){
+        			 	 $('.step1').show();
+			          	 $('.center').hide();
+						 $('.step2').hide();
+						 $('.step3').hide(); 
+					}); 		 		        	
 			        /* 选人控件修改页面 */
 			        $("#adduser_").on("click",function(){
-   					user_id = "privId_";
+   					user_id = "userId_";
        		 		$.popWindow("../common/selectUser");
        		 		 
        		 		}); 		        
@@ -972,7 +987,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('.step1').show();
 					$('.center').hide();
 				});
-				/* 保存数据 */
+				/* 新建新闻页面数据********************** */
 			    $(".btn_ok").on("click",function(){
 			    	var aId='';
 					var uId='';
@@ -1020,14 +1035,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									 location.reload();
 			           		},	  
 			           		error:function(e){
-			            		console.log(e)			            		
+			            		console.log(e);			            		
 		            		}   		                  
 		                });     
    				 });
+   				/* 选人控件 */ 
    				$("#query_adduser").on("click",function(){
    					user_id = "query_userId";
-       		 		$.popWindow("../common/selectUser");
-       		 		 
+       		 		$.popWindow("../common/selectUser");      		 		 
        		 	});
         
        /* 新闻管理查询的确定按钮 */
@@ -1050,6 +1065,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$('.center').hide();
         		});
 			});
+			/* 新闻查询清空方法  */
+			function Refillings(id){
+				document.getElementById(id).reset(); 
+			}
+			 /* 新建新闻、修改新闻人员控件清空 */	
+		    function empty(id){
+				$("#"+id).val("");
+			};
+			/* 新闻人员控件显示和隐藏 */	
+			function showAndHidden(persion,role,man){
+				if($("#"+persion).html() =='按人员或角色发布'){
+					$("#"+persion).html("隐藏按人员或角色发布");
+					$("#"+role).show();
+					$("#"+man).show();
+				}else{
+					$("#"+persion).html("按人员或角色发布");
+					$("#"+role).hide();
+					$("#"+man).hide();
+				}
+			}
+			/* 终止和生效方法 */	
+			function stop(id,publishId,stopId){
+			var pulbish ;
+			if($("#"+publishId).html()=='终止'){
+				pulbish = "1";
+			}else if($("#"+publishId).html() == '生效'){
+				publish = "2";
+			}
+			
+			var data={
+					"newsId":id,	 		       			           		
+					"publish":pulbish,  // 发布标识(0-未发布,1-已发布,2-已终止)	
+					};
+				  $.ajax({
+		                    url:"<%=basePath%>news/updateNews",
+		                    type:'get',
+		                    dataType:"JSON",		    
+			       			 data : data,		                   
+		                   	success:function(data){
+		                        console.log(data);	
+		                        alert("修改完成");
+		                        if($("#"+stopId).html()=='终止'){
+									$("#"+publishId).html("终止"); 
+									$("#"+stopId).html("生效"); 
+								}else if($("#"+stopId).html() == '生效'){
+									$("#"+publishId).html("生效"); 
+									$("#"+stopId).html("终止"); 
+								}	
+								// location.reload();
+			           		},	  
+			           		error:function(e){
+			            		console.log(e);			            		
+		            		}   		                  
+		                });
+			
+			}
+			
+			
 
 		laydate({
 		     elem: '#query_newTime', //目标元素。
@@ -1088,11 +1161,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    };
    laydate(start);
    laydate(end);
+	
+	
 
-        
-        
-        
-   
   
 </script>
 </body>

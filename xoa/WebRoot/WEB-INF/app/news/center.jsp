@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- 新闻查询 -->
 <!-- <div class="center" style="width:100%;margin-top: 50px;display: none;"> -->
 <!-- 新闻nav部分 -->
-	   
+
 <div class="center" id="qt">
 	 <div class="navigation  clearfix">
             <div class="left">
@@ -153,10 +153,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     	新闻查询
                 </div>                              
 	</div> 
+	
     <div class="login">
         <div class="header">
             <fmt:message code="global.lang.inputquerycondition"/>
         </div>
+        <form id="empty">
         <div class="middle">
             <div class="le publisher">
                 <div class="color" style="width:105px;">
@@ -164,10 +166,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <input id="input_text1" type="text"/>
                 <div style="margin-right:23px; color:#207BD6">
-                    <fmt:message code="global.lang.add"/>
+                     <a href="javascript:;" id="query_adduser"><fmt:message code="global.lang.add"/></a>
                 </div>
                 <div>
-                    <fmt:message code="global.lang.empty"/>
+                    <a href="javascript:;"  onclick="clearData()"><fmt:message code="global.lang.empty"/> </a>
                 </div>
             </div>
             <div class="le subject">
@@ -218,20 +220,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               	<input id="content" class="input_text6" type="text"/>
             </div>
         </div>
+         </form>
         <div class="icons">
           <!--   <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
             <img style="margin-right:30px; cursor: pointer;" src="../img/4query.png" alt=""/>
             <img style=" cursor: pointer;" src="../img/5query.png" alt=""/> -->
             <div id="btn_query">查询</div>
-            <div class="export">充填</div>
-            <div class="filling">刷新</div>
+            <div class="export">导出</div>
+            <div  class="filling" onclick="Refillings()">重填</div>
         </div>
     </div>
+   
 </div>
 <!--footer部分结束-->
 </div>
+
 <script>
-    $(function () {
+user_id='input_text1';//选人控件       	
+    $(function () {    	   
         var data = {
             read: $('.index_head .one').parent().attr('data_id'),
             typeId: $('#select').val() == 0 ? '' : $('#select').val(),
@@ -351,7 +357,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             initPageList();
         });
         //时间控件调用
-
         $('#btn_query').click(function () {
 
             data.subject = $('#subject_query').val();
@@ -396,6 +401,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     };
     laydate(start);
     laydate(end);
+    /* 新闻查询重填 */
+	function Refillings(){
+		document.getElementById("empty").reset();  
+	}
+/* 新闻查询清空 */	
+	function clearData(){
+		$("#input_text1").val("");
+	}
+/* 选人控件 */
+$("#query_adduser").on("click",function(){
+   		user_id = "input_text1";
+       	$.popWindow("../common/selectUser");      		 		 
+       	});  
+
 </script>
 </body>
 
