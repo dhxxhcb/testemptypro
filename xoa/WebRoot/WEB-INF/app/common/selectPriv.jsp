@@ -197,8 +197,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				url: '../department/getChDept?deptId=20',
 				animate:true, 
 				
-				loadFilter: function(rows){
-					return convert(rows.obj);
+				loadFilter: function(node){
+					var data = convert(node.obj);
+					console.log($('#tree').tree(node.target) )
+					if(data.length == 0){
+						$('#tree').tree('isLeaf',node.target) = false;
+					}
+					return data;
 				},
 				onClick:function(node){
 		            alert(node.id);
@@ -230,6 +235,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}	
 					}					
 				});
+				if(arr.length == 0){
+					console.log();
+				}
 				$('#deptBox .userItem').html(tr);
 				console.log(arr)
 				return arr;
