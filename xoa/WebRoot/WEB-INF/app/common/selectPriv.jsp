@@ -15,15 +15,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/common/style.css" />
 	<link rel="stylesheet" type="text/css" href="../css/common/select.css" />
-	<link rel="stylesheet" type="text/css" href="../css/common/ui.dynatree.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="../css/common/ui.dynatree.css"> -->
 	<link rel="stylesheet" type="text/css" href="../css/common/org_select.css">
+	<link rel="stylesheet" type="text/css" href="../lib/easyui/themes/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/easyui/themes/icon.css"/>
 	<script type="text/javascript" src="../js/jquery-1.9.1.js"></script> 
 	<script src="../js/base/base.js"></script> 
-<!-- 	<script src="js/ispirit.js"></script>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/select.js"></script> -->
-		<!-- <script type="text/javascript" src="js/js_lang.php"></script>
-	<script type="text/javascript" src="js/tree.js"></script> -->
+	<script type="text/javascript" src="../lib/easyui/jquery.easyui.min.js" ></script>
+    <script type="text/javascript" src="../lib/easyui/tree.js" ></script>
 </head>
 
 
@@ -193,6 +192,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					window.close();
 				}
 		$(function(){
+
+			$('#deptOrg').tree({  
+				url: '../department/getChDept?deptId=20',
+				animate:true, 
+				
+				loadFilter: function(rows){
+					return convert(rows.obj);
+				},
+				onClick:function(node){
+		            alert(node.id);
+		        },
+		        onBeforeExpand:function(node,param){
+		        	  $('#deptOrg').tree('options').url = "../department/getChDept?deptId=" + node.id;// change the url      
+		        }
+
+			});  
+			function TreeNode(id,text,state,children){
+				this.id = id;
+				this.text = text;
+				this.state = state;
+				this.children = children;
+			}
+			function convert(data){
+				console.log(data);
+				var arr = [];
+				data.forEach(function(v,i){
+					var node = new TreeNode(v.deptId,v.deptName,"closed") 
+					
+					arr.push(node);
+				});
+				return arr;
+			}
 				//组织
 				$('.tab_btn').click(function(){
 					var type = $(this).attr('block');
@@ -269,7 +300,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					
 				});
-				getChDept($('#deptOrg'),20);
+				//getChDept($('#deptOrg'),20);
 				
 				$('.tree .dynatree-container').on('click','.childdept',function(){
 								var  that = $(this);
