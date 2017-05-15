@@ -70,7 +70,7 @@ public class EnclosureController {
 			if(pd==null){
 			sb.append("xoa1001");
 			}else{
-			sb.append(pd.toString());
+			sb.append("xoa"+pd.toString());
 			}
 			String company=sb.toString();
 			ToJson<Attachment> json=new ToJson<Attachment>(0, null);
