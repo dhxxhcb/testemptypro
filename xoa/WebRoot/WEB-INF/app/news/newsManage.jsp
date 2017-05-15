@@ -593,53 +593,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--content部分结束-->
     	
 <script>
-/* 终止和生效方法 */	
 
-	function stop(id,publishId,stopId){
-		var a=document.getElementById("stopId");
-  			alert($(a).html());
-			alert(1111);
-			var pulbish ;
-			 
-			if($("#"+stopId).html()=='终止'){
-				pulbish = "1";
-				alert(2);
-			}else if($("#"+stopId).html() == '生效'){
-				publish = "2";
-			}
-			
-			var data={
-					"newsId":id,	 		       			           		
-					"publish":pulbish,  // 发布标识(0-未发布,1-已发布,2-已终止)	
-					};
-				  $.ajax({
-		                    url:"<%=basePath%>news/updateNews",
-		                    type:'get',
-		                    dataType:"JSON",		    
-			       			 data : data,		                   
-		                   	success:function(data){
-		                   	alert(data);
-		                        console.log(data);	
-		                        alert("修改完成");
-		                        if($("#"+stopId).html()=='终止'){
-									$("#"+publishId).html("终止"); 
-									$("#"+stopId).html("生效"); 
-								}else if($("#"+stopId).html() == '生效'){
-									$("#"+publishId).html("生效"); 
-									$("#"+stopId).html("终止"); 
-								}	
-								// location.reload();
-			           		},	  
-			           		error:function(e){
-			            		console.log(e);			            		
-		            		}   		                  
-		                });
-			
-			}
-			
-
-
-	           	
 user_id='query_userId';//选人控件
 	/* 保存页面附件添加 */
 	$(function () {	
@@ -1132,6 +1086,49 @@ user_id='query_userId';//选人控件
 					$("#"+man).hide();
 				}
 			}
+			
+			/* 终止和生效方法 */	
+
+	function stop(id,publishId,stopId){
+			/* alert(1111); */
+			var pulbish ;
+			/*  alert($(stopId).html()); */
+			if($(stopId).html()=='终止'){
+				pulbish = "1";
+			/* 	alert(2); */
+			}else if($(stopId).html() == '生效'){
+				publish = "2";
+			}
+			
+			var data={
+					"newsId":id,	 		       			           		
+					"publish":pulbish,  // 发布标识(0-未发布,1-已发布,2-已终止)	
+					};
+				  $.ajax({
+		                    url:"<%=basePath%>news/updateNews",
+		                    type:'get',
+		                    dataType:"JSON",		    
+			       			 data : data,		                   
+		                   	success:function(data){
+		                  /*  	alert(data); */
+		                      /*   console.log(data); */	
+		                        alert("修改完成");
+		                        if($(stopId).html()=='终止'){
+									$(publishId).html("终止"); 
+									$(stopId).html("生效"); 
+								}else if($(stopId).html() == '生效'){
+									$(publishId).html("生效"); 
+									$(stopId).html("终止"); 
+								}	
+								// location.reload();
+			           		},	  
+			           		error:function(e){
+			            		console.log(e);			            		
+		            		}   		                  
+		                });
+			
+			}
+
 
 		laydate({
 		     elem: '#query_newTime', //目标元素。
