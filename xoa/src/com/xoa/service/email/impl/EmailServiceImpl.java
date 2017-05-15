@@ -1,8 +1,10 @@
 package com.xoa.service.email.impl;
 
 import com.xoa.dao.email.EmailBodyMapper;
+import com.xoa.dao.email.EmailBoxMapper;
 import com.xoa.dao.email.EmailMapper;
 import com.xoa.model.email.EmailBodyModel;
+import com.xoa.model.email.EmailBoxModel;
 import com.xoa.model.email.EmailModel;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.email.EmailService;
@@ -41,6 +43,9 @@ public class EmailServiceImpl implements EmailService {
 
 	@Resource
 	private EmailMapper emailMapper;
+
+	@Resource
+	private EmailBoxMapper emailBoxMapper;
 	
 	@Resource
 	private UsersService usersService;
@@ -433,7 +438,6 @@ public class EmailServiceImpl implements EmailService {
 		maps.put("page", pageParams);
 		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
 		List<EmailBodyModel> listEmai = emailBodyMapper.selectInbox(maps);
-		//FIXME 联表查询，不要这样循环弄，效率低
 		for(EmailBodyModel emailBody:listEmai){
 			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
 			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
@@ -644,7 +648,44 @@ public class EmailServiceImpl implements EmailService {
 		return fwReEmail.toString();
 	}
 
-
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 15:35
+	 * 方法介绍:
+	 * 参数说明:   发件箱、收件箱内容信息保存
+	 * 参数说明:   收件人实体类
+	 * @return     
+	 */
+	@Override
+	@Transactional
+	public boolean draftsSendEmail(EmailBodyModel emailBody, EmailModel email) {
+		boolean isFlag = true;
+		try {
+		emailBodyMapper.update(emailBody);
+		String toID = emailBody.getToId2().trim()
+				+ emailBody.getCopyToId().trim()
+				+ emailBody.getSecretToId().trim();
+		if (toID != null && toID != "") {
+			String[] toID2 = toID.split(",");
+			for (int i = 0; i < toID2.length; i++) {
+				email.setToId(toID2[i]);
+				email.setSign("0");
+				email.setReceipt("0");
+				email.setReadFlag("0");
+				email.setIsR("");
+				email.setIsF("");
+				email.setEmailId(email.getEmailId());
+				email.setDeleteFlag("0");
+				email.setBoxId(0);
+				email.setBodyId(emailBody.getBodyId());
+				emailMapper.save(email);
+			}
+		}
+		}catch (Exception e){
+			isFlag = false;
+		}
+		return isFlag;
+	}
 	/**
 	 * 
 	 * 创建作者:   张勇
@@ -664,7 +705,162 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 16:37
+	 * 方法介绍:   新建其他邮件文件夹
+	 * 参数说明:
+	 * @return
+	 */
+	@Override
+	@Transactional
+	public ToJson<EmailBoxModel> saveEmailBox(EmailBoxModel emailBoxModel) {
+		ToJson<EmailBoxModel> toJson = new ToJson<EmailBoxModel>();
+		try {
+			emailBoxMapper.save(this.returnBoxModel(emailBoxModel));
+			toJson.setFlag(0);
+			toJson.setMsg("ok");
+		}catch (Exception e){
+			toJson.setFlag(1);
+			toJson.setMsg("error");
+		}
+		return toJson;
+	}
 
-//	queryById
-	
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 16:39
+	 * 方法介绍:   把收件箱邮件转移到其他邮件文件夹中
+	 * 参数说明:
+	 * @return
+	 */
+	@Override
+	@Transactional
+	public ToJson<EmailModel> updateEmailBox(EmailModel emailModel) {
+		ToJson<EmailModel> toJson = new ToJson<EmailModel>();
+		try {
+			emailMapper.updateEmailBox(emailModel);
+			toJson.setFlag(0);
+			toJson.setMsg("ok");
+		}catch (Exception e){
+			toJson.setFlag(1);
+			toJson.setMsg("error");
+		}
+		return toJson;
+	}
+
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 16:38
+	 * 方法介绍:   查询所有其他邮件文件夹
+	 * 参数说明:
+	 * @return
+	 */
+	@SuppressWarnings("all")
+	@Override
+	public ToJson<EmailBoxModel> showEmailBox(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag) {
+		ToJson<EmailBoxModel> toJson = new ToJson<EmailBoxModel>();
+		PageParams pageParams = new PageParams();
+		pageParams.setUseFlag(useFlag);
+		pageParams.setPage(page);
+		pageParams.setPageSize(pageSize);
+		maps.put("page", pageParams);
+	  List<EmailBoxModel> list = emailBoxMapper.selectObjcet(maps);
+	  int len = list.size();
+	  if(len<0){
+		  toJson.setFlag(1);
+		  toJson.setMsg("error");
+	  }else {
+		  toJson.setFlag(0);
+		  toJson.setMsg("ok");
+		  return null;
+	  }
+	  return toJson;
+	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 16:48
+	 * 方法介绍:   其他邮箱中的邮件列表
+	 * 参数说明:
+	 * @return
+	 */
+	@SuppressWarnings("all")
+	@Override
+	public ToJson<EmailBodyModel> selectBoxEmail(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag,String sqlType) {
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
+		PageParams pageParams = new PageParams();
+		pageParams.setUseFlag(useFlag);
+		pageParams.setPage(page);
+		pageParams.setPageSize(pageSize);
+		maps.put("page", pageParams);
+		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
+		List<EmailBodyModel> listEmai = emailBodyMapper.selectBoxEmail(maps);
+		for(EmailBodyModel emailBody:listEmai){
+			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
+				emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+			}else{
+				emailBody.setCopyName("");
+			}
+			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
+				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+			}else{
+				emailBody.setSecretToName("");
+			}
+			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
+			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
+				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_EMAIL));
+			}else{
+				emailBody.setAttachmentName("");
+				emailBody.setAttachmentId("");
+			}
+			list.add(emailBody);
+		}
+		tojson.setObj(list);
+		tojson.setTotleNum(pageParams.getTotal());
+		return tojson;
+	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 17:00
+	 * 方法介绍:   删除其他邮件文件夹，并判断其中
+	 * 参数说明:
+	 * @return
+	 */
+	@Override
+	public ToJson<EmailBodyModel> deleteBoxEmail(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag) {
+		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
+		PageParams pageParams = new PageParams();
+		pageParams.setUseFlag(useFlag);
+		pageParams.setPage(page);
+		pageParams.setPageSize(pageSize);
+		maps.put("page", pageParams);
+		List<EmailBodyModel> list = emailBodyMapper.selectIsBoxEmail(maps);
+		int len = list.size();
+		if (len>0){
+			tojson.setFlag(1);
+			tojson.setMsg("error");
+		}else{
+//			emailBoxMapper.delete();
+		}
+
+		return null;
+	}
+
+
+
+  public EmailBoxModel returnBoxModel(EmailBoxModel emailBoxModel){
+		if(StringUtils.checkNull(emailBoxModel.getDefaultCount())){
+			emailBoxModel.setDefaultCount("");
+		}
+		return emailBoxModel;
+  }
+
+
+
+
 }

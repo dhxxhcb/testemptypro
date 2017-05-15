@@ -174,6 +174,24 @@ public interface EmailBodyMapper extends BaseMapper<EmailBodyModel>{
 	 * @return     void
 	 */
 	public void deleteRecycle(Integer emailId);
-	
+
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 16:24
+	 * 方法介绍:   其他邮件查询
+	 * 参数说明:
+	 * @return
+	 */
+	List<EmailBodyModel> selectBoxEmail(Map<String, Object> maps);
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 16:25
+	 * 方法介绍:   查询其他邮件文件夹中是否存在邮件
+	 * 参数说明:
+	 * @return
+	 */
+	List<EmailBodyModel> selectIsBoxEmail(Map<String, Object> maps);
 
 }

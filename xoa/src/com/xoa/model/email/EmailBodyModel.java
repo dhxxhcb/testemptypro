@@ -229,6 +229,11 @@ public class EmailBodyModel implements Serializable {
 	private List<Attachment> attachment;
 
 	/**
+	 * 其他邮件
+	 */
+	private EmailBoxModel emailBoxModel;
+
+	/**
 	 * 一对多关联email
 	 * 
 	 * @return
@@ -914,9 +919,26 @@ public class EmailBodyModel implements Serializable {
 	public void setAttachment(List<Attachment> attachment) {
 		this.attachment = attachment;
 	}
-	
-	
-	
-	
-	
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 13:36
+	 * 方法介绍:   其他邮件
+	 * 参数说明:
+	 * @return
+	 */
+	public EmailBoxModel getEmailBoxModel() {
+		return emailBoxModel;
+	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 13:36
+	 * 方法介绍:   其他邮件
+	 * 参数说明:
+	 * @return
+	 */
+	public void setEmailBoxModel(EmailBoxModel emailBoxModel) {
+		this.emailBoxModel = emailBoxModel;
+	}
 }

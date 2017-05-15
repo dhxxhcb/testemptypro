@@ -8,86 +8,24 @@
     <result column="USER_ID" property="userId" javaType="String" />
     <result column="DEFAULT_COUNT" property="defaultCount" javaType="String" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    BOX_ID, BOX_NO, BOX_NAME, USER_ID, DEFAULT_COUNT
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from email_box
-    where BOX_ID = #{boxId,javaType=INTEGER}
+
+  <!-- 新建其他邮件组名 -->
+  <insert id="save" parameterType="com.xoa.model.email.EmailBoxModel" useGeneratedKeys="true" keyProperty="boxId">
+    insert into emailbox (
+    BOX_ID,BOX_NO,BOX_NAME,USER_ID,DEFAULT_COUNT
+    )values(
+    #{boxId},#{boxNo},#{boxName},#{userId},#{defaultCount}
+    )
+  </insert >
+
+  <!-- 查询所有邮件组名 -->
+  <select id="selectObjcet" resultMap="BaseResultMap"  parameterType="Map">
+    SELECT  BOX_ID,BOX_NO,BOX_NAME,USER_ID,DEFAULT_COUNT
+    FROM  email_box
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from email_box
-    where BOX_ID = #{boxId,javaType=INTEGER}
+
+  <!-- 删除其他邮件组 -->
+  <delete id="delete" parameterType="Map" >
+    DELETE FROM emailbox  WHERE BOX_ID=#{boxId}
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.email.EmailBoxModel" >
-    insert into email_box (BOX_ID, BOX_NO, BOX_NAME, 
-      USER_ID, DEFAULT_COUNT)
-    values (#{boxId,javaType=INTEGER}, #{boxNo,javaType=INTEGER}, #{boxName,javaType=String}, 
-      #{userId,javaType=String}, #{defaultCount,javaType=String})
-  </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.email.EmailBoxModel" >
-    insert into email_box
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="boxId != null" >
-        BOX_ID,
-      </if>
-      <if test="boxNo != null" >
-        BOX_NO,
-      </if>
-      <if test="boxName != null" >
-        BOX_NAME,
-      </if>
-      <if test="userId != null" >
-        USER_ID,
-      </if>
-      <if test="defaultCount != null" >
-        DEFAULT_COUNT,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="boxId != null" >
-        #{boxId,javaType=INTEGER},
-      </if>
-      <if test="boxNo != null" >
-        #{boxNo,javaType=INTEGER},
-      </if>
-      <if test="boxName != null" >
-        #{boxName,javaType=String},
-      </if>
-      <if test="userId != null" >
-        #{userId,javaType=String},
-      </if>
-      <if test="defaultCount != null" >
-        #{defaultCount,javaType=String},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.email.EmailBoxModel" >
-    update email_box
-    <set >
-      <if test="boxNo != null" >
-        BOX_NO = #{boxNo,javaType=INTEGER},
-      </if>
-      <if test="boxName != null" >
-        BOX_NAME = #{boxName,javaType=String},
-      </if>
-      <if test="userId != null" >
-        USER_ID = #{userId,javaType=String},
-      </if>
-      <if test="defaultCount != null" >
-        DEFAULT_COUNT = #{defaultCount,javaType=String},
-      </if>
-    </set>
-    where BOX_ID = #{boxId,javaType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.email.EmailBoxModel" >
-    update email_box
-    set BOX_NO = #{boxNo,javaType=INTEGER},
-      BOX_NAME = #{boxName,javaType=String},
-      USER_ID = #{userId,javaType=String},
-      DEFAULT_COUNT = #{defaultCount,javaType=String}
-    where BOX_ID = #{boxId,javaType=INTEGER}
-  </update>
 </mapper>
