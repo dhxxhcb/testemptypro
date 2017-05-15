@@ -198,12 +198,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				animate:true, 
 				
 				loadFilter: function(node){
-					var data = convert(node.obj);
-					console.log($('#tree').tree(node.target) )
-					if(data.length == 0){
-						$('#tree').tree('isLeaf',node.target) = false;
-					}
-					return data;
+					return convert(node.obj);
+					
 				},
 				onClick:function(node){
 		            alert(node.id);
@@ -217,7 +213,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				this.id = id;
 				this.text = text;
 				this.state = state;
-				//this.children = children;
+				this.children = children;
 			}
 			function convert(data){
 				console.log(data);
@@ -235,11 +231,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}	
 					}					
 				});
-				if(arr.length == 0){
-					console.log();
-				}
 				$('#deptBox .userItem').html(tr);
-				console.log(arr)
 				return arr;
 			}
 				//组织
@@ -264,53 +256,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							break;
 					}
 				});
-				function getChDept(target,deptId){
-					$.ajax({
-						url:'../department/getChDept',
-						type:'get',	
-						data:{
-							deptId:deptId
-						},		
-						dataType:'json',
-						success:function(data){
-						/* if() */
-							if(deptId==20){
-								var str = '';
-								data.obj.forEach(function(v,i){
-									if(v.deptName){
-										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
-									}else{
-										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-checkbox"></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
-									}
-									
-								});
-							}else{
-								var str = '';
-								var tr = '';
-								data.obj.forEach(function(v,i){
-										if(v.deptName){
-										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class=""></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
-									}else{
-										if(v.sex==0){
-											tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"> </span></span></div>';
-										}else if(v.sex==1){
-											tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"></span></span></div>';
-										}
-									}
-								});
-							}
-							target.html(str);
-							$('#deptBox .userItem').html(tr);
-						}
-					})
-				}
+				
 				$('#dept_item').on("click",".block-right-item",function(){
 					var that = $(this);
 					if(that.attr('class').indexOf('active') > 0){
 						that.removeClass("active");
 						
 					}else{
-						//var addstr='<div class="block-right-item" item_id="admin" item_name="'+v.userName+'" user_id="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"></span></span></div>';
 						var divObj = $(that.prop("outerHTML"));
 						divObj.addClass("active");
 						that.addClass("active");
@@ -318,7 +270,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					
 				});
-				//getChDept($('#deptOrg'),20);
+				
 				
 				$('.tree .dynatree-container').on('click','.childdept',function(){
 								var  that = $(this);
