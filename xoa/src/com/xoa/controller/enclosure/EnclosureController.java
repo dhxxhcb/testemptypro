@@ -38,7 +38,8 @@ import com.xoa.util.dataSource.ContextHolder;
  *
  */
 @Controller
-@Scope(value="prototype")
+@Scope(value = "prototype")
+@SuppressWarnings("all")
 public class EnclosureController {
 	private Logger loger = Logger.getLogger(EnclosureController.class);
 	

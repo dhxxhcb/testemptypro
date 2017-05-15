@@ -1,6 +1,7 @@
 package com.xoa.controller.schedule;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -265,6 +266,51 @@ public class CalenderController {
 		}
 		return json;
 		}
+	
+	@ResponseBody
+	@RequestMapping(value = "/schedule/addMCalender",produces = {"application/json;charset=UTF-8"})
+	public ToJson<Calendar> addMCalender(HttpServletRequest request,
+		String manyCalender
+						){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		ToJson<Calendar> json=new ToJson<Calendar>(0, null);
+		List<Calendar> list=new ArrayList<Calendar>();
+		try{ 
+		    String [] result = manyCalender.split(",");
+			for(int i=0;i<result.length;i++){
+				Calendar c=new Calendar();
+				//SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				c.setUserId(result[i]);
+				c.setEndTime(Integer.parseInt(result[i+1]));
+				c.setCalTime(Integer.parseInt(result[i+2]));
+				c.setContent(result[i+3]);
+				c.setCalType(result[i+4]);
+				c.setCalLevel(result[i+5]);
+				c.setManagerId("");
+				c.setOverStatus("");
+				c.setBeforeRemaind("");
+				c.setAddTime(new Date());
+				c.setOwner("");
+				c.setTaker("");
+				byte a=0;
+				c.setAllday(a);
+				c.setFromModule(a);
+				c.setUrl("");
+				c.setmId(1);
+				c.setResId(1);
+				calenderService.insertSelective(c);
+				list.add(c);
+			}
+			json.setObj(list);
+			json.setMsg("OK");
+			json.setFlag(0);
+		}catch(Exception e){
+			json.setMsg(e.getMessage());
+		}
+		return json;
+		}
+	
 	
 }
 

@@ -11,13 +11,6 @@ import com.xoa.model.users.Users;
  * 构造参数:   无
  *
  */
- /**
- * 创建作者:   张龙飞
- * 创建日期:   2017年4月26日 下午8:12:20
- * 类介绍  :   
- * 构造参数:   
- *
- */
 public class Department {
 	/**
 	 * 自增唯一ID
