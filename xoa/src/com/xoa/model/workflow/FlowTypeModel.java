@@ -222,7 +222,21 @@ public class FlowTypeModel implements Serializable{
      */
     private String viewRole;
 
+    /**
+     *  部门名称
+     */
+    private String depName;
 
+    public String getDepName() {
+        if(depName==null){
+            depName="全部部门";
+        }
+        return depName;
+    }
+
+    public void setDepName(String depName) {
+        this.depName = depName;
+    }
     /**
      *
      * 创建作者:   张勇

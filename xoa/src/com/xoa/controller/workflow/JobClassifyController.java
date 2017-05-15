@@ -146,12 +146,28 @@ public class JobClassifyController {
         return   service.deleteForm(formId);
     }
 //
-//
+//  
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-12 上午11:53:58 
+     * @方法介绍 表单文件格式接口
+     * @参数说明 @return
+     * @return
+     */
     @RequestMapping("/flowclassify/formJsTree")
     public JobSelectorWrapper formJsData(){
         return   service.easyFormTree();
     }
-
+   
+    /**
+     * 
+     * @作者 韩东堂
+     * @创建日期 2017-5-15 上午9:55:15 
+     * @方法介绍 流程文件格式接口
+     * @参数说明 @return
+     * @return
+     */
     @RequestMapping("/flowclassify/flowJsTree")
     public JobSelectorWrapper flowJsData(){
         return   service.easyFlowTree();

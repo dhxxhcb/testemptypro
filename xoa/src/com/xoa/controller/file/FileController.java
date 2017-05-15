@@ -294,11 +294,11 @@ public class FileController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	@RequestMapping(value = "/main")
+	@RequestMapping(value = "/contentAdd")
 	public String fileHomeOne(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute("loginDateSouse"));
 		loger.info("--------main-------");
-		return "app/file/fileHomeMain";
+		return "app/file/fileContentAdd";
 	}
  
 	/**
@@ -333,7 +333,7 @@ public class FileController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	@RequestMapping(value = "save")
+	@RequestMapping(value = "saveContent")
 	public ToJson<DiaryModel> addContent(FileContentModel fileContentModel,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));

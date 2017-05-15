@@ -246,8 +246,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"notify_manage":"notice/manage",
 				"knowledge_management":"file/home",
 				"system_file_folder":"file/setIndex",
-				"system/workflow/flow_sort":"workflow/flowclassify/index",
-				//"system/workflow/flow_form":"workflow/formtype/index",
+				"system_workflow_flow_guide":"flow/type/index",
+				"system_workflow_flow_form":"workflow/formtype/index",
 				"file_folder_index2.php":"file/persionBox"
 			}
 			
@@ -344,12 +344,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									if(data[i].child[j].child.length>0){
 										var three='';
 										for(var k=0;k<data[i].child[j].child.length;k++){						
-								 			three +='<li class="three" menu_tid='+data[i].child[j].child[k].id+' url_three='+data[i].child[j].child[k].url+' title="'+data[i].child[j].child[k].name+'"><img class="sanji_circle" src="img/main_img/hei.png"><h1 style="margin-left:6%;">'+data[i].child[j].child[k].name+'</h1></li>' ; 	
+								 			three +='<li class="three" menu_tid='+data[i].child[j].child[k].id+' url='+data[i].child[j].child[k].url+' title="'+data[i].child[j].child[k].name+'"><img class="sanji_circle" src="img/main_img/hei.png"><h1 style="margin-left:6%;">'+data[i].child[j].child[k].name+'</h1></li>' ; 	
 								 		}
 								 		er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"  title="'+data[i].child[j].name+'"><img class="erji_circle" src="img/main_img/hei.png"><h1>'+data[i].child[j].name+'</h1><img class="er_img" src="img/main_img/down.png"></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
-									/*  console.log($('er').find().attr('url')); */
+									
 									}else{
-										/* console.log(data[i].child[j].id); */
+										
 										er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+' class="two_all" title="'+data[i].child[j].name+'"><img class="erji_circle" src="img/main_img/hei.png"><h1 class="erji_h1">'+data[i].child[j].name+'</h1></div></li>';
 										
 									} 
@@ -400,29 +400,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 										
 						});
-					
-						//点击应用或者组织，tab切换
-							//tab切换
-						/* 	 var currentIndex=0;
-							/*  var index; */
-					/* 	$('.tab_t').on('click','li',function(){
-								var index=$(this).index();
-								//console.log(inedx);
-								if(currentIndex!=index){
-								 
-									currentIndex=index;
-									$(".tab_t li").removeClass("yingy");
-									$(this).addClass('yingy');
-									//内容
-									 var contents=$(".list").find("ul");
-									
-					                $(contents[index]).show();
-					                $(contents[index]).siblings().hide();
-								}
-													
-						}); */
-						
-						
 
 							//点击二级，出现三级
 						$('.click_erji').on('click',function () {
@@ -441,9 +418,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 						//二级菜单切换
 						$('.two_menu li').on('mouseover','.two_all',function(){
-							
-								/* $('.two_menu li .two_all').removeClass('xuan');
-								$(this).addClass('xuan'); */
+						
 								$(this).find('h1').css({
 									'color':'#2f8ae3',
 									 'cursor':'pointer'
@@ -520,14 +495,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 							//点击三级菜单，跳转页面。
 							$('.sanji').on('click','li',function(){
-								var url=$(this).attr('url_three'); 
-								
-							 var menu_tid=$(this).attr('menu_tid');  
+								var url=$(this).attr('url'); 
 								console.log(url);
-								if(menu[url]){
-									url = menu[url];
+							 	var menu_tid=$(this).attr('menu_tid');  
+								console.log(url.split);
+								console.log(menu[url.split('/').join('_')]);
+								if(menu[url.split('/').join('_')]){
+									url = menu[url.split('/').join('_')];
 								}else{
-								url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
+									url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
 								}
 								
 								console.log(menu_tid);

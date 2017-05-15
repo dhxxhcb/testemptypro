@@ -189,7 +189,7 @@
                         <%--<img src="/ui/erp_img/new_excell_info_img_bianji.png" class="edit_img">--%>
                     <%--</div>--%>
                 <%--</div>--%>
-            </div>
+            <%--</div>--%>
 
             <%--<div class="rig_every"></div>--%>
             <%--<div class="rig_every"></div>--%>
@@ -284,7 +284,17 @@
 
         function renderDatas(data) {
             var html="";
+            var typeName="未定义";
             for(var i =0 ;i<data.length;i++){
+                if(data[i].flowType==1){
+                    //固定
+                    typeName="固定流程";
+                }
+                if(data[i].flowType==2){
+                    //自由
+                    typeName="自由流程";
+                }
+
                 html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main">'+
                     '<a class="set" flow_id="'+data[i].flowId+'" title="编辑"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
@@ -292,21 +302,21 @@
                    ' <div style="float: left;width: 122px;">'+
                    ' <img src="http://devapp.gsubo.com/ui/erp_img/zb.png" class="new_excell_pic">'+
                    ' <ul class="new_excell_info_other">'+
-                   ' <li><span class="new_excell_info_username">主表</span></li>'+
-                    '<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">表类型</span></li>'+
+                   ' <li><span class="new_excell_info_username">'+typeName+'</span></li>'+
+                    '<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">流程类型</span></li>'+
                     '</ul>'+
                     '</div>'+
-                   ' <div style="float: left;width: 122px; margin-left: 20px;">'+
-                    '<img src="http://devapp.gsubo.com/file0/APPC/TYPE/1001.png" class="new_excell_pic">'+
-                    '<ul class="new_excell_info_other" style="left: 205px;">'+
-                   ' <li><span class="new_excell_info_username" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100px;display: inline-block;">CRM</span></li>'+
-                    '<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">表分类</span></li>'+
-                   ' </ul>'+
-                    '</div>'+
+//                   ' <div style="float: left;width: 122px; margin-left: 20px;">'+
+//                    '<img src="http://devapp.gsubo.com/file0/APPC/TYPE/1001.png" class="new_excell_pic">'+
+//                    '<ul class="new_excell_info_other" style="left: 205px;">'+
+//                   ' <li><span class="new_excell_info_username" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100px;display: inline-block;">CRM</span></li>'+
+//                    '<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">表分类</span></li>'+
+//                   ' </ul>'+
+//                    '</div>'+
                     '</div>'+
                    ' <div style="position: absolute;bottom: 5px;left: 20px;"><div style="float: left;">'+
                     '<img src="" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
-                    '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">张明</span>'+
+                    '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">'+data[i].depName+'</span>'+
                    ' </div>'+
                     '<div style="float: right;margin-left: 30px;">'+
                    ' <img src="/ui/erp_img/new_excell_info_time_pic.png" class="new_excell_info_img position_img" style="vertical-align: middle;">'+

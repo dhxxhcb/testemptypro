@@ -52,8 +52,24 @@ public class FlowFormType implements Serializable {
      * 表单扩展样式
      */
     private String css;
-    
-    /**
+
+       /**
+        *  部门名称
+        */
+    private String depName;
+
+       public String getDepName() {
+           if(depName==null){
+               depName="全部部门";
+           }
+           return depName;
+       }
+
+       public void setDepName(String depName) {
+           this.depName = depName;
+       }
+
+       /**
      * 
      * 创建作者:   王曰岐
      * 创建日期:   2017-5-8 上午11:21:31

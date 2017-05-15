@@ -9,10 +9,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by 王曰岐 on 2017/5/10.
+ * Created by 韩东堂 on 2017/5/10.
  */
 @Service
 public class FlowFormService {
+    /**
+     * 创建作者:   韩东堂
+     * 创建日期:   2017/5/12 16:55
+     * 方法介绍:   根据FormId获取所有表单
+     * 参数说明:   获取页面传递对象参数
+     * @return
+     */
     @Autowired
     FlowFormTypeMapper flowFormTypeMapper;
     public FlowFormWrappers getFormBySortId(Integer sortId){

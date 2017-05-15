@@ -615,7 +615,14 @@ public class JobClassifyService {
         return null;
     }
 
-
+      /**
+       * 
+       * @作者 韩东堂
+       * @创建日期 2017-5-12 上午10:41:24 
+       * @方法介绍  表单设计文件格式数据
+       * @参数说明 @return
+       * @return
+       */
      public JobSelectorWrapper easyFormTree(){
          JobSelectorWrapper wrapper =new JobSelectorWrapper();
          List<FormSort>  resultdatas =new ArrayList<FormSort>();
@@ -643,6 +650,14 @@ public class JobClassifyService {
          wrapper.setMsg("获取数据成功");
          return wrapper;
      }
+     /**
+      * 
+      * @作者 韩东堂
+      * @创建日期 2017-5-15 上午9:43:14 
+      * @方法介绍 流程设计文件格式数据
+      * @参数说明 @return
+      * @return
+      */
     public JobSelectorWrapper easyFlowTree(){
         JobSelectorWrapper wrapper =new JobSelectorWrapper();
         List<FlowSort> nosortDatas= flowSortMapper.selectAllFlowSort();
