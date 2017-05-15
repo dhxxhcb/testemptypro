@@ -86,15 +86,15 @@ body,
 .cont_left,.cont_rig{
 	float:left;
 }
-.rig_every{
-	width:25%;
-	height:200px;
-	border:1px solid #000;
-	border-radius:4px;
-	float:left;
-	margin-left:50px;
-	margin-top:50px;
-}
+/*.rig_every{*/
+	/*width:25%;*/
+	/*height:200px;*/
+	/*border:1px solid #000;*/
+	/*border-radius:4px;*/
+	/*float:left;*/
+	/*margin-left:50px;*/
+	/*margin-top:50px;*/
+/*}*/
 .sort{
 	line-height: 40px;
 	text-align: center;

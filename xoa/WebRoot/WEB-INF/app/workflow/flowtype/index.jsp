@@ -27,6 +27,99 @@
     <script type="text/javascript" src="../../js/easyui/tree.js" ></script>
     <script type="text/javascript" src="../js/index.js" ></script>
     <title>s首页</title>
+    <style>
+        .new_excell_pic{
+            border-radius: 0;border: none; width: 75px;height: 75px;margin-top: -7px;
+        }
+        .deldel{
+            color: #fff;font-size: 12px;float: right;margin-right: 10px;margin-left: 10px;line-height: 28px;cursor: pointer;
+        }
+        .footer_span_space{
+            color: #fff;font-size: 12px;float: right;margin-right: 10px;line-height: 28px;cursor: pointer;
+        }
+        .edit{
+            color: #fff;font-size: 12px;float: right;margin-right: 10px;margin-left: 10px;line-height: 28px;cursor: pointer;
+        }
+        .deldel_img{
+            float: right;height: 15px;margin-top: 7px;
+        }
+        .edit_img{
+            float: right;height: 15px;margin-top: 7px;
+        }
+        .new_excell_footer {
+            width: 100%;
+            height: 28px;
+            position: relative;
+            background-color: #f7bd00;
+        }
+        .new_excell_head {
+            position: relative;
+            width: 100%;
+            height: 30px;
+        }
+        .new_excell_name {
+            border-left: 4px solid #f7bd00;
+            color: #f7bd00;
+            position: absolute;
+            bottom: 0;
+            font-size: 16px;
+            font-weight: 700;
+            height: 20px;
+            margin-left: 15px;
+        }
+        .new_excell_info {
+            width: 100%;
+            height: 113px;
+            position: relative;
+        }
+        .new_excell_info_main {
+            width: 95%;
+            height: 62px;
+            position: absolute;
+            left: 5%;
+            top: 14%;
+        }
+
+        .new_excell_info_other {
+            position: absolute;
+            top: 10px;
+            height: 100%;
+            margin: 0;
+            list-style-type: none;
+            left: 20%;
+        }
+
+        .new_excell_main {
+            width: 330px;
+            height: 171px;
+            border: 1px solid #ddd;
+            margin: auto;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .new_excell_main:hover {
+            border: 2px solid #59bdf0;
+        }
+        .new_excell {
+            width: 350px;
+            height: 191px;
+            float: left;
+        }
+
+        .new_excell_info_other span {
+            margin-left: 10px;
+        }
+        .new_excell_info_other li {
+            height: 50%;
+            line-height: 24px;
+            font-size: 20px;
+        }
+        user agent stylesheet
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+    </style>
 </head>
 <body>
 
@@ -57,12 +150,52 @@
         </div>
 
         <div class="cont_rig">
-            <div class="rig_every"></div>
-            <div class="rig_every"></div>
-            <div class="rig_every"></div>
-            <div class="rig_every"></div>
-            <div class="rig_every"></div>
-            <div class="rig_every"></div>
+            <%--<div class="new_excell" id="new_excell1">--%>
+                <%--<div class="new_excell_main">--%>
+                    <%--<a class="set" set_id="undefined" title="编辑"><div class="new_excell_head"><span class="new_excell_name">&nbsp;潜在客户</span></div>--%>
+                        <%--<div class="new_excell_info"><div class="new_excell_info_main">--%>
+                            <%--<div style="float: left;width: 122px;">--%>
+                                <%--<img src="http://devapp.gsubo.com/ui/erp_img/zb.png" class="new_excell_pic">--%>
+                                <%--<ul class="new_excell_info_other">--%>
+                                    <%--<li><span class="new_excell_info_username">主表</span></li>--%>
+                                    <%--<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">表类型</span></li>--%>
+                                <%--</ul>--%>
+                            <%--</div>--%>
+                            <%--<div style="float: left;width: 122px; margin-left: 20px;">--%>
+                                <%--<img src="http://devapp.gsubo.com/file0/APPC/TYPE/1001.png" class="new_excell_pic">--%>
+                                <%--<ul class="new_excell_info_other" style="left: 205px;">--%>
+                                    <%--<li><span class="new_excell_info_username" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100px;display: inline-block;">CRM</span></li>--%>
+                                    <%--<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">表分类</span></li>--%>
+                                <%--</ul>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                            <%--<div style="position: absolute;bottom: 5px;left: 20px;"><div style="float: left;">--%>
+                                <%--<img src="" class="new_excell_info_img position_img" style="vertical-align: middle;">--%>
+                                <%--<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">张明</span>--%>
+                            <%--</div>--%>
+                                <%--<div style="float: right;margin-left: 30px;">--%>
+                                    <%--<img src="/ui/erp_img/new_excell_info_time_pic.png" class="new_excell_info_img position_img" style="vertical-align: middle;">--%>
+                                    <%--<span class="new_excell_info_time" style="font-size: 12px;margin-left: 5px;color: #999;">2015-09-29</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</a>--%>
+                    <%--<div class="new_excell_footer">--%>
+                        <%--<span class="deldel">删除</span>--%>
+                        <%--<img src="/ui/erp_img/new_excell_info_img_shanchu.png" class="deldel_img" >--%>
+                        <%--<span class="footer_span_space">&nbsp;|&nbsp;</span>--%>
+                        <%--<span class="edit" >编辑</span>--%>
+                        <%--<img src="/ui/erp_img/new_excell_info_img_bianji.png" class="edit_img">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            </div>
+
+            <%--<div class="rig_every"></div>--%>
+            <%--<div class="rig_every"></div>--%>
+            <%--<div class="rig_every"></div>--%>
+            <%--<div class="rig_every"></div>--%>
+            <%--<div class="rig_every"></div>--%>
+            <%--<div class="rig_every"></div>--%>
         </div>
 
 
@@ -81,14 +214,23 @@
 <script type="text/javascript">
     $(function () {
        //获取左侧分类
+        var data=[{"dataId":"1","children":[{"dataId":"13","children":[],"checked":false,"attributes":{"id":13,"type":"0"},"id":"13","state":null,"text":"行政办公制度","url":null,"parentId":"1"},{"dataId":"43","children":[],"checked":false,"attributes":{"id":43,"type":"0"},"id":"43","state":null,"text":"人力资源开发与管理制度","url":null,"parentId":"1"},{"dataId":"44","children":[],"checked":false,"attributes":{"id":44,"type":"0"},"id":"44","state":null,"text":"采购报销和备用金制度","url":null,"parentId":"1"}],"checked":false,"attributes":{"id":1,"type":"0"},"id":"1","state":null,"text":"公司管理制度","url":null,"parentId":"0"},{"dataId":"39","children":[{"dataId":"45","children":[],"checked":false,"attributes":{"id":45,"type":"0"},"id":"45","state":null,"text":"综合管理部职能分配","url":null,"parentId":"39"},{"dataId":"46","children":[],"checked":false,"attributes":{"id":46,"type":"0"},"id":"46","state":null,"text":"财务管理制度","url":null,"parentId":"39"},{"dataId":"47","children":[],"checked":false,"attributes":{"id":47,"type":"0"},"id":"47","state":null,"text":"项目部项目管理规范","url":null,"parentId":"39"}],"checked":false,"attributes":{"id":39,"type":"0"},"id":"39","state":null,"text":"部门管理制度","url":null,"parentId":"0"},{"dataId":"3","children":[],"checked":false,"attributes":{"id":3,"type":"0"},"id":"3","state":null,"text":"公司大事记","url":null,"parentId":"0"},{"dataId":"40","children":[{"dataId":"41","children":[],"checked":false,"attributes":{"id":41,"type":"0"},"id":"41","state":null,"text":"系统使用","url":null,"parentId":"40"},{"dataId":"42","children":[],"checked":false,"attributes":{"id":42,"type":"0"},"id":"42","state":null,"text":"公司知识库","url":null,"parentId":"40"}],"checked":false,"attributes":{"id":40,"type":"0"},"id":"40","state":null,"text":"学习资料","url":null,"parentId":"0"},{"dataId":"10","children":[],"checked":false,"attributes":{"id":10,"type":"0"},"id":"10","state":null,"text":"文档标准","url":null,"parentId":"0"}]
         $('#li_parent').tree({
-            url: '/workflow/flowclassify/flowJsTree',
+            url: '../../workflow/flowclassify/flowJsTree',
+            animate:true,
+            lines:true,
             loadFilter: function(rows){
                 console.log(rows);
                 return convert(rows.datas);
+            },
+            onClick:function(node){
+                getFlowList(node.id);
             }
         });
 
+
+
+        //处理树结构
         function convert(rows){
             function exists(rows, parentId){
                 for(var i=0; i<rows.length; i++){
@@ -130,49 +272,62 @@
             return nodes;
         }
 
-//        $.post("/workflow/flowclassify/flowJsTree",{} ,function (ret) {
-//              console.log(ret);
-//              if(ret.flag==true){
-//
-//
-////                  var str_li="";
-////                  console.log(ret.datas)
-////                  str_li=  queryChild(ret.datas,str_li,0);
-////                  console.log(str_li)
-////                  $("#li_parent").html(str_li);
-////                  $("#li_parent ul li").hide();
-////                  $(".show").click(function(event)
-////                  {
-////                      event.stopPropagation();
-////                  var level=    $(this).attr("level");
-////                      console.log(level);
-////                      if($(this).find(".show").attr("showable")=="true"){
-////                          if(level==0){
-////                              $(this).find(".show").hide();
-////                              $(this).find(".show").attr("showable",false);
-////                          }
-////                      }else{
-////                          $(this).find(".show").show();
-////                          $(this).find(".show").attr("showable",true);
-////                      }
-////                  });
-//              }
-//        },"json");
+        function getFlowList(sortId) {
+            $.post("../../flow/flowlistbysort",{flowId:sortId} ,function (ret) {
+                console.log(ret);
+                if(ret.flag==true){
+                   renderDatas(ret.obj);
+                }
+            },"json");
+        }
 
-//        //表单分类递归
-//        function queryChild(datas,str_li,level){
-//            for(var i=0;i<datas.length;i++){
-//                var className=datas[i].sortId+level;
-//                str_li+='<li class="show" level="'+level+'" showable="false"><img src="/../img/workflow/wenjian.png"><h1>'+datas[i].sortName+'</h1>' +
-//                         '<ul id="'+className+'" class="hideOrToggle">'  ;
-//                if(datas[i].childs!=null){
-//                    console.log($("#"+className));
-//                    str_li = queryChild(datas[i].childs,str_li,level+1);
-//                }
-//                str_li += '</ul></li>';
-//            }
-//            return str_li;
-//        }//表单递归结束
+        function renderDatas(data) {
+            var html="";
+            for(var i =0 ;i<data.length;i++){
+                html+=  ' <div class="new_excell" id="new_excell1">'+
+                    '<div class="new_excell_main">'+
+                    '<a class="set" flow_id="'+data[i].flowId+'" title="编辑"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
+                    '<div class="new_excell_info"><div class="new_excell_info_main">'+
+                   ' <div style="float: left;width: 122px;">'+
+                   ' <img src="http://devapp.gsubo.com/ui/erp_img/zb.png" class="new_excell_pic">'+
+                   ' <ul class="new_excell_info_other">'+
+                   ' <li><span class="new_excell_info_username">主表</span></li>'+
+                    '<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">表类型</span></li>'+
+                    '</ul>'+
+                    '</div>'+
+                   ' <div style="float: left;width: 122px; margin-left: 20px;">'+
+                    '<img src="http://devapp.gsubo.com/file0/APPC/TYPE/1001.png" class="new_excell_pic">'+
+                    '<ul class="new_excell_info_other" style="left: 205px;">'+
+                   ' <li><span class="new_excell_info_username" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100px;display: inline-block;">CRM</span></li>'+
+                    '<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">表分类</span></li>'+
+                   ' </ul>'+
+                    '</div>'+
+                    '</div>'+
+                   ' <div style="position: absolute;bottom: 5px;left: 20px;"><div style="float: left;">'+
+                    '<img src="" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
+                    '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">张明</span>'+
+                   ' </div>'+
+                    '<div style="float: right;margin-left: 30px;">'+
+                   ' <img src="/ui/erp_img/new_excell_info_time_pic.png" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
+                   ' <span class="new_excell_info_time" style="font-size: 12px;margin-left: 5px;color: #999;">2015-09-29</span>'+
+                    '</div>'+
+                   ' </div>'+
+                   ' </div>'+
+                    '</a>'+
+                   ' <div class="new_excell_footer">'+
+                    '<span class="deldel">删除</span>'+
+                   ' <img src="/ui/erp_img/new_excell_info_img_shanchu.png" class="deldel_img" >'+
+                    '<span class="footer_span_space">&nbsp;|&nbsp;</span>'+
+                '<span class="edit" >编辑</span>'+
+                   '<img src="/ui/erp_img/new_excell_info_img_bianji.png" class="edit_img">'+
+                    '</div>'+
+                    '</div>';
+            }
+            $(".cont_rig").html(html);
+        }
+
+
+
 
 
 

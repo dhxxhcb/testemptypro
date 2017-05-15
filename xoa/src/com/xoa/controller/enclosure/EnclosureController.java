@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -26,7 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.util.ToJson;
-import com.xoa.util.common.L;
 import com.xoa.util.dataSource.ContextHolder;
 
  
@@ -38,7 +38,8 @@ import com.xoa.util.dataSource.ContextHolder;
  *
  */
 @Controller
-@Scope(value="prototype")
+@Scope(value = "prototype")
+@SuppressWarnings("all")
 public class EnclosureController {
 	private Logger loger = Logger.getLogger(EnclosureController.class);
 	
@@ -61,12 +62,19 @@ public class EnclosureController {
 	public @ResponseBody ToJson<Attachment> upload( @RequestParam("file") MultipartFile[] files,String module,
 			  HttpServletRequest request) {	
 //		L.w("0=||==============》"+request.getSession().getId());
-		String company="xoa1001";
-		ContextHolder.setConsumerType(company);			
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		String pd="xoa"+(String) request.getSession().getAttribute(
+				"loginDateSouse");
+		StringBuffer sb=new StringBuffer();
+			if(pd==null){
+			sb.append("xoa1001");
+			}else{
+			sb.append(pd.toString());
+			}
+			String company=sb.toString();
 			ToJson<Attachment> json=new ToJson<Attachment>(0, null);
-			try {
-//				String company="xoa"+(String) request.getSession().getAttribute(
-//						"loginDateSouse");
+			try {	
 				List<Attachment> list=enclosureService.upload(files, company, module);  
 				json.setObj(list);
 	            json.setMsg("OK");
@@ -77,26 +85,7 @@ public class EnclosureController {
 			}
 	        return json;
 	    }
-	
-	    /** 
-	     * 列出所有的图片 
-	     */  
-	    /*@RequestMapping("/listFile")  
-	    public String listFile(HttpServletRequest request,  
-	            HttpServletResponse response) {  
-	        // 获取上传文件的目录  
-	        ServletContext sc = request.getSession().getServletContext();  
-	        // 上传位置  
-	        String uploadFilePath = sc.getRealPath("/img") + "/"; // 设定文件保存的目录  
-	        // 存储要下载的文件名  
-	        Map<String, String> fileNameMap = new HashMap<String, String>();  
-	        // 递归遍历filepath目录下的所有文件和目录，将文件的文件名存储到map集合中  
-	        listfile(new File(uploadFilePath), fileNameMap);// File既可以代表一个文件也可以代表一个目录  
-	        // 将Map集合发送到listfile.jsp页面进行显示  
-	        request.setAttribute("fileNameMap", fileNameMap);  
-	        return "listFile";  
-	    }  */
-	    
+
 		public void listfile(File file, Map<String, String> map,String path) {
 			// 如果file代表的不是一个文件，而是一个目录
 			if (!file.isFile()) {
@@ -140,6 +129,7 @@ public class EnclosureController {
 	 * 参数说明:   @param request 请求
 	 * 参数说明:   @return
 	 * @return     String 返回
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value={"/download"},method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
 	public String download(@RequestParam("AID") String aid ,
@@ -149,9 +139,10 @@ public class EnclosureController {
 						@RequestParam("ATTACHMENT_NAME") String attachmentName ,
 						@RequestParam("COMPANY") String company ,
 						HttpServletResponse response,
-						HttpServletRequest request) {
+						HttpServletRequest request) throws UnsupportedEncodingException {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
+		//读取配置文件
 		ResourceBundle rb =  ResourceBundle.getBundle("upload");
 		//String name = rb.getString("mysql.driverClassName");
 		String osName = System.getProperty("os.name");
@@ -169,7 +160,7 @@ public class EnclosureController {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
 		response.setHeader("Content-Disposition", "attachment;fileName="
-				+ attachmentName);
+				+new String(attachmentName.getBytes("UTF-8"), "ISO8859-1"));
 				try {
 				/*	String path = Thread.currentThread().getContextClassLoader()
 							.getResource("").getPath()

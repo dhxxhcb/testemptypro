@@ -121,23 +121,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="head w clearfix">
         <ul class="index_head">
            <li data_id=""><span class="one headli1_1">
-               <%--<fmt:message  code="news.th.newsmanage"/>--%>
-               公告管理
+              <fmt:message  code="notice.th.notifymanage"/>
            </span><img class="headli1_2" src="../img/02.png" alt=""/>
             </li>
             <li data_id="0"><span class="headli2_1">
-                <%--<fmt:message code="news.th.newbuild"/>--%>
-            新建公告
+                <fmt:message code="notice.th.buildnotify"/>
             </span><img src="../img/02.png" alt="" class="headli2_2"/>
             </li>
                     
            <li data_id="1"><span class="headli3">
-               <%--<fmt:message code="news.title.query"/>--%>
-           公告查询
+              <fmt:message code="notice.title.announcementquery"/>
            </span></li>
             <li data_id="2" style="display:none;"><span class="headli4">
-               <%--<fmt:message code="news.title.query"/>--%>
-           公告统计
+               <fmt:message code="notice.th.notifycount"/>
            </span></li>
            
         </ul>
@@ -149,16 +145,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="left">
 			 <img src="../img/la2.png">
            <div class="news">
-                    <%--<fmt:message code="news.title.new"/>--%>
-               管理公告通知
+                    <fmt:message code="notice.th.managenotifynotice"/>
            </div>  
              <select name="TYPE" class="button1 nav_type" id="select">
-				<option value="0" selected="">所有类型</option>
-				<option tid="01">决定</option>
-				<option tid="02">通知</option>
-				<option tid="03">通报</option>
-				<option tid="04">其他</option>
-				<option tid="">无类型</option>
+				<option value="0" selected=""> <fmt:message code="notice.type.alltype"/></option>
+				<option tid="01"><fmt:message code="notice.type.Decision"/></option>
+				<option tid="02"> <fmt:message code="notice.type.notice"/></option>
+				<option tid="03"><fmt:message code="notice.type.Bulletin"/></option>
+				<option tid="04"> <fmt:message code="notice.type.other"/></option>
+				<option tid=""> <fmt:message code="notice.type.notype"/></option>
 			</select>
 			 <div id="cx" class="submit">
                     <fmt:message code="global.lang.query"/>
@@ -177,16 +172,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <table id="tr_td">
                 <thead>
                 	<tr>
-                		<td class="th">选择</td>
-                    	<td class="th">发布人</td>
-                    	<td class="th">类型</td>
-                    	<td class="th" >发布范围</td>
-	                    <td class="th">标题</td>
-	                    <td class="th">发布时间</td>
-	                    <td class="th">生效日期</td>
-	                    <td class="th">终止日期</td>
-	                    <td class="th">状态</td>
-	                    <td class="th">操作</td>
+                		<td class="th"><fmt:message code="notice.th.chose"/></td>
+                    	<td class="th"><fmt:message code="notice.th.publisher"/></td>
+                    	<td class="th"><fmt:message code="notice.th.type"/></td>
+                    	<td class="th" ><fmt:message code="notice.th.releasescope"/></td>
+	                    <td class="th"><fmt:message code="notice.th.title"/></td>
+	                    <td class="th"><fmt:message code="notice.th.PostedTime"/></td>
+	                    <td class="th"><fmt:message code="notice.th.effectivedate"/></td>
+	                    <td class="th"><fmt:message code="notice.th.endDate"/></td>
+	                    <td class="th"><fmt:message code="notice.th.state"/></td>
+	                    <td class="th"><fmt:message code="notice.th.operation"/></td>
 	                </tr>
                 </thead>
                 <tbody id="j_tb"></tbody>
@@ -202,15 +197,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 <table class="newNews">
         <div class="nav_box clearfix">
             <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
-            <div class="nav_t2" class="news">新建公告通知 </div>
+            <div class="nav_t2" class="news"><fmt:message code="notice.th.newnotify"/> </div>
 
             <!-- <div class="nav_t3">选择格式 -->
              <div class="nav_t3" > 
             	<select name="" class="sel" id="add_sel">
 
-                    <option value="0" selected>普通格式</option>
-                    <option value="1">MHT格式</option>
-                    <option value="2">超级链接</option>
+                    <option value="0" selected><fmt:message code="notice.format.Commonformat"/></option>
+                    <option value="1"><fmt:message code="notice.format.MHTformat"/></option>
+                    <option value="2"><fmt:message code="notice.format.hyperlink"/></option>
                 </select>
             </div>
         </div>
@@ -219,18 +214,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
             <td class="td_w">
                 <select name="" class="type_notice" id="add_type_notice">
-                    <option value="">选择公告类型</option>
-                    <option value="01">决定</option>
-                    <option value="02">通知</option>
-                    <option value="03">通报</option>
-                    <option value="04">其他</option>
+                    <option value=""><fmt:message code="notice.th.chosenotifytype"/></option>
+                    <option value="01"><fmt:message code="notice.type.Decision"/></option>
+                    <option value="02"><fmt:message code="notice.type.notice"/></option>
+                    <option value="03"><fmt:message code="notice.type.Bulletin"/></option>
+                    <option value="04"><fmt:message code="notice.type.other"/></option>
                 </select>
             </td>
             <td>
                 <div class="td_title1">
                     <!-- 需调整 -->
                     <input type="text" name="titileTime" id="add_titileTime"  style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;"
-                           placeholder="请输入标题..." >
+                           placeholder=" <fmt:message code="global.lang.printsubject"/>..." >
                     <!-- 后续需要调整 -->
                     <button ></button>
                     <%--请输入发布时间...--%>
@@ -240,13 +235,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text">
-                按部门发布：
+               <fmt:message code="notice.th.IssuedByDepartment"/>：
             </td>
             <td>
                 <textarea readonly="readonly" class=" td_title1  release1" id="add_texta"  dataid=""   resize="auto" ></textarea>
                 <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
-                <div class="release3" >添加</div>
-                <div class="release4 empty">清空</div>
+                <div class="release3" ><fmt:message code="global.lang.add"/></div>
+                <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
             </td>
         </tr>
 
@@ -256,30 +251,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- 需调整样式 建议采取div展示和隐藏模式  或者可以采取盒子格式 -->
         <tr>
             <td class="blue_text">
-                按人员发布：
+                <fmt:message code="notice.th.somebody"/>：
             </td>
             <td>
                 <textarea readonly="readonly" id="add_selectUser" class="td_title1  release1"></textarea>
                 <img class="td_title2 release3" src="../img/mg2.png" alt=""/>
-                <div class="release3" id="add_selectUserbtn">添加</div>
-                <div class="release4 empty">清空</div>
+                <div class="release3" id="add_selectUserbtn"><fmt:message code="global.lang.add"/></div>
+                <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
             </td>
         </tr>
         <tr>
             <td class="blue_text">
-                按角色发布：
+               <fmt:message code="notice.th.role"/>：
             </td>
             <td>
                 <textarea readonly="readonly" class="td_title1  release1"></textarea>
                 <img class="td_title2 release4" src="../img/mg2.png" alt=""/>
-                <div class="release3">添加</div>
-                <div class="release4 empty">清空</div>
+                <div class="release3"><fmt:message code="global.lang.add"/></div>
+                <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
             </td>
         </tr>
         <!--- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
 
         <tr>
-            <td class="blue_text">发布时间：</td>
+            <td class="blue_text"><fmt:message code="notice.th.PostedTime"/>：</td>
             <td>
                 <div class="td_title1">
                     <!-- 需引入时间插件 -->
@@ -287,83 +282,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
 
-                <div class="release3">重置当前时间</div>
+                <div class="release3"><fmt:message code="notice.th.ResetToCurrentTime"/></div>
             </td>
         </tr>
 
         <tr>
-            <td class="blue_text">有效期：</td>
+            <td class="blue_text"><fmt:message code="notice.th.validity"/>：</td>
             <td>
                 <div class="td_title1 start_end_time">
                     <!-- 引入时间控件 和 css 调整  -->
                     <input type="text"  name="startTime" id="start_add" class="startTime" style="height: 20px; width: 130px; margin-left: -4.2px; margin-top: -1px;">
-                    至
+                   <fmt:message code="global.lang.to"/>
                     <input type="text"  name="endTime" id="end_add" class="endTime" style="height: 20px;width: 130px;  margin-top: -1px;">
-                    为空为手动终止
+                    <fmt:message code="notice.th.null"/>
                 </div>
             </td>
         </tr>
 
         <!-- 复选框样式调整  -->
         <tr>
-            <td class="blue_text">事物提醒：</td>
+            <td class="blue_text"><fmt:message code="notice.th.reminder"/>：</td>
             <td class="remind">
                 <div class="news_t">
-                    <input type="checkbox" name="remind" ><h1>发送事务提醒消息</h1>
+                    <input type="checkbox" name="remind" ><h1><fmt:message code="notice.th.remindermessage"/></h1>
                 </div>
                 <div class="news_two">
-                    <input type="checkbox" name="remind" ><h1>分享到企业社区</h1>
+                    <input type="checkbox" name="remind" ><h1><fmt:message code="notice.th.share"/></h1>
                 </div>
             </td>
         </tr>
 
         <tr>
-            <td class="blue_text">置顶：</td>
+            <td class="blue_text"><fmt:message code="notice.th.top"/>：</td>
             <td class="top_box">
                 <div>
                     <input type="checkbox" name="textTop" id="textTop" class="textTop">
-                    <h1 class="add_show">使公告置顶，显示为重要</h1>
+                    <h1 class="add_show"><fmt:message code="notice.th.topMajor"/></h1>
                 </div>
                 <div class="t_box">
                     <input type="text" name="textDay" id="textDay" class="textDay" value="0"
                            style="height: 20px; width: 40px; margin-left: -5.2px; margin-top: -1px;">
                 </div>
-                <div class="zhiding">天后结束置顶,0表示一直置顶</div>
+                <div class="zhiding"><fmt:message code="notice.th.endTop"/></div>
             </td>
         </tr>
         <tr>
-            <td class="blue_text">内容简介：</td>
+            <td class="blue_text"><fmt:message code="notice.th.contentValidity"/>：</td>
             <td class="abstract">
                 <div class="abstract1">
                     <input type="text"  name="summny" id="add_summny" class="summny" style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
                 </div>
-                <div class="abstract2">(最多输入39个字)</div>
+                <div class="abstract2"><fmt:message code="notice.th.contentHigh"/></div>
             </td>
         </tr>
 
         <!-- 需调整 -->
         <tr>
-            <td class="blue_text">附件与权限：</td>
+            <td class="blue_text"><fmt:message code="notice.th.fileUpload"/>：</td>
             <td class="enclosure">
                 <div><img src="../img/mg11.png" alt=""/></div>
-                <div class="enclosure_t">添加附件</div>
+                <div class="enclosure_t"><fmt:message code="notice.th.addfile"/></div>
                 <div><img src="../img/mg12.png" alt=""/></div>
-                <div class="enclosure_t">从文件柜和网络硬盘选择附件</div>
+                <div class="enclosure_t"><fmt:message code="notice.th.net"/></div>
                 <div><img src="../img/mg13.png" alt=""/></div>
-                <div class="enclosure_t">批量插入图片</div>
+                <div class="enclosure_t"><fmt:message code="notice.th.poto"/></div>
                 <div><img src="../img/mg14.png" alt=""/></div>
-                <div class="enclosure_t">批量上传过</div><br/>
+                <div class="enclosure_t"><fmt:message code="notice.th.up"/></div><br/>
                 <div class="add_down">
                     <input type="checkbox" name="textEnclosure" class="textEnclosure">
-                    <h1>允许下载Office附件</h1>
+                    <h1><fmt:message code="notice.th.office"/></h1>
                 </div>
                 <div class="add_print">
                     <input type="checkbox" name="textEnclosure" class="textEnclosure" >
-                    <h1>允许打印Office附件</h1>
+                    <h1><fmt:message code="notice.th.printoffice"/></h1>
                 </div>
 
                 <%--<input >--%>
-                <h1 class="add_nochose"> 都不选中则只能阅读附件内容</h1>
+                <h1 class="add_nochose"> <fmt:message code="notice.th.noselect"/></h1>
 
             </td>
         </tr>
@@ -376,19 +371,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
             <td class="blue_text">
-                关键字：
+               <fmt:message code="notice.th.keyWord"/>：
             </td>
             <td class="keyword">
-                <input class="keyword_ip">请输入关键字</input>
-                <div class="keyword_t">自动获取关键字</div>
-                <div>您可以调整关键字内容多个关键词请用分割</div>
+                <input class="keyword_ip"><fmt:message code="global.th.printkey"/></input>
+                <div class="keyword_t"><fmt:message code="notice.th.AutomaticKeywordAcquisition"/></div>
+                <div><fmt:message code="notice.th.keyContent"/></div>
         </tr>
         </tbody>
         
     </table>
     <div class="foot_mg">
-        <div  id="add_send" value="1" type="publish" class="fot_1 btn_ok">发布</div>
-        <div  id="add_baocun" value="0" type="save" class="btn_ok">保存</div>
+        <div  id="add_send" value="1" type="publish" class="fot_1 btn_ok"><fmt:message code="global.lang.publish"/></div>
+        <div  id="add_baocun" value="0" type="save" class="btn_ok"><fmt:message code="global.lang.save"/></div>
     </div>
 </div>
 </div>

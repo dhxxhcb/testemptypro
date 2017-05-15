@@ -37,6 +37,11 @@ public class CommonController {
 				"loginDateSouse"));
 		return "app/common/selectUser";
 	}
-	
+	@RequestMapping("/selectPriv")
+	public String addPrivPage(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/common/selectPriv";
+	}
 
 }
