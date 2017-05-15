@@ -20,8 +20,8 @@
 .nav_box .nav_t3 .sel {
     border:1px solid #d9d9d9;
     width:85px;
-    height:23px;
-    line-height: 23px;
+   /*  height:23px;
+    line-height: 23px; */
     /* margin-top:23px; */
 }
 .nav_box .nav_t4 img{
@@ -74,8 +74,8 @@ td {
     float: left;
     border: 1px solid #d9d9d9;
     width: 250px;
-    height: 20px;
-    line-height: 20px;
+  /*   height: 20px;
+    line-height: 20px; */
     color: #999999;
     padding-left: 3px;
 }
@@ -100,6 +100,7 @@ td {
     color: #207bd6;
     margin-left: 10px;
     margin-top: 10px;
+    cursor:pointer;
 }
 #query_adduser {
  	    cursor: pointer;
@@ -167,8 +168,8 @@ td {
 .top_box .t_box {
     border: 1px solid #d9d9d9;
     width: 35px;
-    height: 20px;
-    line-height: 20px;
+    height: 23px;
+    line-height: 23px;
     padding-left: 5px;
     margin-left:5px;
     margin-right:5px;
@@ -183,8 +184,8 @@ td {
 .abstract .abstract1 {
     border: 1px solid #d9d9d9;
     width: 250px;
-    height: 20px;
-    line-height: 20px;
+   /*  height: 20px;
+    line-height: 20px; */
     color: #999999;
     padding-left: 3px;
 }
@@ -223,8 +224,8 @@ td {
 .keyword .keyword_ip {
     border: 1px solid #d9d9d9;
     width: 250px;
-    height: 20px;
-    line-height: 20px;
+   /*  height: 20px;
+    line-height: 20px; */
     color: #999999;
     padding-left: 3px;
 }
@@ -248,6 +249,8 @@ td {
     font-size: 14px;
     color:#040404;
     font-weight: bold;
+    cursor:pointer;
+    
 
 }
     .foot_mg {
@@ -268,8 +271,8 @@ td {
   .btn_ div{ 
         display: inline-block;
         float: left; 
-        width:47px;
-        height:27px;
+        width: 50px;
+        height:30px;
         margin-right: 40px;
         margin-top:10px;
         margin-bottom:20px;
@@ -279,7 +282,7 @@ td {
         cursor:pointer;
     }
       .btn_ .btn_style {
-      	 background: url(../../img/publish.png) no-repeat;
+      	 background: url(../../img/news/publish.png) no-repeat;
       	 
       }
   /* 新建新闻页面的多选框 */  

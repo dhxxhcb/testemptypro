@@ -38,8 +38,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table{width: 99%;}
 			.UP_INBOX .tab table tr{border: 1px solid #c0c0c0;}
 			.UP_INBOX .tab table tr th{color: #2F5C8F;font-weight: normal;}
-			.UP_INBOX .tab table tr:nth-child(even){background-color: #fff;}
-			.UP_INBOX .tab table tr:nth-child(odd){background-color: #F6F7F9;}
+			.UP_INBOX .tab table tr:nth-child(odd){background-color: #fff;}
+			.UP_INBOX .tab table tr:nth-child(even){background-color: #F6F7F9;}
 			.UP_INBOX .tab table tr th,.UP_INBOX .tab table tr td{padding:10px;}
 			.UP_INBOX,.UP_INBOX .tab,.UP_INBOX .tab table tr th.theme{text-align: center}
 			.UP_INBOX .tab table .theme_a a{text-decoration: none;text-align: left;display: block;color:#2B7FE0;}
@@ -875,6 +875,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										$('#TAC').find('tr').eq(1).find('td').eq(1).remove();
 										$('#TAC').find('tr').eq(2).find('td').eq(1).remove();
 										$('.article1').find('p').remove();
+										$('.article1').find('div').remove();
 										
 										$('#TAC').find('tr').eq(0).append('<td width="72%">'+data2.subject+'</td>');
 										$('#TAC').find('tr').eq(1).append('<td><span><img src="../img/icon_read_3_07.png"/>'+data2.toName+'</span></td>');
