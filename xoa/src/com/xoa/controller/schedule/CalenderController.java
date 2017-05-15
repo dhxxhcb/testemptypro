@@ -266,27 +266,49 @@ public class CalenderController {
 		}
 		return json;
 		}
-	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月4日 下午6:10:50
+	 * 方法介绍:   添加日程
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @param calType 事务类型
+	 * 参数说明:   @param content 事物内容
+	 * 参数说明:   @param calTime 开始时间
+	 * 参数说明:   @param endTime 结束时间
+	 * 参数说明:   @param userId 用户id
+	 * 参数说明:   @return
+	 * @return     ToJson<Calendar> 返回日程信息
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/schedule/addMCalender",produces = {"application/json;charset=UTF-8"})
 	public ToJson<Calendar> addMCalender(HttpServletRequest request,
-		String manyCalender
+			@RequestParam("calType") String calType ,
+			@RequestParam("content") String content ,
+			@RequestParam("calTime") String calTime ,
+			@RequestParam("endTime") String endTime ,
+			@RequestParam("userId") String userId ,
+			@RequestParam("calLevel") String calLevel
 						){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		ToJson<Calendar> json=new ToJson<Calendar>(0, null);
 		List<Calendar> list=new ArrayList<Calendar>();
 		try{ 
-		    String [] result = manyCalender.split(",");
-			for(int i=0;i<result.length;i++){
+		    String [] calTypes = calType.split("#");
+		    String [] contents = content.split("#");
+		    String [] calTimes = calTime.split("#");
+		    String [] endTimes = endTime.split("#");
+		    String [] userIds = userId.split("#");
+		    String [] calLevels = calLevel.split("#");
+			for(int i=0;i<calTypes.length;i++){
 				Calendar c=new Calendar();
 				//SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
-				c.setUserId(result[i]);
-				c.setEndTime(Integer.parseInt(result[i+1]));
-				c.setCalTime(Integer.parseInt(result[i+2]));
-				c.setContent(result[i+3]);
-				c.setCalType(result[i+4]);
-				c.setCalLevel(result[i+5]);
+				c.setUserId(userIds[i]);
+				c.setEndTime(Integer.parseInt(endTimes[i+1]));
+				c.setCalTime(Integer.parseInt(calTimes[i+2]));
+				c.setContent(contents[i+3]);
+				c.setCalType(calTypes[i+4]);
+				c.setCalLevel(calLevels[i+5]);
 				c.setManagerId("");
 				c.setOverStatus("");
 				c.setBeforeRemaind("");

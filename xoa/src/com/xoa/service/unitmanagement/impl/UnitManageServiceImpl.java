@@ -25,4 +25,11 @@ public class UnitManageServiceImpl implements UnitManageService{
 		unitManageMapper.addUnitManage(unitManage);
 	}
 
+
+	@Override
+	public void update(UnitManage unitManage) {
+		unitManageMapper.update(unitManage);
+		
+	}
+
 }

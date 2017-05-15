@@ -22,4 +22,7 @@ public interface UnitManageService {
     */
 	@DynDatasource
    public void addUnitManage(UnitManage unitManage);
+	
+   @DynDatasource
+   public void update(UnitManage unitManage);
 }

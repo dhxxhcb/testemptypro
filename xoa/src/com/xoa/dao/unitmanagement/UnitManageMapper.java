@@ -13,5 +13,7 @@ public interface UnitManageMapper {
      * 
      */
     void  addUnitManage(UnitManage unitManage);
+    
+    void update(UnitManage unitManage);
    
 }

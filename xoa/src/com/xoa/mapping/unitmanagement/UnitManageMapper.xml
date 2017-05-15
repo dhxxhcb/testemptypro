@@ -105,4 +105,52 @@
       </if>
     </trim>
   </insert>
+  <update id="update">
+  update unit
+  <set>
+  <if test="unitName != null" >
+       UNIT_NAME= #{unitName,jdbcType=CHAR},
+      </if>
+      <if test="telNo != null" >
+       TEL_NO=#{telNo,jdbcType=CHAR},
+      </if>
+      <if test="faxNo != null" >
+       FAX_NO= #{faxNo,jdbcType=CHAR},
+      </if>
+      <if test="postNo != null" >
+       POST_NO=#{postNo,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+       ADDRESS=#{address,jdbcType=CHAR},
+      </if>
+      <if test="url != null" >
+        URL=#{url,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL=#{email,jdbcType=CHAR},
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME=#{bankName,jdbcType=CHAR},
+      </if>
+      <if test="bankNo != null" >
+        BANK_NO=#{bankNo,jdbcType=CHAR},
+      </if>
+      <if test="attachmentId != null" >
+        ATTACHMENT_ID=#{attachmentId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachmentName != null" >
+       ATTACHMENT_NAME=#{attachmentName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT=#{content,jdbcType=LONGVARCHAR},
+      </if>
+		</set>
+		where UNIT_NAME= #{unitName}
+  
+  </update>
+  
+  
+  
+  
+  
 </mapper>
