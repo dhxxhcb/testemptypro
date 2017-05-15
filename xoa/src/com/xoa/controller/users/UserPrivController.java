@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
 import com.xoa.model.users.UserPriv;
 import com.xoa.service.users.UsersPrivService;
 import com.xoa.util.ToJson;

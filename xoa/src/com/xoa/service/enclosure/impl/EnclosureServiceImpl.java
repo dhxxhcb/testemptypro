@@ -89,7 +89,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	    		if(os.toLowerCase().startsWith("win")){  			
 	    			  s=s.append(fileName);  
 	    			}else{
-	    			  s=s.append(new String(fileName.getBytes("ISO8859-1"),"utf-8"));
+	    			  s=s.append(new String(fileName.getBytes("gbk"),"utf-8"));
 	    			}	    		
 		    	String newFileName=Integer.toString(attachID)+"."+s.toString(); 
 	            if (!file.isEmpty()) {  
