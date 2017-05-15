@@ -80,6 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <table id="tr_td">
 	                <thead>
 	                	<tr>
+                             
 	                		<td class="th"><fmt:message code="global.lang.select"/></td>
 	                    	<td class="th"><fmt:message code="notice.th.publisher"/></td>
 	                    	<td class="th"><fmt:message code="notice.th.type"/></td>
