@@ -58,6 +58,7 @@ $(function(){
 						dataType:'json',
 						data:{'sortId':${sortId},'sortType':${sortType},'postType':${postType}},
 						success:function(data){
+
 						var files='';
 							for(var i=0;i<data.length;i++){
 							if(data[i].fileType=="folder"){
@@ -88,7 +89,7 @@ function openWindow(sHref,strWidth,strHeight) {
 
 <body style="background-color: #EBEBEB">
 <div class="head w clearfix">
-    <div class="ss one"> <a href="${pageContext.request.contextPath }/file/temp">新建文件</a></div>
+    <div class="ss one"> <a href="${pageContext.request.contextPath }/file/contentAdd">新建文件</a></div>
     <div class="ss two"> <a href="${pageContext.request.contextPath }/file/temp">批量上传</a></div>
     <div class="ss three"> <a  class="SEARCH" href="${pageContext.request.contextPath }/file/temp">查询</a></div>
     <div class="ss four"> <a href="${pageContext.request.contextPath }/file/temp">全局搜索</a></div>

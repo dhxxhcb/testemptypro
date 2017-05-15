@@ -333,7 +333,7 @@ public class FileController {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	@RequestMapping(value = "save")
+	@RequestMapping(value = "saveContent")
 	public ToJson<DiaryModel> addContent(FileContentModel fileContentModel,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));

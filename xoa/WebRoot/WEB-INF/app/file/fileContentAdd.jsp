@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title><fmt:message code="global.lang.reply" /></title>
+    <title>新建文件</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -30,79 +30,60 @@
 </head>
 <body>
 <table class="TABLE" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
-    <tr class="append_tr">
-        <td width="10%"><fmt:message code="email.th.recipients" />：</td>
-        <td width="89%">
-            <div class="inPole">
-                <textarea name="txt" id="senduser" user_id='admin' value="" disabled></textarea>
-                <span class="add_img">
-							<%--<span class="addImg">
-								<img src="../img/org_select.png" class="addIcon"/>
-							</span>--%>
-							<a href="javascript:;" id="selectUser" class="Add"><fmt:message code="global.lang.add" /></a>
-						</span>
-                <span class="add_img">
-							<%--<span class="addImg">
-								<img src="../img/org_select2.png" class="clearIcon"/>
-							</span>--%>
-							<a href="javascript:;" class="clear"><fmt:message code="notice.th.delete1" /></a>
-						</span>
-                <!--<input type="checkbox" name="check" id="check" value="向此人发送外部邮件" />
-                <span>向此人发送外部邮件</span>-->
-            </div>
-            <div class="addPepl">
-                <!--<a href="javascript:;" class="outside">添加外部收件人</a>-->
-                <a href="javascript:;" class="a1"><fmt:message code="email.th.addwait" /></a>
-                <a href="javascript:;" class="a2"><fmt:message code="email.th.addbcc" /></a>
-                <a href="javascript:;" class="a3"><fmt:message code="email.th.recentcontacts" />&nbsp;</a>
-                <span class="day">
-							<ul>
-								<li><fmt:message code="email.th.systemmanager" /></li>
-								<li><fmt:message code="email.th.wangde" /></li>
-								<li><fmt:message code="email.th.wangyun" /></li>
-							</ul>
-						</span>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td><fmt:message code="email.th.major" />：</td>
-        <td>
-            <input type="text" id="txt" value="" class="input_txt" />
-            <span class="import"><fmt:message code="email.title.waitmail" /></span>
-        </td>
-    </tr>
-    <tr>
-        <td width="10%">
-            <p><fmt:message code="email.th.content" />：</p>
-            <!-- <p class="Color"><fmt:message code="email.th.countnumber" />：<span>0</span></p> -->
-            <!-- <p class="Color"><fmt:message code="global.lang.empty" /></p> -->
-        </td>
-        <td width="89%">
-            <script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
-            </td>
-            </tr>
-            <tr class="Attachment" style="width:100%;">
-                <td width="10%">附件：</td>
-            <td width="89%"   class="files" id="files_txt"></td>
+                <tr class="append_tr">
+                    <td width="10%">文件名称：</td>
+                    <td width="89%"><input type="text" id="txt" value="" class="input_txt" /></td>
                 </tr>
+                <tr>
+                    <td>排列序号：</td>
+                    <td>
+                        <input type="text" id="txt" value="" class="input_txt" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <p>文件内容：</p>
+
+                    </td>
+                    <td width="89%">
+                        <script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
+                     </td>
+                 </tr>
+                 <tr class="Attachment" style="width:100%;">
+                       <td width="10%">附件文档：</td>
+                       <td width="89%"   class="files" id="files_txt"></td>
+                 </tr>
+                  <tr>
+                        <td>新建附件：</td>
+                         <td>
+                                <input type="radio" name="radio" id="radio" ><span>Word文档</span>
+                                <input type="radio" name="radio" id="radio" ><span>Excel文档</span>
+                                <input type="radio" name="radio" id="radio" ><span>PPT文档</span>
+                                <span>附件名：</span><input type="text" name="txt" id="TXT">
+                                <input type="button" name="button" id="oBtn" value="新建附件">
+                         </td>
+                   </tr>
+
                 <tr>
                 <td><fmt:message code="email.th.filechose" />：</td>
             <td class="files">
 
                 <form id="uploadimgform" target="uploadiframe"  action="../upload?module=email" enctype="multipart/form-data" method="post" >
-                <input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
-                <a href="javascript:;" id="uploadimg">上传</a>
+                    <input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
+                    <a href="javascript:;" id="uploadimg">上传</a>
                 </form>
 
-                </td>
+             </td>
                 </tr>
-
+                <tr>
+                    <td>附件说明：</td>
+                    <td><input type="text" name="txt" class="txt"></td>
+                 <tr>
                 <tr>
                 <td colspan="2">
                 <div class="div_btn">
-                <input type="button" id="btn1" value="<fmt:message code="email.th.transmitimmediate" />" />
-                <input type="button" id="btn2" value="<fmt:message code="email.th.savedraftbox" />" />
+                <input type="button" id="btn1" value="确定" />
+                <input type="button" id="btn2" value="返回" />
                 </div>
 
                 </td>
