@@ -343,7 +343,7 @@ public class FileController {
 				"loginDateSouse"));
 		 ToJson diaryListToJson=new ToJson(0,"");
 		 fileContentModel.setSendTime(DateFormat.getStrDate(new Date()));
-		 fileContentModel.setUserId(request.getSession().getAttribute("userId").toString());
+		 fileContentModel.setCreater(request.getSession().getAttribute("userId").toString());
 		   int i=fileContentService.saveContent(fileContentModel);
 		   diaryListToJson.setFlag(0);
 		   diaryListToJson.setMsg(""+i);
