@@ -669,14 +669,9 @@ public class FileController {
 		// 将父节点加入，父节点下可能也有文件
 		childrenList.add(file);
 		// 文件集合
-		List<FileContentModel> fileContentList = new ArrayList<FileContentModel>();
 		//
 		for (FileSortModel f : childrenList) {
 			int tempNo = f.getSortId();
-			List<FileContentModel> fileContent = fileContentService
-					.getFileConBySortid(tempNo);
-			fileContentList.addAll(fileContent);
-			//删除文件影响行
 			int deleConNo = fileContentService
 					.deleteBySortId(tempNo);
 		}
@@ -693,7 +688,7 @@ public class FileController {
 		}
 		tj.setFlag(0);
 		tj.setMsg(deleSortNo+"");
-			}else{
+	    }else{
 				Map<String, Object> fileConMap = new HashMap<String, Object>();
 				deleSortNo = fileSortService.deleteBySortId(fileConMap);
 				tj.setFlag(0);
