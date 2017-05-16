@@ -119,25 +119,29 @@ public class EmailController {
 			@RequestParam(value = "auditRemark", required = false) String auditRemark,
 			@RequestParam(value = "copyToWebmail", required = false) String copyToWebmail,
 			@RequestParam(value = "secretToWebmail", required = false) String secretToWebmail,
-			@RequestParam(value = "praise", required = false) String praise,HttpServletRequest request) {
+			@RequestParam(value = "praise", required = false) String praise,
+			@RequestParam(value = "bodyId", required = false) Integer bodyId,
+			HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		try {
+//		ContextHolder.setConsumerType("xoa1001");
+		boolean  isBoolean;
 			if ("0".equals(sendFlag)){
-				emailService.draftsSendEmail(this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "1", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
-						, new EmailModel());
+				EmailBodyModel emailBodyModel = this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "1", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise);
+				emailBodyModel.setBodyId(bodyId);
+				isBoolean = emailService.draftsSendEmail(emailBodyModel, new EmailModel());
 			}else {
-				emailService.sendEmail(
+				isBoolean = emailService.sendEmail(
 						this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "1", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
 						, new EmailModel());
 			}
-			return new ToJson<EmailBodyModel>(0,
-					"ok");
-		} catch (Exception e) {
-			loger.debug("sendMail:" + e);
-			return new ToJson<EmailBodyModel>(1,
-					"errorSendEmail");
-		}
+			if(isBoolean) {
+				return new ToJson<EmailBodyModel>(0,
+						"ok");
+			}else {
+				return new ToJson<EmailBodyModel>(1,
+						"errorSendEmail");
+			}
 	}
 
 	/**
@@ -540,29 +544,32 @@ public class EmailController {
 			@RequestParam(value = "auditRemark", required = false) String auditRemark,
 			@RequestParam(value = "copyToWebmail", required = false) String copyToWebmail,
 			@RequestParam(value = "secretToWebmail", required = false) String secretToWebmail,
-			@RequestParam(value = "praise", required = false) String praise,HttpServletRequest request) {
+			@RequestParam(value = "praise", required = false) String praise,
+			@RequestParam(value = "bodyId", required = false) Integer bodyId,
+			HttpServletRequest request) {
 		String sqlType = "xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse");
 		ContextHolder.setConsumerType(sqlType);
-		try {
-
 			Map<String, Object> maps = new HashMap<String, Object>();
 			maps.put("emailId", emailId);
 			String fwRwEmail = emailService.queryByIdCss(maps,1,5,false,sqlType);
+			boolean isBoolean;
 			if ("0".equals(sendFlag)){
-				emailService.draftsSendEmail(this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "1", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
-						, new EmailModel());
+				EmailBodyModel  emailBodyModel = this.returnObj(fromId, toId2, copyToId, subject, content+fwRwEmail, attachmentName, attachmentId, new Date(), "1", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise);
+				emailBodyModel.setBodyId(bodyId);
+				isBoolean = emailService.draftsSendEmail(emailBodyModel, new EmailModel());
 			}else {
-				emailService.sendEmail(
+				isBoolean = emailService.sendEmail(
 						this.returnObj(fromId, toId2, copyToId, subject, content + fwRwEmail, attachmentName, attachmentId, new Date(), "1", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
 						, new EmailModel());
 			}
-			return new ToJson<EmailBodyModel>(0,
-					"ok");
-		} catch (Exception e) {
-			return new ToJson<EmailBodyModel>(1,
-					"errorSendMessage");
-		}
+			if(isBoolean) {
+				return new ToJson<EmailBodyModel>(0,
+						"ok");
+			}else {
+				return new ToJson<EmailBodyModel>(1,
+						"errorSendMessage");
+			}
 	}
 
 	/**
