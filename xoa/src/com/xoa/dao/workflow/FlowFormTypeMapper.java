@@ -21,6 +21,10 @@ public interface FlowFormTypeMapper extends BaseMapper<FlowFormType> {
 
 	 List<FlowFormType> selectFormBySort(@Param("sortId")Integer sortId);
 
+	 List<FlowFormType> queryBySearchValue(@Param("searchValue")String searchValue,@Param("sortId")Integer sortId);
 
-   
+	 int insertSelectParam(FlowFormType flowFormType);
+
+	FlowFormType selectFormById(@Param("formId")Integer formId);
+
 }

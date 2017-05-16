@@ -79,7 +79,8 @@ public class FlowFormType implements Serializable {
      */
     
     public String getPrintModel() {
-        return printModel;
+
+        return printModel==null?"":printModel;
     }
     /**
      * 
@@ -134,7 +135,7 @@ public class FlowFormType implements Serializable {
      * @return     Integer
      */
     public Integer getDeptId() {
-        return deptId;
+        return deptId==null?0:deptId;
     }
     /**
      * 
@@ -156,7 +157,7 @@ public class FlowFormType implements Serializable {
      * @return     Integer
      */
     public Integer getItemMax() {
-        return itemMax;
+        return itemMax==null?0:itemMax;
     }
     /**
      * 
@@ -178,7 +179,7 @@ public class FlowFormType implements Serializable {
      * @return     Integer
      */
     public Integer getFormSort() {
-        return formSort;
+        return formSort==null?0:formSort;
     }
     /**
      * 
@@ -200,7 +201,7 @@ public class FlowFormType implements Serializable {
      * @return     Integer
      */
     public Integer getIsNew() {
-        return isNew;
+        return isNew==null?0:isNew;
     }
     /**
      * 
@@ -233,7 +234,7 @@ public class FlowFormType implements Serializable {
      * @return     String
      */
     public String getPrintModelShort() {
-        return printModelShort;
+        return printModelShort==null?"":printModelShort;
     }
     /**
      * 
@@ -255,7 +256,7 @@ public class FlowFormType implements Serializable {
       * @return     String
       */
     public String getScript() {
-        return script;
+        return script == null ? "" : script.trim();
     }
     /**
      * 
@@ -277,7 +278,7 @@ public class FlowFormType implements Serializable {
      * @return     String
      */
     public String getCss() {
-        return css;
+        return css== null ? "" : css.trim();
     }
     /**
      * 

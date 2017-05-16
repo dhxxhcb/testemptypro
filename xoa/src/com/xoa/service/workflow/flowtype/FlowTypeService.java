@@ -22,4 +22,6 @@ public interface FlowTypeService {
 
 
         public ToJson<FlowTypeModel> quertBySortId(Integer flowId);
+
+        ToJson<FlowTypeModel> flowBySearch(String searchValue, Integer flowId);
 }

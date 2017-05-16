@@ -41,5 +41,79 @@
     </where>
   </select>
 
+  <select id="queryBySearchValue" resultMap="FormWithDep" parameterType="Map">
+     SELECT flow_form_type.*,department.DEPT_NAME from flow_form_type LEFT JOIN department ON department.DEPT_ID=flow_form_type.DEPT_ID
+     WHERE  flow_form_type.FORM_NAME LIKE CONCAT("%",#{searchValue},"%")
+     <if test="sortId!=null">
+      AND flow_form_type.FORM_SORT = #{sortId}
+     </if>
+  </select>
+  <insert id="insertSelectParam"  parameterType="com.xoa.model.workflow.FlowFormType">
+    insert into flow_form_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="formId != null" >
+        FORM_ID,
+      </if>
+      <if test="formName != null" >
+        FORM_NAME,
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID,
+      </if>
+      <if test="itemMax != null" >
+        ITEM_MAX,
+      </if>
+      <if test="formSort != null" >
+        FORM_SORT,
+      </if>
+      <if test="isNew != null" >
+        is_new,
+      </if>
+      <if test="printModel != null" >
+        PRINT_MODEL,
+      </if>
+      <if test="printModelShort != null" >
+        PRINT_MODEL_SHORT,
+      </if>
+      <if test="script != null" >
+        SCRIPT,
+      </if>
+      <if test="css != null" >
+        CSS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="formId != null" >
+        #{formId},
+      </if>
+      <if test="formName != null" >
+        #{formName},
+      </if>
+      <if test="deptId != null" >
+        #{deptId},
+      </if>
+      <if test="itemMax != null" >
+        #{itemMax},
+      </if>
+      <if test="formSort != null" >
+        #{formSort},
+      </if>
+      <if test="isNew != null" >
+        #{isNew},
+      </if>
+      <if test="printModel != null" >
+        #{printModel},
+      </if>
+      <if test="printModelShort != null" >
+        #{printModelShort},
+      </if>
+      <if test="script != null" >
+        #{script},
+      </if>
+      <if test="css != null" >
+        #{css},
+      </if>
+    </trim>
+  </insert>
 
 </mapper>
