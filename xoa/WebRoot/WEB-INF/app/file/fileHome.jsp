@@ -44,6 +44,7 @@ $("#fileTree").tree({
 	onClick : function(node){
 		//alert(node.id);  // 在用户点击的时候提示
 		var url="${pageContext.request.contextPath }/file/content?sortType=5&postType=1&sortId="+node.id+"&text="+node.text;
+
 		$("#mainFram").attr("src", url);
 	}
    });
