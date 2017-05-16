@@ -58,6 +58,9 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 			Byte prcsType=flowProcess.getPrcsType();
 			int chidFlow=flowProcess.getChildFlow();
 			String syncDeal=flowProcess.getSyncDeal();
+			int setLeft=flowProcess.getSetLeft();
+			int top=flowProcess.getSetTop();
+			
 			
 			
 		}

@@ -105,7 +105,7 @@ public class CalenderServiceImpl implements CalenderService {
      * 方法介绍:   新增日程安排
      * 参数说明:   @param record 日程安排
      * 参数说明:   @return
-     * @return     int 插入条数
+     * @return     
      */
 	@Override
 	public void insertSelective(Calendar record) {
