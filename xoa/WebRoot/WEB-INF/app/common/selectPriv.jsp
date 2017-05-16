@@ -202,13 +202,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 				},
 				onClick:function(node){
-		            alert(node.id);
+		            //alert(node.id);
 		        },
 		        onBeforeExpand:function(node,param){
 		        	  $('#deptOrg').tree('options').url = "../department/getChDept?deptId=" + node.id;// change the url      
 		        }
 
 			});  
+			function getPriv(){
+				
+			}
 			function TreeNode(id,text,state,children){
 				this.id = id;
 				this.text = text;
