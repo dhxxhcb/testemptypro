@@ -74,4 +74,8 @@ public class FlowTypeController {
     public String flowTypeIndex(HttpServletRequest request){
         return "app/workflow/flowtype/index";
     }
+    @RequestMapping("/type/flowdesigner")
+    public String flowdesigner(HttpServletRequest request){
+        return "app/workflow/flowtype/flowdesigner";
+    }
 }
