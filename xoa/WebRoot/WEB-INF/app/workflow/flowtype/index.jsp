@@ -262,10 +262,11 @@
             // get the top level nodes
             for(var i=0; i<rows.length; i++){
                 var row = rows[i];
+
                 if (!exists(rows, row.sortParent)){
                     nodes.push({
                         id:row.sortId,
-                        text:row.sortName
+                        text:row.sortName,
                     });
                 }
             }
@@ -281,8 +282,12 @@
                     if (row.sortParent == node.id){
                         var child = {id:row.sortId,text:row.sortName};
                         if (node.children){
+                            if(node.id!=0){
+                                node.state="closed"
+                            }
                             node.children.push(child);
                         } else {
+
                             node.children = [child];
                         }
                         toDo.push(child);
