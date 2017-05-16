@@ -73,4 +73,13 @@
       </if>
     </where>
   </select>
+
+  <select id="selectBySearch" resultMap="FlowWithDep" parameterType="Map">
+    SELECT  flow_type.*,department.DEPT_NAME FROM  flow_type LEFT JOIN department ON department.DEPT_ID=flow_type.DEPT_ID
+    WHERE  flow_type.FLOW_NAME LIKE CONCAT("%",#{searchValue},"%")
+    <if test="sortId!=null">
+    AND  flow_type.FLOW_SORT = #{sortId}
+    </if>
+  </select>
+
 </mapper>

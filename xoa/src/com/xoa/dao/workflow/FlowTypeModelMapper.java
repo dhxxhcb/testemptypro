@@ -10,6 +10,8 @@ import java.util.List;
 public interface FlowTypeModelMapper extends BaseMapper<FlowTypeModel>{
 
    List<FlowTypeModel> selectBySortid(@Param("flowId") Integer flowId);
+
+    List<FlowTypeModel> selectBySearch(@Param("searchValue")String searchValue, @Param("sortId")Integer sortId);
 //    int deleteByPrimaryKey(Integer flowId);
 
 //    int insert(FlowTypeModelWithBLOBs record);
