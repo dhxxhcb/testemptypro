@@ -44,20 +44,20 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		flowProcessMapper.deleteByPrimaryKey(id);
 	}
 	
-	public List<FlowProcess> flowView(int flowId) {
+	public JSONObject flowView(int flowId) {
 		JSONObject all=new JSONObject();
-		JSONObject js=new JSONObject();
+		JSONObject fp=new JSONObject();
 		JSONObject connections=new JSONObject();
 		
 		List l=new ArrayList();
 		  
 		List<FlowProcess> list=flowProcessMapper.findFlowId(flowId);
 		for (FlowProcess flowProcess : list){
-			int fId=flowProcess.getFlowId();
+			int prcsId=flowProcess.getPrcsId();
 			String prceTo=flowProcess.getPrcsTo();
 			String [] p=prceTo.split(",");
 			for(String a:p){
-				l.add(fId+"=>"+a);
+				l.add(prcsId+"=>"+a);
 			}
 			connections.put("connections",l.toString());
 		}
@@ -71,6 +71,8 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 				lastId=prcsId;
 				lastPrcsId=prcsId;
 			}
+			JSONObject js=new JSONObject();
+			int prcaId=flowProcess.getPrcsId();
 			String prcsName=flowProcess.getPrcsName();
 			String prcsIn=flowProcess.getPrcsIn();
 			String prcsOut=flowProcess.getPrcsOut();
@@ -79,12 +81,23 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 			String syncDeal=flowProcess.getSyncDeal();
 			int setLeft=flowProcess.getSetLeft();
 			int top=flowProcess.getSetTop();
-			
-			
+			js.put("prca_Id", prcaId);
+			js.put("prcsName", prcsName);
+			js.put("prcsIn", prcsIn);
+			js.put("prcsout", prcsOut);
+			js.put("prcsType", prcsType);
+			js.put("childFlow", chidFlow);
+			js.put("syncDeal", syncDeal);
+			js.put("setLeft", setLeft);
+			js.put("top", top);
+			int i=0;
+			fp.put(""+i++, js.toJSONString());
 			
 		}
-		
-		return list;
+		all.put("connections", connections);
+		all.put("fp", fp);
+	
+		return all;
 	}
 
 }

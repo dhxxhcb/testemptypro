@@ -2,6 +2,7 @@ package com.xoa.service.workflow.flowtype;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.util.dataSource.DynDatasource;
 
@@ -22,6 +23,8 @@ public interface FlowProcessService {
 	@DynDatasource
 	public void delete(int id);
 	
+	@DynDatasource
+	public JSONObject flowView(int flowId);
 	
 	
 }
