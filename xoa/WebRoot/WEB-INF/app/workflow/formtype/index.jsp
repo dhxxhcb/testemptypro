@@ -135,8 +135,8 @@
     <div class="head">
         <div class="head_left"><h1>表单设计</h1></div>
         <div class="head_mid">
-            <input class="inp" type="text" placeholder="输入表名称搜索">
-            <div class="search"><h1>搜索</h1></div>
+            <input id="form_value" class="inp" type="text" placeholder="输入表名称搜索">
+            <div id="btn_search" class="search"><h1>搜索</h1></div>
         </div>
         <div class="head_rig" id="head_rig"><h1>新建</h1></div>
     </div>
@@ -175,6 +175,21 @@
 </body>
 <script type="text/javascript">
     $(function () {
+
+
+		$("#btn_search").click(function(){
+		var value =$("#form_value").val();
+		   $.post("../../form/formBySearch",{searchValue:value} ,function(ret){
+       
+		   if(ret.flag==true){
+                   renderDatas(ret.datas);
+                }else{
+					noDatas();
+				}
+		 
+		   },"json")
+		
+		})
        //获取左侧分类
        $('#li_parent').tree({
             url: '../../workflow/flowclassify/formJsTree',
@@ -184,8 +199,8 @@
                 //console.log(rows);
                 return convert(rows.datas);
             },
-            onClick:function(){
-                getFlowList();
+            onClick:function(node){
+                getFlowList(node.id);
             }
         });
 
@@ -234,7 +249,7 @@
         }
 
         function getFlowList(sortId) {
-            $.post("../../form/formlistbysort  ",{formId:sortId} ,function (ret) {
+            $.post("../../form/formlistbysort",{sortId:sortId} ,function (ret) {
                 console.log(ret);
                 if(ret.flag==true){
                    renderDatas(ret.datas);
@@ -284,14 +299,14 @@
             }
 			$(".cont_rig").html(html);
         }
-			//function renderDatas() {
-            //var html="11111";
-           // var content = document.createTextNode("111111");
-            //var p=document.createElement('p');
-            //var div=document.getElementById('dd');
-            //p.appendChild(content);
-            //div.appendChild('p');
-        //} 
+		$('#head_rig').on('click',function(){
+			layer.open({
+				  type: 1, 
+				  content: '<div>11111111</div>', //这里content是一个普通的String
+				  area:['500px', '300px'],
+				  btn: ['按钮一', '按钮二']
+				});
+						})
 })
 </script>
 
