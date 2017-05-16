@@ -116,4 +116,42 @@
     </trim>
   </insert>
 
+  <update id="updateSelectParam" parameterType="com.xoa.model.workflow.FlowFormType">
+    update flow_form_type
+    <set >
+      <!--<if test="formId != null" >-->
+        <!--FORM_ID= #{formId},-->
+      <!--</if>-->
+      <if test="formName != null" >
+        FORM_NAME=  #{formName},
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID= #{deptId},
+      </if>
+      <if test="itemMax != null" >
+        ITEM_MAX=  #{itemMax},
+      </if>
+      <if test="formSort != null" >
+        FORM_SORT=  #{formSort},
+      </if>
+      <if test="isNew != null" >
+         is_new= #{isNew},
+      </if>
+      <if test="printModel != null" >
+        PRINT_MODEL= #{printModel},
+      </if>
+      <if test="printModelShort != null" >
+        PRINT_MODEL_SHORT= #{printModelShort},
+      </if>
+      <if test="script != null" >
+        SCRIPT=#{script},
+      </if>
+      <if test="css != null" >
+        CSS = #{css},
+      </if>
+    </set>
+    where FORM_ID = #{formId}
+
+  </update>
+
 </mapper>

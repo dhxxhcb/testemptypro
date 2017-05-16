@@ -113,9 +113,50 @@ public class FlowFormService {
         return wrapper;
     }
 
-    public BaseWrapper queryFormById(Integer formId){
-       return new BaseWrapper();
+    /**
+     * Created by:   pfl
+     * date:   2017/5/16 15:47
+     * description:   更新表单（根据表单id）
+     * @param formId  表单Id
+     * @param formName 表单名称
+     * @param deptId  部门Id
+     * @param formSort 分类Id
+     * @param otherinfo 其他信息
+     * @return
+     */
+    public BaseWrapper updateForm(Integer formId,String formName,Integer deptId,Integer formSort,String otherinfo){
+        BaseWrapper wrapper =new BaseWrapper();
+        if(StringUtils.checkNull(formName)){
+            wrapper.setFlag(false);
+            wrapper.setStatus(true);
+            wrapper.setMsg("表单名称不能为空");
+            return wrapper;
+        }
+        if(formId==null){
+            wrapper.setFlag(false);
+            wrapper.setStatus(true);
+            wrapper.setMsg("表单Id不能为空");
+            return wrapper;
+        }
+        FlowFormType flowFormType =new FlowFormType();
+        flowFormType.setFormName(formName);
+        flowFormType.setDeptId(deptId);
+        flowFormType.setFormSort(formSort);
+        flowFormType.setFormId(formId);
+        int res =flowFormTypeMapper.updateSelectParam(flowFormType);
+        if(res>0){
+            wrapper.setFlag(true);
+            wrapper.setStatus(true);
+            wrapper.setMsg("更新表单成功");
+        }else{
+            wrapper.setFlag(false);
+            wrapper.setStatus(true);
+            wrapper.setMsg("更新表单失败");
+        }
+
+        return wrapper;
     }
+
 
 
 }

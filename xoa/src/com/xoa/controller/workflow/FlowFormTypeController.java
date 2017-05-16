@@ -95,9 +95,22 @@ public class FlowFormTypeController {
 	public BaseWrapper newForm(String formName, Integer deptId, Integer formSort, String otherinfo){
 		return flowFormService.newForm(formName,deptId,formSort,otherinfo);
 	}
-
-
-
+	/**
+	 * Created by:   pfl
+	 * date:   2017/5/16 15:47
+	 * description:   更新表单（根据表单id）
+	 * @param formId  表单Id
+	 * @param formName 表单名称
+	 * @param deptId  部门Id
+	 * @param formSort 分类Id
+	 * @param otherinfo 其他信息
+	 * @return
+	 */
+	@RequestMapping("/updateForm")
+	@ResponseBody
+    public BaseWrapper updateForm(Integer formId,String formName,Integer deptId,Integer formSort,String otherinfo){
+		return flowFormService.updateForm(formId,formName,deptId,formSort,otherinfo);
+	}
 
 
 }
