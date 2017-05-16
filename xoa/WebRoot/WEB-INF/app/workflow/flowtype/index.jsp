@@ -29,7 +29,7 @@
     <title>s首页</title>
     <style>
         .new_excell_pic{
-            border-radius: 0;border: none; width: 75px;height: 75px;margin-top: -7px;
+            border-radius: 0;border: none; width: 50px;height: 50px;margin-top: -3px;
         }
         .deldel{
             color: #fff;font-size: 12px;float: right;margin-right: 10px;margin-left: 10px;line-height: 28px;cursor: pointer;
@@ -312,14 +312,17 @@
         function renderDatas(data) {
             var html="";
             var typeName="未定义";
+            var img_url="";
             for(var i =0 ;i<data.length;i++){
                 if(data[i].flowType==1){
                     //固定
                     typeName="固定流程";
+                    img_url="../../img/workflow/flow_type_G.png";
                 }
                 if(data[i].flowType==2){
                     //自由
                     typeName="自由流程";
+                    img_url="../../img/workflow/flow_type_Z.png";
                 }
 
                 html+=  ' <div class="new_excell" id="new_excell1">'+
@@ -327,7 +330,7 @@
                     '<a class="set" flow_id="'+data[i].flowId+'" title="编辑"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
                     '<div class="new_excell_info"><div class="new_excell_info_main">'+
                    ' <div style="float: left;width: 122px;">'+
-                   ' <img src="http://devapp.gsubo.com/ui/erp_img/zb.png" class="new_excell_pic">'+
+                   ' <img src="'+img_url+'" class="new_excell_pic">'+
                    ' <ul class="new_excell_info_other">'+
                    ' <li><span class="new_excell_info_username">'+typeName+'</span></li>'+
                     '<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">流程类型</span></li>'+
@@ -354,10 +357,10 @@
                     '</a>'+
                    ' <div class="new_excell_footer">'+
                     '<span class="deldel">删除</span>'+
-                   ' <img src="/ui/erp_img/new_excell_info_img_shanchu.png" class="deldel_img" >'+
+                   ' <img src="../../img/workflow/new_excell_info_img_shanchu.png" class="deldel_img" >'+
                     '<span class="footer_span_space">&nbsp;|&nbsp;</span>'+
                 '<span class="edit" >编辑</span>'+
-                   '<img src="/ui/erp_img/new_excell_info_img_bianji.png" class="edit_img">'+
+                   '<img src="../../img/workflow/new_excell_info_img_bianji.png" class="edit_img">'+
                     '</div>'+
                     '</div>'+
                     '</div>';
