@@ -128,8 +128,8 @@
     <div class="head">
         <div class="head_left"><h1>流程设计</h1></div>
         <div class="head_mid">
-            <input class="inp" type="text" placeholder="输入表名称搜索">
-            <div class="search"><h1>搜索</h1></div>
+            <input  id="flow_search_value" class="inp" type="text" placeholder="输入流程名称搜索">
+            <div id="btn_search" class="search"><h1>搜索</h1></div>
         </div>
         <div class="head_rig"><h1>新建</h1></div>
     </div>
@@ -212,7 +212,23 @@
 </div>
 </body>
 <script type="text/javascript">
+
     $(function () {
+        $("#btn_search").click(function (event) {
+          var search_value=  $("#flow_search_value").val();
+            $.post("../../flow/flowBySearch",{searchValue:search_value} ,function (ret) {
+                console.log(ret);
+                if(ret.flag==true){
+                    renderDatas(ret.obj);
+                }else{
+                    renderNoDatas();
+                }
+            },"json");
+
+        })
+
+
+
        //获取左侧分类
         var data=[{"dataId":"1","children":[{"dataId":"13","children":[],"checked":false,"attributes":{"id":13,"type":"0"},"id":"13","state":null,"text":"行政办公制度","url":null,"parentId":"1"},{"dataId":"43","children":[],"checked":false,"attributes":{"id":43,"type":"0"},"id":"43","state":null,"text":"人力资源开发与管理制度","url":null,"parentId":"1"},{"dataId":"44","children":[],"checked":false,"attributes":{"id":44,"type":"0"},"id":"44","state":null,"text":"采购报销和备用金制度","url":null,"parentId":"1"}],"checked":false,"attributes":{"id":1,"type":"0"},"id":"1","state":null,"text":"公司管理制度","url":null,"parentId":"0"},{"dataId":"39","children":[{"dataId":"45","children":[],"checked":false,"attributes":{"id":45,"type":"0"},"id":"45","state":null,"text":"综合管理部职能分配","url":null,"parentId":"39"},{"dataId":"46","children":[],"checked":false,"attributes":{"id":46,"type":"0"},"id":"46","state":null,"text":"财务管理制度","url":null,"parentId":"39"},{"dataId":"47","children":[],"checked":false,"attributes":{"id":47,"type":"0"},"id":"47","state":null,"text":"项目部项目管理规范","url":null,"parentId":"39"}],"checked":false,"attributes":{"id":39,"type":"0"},"id":"39","state":null,"text":"部门管理制度","url":null,"parentId":"0"},{"dataId":"3","children":[],"checked":false,"attributes":{"id":3,"type":"0"},"id":"3","state":null,"text":"公司大事记","url":null,"parentId":"0"},{"dataId":"40","children":[{"dataId":"41","children":[],"checked":false,"attributes":{"id":41,"type":"0"},"id":"41","state":null,"text":"系统使用","url":null,"parentId":"40"},{"dataId":"42","children":[],"checked":false,"attributes":{"id":42,"type":"0"},"id":"42","state":null,"text":"公司知识库","url":null,"parentId":"40"}],"checked":false,"attributes":{"id":40,"type":"0"},"id":"40","state":null,"text":"学习资料","url":null,"parentId":"0"},{"dataId":"10","children":[],"checked":false,"attributes":{"id":10,"type":"0"},"id":"10","state":null,"text":"文档标准","url":null,"parentId":"0"}]
         $('#li_parent').tree({
