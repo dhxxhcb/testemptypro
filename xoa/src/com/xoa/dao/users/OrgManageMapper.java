@@ -8,4 +8,7 @@ import com.xoa.model.users.OrgManage;
 
 public interface OrgManageMapper {
       public List<OrgManage> queryId();
+      
+      
+      void editOrgManage(OrgManage orgManage);
 }

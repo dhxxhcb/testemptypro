@@ -11,4 +11,19 @@
   <select id="queryId" resultMap="BaseResultMap">
     SELECT o.OID,o.`NAME`,o.VERSION,o.IS_ORG FROM org_manage o 
   </select>
+   <update id="editOrgManage" parameterType="com.xoa.model.users.OrgManage" >
+    update org_manage
+    <set >
+      <if test="version != null" >
+        VERSION = #{version},
+      </if>
+      <if test="isOrg != null" >
+        IS_ORG = #{isOrg},
+      </if>
+      <if test="name != null" >
+        NAME = #{name},
+      </if>
+    </set>
+    where OID = #{oid}
+  </update>
 </mapper>
