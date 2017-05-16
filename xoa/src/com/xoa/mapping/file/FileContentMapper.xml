@@ -132,7 +132,7 @@
       </trim>
       )
 		</insert>
-		<update id="updateFileCon">
+		<update id="updateFileCon" parameterType="com.xoa.model.file.FileContentModel">
 		update file_content 
 		<set>
       <if test="subject != null and subject !=''" >
@@ -177,7 +177,7 @@
       </if>
         <if test="keyword != null and keyword !=''" >
          KEYWORD= #{keyword},
-      </if>
+        </if>
 		</set>
 		where CONTENT_ID=#{contentId};  
 		</update>
