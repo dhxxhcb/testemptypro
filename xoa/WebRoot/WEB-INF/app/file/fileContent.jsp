@@ -63,9 +63,9 @@ $(function(){
 						var files='';
 							for(var i=0;i<data.length;i++){
 							if(data[i].fileType=="folder"){
-							files+="  <tr class='contentTr' TYPE='"+data[i].fileType+"' conId='"+data[i].sortId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/temp\">"+data[i].sortName+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
+							files+="  <tr class='contentTr' TYPE='"+data[i].fileType+"' sortId='"+data[i].sortId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/temp\">"+data[i].sortName+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td><a href='javascript:;' class='editBtn'>编辑</a></td></tr>"
 							   }else{
-							   files+="  <tr class='contentTr' TYPE='"+data[i].fileType+"' conId='"+data[i].contentId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
+							   files+="  <tr class='contentTr' TYPE='"+data[i].fileType+"' contentId='"+data[i].contentId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td><a href='javascript:;' class='editBtn'>编辑</a></td></tr>"
 							   }
 							}
 							$("#file_Tachr").html(files);
@@ -81,27 +81,50 @@ $(function(){
 
     $('.FOUR').click(function(){
         var TYPE=$('.w .trBtn').attr('TYPE');
-        var id=$('.w .trBtn').attr('conId');
-       if (TYPE=='folder'){
+        var id=$('.w .trBtn').attr('sortId');
+        var idT=$('.w .trBtn').attr('contentId');
+
+      if (TYPE=='folder'){
            var msg='<fmt:message code="global.lang.sure" />';
            if (confirm(msg)==true){
                $.ajax({
                    type:'post',
-                   url:'deleteAll',
+                   url:'/file/deletefileAndCon',
                    dataType:'json',
                    data:{'sortId':id},
                    success:function(){
-                       location.reload();
+                       //location.reload();
                    }
                });
                return true;
            }else{
                return false;
            }
-
+      }else{
+           var msg='<fmt:message code="global.lang.sure" />';
+           if (confirm(msg)==true){
+               $.ajax({
+                   type:'post',
+                   url:'/file/deletefileAndCon',
+                   dataType:'json',
+                   data:{'contentId':idT},
+                   success:function(){
+                       //location.reload();
+                   }
+               });
+               return true;
+           }else{
+               return false;
+           }
        }
-        //alert(TYPE);
     })
+
+    $('.w').on('click','.editBtn',function(){
+        alert('123');
+    })
+
+
+
 });
 
 
