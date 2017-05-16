@@ -369,9 +369,6 @@ public class FileController {
 		ModelAndView modelAndView = new ModelAndView("app/file/fileContentDetail", model);
 		return modelAndView;
 	}
-	
-	
-
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -667,7 +664,7 @@ public class FileController {
 			int deleSortNo = 0;
 			ToJson tj=new ToJson();
 		// 所有删除文件夹
-		if(contentId!=null){
+		if(contentId==null){
 		List<FileSortModel> childrenList = getfilesDeleteList(file);
 		// 将父节点加入，父节点下可能也有文件
 		childrenList.add(file);
