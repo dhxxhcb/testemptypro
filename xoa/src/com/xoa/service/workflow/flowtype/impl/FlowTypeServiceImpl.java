@@ -63,21 +63,19 @@ public class FlowTypeServiceImpl  implements FlowTypeService{
         if(StringUtils.checkNull(searchValue)){
             toJson.setFlag(1);
             toJson.setMsg("搜索字段不能为空");
+            return toJson;
         }
 
-//        List<FlowTypeModel> datas=flowTypeModelMapper.selectBySearch(searchValue,flowId);
-//        if(datas!=null&&datas.size()>0){
-//            toJson.setObj(datas);
-//            toJson.setFlag(0);
-//            toJson.setMsg("success");
-//        }else{
-//            toJson.setFlag(1);
-//            toJson.setMsg("no data");
-//        }
-//        return toJson;
+        List<FlowTypeModel> datas=flowTypeModelMapper.selectBySearch(searchValue,flowId);
+        if(datas!=null&&datas.size()>0){
+            toJson.setObj(datas);
+            toJson.setFlag(0);
+            toJson.setMsg("success");
+        }else{
+            toJson.setFlag(1);
+            toJson.setMsg("no data");
+        }
+        return toJson;
 
-
-
-        return null;
     }
 }

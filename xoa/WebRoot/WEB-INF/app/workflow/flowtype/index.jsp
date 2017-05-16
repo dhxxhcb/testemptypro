@@ -128,8 +128,8 @@
     <div class="head">
         <div class="head_left"><h1>流程设计</h1></div>
         <div class="head_mid">
-            <input class="inp" type="text" placeholder="输入表名称搜索">
-            <div class="search"><h1>搜索</h1></div>
+            <input  id="flow_search_value" class="inp" type="text" placeholder="输入流程名称搜索">
+            <div id="btn_search" class="search"><h1>搜索</h1></div>
         </div>
         <div class="head_rig"><h1>新建</h1></div>
     </div>
@@ -137,7 +137,6 @@
     <div class="cont">
         <div class="cont_left">
             <div class="left_all">
-                <h1 class="sort">流程分类</h1>
                 <div class="ul_all" id="li_parent">
                     <%--<li><img src="/../img/workflow/wenjian.png"><h1>公文管理</h1></li>--%>
                     <%--<li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1></li>--%>
@@ -213,7 +212,23 @@
 </div>
 </body>
 <script type="text/javascript">
+
     $(function () {
+        $("#btn_search").click(function (event) {
+          var search_value=  $("#flow_search_value").val();
+            $.post("../../flow/flowBySearch",{searchValue:search_value} ,function (ret) {
+                console.log(ret);
+                if(ret.flag==true){
+                    renderDatas(ret.obj);
+                }else{
+                    renderNoDatas();
+                }
+            },"json");
+
+        })
+
+
+
        //获取左侧分类
        $('.cont_rig').on('click','.new_excell',function(){
        defaultStatus

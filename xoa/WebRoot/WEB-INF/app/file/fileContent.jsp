@@ -73,19 +73,32 @@ $(function(){
 				});
     $('.w').on('click','.contentTr',function(){
         $(this).addClass('trBtn').siblings().removeClass('trBtn');
-        $(this).find('input[type="checkbox"]').attr('checked',true);
+       // $(this).find('input[type="checkbox"]').attr('checked',true);
     })
     
-    if ($('.w .contentTr').find('input[type="checkbox"]'))
+    //if ($('.w .contentTr').find('input[type="checkbox"]'))
 
 
     $('.FOUR').click(function(){
         var TYPE=$('.w .trBtn').attr('TYPE');
         var id=$('.w .trBtn').attr('conId');
        if (TYPE=='folder'){
-           $.ajax({
+           var msg='<fmt:message code="global.lang.sure" />';
+           if (confirm(msg)==true){
+               $.ajax({
+                   type:'post',
+                   url:'deleteAll',
+                   dataType:'json',
+                   data:{'sortId':id},
+                   success:function(){
+                       location.reload();
+                   }
+               });
+               return true;
+           }else{
+               return false;
+           }
 
-           })
        }
         //alert(TYPE);
     })
