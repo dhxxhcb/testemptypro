@@ -127,9 +127,58 @@
         '',
          </if>
         <if test="keyword != null and keyword !=''" >
-          #{keyword},
+         #{keyword},
       </if>
       </trim>
       )
 		</insert>
+		<update id="updateFileCon">
+		update file_content 
+		<set>
+      <if test="subject != null and subject !=''" >
+        SUBJECT= #{subject},
+      </if>
+      <!-- SORT_ID,SUBJECT,CONTENT,SEND_TIME,ATTACHMENT_ID,ATTACHMENT_NAME,ATTACHMENT_DESC,USER_ID,CONTENT_NO,NEW_PERSON,READERS,
+		CREATER,LOGS,KEYWORD -->
+      
+        <if test="content != null and content !=''" >
+          CONTENT=#{content},
+      </if>
+        <if test="sendTime != null and sendTime !=''" >
+          SEND_TIME=#{sendTime},
+      </if>
+     
+        <if test="attachmentId != null and attachmentId !=''" >
+        ATTACHMENT_ID= #{attachmentId},
+      </if>
+  
+        <if test="attachmentName != null and attachmentName !=''" >
+          ATTACHMENT_NAME=#{attachmentName},
+      </if>
+        <if test="attachmentDesc != null and attachmentDesc !=''" >
+         ATTACHMENT_DESC=#{attachmentDesc},
+      </if>
+        <if test="contentNo != null and contentNo !=''" >
+         CONTENT_NO=#{contentNo},
+      </if>
+        <if test="newPerson != null and newPerson !=''" >
+         NEW_PERSON=#{newPerson},
+      </if>
+     
+        <if test="readers != null and readers !=''" >
+          READERS=#{readers},
+      </if>
+      
+        <if test="creater != null and creater !=''" >
+         CREATER=#{creater},
+      </if>
+        <if test="logs != null and logs !=''" >
+          LOGS=#{logs},
+      </if>
+        <if test="keyword != null and keyword !=''" >
+         KEYWORD= #{keyword},
+      </if>
+		</set>
+		where CONTENT_ID=#{contentId};  
+		</update>
 </mapper>

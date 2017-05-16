@@ -313,6 +313,15 @@ public class FileController {
 		return fcm;
 	}
 	
+	
+	@RequestMapping(value = "/updateContent")
+	@ResponseBody
+	public ToJson updateContent(HttpServletRequest request,FileContentModel fcm) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute("loginDateSouse"));
+		int i=fileContentService.updateFileCon(fcm);
+		ToJson to=new ToJson();
+		return to;
+	}
  
 	/**
 	 * 
