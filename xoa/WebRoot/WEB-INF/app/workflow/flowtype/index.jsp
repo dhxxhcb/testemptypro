@@ -219,7 +219,7 @@
         $('#li_parent').tree({
             url: '../../workflow/flowclassify/flowJsTree',
             animate:true,
-            lines:true,
+            lines:false,
             loadFilter: function(rows){
                 console.log(rows);
                 return convert(rows.datas);
