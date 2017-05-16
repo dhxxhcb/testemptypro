@@ -36,6 +36,11 @@
         .footer_span_space{
             color: #fff;font-size: 12px;float: right;margin-right: 10px;line-height: 28px;cursor: pointer;
         }
+		.foot_span_zn {
+			display: inline-block;
+        	margin-left: 110px;
+		}
+		.foot_span_zn a {font-size:12px;color:#fff;}
         .edit{
             color: #fff;font-size: 12px;float: right;margin-right: 10px;margin-left: 10px;line-height: 28px;cursor: pointer;
         }
@@ -104,8 +109,11 @@
             width: 360px;
             height: 191px;
             float:left;
+           
         }
-		
+		.new_excell_center {
+			    margin-left: 13%;
+		}
         .new_excell_info_other span {
             margin-left: 10px;
         }
@@ -136,7 +144,6 @@
     <div class="cont">
         <div class="cont_left">
             <div class="left_all">
-                <h1 class="sort">表单分类</h1>
                 <div class="ul_all" id="li_parent">
                     <%--<li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1></li>--%>
                     <%--<li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1></li>--%>
@@ -238,6 +245,7 @@
         function renderDatas(data) {
            var html="";
            for(var i =1 ;i<data.length;i++){
+			     if(i%3==1) {html+='<div class="new_excell_center">';}
                  html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main">'+
                     '<a class="set" flow_id="'+data[i].formId+'" title="编辑"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].formName+'</span></div>'+
@@ -258,7 +266,8 @@
                    ' </div>'+
                     '</a>'+
                    ' <div class="new_excell_footer">'+
-                    '<span class="deldel">删除</span>'+
+				   '<span class="foot_span_zn"><a href="#">智能</a></span>'+
+				   '<span class="deldel">删除</span>'+
                    ' <img src="/ui/erp_img/new_excell_info_img_shanchu.png" class="deldel_img" >'+
                     '<span class="footer_span_space">&nbsp;|&nbsp;</span>'+
                 '<span class="edit" >编辑</span>'+
@@ -266,6 +275,7 @@
                     '</div>'+
                     '</div>'+
                     '</div>';
+					if(i%3==0){html+='</div>';}
             }
 			$(".cont_rig").html(html);
         }
