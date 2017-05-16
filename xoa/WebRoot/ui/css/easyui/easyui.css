@@ -2022,6 +2022,7 @@ a.s-btn-plain-active {
   height: 18px;
   white-space: nowrap;
   cursor: pointer;
+  padding-left: 15px;
 }
 .tree-hit {
   cursor: pointer;
