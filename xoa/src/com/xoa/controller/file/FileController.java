@@ -304,6 +304,15 @@ public class FileController {
 		ModelAndView modelAndView = new ModelAndView("app/file/fileContentAdd", model);
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/getContentById")
+	@ResponseBody
+	public FileContentModel file(HttpServletRequest request,String contentId) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute("loginDateSouse"));
+		FileContentModel fcm=fileContentService.getFileConByContentId(contentId);
+		return fcm;
+	}
+	
  
 	/**
 	 * 
@@ -577,8 +586,7 @@ public class FileController {
 		fileEditMap.put("sortid", files.getSortId());
 		fileEditMap.put("sortno", files.getSortNo());
 		fileEditMap.put("sortname", files.getSortName());
-		ModelAndView modelAndView = new ModelAndView("app/file/fileEdit",
-				fileEditMap);
+		ModelAndView modelAndView = new ModelAndView("app/file/fileEdit",fileEditMap);
 		return modelAndView;
 	}
 
