@@ -146,15 +146,16 @@
                     for(var i=0;i<$('.Attachment td .inHidden').length;i++){
                         uId += attach.eq(i).attr('NAME');
                     }
+                    var sortId=${sortId};
 
                     var data={
-                       'sortId':${sortId},
                        'subject':subject,
                         'contentNo':contentNo,
                         'content':html,
                         'attachmentId':aId,
                         'attachmentName':uId,
-                        'attachmentDesc':attachmentDesc
+                        'attachmentDesc':attachmentDesc,
+                        'sortId':sortId
                     };
 
                     $.ajax({
