@@ -36,6 +36,9 @@
 		<delete id="deleteBySort_id" parameterType="int">
 		delete from  file_content where SORT_ID=#{tempNo};
 		</delete>
+		<delete id="deleteByConId" parameterType="map">
+		delete from  file_content where CONTENT_ID=#{contentId};
+		</delete>
 		<!-- SORT_ID,SUBJECT,CONTENT,SEND_TIME,ATTACHMENT_ID,ATTACHMENT_NAME,ATTACHMENT_DESC,USER_ID,CONTENT_NO,NEW_PERSON,READERS,
 		CREATER,LOGS,KEYWORD -->
 		<insert id="saveContent" parameterType="com.xoa.model.file.FileContentModel">

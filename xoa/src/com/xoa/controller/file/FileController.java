@@ -690,7 +690,8 @@ public class FileController {
 		tj.setMsg(deleSortNo+"");
 	    }else{
 				Map<String, Object> fileConMap = new HashMap<String, Object>();
-				deleSortNo = fileSortService.deleteBySortId(fileConMap);
+				fileConMap.put("contentId", contentId);
+				deleSortNo = fileContentService.deleteByConId(fileConMap);
 				tj.setFlag(0);
 				tj.setMsg(deleSortNo+"");
 			}

@@ -1,6 +1,7 @@
 package com.xoa.dao.file;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xoa.model.file.FileContentModel;
 
@@ -12,4 +13,6 @@ public interface FileContentMapper {
 	FileContentModel getFileConByContentId(String contentId);
 
 	int saveContent(FileContentModel fileContentModel);
+
+	int deleteByConId(Map<String, Object> fileConMap);
 }

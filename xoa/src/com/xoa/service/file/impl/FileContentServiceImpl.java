@@ -1,6 +1,7 @@
 package com.xoa.service.file.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -44,5 +45,12 @@ public class FileContentServiceImpl implements FileContentService{
 	@Override
 	public int saveContent(FileContentModel fileContentModel) {
 		return file_ContentMapper.saveContent(fileContentModel);
+	}
+
+
+	@Override
+	public int deleteByConId(Map<String, Object> fileConMap) {
+		
+		return file_ContentMapper.deleteByConId(fileConMap);
 	}
 }

@@ -1,6 +1,7 @@
 package com.xoa.service.file;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xoa.model.file.FileContentModel;
 import com.xoa.util.dataSource.DynDatasource;
@@ -50,4 +51,15 @@ public interface FileContentService {
 	 */
 	@DynDatasource
 	int saveContent(FileContentModel fileContentModel);
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-5-5 上午11:21:33
+	 * 方法介绍:   删除一条信息
+	 * 参数说明:   @param fileContentModel
+	 * 参数说明:   @return
+	 * @return     int  返回影响行
+	 */
+	@DynDatasource
+	int deleteByConId(Map<String, Object> fileConMap);
 }
