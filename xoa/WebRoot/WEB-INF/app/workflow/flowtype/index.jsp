@@ -137,7 +137,6 @@
     <div class="cont">
         <div class="cont_left">
             <div class="left_all">
-                <h1 class="sort">流程分类</h1>
                 <div class="ul_all" id="li_parent">
                     <%--<li><img src="/../img/workflow/wenjian.png"><h1>公文管理</h1></li>--%>
                     <%--<li><img src="../../img/workflow/wenjian.png"><h1>公文管理</h1></li>--%>
