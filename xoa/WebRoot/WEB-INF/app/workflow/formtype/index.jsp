@@ -19,8 +19,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" type="text/css" href="../../css/workflow/index.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/easyui/easyui.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/easyui/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/easyui/themes/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/easyui/themes/icon.css"/>
     <script type="text/javascript" src="../../js/jquery-1.9.1.js" ></script>
     <script type="text/javascript" src="../../lib/easyui/jquery.easyui.min.js" ></script>
     <script type="text/javascript" src="../../lib/easyui/tree.js" ></script>
@@ -273,10 +273,10 @@
                    ' <div class="new_excell_footer">'+
 				   '<span class="foot_span_zn"><a href="#">智能</a></span>'+
 				   '<span class="deldel">删除</span>'+
-                   ' <img src="/ui/erp_img/new_excell_info_img_shanchu.png" class="deldel_img" >'+
+                   ' <img src="/ui/img/workflow/new_excell_info_img_bianji.png" class="deldel_img" >'+
                     '<span class="footer_span_space">&nbsp;|&nbsp;</span>'+
                 '<span class="edit" >编辑</span>'+
-                   '<img src="/ui/erp_img/new_excell_info_img_bianji.png" class="edit_img">'+
+                   '<img src="/ui/img/workflow/new_excell_info_img_shanchu.png" class="edit_img">'+
                     '</div>'+
                     '</div>'+
                     '</div>';
