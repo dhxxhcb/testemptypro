@@ -238,14 +238,19 @@
                 console.log(ret);
                 if(ret.flag==true){
                    renderDatas(ret.datas);
-                }
+                }else{
+					noDatas();
+				}
             },"json");
         }
-
+		function noDatas() {
+            var html="抱歉现在还没有表单，请您新建";
+            $(".cont_rig").html(html);
+        }
         function renderDatas(data) {
            var html="";
-           for(var i =1 ;i<data.length;i++){
-			     if(i%3==1) {html+='<div class="new_excell_center">';}
+           for(var i =0 ;i<data.length;i++){
+			     if(i%3==0) {html+='<div class="new_excell_center">';}
                  html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main">'+
                     '<a class="set" flow_id="'+data[i].formId+'" title="编辑"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].formName+'</span></div>'+
@@ -260,7 +265,7 @@
                     '</div>'+
                    ' <div style="position: absolute;bottom: 5px;left: 20px;"><div style="float: left;">'+
                     '<img src="" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
-                    '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">'+data[i].formId+'</span>'+
+                    '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">'+data[i].depName+'</span>'+
                    ' </div>'+
                     ' </div>'+
                    ' </div>'+
@@ -275,7 +280,7 @@
                     '</div>'+
                     '</div>'+
                     '</div>';
-					if(i%3==0){html+='</div>';}
+					if(i%3==2){html+='</div>';}
             }
 			$(".cont_rig").html(html);
         }
