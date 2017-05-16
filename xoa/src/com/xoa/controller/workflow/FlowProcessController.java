@@ -144,7 +144,28 @@ public class FlowProcessController {
 		    return json;
 		}
 	
-	
+		@ResponseBody
+	  	@RequestMapping(value = "flowview",produces = {"application/json;charset=UTF-8"})
+	    public ToJson<FlowProcess> flowview(
+	    		@RequestParam("flowId") int flowId, 
+	    		HttpServletRequest request){
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
+			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
+			try {
+				List<FlowProcess> list=flowProcessService.findFlowId(flowId);
+				
+				
+				
+		        json.setObj(list);
+		        json.setMsg("OK");
+		        json.setFlag(0);
+			} catch (Exception e) {
+				json.setMsg(e.getMessage());
+			}
+		    return json;
+		}
+		
 
 		
 

@@ -82,6 +82,7 @@ public class CalenderServiceImpl implements CalenderService {
 				if(pd<=cT&&cT<=pd+86400||pd<=eT&&pd>=cT){	
 					ca.setAddTime(calendar.getAddTime());
 					ca.setCalId(calendar.getCalId());
+					ca.setCalType(calendar.getCalType());
 					ca.setEndTime(calendar.getEndTime());
 					ca.setContent(calendar.getContent());
 					ca.setCalLevel(calendar.getCalLevel());
