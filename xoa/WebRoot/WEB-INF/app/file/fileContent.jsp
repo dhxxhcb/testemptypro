@@ -89,7 +89,7 @@ $(function(){
            if (confirm(msg)==true){
                $.ajax({
                    type:'post',
-                   url:'/file/deletefileAndCon',
+                   url:'${pageContext.request.contextPath }/file/deletefileAndCon',
                    dataType:'json',
                    data:{'sortId':id},
                    success:function(){
@@ -105,7 +105,7 @@ $(function(){
            if (confirm(msg)==true){
                $.ajax({
                    type:'post',
-                   url:'/file/deletefileAndCon',
+                   url:'${pageContext.request.contextPath }/file/deletefileAndCon',
                    dataType:'json',
                    data:{'contentId':idT},
                    success:function(){

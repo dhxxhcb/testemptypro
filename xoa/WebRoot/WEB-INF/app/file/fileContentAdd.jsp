@@ -166,6 +166,7 @@
                             var flag=data1.flag;
                             if (flag==true){
                                 alert('新建成功');
+                                parent.opener.location.reload()
                             }else{
                                 alert('新建失败');
                             }
