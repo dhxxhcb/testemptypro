@@ -53,6 +53,7 @@ input:hover {background: #eaf2ff;padding: 5px;}
 </style>
 <script type="text/javascript">
 $(function(){
+    /* $("#contentAdd").attr("href","${pageContext.request.contextPath }/file/contentAdd?sortId="+${sortId}); */
 	$.ajax({
 						type:'post',
 						url:'<%=basePath%>file/catalog',
@@ -92,22 +93,13 @@ $(function(){
 
 
 
-function openWindow(sHref,strWidth,strHeight) {
-  var strLeft=(screen.availWidth-strWidth)/2;
-  var strTop=(screen.availHeight-strHeight)/2;
-  var strRef="";
-  strRef=strRef+"width="+strWidth+"px,height="+strHeight+"px,";
-  strRef=strRef+"left="+strLeft+"px,top="+strTop+"px,";
-  strRef=strRef+"resizable=yes,scrollbars=yes,status=yes,toolbar=no,systemmenu=no,location=no,borderSize=thin";//channelmode,fullscreen
-  var openerobj= window.open(sHref,'newwin',strRef,false);
-  openerobj.focus();
-}
+
 	</script>
 </head>
 
 <body style="background-color: #EBEBEB">
 <div class="head w clearfix">
-    <div class="ss one"> <a href="${pageContext.request.contextPath }/file/contentAdd">新建文件</a></div>
+    <div class="ss one"> <a id="contentAdd" href="${pageContext.request.contextPath }/file/contentAdd?sortId=${sortId}">新建文件</a></div>
     <div class="ss two"> <a href="${pageContext.request.contextPath }/file/temp">批量上传</a></div>
     <div class="ss three"> <a  class="SEARCH" href="${pageContext.request.contextPath }/file/temp">查询</a></div>
     <div class="ss four"> <a href="${pageContext.request.contextPath }/file/temp">全局搜索</a></div>

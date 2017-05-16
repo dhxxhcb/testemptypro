@@ -148,6 +148,7 @@
                     }
 
                     var data={
+                       'sortId':${sortId},
                        'subject':subject,
                         'contentNo':contentNo,
                         'content':html,

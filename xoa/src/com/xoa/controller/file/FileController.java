@@ -297,10 +297,12 @@ public class FileController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/contentAdd")
-	public String fileHomeOne(HttpServletRequest request) {
+	public ModelAndView fileHomeOne(HttpServletRequest request,String sortId) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute("loginDateSouse"));
-		loger.info("--------main-------");
-		return "app/file/fileContentAdd";
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("sortId", sortId);
+		ModelAndView modelAndView = new ModelAndView("app/file/fileContentAdd", model);
+		return modelAndView;
 	}
  
 	/**
@@ -313,7 +315,6 @@ public class FileController {
 	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value = "/content")
-	@ResponseBody
 	public ModelAndView fileContent(String sortType,String sortId,String text,String postType,HttpServletRequest request) throws UnsupportedEncodingException {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
@@ -615,7 +616,6 @@ public class FileController {
 	public ModelAndView fileDelete(HttpServletRequest request, FileSortModel file) {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
-
 		// 所有删除文件夹
 		List<FileSortModel> childrenList = getfilesDeleteList(file);
 		// 将父节点加入，父节点下可能也有文件
