@@ -145,6 +145,9 @@
       <if test="crmDiary != null" >
         CRM_DIARY=#{crmDiary},
       </if>
+      <if test="diaType != null" >
+        DIA_TYPE=#{diaType},
+      </if>
       <if test="content != null" >
         CONTENT=#{content},
       </if>

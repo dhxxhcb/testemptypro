@@ -22,9 +22,11 @@
     <link rel="stylesheet" type="text/css" href="../../lib/easyui/themes/easyui.css"/>
     <link rel="stylesheet" type="text/css" href="../../lib/easyui/themes/icon.css"/>
     <script type="text/javascript" src="../../js/jquery-1.9.1.js" ></script>
+    <script src="../../lib/laydate.js"></script>
     <script type="text/javascript" src="../../lib/easyui/jquery.easyui.min.js" ></script>
     <script type="text/javascript" src="../../lib/easyui/tree.js" ></script>
     <script type="text/javascript" src="../js/index.js" ></script>
+    <script src="../../lib/layer/layer.js"></script>
     <title>s首页</title>
 	 <style>
         .new_excell_pic{
@@ -237,6 +239,9 @@
                     if (row.sortParent == node.id){
                         var child = {id:row.sortId,text:row.sortName};
                         if (node.children){
+                        	if(node.id!=0){
+                                node.state="closed"
+                            }
                             node.children.push(child);
                         } else {
                             node.children = [child];
@@ -287,10 +292,10 @@
                     '</a>'+
                    ' <div class="new_excell_footer">'+
 				   '<span class="foot_span_zn"><a href="#">智能</a></span>'+
-				   '<span class="deldel">删除</span>'+
+				   '<span class="deldel" id="deldel">删除</span>'+
                    ' <img src="../../img/workflow/new_excell_info_img_bianji.png" class="deldel_img" >'+
                     '<span class="footer_span_space">&nbsp;|&nbsp;</span>'+
-                '<span class="edit" >编辑</span>'+
+                   '<span class="edit" id="edit">编辑</span>'+
                    '<img src="../../img/workflow/new_excell_info_img_shanchu.png" class="edit_img">'+
                     '</div>'+
                     '</div>'+
@@ -299,6 +304,7 @@
             }
 			$(".cont_rig").html(html);
         }
+		
 		
 })
 </script>
