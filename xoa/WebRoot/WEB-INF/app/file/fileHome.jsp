@@ -115,7 +115,7 @@ $("#fileTree").tree({
        <div onclick="" id="personal" style="width:100%;height:40px;line-height:40px;padding-left: 15px;   float: left;text-align: left;"><fmt:message code="main.public"/></div>
       <%-- <div onclick="cabinet('2')" id="public"  style="width:50%;height:40px;line-height:40px;  float: left;text-align: center;"><fmt:message code="main.personnel"/></div>
       --%>
-        <div id="fileTransfor" style="margin-left: 15px;margin-top: 28px ;width:100%;overflow-x: hidden;">
+        <div id="fileTransfor" style="margin-top: 28px ;width:100%;overflow-x: hidden;">
                 <ul id="fileTree" class="easyui-tree"
 					data-options="url:'writeTree',method:'get',animate:true" >
 				</ul>
