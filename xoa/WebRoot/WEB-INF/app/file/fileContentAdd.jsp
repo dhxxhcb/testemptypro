@@ -131,7 +131,7 @@
                     }
                 });
 
-                //点击立即发送
+                //点击保存
                 $("#btn1").on("click",function(){
                     var subject=$('#txt1').val();
                     var contentNo=$('#txt2').val();
@@ -176,10 +176,14 @@
                     });
                 })
 
-                //点击保存到草稿箱按钮
+                //返回
                 $("#btn2").on("click",function(){
+                    $('#txt1').val('');
+                    $('#txt2').val('');
+                    ue.setContent('');
+                    $('#txt3').val('');
 
-            })
+                 })
 
 
 
