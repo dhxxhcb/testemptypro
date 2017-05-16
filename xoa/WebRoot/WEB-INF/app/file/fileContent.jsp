@@ -83,7 +83,7 @@ $(function(){
         var TYPE=$('.w .trBtn').attr('TYPE');
         var id=$('.w .trBtn').attr('sortId');
         var idT=$('.w .trBtn').attr('contentId');
-
+        alert(id);
       if (TYPE=='folder'){
            var msg='<fmt:message code="global.lang.sure" />';
            if (confirm(msg)==true){
