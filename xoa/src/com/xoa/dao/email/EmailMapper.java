@@ -25,4 +25,13 @@ public interface EmailMapper extends BaseMapper<EmailModel>{
     * @return     void
     */
    public void updateIsRead(EmailModel email);
+
+   /**
+    * 创建作者:   张勇
+    * 创建日期:   2017/5/15 16:28
+    * 方法介绍:   建立外部邮件关联关系
+    * 参数说明:
+    * @return
+    */
+   public void updateEmailBox(EmailModel emailModel);
 }

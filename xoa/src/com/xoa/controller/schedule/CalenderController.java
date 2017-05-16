@@ -294,21 +294,21 @@ public class CalenderController {
 		ToJson<Calendar> json=new ToJson<Calendar>(0, null);
 		List<Calendar> list=new ArrayList<Calendar>();
 		try{ 
-		    String [] calTypes = calType.split("#");
-		    String [] contents = content.split("#");
-		    String [] calTimes = calTime.split("#");
-		    String [] endTimes = endTime.split("#");
-		    String [] userIds = userId.split("#");
-		    String [] calLevels = calLevel.split("#");
+		    String [] calTypes = calType.split("\\*");
+		    String [] contents = content.split("\\*");
+		    String [] calTimes = calTime.split("\\*");
+		    String [] endTimes = endTime.split("\\*");
+		    String [] userIds = userId.split("\\*");
+		    String [] calLevels = calLevel.split("\\*");
 			for(int i=0;i<calTypes.length;i++){
 				Calendar c=new Calendar();
 				//SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				c.setUserId(userIds[i]);
-				c.setEndTime(Integer.parseInt(endTimes[i+1]));
-				c.setCalTime(Integer.parseInt(calTimes[i+2]));
-				c.setContent(contents[i+3]);
-				c.setCalType(calTypes[i+4]);
-				c.setCalLevel(calLevels[i+5]);
+				c.setEndTime(Integer.parseInt(endTimes[i]));
+				c.setCalTime(Integer.parseInt(calTimes[i]));
+				c.setContent(contents[i]);
+				c.setCalType(calTypes[i]);
+				c.setCalLevel(calLevels[i]);
 				c.setManagerId("");
 				c.setOverStatus("");
 				c.setBeforeRemaind("");

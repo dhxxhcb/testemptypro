@@ -29,4 +29,15 @@
 	<update id="updateIsRead" parameterType="com.xoa.model.email.EmailModel">
 	update email set READ_FLAG=#{readFlag} where EMAIL_ID=#{emailId}
 	</update>
+
+  <!-- 建立外部邮件关联关系 -->
+  <update id="updateEmailBox" parameterType="com.xoa.model.email.EmailModel">
+    UPDATE email e
+    SET e.BOX_ID = #{boxId}
+    WHERE
+        e.EMAIL_ID = #{emailId}
+    AND
+      e.TO_ID=#{toId}
+  </update>
+
 </mapper>

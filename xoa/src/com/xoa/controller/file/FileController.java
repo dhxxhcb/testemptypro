@@ -336,6 +336,7 @@ public class FileController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "saveContent")
+	@ResponseBody
 	public ToJson<DiaryModel> addContent(FileContentModel fileContentModel,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));

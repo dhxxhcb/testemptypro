@@ -113,11 +113,13 @@ public class NotifyController {
 				@RequestParam(value = "toId", required = false) String toId,
 				@RequestParam(value ="beginDate", required = false) String beginDate,
 			    @RequestParam(value ="endDate", required = false) String endDate,
+			    @RequestParam(value = "read", required = false) String read,
 			    @RequestParam("page") Integer page,
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag,HttpServletRequest request) {
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));
+		String sqlType = "xoa"
+				+ (String) request.getSession().getAttribute("loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
 			Map<String, Object> maps = new HashMap<String, Object>();
 			maps.put("format", format);
 			if("0".equals(typeId)){
@@ -136,25 +138,45 @@ public class NotifyController {
 			maps.put("toId", toId);
 			maps.put("beginDate", beginDate);
 			maps.put("endDate", endDate);
+			String name = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users()).getUserId();
 			ToJson<Notify> tojson = new ToJson<Notify>(0, "");
-			try {
-				List<Notify> list =notifyService.selectNotifyManage(maps, page, pageSize, useFlag);
-				tojson.setObj(list);
-			    tojson.setTotleNum(list.size());
-				if (list.size() > 0) {
-					err = "seccess";
-				} else {
-					err = "fail";
+			  try {
+					if ("0".equals(read)) {
+				    	 ToJson<Notify> tojson1 = notifyService.unreadNotify(maps, page, pageSize, useFlag,
+									name,sqlType);
+							if (tojson.getObj().size() > 0) {
+								tojson.setMsg(ok);
+								tojson=tojson1;
+							} else {
+								 tojson=tojson1;
+							}
+					}else if ("1".equals(read)) {
+						ToJson<Notify> tojson1 = notifyService.readNotify(maps, page, pageSize, useFlag,
+								name,sqlType);
+						if (tojson.getObj().size() > 0) {
+							tojson.setMsg(ok);
+							 tojson=tojson1;
+						} else {
+							 tojson=tojson1;
+						}
+					}else {
+					      List<Notify> list =notifyService.selectNotifyManage(maps, page, pageSize, useFlag,name,sqlType);
+					       tojson.setObj(list);
+				           tojson.setTotleNum(list.size());
+					    if (list.size() > 0) {
+						   err = "ok";
+					    } else {
+					     	err = "err";
+						    tojson.setFlag(1);
+					       }
+					}
+				}catch (Exception e) {
+					loger.debug("notifyManage:" + e);
+					err = "err";
 					tojson.setFlag(1);
-				}
-			} catch (Exception e) {
-				loger.debug("notifyManage:" + e);
-				err = "fail";
-				tojson.setFlag(1);
+				}			
+				return tojson;
 			}
-			tojson.setMsg(err);
-			return tojson;
-		}
     /**
      * 
      * 创建作者:   张丽军
@@ -191,8 +213,8 @@ public class NotifyController {
 				@RequestParam("pageSize") Integer pageSize,
 				@RequestParam("useFlag") Boolean useFlag,
 				HttpServletRequest request, HttpServletResponse response) {
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 	  Map<String, Object> maps = new HashMap<String, Object>();
 	  maps.put("format", format);
 	  if ("0".equals(typeId)) {
@@ -210,41 +232,22 @@ public class NotifyController {
 	  maps.put("toId", toId);
 	  maps.put("beginDate", beginDate);
 	  maps.put("endDate", endDate);
-	  ToJson<Notify> returnReslt=new ToJson(1,"");
-	  Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());	 
-	  try {
-		  if (read.equals("0")) {
-				ToJson<Notify> tojson= notifyService.unreadNotify(maps, page, pageSize, useFlag, name.getUserId());
-				if (tojson.getObj().size() > 0) {
-					tojson.setMsg("ok");
-				} else {
-					tojson.setFlag(1);
-				}
-				returnReslt=tojson;
-			}else if (read.equals("1")) {//已读
-				ToJson<Notify> tojson= notifyService.readNotify(maps, page, pageSize, useFlag, name.getUserId());
-				if (tojson.getObj().size() > 0) {
-					tojson.setMsg("ok");
-				} else {
-					tojson.setFlag(1);
-				}
-				returnReslt=tojson;
-			}
-				else 
-				{
+	  ToJson<Notify> returnReslt = new ToJson<Notify>(0, "");
+	  Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());	 	
+           try{
 				ToJson<Notify> tojson= notifyService.selectNotify(maps, page, pageSize, useFlag, name.getUserId());
 				if (tojson.getObj().size() > 0) {
-					tojson.setMsg("ok");	
+					tojson.setMsg("ok");
+					returnReslt = tojson;
 				} else {
-					tojson.setFlag(1);
-				}
-				returnReslt=tojson;
-			} 
-	  }catch (Exception e) {
+					returnReslt = tojson;
+				}			
+	  }catch(Exception e) {
 	   loger.debug("notifyMessage:"+e);	   
 	  }
 	  return returnReslt;
-	 }	
+	 }
+
 	/**
 	 * 
 	 * 创建作者:   张丽军

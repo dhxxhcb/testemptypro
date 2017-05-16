@@ -510,5 +510,95 @@
 		where BODY_ID = #{bodyId}
 	</update>
 
+	<!-- 草稿箱发送 -->
+	<insert id="update" parameterType="com.xoa.model.email.EmailBodyModel"  >
+		UPDATE email_body SET
+		BODY_ID,
+		FROM_ID,
+		SUBJECT,
+		SEND_TIME,
+		SEND_FLAG,
+		SMS_REMIND,
+		IMPORTANT,
+		SIZE,
+		FROM_WEBMAIL_ID,
+		FROM_WEBMAIL,
+		WEBMAIL_FLAG,
+		RECV_FROM_NAME,
+		RECV_FROM,
+		RECV_TO_ID,
+		RECV_TO,
+		IS_WEBMAIL,
+		IS_WF,
+		KEYWORD,
+		SECRET_LEVEL,
+		AUDIT_MAN,
+		TO_ID2,
+		COPY_TO_ID,
+		SECRET_TO_ID,
+		CONTENT,
+		ATTACHMENT_ID,
+		ATTACHMENT_NAME,
+		TO_WEBMAIL,
+		COMPRESS_CONTENT,
+		WEBMAIL_CONTENT,
+		AUDIT_REMARK,
+		COPY_TO_WEBMAIL,
+		SECRET_TO_WEBMAIL,
+		PRAISE
+		WHERE
+		BODY_ID = #{bodyId}
+	</insert>
 
+
+	<!--其他邮件查询 -->
+	<select id="selectBoxEmail" parameterType="Map" resultMap="BaseResultMap">
+		SELECT
+		eb.FROM_ID,
+		e.BOX_ID,
+		eb.BODY_ID,
+		eb. SUBJECT,
+		e.EMAIL_ID,
+		eb.SEND_TIME,
+		eb.ATTACHMENT_ID,
+		eb.ATTACHMENT_NAME,
+		e.DELETE_FLAG,
+		eb.TO_ID2,
+		e.READ_FLAG,
+		eb.COPY_TO_ID,
+		eb.SECRET_TO_ID,
+		eb.CONTENT,
+		u.USER_ID,
+		e.TO_ID,
+		u.USER_NAME
+		FROM
+		email_body AS eb
+		LEFT JOIN email AS e ON e.BODY_ID = eb.BODY_ID
+		LEFT JOIN USER AS u ON u.USER_ID = eb.FROM_ID
+		LEFT JOIN email_box ebo on ebo.BOX_ID = e.BOX_ID
+		WHERE
+		e.TO_ID = #{fromId}
+		and e.BOX_ID=#{boxId}
+		AND (
+		e.DELETE_FLAG = '0'
+		OR e.DELETE_FLAG = ''
+		OR e.DELETE_FLAG = '2'
+		) ORDER by e.EMAIL_ID DESC
+	</select>
+
+
+	<!--查询其他邮件中是否存在详细邮件 -->
+	<select id="selectIsBoxEmail" parameterType="Map" resultMap="BaseResultMap">
+		SELECTs
+		eb.FROM_ID,
+		e.EMAIL_ID,
+		u.USER_NAME
+		FROM
+		email_body AS eb
+		LEFT JOIN email AS e ON e.BODY_ID = eb.BODY_ID
+		LEFT JOIN USER AS u ON u.USER_ID = eb.FROM_ID
+		WHERE
+		e.TO_ID = #{fromId}
+		and e.BOX_ID=#{boxId}
+	</select>
 </mapper>

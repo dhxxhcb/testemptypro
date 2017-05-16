@@ -9,7 +9,9 @@ import java.util.ResourceBundle;
 import javax.annotation.Resource;
 import javax.swing.*;
 
+import com.xoa.model.unitmanagement.UnitManage;
 import com.xoa.model.users.Users;
+import com.xoa.service.unitmanagement.UnitManageService;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.dataSource.ContextHolder;
 import org.junit.Test;
@@ -39,6 +41,9 @@ public class Ctest {
 
     @Resource
     private UsersService usersService;
+
+    @Resource
+	private UnitManageService unitManageService;
 	
 //	@Test
 //	public void test() throws Exception {
@@ -75,9 +80,18 @@ public class Ctest {
 	
 	@Test
 	public void test() throws Exception {
-		String names = "<p dir=\"ltr\"><br>\n&#27979;&#35797;<br></p>\n<p dir=\"ltr\">&#27979;&#35797;<br></p>\n" +
-				"<p dir=\"ltr\">&#27979;&#35797;<br>\n--&#21457;&#33258;&#25105;&#30340;&#24515;&#36890;&#36798;OA&#29256;--</p>\n";
-		System.out.println(JEditorPane.getKeymap(names));
+		ContextHolder.setConsumerType("xoa1001");
+		UnitManage um = unitManageService.showUnitManage();
+//		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("showNews", JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
+		System.out.println(JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
+//		return ;
+
+
+//		String names = "<p dir=\"ltr\"><br>\n&#27979;&#35797;<br></p>\n<p dir=\"ltr\">&#27979;&#35797;<br></p>\n" +
+//				"<p dir=\"ltr\">&#27979;&#35797;<br>\n--&#21457;&#33258;&#25105;&#30340;&#24515;&#36890;&#36798;OA&#29256;--</p>\n";
+//		System.out.println(JEditorPane.getKeymap(names));
 //		Html.get
 
 //		ResourceBundle rb =  ResourceBundle.getBundle("jdbc-sql");

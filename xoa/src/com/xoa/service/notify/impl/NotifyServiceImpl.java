@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.dao.notify.NotifyMapper;
+import com.xoa.dao.users.UsersMapper;
 
 import com.xoa.model.department.Department;
 import com.xoa.model.notify.Notify;
+import com.xoa.model.users.Users;
 
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.notify.NotifyService;
@@ -48,7 +50,8 @@ public class NotifyServiceImpl implements  NotifyService{
 	@Resource
 	private UsersPrivService  usersPrivService;
 	
-	
+	@Resource
+	private UsersMapper  usersMapper;
 	
 	/**
 	 * 
@@ -107,25 +110,89 @@ public class NotifyServiceImpl implements  NotifyService{
 
     @Override
     public ToJson<Notify> unreadNotify(Map<String, Object> maps, Integer page,
-		Integer pageSize, boolean useFlag, String name) throws Exception {
-    	ToJson<Notify>   json=new ToJson<Notify>();
+		Integer pageSize, boolean useFlag, String name,String sqlType) throws Exception {
+    	 String[] strArray = null;
+	     String[] strArray1 = null;
+	     String[] strArray2 = null;
+    	ToJson<Notify> json=new ToJson<Notify>();
     	PageParams pageParams = new PageParams();  
     pageParams.setUseFlag(useFlag);  
     pageParams.setPage(page);  
     pageParams.setPageSize(pageSize);  
-    maps.put("page", pageParams);  
+    maps.put("page", pageParams); 
+    Users users=usersMapper.findUserByName(name);    
     List<Notify> list = notifyMapper.unreadNotify(maps);
     List<Notify> list1 =new ArrayList<Notify>();
+    List<Notify> list2 =new ArrayList<Notify>();
     	for (Notify notify : list) {
     		notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
     		notify.setName(notify.getUsers().getUserName());
 			 notify.setTypeName(notify.getCodes().getCodeName());
-			if (notify.getReaders().indexOf(name)==-1) {
-				list1.add(notify);
+			 if (notify.getAttachmentName()!=null&&notify.getAttachmentId()!=null) {
+		    	   notify.setAttachment(GetAttachmentListUtil.returnAttachment(notify.getAttachmentName(), notify.getAttachmentId(), sqlType,GetAttachmentListUtil.MODULE_NEWS));
+				}
+		      String depId=notify.getToId();		      
+		      if (depId.equals("ALL_DEPT")) {
+		    	  list1.add(notify);
+				}else  if(depId!=null&&!"".equals(depId)){
+					strArray=depId.split(",");
+					for (int i = 0; i < strArray.length; i++) {
+						//String name1=departmentService.getDpNameById(Integer.parseInt(strArray[i]));
+						/*if (name1!=null) {
+							s.append(name1);
+			        		s.append(",");
+			        		notify.setDeprange(s.toString());
+						}*/
+						if(users.getDeptId().toString().equals(strArray[i])){
+							list1.add(notify);
+						    }
+						}						
+					}					
+				
+		      String userId=notify.getUserId();
+		      if (userId!=null&&!userId.equals("")) {
+		    	  if(users.getUid()!=null&&!"".equals(users.getUid())){		  
+		    	  strArray1=userId.split(",");
+		    	  for (int i = 0; i < strArray1.length; i++) {
+		    		  /*System.out.println(Integer.parseInt(strArray1[i]));
+		    		  String name2=usersService.findUsersByuid(Integer.parseInt(strArray1[i]));
+		    		  if (name2!=null) {
+							 s1.append(name2);
+							 s1.append(",");
+							 notify.setUserrange(s1.toString());*/
+		    		  if(users.getUid().toString().equals(strArray1[i])){
+		    			  list1.add(notify);
+		    	      }
+			       }						
+		   	}    
+          }
+		      String roleId=notify.getPrivId();
+		      if (roleId!=null&&!roleId.equals("")) {
+		    	  if(users.getUserPriv()!=null&&!"".equals(users.getUserPriv())){		      
+		    	  strArray2=depId.split(",");
+		    	  for (int i = 0; i < strArray2.length; i++) {
+		    		/*  String name3=usersPrivService.getPrivNameById(Integer.parseInt(strArray2[i]));
+		    		  if (name3!=null) {
+		    			  s2.append(name3);
+							 s2.append(",");
+							 notify.setRolerange(s2.toString());*/
+		    		  if(users.getUserPriv().toString().equals(strArray2[i])){
+		    			  list1.add(notify);
+		    		  }
+					}
+						
+					}
+		      }
+    	}
+		    	  
+		    	  
+		  for(Notify notifys : list1) { 	  
+			if (notifys.getReaders().indexOf(name)==-1) {
+				list2.add(notifys);
 			}
 	}
 
-        json.setObj(list1);
+        json.setObj(list2);
         json.setTotleNum(pageParams.getTotal());
     return json;
 }
@@ -146,27 +213,73 @@ public class NotifyServiceImpl implements  NotifyService{
 	 */
     @Override
 	public ToJson<Notify> readNotify(Map<String, Object> maps, Integer page,
-			Integer pageSize, boolean useFlag, String name) throws Exception {
+			Integer pageSize, boolean useFlag, String name,String sqlType) throws Exception {
+    	String[] strArray = null;
+        String[] strArray1 = null;
+        String[] strArray2 = null;
     	ToJson<Notify> json=new ToJson<Notify>();
     	PageParams pageParams = new PageParams();  
     pageParams.setUseFlag(useFlag);  
     pageParams.setPage(page);  
     pageParams.setPageSize(pageSize);  
     maps.put("page", pageParams);  
+    Users users=usersMapper.findUserByName(name);
     List<Notify> list = notifyMapper.readNotify(maps);
     List<Notify> list1 =new ArrayList<Notify>();
+    List<Notify> list2 =new ArrayList<Notify>();
+    List<Notify> list3 =new ArrayList<Notify>();
     	for (Notify notify : list) {
     		notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
     		 notify.setName(notify.getUsers().getUserName());
-				 notify.setTypeName(notify.getCodes().getCodeName());
-			if (notify.getReaders().indexOf(name)!=-1) {
+			 notify.setTypeName(notify.getCodes().getCodeName());
+			if (notify.getAttachmentName()!=null&&notify.getAttachmentId()!=null) {
+				notify.setAttachment(GetAttachmentListUtil.returnAttachment(notify.getAttachmentName(), notify.getAttachmentId(), sqlType,GetAttachmentListUtil.MODULE_NEWS));
+			}	 
+			String depId=notify.getToId();
+			if("ALL_DEPT".equals(depId)){
 				list1.add(notify);
+			}else if(depId!=null&&!"".equals(depId)){
+				 strArray=depId.split(",");
+				 for (int j = 0; j < strArray.length; j++) {
+						if (users.getDeptId().toString().equals(strArray[j])) {
+							  list1.add(notify);
+						}
+				 }
 			}
-	}
+			String userId=notify.getUserId();
+			if(userId!=null&&!userId.equals("")){
+				if (users.getUid()!=null&&!"".equals(users.getUid())) {
+			    	 strArray1=userId.split(",");
+			    	  for (int j = 0; j < strArray1.length; j++) {
+							if (users.getUid().toString().equals(strArray1[j])) {
+								list1.add(notify);
+								}
+							}
+				}
+			}
+			String roleId=notify.getPrivId();
+		      if (roleId!=null&&!roleId.equals("")) {
+		    	  if(users.getUserPriv()!=null&&!"".equals(users.getUserPriv())){		      
+		    	  strArray2=depId.split(",");
+		    	  for (int i = 0; i < strArray2.length; i++) {
+		    		  if(users.getUserPriv().toString().equals(strArray2[i])){
+		    			  list1.add(notify);
+		    		  }
+					}
+		    	  }
+		      }
+    	}	
+		      for(Notify notifys : list1) { 
+			if (notifys.getReaders().indexOf(name)!=-1) {
+				list2.add(notifys);
+			   }
+	        }
+    	
 
-        json.setObj(list1);
+        json.setObj(list2);
         json.setTotleNum(pageParams.getTotal());
 		return json;
+    	
 	}
     
     
@@ -355,19 +468,28 @@ public class NotifyServiceImpl implements  NotifyService{
 	 */
 	@Override
 	public List<Notify> selectNotifyManage(Map<String, Object> maps,
-			Integer page, Integer pageSize, boolean useFlag) throws Exception {
+			Integer page, Integer pageSize, boolean useFlag,String name,String sqlType) throws Exception {
+		 ToJson<Notify> json=new ToJson<Notify>();
 		String[] strArray = null;
+		String[] strArray1 = null;
+		String[] strArray2 = null;
 		PageParams pageParams = new PageParams();  
         pageParams.setUseFlag(useFlag);  
         pageParams.setPage(page);  
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);  
-        ToJson<Notify> json=new ToJson<Notify>();
-        List<Notify> list = notifyMapper.selectNotifyManage(maps);
-      for (Notify notify : list) {
-    	  notify.setName(notify.getUsers().getUserName());
-    	  notify.setTypeName(notify.getCodes().getCodeName());
-    	  StringBuffer s=new StringBuffer();
+        Users users=usersMapper.findUserByName(name);
+        List<Notify> list1=new  ArrayList<Notify>();
+        List<Notify> list = notifyMapper.selectNotify(maps);
+        if(users!=null){
+         for (Notify notify : list) {
+        	 notify.setNotifyDateTime(DateFormat.getStrDate(notify.getSendTime()));
+    	    notify.setName(notify.getUsers().getUserName());
+    	    notify.setTypeName(notify.getCodes().getCodeName());
+    	    if (notify.getAttachmentName()!=null&&notify.getAttachmentId()!=null) {
+    	    	notify.setAttachment(GetAttachmentListUtil.returnAttachment(notify.getAttachmentName(), notify.getAttachmentId(), sqlType,GetAttachmentListUtil.MODULE_NEWS));
+			}
+    	  /* StringBuffer s=new StringBuffer();
 			if (notify.getToId().equals("ALL_DEPT")) {
 				 List<Department> list1=departmentMapper.getDatagrid();
 				 for (Department department : list1) {
@@ -390,11 +512,50 @@ public class NotifyServiceImpl implements  NotifyService{
 			        		notify.setName(s.toString());
 			        	}
 				}
+			}*/
+    	    String depId=notify.getToId();
+			if("ALL_DEPT".equals(depId)){
+				list1.add(notify);
+			}else if(depId!=null&&!"".equals(depId)){
+				 strArray=depId.split(",");
+				 for (int j = 0; j < strArray.length; j++) {
+						if (users.getDeptId().toString().equals(strArray[j])) {
+							  list1.add(notify);
+						}
+				 }
 			}
-		}
-      json.setObj(list);
-      json.setTotleNum(pageParams.getTotal());
-		return list;
+			String userId=notify.getUserId();
+			if(userId!=null&&!userId.equals("")){
+				if (users.getUid()!=null&&!"".equals(users.getUid())) {
+			    	 strArray1=userId.split(",");
+			    	  for (int j = 0; j < strArray1.length; j++) {
+							if (users.getUid().toString().equals(strArray1[j])) {
+								list1.add(notify);
+								}
+							}
+				}
+			}
+			String roleId=notify.getPrivId();
+		      if (roleId!=null&&!roleId.equals("")) {
+		    	  if(users.getUserPriv()!=null&&!"".equals(users.getUserPriv())){		      
+		    	  strArray2=depId.split(",");
+		    	  for (int i = 0; i < strArray2.length; i++) {
+		    		  if(users.getUserPriv().toString().equals(strArray2[i])){
+		    			  list1.add(notify);
+		    		  }
+					}
+		    	  }
+		      }
+		      if (notify.getReaders().indexOf(name) != -1) {
+		    	  notify.setRead(1);
+				} else {
+					notify.setRead(0);
+				}
+         }     
 	}
+        json.setObj(list1);
+        json.setTotleNum(pageParams.getTotal());
+		return list;
 
+	}
 }

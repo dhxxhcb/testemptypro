@@ -50,7 +50,7 @@ public interface NotifyService {
 	 * @return     List<Notify>
 	 */
 	@DynDatasource
-	public List<Notify> selectNotifyManage(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag) throws Exception;
+	public List<Notify> selectNotifyManage(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
 	/**
 	 * 
 	 * 创建作者:   张丽军
@@ -66,7 +66,7 @@ public interface NotifyService {
 	 * @return     List<Notify>
 	 */
 	@DynDatasource
-	public ToJson<Notify>  unreadNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+	public ToJson<Notify>  unreadNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
 	/**
 	 * 
 	 * 创建作者:   张丽军
@@ -82,7 +82,7 @@ public interface NotifyService {
 	 * @return     List<Notify>
 	 */
 	@DynDatasource
-	public ToJson<Notify>  readNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+	public ToJson<Notify>  readNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
    /**
    * 
    * 创建作者:   张丽军

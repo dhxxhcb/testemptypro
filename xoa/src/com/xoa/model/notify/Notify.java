@@ -145,7 +145,10 @@ public class Notify {
 
 	private String notifyDateTime;
 
-
+	/**
+	 * 未读，已读的判断(0是未读,1是已读)
+	 */
+	private Integer read;
 
 	private String typeName;
 	private String userrange;
@@ -469,7 +472,23 @@ public class Notify {
 	public void setFromDept(Integer fromDept) {
 		this.fromDept = fromDept;
 	}
+	/**
+	 * 未读，已读的判断(0是未读,1是已读)
+	 * 
+	 * @return
+	 */
+	public Integer getRead() {
+		return read;
+	}
 
+	/**
+	 * 未读，已读的判断(0是未读,1是已读)
+	 * 
+	 * @param read
+	 */
+	public void setRead(Integer read) {
+		this.read = read;
+	}
 	/**
 	 * 
 	 * 创建作者: 张丽军 创建日期: 2017-4-18 下午7:06:24 方法介绍: 获取发布用户ID(USER_ID) 参数说明: @return

@@ -3,6 +3,7 @@ package com.xoa.service.email;
 import java.util.List;
 import java.util.Map;
 
+import com.xoa.model.email.EmailBoxModel;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xoa.model.email.EmailModel;
@@ -229,7 +230,6 @@ public interface EmailService {
 	 */
 	public String deleteRecycleEmail(Integer emailId,String flag);
 
-
 	/**
 	 *
 	 * 创建作者:   张勇
@@ -244,7 +244,62 @@ public interface EmailService {
 	public String queryByIdCss(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag,String sqlType);
 
 
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 15:18
+	 * 方法介绍:
+	 * 参数说明:   发件箱、收件箱内容信息保存
+	 * 参数说明:   收件人实体类
+	 * @return
+	 */
+	public boolean draftsSendEmail(EmailBodyModel emailBody, EmailModel email);
 
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 16:37
+	 * 方法介绍:   新建其他邮件文件夹
+	 * 参数说明:   
+	 * @return     
+	 */
+	public ToJson<EmailBoxModel> saveEmailBox(EmailBoxModel emailBoxModel);
+
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 16:38
+	 * 方法介绍:   查询所有其他邮件文件夹
+	 * 参数说明:
+	 * @return
+	 */
+	public ToJson<EmailBoxModel> showEmailBox(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag);
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 16:39
+	 * 方法介绍:   把收件箱邮件转移到其他邮件文件夹中
+	 * 参数说明:
+	 * @return
+	 */
+	public ToJson<EmailModel> updateEmailBox(EmailModel emailModel);
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 16:48
+	 * 方法介绍:   其他邮箱中的邮件列表
+	 * 参数说明:
+	 * @return
+	 */
+	public ToJson<EmailBodyModel> selectBoxEmail(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag,String sqlType);
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/15 17:00
+	 * 方法介绍:   删除其他邮件文件夹，并判断其中
+	 * 参数说明:
+	 * @return
+	 */
+	public ToJson<EmailBodyModel> deleteBoxEmail(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag);
 
 
 }
