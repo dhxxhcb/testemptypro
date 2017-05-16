@@ -41,5 +41,28 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	public void delete(int id) {
 		flowProcessMapper.deleteByPrimaryKey(id);
 	}
+	
+	public List<FlowProcess> flowView(int flowId) {
+		List<FlowProcess> list=flowProcessMapper.findFlowId(flowId);
+		int lastPrcsId=0;
+		int lastId=0;
+		for (FlowProcess flowProcess : list) {
+			int prcsId=flowProcess.getPrcsId();
+			if(prcsId>lastPrcsId){
+				lastId=prcsId;
+				lastPrcsId=prcsId;
+			}
+			String prcsName=flowProcess.getPrcsName();
+			String prcsIn=flowProcess.getPrcsIn();
+			String prcsOut=flowProcess.getPrcsOut();
+			Byte prcsType=flowProcess.getPrcsType();
+			int chidFlow=flowProcess.getChildFlow();
+			String syncDeal=flowProcess.getSyncDeal();
+			
+			
+		}
+		
+		return list;
+	}
 
 }
