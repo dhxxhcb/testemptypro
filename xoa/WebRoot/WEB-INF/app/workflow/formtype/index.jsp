@@ -22,8 +22,8 @@
     <link rel="stylesheet" type="text/css" href="../../css/easyui/easyui.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/easyui/icon.css"/>
     <script type="text/javascript" src="../../js/jquery-1.9.1.js" ></script>
-    <script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js" ></script>
-    <script type="text/javascript" src="../../js/easyui/tree.js" ></script>
+    <script type="text/javascript" src="../../lib/easyui/jquery.easyui.min.js" ></script>
+    <script type="text/javascript" src="../../lib/easyui/tree.js" ></script>
     <script type="text/javascript" src="../js/index.js" ></script>
     <title>s首页</title>
 	 <style>
@@ -138,7 +138,7 @@
             <input class="inp" type="text" placeholder="输入表名称搜索">
             <div class="search"><h1>搜索</h1></div>
         </div>
-        <div class="head_rig"><h1>新建</h1></div>
+        <div class="head_rig" id="head_rig"><h1>新建</h1></div>
     </div>
 
     <div class="cont">
@@ -179,7 +179,7 @@
        $('#li_parent').tree({
             url: '../../workflow/flowclassify/formJsTree',
             animate:true,
-            lines:false,
+            lines:true,
             loadFilter: function(rows){
                 //console.log(rows);
                 return convert(rows.datas);
@@ -238,14 +238,19 @@
                 console.log(ret);
                 if(ret.flag==true){
                    renderDatas(ret.datas);
-                }
+                }else{
+					noDatas();
+				}
             },"json");
         }
-
+		function noDatas() {
+            var html="抱歉现在还没有表单，请您新建";
+            $(".cont_rig").html(html);
+        }
         function renderDatas(data) {
            var html="";
-           for(var i =1 ;i<data.length;i++){
-			     if(i%3==1) {html+='<div class="new_excell_center">';}
+           for(var i =0 ;i<data.length;i++){
+			     if(i%3==0) {html+='<div class="new_excell_center">';}
                  html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main">'+
                     '<a class="set" flow_id="'+data[i].formId+'" title="编辑"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].formName+'</span></div>'+
@@ -260,7 +265,7 @@
                     '</div>'+
                    ' <div style="position: absolute;bottom: 5px;left: 20px;"><div style="float: left;">'+
                     '<img src="" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
-                    '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">'+data[i].formId+'</span>'+
+                    '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">'+data[i].depName+'</span>'+
                    ' </div>'+
                     ' </div>'+
                    ' </div>'+
@@ -275,13 +280,11 @@
                     '</div>'+
                     '</div>'+
                     '</div>';
-					if(i%3==0){html+='</div>';}
+					if(i%3==2){html+='</div>';}
             }
 			$(".cont_rig").html(html);
         }
-
-
-        //function renderDatas() {
+			//function renderDatas() {
             //var html="11111";
            // var content = document.createTextNode("111111");
             //var p=document.createElement('p');
