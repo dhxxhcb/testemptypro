@@ -652,6 +652,61 @@ public class FileController {
 	/**
 	 * 
 	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-4-18 下午4:14:39
+	 * 方法介绍:   删除文件
+	 * 参数说明:   @param request
+	 * 参数说明:   @param file
+	 * 参数说明:   @return
+	 * @return   ModelAndView
+	 */
+	@RequestMapping("/deletefileAndCon")
+	@ResponseBody
+	public ToJson conDelete(HttpServletRequest request, FileSortModel file,String contentId) {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
+			int deleSortNo = 0;
+			ToJson tj=new ToJson();
+		// 所有删除文件夹
+		if(contentId!=null){
+		List<FileSortModel> childrenList = getfilesDeleteList(file);
+		// 将父节点加入，父节点下可能也有文件
+		childrenList.add(file);
+		// 文件集合
+		List<FileContentModel> fileContentList = new ArrayList<FileContentModel>();
+		//
+		for (FileSortModel f : childrenList) {
+			int tempNo = f.getSortId();
+			List<FileContentModel> fileContent = fileContentService
+					.getFileConBySortid(tempNo);
+			fileContentList.addAll(fileContent);
+			//删除文件影响行
+			int deleConNo = fileContentService
+					.deleteBySortId(tempNo);
+		}
+			
+		// 删除附件
+		// boolean flag=deleteAttachment(fileContentList,request);
+		// 删除父节点，子节点
+		for (FileSortModel f : childrenList) {
+			Map<String, Object> fileSortidMap = new HashMap<String, Object>();
+			fileSortidMap.put("sortid", f.getSortId());
+			//删除文件影响行
+			deleSortNo+=fileSortService
+					.deleteBySortId(fileSortidMap);
+		}
+		tj.setFlag(0);
+		tj.setMsg(deleSortNo+"");
+			}else{
+				Map<String, Object> fileConMap = new HashMap<String, Object>();
+				deleSortNo = fileSortService.deleteBySortId(fileConMap);
+				tj.setFlag(0);
+				tj.setMsg(deleSortNo+"");
+			}
+		return tj;
+	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
 	 * 创建日期:   2017-4-18 下午4:15:03
 	 * 方法介绍:   递归循环获取文件夹对象
 	 * 参数说明:   @param file
