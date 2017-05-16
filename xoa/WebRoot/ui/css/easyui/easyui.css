@@ -2011,7 +2011,7 @@ a.s-btn-plain-active {
 }
 .tree li {
   white-space: nowrap;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 .tree li ul {
   list-style-type: none;
@@ -2022,7 +2022,7 @@ a.s-btn-plain-active {
   height: 18px;
   white-space: nowrap;
   cursor: pointer;
-  padding-left: 15px;
+  padding: 7px 0 7px 15px;
 }
 .tree-hit {
   cursor: pointer;
@@ -2160,7 +2160,7 @@ a.s-btn-plain-active {
   color: #000000;
 }
 .tree-node-selected {
-  background: #FBEC88;
+  background: #c5e9fb;
   color: #000000;
 }
 .validatebox-invalid {

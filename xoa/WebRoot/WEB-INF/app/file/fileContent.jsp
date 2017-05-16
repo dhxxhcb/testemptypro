@@ -58,11 +58,11 @@ $(function(){
 						dataType:'json',
 						data:{'sortId':${sortId},'sortType':${sortType},'postType':${postType}},
 						success:function(data){
-						    alert(data[1].contentId);
+						    alert(data[0].sortId);
 						var files='';
 							for(var i=0;i<data.length;i++){
 							if(data[i].fileType=="folder"){
-							files+="  <tr class='contentTr' conId='"+data[i].contentId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/temp\">"+data[i].sortName+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
+							files+="  <tr class='contentTr' conId='"+data[i].sortId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/temp\">"+data[i].sortName+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
 							   }else{
 							   files+="  <tr class='contentTr' conId='"+data[i].contentId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
 							   }
