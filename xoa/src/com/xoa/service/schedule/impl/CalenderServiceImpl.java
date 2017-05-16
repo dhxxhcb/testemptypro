@@ -60,7 +60,7 @@ public class CalenderServiceImpl implements CalenderService {
 		//当前时间戳
 		//Long day=Long.valueOf(calTime);
 		SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat f =  new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat f =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		List<Calendar> listAll=new ArrayList<Calendar>();
 		for(int i=0;i<30;i++){
 			Calendar Allcal=new Calendar();		  
@@ -145,7 +145,7 @@ public class CalenderServiceImpl implements CalenderService {
 		maps.put("calTime", time);
 		List<Calendar> list =calendarMapper.getscheduleByDay(maps);
  		for(int i=0;i<list.size();i++){
- 			SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd hh:mm");
+ 			SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Calendar cal=list.get(i);
 			int cT=cal.getCalTime();
 			int eT=cal.getEndTime();
@@ -156,18 +156,6 @@ public class CalenderServiceImpl implements CalenderService {
 			cal.setStim(s);
 			cal.setEtim(e);
 		}
-		
-	   
-		//当前时间戳
-	/*	Long t=(long) (time*1000L);
-		SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
-		String data = format.format(t); 
-		List<Calendar> listAll=new ArrayList<Calendar>();
-			Calendar Allcal=new Calendar();				
-			Allcal.setCalData(data);
-			Allcal.setCalMessage(list1);
-			listAll.add(Allcal);
-		*/
 		return list;
 	}
 

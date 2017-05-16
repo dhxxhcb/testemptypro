@@ -207,7 +207,7 @@ public class CalenderController {
 	 * 方法介绍:   编辑日程
 	 * 参数说明:   @param request 请求
 	 * 参数说明:   @param calType 类型
-	 * 参数说明:   @param content 食物内容
+	 * 参数说明:   @param content 内容
 	 * 参数说明:   @param calTime 开始时间
 	 * 参数说明:   @param endTime 结束时间
 	 * 参数说明:   @param userId 用户id
