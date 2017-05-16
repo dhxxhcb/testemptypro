@@ -76,16 +76,18 @@ public class NotifyServiceImpl implements  NotifyService{
         pageParams.setPageSize(pageSize);  
         maps.put("page", pageParams);  
         List<Notify> list = notifyMapper.selectNotify(maps);//遍历每一条公告
-            for (Notify notify1 : list) {
-            	notify1.setNotifyDateTime(DateFormat.getStrDate(notify1.getSendTime()));
-            	//查询用户
-            	notify1.setName(notify1.getUsers().getUserName());
-				 notify1.setTypeName(notify1.getCodes().getCodeName());
- 				 //已读未读
-                 if (notify1.getReaders().indexOf(name)!=-1) {
-        	        notify1.setReaders("1");
-			        }else {
-				     notify1.setReaders("0");
+        System.out.println(list.size());
+        System.out.println(list);
+		for (Notify notify1 : list) {
+			notify1.setNotifyDateTime(DateFormat.getStrDate(notify1.getSendTime()));
+			// 查询用户
+			notify1.setName(notify1.getUsers().getUserName());
+			notify1.setTypeName(notify1.getCodes().getCodeName());
+			// 已读未读
+			if (notify1.getReaders().indexOf(null != name ? name : "") != -1) {
+				notify1.setReaders("1");
+			} else {
+				notify1.setReaders("0");
 			}
 		}
         json.setObj(list);

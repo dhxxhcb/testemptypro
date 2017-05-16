@@ -243,7 +243,7 @@ public class NotifyController {
 					returnReslt = tojson;
 				}			
 	  }catch(Exception e) {
-	   loger.debug("notifyMessage:"+e);	   
+		  e.printStackTrace();
 	  }
 	  return returnReslt;
 	 }
@@ -508,8 +508,8 @@ public class NotifyController {
 
 	@RequestMapping(value = "/addNotify", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody
-	ToJson addNotify(Notify notify, @RequestParam("sendTimes") String sendTimes,HttpServletRequest request) {
-		ToJson toJson = new ToJson();
+	ToJson<Notify> addNotify(Notify notify, @RequestParam("sendTimes") String sendTimes,HttpServletRequest request) {
+		ToJson<Notify> toJson = new ToJson<Notify>(0,"");
 		ContextHolder.setConsumerType("xoa"
 				+ (String) request.getSession().getAttribute("loginDateSouse"));
 		Users name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users());
@@ -551,10 +551,10 @@ public class NotifyController {
 		//loger.debug("transfersID"+notifyId);
 		try{
 			notifyService.delete(notifyId);
-			toJson.setMsg("delete success");
+			toJson.setMsg("ok");
 			return toJson;
 		}catch(Exception e){
-			toJson.setMsg("delete fail");
+			toJson.setMsg("err");
 			return toJson;
 		}
 	}

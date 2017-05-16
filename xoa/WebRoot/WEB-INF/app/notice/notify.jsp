@@ -165,7 +165,7 @@ textarea {
 			$
 					.ajax({
 						type : 'get',
-						url : 'notifyManage',
+						url : 'notifyList',
 						dataType : 'json',
 						data : data1,
 						success : function(rsp) {
