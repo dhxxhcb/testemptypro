@@ -6,7 +6,6 @@ import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
 import org.apache.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -39,19 +38,7 @@ public class FlowTypeController {
                 "loginDateSouse"));
         return flowTypeService.saveFlow(flowTypeModel);
     }
-    /**
-     * 
-     * 创建作者:  朱振宇
-     * 创建日期:  2017-5-16 上午11:27:16
-     * 方法介绍:  
-     * 参数说明:  @param model
-     * 参数说明:  @return
-     * @return    String
-     */
-    @RequestMapping("/flowtype/flowdesigner")
-    public String flowdesigner(Model model){
-        return "app/workflow/flowtype/flowdesigner";
-    }
+
 
     @RequestMapping("/flowNews")
     public String flow(HttpServletRequest request){
@@ -73,6 +60,15 @@ public class FlowTypeController {
 //                "loginDateSouse"));
         return flowTypeService.quertBySortId(flowId);
     }
+
+    @RequestMapping("/flowBySearch")
+    @ResponseBody
+    public ToJson<FlowTypeModel> flowBySearch(String searchValue,Integer flowId){
+//        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+//                "loginDateSouse"));
+        return flowTypeService.flowBySearch(searchValue,flowId);
+    }
+
 
     @RequestMapping("/type/index")
     public String flowTypeIndex(HttpServletRequest request){
