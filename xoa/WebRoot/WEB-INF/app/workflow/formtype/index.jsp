@@ -299,14 +299,7 @@
             }
 			$(".cont_rig").html(html);
         }
-		$('#head_rig').on('click',function(){
-			layer.open({
-				  type: 1, 
-				  content: '<div>11111111</div>', //这里content是一个普通的String
-				  area:['500px', '300px'],
-				  btn: ['按钮一', '按钮二']
-				});
-						})
+		
 })
 </script>
 
