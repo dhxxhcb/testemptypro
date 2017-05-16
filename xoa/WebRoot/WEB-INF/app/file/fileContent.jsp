@@ -25,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="css/cabinet.css">
 
 <script type="text/javascript" src="js/easyui/jquery.min.js"></script>
+<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 
 <style>
 input {border: none;outline: none;display: inline-block;background: #fff;}
@@ -120,7 +121,13 @@ $(function(){
     })
 
     $('.w').on('click','.editBtn',function(){
-        alert('123');
+        var TYPE=$('.w .trBtn').attr('TYPE');
+        var id=$('.w .trBtn').attr('sortId');
+        var idT=$('.w .trBtn').attr('contentId');
+        if (TYPE=='folder'){
+            $.popWindow('/file/contentAdd?sortId='+id+'&fileType='+TYPE,'编辑','0','0','1500px','800px');
+        }
+        //$.popWindow('writeEmail?sId=' + sId+'&type=1','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
     })
 
 
