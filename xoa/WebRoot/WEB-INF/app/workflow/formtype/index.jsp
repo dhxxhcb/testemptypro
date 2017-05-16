@@ -22,8 +22,8 @@
     <link rel="stylesheet" type="text/css" href="../../css/easyui/easyui.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/easyui/icon.css"/>
     <script type="text/javascript" src="../../js/jquery-1.9.1.js" ></script>
-    <script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js" ></script>
-    <script type="text/javascript" src="../../js/easyui/tree.js" ></script>
+    <script type="text/javascript" src="../../lib/easyui/themes/jquery.easyui.min.js" ></script>
+    <script type="text/javascript" src="../../lib/easyui/themes/tree.js" ></script>
     <script type="text/javascript" src="../js/index.js" ></script>
     <title>s首页</title>
 	 <style>
@@ -138,7 +138,7 @@
             <input class="inp" type="text" placeholder="输入表名称搜索">
             <div class="search"><h1>搜索</h1></div>
         </div>
-        <div class="head_rig"><h1>新建</h1></div>
+        <div class="head_rig" id="head_rig"><h1>新建</h1></div>
     </div>
 
     <div class="cont">
@@ -284,9 +284,7 @@
             }
 			$(".cont_rig").html(html);
         }
-
-
-        //function renderDatas() {
+			//function renderDatas() {
             //var html="11111";
            // var content = document.createTextNode("111111");
             //var p=document.createElement('p');
