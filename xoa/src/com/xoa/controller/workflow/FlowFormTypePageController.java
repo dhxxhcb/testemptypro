@@ -16,4 +16,5 @@ public class FlowFormTypePageController {
     public String showPage(Model model){
         return "app/workflow/formtype/index";
     }
+
 }

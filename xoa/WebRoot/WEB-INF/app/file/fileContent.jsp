@@ -49,47 +49,57 @@ input:hover {background: #eaf2ff;padding: 5px;}
 .boto a.FOUR{background: url("img/file/cabinet12.png") no-repeat;}
 .boto a.FIVE{background: url("img/file/cabinet11.png") no-repeat;}
 .TITLE{margin-left: 10px}
+.trBtn{background-color:#D3E7FA !important;}
 </style>
 <script type="text/javascript">
 $(function(){
+    /* $("#contentAdd").attr("href","${pageContext.request.contextPath }/file/contentAdd?sortId="+${sortId}); */
 	$.ajax({
 						type:'post',
 						url:'<%=basePath%>file/catalog',
 						dataType:'json',
 						data:{'sortId':${sortId},'sortType':${sortType},'postType':${postType}},
 						success:function(data){
-						    alert(data[1].contentId);
 						var files='';
 							for(var i=0;i<data.length;i++){
 							if(data[i].fileType=="folder"){
-							files+="  <tr class='contentTr' conId='"+data[i].contentId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/temp\">"+data[i].sortName+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
+							files+="  <tr class='contentTr' TYPE='"+data[i].fileType+"' conId='"+data[i].sortId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/temp\">"+data[i].sortName+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+''+ "  </td><td> "+data[i].sortNo+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
 							   }else{
-							   files+="  <tr class='contentTr' conId='"+data[i].contentId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
+							   files+="  <tr class='contentTr' TYPE='"+data[i].fileType+"' conId='"+data[i].contentId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td><a href='javascript:;'>编辑</a></td></tr>"
 							   }
 							}
 							$("#file_Tachr").html(files);
 						}
-				}); 
+				});
+    $('.w').on('click','.contentTr',function(){
+        $(this).addClass('trBtn').siblings().removeClass('trBtn');
+        $(this).find('input[type="checkbox"]').attr('checked',true);
+    })
+    
+    if ($('.w .contentTr').find('input[type="checkbox"]'))
+
+
+    $('.FOUR').click(function(){
+        var TYPE=$('.w .trBtn').attr('TYPE');
+        var id=$('.w .trBtn').attr('conId');
+       if (TYPE=='folder'){
+           $.ajax({
+
+           })
+       }
+        //alert(TYPE);
+    })
 });
 
 
 
-function openWindow(sHref,strWidth,strHeight) {
-  var strLeft=(screen.availWidth-strWidth)/2;
-  var strTop=(screen.availHeight-strHeight)/2;
-  var strRef="";
-  strRef=strRef+"width="+strWidth+"px,height="+strHeight+"px,";
-  strRef=strRef+"left="+strLeft+"px,top="+strTop+"px,";
-  strRef=strRef+"resizable=yes,scrollbars=yes,status=yes,toolbar=no,systemmenu=no,location=no,borderSize=thin";//channelmode,fullscreen
-  var openerobj= window.open(sHref,'newwin',strRef,false);
-  openerobj.focus();
-}
+
 	</script>
 </head>
 
 <body style="background-color: #EBEBEB">
 <div class="head w clearfix">
-    <div class="ss one"> <a href="${pageContext.request.contextPath }/file/contentAdd">新建文件</a></div>
+    <div class="ss one"> <a id="contentAdd" href="${pageContext.request.contextPath }/file/contentAdd?sortId=${sortId}">新建文件</a></div>
     <div class="ss two"> <a href="${pageContext.request.contextPath }/file/temp">批量上传</a></div>
     <div class="ss three"> <a  class="SEARCH" href="${pageContext.request.contextPath }/file/temp">查询</a></div>
     <div class="ss four"> <a href="${pageContext.request.contextPath }/file/temp">全局搜索</a></div>
@@ -149,11 +159,4 @@ function openWindow(sHref,strWidth,strHeight) {
 
 <!--bottom 部分结束-->
 </body>
-<script type="text/javascript">
-    $(function(){
-        $('.FOUR').click(function(){
-
-        })
-    })
-</script>
 </html>

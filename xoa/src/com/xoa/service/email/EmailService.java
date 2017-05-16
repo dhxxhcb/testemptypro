@@ -31,7 +31,7 @@ public interface EmailService {
 	 * @return     void
 	 */
 	@DynDatasource
-	public void sendEmail(EmailBodyModel emailBody, EmailModel email);
+	public boolean sendEmail(EmailBodyModel emailBody, EmailModel email);
 	
 	/**
 	 * 

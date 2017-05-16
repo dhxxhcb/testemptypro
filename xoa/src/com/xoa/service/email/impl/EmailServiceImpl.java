@@ -63,27 +63,34 @@ public class EmailServiceImpl implements EmailService {
 	 * @return     void
 	 */
 	@Override
-	public void sendEmail(EmailBodyModel emailBody, EmailModel email) {
-		emailBodyMapper.save(emailBody);
-		String toID = emailBody.getToId2().trim()
-				+ emailBody.getCopyToId().trim()
-				+ emailBody.getSecretToId().trim();
-		if (toID != null && toID != "") {
-			String[] toID2 = toID.split(",");
-			for (int i = 0; i < toID2.length; i++) {
-				email.setToId(toID2[i]);
-				email.setSign("0");
-				email.setReceipt("0");
-				email.setReadFlag("0");
-				email.setIsR("");
-				email.setIsF("");
-				email.setEmailId(email.getEmailId());
-				email.setDeleteFlag("0");
-				email.setBoxId(0);
-				email.setBodyId(emailBody.getBodyId());
-				emailMapper.save(email);
+	@Transactional
+	public boolean sendEmail(EmailBodyModel emailBody, EmailModel email) {
+		boolean flags = true;
+		try {
+			emailBodyMapper.save(emailBody);
+			String toID = emailBody.getToId2().trim()
+					+ emailBody.getCopyToId().trim()
+					+ emailBody.getSecretToId().trim();
+			if (toID != null && toID != "") {
+				String[] toID2 = toID.split(",");
+				for (int i = 0; i < toID2.length; i++) {
+					email.setToId(toID2[i]);
+					email.setSign("0");
+					email.setReceipt("0");
+					email.setReadFlag("0");
+					email.setIsR("");
+					email.setIsF("");
+					email.setEmailId(email.getEmailId());
+					email.setDeleteFlag("0");
+					email.setBoxId(0);
+					email.setBodyId(emailBody.getBodyId());
+					emailMapper.save(email);
+				}
 			}
+		}catch (Exception e){
+			flags = false;
 		}
+		return flags;
 	}
 
 	/**
