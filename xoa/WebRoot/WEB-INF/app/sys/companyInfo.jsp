@@ -11,9 +11,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../css/base.css" />
-	
 	<link rel="stylesheet" type="text/css" href="../css/common/addpage.css"/> 	
 	<link rel="stylesheet" href="../lib/pagination/style/pagination.css" />
+	<link rel="stylesheet" href="../css/sys/companyinfo.css" />
+	<script type="text/javascript" src="../js/sys/companyinfo.js"></script>
 	<title>首页</title>
 	</head>
 	<body>
@@ -23,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 <table class="newNews">
         <div class="nav_box clearfix">
             <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
-            <div class="nav_t2" class="news">新建新闻</div>
+            <div class="nav_t2" class="news">单位管理</div>
              <div class="nav_t3" > 
             	<select name="" class="sel format" id="query_format">
                     <option value="" selected="">全部</option>
@@ -165,5 +166,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tbody>        
     </table>
 </div>
-	</body>
+</body>
 </html>

@@ -15,4 +15,6 @@ public interface FileContentMapper {
 	int saveContent(FileContentModel fileContentModel);
 
 	int deleteByConId(Map<String, Object> fileConMap);
+
+	int updateFileCon(FileContentModel fcm);
 }

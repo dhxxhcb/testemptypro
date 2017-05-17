@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javax.annotation.Resource;
 import javax.swing.*;
 
+import com.xoa.model.email.EmailBoxModel;
 import com.xoa.model.unitmanagement.UnitManage;
 import com.xoa.model.users.Users;
 import com.xoa.service.unitmanagement.UnitManageService;
@@ -39,11 +40,11 @@ public class Ctest {
 	@Resource
 	private EmailService emailUtilService;
 
-    @Resource
-    private UsersService usersService;
-
-    @Resource
-	private UnitManageService unitManageService;
+//    @Resource
+//    private UsersService usersService;
+//
+//    @Resource
+//	private UnitManageService unitManageService;
 	
 //	@Test
 //	public void test() throws Exception {
@@ -80,12 +81,29 @@ public class Ctest {
 	
 	@Test
 	public void test() throws Exception {
-		ContextHolder.setConsumerType("xoa1001");
-		UnitManage um = unitManageService.showUnitManage();
-//		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("showNews", JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
-		System.out.println(JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
+//		System.out.println(DateFormat.getStrTime(1494929129));
+//		EmailBoxModel emailBoxModel = new EmailBoxModel();
+//		emailBoxModel.setBoxName("测试盒子");
+//		emailBoxModel.setUserId("admin");
+//		emailBoxModel.setBoxNo(1);
+//		Map<String,Object> maps = new HashMap<String,Object>();
+//		maps.put("userId","admin");
+//		EmailModel emailModel = new EmailModel();
+//		emailModel.setBoxId(1);
+//		emailModel.setEmailId(1110);
+//		emailModel.setToId("admin");
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("fromId","admin");
+		maps.put("boxId","1");
+		ToJson<EmailBodyModel> toJson =emailUtilService.selectBoxEmail( maps,1, 5, true,"xoa1001");
+		System.out.println(toJson.getMsg());
+
+//		ContextHolder.setConsumerType("xoa1001");
+//		UnitManage um = unitManageService.showUnitManage();
+////		loger.info("结果信息：" + JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
+//		Map<String, String> map = new HashMap<String, String>();
+//		map.put("showNews", JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
+//		System.out.println(JSON.toJSONStringWithDateFormat(um, "yyyy-MM-dd HH:mm:ss"));
 //		return ;
 
 

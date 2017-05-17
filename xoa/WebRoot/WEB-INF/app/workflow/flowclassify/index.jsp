@@ -27,10 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    margin-left: 1%;
     			margin-top: 1%;
 		}
-		.head .headli1_1 {
-			  width:99px !important;
 
-		}
 		.sort_liucheng,.new_liucheng{
 		    width: 100px;
 		    height: 25px;
@@ -90,10 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			text-align:center;
 			line-height:26px;
 		}
-		.headli1_2{
-			    margin-left: -92px !important;
-    			margin-top: 5px !important;
-		}
+
 		.conter{
 			width:500px;
 			height:800px;
@@ -182,10 +176,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
-           <li data_id="0" id="biaodan" class="change"><h1>表单分类</h1></li>
-             </span><img class="headli1_2" src="../../img/02.png" alt=""/>
-            <li data_id="" id="liucheng"><h1 class="headli2_1">流程分类</h1></li>
-                    
+        
+            <li data_id="0"><span class="one headli1_1">表单分类</span><img class="headli1_2" src="../../img/02.png" alt=""/>
+            </li>
+            <li data_id="0"><span class="headli1_1">流程分类</span>
+            </li>       
            
            
         </ul>
@@ -195,10 +190,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <!--content部分开始-->
         <div>
             <div class="wrap">
-            	<div class="table_head">
-            		<div class="sort_liucheng"><h1>表单分类列表</h1></div>
-            		<div class="new_liucheng"><h1>新建表单分类</h1></div>
-            	</div>
+            <div class="navigation  clearfix">
+            <div class="left">
+                <img src="../img/la1.png"> 
+                <div class="news">公告通知</div>                
+                <!-- 查询按钮 -->
+                
+            </div>
+            
+            <div class="right">
+               <div id="cx" class="btn_new">查询</div>
+            </div>
+
+        </div>
+            	
             	<div class="tab_t">
             		<div class="tab_tone">
             			<table id="tr_td">
@@ -286,8 +291,8 @@ $(function () {
 			//tab切换
 
 			$('.clearfix').on('click','li',function(){
-				$(".clearfix li").removeClass("change");
-				$(this).addClass('change');
+				$(".clearfix li").find("span").removeClass("one");
+				$(this).find('span').addClass('one');
 				 if($(this).attr('id')=='biaodan'){
 				
 					$('.tab_tone').css("display","block");
@@ -813,13 +818,6 @@ $(function () {
 					}
 
                 form_delete();
-
-                /*    url='flowDelete';
-                    data={
-                        flowId:tid
-                    }*/
-
-
 			})
 		/*	流程删除*/
 
@@ -850,7 +848,4 @@ $(function () {
 
 </script>
 </body>
-
-
-
 </html>

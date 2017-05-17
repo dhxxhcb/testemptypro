@@ -20,8 +20,9 @@ public interface FlowProcessService {
 	@DynDatasource
 	public List<FlowProcess> findFlowId(int flowId);
 	@DynDatasource
-	public void delete(int id);
-	
+	public void delete(int id);	
+	@DynDatasource
+	public FlowProcess flowView(int flowId);
 	
 	
 }

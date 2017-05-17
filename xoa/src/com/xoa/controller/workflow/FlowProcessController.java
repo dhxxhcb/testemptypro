@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.service.workflow.flowtype.FlowProcessService;
 import com.xoa.util.ToJson;
@@ -153,11 +154,8 @@ public class FlowProcessController {
 					"loginDateSouse"));
 			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
 			try {
-				List<FlowProcess> list=flowProcessService.findFlowId(flowId);
-				
-				
-				
-		        json.setObj(list);
+				FlowProcess f=flowProcessService.flowView(flowId);
+				json.setObject(f);
 		        json.setMsg("OK");
 		        json.setFlag(0);
 			} catch (Exception e) {

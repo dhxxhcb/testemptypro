@@ -11,7 +11,7 @@
 
   <!-- 新建其他邮件组名 -->
   <insert id="save" parameterType="com.xoa.model.email.EmailBoxModel" useGeneratedKeys="true" keyProperty="boxId">
-    insert into emailbox (
+    insert into email_box (
     BOX_ID,BOX_NO,BOX_NAME,USER_ID,DEFAULT_COUNT
     )values(
     #{boxId},#{boxNo},#{boxName},#{userId},#{defaultCount}
@@ -21,11 +21,11 @@
   <!-- 查询所有邮件组名 -->
   <select id="selectObjcet" resultMap="BaseResultMap"  parameterType="Map">
     SELECT  BOX_ID,BOX_NO,BOX_NAME,USER_ID,DEFAULT_COUNT
-    FROM  email_box
+    FROM  email_box WHERE USER_ID = #{userId}
   </select>
 
   <!-- 删除其他邮件组 -->
   <delete id="delete" parameterType="Map" >
-    DELETE FROM emailbox  WHERE BOX_ID=#{boxId}
+    DELETE FROM email_box  WHERE BOX_ID=#{boxId}
   </delete>
 </mapper>

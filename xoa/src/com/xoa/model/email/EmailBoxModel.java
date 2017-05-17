@@ -46,7 +46,7 @@ public class EmailBoxModel implements Serializable{
      * @return
      */
     public Integer getBoxId() {
-        return boxId;
+        return boxId == null ? 0:boxId;
     }
 
     /**
@@ -90,7 +90,7 @@ public class EmailBoxModel implements Serializable{
      * @return     
      */
     public String getBoxName() {
-        return boxName;
+        return boxName == null ? "" : boxName.trim();
     }
 
     /**
@@ -101,7 +101,7 @@ public class EmailBoxModel implements Serializable{
      * @return
      */
     public void setBoxName(String boxName) {
-        this.boxName = boxName == null ? null : boxName.trim();
+        this.boxName = boxName ;
     }
 
     /**
@@ -112,7 +112,7 @@ public class EmailBoxModel implements Serializable{
      * @return
      */
     public String getUserId() {
-        return userId;
+        return userId == null ? "" : userId.trim();
     }
 
     /**
@@ -123,7 +123,7 @@ public class EmailBoxModel implements Serializable{
      * @return
      */
     public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+        this.userId = userId ;
     }
 
     /**
@@ -134,7 +134,7 @@ public class EmailBoxModel implements Serializable{
      * @return
      */
     public String getDefaultCount() {
-        return defaultCount;
+        return defaultCount  == null ? "" : defaultCount.trim();
     }
 
     /**
@@ -145,6 +145,6 @@ public class EmailBoxModel implements Serializable{
      * @return
      */
     public void setDefaultCount(String defaultCount) {
-        this.defaultCount = defaultCount == null ? "" : defaultCount.trim();
+        this.defaultCount = defaultCount;
     }
 }

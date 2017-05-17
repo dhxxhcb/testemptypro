@@ -28,5 +28,9 @@ public class OrgManageServiceImpl implements OrgManageService {
 		 
 		return toJson;
 	}
+	
+	public void editOrgManage(OrgManage orgManage){
+		orgManageMapper.editOrgManage(orgManage);
+	}
 
 }

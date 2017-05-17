@@ -62,4 +62,6 @@ public interface FileContentService {
 	 */
 	@DynDatasource
 	int deleteByConId(Map<String, Object> fileConMap);
+	@DynDatasource
+	int updateFileCon(FileContentModel fcm);
 }

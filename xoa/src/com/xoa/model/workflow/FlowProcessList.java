@@ -2,7 +2,7 @@ package com.xoa.model.workflow;
 
 import java.util.List;
 
-public class FlowProcess {
+public class FlowProcessList {
     private Integer id;
 
     private Integer flowId;
@@ -139,27 +139,7 @@ public class FlowProcess {
 
     private List connections;
     
-    private List<FlowProcessList> designdata;
-
-    private List ends;
-    
-    public List getEnds() {
-		return ends;
-	}
-
-	public void setEnds(List ends) {
-		this.ends = ends;
-	}
-
-	public List<FlowProcessList> getDesigndata() {
-		return designdata;
-	}
-
-	public void setDesigndata(List<FlowProcessList> designdata) {
-		this.designdata = designdata;
-	}
-
-	public List getConnections() {
+    public List getConnections() {
 		return connections;
 	}
 

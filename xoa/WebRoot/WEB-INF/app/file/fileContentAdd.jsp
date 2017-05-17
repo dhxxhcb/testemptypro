@@ -68,7 +68,7 @@
                 <td><fmt:message code="email.th.filechose" />：</td>
             <td class="files">
 
-                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=email" enctype="multipart/form-data" method="post" >
+                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=file" enctype="multipart/form-data" method="post" >
                     <input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
                     <a href="javascript:;" id="uploadimg">上传</a>
                 </form>
@@ -93,7 +93,7 @@
 
     <script type="text/javascript">
             var ue = UE.getEditor('container');
-
+            $(function(){
                 //附件上传方法
                 $('#uploadimg').on('click', function(ele) {
                     user_id='senduser';
@@ -131,53 +131,119 @@
                     }
                 });
 
-                //点击保存
-                $("#btn1").on("click",function(){
-                    var subject=$('#txt1').val();
-                    var contentNo=$('#txt2').val();
-                    var html = ue.getContent();
-                    var attach=$('.Attachment td').eq(1).find('a');
-                    var attachmentDesc=$('#txt3').val();
-                    var aId='';
-                    var uId='';
-                    for(var i=0;i<$('.Attachment td .inHidden').length;i++){
-                        aId += $('.Attachment td .inHidden').eq(i).val();
-                    }
-                    for(var i=0;i<$('.Attachment td .inHidden').length;i++){
-                        uId += attach.eq(i).attr('NAME');
-                    }
-                    var sortId=${sortId};
+                var sortId=$.getQueryString('sortId')
 
-                    var data={
-                       'subject':subject,
-                        'contentNo':contentNo,
-                        'content':html,
-                        'attachmentId':aId,
-                        'attachmentName':uId,
-                        'attachmentDesc':attachmentDesc,
-                        'sortId':sortId
-                    };
+                if ($.getQueryString('contentId')){
+                    var conId=$.getQueryString('contentId');
+                    ue.ready(function(){
 
-                    $.ajax({
-                        type:'post',
-                        url:'${pageContext.request.contextPath}/file/saveContent',
-                        dataType:'json',
-                        data:data,
-                        success:function(data1){
-                            var flag=data1.flag;
-                            if (flag==true){
-                                alert('新建成功');
-                                parent.opener.location.reload()
-                            }else{
-                                alert('新建失败');
+                        $.ajax({
+                            type:'post',
+                            url:'${pageContext.request.contextPath}/file/getContentById',
+                            dataType:'json',
+                            data:{'contentId':conId},
+                            success:function(rsp){
+                                $('#txt1').val('');
+                                $('#txt2').val('');
+                                ue.setContent('');
+                                $('#files_txt').val('');
+                                $('#txt3').val('');
+
+                                $('#txt1').val(rsp.subject);
+                                $('#txt2').val(rsp.contentNo);
+                                ue.setContent(rsp.content);
+                                $('#files_txt').val(rsp.attachmentName);
+                                $('#txt3').val(rsp.attachmentDesc);
+
                             }
+                        })
+                     })
 
-                            //window.close()
-                            //parent.opener.location.reload()
+                    $("#btn1").on("click",function(){
+                        var subject=$('#txt1').val();
+                        var contentNo=$('#txt2').val();
+                        var html = ue.getContent();
+                        var attach=$('.Attachment td').eq(1).find('a');
+                        var attachmentDesc=$('#txt3').val();
+                        var aId='';
+                        var uId='';
+                        for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+                            aId += $('.Attachment td .inHidden').eq(i).val();
                         }
-                    });
-                })
+                        for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+                            uId += attach.eq(i).attr('NAME');
+                        }
+                        var data={
+                            'contentId':conId,
+                            'subject':subject,
+                            'contentNo':contentNo,
+                            'content':html,
+                            'attachmentId':aId,
+                            'attachmentName':uId,
+                            'attachmentDesc':attachmentDesc
+                        };
 
+                        $.ajax({
+                            type:'post',
+                            url:'${pageContext.request.contextPath}/file/updateContent',
+                            dataType:'json',
+                            data:data,
+                            success:function(data1){
+                                var flag=data1.flag;
+                                if (flag==true){
+                                    alert('修改成功');
+                                    parent.opener.location.reload()
+                                }else{
+                                    alert('修改失败');
+                                }
+
+                            }
+                        });
+                    })
+                }else{
+                    //点击保存
+                    $("#btn1").on("click",function(){
+                        var subject=$('#txt1').val();
+                        var contentNo=$('#txt2').val();
+                        var html = ue.getContent();
+                        var attach=$('.Attachment td').eq(1).find('a');
+                        var attachmentDesc=$('#txt3').val();
+                        var aId='';
+                        var uId='';
+                        for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+                            aId += $('.Attachment td .inHidden').eq(i).val();
+                        }
+                        for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+                            uId += attach.eq(i).attr('NAME');
+                        }
+                        var data={
+                            'sortId':sortId,
+                            'subject':subject,
+                            'contentNo':contentNo,
+                            'content':html,
+                            'attachmentId':aId,
+                            'attachmentName':uId,
+                            'attachmentDesc':attachmentDesc
+                        };
+
+                        $.ajax({
+                            type:'post',
+                            url:'${pageContext.request.contextPath}/file/saveContent',
+                            dataType:'json',
+                            data:data,
+                            success:function(data1){
+                                var flag=data1.flag;
+                                if (flag==true){
+                                    alert('新建成功');
+                                    parent.opener.location.reload()
+                                }else{
+                                    alert('新建失败');
+                                }
+
+                            }
+                        });
+                    })
+                }
                 //返回
                 $("#btn2").on("click",function(){
                     $('#txt1').val('');
@@ -186,6 +252,7 @@
                     $('#txt3').val('');
 
                  })
+            })
 
 
 

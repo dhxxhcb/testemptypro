@@ -53,4 +53,10 @@ public class FileContentServiceImpl implements FileContentService{
 		
 		return file_ContentMapper.deleteByConId(fileConMap);
 	}
+
+
+	@Override
+	public int updateFileCon(FileContentModel fcm) {
+		return file_ContentMapper.updateFileCon(fcm);
+	}
 }
