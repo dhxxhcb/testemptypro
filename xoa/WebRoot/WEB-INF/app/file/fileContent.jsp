@@ -64,27 +64,47 @@ $(function(){
 						var files='';
 							for(var i=0;i<data.length;i++){
 							    if(data[i].fileType=="file"){
-							        files+="  <tr class='contentTr' sortId='"+data[i].sortId+"' TYPE='"+data[i].fileType+"' contentId='"+data[i].contentId+"'><td><input type=\"checkbox\" name=\"\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td><a href='javascript:;' class='editBtn'>编辑</a></td></tr>"
+							        files+="  <tr class='contentTr' sortId='"+data[i].sortId+"' TYPE='"+data[i].fileType+"' contentId='"+data[i].contentId+"'><td><input type=\"checkbox\" name=\"check\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td><a href='javascript:;' class='editBtn'>编辑</a></td></tr>"
 							    }
 							}
 							$("#file_Tachr").html(files);
 						}
 				});
-    $('.w').on('click','.contentTr',function(){
+   $('.w').on('click','.contentTr',function(){
         $(this).addClass('trBtn').siblings().removeClass('trBtn');
        // if ($('.w .contentTr').attr('class')=='contentTr trBtn'){
-            $(this).find('input[type="checkbox"]').attr('checked',true);
-            $(this).siblings().find('input[type="checkbox"]').removeAttr('checked');
+            //$(this).find('input[type="checkbox"]').attr('checked',true);
+           // $(this).siblings().find('input[type="checkbox"]').removeAttr('checked');
            // $(this).siblings().find('input[type="checkbox"]').attr('checked',false);
        // }else{
           //  $('.w .contentTr').find('input[type="checkbox"]').attr('checked',false);
        // }
-
-
     })
-    
-    //if ($('.w .contentTr').find('input[type="checkbox"]'))
+    /*$('.w').on('click','.contentTr',function(){
+        $(this).find('input[type="checkbox"]').attr("checked",true);
+        if ($(this).find('input[type="checkbox"]').attr('checked')==true){
+            $(this).find('input[type="checkbox"]').removeAttr("checked");
+        }else{
+            $(this).find('input[type="checkbox"]').attr("checked");
+        }
+    })*/
 
+   /* $('.w').on('click','input[type="checkbox"]',function(){
+        if ($('.w').find('input[type="checkbox"]').prop('checked')){
+            $('.w').find('.contentTr').addClass('trBtn');
+        }else{
+            $('.w').find('.contentTr').removeClass('trBtn');
+        }
+    })*/
+
+    //if ($('.w .contentTr').find('input[type="checkbox"]'))
+    /*$('#checkedAll').click(function(){
+        if($("#checkedAll").attr("checked") == "checked"){
+            $("input[name='check']").attr("checked","checked");
+        }else{
+            $("input[name='check']").removeAttr("checked","checked");
+        }
+    })*/
 
     $('.FOUR').click(function(){
         var TYPE=$('.w .trBtn').attr('TYPE');
@@ -163,7 +183,7 @@ $(function(){
 	<!--bottom 部分开始-->
 <div class="bottom w">
     <div>
-        <input type="checkbox" name="" value="" >
+        <input id="checkedAll" type="checkbox" name="" value="" >
         <fmt:message code="notice.th.allchose"/>
 
     </div>
