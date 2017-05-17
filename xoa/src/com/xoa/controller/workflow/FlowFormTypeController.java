@@ -112,5 +112,18 @@ public class FlowFormTypeController {
 		return flowFormService.updateForm(formId,formName,deptId,formSort,otherinfo);
 	}
 
+	/**
+	 * Created by:   pfl
+	 * date:   2017/5/17 15:58
+	 * description:   更新表单（根据表单id）
+	 * @param formId  表单Id
+	 * @return
+	 */
+	@RequestMapping("/deleteForm")
+	@ResponseBody
+	public BaseWrapper deleteForm(Integer formId){
+		return flowFormService.deleteForm(formId);
+	}
+
 
 }

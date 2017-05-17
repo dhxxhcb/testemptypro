@@ -27,4 +27,8 @@ public interface FlowFormTypeMapper extends BaseMapper<FlowFormType> {
 
 	 int updateSelectParam(FlowFormType flowFormType);
 
+	 int checkFormUserNumber(@Param("formId")Integer formId);
+
+	 int deleteForm(@Param("formId")Integer formId);
+
 }
