@@ -1,12 +1,12 @@
-package com.xoa.service.daiban.impl;
+package com.xoa.service.todoList.impl;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,15 +15,15 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.email.EmailBodyMapper;
-import com.xoa.dao.email.EmailBoxMapper;
 import com.xoa.dao.notify.NotifyMapper;
 import com.xoa.model.daiban.Daiban;
+import com.xoa.model.daiban.TodoList;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.notify.Notify;
-import com.xoa.service.daiban.DaibanService;
+import com.xoa.service.todoList.TodolistService;
 
 @Service
-public class DaibanServiceImpl implements DaibanService{
+public class TodolistImpl implements TodolistService{
 
 	@Resource
 	private EmailBodyMapper email;
@@ -32,18 +32,45 @@ public class DaibanServiceImpl implements DaibanService{
 	private NotifyMapper notify;
 	
 	@Override
-	public Daiban list(Map<String, Object> maps){		
-		Daiban d=new Daiban();
-		d.setEmainContent("邮件");
-		d.setNotifyContent("公告");
+	public Daiban list(Map<String, Object> maps){
+		List<TodoList> list =new ArrayList<TodoList>();
+		List<TodoList> list1 =new ArrayList<TodoList>();
+		Daiban db=new Daiban();
+		//Daiban d=new Daiban();
 		InetAddress address = this.getCurrentIp();
-		d.setEmailUrl(address.toString()+"/img/workflow/daibanliucheng.png");
-		d.setNotifyUrl(address.toString()+"/img/workflow/youjian.png");
-		List<EmailBodyModel> le=email.selectIsRead(maps);	
+		List<EmailBodyModel> le=email.selectIsRead(maps);
+		SimpleDateFormat f =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		for(EmailBodyModel em:le){
+			TodoList td=new TodoList();
+			td.setAvater(0);
+			td.setContent(em.getContent());
+			td.setFromName(em.getSubject());
+			td.setImg(address.toString()+"/img/workflow/youjian.png");
+			td.setQid(em.getBodyId());
+			td.setReadflag(em.getSendFlag());
+			td.setType("email");
+			Long e=(long) (em.getSendTime()*1000L);
+			String s=f.format(e);
+			td.setTime(s);
+			list.add(td);
+		}
 		List<Notify> ln = notify.unreadNotify(maps);
-		d.setEmail(le);
-		d.setNotify(ln);
-		return d;
+		for(Notify no:ln){
+			TodoList td=new TodoList();
+			td.setAvater(0);
+			td.setContent(no.getContent());
+			td.setFromName(no.getName());
+			td.setImg(address.toString()+"/img/workflow/daibanliucheng.png");
+			td.setQid(no.getNotifyId());
+			td.setReadflag(no.getPublish());
+			td.setType("notify");		
+			String s=f.format(no.getSendTime());
+			td.setTime(s);
+			list1.add(td);
+		}
+		db.setEmail(list);
+		db.setNotify(list1);	
+		return db;
 	}
 	
 	public static InetAddress getCurrentIp() {
