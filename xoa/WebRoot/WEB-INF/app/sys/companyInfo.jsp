@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 <table class="newNews">
         <div class="nav_box clearfix">
             <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
-            <div class="nav_t2" class="news">新建新闻</div>
+            <div class="nav_t2" class="news">单位管理</div>
              <div class="nav_t3" > 
             	<select name="" class="sel format" id="query_format">
                     <option value="" selected="">全部</option>
@@ -165,5 +165,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tbody>        
     </table>
 </div>
-	</body>
+</body>
 </html>

@@ -249,7 +249,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"system_workflow_flow_guide":"flow/type/index",
 				"system_workflow_flow_form":"workflow/formtype/index",
 				"file_folder_index2.php":"file/persionBox",
-				"system_workflow_flow_sort":"workflow/flowclassify/index"
+				"system_workflow_flow_sort":"workflow/flowclassify/index",
+				"system_unit":"sys/companyInfo"
 			}
 			
 			$('.cont_nav').on('click','li',function(){
