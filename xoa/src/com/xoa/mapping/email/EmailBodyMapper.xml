@@ -326,7 +326,6 @@
 		e.TO_ID=#{fromId}
 		AND e.BOX_ID='0' 
 		AND e.READ_FLAG='0'
-		AND e.BOX_ID='0'
 		GROUP BY eb.BODY_ID ORDER BY
 		eb.BODY_ID DESC
 	</select>

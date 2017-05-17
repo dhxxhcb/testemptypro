@@ -6,6 +6,7 @@ import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
 import org.apache.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -55,27 +56,33 @@ public class FlowTypeController {
 
     @RequestMapping("/flowlistbysort")
     @ResponseBody
-    public ToJson<FlowTypeModel> flowListBySort(Integer flowId){
-//        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-//                "loginDateSouse"));
+    public ToJson<FlowTypeModel> flowListBySort(Integer flowId,HttpServletRequest request){
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         return flowTypeService.quertBySortId(flowId);
     }
 
     @RequestMapping("/flowBySearch")
     @ResponseBody
-    public ToJson<FlowTypeModel> flowBySearch(String searchValue,Integer flowId){
-//        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-//                "loginDateSouse"));
+    public ToJson<FlowTypeModel> flowBySearch(String searchValue,Integer flowId,HttpServletRequest request){
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         return flowTypeService.flowBySearch(searchValue,flowId);
     }
 
 
     @RequestMapping("/type/index")
     public String flowTypeIndex(HttpServletRequest request){
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         return "app/workflow/flowtype/index";
     }
     @RequestMapping("/type/flowdesigner")
-    public String flowdesigner(HttpServletRequest request){
+    public String flowdesigner(HttpServletRequest request, Model model, Integer formId){
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        System.out.println("获取ID："+formId);
+        model.addAttribute("formId",formId);
         return "app/workflow/flowtype/flowdesigner";
     }
 }
