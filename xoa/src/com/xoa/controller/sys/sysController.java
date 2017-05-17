@@ -26,7 +26,7 @@ import com.xoa.util.dataSource.ContextHolder;
  */
 @Controller
 @Scope(value = "prototype")
-@RequestMapping("/sys")
+
 public class sysController {
 	private Logger loger = Logger.getLogger(sysController.class);
 

@@ -11,9 +11,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../css/base.css" />
-	
 	<link rel="stylesheet" type="text/css" href="../css/common/addpage.css"/> 	
 	<link rel="stylesheet" href="../lib/pagination/style/pagination.css" />
+	<link rel="stylesheet" href="../css/sys/companyinfo.css" />
+	<script type="text/javascript" src="../js/sys/companyinfo.js"></script>
 	<title>首页</title>
 	</head>
 	<body>
