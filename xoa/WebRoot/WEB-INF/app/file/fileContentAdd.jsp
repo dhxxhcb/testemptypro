@@ -133,8 +133,6 @@
 
                 var sortId=$.getQueryString('sortId')
                 var txt="${text}";
-                alert(txt);
-
                 if ($.getQueryString('contentId')){
                     var conId=$.getQueryString('contentId');
                     ue.ready(function(){
@@ -239,6 +237,7 @@
                                 var flag=data1.flag;
                                 if (flag==true){
                                     alert('新建成功');
+                                    window.location.href="http://localhost:8080/file/content?sortType=5&postType=1&sortId="+sortId+"&text="+txt;
 
                                     //parent.opener.location.reload()
                                 }else{
