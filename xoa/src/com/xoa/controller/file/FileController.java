@@ -297,10 +297,11 @@ public class FileController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/contentAdd")
-	public ModelAndView fileHomeOne(HttpServletRequest request,String sortId) {
+	public ModelAndView fileHomeOne(HttpServletRequest request,String sortId,String text) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute("loginDateSouse"));
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("sortId", sortId);
+		model.put("model",text);
 		ModelAndView modelAndView = new ModelAndView("app/file/fileContentAdd", model);
 		return modelAndView;
 	}
