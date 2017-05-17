@@ -107,7 +107,6 @@ public class EnclosureServiceImpl implements EnclosureService {
 	            
 	            File f=new File(path+newFileName); 
 	            f.renameTo(new File(newFileName)); 
-	            
 	            byte isImg=3;
 	            //获取后缀名
 	            String type=fileName.substring(fileName.indexOf(".") + 1);

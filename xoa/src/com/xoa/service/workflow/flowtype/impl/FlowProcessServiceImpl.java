@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.xoa.dao.workflow.FlowProcessMapper;
 import com.xoa.model.workflow.FlowProcess;
+import com.xoa.model.workflow.FlowProcessList;
 import com.xoa.service.workflow.flowtype.FlowProcessService;
+import com.xoa.util.ToJson;
 
 @Service
 public class FlowProcessServiceImpl implements FlowProcessService {
@@ -44,60 +46,50 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		flowProcessMapper.deleteByPrimaryKey(id);
 	}
 	
-	public JSONObject flowView(int flowId) {
-		JSONObject all=new JSONObject();
-		JSONObject fp=new JSONObject();
-		JSONObject connections=new JSONObject();
-		
+	public FlowProcess flowView(int flowId) {
+		FlowProcess f=new FlowProcess();
 		List l=new ArrayList();
-		  
-		List<FlowProcess> list=flowProcessMapper.findFlowId(flowId);
+		List e=new ArrayList();
+		List<FlowProcess> list=flowProcessMapper.findF(flowId);
 		for (FlowProcess flowProcess : list){
-			int prcsId=flowProcess.getPrcsId();
+			int prId=flowProcess.getPrcsId();
 			String prceTo=flowProcess.getPrcsTo();
 			String [] p=prceTo.split(",");
+			
 			for(String a:p){
-				l.add(prcsId+"=>"+a);
+				if(prceTo==""){
+					e.add(prId);
+				}
+				l.add(prId+"=>"+a);
 			}
-			connections.put("connections",l.toString());
 		}
-		
+		f.setEnds(e);
+		f.setConnections(l);
 	
-		int lastPrcsId=0;
-		int lastId=0;
-		for (FlowProcess flowProcess : list) {
-			int prcsId=flowProcess.getPrcsId();
-			if(prcsId>lastPrcsId){
-				lastId=prcsId;
-				lastPrcsId=prcsId;
-			}
-			JSONObject js=new JSONObject();
-			int prcaId=flowProcess.getPrcsId();
-			String prcsName=flowProcess.getPrcsName();
-			String prcsIn=flowProcess.getPrcsIn();
-			String prcsOut=flowProcess.getPrcsOut();
+		List<FlowProcessList> l1=new ArrayList<FlowProcessList>();
+		for (FlowProcess flowProcess : list) {			
+			FlowProcessList fl=new FlowProcessList();
+			int prId=flowProcess.getPrcsId();
+			String prcsName=flowProcess.getPrcsName()==null?"":flowProcess.getPrcsName();
+			String prcsIn=flowProcess.getPrcsIn()==null? "":flowProcess.getPrcsIn().trim();
+			String prcsOut=flowProcess.getPrcsOut()==null?"":flowProcess.getPrcsOut();
 			Byte prcsType=flowProcess.getPrcsType();
-			int chidFlow=flowProcess.getChildFlow();
-			String syncDeal=flowProcess.getSyncDeal();
+			//int chidFlow=flowProcess.getChildFlow();
+			String syncDeal=flowProcess.getSyncDeal()==null?"":flowProcess.getSyncDeal();
 			int setLeft=flowProcess.getSetLeft();
 			int top=flowProcess.getSetTop();
-			js.put("prca_Id", prcaId);
-			js.put("prcsName", prcsName);
-			js.put("prcsIn", prcsIn);
-			js.put("prcsout", prcsOut);
-			js.put("prcsType", prcsType);
-			js.put("childFlow", chidFlow);
-			js.put("syncDeal", syncDeal);
-			js.put("setLeft", setLeft);
-			js.put("top", top);
-			int i=0;
-			fp.put(""+i++, js.toJSONString());
-			
+			fl.setPrcsId(prId);
+			fl.setPrcsName(prcsName);
+			fl.setPrcsIn(prcsIn);
+			fl.setPrcsOut(prcsOut);
+			fl.setPrcsType(prcsType);
+			fl.setSyncDeal(syncDeal);
+			fl.setSetLeft(setLeft);
+			fl.setSetTop(top);
+			l1.add(fl);
 		}
-		all.put("connections", connections);
-		all.put("fp", fp);
-	
-		return all;
+		f.setDesigndata(l1);
+		return f;
 	}
 
 }

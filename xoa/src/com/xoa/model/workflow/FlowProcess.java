@@ -1,5 +1,7 @@
 package com.xoa.model.workflow;
 
+import java.util.List;
+
 public class FlowProcess {
     private Integer id;
 
@@ -135,7 +137,37 @@ public class FlowProcess {
 
     private String imguploadPriv;
 
-    public String getPrcsUser() {
+    private List connections;
+    
+    private List<FlowProcessList> designdata;
+
+    private List ends;
+    
+    public List getEnds() {
+		return ends;
+	}
+
+	public void setEnds(List ends) {
+		this.ends = ends;
+	}
+
+	public List<FlowProcessList> getDesigndata() {
+		return designdata;
+	}
+
+	public void setDesigndata(List<FlowProcessList> designdata) {
+		this.designdata = designdata;
+	}
+
+	public List getConnections() {
+		return connections;
+	}
+
+	public void setConnections(List connections) {
+		this.connections = connections;
+	}
+
+	public String getPrcsUser() {
         return prcsUser;
     }
 
