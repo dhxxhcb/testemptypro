@@ -2,6 +2,7 @@ package com.xoa.controller.email;
 
 import com.alibaba.fastjson.JSON;
 import com.xoa.model.email.EmailBodyModel;
+import com.xoa.model.email.EmailBoxModel;
 import com.xoa.model.email.EmailModel;
 import com.xoa.model.users.Users;
 import com.xoa.service.email.EmailService;
@@ -25,6 +26,8 @@ import org.springframework.web.portlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.net.URL;
+import java.net.URLDecoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -221,6 +224,7 @@ public class EmailController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		try {
+//			URLDecoder.decode()
 			emailService.saveEmail(
 					this.returnObj(fromId, toId2, copyToId, subject, content, attachmentName, attachmentId, new Date(), "0", secretToId, smsRemind, important, size, fromWebmailId, fromWebmail, toWebmail, compressContent, webmailContent, webmailFlag, recvFromName, recvFrom, recvToId, recvTo, isWebmail, isWf, keyword, secretLevel, auditMan, auditRemark, copyToWebmail, secretToWebmail, praise)
 			);
@@ -663,6 +667,69 @@ public class EmailController {
 					"errorSaveMessage");
 		}
 	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/17 12:31
+	 * 方法介绍:   新建其他邮件文件夹
+	 * 参数说明:
+	 * @return
+	 */
+	@RequestMapping(value = "/saveEmailBox",method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	public  @ResponseBody ToJson<EmailBoxModel> saveEmailBox(HttpServletRequest request,EmailBoxModel emailBoxModel){
+		String sqlType = "xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
+		return emailService.saveEmailBox(emailBoxModel);
+	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/17 12:35
+	 * 方法介绍:   把收件箱邮件转移到其他邮件文件夹中
+	 * 参数说明:
+	 * @return
+	 */
+	@RequestMapping(value = "/updateEmailBox",method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	public @ResponseBody ToJson<EmailModel> updateEmailBox(HttpServletRequest request,EmailModel emailModel){
+		String sqlType = "xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
+		return emailService.updateEmailBox(emailModel);
+	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/17 12:36
+	 * 方法介绍:   查询所有其他邮件文件夹
+	 * 参数说明:
+	 * @return
+	 */
+	@RequestMapping(value = "/showEmailBox", produces = { "application/json;charset=UTF-8" })
+	public  @ResponseBody ToJson<EmailBoxModel> showEmailBox(HttpServletRequest request,
+			 @RequestParam(value = "page") Integer page,@RequestParam(value = "pageSize") Integer pageSize,
+			 @RequestParam(value = "useFlag") boolean useFlag,
+			 @RequestParam(value = "userId") String userId){
+		String sqlType = "xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("userId",userId);
+		return emailService.showEmailBox(maps,page,pageSize,useFlag);
+	}
+
+	public @ResponseBody ToJson<EmailBodyModel> selectBoxEmail(HttpServletRequest request,
+			@RequestParam(value = "page") Integer page,@RequestParam(value = "pageSize") Integer pageSize,
+			@RequestParam(value = "useFlag") boolean useFlag,
+			 @RequestParam(value = "toId") String toId,@RequestParam(value = "boxId") Integer boxId){
+		String sqlType = "xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("fromId",toId);
+		maps.put("boxId",boxId);
+		return emailService.selectBoxEmail(maps,page, pageSize, useFlag,sqlType);
+		}
 
 
 

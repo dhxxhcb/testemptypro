@@ -298,6 +298,7 @@
 		u.USER_ID=eb.FROM_ID where 
 		e.TO_ID=#{fromId}
 		and (e.DELETE_FLAG ='0' or e.DELETE_FLAG='' or e.DELETE_FLAG='2')
+		AND e.BOX_ID='0'
 		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
 			AND eb.SEND_TIME between #{startTime} and #{endTime}
 		</if>
@@ -325,6 +326,7 @@
 		e.TO_ID=#{fromId}
 		AND e.BOX_ID='0' 
 		AND e.READ_FLAG='0'
+		AND e.BOX_ID='0'
 		GROUP BY eb.BODY_ID ORDER BY
 		eb.BODY_ID DESC
 	</select>

@@ -781,7 +781,7 @@ public class EmailServiceImpl implements EmailService {
 	  }else {
 		  toJson.setFlag(0);
 		  toJson.setMsg("ok");
-		  return null;
+		  toJson.setObj(list);
 	  }
 	  return toJson;
 	}
@@ -804,30 +804,38 @@ public class EmailServiceImpl implements EmailService {
 		maps.put("page", pageParams);
 		List<EmailBodyModel> list =new ArrayList<EmailBodyModel>();
 		List<EmailBodyModel> listEmai = emailBodyMapper.selectBoxEmail(maps);
-		for(EmailBodyModel emailBody:listEmai){
-			emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
-			if(usersService.getUserNameById(emailBody.getCopyToId())!=null){
-				emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
-			}else{
-				emailBody.setCopyName("");
+		Integer len = listEmai.size();
+		if(len>0) {
+			for (EmailBodyModel emailBody : listEmai) {
+				emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+				if (usersService.getUserNameById(emailBody.getCopyToId()) != null) {
+					emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+				} else {
+					emailBody.setCopyName("");
+				}
+				if (usersService.getUserNameById(emailBody.getSecretToId()) != null) {
+					emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+				} else {
+					emailBody.setSecretToName("");
+				}
+				emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+				emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
+				if (emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null) {
+					emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(), sqlType, GetAttachmentListUtil.MODULE_EMAIL));
+				} else {
+					emailBody.setAttachmentName("");
+					emailBody.setAttachmentId("");
+				}
+				list.add(emailBody);
 			}
-			if(usersService.getUserNameById(emailBody.getSecretToId())!=null){
-				emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
-			}else{
-				emailBody.setSecretToName("");
-			}
-			emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
-			emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
-			if(emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null){
-				emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(),sqlType,GetAttachmentListUtil.MODULE_EMAIL));
-			}else{
-				emailBody.setAttachmentName("");
-				emailBody.setAttachmentId("");
-			}
-			list.add(emailBody);
+			tojson.setFlag(0);
+			tojson.setMsg("ok");
+			tojson.setObj(list);
+			tojson.setTotleNum(pageParams.getTotal());
+		}else{
+			tojson.setFlag(1);
+			tojson.setMsg("error");
 		}
-		tojson.setObj(list);
-		tojson.setTotleNum(pageParams.getTotal());
 		return tojson;
 	}
 
