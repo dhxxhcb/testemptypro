@@ -49,7 +49,7 @@ input:hover {background: #eaf2ff;padding: 5px;}
 .boto a.THREE{background: url("img/file/cabinet10.png") no-repeat;}
 .boto a.FOUR{background: url("img/file/cabinet12.png") no-repeat;}
 .boto a.FIVE{background: url("img/file/cabinet11.png") no-repeat;}
-.TITLE{margin-left: 10px}
+.TITLE{margin-left: 10px;color: #2B7FE0;}
 .trBtn{background-color:#D3E7FA !important;}
 </style>
 <script type="text/javascript">
@@ -72,7 +72,15 @@ $(function(){
 				});
     $('.w').on('click','.contentTr',function(){
         $(this).addClass('trBtn').siblings().removeClass('trBtn');
-       // $(this).find('input[type="checkbox"]').attr('checked',true);
+       // if ($('.w .contentTr').attr('class')=='contentTr trBtn'){
+            $(this).find('input[type="checkbox"]').attr('checked',true);
+            $(this).siblings().find('input[type="checkbox"]').removeAttr('checked');
+           // $(this).siblings().find('input[type="checkbox"]').attr('checked',false);
+       // }else{
+          //  $('.w .contentTr').find('input[type="checkbox"]').attr('checked',false);
+       // }
+
+
     })
     
     //if ($('.w .contentTr').find('input[type="checkbox"]'))
@@ -109,7 +117,6 @@ $(function(){
     })
 
 
-
 });
 
 
@@ -120,7 +127,7 @@ $(function(){
 
 <body style="background-color: #EBEBEB">
 <div class="head w clearfix">
-    <div class="ss one"> <a id="contentAdd" href="${pageContext.request.contextPath }/file/contentAdd?sortId=${sortId}">新建文件</a></div>
+    <div class="ss one"> <a id="contentAdd" href="${pageContext.request.contextPath }/file/contentAdd?sortId=${sortId}&text=${text}">新建文件</a></div>
     <div class="ss two"> <a href="${pageContext.request.contextPath }/file/temp">批量上传</a></div>
     <div class="ss three"> <a  class="SEARCH" href="${pageContext.request.contextPath }/file/temp">查询</a></div>
     <div class="ss four"> <a href="${pageContext.request.contextPath }/file/temp">全局搜索</a></div>

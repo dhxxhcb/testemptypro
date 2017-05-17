@@ -301,7 +301,7 @@ public class FileController {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute("loginDateSouse"));
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("sortId", sortId);
-		model.put("model",text);
+		model.put("text",text);
 		ModelAndView modelAndView = new ModelAndView("app/file/fileContentAdd", model);
 		return modelAndView;
 	}
@@ -343,8 +343,8 @@ public class FileController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("sortId", sortId);
 		model.put("sortType", sortType);
-		String sname = new String(text.getBytes("ISO-8859-1"),"utf-8");
-		model.put("text", sname);
+//		String sname = new String(text.getBytes("ISO-8859-1"),"utf-8");
+		model.put("text", text);
 		model.put("postType", postType);
 		ModelAndView modelAndView = new ModelAndView("app/file/fileContent", model);
 		return modelAndView;

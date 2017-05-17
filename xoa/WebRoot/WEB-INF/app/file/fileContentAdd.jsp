@@ -132,6 +132,8 @@
                 });
 
                 var sortId=$.getQueryString('sortId')
+                var txt="${text}";
+                alert(txt);
 
                 if ($.getQueryString('contentId')){
                     var conId=$.getQueryString('contentId');
@@ -158,7 +160,7 @@
                             }
                         })
                      })
-
+                    //编辑保存
                     $("#btn1").on("click",function(){
                         var subject=$('#txt1').val();
                         var contentNo=$('#txt2').val();
@@ -192,7 +194,8 @@
                                 var flag=data1.flag;
                                 if (flag==true){
                                     alert('修改成功');
-                                    parent.opener.location.reload()
+                                    window.close();
+                                    window.opener.document.location.reload()
                                 }else{
                                     alert('修改失败');
                                 }
@@ -200,6 +203,7 @@
                             }
                         });
                     })
+
                 }else{
                     //点击保存
                     $("#btn1").on("click",function(){
@@ -235,7 +239,8 @@
                                 var flag=data1.flag;
                                 if (flag==true){
                                     alert('新建成功');
-                                    parent.opener.location.reload()
+
+                                    //parent.opener.location.reload()
                                 }else{
                                     alert('新建失败');
                                 }
@@ -244,14 +249,15 @@
                         });
                     })
                 }
-                //返回
-                $("#btn2").on("click",function(){
+                //返回按钮
+                $('#btn2').click(function(){
                     $('#txt1').val('');
                     $('#txt2').val('');
                     ue.setContent('');
+                    $('#files_txt').val('');
                     $('#txt3').val('');
-
-                 })
+                    window.close();
+                })
             })
 
 
