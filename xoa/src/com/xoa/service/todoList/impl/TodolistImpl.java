@@ -36,7 +36,6 @@ public class TodolistImpl implements TodolistService{
 		List<TodoList> list =new ArrayList<TodoList>();
 		List<TodoList> list1 =new ArrayList<TodoList>();
 		Daiban db=new Daiban();
-		//Daiban d=new Daiban();
 		InetAddress address = this.getCurrentIp();
 		List<EmailBodyModel> le=email.selectIsRead(maps);
 		SimpleDateFormat f =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
