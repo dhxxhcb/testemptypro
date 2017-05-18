@@ -136,6 +136,7 @@ $(function(){
                     if(json.flag){
                     	var designdata = json.object.designdata;
                     	var connections = json.object.connections;
+                    	jsondata.initNum = designdata.length;
                        	designdata.forEach(function(v,i){
                        		jsondata.nodes['node_'+i] = {
                         		name:v.prcsName,
@@ -157,24 +158,13 @@ $(function(){
                         		alt:true
                         	} 
                        	});
-
+						var flowDesign = $.createGooFlow($("#demo"), property);
+			            	flowDesign.setNodeRemarks(remark);
+			            	flowDesign.loadData(jsondata);
+		                }
                        
-                    }else {
-                        //jsondata={}
                     }
-                                      	 console.log(JSON.stringify(jsondata));
-                var demo = $.createGooFlow($("#demo"), property);
-	            demo.setTitle("aaaaaaaaaaaa流程绘制");
-	            demo.setNodeRemarks(remark);
-	            demo.loadData(jsondata);
-                } 
             });
-           
-            
-
-      		
-
-        var demo;
         var out;
         function Export() {
             document.getElementById("result").value = JSON.stringify(demo.exportData());
