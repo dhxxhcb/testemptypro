@@ -722,9 +722,10 @@ public class EmailController {
 //			userId = (String)request.getSession().getAttribute("userId");
 			userId = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users()).getUserId();
 			maps.put("userId",userId);
-		}
+		}else {
 			userId = userId.trim();
 			maps.put("userId",userId);
+		}
 		return emailService.showEmailBox(maps,page,pageSize,useFlag);
 	}
 
@@ -732,12 +733,18 @@ public class EmailController {
 	public @ResponseBody ToJson<EmailBodyModel> selectBoxEmail(HttpServletRequest request,
 			@RequestParam(value = "page") Integer page,@RequestParam(value = "pageSize") Integer pageSize,
 			@RequestParam(value = "useFlag") boolean useFlag,
-			 @RequestParam(value = "toId") String toId,@RequestParam(value = "boxId") Integer boxId){
+			 @RequestParam(value = "toId",required = false) String toId,@RequestParam(value = "boxId") Integer boxId){
 		String sqlType = "xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse");
 		ContextHolder.setConsumerType(sqlType);
 		Map<String,Object> maps = new HashMap<String,Object>();
-		maps.put("fromId",toId);
+		if(StringUtils.checkNull(toId)){
+			toId = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users()).getUserId();
+			maps.put("fromId",toId);
+		}else {
+			toId = toId.trim();
+			maps.put("fromId",toId);
+		}
 		maps.put("boxId",boxId);
 		return emailService.selectBoxEmail(maps,page, pageSize, useFlag,sqlType);
 		}
