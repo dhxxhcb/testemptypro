@@ -69,6 +69,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 })
                 //其他邮件箱
                 otherMail();
+				$('.page_left').on('click','li',function(){
+				    alert('1')
+                    $('.page_left li').removeClass('on');
+                    $(this).addClass('on');
+				})
+
 			})
 			function otherMail (){
 			    var data={
@@ -84,7 +90,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					success:function(rsp){
 					    var data1=rsp.obj;
 					    var str='';
-					    alert(data1[0].boxName);
 					    for(var i=0;i<data1.length;i++){
 					        str+='<li><a href="javascript:;"><img src="../img/icon_file_11.png"/>'+data1[i].boxName+'</a></li>'
 						}
