@@ -12,6 +12,10 @@
 <head>
     <meta charset="UTF-8">
     <title>管理邮件箱</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css">
         *{margin: 0;padding: 0;}
         body{font-family: "微软雅黑";}
@@ -73,7 +77,7 @@
             <div class="div_title">管理邮件箱</div>
         </div>
         <div class="TABLE_A">
-            <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:70%;margin: 0 auto;">
+            <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:99%;margin: 0 auto;">
                 <tr class='befor'>
                     <th width="10%">编号</th>
                     <th width="10%">名称</th>
@@ -111,7 +115,7 @@
                     </td>
                     <td style="text-align: center;"></td>
                 </tr>
-                <tr>
+                <tr class="last_tr">
                     <td style="text-align: center;"></td>
                     <td style="text-align: center;">废纸篓</td>
                     <td>65,704 字节 (约合0.06M)</td>
@@ -143,6 +147,28 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function(){
+       $('.DIV_Txt').click(function(){
+           var Number=$('#txt1').val();
+           var Name=$('#txt2').val();
+           var data={
+                'boxNo':Number,
+               'boxName':Name
+           }
+           $.ajax({
+               type:'post',
+               url:'saveEmailBox',
+               dataType:'json',
+               data:data,
+               success:function(){
+                   location.reload();
+               }
+           })
+
+       })
+    })
+</script>
 </body>
 </html>
 

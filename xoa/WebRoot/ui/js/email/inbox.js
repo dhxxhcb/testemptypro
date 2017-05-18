@@ -12,7 +12,7 @@ $(function () {
 		}
 					
 	})
-	$('.page_left li:not(".exceptLi")').click(function () {
+	$('.page_left li').click(function () {
 		$('.page_left li').removeClass('on');
 		$(this).addClass('on');
 	})

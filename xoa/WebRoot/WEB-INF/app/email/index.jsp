@@ -67,7 +67,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $('.set_up_ul').css('display','none');
                     }
                 })
+                //其他邮件箱
+                otherMail();
 			})
+			function otherMail (){
+			    var data={
+			        'page':1,
+					'pageSize':10,
+					'useFlag':true
+				}
+			    $.ajax({
+					type:'GET',
+					url:'showEmailBox',
+					dataType:'json',
+					data:data,
+					success:function(rsp){
+					    var data1=rsp.obj;
+					    var str='';
+					    alert(data1[0].boxName);
+					    for(var i=0;i<data1.length;i++){
+					        str+='<li><a href="javascript:;"><img src="../img/icon_file_11.png"/>'+data1[i].boxName+'</a></li>'
+						}
+						$('.other .ul_show ul').append(str);
+					}
+				})
+			}
 		</script>
 	</head>
 	<body>
@@ -97,17 +121,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<!--其他邮件箱-->
-					<%--<div class="other">
+					<div class="other">
 						<a href="javascript:;" class="inbox_btn">
 							<div class="inbox_btn_tim div_up"><fmt:message code="email.title.othermailbox" /></div>
 						</a>
 						<div class="ul_show">
 							<ul>
-								<li><a href="javascript:;"><img src="../img/icon_file_11.png"/><fmt:message code="email.title.oneselffile" /></a></li>
+								<%--<li><a href="javascript:;"><img src="../img/icon_file_11.png"/><fmt:message code="email.title.oneselffile" /></a></li>--%>
 							</ul>
 						</div>
 						
-					</div>--%>
+					</div>
 					<!--邮件智能分类-->
 					<%--<div class="classify">
 						<a href="javascript:;" class="inbox_btn">
@@ -490,7 +514,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			$('.page').find('.div_iframe').remove();
 	    			$('.up_page_right').css('display','block');
 	    		});
-	    	
+
+				//点击切换邮件箱管理页面
+				$('.exceptLi').click(function(){
+					//alert('1');
+					$('.up_page_right').css('display','none');
+                    var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: hidden;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="manageMail" frameborder="0" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+                    $('.page').append(Ifrmae);
+					$('.set_up_ul').css('display','none');
+				})
 				
 				//查询邮件点击事件
 				$('.liSearch').click(function(){
