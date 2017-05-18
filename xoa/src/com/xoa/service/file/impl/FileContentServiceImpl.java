@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.xoa.util.common.wrapper.BaseWrapper;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.file.FileContentMapper;
@@ -58,5 +59,28 @@ public class FileContentServiceImpl implements FileContentService{
 	@Override
 	public int updateFileCon(FileContentModel fcm) {
 		return file_ContentMapper.updateFileCon(fcm);
+	}
+
+	@Override
+	public BaseWrapper batchDeleteConId(Integer[] conId) {
+		BaseWrapper wrapper =new BaseWrapper();
+		if(conId==null||conId.length<1){
+			wrapper.setMsg("无效的请求参数");
+			wrapper.setStatus(true);
+			wrapper.setFlag(false);
+			return wrapper;
+		}
+		int res = file_ContentMapper.batchDeleteConId(conId);
+    if(res>0){
+		wrapper.setMsg("请求成功");
+		wrapper.setStatus(true);
+		wrapper.setFlag(true);
+
+	}else{
+		wrapper.setMsg("操作失败");
+		wrapper.setStatus(true);
+		wrapper.setFlag(false);
+	}
+		return wrapper;
 	}
 }

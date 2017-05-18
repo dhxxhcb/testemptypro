@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.xoa.model.file.FileContentModel;
+import com.xoa.util.common.wrapper.BaseWrapper;
 import com.xoa.util.dataSource.DynDatasource;
 
 public interface FileContentService {
@@ -64,4 +65,6 @@ public interface FileContentService {
 	int deleteByConId(Map<String, Object> fileConMap);
 	@DynDatasource
 	int updateFileCon(FileContentModel fcm);
+
+	BaseWrapper batchDeleteConId(Integer conId[]);
 }

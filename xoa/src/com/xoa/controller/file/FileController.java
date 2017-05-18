@@ -926,10 +926,11 @@ public class FileController {
 		//如果部门字符串为其他类型 证明其无权限访问return false;
 		return false;
 	}
-
+	@RequestMapping("/batchDeleteConId")
+	@ResponseBody
 	public BaseWrapper deleteByList(@RequestParam(name = "fileId[]") Integer fileId[]){
 
-       return null;
+       return fileContentService.batchDeleteConId(fileId);
 	}
 
 }

@@ -17,4 +17,5 @@ public interface FileContentMapper {
 	int deleteByConId(Map<String, Object> fileConMap);
 
 	int updateFileCon(FileContentModel fcm);
+	int batchDeleteConId(Integer conId[]);
 }

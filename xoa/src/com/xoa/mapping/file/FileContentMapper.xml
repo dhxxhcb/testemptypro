@@ -181,4 +181,11 @@
 		</set>
 		where CONTENT_ID=#{contentId};  
 		</update>
+
+    <delete id="batchDeleteConId" parameterType="java.lang.Integer">
+        delete from file_content where CONTENT_ID in
+        <foreach item="conId" collection="array" open="(" separator="," close=")">
+            #{conId}
+        </foreach>
+    </delete>
 </mapper>
