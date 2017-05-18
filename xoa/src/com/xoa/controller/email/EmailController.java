@@ -718,6 +718,7 @@ public class EmailController {
 		return emailService.showEmailBox(maps,page,pageSize,useFlag);
 	}
 
+	@RequestMapping(value = "/selectBoxEmail", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody ToJson<EmailBodyModel> selectBoxEmail(HttpServletRequest request,
 			@RequestParam(value = "page") Integer page,@RequestParam(value = "pageSize") Integer pageSize,
 			@RequestParam(value = "useFlag") boolean useFlag,
