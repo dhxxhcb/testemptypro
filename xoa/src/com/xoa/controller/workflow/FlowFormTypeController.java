@@ -9,6 +9,7 @@ import com.xoa.util.common.wrapper.BaseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,15 +35,18 @@ public class FlowFormTypeController {
 		return flowFormTypeService.qureyItemMax(Integer.parseInt(fromId));
 	}
 	@RequestMapping("/designer")
-	public String designer(HttpServletRequest request) {
+	public String designer(Model model,HttpServletRequest request, Integer formId) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
+		model.addAttribute("formId",formId);
 		return "app/workflow/formtype/formDesigner";
 	}
 	@RequestMapping("/previews")
-	public String previews(HttpServletRequest request) {
+	public String previews(Model model,HttpServletRequest request,Integer formId) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
+
+		model.addAttribute("formId",formId);
 		return "app/workflow/formtype/formUseView";
 	}
 
