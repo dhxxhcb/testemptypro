@@ -15,7 +15,9 @@
     <link href="../css/ueditor/site.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
+<script type="text/javascript">
+	var pluginId = 0;
+</script>
 <div class="container" style="padding-top: 5px; padding-left: 5px">
     <form method="post" id="saveform" name="saveform" action="">
         <input type="hidden" name="fields" id="fields" value="${form.fieldNum }">
@@ -32,7 +34,6 @@
                     <li><a href="javascript:void(0);" onclick="formDesign.exec('progressbar');" class="btn btn-link">进度条</a></li>
                     <li><a href="javascript:void(0);" onclick="formDesign.exec('qrcode');" class="btn btn-link">二维码</a></li>
                     <li><a href="javascript:void(0);" onclick="formDesign.exec('more');" class="btn btn-link">一起参与...</a></li>
-               
                 </ul>
             </div>
 
