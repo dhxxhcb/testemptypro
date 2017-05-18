@@ -315,7 +315,6 @@ public class NotifyController {
 		maps.put("notifyId", notifyId);
 		ToJson<Notify> toJson=new ToJson<Notify>(0, "");
 		String name=SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
-			//String name="www";
 		loger.debug("transfersID"+notifyId);
 	try {
 		    Notify notify=notifyService.queryById(maps, 1, 20, false, name,sqlType);
@@ -377,7 +376,6 @@ public class NotifyController {
 			@RequestParam(name = "lastEditTime", required = false) String lastEditTime) {
 		ContextHolder.setConsumerType("xoa"
 				+ (String) request.getSession().getAttribute("loginDateSouse"));
-		L.a("0==||>>>>>>>>>>>>>>>" + notify.getToId());
 		notify.setNotifyId(notifyId);
 		notify.setLastEditTime(DateFormat.getDate(lastEditTime));
 		try {
