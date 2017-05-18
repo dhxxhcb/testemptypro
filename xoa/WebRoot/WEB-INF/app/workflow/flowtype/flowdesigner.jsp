@@ -140,33 +140,68 @@
 //            "initNum": 61
 //        };
         $(document).ready(function () {
+	        var property = {
+	            width: 1200,
+	            height: 600,
+	            toolBtns: ["start round", "end round", "task round", "node", "chat", "state", "plug", "join", "fork", "complex mix"],
+	            haveHead: true,
+	            headBtns: ["new", "open", "save", "undo", "redo", "reload"],//如果haveHead=true，则定义HEAD区的按钮
+	            haveTool: true,
+	            haveGroup: true,
+	            useOperStack: true
+	        };
+	        var remark = {
+	            cursor: "选择指针",
+	            direct: "结点连线",
+	            start: "入口结点",
+	            end: "结束结点",
+	            task: "任务结点",
+	            node: "自动结点",
+	            chat: "决策结点",
+	            state: "状态结点",
+	            plug: "附加插件",
+	            fork: "分支结点",
+	            join: "联合结点",
+	            "complex mix": "复合结点",
+	            group: "组织划分框编辑开关"
+	        };
             var jsondata ;
-            var nodes ="{";
-            var lines ="{";
+            var nodes =	{};
+            var lines = {};
             var areas;
             var initNum = 0;
             var title;
-                $.ajax({
+            $.ajax({
                 type:'get',
-                url:'/flowProcess/flowview',
+                url:'<%=basePath%>flowProcess/flowview',
                 dataType:'json',
                 data:{"flowId":${formId}},
                 success:function(json){
                     if(json.flag){
-                        var len = json.object.designdata.length;
-                        for(var i = 0 ; i<len; i++){
-                            nodes+="\""+i+"\""+{"name":json.object.designdata[i].prcsName,"left":json.object.designdata[i].setLeft,"top":json.object.designdata[i].setTop,
-                            "type":json.object.designdata[i].prcsType,"alt": true}+",";
-//                            "name": "普通转人工", "left": 641, "top": 456, "type": "task", "alt": true
-                        }
-                        alert(nodes);
-                        var lens = json.object.connections.length;
-                        for(var i = 0; i < lens ; i++){
-//                            lines+=json.object.connections[i];
-                            lines+={"type": "sl", "from": json.object.designdata[i].prcsId, "to": json.object.designdata[i+1].prcsId, "name": i+1}+",";
-//                            "demo_line_53": {"type": "sl", "from": "demo_node_44", "to": "demo_node_52", "name": "1"}
-                        }
-                        initNum = lens;
+                    	var designdata = json.object.designdata;
+                    	var connections = json.object.connections;
+                       	designdata.forEach(function(v,i){
+                       		nodes['node_'+i] = {
+                        		name:v.prcsName,
+                        		left:v.setLeft,
+                        		top:v.setTop,
+                        		type:v.prcsType,
+                        		alt:true
+                        	}
+                       	});
+						console.log(nodes);
+                       	connections.forEach(function(v,i){
+                       		lines['line_'+i] = {
+                        		type:v.prcsName,
+                        		from:v.setLeft,
+                        		to:v.setTop,
+                        		name:v.prcsType,
+                        		alt:true
+                        	}
+                       	});
+                        
+                        
+                        initNum = 10;
 //                        alert(jsondata);
                     }else {
                         jsondata={}
@@ -176,11 +211,18 @@
 
             jsondata = {
                 "title": "",
-            "nodes": nodes+"}",
-            "lines": lines+"}",
-            "areas": {},
-            "initNum": initNum
+            	"nodes": nodes,
+            	"lines": lines,
+            	"areas": {},
+            	"initNum": 10
             }
+            var demo = $.createGooFlow($("#demo"), property);
+            demo.setTitle("aaaaaaaaaaaa流程绘制");
+            demo.setNodeRemarks(remark);
+            //demo.onItemDel=function(id,type){
+            //	return confirm("确定要删除该单元吗?");
+            //}
+            demo.loadData(jsondata);
         var JSON;
         JSON || (JSON = {}), function () {
             function f(a) {
@@ -252,41 +294,8 @@
                 throw new SyntaxError("JSON.parse")
             })
         }();
-        var property = {
-            width: 1200,
-            height: 600,
-            toolBtns: ["start round", "end round", "task round", "node", "chat", "state", "plug", "join", "fork", "complex mix"],
-            haveHead: true,
-            headBtns: ["new", "open", "save", "undo", "redo", "reload"],//如果haveHead=true，则定义HEAD区的按钮
-            haveTool: true,
-            haveGroup: true,
-            useOperStack: true
-        };
-        var remark = {
-            cursor: "选择指针",
-            direct: "结点连线",
-            start: "入口结点",
-            "end": "结束结点",
-            "task": "任务结点",
-            node: "自动结点",
-            chat: "决策结点",
-            state: "状态结点",
-            plug: "附加插件",
-            fork: "分支结点",
-            "join": "联合结点",
-            "complex mix": "复合结点",
-            group: "组织划分框编辑开关"
-        };
+
         var demo;
-        $(document).ready(function () {
-            demo = $.createGooFlow($("#demo"), property);
-            demo.setTitle("aaaaaaaaaaaa流程绘制");
-            demo.setNodeRemarks(remark);
-            //demo.onItemDel=function(id,type){
-            //	return confirm("确定要删除该单元吗?");
-            //}
-            demo.loadData(jsondata);
-        });
         var out;
         function Export() {
             document.getElementById("result").value = JSON.stringify(demo.exportData());
