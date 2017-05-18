@@ -38,7 +38,7 @@ public class TodolistImpl implements TodolistService{
 		Daiban db=new Daiban();
 		InetAddress address = this.getCurrentIp();
 		List<EmailBodyModel> le=email.selectIsRead(maps);
-		SimpleDateFormat f =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		for(EmailBodyModel em:le){
 			TodoList td=new TodoList();
 			td.setAvater(0);
@@ -51,6 +51,8 @@ public class TodolistImpl implements TodolistService{
 			Long e=(long) (em.getSendTime()*1000L);
 			String s=f.format(e);
 			td.setTime(s);
+			td.setUserName(em.getUsers().getUserName());
+			td.setIsAttach(em.getAttachment()==null?"0":"1");
 			list.add(td);
 		}
 		List<Notify> ln = notify.unreadNotify(maps);
@@ -58,13 +60,15 @@ public class TodolistImpl implements TodolistService{
 			TodoList td=new TodoList();
 			td.setAvater(0);
 			td.setContent(no.getContent());
-			td.setFromName(no.getName());
+			td.setFromName(no.getSubject());
 			td.setImg(address.toString()+"/img/workflow/daibanliucheng.png");
 			td.setQid(no.getNotifyId());
 			td.setReadflag(no.getPublish());
 			td.setType("notify");		
 			String s=f.format(no.getSendTime());
 			td.setTime(s);
+			td.setUserName(no.getUsers().getUserName());
+			td.setIsAttach(no.getAttachment()==null?"0":"1");
 			list1.add(td);
 		}
 		db.setEmail(list);

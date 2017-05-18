@@ -17,6 +17,26 @@ public class TodoList {
 	private String type;
 	
 	private String time;
+	
+	private String userName;
+	
+	private String isAttach;
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getIsAttach() {
+		return isAttach;
+	}
+
+	public void setIsAttach(String isAttach) {
+		this.isAttach = isAttach;
+	}
 
 	public Integer getAvater() {
 		return avater;
