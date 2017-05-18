@@ -140,7 +140,7 @@ $(function(){
                        		jsondata.nodes['node_'+i] = {
                         		name:v.prcsName,
                         		left:v.setLeft,
-                        		type: "chat",
+                        		type: "fork",
                         		top:v.setTop,
                         		type:v.prcsType
                         	} 
@@ -150,7 +150,7 @@ $(function(){
                        		//jsondata.lines['demo_line_'+i] ={"type": "lr", "M": 81.5, "from": "demo_node_"+i, "to": "demo_node_"+(i+1), "name": ""}
                        		jsondata.lines['line_'+i] = {
                         		type:v.prcsName,
-                        		type:"lr",
+                        		type:"sl",
                         		from:"node_"+i,
                         		to:"node_"+(i+1),
                         		name:"",
