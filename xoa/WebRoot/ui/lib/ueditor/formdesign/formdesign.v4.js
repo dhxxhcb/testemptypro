@@ -23,10 +23,10 @@ UE.plugins['text'] = function () {
 	me.commands[thePlugins] = {
 		execCommand:function () {
 			var dialog = new UE.ui.Dialog({
-				iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/text.html',
+				iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/text1.html',
 				name:thePlugins,
 				editor:this,
-				title: '文本框',
+				title: '单行输入框',
 				cssRules:"width:600px;height:380px;",
 				buttons:[
 				{
@@ -71,7 +71,7 @@ UE.plugins['text'] = function () {
         var leipiPlugins = el.getAttribute('plugins');
 		if ( /input/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
 			var html = popup.formatHtml(
-				'<nobr>文本框: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
+				'<nobr>单行输入框: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
 			if ( html ) {
 				popup.getDom( 'content' ).innerHTML = html;
 				popup.anchorEl = el;

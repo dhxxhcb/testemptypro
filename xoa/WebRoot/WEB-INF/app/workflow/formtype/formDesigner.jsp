@@ -23,7 +23,7 @@
             <div class="span2">
                 <ul class="nav nav-list">
                     <li class="nav-header">表单控件</li>
-                    <li><a href="javascript:void(0);" onclick="formDesign.exec('text');" class="btn btn-link">文本框</a></li>
+                    <li><a href="javascript:void(0);" onclick="formDesign.exec('text');" class="btn btn-link">单行输入框</a></li>
                     <li><a href="javascript:void(0);" onclick="formDesign.exec('textarea');" class="btn btn-link">多行文本</a></li>
                     <li><a href="javascript:void(0);" onclick="formDesign.exec('select');" class="btn btn-link">下拉菜单</a></li>
                     <li><a href="javascript:void(0);" onclick="formDesign.exec('radios');" class="btn btn-link">单选框</a></li>

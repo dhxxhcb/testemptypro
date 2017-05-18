@@ -2,58 +2,70 @@
 
 <!DOCTYPE HTML>
 <html>
-	<head>
-	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	    <link href="../css/ueditor/bootstrap.css" rel="stylesheet" type="text/css" />
-	    <link href="../css/ueditor/site.css" rel="stylesheet" type="text/css" />
-	    <script type="text/javascript" charset="utf-8" src="../js/jquery-1.10.2/jquery.min.js></script>
-	    <script type="text/javascript">
-	    $('document').ready(function(){
-            $.ajax({
-                type: 'GET',
-                url : '/form/formType',
-                dataType : 'json',
-                data : {
-                'formId' : '1',
-                success : function(data){
-                	$("input:text").each(function(){
-                		this.value=data[this.name];
-                	});
-                	$("input:radio").each(function(){
-                		if(this.value==data[this.name]) {
-                			this.checked = true;
-                		}
-                	});
-                	$("input:checkbox").each(function(){
-                		if(this.value==data[this.name]) {
-                			this.checked = true;
-                		}
-                	});
-                	$("textarea").each(function(){
-                		this.value=data[this.name];
-                	});
-                	$("select").each(function(){
-                		$("select[name='" + this.name + "'] option").each(function(){
-                			if($(this).val() == data[this.name]){
-                				$(this).attr("selected", true);
-                			}
-                		});
-                	});
-                }
-            });
-	    });
-	    </script>
-	</head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link href="../css/ueditor/bootstrap.css" rel="stylesheet"
+	type="text/css" />
+<link href="../css/ueditor/site.css" rel="stylesheet" type="text/css" />
+<link href="../css/ueditor/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/ueditor/transform.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf-8"
+	src="../js/jquery-1.10.2/jquery.min.js">
+	
+</script>
+<script type="text/javascript">
+	$(function() {
+		$.ajax({
+			type : 'get',
+			url : 'formType',
+			dataType : 'json',
+			data : {
+				'fromId' : 1
+			},
+			success : function(rsp) {
+				var data1 = rsp.object;
+				$("input:text").each(function() {
+					this.value = data[this.name];
+				});
+				$("input:radio").each(function() {
+					if (this.value == data[this.name]) {
+						this.checked = true;
+					}
+				});
+				$("input:checkbox").each(function() {
+					if (this.value == data[this.name]) {
+						this.checked = true;
+					}
+				});
+				$("textarea").each(function() {
+					this.value = data[this.name];
+				});
+				$("select").each(
+						function() {
+							$("select[name='" + this.name + "'] option").each(
+									function() {
+										if ($(this).val() == data[this.name]) {
+											$(this).attr("selected", true);
+										}
+									});
+						});
+           str=data1.printModel;
+			
+			$("#a2").html(str);
+			}
 
-	<body>
+		});
+	});
+</script>
+</head>
+
+<body>
 	<div class="container">
-	<div class="row">
-		<form id="inputForm" action="" method="post"  target="mainFrame">
-			${form.parseHtml }
-		</form>
+		<div class="row" id="a2">
+			
+		</div>
 	</div>
-	</div>
-	</body>
+</body>
 </html>

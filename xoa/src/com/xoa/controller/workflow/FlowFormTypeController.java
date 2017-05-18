@@ -33,23 +33,17 @@ public class FlowFormTypeController {
 				"loginDateSouse"));
 		return flowFormTypeService.qureyItemMax(Integer.parseInt(fromId));
 	}
-	@RequestMapping("/abc")
-	public String addboxPage1(HttpServletRequest request) {
+	@RequestMapping("/designer")
+	public String designer(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		return "app/ArticleEdit/ArticleEdit";
+		return "app/workflow/formtype/formDesigner";
 	}
-	@RequestMapping("/cba")
-	public String addboxPage2(HttpServletRequest request) {
+	@RequestMapping("/previews")
+	public String previews(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		return "app/ArticleEdit/MyJsp";
-	}
-	@RequestMapping("/wyq")
-	public String addboxPage3(HttpServletRequest request) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
-		return "app/ArticleEdit/formDesigner";
+		return "app/workflow/formtype/formUseView";
 	}
 
 
