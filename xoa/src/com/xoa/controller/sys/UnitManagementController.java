@@ -63,6 +63,15 @@ public class UnitManagementController {
 		unitManageService.addUnitManage(unitManage);
 	}
 	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月18日 上午9:28:24
+	 * 方法介绍:   修改
+	 * 参数说明:   @param unitManage 单位信息  
+	 * 参数说明:   @param request 请求
+	 * 参数说明:   @return
+	 * @return     ToJson<UnitManage> 返回单位信息
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/updateUnit",produces = {"application/json;charset=UTF-8"})
 	public ToJson<UnitManage> updateUnit(UnitManage unitManage,HttpServletRequest request){
