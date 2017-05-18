@@ -16,10 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.HTML;
 
+import com.xoa.util.common.wrapper.BaseWrapper;
 import org.apache.log4j.Logger;
 import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -924,4 +926,10 @@ public class FileController {
 		//如果部门字符串为其他类型 证明其无权限访问return false;
 		return false;
 	}
+
+	public BaseWrapper deleteByList(@RequestParam(name = "fileId[]") Integer fileId[]){
+
+       return null;
+	}
+
 }

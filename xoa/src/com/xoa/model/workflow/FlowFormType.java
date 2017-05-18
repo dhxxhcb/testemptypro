@@ -58,6 +58,19 @@ public class FlowFormType implements Serializable {
         */
     private String depName;
 
+       /**
+        * 分类名称
+        */
+    private String sortName;
+
+       public String getSortName() {
+           return sortName==null?"未分类":sortName;
+       }
+
+       public void setSortName(String sortName) {
+           this.sortName = sortName;
+       }
+
        public String getDepName() {
            if(depName==null){
                depName="全部部门";
