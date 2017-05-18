@@ -713,7 +713,7 @@ public class EmailController {
 	public  @ResponseBody ToJson<EmailBoxModel> showEmailBox(HttpServletRequest request,
 			 @RequestParam(value = "page") Integer page,@RequestParam(value = "pageSize") Integer pageSize,
 			 @RequestParam(value = "useFlag") boolean useFlag,
-			 @RequestParam(value = "userId") String userId){
+			 @RequestParam(value = "userId",required = false) String userId){
 		String sqlType = "xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse");
 		ContextHolder.setConsumerType(sqlType);

@@ -14,6 +14,7 @@
     <script type="text/javascript" src="../../js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../lib/GooFlow/GooFunc.js"></script>
     <script type="text/javascript" src="../../lib/GooFlow/GooFlow.js"></script>
+    <script type="text/javascript" src="../../js/workflow/json2.js"></script>
     <style>
         .myForm {
             display: block;
@@ -195,19 +196,24 @@
                        		lines['line_'+i] = {
 //                        		type:v.prcsName,
                         		type:"",
-                        		from:v.v.prcsName,
-                        		to:v[i+1].prcsName,
+                        		from:"node_"+[i],
+                        		to:"node_"+[i+1],
                         		name:"",
                         		alt:true
                         	}
                        	});
+                       	alert(JSON.stringify(lines));
+                       	console.log(JSON.stringify(lines));
                         initNum = 10;
                     }else {
                         jsondata={}
                     }
                 }
             });
-            alert(initNum);
+            function Stringify() {
+                return JSON.stringify();
+            }
+
             jsondata = {
                 "title": "",
             	"nodes": JSON.stringify(nodes),
