@@ -171,6 +171,7 @@
             var areas;
             var initNum = 0;
             var title;
+
             $.ajax({
                 type:'get',
                 url:'<%=basePath%>flowProcess/flowview',
@@ -186,38 +187,37 @@
                         		left:v.setLeft,
                         		top:v.setTop,
                         		type:v.prcsType,
-                        		alt:true
                         	}
                        	});
-						console.log(nodes);
+//                       	console.log(321);
+//						console.log(JSON.stringify(nodes));
                        	connections.forEach(function(v,i){
                        		lines['line_'+i] = {
-                        		type:v.prcsName,
-                        		from:v.setLeft,
-                        		to:v.setTop,
-                        		name:v.prcsType,
+//                        		type:v.prcsName,
+                        		type:"",
+                        		from:v.v.prcsName,
+                        		to:v[i+1].prcsName,
+                        		name:"",
                         		alt:true
                         	}
                        	});
-                        
-                        
                         initNum = 10;
-//                        alert(jsondata);
                     }else {
                         jsondata={}
                     }
                 }
             });
-
+            alert(initNum);
             jsondata = {
                 "title": "",
-            	"nodes": nodes,
-            	"lines": lines,
+            	"nodes": JSON.stringify(nodes),
+            	"lines": JSON.stringify(lines),
             	"areas": {},
             	"initNum": 10
             }
             var demo = $.createGooFlow($("#demo"), property);
             demo.setTitle("aaaaaaaaaaaa流程绘制");
+
             demo.setNodeRemarks(remark);
             //demo.onItemDel=function(id,type){
             //	return confirm("确定要删除该单元吗?");

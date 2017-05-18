@@ -680,6 +680,10 @@ public class EmailController {
 		String sqlType = "xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse");
 		ContextHolder.setConsumerType(sqlType);
+		if(StringUtils.checkNull(emailBoxModel.getUserId())){
+			String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users()).getUserId();
+			emailBoxModel.setUserId(userId);
+		}
 		return emailService.saveEmailBox(emailBoxModel);
 	}
 
@@ -714,7 +718,13 @@ public class EmailController {
 				"loginDateSouse");
 		ContextHolder.setConsumerType(sqlType);
 		Map<String,Object> maps = new HashMap<String,Object>();
-		maps.put("userId",userId);
+		if(StringUtils.checkNull(userId)){
+//			userId = (String)request.getSession().getAttribute("userId");
+			userId = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users()).getUserId();
+			maps.put("userId",userId);
+		}
+			userId = userId.trim();
+			maps.put("userId",userId);
 		return emailService.showEmailBox(maps,page,pageSize,useFlag);
 	}
 
