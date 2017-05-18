@@ -2,17 +2,13 @@
 <html>
 <head>
     <title>下拉菜单</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <!--[if lte IE 6]>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-ie6.css">
-    <![endif]-->
-    <!--[if lte IE 7]>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
-    <![endif]-->
-    <link rel="stylesheet" href="leipi.style.css">
+    <link rel="stylesheet" href="../formdesign/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ueditor/site.css">
     <script type="text/javascript" src="../dialogs/internal.js"></script>
+    <script type="text/javascript" src="../../../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../../../js/base/base.js"></script>
     <script type="text/javascript">
 function createElement(type, name)
 {     
@@ -217,9 +213,11 @@ function fnSetAttribute( element, attName, attValue ) {
     </table>
 </div>
 <script type="text/javascript">
-var oNode = null,oListText='',thePlugins = 'select';
+      var oNode = null,oListText='',thePlugins = 'select';
+       // var dataid = $.getQueryString('dataid');
 window.onload = function() {
-    oListText = $G('orglist');
+        
+         oListText = $G('orglist');
     
     if( UE.plugins[thePlugins].editdom ){
         oNode = UE.plugins[thePlugins].editdom;
@@ -269,12 +267,12 @@ dialog.onok = function (){
     if( !oNode ) {
         try {
             //oNode = document.createElement("select"); 
-            oNode = createElement('select','NEWFIELD');
+            oNode = createElement('select','DATA_');
             oNode.setAttribute('title',$G('orgname').value);
-            oNode.setAttribute('plugins',thePlugins );
+           /*oNode.setAttribute('plugins',thePlugins );
             oNode.setAttribute('size',gSize);
-            oNode.setAttribute('fieldname',$G('fieldname').value);
-            if ( $G('fieldflow').checked ) {
+            oNode.setAttribute('fieldname',$G('fieldname').value); */
+           /*  if ( $G('fieldflow').checked ) {
                 oNode.setAttribute('fieldflow',1);
             } else {
                 oNode.setAttribute('fieldflow',0);
@@ -287,7 +285,7 @@ dialog.onok = function (){
                 oNode.style.width = gWidth + 'px';
                 oNode.setAttribute('orgwidth',gWidth );
             }
-            
+             */
             // Add all available options.
             for ( var i = 0 ; i < oListText.options.length ; i++ ) {
                 var sText    = oListText.options[i].value ;
@@ -301,7 +299,7 @@ dialog.onok = function (){
                 }
             }
             //firefox要利用span
-            editor.execCommand('insertHtml','{|-<span plugins="select">'+oNode.outerHTML+'&nbsp;&nbsp;</span>-|}');
+            editor.execCommand('insertHtml',oNode.outerHTML);
             return true ;
         } catch ( e ) {
             try {

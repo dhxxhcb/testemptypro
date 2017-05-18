@@ -1,61 +1,65 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>文本框</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <!--[if lte IE 6]>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-ie6.css">
-    <![endif]-->
-    <!--[if lte IE 7]>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
-    <![endif]-->
-    <link rel="stylesheet" href="leipi.style.css">
-    <script type="text/javascript" src="../dialogs/internal.js"></script>
+<title>文本框</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<link rel="stylesheet" href="../formdesign/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="../css/ueditor/site.css">
+<script type="text/javascript" src="../dialogs/internal.js"></script>
+<script type="text/javascript" src="../../../js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../../../js/base/base.js"></script>
 </head>
 <body>
-<div class="content">
-    <table class="table table-bordered table-striped table-hover">
-     <tr>
-        <th><span>字段名称</span><span class="label label-important">*</span></th>
-        <th><span>字段标题</span><span class="label label-important">*</span> </th>
-    </tr>
-    <tr>
-        <td><input type="text" id="fieldname" placeholder="必填项"></td>
-        <td><input type="text" id="orgname" placeholder="必填项"></td>
-    </tr>
-     <tr>
-        <th><span>字体大小</span> </th>
-        <th><span>流程变量</span> </th>
-    </tr>
-    <tr>
-        <td><input id="orgfontsize" type="text"  value="" class="input-small span1" placeholder="auto"/> px</td>
-        <td><label class="checkbox inline"><input id="fieldflow" type="checkbox"/> 流程变量</label></td>
-    </tr>
-    <tr>
-        <th><span>输入框样式</span> </th>
-        <th><span>增强</span> </th>
-    </tr>
-    <tr>
-        <td>
-            宽 <input id="orgwidth" type="text" value="300" class="input-small span1" placeholder="auto"/> px
-            &nbsp;&nbsp;
-            高 <input id="orgheight" type="text" value="80" class="input-small span1" placeholder="auto"/> px
-        </td>
-        <td> <label class="checkbox"><input id="orgrich" type="checkbox"  /> 富文本形式 </label> </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <label for="orgvalue">默认值</label>
-            <textarea class="input-block-level" rows="3" id="orgvalue" placeholder="多行文本框默认值..."></textarea>
-        </td>
-    </tr>
-    </table>
-</div>
-<script type="text/javascript">
-var oNode = null,thePlugins = 'textarea';;
-window.onload = function() {
+	<div class="content">
+		<table class="table table-bordered table-striped table-hover">
+			<tr>
+				<th><span>字段名称</span><span class="label label-important">*</span>
+				</th>
+				<th><span>字段标题</span><span class="label label-important">*</span>
+				</th>
+			</tr>
+			<tr>
+				<td><input type="text" id="fieldname" placeholder="必填项">
+				</td>
+				<td><input type="text" id="orgname" placeholder="必填项">
+				</td>
+			</tr>
+			<tr>
+				<th><span>字体大小</span></th>
+				<th><span>流程变量</span></th>
+			</tr>
+			<tr>
+				<td><input id="orgfontsize" type="text" value=""
+					class="input-small span1" placeholder="auto" /> px</td>
+				<td><label class="checkbox inline"><input
+						id="fieldflow" type="checkbox" /> 流程变量</label>
+				</td>
+			</tr>
+			<tr>
+				<th><span>输入框样式</span></th>
+				<th><span>增强</span></th>
+			</tr>
+			<tr>
+				<td>宽 <input id="orgwidth" type="text" value="300"
+					class="input-small span1" placeholder="auto" /> px &nbsp;&nbsp; 高 <input
+					id="orgheight" type="text" value="80" class="input-small span1"
+					placeholder="auto" /> px</td>
+				<td><label class="checkbox"><input id="orgrich"
+						type="checkbox" /> 富文本形式 </label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label for="orgvalue">默认值</label> <textarea
+						class="input-block-level" rows="3" id="orgvalue"
+						placeholder="多行文本框默认值..."></textarea></td>
+			</tr>
+		</table>
+	</div>
+	<script type="text/javascript">
+$(function(){
+     var oNode = null,thePlugins = 'textarea';
+      var dataid = $.getQueryString('dataid');
+      
     if( UE.plugins[thePlugins].editdom ){
         oNode = UE.plugins[thePlugins].editdom;
         var gValue = oNode.getAttribute('value').replace(/&quot;/g,"\""),gName=oNode.getAttribute('fieldname'),gFlow=oNode.getAttribute('fieldflow'),gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gFontSize=oNode.getAttribute('orgfontsize'),gWidth=oNode.getAttribute('orgwidth'),gHeight=oNode.getAttribute('orgheight'),gRich=oNode.getAttribute('orgrich');
@@ -77,7 +81,6 @@ window.onload = function() {
         $G('orgwidth').value = gWidth;
         $G('orgheight').value = gHeight;
     }
-}
 dialog.oncancel = function () {
     if( UE.plugins[thePlugins].editdom ) {
         delete UE.plugins[thePlugins].editdom;
@@ -98,21 +101,21 @@ dialog.onok = function (){
         try {
             var html = '<textarea ';
             html += ' title = "' + gTitle + '"';
-            html += ' name = "NEWFIELD"';
-            html += ' plugins = "'+thePlugins+'"';
-            html += ' value = "' + gValue + '"';
-            html += ' fieldname = "' + gName + '"';
-            if ( $G('fieldflow').checked ) {
+            html += ' name = "' + "DATA_"+dataid + '"';
+           // html += ' plugins = "'+thePlugins+'"';
+           // html += ' value = "' + gValue + '"';
+          //  html += ' fieldname = "' + gName + '"';
+          /*   if ( $G('fieldflow').checked ) {
                 html += ' fieldflow = "1"';
             } else {
                 html += ' fieldflow = "0"';
-            }
+            } */
             if ( $G('orgrich').checked ) {
-                html += ' orgrich = "1"';
+                html += ' rich = "1"';
             } else {
-                html += ' orgrich = "0"';
+                html += ' rich = "0"';
             }
-            if( gFontSize != '' ) {
+           /*  if( gFontSize != '' ) {
                 html += ' orgfontsize = "' + gFontSize + '"';
             } else {
                 html += ' orgfontsize = ""';
@@ -126,7 +129,7 @@ dialog.onok = function (){
                 html += ' orgheight = "' + gHeight + '"';
             } else {
                 html += ' orgheight = ""';
-            }
+            } */
             
             html += ' style = "';
             if( gFontSize != '' ) {
@@ -185,6 +188,8 @@ dialog.onok = function (){
         delete UE.plugins[thePlugins].editdom;
     }
 };
+});
+
 </script>
 </body>
 </html>

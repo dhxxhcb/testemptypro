@@ -30,7 +30,7 @@ function createElement(type, name)
 <div class="content">
     <table class="table table-bordered table-striped table-hover">
      <tr>
-        <th><span>字段名称</span><span class="label label-important">*</span></th>
+      <th><span>字段名称</span><span class="label label-important">*</span></th>
         <th><span>字段标题</span><span class="label label-important">*</span> </th>
     </tr>
     <tr>
@@ -90,12 +90,7 @@ function createElement(type, name)
 <script type="text/javascript">
 $(function(){
 	var dataid = $.getQueryString('dataid');
-	alert(dataid);
-	console.log(dataid)
 	var oNode = null,thePlugins = 'text';
-	
-	  
-	
 	    if( UE.plugins[thePlugins].editdom ){
 	        oNode = UE.plugins[thePlugins].editdom;
 			var gValue = oNode.getAttribute('value').replace(/&quot;/g,"\""),gName=oNode.getAttribute('fieldname'),gFlow=oNode.getAttribute('fieldflow'),gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gHidden=oNode.getAttribute('orghide'),gFontSize=oNode.getAttribute('orgfontsize'),gAlign=oNode.getAttribute('orgalign'),gWidth=oNode.getAttribute('orgwidth'),gHeight=oNode.getAttribute('orgheight'),gType=oNode.getAttribute('orgtype');
@@ -126,7 +121,6 @@ $(function(){
 	    }
 	};
 	dialog.onok = function (){
-	  debugger;
 	    if($G('fieldname').value==''){
 	        alert('请输入字段名称');
 	        return false;
@@ -143,7 +137,7 @@ $(function(){
 	            oNode.setAttribute('type','text');
 	            oNode.setAttribute('title',gTitle);
 	            //oNode.setAttribute('value',gValue);
-	            oNode.setAttribute('name','DATA_1');
+	            oNode.setAttribute('name','DATA_'+dataid);
 	           // oNode.setAttribute('fieldname',gName);
 	            //oNode.setAttribute('plugins',thePlugins);
 	            if ( $G('orghide').checked ) {

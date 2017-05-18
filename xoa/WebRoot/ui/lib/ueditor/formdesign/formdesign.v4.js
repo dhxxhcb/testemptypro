@@ -475,7 +475,7 @@ UE.plugins['textarea'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/textarea.html',
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/textarea.html?dataid='+(pluginId++),
                 name:thePlugins,
                 editor:this,
                 title: '多行文本框',
@@ -548,7 +548,7 @@ UE.plugins['select'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/select.html',
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/select.html?dataid='+(pluginId++),
                 name:thePlugins,
                 editor:this,
                 title: '下拉菜单',
