@@ -318,7 +318,7 @@
     <!--未读查询-->
 	<select id="selectIsRead" parameterType="Map" resultMap="BaseResultMap">
 		select
-		eb.FROM_ID,
+		eb.FROM_ID,e.EMAIL_ID,
 		eb.BODY_ID,eb.SUBJECT,e.DELETE_FLAG,eb.SEND_TIME,eb.TO_ID2,eb.ATTACHMENT_ID,eb.ATTACHMENT_NAME,eb.COPY_TO_ID,e.READ_FLAG,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
 		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
 		LEFT JOIN user as u on

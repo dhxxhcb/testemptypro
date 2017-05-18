@@ -35,9 +35,7 @@ public class TodolistController {
 				"loginDateSouse"));
 		ToJson<Daiban> json=new ToJson<Daiban>(0, null);
 		try {
-			Map<String, Object> maps = new HashMap<String, Object>();
-			maps.put("fromId", userId);
-			Daiban db=todolistService.list(maps);
+			Daiban db=todolistService.list(userId);
             json.setObject(db);
             json.setMsg("OK");
             json.setFlag(0);

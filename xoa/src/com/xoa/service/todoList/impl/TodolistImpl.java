@@ -7,6 +7,7 @@ import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import com.xoa.dao.notify.NotifyMapper;
 import com.xoa.model.daiban.Daiban;
 import com.xoa.model.daiban.TodoList;
 import com.xoa.model.email.EmailBodyModel;
+import com.xoa.model.email.EmailModel;
 import com.xoa.model.notify.Notify;
 import com.xoa.service.todoList.TodolistService;
 
@@ -32,7 +34,9 @@ public class TodolistImpl implements TodolistService{
 	private NotifyMapper notify;
 	
 	@Override
-	public Daiban list(Map<String, Object> maps){
+	public Daiban list(String userId){
+		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("fromId", userId);
 		List<TodoList> list =new ArrayList<TodoList>();
 		List<TodoList> list1 =new ArrayList<TodoList>();
 		Daiban db=new Daiban();
@@ -45,7 +49,12 @@ public class TodolistImpl implements TodolistService{
 			td.setContent(em.getContent());
 			td.setFromName(em.getSubject());
 			td.setImg(address.toString()+"/img/workflow/youjian.png");
-			td.setQid(em.getBodyId());
+			List<EmailModel> lemail=em.getEmailList();
+			for(EmailModel e:lemail){
+				if(e.getToId().equals(userId)){
+					td.setQid(e.getEmailId());
+				}
+			}				
 			td.setReadflag(em.getSendFlag());
 			td.setType("email");
 			Long e=(long) (em.getSendTime()*1000L);
