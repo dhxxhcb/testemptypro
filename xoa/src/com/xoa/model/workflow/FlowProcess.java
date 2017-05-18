@@ -1,6 +1,7 @@
 package com.xoa.model.workflow;
 
 import java.util.List;
+import java.util.Map;
 
 public class FlowProcess {
     private Integer id;
@@ -137,18 +138,18 @@ public class FlowProcess {
 
     private String imguploadPriv;
 
-    private List connections;
+    private List<Map<String, String>> connections;
     
     private List<FlowProcessList> designdata;
-
-    private List ends;
     
-    public List getEnds() {
-		return ends;
+    private Integer max;
+    
+	public Integer getMax() {
+		return max;
 	}
 
-	public void setEnds(List ends) {
-		this.ends = ends;
+	public void setMax(Integer max) {
+		this.max = max;
 	}
 
 	public List<FlowProcessList> getDesigndata() {
@@ -159,11 +160,11 @@ public class FlowProcess {
 		this.designdata = designdata;
 	}
 
-	public List getConnections() {
+	public List<Map<String, String>> getConnections() {
 		return connections;
 	}
 
-	public void setConnections(List connections) {
+	public void setConnections(List<Map<String,String>> connections) {
 		this.connections = connections;
 	}
 

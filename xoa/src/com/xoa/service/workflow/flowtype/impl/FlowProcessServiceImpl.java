@@ -15,6 +15,7 @@ import com.xoa.model.workflow.FlowProcess;
 import com.xoa.model.workflow.FlowProcessList;
 import com.xoa.service.workflow.flowtype.FlowProcessService;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.StringUtils;
 
 @Service
 public class FlowProcessServiceImpl implements FlowProcessService {
@@ -45,32 +46,36 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	public void delete(int id) {
 		flowProcessMapper.deleteByPrimaryKey(id);
 	}
-	
+	@Override
 	public FlowProcess flowView(int flowId) {
 		FlowProcess f=new FlowProcess();
-		List l=new ArrayList();
-		List e=new ArrayList();
+		Map<String, String> map=null;
+		List<Map<String, String>> lm=new ArrayList<Map<String,String>>();
 		//根据flowId获取流程信息
 		List<FlowProcess> list=flowProcessMapper.findF(flowId);
-		for (FlowProcess flowProcess : list){
-			int prId=flowProcess.getPrcsId();
-			//int prId1=prId+1;
-			String prceTo=flowProcess.getPrcsTo();
-			if(prceTo==null||prceTo==""){
-				l.add(prId+"=>"+prId+1);
-			}else{
+		for (int i=0;i<list.size();i++){
+			Integer prId=list.get(i).getPrcsId();
+			String prceTo=list.get(i).getPrcsTo();
+			if(StringUtils.checkNull(prceTo)){
+				map=new HashMap<String, String>();
+				map.put("from", Integer.toString(prId));
+				if(i<list.size()-1){
+				map.put("to", Integer.toString(list.get(i+1).getPrcsId()));
+				}else{
+					map.put("to", "end");
+				}
+				lm.add(map);
+			}else{				
 			String [] p=prceTo.split(",");			
 			for(String a:p){
-				if(prceTo==""){
-					e.add(prId);
-				}
-				l.add(prId+"=>"+a);
+				map=new HashMap<String, String>();
+				map.put("from", Integer.toString(prId));
+				map.put("to",a.toString());
+				lm.add(map);
 			}
 			}
 		}
-		f.setEnds(e);
-		f.setConnections(l);
-	
+		f.setConnections(lm);
 		List<FlowProcessList> l1=new ArrayList<FlowProcessList>();
 		for (FlowProcess flowProcess : list) {			
 			FlowProcessList fl=new FlowProcessList();
@@ -79,7 +84,6 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 			String prcsIn=flowProcess.getPrcsIn()==null? "":flowProcess.getPrcsIn().trim();
 			String prcsOut=flowProcess.getPrcsOut()==null?"":flowProcess.getPrcsOut();
 			Byte prcsType=flowProcess.getPrcsType();
-			//int chidFlow=flowProcess.getChildFlow();
 			String syncDeal=flowProcess.getSyncDeal()==null?"":flowProcess.getSyncDeal();
 			int setLeft=flowProcess.getSetLeft();
 			int top=flowProcess.getSetTop();
@@ -94,6 +98,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 			l1.add(fl);
 		}
 		f.setDesigndata(l1);
+		f.setMax(l1.size());
 		return f;
 	}
 
