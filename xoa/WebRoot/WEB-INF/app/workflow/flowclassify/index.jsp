@@ -23,11 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="../../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../lib/layer/layer.js"></script>
 	<style>
-		.wrap{
-			    margin-left: 1%;
-    			margin-top: 1%;
-		}
-
 		.sort_liucheng,.new_liucheng{
 		    width: 100px;
 		    height: 25px;
@@ -59,116 +54,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#tr_td{
 			    text-align: center;
 		}
-		.levelleft1{
-		   margin-left:30%;
-		}
-		.levelleft2{
-		   margin-left:60%;
-		}
-		.change{
-				width:85px;
-			    background-color: #2F8AE3;
-			    font-size: 14px;
-			    color: #ffffff;
-			    border-radius: 20px;
-		}
-		#liucheng{
-			width: 85px !important; 
-			  /*  margin-left: 78px;*/
-			        margin-top: 7px;
-		}
-		#biaodan{
-			    width: 85px !important;
-    			margin-left: 15px;
-    			margin-top: 9px;
-		}
-		#liucheng h1,#biaodan h1{
-			width:100%;
-			text-align:center;
-			line-height:26px;
-		}
-
-		.conter{
-			width:500px;
-			height:800px;
-			margin:auto;
-		}
-		.f_field_title {
-		    font-size: 12px;
-		    font-weight: bold;
-		    margin-left: 2px;
-		    margin-right: 2px;
-		}
-		.f_field_required {
-		    color: red;
-		    font-size: 12px;
-		    margin-top: 0px;
-		    margin-left: 2px;
-		    margin-right: 2px;
-		}
-		.f_field_ctrl {
-		    margin-top: 5px;
-		    margin-left: 2px;
-		}
-		select {
-
-			height: 32px;
-			width: 220px;
-			border-radius: 4px;
-		    border: 1px solid #cccccc;
-		    background-color: #ffffff;
-		}
-		.f_field_title {
-		    font-size: 12px;
-		    font-weight: bold;
-		    margin-left: 2px;
-		    margin-right: 2px;
-		}
-		.f_field_required {
-		    color: red;
-		    font-size: 12px;
-		    margin-top: 0px;
-		    margin-left: 2px;
-		    margin-right: 2px;
-		}
-		.f_field_ctrl {
-		    margin-top: 5px;
-		    margin-left: 2px;
-		}
-		.f_field_ctrl input{
-			color:#000;
-		}
-		.f_field_block {
-			width: 100%;
-    		height: 68px;
-		    margin-top: 4px;
-		    margin-bottom: 4px;
-		    display: block;
-		    text-align: left;
-		}
-		.inp{
-			width: 221px;
-			height: 32px;
-			border-radius: 4px;
-		}
-	/*	#layui-layer2{
-			border-radius:10px;
-		}*/
-		.center{
-			height:400px !important;
-		}
-		.delete_flow,.edit_liucheng{
-			cursor: pointer;
-		}
-		/*<img src="img/workflow/one.png">*/
-		/*.img{
-			width:20px;
-			height:20px;
-			background: red;
-		}
-			.img,.sort{
-                    float:left;
-                }*/
 	</style>
 </head>
 <body>
@@ -180,38 +65,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li data_id="0"><span class="one headli1_1">表单分类</span><img class="headli1_2" src="../../img/02.png" alt=""/>
             </li>
             <li data_id="0"><span class="headli1_1">流程分类</span>
-            </li>       
-           
-           
+            </li>
         </ul>
     </div>
     <!--head通栏结束-->
 	
 	        <!--content部分开始-->
         <div>
-            <div class="wrap">
+        <div class="wrap">
             <div class="navigation  clearfix">
             <div class="left">
-                <img src="../img/la1.png"> 
+                <img src="../../img/workflow/classfiy.png"> 
                 <div class="news">公告通知</div>                
                 <!-- 查询按钮 -->
-                
             </div>
-            
             <div class="right">
                <div id="cx" class="btn_new">查询</div>
             </div>
-
         </div>
-            	
             	<div class="tab_t">
             		<div class="tab_tone">
             			<table id="tr_td">
 		                    <thead>
 		                    <tr>
-		                        <td class="th">
-		                         	  序号
-		                        </td>
+		                        <td class="th"> 序号 </td>
 		                        <td class="th">
 		                           		名称		
 		                        </td>
@@ -834,15 +711,7 @@ $(function () {
 
 				form_delete();
 
-
-
-
 			})
-			
-
-
-
-
 
 });
 
