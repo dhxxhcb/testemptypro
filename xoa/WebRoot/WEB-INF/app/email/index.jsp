@@ -51,7 +51,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.M-box3 .active{margin: 0px 3px;width: 29px;height: 29px;line-height: 29px;background: #2b7fe0;font-size: 12px;border: 1px solid #2b7fe0;}
 			.jump-ipt{margin: 0 3px;width: 29px;height: 29px;line-height: 29px;font-size: 12px;}
 			.M-box3 a:hover{background: #2b7fe0;}
+			.set_up_ul{font-size: 14px;border: #ccc 1px solid;border-radius: 5px;width: 80%;background-color: #fff;position: absolute;bottom: 42px;margin-left: 5px}
+			.set_up_ul ul{list-style: none;}
+			.set_up_ul ul li{width: 100%;text-align: center;color: #000;height:25px;line-height:25px;}
+			.set_up_ul ul li:hover{background-color: #6ea1d5;color:#fff;cursor: pointer;}
 		</style>
+		<script>
+			$(function(){
+                $('.setUp').click(function(e){
+                    e.stopPropagation();
+                    $('.set_up_ul').css('display','block');
+                })
+                $(document).click(function(){
+                    if($('.set_up_ul').css('display')=='block'){
+                        $('.set_up_ul').css('display','none');
+                    }
+                })
+			})
+		</script>
 	</head>
 	<body>
 		<div class="page">
@@ -118,13 +135,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>--%>
 					<!--邮箱设置-->
-					<%--<div class="setUp">
+					<div class="setUp">
 						<a href="javascript:;">
 							<img class="setUp_img" src="../img/icon_setmail_11.png"/>
 							<span><fmt:message code="email.th.mailimpost" /></span>
 							<img class="loding" src="../img/icon_refresh_11.png"/>
 						</a>
-					</div>--%>
+						<div class="set_up_ul" style="display:none;">
+							<ul>
+								<li class="exceptLi">管理邮件箱</li>
+								<%--<li>Internet邮箱</li>
+								<li>导入Internet邮箱</li>
+								<li>邮箱整理</li>
+								<li>POP3设置</li>--%>
+							</ul>
+						</div>
+					</div>
 				</div>
 			
 			<!--左侧侧边栏 结束-->
@@ -233,7 +259,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<tr>
 									<td><fmt:message code="email.th.major" />：</td>
 									<td>
-										<input type="text" id="txt" value="" class="input_txt" />
+										<input style="width: 153px;height: 30px;" type="text" id="txt" value="" class="input_txt" />
 										<span class="import"><fmt:message code="email.th.conmmemail" /></span>
 									</td>
 								</tr>
@@ -244,7 +270,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<p class="Color"><a href="javascript:;" onclick="empty()"><fmt:message code="global.lang.empty" /></a></p>
 									</td>
 									<td width="84%">
-										<script id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></script>
+										<script id="container" style="width: 99.9%;min-height: 200px;" name="content" type="text/plain"></script>
 									</td>
 								</tr>
                                  <tr class="Attachmen" style="width:100%;">
@@ -263,7 +289,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<tr>
 									<td colspan="2">
 										<div class="div_btn" style="margin-left:46%;">
-											<input type="button" id="btn1" style="cursor: pointer;" value="<fmt:message code="email.th.transmitimmediate" />" />
+											<input type="button" id="btn1" style="cursor: pointer;width: 70px;border-radius: 5px;height: 30px;line-height: 30px;color: #000;" value="<fmt:message code="email.th.transmitimmediate" />" />
 										</div>
 										
 									</td>
