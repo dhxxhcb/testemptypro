@@ -50,17 +50,22 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		FlowProcess f=new FlowProcess();
 		List l=new ArrayList();
 		List e=new ArrayList();
+		//根据flowId获取流程信息
 		List<FlowProcess> list=flowProcessMapper.findF(flowId);
 		for (FlowProcess flowProcess : list){
 			int prId=flowProcess.getPrcsId();
+			//int prId1=prId+1;
 			String prceTo=flowProcess.getPrcsTo();
-			String [] p=prceTo.split(",");
-			
+			if(prceTo==null||prceTo==""){
+				l.add(prId+"=>"+prId+1);
+			}else{
+			String [] p=prceTo.split(",");			
 			for(String a:p){
 				if(prceTo==""){
 					e.add(prId);
 				}
 				l.add(prId+"=>"+a);
+			}
 			}
 		}
 		f.setEnds(e);
@@ -90,6 +95,11 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		}
 		f.setDesigndata(l1);
 		return f;
+	}
+
+	private void add(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

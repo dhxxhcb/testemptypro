@@ -1,9 +1,4 @@
 package com.xoa.controller.todoList;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xoa.model.daiban.Daiban;
-import com.xoa.model.daiban.TodoList;
+import com.xoa.service.email.EmailService;
+import com.xoa.service.notify.NotifyService;
 import com.xoa.service.todoList.TodolistService;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
@@ -22,11 +18,16 @@ import com.xoa.util.dataSource.ContextHolder;
 @Controller
 @Scope(value="prototype")
 public class TodolistController {
-	
 	private Logger loger = Logger.getLogger(TodolistController.class);
 	
 	@Resource
 	private TodolistService todolistService;
+	
+	@Resource
+	private EmailService emailService;
+	
+	@Resource
+	private NotifyService notifyService;
 	
 	@ResponseBody
 	@RequestMapping(value = "/todoList/list",produces = {"application/json;charset=UTF-8"})
@@ -39,6 +40,33 @@ public class TodolistController {
             json.setObject(db);
             json.setMsg("OK");
             json.setFlag(0);
+		} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+        return json;
+    }
+
+	
+	@ResponseBody
+	@RequestMapping(value = "/todoList/delete",produces = {"application/json;charset=UTF-8"})
+    public ToJson<Daiban> delete(HttpServletRequest request,Integer qid,String type,String deleteFlag) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		ToJson<Daiban> json=new ToJson<Daiban>(0, null);
+		try {
+			if(type.equals("email")){
+			String returnRes = emailService.deleteInEmail(qid, deleteFlag);	
+			}
+			if(type.equals("notify")){
+				notifyService.delete(qid);
+			}
+			if (json.getObj().size()>0) {
+				json.setFlag(0);
+				json.setMsg("ok");
+			} else {
+				json.setFlag(1);
+				json.setMsg("error");
+			}
 		} catch (Exception e) {
 			json.setMsg(e.getMessage());
 		}

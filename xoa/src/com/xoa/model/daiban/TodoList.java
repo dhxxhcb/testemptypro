@@ -21,6 +21,16 @@ public class TodoList {
 	private String userName;
 	
 	private String isAttach;
+	
+	private String deleteFlag;
+
+	public String getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
 
 	public String getUserName() {
 		return userName;
