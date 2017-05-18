@@ -357,25 +357,120 @@
         }
 
         function getFlowList(sortId) {
+            if(sortId==-1)
+                sortId=0;
             $.post("../../form/formlistbysort",{sortId:sortId} ,function (ret) {
                 console.log(ret);
                 if(ret.flag==true){
                    renderDatas(ret.datas);
-                    $(".foot_span_design").click(function () {
+                    bindClick();
 
-                        var formId = $(this).attr("formId");
-                        alert("design"+formId);
-                        window.location.href="../../form/designer?formId="+formId;
-                    })
-                    $(".foot_span_show").click(function () {
-                        var formId = $(this).attr("formId");
-                        window.location.href="../../form/previews?formId="+formId;
-                    })
+
                 }else{
 					noDatas();
 				}
             },"json");
         }
+
+        function bindClick() {
+            $(".foot_span_design").click(function () {
+
+                var formId = $(this).attr("formId");
+                alert("design"+formId);
+                window.location.href="../../form/designer?formId="+formId;
+            })
+            $(".foot_span_show").click(function () {
+                var formId = $(this).attr("formId");
+                window.location.href="../../form/previews?formId="+formId;
+            })
+            $(".deldel").click(function () {
+                var formId = $(this).attr("formId");
+
+                $.post("../../form/deleteForm",{formId:formId},function (ret) {
+                    if(ret.flag==true){
+                        window.location.reload();
+                    }else{
+                        alert(ret.msg);
+                    }
+                },"json")
+            })
+            $(".edit").click(function () {
+                var formId = $(this).attr("formId");
+                var formName = $(this).attr("formName");
+                var formSort = $(this).attr("formSort");
+                var deptId =$(this).attr("deptId");
+                layer.open({
+                    type: 1,
+                    /* skin: 'layui-layer-rim', //加上边框 */
+                    offset: '80px',
+                    area: ['600px', '400px'], //宽高
+                    title:$(this).find('h1').text(),
+                    closeBtn: 0,
+                    content: '<div id="" class="layui-layer-content" style="height: 298px;overflow:-Scroll;overflow-y:hidden;"><div class="conter"><div class="f_title"><div class="f_field_block"><div class="f_field_label" style="width:100px;float:left"><span class="f_field_title">表单名称:</span></div>'+
+                    '<div class="f_field_ctrl clear">' +
+                    '<input type="text" class="inp name_biaodan" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name" style="margin-left: 0px;margin-top: 0px";>' +
+                    '</div></div>' +
+                    '<span class="f_field_title" style="width:100px;float:left">表单父分类:</span>' +
+                    '<div class="f_field_ctrl clear">' +
+                    '<select name="SORT_PARENT" id="sort_parent"></select>' +
+                    '<span>（为空为一级分类）</span></div>'+
+                    '<div class="f_field_block"' +
+                    '><div class="f_field_label" style="width:100px;float:left"><span class="f_field_title">所属部门:</span></div>' +
+                    '<div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id">' +
+                    '<option value="0" class="levelleft0">所有部门</option></select></div></div></div></div></div>',
+                    btn:['保存', '关闭'],
+                    yes: function(index, layero){
+                        //按钮【按钮三】的回调
+                        /*alert($('.name_biaodan').val());*/
+                        var url="../../form/updateForm";
+                        var data={
+                            //sortNo:$('#sort_no').val(),
+                            formId:formId,
+                            formSort:$('#sort_parent  option:checked').attr('value'),
+                            deptId:$('#dept_id  option:checked').attr('value'),
+                            formName:$('#sort_name').val(),
+                        };
+
+                            var layerIndex = layer.load(0, {shade: false});
+                            $.ajax({
+                                url:url,
+                                type:'get',
+                                data:data,
+                                dataType:'json',
+                                success:function(obj){
+                                    if(obj.flag==true){
+                                        window.location.reload();
+                                    }else{
+                                        alert(obj.msg);
+                                    }
+                                }
+                            });
+                            layer.closeAll();
+
+                    }
+                });
+                var opt_li='<option value="0"  class="levelleft0"></option>';
+                item(function (data) {
+                    console.log(data);
+                    alert("data"+data);
+                    opt_li=Child(data,opt_li,0,formSort);
+                    $('#sort_parent').html(opt_li);
+                })
+                //部门共用
+                var opt_li_dep='<option value="0"  class="levelleft0">所有部门</option>';
+                departmentAjax(function (departmentData) {
+                    opt_li_dep=  departmentChild(departmentData,opt_li_dep,0,deptId);
+                    $('#dept_id').html(opt_li_dep);
+                });
+
+
+            })
+
+
+        }
+
+
+
 		function noDatas() {
             var html="抱歉现在还没有表单，请您新建";
             $(".cont_rig").html(html);
@@ -409,7 +504,7 @@
 				   '<span class="deldel" id="deldel" formId="'+data[i].formId+'" >删除</span>'+
                    ' <img src="../../img/workflow/new_excell_info_img_bianji.png" class="deldel_img" >'+
                      '<span class="footer_span_space">&nbsp;|&nbsp;</span>'+
-                   '<span class="edit" id="edit" formId="'+data[i].formId+'" >编辑</span>'+
+                   '<span class="edit" id="edit" formId="'+data[i].formId+'" formName="'+data[i].formName+'" deptId="'+data[i].deptId+'"  formSort="'+data[i].formSort+'">编辑</span>'+
                    '<img src="../../img/workflow/new_excell_info_img_shanchu.png" class="edit_img">'+
                     '</div>'+
                     '</div>'+
@@ -429,8 +524,17 @@
 		  title:$(this).find('h1').text(),
 		  closeBtn: 0,
 		  content: '<div id="" class="layui-layer-content" style="height: 298px;overflow:-Scroll;overflow-y:hidden;"><div class="conter"><div class="f_title"><div class="f_field_block"><div class="f_field_label" style="width:100px;float:left"><span class="f_field_title">表单名称:</span></div>'+
-	'<div class="f_field_ctrl clear"><input type="text" class="inp name_biaodan" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name" style="margin-left: 0px;margin-top: 0px";></div></div><span class="f_field_title" style="width:100px;float:left">表单父分类:</span><div class="f_field_ctrl clear"><select name="SORT_PARENT" id="sort_parent"></select><span>（为空为一级分类）</span></div>'+
-	'<div class="f_field_block"><div class="f_field_label" style="width:100px;float:left"><span class="f_field_title">所属部门:</span></div><div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id"><option value="0" class="levelleft0">所有部门</option></select></div></div></div></div></div>',
+	'<div class="f_field_ctrl clear">' +
+          '<input type="text" class="inp name_biaodan" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name" style="margin-left: 0px;margin-top: 0px";>' +
+          '</div></div>' +
+          '<span class="f_field_title" style="width:100px;float:left">表单父分类:</span>' +
+          '<div class="f_field_ctrl clear">' +
+          '<select name="SORT_PARENT" id="sort_parent"></select>' +
+          '<span>（为空为一级分类）</span></div>'+
+	'<div class="f_field_block"' +
+          '><div class="f_field_label" style="width:100px;float:left"><span class="f_field_title">所属部门:</span></div>' +
+          '<div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id">' +
+          '<option value="0" class="levelleft0">所有部门</option></select></div></div></div></div></div>',
 
 		  btn:['保存', '关闭'],
 		  yes: function(index, layero){
@@ -443,13 +547,9 @@
 					deptId:$('#dept_id  option:checked').attr('value'),
 					formName:$('#sort_name').val(),
 				};
-
-			  
 					if($('.name_biaodan').val()==''){
 						alert('表单名称不能为空');
 					}else{
-						/* alert('0k');*/
-						/*     alert($('#sort_parent  option:checked').attr('value'));*/
 						var layerIndex = layer.load(0, {shade: false});
 						$.ajax({
 							url:url,
@@ -457,10 +557,8 @@
 							data:data,
 							dataType:'json',
 							success:function(obj){
-								/*layer.closeAll();*/
 								if(obj.flag==true){
-									// items();
-									//item();
+									window.location.reload();
 								}
 							}
 						});
@@ -469,26 +567,27 @@
 			}
 		});
 		//父表单（表单）
-		var opt_li='<option value="0"  class="levelleft0"></option>';
-		opt_li=Child(formdata,opt_li,0,-1);
-		$('#sort_parent').html(opt_li);
-
+        var opt_li='<option value="0"  class="levelleft0"></option>';
+        item(function (data) {
+            console.log(data);
+            alert("data"+data);
+            opt_li=Child(data,opt_li,0,-1);
+            $('#sort_parent').html(opt_li);
+        })
 		//部门共用
-
 		var opt_li_dep='<option value="0"  class="levelleft0">所有部门</option>';
-
-		opt_li_dep = departmentChild(departmentData,opt_li_dep,0,-1);
-		console.log(departmentData)
-		$('#dept_id').html(opt_li_dep);
-
+        departmentAjax(function (departmentData) {
+            opt_li_dep=  departmentChild(departmentData,opt_li_dep,0,-1);
+            $('#dept_id').html(opt_li_dep);
+        });
 	});
 
 
 
 
 
-//部门遍历方法
-function departmentChild(datas,opt_li,level,dept){
+    //部门遍历方法
+    function departmentChild(datas,opt_li,level,dept){
 	for(var i=0;i<datas.length;i++){
 		var String="";
 		var space=""
@@ -517,22 +616,19 @@ function departmentChild(datas,opt_li,level,dept){
 	}
 	return opt_li;
 }
-var departmentData =new Array();
     //部门接口
-    function departmentAjax(){
+        function departmentAjax(callback){
         $.ajax({
             url:'../../department/getAlldept',
             type:'get',
             dataType:'json',
             success:function(obj){
                 var data=obj.obj;
-                departmentData= digui(data,0);
+                var  departmentData= digui(data,0);
+                callback(departmentData);
             }
         });
     }
-    
-	departmentAjax();
-    
 	function digui(datas,departId) {
         var data=new Array();
         for(var i=0;i<datas.length;i++){
@@ -543,96 +639,9 @@ var departmentData =new Array();
         }
         return data;
     }
-			
-//表单分类递归
-function queryChild(datas,str_li,level){
-		  for(var i=0;i<datas.length;i++){
-			var className="levelleft"+level;
-		   if(datas[i].sortName=='未定义'){
 
-			   str_li+='<tr ><td><div class="img"></div><a  notifyId="" class="sort windowOpen '+className+'">'+datas[i].sortNo+'</a></td>'+
-				   '<td><a notifyId="" class="windowOpen '+className+'">'+datas[i].sortName+'</a></td>'+
-				   '<td><a notifyId="" class="windowOpen ">'+datas[i].formcounts+'</a></td>'+
-				   '<td><a notifyId="" class="windowOpen ">'+datas[i].departName+'</a></td>'+
-				   '<td class="tds"></td></tr>'
-		   }else{
-			   str_li+='<tr class="trs" ><td class="xuhao"><div class="img "></div><a  notifyId="" class="sort windowOpen '+className+'">'+datas[i].sortNo+'</a></td>'+
-				   '<td class="mingcheng"><a notifyId="" class="biao_name windowOpen '+className+'">'+datas[i].sortName+'</a></td>'+
-				   '<td class="biaodanshu"><a notifyId="" class="windowOpen ">'+datas[i].formcounts+'</a></td>'+
-				   '<td class="bumen"><a notifyId="" class="windowOpen ">'+datas[i].departName+'</a></td>'+
-				   '<td class="tds"><a notifyId="" class="edit_biaodan" tid="'+datas[i].sortId+'" parent_id="'+datas[i].sortParent+'" name="编辑表单分类">编辑</a><a notifyId="" class="delete_biaodan" tid="'+datas[i].sortId+'" parent_id="'+datas[i].sortParent+'" name="表单删除">|删除</a></td></tr>'
-		   }
-			 /* console.log(datas[i].childs); */
-			 if(datas[i].childs!=null){
-				str_li = queryChild(datas[i].childs,str_li,level+1);
-	  
-			 }
-		  }
-		  return str_li;
-	  }
-//表单递归结束
-
-	//流程分类递归
-	function queryChild_flow(datas,str_li,level){
-		for(var i=0;i<datas.length;i++){
-			var className="levelleft"+level;
-			if(datas[i].sortName=='未定义'){
-				str_li+='<tr ><td ><a  notifyId="" class="windowOpen '+className+'">'+datas[i].sortNo+'</a></td>'+
-					'<td><a notifyId="" class="windowOpen '+className+'">'+datas[i].sortName+'</a></td>'+
-					'<td><a notifyId="" class="windowOpen ">'+datas[i].flowcounts+'</a></td>'+
-					'<td><a notifyId="" class="windowOpen ">'+datas[i].departName+'</a></td>'+
-					'<td></td></tr>'
-			}else{
-				str_li+='<tr class="trs"><td class="xuhao"><a  notifyId="" class="windowOpen '+className+'">'+datas[i].sortNo+'</a></td>'+
-					'<td class="mingcheng"><a notifyId="" class="windowOpen '+className+'">'+datas[i].sortName+'</a></td>'+
-					'<td class="biaodanshu"><a notifyId="" class="windowOpen ">'+datas[i].flowcounts+'</a></td>'+
-					'<td class="bumen"><a notifyId="" class="windowOpen ">'+datas[i].departName+'</a></td>'+
-					'<td class="tds"><a notifyId="" class="edit_liucheng" tid="'+datas[i].sortId+'" parent_id="'+datas[i].sortParent+'" name="编辑流程分类">编辑</a><a notifyId="" class="delete_flow" tid="'+datas[i].sortId+'" parent_id="'+datas[i].sortParent+'" name="流程删除">|删除</a></td></tr>'
-			}
-
-			/*   console.log(datas[i].childs); */
-			if(datas[i].childs!=null){
-				str_li = queryChild_flow(datas[i].childs,str_li,level+1);
-			}
-		}
-		return str_li;
-	}
-
-
-    //部门遍历方法
-function departmentChild(datas,opt_li,level,dept){
-	for(var i=0;i<datas.length;i++){
-		var String="";
-		var space=""
-		for(var j=0;j<level;j++){
-			space+="├&nbsp;&nbsp;&nbsp;";
-		}
-	   /* console.log("kongge"+space+"kongge")*/
-		if(i==0){
-			String=space+"┌";
-		}else
-		if(i!=0){
-			String=space+"├";
-		}else
-		if(i==datas.length-1){
-			String=space+"└";
-		}
-		if(dept==datas[i].deptId){
-			opt_li+='<option value="'+datas[i].deptId+'" selected="selected">'+String+datas[i].deptName+'</option>';
-		}else{
-			opt_li+='<option value="'+datas[i].deptId+'">'+String+datas[i].deptName+'</option>';
-		}
-   /* 	console.log(datas[i].childs);*/
-		if(datas[i].childs!=null){
-			opt_li = departmentChild(datas[i].childs,opt_li,level+1,dept);
-		}
-	}
-	return opt_li;
-}
-          //父表单递归方法（表单）
-
+        //父表单递归方法（表单）
   function Child(datas,opt_li,level,parentId){
-
 	  for(var i=0;i<datas.length;i++){
 		  if(level==0&&i==0) continue;
 		var String="";
@@ -655,38 +664,28 @@ function departmentChild(datas,opt_li,level,dept){
 		  }else{
 			  opt_li+='<option value="'+datas[i].sortId+'">'+String+datas[i].sortName+'</option>';
 		  }
-
-		 /* console.log(datas[i].childs); */
 		 if(datas[i].childs!=null){
 			opt_li = Child(datas[i].childs,opt_li,level+1,parentId);
 		 }
 	  }
-
 	  return opt_li;
   }
-
-           var formdata={};
 				//表单分类接口
-			function item(){
+			function item(callback){
 					$.ajax({
-						url:'../../workflow/formtype/form',
+						url:'../../workflow/flowclassify/form',
 						type:'get',
 						dataType:'json',
 						success:function(obj){
 						   if(obj.flag){
 						   		var data=obj.datas;
 						   		/* console.log(data); */
-								var str_li='';
-								str_li=queryChild(data,str_li,0);
-                                formdata={};
-								formdata=data;
-                                $('#j_tb').html("");
-								$('#j_tb').html(str_li);
+                               callback(data);
 						   }
 						}
 					});
 			}
-			item();
+
 
 
 
