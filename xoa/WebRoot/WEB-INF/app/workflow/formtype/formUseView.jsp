@@ -15,14 +15,17 @@
 	src="../js/jquery-1.10.2/jquery.min.js">
 	
 </script>
+	
 <script type="text/javascript">
 	$(function() {
+
+	    var formId='${formId}';
 		$.ajax({
 			type : 'get',
 			url : 'formType',
 			dataType : 'json',
 			data : {
-				'fromId' : 1
+				'fromId' : formId
 			},
 			success : function(rsp) {
 				var data1 = rsp.object;

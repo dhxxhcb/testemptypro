@@ -38,6 +38,12 @@
         .deldel{
             color: #fff;font-size: 12px;float: right;margin-right: 10px;margin-left: 10px;line-height: 28px;cursor: pointer;
         }
+        .foot_span_design{
+            color: #fff;font-size: 12px;float: right;margin-right: 10px;margin-left: 10px;line-height: 28px;cursor: pointer;
+        }
+        .foot_span_show{
+            color: #fff;font-size: 12px;float: right;margin-right: 10px;margin-left: 10px;line-height: 28px;cursor: pointer;
+        }
         .footer_span_space{
             color: #fff;font-size: 12px;float: right;margin-right: 10px;line-height: 28px;cursor: pointer;
         }
@@ -355,6 +361,16 @@
                 console.log(ret);
                 if(ret.flag==true){
                    renderDatas(ret.datas);
+                    $(".foot_span_design").click(function () {
+
+                        var formId = $(this).attr("formId");
+                        alert("design"+formId);
+                        window.location.href="../../form/designer?formId="+formId;
+                    })
+                    $(".foot_span_show").click(function () {
+                        var formId = $(this).attr("formId");
+                        window.location.href="../../form/previews?formId="+formId;
+                    })
                 }else{
 					noDatas();
 				}
@@ -370,7 +386,7 @@
 			     if(i%3==0) {html+='<div class="new_excell_center">';}
                  html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main">'+
-                    '<a class="set" flow_id="'+data[i].formId+'" title="编辑"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].formName+'</span></div>'+
+                    '<a class="set" formId="'+data[i].formId+'" title="编辑" href="javascript:void(0)"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].formName+'</span></div>'+
                     '<div class="new_excell_info"><div class="new_excell_info_main">'+
                    ' <div style="float: left;width: 250px;text-align: center;margin: 0 auto;">'+
                    ' <img src="http://devapp.gsubo.com/ui/erp_img/zb.png" class="new_excell_pic">'+
@@ -388,13 +404,12 @@
                    ' </div>'+
                     '</a>'+
                    ' <div class="new_excell_footer">'+
-				   '<span class="foot_span_bdznsjq" onclick="bdznsjq();">表单智能设计器</span>'+
-				   '<span class="foot_span_yulanbiaodan" onclick="yulanbiaodan();">预览表单</span>'+
-				   '<span class="foot_span_zn"><a href="#">智能</a></span>'+
-				   '<span class="deldel" id="deldel">删除</span>'+
+				   '<span class="foot_span_design" formId="'+data[i].formId+'" >设计</span>'+
+				   '<span class="foot_span_show" formId="'+data[i].formId+'" >预览</span>'+
+				   '<span class="deldel" id="deldel" formId="'+data[i].formId+'" >删除</span>'+
                    ' <img src="../../img/workflow/new_excell_info_img_bianji.png" class="deldel_img" >'+
-                    '<span class="footer_span_space">&nbsp;|&nbsp;</span>'+
-                '<span class="edit" id="edit">编辑</span>'+
+                     '<span class="footer_span_space">&nbsp;|&nbsp;</span>'+
+                   '<span class="edit" id="edit" formId="'+data[i].formId+'" >编辑</span>'+
                    '<img src="../../img/workflow/new_excell_info_img_shanchu.png" class="edit_img">'+
                     '</div>'+
                     '</div>'+
@@ -674,20 +689,10 @@ function departmentChild(datas,opt_li,level,dept){
 			item();
 
 
-			
-			
-			
-			
-			function yulanbiaodan(){
-				$.post('../../form/previews',{},function(obj){
-						console.log(obj);
-					});
-			}
-			function bdznsjq(){
-				$.post('../../form/designer',{},function(obj){
-						console.log(obj);
-					});
-			}
+
+
+
+
 })
 
 </script>
