@@ -70,8 +70,8 @@ $(function(){
 							$("#file_Tachr").html(files);
 						}
 				});
-   $('.w').on('click','.contentTr',function(){
-        $(this).addClass('trBtn').siblings().removeClass('trBtn');
+  // $('.w').on('click','.contentTr',function(){
+      //  $(this).addClass('trBtn').siblings().removeClass('trBtn');
        // if ($('.w .contentTr').attr('class')=='contentTr trBtn'){
             //$(this).find('input[type="checkbox"]').attr('checked',true);
            // $(this).siblings().find('input[type="checkbox"]').removeAttr('checked');
@@ -79,7 +79,7 @@ $(function(){
        // }else{
           //  $('.w .contentTr').find('input[type="checkbox"]').attr('checked',false);
        // }
-    })
+  //  })
     /*$('.w').on('click','.contentTr',function(){
         $(this).find('input[type="checkbox"]').attr("checked",true);
         if ($(this).find('input[type="checkbox"]').attr('checked')==true){

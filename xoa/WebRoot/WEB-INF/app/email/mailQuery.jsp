@@ -69,8 +69,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<form action="" method="get">
 					<table cellspacing="0" cellpadding="0" width="60%" style="border-collapse:collapse;background-color: #fff">
 						<tr>
-							<th colspan="2" style="text-align: center;background-color: #3691DA;color: #fff;font-weight: normal;">输入查询条件</th>
-						</tr>
+						<th colspan="2" style="text-align: center;background-color: #3691DA;color: #fff;font-weight: normal;">输入查询条件</th>
+					</tr>
 						<tr>
 							<td><fmt:message code="email.th.maillist" />：</td>
 							<td>
