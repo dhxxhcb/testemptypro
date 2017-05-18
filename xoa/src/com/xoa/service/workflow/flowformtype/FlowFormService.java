@@ -157,6 +157,46 @@ public class FlowFormService {
         return wrapper;
     }
 
+    /**
+     * Created by:   pfl
+     * date:   2017/5/17 09:49
+     * description:   删除表单（根据表单id）
+     * @param formId  表单Id
+     * @return
+     */
+     public BaseWrapper deleteForm(Integer formId){
+         BaseWrapper wrapper =new BaseWrapper();
+         if(formId==null){
+             wrapper.setFlag(false);
+             wrapper.setStatus(true);
+             wrapper.setMsg("表单Id不能为空");
+             return wrapper;
+         }
+         //检查表单是非被流程占用
+         int useNumber = flowFormTypeMapper.checkFormUserNumber(formId);
+         if(useNumber>0){
+             wrapper.setFlag(false);
+             wrapper.setStatus(true);
+             wrapper.setMsg("表单被占用，请先解除关联或删除对于流程");
+             return wrapper;
+         }
+         //是 返回失败操作
+         //否 删除表单
+         int res= flowFormTypeMapper.deleteForm(formId);
+
+         if(res>0){
+             wrapper.setFlag(true);
+             wrapper.setStatus(true);
+             wrapper.setMsg("删除成功");
+         }else{
+             wrapper.setFlag(false);
+             wrapper.setStatus(true);
+             wrapper.setMsg("操作失败");
+         }
+         return wrapper;
+     }
+
+
 
 
 }

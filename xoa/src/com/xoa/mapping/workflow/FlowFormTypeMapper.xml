@@ -41,6 +41,18 @@
     </where>
   </select>
 
+  <select id="checkFormUserNumber" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+      SELECT COUNT(*) FROM flow_type WHERE FLOW_TYPE.FORM_ID=#{formId}
+  </select>
+
+  <delete id="deleteForm" parameterType="java.lang.Integer">
+     delete from flow_form_type
+    where FORM_ID = #{formId}
+  </delete>
+
+
+
+
   <select id="queryBySearchValue" resultMap="FormWithDep" parameterType="Map">
      SELECT flow_form_type.*,department.DEPT_NAME from flow_form_type LEFT JOIN department ON department.DEPT_ID=flow_form_type.DEPT_ID
      WHERE  flow_form_type.FORM_NAME LIKE CONCAT("%",#{searchValue},"%")
