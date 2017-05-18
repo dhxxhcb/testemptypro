@@ -64,67 +64,76 @@ $(function(){
 						var files='';
 							for(var i=0;i<data.length;i++){
 							    if(data[i].fileType=="file"){
-							        files+="  <tr class='contentTr' sortId='"+data[i].sortId+"' TYPE='"+data[i].fileType+"' contentId='"+data[i].contentId+"'><td><input type=\"checkbox\" name=\"check\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td><a href='javascript:;' class='editBtn'>编辑</a></td></tr>"
+							        files+="  <tr class='contentTr' sortId='"+data[i].sortId+"' TYPE='"+data[i].fileType+"' contentId='"+data[i].contentId+"'><td><input class=\"checkChild\" type=\"checkbox\" conId='"+data[i].contentId+"' name=\"check\" value=\"\" > <a class='TITLE' href=\"${pageContext.request.contextPath }/file/catContent?contentId="+data[i].contentId+"\">"+data[i].subject+ "  </a></td>  <td><img style='width:18px;' src=\"img/file/cabinet@.png\" alt=\"\"/>"+''+ "  </td> <td> "+data[i].sendTime+ "  </td><td> "+data[i].contentId+ "  </td><td><a href='javascript:;' class='editBtn'>编辑</a></td></tr>"
 							    }
 							}
 							$("#file_Tachr").html(files);
+                            $(".checkChild").click(function () {
+                                var state=$(this).prop("checked");
+                                if(state==true){
+                                    $(this).prop("checked",true);
+                                }else{
+                                    $('#checkedAll').prop("checked",false);
+                                    $(this).prop("checked",false);
+                                }
+                             var child =   $(".checkChild");
+                                for(var i=0;i<child.length;i++){
+                                   var childstate= $(child[i]).prop("checked");
+                                    if(state!=childstate){
+                                        return
+                                    }
+                                }
+                                $('#checkedAll').prop("checked",state);
+                            })
+
+
 						}
 				});
-  // $('.w').on('click','.contentTr',function(){
-      //  $(this).addClass('trBtn').siblings().removeClass('trBtn');
-       // if ($('.w .contentTr').attr('class')=='contentTr trBtn'){
-            //$(this).find('input[type="checkbox"]').attr('checked',true);
-           // $(this).siblings().find('input[type="checkbox"]').removeAttr('checked');
-           // $(this).siblings().find('input[type="checkbox"]').attr('checked',false);
-       // }else{
-          //  $('.w .contentTr').find('input[type="checkbox"]').attr('checked',false);
-       // }
-  //  })
-    /*$('.w').on('click','.contentTr',function(){
-        $(this).find('input[type="checkbox"]').attr("checked",true);
-        if ($(this).find('input[type="checkbox"]').attr('checked')==true){
-            $(this).find('input[type="checkbox"]').removeAttr("checked");
-        }else{
-            $(this).find('input[type="checkbox"]').attr("checked");
-        }
-    })*/
 
-   /* $('.w').on('click','input[type="checkbox"]',function(){
-        if ($('.w').find('input[type="checkbox"]').prop('checked')){
-            $('.w').find('.contentTr').addClass('trBtn');
-        }else{
-            $('.w').find('.contentTr').removeClass('trBtn');
-        }
-    })*/
 
-    //if ($('.w .contentTr').find('input[type="checkbox"]'))
-    /*$('#checkedAll').click(function(){
-        if($("#checkedAll").attr("checked") == "checked"){
-            $("input[name='check']").attr("checked","checked");
+    $('#checkedAll').click(function(){
+        var state =$(this).prop("checked");
+
+        if(state==true){
+            $(this).prop("checked",true);
+           // $('.contentTr').addClass('trBtn');
+            $(".checkChild").prop("checked",true);
+
         }else{
-            $("input[name='check']").removeAttr("checked","checked");
+            $(this).prop("checked",false);
+           // $('.contentTr').removeClass('trBtn');
+            $(".checkChild").prop("checked",false);;
         }
-    })*/
+    })
+
 
     $('.FOUR').click(function(){
         var TYPE=$('.w .trBtn').attr('TYPE');
         var id=$('.w .trBtn').attr('sortId');
-        var idT=$('.w .trBtn').attr('contentId');
+       // var idT=$('.w .trBtn').attr('contentId');
+        var fileId=[];
+        $(".checkChild:checkbox:checked").each(function(){
+           var conId=$(this).attr("conId")
+            fileId.push(conId);
+        })
+
            var msg='<fmt:message code="global.lang.sure" />';
            if (confirm(msg)==true){
-               $.ajax({
-                   type:'post',
-                   url:'${pageContext.request.contextPath }/file/deletefileAndCon',
-                   dataType:'json',
-                   data:{'contentId':idT},
-                   success:function(){
-                       location.reload();
-                   }
-               });
+                 $.ajax({
+                     type:'post',
+                     url:'${pageContext.request.contextPath }/file/batchDeleteConId',
+                     dataType:'json',
+                     data:{'fileId':fileId},
+                     success:function(){
+                     location.reload();
+                     }
+                 });
                return true;
            }else{
                return false;
            }
+
+
 
     })
 
@@ -182,9 +191,9 @@ $(function(){
 </div>
 	<!--bottom 部分开始-->
 <div class="bottom w">
-    <div>
+    <div class="checkALL">
         <input id="checkedAll" type="checkbox" name="" value="" >
-        <fmt:message code="notice.th.allchose"/>
+        <label for="checkedAll"><fmt:message code="notice.th.allchose"/></label>
 
     </div>
     <div class="boto">
