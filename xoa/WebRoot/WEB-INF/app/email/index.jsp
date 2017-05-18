@@ -70,7 +70,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 //其他邮件箱
                 otherMail();
 				$('.page_left').on('click','li',function(){
-				    alert('1')
                     $('.page_left li').removeClass('on');
                     $(this).addClass('on');
 				})
