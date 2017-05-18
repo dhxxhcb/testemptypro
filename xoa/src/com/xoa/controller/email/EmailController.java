@@ -888,4 +888,12 @@ public class EmailController {
 				"loginDateSouse"));
 		return "app/email/details";
 	}
+
+	@RequestMapping("/manageMail")
+	public String manageMail(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/email/manageMail";
+	}
+
 }
