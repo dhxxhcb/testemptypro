@@ -140,14 +140,13 @@ $(function(){
                        		jsondata.nodes['node_'+i] = {
                         		name:v.prcsName,
                         		left:v.setLeft,
-                        		type: "fork",
-                        		top:v.setTop,
-                        		type:v.prcsType
+                        		type: "chat",
+                        		top:v.setTop
+                        		
                         	} 
                        	});
 
                        	connections.forEach(function(v,i){
-                       		//jsondata.lines['demo_line_'+i] ={"type": "lr", "M": 81.5, "from": "demo_node_"+i, "to": "demo_node_"+(i+1), "name": ""}
                        		jsondata.lines['line_'+i] = {
                         		type:v.prcsName,
                         		type:"sl",
