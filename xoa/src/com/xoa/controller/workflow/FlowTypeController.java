@@ -85,4 +85,8 @@ public class FlowTypeController {
         model.addAttribute("formId",formId);
         return "app/workflow/flowtype/flowdesigner";
     }
+
+
+
+
 }

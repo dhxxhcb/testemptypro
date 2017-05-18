@@ -179,6 +179,7 @@
                 dataType:'json',
                 data:{"flowId":${formId}},
                 success:function(json){
+                    debugger;
                     if(json.flag){
                     	var designdata = json.object.designdata;
                     	var connections = json.object.connections;
