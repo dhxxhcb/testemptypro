@@ -1103,6 +1103,7 @@ GooFlow.prototype = {
     },
     //载入一组数据
     loadData: function (data) {
+        debugger;
         this.setTitle(data.title);
         for (var i in data.nodes)
             this.addNode(i, data.nodes[i]);

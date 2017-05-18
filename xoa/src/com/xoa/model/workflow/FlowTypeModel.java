@@ -270,7 +270,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getFlowName() {
-        return flowName;
+        return flowName == null?"":flowName.trim();
     }
 
     /**
@@ -282,7 +282,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFlowName(String flowName) {
-        this.flowName = flowName == null ? "": flowName.trim();
+        this.flowName = flowName;
     }
 
     /**
@@ -318,7 +318,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getFlowDoc() {
-        return flowDoc;
+        return flowDoc == null ? "1" : flowDoc.trim();
     }
 
     /**
@@ -330,7 +330,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFlowDoc(String flowDoc) {
-        this.flowDoc = flowDoc == null ? "1" : flowDoc.trim();
+        this.flowDoc = flowDoc ;
     }
 
     /**
@@ -342,7 +342,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getFlowType() {
-        return flowType;
+        return flowType == null ? null : flowType.trim();
     }
 
     /**
@@ -354,7 +354,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFlowType(String flowType) {
-        this.flowType = flowType == null ? null : flowType.trim();
+        this.flowType = flowType;
     }
 
     /**
@@ -366,7 +366,7 @@ public class FlowTypeModel implements Serializable{
      * @return     Integer
      */
     public Integer getFlowNo() {
-        return flowNo;
+        return flowNo  == 0 ? 1:flowNo;
     }
 
     /**
@@ -378,7 +378,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFlowNo(Integer flowNo) {
-        this.flowNo = flowNo == 0 ? 1:flowNo;
+        this.flowNo = flowNo;
     }
 
     /**
@@ -464,7 +464,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getAutoEdit() {
-        return autoEdit;
+        return autoEdit == null ? "1" : autoEdit.trim();
     }
 
     /**
@@ -478,7 +478,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAutoEdit(String autoEdit) {
-        this.autoEdit = autoEdit == null ? "1" : autoEdit.trim();
+        this.autoEdit = autoEdit;
     }
 
     /**
@@ -490,7 +490,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getCommentPriv() {
-        return commentPriv;
+        return commentPriv == null ? "3" : commentPriv.trim();
     }
 
     /**
@@ -502,7 +502,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setCommentPriv(String commentPriv) {
-        this.commentPriv = commentPriv == null ? "3" : commentPriv.trim();
+        this.commentPriv = commentPriv ;
     }
 
     /**
@@ -514,7 +514,7 @@ public class FlowTypeModel implements Serializable{
      * @return     Integer
      */
     public Integer getDeptId() {
-        return deptId;
+        return deptId == 0 ? 1:deptId;
     }
 
     /**
@@ -526,7 +526,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setDeptId(Integer deptId) {
-        this.deptId = deptId == 0 ? 1:deptId;
+        this.deptId = deptId;
     }
 
     /**
@@ -538,7 +538,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getFreePreset() {
-        return freePreset;
+        return freePreset == null ? "1" : freePreset.trim();
     }
 
     /**
@@ -550,7 +550,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFreePreset(String freePreset) {
-        this.freePreset = freePreset == null ? "1" : freePreset.trim();
+        this.freePreset = freePreset;
     }
 
     /**
@@ -565,7 +565,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getFreeOther() {
-        return freeOther;
+        return freeOther == null ? "2" : freeOther.trim();
     }
 
     /**
@@ -580,7 +580,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFreeOther(String freeOther) {
-        this.freeOther = freeOther == null ? "2" : freeOther.trim();
+        this.freeOther = freeOther;
     }
 
     /**
@@ -592,7 +592,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getAllowPreSet() {
-        return allowPreSet;
+        return allowPreSet == null ? "0" : allowPreSet.trim();
     }
 
     /**
@@ -604,7 +604,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAllowPreSet(String allowPreSet) {
-        this.allowPreSet = allowPreSet == null ? "0" : allowPreSet.trim();
+        this.allowPreSet = allowPreSet ;
     }
 
     /**
@@ -619,7 +619,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getForcePreSet() {
-        return forcePreSet;
+        return forcePreSet == null ? "0" : forcePreSet.trim();
     }
 
     /**
@@ -634,7 +634,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setForcePreSet(String forcePreSet) {
-        this.forcePreSet = forcePreSet == null ? "0" : forcePreSet.trim();
+        this.forcePreSet = forcePreSet;
     }
 
     /**
@@ -694,7 +694,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getFlowAction() {
-        return flowAction;
+        return flowAction == null ? null : flowAction.trim();
     }
 
     /**
@@ -706,7 +706,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFlowAction(String flowAction) {
-        this.flowAction = flowAction == null ? null : flowAction.trim();
+        this.flowAction = flowAction ;
     }
 
     /**
@@ -766,7 +766,7 @@ public class FlowTypeModel implements Serializable{
      * @return     Date
      */
     public Date getAutoNumTime() {
-        return autoNumTime;
+        return autoNumTime == null ? DateFormat.getDate("0000-00-00 00:00:00"):autoNumTime;
     }
 
     /**
@@ -778,7 +778,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAutoNumTime(Date autoNumTime) {
-        this.autoNumTime = autoNumTime == null ? DateFormat.getDate("0000-00-00 00:00:00"):autoNumTime;
+        this.autoNumTime = autoNumTime ;
     }
 
     /**
@@ -790,7 +790,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getManageUser() {
-        return manageUser;
+        return manageUser == null ? "" : manageUser.trim();
     }
 
     /**
@@ -802,7 +802,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setManageUser(String manageUser) {
-        this.manageUser = manageUser == null ? "" : manageUser.trim();
+        this.manageUser = manageUser ;
     }
 
     /**
@@ -814,7 +814,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getAutoName() {
-        return autoName;
+        return autoName == null ? "" : autoName.trim();
     }
 
     /**
@@ -826,7 +826,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAutoName(String autoName) {
-        this.autoName = autoName == null ? "" : autoName.trim();
+        this.autoName = autoName;
     }
 
     /**
@@ -838,7 +838,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getQueryUser() {
-        return queryUser;
+        return queryUser == null ? "" : queryUser.trim();
     }
 
     /**
@@ -850,7 +850,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setQueryUser(String queryUser) {
-        this.queryUser = queryUser == null ? "" : queryUser.trim();
+        this.queryUser = queryUser;
     }
 
     /**
@@ -862,7 +862,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getFlowDesc() {
-        return flowDesc;
+        return flowDesc == null ? "" : flowDesc.trim();
     }
 
     /**
@@ -874,7 +874,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setFlowDesc(String flowDesc) {
-        this.flowDesc = flowDesc == null ? "" : flowDesc.trim();
+        this.flowDesc = flowDesc;
     }
 
     /**
@@ -888,7 +888,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getNewUser() {
-        return newUser;
+        return newUser == null ? "" : newUser.trim();
     }
 
     /**
@@ -902,7 +902,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setNewUser(String newUser) {
-        this.newUser = newUser == null ? "" : newUser.trim();
+        this.newUser = newUser;
     }
 
     /**
@@ -914,7 +914,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getQueryItem() {
-        return queryItem;
+        return queryItem == null ? "" : queryItem.trim();
     }
 
     /**
@@ -926,7 +926,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setQueryItem(String queryItem) {
-        this.queryItem = queryItem == null ? "" : queryItem.trim();
+        this.queryItem = queryItem;
     }
 
     /**
@@ -938,7 +938,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getQueryUserDept() {
-        return queryUserDept;
+        return queryUserDept == null ? "" : queryUserDept.trim();
     }
 
     /**
@@ -950,7 +950,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setQueryUserDept(String queryUserDept) {
-        this.queryUserDept = queryUserDept == null ? "" : queryUserDept.trim();
+        this.queryUserDept = queryUserDept;
     }
 
     /**
@@ -962,7 +962,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getManageUserDept() {
-        return manageUserDept;
+        return manageUserDept == null ? "" : manageUserDept.trim();
     }
 
     /**
@@ -974,7 +974,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setManageUserDept(String manageUserDept) {
-        this.manageUserDept = manageUserDept == null ? "" : manageUserDept.trim();
+        this.manageUserDept = manageUserDept;
     }
 
     /**
@@ -986,7 +986,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getEditPriv() {
-        return editPriv;
+        return editPriv == null ? "" : editPriv.trim();
     }
 
     /**
@@ -998,7 +998,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setEditPriv(String editPriv) {
-        this.editPriv = editPriv == null ? "" : editPriv.trim();
+        this.editPriv = editPriv;
     }
 
     /**
@@ -1010,7 +1010,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getListFldsStr() {
-        return listFldsStr;
+        return listFldsStr == null ? "" : listFldsStr.trim();
     }
 
     /**
@@ -1022,7 +1022,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setListFldsStr(String listFldsStr) {
-        this.listFldsStr = listFldsStr == null ? "" : listFldsStr.trim();
+        this.listFldsStr = listFldsStr;
     }
 
     /**
@@ -1034,7 +1034,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getModelId() {
-        return modelId;
+        return modelId == null ? "" : modelId.trim();
     }
 
     /**
@@ -1046,7 +1046,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setModelId(String modelId) {
-        this.modelId = modelId == null ? "" : modelId.trim();
+        this.modelId = modelId;
     }
 
     /**
@@ -1058,7 +1058,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getModelName() {
-        return modelName;
+        return modelName == null ? "" : modelName.trim();
     }
 
     /**
@@ -1070,7 +1070,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setModelName(String modelName) {
-        this.modelName = modelName == null ? "" : modelName.trim();
+        this.modelName = modelName;
     }
 
     /**
@@ -1082,7 +1082,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getAttachmentId() {
-        return attachmentId;
+        return attachmentId == null ? "" : attachmentId.trim();
     }
 
     /**
@@ -1094,7 +1094,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAttachmentId(String attachmentId) {
-        this.attachmentId = attachmentId == null ? "" : attachmentId.trim();
+        this.attachmentId = attachmentId;
     }
 
     /**
@@ -1106,7 +1106,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getAttachmentName() {
-        return attachmentName;
+        return attachmentName == null ? "" : attachmentName.trim();
     }
 
     /**
@@ -1118,7 +1118,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setAttachmentName(String attachmentName) {
-        this.attachmentName = attachmentName == null ? "" : attachmentName.trim();
+        this.attachmentName = attachmentName;
     }
 
     /**
@@ -1130,7 +1130,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getViewUser() {
-        return viewUser;
+        return viewUser == null ? "" : viewUser.trim();
     }
 
     /**
@@ -1142,7 +1142,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setViewUser(String viewUser) {
-        this.viewUser = viewUser == null ? "" : viewUser.trim();
+        this.viewUser = viewUser;
     }
 
     /**
@@ -1154,7 +1154,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getViewDept() {
-        return viewDept;
+        return viewDept == null ? "" : viewDept.trim();
     }
 
     /**
@@ -1166,7 +1166,7 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setViewDept(String viewDept) {
-        this.viewDept = viewDept == null ? "" : viewDept.trim();
+        this.viewDept = viewDept;
     }
 
     /**
@@ -1178,7 +1178,7 @@ public class FlowTypeModel implements Serializable{
      * @return     String
      */
     public String getViewRole() {
-        return viewRole;
+        return viewRole == null ? "" : viewRole.trim();
     }
 
     /**
@@ -1190,6 +1190,6 @@ public class FlowTypeModel implements Serializable{
      * @return     void
      */
     public void setViewRole(String viewRole) {
-        this.viewRole = viewRole == null ? "" : viewRole.trim();
+        this.viewRole = viewRole;
     }
 }

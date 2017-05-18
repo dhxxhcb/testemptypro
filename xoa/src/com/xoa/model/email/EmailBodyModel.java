@@ -251,15 +251,12 @@ public class EmailBodyModel implements Serializable {
 		this.emailList = emailList;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 	/**
 	 * 收件人USER_ID串
 	 */
 	public String getToId2() {
-		return toId2;
+		return toId2 == null ? "":toId2.trim();
 	}
 
 	/**
@@ -273,7 +270,7 @@ public class EmailBodyModel implements Serializable {
 	 * 抄送人USER_ID串
 	 */
 	public String getCopyToId() {
-		return copyToId;
+		return copyToId == null ? "" : copyToId.trim();
 	}
 
 	/**
@@ -287,7 +284,7 @@ public class EmailBodyModel implements Serializable {
 	 * 密送人USER_ID串
 	 */
 	public String getSecretToId() {
-		return secretToId;
+		return secretToId == null ? "":secretToId.trim();
 	}
 
 	/**
@@ -295,13 +292,6 @@ public class EmailBodyModel implements Serializable {
 	 */
 	public void setSecretToId(String secretToId) {
 		this.secretToId = secretToId;
-	}
-
-	/**
-	 * 邮件内容
-	 */
-	public String getContent() {
-		return content;
 	}
 
 	/**
@@ -349,6 +339,13 @@ public class EmailBodyModel implements Serializable {
 	/**
 	 * 邮件内容
 	 */
+	public String getContent() {
+		return content == null ? "" : content.trim();
+	}
+
+	/**
+	 * 邮件内容
+	 */
 	public void setContent(String content) {
 		this.content = content;
 	}
@@ -357,7 +354,7 @@ public class EmailBodyModel implements Serializable {
 	 * 附件ID串
 	 */
 	public String getAttachmentId() {
-		return attachmentId;
+		return attachmentId == null ? "":attachmentId.trim();
 	}
 
 	/**
@@ -371,7 +368,7 @@ public class EmailBodyModel implements Serializable {
 	 * 附件文件名串
 	 */
 	public String getAttachmentName() {
-		return attachmentName;
+		return attachmentName == null ? "":attachmentName.trim();
 	}
 
 	/**
@@ -391,12 +388,27 @@ public class EmailBodyModel implements Serializable {
 	/**
 	 * 接收外部邮箱名称
 	 */
-	public String getToWebmail() {
-		return toWebmail;
+	public String getRecvFromName() {
+		return recvFromName == null ? "" : recvFromName.trim();
 	}
 
 	/**
-	 * 外部收件人邮箱串
+	 * 接收外部邮箱名称
+	 */
+	public void From(String recvFromName) {
+		this.recvFromName = recvFromName == null ? "" : recvFromName.trim();
+	}
+
+
+	/**
+	 * 接收外部邮箱名称
+	 */
+	public String getToWebmail() {
+		return toWebmail == null ? "" : toWebmail.trim();
+	}
+
+	/**
+	 * 接收外部邮箱名称
 	 */
 	public void setToWebmail(String toWebmail) {
 		this.toWebmail = toWebmail;
@@ -406,7 +418,7 @@ public class EmailBodyModel implements Serializable {
 	 * 外部收件人邮箱串
 	 */
 	public byte[] getCompressContent() {
-		return compressContent;
+		return compressContent.length == 0 ? new byte[0] : compressContent;
 	}
 
 	/**
@@ -420,7 +432,7 @@ public class EmailBodyModel implements Serializable {
 	 * 压缩后的邮件内容
 	 */
 	public byte[] getWebmailContent() {
-		return webmailContent;
+		return webmailContent.length == 0 ? new byte[0] : webmailContent;
 	}
 
 	/**
@@ -434,7 +446,7 @@ public class EmailBodyModel implements Serializable {
 	 * 外部邮件内容
 	 */
 	public String getAuditRemark() {
-		return auditRemark;
+		return auditRemark == null ? "" : auditRemark.trim();
 	}
 
 	/**
@@ -448,7 +460,7 @@ public class EmailBodyModel implements Serializable {
 	 * 抄送外部邮箱串
 	 */
 	public String getCopyToWebmail() {
-		return copyToWebmail;
+		return copyToWebmail == null ? "":copyToWebmail.trim();
 	}
 
 	/**
@@ -462,7 +474,7 @@ public class EmailBodyModel implements Serializable {
 	 * 密送外部邮箱串
 	 */
 	public String getSecretToWebmail() {
-		return secretToWebmail;
+		return secretToWebmail == null ? "":secretToWebmail.trim();
 	}
 
 	/**
@@ -476,7 +488,7 @@ public class EmailBodyModel implements Serializable {
 	 * 点赞人user_id串
 	 */
 	public String getPraise() {
-		return praise;
+		return praise == null ? "":praise.trim();
 	}
 
 	/**
@@ -502,10 +514,10 @@ public class EmailBodyModel implements Serializable {
 	}
 
 	/**
-	 * 自增唯一ID
+	 * 发件人USER_ID
 	 */
 	public String getFromId() {
-		return fromId;
+		return fromId == null ? "" : fromId.trim();
 	}
 
 	/**
@@ -519,7 +531,7 @@ public class EmailBodyModel implements Serializable {
 	 * 邮件主题
 	 */
 	public String getSubject() {
-		return subject;
+		return subject == null ? "" : subject.trim();
 	}
 
 	/**
@@ -561,7 +573,7 @@ public class EmailBodyModel implements Serializable {
 	 * 是否使用短信提醒(0-不提醒,1-提醒)
 	 */
 	public String getSmsRemind() {
-		return smsRemind;
+		return smsRemind == null ? "0" : smsRemind.trim();
 	}
 
 	/**
@@ -575,7 +587,7 @@ public class EmailBodyModel implements Serializable {
 	 * 重要程度(空-一般邮件,1-重要,2-非常重要)
 	 */
 	public String getImportant() {
-		return important;
+		return important == null ? "0" : important.trim();
 	}
 
 	/**
@@ -589,7 +601,7 @@ public class EmailBodyModel implements Serializable {
 	 * 邮件大小
 	 */
 	public Long getSize() {
-		return size;
+		return size == null ? 0L:size;
 	}
 
 	/**
@@ -617,7 +629,7 @@ public class EmailBodyModel implements Serializable {
 	 * 从自己的哪个外部邮箱向外发送
 	 */
 	public String getFromWebmail() {
-		return fromWebmail;
+		return fromWebmail == null ? "" : fromWebmail.trim();
 	}
 
 	/**
@@ -631,7 +643,7 @@ public class EmailBodyModel implements Serializable {
 	 * 外部邮件标记(0-未发送,1-正在准备发送,2-发送成功,3-发送失败)
 	 */
 	public String getWebmailFlag() {
-		return webmailFlag;
+		return webmailFlag == null ? "0" : webmailFlag.trim();
 	}
 
 	/**
@@ -642,24 +654,10 @@ public class EmailBodyModel implements Serializable {
 	}
 
 	/**
-	 * 接收外部邮箱名称
-	 */
-	public String getRecvFromName() {
-		return recvFromName;
-	}
-
-	/**
-	 * 接收外部邮箱名称
-	 */
-	public void From(String recvFromName) {
-		this.recvFromName = recvFromName == null ? null : recvFromName.trim();
-	}
-
-	/**
 	 * 接收外部邮箱ID
 	 */
 	public String getRecvFrom() {
-		return recvFrom;
+		return recvFrom == null ? "" : recvFrom.trim();
 	}
 
 	/**
@@ -687,7 +685,7 @@ public class EmailBodyModel implements Serializable {
 	 * 发送外部邮箱名称
 	 */
 	public String getRecvTo() {
-		return recvTo;
+		return recvTo == null ? "" : recvTo.trim();
 	}
 
 	/**
@@ -701,7 +699,7 @@ public class EmailBodyModel implements Serializable {
 	 * 是否为外部邮件(0-内部邮件,1-外部邮件)
 	 */
 	public String getIsWebmail() {
-		return isWebmail;
+		return isWebmail == null ? "0" : isWebmail.trim();
 	}
 
 	/**
@@ -715,7 +713,7 @@ public class EmailBodyModel implements Serializable {
 	 * 是否同时外发(0-不外发,1-勾选向此人发送外部邮件)
 	 */
 	public String getIsWf() {
-		return isWf;
+		return isWf == null ? "0" : isWf.trim();
 	}
 
 	/**
@@ -729,7 +727,7 @@ public class EmailBodyModel implements Serializable {
 	 * 内容关键词
 	 */
 	public String getKeyword() {
-		return keyword;
+		return keyword == null ? "" : keyword.trim();
 	}
 
 	/**
@@ -757,7 +755,7 @@ public class EmailBodyModel implements Serializable {
 	 * 审核人USER_ID
 	 */
 	public String getAuditMan() {
-		return auditMan;
+		return auditMan  == null ? "" : auditMan.trim();
 	}
 
 	/**
