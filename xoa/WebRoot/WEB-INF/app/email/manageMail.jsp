@@ -20,7 +20,8 @@
         *{margin: 0;padding: 0;}
         body{font-family: "微软雅黑";}
         .title{height: 60px;width: 100%;margin-left: 15px;}
-        .title .div_title{font-size: 22px;}
+        .title .div_im img{width: 23px;margin-right:10px;float: left;margin-top: 9px;}
+        .title .div_title{font-size: 22px;float: left}
         .TABLE tr{border: 1px solid #c0c0c0;}
         .TABLE tr td{padding: 6px;border-right: 1px solid #c0c0c0;display: table-cell;vertical-align: inherit;font-size: 12px;}
         #btn{display: block;margin: 0 auto;width: 70px;height: 28px;border: #ccc 1px solid;border-radius: 3px;cursor: pointer;text-align: center;line-height: 28px;}
@@ -39,7 +40,9 @@
 <body>
 <div class="content">
     <div class="title">
-        <div class="div_im"></div>
+        <div class="div_im">
+            <img src="../img/icon_addEmail_03.png">
+        </div>
         <div class="div_title">添加邮件箱</div>
     </div>
     <div class="TABLE" style="width: 100%;">
@@ -73,7 +76,9 @@
     <hr />
     <div class="div_list">
         <div class="title">
-            <div class="div_im"></div>
+            <div class="div_im">
+                <img src="../img/icon_manageEmail_03.png">
+            </div>
             <div class="div_title">管理邮件箱</div>
         </div>
         <div class="TABLE_A">

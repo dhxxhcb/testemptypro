@@ -74,6 +74,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $(this).addClass('on');
 				})
 
+				$('.ul_show').on('click','li',function(){
+				    var id=$(this).attr('boxId');
+                    otherList(id);
+				})
+
 			})
 			function otherMail (){
 			    var data={
@@ -90,9 +95,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    var data1=rsp.obj;
 					    var str='';
 					    for(var i=0;i<data1.length;i++){
-					        str+='<li><a href="javascript:;"><img src="../img/icon_file_11.png"/>'+data1[i].boxName+'</a></li>'
+					        str+='<li boxId="'+data1[i].boxId+'"><a href="javascript:;"><img src="../img/icon_file_11.png"/>'+data1[i].boxName+'</a></li>'
 						}
 						$('.other .ul_show ul').append(str);
+					}
+				})
+			}
+			function otherList(id){
+                $('.BTN').remove();
+			    var data={
+			        'page':1,
+					'pageSize':10,
+					'useFlag':true,
+					'boxId':id
+				}
+				$.ajax({
+					type:'GET',
+					url:'selectBoxEmail',
+					dataType:'json',
+					data:data,
+					success:function(rsp){
+                        var data1=rsp.obj;
+                        var str='';
+                        for(var i=0;i<data1.length;i++){
+                            var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                            if(data1[i].emailList[0].readFlag==1){
+                                if(data1[i].attachmentId!=''){
+                                    str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+                                }else{
+                                    str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+                                }
+
+                            } else if(data1[i].emailList[0].readFlag==0){
+                                if(data1[i].attachmentId!=''){
+                                    str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+                                }else{
+                                    str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+                                }
+
+                            }
+
+                        }
+                        $('.befor').after(str);
 					}
 				})
 			}
@@ -509,8 +553,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//与写邮件页面互调
 				$('.d_im img').click(function(){
-					var Ifrmae='<div class="div_iframe" style="width: 85%;overflow: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
-	    			//var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+					var Ifrmae='<div class="div_iframe" style="width: 82%;overflow: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+	    			//var Ifrmae='<div class="div_iframe" style="width: 82%;overflow-y: auto;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="addbox" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
 	    			$('.up_page_right').css('display','none');
 	    			$('.page').append(Ifrmae);
 	    		});
@@ -523,14 +567,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('.exceptLi').click(function(){
 					//alert('1');
 					$('.up_page_right').css('display','none');
-                    var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: hidden;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="manageMail" frameborder="0" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+                    var Ifrmae='<div class="div_iframe" style="width: 82%;overflow-y: hidden;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="manageMail" frameborder="0" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
                     $('.page').append(Ifrmae);
-					$('.set_up_ul').css('display','none');
+					//$('.set_up_ul').css('display','none');
 				})
 				
 				//查询邮件点击事件
 				$('.liSearch').click(function(){
-	    			var Ifrmae='<div class="div_iframe" style="width: 85%;overflow-y: hidden;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="mailQuery" frameborder="0" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+	    			var Ifrmae='<div class="div_iframe" style="width: 82%;overflow-y: hidden;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="mailQuery" frameborder="0" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
 	    			$('.up_page_right').css('display','none');
 	    			$('.page').append(Ifrmae);
 	    		});
