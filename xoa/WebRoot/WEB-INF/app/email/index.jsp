@@ -76,7 +76,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				$('.ul_show').on('click','li',function(){
 				    var id=$(this).attr('boxId');
-				    alert("boxId"+id);
                     otherList(id);
 				})
 
