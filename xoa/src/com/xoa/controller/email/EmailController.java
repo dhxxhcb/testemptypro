@@ -703,6 +703,10 @@ public class EmailController {
         String sqlType = "xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse");
         ContextHolder.setConsumerType(sqlType);
+        if (StringUtils.checkNull(emailModel.getToId())) {
+            String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+            emailModel.setToId(userId);
+        }
         return emailService.updateEmailBox(emailModel);
     }
 
