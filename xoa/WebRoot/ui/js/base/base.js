@@ -1,6 +1,6 @@
 ;;$(function(){
 	$.extend({
-		popWindow:function(url,title,top,left,width,height) {
+		popWindow:function(url,title,width,height,top,left) {
 			
 			var top = top || '100';
 			var left = left || '300';

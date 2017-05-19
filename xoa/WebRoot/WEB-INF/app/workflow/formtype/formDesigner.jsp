@@ -65,9 +65,9 @@
                     </ul>
                 <%--</div>--%>
             </div>
-             <div class="span10">
+             <div class="span10" style="width:70%;text">
                     <script id="formEditor" type="text/plain" style="width:100%;">${form.originalHtml}</script>
-                    </div>
+             </div>
                     </div><!--end row-->
                     </form>
                     </div>
@@ -94,7 +94,7 @@
                             //默认的编辑区域高度
                             initialFrameHeight:470,
                             //编辑器宽度
-                            initialFrameWidth: 1020,
+                            //initialFrameWidth: $(document.body).()-338,
 
                             iframeCssUrl:"../css/ueditor/bootstrap.css" //引入自身 css使编辑器兼容你网站css
                             //更多其他参数，请参考ueditor.config.js中的配置项
