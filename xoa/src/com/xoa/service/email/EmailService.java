@@ -301,5 +301,14 @@ public interface EmailService {
 	 */
 	public ToJson<EmailBodyModel> deleteBoxEmail(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag);
 
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/19 10:19
+	 * 方法介绍:   其他邮件名称和序号修改
+	 * 参数说明:
+	 * @return
+	 */
+	public ToJson<EmailBoxModel> updeateEmailBoxName(EmailBoxModel emailBoxModel);
+
 
 }

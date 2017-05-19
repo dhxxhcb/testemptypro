@@ -14,5 +14,13 @@ import com.xoa.model.email.EmailBoxModel;
  */
 public interface EmailBoxMapper extends BaseMapper<EmailBoxModel>{
 
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/5/19 10:58
+     * 方法介绍:   其他邮件删除文件夹
+     * 参数说明:
+     * @return
+     */
+    public void deleteBox(Integer boxId);
 
 }

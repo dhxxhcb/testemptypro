@@ -842,11 +842,12 @@ public class EmailServiceImpl implements EmailService {
 	/**
 	 * 创建作者:   张勇
 	 * 创建日期:   2017/5/15 17:00
-	 * 方法介绍:   删除其他邮件文件夹，并判断其中
+	 * 方法介绍:   删除其他邮件文件夹，并判断该文件夹是否存在邮件
 	 * 参数说明:
 	 * @return
 	 */
 	@Override
+	@Transactional
 	public ToJson<EmailBodyModel> deleteBoxEmail(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag) {
 		ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
 		PageParams pageParams = new PageParams();
@@ -854,21 +855,55 @@ public class EmailServiceImpl implements EmailService {
 		pageParams.setPage(page);
 		pageParams.setPageSize(pageSize);
 		maps.put("page", pageParams);
+//		fromId  收件人用户
+//		boxId
+		boolean flags = true;
 		List<EmailBodyModel> list = emailBodyMapper.selectIsBoxEmail(maps);
 		int len = list.size();
 		if (len>0){
+			flags = false;
+		}else{
+//			删除其他邮件文件
+			try {
+				emailBoxMapper.deleteBox((Integer)maps.get("boxId"));
+			}catch (Exception e){
+				flags = false;
+			}
+		}
+		if (flags){
+			tojson.setFlag(0);
+			tojson.setMsg("ok");
+		}else {
 			tojson.setFlag(1);
 			tojson.setMsg("error");
-		}else{
-//			emailBoxMapper.delete();
 		}
+		return tojson;
+	}
 
-		return null;
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/19 10:20
+	 * 方法介绍:   其他邮件文件名和序号修改
+	 * 参数说明:
+	 * @return
+	 */
+	@Override
+	@Transactional
+	public ToJson<EmailBoxModel> updeateEmailBoxName(EmailBoxModel emailBoxModel) {
+		ToJson<EmailBoxModel> toJson = new ToJson<EmailBoxModel>();
+		try {
+			emailBoxMapper.update(emailBoxModel);
+			toJson.setFlag(0);
+			toJson.setMsg("ok");
+		}catch (Exception e){
+			toJson.setFlag(1);
+			toJson.setMsg("error");
+		}
+		return toJson;
 	}
 
 
-
-  public EmailBoxModel returnBoxModel(EmailBoxModel emailBoxModel){
+	public EmailBoxModel returnBoxModel(EmailBoxModel emailBoxModel){
 		if(StringUtils.checkNull(emailBoxModel.getDefaultCount())){
 			emailBoxModel.setDefaultCount("");
 		}

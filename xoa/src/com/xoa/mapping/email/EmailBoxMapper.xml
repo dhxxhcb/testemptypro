@@ -25,7 +25,19 @@
   </select>
 
   <!-- 删除其他邮件组 -->
-  <delete id="delete" parameterType="Map" >
+  <delete id="deleteBox" parameterType="java.lang.Integer" >
     DELETE FROM email_box  WHERE BOX_ID=#{boxId}
   </delete>
+
+  <!-- 修改其他邮件名称和序号 -->
+  <update id="update" parameterType="com.xoa.model.email.EmailBoxModel"  >
+    UPDATE email_body SET
+   BOX_NO=#{boxNo},
+   BOX_NAME=#{boxName}
+    WHERE
+    BOX_ID = #{boxId}
+    AND
+    USER_ID = #{userId}
+  </update>
+
 </mapper>

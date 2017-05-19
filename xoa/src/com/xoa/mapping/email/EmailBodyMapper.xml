@@ -512,9 +512,8 @@
 	</update>
 
 	<!-- 草稿箱发送 -->
-	<insert id="update" parameterType="com.xoa.model.email.EmailBodyModel"  >
+	<update id="update" parameterType="com.xoa.model.email.EmailBodyModel"  >
 		UPDATE email_body SET
-		BODY_ID = #{bodyId},
 		FROM_ID = #{fromId},
 		SUBJECT = #{subject},
 		SEND_TIME = #{sendTime},
@@ -549,7 +548,7 @@
 		PRAISE = #{praise}
 		WHERE
 		BODY_ID = #{bodyId}
-	</insert>
+	</update>
 
 
 	<!--其他邮件查询 -->
