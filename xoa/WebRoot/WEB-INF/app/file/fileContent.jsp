@@ -110,7 +110,6 @@ $(function(){
     $('.FOUR').click(function(){
         var TYPE=$('.w .trBtn').attr('TYPE');
         var id=$('.w .trBtn').attr('sortId');
-       // var idT=$('.w .trBtn').attr('contentId');
         var fileId=[];
         $(".checkChild:checkbox:checked").each(function(){
            var conId=$(this).attr("conId")
