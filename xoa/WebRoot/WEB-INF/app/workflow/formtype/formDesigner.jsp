@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="../css/base.css">
 </head>
 <body>
+<script type="text/javascript">
+    var pluginId = 0;
+</script>
 
 
     <div class="container" style="padding-top: 5px; padding-left: 5px">
@@ -41,10 +44,10 @@
                         </li>
 
                         <li><a href="javascript:void(0);" onclick="formDesign.exec('text');" class="btn btn-link">
-                            <img src="../img/icon_textbox_03.png" alt="">文本框
+                            <img src="../img/icon_textbox_03.png" alt="">单行文本框
                         </a></li>
                         <li><a href="javascript:void(0);" onclick="formDesign.exec('textarea');" class="btn btn-link">
-                            <img src="../img/icon_multiplelinetextbox_03.png" alt="">多行文本</a></li>
+                            <img src="../img/icon_multiplelinetextbox_03.png" alt="">多行文本框</a></li>
                         <li><a href="javascript:void(0);" onclick="formDesign.exec('select');" class="btn btn-link">
                             <img src="../img/icon_dropmenu_03.png" alt="">下拉菜单</a></li>
                         <li><a href="javascript:void(0);" onclick="formDesign.exec('radios');" class="btn btn-link">
