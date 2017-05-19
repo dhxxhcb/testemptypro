@@ -81,6 +81,15 @@ public class Ctest {
 	
 	@Test
 	public void test() throws Exception {
+
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("fromId","admin");
+		maps.put("boxId",4);
+		ToJson<EmailBodyModel> toJson =
+		emailUtilService.deleteBoxEmail(maps,  1, 5, false);
+		System.out.println(toJson);
+
+
 //		System.out.println(DateFormat.getStrTime(1494929129));
 //		EmailBoxModel emailBoxModel = new EmailBoxModel();
 //		emailBoxModel.setBoxName("测试盒子");
@@ -92,11 +101,11 @@ public class Ctest {
 //		emailModel.setBoxId(1);
 //		emailModel.setEmailId(1110);
 //		emailModel.setToId("admin");
-		Map<String,Object> maps = new HashMap<String,Object>();
-		maps.put("fromId","admin");
-		maps.put("boxId","1");
-		ToJson<EmailBodyModel> toJson =emailUtilService.selectBoxEmail( maps,1, 5, true,"xoa1001");
-		System.out.println(toJson.getMsg());
+//		Map<String,Object> maps = new HashMap<String,Object>();
+//		maps.put("fromId","admin");
+//		maps.put("boxId","1");
+//		ToJson<EmailBodyModel> toJson =emailUtilService.selectBoxEmail( maps,1, 5, true,"xoa1001");
+//		System.out.println(toJson.getMsg());
 
 //		ContextHolder.setConsumerType("xoa1001");
 //		UnitManage um = unitManageService.showUnitManage();

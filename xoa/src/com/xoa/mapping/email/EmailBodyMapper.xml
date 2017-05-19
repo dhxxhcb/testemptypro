@@ -589,8 +589,7 @@
 
 	<!--查询其他邮件中是否存在详细邮件 -->
 	<select id="selectIsBoxEmail" parameterType="Map" resultMap="BaseResultMap">
-		SELECTs
-		eb.FROM_ID,
+		SELECT
 		e.EMAIL_ID,
 		u.USER_NAME
 		FROM

@@ -120,12 +120,13 @@ $(function(){
 	            group: "组织划分框编辑开关"
 	        };
             var jsondata = {
-                "title": "231321",
+                "title": ${formName},
                 "nodes" :{},
                 "lines" :{},
             	"areas": {},
             	"initNum": 7
             }
+            alert(jsondata.title);
             var flowDesign = $.createGooFlow($("#demo"), property);
 			    flowDesign.setNodeRemarks(remark);
             $.ajax({
@@ -135,6 +136,7 @@ $(function(){
                 data:{"flowId":${formId}},
                 success:function(json){
                    // debugger;
+//                    获取数据并添加到流程设计器的插件中
                     if(json.flag){
                     	var designdata = json.object.designdata;
                     	var connections = json.object.connections;
@@ -153,14 +155,14 @@ $(function(){
                        		jsondata.lines['line_'+i] = {
                         		type:v.prcsName,
                         		type:"sl",
-                        		from:"node_"+i,
-                        		to:"node_"+(i+1),
+                        		from:"node_"+v.from,
+                        		to:"node_"+v.to,
                         		name:"",
                         		"M": 81.5,
                         		alt:true
                         	} 
                        	});
-						
+						alert(jsondata.title);
 			            flowDesign.loadData(jsondata);
 			            	 $("#submit").click(function(){
 				            	alert(2);
@@ -168,7 +170,6 @@ $(function(){
 				            });
 			            	
 		                }
-                       
                     }
             });
            
