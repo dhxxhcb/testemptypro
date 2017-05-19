@@ -106,8 +106,13 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	}
 
 	private void add(String string) {
-		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int insertSelective(FlowProcess record) {
+		int a=flowProcessMapper.insertSelective(record);
+		return a;
 	}
 
 }

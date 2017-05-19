@@ -171,8 +171,8 @@
 		resultType="com.xoa.model.users.Users">
 		select u.USER_NAME as
 		userName,u.USER_PRIV_NAME as userPrivName,
-		 d.DEPT_NAME as deptName from user u
-		,department d  where  u.DEPT_ID= d.DEPT_ID 
+		 d.DEPT_NAME as deptName ,u.UID ,u.AVATAR from user u
+		,department d  where  u.DEPT_ID= d.DEPT_ID  
         <if test="userName != null and userName !=''">
 			and  u.USER_NAME like CONCAT(CONCAT('%', #{userName}), '%')
 		</if> 

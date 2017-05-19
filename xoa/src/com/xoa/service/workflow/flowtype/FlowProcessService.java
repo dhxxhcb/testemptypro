@@ -23,6 +23,8 @@ public interface FlowProcessService {
 	public void delete(int id);	
 	@DynDatasource
 	public FlowProcess flowView(int flowId);
+	@DynDatasource
+	public int insertSelective(FlowProcess record);
 	
 	
 }

@@ -243,15 +243,8 @@ public class UsersController {
 				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
-			request.setCharacterEncoding("UTF-8");
-			String os = System.getProperty("os.name");
-			StringBuffer sb=new StringBuffer();
-			if(os.toLowerCase().startsWith("win")){  			
-			  sb=sb.append(new String(request.getParameter("search").getBytes("ISO-8859-1"),"utf-8"));  
-			}else{
-			  sb=sb.append(request.getParameter("search"));
-			}
-			String search=sb.toString();
+			request.setCharacterEncoding("UTF-8");	
+			String search=request.getParameter("search");
 			System.out.println(search);
 			//String search=URLEncoder.encode(request.getParameter("search"),"utf-8"); 
 			maps=new HashMap<String, Object>();

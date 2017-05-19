@@ -307,7 +307,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private static List<Department> getChildList(List<Department> list,int deptId,List<Department> reList) {
         for (Department department : list) {
             if (department.getDeptParent()==deptId) {//查询下级菜单
-            	//department.g
+            	List<Department> l=	department.getChild();
                 reList.add(department);
                 if (ifChilds(list, department.getDeptId())) {
                     getChildList(list, department.getDeptId(), reList);
