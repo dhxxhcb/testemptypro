@@ -25,6 +25,9 @@
         .TABLE tr{border: 1px solid #c0c0c0;}
         .TABLE tr td{padding: 6px;border-right: 1px solid #c0c0c0;display: table-cell;vertical-align: inherit;font-size: 12px;}
         #btn{display: block;margin: 0 auto;width: 70px;height: 28px;border: #ccc 1px solid;border-radius: 3px;cursor: pointer;text-align: center;line-height: 28px;}
+        #BTN{width: 168px;overflow: hidden;margin: 0 auto;}
+        #BTN .DIV_BTN{float: left;width: 70px;height:28px;border: #ccc 1px solid;border-radius: 3px;cursor: pointer;text-align: center;line-height: 28px;}
+        #btnReturn{margin-left: 20px}
         .TABLE table tr td input{border: 1px solid #C6C6C6;height: 22px;padding-left: 3px;width: 200px;}
         hr{border: #ddd 1px dashed;margin: 15px 0;}
         .TABLE_A tr{border: 1px solid #c0c0c0;}
@@ -39,112 +42,143 @@
 </head>
 <body>
 <div class="content">
-    <div class="title">
-        <div class="div_im">
-            <img src="../img/icon_addEmail_03.png">
+    <div class="DIV_LIST">
+        <div class="title">
+            <div class="div_im">
+                <img src="../img/icon_addEmail_03.png">
+            </div>
+            <div class="div_title">添加邮件箱</div>
         </div>
-        <div class="div_title">添加邮件箱</div>
+        <div class="TABLE" style="width: 100%;">
+            <form action="" method="get">
+                <table cellspacing="0" cellpadding="0" width="40%" style="border-collapse:collapse;background-color: #fff;margin: 0 auto;">
+                    <tr>
+                        <th colspan="2" style="text-align: center;background-color: #3691DA;color: #fff;font-weight: normal;padding: 6px;">添加邮件箱</th>
+                    </tr>
+                    <tr>
+                        <td>序号：</td>
+                        <td>
+                            <input type="text" name="txt" id="txt1" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>名称：</td>
+                        <td>
+                            <input type="text" name="txt" id="txt2" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div name="btn" id="btn" >
+                                <div class="DIV_Txt" id="AddFolder">添加</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <hr />
+        <div class="div_list">
+            <div class="title">
+                <div class="div_im">
+                    <img src="../img/icon_manageEmail_03.png">
+                </div>
+                <div class="div_title">管理邮件箱</div>
+            </div>
+            <div class="TABLE_A">
+                <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:99%;margin: 0 auto;">
+                    <tr class='befor'>
+                        <th width="10%">编号</th>
+                        <th width="10%">名称</th>
+                        <%--<th width="30%">占用空间</th>
+                        <th width="30%">每页显示邮件数</th>--%>
+                        <th width="20%">操作</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">收件箱</td>
+                       <%-- <td>6,243,852 字节(约合5.95 M)</td>
+                        <td style="text-align: center;">
+                            <input type="text" name="pageIn" id="pageIn_1" value="11" />
+                            <div class="set_btn">设置</div>
+                        </td>--%>
+                        <td style="text-align: center;"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">草稿箱</td>
+                       <%-- <td>823 字节(约合0.00 M)</td>
+                        <td style="text-align: center;">
+                            <input type="text" name="pageIn" id="pageIn_2" value="11" />
+                            <div class="set_btn">设置</div>
+                        </td>--%>
+                        <td style="text-align: center;"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">已发送</td>
+                       <%-- <td>812,909 字节(约合0.78 M)</td>
+                        <td style="text-align: center;">
+                            <input type="text" name="pageIn" id="pageIn_3" value="11" />
+                            <div class="set_btn">设置</div>
+                        </td>--%>
+                        <td style="text-align: center;"></td>
+                    </tr>
+                    <tr class="last_tr">
+                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">废纸篓</td>
+                       <%-- <td>65,704 字节 (约合0.06M)</td>
+                        <td style="text-align: center;">
+                            <input type="text" name="pageIn" id="pageIn_4" value="11" />
+                            <div class="set_btn">设置</div>
+                        </td>--%>
+                        <td style="text-align: center;"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
-    <div class="TABLE" style="width: 100%;">
-        <form action="" method="get">
-            <table cellspacing="0" cellpadding="0" width="40%" style="border-collapse:collapse;background-color: #fff;margin: 0 auto;">
-                <tr>
-                    <th colspan="2" style="text-align: center;background-color: #3691DA;color: #fff;font-weight: normal;padding: 6px;">添加邮件箱</th>
-                </tr>
-                <tr>
-                    <td>序号：</td>
-                    <td>
-                        <input type="text" name="txt" id="txt1" value="" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>名称：</td>
-                    <td>
-                        <input type="text" name="txt" id="txt2" value="" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <div name="btn" id="btn" >
-                            <div class="DIV_Txt">添加</div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <hr />
-    <div class="div_list">
+    <div class="DIV_EDIT_LIST" style="display:none;">
         <div class="title">
             <div class="div_im">
                 <img src="../img/icon_manageEmail_03.png">
             </div>
-            <div class="div_title">管理邮件箱</div>
+            <div class="div_title">邮件箱编辑</div>
         </div>
-        <div class="TABLE_A">
-            <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:99%;margin: 0 auto;">
-                <tr class='befor'>
-                    <th width="10%">编号</th>
-                    <th width="10%">名称</th>
-                    <%--<th width="30%">占用空间</th>
-                    <th width="30%">每页显示邮件数</th>--%>
-                    <th width="20%">操作</th>
-                </tr>
-                <tr>
-                    <td style="text-align: center;"></td>
-                    <td style="text-align: center;">收件箱</td>
-                   <%-- <td>6,243,852 字节(约合5.95 M)</td>
-                    <td style="text-align: center;">
-                        <input type="text" name="pageIn" id="pageIn_1" value="11" />
-                        <div class="set_btn">设置</div>
-                    </td>--%>
-                    <td style="text-align: center;"></td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;"></td>
-                    <td style="text-align: center;">草稿箱</td>
-                   <%-- <td>823 字节(约合0.00 M)</td>
-                    <td style="text-align: center;">
-                        <input type="text" name="pageIn" id="pageIn_2" value="11" />
-                        <div class="set_btn">设置</div>
-                    </td>--%>
-                    <td style="text-align: center;"></td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;"></td>
-                    <td style="text-align: center;">已发送</td>
-                   <%-- <td>812,909 字节(约合0.78 M)</td>
-                    <td style="text-align: center;">
-                        <input type="text" name="pageIn" id="pageIn_3" value="11" />
-                        <div class="set_btn">设置</div>
-                    </td>--%>
-                    <td style="text-align: center;"></td>
-                </tr>
-                <tr class="last_tr">
-                    <td style="text-align: center;"></td>
-                    <td style="text-align: center;">废纸篓</td>
-                   <%-- <td>65,704 字节 (约合0.06M)</td>
-                    <td style="text-align: center;">
-                        <input type="text" name="pageIn" id="pageIn_4" value="11" />
-                        <div class="set_btn">设置</div>
-                    </td>--%>
-                    <td style="text-align: center;"></td>
-                </tr>
-               <%-- <tr>
-                    <td style="text-align: center;">1</td>
-                    <td style="text-align: center;">其他邮件箱</td>
-                    <td style="text-align: center;">
-                        <a href="javascript:;">编辑</a>
-                        <a href="javascript:;">删除</a>
-                    </td>
-                </tr>--%>
-            </table>
+        <div class="TABLE" style="width: 100%;">
+            <form action="" method="get">
+                <table cellspacing="0" cellpadding="0" width="40%" style="border-collapse:collapse;background-color: #fff;margin: 0 auto;">
+                    <tr>
+                        <th colspan="2" style="text-align: center;background-color: #3691DA;color: #fff;font-weight: normal;padding: 6px;">添加邮件箱</th>
+                    </tr>
+                    <tr>
+                        <td>序号：</td>
+                        <td>
+                            <input type="text" name="txt" id="txt1" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>名称：</td>
+                        <td>
+                            <input type="text" name="txt" id="txt2" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div name="btn" id="BTN" >
+                                <div class="DIV_BTN" id="btnSure">确定</div>
+                                <div class="DIV_BTN" id="btnReturn">返回</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </div>
 </div>
 <script type="text/javascript">
     $(function(){
-       $('.DIV_Txt').click(function(){
+       $('#AddFolder').click(function(){
            var Number=$('#txt1').val();
            var Name=$('#txt2').val();
            var data={
@@ -170,7 +204,13 @@
         $('.TABLE_A').on('click','.deleteList',function(){
             var id=$(this).parents('tr').attr('boxId');
             deleteFolder (id)
-            //alert(id);
+        })
+
+        //编辑文件夹
+        $('.TABLE_A').on('click','.editList',function(){
+            $('.DIV_LIST').css('display','none');
+            $('.DIV_EDIT_LIST').css('display','block');
+            //alert('1')
         })
     })
     function setOtherMail (){

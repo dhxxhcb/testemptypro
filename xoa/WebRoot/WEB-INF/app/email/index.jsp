@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$(function(){
                 $('.setUp').click(function(e){
                     e.stopPropagation();
-                    $('.set_up_ul').css('display','block');
+                    $('.set_up_ul').toggle();
                 })
                 $(document).click(function(){
                     if($('.set_up_ul').css('display')=='block'){
@@ -92,6 +92,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $('.RemoveTo_div').css('display','none');
 					}
 				})
+				//点击移动按钮下的文件夹
+				$('.RemoveTo_div').on('click','.RemoveTo_child',function(){
+				    var id=$(this).attr('boxId');
+                    var MailId=$('.main_left .backing input').attr('id');
+                    RemoveToMail(id,MailId);
+				    //alert(MailId);
+				})
 
 			})
 			function otherMail (){
@@ -111,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    var str1='';
 					    for(var i=0;i<data1.length;i++){
 					        str+='<li boxId="'+data1[i].boxId+'"><a href="javascript:;"><img src="../img/icon_file_11.png"/>'+data1[i].boxName+'</a></li>';
-							str1+='<li class="RemoveTo_child">'+data1[i].boxName+'</li>';
+							str1+='<li class="RemoveTo_child" boxId="'+data1[i].boxId+'">'+data1[i].boxName+'</li>';
 						}
 						$('.other .ul_show ul').append(str);
 						$('.up_nav .RemoveTo_div ul').append(str1);
@@ -154,6 +161,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                         }
                         $('.befor').after(str);
+					}
+				})
+			}
+			function RemoveToMail (id,emailId){
+			    var data={
+			        'boxId':id,
+					'emailId':emailId
+				}
+				$.ajax({
+					type:'post',
+					url:'updateEmailBox',
+					dataType:'json',
+					data:data,
+					success:function(){
+					    location.reload();
 					}
 				})
 			}
