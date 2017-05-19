@@ -1,0 +1,16 @@
+.newNews td .td_title1{
+    background: #FFF;
+    /*padding-left: 3px;*/
+    height: 20px;
+}
+.newNews td.black_text{
+    font-weight: 900;
+    color: #0e0e0e;
+}
+#submit{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    background: #003bb3;
+}
+
