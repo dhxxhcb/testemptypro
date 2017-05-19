@@ -34,7 +34,7 @@
         .TABLE_A table tr td{font-size: 12px;padding: 6px;}
         .TABLE_A table tr td input[type="text"]{width: 50px;height: 22px;padding-left: 5px;}
         .set_btn{border-radius: 3px;padding: 3px 10px;font-size: 12px;color: #333;margin: 1px;text-decoration: none;text-align: center;cursor: pointer;border: #ccc 1px solid;display: inline-block;}
-        .TABLE_A table tr td a{text-decoration: none;margin-left: 5px;color: #1687cb;}
+        .TABLE_A table tr td a{text-decoration: none;margin-left: 10px;color: #1687cb;}
     </style>
 </head>
 <body>
@@ -130,22 +130,12 @@
                     </td>--%>
                     <td style="text-align: center;"></td>
                 </tr>
-                <tr>
+               <%-- <tr>
                     <td style="text-align: center;">1</td>
                     <td style="text-align: center;">其他邮件箱</td>
-                   <%-- <td>0 字节 (约合0.00M)</td>
-                    <td style="text-align: center;">
-                        <input type="text" name="pageIn" class="pageIn" value="10" />
-                        <div class="set_btn">设置</div>
-                    </td>--%>
                     <td style="text-align: center;">
                         <a href="javascript:;">编辑</a>
                         <a href="javascript:;">删除</a>
-                    </td>
-                </tr>
-               <%-- <tr>
-                    <td colspan="5">
-                        <span style="margin-left: 10%;">合计：</span><span id="num"></span>
                     </td>
                 </tr>--%>
             </table>
@@ -172,8 +162,62 @@
            })
 
        })
+
+        //新建文件夹展示
+        setOtherMail ()
+
+        //删除文件夹
+        $('.TABLE_A').on('click','.deleteList',function(){
+            var id=$(this).parents('tr').attr('boxId');
+            deleteFolder (id)
+            //alert(id);
+        })
     })
+    function setOtherMail (){
+        var data={
+            'page':1,
+            'pageSize':6,
+            'useFlag':true
+        }
+        $.ajax({
+            type:'GET',
+            url:'showEmailBox',
+            dataType:'json',
+            data:data,
+            success:function(rsp){
+                var data2=rsp.obj;
+                var str='';
+                for(var i=0;i<data2.length;i++){
+                    str+='<tr boxId="'+data2[i].boxId+'"><td style="text-align: center;">'+data2[i].boxNo+'</td><td style="text-align: center;">'+data2[i].boxName+'</td><td style="text-align: center;"><a class="editList" href="javascript:;">编辑</a><a class="deleteList" href="javascript:;">删除</a></td></tr>'
+                }
+                $('.TABLE_A table').append(str);
+            }
+        })
+    }
+    function deleteFolder (id){
+        var data={
+            'page':1,
+            'pageSize':6,
+            'useFlag':true,
+            'boxId':id
+        }
+        var msg='<fmt:message code="global.lang.sure" />';
+        if (confirm(msg)==true){
+            $.ajax({
+                type:'GET',
+                url:'deleteBoxEmail',
+                dataType:'json',
+                data:data,
+                success:function(){
+                    location.reload();
+                }
+            });
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 </script>
 </body>
 </html>
-
