@@ -377,7 +377,7 @@
             $(".foot_span_design").click(function () {
                 var formId = $(this).attr("formId");
                 //alert("design"+formId);
-                $.popWindow("../../form/designer?formId="+formId,'',1000,700,100,200);
+                $.popWindow("../../form/designer?formId="+formId,'',100,200,1000,700);
             })
             $(".foot_span_show").click(function () {
                 var formId = $(this).attr("formId");
