@@ -60,7 +60,9 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 				map=new HashMap<String, String>();
 				map.put("from", Integer.toString(prId));
 				if(i<list.size()-1){
+					if(list.get(i+1).getPrcsId()==prId+1){
 				map.put("to", Integer.toString(list.get(i+1).getPrcsId()));
+					}
 				}else{
 					map.put("to", "end");
 				}
