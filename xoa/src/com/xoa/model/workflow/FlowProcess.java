@@ -144,6 +144,16 @@ public class FlowProcess {
     
     private Integer max;
     
+    private String flowName;
+    
+	public String getFlowName() {
+		return flowName;
+	}
+
+	public void setFlowName(String flowName) {
+		this.flowName = flowName;
+	}
+
 	public Integer getMax() {
 		return max;
 	}

@@ -169,9 +169,7 @@ public class FlowProcessController {
 
 	  	@RequestMapping(value = "xs",produces = {"application/json;charset=UTF-8"})
 		public String xs(){
-			
 			return "app/workflow/flowprocess/flowProcess";
-			
 		}
 		
 		
