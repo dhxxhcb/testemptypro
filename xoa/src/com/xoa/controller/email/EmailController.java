@@ -805,7 +805,7 @@ public class EmailController {
      * 参数说明:
      * @return
      */
-    @RequestMapping(value = "/updeateEmailBoxName", produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/updateEmailBoxName", produces = {"application/json;charset=UTF-8"})
     public @ResponseBody
     ToJson<EmailBoxModel> updeateEmailBoxName(HttpServletRequest request, EmailBoxModel emailBoxModel) {
         String sqlType = "xoa" + (String) request.getSession().getAttribute(
