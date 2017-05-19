@@ -113,7 +113,17 @@ public class Department {
     
     private String userId;
     
-    public String getUserId() {
+    private List<Department> child;
+    
+    public List<Department> getChild() {
+		return child;
+	}
+
+	public void setChild(List<Department> child) {
+		this.child = child;
+	}
+
+	public String getUserId() {
 		return userId;
 	}
 
