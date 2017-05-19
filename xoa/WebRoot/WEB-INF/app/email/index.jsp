@@ -55,6 +55,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.set_up_ul ul{list-style: none;}
 			.set_up_ul ul li{width: 100%;text-align: center;color: #000;height:25px;line-height:25px;}
 			.set_up_ul ul li:hover{background-color: #6ea1d5;color:#fff;cursor: pointer;}
+			.RemoveTo_div{font-size: 12px;border: #ccc 1px solid;border-radius: 5px;min-width:160px;background-color: #fff;position: absolute;right: 23.3%;top: 45px;}
+			.RemoveTo_div li{padding: 5px 10px;display:block;clear: both;}
+			.RemoveTo_div li:hover{background-color: #6ea1d5;color:#fff;cursor: pointer;}
 		</style>
 		<script>
 			$(function(){
@@ -81,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				//点击移动按钮事件
 				$('#RemoveTo').click(function(){
-				    
+				    alert('1')
 				})
 
 			})
@@ -246,6 +249,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li id="delete"><img src="../img/icon_delete_06.png" class="im"/><fmt:message code="global.lang.delete" /></li><%--<img src="../img/icon_more_06.png" class="more_im"/>--%>
 							<%--<li onclick="clicked()"><fmt:message code="email.th.more" /><img src="../img/icon_more_06.png" class="am"/></li>--%>
 						</ul>
+						<div class="RemoveTo_div">
+							<ul>
+								<li>管理邮件箱</li>
+								<li>Internet邮箱</li>
+								<li>导入Internet邮箱</li>
+								<li>邮箱整理</li>
+								<li>POP3设置</li>
+							</ul>
+								<%--<p>我的文件夹</p>
+								<p>测试盒子</p>
+								<p>导入Internet邮箱</p>
+								<p>邮箱整理</p>
+								<p>POP3设置</p>--%>
+						</div>
 					</div>
 					<div class="up_pages">
 						<%--<div class="up_div_pages">
