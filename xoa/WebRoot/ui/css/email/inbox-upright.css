@@ -23,7 +23,7 @@ html,body{
 .up_page_right .up_header .up_nav ul{
 	overflow: hidden;
 }
-.up_page_right .up_header .up_nav ul li{
+.up_page_right .up_header .up_nav>ul>li{
 	font-size: 10pt;
     float: left;
     padding: 0px 8px;
