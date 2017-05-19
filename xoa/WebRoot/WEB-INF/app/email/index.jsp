@@ -173,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="javascript:;" class="inbox_btn">
 							<div class="inbox_btn_tim div_up"><fmt:message code="email.title.othermailbox" /></div>
 						</a>
-						<div class="ul_show">
+						<div class="ul_show" style="margin-bottom: 52px;">
 							<ul>
 								<%--<li><a href="javascript:;"><img src="../img/icon_file_11.png"/><fmt:message code="email.title.oneselffile" /></a></li>--%>
 							</ul>
