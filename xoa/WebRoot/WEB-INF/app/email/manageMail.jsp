@@ -86,68 +86,68 @@
                 <tr class='befor'>
                     <th width="10%">编号</th>
                     <th width="10%">名称</th>
-                    <th width="30%">占用空间</th>
-                    <th width="30%">每页显示邮件数</th>
+                    <%--<th width="30%">占用空间</th>
+                    <th width="30%">每页显示邮件数</th>--%>
                     <th width="20%">操作</th>
                 </tr>
                 <tr>
                     <td style="text-align: center;"></td>
                     <td style="text-align: center;">收件箱</td>
-                    <td>6,243,852 字节(约合5.95 M)</td>
+                   <%-- <td>6,243,852 字节(约合5.95 M)</td>
                     <td style="text-align: center;">
                         <input type="text" name="pageIn" id="pageIn_1" value="11" />
                         <div class="set_btn">设置</div>
-                    </td>
+                    </td>--%>
                     <td style="text-align: center;"></td>
                 </tr>
                 <tr>
                     <td style="text-align: center;"></td>
                     <td style="text-align: center;">草稿箱</td>
-                    <td>823 字节(约合0.00 M)</td>
+                   <%-- <td>823 字节(约合0.00 M)</td>
                     <td style="text-align: center;">
                         <input type="text" name="pageIn" id="pageIn_2" value="11" />
                         <div class="set_btn">设置</div>
-                    </td>
+                    </td>--%>
                     <td style="text-align: center;"></td>
                 </tr>
                 <tr>
                     <td style="text-align: center;"></td>
                     <td style="text-align: center;">已发送</td>
-                    <td>812,909 字节(约合0.78 M)</td>
+                   <%-- <td>812,909 字节(约合0.78 M)</td>
                     <td style="text-align: center;">
                         <input type="text" name="pageIn" id="pageIn_3" value="11" />
                         <div class="set_btn">设置</div>
-                    </td>
+                    </td>--%>
                     <td style="text-align: center;"></td>
                 </tr>
                 <tr class="last_tr">
                     <td style="text-align: center;"></td>
                     <td style="text-align: center;">废纸篓</td>
-                    <td>65,704 字节 (约合0.06M)</td>
+                   <%-- <td>65,704 字节 (约合0.06M)</td>
                     <td style="text-align: center;">
                         <input type="text" name="pageIn" id="pageIn_4" value="11" />
                         <div class="set_btn">设置</div>
-                    </td>
+                    </td>--%>
                     <td style="text-align: center;"></td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">1</td>
                     <td style="text-align: center;">其他邮件箱</td>
-                    <td>0 字节 (约合0.00M)</td>
+                   <%-- <td>0 字节 (约合0.00M)</td>
                     <td style="text-align: center;">
                         <input type="text" name="pageIn" class="pageIn" value="10" />
                         <div class="set_btn">设置</div>
-                    </td>
+                    </td>--%>
                     <td style="text-align: center;">
                         <a href="javascript:;">编辑</a>
                         <a href="javascript:;">删除</a>
                     </td>
                 </tr>
-                <tr>
+               <%-- <tr>
                     <td colspan="5">
                         <span style="margin-left: 10%;">合计：</span><span id="num"></span>
                     </td>
-                </tr>
+                </tr>--%>
             </table>
         </div>
     </div>

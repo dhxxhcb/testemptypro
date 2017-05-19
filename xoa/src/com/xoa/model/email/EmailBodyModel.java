@@ -418,7 +418,7 @@ public class EmailBodyModel implements Serializable {
 	 * 外部收件人邮箱串
 	 */
 	public byte[] getCompressContent() {
-		return compressContent.length == 0 ? new byte[0] : compressContent;
+		return compressContent == null ? new byte[0] : compressContent;
 	}
 
 	/**
@@ -432,7 +432,7 @@ public class EmailBodyModel implements Serializable {
 	 * 压缩后的邮件内容
 	 */
 	public byte[] getWebmailContent() {
-		return webmailContent.length == 0 ? new byte[0] : webmailContent;
+		return webmailContent== null ? new byte[0] : webmailContent;
 	}
 
 	/**

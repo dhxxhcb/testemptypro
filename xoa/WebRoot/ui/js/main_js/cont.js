@@ -73,7 +73,7 @@ $(function(){
 			page:1,
 			pageSize:5,
 			useFlag:'true',
-			userID:'admin'
+			// userID:'admin'
 		},
 		dataType:'json',
 		success:function(obj){
@@ -83,7 +83,7 @@ $(function(){
 			var li='';
 			var read_li='';
 			var all_li='';
-		
+
 			for(var i=0;i<data.length;i++){
 				
 				for(var j=0;j<data[i].emailList.length;j++){
