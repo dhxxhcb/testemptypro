@@ -14,6 +14,7 @@ import com.xoa.model.unitmanagement.UnitManage;
 import com.xoa.model.users.Users;
 import com.xoa.service.unitmanagement.UnitManageService;
 import com.xoa.service.users.UsersService;
+import com.xoa.service.workflow.flowtype.FlowTypeService;
 import com.xoa.util.dataSource.ContextHolder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,8 +36,22 @@ import com.xoa.util.ToJson;
 @ContextConfiguration(locations = {"classpath:config/spring/springs-beans.xml"}) 
 public class Ctest {
 
+//	@Resource
+//	private FlowTypeService flowTypeService;
+//
+//	@Test
+//	public void test() throws Exception {
+//
+//
+//
+//	}
+
+
+
 //	@Resource  
 //	private NewService newService;
+
+//	邮箱测试
 	@Resource
 	private EmailService emailUtilService;
 
@@ -46,8 +61,15 @@ public class Ctest {
 //    @Resource
 //	private UnitManageService unitManageService;
 	
-//	@Test
-//	public void test() throws Exception {
+	@Test
+	public void test() throws Exception {
+		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("fromId", "admin");
+		ToJson<EmailBodyModel> toJson = emailUtilService.selectIsRead(maps, 1, 10, false, "xoa1001");
+		System.out.println(JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
+
+	}
+
 //		Integer page = 1;
 //		Integer pageSize = 5;
 //		boolean useFlag = true;
@@ -76,18 +98,19 @@ public class Ctest {
 //					"yyyy-MM-dd HH:mm:ss"));
 //		}
 //	
-//	}
-//	
-	
-	@Test
-	public void test() throws Exception {
+	}
 
-		Map<String,Object> maps = new HashMap<String,Object>();
-		maps.put("fromId","admin");
-		maps.put("boxId",4);
-		ToJson<EmailBodyModel> toJson =
-		emailUtilService.deleteBoxEmail(maps,  1, 5, false);
-		System.out.println(toJson);
+
+//	邮箱测试
+//	@Test
+//	public void test() throws Exception {
+//
+//		Map<String,Object> maps = new HashMap<String,Object>();
+//		maps.put("fromId","admin");
+//		maps.put("boxId",4);
+//		ToJson<EmailBodyModel> toJson =
+//		emailUtilService.deleteBoxEmail(maps,  1, 5, false);
+//		System.out.println(toJson);
 
 
 //		System.out.println(DateFormat.getStrTime(1494929129));
@@ -227,7 +250,4 @@ public class Ctest {
 //		// 显示不能为空
 //		email.setSign("");
 //		emailUtilService.sendEmail(emailBody, email);
-		
-	}
-
-}
+//}

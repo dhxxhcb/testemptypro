@@ -139,6 +139,7 @@ $(function(){
                     if(json.flag){
                     	var designdata = json.object.designdata;
                     	var connections = json.object.connections;
+                        jsondata.title = json.object.flowName;
                     	jsondata.initNum = designdata.length;
                        	designdata.forEach(function(v,i){
                        		jsondata.nodes['node_'+i] = {
@@ -146,8 +147,8 @@ $(function(){
                         		left:v.setLeft,
                         		type: "chat",
                         		top:v.setTop
-                        		
-                        	} 
+
+                        	}
                        	});
 
                        	connections.forEach(function(v,i){

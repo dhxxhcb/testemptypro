@@ -310,5 +310,14 @@ public interface EmailService {
 	 */
 	public ToJson<EmailBoxModel> updeateEmailBoxName(EmailBoxModel emailBoxModel);
 
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/19 17:44
+	 * 方法介绍:   收件箱未读查询
+	 * 参数说明:
+	 * @return
+	 */
+	public ToJson<EmailBodyModel> selectInboxIsRead(Map<String,Object> maps, Integer page, Integer pageSize, boolean useFlag,String sqlType);
+
 
 }

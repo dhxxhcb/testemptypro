@@ -906,6 +906,50 @@ public class EmailServiceImpl implements EmailService {
         return toJson;
     }
 
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/5/19 18:20
+     * 方法介绍:   收件箱未读查询
+     * 参数说明:
+     * @return
+     */
+    @Override
+    public ToJson<EmailBodyModel> selectInboxIsRead(Map<String,Object> maps, Integer page, Integer pageSize, boolean useFlag,String sqlType) {
+        ToJson<EmailBodyModel> tojson = new ToJson<EmailBodyModel>();
+        PageParams pageParams = new PageParams();
+        pageParams.setUseFlag(useFlag);
+        pageParams.setPage(page);
+        pageParams.setPageSize(pageSize);
+        maps.put("page", pageParams);
+        List<EmailBodyModel> list = new ArrayList<EmailBodyModel>();
+        List<EmailBodyModel> listEmai = emailBodyMapper.selectInboxIsRead(maps);
+        for (EmailBodyModel emailBody : listEmai) {
+            emailBody.setToName(usersService.getUserNameById(emailBody.getToId2()));
+            if (usersService.getUserNameById(emailBody.getCopyToId()) != null) {
+                emailBody.setCopyName(usersService.getUserNameById(emailBody.getCopyToId()));
+            } else {
+                emailBody.setCopyName("");
+            }
+            if (usersService.getUserNameById(emailBody.getSecretToId()) != null) {
+                emailBody.setSecretToName(usersService.getUserNameById(emailBody.getSecretToId()));
+            } else {
+                emailBody.setSecretToName("");
+            }
+            emailBody.setEmailList(this.returnEmail(emailBody.getEmailList()));
+            if (emailBody.getAttachmentName() != null && emailBody.getAttachmentId() != null) {
+                emailBody.setAttachment(GetAttachmentListUtil.returnAttachment(emailBody.getAttachmentName(), emailBody.getAttachmentId(), sqlType, GetAttachmentListUtil.MODULE_EMAIL));
+            } else {
+                emailBody.setAttachmentName("");
+                emailBody.setAttachmentId("");
+            }
+            emailBody.setProbablyDate(DateFormat.getProbablyDate(emailBody.getSendTime()));
+            list.add(emailBody);
+        }
+        tojson.setObj(list);
+        tojson.setTotleNum(pageParams.getTotal());
+        return tojson;
+    }
+
 
     public EmailBoxModel returnBoxModel(EmailBoxModel emailBoxModel) {
         if (StringUtils.checkNull(emailBoxModel.getDefaultCount())) {
