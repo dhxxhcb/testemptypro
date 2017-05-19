@@ -126,6 +126,8 @@ $(function(){
             	"areas": {},
             	"initNum": 7
             }
+            var flowDesign = $.createGooFlow($("#demo"), property);
+			    flowDesign.setNodeRemarks(remark);
             $.ajax({
                 type:'get',
                 url:'<%=basePath%>flowProcess/flowview',
@@ -158,23 +160,25 @@ $(function(){
                         		alt:true
                         	} 
                        	});
-						var flowDesign = $.createGooFlow($("#demo"), property);
-			            	flowDesign.setNodeRemarks(remark);
-			            	flowDesign.loadData(jsondata);
+						
+			            flowDesign.loadData(jsondata);
+			            	 $("#submit").click(function(){
+				            	alert(2);
+				            	 document.getElementById("result").value = JSON.stringify(flowDesign.exportData());
+				            });
+			            	
 		                }
                        
                     }
             });
-        var out;
-        function Export() {
-            document.getElementById("result").value = JSON.stringify(demo.exportData());
-        }
+           
         });
+        
     </script>
 </head>
 <body>
 <div id="demo" style="margin:10px"></div>
-<input id="submit" type="button" value='导出结果' onclick="Export()"/>
+<input id="submit" type="button" value='导出结果'/>
 <textarea id="result" row="6"></textarea>
 </body>
 </html>
