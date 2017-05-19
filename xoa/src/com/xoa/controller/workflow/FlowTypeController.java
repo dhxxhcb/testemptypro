@@ -81,7 +81,6 @@ public class FlowTypeController {
     public String flowdesigner(HttpServletRequest request, Model model, Integer formId){
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
-        System.out.println("获取ID："+formId);
         model.addAttribute("formId",formId);
         return "app/workflow/flowtype/flowdesigner";
     }

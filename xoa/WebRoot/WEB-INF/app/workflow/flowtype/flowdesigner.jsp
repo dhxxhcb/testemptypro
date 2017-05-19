@@ -120,13 +120,12 @@ $(function(){
 	            group: "组织划分框编辑开关"
 	        };
             var jsondata = {
-                "title": ${formName},
+                "title": "",
                 "nodes" :{},
                 "lines" :{},
             	"areas": {},
             	"initNum": 7
             }
-            alert(jsondata.title);
             var flowDesign = $.createGooFlow($("#demo"), property);
 			    flowDesign.setNodeRemarks(remark);
             $.ajax({
@@ -162,7 +161,6 @@ $(function(){
                         		alt:true
                         	} 
                        	});
-						alert(jsondata.title);
 			            flowDesign.loadData(jsondata);
 			            	 $("#submit").click(function(){
 				            	alert(2);
