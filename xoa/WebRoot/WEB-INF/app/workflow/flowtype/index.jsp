@@ -325,7 +325,7 @@
 
                 html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main">'+
-                    '<a class="set" flow_id="'+data[i].flowId+'" title="编辑" href="flowdesigner?formId='+data[i].flowId+'"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
+                    '<a class="set" flow_id="'+data[i].flowId+'" title="编辑" target="_blank" href="flowdesigner?formId='+data[i].flowId+'"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
                     '<div class="new_excell_info"><div class="new_excell_info_main">'+
                    ' <div style="float: left;width: 122px;">'+
                    ' <img src="'+img_url+'" class="new_excell_pic">'+

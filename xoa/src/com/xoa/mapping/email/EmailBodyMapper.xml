@@ -330,6 +330,26 @@
 		eb.BODY_ID DESC
 	</select>
 
+
+	<!--收件箱未读查询 -->
+	<select id="selectInboxIsRead" parameterType="Map" resultMap="BaseResultMap">
+		select
+		eb.FROM_ID,e.EMAIL_ID,
+		eb.BODY_ID,eb.SUBJECT,e.DELETE_FLAG,eb.SEND_TIME,eb.TO_ID2,eb.ATTACHMENT_ID,eb.ATTACHMENT_NAME,eb.COPY_TO_ID,e.READ_FLAG,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb
+		LEFT JOIN email as e on e.BODY_ID=eb.BODY_ID
+		LEFT JOIN user as u on
+		u.USER_ID=eb.FROM_ID where
+		e.TO_ID=#{fromId}
+		and (e.DELETE_FLAG ='0' or e.DELETE_FLAG='' or e.DELETE_FLAG='2')
+		AND e.BOX_ID='0'
+		AND e.READ_FLAG='0'
+		GROUP BY eb.BODY_ID ORDER BY
+		eb.BODY_ID DESC
+	</select>
+
+
+
+
 	<!-- 根据id查询一条邮件 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="Map">
 	 select
@@ -589,8 +609,7 @@
 
 	<!--查询其他邮件中是否存在详细邮件 -->
 	<select id="selectIsBoxEmail" parameterType="Map" resultMap="BaseResultMap">
-		SELECTs
-		eb.FROM_ID,
+		SELECT
 		e.EMAIL_ID,
 		u.USER_NAME
 		FROM

@@ -3,72 +3,72 @@
 <mapper namespace="com.xoa.dao.workflow.FlowProcessMapper">
   <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowProcess">
     <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="FLOW_ID" jdbcType="INTEGER" property="flowId" />
-    <result column="PRCS_ID" jdbcType="INTEGER" property="prcsId" />
-    <result column="PRCS_TYPE" jdbcType="TINYINT" property="prcsType" />
-    <result column="PRCS_NAME" jdbcType="VARCHAR" property="prcsName" />
-    <result column="SET_LEFT" jdbcType="INTEGER" property="setLeft" />
-    <result column="SET_TOP" jdbcType="INTEGER" property="setTop" />
-    <result column="FEEDBACK" jdbcType="VARCHAR" property="feedback" />
-    <result column="AUTO_TYPE" jdbcType="VARCHAR" property="autoType" />
-    <result column="USER_FILTER" jdbcType="VARCHAR" property="userFilter" />
-    <result column="TIME_OUT" jdbcType="VARCHAR" property="timeOut" />
-    <result column="TIME_OUT_MODIFY" jdbcType="CHAR" property="timeOutModify" />
-    <result column="TIME_OUT_ATTEND" jdbcType="CHAR" property="timeOutAttend" />
-    <result column="SIGNLOOK" jdbcType="CHAR" property="signlook" />
-    <result column="TOP_DEFAULT" jdbcType="CHAR" property="topDefault" />
-    <result column="USER_LOCK" jdbcType="CHAR" property="userLock" />
-    <result column="SYNC_DEAL" jdbcType="CHAR" property="syncDeal" />
-    <result column="SYNC_DEAL_CHECK" jdbcType="VARCHAR" property="syncDealCheck" />
-    <result column="TURN_PRIV" jdbcType="CHAR" property="turnPriv" />
-    <result column="CHILD_FLOW" jdbcType="INTEGER" property="childFlow" />
-    <result column="GATHER_NODE" jdbcType="CHAR" property="gatherNode" />
-    <result column="ALLOW_BACK" jdbcType="CHAR" property="allowBack" />
-    <result column="ATTACH_PRIV" jdbcType="VARCHAR" property="attachPriv" />
-    <result column="AUTO_BASE_USER" jdbcType="INTEGER" property="autoBaseUser" />
-    <result column="REMIND_FLAG" jdbcType="INTEGER" property="remindFlag" />
-    <result column="DISP_AIP" jdbcType="INTEGER" property="dispAip" />
-    <result column="TIME_OUT_TYPE" jdbcType="CHAR" property="timeOutType" />
-    <result column="ATTACH_EDIT_PRIV" jdbcType="CHAR" property="attachEditPriv" />
-    <result column="ATTACH_EDIT_PRIV_ONLINE" jdbcType="CHAR" property="attachEditPrivOnline" />
-    <result column="ATTACH_MACRO_MARK" jdbcType="CHAR" property="attachMacroMark" />
-    <result column="VIEW_PRIV" jdbcType="INTEGER" property="viewPriv" />
-    <result column="SIGN_TYPE" jdbcType="BIT" property="signType" />
-    <result column="COUNTERSIGN" jdbcType="BIT" property="countersign" />
-    <result column="WORKINGDAYS_TYPE" jdbcType="CHAR" property="workingdaysType" />
-    <result column="PRCS_USER" jdbcType="LONGVARCHAR" property="prcsUser" />
-    <result column="PRCS_ITEM" jdbcType="LONGVARCHAR" property="prcsItem" />
-    <result column="HIDDEN_ITEM" jdbcType="LONGVARCHAR" property="hiddenItem" />
-    <result column="REQUIRED_ITEM" jdbcType="LONGVARCHAR" property="requiredItem" />
-    <result column="PRCS_DEPT" jdbcType="LONGVARCHAR" property="prcsDept" />
-    <result column="PRCS_PRIV" jdbcType="LONGVARCHAR" property="prcsPriv" />
-    <result column="PRCS_TO" jdbcType="LONGVARCHAR" property="prcsTo" />
-    <result column="PLUGIN" jdbcType="LONGVARCHAR" property="plugin" />
-    <result column="PLUGIN_SAVE" jdbcType="LONGVARCHAR" property="pluginSave" />
-    <result column="PRCS_ITEM_AUTO" jdbcType="LONGVARCHAR" property="prcsItemAuto" />
-    <result column="PRCS_IN" jdbcType="LONGVARCHAR" property="prcsIn" />
-    <result column="PRCS_OUT" jdbcType="LONGVARCHAR" property="prcsOut" />
-    <result column="PRCS_IN_SET" jdbcType="LONGVARCHAR" property="prcsInSet" />
-    <result column="PRCS_OUT_SET" jdbcType="LONGVARCHAR" property="prcsOutSet" />
-    <result column="AUTO_DEPT" jdbcType="LONGVARCHAR" property="autoDept" />
-    <result column="AUTO_USER_OP" jdbcType="LONGVARCHAR" property="autoUserOp" />
-    <result column="AUTO_USER" jdbcType="LONGVARCHAR" property="autoUser" />
-    <result column="AUTO_USER_OP_RETURN" jdbcType="LONGVARCHAR" property="autoUserOpReturn" />
-    <result column="AUTO_USER_RETURN" jdbcType="LONGVARCHAR" property="autoUserReturn" />
-    <result column="USER_FILTER_PRCS_PRIV" jdbcType="LONGVARCHAR" property="userFilterPrcsPriv" />
-    <result column="USER_FILTER_PRCS_PRIV_OTHER" jdbcType="LONGVARCHAR" property="userFilterPrcsPrivOther" />
-    <result column="USER_FILTER_PRCS_DEPT" jdbcType="LONGVARCHAR" property="userFilterPrcsDept" />
-    <result column="USER_FILTER_PRCS_DEPT_OTHER" jdbcType="LONGVARCHAR" property="userFilterPrcsDeptOther" />
-    <result column="MAIL_TO" jdbcType="LONGVARCHAR" property="mailTo" />
-    <result column="MAIL_TO_DEPT" jdbcType="LONGVARCHAR" property="mailToDept" />
-    <result column="MAIL_TO_PRIV" jdbcType="LONGVARCHAR" property="mailToPriv" />
-    <result column="CONDITION_DESC" jdbcType="LONGVARCHAR" property="conditionDesc" />
-    <result column="RELATION_IN" jdbcType="LONGVARCHAR" property="relationIn" />
-    <result column="RELATION_OUT" jdbcType="LONGVARCHAR" property="relationOut" />
-    <result column="CONTROL_MODE" jdbcType="LONGVARCHAR" property="controlMode" />
-    <result column="LIST_COLUMN_PRIV" jdbcType="LONGVARCHAR" property="listColumnPriv" />
-    <result column="FILEUPLOAD_PRIV" jdbcType="LONGVARCHAR" property="fileuploadPriv" />
-    <result column="IMGUPLOAD_PRIV" jdbcType="LONGVARCHAR" property="imguploadPriv" />
+    <result column="FLOW_ID" property="flowId" javaType="int" />
+    <result column="PRCS_ID"  property="prcsId" javaType="int"/>
+    <result column="PRCS_TYPE"  property="prcsType" javaType="byte"/>
+    <result column="PRCS_NAME"  property="prcsName" javaType="string"/>
+    <result column="SET_LEFT"  property="setLeft" javaType="int"/>
+    <result column="SET_TOP"  property="setTop" javaType="int"/>
+    <result column="FEEDBACK"  property="feedback" javaType="string"/>
+    <result column="AUTO_TYPE"  property="autoType" javaType="string"/>
+    <result column="USER_FILTER"  property="userFilter" javaType="string"/>
+    <result column="TIME_OUT"  property="timeOut" javaType="string"/>
+    <result column="TIME_OUT_MODIFY"  property="timeOutModify" javaType="string"/>
+    <result column="TIME_OUT_ATTEND"  property="timeOutAttend" javaType="string"/>
+    <result column="SIGNLOOK"  property="signlook" javaType="string"/>
+    <result column="TOP_DEFAULT"  property="topDefault" javaType="string"/>
+    <result column="USER_LOCK"  property="userLock" javaType="string"/>
+    <result column="SYNC_DEAL"  property="syncDeal" javaType="string"/>
+    <result column="SYNC_DEAL_CHECK"  property="syncDealCheck" javaType="string"/>
+    <result column="TURN_PRIV"  property="turnPriv" javaType="string"/>
+    <result column="CHILD_FLOW"  property="childFlow" javaType="int"/>
+    <result column="GATHER_NODE"  property="gatherNode" javaType="string"/>
+    <result column="ALLOW_BACK"  property="allowBack" javaType="string"/>
+    <result column="ATTACH_PRIV"  property="attachPriv" javaType="string"/>
+    <result column="AUTO_BASE_USER"  property="autoBaseUser" javaType="int"/>
+    <result column="REMIND_FLAG"  property="remindFlag" javaType="int"/>
+    <result column="DISP_AIP" property="dispAip" javaType="int" />
+    <result column="TIME_OUT_TYPE"  property="timeOutType" javaType="string"/>
+    <result column="ATTACH_EDIT_PRIV"  property="attachEditPriv" javaType="string"/>
+    <result column="ATTACH_EDIT_PRIV_ONLINE"  property="attachEditPrivOnline" javaType="string"/>
+    <result column="ATTACH_MACRO_MARK"  property="attachMacroMark" javaType="string"/>
+    <result column="VIEW_PRIV" javaType="int" property="viewPriv" />
+    <result column="SIGN_TYPE" javaType="boolean" property="signType" />
+    <result column="COUNTERSIGN" javaType="boolean" property="countersign" />
+    <result column="WORKINGDAYS_TYPE" javaType="string" property="workingdaysType" />
+    <result column="PRCS_USER" javaType="string" property="prcsUser" />
+    <result column="PRCS_ITEM" javaType="string" property="prcsItem" />
+    <result column="HIDDEN_ITEM" javaType="string" property="hiddenItem" />
+    <result column="REQUIRED_ITEM" javaType="string" property="requiredItem" />
+    <result column="PRCS_DEPT" javaType="string" property="prcsDept" />
+    <result column="PRCS_PRIV" javaType="string" property="prcsPriv" />
+    <result column="PRCS_TO" javaType="string" property="prcsTo" />
+    <result column="PLUGIN" javaType="string" property="plugin" />
+    <result column="PLUGIN_SAVE" javaType="string" property="pluginSave" />
+    <result column="PRCS_ITEM_AUTO" javaType="string" property="prcsItemAuto" />
+    <result column="PRCS_IN" javaType="string" property="prcsIn" />
+    <result column="PRCS_OUT" javaType="string" property="prcsOut" />
+    <result column="PRCS_IN_SET" javaType="string" property="prcsInSet" />
+    <result column="PRCS_OUT_SET" javaType="string" property="prcsOutSet" />
+    <result column="AUTO_DEPT" javaType="string" property="autoDept" />
+    <result column="AUTO_USER_OP" javaType="string" property="autoUserOp" />
+    <result column="AUTO_USER" javaType="string" property="autoUser" />
+    <result column="AUTO_USER_OP_RETURN" javaType="string" property="autoUserOpReturn" />
+    <result column="AUTO_USER_RETURN" javaType="string" property="autoUserReturn" />
+    <result column="USER_FILTER_PRCS_PRIV" javaType="string" property="userFilterPrcsPriv" />
+    <result column="USER_FILTER_PRCS_PRIV_OTHER" javaType="string" property="userFilterPrcsPrivOther" />
+    <result column="USER_FILTER_PRCS_DEPT" javaType="string" property="userFilterPrcsDept" />
+    <result column="USER_FILTER_PRCS_DEPT_OTHER" javaType="string" property="userFilterPrcsDeptOther" />
+    <result column="MAIL_TO" javaType="string" property="mailTo" />
+    <result column="MAIL_TO_DEPT" javaType="string" property="mailToDept" />
+    <result column="MAIL_TO_PRIV" javaType="string" property="mailToPriv" />
+    <result column="CONDITION_DESC" javaType="string" property="conditionDesc" />
+    <result column="RELATION_IN" javaType="string" property="relationIn" />
+    <result column="RELATION_OUT" javaType="string" property="relationOut" />
+    <result column="CONTROL_MODE" javaType="string" property="controlMode" />
+    <result column="LIST_COLUMN_PRIV" javaType="string" property="listColumnPriv" />
+    <result column="FILEUPLOAD_PRIV" javaType="string" property="fileuploadPriv" />
+    <result column="IMGUPLOAD_PRIV" javaType="string" property="imguploadPriv" />
   </resultMap>
   <sql id="Base_Column_List">
     ID, FLOW_ID, PRCS_ID, PRCS_TYPE, PRCS_NAME, SET_LEFT, SET_TOP, FEEDBACK, AUTO_TYPE, 
@@ -88,12 +88,11 @@
   <select id="find" parameterType="Map" resultMap="BaseResultMap">
   select * from flow_process where  ID = #{id} 
   </select>
-  
   <select id="findFlowId" resultMap="BaseResultMap">
   select Id,PRCS_ID,PRCS_TO,PRCS_NAME from flow_process where FLOW_ID=#{flowId}
   </select>
-   <select id="findF" resultMap="BaseResultMap">
-  select * from flow_process where FLOW_ID=#{flowId}
+  <select id="findF" resultMap="BaseResultMap">
+  select a.* ,b.FlOW_NAME as flowName from flow_process a,flow_type b where a.FLOW_ID=b.FLOW_ID and b.FLOW_ID=#{flowId}
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -364,205 +363,205 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=INTEGER},
+        #{id},
       </if>
       <if test="flowId != null">
-        #{flowId,jdbcType=INTEGER},
+        #{flowId},
       </if>
       <if test="prcsId != null">
-        #{prcsId,jdbcType=INTEGER},
+        #{prcsId},
       </if>
       <if test="prcsType != null">
-        #{prcsType,jdbcType=TINYINT},
+        #{prcsType},
       </if>
       <if test="prcsName != null">
-        #{prcsName,jdbcType=VARCHAR},
+        #{prcsName},
       </if>
       <if test="setLeft != null">
-        #{setLeft,jdbcType=INTEGER},
+        #{setLeft},
       </if>
       <if test="setTop != null">
-        #{setTop,jdbcType=INTEGER},
+        #{setTop},
       </if>
       <if test="feedback != null">
-        #{feedback,jdbcType=VARCHAR},
+        #{feedback},
       </if>
       <if test="autoType != null">
-        #{autoType,jdbcType=VARCHAR},
+        #{autoType},
       </if>
       <if test="userFilter != null">
-        #{userFilter,jdbcType=VARCHAR},
+        #{userFilter},
       </if>
       <if test="timeOut != null">
-        #{timeOut,jdbcType=VARCHAR},
+        #{timeOut},
       </if>
       <if test="timeOutModify != null">
-        #{timeOutModify,jdbcType=CHAR},
+        #{timeOutModify},
       </if>
       <if test="timeOutAttend != null">
-        #{timeOutAttend,jdbcType=CHAR},
+        #{timeOutAttend},
       </if>
       <if test="signlook != null">
-        #{signlook,jdbcType=CHAR},
+        #{signlook},
       </if>
       <if test="topDefault != null">
-        #{topDefault,jdbcType=CHAR},
+        #{topDefault},
       </if>
       <if test="userLock != null">
-        #{userLock,jdbcType=CHAR},
+        #{userLock},
       </if>
       <if test="syncDeal != null">
-        #{syncDeal,jdbcType=CHAR},
+        #{syncDeal},
       </if>
       <if test="syncDealCheck != null">
-        #{syncDealCheck,jdbcType=VARCHAR},
+        #{syncDealCheck},
       </if>
       <if test="turnPriv != null">
-        #{turnPriv,jdbcType=CHAR},
+        #{turnPriv},
       </if>
       <if test="childFlow != null">
-        #{childFlow,jdbcType=INTEGER},
+        #{childFlow},
       </if>
       <if test="gatherNode != null">
-        #{gatherNode,jdbcType=CHAR},
+        #{gatherNode},
       </if>
       <if test="allowBack != null">
-        #{allowBack,jdbcType=CHAR},
+        #{allowBack},
       </if>
       <if test="attachPriv != null">
-        #{attachPriv,jdbcType=VARCHAR},
+        #{attachPriv},
       </if>
       <if test="autoBaseUser != null">
-        #{autoBaseUser,jdbcType=INTEGER},
+        #{autoBaseUser},
       </if>
       <if test="remindFlag != null">
-        #{remindFlag,jdbcType=INTEGER},
+        #{remindFlag},
       </if>
       <if test="dispAip != null">
-        #{dispAip,jdbcType=INTEGER},
+        #{dispAip},
       </if>
       <if test="timeOutType != null">
-        #{timeOutType,jdbcType=CHAR},
+        #{timeOutType},
       </if>
       <if test="attachEditPriv != null">
-        #{attachEditPriv,jdbcType=CHAR},
+        #{attachEditPriv},
       </if>
       <if test="attachEditPrivOnline != null">
-        #{attachEditPrivOnline,jdbcType=CHAR},
+        #{attachEditPrivOnline},
       </if>
       <if test="attachMacroMark != null">
-        #{attachMacroMark,jdbcType=CHAR},
+        #{attachMacroMark},
       </if>
       <if test="viewPriv != null">
-        #{viewPriv,jdbcType=INTEGER},
+        #{viewPriv},
       </if>
       <if test="signType != null">
-        #{signType,jdbcType=BIT},
+        #{signType},
       </if>
       <if test="countersign != null">
-        #{countersign,jdbcType=BIT},
+        #{countersign},
       </if>
       <if test="workingdaysType != null">
-        #{workingdaysType,jdbcType=CHAR},
+        #{workingdaysType},
       </if>
       <if test="prcsUser != null">
-        #{prcsUser,jdbcType=LONGVARCHAR},
+        #{prcsUser},
       </if>
       <if test="prcsItem != null">
-        #{prcsItem,jdbcType=LONGVARCHAR},
+        #{prcsItem},
       </if>
       <if test="hiddenItem != null">
-        #{hiddenItem,jdbcType=LONGVARCHAR},
+        #{hiddenItem},
       </if>
       <if test="requiredItem != null">
-        #{requiredItem,jdbcType=LONGVARCHAR},
+        #{requiredItem},
       </if>
       <if test="prcsDept != null">
-        #{prcsDept,jdbcType=LONGVARCHAR},
+        #{prcsDept},
       </if>
       <if test="prcsPriv != null">
-        #{prcsPriv,jdbcType=LONGVARCHAR},
+        #{prcsPriv},
       </if>
       <if test="prcsTo != null">
-        #{prcsTo,jdbcType=LONGVARCHAR},
+        #{prcsTo},
       </if>
       <if test="plugin != null">
-        #{plugin,jdbcType=LONGVARCHAR},
+        #{plugin},
       </if>
       <if test="pluginSave != null">
-        #{pluginSave,jdbcType=LONGVARCHAR},
+        #{pluginSave},
       </if>
       <if test="prcsItemAuto != null">
-        #{prcsItemAuto,jdbcType=LONGVARCHAR},
+        #{prcsItemAuto},
       </if>
       <if test="prcsIn != null">
-        #{prcsIn,jdbcType=LONGVARCHAR},
+        #{prcsIn},
       </if>
       <if test="prcsOut != null">
-        #{prcsOut,jdbcType=LONGVARCHAR},
+        #{prcsOut},
       </if>
       <if test="prcsInSet != null">
-        #{prcsInSet,jdbcType=LONGVARCHAR},
+        #{prcsInSet},
       </if>
       <if test="prcsOutSet != null">
-        #{prcsOutSet,jdbcType=LONGVARCHAR},
+        #{prcsOutSet},
       </if>
       <if test="autoDept != null">
-        #{autoDept,jdbcType=LONGVARCHAR},
+        #{autoDept},
       </if>
       <if test="autoUserOp != null">
-        #{autoUserOp,jdbcType=LONGVARCHAR},
+        #{autoUserOp},
       </if>
       <if test="autoUser != null">
-        #{autoUser,jdbcType=LONGVARCHAR},
+        #{autoUser},
       </if>
       <if test="autoUserOpReturn != null">
-        #{autoUserOpReturn,jdbcType=LONGVARCHAR},
+        #{autoUserOpReturn},
       </if>
       <if test="autoUserReturn != null">
-        #{autoUserReturn,jdbcType=LONGVARCHAR},
+        #{autoUserReturn},
       </if>
       <if test="userFilterPrcsPriv != null">
-        #{userFilterPrcsPriv,jdbcType=LONGVARCHAR},
+        #{userFilterPrcsPriv},
       </if>
       <if test="userFilterPrcsPrivOther != null">
-        #{userFilterPrcsPrivOther,jdbcType=LONGVARCHAR},
+        #{userFilterPrcsPrivOther},
       </if>
       <if test="userFilterPrcsDept != null">
-        #{userFilterPrcsDept,jdbcType=LONGVARCHAR},
+        #{userFilterPrcsDept},
       </if>
       <if test="userFilterPrcsDeptOther != null">
-        #{userFilterPrcsDeptOther,jdbcType=LONGVARCHAR},
+        #{userFilterPrcsDeptOther},
       </if>
       <if test="mailTo != null">
-        #{mailTo,jdbcType=LONGVARCHAR},
+        #{mailTo},
       </if>
       <if test="mailToDept != null">
-        #{mailToDept,jdbcType=LONGVARCHAR},
+        #{mailToDept},
       </if>
       <if test="mailToPriv != null">
-        #{mailToPriv,jdbcType=LONGVARCHAR},
+        #{mailToPriv},
       </if>
       <if test="conditionDesc != null">
-        #{conditionDesc,jdbcType=LONGVARCHAR},
+        #{conditionDesc},
       </if>
       <if test="relationIn != null">
-        #{relationIn,jdbcType=LONGVARCHAR},
+        #{relationIn},
       </if>
       <if test="relationOut != null">
-        #{relationOut,jdbcType=LONGVARCHAR},
+        #{relationOut},
       </if>
       <if test="controlMode != null">
-        #{controlMode,jdbcType=LONGVARCHAR},
+        #{controlMode},
       </if>
       <if test="listColumnPriv != null">
-        #{listColumnPriv,jdbcType=LONGVARCHAR},
+        #{listColumnPriv},
       </if>
       <if test="fileuploadPriv != null">
-        #{fileuploadPriv,jdbcType=LONGVARCHAR},
+        #{fileuploadPriv},
       </if>
       <if test="imguploadPriv != null">
-        #{imguploadPriv,jdbcType=LONGVARCHAR},
+        #{imguploadPriv},
       </if>
     </trim>
   </insert>

@@ -287,11 +287,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 		List<Department> allDept=this.getDatagrid();
 		for(Department department : allDept){
 			if(department.getDeptParent()==0){//父级菜单开始添加
-				resultList.add(department);
+				//resultList.add(department);
 				if(ifChilds(allDept, department.getDeptId())){//存在子集
 					List<Department> childs = new ArrayList<Department>();
 					childs=getChildList(allDept, department.getDeptId(), resultList);
-					resultList.addAll(childs);
+					//resultList.addAll(childs);
 				}
 			}
 			
@@ -307,6 +307,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private static List<Department> getChildList(List<Department> list,int deptId,List<Department> reList) {
         for (Department department : list) {
             if (department.getDeptParent()==deptId) {//查询下级菜单
+            	List<Department> l=	department.getChild();
                 reList.add(department);
                 if (ifChilds(list, department.getDeptId())) {
                     getChildList(list, department.getDeptId(), reList);

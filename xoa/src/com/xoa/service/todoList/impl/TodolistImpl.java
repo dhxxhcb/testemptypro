@@ -16,13 +16,14 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.email.EmailBodyMapper;
-import com.xoa.dao.notify.NotifyMapper;
 import com.xoa.model.daiban.Daiban;
 import com.xoa.model.daiban.TodoList;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.email.EmailModel;
 import com.xoa.model.notify.Notify;
+import com.xoa.service.notify.NotifyService;
 import com.xoa.service.todoList.TodolistService;
+import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
 
 @Service
@@ -32,10 +33,10 @@ public class TodolistImpl implements TodolistService{
 	private EmailBodyMapper email;
 	
 	@Resource
-	private NotifyMapper notify;
+	private NotifyService notifyService;
 	
 	@Override
-	public Daiban list(String userId){
+	public Daiban list(String userId,String sqlType) throws Exception{
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("fromId", userId);
 		PageParams pageParams = new PageParams();
@@ -47,7 +48,7 @@ public class TodolistImpl implements TodolistService{
 		List<TodoList> list1 =new ArrayList<TodoList>();
 		Daiban db=new Daiban();
 		InetAddress address = this.getCurrentIp();
-		List<EmailBodyModel> le=email.selectIsRead(maps);
+		List<EmailBodyModel> le=email.selectInboxIsRead(maps);
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		for(EmailBodyModel em:le){
 			TodoList td=new TodoList();
@@ -71,8 +72,9 @@ public class TodolistImpl implements TodolistService{
 			td.setIsAttach(em.getAttachment()==null?"0":"1");
 			list.add(td);
 		}
-		List<Notify> ln = notify.unreadNotify(maps);
-		for(Notify no:ln){
+		ToJson<Notify> ln = notifyService.unreadNotify(maps,1,10,true,le.get(0).getUsers().getUserName(),sqlType);
+		List<Notify> l=ln.getObj();
+		for(Notify no:l){
 			TodoList td=new TodoList();
 			td.setAvater(0);
 			td.setContent(no.getContent());

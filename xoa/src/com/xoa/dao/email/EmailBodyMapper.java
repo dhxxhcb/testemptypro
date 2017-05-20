@@ -194,4 +194,13 @@ public interface EmailBodyMapper extends BaseMapper<EmailBodyModel>{
 	 */
 	List<EmailBodyModel> selectIsBoxEmail(Map<String, Object> maps);
 
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/19 17:43
+	 * 方法介绍:   收件箱未读查询
+	 * 参数说明:   
+	 * @return     
+	 */
+	List<EmailBodyModel> selectInboxIsRead(Map<String,Object> maps);
+
 }

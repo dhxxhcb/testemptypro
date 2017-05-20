@@ -8,8 +8,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-
-import com.alibaba.fastjson.JSONObject;
+import org.springframework.transaction.annotation.Transactional;
 import com.xoa.dao.workflow.FlowProcessMapper;
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.model.workflow.FlowProcessList;
@@ -30,10 +29,19 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		FlowProcess flowProcess=flowProcessMapper.find(maps);
 		return flowProcess;
 	}
-
 	@Override
-	public void updateByPrimaryKeySelective(FlowProcess record) {
-		flowProcessMapper.updateByPrimaryKeySelective(record);	
+	@Transactional
+	public ToJson<FlowProcess> updateByPrimaryKeySelective(FlowProcess record1) {
+		ToJson<FlowProcess> tojson= new ToJson<FlowProcess>();
+		try{
+			flowProcessMapper.updateByPrimaryKeySelective(record1);
+			tojson.setFlag(0);
+			tojson.setMsg("OK");
+		}catch(Exception e){
+			tojson.setFlag(1);
+			tojson.setMsg("error");
+		}
+		return tojson;	
 	}
 
 	@Override
@@ -48,11 +56,14 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	}
 	@Override
 	public FlowProcess flowView(int flowId) {
+		//定义用于返回的流程信息
 		FlowProcess f=new FlowProcess();
 		Map<String, String> map=null;
+		//定义
 		List<Map<String, String>> lm=new ArrayList<Map<String,String>>();
 		//根据flowId获取流程信息
 		List<FlowProcess> list=flowProcessMapper.findF(flowId);
+		f.setFlowName(list.get(0).getFlowName());
 		for (int i=0;i<list.size();i++){
 			Integer prId=list.get(i).getPrcsId();
 			String prceTo=list.get(i).getPrcsTo();
@@ -60,7 +71,9 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 				map=new HashMap<String, String>();
 				map.put("from", Integer.toString(prId));
 				if(i<list.size()-1){
+					if(list.get(i+1).getPrcsId()==prId+1){
 				map.put("to", Integer.toString(list.get(i+1).getPrcsId()));
+					}
 				}else{
 					map.put("to", "end");
 				}
@@ -79,6 +92,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		List<FlowProcessList> l1=new ArrayList<FlowProcessList>();
 		for (FlowProcess flowProcess : list) {			
 			FlowProcessList fl=new FlowProcessList();
+			Integer id=flowProcess.getId();
 			int prId=flowProcess.getPrcsId();
 			String prcsName=flowProcess.getPrcsName()==null?"":flowProcess.getPrcsName();
 			String prcsIn=flowProcess.getPrcsIn()==null? "":flowProcess.getPrcsIn().trim();
@@ -87,6 +101,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 			String syncDeal=flowProcess.getSyncDeal()==null?"":flowProcess.getSyncDeal();
 			int setLeft=flowProcess.getSetLeft();
 			int top=flowProcess.getSetTop();
+			fl.setId(id);
 			fl.setPrcsId(prId);
 			fl.setPrcsName(prcsName);
 			fl.setPrcsIn(prcsIn);
@@ -103,8 +118,13 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	}
 
 	private void add(String string) {
-		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int insertSelective(FlowProcess record) {
+		int a=flowProcessMapper.insertSelective(record);
+		return a;
 	}
 
 }

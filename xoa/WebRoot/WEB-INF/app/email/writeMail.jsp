@@ -123,58 +123,170 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		 ue.ready(function(){
        		 	var sId=$.getQueryString('sId');
 				var TYPE=$.getQueryString('type');
-       		 	$.ajax({
-						type:'get',
-						url:'queryByID',
-						dataType:'json',
-						data:{'emailId':sId,'flag':''},
-						success:function(rsp){
-							var data2=rsp.object;
-							var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-							var str='';
-							var str1='';
-							var stra='';
-							var arr=new Array();
-							arr=data2.attachment;
-							$('#txt').val('');
-							ue.setContent('');
-							$('#senduser').val('');
-							if(data2.attachmentName!='' && data2.copyName!=''){
-								for(var i=0;i<arr.length;i++){
-									stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></span>';
-							}
-								str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
-								
-							} else if(data2.attachmentName=='' && data2.copyName!=''){
-								str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
-								
-							} else if(data2.attachmentName!='' && data2.copyName ==''){
-								for(var i=0;i<arr.length;i++){
-									stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;"><img src="../img/icon_print_07.png"/>'+arr[i]+'</a></span>';
-								}
-								str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
-								
-							} else{
-								str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
-								
-							}
-							if (TYPE==1&&data2.copyName!=''){
-                                var str1='<tr class="tian"><td>抄送：</td><td><textarea user_id="'+data2.fromId+'" value="'+data2.fromId+'" name="txt" id="copyName" disabled></textarea><span class="add_img"><span class="addImg"></span><a href="javascript:;" id="selectUserO" class="Add">添加</a><span class="add_img"><span class="addImg"><img src="img/org_select2.png" class="clearIcon"/></span><a href="javascript:;" class="clear">清除</a></span></td></tr>';
-                                $('.append_tr').after(str1);
-								$('.a1').text('隐藏抄送');
-							}
-							str1='<p>'+data2.content+'</p>';
-							ue.setContent(str+str1);
-							$('#txt').val('Re:'+data2.subject);
-							if (TYPE!=2){
-                                $('#senduser').val(data2.emailList[0].toName);
-							}else{
-                                $('#senduser').val('');
-							}
 
-							$('#copyName').val(data2.copyName)
-						}
-					});
+				 if(TYPE==2){
+                     $.ajax({
+                         type:'get',
+                         url:'queryByID',
+                         dataType:'json',
+                         data:{'emailId':sId,'flag':''},
+                         success:function(rsp){
+                             var data2=rsp.object;
+                             var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                             var str='';
+                             var str1='';
+                             var stra='';
+                             var arr=new Array();
+                             arr=data2.attachment;
+                             $('#txt').val('');
+                             ue.setContent('');
+                             $('#senduser').val('');
+                             if(data2.attachmentName!='' && data2.copyName!=''){
+                                 for(var i=0;i<arr.length;i++){
+                                     stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;cursor: pointer;"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></span>';
+                                 }
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+
+                             } else if(data2.attachmentName=='' && data2.copyName!=''){
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+
+                             } else if(data2.attachmentName!='' && data2.copyName ==''){
+                                 for(var i=0;i<arr.length;i++){
+                                     stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;cursor: pointer;"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></span>';
+                                 }
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+
+                             } else{
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+
+                             }
+                             if (TYPE==1&&data2.copyName!=''){
+                                 var str1='<tr class="tian"><td>抄送：</td><td><textarea user_id="'+data2.fromId+'" value="'+data2.fromId+'" name="txt" id="copyName" disabled></textarea><span class="add_img"><span class="addImg"></span><a href="javascript:;" id="selectUserO" class="Add">添加</a><span class="add_img"><span class="addImg"><img src="img/org_select2.png" class="clearIcon"/></span><a href="javascript:;" class="clear">清除</a></span></td></tr>';
+                                 $('.append_tr').after(str1);
+                                 $('.a1').text('隐藏抄送');
+                             }
+                             str1='<p>'+data2.content+'</p>';
+                             ue.setContent(str+str1);
+                             $('#txt').val('Re:'+data2.subject);
+                             if (TYPE!=2){
+                                 $('#senduser').val(data2.emailList[0].toName);
+                             }else{
+                                 $('#senduser').val('');
+                             }
+
+                             $('#copyName').val(data2.copyName)
+                         }
+                     });
+				 }else if(TYPE==3){
+
+                     $.ajax({
+                         type:'get',
+                         url:'queryByID',
+                         dataType:'json',
+                         data:{'bodyId':sId,'flag':''},
+                         success:function(rsp){
+                             var data2=rsp.object;
+                             var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                             var str='';
+                             var str1='';
+                             var stra='';
+                             var arr=new Array();
+                             arr=data2.attachment;
+                             $('#txt').val('');
+                             ue.setContent('');
+                             $('#senduser').val('');
+                             if(data2.attachmentName!='' && data2.copyName!=''){
+                                 for(var i=0;i<arr.length;i++){
+                                     stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;cursor: pointer;"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></span>';
+                                 }
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+
+                             } else if(data2.attachmentName=='' && data2.copyName!=''){
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+
+                             } else if(data2.attachmentName!='' && data2.copyName ==''){
+                                 for(var i=0;i<arr.length;i++){
+                                     stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;cursor: pointer;"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></span>';
+                                 }
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+
+                             } else{
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+
+                             }
+                             if (TYPE==1&&data2.copyName!=''){
+                                 var str1='<tr class="tian"><td>抄送：</td><td><textarea user_id="'+data2.fromId+'" value="'+data2.fromId+'" name="txt" id="copyName" disabled></textarea><span class="add_img"><span class="addImg"></span><a href="javascript:;" id="selectUserO" class="Add">添加</a><span class="add_img"><span class="addImg"><img src="img/org_select2.png" class="clearIcon"/></span><a href="javascript:;" class="clear">清除</a></span></td></tr>';
+                                 $('.append_tr').after(str1);
+                                 $('.a1').text('隐藏抄送');
+                             }
+                             str1='<p>'+data2.content+'</p>';
+                             ue.setContent(str+str1);
+                             $('#txt').val('Re:'+data2.subject);
+                             if (TYPE!=2){
+                                 $('#senduser').val(data2.emailList[0].toName);
+                             }else{
+                                 $('#senduser').val('');
+                             }
+
+                             $('#copyName').val(data2.copyName)
+                         }
+                     });
+				 }else if(TYPE==0 || TYPE==1){
+
+                     $.ajax({
+                         type:'get',
+                         url:'queryByID',
+                         dataType:'json',
+                         data:{'emailId':sId,'flag':''},
+                         success:function(rsp){
+                             var data2=rsp.object;
+                             var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                             var str='';
+                             var str1='';
+                             var stra='';
+                             var arr=new Array();
+                             arr=data2.attachment;
+                             $('#txt').val('');
+                             ue.setContent('');
+                             $('#senduser').val('');
+                             if(data2.attachmentName!='' && data2.copyName!=''){
+                                 for(var i=0;i<arr.length;i++){
+                                     stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;cursor: pointer;"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></span>';
+                                 }
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+
+                             } else if(data2.attachmentName=='' && data2.copyName!=''){
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>抄送人：</span><span>'+data2.copyName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+
+                             } else if(data2.attachmentName!='' && data2.copyName ==''){
+                                 for(var i=0;i<arr.length;i++){
+                                     stra+='<span><a href="<%=basePath %>download?'+arr[i].attUrl+'" style="text-decoration:none;cursor: pointer;"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></span>';
+                                 }
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p><p><span>附件：</span><span>'+stra+'</span></p></div>';
+
+                             } else{
+                                 str='<br><br><div class="div_Re" style="padding:5px 15px;border-bottom: 1px #cccccc solid;background: #edf6db;font-size: 12px;"><p><span>主题：</span><span>'+data2.subject+'</span></p><p><span>发件人：</span><span>'+data2.users.userName+'</span></p><p><span>收件人：</span><span>'+data2.emailList[0].toName+'</span></p><p><span>时间：</span><span>'+sendTime+'</span></p></div>';
+
+                             }
+                             if (TYPE==1&&data2.copyName!=''){
+                                 var str1='<tr class="tian"><td>抄送：</td><td><textarea user_id="'+data2.fromId+'" value="'+data2.fromId+'" name="txt" id="copyName" disabled></textarea><span class="add_img"><span class="addImg"></span><a href="javascript:;" id="selectUserO" class="Add">添加</a><span class="add_img"><span class="addImg"><img src="img/org_select2.png" class="clearIcon"/></span><a href="javascript:;" class="clear">清除</a></span></td></tr>';
+                                 $('.append_tr').after(str1);
+                                 $('.a1').text('隐藏抄送');
+                             }
+                             str1='<p>'+data2.content+'</p>';
+                             ue.setContent(str+str1);
+                             $('#txt').val('Re:'+data2.subject);
+                             if (TYPE!=2){
+                                 $('#senduser').val(data2.emailList[0].toName);
+                             }else{
+                                 $('#senduser').val('');
+                             }
+
+                             $('#copyName').val(data2.copyName)
+                         }
+                     });
+				 }
+
 				})
 					
 				//附件上传方法	
@@ -302,7 +414,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					});
 				});
        		 })
-       		 
+
        	
 				
     	</script>

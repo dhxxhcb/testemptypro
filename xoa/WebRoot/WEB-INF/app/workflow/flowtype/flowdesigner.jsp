@@ -120,12 +120,14 @@ $(function(){
 	            group: "组织划分框编辑开关"
 	        };
             var jsondata = {
-                "title": "231321",
+                "title": "",
                 "nodes" :{},
                 "lines" :{},
             	"areas": {},
             	"initNum": 7
             }
+            var flowDesign = $.createGooFlow($("#demo"), property);
+			    flowDesign.setNodeRemarks(remark);
             $.ajax({
                 type:'get',
                 url:'<%=basePath%>flowProcess/flowview',
@@ -133,9 +135,11 @@ $(function(){
                 data:{"flowId":${formId}},
                 success:function(json){
                    // debugger;
+//                    获取数据并添加到流程设计器的插件中
                     if(json.flag){
                     	var designdata = json.object.designdata;
                     	var connections = json.object.connections;
+                        jsondata.title = json.object.flowName;
                     	jsondata.initNum = designdata.length;
                        	designdata.forEach(function(v,i){
                        		jsondata.nodes['node_'+i] = {
@@ -143,38 +147,38 @@ $(function(){
                         		left:v.setLeft,
                         		type: "chat",
                         		top:v.setTop
-                        		
-                        	} 
+
+                        	}
                        	});
 
                        	connections.forEach(function(v,i){
                        		jsondata.lines['line_'+i] = {
                         		type:v.prcsName,
                         		type:"sl",
-                        		from:"node_"+i,
-                        		to:"node_"+(i+1),
+                        		from:"node_"+v.from,
+                        		to:"node_"+v.to,
                         		name:"",
                         		"M": 81.5,
                         		alt:true
                         	} 
                        	});
-						var flowDesign = $.createGooFlow($("#demo"), property);
-			            	flowDesign.setNodeRemarks(remark);
-			            	flowDesign.loadData(jsondata);
+			            flowDesign.loadData(jsondata);
+			            	 $("#submit").click(function(){
+				            	alert(2);
+				            	 document.getElementById("result").value = JSON.stringify(flowDesign.exportData());
+				            });
+			            	
 		                }
-                       
                     }
             });
-        var out;
-        function Export() {
-            document.getElementById("result").value = JSON.stringify(demo.exportData());
-        }
+           
         });
+        
     </script>
 </head>
 <body>
 <div id="demo" style="margin:10px"></div>
-<input id="submit" type="button" value='导出结果' onclick="Export()"/>
+<input id="submit" type="button" value='导出结果'/>
 <textarea id="result" row="6"></textarea>
 </body>
 </html>

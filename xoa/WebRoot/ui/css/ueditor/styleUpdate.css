@@ -1,4 +1,3 @@
-
 /** {
     margin: 0;
     padding: 0;
@@ -8,7 +7,7 @@ a {
     text-decoration: none;
 }
 
-html,body {
+html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -53,18 +52,15 @@ body {
     padding-left: 10px;
     background: #f9fbff;
 }
-
 .nav-left {
     float: left;
     font-size: 16px;
     color: #1d1d1d;
 }
-
 .nav-right {
     float: right;
-    padding-right: 330px;
+    padding-right: 306px;
 }
-
 .nav-right a {
     font-size: 14px;
     padding: 5px 8px;
@@ -88,16 +84,22 @@ body {
 }
 
 #saveform {
+    width: 100%;
     height: 100%;
     position: relative;
     padding: 20px 0 0 20px;
 }
-.container .row {
+
+#saveform .row {
+    float: right;
     height: 100%;
     width: 308px;
-    position: absolute;
-    top: -49px;
+    position: relative;
+    top: -69px;
     right: 0;
+    /* position: absolute;
+     top: -49px;
+     right: 0;*/
     border-left: 1px solid #00a0e9;
     background: #f5f7f8;
 
@@ -117,7 +119,8 @@ body {
     margin: 0px 10px -1px 10px;
     color: #2f80d1;
 }
-.row .nav-list .nav-header .header_r{
+
+.row .nav-list .nav-header .header_r {
     font-weight: 500;
     color: #919191;
 }
@@ -125,14 +128,15 @@ body {
 .row .nav-list .nav-header .header_l {
     border-bottom: 3px solid #2f80d1;
 }
+
 .row .nav-list > li > a {
     display: block;
     font-size: 16px;
     color: #7e8f99;
     text-align: left;
     border: none;
-    height: 44px;
-    line-height: 44px;
+    height: 32px;
+    line-height: 32px;
 
 }
 
@@ -147,9 +151,12 @@ body {
     background: #add2f8;
 }
 
+#saveform .span10 {
+    float: left;
+    height: 100%;
+    /*width: 100%;*/
+    /*margin-right: -310px;*/
+    /*margin-left: -4px;*/
 
-#saveform .span10{
-   margin-left: -4px;
 }
-
 

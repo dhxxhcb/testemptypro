@@ -22,7 +22,7 @@
 		<result column="DEPT_ID" property="deptId" javaType="int" />
 		<result column="DEPT_ID_OTHER" property="deptIdOther" javaType="string" />
 		<result column="SEX" property="sex" javaType="string" />
-		<result column="BIRTHDAY" property="birthday" javaType="java.sql.Date" />
+		<result column="BIRTHDAY" property="birthday" javaType="java.util.Date" />
 		<result column="IS_LUNAR" property="isLunar" javaType="string" />
 		<result column="TEL_NO_DEPT" property="telNoDept" javaType="string" />
 		<result column="FAX_NO_DEPT" property="faxNoDept" javaType="string" />
@@ -144,7 +144,7 @@
 		<association property="para" javaType="com.xoa.model.common.SysPara">
 		 <id column="PARA_NAME" property="paraName" javaType="string" />
          <result column="PARA_VALUE" property="paraValue" javaType="string" />
-		</association>
+		</association> 
 	</resultMap>
 	<select id="getByDeptId" parameterType="Map"
 		resultType="com.xoa.model.users.Users">
@@ -154,7 +154,7 @@
 	<select id="findUserByuid" parameterType="Map"
 		resultType="com.xoa.model.users.Users">
 		select u.UID,u.USER_ID as userId,u.USER_NAME as
-		userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,
+		userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,u.BIRTHDAY as birthday,
 		u.DEPT_ID,u.SEX,u.AVATAR, d.DEPT_NAME as deptName ,u.OICQ_NO as oicqNo,
 		u.TEL_NO_DEPT as telNoDept , u.EMAIL as email,u.MOBIL_NO as mobilNo
 		from user u,department d  where u.DEPT_ID= d.DEPT_ID and UID= #{uid}
@@ -171,8 +171,8 @@
 		resultType="com.xoa.model.users.Users">
 		select u.USER_NAME as
 		userName,u.USER_PRIV_NAME as userPrivName,
-		 d.DEPT_NAME as deptName from user u
-		,department d  where  u.DEPT_ID= d.DEPT_ID 
+		 d.DEPT_NAME as deptName ,u.UID ,u.AVATAR ,u.USER_ID as userId from user u
+		,department d  where  u.DEPT_ID= d.DEPT_ID  
         <if test="userName != null and userName !=''">
 			and  u.USER_NAME like CONCAT(CONCAT('%', #{userName}), '%')
 		</if> 
@@ -311,7 +311,7 @@
 		<if test="callSound != null and callSound !=''">
 			and CALL_SOUND = #{callSound},
 		</if>
-		<if test="lastVisitTime != null and lastVisitTime !=''">
+		<if test="lastVisitTime != null  and lastVisitTime !=''">
 			and LAST_VISIT_TIME = #{lastVisitTime},
 		</if>
 		<if test="smsOn != null and smsOn !=''">
@@ -392,8 +392,8 @@
 		<if test="myStatus != null and myStatus !=''">
 			and MY_STATUS = #{myStatus},
 		</if>
-		<!-- <if test="limitLogin != nulland limitLogin !=''"> and LIMIT_LOGIN 
-			= #{limitLogin}, </if> -->
+		<if test="limitLogin != null and limitLogin !=''"> 
+		and LIMIT_LOGIN = #{limitLogin}, </if> 
 		<if test="photo != null and photo !=''">
 			and PHOTO = #{photo},
 		</if>
@@ -947,7 +947,7 @@
 			<if test="telNoHome != null and telNoHome !=''">
 				TEL_NO_HOME = #{telNoHome},
 			</if>
-			<if test="mobilNo != null and mobilNo !=''">
+			<if test="mobilNo != null ">
 				MOBIL_NO = #{mobilNo},
 			</if>
 			<if test="bpNo != null and bpNo !=''">
@@ -1052,7 +1052,7 @@
 			<if test="myStatus != null and myStatus !=''">
 				MY_STATUS = #{myStatus},
 			</if>
-			<if test="limitLogin != nulland limitLogin !=''">
+			<if test="limitLogin != null and limitLogin !=''">
 				LIMIT_LOGIN = #{limitLogin},
 			</if>
 			<if test="photo != null and photo !=''">

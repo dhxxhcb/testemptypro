@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.dataSource.ContextHolder;
 
 
@@ -69,7 +70,7 @@ public class UsersController {
 	 * @return     ToJson<Users>  返回显示信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/user/editUser",method = RequestMethod.POST)
+	@RequestMapping(value = "/user/editUser",method = RequestMethod.GET)
     public ToJson<Users> editUser(Users user,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
@@ -77,6 +78,7 @@ public class UsersController {
 		loger.debug("ID"+user.getUid());
 		try {
 			usersService.editUser(user);
+			user=usersService.findUserByuid(user.getUid());
             json.setObject(user);
             json.setMsg("OK");
             json.setFlag(0);
@@ -129,6 +131,9 @@ public class UsersController {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			Users users=usersService.findUserByuid(uid);  
+			if(StringUtils.checkNull(users.getBirthday())){
+				users.setBirthday("");
+			}
 			json.setObject(users);;
             json.setMsg("OK");
             json.setFlag(0);
@@ -243,15 +248,8 @@ public class UsersController {
 				"loginDateSouse"));
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
-			request.setCharacterEncoding("UTF-8");
-			String os = System.getProperty("os.name");
-			StringBuffer sb=new StringBuffer();
-			if(os.toLowerCase().startsWith("win")){  			
-			  sb=sb.append(new String(request.getParameter("search").getBytes("ISO-8859-1"),"utf-8"));  
-			}else{
-			  sb=sb.append(request.getParameter("search"));
-			}
-			String search=sb.toString();
+			request.setCharacterEncoding("UTF-8");	
+			String search=request.getParameter("search");
 			System.out.println(search);
 			//String search=URLEncoder.encode(request.getParameter("search"),"utf-8"); 
 			maps=new HashMap<String, Object>();

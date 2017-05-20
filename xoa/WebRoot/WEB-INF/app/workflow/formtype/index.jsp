@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/base.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/news/center.css"/>
     <script type="text/javascript" src="../../js/jquery-1.9.1.js" ></script>
+     <script src="../../js/base/base.js"></script>
     <script src="../../lib/laydate.js"></script>
     <script type="text/javascript" src="../../lib/easyui/jquery.easyui.min.js" ></script>
     <script type="text/javascript" src="../../lib/easyui/tree.js" ></script>
@@ -374,10 +375,9 @@
 
         function bindClick() {
             $(".foot_span_design").click(function () {
-
                 var formId = $(this).attr("formId");
-                alert("design"+formId);
-                window.location.href="../../form/designer?formId="+formId;
+                //alert("design"+formId);
+                $.popWindow("../../form/designer?formId="+formId,'',100,200,1000,700);
             })
             $(".foot_span_show").click(function () {
                 var formId = $(this).attr("formId");

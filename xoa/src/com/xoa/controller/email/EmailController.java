@@ -703,6 +703,10 @@ public class EmailController {
         String sqlType = "xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse");
         ContextHolder.setConsumerType(sqlType);
+        if (StringUtils.checkNull(emailModel.getToId())) {
+            String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+            emailModel.setToId(userId);
+        }
         return emailService.updateEmailBox(emailModel);
     }
 
@@ -801,7 +805,7 @@ public class EmailController {
      * 参数说明:
      * @return
      */
-    @RequestMapping(value = "/updeateEmailBoxName", produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/updateEmailBoxName", produces = {"application/json;charset=UTF-8"})
     public @ResponseBody
     ToJson<EmailBoxModel> updeateEmailBoxName(HttpServletRequest request, EmailBoxModel emailBoxModel) {
         String sqlType = "xoa" + (String) request.getSession().getAttribute(
@@ -979,6 +983,13 @@ public class EmailController {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         return "app/email/manageMail";
+    }
+
+    @RequestMapping("/emptyFolder")
+    public String emptyFolder(HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        return "app/email/emptyFolder";
     }
 
 }

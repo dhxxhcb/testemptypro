@@ -36,7 +36,9 @@ public class TodolistController {
 				"loginDateSouse"));
 		ToJson<Daiban> json=new ToJson<Daiban>(0, null);
 		try {
-			Daiban db=todolistService.list(userId);
+			String sqlType="xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse");
+			Daiban db=todolistService.list(userId,sqlType);
             json.setObject(db);
             json.setMsg("OK");
             json.setFlag(0);

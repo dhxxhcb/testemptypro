@@ -31,7 +31,7 @@
 
   <!-- 修改其他邮件名称和序号 -->
   <update id="update" parameterType="com.xoa.model.email.EmailBoxModel"  >
-    UPDATE email_body SET
+    UPDATE email_box SET
    BOX_NO=#{boxNo},
    BOX_NAME=#{boxName}
     WHERE

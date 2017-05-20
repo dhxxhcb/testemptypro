@@ -55,15 +55,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.set_up_ul ul{list-style: none;}
 			.set_up_ul ul li{width: 100%;text-align: center;color: #000;height:25px;line-height:25px;}
 			.set_up_ul ul li:hover{background-color: #6ea1d5;color:#fff;cursor: pointer;}
-			.RemoveTo_div{font-size: 12px;border: #ccc 1px solid;border-radius: 5px;min-width:160px;background-color: #fff;position: absolute;right: 23.3%;top: 45px;}
-			.RemoveTo_div li{padding: 5px 10px;display:block;clear: both;}
-			.RemoveTo_div li:hover{background-color: #6ea1d5;color:#fff;cursor: pointer;}
+			.RemoveTo_div{font-size: 12px;border: #ccc 1px solid;border-radius: 5px;min-width:160px;background-color: #fff;position: absolute;right: 23.3%;top: 45px;z-index: 9999;}
+			.RemoveTo_div ul li{padding: 5px 10px;display:block;clear: both;}
+			.RemoveTo_div .RemoveTo_child:hover{background-color: #6ea1d5;color:#fff;cursor: pointer;}
 		</style>
 		<script>
 			$(function(){
                 $('.setUp').click(function(e){
                     e.stopPropagation();
-                    $('.set_up_ul').css('display','block');
+                    $('.set_up_ul').toggle();
                 })
                 $(document).click(function(){
                     if($('.set_up_ul').css('display')=='block'){
@@ -78,13 +78,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				})
 
 				$('.ul_show').on('click','li',function(){
+                    //$('.otherMailFolder').css('display','block').siblings().css('display','none');
 				    var id=$(this).attr('boxId');
                     otherList(id);
+                    var emailId=$('.main_left .backing').find('input').attr('id');
+                    //init(emailId,'#TAB','.article')
+                   /* $.ajax({
+                        type:'get',
+                        url:'queryByID',
+                        dataType:'json',
+                        data:{'emailId':emailId,'flag':''},
+                        success:function(rsp){
+                            var data2=rsp.object;
+                            var sendTime=new Date((data2.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                            var str='';
+                            var stra='';
+                            var arr=new Array();
+                            arr=data2.attachment;
+                            $('#TAE').find('tr').remove();
+                            $('.article3').find('p').remove();
+
+                            $('.article3').find('div').remove();
+                            $('.span_hr').find('p').find('span').eq(0).html('');
+
+                            if(data2.attachmentName!='' && data2.copyName!=''){
+                                for(var i=0;i<arr.length;i++){
+                                    stra+='<div><a href="<%=basePath %>download?'+arr[i].attUrl+'"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></div>';
+                                }
+                                str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
+                            } else if(data2.attachmentName=='' && data2.copyName!=''){
+                                str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td>抄送人：</td><td>'+data2.copyName+'</td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
+                            } else if(data2.attachmentName!='' && data2.copyName ==''){
+                                for(var i=0;i<arr.length;i++){
+                                    stra+='<div><a href="<%=basePath %>download?'+arr[i].attUrl+'"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></div>';
+                                }
+                                str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr><tr><td>附件：</td><td class="attachment">'+stra+'</td></tr>';
+                            } else{
+                                str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
+                            }
+
+                            $('#TAE').append(str);
+                            $('.article3').append('<p>'+data2.content+'</p>');
+                            $('.span_hr').find('p').find('span').eq(0).html(data2.users.userName);
+                        }
+                    });*/
 				})
 
 				//点击移动按钮事件
-				$('#RemoveTo').click(function(){
-				    alert('1')
+				$('#RemoveTo').click(function(e){
+                    e.stopPropagation();
+				   	$('.RemoveTo_div').toggle();
+				})
+				$(document).click(function(){
+				    if ($('.RemoveTo_div').css('display')=='block'){
+                        $('.RemoveTo_div').css('display','none');
+					}
+				})
+				//点击移动按钮下的文件夹
+				$('.RemoveTo_div').on('click','.RemoveTo_child',function(){
+				    var id=$(this).attr('boxId');
+                    var MailId=$('.main_left .backing input').attr('id');
+                    RemoveToMail(id,MailId);
+				    //alert(MailId);
 				})
 
 			})
@@ -102,10 +157,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					success:function(rsp){
 					    var data1=rsp.obj;
 					    var str='';
+					    var str1='';
 					    for(var i=0;i<data1.length;i++){
-					        str+='<li boxId="'+data1[i].boxId+'"><a href="javascript:;"><img src="../img/icon_file_11.png"/>'+data1[i].boxName+'</a></li>'
+					        str+='<li boxId="'+data1[i].boxId+'"><a href="javascript:;"><img src="../img/icon_file_11.png"/>'+data1[i].boxName+'</a></li>';
+							str1+='<li class="RemoveTo_child" boxId="'+data1[i].boxId+'">'+data1[i].boxName+'</li>';
 						}
 						$('.other .ul_show ul').append(str);
+						$('.up_nav .RemoveTo_div ul').append(str1);
 					}
 				})
 			}
@@ -114,7 +172,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    var data={
 			        'page':1,
 					'pageSize':10,
-					'useFlag':true,
+					'useFlag':false,
 					'boxId':id
 				}
 				$.ajax({
@@ -124,27 +182,54 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					data:data,
 					success:function(rsp){
                         var data1=rsp.obj;
+                        ///console.log(data1);
                         var str='';
-                        for(var i=0;i<data1.length;i++){
-                            var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-                            if(data1[i].emailList[0].readFlag==1){
-                                if(data1[i].attachmentId!=''){
-                                    str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
-                                }else{
-                                    str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
-                                }
+                        if (data1!=''){
+                            $('.up_page_right').css('display','block');
+                            for(var i=0;i<data1.length;i++){
+                                var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                                if(data1[i].emailList[0].readFlag==1){
+                                    if(data1[i].attachmentId!=''){
+                                        str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+                                    }else{
+                                        str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+                                    }
 
-                            } else if(data1[i].emailList[0].readFlag==0){
-                                if(data1[i].attachmentId!=''){
-                                    str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
-                                }else{
-                                    str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+                                } else if(data1[i].emailList[0].readFlag==0){
+                                    if(data1[i].attachmentId!=''){
+                                        str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+                                    }else{
+                                        str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+                                    }
+
                                 }
 
                             }
-
+                            $('.befor').after(str);
+							$('li.BTN').eq(0).addClass('backing')
+                            var emailId=$('.main_left .backing').find('input').attr('id');
+                            init(emailId,'#TAE','.article3')
+						}else{
+                            $('.up_page_right').css('display','none');
+                            var Ifrmaes='<div class="div_iframe" style="width: 82%;overflow: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="emptyFolder" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+							$('.page').append(Ifrmaes);
                         }
-                        $('.befor').after(str);
+
+					}
+				})
+			}
+			function RemoveToMail (id,emailId){
+			    var data={
+			        'boxId':id,
+					'emailId':emailId
+				}
+				$.ajax({
+					type:'post',
+					url:'updateEmailBox',
+					dataType:'json',
+					data:data,
+					success:function(){
+					    location.reload();
 					}
 				})
 			}
@@ -249,19 +334,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li id="delete"><img src="../img/icon_delete_06.png" class="im"/><fmt:message code="global.lang.delete" /></li><%--<img src="../img/icon_more_06.png" class="more_im"/>--%>
 							<%--<li onclick="clicked()"><fmt:message code="email.th.more" /><img src="../img/icon_more_06.png" class="am"/></li>--%>
 						</ul>
-						<div class="RemoveTo_div">
+						<div class="RemoveTo_div" style="display:none;">
 							<ul>
-								<li>管理邮件箱</li>
-								<li>Internet邮箱</li>
-								<li>导入Internet邮箱</li>
-								<li>邮箱整理</li>
-								<li>POP3设置</li>
+
 							</ul>
-								<%--<p>我的文件夹</p>
-								<p>测试盒子</p>
-								<p>导入Internet邮箱</p>
-								<p>邮箱整理</p>
-								<p>POP3设置</p>--%>
 						</div>
 					</div>
 					<div class="up_pages">
@@ -426,6 +502,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 								</div>
 						</div>
+
+                        <!-- 其他邮件箱 -->
+                        <div class="main_right otherMailFolder" style="display:none;">
+
+                             <table id="TAE" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+
+                              </table>
+                              <div class="article3">
+
+                               </div>
+                         </div>
 					</div>
 				</div>
 
@@ -624,6 +711,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#Replay').css('display','none');
                     $('#ReplayAll').css('display','none');
                     $('#Forward').css('display','none');
+					$('#RemoveTo').css('display','none');
 					if ($('.UP_INBOX').css('display')=='block'){
 						$('.UP_INBOX').hide();
 						$('.main').show().find('.drafts').show().siblings().hide();
@@ -661,6 +749,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#delete').css('display','block');
                     $('#Replay').css('display','none');
                     $('#ReplayAll').css('display','none');
+                    $('#RemoveTo').css('display','none');
                     if ($('.UP_INBOX').css('display')=='block'){
                         $('.UP_INBOX').hide();
                         $('.main').show().find('.hasBeenSend').show().siblings().hide();
@@ -684,6 +773,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#Replay').css('display','none');
                     $('#ReplayAll').css('display','none');
                     $('#Forward').css('display','none');
+                    $('#RemoveTo').css('display','none');
                     if ($('.UP_INBOX').css('display')=='block'){
                         $('.UP_INBOX').hide();
                         $('.main').show().find('.wastebasket').show().siblings().hide();
@@ -750,7 +840,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//转发事件
 				$('#Forward').click(function(){
                     var sId=$('.main_left .backing input').attr('id');
-                    $.popWindow('writeEmail?sId=' + sId+'&type=2','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+					var nId=$('.main_left .backing input').attr('nId');
+                    if($('.InBox').css('display')=='block'){
+                        $.popWindow('writeEmail?sId=' + sId+'&type=2','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+					}else if($('.hasBeenSend').css('display')=='block'){
+                        $.popWindow('writeEmail?sId=' + nId+'&type=3','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+					}
+
 				})
 
 				//附件上传
@@ -1020,7 +1116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									} else{
 										str='<tr><td width="8%"><fmt:message code="email.th.main" />：</td><td width="72%">'+data2.subject+'</td></tr><tr><td><fmt:message code="email.th.sender" />：</td><td>'+data2.users.userName+'</td></tr><tr><td><fmt:message code="email.th.recipients" />：</td><td><span><img src="../img/icon_read_3_07.png"/>'+data2.emailList[0].toName+'</span></td></tr><tr><td><fmt:message code="email.th.time" />：</td><td>'+sendTime+'</td></tr>';
 									}
-									//console.log(':::::'+arr[i].attUrl);
+
 									$(obj).append(str);
 									$(cName).append('<p>'+data2.content+'</p>');
 									$('.span_hr').find('p').find('span').eq(0).html(data2.users.userName);
