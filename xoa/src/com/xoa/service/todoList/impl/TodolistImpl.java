@@ -16,7 +16,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.email.EmailBodyMapper;
-import com.xoa.dao.notify.NotifyMapper;
 import com.xoa.model.daiban.Daiban;
 import com.xoa.model.daiban.TodoList;
 import com.xoa.model.email.EmailBodyModel;
@@ -49,7 +48,7 @@ public class TodolistImpl implements TodolistService{
 		List<TodoList> list1 =new ArrayList<TodoList>();
 		Daiban db=new Daiban();
 		InetAddress address = this.getCurrentIp();
-		List<EmailBodyModel> le=email.selectIsRead(maps);
+		List<EmailBodyModel> le=email.selectInboxIsRead(maps);
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		for(EmailBodyModel em:le){
 			TodoList td=new TodoList();

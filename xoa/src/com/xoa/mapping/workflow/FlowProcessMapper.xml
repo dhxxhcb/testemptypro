@@ -363,205 +363,205 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=INTEGER},
+        #{id},
       </if>
       <if test="flowId != null">
-        #{flowId,jdbcType=INTEGER},
+        #{flowId},
       </if>
       <if test="prcsId != null">
-        #{prcsId,jdbcType=INTEGER},
+        #{prcsId},
       </if>
       <if test="prcsType != null">
-        #{prcsType,jdbcType=TINYINT},
+        #{prcsType},
       </if>
       <if test="prcsName != null">
-        #{prcsName,jdbcType=VARCHAR},
+        #{prcsName},
       </if>
       <if test="setLeft != null">
-        #{setLeft,jdbcType=INTEGER},
+        #{setLeft},
       </if>
       <if test="setTop != null">
-        #{setTop,jdbcType=INTEGER},
+        #{setTop},
       </if>
       <if test="feedback != null">
-        #{feedback,jdbcType=VARCHAR},
+        #{feedback},
       </if>
       <if test="autoType != null">
-        #{autoType,jdbcType=VARCHAR},
+        #{autoType},
       </if>
       <if test="userFilter != null">
-        #{userFilter,jdbcType=VARCHAR},
+        #{userFilter},
       </if>
       <if test="timeOut != null">
-        #{timeOut,jdbcType=VARCHAR},
+        #{timeOut},
       </if>
       <if test="timeOutModify != null">
-        #{timeOutModify,jdbcType=CHAR},
+        #{timeOutModify},
       </if>
       <if test="timeOutAttend != null">
-        #{timeOutAttend,jdbcType=CHAR},
+        #{timeOutAttend},
       </if>
       <if test="signlook != null">
-        #{signlook,jdbcType=CHAR},
+        #{signlook},
       </if>
       <if test="topDefault != null">
-        #{topDefault,jdbcType=CHAR},
+        #{topDefault},
       </if>
       <if test="userLock != null">
-        #{userLock,jdbcType=CHAR},
+        #{userLock},
       </if>
       <if test="syncDeal != null">
-        #{syncDeal,jdbcType=CHAR},
+        #{syncDeal},
       </if>
       <if test="syncDealCheck != null">
-        #{syncDealCheck,jdbcType=VARCHAR},
+        #{syncDealCheck},
       </if>
       <if test="turnPriv != null">
-        #{turnPriv,jdbcType=CHAR},
+        #{turnPriv},
       </if>
       <if test="childFlow != null">
-        #{childFlow,jdbcType=INTEGER},
+        #{childFlow},
       </if>
       <if test="gatherNode != null">
-        #{gatherNode,jdbcType=CHAR},
+        #{gatherNode},
       </if>
       <if test="allowBack != null">
-        #{allowBack,jdbcType=CHAR},
+        #{allowBack},
       </if>
       <if test="attachPriv != null">
-        #{attachPriv,jdbcType=VARCHAR},
+        #{attachPriv},
       </if>
       <if test="autoBaseUser != null">
-        #{autoBaseUser,jdbcType=INTEGER},
+        #{autoBaseUser},
       </if>
       <if test="remindFlag != null">
-        #{remindFlag,jdbcType=INTEGER},
+        #{remindFlag},
       </if>
       <if test="dispAip != null">
-        #{dispAip,jdbcType=INTEGER},
+        #{dispAip},
       </if>
       <if test="timeOutType != null">
-        #{timeOutType,jdbcType=CHAR},
+        #{timeOutType},
       </if>
       <if test="attachEditPriv != null">
-        #{attachEditPriv,jdbcType=CHAR},
+        #{attachEditPriv},
       </if>
       <if test="attachEditPrivOnline != null">
-        #{attachEditPrivOnline,jdbcType=CHAR},
+        #{attachEditPrivOnline},
       </if>
       <if test="attachMacroMark != null">
-        #{attachMacroMark,jdbcType=CHAR},
+        #{attachMacroMark},
       </if>
       <if test="viewPriv != null">
-        #{viewPriv,jdbcType=INTEGER},
+        #{viewPriv},
       </if>
       <if test="signType != null">
-        #{signType,jdbcType=BIT},
+        #{signType},
       </if>
       <if test="countersign != null">
-        #{countersign,jdbcType=BIT},
+        #{countersign},
       </if>
       <if test="workingdaysType != null">
-        #{workingdaysType,jdbcType=CHAR},
+        #{workingdaysType},
       </if>
       <if test="prcsUser != null">
-        #{prcsUser,jdbcType=LONGVARCHAR},
+        #{prcsUser},
       </if>
       <if test="prcsItem != null">
-        #{prcsItem,jdbcType=LONGVARCHAR},
+        #{prcsItem},
       </if>
       <if test="hiddenItem != null">
-        #{hiddenItem,jdbcType=LONGVARCHAR},
+        #{hiddenItem},
       </if>
       <if test="requiredItem != null">
-        #{requiredItem,jdbcType=LONGVARCHAR},
+        #{requiredItem},
       </if>
       <if test="prcsDept != null">
-        #{prcsDept,jdbcType=LONGVARCHAR},
+        #{prcsDept},
       </if>
       <if test="prcsPriv != null">
-        #{prcsPriv,jdbcType=LONGVARCHAR},
+        #{prcsPriv},
       </if>
       <if test="prcsTo != null">
-        #{prcsTo,jdbcType=LONGVARCHAR},
+        #{prcsTo},
       </if>
       <if test="plugin != null">
-        #{plugin,jdbcType=LONGVARCHAR},
+        #{plugin},
       </if>
       <if test="pluginSave != null">
-        #{pluginSave,jdbcType=LONGVARCHAR},
+        #{pluginSave},
       </if>
       <if test="prcsItemAuto != null">
-        #{prcsItemAuto,jdbcType=LONGVARCHAR},
+        #{prcsItemAuto},
       </if>
       <if test="prcsIn != null">
-        #{prcsIn,jdbcType=LONGVARCHAR},
+        #{prcsIn},
       </if>
       <if test="prcsOut != null">
-        #{prcsOut,jdbcType=LONGVARCHAR},
+        #{prcsOut},
       </if>
       <if test="prcsInSet != null">
-        #{prcsInSet,jdbcType=LONGVARCHAR},
+        #{prcsInSet},
       </if>
       <if test="prcsOutSet != null">
-        #{prcsOutSet,jdbcType=LONGVARCHAR},
+        #{prcsOutSet},
       </if>
       <if test="autoDept != null">
-        #{autoDept,jdbcType=LONGVARCHAR},
+        #{autoDept},
       </if>
       <if test="autoUserOp != null">
-        #{autoUserOp,jdbcType=LONGVARCHAR},
+        #{autoUserOp},
       </if>
       <if test="autoUser != null">
-        #{autoUser,jdbcType=LONGVARCHAR},
+        #{autoUser},
       </if>
       <if test="autoUserOpReturn != null">
-        #{autoUserOpReturn,jdbcType=LONGVARCHAR},
+        #{autoUserOpReturn},
       </if>
       <if test="autoUserReturn != null">
-        #{autoUserReturn,jdbcType=LONGVARCHAR},
+        #{autoUserReturn},
       </if>
       <if test="userFilterPrcsPriv != null">
-        #{userFilterPrcsPriv,jdbcType=LONGVARCHAR},
+        #{userFilterPrcsPriv},
       </if>
       <if test="userFilterPrcsPrivOther != null">
-        #{userFilterPrcsPrivOther,jdbcType=LONGVARCHAR},
+        #{userFilterPrcsPrivOther},
       </if>
       <if test="userFilterPrcsDept != null">
-        #{userFilterPrcsDept,jdbcType=LONGVARCHAR},
+        #{userFilterPrcsDept},
       </if>
       <if test="userFilterPrcsDeptOther != null">
-        #{userFilterPrcsDeptOther,jdbcType=LONGVARCHAR},
+        #{userFilterPrcsDeptOther},
       </if>
       <if test="mailTo != null">
-        #{mailTo,jdbcType=LONGVARCHAR},
+        #{mailTo},
       </if>
       <if test="mailToDept != null">
-        #{mailToDept,jdbcType=LONGVARCHAR},
+        #{mailToDept},
       </if>
       <if test="mailToPriv != null">
-        #{mailToPriv,jdbcType=LONGVARCHAR},
+        #{mailToPriv},
       </if>
       <if test="conditionDesc != null">
-        #{conditionDesc,jdbcType=LONGVARCHAR},
+        #{conditionDesc},
       </if>
       <if test="relationIn != null">
-        #{relationIn,jdbcType=LONGVARCHAR},
+        #{relationIn},
       </if>
       <if test="relationOut != null">
-        #{relationOut,jdbcType=LONGVARCHAR},
+        #{relationOut},
       </if>
       <if test="controlMode != null">
-        #{controlMode,jdbcType=LONGVARCHAR},
+        #{controlMode},
       </if>
       <if test="listColumnPriv != null">
-        #{listColumnPriv,jdbcType=LONGVARCHAR},
+        #{listColumnPriv},
       </if>
       <if test="fileuploadPriv != null">
-        #{fileuploadPriv,jdbcType=LONGVARCHAR},
+        #{fileuploadPriv},
       </if>
       <if test="imguploadPriv != null">
-        #{imguploadPriv,jdbcType=LONGVARCHAR},
+        #{imguploadPriv},
       </if>
     </trim>
   </insert>
