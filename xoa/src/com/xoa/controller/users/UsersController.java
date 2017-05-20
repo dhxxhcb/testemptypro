@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.dataSource.ContextHolder;
 
 
@@ -129,6 +130,9 @@ public class UsersController {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			Users users=usersService.findUserByuid(uid);  
+			//if(StringUtils.checkNull(users.getBirthday())){
+			//	users.setBirthday("null");
+			//}
 			json.setObject(users);;
             json.setMsg("OK");
             json.setFlag(0);

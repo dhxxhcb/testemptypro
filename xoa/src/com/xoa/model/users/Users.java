@@ -90,7 +90,7 @@ public class Users {
 	/**
 	 *生日
 	 */
-	private String birthday;
+	private Date birthday;
 	/**
 	 *是否农历(1-是,0-否)
 	 */
@@ -312,8 +312,7 @@ public class Users {
 	private String deptName; 
 	
 	private String companyName;
-   
-	private  SysPara para; 
+   private  SysPara para; 
 	
 	
 	
@@ -466,10 +465,10 @@ public class Users {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 	public String getIsLunar() {

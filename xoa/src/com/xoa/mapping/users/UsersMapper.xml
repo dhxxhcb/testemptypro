@@ -88,7 +88,7 @@
 		<result column="MY_RSS" property="myRss" javaType="string" />
 		<result column="REMARK" property="remark" javaType="string" />
 		<result column="USER_PARA" property="userPara" javaType="string" />
-		<!-- <association property="dep"
+		<association property="dep"
 			javaType="com.xoa.model.department.Department">
 			<id column="DEPT_ID" property="deptId" />
 			<result column="DEPT_NAME" property="deptName" />
@@ -144,7 +144,7 @@
 		<association property="para" javaType="com.xoa.model.common.SysPara">
 		 <id column="PARA_NAME" property="paraName" javaType="string" />
          <result column="PARA_VALUE" property="paraValue" javaType="string" />
-		</association> -->
+		</association> 
 	</resultMap>
 	<select id="getByDeptId" parameterType="Map"
 		resultType="com.xoa.model.users.Users">
