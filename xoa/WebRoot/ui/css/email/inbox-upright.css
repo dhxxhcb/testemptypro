@@ -275,7 +275,7 @@ html,body{
 	border-top: #ebebeb 1px solid;
 	overflow-y:auto;
 } 
-.main_right .article p,.main_right .article1 p,.main_right .article2 p,{
+.main_right .article p,.main_right .article1 p,.main_right .article2 p{
 	margin-right: 25px;
 	font-size: 14px;
 	line-height:21px;
