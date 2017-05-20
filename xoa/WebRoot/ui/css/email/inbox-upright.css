@@ -275,10 +275,16 @@ html,body{
 	border-top: #ebebeb 1px solid;
 	overflow-y:auto;
 } 
-.main_right .article p,.main_right .article1 p,.main_right .article2 p,.main_right .article3 p{
+.main_right .article p,.main_right .article1 p,.main_right .article2 p,{
 	margin-right: 25px;
 	font-size: 14px;
 	line-height:21px;
+}
+.main_right .article3 p{
+	margin-right: 25px;
+	font-size: 14px;
+	line-height:21px;
+	margin-top: 15px;
 }
 .main_right .article p:first-of-type{
 	margin-top: 13px;
