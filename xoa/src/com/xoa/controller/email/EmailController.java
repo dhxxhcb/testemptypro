@@ -985,4 +985,11 @@ public class EmailController {
         return "app/email/manageMail";
     }
 
+    @RequestMapping("/emptyFolder")
+    public String emptyFolder(HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        return "app/email/emptyFolder";
+    }
+
 }

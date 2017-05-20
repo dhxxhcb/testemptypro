@@ -783,7 +783,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     if($('.InBox').css('display')=='block'){
                         $.popWindow('writeEmail?sId=' + sId+'&type=2','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
 					}else if($('.hasBeenSend').css('display')=='block'){
-                        $.popWindow('writeEmail?sId=' + nId+'&type=1','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+                        $.popWindow('writeEmail?sId=' + nId+'&type=3','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
 					}
 
 				})
