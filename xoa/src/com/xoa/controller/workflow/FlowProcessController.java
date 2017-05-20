@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONObject;
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.service.workflow.flowtype.FlowProcessService;
 import com.xoa.util.ToJson;
@@ -57,12 +56,10 @@ public class FlowProcessController {
 		    return json;
 	  		
 	  	}
-		
-		
 		/**
 		 * 创建作者:   张龙飞
 		 * 创建日期:   2017年5月10日 上午11:18:20
-		 * 方法介绍:   保存
+		 * 方法介绍:   修改后保存
 		 * 参数说明:   @param flowProcess 设计流程实体类
 		 * 参数说明:   @param request 请求
 		 * 参数说明:   @return
@@ -108,16 +105,30 @@ public class FlowProcessController {
 				//request.setCharacterEncoding("utf-8");
 				int a=flowProcessService.insertSelective(flowProcess);
 				if(a>0){
-					json.setObject(flowProcess);	
+					json.setObject(flowProcess);
+					  json.setMsg("OK");
+				        json.setFlag(0);
+				}else{
+					json.setObject(flowProcess);
+					  json.setMsg("false");
+				        json.setFlag(0);
 				}
-		        json.setMsg("OK");
-		        json.setFlag(0);
+		      
 			} catch (Exception e) {
 				json.setMsg(e.getMessage());
 			}
 		    return json;
 		}
 		
+		/**
+		 * 创建作者:   张龙飞
+		 * 创建日期:   2017年5月20日 上午10:37:09
+		 * 方法介绍:   修改
+		 * 参数说明:   @param id
+		 * 参数说明:   @param request
+		 * 参数说明:   @return
+		 * @return     ToJson<FlowProcess>
+		 */
 		@ResponseBody
 	  	@RequestMapping(value = "doedit",produces = {"application/json;charset=UTF-8"})
 	    public ToJson<FlowProcess> doedit(int id,	   
@@ -138,6 +149,15 @@ public class FlowProcessController {
 		
 		
 		
+		/**
+		 * 创建作者:   张龙飞
+		 * 创建日期:   2017年5月20日 上午10:37:19
+		 * 方法介绍:   查询flowid下所有流程
+		 * 参数说明:   @param flowId 流程id
+		 * 参数说明:   @param request 请求
+		 * 参数说明:   @return
+		 * @return     ToJson<FlowProcess> 流程信息
+		 */
 		@ResponseBody
 	  	@RequestMapping(value = "findFlowId",produces = {"application/json;charset=UTF-8"})
 	    public ToJson<FlowProcess> findFlowId(
@@ -157,6 +177,15 @@ public class FlowProcessController {
 		    return json;
 		}
 		
+		/**
+		 * 创建作者:   张龙飞
+		 * 创建日期:   2017年5月20日 上午10:37:52
+		 * 方法介绍:   删除流程
+		 * 参数说明:   @param id 流程id
+		 * 参数说明:   @param request 请求
+		 * 参数说明:   @return
+		 * @return     ToJson<FlowProcess>  返回流程信息
+		 */
 		@ResponseBody
 	  	@RequestMapping(value = "delete",produces = {"application/json;charset=UTF-8"})
 	    public ToJson<FlowProcess> delete(
@@ -175,6 +204,15 @@ public class FlowProcessController {
 		    return json;
 		}
 	
+		/**
+		 * 创建作者:   张龙飞
+		 * 创建日期:   2017年5月20日 上午10:38:27
+		 * 方法介绍:   查询流程
+		 * 参数说明:   @param flowId
+		 * 参数说明:   @param request
+		 * 参数说明:   @return
+		 * @return     ToJson<FlowProcess>
+		 */
 		@ResponseBody
 	  	@RequestMapping(value = "flowview",produces = {"application/json;charset=UTF-8"})
 	    public ToJson<FlowProcess> flowview(
