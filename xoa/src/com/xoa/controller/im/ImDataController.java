@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xoa.controller.im.Model.ImMessageModel;
+import com.xoa.controller.im.Model.ImRoomModel;
+import com.xoa.controller.im.Model.Status;
 import com.xoa.model.im.ImChatList;
 import com.xoa.service.im.ImDataService;
 import com.xoa.service.im.wrapper.ImChatListWrappers;
