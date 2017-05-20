@@ -1,9 +1,11 @@
 package com.xoa.controller.im.Model;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 
 
 public class ImRoomModel{
-   @JsonProperty("RNAME") 
+  @JsonProperty("RNAME")
    String rname;//房间名称
    @JsonProperty("ROOM_OF") 
    String room_of;//房间openfireid
