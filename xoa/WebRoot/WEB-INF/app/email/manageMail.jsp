@@ -33,7 +33,7 @@
         .TABLE_A tr{border: 1px solid #c0c0c0;}
         .TABLE_A table tr:nth-child(odd) {background-color: #F6F7F9;}
         .TABLE_A table tr:nth-child(even) {background-color: #fff;}
-        .TABLE_A table tr th{color: #2F5C8F;font-size: 14px;padding: 6px;}
+        .TABLE_A table tr th{color: #2B7FE0;font-size: 14px;padding: 6px;}
         .TABLE_A table tr td{font-size: 12px;padding: 6px;}
         .TABLE_A table tr td input[type="text"]{width: 50px;height: 22px;padding-left: 5px;}
         .set_btn{border-radius: 3px;padding: 3px 10px;font-size: 12px;color: #333;margin: 1px;text-decoration: none;text-align: center;cursor: pointer;border: #ccc 1px solid;display: inline-block;}
@@ -86,7 +86,7 @@
                 <div class="div_title">管理邮件箱</div>
             </div>
             <div class="TABLE_A">
-                <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:99%;margin: 0 auto;">
+                <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:70%;margin: 0 auto;">
                     <tr class='befor'>
                         <th width="10%">编号</th>
                         <th width="10%">名称</th>
@@ -154,13 +154,14 @@
                     <tr>
                         <td>序号：</td>
                         <td>
-                            <input type="text" name="txt" id="txt1" value="" />
+                            <input type="hidden" name="txt" id="txt5">
+                            <input type="text" name="txt" id="txt3" value="" />
                         </td>
                     </tr>
                     <tr>
                         <td>名称：</td>
                         <td>
-                            <input type="text" name="txt" id="txt2" value="" />
+                            <input type="text" name="txt" id="txt4" value="" />
                         </td>
                     </tr>
                     <tr>
@@ -210,7 +211,42 @@
         $('.TABLE_A').on('click','.editList',function(){
             $('.DIV_LIST').css('display','none');
             $('.DIV_EDIT_LIST').css('display','block');
-            //alert('1')
+            var num=$(this).parents('tr').attr('boxNo');
+            var name=$(this).parents('tr').attr('boxName');
+            var boxId=$(this).parents('tr').attr('boxId');
+            $('#txt3').val(num);
+            $('#txt4').val(name);
+            $('#txt5').val(boxId);
+        })
+        //点击确定
+        $('#btnSure').click(function(){
+            var data={
+                'boxNo':$("#txt3").val(),
+                'boxName':$("#txt4").val(),
+                'boxId':$("#txt5").val()
+            }
+            $.ajax({
+                type:'POST',
+                url:'updateEmailBoxName',
+                dataType:'json',
+                data:data,
+                success:function(rsp){
+                    if(rsp.flag){
+                        alert("成功");
+                        location.reload();
+                    }else{
+                        alert("失败");
+                    }
+                }
+            })
+        })
+
+        //返回按钮
+        $('#btnReturn').click(function(){
+            $('#txt3').val();
+            $('#txt4').val();
+            $('.DIV_LIST').css('display','block');
+            $('.DIV_EDIT_LIST').css('display','none');
         })
     })
     function setOtherMail (){
@@ -228,7 +264,7 @@
                 var data2=rsp.obj;
                 var str='';
                 for(var i=0;i<data2.length;i++){
-                    str+='<tr boxId="'+data2[i].boxId+'"><td style="text-align: center;">'+data2[i].boxNo+'</td><td style="text-align: center;">'+data2[i].boxName+'</td><td style="text-align: center;"><a class="editList" href="javascript:;">编辑</a><a class="deleteList" href="javascript:;">删除</a></td></tr>'
+                    str+='<tr boxId="'+data2[i].boxId+'" boxNo="'+data2[i].boxNo+'" boxName="'+data2[i].boxName+'"><td style="text-align: center;">'+data2[i].boxNo+'</td><td style="text-align: center;">'+data2[i].boxName+'</td><td style="text-align: center;"><a class="editList" href="javascript:;">编辑</a><a class="deleteList" href="javascript:;">删除</a></td></tr>'
                 }
                 $('.TABLE_A table').append(str);
             }
@@ -238,7 +274,7 @@
         var data={
             'page':1,
             'pageSize':6,
-            'useFlag':true,
+            'useFlag':false,
             'boxId':id
         }
         var msg='<fmt:message code="global.lang.sure" />';

@@ -102,8 +102,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tr>
 							<td><fmt:message code="global.lang.date" />：</td>
 							<td>
-								<input class="laydate-icon" id="start"> &nbsp;<fmt:message code="global.lang.to" />&nbsp;
-								<input class="laydate-icon" id="end">
+								<input class="laydate-icon" id="start" style="width: 150px;"> &nbsp;<fmt:message code="global.lang.to" />&nbsp;
+								<input class="laydate-icon" id="end" style="width: 150px;">
 							</td>
 						</tr>
 						<tr>

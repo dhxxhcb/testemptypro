@@ -650,6 +650,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#Replay').css('display','none');
                     $('#ReplayAll').css('display','none');
                     $('#Forward').css('display','none');
+					$('#RemoveTo').css('display','none');
 					if ($('.UP_INBOX').css('display')=='block'){
 						$('.UP_INBOX').hide();
 						$('.main').show().find('.drafts').show().siblings().hide();
@@ -687,6 +688,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#delete').css('display','block');
                     $('#Replay').css('display','none');
                     $('#ReplayAll').css('display','none');
+                    $('#RemoveTo').css('display','none');
                     if ($('.UP_INBOX').css('display')=='block'){
                         $('.UP_INBOX').hide();
                         $('.main').show().find('.hasBeenSend').show().siblings().hide();
@@ -710,6 +712,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('#Replay').css('display','none');
                     $('#ReplayAll').css('display','none');
                     $('#Forward').css('display','none');
+                    $('#RemoveTo').css('display','none');
                     if ($('.UP_INBOX').css('display')=='block'){
                         $('.UP_INBOX').hide();
                         $('.main').show().find('.wastebasket').show().siblings().hide();
@@ -776,7 +779,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//转发事件
 				$('#Forward').click(function(){
                     var sId=$('.main_left .backing input').attr('id');
-                    $.popWindow('writeEmail?sId=' + sId+'&type=2','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+					var nId=$('.main_left .backing input').attr('nId');
+                    if($('.InBox').css('display')=='block'){
+                        $.popWindow('writeEmail?sId=' + sId+'&type=2','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+					}else if($('.hasBeenSend').css('display')=='block'){
+                        $.popWindow('writeEmail?sId=' + nId+'&type=1','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+					}
+
 				})
 
 				//附件上传
