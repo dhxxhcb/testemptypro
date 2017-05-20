@@ -22,7 +22,7 @@
 		<result column="DEPT_ID" property="deptId" javaType="int" />
 		<result column="DEPT_ID_OTHER" property="deptIdOther" javaType="string" />
 		<result column="SEX" property="sex" javaType="string" />
-		<result column="BIRTHDAY" property="birthday" javaType="java.sql.Date" />
+		<result column="BIRTHDAY" property="birthday" javaType="java.util.Date" />
 		<result column="IS_LUNAR" property="isLunar" javaType="string" />
 		<result column="TEL_NO_DEPT" property="telNoDept" javaType="string" />
 		<result column="FAX_NO_DEPT" property="faxNoDept" javaType="string" />
@@ -88,7 +88,7 @@
 		<result column="MY_RSS" property="myRss" javaType="string" />
 		<result column="REMARK" property="remark" javaType="string" />
 		<result column="USER_PARA" property="userPara" javaType="string" />
-		<association property="dep"
+		<!-- <association property="dep"
 			javaType="com.xoa.model.department.Department">
 			<id column="DEPT_ID" property="deptId" />
 			<result column="DEPT_NAME" property="deptName" />
@@ -144,7 +144,7 @@
 		<association property="para" javaType="com.xoa.model.common.SysPara">
 		 <id column="PARA_NAME" property="paraName" javaType="string" />
          <result column="PARA_VALUE" property="paraValue" javaType="string" />
-		</association>
+		</association> -->
 	</resultMap>
 	<select id="getByDeptId" parameterType="Map"
 		resultType="com.xoa.model.users.Users">
@@ -154,7 +154,7 @@
 	<select id="findUserByuid" parameterType="Map"
 		resultType="com.xoa.model.users.Users">
 		select u.UID,u.USER_ID as userId,u.USER_NAME as
-		userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,
+		userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,u.BIRTHDAY as birthday,
 		u.DEPT_ID,u.SEX,u.AVATAR, d.DEPT_NAME as deptName ,u.OICQ_NO as oicqNo,
 		u.TEL_NO_DEPT as telNoDept , u.EMAIL as email,u.MOBIL_NO as mobilNo
 		from user u,department d  where u.DEPT_ID= d.DEPT_ID and UID= #{uid}
