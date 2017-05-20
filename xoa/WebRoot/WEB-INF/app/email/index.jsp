@@ -76,16 +76,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('.page_left li').removeClass('on');
                     $(this).addClass('on');
 				})
-				//其他邮件箱li点击事件
+				//其他邮件箱下的文件夹点击事件
 				$('.divUlShow').on('click','li',function(){
                     $('.otherMailFolder').css('display','block').siblings().css('display','none');
 					//console.log($('.otherMailFolder').siblings());
 				    var id=$(this).attr('boxId');
                     otherList(id);
-                    //var emailId=$('.main_left .backing').find('input').attr('id');
-
-                    //init(emailId,'#TAB','.article')
-
+				})
+				//其他邮件箱下的文件夹中列表邮件点击事件展示详情
+				$('.main_left').on('click','.folderBtn',function(){
+				    var emailId=$(this).find('input').attr('id');
+                    folderDetails(emailId);
 				})
 
 				//点击移动按钮事件
@@ -155,16 +156,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 var sendTime=new Date((data1[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
                                 if(data1[i].emailList[0].readFlag==1){
                                     if(data1[i].attachmentId!=''){
-                                        str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+                                        str+='<li class="BTN folderBtn" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
                                     }else{
-                                        str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+                                        str+='<li class="BTN folderBtn" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_read_2_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
                                     }
 
                                 } else if(data1[i].emailList[0].readFlag==0){
                                     if(data1[i].attachmentId!=''){
-                                        str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
+                                        str+='<li class="BTN folderBtn" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a><img src="../img/icon_accessory_03.png"/></div></li>';
                                     }else{
-                                        str+='<li class="BTN" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
+                                        str+='<li class="BTN folderBtn" style="cursor: pointer;"><input type="hidden" nId="'+data1[i].bodyId+'" id="'+data1[i].emailList[0].emailId+'" ueId="'+data1[i].emailList[0].deleteFlag+'"><div class="shang"><span>'+data1[i].users.userName+'</span><img src="../img/icon_notread_1_03.png"/><img src="../img/icon_star_kong_03.png"/><span class="time">'+sendTime+'</span></div><div class="xia"><a href="javascript:;" class="xia_txt">'+data1[i].subject+'</a></div></li>';
                                     }
 
                                 }
@@ -173,7 +174,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             $('.befor').after(str);
 							$('li.BTN').eq(0).addClass('backing')
                             var emailId=$('.main_left .backing').find('input').attr('id');
-
                             folderDetails(emailId);
 						}else{
                             $('.up_page_right').css('display','none');
@@ -271,7 +271,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="javascript:;" class="inbox_btn">
 							<div class="inbox_btn_tim div_up"><fmt:message code="email.title.othermailbox" /></div>
 						</a>
-						<div class="ul_show divUlShow" style="margin-bottom: 52px;">
+						<div class="ul_show divUlShow">
 							<ul>
 								<%--<li><a href="javascript:;"><img src="../img/icon_file_11.png"/><fmt:message code="email.title.oneselffile" /></a></li>--%>
 							</ul>
