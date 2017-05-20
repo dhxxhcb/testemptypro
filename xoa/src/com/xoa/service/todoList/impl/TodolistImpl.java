@@ -21,6 +21,7 @@ import com.xoa.model.daiban.TodoList;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.model.email.EmailModel;
 import com.xoa.model.notify.Notify;
+import com.xoa.service.email.EmailService;
 import com.xoa.service.notify.NotifyService;
 import com.xoa.service.todoList.TodolistService;
 import com.xoa.util.ToJson;
@@ -30,7 +31,7 @@ import com.xoa.util.page.PageParams;
 public class TodolistImpl implements TodolistService{
 
 	@Resource
-	private EmailBodyMapper email;
+	private EmailService emailService;
 	
 	@Resource
 	private NotifyService notifyService;
@@ -48,7 +49,8 @@ public class TodolistImpl implements TodolistService{
 		List<TodoList> list1 =new ArrayList<TodoList>();
 		Daiban db=new Daiban();
 		InetAddress address = this.getCurrentIp();
-		List<EmailBodyModel> le=email.selectInboxIsRead(maps);
+		ToJson<EmailBodyModel> tojson=emailService.selectInboxIsRead(maps,1,10,false,sqlType);
+		List<EmailBodyModel> le=tojson.getObj();
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		for(EmailBodyModel em:le){
 			TodoList td=new TodoList();
@@ -72,7 +74,7 @@ public class TodolistImpl implements TodolistService{
 			td.setIsAttach(em.getAttachment()==null?"0":"1");
 			list.add(td);
 		}
-		ToJson<Notify> ln = notifyService.unreadNotify(maps,1,10,true,le.get(0).getUsers().getUserName(),sqlType);
+		ToJson<Notify> ln = notifyService.unreadNotify(maps,1,10,true,le.get(0).getUsers().getUserId(),sqlType);
 		List<Notify> l=ln.getObj();
 		for(Notify no:l){
 			TodoList td=new TodoList();

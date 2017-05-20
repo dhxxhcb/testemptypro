@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 public class FlowProcess {
-
+	
+	
 	/** 主键ID **/
 	private int id;
 	/** 流程ID **/
