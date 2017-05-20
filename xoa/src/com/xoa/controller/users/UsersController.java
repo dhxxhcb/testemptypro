@@ -130,9 +130,9 @@ public class UsersController {
 		ToJson<Users> json=new ToJson<Users>(0, null);
 		try {
 			Users users=usersService.findUserByuid(uid);  
-			//if(StringUtils.checkNull(users.getBirthday())){
-			//	users.setBirthday("null");
-			//}
+			if(StringUtils.checkNull(users.getBirthday())){
+				users.setBirthday("");
+			}
 			json.setObject(users);;
             json.setMsg("OK");
             json.setFlag(0);
