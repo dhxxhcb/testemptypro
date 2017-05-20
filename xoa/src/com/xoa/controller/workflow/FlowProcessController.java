@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -66,22 +67,12 @@ public class FlowProcessController {
 		 * @return     ToJson<FlowProcess> 
 		 */
 		@ResponseBody
-	  	@RequestMapping(value = "saveFlow",produces = {"application/json;charset=UTF-8"})
+	  	@RequestMapping(value = "saveFlow",produces = {"application/json;charset=UTF-8"},method = RequestMethod.POST)
 	    public ToJson<FlowProcess> saveFlow(FlowProcess flowProcess,	   
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
-			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
-			try {
-				//request.setCharacterEncoding("utf-8");
-				flowProcessService.updateByPrimaryKeySelective(flowProcess);
-		        json.setObject(flowProcess);
-		        json.setMsg("OK");
-		        json.setFlag(0);
-			} catch (Exception e) {
-				json.setMsg(e.getMessage());
-			}
-		    return json;
+			return flowProcessService.updateByPrimaryKeySelective(flowProcess);
 		}
 		
 		

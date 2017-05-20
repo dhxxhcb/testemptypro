@@ -78,6 +78,7 @@ public class UsersController {
 		loger.debug("ID"+user.getUid());
 		try {
 			usersService.editUser(user);
+			user=usersService.findUserByuid(user.getUid());
             json.setObject(user);
             json.setMsg("OK");
             json.setFlag(0);

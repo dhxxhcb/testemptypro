@@ -8,8 +8,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-
-import com.alibaba.fastjson.JSONObject;
+import org.springframework.transaction.annotation.Transactional;
 import com.xoa.dao.workflow.FlowProcessMapper;
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.model.workflow.FlowProcessList;
@@ -30,10 +29,19 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		FlowProcess flowProcess=flowProcessMapper.find(maps);
 		return flowProcess;
 	}
-
 	@Override
-	public void updateByPrimaryKeySelective(FlowProcess record) {
-		flowProcessMapper.updateByPrimaryKeySelective(record);	
+	@Transactional
+	public ToJson<FlowProcess> updateByPrimaryKeySelective(FlowProcess record1) {
+		ToJson<FlowProcess> tojson= new ToJson<FlowProcess>();
+		try{
+			flowProcessMapper.updateByPrimaryKeySelective(record1);
+			tojson.setFlag(0);
+			tojson.setMsg("OK");
+		}catch(Exception e){
+			tojson.setFlag(1);
+			tojson.setMsg("error");
+		}
+		return tojson;	
 	}
 
 	@Override

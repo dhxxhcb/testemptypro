@@ -311,7 +311,7 @@
 		<if test="callSound != null and callSound !=''">
 			and CALL_SOUND = #{callSound},
 		</if>
-		<if test="lastVisitTime != null and lastVisitTime !=''">
+		<if test="lastVisitTime != null  and lastVisitTime !=''">
 			and LAST_VISIT_TIME = #{lastVisitTime},
 		</if>
 		<if test="smsOn != null and smsOn !=''">
@@ -392,8 +392,8 @@
 		<if test="myStatus != null and myStatus !=''">
 			and MY_STATUS = #{myStatus},
 		</if>
-		<!-- <if test="limitLogin != nulland limitLogin !=''"> and LIMIT_LOGIN 
-			= #{limitLogin}, </if> -->
+		<if test="limitLogin != null and limitLogin !=''"> 
+		and LIMIT_LOGIN = #{limitLogin}, </if> 
 		<if test="photo != null and photo !=''">
 			and PHOTO = #{photo},
 		</if>
@@ -1052,7 +1052,7 @@
 			<if test="myStatus != null and myStatus !=''">
 				MY_STATUS = #{myStatus},
 			</if>
-			<if test="limitLogin != nulland limitLogin !=''">
+			<if test="limitLogin != null and limitLogin !=''">
 				LIMIT_LOGIN = #{limitLogin},
 			</if>
 			<if test="photo != null and photo !=''">

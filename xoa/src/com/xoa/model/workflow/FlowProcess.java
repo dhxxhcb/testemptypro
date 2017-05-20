@@ -187,7 +187,7 @@ public class FlowProcess {
     }
 
     public String getPrcsItem() {
-        return prcsItem == null ? null : prcsItem.trim();
+        return prcsItem == null ? "" : prcsItem.trim();
     }
 
     public void setPrcsItem(String prcsItem) {
@@ -195,7 +195,7 @@ public class FlowProcess {
     }
 
     public String getHiddenItem() {
-        return  hiddenItem == null ? null : hiddenItem.trim();
+        return  hiddenItem == null ? "" : hiddenItem.trim();
     }
 
     public void setHiddenItem(String hiddenItem) {
@@ -203,7 +203,7 @@ public class FlowProcess {
     }
 
     public String getRequiredItem() {
-        return requiredItem == null ? null : requiredItem.trim();
+        return requiredItem == null ? "" : requiredItem.trim();
     }
 
     public void setRequiredItem(String requiredItem) {
@@ -215,7 +215,7 @@ public class FlowProcess {
     }
 
     public void setPrcsDept(String prcsDept) {
-        this.prcsDept = prcsDept == null ? null : prcsDept.trim();
+        this.prcsDept = prcsDept == null ? "" : prcsDept.trim();
     }
 
     public String getPrcsPriv() {
@@ -223,7 +223,7 @@ public class FlowProcess {
     }
 
     public void setPrcsPriv(String prcsPriv) {
-        this.prcsPriv = prcsPriv == null ? null : prcsPriv.trim();
+        this.prcsPriv = prcsPriv == null ? "" : prcsPriv.trim();
     }
 
     public String getPrcsTo() {

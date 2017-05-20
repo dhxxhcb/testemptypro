@@ -307,15 +307,23 @@ public class Users {
 	 */
 	private String userPara;
 	
+	private String showRss;
+	
 	private Department dep;
 	
 	private String deptName; 
 	
 	private String companyName;
-   private  SysPara para; 
-	
-	
-	
+   
+	private  SysPara para; 
+
+	public String getShowRss() {
+		return showRss;
+	}
+
+	public void setShowRss(String showRss) {
+		this.showRss = showRss;
+	}
 
 	public SysPara getPara() {
 		return para;
