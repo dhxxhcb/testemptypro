@@ -61,125 +61,244 @@
         }
 
         #propertyForm {
+            z-index: 12;
             float: right;
             width: 260px
         }
     </style>
     <script type="text/javascript">
-       jsondata1  = {
-           "title": "",
-           "nodes": {
-               "demo_node_9": {"name": "桂中区", "left": 10, "top": 10, "type": "start round", "alt": true},
-               "demo_node_10": {"name": "桂北区", "left": 10, "top": 81, "type": "start round", "alt": true},
-               "demo_node_11": {"name": "桂西区", "left": 9, "top": 143, "type": "start round", "alt": true},
-               "demo_node_12": {"name": "桂北区", "left": 11, "top": 290, "type": "start round", "alt": true},
-               "demo_node_14": {"name": "桂东区", "left": 7, "top": 339, "type": "start round", "alt": true},
-               "demo_node_2": {"name": "问候语2", "left": 232, "top": 104, "type": "chat", "alt": true}
-           },
-           "lines": {
-               "demo_line_6": {"type": "lr", "M": 81.5, "from": "demo_node_9", "to": "demo_node_5", "name": ""},
-               "demo_line_7": {"type": "lr", "M": 81.5, "from": "demo_node_10", "to": "demo_node_5", "name": ""},
-               "demo_line_9": {"type": "lr", "M": 81.5, "from": "demo_node_11", "to": "demo_node_5", "name": ""}
-           },
-           "areas": {},
-           "initNum": 61
-       };
-//jsondata  = {
-//            "title": "",
-//            "nodes": {
-//            },
-//            "lines": {
-//            },
-//            "areas": {},
-//            "initNum": 61
-//        };
-$(function(){
-	        var property = {
-	            width: 1200,
-	            height: 600,
-	            toolBtns: ["start round", "end round", "task round", "node", "chat", "state", "plug", "join", "fork", "complex mix"],
-	            haveHead: true,
-	            headBtns: ["new", "open", "save", "undo", "redo", "reload"],//如果haveHead=true，则定义HEAD区的按钮
-	            haveTool: true,
-	            haveGroup: true,
-	            useOperStack: true
-	        };
-	        var remark = {
-	            cursor: "选择指针",
-	            direct: "结点连线",
-	            start: "入口结点",
-	            end: "结束结点",
-	            task: "任务结点",
-	            node: "自动结点",
-	            chat: "决策结点",
-	            state: "状态结点",
-	            plug: "附加插件",
-	            fork: "分支结点",
-	            join: "联合结点",
-	            "complex mix": "复合结点",
-	            group: "组织划分框编辑开关"
-	        };
-            var jsondata = {
-                "title": "",
-                "nodes" :{},
-                "lines" :{},
-            	"areas": {},
-            	"initNum": 7
-            }
-            var flowDesign = $.createGooFlow($("#demo"), property);
-			    flowDesign.setNodeRemarks(remark);
+        var flowDesign;
+        var jsondata = {
+            "title": "",
+            "nodes": {},
+            "lines": {},
+            "areas": {},
+            "initNum": 7
+        }
+        $(function () {
+            var property = {
+                width: 1200,
+                height: 600,
+                toolBtns: ["start round", "end round", "task round", "node", "chat", "state", "plug", "join", "fork", "complex mix"],
+                haveHead: true,
+                headBtns: ["new", "open", "save", "undo", "redo", "reload"],//如果haveHead=true，则定义HEAD区的按钮
+                haveTool: true,
+                haveGroup: true,
+                useOperStack: true
+            };
+            var remark = {
+                cursor: "选择指针",
+                direct: "结点连线",
+                start: "入口结点",
+                end: "结束结点",
+                task: "任务结点",
+                node: "自动结点",
+                chat: "决策结点",
+                state: "状态结点",
+                plug: "附加插件",
+                fork: "分支结点",
+                join: "联合结点",
+                "complex mix": "复合结点",
+                group: "组织划分框编辑开关"
+            };
+            flowDesign = $.createGooFlow($("#flowDesignTable"), property);
+            flowDesign.setNodeRemarks(remark);
             $.ajax({
-                type:'get',
-                url:'<%=basePath%>flowProcess/flowview',
-                dataType:'json',
-                data:{"flowId":${formId}},
-                success:function(json){
-                   // debugger;
+                type: 'get',
+                url: '<%=basePath%>flowProcess/flowview',
+                dataType: 'json',
+                data: {"flowId":${formId}},
+                success: function (json) {
+                    // debugger;
 //                    获取数据并添加到流程设计器的插件中
-                    if(json.flag){
-                    	var designdata = json.object.designdata;
-                    	var connections = json.object.connections;
+                    if (json.flag) {
+                        var designdata = json.object.designdata;
+                        var connections = json.object.connections;
                         jsondata.title = json.object.flowName;
-                    	jsondata.initNum = designdata.length;
-                       	designdata.forEach(function(v,i){
-                       		jsondata.nodes['node_'+i] = {
-                        		name:v.prcsName,
-                        		left:v.setLeft,
-                        		type: "chat",
-                        		top:v.setTop
-
-                        	}
-                       	});
-
-                       	connections.forEach(function(v,i){
-                       		jsondata.lines['line_'+i] = {
-                        		type:v.prcsName,
-                        		type:"sl",
-                        		from:"node_"+v.from,
-                        		to:"node_"+v.to,
-                        		name:"",
-                        		"M": 81.5,
-                        		alt:true
-                        	} 
-                       	});
-			            flowDesign.loadData(jsondata);
-			            	 $("#submit").click(function(){
-				            	alert(2);
-				            	 document.getElementById("result").value = JSON.stringify(flowDesign.exportData());
-				            });
-			            	
-		                }
+                        jsondata.initNum = designdata.length;
+                        designdata.forEach(function (v, i) {
+                            jsondata.nodes['node_' + v.prcsId] = {
+                                flowId:v.id,
+                                name: v.prcsName,
+                                left: v.setLeft,
+                                type: "chat",
+                                top: v.setTop
+                            }
+                        });
+                        connections.forEach(function (v, i) {
+                            jsondata.lines['line_' + i] = {
+                                type: "sl",
+                                from: "node_" + v.from,
+                                to: "node_" + v.to,
+                                name: "",
+                                "M": 41.5,
+                                alt: true
+                            }
+                        });
                     }
+                    flowDesign.onItemDel = function (id, type) {
+                        if (confirm("确定要删除该单元吗?")) {
+                            this.blurItem();
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    };
+                    flowDesign.loadData(jsondata);
+                    flowDesign.onItemFocus = function (id, model) {
+                        var obj;
+                        $("#ele_model").val(model);
+                        $("#ele_id").val(id);
+                        if (model == "line") {
+                            obj = this.$lineData[id];
+                            $("#ele_type").val(obj.M);
+                            $("#ele_left").val("");
+                            $("#ele_top").val("");
+                            $("#ele_width").val("");
+                            $("#ele_height").val("");
+                            $("#ele_flowId").val("");
+                            $("#ele_from").val(obj.from);
+                            $("#ele_to").val(obj.to);
+                        } else if (model == "node") {
+                            obj = this.$nodeData[id];
+                            $("#ele_type").val(obj.type);
+                            $("#ele_flowId").val(obj.flowId);
+                            $("#ele_left").val(obj.left);
+                            $("#ele_top").val(obj.top);
+                            $("#ele_width").val(obj.width);
+                            $("#ele_height").val(obj.height);
+                            $("#ele_from").val("");
+                            $("#ele_to").val("");
+                        }
+                        $("#ele_name").val(obj.name);
+                        return true;
+                    };
+//                    $("#submit").click(function () {
+//                        document.getElementById("result").value = JSON.stringify(flowDesign.exportData());
+//                    });
+                },
             });
-           
         });
-        
     </script>
 </head>
 <body>
-<div id="demo" style="margin:10px"></div>
-<input id="submit" type="button" value='导出结果'/>
-<textarea id="result" row="6"></textarea>
+
+<div id="flowDesignTable" style="margin:10px"></div>
+<%--<input id="submit" type="button" value='导出结果'/>--%>
+<%--<textarea id="result" row="6"></textarea>--%>
+<div id="propertyForm">
+    <form class="myForm">
+        <div class="form_title">属性设置</div>
+        <div class="form_content">
+            <table>
+                <tr>
+                    <td class="th">Id：</td>
+                    <td><input type="text" style="width:120px" id="ele_id"/></td>
+                </tr>
+                <tr>
+                    <td class="th">FlowId：</td>
+                    <td><input type="text" style="width:120px" id="ele_flowId"/></td>
+                </tr>
+                <tr>
+                    <td class="th">Name：</td>
+                    <td><input type="text" style="width:120px" id="ele_name"/></td>
+                </tr>
+                <tr>
+                    <td class="th">Type：</td>
+                    <td><input type="text" style="width:120px" id="ele_type"/></td>
+                </tr>
+                <tr>
+                    <td class="th">Model：</td>
+                    <td><input type="text" style="width:120px" id="ele_model"/></td>
+                </tr>
+                <tr>
+                    <td class="th">Left-r：</td>
+                    <td><input type="text" style="width:120px" id="ele_left"/></td>
+                </tr>
+                <tr>
+                    <td class="th">Top-r：</td>
+                    <td><input type="text" style="width:120px" id="ele_top"/></td>
+                </tr>
+                <tr>
+                    <td class="th">Width：</td>
+                    <td><input type="text" style="width:120px" id="ele_width"/></td>
+                </tr>
+                <tr>
+                    <td class="th">Height：</td>
+                    <td><input type="text" style="width:120px" id="ele_height"/></td>
+                </tr>
+                <!-- 步骤关系需用箭头控制 -->
+                <tr>
+                    <td class="th">From：</td>
+                    <td><input type="text" style="width:120px" id="ele_from"/></td>
+                </tr>
+                <tr>
+                    <td class="th">To：</td>
+                    <td><input type="text" style="width:120px" id="ele_to"/></td>
+                </tr>
+            </table>
+        </div>
+        <div class="form_btn_div">
+            <input type="reset" value="重置"/>
+            <input type="button" value="确定" id="saveOrUpdate" />
+        </div>
+    </form>
+</div>
 </body>
+<script type="text/javascript">
+    $("#saveOrUpdate").click(function () {
+       var data={
+         "id":$("#ele_flowId").val(),
+        "prcsName":$("#ele_name").val(),
+        "setLeft" : $("#ele_left").val(),
+        "setTop" : $("#ele_top").val()
+        };
+       // 保存和修改需调试字段
+        if(data.id == null){
+            //保存
+            $.ajax({
+                type: 'POST',
+                url: '<%=basePath%>flowProcess/insert',
+                dataType: 'json',
+                data: data,
+                success: function (json) {
+//                alert(json.flag);
+                    if (json.flag) {
+                        alert("修改成功");
+                    }else{
+                        alert("修改失败");
+                    }
+                },
+                error:function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("数据库连接异常，请联系管理员");
+                }
+            });
+        }else{
+            //修改
+        $.ajax({
+            type: 'POST',
+            url: '<%=basePath%>flowProcess/saveFlow',
+            dataType: 'json',
+            data: data,
+            success: function (json) {
+//                alert(json.flag);
+                if (json.flag) {
+                    alert("修改成功");
+                }else{
+                    alert("修改失败");
+                }
+            },
+            error:function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("数据库连接异常，请联系管理员");
+            }
+        });
+    }
+    })
+
+
+</script>
+
+
+
 </html>
 
