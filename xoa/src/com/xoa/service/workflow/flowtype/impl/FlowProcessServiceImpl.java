@@ -48,8 +48,10 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	}
 	@Override
 	public FlowProcess flowView(int flowId) {
+		//定义用于返回的流程信息
 		FlowProcess f=new FlowProcess();
 		Map<String, String> map=null;
+		//定义
 		List<Map<String, String>> lm=new ArrayList<Map<String,String>>();
 		//根据flowId获取流程信息
 		List<FlowProcess> list=flowProcessMapper.findF(flowId);
