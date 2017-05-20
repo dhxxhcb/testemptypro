@@ -259,7 +259,7 @@ html,body{
 	margin-top: 5px;
 	font-size: 10pt;
 }
-.main_right .article,.main_right .article2{
+.main_right .article,.main_right .article2,.main_right .article3{
 	height:470px;
 	margin-top: 20px;
 	width: 100%;
@@ -275,7 +275,7 @@ html,body{
 	border-top: #ebebeb 1px solid;
 	overflow-y:auto;
 } 
-.main_right .article p,.main_right .article1 p,.main_right .article2 p{
+.main_right .article p,.main_right .article1 p,.main_right .article2 p,.main_right .article3 p{
 	margin-right: 25px;
 	font-size: 14px;
 	line-height:21px;
