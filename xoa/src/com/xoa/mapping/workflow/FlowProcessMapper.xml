@@ -568,202 +568,202 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowProcess">
     update flow_process
     <set>
-      <if test="flowId != null">
+      <if test="flowId != null and flowId!=''">
         FLOW_ID = #{flowId},
       </if>
-      <if test="prcsId != null">
+      <if test="prcsId != null and prcaId!=''">
         PRCS_ID = #{prcsId},
       </if>
-      <if test="prcsType != null">
+      <if test="prcsType != null and prcsType!=''">
         PRCS_TYPE = #{prcsType},
       </if>
-      <if test="prcsName != null ">
+      <if test="prcsName != null and prcsName!=''">
         PRCS_NAME = #{prcsName},
       </if>
-      <if test="setLeft != null">
+      <if test="setLeft != null and setLeft!=''">
         SET_LEFT = #{setLeft},
       </if>
-      <if test="setTop != null">
+      <if test="setTop != null and setTop!=''">
         SET_TOP = #{setTop},
       </if>
-      <if test="feedback != null">
+      <if test="feedback != null and feadback!=''">
         FEEDBACK = #{feedback},
       </if>
-      <if test="autoType != null">
+      <if test="autoType != null and autoType!=''">
         AUTO_TYPE = #{autoType},
       </if>
-      <if test="userFilter != null">
+      <if test="userFilter != null and userFilter != ''">
         USER_FILTER = #{userFilter},
       </if>
-      <if test="timeOut != null">
+      <if test="timeOut != null and timeOut!=''">
         TIME_OUT = #{timeOut},
       </if>
-      <if test="timeOutModify != null">
+      <if test="timeOutModify != null and timeOutModify !=''">
         TIME_OUT_MODIFY = #{timeOutModify},
       </if>
-      <if test="timeOutAttend != null">
+      <if test="timeOutAttend != null and timeOutAttend != ''">
         TIME_OUT_ATTEND = #{timeOutAttend},
       </if>
-      <if test="signlook != null">
+      <if test="signlook != null and signlook != ''">
         SIGNLOOK = #{signlook},
       </if>
-      <if test="topDefault != null">
+      <if test="topDefault != null and topDefault !=''">
         TOP_DEFAULT = #{topDefault},
       </if>
-      <if test="userLock != null">
+      <if test="userLock != null and userLock != ''">
         USER_LOCK = #{userLock},
       </if>
-      <if test="syncDeal != null">
+      <if test="syncDeal != null and syncDeal != ''">
         SYNC_DEAL = #{syncDeal},
       </if>
-      <if test="syncDealCheck != null">
+      <if test="syncDealCheck != null and syncDealCheck != ''">
         SYNC_DEAL_CHECK = #{syncDealCheck},
       </if>
-      <if test="turnPriv != null">
+      <if test="turnPriv != null and turnPriv != ''">
         TURN_PRIV = #{turnPriv},
       </if>
-      <if test="childFlow != null">
+      <if test="childFlow != null and childFlow != ''">
         CHILD_FLOW = #{childFlow},
       </if>
-      <if test="gatherNode != null">
+      <if test="gatherNode != null and gatherNode != ''">
         GATHER_NODE = #{gatherNode},
       </if>
-      <if test="allowBack != null">
+      <if test="allowBack != null and allowBack != ''">
         ALLOW_BACK = #{allowBack},
       </if>
-      <if test="attachPriv != null">
+      <if test="attachPriv != null and attachPriv != ''">
         ATTACH_PRIV = #{attachPriv},
       </if>
-      <if test="autoBaseUser != null">
+      <if test="autoBaseUser != null and autoBaseUser != ''">
         AUTO_BASE_USER = #{autoBaseUser},
       </if>
-      <if test="remindFlag != null">
+      <if test="remindFlag != null and remindFlag != ''">
         REMIND_FLAG = #{remindFlag},
       </if>
-      <if test="dispAip != null">
+      <if test="dispAip != null and dispAip != ''">
         DISP_AIP = #{dispAip},
       </if>
-      <if test="timeOutType != null">
+      <if test="timeOutType != null and timeOutType != ''">
         TIME_OUT_TYPE = #{timeOutType},
       </if>
-      <if test="attachEditPriv != null">
+      <if test="attachEditPriv != null and attachEditPriv != ''">
         ATTACH_EDIT_PRIV = #{attachEditPriv},
       </if>
-      <if test="attachEditPrivOnline != null">
+      <if test="attachEditPrivOnline != null and attachEditPrivOnline != ''">
         ATTACH_EDIT_PRIV_ONLINE = #{attachEditPrivOnline},
       </if>
-      <if test="attachMacroMark != null">
+      <if test="attachMacroMark != null and attachMacroMark != ''">
         ATTACH_MACRO_MARK = #{attachMacroMark},
       </if>
-      <if test="viewPriv != null">
+      <if test="viewPriv != null and viewPriv != ''">
         VIEW_PRIV = #{viewPriv},
       </if>
-      <if test="signType != null">
+      <if test="signType != null and signType != ''">
         SIGN_TYPE = #{signType},
       </if>
-      <if test="countersign != null">
+      <if test="countersign != null and countersign != ''">
         COUNTERSIGN = #{countersign},
       </if>
-      <if test="workingdaysType != null">
+      <if test="workingdaysType != null and workingdaysType != ''">
         WORKINGDAYS_TYPE = #{workingdaysType},
       </if>
-      <if test="prcsUser != null">
+      <if test="prcsUser != null and prcsUser != ''">
         PRCS_USER = #{prcsUser},
       </if>
-      <if test="prcsItem != null">
+      <if test="prcsItem != null and prcsItem != ''">
         PRCS_ITEM = #{prcsItem},
       </if>
-      <if test="hiddenItem != null">
+      <if test="hiddenItem != null and hiddenItem != ''">
         HIDDEN_ITEM = #{hiddenItem},
       </if>
-      <if test="requiredItem != null">
+      <if test="requiredItem != null and requiredItem != ''">
         REQUIRED_ITEM = #{requiredItem},
       </if>
-      <if test="prcsDept != null">
+      <if test="prcsDept != null and prcsDept != ''">
         PRCS_DEPT = #{prcsDept},
       </if>
-      <if test="prcsPriv != null">
+      <if test="prcsPriv != null and prcsPriv != ''">
         PRCS_PRIV = #{prcsPriv},
       </if>
-      <if test="prcsTo != null">
+      <if test="prcsTo != null and prcsTo != ''">
         PRCS_TO = #{prcsTo},
       </if>
-      <if test="plugin != null">
+      <if test="plugin != null and plugin != ''">
         PLUGIN = #{plugin},
       </if>
-      <if test="pluginSave != null">
+      <if test="pluginSave != null and pluginSave != ''">
         PLUGIN_SAVE = #{pluginSave},
       </if>
-      <if test="prcsItemAuto != null">
+      <if test="prcsItemAuto != null and prcsItemAuto != ''">
         PRCS_ITEM_AUTO = #{prcsItemAuto},
       </if>
-      <if test="prcsIn != null">
+      <if test="prcsIn != null and prcsIn != ''">
         PRCS_IN = #{prcsIn},
       </if>
-      <if test="prcsOut != null">
+      <if test="prcsOut != null and prcsOut != ''">
         PRCS_OUT = #{prcsOut},
       </if>
-      <if test="prcsInSet != null">
+      <if test="prcsInSet != null and prcsInSet != ''">
         PRCS_IN_SET = #{prcsInSet},
       </if>
-      <if test="prcsOutSet != null">
+      <if test="prcsOutSet != null and prcsOutSet != ''">
         PRCS_OUT_SET = #{prcsOutSet},
       </if>
-      <if test="autoDept != null">
+      <if test="autoDept != null and autoDept != ''">
         AUTO_DEPT = #{autoDept},
       </if>
-      <if test="autoUserOp != null">
+      <if test="autoUserOp != null and autoUserOp != ''">
         AUTO_USER_OP = #{autoUserOp},
       </if>
-      <if test="autoUser != null">
+      <if test="autoUser != null and  autoUser != ''">
         AUTO_USER = #{autoUser},
       </if>
-      <if test="autoUserOpReturn != null">
+      <if test="autoUserOpReturn != null and autoUserOpReturn != ''">
         AUTO_USER_OP_RETURN = #{autoUserOpReturn},
       </if>
-      <if test="autoUserReturn != null">
+      <if test="autoUserReturn != null and autoUserReturn != ''">
         AUTO_USER_RETURN = #{autoUserReturn},
       </if>
-      <if test="userFilterPrcsPriv != null">
+      <if test="userFilterPrcsPriv != null and userFilterPrcsPriv != ''">
         USER_FILTER_PRCS_PRIV = #{userFilterPrcsPriv},
       </if>
-      <if test="userFilterPrcsPrivOther != null">
+      <if test="userFilterPrcsPrivOther != null and userFilterPrcsPrivOther != ''">
         USER_FILTER_PRCS_PRIV_OTHER = #{userFilterPrcsPrivOther},
       </if>
-      <if test="userFilterPrcsDept != null">
+      <if test="userFilterPrcsDept != null and userFilterPrcsDept != ''">
         USER_FILTER_PRCS_DEPT = #{userFilterPrcsDept},
       </if>
-      <if test="userFilterPrcsDeptOther != null">
+      <if test="userFilterPrcsDeptOther != null and userFilterPrcsDeptOther != ''">
         USER_FILTER_PRCS_DEPT_OTHER = #{userFilterPrcsDeptOther},
       </if>
-      <if test="mailTo != null">
+      <if test="mailTo != null and mailTo != ''">
         MAIL_TO = #{mailTo},
       </if>
-      <if test="mailToDept != null">
+      <if test="mailToDept != null and mailToDept != ''">
         MAIL_TO_DEPT = #{mailToDept},
       </if>
-      <if test="mailToPriv != null">
+      <if test="mailToPriv != null and mailToPriv != ''">
         MAIL_TO_PRIV = #{mailToPriv},
       </if>
-      <if test="conditionDesc != null">
+      <if test="conditionDesc != null and conditionDesc != ''">
         CONDITION_DESC = #{conditionDesc},
       </if>
-      <if test="relationIn != null">
+      <if test="relationIn != null and relationIn != ''">
         RELATION_IN = #{relationIn},
       </if>
-      <if test="relationOut != null">
+      <if test="relationOut != null and relationOut != ''">
         RELATION_OUT = #{relationOut},
       </if>
-      <if test="controlMode != null">
+      <if test="controlMode != null and controlMode != ''">
         CONTROL_MODE = #{controlMode},
       </if>
-      <if test="listColumnPriv != null">
+      <if test="listColumnPriv != null and listColumnPriv != ''">
         LIST_COLUMN_PRIV = #{listColumnPriv},
       </if>
-      <if test="fileuploadPriv != null">
+      <if test="fileuploadPriv != null and fileuploadPriv != ''">
         FILEUPLOAD_PRIV = #{fileuploadPriv},
       </if>
-      <if test="imguploadPriv != null">
+      <if test="imguploadPriv != null and imguploadPriv != ''">
         IMGUPLOAD_PRIV = #{imguploadPriv}
       </if>
     </set>
