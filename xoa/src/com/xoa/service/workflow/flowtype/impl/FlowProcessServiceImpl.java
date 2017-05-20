@@ -92,6 +92,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		List<FlowProcessList> l1=new ArrayList<FlowProcessList>();
 		for (FlowProcess flowProcess : list) {			
 			FlowProcessList fl=new FlowProcessList();
+			Integer id=flowProcess.getId();
 			int prId=flowProcess.getPrcsId();
 			String prcsName=flowProcess.getPrcsName()==null?"":flowProcess.getPrcsName();
 			String prcsIn=flowProcess.getPrcsIn()==null? "":flowProcess.getPrcsIn().trim();
@@ -100,6 +101,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 			String syncDeal=flowProcess.getSyncDeal()==null?"":flowProcess.getSyncDeal();
 			int setLeft=flowProcess.getSetLeft();
 			int top=flowProcess.getSetTop();
+			fl.setId(id);
 			fl.setPrcsId(prId);
 			fl.setPrcsName(prcsName);
 			fl.setPrcsIn(prcsIn);
