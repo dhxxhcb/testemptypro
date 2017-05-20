@@ -4,139 +4,141 @@ import java.util.List;
 import java.util.Map;
 
 public class FlowProcess {
-    private Integer id;
 
-    private Integer flowId;
-
-    private Integer prcsId;
-
-    private Byte prcsType;
-
-    private String prcsName;
-
-    private Integer setLeft;
-
-    private Integer setTop;
-
-    private String feedback;
-
-    private String autoType;
-
-    private String userFilter;
-
-    private String timeOut;
-
-    private String timeOutModify;
-
-    private String timeOutAttend;
-
-    private String signlook;
-
-    private String topDefault;
-
-    private String userLock;
-
-    private String syncDeal;
-
-    private String syncDealCheck;
-
-    private String turnPriv;
-
-    private Integer childFlow;
-
-    private String gatherNode;
-
-    private String allowBack;
-
-    private String attachPriv;
-
-    private Integer autoBaseUser;
-
-    private Integer remindFlag;
-
-    private Integer dispAip;
-
-    private String timeOutType;
-
-    private String attachEditPriv;
-
-    private String attachEditPrivOnline;
-
-    private String attachMacroMark;
-
-    private Integer viewPriv;
-
-    private Boolean signType;
-
-    private Boolean countersign;
-
-    private String workingdaysType;
-
-    private String prcsUser;
-
-    private String prcsItem;
-
-    private String hiddenItem;
-
-    private String requiredItem;
-
-    private String prcsDept;
-
-    private String prcsPriv;
-
-    private String prcsTo;
-
-    private String plugin;
-
-    private String pluginSave;
-
-    private String prcsItemAuto;
-
-    private String prcsIn;
-
-    private String prcsOut;
-
-    private String prcsInSet;
-
-    private String prcsOutSet;
-
-    private String autoDept;
-
-    private String autoUserOp;
-
-    private String autoUser;
-
-    private String autoUserOpReturn;
-
-    private String autoUserReturn;
-
-    private String userFilterPrcsPriv;
-
-    private String userFilterPrcsPrivOther;
-
-    private String userFilterPrcsDept;
-
-    private String userFilterPrcsDeptOther;
-
-    private String mailTo;
-
-    private String mailToDept;
-
-    private String mailToPriv;
-
-    private String conditionDesc;
-
-    private String relationIn;
-
-    private String relationOut;
-
-    private String controlMode;
-
-    private String listColumnPriv;
-
-    private String fileuploadPriv;
-
-    private String imguploadPriv;
+	/** 主键ID **/
+	private int id;
+	/** 流程ID **/
+	private int flowId;
+	/** 步骤ID **/
+	private int prcsId;
+	/** 节点类型(0-步骤节点,1-自流程节点,2-外部流转节点) **/
+	private byte prcsType;
+	/** 步骤名称 **/
+	private String prcsName;
+	/** 经办人ID串 **/
+	private String prcsUser;
+	/** 可写字段串 **/
+	private String prcsItem;
+	/** 保密字段串 **/
+	private String hiddenItem;
+	/** 必填字段串 **/
+	private String requiredItem;
+	/** 经办部门ID串 **/
+	private String prcsDept;
+	/** 经办角色ID串 **/
+	private String prcsPriv;
+	/** 转交步骤ID串 **/
+	private String prcsTo;
+	/** 节点横坐标 **/
+	private int setLeft;
+	/** 节点纵坐标 **/
+	private int setTop;
+	/** 转交调用插件 **/
+	private String plugin;
+	/** 保存调用插件 **/
+	private String pluginSave;
+	/** 允许在不可写情况下自动赋值的宏控件 **/
+	private String prcsItemAuto;
+	/** 转入条件组成的串 **/
+	private String prcsIn;
+	/** 转出条件组成的串 **/
+	private String prcsOut;
+	/** 是否允许会签(0-允许会签,1-禁止会签,2-强制会签) **/
+	private String feedback;
+	/** 转入条件组成的逻辑表达式 **/
+	private String prcsInSet;
+	/** 转出条件组成的逻辑表达式 **/
+	private String prcsOutSet;
+	/** 自动选人规则(1-自动选择流程发起人,2-自动选择本部门主管,3-指定自动选择默认人员,4-自动选择上级主管领导,5-自动选择一级部门主管,6-自动选择上级分管领导,7-按表单字段选择,8-自动选择指定步骤主办人,9-自动选择本部门助理,10-自动选择本部门内符合条件所有人员,11-自动选择本一级部门内符合条件所有人员,12-自动选择指定部门主管,13-自动选择指定部门助理,14-自动选择指定部门上级主管领导,15-自动选择指定部门上级分管领导) **/
+	private String autoType;
+	/** 自动选择指定自动选择的部门 **/
+	private String autoDept;
+	/** 指定自动选择默认人员—主办人 **/
+	private String autoUserOp;
+	/** 指定自动选择默认人员—经办人 **/
+	private String autoUser;
+	/** 指定子流程返回父流程时自动选择默认人员—主办人 **/
+	private String autoUserOpReturn;
+	/** 指定子流程返回父流程时自动选择默认人员—经办人 **/
+	private String autoUserReturn;
+	/** 选人过滤规则(1-只允许选择本部门经办人,2-只允许选择本角色经办人,3-只允许选择上级部门经办人,4-只允许选择下级部门经办人,) **/
+	private String userFilter;
+	/** 选人过滤规则指定角色 **/
+	private String userFilterPrcsPriv;
+	/** 选人过滤规则指定辅助角色 **/
+	private String userFilterPrcsPrivOther;
+	/** 选人过滤规则指定部门 **/
+	private String userFilterPrcsDept;
+	/** 选人过滤规则指定辅助部门 **/
+	private String userFilterPrcsDeptOther;
+	/** 办理时限 **/
+	private String timeOut;
+	/** 是否允许转交时设置办理时限(0-不允许,1-允许) **/
+	private String timeOutModify;
+	/** 是否排除非工作时段(按排班类型)：(0-否,1-是,) **/
+	private String timeOutAttend;
+	/** 会签意见可见性(0-总是可见,1-本步骤经办人之间不可见,2-针对其他步骤不可见,) **/
+	private String signlook;
+	/** 主办人相关选项：(0-明确指定主办人,1-先接收者为主办人,2-无主办人会签,) **/
+	private String topDefault;
+	/** 是否允许修改主办人相关选项及默认经办人：(0-不允许,1-允许,) **/
+	private String userLock;
+	/** 转交时内部邮件通知以下人员ID串 **/
+	private String mailTo;
+	/** 转交时内部邮件通知以下部门人员ID串 **/
+	private String mailToDept;
+	/** 转交时内部邮件通知以下角色人员ID串 **/
+	private String mailToPriv;
+	/** 是否允许并发(0-禁止并发,1-允许并发,2-强制并发) **/
+	private String syncDeal;
+	/** 用途未知 **/
+	private String syncDealCheck;
+	/** 强制转交，经办人未办理完毕时是否允许主办人强制转交(0-不允许,1-允许,) **/
+	private String turnPriv;
+	/** 子流程的流程ID **/
+	private int childFlow;
+	/** 并发合并选项(0-非强制合并,1-强制合并,) **/
+	private String gatherNode;
+	/** 是否允许回退(0-不允许,1-允许回退上一步骤,2-允许回退之前步骤,) **/
+	private String allowBack;
+	/** 公共附件中的Office文档详细权限设置：(1-新建权限,2-编辑权限,3-删除权限,4-下载权限,5-打印权限,) **/
+	private String attachPriv;
+	/** 部门针对对象步骤的ID，0为当前步骤。配合自动选人规则使用。当自动选人规则为以下选项时启用(2-自动选择本部门主管,4-自动选择上级主管领导,6-自动选择上级分管领导,9-自动选择本部门助理,) **/
+	private int autoBaseUser;
+	/** 不符合条件公式时，给用户的文字描述 **/
+	private String conditionDesc;
+	/** 父流程->子流程映射关系 **/
+	private String relationIn;
+	/** 子流程->父流程映射关系 **/
+	private String relationOut;
+	/** 用途未知 **/
+	private int remindFlag;
+	/** 对应呈批单(0-表示不启用呈批单) **/
+	private int dispAip;
+	/** 超时计算方法(0-本步骤接收后开始计时,1-上一步骤转交后开始计时,) **/
+	private String timeOutType;
+	/** 是否允许本步骤经办人编辑附件(0-不允许,1-允许,) **/
+	private String attachEditPriv;
+	/** 是否允许本步骤经办人在线创建文档(0-允许,1-不允许,) **/
+	private String attachEditPrivOnline;
+	/** 宏标记附件上传为图片时展示效果(0-显示图片,1-显示图标和名称,) **/
+	private String attachMacroMark;
+	/** 列表控件模式(1-修改模式,2-添加模式,3-删除模式,保存格式如下例：列表控件1,列表控件2,|1`2`3,1`2,) **/
+	private String controlMode;
+	/** 列表控件单独列权限(1-只读,2-保密,4-必填，各项的与值) **/
+	private String listColumnPriv;
+	/** 传阅设置(0-不允许,1-允许,) **/
+	private int viewPriv;
+	/** 附件上传控件的权限(1-新建,2-编辑,3-删除,4-下载,5-打印) **/
+	private String fileuploadPriv;
+	/** 图片上传控件的权限(1-新建,2-删除,3-下载) **/
+	private String imguploadPriv;
+	/** 会签人设置(0-不允许,1-本步骤经办人,2-全部人员) **/
+	private boolean signType;
+	/** 会签人加签(0-不允许，1-允许) **/
+	private boolean countersign;
+	/** 工作天数换算方式(0-24小时为一天，1-按个人排班类型工作时长为一天) **/
+	private String workingdaysType;
 
     private List<Map<String, String>> connections;
     
@@ -699,11 +701,11 @@ public class FlowProcess {
         this.signType = signType;
     }
 
-    public Boolean getCountersign() {
+    public boolean getCountersign() {
         return countersign;
     }
 
-    public void setCountersign(Boolean countersign) {
+    public void setCountersign(boolean countersign) {
         this.countersign = countersign;
     }
 
