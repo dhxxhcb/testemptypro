@@ -3,7 +3,6 @@ package com.xoa.service.netdisk;
 import java.util.List;
 
 import com.xoa.model.netdisk.Netdisk;
-import com.xoa.util.dataSource.DynDatasource;
 /**
  * 
  * @ClassName (类名):  NetdiskService
@@ -24,7 +23,6 @@ public interface NetdiskService {
 	 * @return: void   
 	 * @throws
 	 */
-	@DynDatasource
 	public void addNetdisk(Netdisk netdisk);
 	
 	/**
@@ -36,7 +34,6 @@ public interface NetdiskService {
 	 * @return: List<Netdisk>   
 	 * @throws
 	 */
-	@DynDatasource
 	public List<Netdisk> selectNetdisk();
 	
 	/**
@@ -48,7 +45,6 @@ public interface NetdiskService {
 	 * @return: void   
 	 * @throws
 	 */
-	@DynDatasource
 	public void delete(Integer diskId);
     
 	/**
@@ -60,7 +56,6 @@ public interface NetdiskService {
 	 * @return: void   
 	 * @throws
 	 */
-	@DynDatasource
 	public void editNetdisk(Netdisk netdisk);
 
 }

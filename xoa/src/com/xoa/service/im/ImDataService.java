@@ -5,44 +5,29 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import org.apache.poi.ss.usermodel.Chart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.alibaba.fastjson.JSONArray;
-import com.sun.imageio.plugins.wbmp.WBMPImageReader;
-import com.sun.org.apache.regexp.internal.recompile;
-import com.sun.xml.internal.bind.v2.TODO;
 import com.xoa.controller.im.Model.ImMessageModel;
 import com.xoa.controller.im.Model.ImRoomModel;
 import com.xoa.controller.im.Model.Status;
 import com.xoa.dao.im.ImChatListMapper;
 import com.xoa.dao.im.ImMessageMapper;
 import com.xoa.model.im.ImChatList;
-import com.xoa.model.im.ImChatListExample;
 import com.xoa.model.im.ImMessage;
-import com.xoa.model.im.ImMessageExample;
 import com.xoa.model.im.ImMessageWithBLOBs;
-import com.xoa.service.im.wrapper.ImChatListWrappers;
-import com.xoa.service.im.wrapper.ImMessageWrappers;
 import com.xoa.util.common.CheckCallBack;
-import com.xoa.util.common.L;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.wrapper.BaseWrapper;
-import com.xoa.util.dataSource.DynDatasource;
-import com.xoa.util.page.PageParams;
 import com.xoa.controller.im.Model.Files;
 /**
  * 
@@ -64,8 +49,7 @@ public class ImDataService {
     
 	@SuppressWarnings("finally")
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public Object putMessageInfo(HttpServletRequest request,Integer flag, String from_uid,
+    public Object putMessageInfo(HttpServletRequest request,Integer flag, String from_uid,
 			String to_uid, String of_from, String of_to, String content,
 			String type, String time, String uuid,String msg_type) {
 		Status s=new Status();
@@ -224,8 +208,7 @@ public class ImDataService {
 	}
    
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public List<ImMessageModel> getImChatList(HttpServletRequest request,String ofFrom) throws FileNotFoundException, IOException, LineUnavailableException, UnsupportedAudioFileException {
+    public List<ImMessageModel> getImChatList(HttpServletRequest request,String ofFrom) throws FileNotFoundException, IOException, LineUnavailableException, UnsupportedAudioFileException {
 		List<Object> datas = null;
 		
 		List<Object> list = new ArrayList<Object>();
@@ -336,8 +319,7 @@ public class ImDataService {
 	 * @return
 	 */
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public BaseWrapper rollBackMessage(String from_id, String delete_uuid) {
+    public BaseWrapper rollBackMessage(String from_id, String delete_uuid) {
 		// 删除此消息
 		BaseWrapper bw = new BaseWrapper();
 		if (StringUtils.checkNull(from_id)
@@ -417,8 +399,7 @@ public class ImDataService {
 	}
     
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public List<ImMessageModel> showMessageList(HttpServletRequest request,String from_uid,String to_uid,String last_time) throws FileNotFoundException, IOException, LineUnavailableException, UnsupportedAudioFileException{
+    public List<ImMessageModel> showMessageList(HttpServletRequest request,String from_uid,String to_uid,String last_time) throws FileNotFoundException, IOException, LineUnavailableException, UnsupportedAudioFileException{
 		List<ImMessageModel> list=new ArrayList<ImMessageModel>();
 		String checkResult = StringUtils.checkNullUtils(
 				new CheckCallBack() {
@@ -519,8 +500,7 @@ public class ImDataService {
 	}
 	
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public List<ImRoomModel> getAllRoom(String of_from) {
+    public List<ImRoomModel> getAllRoom(String of_from) {
 		List<ImRoomModel> alist=new ArrayList<ImRoomModel>();
 		if(of_from==null||"".equals(of_from)){
 			return null;
@@ -548,8 +528,7 @@ public class ImDataService {
 		return alist;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public ImRoomModel getSingleRoom(String room_id) {
+    public ImRoomModel getSingleRoom(String room_id) {
 		/*List<ImRoom> irm=ImRoomDao.find("from ImRoom where roomOf=?",room_id);
 		ImRoom i=irm.get(0);
 		ImRoomModel ir=new ImRoomModel(i.getRnamr(), i.getRoomOf(),i.getRmemberUid(),i.getRoutUid(),i.getRsetUid()
@@ -558,8 +537,7 @@ public class ImDataService {
 		return null;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public Status openInvite(String room_id, String check) {
+    public Status openInvite(String room_id, String check) {
 		Status s=new Status();
 		try {
 			/*List<ImRoom> irm=ImRoomDao.find("from ImRoom where roomOf=?",room_id);
@@ -574,8 +552,7 @@ public class ImDataService {
 		return s;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public Status insertRoom(String name, String set_uid, String set_of,
+    public Status insertRoom(String name, String set_uid, String set_of,
 			String member_uid, String stime, String room_of) {
 		Status s=new Status();
 		try {
@@ -596,8 +573,7 @@ public class ImDataService {
 		return s;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public Status deleteMessage(String deleteuuid) {
+    public Status deleteMessage(String deleteuuid) {
 		Status s=new Status();
 		try {
 			//messageDao.deleteOrUpdateByQuery("delete from  ImMessage im where im.uuid=?",new Object[]{deleteuuid});
@@ -607,8 +583,7 @@ public class ImDataService {
 		return s;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public Status getOutPerson(String room_id, String delete_uid, String opt) {
+    public Status getOutPerson(String room_id, String delete_uid, String opt) {
 		Status s=new Status();
 		
 		try {
@@ -639,8 +614,7 @@ public class ImDataService {
 		
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public Status getPersonToRoom(String room_id, String invite_uid) {
+    public Status getPersonToRoom(String room_id, String invite_uid) {
         Status s=new Status();
 		
 		try {
@@ -662,8 +636,7 @@ public class ImDataService {
 		return s;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
-	public Status updateRoomName(String room_id, String room_name) {
+    public Status updateRoomName(String room_id, String room_name) {
 		 Status s=new Status();
 			
 			try {

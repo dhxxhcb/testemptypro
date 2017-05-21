@@ -6,11 +6,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.xoa.model.users.Users;
-import com.xoa.util.dataSource.DynDatasource;
 
 
- 
- /**
+/**
  * 创建作者:   张龙飞
  * 创建日期:   2017年4月18日 下午6:29:57
  * 类介绍  :    用户service层接口
@@ -25,7 +23,6 @@ public interface UsersService {
 	 * 参数说明:   @param user
 	 * @return     void
 	 */
-	@DynDatasource
 	public void addUser(Users user);
 
 	/**
@@ -35,8 +32,7 @@ public interface UsersService {
 	 * 参数说明:   @param user
 	 * @return     void
 	 */
-	@DynDatasource
-	public void editUser(Users user);	
+	public void editUser(Users user);
 
 	/**
 	 * 创建作者:   张龙飞
@@ -45,7 +41,6 @@ public interface UsersService {
 	 * 参数说明:   @param uid
 	 * @return     void
 	 */
-	@DynDatasource
 	public void deleteUser(int uid);
 	
 	 /**
@@ -59,7 +54,6 @@ public interface UsersService {
 	  * 参数说明:   @return
 	  * @return     List<Users>   返回用户信息   
 	  */
-	@DynDatasource
 	public List<Users> getAlluser(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag);
 	
@@ -71,8 +65,7 @@ public interface UsersService {
 	 * 参数说明:   @return
 	 * @return     List<Users>  返回用户信息
 	 */
-	@DynDatasource
-	public List<Users> getUserByMany(Users user); 
+	public List<Users> getUserByMany(Users user);
 	
 	/**
 	 * 创建作者:   张龙飞
@@ -85,7 +78,6 @@ public interface UsersService {
 	 * 参数说明:   @return 
 	 * @return     List<Users>   返回用户信息
  	 */
-	@DynDatasource
 	public List<Users> getUserAndDept(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag);
 	
@@ -97,7 +89,6 @@ public interface UsersService {
 	 * 参数说明:   @return
 	 * @return     Users  返回用户信息
 	 */
-	@DynDatasource
 	public Users findUserByuid(int uid);
 	
 	/**
@@ -122,7 +113,6 @@ public interface UsersService {
 	 * 参数说明:   @return
 	 * @return     List<Users>  返回用户信息
 	 */
-	@DynDatasource
 	public List<Users> getBySearch(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag);
 	
@@ -137,7 +127,6 @@ public interface UsersService {
 	 * 参数说明:   @return
 	 * @return     List<Users>  返回用户信息
 	 */
-	@DynDatasource
 	public List<Users> getByDeptId(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag);	
 	/**
@@ -148,7 +137,6 @@ public interface UsersService {
 	 * 参数说明:   @return
 	 * @return     Users 返回用户信息
 	 */
-	@DynDatasource
 	public Users getByUid(int uid);
 	/**
 	 * 创建作者:   张龙飞
@@ -158,7 +146,6 @@ public interface UsersService {
 	 * 参数说明:   @return
 	 * @return     List<String>  返回用户姓名集合
 	 */
-	@DynDatasource
 	public String getUserNameById(String userIds);
 	/**
 	 * 创建作者:   张龙飞
@@ -168,6 +155,5 @@ public interface UsersService {
 	 * 参数说明:   @return
 	 * @return     String 用户姓名串
 	 */
-	@DynDatasource
 	public String findUsersByuid(int... uid);
 }

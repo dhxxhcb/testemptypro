@@ -1,14 +1,10 @@
 package com.xoa.service.diary;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.stereotype.Service;
 
 import com.xoa.model.diary.DiaryModel;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.util.ToJson;
-import com.xoa.util.dataSource.DynDatasource;
 import com.xoa.util.page.PageParams;
 /**
  * 创建作者:   杨 胜
@@ -27,7 +23,6 @@ public interface DiaryService {
      * 参数说明:   @return
      * @return     int
      */
-	@DynDatasource
 	int saveDiary(DiaryModel diaryModel);
    /**
     * 
@@ -38,7 +33,6 @@ public interface DiaryService {
     * 参数说明:   @return
     * @return   int
     */
-	@DynDatasource
 	int updateDiary(DiaryModel diaryModel);
 	/**
 	 * 
@@ -49,7 +43,6 @@ public interface DiaryService {
 	 * 参数说明:   @return
 	 * @return     List<DiaryModel>
 	 */
-	@DynDatasource
 	ToJson<DiaryModel> getDiaryIndex(DiaryModel diaryModel,PageParams pageParams );
 	/**
 	 * 
@@ -60,7 +53,6 @@ public interface DiaryService {
 	 * 参数说明:   @return
 	 * @return   ToJson<DiaryModel>
 	 */
-	@DynDatasource
 	ToJson<DiaryModel> getDiaryAll(DiaryModel diaryModel,PageParams pageParams );
 	/**
 	 * 
@@ -71,7 +63,6 @@ public interface DiaryService {
 	 * 参数说明:   @return
 	 * @return     ToJson<DiaryModel>
 	 */
-	@DynDatasource
 	ToJson<DiaryModel> getDiaryOther(DiaryModel diaryModel,PageParams pageParams);
 	/**
 	 * 
@@ -82,7 +73,6 @@ public interface DiaryService {
 	 * 参数说明:   @return
 	 * @return     ToJson<DiaryModel>
 	 */
-	@DynDatasource
 	ToJson<Attachment> getDiaryByDiaId(DiaryModel diaryModel,String sqlType);
 	/**
 	 * 
@@ -93,6 +83,5 @@ public interface DiaryService {
 	 * 参数说明:   @return
 	 * @return     int
 	 */
-	@DynDatasource
 	int deletDiaById(DiaryModel diaryModel);
 }

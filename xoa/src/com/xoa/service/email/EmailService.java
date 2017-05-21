@@ -1,15 +1,12 @@
 package com.xoa.service.email;
 
-import java.util.List;
 import java.util.Map;
 
 import com.xoa.model.email.EmailBoxModel;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.xoa.model.email.EmailModel;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.util.ToJson;
-import com.xoa.util.dataSource.DynDatasource;
 
 /**
  * 

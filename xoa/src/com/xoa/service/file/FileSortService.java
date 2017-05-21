@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.xoa.model.file.FileSortModel;
 import com.xoa.util.ToJson;
-import com.xoa.util.dataSource.DynDatasource;
 
 /**
  * 
@@ -26,8 +25,7 @@ public interface FileSortService {
 	 * 参数说明:   @return
 	 * @return   ToJson<FileSortModel>
 	 */
-	@DynDatasource
-	ToJson<FileSortModel> getFileSortJson(FileSortModel file);
+    ToJson<FileSortModel> getFileSortJson(FileSortModel file);
 	
 	/**
 	 * 
@@ -38,8 +36,7 @@ public interface FileSortService {
 	 * 参数说明:   @return
 	 * @return     List<FileSortModel>
 	 */
-	@DynDatasource
-	List<FileSortModel> getFileSortList(FileSortModel file);
+    List<FileSortModel> getFileSortList(FileSortModel file);
 
 	/**
 	 * 
@@ -50,8 +47,7 @@ public interface FileSortService {
 	 * 参数说明:   @return
 	 * @return     ToJson<FileSortModel>
 	 */
-	@DynDatasource
-	ToJson<FileSortModel> getFileSortBySortId(FileSortModel file);
+    ToJson<FileSortModel> getFileSortBySortId(FileSortModel file);
 	
 	/**
 	 * 
@@ -62,8 +58,7 @@ public interface FileSortService {
 	 * 参数说明:   @return
 	 * @return     int
 	 */
-	@DynDatasource
-	int saveFileSort(FileSortModel file);
+    int saveFileSort(FileSortModel file);
 	
 	/**
 	 * 
@@ -74,8 +69,7 @@ public interface FileSortService {
 	 * 参数说明:   @return
 	 * @return     int
 	 */
-	@DynDatasource
-	int updateFileSort(FileSortModel file);
+    int updateFileSort(FileSortModel file);
 	
 	/**
 	 * 
@@ -86,8 +80,7 @@ public interface FileSortService {
 	 * 参数说明:   @return
 	 * @return     int
 	 */
-	@DynDatasource
-	int deleteBySortId(Map<String, Object> fileParent);
+    int deleteBySortId(Map<String, Object> fileParent);
 	
 	/**
 	 * 
@@ -98,8 +91,7 @@ public interface FileSortService {
 	 * 参数说明:   @return
 	 * @return     List<FileSortModel>
 	 */
-	@DynDatasource
-	List<FileSortModel> getSortChrildren(int tempNo);
+    List<FileSortModel> getSortChrildren(int tempNo);
 	
 	/**
 	 * 
@@ -110,8 +102,7 @@ public interface FileSortService {
 	 * 参数说明:   @return
 	 * @return   List<FileSortModel>
 	 */
-	@DynDatasource
-	List<FileSortModel> getRootTree(int sortid);
+    List<FileSortModel> getRootTree(int sortid);
 
 	/**
 	 * 
@@ -122,8 +113,7 @@ public interface FileSortService {
 	 * 参数说明:   @return
 	 * @return     List<FileSortModel>
 	 */
-	@DynDatasource
-	List<FileSortModel> getChildTree(List<String> sortidList);
+    List<FileSortModel> getChildTree(List<String> sortidList);
      /**
       * 
       * 创建作者:   杨 胜
@@ -133,8 +123,7 @@ public interface FileSortService {
       * 参数说明:   @return
       * @return     int
       */
-	@DynDatasource
-	int saveFileSortChr(FileSortModel file);
+     int saveFileSortChr(FileSortModel file);
 
 
 
