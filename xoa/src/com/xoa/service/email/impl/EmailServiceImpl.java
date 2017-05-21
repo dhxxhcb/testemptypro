@@ -75,6 +75,7 @@ public class EmailServiceImpl implements EmailService {
                 String[] toID2 = toID.split(",");
                 for (int i = 0; i < toID2.length; i++) {
                     email.setToId(toID2[i]);
+                    email.setBoxId(0);
                     email.setBodyId(emailBody.getBodyId());
                     emailMapper.save(email);
                 }
@@ -684,7 +685,7 @@ public class EmailServiceImpl implements EmailService {
                     String[] toID2 = toID.split(",");
                     for (int i = 0; i < toID2.length; i++) {
                         email.setToId(toID2[i]);
-                        email.setEmailId(email.getEmailId());
+                        email.setBoxId(0);
                         email.setBodyId(emailBody.getBodyId());
                         emailMapper.save(email);
                     }

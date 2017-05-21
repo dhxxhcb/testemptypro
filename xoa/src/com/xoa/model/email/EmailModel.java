@@ -158,7 +158,7 @@ public class EmailModel implements Serializable {
 	 * @return
 	 */
 	public Integer getBoxId() {
-		return boxId == null ? 0 : boxId;
+		return boxId;
 	}
 
 	/**
