@@ -101,6 +101,7 @@ public interface EmailBodyMapper extends BaseMapper<EmailBodyModel>{
 	 * 方法介绍:   多条件分页查询邮箱
 	 * 参数说明:   @param maps
 	 * 参数说明:   @return
+	 *  作废
 	 * @return     List<EmailBodyModel>
 	 */
 	List<EmailBodyModel> listqueryEmailBody(Map<String, Object> maps);

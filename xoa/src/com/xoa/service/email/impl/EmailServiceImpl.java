@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -57,14 +58,15 @@ public class EmailServiceImpl implements EmailService {
      * 方法介绍:   创建邮件并发送
      * 参数说明:   @param emailBody  邮件内容实体类
      * 参数说明:   @param email 邮件状态实体类
-     *
-     * @return void
+     * @return
      */
     @Override
     @Transactional
-    public boolean sendEmail(EmailBodyModel emailBody, EmailModel email) {
-        boolean flags = true;
+    public ToJson<EmailBodyModel> sendEmail(EmailBodyModel emailBody, EmailModel email) {
+        ToJson<EmailBodyModel> toJson = new ToJson<EmailBodyModel>();
         try {
+            emailBody.setSendTime(DateFormat.getTime(DateFormat.getStrDate(new Date())));
+            emailBody.setSendFlag("1");
             emailBodyMapper.save(emailBody);
             String toID = emailBody.getToId2().trim()
                     + emailBody.getCopyToId().trim()
@@ -73,22 +75,17 @@ public class EmailServiceImpl implements EmailService {
                 String[] toID2 = toID.split(",");
                 for (int i = 0; i < toID2.length; i++) {
                     email.setToId(toID2[i]);
-                    email.setSign("0");
-                    email.setReceipt("0");
-                    email.setReadFlag("0");
-                    email.setIsR("");
-                    email.setIsF("");
-                    email.setEmailId(email.getEmailId());
-                    email.setDeleteFlag("0");
-                    email.setBoxId(0);
                     email.setBodyId(emailBody.getBodyId());
                     emailMapper.save(email);
                 }
+                toJson.setFlag(0);
+                toJson.setMsg("ok");
             }
         } catch (Exception e) {
-            flags = false;
+            toJson.setFlag(1);
+            toJson.setMsg("errorSendEmail");
         }
-        return flags;
+        return toJson;
     }
 
     /**
@@ -97,11 +94,23 @@ public class EmailServiceImpl implements EmailService {
      * 方法介绍:   草稿箱
      * 参数说明:   @param emailBody 邮件内容实体类
      *
-     * @return void
+     * @return
      */
     @Override
-    public void saveEmail(EmailBodyModel emailBody) {
-        emailBodyMapper.save(emailBody);
+    @Transactional
+    public ToJson<EmailBodyModel> saveEmail(EmailBodyModel emailBody) {
+        ToJson<EmailBodyModel> toJson = new ToJson<EmailBodyModel>();
+        try {
+            emailBody.setSendTime(DateFormat.getTime(DateFormat.getStrDate(new Date())));
+            emailBody.setSendFlag("0");
+            emailBodyMapper.save(emailBody);
+            toJson.setFlag(0);
+            toJson.setMsg("ok");
+        }catch (Exception e){
+            toJson.setFlag(1);
+            toJson.setMsg("errorSendEmail");
+        }
+        return  toJson;
     }
 
 
@@ -334,7 +343,7 @@ public class EmailServiceImpl implements EmailService {
      * 参数说明:   @param useFlag 是否开启分页插件
      * 参数说明:   @return 结果集合
      * 参数说明:   @throws Exception
-     *
+     * 作废
      * @return List<EmailBodyModel>
      */
     @Override
@@ -661,33 +670,36 @@ public class EmailServiceImpl implements EmailService {
      */
     @Override
     @Transactional
-    public boolean draftsSendEmail(EmailBodyModel emailBody, EmailModel email) {
-        boolean isFlag = true;
+    public ToJson<EmailBodyModel>  draftsSendEmail(EmailBodyModel emailBody, EmailModel email) {
+//        boolean isFlag = true;
+        ToJson<EmailBodyModel> toJson = new ToJson<EmailBodyModel>();
         try {
+            emailBody.setSendTime(DateFormat.getTime(DateFormat.getStrDate(new Date())));
             emailBodyMapper.update(emailBody);
-            String toID = emailBody.getToId2().trim()
-                    + emailBody.getCopyToId().trim()
-                    + emailBody.getSecretToId().trim();
-            if (toID != null && toID != "") {
-                String[] toID2 = toID.split(",");
-                for (int i = 0; i < toID2.length; i++) {
-                    email.setToId(toID2[i]);
-                    email.setSign("0");
-                    email.setReceipt("0");
-                    email.setReadFlag("0");
-                    email.setIsR("");
-                    email.setIsF("");
-                    email.setEmailId(email.getEmailId());
-                    email.setDeleteFlag("0");
-                    email.setBoxId(0);
-                    email.setBodyId(emailBody.getBodyId());
-                    emailMapper.save(email);
+            if ("1".equals(emailBody.getSendFlag())) {
+                String toID = emailBody.getToId2().trim()
+                        + emailBody.getCopyToId().trim()
+                        + emailBody.getSecretToId().trim();
+                if (toID != null && toID != "") {
+                    String[] toID2 = toID.split(",");
+                    for (int i = 0; i < toID2.length; i++) {
+                        email.setToId(toID2[i]);
+                        email.setEmailId(email.getEmailId());
+                        email.setBodyId(emailBody.getBodyId());
+                        emailMapper.save(email);
+                    }
+                    toJson.setFlag(0);
+                    toJson.setMsg("ok");
                 }
+            }else{
+                toJson.setFlag(0);
+                toJson.setMsg("ok");
             }
         } catch (Exception e) {
-            isFlag = false;
+            toJson.setFlag(1);
+            toJson.setMsg("errorSendEmail");
         }
-        return isFlag;
+        return toJson;
     }
 
     /**
