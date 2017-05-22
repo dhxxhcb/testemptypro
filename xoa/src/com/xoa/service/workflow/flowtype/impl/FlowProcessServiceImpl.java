@@ -96,9 +96,9 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	}
 
 	@Override
-	public int insertSelective(FlowProcess record) {
-		int a=flowProcessMapper.insertSelective(record);
-		return a;
+	@Transactional
+	public void insertSelective(FlowProcess record) {
+		flowProcessMapper.insertSelective(record);
 	}
 
 }

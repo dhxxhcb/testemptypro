@@ -98,17 +98,12 @@ public class FlowProcessController {
 				/*if(flowProcess.getPluginSave()==null){
 					flowProcess.setPluginSave("");
 				}*/
-				int a=flowProcessService.insertSelective(flowProcess);
-				if(a>0){
+				flowProcessService.insertSelective(flowProcess);
+				
 					json.setObject(flowProcess);
 					  json.setMsg("OK");
 				      json.setFlag(0);
-				}else{
-					json.setObject(flowProcess);
-					  json.setMsg("false");
-				      json.setFlag(0);
-				}
-		      
+	
 			} catch (Exception e) {
 				json.setMsg(e.getMessage());
 			}

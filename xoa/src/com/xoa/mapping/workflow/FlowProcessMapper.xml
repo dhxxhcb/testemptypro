@@ -177,7 +177,7 @@
       <if test="setTop != null and setTop!=''">
         SET_TOP ,
       </if>
-      <if test="feedback != null and feadback!=''">
+      <if test="feedback != null and feedback!=''">
         FEEDBACK ,
       </if>
       <if test="autoType != null and autoType!=''">

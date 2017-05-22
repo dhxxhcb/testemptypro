@@ -125,8 +125,8 @@ public class UsersController {
 		                }
 		                File file = new File(dir,fileName);
 		                imageFile.transferTo(file);
-		                String avatar = realPath + resourcePath + fileName;
-		    			user.setAvatar("img/user/"+fileName);
+		                //String avatar = realPath + resourcePath + fileName;
+		    			user.setAvatar(fileName);
 		            }
 			 }
 			 try {
