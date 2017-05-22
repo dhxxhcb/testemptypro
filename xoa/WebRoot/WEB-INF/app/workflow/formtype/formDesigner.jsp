@@ -22,7 +22,7 @@
 </script>
 
 
-<div class="container" style="padding-top: 5px; padding-left: 5px">
+<div class="container" style="padding-top: 5px; padding-left: 5px;overflow: auto;">
     <span class="title">请假申请单</span>
     <div class="title_nav" class="clearfix">
         <p class="nav-left">表单智能设计器:您需要先布局,才可以拖拽右侧的组件到左侧内容里设计工作流表单</p>
@@ -83,7 +83,7 @@
             <script type="text/javascript" charset="utf-8" src="../lib/ueditor/formdesign/formdesign.v4.js"></script>
             <!-- script start-->
             <script type="text/javascript">
-
+                var  formDesign = {}
                 $(function () {
                     var formid = $.getQueryString("formId")
                     var type = $.getQueryString("type")
@@ -128,7 +128,7 @@
                             });
                         }
                     });
-                  var  formDesign = {
+                   formDesign = {
 
                     /*执行控件*/
                     exec : function (method) {
@@ -315,13 +315,14 @@
                     },
                     /*type  =  save 保存设计 versions 保存版本  close关闭 */
                     fnCheckForm : function ( type ) {
+
                         if(formEditor.queryCommandState( 'source' ))
                             formEditor.execCommand('source');//切换到编辑模式才提交，否则有bug
 
                         if(formEditor.hasContents()){
                             formEditor.sync();/*同步内容*/
                             //--------------以下仅参考-----------------------------------------------------------------------------------------------------
-                            var type_value='',formid=0,fields=$("#fields").val(),formeditor='';
+                            var type_value='',fields=$("#fields").val(),formeditor='';
 
                             if( typeof type!=='undefined' ){
                                 type_value = type;
@@ -329,14 +330,19 @@
                             //获取表单设计器里的内容
                             formeditor=formEditor.getContent();
                             //解析表单设计器控件
-                            var parse_form = this.parse_form(formeditor,fields);
-                            //alert(parse_form);
+                           // var parse_form = this.parse_form(formeditor,fields);
+
+                            alert(formid);
                             //异步提交数据
                             $.ajax({
                                 type: 'POST',
-                                url : '${ctx}/config/form/processor',
+                                url : 'updateFormType',
                                 //dataType : 'json',
-                                data : {'type' : type_value,'formid':'${form.id}','parse_form':parse_form},
+                                data : {
+                                    'printModelShort' : formeditor,
+                                    'fromId':formid,
+                                    'printModel':formeditor
+                                },
                                 success : function(data){
                                     if(data == true) {
                                         alert('表单保存成功');
