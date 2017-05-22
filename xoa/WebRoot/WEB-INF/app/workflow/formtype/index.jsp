@@ -480,6 +480,10 @@
 				
             })
             $(".deldel").click(function () {
+			var qunding=confirm('确定删除吗？');
+			if(!qunding){
+				return false;
+				}else if(qunding){
 			var formId = $(this).attr("formId");
 			console.log(formId);
 			var sortId=$(this).attr("sortId");
@@ -491,11 +495,8 @@
 			data:{formId:formId},
 			success:function (ret) {
 						//var sortId=$('#sort_parent option:checked').attr('value');
-							console.log(sortId);
-						var qunding=alert('确定删除吗?');
-						if(qunding){
-							return false;
-							}else{
+							//console.log(sortId);
+						//var qunding=alert('确定删除吗?');
 								if(ret.flag==true){
 								$.ajax({
 									url:'../../form/formlistbysort',
@@ -517,10 +518,10 @@
 								}else{
 									alert(ret.msg);
 								}
-						}		
+								
 					},
 			});
-			
+				}
             })
 			//编辑
             $(".edit").click(function () {
