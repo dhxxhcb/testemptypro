@@ -461,7 +461,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>
                                     	<form id="uploadimgform" target="uploadiframe" action="../upload?module=email" enctype="multipart/form-data" method="post" >
                                         	<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
-                                        	<button id="uploadimg">上传</button>
+                                        	<a href="javascript:;" id="uploadimg">上传</a>
                                         </form>
 									</td>
 								</tr>
@@ -729,7 +729,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					showAjax2('drafts');
 					$('.main_left').on('click','.BTN',function(){
 						var nId=$(this).find('input').attr('nId');
-						//alert(nId);
 						$.ajax({
 									type:'get',
 									url:'queryByID',
@@ -737,13 +736,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									data:{'bodyId':nId,'flag':''},
 									success:function(rsp){
 										var data2=rsp.object;
-										$('textarea').val('');
-										$('#txt').val('');
-										ue.setContent('');
-										
+										var atta=data2.attachment;
+										var str='';
+                                        $('textarea').val('');
+                                        $('#txt').val('');
+                                        ue.setContent('');
+                                        $('.Attachmen td').eq(1).find('a').remove();
+										for(var i=0;i<atta.length;i++){
+											str+='<a href="javascript:;" style="text-decoration: none;margin-left: 5px">'+atta[i].attachName+'</a>';
+										}
 										$('textarea').val(data2.userName);
 										$('#txt').val(data2.subject);
 										ue.setContent(data2.content);
+										$('.Attachmen td').eq(1).append(str);
 									}
 						});
 						
@@ -859,7 +864,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				})
 
 				//附件上传
-                /*$('#uploadimg').on('click', function(ele) {
+                $('#uploadimg').on('click', function(ele) {
                     $('#uploadinputimg').click();
                 })
                 $('#uploadinputimg').change(function(e){
@@ -874,15 +879,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             var str='';
                             var str1='';
                             for(var i=0;i<data.length;i++){
-                                str+='<a href="javascript:;" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
+                                str+='<a href="<%=basePath %>download?'+data[i].attUrl+'" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
                                 str1+='<input type="hidden" class="inHidden" value="'+data[i].aid+'@'+data[i].ym+'_'+data[i].attachId+',">';
                             }
                             $('.Attachmen td').eq(1).append(str+str1);
                         });
-                    }*/
-
+                    }
+                });
 					//点击立即发送
 					$('#btn1').click(function(){
+						var bodyId=$('.main_left .backing').find('input').attr('nId');
+                        var dataId1=$('.inPole').find('#senduser').attr('user_id');
+                        var dataId2=$('.tian').find('#copeNameText').attr('user_id');
+                        var dataId3=$('.mis').find('#secritText').attr('user_id');
                         var userId=$('textarea[name="txt"]').attr('user_id');
                         var txt = ue.getContentTxt();
                         var html = ue.getContent();
@@ -896,9 +905,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         for(var i=0;i<$('.Attachment td .inHidden').length;i++){
                             uId += attach.eq(i).attr('NAME');
                         }
+
                         var data={
-                            'fromId':'admin',
-                            'toId2': 'admin,',
+							'bodyId':bodyId,
+                            'sendFlag':0,
+                            'toId2': dataId1,
+                            'copyToId':dataId2,
+                            'secretToId':dataId3,
                             'subject':val,
                             'content':html,
                             'attachmentId':aId,
