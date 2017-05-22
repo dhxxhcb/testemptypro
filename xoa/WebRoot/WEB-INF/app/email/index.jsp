@@ -693,7 +693,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				//查询邮件点击事件
 				$('.liSearch').click(function(){
-	    			var Ifrmae='<div class="div_iframe" style="width: 82%;overflow-y: hidden;overflow-x: hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="mailQuery" frameborder="0" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
+	    			var Ifrmae='<div class="div_iframe" style="width: 82%;overflow:hidden;float: left;height: 100%;"><div id="iframe1" class="iframe1" style="width: 100%;height: 100%;"><iframe  id="iframe_id" src="mailQuery" frameborder="0" height="100%" width="100%" noresize="noresize"></iframe></div></div>';
 	    			$('.up_page_right').css('display','none');
 	    			$('.page').append(Ifrmae);
 	    		});
