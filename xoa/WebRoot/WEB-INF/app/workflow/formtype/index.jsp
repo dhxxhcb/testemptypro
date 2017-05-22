@@ -476,7 +476,7 @@
 				//var edit=$(this).attr("edit");
                 //alert("design"+formId);
                 //window.location.href="../../form/designer?formId="+formId;
-				window.open("../../form/designer?formId="+formId+"&type=edit);
+				window.open("../../form/designer?formId="+formId+"&type=edit");
             })
             $(".foot_span_show").click(function () {
                 var formId = $(this).attr("formId");
