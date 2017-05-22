@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Microsoft YaHei";
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+html,body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+}
+.content .title{
+    height: 38px;
+    line-height: 38px;
+    background: #3a90f2;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    padding-left: 15px;
+}
+
+.cont_list {
+    float: left;
+    width: 261px;
+    height: 100%;
+    background: #fafcff;
+    border-right: 1px solid #919191;
+}
+
+.cont_list .btn_h {
+    display: block;
+    padding-left: 36px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 16px;
+    color: #262f34;
+}
+.cont_list .btn_h{
+    border-bottom: 1px solid #919191;
+}
+
+.cont_list .btn_h img {
+    width: 12px;
+    height: 16px;
+    margin-right: 12px;
+    vertical-align: -2px;
+}
+
+.cont_list .btn_h:hover {
+    background: #c7e1ff;
+}
+
+.hide {
+    display: none;
+}
+
+.hide .btn_h {
+    display: block;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 68px;
+    color: #262f34;
+}
+
+.hide .icon {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: #000000;
+    border-radius: 50%;
+    vertical-align: 3px;
+    margin-right: 12px;
+}
+
+.hide .btn_h:hover {
+    background: #c7e1ff;
+}
+
+.cont_r {
+    height: 100%;
+    margin-left: 262px;
+    position: relative;
+
+}
+
+.cont_r .table {
+    display: none;
+
+    font-size: 16px;
+    border: 1px solid #919191;
+    /*margin: 0 auto;*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+}
+
+.cont_r .table caption {
+    text-align: right;
+}
+
+th, td {
+    text-align: center;
+    border: 1px solid #919191;
+}
+
+.check {
+    padding: 0 20px;
+}
+
+.management {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.sector {
+    text-align: left;
+    padding-left: 10px;
+}
+
+
