@@ -67,7 +67,7 @@ public class FlowProcessController {
 		 * @return     ToJson<FlowProcess> 
 		 */
 		@ResponseBody
-	  	@RequestMapping(value = "saveFlow",produces = {"application/json;charset=UTF-8"},method = RequestMethod.GET)
+	  	@RequestMapping(value = "saveFlow",produces = {"application/json;charset=UTF-8"},method = RequestMethod.POST)
 	    public ToJson<FlowProcess> saveFlow(FlowProcess flowProcess,	   
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
