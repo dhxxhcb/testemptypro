@@ -201,8 +201,29 @@
 
 	<!-- 公告详情查询 -->
 	<select id="detailedNotify" resultMap="BaseResultMap">
-	SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME 
-       FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
+	SELECT
+	n.NOTIFY_ID,
+	n.SEND_TIME,
+	n.TYPE_ID,
+	n.`SUBJECT`,
+	n.BEGIN_DATE,
+	n.PUBLISH,
+	n.ATTACHMENT_ID,
+	n.ATTACHMENT_NAME,
+	n.END_DATE,
+	n.FROM_ID,
+	n.FROM_DEPT,
+	n.CONTENT,
+	n.FORMAT,
+	n.TO_ID,
+  n.TOP_DAYS,
+	n.PRIV_ID,
+	n.USER_ID,
+	n.READERS,
+	u.USER_NAME,
+	s.CODE_NAME
+FROM
+  notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
       and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID  and n.NOTIFY_ID=#{notifyId}
 	</select>
 

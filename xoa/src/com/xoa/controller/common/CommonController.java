@@ -55,5 +55,23 @@ public class CommonController {
 				"loginDateSouse"));
 		return "app/common/addPageDemo";
 	}
+	@RequestMapping("/deptManagement")
+	public String divisionalManagement(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/deptManagement";
+	}
+	@RequestMapping("/roleManagement")
+	public String roleManagement(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/roleManagement";
+	}
+	@RequestMapping("/userManagement")
+	public String userManagement(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/userManagement";
+	}
 	
 }

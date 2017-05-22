@@ -353,7 +353,7 @@
         function bindClick() {
             $(".set").click(function () {
                var flowId= $(this).attr("flow_id");
-                window.location.href="../../flowSetting/index?flowId="+flowId;
+                window.open("../../flowSetting/index?flowId="+flowId);
             })
 
         }

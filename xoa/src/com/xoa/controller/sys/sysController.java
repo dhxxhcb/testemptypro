@@ -26,9 +26,14 @@ import com.xoa.util.dataSource.ContextHolder;
  */
 @Controller
 @Scope(value = "prototype")
-
+@RequestMapping("/sys")
 public class sysController {
 	private Logger loger = Logger.getLogger(sysController.class);
 
-	
+	@RequestMapping("/organizational")
+	public String companyInfo(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/Organizational";
+	}
 }

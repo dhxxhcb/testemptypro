@@ -22,6 +22,12 @@ public class FlowPrivService {
 
 
 
+
+    private static final int SELF_ORG =-3;//本机构
+    private static final int ALL_DEPT =-2;//所有部门
+    private static final int SELF_DEPT =-1;//本部门
+
+
     /**
      * Created by:   pfl
      * date:   2017/5/20 15:47
@@ -58,24 +64,83 @@ public class FlowPrivService {
      * @param user  授权用户id串 [1,2,3,4,5]
      * @param role  授权角色id串 [1,2,3,4,5]
      * @param dept  授权部门id串 [1,2,3,4,5]
+     * @param flowId 所属流程
      * @return
      */
-    public BaseWrapper newFlowPriv(Integer privType,Integer scope[],Integer user[],Integer role[],Integer dept[]){
+    public BaseWrapper newFlowPriv(Integer privType,Integer scope[],Integer user[],Integer role[],Integer dept[],Integer flowId){
         BaseWrapper wrapper =new BaseWrapper();
+        StringBuffer scopeStr=new StringBuffer(); //处理scope字段
+        StringBuffer userStr=new StringBuffer(); //处理user字段
+        StringBuffer roleStr=new StringBuffer(); //处理role字段
+        StringBuffer deptStr=new StringBuffer(); //处理dept字段
+        wrapper.setFlag(false);
+        wrapper.setStatus(true);
+        if(flowId==null){
+            wrapper.setMsg("所属流程不能为空");
+            return wrapper;
+        }
+        if(privType==null){
+            wrapper.setMsg("授权类型不能为空");
+            return wrapper;
+        }
         if(scope.length>1){
             //自定义
+            for(Integer s:scope){
+                scopeStr.append(s).append(",");
+            }
         }else{
             if(scope.length==1){
                 int priv_scope=scope[0];
+                switch (priv_scope){
+                    case SELF_ORG:
+                        scopeStr.append("SELF_ORG");
+                        break;
+                    case ALL_DEPT:
+                        scopeStr.append("ALL_DEPT");
+                        break;
+                    case SELF_DEPT:
+                        scopeStr.append("SELF_DEPT");
+                        break;
+                        default:
+                            scopeStr.append(priv_scope).append(",");
+                            break;
+                }
             }else{
               //异常数据
+                wrapper.setMsg("数据异常或，请核对接口文档");
+                return wrapper;
             }
         }
-
-
-
-
-
+        if(user!=null&&user.length>0){
+            for(Integer u:user){
+                userStr.append(u).append(",");
+            }
+        }
+        if(role!=null&&role.length>0){
+            for(Integer r:role){
+                roleStr.append(r).append(",");
+            }
+        }
+        if(dept!=null&&dept.length>0){
+            for(Integer d:dept){
+                deptStr.append(d).append(",");
+            }
+        }
+        FlowPrivWithBLOBs flowPrivWithBLOBs =new FlowPrivWithBLOBs();
+        flowPrivWithBLOBs.setFlowId(flowId);
+        flowPrivWithBLOBs.setDept(deptStr.toString());
+        flowPrivWithBLOBs.setPrivScope(scopeStr.toString());
+        flowPrivWithBLOBs.setRole(roleStr.toString());
+        flowPrivWithBLOBs.setUser(userStr.toString());
+        flowPrivWithBLOBs.setPrivType(privType);
+       int res=  flowPrivMapper.insertSelective(flowPrivWithBLOBs);
+       if(res>0){
+           wrapper.setFlag(true);
+           wrapper.setStatus(true);
+           wrapper.setMsg("数据插入成功");
+       }else{
+           wrapper.setMsg("数据插入失败");
+       }
         return wrapper;
     }
 
