@@ -93,6 +93,18 @@ public class UsersController {
         return json;
     }
 
+		/**
+		 * 创建作者:   张龙飞
+		 * 创建日期:   2017年5月22日 下午5:08:37
+		 * 方法介绍:   修改用户信息
+		 * 参数说明:   @param user 用户信息
+		 * 参数说明:   @param imageFile 头像
+		 * 参数说明:   @param request 请求
+		 * 参数说明:   @return
+		 * 参数说明:   @throws IllegalStateException
+		 * 参数说明:   @throws IOException
+		 * @return     ToJson<Users>
+		 */
 		@ResponseBody
 		@RequestMapping(value = "/user/edit",method = RequestMethod.POST)
 	    public ToJson<Users> edit(
