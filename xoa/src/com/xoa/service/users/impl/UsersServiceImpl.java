@@ -1,4 +1,5 @@
 package com.xoa.service.users.impl;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -7,13 +8,18 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xoa.dao.common.SyslogMapper;
 import com.xoa.dao.users.UsersMapper;
 import com.xoa.model.common.Syslog;
 import com.xoa.model.users.Users;
+import com.xoa.model.workflow.FlowProcess;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.CusAccessObjectUtil;
+import com.xoa.util.FileUploadUtil;
+import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
 
@@ -279,6 +285,33 @@ public class UsersServiceImpl implements UsersService {
 			}
 		}
 		return sb.toString();
+	}
+	
+	@Override
+	@Transactional
+	public ToJson<Users> edit(Integer uid, String userName, String sex, String birthday, String email, String oicqNo,
+			String mobilNo, String telNoDept, String avatar) {	
+		ToJson<Users> tojson= new ToJson<Users>();
+		Users u=new Users();
+		u.setUid(uid);
+		u.setUserName(userName);
+		u.setSex(sex);
+		u.setBirthday(birthday);
+		u.setEmail(email);
+		u.setOicqNo(oicqNo);
+		u.setMobilNo(mobilNo);
+		u.setTelNoDept(telNoDept);
+		u.setAvatar(avatar);
+		try{
+			usersMapper.editUser(u);
+			tojson.setFlag(0);
+			tojson.setMsg("ok");
+		}catch(Exception e){
+			e.printStackTrace();
+			tojson.setFlag(1);
+			tojson.setMsg("false");
+		}
+		return tojson;
 	}
 	
 }

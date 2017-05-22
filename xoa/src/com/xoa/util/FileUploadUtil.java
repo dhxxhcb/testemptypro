@@ -19,7 +19,8 @@ public class FileUploadUtil {
         public static String rename(String fileName){
             int i = fileName.lastIndexOf(".");
             String str = fileName.substring(i);
-            return new Date().getTime()+""+ new Random().nextInt(99999999) +str;
+            //return new Date().getTime()+""+ new Random().nextInt(99999999) +str;
+            return Math.abs((int) System.currentTimeMillis()) +str;
         }
     //校验文件类型是否是被允许的
         public static boolean allowUpload(String postfix){

@@ -1,5 +1,7 @@
 package com.xoa.controller.users;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,10 +14,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
+import com.xoa.util.FileUploadUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.dataSource.ContextHolder;
@@ -87,6 +92,41 @@ public class UsersController {
 		}
         return json;
     }
+
+		@ResponseBody
+		@RequestMapping(value = "/user/edit",method = RequestMethod.POST)
+	    public ToJson<Users> edit(
+	    		 Users user,
+	             @RequestParam(value = "imgFile") MultipartFile imageFile
+	    		,HttpServletRequest request) throws IllegalStateException, IOException {
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
+			ToJson<Users> json=new ToJson<Users>();
+			String realPath = request.getSession().getServletContext().getRealPath("/");
+	        String resourcePath = "ui/img/user";
+			 if(imageFile!=null){
+		            if(FileUploadUtil.allowUpload(imageFile.getContentType())){
+		                String fileName = FileUploadUtil.rename(imageFile.getOriginalFilename());
+		                File dir = new File(realPath + resourcePath);
+		                if(!dir.exists()){
+		                    dir.mkdirs();
+		                }
+		                File file = new File(dir,fileName);
+		                imageFile.transferTo(file);
+		                String avatar = realPath + resourcePath + fileName;
+		    			user.setAvatar("img/user/"+fileName);
+		            }
+			 }
+			 try {
+					usersService.editUser(user);					
+		            json.setObject(user);
+		            json.setMsg("OK");
+		            json.setFlag(0);
+				} catch (Exception e) {
+					json.setMsg(e.getMessage());
+				}
+		        return json;
+	    }
 	
 	
 	/**
@@ -347,4 +387,11 @@ public class UsersController {
         return json;
     }
 	
+	@RequestMapping(value = "/user/xsu",method = RequestMethod.GET)
+	public String xs(HttpServletRequest request){
+	
+		
+		return "app/test/xs";
+		
+	}
 }
