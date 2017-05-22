@@ -1,13 +1,12 @@
 package com.xoa.service.worldnews;
 
-import java.util.List;
 import java.util.Map;
 
 
 import com.xoa.model.worldnews.News;
 import com.xoa.util.ToJson;
-import com.xoa.util.dataSource.DynDatasource;
-    /**
+
+/**
      * 
      * 创建作者:   王曰岐
      * 创建日期:   2017-4-19 下午3:35:07
@@ -32,7 +31,6 @@ public interface NewService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<News> 返回新闻列表List
 	 */
-	@DynDatasource
 	public ToJson<News> selectNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
 	
 	
@@ -50,7 +48,6 @@ public interface NewService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<News> 返回新闻列表List
 	 */
-	@DynDatasource
 	public ToJson<News> unreadNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
 	
 	/**
@@ -67,7 +64,6 @@ public interface NewService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<News> 返回新闻列表List
 	 */
-	@DynDatasource
 	public ToJson<News> readNews(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
 	/**
 	 * 
@@ -82,7 +78,6 @@ public interface NewService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<News>
 	 */
-	@DynDatasource
 	public ToJson<News> selectNewsManage(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
 	
 	/**
@@ -94,8 +89,7 @@ public interface NewService {
 	 * 参数说明:   @param news
 	 * @return     void
 	 */
-	 @DynDatasource
-    public void sendNews(News news);
+	 public void sendNews(News news);
     
 	 /**
 	  * 
@@ -105,7 +99,6 @@ public interface NewService {
 	  * 参数说明:   @param news
 	  * @return     void
 	  */
-    @DynDatasource
     public void updateNews(News news);
     
     /**
@@ -116,7 +109,6 @@ public interface NewService {
 	  * 参数说明:   @param news
 	  * @return     void
 	  */
-   @DynDatasource
    public void updatePublish(News news);
     
     /**
@@ -133,7 +125,6 @@ public interface NewService {
      * 参数说明:   @throws Exception
      * @return     News
      */
-    @DynDatasource
     public News queryById(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
     
     /**
@@ -144,6 +135,5 @@ public interface NewService {
      * 参数说明:   @param newsId
      * @return     void
      */
-    @DynDatasource
     public void deleteByPrimaryKey(Integer newsId);
 }

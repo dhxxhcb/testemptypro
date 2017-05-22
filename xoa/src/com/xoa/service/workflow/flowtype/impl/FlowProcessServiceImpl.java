@@ -31,13 +31,14 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	}
 	@Override
 	@Transactional
-	public ToJson<FlowProcess> updateByPrimaryKeySelective(FlowProcess record1) {
+	public ToJson<FlowProcess> updateByPrimaryKeySelective(FlowProcess record) {
 		ToJson<FlowProcess> tojson= new ToJson<FlowProcess>();
 		try{
-			flowProcessMapper.updateByPrimaryKeySelective(record1);
+			flowProcessMapper.updateByPrimaryKeySelective(record);
 			tojson.setFlag(0);
 			tojson.setMsg("OK");
 		}catch(Exception e){
+			e.printStackTrace();
 			tojson.setFlag(1);
 			tojson.setMsg("error");
 		}

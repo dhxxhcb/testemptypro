@@ -3,10 +3,8 @@ package com.xoa.service.schedule;
 import java.util.List;
 
 import com.xoa.model.schedule.Calendar;
-import com.xoa.util.dataSource.DynDatasource;
 
 public interface CalenderService {
-	@DynDatasource
 	public List<Calendar> getschedule(int calTime,int endTime);
 	
 	/**
@@ -18,7 +16,6 @@ public interface CalenderService {
 	 * @return     List<Calendar>  返回日程安排
 	 * @throws Exception 
 	 */
-	@DynDatasource
 	public List<Calendar> getscheduleBycId(String userId) throws Exception;
 	
 	 /**
@@ -29,7 +26,6 @@ public interface CalenderService {
      * 参数说明:   @return
      * @return     int 插入条数
      */
-	@DynDatasource
 	public void insertSelective(Calendar record);
 	/**
 	 * 创建作者:   张龙飞
@@ -38,7 +34,6 @@ public interface CalenderService {
 	 * 参数说明:   @param calId 主键
 	 * @return     void 无
 	 */
-	@DynDatasource
 	public void delete(int calId);
 	
 	/**
@@ -48,10 +43,8 @@ public interface CalenderService {
 	 * 参数说明:   @param calendar
 	 * @return     void  无
 	 */
-	@DynDatasource
 	public void update(Calendar calendar);
 	
-	@DynDatasource
 	public List<Calendar> getscheduleByDay(String userId,int time);
 
 }

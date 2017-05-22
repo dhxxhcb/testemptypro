@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.xoa.model.file.FileContentModel;
 import com.xoa.util.common.wrapper.BaseWrapper;
-import com.xoa.util.dataSource.DynDatasource;
 
 public interface FileContentService {
 	/**
@@ -17,8 +16,7 @@ public interface FileContentService {
 	 * 参数说明:   @return
 	 * @return     int
 	 */
-	@DynDatasource
-	int deleteBySortId(int sort_id);
+    int deleteBySortId(int sort_id);
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -28,8 +26,7 @@ public interface FileContentService {
 	 * 参数说明:   @return
 	 * @return     List<FileContentModel>
 	 */
-	@DynDatasource
-	List<FileContentModel>   getFileConBySortid(int tempNo);
+    List<FileContentModel>   getFileConBySortid(int tempNo);
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -39,8 +36,7 @@ public interface FileContentService {
 	 * 参数说明:   @return
 	 * @return     FileContentModel
 	 */
-	@DynDatasource
-	FileContentModel getFileConByContentId(String contentId);
+    FileContentModel getFileConByContentId(String contentId);
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -50,8 +46,7 @@ public interface FileContentService {
 	 * 参数说明:   @return
 	 * @return     int  返回影响行
 	 */
-	@DynDatasource
-	int saveContent(FileContentModel fileContentModel);
+    int saveContent(FileContentModel fileContentModel);
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -61,9 +56,7 @@ public interface FileContentService {
 	 * 参数说明:   @return
 	 * @return     int  返回影响行
 	 */
-	@DynDatasource
-	int deleteByConId(Map<String, Object> fileConMap);
-	@DynDatasource
+    int deleteByConId(Map<String, Object> fileConMap);
 	int updateFileCon(FileContentModel fcm);
 
 	BaseWrapper batchDeleteConId(Integer conId[]);

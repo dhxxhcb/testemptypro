@@ -39,8 +39,8 @@ public class FlowProcessController {
 		@ResponseBody
 	  	@RequestMapping(value = "findFlow",produces = {"application/json;charset=UTF-8"})
 	    public ToJson<FlowProcess> findFlow(
-	    		@RequestParam("listType") String listType, 
-	    		@RequestParam("flowId") int flowId, 
+//	    		@RequestParam("listType") String listType, 
+//	    		@RequestParam("flowId") int flowId, 
 	    		@RequestParam("id") int id, 
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
@@ -94,9 +94,9 @@ public class FlowProcessController {
 			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
 			try {
 				//request.setCharacterEncoding("utf-8");
-				if(flowProcess.getPluginSave()==null){
+				/*if(flowProcess.getPluginSave()==null){
 					flowProcess.setPluginSave("");
-				}
+				}*/
 				int a=flowProcessService.insertSelective(flowProcess);
 				if(a>0){
 					json.setObject(flowProcess);

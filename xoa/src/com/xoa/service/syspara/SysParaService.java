@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.xoa.model.common.SysPara;
-import com.xoa.util.dataSource.DynDatasource;
-   /**
+
+/**
     * 
     * @ClassName (类名):  SysParaService
     * @Description(简述): 接口
@@ -25,10 +25,8 @@ public interface SysParaService {
      * @return: List<SysPara>   
      * @throws
      */
-	@DynDatasource
-	List<SysPara> getIeTitle();
+    List<SysPara> getIeTitle();
 	
-	@DynDatasource
 	List<SysPara> getIeTitle1();
     /**
      * 
@@ -39,10 +37,8 @@ public interface SysParaService {
      * @return: void   
      * @throws
      */
-	@DynDatasource
-	void updateSysPara(SysPara sysPara);
+    void updateSysPara(SysPara sysPara);
 	
-	@DynDatasource
 	void updateSysPara1(SysPara sysPara);
 	
 

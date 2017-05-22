@@ -1,9 +1,12 @@
 package com.xoa.model.workflow;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class FlowProcess {
+public class FlowProcess implements Serializable{
+	
+	private static final long serialVersionUID =1233L;
 
 	/** 主键ID **/
 	private int id;
@@ -180,12 +183,60 @@ public class FlowProcess {
 		this.connections = connections;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setFlowId(int flowId) {
+		this.flowId = flowId;
+	}
+
+	public void setPrcsId(int prcsId) {
+		this.prcsId = prcsId;
+	}
+
+	public void setPrcsType(byte prcsType) {
+		this.prcsType = prcsType;
+	}
+
+	public void setSetLeft(int setLeft) {
+		this.setLeft = setLeft;
+	}
+
+	public void setSetTop(int setTop) {
+		this.setTop = setTop;
+	}
+
+	public void setChildFlow(int childFlow) {
+		this.childFlow = childFlow;
+	}
+
+	public void setAutoBaseUser(int autoBaseUser) {
+		this.autoBaseUser = autoBaseUser;
+	}
+
+	public void setRemindFlag(int remindFlag) {
+		this.remindFlag = remindFlag;
+	}
+
+	public void setDispAip(int dispAip) {
+		this.dispAip = dispAip;
+	}
+
+	public void setViewPriv(int viewPriv) {
+		this.viewPriv = viewPriv;
+	}
+
+	public void setSignType(boolean signType) {
+		this.signType = signType;
+	}
+
 	public String getPrcsUser() {
         return prcsUser == null ? "" :prcsUser.trim();
     }
 
     public void setPrcsUser(String prcsUser) {
-        this.prcsUser = prcsUser == null ? null : prcsUser.trim();
+        this.prcsUser = prcsUser;
     }
 
     public String getPrcsItem() {
@@ -193,15 +244,15 @@ public class FlowProcess {
     }
 
     public void setPrcsItem(String prcsItem) {
-        this.prcsItem = prcsItem == null ? null : prcsItem.trim();
+        this.prcsItem = prcsItem ;
     }
 
     public String getHiddenItem() {
-        return  hiddenItem == null ? "" : hiddenItem.trim();
+        return  hiddenItem == null ?"" : hiddenItem.trim();
     }
 
     public void setHiddenItem(String hiddenItem) {
-        this.hiddenItem = hiddenItem == null ? null : hiddenItem.trim();
+        this.hiddenItem = hiddenItem ;
     }
 
     public String getRequiredItem() {
@@ -209,7 +260,7 @@ public class FlowProcess {
     }
 
     public void setRequiredItem(String requiredItem) {
-        this.requiredItem = requiredItem == null ? null : requiredItem.trim();
+        this.requiredItem = requiredItem ;
     }
 
     public String getPrcsDept() {
@@ -217,7 +268,7 @@ public class FlowProcess {
     }
 
     public void setPrcsDept(String prcsDept) {
-        this.prcsDept = prcsDept == null ? "" : prcsDept.trim();
+        this.prcsDept = prcsDept;
     }
 
     public String getPrcsPriv() {
@@ -225,7 +276,7 @@ public class FlowProcess {
     }
 
     public void setPrcsPriv(String prcsPriv) {
-        this.prcsPriv = prcsPriv == null ? "" : prcsPriv.trim();
+        this.prcsPriv = prcsPriv ;
     }
 
     public String getPrcsTo() {
@@ -233,23 +284,23 @@ public class FlowProcess {
     }
 
     public void setPrcsTo(String prcsTo) {
-        this.prcsTo = prcsTo == null ? null : prcsTo.trim();
+        this.prcsTo = prcsTo ;
     }
 
     public String getPlugin() {
-        return plugin == null ? "" : plugin.trim();
+        return plugin ;
     }
 
     public void setPlugin(String plugin) {
-        this.plugin = plugin == null ? null : plugin.trim();
+        this.plugin = plugin ;
     }
 
     public String getPluginSave() {
-        return pluginSave;
+        return pluginSave=pluginSave==null?"":pluginSave.trim();
     }
 
     public void setPluginSave(String pluginSave) {
-        this.pluginSave = pluginSave == null ? null : pluginSave.trim();
+        this.pluginSave = pluginSave ;
     }
 
     public String getPrcsItemAuto() {
@@ -506,7 +557,7 @@ public class FlowProcess {
     }
 
     public void setFeedback(String feedback) {
-        this.feedback = feedback == null ? null : feedback.trim();
+        this.feedback = feedback ;
     }
 
     public String getAutoType() {

@@ -947,7 +947,7 @@
 			<if test="telNoHome != null and telNoHome !=''">
 				TEL_NO_HOME = #{telNoHome},
 			</if>
-			<if test="mobilNo != null and mobilNo !=''">
+			<if test="mobilNo != null ">
 				MOBIL_NO = #{mobilNo},
 			</if>
 			<if test="bpNo != null and bpNo !=''">

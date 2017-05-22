@@ -24,8 +24,9 @@ public class FlowTypeServiceImpl  implements FlowTypeService{
     private FlowTypeModelMapper flowTypeModelMapper;
 
 
-    @Transactional
+
     @Override
+    @Transactional
     public ToJson<FlowTypeModel> saveFlow(FlowTypeModel flowTypeModel) {
         ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
         try{

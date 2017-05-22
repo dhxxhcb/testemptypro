@@ -126,7 +126,7 @@ public class EmailModel implements Serializable {
 	 * @return
 	 */
 	public String getReadFlag() {
-		return readFlag;
+		return readFlag == null ? "0":readFlag;
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class EmailModel implements Serializable {
 	 * @return
 	 */
 	public String getDeleteFlag() {
-		return deleteFlag;
+		return deleteFlag == null ? "0" : deleteFlag;
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class EmailModel implements Serializable {
 	 * @return
 	 */
 	public String getReceipt() {
-		return receipt;
+		return receipt == null ? "0" : receipt;
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class EmailModel implements Serializable {
 	 * @return
 	 */
 	public String getIsF() {
-		return isF;
+		return isF == null ? "":isF;
 	}
 	
 	/**
@@ -222,7 +222,7 @@ public class EmailModel implements Serializable {
 	 * @return
 	 */
 	public String getIsR() {
-		return isR;
+		return isR == null ? "" : isR;
 	}
 
 	/**
@@ -238,7 +238,7 @@ public class EmailModel implements Serializable {
 	 * @return
 	 */
 	public String getSign() {
-		return sign;
+		return sign == null ? "0" : sign;
 	}
 
 	/**

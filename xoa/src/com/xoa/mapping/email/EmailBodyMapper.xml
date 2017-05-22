@@ -105,7 +105,6 @@
 	<!-- 发送邮件并保存到数据库 -->
 	<insert id="save" parameterType="com.xoa.model.email.EmailBodyModel" useGeneratedKeys="true" keyProperty="bodyId">
 		insert into email_body (
-		BODY_ID,
 		FROM_ID,
 		SUBJECT,
 		SEND_TIME,
@@ -139,7 +138,6 @@
 		SECRET_TO_WEBMAIL,
 		PRAISE)
 		values(
-		#{bodyId},
 		#{fromId},
 		#{subject},
 		#{sendTime},
@@ -531,7 +529,7 @@
 		where BODY_ID = #{bodyId}
 	</update>
 
-	<!-- 草稿箱发送 -->
+	<!-- 草稿箱修改或发送 -->
 	<update id="update" parameterType="com.xoa.model.email.EmailBodyModel"  >
 		UPDATE email_body SET
 		FROM_ID = #{fromId},

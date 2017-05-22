@@ -1,15 +1,12 @@
 package com.xoa.service.email;
 
-import java.util.List;
 import java.util.Map;
 
 import com.xoa.model.email.EmailBoxModel;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.xoa.model.email.EmailModel;
 import com.xoa.model.email.EmailBodyModel;
 import com.xoa.util.ToJson;
-import com.xoa.util.dataSource.DynDatasource;
 
 /**
  * 
@@ -30,8 +27,7 @@ public interface EmailService {
 	 * 参数说明:   @param email 邮件状态实体类
 	 * @return     void
 	 */
-	@DynDatasource
-	public boolean sendEmail(EmailBodyModel emailBody, EmailModel email);
+	public ToJson<EmailBodyModel> sendEmail(EmailBodyModel emailBody, EmailModel email);
 	
 	/**
 	 * 
@@ -41,8 +37,7 @@ public interface EmailService {
 	 * 参数说明:   @param emailBody 邮件内容实体类
 	 * @return     void
 	 */
-	@DynDatasource
-	public void saveEmail(EmailBodyModel emailBody);
+	public ToJson<EmailBodyModel> saveEmail(EmailBodyModel emailBody);
 	
 	/**
 	 * 
@@ -67,7 +62,6 @@ public interface EmailService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<EmailBodyModel>
 	 */
-	@DynDatasource
 	public ToJson<EmailBodyModel> selectEmail(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
@@ -79,7 +73,6 @@ public interface EmailService {
 	 * 参数说明:   @param bodyId 邮件Id
 	 * @return     void
 	 */
-	@DynDatasource
 	public void deleteByID(Integer bodyId);
 
 	/**
@@ -94,7 +87,6 @@ public interface EmailService {
 	 * 参数说明:   @return 结果集合
 	 * @return     EmailBodyModel
 	 */
-	@DynDatasource
 	public EmailBodyModel queryById(Map<String,Object> maps,Integer page, Integer pageSize, boolean useFlag,String sqlType);
 
 	/**
@@ -110,7 +102,6 @@ public interface EmailService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<EmailBodyModel>
 	 */
-	@DynDatasource
 	ToJson<EmailBodyModel> selectInbox(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
@@ -127,7 +118,6 @@ public interface EmailService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<EmailBodyModel>
 	 */
-	@DynDatasource
 	ToJson<EmailBodyModel> listDrafts(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
@@ -144,7 +134,6 @@ public interface EmailService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<EmailBodyModel>
 	 */
-	@DynDatasource
 	ToJson<EmailBodyModel> listSendEmail(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
@@ -161,7 +150,6 @@ public interface EmailService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<EmailBodyModel>
 	 */
-	@DynDatasource
 	ToJson<EmailBodyModel> listWastePaperbasket(Map<String, Object> maps,
 			Integer page, Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
@@ -176,9 +164,9 @@ public interface EmailService {
 	 * 参数说明:   @param useFlag 是否开启分页插件
 	 * 参数说明:   @return 结果集合
 	 * 参数说明:   @throws Exception
+	 * 作废
 	 * @return     List<EmailBodyModel>
 	 */
-	@DynDatasource
 	public ToJson<EmailBodyModel> selectEmailBody(Map<String, Object> maps,
 			Integer page, Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 
@@ -195,7 +183,6 @@ public interface EmailService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<EmailBodyModel>
 	 */
-	@DynDatasource
 	public ToJson<EmailBodyModel> selectIsRead(Map<String, Object> maps, Integer page,
 			Integer pageSize, boolean useFlag,String sqlType) throws Exception;
 	
@@ -207,7 +194,6 @@ public interface EmailService {
 	 * 参数说明:   @param emailBodyModel
 	 * @return     void
 	 */
-	@DynDatasource
 	public String deleteOutEmail(Integer emailId,String flag);
 	
 	/**
@@ -252,7 +238,7 @@ public interface EmailService {
 	 * 参数说明:   收件人实体类
 	 * @return
 	 */
-	public boolean draftsSendEmail(EmailBodyModel emailBody, EmailModel email);
+	public ToJson<EmailBodyModel> draftsSendEmail(EmailBodyModel emailBody, EmailModel email);
 
 
 	/**

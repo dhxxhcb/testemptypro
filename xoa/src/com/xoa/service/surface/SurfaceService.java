@@ -3,7 +3,6 @@ package com.xoa.service.surface;
 import java.util.List;
 
 import com.xoa.model.surface.Surface;
-import com.xoa.util.dataSource.DynDatasource;
 
 /**
  * 
@@ -25,7 +24,6 @@ public interface SurfaceService {
 	 * @return: void   
 	 * @throws
 	 */
-	@DynDatasource
 	public void updateSurf(Surface surface);
 
 	
@@ -38,7 +36,6 @@ public interface SurfaceService {
 	 * @return: List<Surface>   
 	 * @throws
 	 */
-	@DynDatasource
 	public List<Surface> getIeTitle();
 
 

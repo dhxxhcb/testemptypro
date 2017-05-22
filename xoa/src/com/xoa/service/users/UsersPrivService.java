@@ -3,9 +3,7 @@ package com.xoa.service.users;
 import java.util.List;
 import java.util.Map;
 
-import com.alibaba.fastjson.JSONObject;
 import com.xoa.model.users.UserPriv;
-import com.xoa.util.dataSource.DynDatasource;
 
 
  /**
@@ -25,7 +23,6 @@ public interface UsersPrivService {
 	 * 参数说明:   @return
 	 * @return     String
 	 */
-	@DynDatasource
 	public String getPrivNameById(int... privId);
 	
 	/**
@@ -36,8 +33,7 @@ public interface UsersPrivService {
 	 * 参数说明:   @return
 	 * @return     UserPriv
 	 */
-	@DynDatasource
-    public UserPriv selectByPrimaryKey(int up);	
+	public UserPriv selectByPrimaryKey(int up);
 	
 	/**
 	 * 创建作者:   张龙飞
@@ -46,8 +42,7 @@ public interface UsersPrivService {
 	 * 参数说明:   @param userPriv
 	 * @return     void
 	 */
-	@DynDatasource
-    public void deleteByPrimaryKey(int userPriv);
+	public void deleteByPrimaryKey(int userPriv);
 	
 	/**
 	 * 创建作者:   张龙飞
@@ -56,8 +51,7 @@ public interface UsersPrivService {
 	 * 参数说明:   @param record
 	 * @return     void
 	 */
-	@DynDatasource
-    public void insertSelective(UserPriv record);
+	public void insertSelective(UserPriv record);
 	
 	/**
 	 * 创建作者:   张龙飞
@@ -70,7 +64,6 @@ public interface UsersPrivService {
 	 * 参数说明:   @return
 	 * @return     List<UserPriv>  返回所有角色
 	 */
-	@DynDatasource
 	public List<UserPriv> getAllPriv(Map<String,Object> maps, Integer page,
 			Integer pageSize, boolean useFlag);
 	
@@ -82,7 +75,6 @@ public interface UsersPrivService {
 	 * 参数说明:   @return 
 	 * @return     List<UserPriv>  所有角色信息
 	 */
-	@DynDatasource
-	public List<UserPriv> getPrivByMany(UserPriv priv); 
+	public List<UserPriv> getPrivByMany(UserPriv priv);
 
 }
