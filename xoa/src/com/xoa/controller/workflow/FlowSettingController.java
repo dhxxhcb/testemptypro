@@ -15,8 +15,13 @@ public class FlowSettingController {
     @Autowired
     FlowPrivService privService;
 
-
-
+    /**
+     * Created by:   pfl
+     * date:   2017/5/20 15:47
+     * description:   获取所选流程的权限设置（根据流程id）
+     * @param flowId  流程Id
+     * @return
+     */
     @RequestMapping("/getFlowPrivList")
     public BaseWrappers getFlowPrivDatas(Integer flowId){
         return privService.queryFlowPriv(flowId);

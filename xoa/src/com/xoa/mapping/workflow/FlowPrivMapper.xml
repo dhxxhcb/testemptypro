@@ -15,6 +15,7 @@
   <resultMap id="ResultMapWithBLOBsExtend" type="com.xoa.model.workflow.FlowPrivWithBLOBs" extends="ResultMapWithBLOBs">
     <result column="PRIV_SCOPE_NAME" javaType="java.lang.String" property="privScopeName" />
     <result column="USER_NAME" javaType="java.lang.String" property="userName" />
+    <result column="DEPT_NAME" javaType="java.lang.String" property="deptName"/>
   </resultMap>
 
   <sql id="Example_Where_Clause">
@@ -290,16 +291,21 @@
         WHEN flow_priv.PRIV_SCOPE='ALL_DEPT' then '全部部门'
         WHEN flow_priv.PRIV_SCOPE='SELF_ORG' then '本机构'
         WHEN flow_priv.PRIV_SCOPE='SELF_DEPT' then '本部门'
-        ELSE departName.DPET_NAME END
-        AS PRIV_SCOPE_NAME
+        ELSE scopeName.SCOP_NAME END
+        AS PRIV_SCOPE_NAME,
+        departName.DPET_NAME AS  DEPT_NAME
          FROM flow_priv LEFT JOIN
         (SELECT GROUP_CONCAT(`user`.USER_NAME) as USER_NAME,flow_priv.ID AS b FROM
           `user`,flow_priv WHERE FIND_IN_SET(`user`.UID,flow_priv.`USER`) GROUP BY flow_priv.ID
         ) AS userName ON b =flow_priv.ID
         LEFT JOIN (
-         SELECT GROUP_CONCAT(department.DEPT_NAME) as DPET_NAME,flow_priv.ID AS a FROM
+         SELECT GROUP_CONCAT(department.DEPT_NAME) as SCOP_NAME,flow_priv.ID AS a FROM
           department,flow_priv WHERE FIND_IN_SET(department.DEPT_ID,flow_priv.PRIV_SCOPE) GROUP BY flow_priv.ID
-        ) AS departName ON a =flow_priv.ID
+        ) AS scopeName ON a =flow_priv.ID
+        LEFT JOIN (
+         SELECT GROUP_CONCAT(department.DEPT_NAME) as DPET_NAME,flow_priv.ID AS d FROM
+          department,flow_priv WHERE FIND_IN_SET(department.DEPT_ID,flow_priv.DEPT) GROUP BY flow_priv.ID
+        ) AS departName ON d =flow_priv.ID
         WHERE flow_priv.FLOW_ID=#{flowId}
   </select>
 
