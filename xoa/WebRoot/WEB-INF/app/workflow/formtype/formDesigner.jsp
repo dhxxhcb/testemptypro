@@ -75,13 +75,18 @@
             </form>
             </div>
 
-            <script type="text/javascript" charset="utf-8" src="../js/jquery-1.10.2/jquery.min.js"></script>
+            <script type="text/javascript" charset="utf-8" src="../js/jquery-1.9.1.js"></script>
+            <script type="text/javascript" charset="utf-8" src="../js/base/base.js"> </script>
             <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.config.js"></script>
             <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.all.js"> </script>
             <script type="text/javascript" charset="utf-8" src="../lib/ueditor/lang/zh-cn/zh-cn.js"></script>
             <script type="text/javascript" charset="utf-8" src="../lib/ueditor/formdesign/formdesign.v4.js"></script>
             <!-- script start-->
             <script type="text/javascript">
+                $(function () {
+                    var formid = $.getQueryString("formId")
+                    var type = $.getQueryString("type")
+
                 var formEditor = UE.getEditor('formEditor',{
                     toolleipi:true,//是否显示，设计器的 toolbars
                     textarea: 'design_content',
@@ -102,6 +107,23 @@
                     iframeCssUrl:"../css/ueditor/bootstrap.css" //引入自身 css使编辑器兼容你网站css
                     //更多其他参数，请参考ueditor.config.js中的配置项
                 });
+                    formEditor.ready(function() {
+
+                        if(type == 'edit'){
+                            $.ajax({
+                                type: "get",
+                                url: "../form/formType",
+                                dataType: 'JSON',
+                                data: {
+                                    fromId :formid
+                                },
+                                success: function (res) {
+                                    console.log(formEditor);
+                                    formEditor.setContent(res.object.printModel,true);
+                                }
+                            });
+                        }
+                    });
 
                 var formDesign = {
 
@@ -150,7 +172,6 @@
                                     }
                                     name = val;
                                 }
-
                                 if(tag=='select' && attr=='value')
                                 {
                                     if(!attr_arr_all[attr]) attr_arr_all[attr] = '';
@@ -174,7 +195,6 @@
                                 attr_arr_all['parse_name'] = name;
                                 attr_arr_all['name'] = '';
                                 attr_arr_all['value'] = '';
-
                                 attr_arr_all['content'] = '<span plugins="checkboxs"  title="'+attr_arr_all['title']+'">';
                                 var dot_name ='', dot_value = '';
                                 p5.replace(preg_group, function(parse_group) {
@@ -188,16 +208,13 @@
                                                 fields++;
                                                 val = 'data_'+fields;
                                             }
-
                                             attr_arr_all['name'] += dot_name + val;
                                             dot_name = ',';
-
                                         }
                                         else if(k=='value')
                                         {
                                             attr_arr_all['value'] += dot_value + val;
                                             dot_value = ',';
-
                                         }
                                         option[k] = val;
                                     });
@@ -220,7 +237,6 @@
 
                                 });
                                 attr_arr_all['content'] += '</span>';
-
                                 //parse
                                 template = template.replace(plugin,attr_arr_all['content']);
                                 template_parse = template_parse.replace(plugin,'{'+name+'}');
@@ -228,7 +244,6 @@
                                 template_parse = template_parse.replace('-|}','');
                                 template_data[pno] = attr_arr_all;
                                 checkboxs++;
-
                             }else if(name)
                             {
                                 if(tag =='radios') /*单选组  一个字段*/
@@ -281,8 +296,6 @@
                                     add_fields[arr['name']] = arr;
                                 }
                                 template_data[pno] = attr_arr_all;
-
-
                             }
                             pno++;
                         })
@@ -304,7 +317,6 @@
 
                         if(formEditor.hasContents()){
                             formEditor.sync();/*同步内容*/
-
                             //--------------以下仅参考-----------------------------------------------------------------------------------------------------
                             var type_value='',formid=0,fields=$("#fields").val(),formeditor='';
 
@@ -331,7 +343,6 @@
                                     }
                                 }
                             });
-
                         } else {
                             alert('表单内容不能为空！')
                             $('#submitbtn').button('reset');
@@ -342,15 +353,11 @@
                     fnReview : function (){
                         if(formEditor.queryCommandState( 'source' ))
                             formEditor.execCommand('source');/*切换到编辑模式才提交，否则部分浏览器有bug*/
-
                         if(formEditor.hasContents()){
                             formEditor.sync();       /*同步内容*/
-
                             alert("你点击了预览,请自行处理....");
                             return false;
                             //--------------以下仅参考-------------------------------------------------------------------
-
-
                             /*设计form的target 然后提交至一个新的窗口进行预览*/
                             document.saveform.target="mywin";
                             window.open('','mywin',"menubar=0,toolbar=0,status=0,resizable=1,left=0,top=0,scrollbars=1,width=" +(screen.availWidth-10) + ",height=" + (screen.availHeight-50) + "\"");
@@ -363,7 +370,7 @@
                         }
                     }
                 };
-
+                });
             </script>
             <!-- script end -->
         </div>
@@ -375,7 +382,7 @@
     $(function () {
         var $width=$(window).width();
         $('.span10').width($width-330);
-    })();
+    })
 
 
 </script>
