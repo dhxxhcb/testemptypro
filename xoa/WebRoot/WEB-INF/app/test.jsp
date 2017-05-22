@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/base.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/news/center.css"/>
     <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
+
     <script src="../../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
@@ -39,7 +40,6 @@
         });
     }
     items()
-
     function digui(datas,departId) {
         var data=new Array();
         for(var i=0;i<datas.length;i++){
