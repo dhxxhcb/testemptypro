@@ -339,14 +339,13 @@
                                 url : 'updateFormType',
                                 //dataType : 'json',
                                 data : {
-                                    'printModelShort' : formeditor,
-                                    'fromId':formid,
+                                   'formId':formid,
                                     'printModel':formeditor
                                 },
                                 success : function(data){
-                                    if(data == true) {
+                                   if(data) {
                                         alert('表单保存成功');
-                                        window.location.href='${ctx}/config/form';
+                                      // window.location.href='${ctx}/config/form';
                                     } else {
                                         alert('表单保存失败');
                                     }
