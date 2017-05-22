@@ -36,7 +36,7 @@
     <form method="post" id="saveform" name="saveform" action="" class="clearfix">
         <input type="hidden" name="fields" id="fields" value="${form.fieldNum }">
 
-        <div class="row">
+        <div class="row" id="content">
             <%--<div class="span2">--%>
             <ul class="nav nav-list">
                 <li class="nav-header">
@@ -44,18 +44,18 @@
                     <div class="header_r">扩展控件</div>
                 </li>
 
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('text');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="text" onclick="formDesign.exec('text');" class="btn btn-link">
                     <img src="../img/icon_textbox_03.png" alt="">单行文本框
                 </a></li>
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('textarea');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="textarea"  class="btn btn-link">
                     <img src="../img/icon_multiplelinetextbox_03.png" alt="">多行文本框</a></li>
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('select');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="select"  class="btn btn-link">
                     <img src="../img/icon_dropmenu_03.png" alt="">下拉菜单</a></li>
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('radios');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="radios"  class="btn btn-link">
                     <img src="../img/icon_radiobutton_03.png" alt="">单选框</a></li>
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('checkboxs');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="checkboxs"  class="btn btn-link">
                     <img src="../img/icon_checkbox_03.png" alt="">复选框</a></li>
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('macros');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="macros" class="btn btn-link">
                     <img src="../img/icon_hongcontrol_03.png" alt="">宏控件</a></li>
                 <li><a href="javascript:void(0);">
                     <img src="../img/icon_calendar_03.png" alt="">日历控件</a></li>
@@ -83,10 +83,14 @@
             <script type="text/javascript" charset="utf-8" src="../lib/ueditor/formdesign/formdesign.v4.js"></script>
             <!-- script start-->
             <script type="text/javascript">
+
                 $(function () {
                     var formid = $.getQueryString("formId")
                     var type = $.getQueryString("type")
-
+                    $("#content .nav-list ").on("click",'a',function(){
+                        console.log($(this).attr('type'));
+                        formDesign.exec($(this).attr('type'));
+                    })
                 var formEditor = UE.getEditor('formEditor',{
                     toolleipi:true,//是否显示，设计器的 toolbars
                     textarea: 'design_content',
@@ -124,8 +128,7 @@
                             });
                         }
                     });
-
-                var formDesign = {
+                  var  formDesign = {
 
                     /*执行控件*/
                     exec : function (method) {
