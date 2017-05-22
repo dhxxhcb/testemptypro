@@ -43,6 +43,12 @@ public class CommonController {
 				"loginDateSouse"));
 		return "app/common/selectPriv";
 	}
+	@RequestMapping("/selectDept")
+	public String addDeptPage(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/common/selectDept";
+	}
 	@RequestMapping("/addPageDemo")
 	public String addPageDemo(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(

@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
  <head>
-    <title>选择部门</title>
+    <title>选择角色</title>
     <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
@@ -61,10 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="north">
    <div id="navMenu" style="width:auto;">
       <a href="#" title="已选人员" class="tab_btn"  block="selected" hidefocus="hidefocus"><span>已选</span></a>
-      <a href="#" title="按部门选择" block="dept" hidefocus="hidefocus" class=" tab_btn active"><span>部门</span></a>
-      <a href="#" title="按角色选择" class="tab_btn" block="priv" hidefocus="hidefocus"><span>角色</span></a>
-      <a href="#" title="按分组选择" class="tab_btn" block="group" hidefocus="hidefocus"><span>分组</span></a>
-      <a href="#" title="从在线人员选择" class="tab_btn" block="online" hidefocus="hidefocus"><span>在线</span></a>
+
+      <a href="#" title="按角色选择" class="tab_btn active" block="priv" hidefocus="hidefocus"><span>角色</span></a>
       <a href="#" block="query" class="tab_btn" hidefocus="hidefocus" style="display:none;"><span>搜索</span></a>
    </div>
    <div id="navRight" style="float:right;">
@@ -79,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<!-- //内容 -->
 	<div>
-		<div class="main-block" id="deptBox" style="display:block;">
+		<div class="main-block" id="deptBox" >
 			   <div class="left moduleContainer" id="dept_menu">
 				   <div class="tree">
 					   	<ul class="dynatree-container dynatree-no-connector" id="deptOrg">
@@ -110,62 +108,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					   	<ul class="dynatree-container dynatree-no-connector" id="deptOrg">
 					   	</ul>
 				   </div>
-			 
+
 			   </div>
 			   <div class="right" id="dept_item">
 					<div class="block-right" id="dept_item_2">
 						<!-- 部门名 -->
-						
+
 						<div class="block-right-remove">全部删除</div>
-						
+
 						<div class="userItem">
 
 						</div>
-					</div>   
+					</div>
 				</div>
 		</div>
 		<!-- 角色 -->
-		<div class="main-block" id="priDox" >
+		<div class="main-block" id="priDox"  style="display:block;">
 			   <div class="left moduleContainer" id="dept_menu">
+
 				   <div class="tree">
-					   	<ul class="dynatree-container dynatree-no-connector" id="deptOrg">
+					   	<ul class="dynatree-container dynatree-no-connector" id="priOrg">
 					   	</ul>
 				   </div>
 			 
 			   </div>
-			   <div class="right" id="dept_item">
+			   <div class="right" id="pri_item">
 					<div class="block-right" id="dept_item_2">
-						<!-- 部门名 -->
+						<!-- 角色名 -->
 						
 						<div class="block-right-remove">全部删除</div>
 						
-						<div class="userItem">
+						<div class="priItem">
 
 						</div>
 					</div>   
 				</div>
 		</div>
-		<!-- 分组 -->
-		<div class="main-block" id="groupDox" >
-			   <div class="left moduleContainer" id="dept_menu">
-				   <div class="tree">
-					   	<ul class="dynatree-container dynatree-no-connector" id="deptOrg">
-					   	</ul>
-				   </div>
-			 
-			   </div>
-			   <div class="right" id="dept_item">
-					<div class="block-right" id="dept_item_2">
-						<!-- 部门名 -->
-						
-						<div class="block-right-remove">全部删除</div>
-						
-						<div class="userItem">
 
-						</div>
-					</div>   
-				</div>
-		</div>
 	</div>
 	<!-- //结束 -->
 	<div id="south">
@@ -174,29 +153,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 	<script>
 				function close_window(){
-					var itemsArr = $('#selectedDox .userItem .block-right-item');
+					var itemsArr = $('#pri_item .priItem .block-right-item');
 					console.log(itemsArr.length);
 					var selectItemsId = '';
 					var selectItemsName = '';
-					var selectUid = '';
+					var userPriv = '';
 					for(var i=0;i<itemsArr.length;i++){
 						var obj = itemsArr.eq(i);
-						selectItemsId+=(obj.attr("user_id")+',');
-						selectItemsName+=(obj.attr("item_name")+',');
-						selectUid+=(obj.attr("uid")+',');
+						selectItemsId+=(obj.attr("privId")+',');
+						selectItemsName+=(obj.attr("privName")+',');
+                        userPriv+=(obj.attr("userPriv")+',');
 					};
 					//alert(selectItemsId);
-					parent.opener.document.getElementById(parent.opener.user_id).value=selectItemsName;
-					parent.opener.document.getElementById(parent.opener.user_id).setAttribute('dataid',selectUid);
-					parent.opener.document.getElementById(parent.opener.user_id).setAttribute('user_id',selectItemsId);
+					parent.opener.document.getElementById(parent.opener.priv_id).value=selectItemsName;
+					parent.opener.document.getElementById(parent.opener.priv_id).setAttribute('privId',selectItemsId);
+					parent.opener.document.getElementById(parent.opener.priv_id).setAttribute('userPriv',userPriv);
 					window.close();
 				}
 		$(function(){
 
-			$('#deptOrg').tree({  
+			$('#priOrg').tree({
 				url: '../department/getChDept?deptId=20',
-				animate:true, 
-				
+				animate:true,
 				loadFilter: function(node){
 					return convert(node.obj);
 					
@@ -205,7 +183,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            //alert(node.id);
 		        },
 		        onBeforeExpand:function(node,param){
-		        	  $('#deptOrg').tree('options').url = "../department/getChDept?deptId=" + node.id;// change the url      
+		        	  $('#priOrg').tree('options').url = "../department/getChDept?deptId=" + node.id;// change the url
 		        }
 
 			});  
@@ -217,6 +195,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				this.text = text;
 				this.state = state;
 				this.children = children;
+			}
+            buildPriitems();
+			function buildPriitems(){
+			    $.ajax({
+                    url:'../userPriv/getAllPriv',
+                    type:'get',
+                    dataType:'json',
+                    success:function(obj){
+						if(obj.flag){
+							var data = obj.obj;
+							var tr = '';
+							data.forEach(function(v,i){
+
+                                tr+='<div class="block-right-item" privId="'+v.privNo+'" privName="'+v.privName+'" userPriv="'+v.userPriv+'"title="'+v.privName+'"><span class="name">'+v.privName+'<span class="status"> </span></span></div>';
+                            });
+
+                            $('#priDox .priItem').html(tr);
+
+						}
+					}
+				});
 			}
 			function convert(data){
 				console.log(data);
@@ -234,7 +233,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}	
 					}					
 				});
-				$('#deptBox .userItem').html(tr);
+				//$('#priDox .priItem').html(tr);
 				return arr;
 			}
 				//组织
@@ -249,7 +248,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							$('#deptBox').show().siblings().hide();
 							break;
 						case "priv":
-						
+							$('#priDox').show().siblings().hide();
 							break;
 						case "group":
 						
@@ -260,7 +259,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 				});
 				
-				$('#dept_item').on("click",".block-right-item",function(){
+				$('#pri_item').on("click",".block-right-item",function(){
 					var that = $(this);
 					if(that.attr('class').indexOf('active') > 0){
 						that.removeClass("active");
