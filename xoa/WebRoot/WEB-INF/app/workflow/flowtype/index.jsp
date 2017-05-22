@@ -254,10 +254,21 @@
             },
             onClick:function(node){
                 getFlowList(node.id);
-            }
-        });
+            },
+            onLoadSuccess:function(node,data) {
+                defaultRenderLi(-1);
+                getFlowList(null);
+            },
 
-        getFlowList(null);
+        });
+        function defaultRenderLi(nodeId){
+            $("#li_parent li").find("div[node-id='"+nodeId+"']").addClass("tree-node-selected");   //设置第一个节点高亮
+            var n = $("#li_parent").tree("getSelected");
+            if(n!=null){
+                $("#li_parent").tree("select",n.target);    //相当于默认点击了一下第一个节点，执行onSelect方法
+            }
+        }
+
 
         //处理树结构
         function convert(rows){
@@ -311,10 +322,18 @@
                 console.log(ret);
                 if(ret.flag==true){
                    renderDatas(ret.obj);
+                   bindClick();
                 }else{
                     renderNoDatas();
                 }
             },"json");
+        }
+        function bindClick() {
+            $(".set").click(function () {
+               var flowId= $(this).attr("flow_id");
+                window.location.href="../../flowSetting/index?flowId="+flowId;
+            })
+
         }
 
         function renderNoDatas() {
@@ -341,7 +360,7 @@
 				if(i%3==0) {html+='<div class="new_excell_center">';}
                 html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main">'+
-                    '<a class="set" flow_id="'+data[i].flowId+'" title="编辑" href="flowdesigner?formId='+data[i].flowId+'"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
+                    '<a class="set" flow_id="'+data[i].flowId+'" ><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
                     '<div class="new_excell_info"><div class="new_excell_info_main">'+
                    ' <div class="new_excell_info_mian_pic">'+
                    ' <img src="'+img_url+'" class="new_excell_pic">'+
@@ -350,22 +369,11 @@
                     '<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">流程类型</span></li>'+
                     '</ul>'+
                     '</div>'+
-//                   ' <div style="float: left;width: 122px; margin-left: 20px;">'+
-//                    '<img src="http://devapp.gsubo.com/file0/APPC/TYPE/1001.png" class="new_excell_pic">'+
-//                    '<ul class="new_excell_info_other" style="left: 205px;">'+
-//                   ' <li><span class="new_excell_info_username" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100px;display: inline-block;">CRM</span></li>'+
-//                    '<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">表分类</span></li>'+
-//                   ' </ul>'+
-//                    '</div>'+
                     '</div>'+
                    ' <div style="position: absolute;bottom: 5px;left: 20px;"><div style="float: left;">'+
                     '<img src="" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
                     '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;display:block;">'+data[i].depName+'</span>'+
                    ' </div>'+
-//                    '<div style="float: right;margin-left: 30px;">'+
-//                   ' <img src="/ui/erp_img/new_excell_info_time_pic.png" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
-//                   ' <span class="new_excell_info_time" style="font-size: 12px;margin-left: 5px;color: #999;">2015-09-29</span>'+
-//                    '</div>'+
                    ' </div>'+
                    ' </div>'+
                     '</a>'+
