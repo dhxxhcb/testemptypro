@@ -1,6 +1,7 @@
 package com.xoa.service.notify.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +80,7 @@ public class NotifyServiceImpl implements  NotifyService{
         System.out.println(list.size());
         System.out.println(list);
 		for (Notify notify1 : list) {
-			notify1.setNotifyDateTime(DateFormat.getStrDate(notify1.getSendTime()));
+			notify1.setNotifyDateTime(DateFormat.getStrDate(new Date()));
 			// 查询用户
 			notify1.setName(notify1.getUsers().getUserName());
 			notify1.setTypeName(notify1.getCodes().getCodeName());

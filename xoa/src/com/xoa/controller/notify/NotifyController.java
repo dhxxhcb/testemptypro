@@ -371,21 +371,25 @@ public class NotifyController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/updateNotify", produces = { "application/json;charset=UTF-8" })
-	public String updateNotify(Notify notify, HttpServletRequest request,
+	public ToJson updateNotify(Notify notify, HttpServletRequest request,
 			@RequestParam("notifyId") Integer notifyId,
 			@RequestParam(name = "lastEditTimes", required = false) String lastEditTimes) {
 		ContextHolder.setConsumerType("xoa"
 				+ (String) request.getSession().getAttribute("loginDateSouse"));
 		notify.setNotifyId(notifyId);
 		notify.setLastEditTime(DateFormat.getDate(lastEditTimes));
+		ToJson toJson =new ToJson();
 		try {
 			notifyService.updateNotify(notify);
-			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
-					0, ok), "yyyy-MM-dd HH:mm:ss");
+			toJson.setFlag(0);
+			toJson.setMsg("ok");
+			return toJson;
 		} catch (Exception e) {
+			e.printStackTrace();
+			toJson.setFlag(1);
+			toJson.setMsg("error");
 			loger.debug("addNotify:" + e);
-			return JSON.toJSONStringWithDateFormat(new ToJson<Notify>(
-					1, err), "yyyy-MM-dd HH:mm:ss");
+			return toJson;
 		}
 	}
 	/*public ToJson<Notify> updateNotify(
