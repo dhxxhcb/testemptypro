@@ -79,9 +79,9 @@ public class Ctest {
 		flowProcess.setSetTop(280);
 //		flowProcess.setPluginSave("4546546");
 		flowProcess.setRemindFlag(0);
-		int i = flowProcessService.insertSelective(flowProcess);
+		flowProcessService.insertSelective(flowProcess);
 //		System.out.println(JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
-		System.out.println(i);
+//		System.out.println(i);
 
 	}
 
