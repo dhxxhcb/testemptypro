@@ -15,7 +15,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/userManagement.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/sys/userManagement.css"/>
     <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
@@ -105,6 +105,9 @@
         /*$('.collect ul li').click(function () {
 
          })*/
+        $('#btn').click(function(){
+            $.popWindow('addUsers','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+        })
     })
 </script>
 </body>

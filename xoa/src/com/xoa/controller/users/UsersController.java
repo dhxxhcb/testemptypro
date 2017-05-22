@@ -39,7 +39,13 @@ public class UsersController {
 	private Logger loger = Logger.getLogger(UsersController.class);
 	@Resource
 	private UsersService usersService;
-	
+
+	 @RequestMapping("/addUsers")
+	 public String addUser(HttpServletRequest request) {
+		 ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				 "loginDateSouse"));
+		 return "app/sys/addUser";
+	 }
 	
 	/**
 	 * 创建作者:   张龙飞
