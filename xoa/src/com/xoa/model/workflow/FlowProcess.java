@@ -23,7 +23,7 @@ public class FlowProcess implements Serializable {
     /**
      * 节点类型(0-步骤节点,1-自流程节点,2-外部流转节点)
      **/
-    private byte[] prcsType;
+    private byte prcsType;
     /**
      * 步骤名称
      **/
@@ -638,11 +638,20 @@ public class FlowProcess implements Serializable {
         this.prcsId = prcsId;
     }
 
-    public byte[] getPrcsType() {
-        return prcsType == null ? new byte[0] : prcsType;
+//    public byte[] getPrcsType() {
+//        return prcsType == null ? new byte[0] : prcsType;
+//    }
+//
+//    public void setPrcsType(byte[] prcsType) {
+//        this.prcsType = prcsType;
+//    }
+
+
+    public byte getPrcsType() {
+        return prcsType == 0 ? 0 : prcsType;
     }
 
-    public void setPrcsType(byte[] prcsType) {
+    public void setPrcsType(byte prcsType) {
         this.prcsType = prcsType;
     }
 

@@ -5,7 +5,7 @@
         <id column="ID" javaType="INTEGER" property="id"/>
         <result column="FLOW_ID" property="flowId" javaType="int"/>
         <result column="PRCS_ID" property="prcsId" javaType="int"/>
-        <result column="PRCS_TYPE" property="prcsType" javaType="byte[]"/>
+        <result column="PRCS_TYPE" property="prcsType" javaType="byte"/>
         <result column="PRCS_NAME" property="prcsName" javaType="string"/>
         <result column="SET_LEFT" property="setLeft" javaType="int"/>
         <result column="SET_TOP" property="setTop" javaType="int"/>
