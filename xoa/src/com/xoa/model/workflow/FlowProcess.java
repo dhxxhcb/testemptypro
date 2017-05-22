@@ -145,8 +145,6 @@ public class FlowProcess implements Serializable{
 
     private List<Map<String, String>> connections;
     
-    private List<FlowProcessList> designdata;
-    
     private Integer max;
     
     private String flowName;
@@ -165,14 +163,6 @@ public class FlowProcess implements Serializable{
 
 	public void setMax(Integer max) {
 		this.max = max;
-	}
-
-	public List<FlowProcessList> getDesigndata() {
-		return designdata;
-	}
-
-	public void setDesigndata(List<FlowProcessList> designdata) {
-		this.designdata = designdata;
 	}
 
 	public List<Map<String, String>> getConnections() {

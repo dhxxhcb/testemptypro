@@ -3,6 +3,7 @@ package com.xoa.service.workflow.flowtype;
 import java.util.List;
 
 import com.xoa.model.workflow.FlowProcess;
+import com.xoa.model.workflow.FlowProcessList;
 import com.xoa.util.ToJson;
 
 /**
@@ -56,7 +57,7 @@ public interface FlowProcessService {
 	 * 参数说明:   @return
 	 * @return     FlowProcess 流程信息
 	 */
-	public FlowProcess flowView(int flowId);
+	public FlowProcessList flowView(int flowId);
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年5月22日 上午9:45:24
