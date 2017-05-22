@@ -75,40 +75,26 @@ public class FlowProcessController {
 					"loginDateSouse"));
 			return flowProcessService.updateByPrimaryKeySelective(flowProcess);
 		}
-		
-		
-		/**
-		 * 创建作者:   张龙飞
-		 * 创建日期:   2017年5月19日 下午6:57:03
-		 * 方法介绍:   新增流程
-		 * 参数说明:   @param flowProcess
-		 * 参数说明:   @param request
-		 * 参数说明:   @return
-		 * @return     ToJson<FlowProcess>
-		 */
-		@ResponseBody
-	  	@RequestMapping(value = "insert",produces = {"application/json;charset=UTF-8"})
-	    public ToJson<FlowProcess> insert(FlowProcess flowProcess,	   
-	    		HttpServletRequest request){
-			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse"));
-			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
-			try {
-				//request.setCharacterEncoding("utf-8");
-				/*if(flowProcess.getPluginSave()==null){
-					flowProcess.setPluginSave("");
-				}*/
-				flowProcessService.insertSelective(flowProcess);
-				
-					json.setObject(flowProcess);
-					  json.setMsg("OK");
-				      json.setFlag(0);
-	
-			} catch (Exception e) {
-				json.setMsg(e.getMessage());
-			}
-		    return json;
-		}
+
+
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月19日 下午6:57:03
+	 * 方法介绍:   新增流程
+	 * 参数说明:   @param flowProcess
+	 * 参数说明:   @param request
+	 * 参数说明:   @return
+	 * 调优修改
+	 * @return ToJson<FlowProcess>
+	 */
+	@ResponseBody
+	@RequestMapping(value = "insert", produces = {"application/json;charset=UTF-8"})
+	public ToJson<FlowProcess> insert(FlowProcess flowProcess,
+									  HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return flowProcessService.insertSelective(flowProcess);
+	}
 		
 		/**
 		 * 创建作者:   张龙飞

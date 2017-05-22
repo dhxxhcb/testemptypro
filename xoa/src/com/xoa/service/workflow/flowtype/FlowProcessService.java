@@ -66,7 +66,7 @@ public interface FlowProcessService {
 	 * 参数说明:   @return
 	 * @return     int
 	 */
-	public void insertSelective(FlowProcess record);
+	public ToJson<FlowProcess> insertSelective(FlowProcess record);
 	
 	
 }

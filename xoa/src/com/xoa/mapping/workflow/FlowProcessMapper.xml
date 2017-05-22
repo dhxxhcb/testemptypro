@@ -1,877 +1,371 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.workflow.FlowProcessMapper">
-  <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowProcess">
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="FLOW_ID" property="flowId" javaType="int" />
-    <result column="PRCS_ID"  property="prcsId" javaType="int"/>
-    <result column="PRCS_TYPE"  property="prcsType" javaType="byte"/>
-    <result column="PRCS_NAME"  property="prcsName" javaType="string"/>
-    <result column="SET_LEFT"  property="setLeft" javaType="int"/>
-    <result column="SET_TOP"  property="setTop" javaType="int"/>
-    <result column="FEEDBACK"  property="feedback" javaType="string"/>
-    <result column="AUTO_TYPE"  property="autoType" javaType="string"/>
-    <result column="USER_FILTER"  property="userFilter" javaType="string"/>
-    <result column="TIME_OUT"  property="timeOut" javaType="string"/>
-    <result column="TIME_OUT_MODIFY"  property="timeOutModify" javaType="string"/>
-    <result column="TIME_OUT_ATTEND"  property="timeOutAttend" javaType="string"/>
-    <result column="SIGNLOOK"  property="signlook" javaType="string"/>
-    <result column="TOP_DEFAULT"  property="topDefault" javaType="string"/>
-    <result column="USER_LOCK"  property="userLock" javaType="string"/>
-    <result column="SYNC_DEAL"  property="syncDeal" javaType="string"/>
-    <result column="SYNC_DEAL_CHECK"  property="syncDealCheck" javaType="string"/>
-    <result column="TURN_PRIV"  property="turnPriv" javaType="string"/>
-    <result column="CHILD_FLOW"  property="childFlow" javaType="int"/>
-    <result column="GATHER_NODE"  property="gatherNode" javaType="string"/>
-    <result column="ALLOW_BACK"  property="allowBack" javaType="string"/>
-    <result column="ATTACH_PRIV"  property="attachPriv" javaType="string"/>
-    <result column="AUTO_BASE_USER"  property="autoBaseUser" javaType="int"/>
-    <result column="REMIND_FLAG"  property="remindFlag" javaType="int"/>
-    <result column="DISP_AIP" property="dispAip" javaType="int" />
-    <result column="TIME_OUT_TYPE"  property="timeOutType" javaType="string"/>
-    <result column="ATTACH_EDIT_PRIV"  property="attachEditPriv" javaType="string"/>
-    <result column="ATTACH_EDIT_PRIV_ONLINE"  property="attachEditPrivOnline" javaType="string"/>
-    <result column="ATTACH_MACRO_MARK"  property="attachMacroMark" javaType="string"/>
-    <result column="VIEW_PRIV" javaType="int" property="viewPriv" />
-    <result column="SIGN_TYPE" javaType="boolean" property="signType" />
-    <result column="COUNTERSIGN" javaType="boolean" property="countersign" />
-    <result column="WORKINGDAYS_TYPE" javaType="string" property="workingdaysType" />
-    <result column="PRCS_USER" javaType="string" property="prcsUser" />
-    <result column="PRCS_ITEM" javaType="string" property="prcsItem" />
-    <result column="HIDDEN_ITEM" javaType="string" property="hiddenItem" />
-    <result column="REQUIRED_ITEM" javaType="string" property="requiredItem" />
-    <result column="PRCS_DEPT" javaType="string" property="prcsDept" />
-    <result column="PRCS_PRIV" javaType="string" property="prcsPriv" />
-    <result column="PRCS_TO" javaType="string" property="prcsTo" />
-    <result column="PLUGIN" javaType="string" property="plugin" />
-    <result column="PLUGIN_SAVE" javaType="string" property="pluginSave" />
-    <result column="PRCS_ITEM_AUTO" javaType="string" property="prcsItemAuto" />
-    <result column="PRCS_IN" javaType="string" property="prcsIn" />
-    <result column="PRCS_OUT" javaType="string" property="prcsOut" />
-    <result column="PRCS_IN_SET" javaType="string" property="prcsInSet" />
-    <result column="PRCS_OUT_SET" javaType="string" property="prcsOutSet" />
-    <result column="AUTO_DEPT" javaType="string" property="autoDept" />
-    <result column="AUTO_USER_OP" javaType="string" property="autoUserOp" />
-    <result column="AUTO_USER" javaType="string" property="autoUser" />
-    <result column="AUTO_USER_OP_RETURN" javaType="string" property="autoUserOpReturn" />
-    <result column="AUTO_USER_RETURN" javaType="string" property="autoUserReturn" />
-    <result column="USER_FILTER_PRCS_PRIV" javaType="string" property="userFilterPrcsPriv" />
-    <result column="USER_FILTER_PRCS_PRIV_OTHER" javaType="string" property="userFilterPrcsPrivOther" />
-    <result column="USER_FILTER_PRCS_DEPT" javaType="string" property="userFilterPrcsDept" />
-    <result column="USER_FILTER_PRCS_DEPT_OTHER" javaType="string" property="userFilterPrcsDeptOther" />
-    <result column="MAIL_TO" javaType="string" property="mailTo" />
-    <result column="MAIL_TO_DEPT" javaType="string" property="mailToDept" />
-    <result column="MAIL_TO_PRIV" javaType="string" property="mailToPriv" />
-    <result column="CONDITION_DESC" javaType="string" property="conditionDesc" />
-    <result column="RELATION_IN" javaType="string" property="relationIn" />
-    <result column="RELATION_OUT" javaType="string" property="relationOut" />
-    <result column="CONTROL_MODE" javaType="string" property="controlMode" />
-    <result column="LIST_COLUMN_PRIV" javaType="string" property="listColumnPriv" />
-    <result column="FILEUPLOAD_PRIV" javaType="string" property="fileuploadPriv" />
-    <result column="IMGUPLOAD_PRIV" javaType="string" property="imguploadPriv" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ID, FLOW_ID, PRCS_ID, PRCS_TYPE, PRCS_NAME, SET_LEFT, SET_TOP, FEEDBACK, AUTO_TYPE, 
-    USER_FILTER, TIME_OUT, TIME_OUT_MODIFY, TIME_OUT_ATTEND, SIGNLOOK, TOP_DEFAULT, USER_LOCK, 
-    SYNC_DEAL, SYNC_DEAL_CHECK, TURN_PRIV, CHILD_FLOW, GATHER_NODE, ALLOW_BACK, ATTACH_PRIV, 
-    AUTO_BASE_USER, REMIND_FLAG, DISP_AIP, TIME_OUT_TYPE, ATTACH_EDIT_PRIV, ATTACH_EDIT_PRIV_ONLINE, 
-    ATTACH_MACRO_MARK, VIEW_PRIV, SIGN_TYPE, COUNTERSIGN, WORKINGDAYS_TYPE
-  </sql>
-  <sql id="Blob_Column_List">
-    PRCS_USER, PRCS_ITEM, HIDDEN_ITEM, REQUIRED_ITEM, PRCS_DEPT, PRCS_PRIV, PRCS_TO, 
-    PLUGIN, PLUGIN_SAVE, PRCS_ITEM_AUTO, PRCS_IN, PRCS_OUT, PRCS_IN_SET, PRCS_OUT_SET, 
-    AUTO_DEPT, AUTO_USER_OP, AUTO_USER, AUTO_USER_OP_RETURN, AUTO_USER_RETURN, USER_FILTER_PRCS_PRIV, 
-    USER_FILTER_PRCS_PRIV_OTHER, USER_FILTER_PRCS_DEPT, USER_FILTER_PRCS_DEPT_OTHER, 
-    MAIL_TO, MAIL_TO_DEPT, MAIL_TO_PRIV, CONDITION_DESC, RELATION_IN, RELATION_OUT, CONTROL_MODE, 
-    LIST_COLUMN_PRIV, FILEUPLOAD_PRIV, IMGUPLOAD_PRIV
-  </sql>
-  <select id="find" parameterType="Map" resultMap="BaseResultMap">
-  select * from flow_process where  ID = #{id} 
-  </select>
-  <select id="findFlowId" resultMap="BaseResultMap">
-  select Id,PRCS_ID,PRCS_TO,PRCS_NAME from flow_process where FLOW_ID=#{flowId}
-  </select>
-  <select id="findF" resultMap="BaseResultMap">
-  select a.* ,b.FlOW_NAME as flowName from flow_process a,flow_type b where a.FLOW_ID=b.FLOW_ID and b.FLOW_ID=#{flowId}
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from flow_process
-    where ID = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from flow_process
-    where ID = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.xoa.model.workflow.FlowProcess">
-    insert into flow_process (ID, FLOW_ID, PRCS_ID, 
-      PRCS_TYPE, PRCS_NAME, SET_LEFT, 
-      SET_TOP, FEEDBACK, AUTO_TYPE, 
-      USER_FILTER, TIME_OUT, TIME_OUT_MODIFY, 
-      TIME_OUT_ATTEND, SIGNLOOK, TOP_DEFAULT, 
-      USER_LOCK, SYNC_DEAL, SYNC_DEAL_CHECK, 
-      TURN_PRIV, CHILD_FLOW, GATHER_NODE, 
-      ALLOW_BACK, ATTACH_PRIV, AUTO_BASE_USER, 
-      REMIND_FLAG, DISP_AIP, TIME_OUT_TYPE, 
-      ATTACH_EDIT_PRIV, ATTACH_EDIT_PRIV_ONLINE, ATTACH_MACRO_MARK, 
-      VIEW_PRIV, SIGN_TYPE, COUNTERSIGN, 
-      WORKINGDAYS_TYPE, PRCS_USER, PRCS_ITEM, 
-      HIDDEN_ITEM, REQUIRED_ITEM, PRCS_DEPT, 
-      PRCS_PRIV, PRCS_TO, PLUGIN, 
-      PLUGIN_SAVE, PRCS_ITEM_AUTO, PRCS_IN, 
-      PRCS_OUT, PRCS_IN_SET, PRCS_OUT_SET, 
-      AUTO_DEPT, AUTO_USER_OP, AUTO_USER, 
-      AUTO_USER_OP_RETURN, AUTO_USER_RETURN, 
-      USER_FILTER_PRCS_PRIV, USER_FILTER_PRCS_PRIV_OTHER, 
-      USER_FILTER_PRCS_DEPT, USER_FILTER_PRCS_DEPT_OTHER, 
-      MAIL_TO, MAIL_TO_DEPT, MAIL_TO_PRIV, 
-      CONDITION_DESC, RELATION_IN, RELATION_OUT, 
-      CONTROL_MODE, LIST_COLUMN_PRIV, FILEUPLOAD_PRIV, 
-      IMGUPLOAD_PRIV)
-    values (#{id}, #{flowId}, #{prcsId}, 
-      #{prcsType}, #{prcsName}, #{setLeft}, 
-      #{setTop}, #{feedback}, #{autoType}, 
-      #{userFilter}, #{timeOut}, #{timeOutModify}, 
-      #{timeOutAttend}, #{signlook}, #{topDefault}, 
-      #{userLock}, #{syncDeal}, #{syncDealCheck}, 
-      #{turnPriv}, #{childFlow}, #{gatherNode}, 
-      #{allowBack}, #{attachPriv}, #{autoBaseUser}, 
-      #{remindFlag}, #{dispAip}, #{timeOutType}, 
-      #{attachEditPriv}, #{attachEditPrivOnline}, #{attachMacroMark}, 
-      #{viewPriv}, #{signType}, #{countersign}, 
-      #{workingdaysType}, #{prcsUser}, #{prcsItem}, 
-      #{hiddenItem}, #{requiredItem}, #{prcsDept}, 
-      #{prcsPriv}, #{prcsTo}, #{plugin}, 
-      #{pluginSave}, #{prcsItemAuto}, #{prcsIn}, 
-      #{prcsOut}, #{prcsInSet}, #{prcsOutSet}, 
-      #{autoDept}, #{autoUserOp}, #{autoUser}, 
-      #{autoUserOpReturn}, #{autoUserReturn}, 
-      #{userFilterPrcsPriv}, #{userFilterPrcsPrivOther}, 
-      #{userFilterPrcsDept}, #{userFilterPrcsDeptOther}, 
-      #{mailTo}, #{mailToDept}, #{mailToPriv}, 
-      #{conditionDesc}, #{relationIn}, #{relationOut}, 
-      #{controlMode}, #{listColumnPriv}, #{fileuploadPriv}, 
-      #{imguploadPriv})
-  </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.workflow.FlowProcess">
-    insert into flow_process
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-    <if test="flowId != null and flowId!=''">
-        FLOW_ID ,
-      </if>
-      <if test="prcsId != null and prcsId!=''">
-        PRCS_ID ,
-      </if>
-      <if test="prcsType != null and prcsType!=''">
-        PRCS_TYPE ,
-      </if>
-      <if test="prcsName != null and prcsName!=''">
-        PRCS_NAME ,
-      </if>
-      <if test="setLeft != null and setLeft!=''">
-        SET_LEFT ,
-      </if>
-      <if test="setTop != null and setTop!=''">
-        SET_TOP ,
-      </if>
-      <if test="feedback != null and feedback!=''">
-        FEEDBACK ,
-      </if>
-      <if test="autoType != null and autoType!=''">
-        AUTO_TYPE ,
-      </if>
-      <if test="userFilter != null and userFilter != ''">
-        USER_FILTER ,
-      </if>
-      <if test="timeOut != null and timeOut!=''">
-        TIME_OUT ,
-      </if>
-      <if test="timeOutModify != null and timeOutModify !=''">
-        TIME_OUT_MODIFY ,
-      </if>
-      <if test="timeOutAttend != null and timeOutAttend != ''">
-        TIME_OUT_ATTEND ,
-      </if>
-      <if test="signlook != null and signlook != ''">
-        SIGNLOOK ,
-      </if>
-      <if test="topDefault != null and topDefault !=''">
-        TOP_DEFAULT ,
-      </if>
-      <if test="userLock != null and userLock != ''">
-        USER_LOCK,
-      </if>
-      <if test="syncDeal != null and syncDeal != ''">
-        SYNC_DEAL ,
-      </if>
-      <if test="syncDealCheck != null and syncDealCheck != ''">
-        SYNC_DEAL_CHECK ,
-      </if>
-      <if test="turnPriv != null and turnPriv != ''">
-        TURN_PRIV ,
-      </if>
-      <if test="childFlow != null and childFlow != ''">
-        CHILD_FLOW ,
-      </if>
-      <if test="gatherNode != null and gatherNode != ''">
-        GATHER_NODE ,
-      </if>
-      <if test="allowBack != null and allowBack != ''">
-        ALLOW_BACK ,
-      </if>
-      <if test="attachPriv != null and attachPriv != ''">
-        ATTACH_PRIV ,
-      </if>
-      <if test="autoBaseUser != null and autoBaseUser != ''">
-        AUTO_BASE_USER ,
-      </if>
-      <if test="remindFlag != null and remindFlag != ''">
-        REMIND_FLAG ,
-      </if>
-      <if test="dispAip != null and dispAip != ''">
-        DISP_AIP ,
-      </if>
-      <if test="timeOutType != null and timeOutType != ''">
-        TIME_OUT_TYPE ,
-      </if>
-      <if test="attachEditPriv != null and attachEditPriv != ''">
-        ATTACH_EDIT_PRIV ,
-      </if>
-      <if test="attachEditPrivOnline != null and attachEditPrivOnline != ''">
-        ATTACH_EDIT_PRIV_ONLINE ,
-      </if>
-      <if test="attachMacroMark != null and attachMacroMark != ''">
-        ATTACH_MACRO_MARK ,
-      </if>
-      <if test="viewPriv != null and viewPriv != ''">
-        VIEW_PRIV ,
-      </if>
-      <if test="signType != null and signType != ''">
-        SIGN_TYPE ,
-      </if>
-      <if test="countersign != null and countersign != ''">
-        COUNTERSIGN ,
-      </if>
-      <if test="workingdaysType != null and workingdaysType != ''">
-        WORKINGDAYS_TYPE ,
-      </if>
-      <if test="prcsUser != null and prcsUser != ''">
-        PRCS_USER ,
-      </if>
-      <if test="prcsItem != null and prcsItem != ''">
-        PRCS_ITEM ,
-      </if>
-      <if test="hiddenItem != null and hiddenItem != ''">
-        HIDDEN_ITEM,
-      </if>
-      <if test="requiredItem != null and requiredItem != ''">
-        REQUIRED_ITEM ,
-      </if>
-      <if test="prcsDept != null and prcsDept != ''">
-        PRCS_DEPT ,
-      </if>
-      <if test="prcsPriv != null and prcsPriv != ''">
-        PRCS_PRIV ,
-      </if>
-      <if test="prcsTo != null and prcsTo != ''">
-        PRCS_TO ,
-      </if>
-      <if test="plugin != null and plugin != ''">
-        PLUGIN ,
-      </if>
-      <if test="pluginSave != null and pluginSave != ''">
-        PLUGIN_SAVE ,
-      </if>
-      <if test="prcsItemAuto != null and prcsItemAuto != ''">
-        PRCS_ITEM_AUTO ,
-      </if>
-      <if test="prcsIn != null and prcsIn != ''">
-        PRCS_IN ,
-      </if>
-      <if test="prcsOut != null and prcsOut != ''">
-        PRCS_OUT ,
-      </if>
-      <if test="prcsInSet != null and prcsInSet != ''">
-        PRCS_IN_SET ,
-      </if>
-      <if test="prcsOutSet != null and prcsOutSet != ''">
-        PRCS_OUT_SET ,
-      </if>
-      <if test="autoDept != null and autoDept != ''">
-        AUTO_DEPT ,
-      </if>
-      <if test="autoUserOp != null and autoUserOp != ''">
-        AUTO_USER_OP ,
-      </if>
-      <if test="autoUser != null and  autoUser != ''">
-        AUTO_USER ,
-      </if>
-      <if test="autoUserOpReturn != null and autoUserOpReturn != ''">
-        AUTO_USER_OP_RETURN ,
-      </if>
-      <if test="autoUserReturn != null and autoUserReturn != ''">
-        AUTO_USER_RETURN ,
-      </if>
-      <if test="userFilterPrcsPriv != null and userFilterPrcsPriv != ''">
-        USER_FILTER_PRCS_PRIV ,
-      </if>
-      <if test="userFilterPrcsPrivOther != null and userFilterPrcsPrivOther != ''">
-        USER_FILTER_PRCS_PRIV_OTHER ,
-      </if>
-      <if test="userFilterPrcsDept != null and userFilterPrcsDept != ''">
-        USER_FILTER_PRCS_DEPT ,
-      </if>
-      <if test="userFilterPrcsDeptOther != null and userFilterPrcsDeptOther != ''">
-        USER_FILTER_PRCS_DEPT_OTHER ,
-      </if>
-      <if test="mailTo != null and mailTo != ''">
-        MAIL_TO ,
-      </if>
-      <if test="mailToDept != null and mailToDept != ''">
-        MAIL_TO_DEPT ,
-      </if>
-      <if test="mailToPriv != null and mailToPriv != ''">
-        MAIL_TO_PRIV ,
-      </if>
-      <if test="conditionDesc != null and conditionDesc != ''">
-        CONDITION_DESC ,
-      </if>
-      <if test="relationIn != null and relationIn != ''">
-        RELATION_IN ,
-      </if>
-      <if test="relationOut != null and relationOut != ''">
-        RELATION_OUT ,
-      </if>
-      <if test="controlMode != null and controlMode != ''">
-        CONTROL_MODE ,
-      </if>
-      <if test="listColumnPriv != null and listColumnPriv != ''">
-        LIST_COLUMN_PRIV ,
-      </if>
-      <if test="fileuploadPriv != null and fileuploadPriv != ''">
-        FILEUPLOAD_PRIV ,
-      </if>
-      <if test="imguploadPriv != null and imguploadPriv != ''">
-        IMGUPLOAD_PRIV
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-     <if test="flowId != null and flowId!=''">
+    <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowProcess">
+        <id column="ID" javaType="INTEGER" property="id"/>
+        <result column="FLOW_ID" property="flowId" javaType="int"/>
+        <result column="PRCS_ID" property="prcsId" javaType="int"/>
+        <result column="PRCS_TYPE" property="prcsType" javaType="byte[]"/>
+        <result column="PRCS_NAME" property="prcsName" javaType="string"/>
+        <result column="SET_LEFT" property="setLeft" javaType="int"/>
+        <result column="SET_TOP" property="setTop" javaType="int"/>
+        <result column="FEEDBACK" property="feedback" javaType="string"/>
+        <result column="AUTO_TYPE" property="autoType" javaType="string"/>
+        <result column="USER_FILTER" property="userFilter" javaType="string"/>
+        <result column="TIME_OUT" property="timeOut" javaType="string"/>
+        <result column="TIME_OUT_MODIFY" property="timeOutModify" javaType="string"/>
+        <result column="TIME_OUT_ATTEND" property="timeOutAttend" javaType="string"/>
+        <result column="SIGNLOOK" property="signlook" javaType="string"/>
+        <result column="TOP_DEFAULT" property="topDefault" javaType="string"/>
+        <result column="USER_LOCK" property="userLock" javaType="string"/>
+        <result column="SYNC_DEAL" property="syncDeal" javaType="string"/>
+        <result column="SYNC_DEAL_CHECK" property="syncDealCheck" javaType="string"/>
+        <result column="TURN_PRIV" property="turnPriv" javaType="string"/>
+        <result column="CHILD_FLOW" property="childFlow" javaType="int"/>
+        <result column="GATHER_NODE" property="gatherNode" javaType="string"/>
+        <result column="ALLOW_BACK" property="allowBack" javaType="string"/>
+        <result column="ATTACH_PRIV" property="attachPriv" javaType="string"/>
+        <result column="AUTO_BASE_USER" property="autoBaseUser" javaType="int"/>
+        <result column="REMIND_FLAG" property="remindFlag" javaType="int"/>
+        <result column="DISP_AIP" property="dispAip" javaType="int"/>
+        <result column="TIME_OUT_TYPE" property="timeOutType" javaType="string"/>
+        <result column="ATTACH_EDIT_PRIV" property="attachEditPriv" javaType="string"/>
+        <result column="ATTACH_EDIT_PRIV_ONLINE" property="attachEditPrivOnline" javaType="string"/>
+        <result column="ATTACH_MACRO_MARK" property="attachMacroMark" javaType="string"/>
+        <result column="VIEW_PRIV" javaType="int" property="viewPriv"/>
+        <result column="SIGN_TYPE" javaType="boolean" property="signType"/>
+        <result column="COUNTERSIGN" javaType="boolean" property="countersign"/>
+        <result column="WORKINGDAYS_TYPE" javaType="string" property="workingdaysType"/>
+        <result column="PRCS_USER" javaType="string" property="prcsUser"/>
+        <result column="PRCS_ITEM" javaType="string" property="prcsItem"/>
+        <result column="HIDDEN_ITEM" javaType="string" property="hiddenItem"/>
+        <result column="REQUIRED_ITEM" javaType="string" property="requiredItem"/>
+        <result column="PRCS_DEPT" javaType="string" property="prcsDept"/>
+        <result column="PRCS_PRIV" javaType="string" property="prcsPriv"/>
+        <result column="PRCS_TO" javaType="string" property="prcsTo"/>
+        <result column="PLUGIN" javaType="string" property="plugin"/>
+        <result column="PLUGIN_SAVE" javaType="java.lang.String" property="pluginSave"/>
+        <result column="PRCS_ITEM_AUTO" javaType="string" property="prcsItemAuto"/>
+        <result column="PRCS_IN" javaType="string" property="prcsIn"/>
+        <result column="PRCS_OUT" javaType="string" property="prcsOut"/>
+        <result column="PRCS_IN_SET" javaType="string" property="prcsInSet"/>
+        <result column="PRCS_OUT_SET" javaType="string" property="prcsOutSet"/>
+        <result column="AUTO_DEPT" javaType="string" property="autoDept"/>
+        <result column="AUTO_USER_OP" javaType="string" property="autoUserOp"/>
+        <result column="AUTO_USER" javaType="string" property="autoUser"/>
+        <result column="AUTO_USER_OP_RETURN" javaType="string" property="autoUserOpReturn"/>
+        <result column="AUTO_USER_RETURN" javaType="string" property="autoUserReturn"/>
+        <result column="USER_FILTER_PRCS_PRIV" javaType="string" property="userFilterPrcsPriv"/>
+        <result column="USER_FILTER_PRCS_PRIV_OTHER" javaType="string" property="userFilterPrcsPrivOther"/>
+        <result column="USER_FILTER_PRCS_DEPT" javaType="string" property="userFilterPrcsDept"/>
+        <result column="USER_FILTER_PRCS_DEPT_OTHER" javaType="string" property="userFilterPrcsDeptOther"/>
+        <result column="MAIL_TO" javaType="string" property="mailTo"/>
+        <result column="MAIL_TO_DEPT" javaType="string" property="mailToDept"/>
+        <result column="MAIL_TO_PRIV" javaType="string" property="mailToPriv"/>
+        <result column="CONDITION_DESC" javaType="string" property="conditionDesc"/>
+        <result column="RELATION_IN" javaType="string" property="relationIn"/>
+        <result column="RELATION_OUT" javaType="string" property="relationOut"/>
+        <result column="CONTROL_MODE" javaType="string" property="controlMode"/>
+        <result column="LIST_COLUMN_PRIV" javaType="string" property="listColumnPriv"/>
+        <result column="FILEUPLOAD_PRIV" javaType="string" property="fileuploadPriv"/>
+        <result column="IMGUPLOAD_PRIV" javaType="string" property="imguploadPriv"/>
+    </resultMap>
+
+    <select id="findFlowId" resultMap="BaseResultMap">
+        select Id,PRCS_ID,PRCS_TO,PRCS_NAME from flow_process where FLOW_ID=#{flowId}
+    </select>
+
+
+    <select id="findF" resultMap="BaseResultMap">
+        select a.* ,b.FlOW_NAME as flowName from flow_process a,flow_type b where a.FLOW_ID=b.FLOW_ID and b.FLOW_ID=#{flowId}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from flow_process
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+    <!-- 新建流程 -->
+    <insert id="insert" parameterType="com.xoa.model.workflow.FlowProcess" useGeneratedKeys="true" keyProperty="id">
+        INSERT  INTO flow_process(FLOW_ID,PRCS_ID,PRCS_TYPE,PRCS_NAME,SET_LEFT,SET_TOP,FEEDBACK,AUTO_TYPE,USER_FILTER,
+        TIME_OUT,TIME_OUT_MODIFY,TIME_OUT_ATTEND,SIGNLOOK,TOP_DEFAULT,USER_LOCK,SYNC_DEAL,SYNC_DEAL_CHECK,TURN_PRIV,
+        CHILD_FLOW,GATHER_NODE,ALLOW_BACK,ATTACH_PRIV,AUTO_BASE_USER,REMIND_FLAG,DISP_AIP,TIME_OUT_TYPE,ATTACH_EDIT_PRIV,
+        ATTACH_EDIT_PRIV_ONLINE,ATTACH_MACRO_MARK,VIEW_PRIV,SIGN_TYPE,COUNTERSIGN,WORKINGDAYS_TYPE,PRCS_USER,PRCS_ITEM,
+        HIDDEN_ITEM,REQUIRED_ITEM,PRCS_DEPT,PRCS_PRIV,PRCS_TO,PLUGIN,PLUGIN_SAVE,PRCS_ITEM_AUTO,PRCS_IN,PRCS_OUT,
+        PRCS_IN_SET,PRCS_OUT_SET,AUTO_DEPT,AUTO_USER_OP,AUTO_USER,AUTO_USER_OP_RETURN,AUTO_USER_RETURN,USER_FILTER_PRCS_PRIV,
+        USER_FILTER_PRCS_PRIV_OTHER,USER_FILTER_PRCS_DEPT,USER_FILTER_PRCS_DEPT_OTHER,MAIL_TO,MAIL_TO_DEPT,MAIL_TO_PRIV,
+        CONDITION_DESC,RELATION_IN,RELATION_OUT,CONTROL_MODE,LIST_COLUMN_PRIV,FILEUPLOAD_PRIV,IMGUPLOAD_PRIV)
+        VALUES
+        (
         #{flowId},
-      </if>
-      <if test="prcsId != null and prcsId!=''">
         #{prcsId},
-      </if>
-      <if test="prcsType != null and prcsType!=''">
-         #{prcsType},
-      </if>
-      <if test="prcsName != null and prcsName!=''">
-        #{prcsName},
-      </if>
-      <if test="setLeft != null and setLeft!=''">
-        #{setLeft},
-      </if>
-      <if test="setTop != null and setTop!=''">
-         #{setTop},
-      </if>
-      <if test="feedback != null and feadback!=''">
-        #{feedback},
-      </if>
-      <if test="autoType != null and autoType!=''">
-         #{autoType},
-      </if>
-      <if test="userFilter != null and userFilter != ''">
+        #{prcsType},
+        #{prcsName},#{setLeft},#{setTop},#{feedback},
+        #{autoType},
         #{userFilter},
-      </if>
-      <if test="timeOut != null and timeOut!=''">
         #{timeOut},
-      </if>
-      <if test="timeOutModify != null and timeOutModify !=''">
-         #{timeOutModify},
-      </if>
-      <if test="timeOutAttend != null and timeOutAttend != ''">
+        #{timeOutModify},
         #{timeOutAttend},
-      </if>
-      <if test="signlook != null and signlook != ''">
         #{signlook},
-      </if>
-      <if test="topDefault != null and topDefault !=''">
-         #{topDefault},
-      </if>
-      <if test="userLock != null and userLock != ''">
-         #{userLock},
-      </if>
-      <if test="syncDeal != null and syncDeal != ''">
-         #{syncDeal},
-      </if>
-      <if test="syncDealCheck != null and syncDealCheck != ''">
-         #{syncDealCheck},
-      </if>
-      <if test="turnPriv != null and turnPriv != ''">
+        #{topDefault},
+        #{userLock},
+        #{syncDeal},
+        #{syncDealCheck},
         #{turnPriv},
-      </if>
-      <if test="childFlow != null and childFlow != ''">
         #{childFlow},
-      </if>
-      <if test="gatherNode != null and gatherNode != ''">
         #{gatherNode},
-      </if>
-      <if test="allowBack != null and allowBack != ''">
         #{allowBack},
-      </if>
-      <if test="attachPriv != null and attachPriv != ''">
         #{attachPriv},
-      </if>
-      <if test="autoBaseUser != null and autoBaseUser != ''">
         #{autoBaseUser},
-      </if>
-      <if test="remindFlag != null and remindFlag != ''">
         #{remindFlag},
-      </if>
-      <if test="dispAip != null and dispAip != ''">
         #{dispAip},
-      </if>
-      <if test="timeOutType != null and timeOutType != ''">
         #{timeOutType},
-      </if>
-      <if test="attachEditPriv != null and attachEditPriv != ''">
         #{attachEditPriv},
-      </if>
-      <if test="attachEditPrivOnline != null and attachEditPrivOnline != ''">
         #{attachEditPrivOnline},
-      </if>
-      <if test="attachMacroMark != null and attachMacroMark != ''">
-         #{attachMacroMark},
-      </if>
-      <if test="viewPriv != null and viewPriv != ''">
-         #{viewPriv},
-      </if>
-      <if test="signType != null and signType != ''">
+        #{attachMacroMark},
+        #{viewPriv},
         #{signType},
-      </if>
-      <if test="countersign != null and countersign != ''">
         #{countersign},
-      </if>
-      <if test="workingdaysType != null and workingdaysType != ''">
         #{workingdaysType},
-      </if>
-      <if test="prcsUser != null and prcsUser != ''">
-         #{prcsUser},
-      </if>
-      <if test="prcsItem != null and prcsItem != ''">
+        #{prcsUser},
         #{prcsItem},
-      </if>
-      <if test="hiddenItem != null and hiddenItem != ''">
         #{hiddenItem},
-      </if>
-      <if test="requiredItem != null and requiredItem != ''">
         #{requiredItem},
-      </if>
-      <if test="prcsDept != null and prcsDept != ''">
         #{prcsDept},
-      </if>
-      <if test="prcsPriv != null and prcsPriv != ''">
         #{prcsPriv},
-      </if>
-      <if test="prcsTo != null and prcsTo != ''">
         #{prcsTo},
-      </if>
-      <if test="plugin != null and plugin != ''">
         #{plugin},
-      </if>
-      <if test="pluginSave != null and pluginSave != ''">
-         #{pluginSave},
-      </if>
-      <if test="prcsItemAuto != null and prcsItemAuto != ''">
+        #{pluginSave},
         #{prcsItemAuto},
-      </if>
-      <if test="prcsIn != null and prcsIn != ''">
         #{prcsIn},
-      </if>
-      <if test="prcsOut != null and prcsOut != ''">
         #{prcsOut},
-      </if>
-      <if test="prcsInSet != null and prcsInSet != ''">
         #{prcsInSet},
-      </if>
-      <if test="prcsOutSet != null and prcsOutSet != ''">
         #{prcsOutSet},
-      </if>
-      <if test="autoDept != null and autoDept != ''">
         #{autoDept},
-      </if>
-      <if test="autoUserOp != null and autoUserOp != ''">
-         #{autoUserOp},
-      </if>
-      <if test="autoUser != null and  autoUser != ''">
+        #{autoUserOp},
         #{autoUser},
-      </if>
-      <if test="autoUserOpReturn != null and autoUserOpReturn != ''">
         #{autoUserOpReturn},
-      </if>
-      <if test="autoUserReturn != null and autoUserReturn != ''">
         #{autoUserReturn},
-      </if>
-      <if test="userFilterPrcsPriv != null and userFilterPrcsPriv != ''">
-         #{userFilterPrcsPriv},
-      </if>
-      <if test="userFilterPrcsPrivOther != null and userFilterPrcsPrivOther != ''">
+        #{userFilterPrcsPriv},
         #{userFilterPrcsPrivOther},
-      </if>
-      <if test="userFilterPrcsDept != null and userFilterPrcsDept != ''">
-         #{userFilterPrcsDept},
-      </if>
-      <if test="userFilterPrcsDeptOther != null and userFilterPrcsDeptOther != ''">
+        #{userFilterPrcsDept},
         #{userFilterPrcsDeptOther},
-      </if>
-      <if test="mailTo != null and mailTo != ''">
         #{mailTo},
-      </if>
-      <if test="mailToDept != null and mailToDept != ''">
         #{mailToDept},
-      </if>
-      <if test="mailToPriv != null and mailToPriv != ''">
-         #{mailToPriv},
-      </if>
-      <if test="conditionDesc != null and conditionDesc != ''">
-         #{conditionDesc},
-      </if>
-      <if test="relationIn != null and relationIn != ''">
+        #{mailToPriv},
+        #{conditionDesc},
         #{relationIn},
-      </if>
-      <if test="relationOut != null and relationOut != ''">
         #{relationOut},
-      </if>
-      <if test="controlMode != null and controlMode != ''">
         #{controlMode},
-      </if>
-      <if test="listColumnPriv != null and listColumnPriv != ''">
-         #{listColumnPriv},
-      </if>
-      <if test="fileuploadPriv != null and fileuploadPriv != ''">
-         #{fileuploadPriv},
-      </if>
-      <if test="imguploadPriv != null and imguploadPriv != ''">
-         #{imguploadPriv}
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowProcess">
-    update flow_process
-    <set>
-      <if test="flowId != null and flowId!=''">
-        FLOW_ID = #{flowId},
-      </if>
-      <if test="prcsId != null and prcsId!=''">
-        PRCS_ID = #{prcsId},
-      </if>
-      <if test="prcsType != null and prcsType!=''">
-        PRCS_TYPE = #{prcsType},
-      </if>
-      <if test="prcsName != null and prcsName!=''">
-        PRCS_NAME = #{prcsName},
-      </if>
-      <if test="setLeft != null and setLeft!=''">
-        SET_LEFT = #{setLeft},
-      </if>
-      <if test="setTop != null and setTop!=''">
-        SET_TOP = #{setTop},
-      </if>
-      <if test="feedback != null and feadback!=''">
-        FEEDBACK = #{feedback},
-      </if>
-      <if test="autoType != null and autoType!=''">
-        AUTO_TYPE = #{autoType},
-      </if>
-      <if test="userFilter != null and userFilter != ''">
-        USER_FILTER = #{userFilter},
-      </if>
-      <if test="timeOut != null and timeOut!=''">
-        TIME_OUT = #{timeOut},
-      </if>
-      <if test="timeOutModify != null and timeOutModify !=''">
-        TIME_OUT_MODIFY = #{timeOutModify},
-      </if>
-      <if test="timeOutAttend != null and timeOutAttend != ''">
-        TIME_OUT_ATTEND = #{timeOutAttend},
-      </if>
-      <if test="signlook != null and signlook != ''">
-        SIGNLOOK = #{signlook},
-      </if>
-      <if test="topDefault != null and topDefault !=''">
-        TOP_DEFAULT = #{topDefault},
-      </if>
-      <if test="userLock != null and userLock != ''">
-        USER_LOCK = #{userLock},
-      </if>
-      <if test="syncDeal != null and syncDeal != ''">
-        SYNC_DEAL = #{syncDeal},
-      </if>
-      <if test="syncDealCheck != null and syncDealCheck != ''">
-        SYNC_DEAL_CHECK = #{syncDealCheck},
-      </if>
-      <if test="turnPriv != null and turnPriv != ''">
-        TURN_PRIV = #{turnPriv},
-      </if>
-      <if test="childFlow != null and childFlow != ''">
-        CHILD_FLOW = #{childFlow},
-      </if>
-      <if test="gatherNode != null and gatherNode != ''">
-        GATHER_NODE = #{gatherNode},
-      </if>
-      <if test="allowBack != null and allowBack != ''">
-        ALLOW_BACK = #{allowBack},
-      </if>
-      <if test="attachPriv != null and attachPriv != ''">
-        ATTACH_PRIV = #{attachPriv},
-      </if>
-      <if test="autoBaseUser != null and autoBaseUser != ''">
-        AUTO_BASE_USER = #{autoBaseUser},
-      </if>
-      <if test="remindFlag != null and remindFlag != ''">
-        REMIND_FLAG = #{remindFlag},
-      </if>
-      <if test="dispAip != null and dispAip != ''">
-        DISP_AIP = #{dispAip},
-      </if>
-      <if test="timeOutType != null and timeOutType != ''">
-        TIME_OUT_TYPE = #{timeOutType},
-      </if>
-      <if test="attachEditPriv != null and attachEditPriv != ''">
-        ATTACH_EDIT_PRIV = #{attachEditPriv},
-      </if>
-      <if test="attachEditPrivOnline != null and attachEditPrivOnline != ''">
-        ATTACH_EDIT_PRIV_ONLINE = #{attachEditPrivOnline},
-      </if>
-      <if test="attachMacroMark != null and attachMacroMark != ''">
-        ATTACH_MACRO_MARK = #{attachMacroMark},
-      </if>
-      <if test="viewPriv != null and viewPriv != ''">
-        VIEW_PRIV = #{viewPriv},
-      </if>
-      <if test="signType != null and signType != ''">
-        SIGN_TYPE = #{signType},
-      </if>
-      <if test="countersign != null and countersign != ''">
-        COUNTERSIGN = #{countersign},
-      </if>
-      <if test="workingdaysType != null and workingdaysType != ''">
-        WORKINGDAYS_TYPE = #{workingdaysType},
-      </if>
-      <if test="prcsUser != null and prcsUser != ''">
-        PRCS_USER = #{prcsUser},
-      </if>
-      <if test="prcsItem != null and prcsItem != ''">
-        PRCS_ITEM = #{prcsItem},
-      </if>
-      <if test="hiddenItem != null and hiddenItem != ''">
-        HIDDEN_ITEM = #{hiddenItem},
-      </if>
-      <if test="requiredItem != null and requiredItem != ''">
-        REQUIRED_ITEM = #{requiredItem},
-      </if>
-      <if test="prcsDept != null and prcsDept != ''">
-        PRCS_DEPT = #{prcsDept},
-      </if>
-      <if test="prcsPriv != null and prcsPriv != ''">
-        PRCS_PRIV = #{prcsPriv},
-      </if>
-      <if test="prcsTo != null and prcsTo != ''">
-        PRCS_TO = #{prcsTo},
-      </if>
-      <if test="plugin != null and plugin != ''">
-        PLUGIN = #{plugin},
-      </if>
-      <if test="pluginSave != null and pluginSave != ''">
-        PLUGIN_SAVE = #{pluginSave},
-      </if>
-      <if test="prcsItemAuto != null and prcsItemAuto != ''">
-        PRCS_ITEM_AUTO = #{prcsItemAuto},
-      </if>
-      <if test="prcsIn != null and prcsIn != ''">
-        PRCS_IN = #{prcsIn},
-      </if>
-      <if test="prcsOut != null and prcsOut != ''">
-        PRCS_OUT = #{prcsOut},
-      </if>
-      <if test="prcsInSet != null and prcsInSet != ''">
-        PRCS_IN_SET = #{prcsInSet},
-      </if>
-      <if test="prcsOutSet != null and prcsOutSet != ''">
-        PRCS_OUT_SET = #{prcsOutSet},
-      </if>
-      <if test="autoDept != null and autoDept != ''">
-        AUTO_DEPT = #{autoDept},
-      </if>
-      <if test="autoUserOp != null and autoUserOp != ''">
-        AUTO_USER_OP = #{autoUserOp},
-      </if>
-      <if test="autoUser != null and  autoUser != ''">
-        AUTO_USER = #{autoUser},
-      </if>
-      <if test="autoUserOpReturn != null and autoUserOpReturn != ''">
-        AUTO_USER_OP_RETURN = #{autoUserOpReturn},
-      </if>
-      <if test="autoUserReturn != null and autoUserReturn != ''">
-        AUTO_USER_RETURN = #{autoUserReturn},
-      </if>
-      <if test="userFilterPrcsPriv != null and userFilterPrcsPriv != ''">
-        USER_FILTER_PRCS_PRIV = #{userFilterPrcsPriv},
-      </if>
-      <if test="userFilterPrcsPrivOther != null and userFilterPrcsPrivOther != ''">
-        USER_FILTER_PRCS_PRIV_OTHER = #{userFilterPrcsPrivOther},
-      </if>
-      <if test="userFilterPrcsDept != null and userFilterPrcsDept != ''">
-        USER_FILTER_PRCS_DEPT = #{userFilterPrcsDept},
-      </if>
-      <if test="userFilterPrcsDeptOther != null and userFilterPrcsDeptOther != ''">
-        USER_FILTER_PRCS_DEPT_OTHER = #{userFilterPrcsDeptOther},
-      </if>
-      <if test="mailTo != null and mailTo != ''">
-        MAIL_TO = #{mailTo},
-      </if>
-      <if test="mailToDept != null and mailToDept != ''">
-        MAIL_TO_DEPT = #{mailToDept},
-      </if>
-      <if test="mailToPriv != null and mailToPriv != ''">
-        MAIL_TO_PRIV = #{mailToPriv},
-      </if>
-      <if test="conditionDesc != null and conditionDesc != ''">
-        CONDITION_DESC = #{conditionDesc},
-      </if>
-      <if test="relationIn != null and relationIn != ''">
-        RELATION_IN = #{relationIn},
-      </if>
-      <if test="relationOut != null and relationOut != ''">
-        RELATION_OUT = #{relationOut},
-      </if>
-      <if test="controlMode != null and controlMode != ''">
-        CONTROL_MODE = #{controlMode},
-      </if>
-      <if test="listColumnPriv != null and listColumnPriv != ''">
-        LIST_COLUMN_PRIV = #{listColumnPriv},
-      </if>
-      <if test="fileuploadPriv != null and fileuploadPriv != ''">
-        FILEUPLOAD_PRIV = #{fileuploadPriv},
-      </if>
-      <if test="imguploadPriv != null and imguploadPriv != ''">
-        IMGUPLOAD_PRIV = #{imguploadPriv}
-      </if>
-    </set>
-    where ID = #{id}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.workflow.FlowProcess">
-    update flow_process
-    set FLOW_ID = #{flowId,jdbcType=INTEGER},
-      PRCS_ID = #{prcsId,jdbcType=INTEGER},
-      PRCS_TYPE = #{prcsType,jdbcType=TINYINT},
-      PRCS_NAME = #{prcsName,jdbcType=VARCHAR},
-      SET_LEFT = #{setLeft,jdbcType=INTEGER},
-      SET_TOP = #{setTop,jdbcType=INTEGER},
-      FEEDBACK = #{feedback,jdbcType=VARCHAR},
-      AUTO_TYPE = #{autoType,jdbcType=VARCHAR},
-      USER_FILTER = #{userFilter,jdbcType=VARCHAR},
-      TIME_OUT = #{timeOut,jdbcType=VARCHAR},
-      TIME_OUT_MODIFY = #{timeOutModify,jdbcType=CHAR},
-      TIME_OUT_ATTEND = #{timeOutAttend,jdbcType=CHAR},
-      SIGNLOOK = #{signlook,jdbcType=CHAR},
-      TOP_DEFAULT = #{topDefault,jdbcType=CHAR},
-      USER_LOCK = #{userLock,jdbcType=CHAR},
-      SYNC_DEAL = #{syncDeal,jdbcType=CHAR},
-      SYNC_DEAL_CHECK = #{syncDealCheck,jdbcType=VARCHAR},
-      TURN_PRIV = #{turnPriv,jdbcType=CHAR},
-      CHILD_FLOW = #{childFlow,jdbcType=INTEGER},
-      GATHER_NODE = #{gatherNode,jdbcType=CHAR},
-      ALLOW_BACK = #{allowBack,jdbcType=CHAR},
-      ATTACH_PRIV = #{attachPriv,jdbcType=VARCHAR},
-      AUTO_BASE_USER = #{autoBaseUser,jdbcType=INTEGER},
-      REMIND_FLAG = #{remindFlag,jdbcType=INTEGER},
-      DISP_AIP = #{dispAip,jdbcType=INTEGER},
-      TIME_OUT_TYPE = #{timeOutType,jdbcType=CHAR},
-      ATTACH_EDIT_PRIV = #{attachEditPriv,jdbcType=CHAR},
-      ATTACH_EDIT_PRIV_ONLINE = #{attachEditPrivOnline,jdbcType=CHAR},
-      ATTACH_MACRO_MARK = #{attachMacroMark,jdbcType=CHAR},
-      VIEW_PRIV = #{viewPriv,jdbcType=INTEGER},
-      SIGN_TYPE = #{signType,jdbcType=BIT},
-      COUNTERSIGN = #{countersign,jdbcType=BIT},
-      WORKINGDAYS_TYPE = #{workingdaysType,jdbcType=CHAR},
-      PRCS_USER = #{prcsUser,jdbcType=LONGVARCHAR},
-      PRCS_ITEM = #{prcsItem,jdbcType=LONGVARCHAR},
-      HIDDEN_ITEM = #{hiddenItem,jdbcType=LONGVARCHAR},
-      REQUIRED_ITEM = #{requiredItem,jdbcType=LONGVARCHAR},
-      PRCS_DEPT = #{prcsDept,jdbcType=LONGVARCHAR},
-      PRCS_PRIV = #{prcsPriv,jdbcType=LONGVARCHAR},
-      PRCS_TO = #{prcsTo,jdbcType=LONGVARCHAR},
-      PLUGIN = #{plugin,jdbcType=LONGVARCHAR},
-      PLUGIN_SAVE = #{pluginSave,jdbcType=LONGVARCHAR},
-      PRCS_ITEM_AUTO = #{prcsItemAuto,jdbcType=LONGVARCHAR},
-      PRCS_IN = #{prcsIn,jdbcType=LONGVARCHAR},
-      PRCS_OUT = #{prcsOut,jdbcType=LONGVARCHAR},
-      PRCS_IN_SET = #{prcsInSet,jdbcType=LONGVARCHAR},
-      PRCS_OUT_SET = #{prcsOutSet,jdbcType=LONGVARCHAR},
-      AUTO_DEPT = #{autoDept,jdbcType=LONGVARCHAR},
-      AUTO_USER_OP = #{autoUserOp,jdbcType=LONGVARCHAR},
-      AUTO_USER = #{autoUser,jdbcType=LONGVARCHAR},
-      AUTO_USER_OP_RETURN = #{autoUserOpReturn,jdbcType=LONGVARCHAR},
-      AUTO_USER_RETURN = #{autoUserReturn,jdbcType=LONGVARCHAR},
-      USER_FILTER_PRCS_PRIV = #{userFilterPrcsPriv,jdbcType=LONGVARCHAR},
-      USER_FILTER_PRCS_PRIV_OTHER = #{userFilterPrcsPrivOther,jdbcType=LONGVARCHAR},
-      USER_FILTER_PRCS_DEPT = #{userFilterPrcsDept,jdbcType=LONGVARCHAR},
-      USER_FILTER_PRCS_DEPT_OTHER = #{userFilterPrcsDeptOther,jdbcType=LONGVARCHAR},
-      MAIL_TO = #{mailTo,jdbcType=LONGVARCHAR},
-      MAIL_TO_DEPT = #{mailToDept,jdbcType=LONGVARCHAR},
-      MAIL_TO_PRIV = #{mailToPriv,jdbcType=LONGVARCHAR},
-      CONDITION_DESC = #{conditionDesc,jdbcType=LONGVARCHAR},
-      RELATION_IN = #{relationIn,jdbcType=LONGVARCHAR},
-      RELATION_OUT = #{relationOut,jdbcType=LONGVARCHAR},
-      CONTROL_MODE = #{controlMode,jdbcType=LONGVARCHAR},
-      LIST_COLUMN_PRIV = #{listColumnPriv,jdbcType=LONGVARCHAR},
-      FILEUPLOAD_PRIV = #{fileuploadPriv,jdbcType=LONGVARCHAR},
-      IMGUPLOAD_PRIV = #{imguploadPriv,jdbcType=LONGVARCHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xoa.model.workflow.FlowProcess">
-    update flow_process
-    set FLOW_ID = #{flowId,jdbcType=INTEGER},
-      PRCS_ID = #{prcsId,jdbcType=INTEGER},
-      PRCS_TYPE = #{prcsType,jdbcType=TINYINT},
-      PRCS_NAME = #{prcsName,jdbcType=VARCHAR},
-      SET_LEFT = #{setLeft,jdbcType=INTEGER},
-      SET_TOP = #{setTop,jdbcType=INTEGER},
-      FEEDBACK = #{feedback,jdbcType=VARCHAR},
-      AUTO_TYPE = #{autoType,jdbcType=VARCHAR},
-      USER_FILTER = #{userFilter,jdbcType=VARCHAR},
-      TIME_OUT = #{timeOut,jdbcType=VARCHAR},
-      TIME_OUT_MODIFY = #{timeOutModify,jdbcType=CHAR},
-      TIME_OUT_ATTEND = #{timeOutAttend,jdbcType=CHAR},
-      SIGNLOOK = #{signlook,jdbcType=CHAR},
-      TOP_DEFAULT = #{topDefault,jdbcType=CHAR},
-      USER_LOCK = #{userLock,jdbcType=CHAR},
-      SYNC_DEAL = #{syncDeal,jdbcType=CHAR},
-      SYNC_DEAL_CHECK = #{syncDealCheck,jdbcType=VARCHAR},
-      TURN_PRIV = #{turnPriv,jdbcType=CHAR},
-      CHILD_FLOW = #{childFlow,jdbcType=INTEGER},
-      GATHER_NODE = #{gatherNode,jdbcType=CHAR},
-      ALLOW_BACK = #{allowBack,jdbcType=CHAR},
-      ATTACH_PRIV = #{attachPriv,jdbcType=VARCHAR},
-      AUTO_BASE_USER = #{autoBaseUser,jdbcType=INTEGER},
-      REMIND_FLAG = #{remindFlag,jdbcType=INTEGER},
-      DISP_AIP = #{dispAip,jdbcType=INTEGER},
-      TIME_OUT_TYPE = #{timeOutType,jdbcType=CHAR},
-      ATTACH_EDIT_PRIV = #{attachEditPriv,jdbcType=CHAR},
-      ATTACH_EDIT_PRIV_ONLINE = #{attachEditPrivOnline,jdbcType=CHAR},
-      ATTACH_MACRO_MARK = #{attachMacroMark,jdbcType=CHAR},
-      VIEW_PRIV = #{viewPriv,jdbcType=INTEGER},
-      SIGN_TYPE = #{signType,jdbcType=BIT},
-      COUNTERSIGN = #{countersign,jdbcType=BIT},
-      WORKINGDAYS_TYPE = #{workingdaysType,jdbcType=CHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  
-  
-  
-  
+        #{listColumnPriv},
+        #{fileuploadPriv},
+        #{imguploadPriv}
+        )
+    </insert>
+
+    <!-- 修改流程节点 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowProcess">
+        update flow_process
+        <set>
+            <if test="flowId != null and flowId!=''">
+                FLOW_ID = #{flowId},
+            </if>
+            <if test="prcsId != null and prcsId!=''">
+                PRCS_ID = #{prcsId},
+            </if>
+            <if test="prcsType != null and prcsType!=''">
+                PRCS_TYPE = #{prcsType},
+            </if>
+            <if test="prcsName != null and prcsName!=''">
+                PRCS_NAME = #{prcsName},
+            </if>
+            <if test="setLeft != null and setLeft!=''">
+                SET_LEFT = #{setLeft},
+            </if>
+            <if test="setTop != null and setTop!=''">
+                SET_TOP = #{setTop},
+            </if>
+            <if test="feedback != null and feedback!=''">
+                FEEDBACK = #{feedback},
+            </if>
+            <if test="autoType != null and autoType!=''">
+                AUTO_TYPE = #{autoType},
+            </if>
+            <if test="userFilter != null and userFilter != ''">
+                USER_FILTER = #{userFilter},
+            </if>
+            <if test="timeOut != null and timeOut!=''">
+                TIME_OUT = #{timeOut},
+            </if>
+            <if test="timeOutModify != null and timeOutModify !=''">
+                TIME_OUT_MODIFY = #{timeOutModify},
+            </if>
+            <if test="timeOutAttend != null and timeOutAttend != ''">
+                TIME_OUT_ATTEND = #{timeOutAttend},
+            </if>
+            <if test="signlook != null and signlook != ''">
+                SIGNLOOK = #{signlook},
+            </if>
+            <if test="topDefault != null and topDefault !=''">
+                TOP_DEFAULT = #{topDefault},
+            </if>
+            <if test="userLock != null and userLock != ''">
+                USER_LOCK = #{userLock},
+            </if>
+            <if test="syncDeal != null and syncDeal != ''">
+                SYNC_DEAL = #{syncDeal},
+            </if>
+            <if test="syncDealCheck != null and syncDealCheck != ''">
+                SYNC_DEAL_CHECK = #{syncDealCheck},
+            </if>
+            <if test="turnPriv != null and turnPriv != ''">
+                TURN_PRIV = #{turnPriv},
+            </if>
+            <if test="childFlow != null and childFlow != ''">
+                CHILD_FLOW = #{childFlow},
+            </if>
+            <if test="gatherNode != null and gatherNode != ''">
+                GATHER_NODE = #{gatherNode},
+            </if>
+            <if test="allowBack != null and allowBack != ''">
+                ALLOW_BACK = #{allowBack},
+            </if>
+            <if test="attachPriv != null and attachPriv != ''">
+                ATTACH_PRIV = #{attachPriv},
+            </if>
+            <if test="autoBaseUser != null and autoBaseUser != ''">
+                AUTO_BASE_USER = #{autoBaseUser},
+            </if>
+            <if test="remindFlag != null and remindFlag != ''">
+                REMIND_FLAG = #{remindFlag},
+            </if>
+            <if test="dispAip != null and dispAip != ''">
+                DISP_AIP = #{dispAip},
+            </if>
+            <if test="timeOutType != null and timeOutType != ''">
+                TIME_OUT_TYPE = #{timeOutType},
+            </if>
+            <if test="attachEditPriv != null and attachEditPriv != ''">
+                ATTACH_EDIT_PRIV = #{attachEditPriv},
+            </if>
+            <if test="attachEditPrivOnline != null and attachEditPrivOnline != ''">
+                ATTACH_EDIT_PRIV_ONLINE = #{attachEditPrivOnline},
+            </if>
+            <if test="attachMacroMark != null and attachMacroMark != ''">
+                ATTACH_MACRO_MARK = #{attachMacroMark},
+            </if>
+            <if test="viewPriv != null and viewPriv != ''">
+                VIEW_PRIV = #{viewPriv},
+            </if>
+            <if test="signType != null and signType != ''">
+                SIGN_TYPE = #{signType},
+            </if>
+            <if test="countersign != null and countersign != ''">
+                COUNTERSIGN = #{countersign},
+            </if>
+            <if test="workingdaysType != null and workingdaysType != ''">
+                WORKINGDAYS_TYPE = #{workingdaysType},
+            </if>
+            <if test="prcsUser != null and prcsUser != ''">
+                PRCS_USER = #{prcsUser},
+            </if>
+            <if test="prcsItem != null and prcsItem != ''">
+                PRCS_ITEM = #{prcsItem},
+            </if>
+            <if test="hiddenItem != null and hiddenItem != ''">
+                HIDDEN_ITEM = #{hiddenItem},
+            </if>
+            <if test="requiredItem != null and requiredItem != ''">
+                REQUIRED_ITEM = #{requiredItem},
+            </if>
+            <if test="prcsDept != null and prcsDept != ''">
+                PRCS_DEPT = #{prcsDept},
+            </if>
+            <if test="prcsPriv != null and prcsPriv != ''">
+                PRCS_PRIV = #{prcsPriv},
+            </if>
+            <if test="prcsTo != null and prcsTo != ''">
+                PRCS_TO = #{prcsTo},
+            </if>
+            <if test="plugin != null and plugin != ''">
+                PLUGIN = #{plugin},
+            </if>
+            <if test="pluginSave != null and pluginSave != ''">
+                PLUGIN_SAVE = #{pluginSave},
+            </if>
+            <if test="prcsItemAuto != null and prcsItemAuto != ''">
+                PRCS_ITEM_AUTO = #{prcsItemAuto},
+            </if>
+            <if test="prcsIn != null and prcsIn != ''">
+                PRCS_IN = #{prcsIn},
+            </if>
+            <if test="prcsOut != null and prcsOut != ''">
+                PRCS_OUT = #{prcsOut},
+            </if>
+            <if test="prcsInSet != null and prcsInSet != ''">
+                PRCS_IN_SET = #{prcsInSet},
+            </if>
+            <if test="prcsOutSet != null and prcsOutSet != ''">
+                PRCS_OUT_SET = #{prcsOutSet},
+            </if>
+            <if test="autoDept != null and autoDept != ''">
+                AUTO_DEPT = #{autoDept},
+            </if>
+            <if test="autoUserOp != null and autoUserOp != ''">
+                AUTO_USER_OP = #{autoUserOp},
+            </if>
+            <if test="autoUser != null and  autoUser != ''">
+                AUTO_USER = #{autoUser},
+            </if>
+            <if test="autoUserOpReturn != null and autoUserOpReturn != ''">
+                AUTO_USER_OP_RETURN = #{autoUserOpReturn},
+            </if>
+            <if test="autoUserReturn != null and autoUserReturn != ''">
+                AUTO_USER_RETURN = #{autoUserReturn},
+            </if>
+            <if test="userFilterPrcsPriv != null and userFilterPrcsPriv != ''">
+                USER_FILTER_PRCS_PRIV = #{userFilterPrcsPriv},
+            </if>
+            <if test="userFilterPrcsPrivOther != null and userFilterPrcsPrivOther != ''">
+                USER_FILTER_PRCS_PRIV_OTHER = #{userFilterPrcsPrivOther},
+            </if>
+            <if test="userFilterPrcsDept != null and userFilterPrcsDept != ''">
+                USER_FILTER_PRCS_DEPT = #{userFilterPrcsDept},
+            </if>
+            <if test="userFilterPrcsDeptOther != null and userFilterPrcsDeptOther != ''">
+                USER_FILTER_PRCS_DEPT_OTHER = #{userFilterPrcsDeptOther},
+            </if>
+            <if test="mailTo != null and mailTo != ''">
+                MAIL_TO = #{mailTo},
+            </if>
+            <if test="mailToDept != null and mailToDept != ''">
+                MAIL_TO_DEPT = #{mailToDept},
+            </if>
+            <if test="mailToPriv != null and mailToPriv != ''">
+                MAIL_TO_PRIV = #{mailToPriv},
+            </if>
+            <if test="conditionDesc != null and conditionDesc != ''">
+                CONDITION_DESC = #{conditionDesc},
+            </if>
+            <if test="relationIn != null and relationIn != ''">
+                RELATION_IN = #{relationIn},
+            </if>
+            <if test="relationOut != null and relationOut != ''">
+                RELATION_OUT = #{relationOut},
+            </if>
+            <if test="controlMode != null and controlMode != ''">
+                CONTROL_MODE = #{controlMode},
+            </if>
+            <if test="listColumnPriv != null and listColumnPriv != ''">
+                LIST_COLUMN_PRIV = #{listColumnPriv},
+            </if>
+            <if test="fileuploadPriv != null and fileuploadPriv != ''">
+                FILEUPLOAD_PRIV = #{fileuploadPriv},
+            </if>
+            <if test="imguploadPriv != null and imguploadPriv != ''">
+                IMGUPLOAD_PRIV = #{imguploadPriv}
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
 </mapper>

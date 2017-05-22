@@ -7,7 +7,7 @@ import com.xoa.model.workflow.FlowProcess;
 public interface FlowProcessMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(FlowProcess record);
+    void insert(FlowProcess record);
 
     int insertSelective(FlowProcess record);
 
