@@ -142,9 +142,9 @@
             selectdeptNo+=(obj.attr("deptNo")+',');
         };
         //alert(selectItemsId);
-        parent.opener.document.getElementById(parent.opener.user_id).value=selectItemsName;
-        parent.opener.document.getElementById(parent.opener.user_id).setAttribute('deptId',selectItemsId);
-        parent.opener.document.getElementById(parent.opener.user_id).setAttribute('deptNo',selectdeptNo);
+        parent.opener.document.getElementById(parent.opener.dept_id).value=selectItemsName;
+        parent.opener.document.getElementById(parent.opener.dept_id).setAttribute('deptId',selectItemsId);
+        parent.opener.document.getElementById(parent.opener.dept_id).setAttribute('deptNo',selectdeptNo);
         window.close();
     }
     $(function(){
