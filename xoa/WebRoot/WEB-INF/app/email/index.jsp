@@ -405,7 +405,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td width="15%"><fmt:message code="email.th.recipients" />：</td>
 									<td width="84%">
 										<div class="inPole">
-											<textarea name="txt" disabled></textarea>
+											<textarea name="txt" id="senduser" user_id='admin' value="" disabled></textarea>
 											<span class="add_img">
 												<!-- <span class="addImg">
 													<img src="../img/org_select.png" class="addIcon"/>
@@ -438,8 +438,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<tr>
 									<td><fmt:message code="email.th.major" />：</td>
 									<td>
-										<input style="width: 153px;height: 30px;" type="text" id="txt" value="" class="input_txt" />
-										<span class="import"><fmt:message code="email.th.conmmemail" /></span>
+										<input style="width: 153px;height: 30px;color:#000;" type="text" id="txt" value="" class="input_txt" />
+										<%--<span class="import"><fmt:message code="email.th.conmmemail" /></span>--%>
 									</td>
 								</tr>
 								<tr>
@@ -469,6 +469,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td colspan="2">
 										<div class="div_btn" style="margin-left:46%;">
 											<input type="button" id="btn1" style="cursor: pointer;width: 70px;border-radius: 5px;height: 30px;line-height: 30px;color: #000;" value="<fmt:message code="email.th.transmitimmediate" />" />
+                                        	<input type="button" id="btn2" style="cursor: pointer;width: 90px;border-radius: 5px;height: 30px;line-height: 30px;color: #000;" value="<fmt:message code="email.th.savedraftbox" />" />
 										</div>
 										
 									</td>
@@ -551,7 +552,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
 		<script type="text/javascript">
-             user = '';
+             user = 'senduser';
              user_id='senduser';
 			 var ue = UE.getEditor('container');
 			 var res
@@ -741,11 +742,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         $('textarea').val('');
                                         $('#txt').val('');
                                         ue.setContent('');
+                                        $('#senduser').val('');
                                         $('.Attachmen td').eq(1).find('a').remove();
 										for(var i=0;i<atta.length;i++){
-											str+='<a href="javascript:;" style="text-decoration: none;margin-left: 5px">'+atta[i].attachName+'</a>';
+											str+='<a href="<%=basePath %>download?'+atta[i].attUrl+'" style="text-decoration: none;margin-left: 5px">'+atta[i].attachName+'</a>';
 										}
-										$('textarea').val(data2.userName);
+                                        $('#senduser').val(data2.toName);
 										$('#txt').val(data2.subject);
 										ue.setContent(data2.content);
 										$('.Attachmen td').eq(1).append(str);
@@ -879,14 +881,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             var str='';
                             var str1='';
                             for(var i=0;i<data.length;i++){
-                                str+='<a href="<%=basePath %>download?'+data[i].attUrl+'" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
+                                str+='<a href="<%=basePath %>download?'+data[i].attUrl+'" NAME="'+data[i].attachName+'*" style="text-decoration: none;margin-left: 5px">'+data[i].attachName+'</a>';
                                 str1+='<input type="hidden" class="inHidden" value="'+data[i].aid+'@'+data[i].ym+'_'+data[i].attachId+',">';
                             }
                             $('.Attachmen td').eq(1).append(str+str1);
                         });
                     }
                 });
-					//点击立即发送
+					//草稿箱点击立即发送
 					$('#btn1').click(function(){
 						var bodyId=$('.main_left .backing').find('input').attr('nId');
                         var dataId1=$('.inPole').find('#senduser').attr('user_id');
@@ -932,6 +934,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             }
                         });
 					})
+				//草稿箱点击保存到草稿箱
+				$('#btn2').click(function(){
+                    var bodyId=$('.main_left .backing').find('input').attr('nId');
+                    var dataId1=$('.inPole').find('#senduser').attr('user_id');
+                    var dataId2=$('.tian').find('#copeNameText').attr('user_id');
+                    var dataId3=$('.mis').find('#secritText').attr('user_id');
+                    var userId=$('textarea[name="txt"]').attr('user_id');
+                    var txt = ue.getContentTxt();
+                    var html = ue.getContent();
+                    var val=$('#txt').val();
+                    var attach=$('.Attachment td').eq(1).find('a');
+                    var aId='';
+                    var uId='';
+                    for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+                        aId += $('.Attachment td .inHidden').eq(i).val();
+                    }
+                    for(var i=0;i<$('.Attachment td .inHidden').length;i++){
+                        uId += attach.eq(i).attr('NAME');
+                    }
+                    var data={
+						'bodyId':bodyId,
+                        'toId2': dataId1,
+                        'copyToId':dataId2,
+                        'secretToId':dataId3,
+                        'subject':val,
+                        'content':html,
+                        'attachmentId':aId,
+                        'attachmentName':uId
+                    };
+                    $.ajax({
+                        type:'post',
+                        url:'saveEmail',
+                        dataType:'json',
+                        data:data,
+                        success:function(){
+                            alert('已保存到草稿箱');
+                            location.reload()
+                        }
+                    });
+				})
 				
 			});
 			
