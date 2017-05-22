@@ -139,7 +139,7 @@ function GooFlow(bgDiv, property) {
             var ev = mousePosition(e), t = getElCoordinate(this);
             X = ev.x - t.left + this.parentNode.scrollLeft;
             Y = ev.y - t.top + this.parentNode.scrollTop;
-            e.data.inthis.addNode(e.data.inthis.$id + "_node_" + e.data.inthis.$max, {
+            e.data.inthis.addNode("node_" + e.data.inthis.$max, {
                 name: "node_" + e.data.inthis.$max,
                 left: X,
                 top: Y,
@@ -1110,6 +1110,8 @@ GooFlow.prototype = {
             this.addLine(j, data.lines[j]);
         for (var k in data.areas)
             this.addArea(k, data.areas[k]);
+        this.$max = data.initNum;
+        console.log(this.$max)
     },
     //用AJAX方式，远程读取一组数据
     //参数para为JSON结构，与JQUERY中$.ajax()方法的传参一样
@@ -1736,6 +1738,7 @@ GooFlow.prototype = {
 //将此类的构造函数加入至JQUERY对象中
 jQuery.extend({
     createGooFlow: function (bgDiv, property) {
+
         return new GooFlow(bgDiv, property);
     }
 }); 
