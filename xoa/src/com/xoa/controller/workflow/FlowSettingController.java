@@ -1,9 +1,12 @@
 package com.xoa.controller.workflow;
 
 import com.xoa.service.workflow.flowsetting.FlowPrivService;
+import com.xoa.util.common.wrapper.BaseWrapper;
 import com.xoa.util.common.wrapper.BaseWrappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -26,5 +29,17 @@ public class FlowSettingController {
     public BaseWrappers getFlowPrivDatas(Integer flowId){
         return privService.queryFlowPriv(flowId);
     }
+
+
+
+
+
+    @RequestMapping("/newFlowPriv")
+    public BaseWrapper newFlowPrivData(Integer privType, @RequestParam("scope[]") Integer scope[],
+                                       @RequestParam("user[]") Integer user[], @RequestParam("role[]")Integer role[],
+                                       @RequestParam("dept[]")Integer dept[],Integer flowId){
+        return privService.newFlowPriv(privType,scope,user,role,dept,flowId);
+    }
+
 
 }
