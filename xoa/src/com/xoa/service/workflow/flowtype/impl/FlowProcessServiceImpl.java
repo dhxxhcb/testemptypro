@@ -64,7 +64,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		List<Map<String, String>> lm=new ArrayList<Map<String,String>>();
 		//根据flowId获取流程信息
 		List<FlowProcess> list=flowProcessMapper.findF(flowId);
-		f.setFlowName(list.get(0).getFlowName());
+		//f.setFlowName(list.get(0).getFlowName());
 		for (int i=0;i<list.size();i++){
 			Integer prId=list.get(i).getPrcsId();
 			String prceTo=list.get(i).getPrcsTo();
@@ -93,10 +93,6 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		f.setDesigndata(list);
 		f.setMax(list.size());
 		return f;
-	}
-
-	private void add(String string) {
-		
 	}
 
 	@Override
