@@ -473,10 +473,10 @@
         function bindClick() {
             $(".set").click(function () {
 				var formId = $(this).attr("formId");
-				var edit=$(this).attr("edit");
+				//var edit=$(this).attr("edit");
                 //alert("design"+formId);
                 //window.location.href="../../form/designer?formId="+formId;
-				window.open("../../form/designer?formId="+formId+"&type="+edit);
+				window.open("../../form/designer?formId="+formId+"&type=edit);
             })
             $(".foot_span_show").click(function () {
                 var formId = $(this).attr("formId");
@@ -637,7 +637,7 @@
 			     if(i%3==0) {html+='<div class="new_excell_center">';}
                  html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main" formId="'+data[i].formId+'" >'+
-                    '<a class="set" formId="'+data[i].formId+'" edit="'+data[i].edit+'"title="编辑" href="javascript:void(0)"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].formName+'</span></div>'+
+                    '<a class="set" formId="'+data[i].formId+'" title="编辑" href="javascript:void(0)"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].formName+'</span></div>'+
                     '<div class="new_excell_info"><div class="new_excell_info_main">'+
                    ' <div style="float: left;text-align: center;margin: 0 auto;">'+
                    ' <img src="../../img/workflow/icon_form_10.png" class="new_excell_pic">'+
