@@ -225,7 +225,7 @@
                         data.forEach(function(v,i){
                             if(v.deptId){
 
-                                tr+='<div class="block-right-item" deptNo="'+v.deptNo+'" deptName="'+v.deptName+'" deptId="'+v.deptId+'" title="'+v.deptName+'"><span class="name">'+v.deptName+'<span class="status"></span></span></div>';
+                                tr+='<div class="block-right-item" deptNo="'+v.deptNo+'" deptName="'+v.deptName+'" id="'+v.deptId+'" deptId="'+v.deptId+'" title="'+v.deptName+'"><span class="name">'+v.deptName+'<span class="status"></span></span></div>';
                             }
                         });
 
@@ -239,12 +239,20 @@
             var that = $(this);
             if(that.attr('class').indexOf('active') > 0){
                 that.removeClass("active");
+                if( $('#selectedDox .userItem #'+that.attr('deptId')).length > 0){
 
+                    $('#selectedDox .userItem #'+that.attr('deptId')).remove();
+                }
             }else{
                 var divObj = $(that.prop("outerHTML"));
                 divObj.addClass("active");
                 that.addClass("active");
-                $('#selectedDox .userItem').append(divObj);
+
+
+                if( $('#selectedDox .userItem #'+that.attr('deptId')).length < 1){
+                    $('#selectedDox .userItem').append(divObj);
+                }
+
             }
 
         });
