@@ -18,6 +18,9 @@ img {
 a {
     text-decoration: none;
 }
+input{
+    outline-style: none;
+}
 
 .clearfix:after {
     content: ".";
@@ -55,22 +58,33 @@ html,body {
     float: left;
     width: 261px;
     height: 100%;
-    background: #fafcff;
+    background: #f5f7f8;
     border-right: 1px solid #919191;
 }
 
 .cont_list .btn_h {
     display: block;
     padding-left: 36px;
-    height: 44px;
-    line-height: 44px;
-    font-size: 16px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 20px;
     color: #262f34;
 }
-.cont_list .btn_h{
-    border-bottom: 1px solid #919191;
+.cont_list .btn_click{
+    position: relative;
+    border-bottom: 1px solid #dcdfe0;
 }
 
+.cont_list .btn_click .icon_d{
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: url("../../../img/workflow/flowsetting/icon_rightarrow_03.png") no-repeat -1px -1px;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+
+}
 .cont_list .btn_h img {
     width: 12px;
     height: 16px;
@@ -78,12 +92,14 @@ html,body {
     vertical-align: -2px;
 }
 
-.cont_list .btn_h:hover {
+.cont_list .btn_click:hover {
     background: #c7e1ff;
 }
 
 .hide {
     display: none;
+    background: #e8f4fc;
+    border-bottom: 1px solid #dcdfe0;
 }
 
 .hide .btn_h {
@@ -93,6 +109,9 @@ html,body {
     line-height: 30px;
     padding-left: 68px;
     color: #262f34;
+}
+.hide li>.btn_h:hover{
+    background: #ccebff;
 }
 
 .hide .icon {
@@ -118,7 +137,6 @@ html,body {
 
 .cont_r .table {
     display: none;
-
     font-size: 16px;
     border: 1px solid #919191;
     /*margin: 0 auto;*/
@@ -133,7 +151,7 @@ html,body {
     text-align: right;
 }
 
-th, td {
+.cont_r .table th,td {
     text-align: center;
     border: 1px solid #919191;
 }
@@ -151,5 +169,55 @@ th, td {
     text-align: left;
     padding-left: 10px;
 }
-
-
+.cont_r .define_r{
+    height: 56px;
+    line-height: 56px;
+}
+.define_r h3{
+    float: left;
+    font-weight: 900;
+    color: #262f34;
+    font-size: 20px;
+    padding-left: 15px;
+}
+.define_r span{
+    float: right;
+    padding-right: 30px;
+}
+.define_r a{
+    border: 1px solid #919191;
+    background: #5ab65a;
+    padding: 5px 18px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 12px;
+}
+.cont_r p{
+    height: 56px;
+    line-height: 56px;
+    padding-left: 22px;
+    background: #c7e1ff;
+    font-size: 18px;
+    font-weight: 900;
+    color: #262f34;
+}
+.con_form {
+    width: 532px;
+    padding: 100px 0 0 200px;
+}
+.con_form .form_group {
+    width: 500px;
+    text-align: right;
+}
+.con_form .form_group .flowName{
+    margin-right: 24px;
+}
+.form_group .flowName .save{
+    margin-left: 4px;
+}
+.con_form input{
+    margin-bottom: 32px;
+    width: 288px;
+    height: 26px;
+    border-radius: 4px;
+}
