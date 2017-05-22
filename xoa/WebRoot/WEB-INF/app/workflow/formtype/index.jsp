@@ -44,12 +44,12 @@
 			cursor:pointer;
 			background-repeat:no-repeat;
 			}
-			#cont_left::-webkit-scrollbar  {  
-				width:10px;    
+		 .head_left_pic {
+				display: inline-block;
+				margin-top: 10px;
+				float: left;
+				margin-left: 50px;
 			}
-			#cont_left::-webkit-scrollbar-corner {
-		        background:#82AFFF;
-		    }
 		.head_rig {width: 10%;margin-top:5px;}
      	.inp {height:24px;}
 		.search {
@@ -305,7 +305,10 @@
 
 <div class="wrap" style="margin-left:0px !important;">
     <div class="head">
-        <div class="head_left"><h1>表单设计</h1></div>
+        <div class="head_left">
+		<div class='head_left_pic'><img src='../../img/workflow/icon_processdesign_03.png'></div>
+		<h1>表单设计</h1>
+		</div>
         <div class="head_mid">
             <input id="form_value" class="inp" type="text" placeholder="输入表名称搜索">
             <div id="btn_search" class="search">
@@ -470,9 +473,10 @@
         function bindClick() {
             $(".set").click(function () {
 				var formId = $(this).attr("formId");
+				var edit=$(this).attr("edit");
                 //alert("design"+formId);
                 //window.location.href="../../form/designer?formId="+formId;
-				window.open("../../form/designer?formId="+formId);
+				window.open("../../form/designer?formId="+formId+"&type="+edit);
             })
             $(".foot_span_show").click(function () {
                 var formId = $(this).attr("formId");
@@ -525,7 +529,7 @@
             })
 			//编辑
             $(".edit").click(function () {
-				//var sortId=$(this).attr("sortId");
+				var sortId=$(this).attr("sortId");
                 var formId = $(this).attr("formId");
                 var formName = $(this).attr("formName");
                 var formSort = $(this).attr("formSort");
@@ -633,7 +637,7 @@
 			     if(i%3==0) {html+='<div class="new_excell_center">';}
                  html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main" formId="'+data[i].formId+'" >'+
-                    '<a class="set" formId="'+data[i].formId+'" title="编辑" href="javascript:void(0)"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].formName+'</span></div>'+
+                    '<a class="set" formId="'+data[i].formId+'" edit="'+data[i].edit+'"title="编辑" href="javascript:void(0)"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].formName+'</span></div>'+
                     '<div class="new_excell_info"><div class="new_excell_info_main">'+
                    ' <div style="float: left;text-align: center;margin: 0 auto;">'+
                    ' <img src="../../img/workflow/icon_form_10.png" class="new_excell_pic">'+
