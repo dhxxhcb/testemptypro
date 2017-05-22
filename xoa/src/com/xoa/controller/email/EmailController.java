@@ -56,7 +56,7 @@ public class EmailController {
      * 参数说明:   @return
      * @return String
      */
-    @RequestMapping(value = "/sendEmail",method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/sendEmail",method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     public @ResponseBody
     ToJson<EmailBodyModel> insertEmailBody(
             EmailBodyModel emailBodyModel,
@@ -95,7 +95,7 @@ public class EmailController {
             String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
             emailBodyModel.setFromId(userId);
         }
-        if(StringUtils.checkNull(emailBodyModel.getBodyId().toString())) {
+        if(emailBodyModel.getBodyId() == null) {
             return emailService.saveEmail(emailBodyModel);
         }else{
             emailBodyModel.setSendFlag("0");
