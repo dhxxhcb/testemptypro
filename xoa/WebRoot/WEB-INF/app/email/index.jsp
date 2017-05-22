@@ -78,6 +78,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				})
 				//其他邮件箱下的文件夹点击事件
 				$('.divUlShow').on('click','li',function(){
+                    if ($('.UP_INBOX').css('display')=='block'){
+                        $('.UP_INBOX').hide();
+                        $('.main').show().find('.otherMailFolder').show().siblings().hide();
+                    }
                     $('.otherMailFolder').css('display','block').siblings().css('display','none');
 					//console.log($('.otherMailFolder').siblings());
 				    var id=$(this).attr('boxId');
