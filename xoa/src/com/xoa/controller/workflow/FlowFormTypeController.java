@@ -110,6 +110,12 @@ public class FlowFormTypeController {
 		return flowFormService.updateForm(formId,formName,deptId,formSort,otherinfo);
 	}
 
+	@RequestMapping("/updateFormType")
+	@ResponseBody
+	public BaseWrapper updateFormType(Integer formId,String formName,Integer deptId,Integer formSort,String printModel,String printModelShort){
+		return flowFormService.updateFormType(formId,formName,deptId,formSort,printModel,printModelShort);
+	}
+
 	/**
 	 * Created by:   pfl
 	 * date:   2017/5/17 15:58

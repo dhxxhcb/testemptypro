@@ -196,7 +196,47 @@ public class FlowFormService {
          return wrapper;
      }
 
+    public BaseWrapper updateFormType(Integer formId,String formName,Integer deptId,Integer formSort,String printModel,String printModelShort){
+        BaseWrapper wrapper =new BaseWrapper();
 
+        if(formId==null){
+            wrapper.setFlag(false);
+            wrapper.setStatus(true);
+            wrapper.setMsg("表单Id不能为空");
+            return wrapper;
+        }
+        if(StringUtils.checkNull(printModel)){
+            wrapper.setFlag(false);
+            wrapper.setStatus(true);
+            wrapper.setMsg("表单名称不能为空");
+            return wrapper;
+        }
+        if(StringUtils.checkNull(printModelShort)){
+            wrapper.setFlag(false);
+            wrapper.setStatus(true);
+            wrapper.setMsg("表单名称不能为空");
+            return wrapper;
+        }
+        FlowFormType flowFormType =new FlowFormType();
+        flowFormType.setFormName(formName);
+        flowFormType.setDeptId(deptId);
+        flowFormType.setFormSort(formSort);
+        flowFormType.setFormId(formId);
+        flowFormType.setPrintModel(printModel);
+        flowFormType.setPrintModelShort(printModelShort);
+        int res =flowFormTypeMapper.updateSelectParam(flowFormType);
+        if(res>0){
+            wrapper.setFlag(true);
+            wrapper.setStatus(true);
+            wrapper.setMsg("更新表单成功");
+        }else{
+            wrapper.setFlag(false);
+            wrapper.setStatus(true);
+            wrapper.setMsg("更新表单失败");
+        }
+
+        return wrapper;
+    }
 
 
 }

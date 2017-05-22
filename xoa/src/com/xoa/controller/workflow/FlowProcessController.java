@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xoa.model.workflow.FlowProcess;
+import com.xoa.model.workflow.FlowProcessList;
 import com.xoa.service.workflow.flowtype.FlowProcessService;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
@@ -39,8 +40,8 @@ public class FlowProcessController {
 		@ResponseBody
 	  	@RequestMapping(value = "findFlow",produces = {"application/json;charset=UTF-8"})
 	    public ToJson<FlowProcess> findFlow(
-	    		@RequestParam("listType") String listType, 
-	    		@RequestParam("flowId") int flowId, 
+//	    		@RequestParam("listType") String listType, 
+//	    		@RequestParam("flowId") int flowId, 
 	    		@RequestParam("id") int id, 
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
@@ -94,9 +95,9 @@ public class FlowProcessController {
 			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
 			try {
 				//request.setCharacterEncoding("utf-8");
-				if(flowProcess.getPluginSave()==null){
+				/*if(flowProcess.getPluginSave()==null){
 					flowProcess.setPluginSave("");
-				}
+				}*/
 				int a=flowProcessService.insertSelective(flowProcess);
 				if(a>0){
 					json.setObject(flowProcess);
@@ -209,14 +210,14 @@ public class FlowProcessController {
 		 */
 		@ResponseBody
 	  	@RequestMapping(value = "flowview",produces = {"application/json;charset=UTF-8"})
-	    public ToJson<FlowProcess> flowview(
+	    public ToJson<FlowProcessList> flowview(
 	    		@RequestParam("flowId") int flowId, 
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
-			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
+			ToJson<FlowProcessList> json= new ToJson<FlowProcessList>(0,null);			
 			try {
-				FlowProcess f=flowProcessService.flowView(flowId);
+				FlowProcessList f=flowProcessService.flowView(flowId);
 				json.setObject(f);
 		        json.setMsg("OK");
 		        json.setFlag(0);

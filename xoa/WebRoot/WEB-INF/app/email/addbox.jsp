@@ -213,7 +213,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						uId += attach.eq(i).attr('NAME');
 					}
 					var data={
-					 	'fromId':'admin',
                         'toId2': dataId1,
                         'copyToId':dataId2,
                         'secretToId':dataId3,

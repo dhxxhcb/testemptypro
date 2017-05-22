@@ -65,6 +65,7 @@ public class Ctest {
 	public void test() throws Exception {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("fromId", "admin");
+
 		ToJson<EmailBodyModel> toJson = emailUtilService.selectIsRead(maps, 1, 10, false, "xoa1001");
 		System.out.println(JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
 

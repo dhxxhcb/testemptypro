@@ -3,7 +3,6 @@ package com.xoa.service.menu;
 import java.util.List;
 
 import com.xoa.model.menu.MobileApp;
-import com.xoa.util.dataSource.DynDatasource;
 
     /**
      * 
@@ -23,7 +22,6 @@ public interface MobileAppService {
 	  * 参数说明:   @return
 	  * @return     List<MobileApp> 返回APP菜单集合
 	  */
-	@DynDatasource
 	public List<MobileApp> getMobileAppList();
 
 }

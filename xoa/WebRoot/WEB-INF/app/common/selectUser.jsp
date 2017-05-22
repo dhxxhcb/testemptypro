@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
  <head>
-    <title>选择部门</title>
+    <title>选择人员</title>
     <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
@@ -225,9 +225,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						arr.push(node);
 					}else if(v.userId){
 						if(v.sex==0){
-							tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"> </span></span></div>';
+							tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" id="'+v.uid+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"> </span></span></div>';
 						}else if(v.sex==1){
-							tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'" user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"></span></span></div>';
+							tr+='<div class="block-right-item" item_id="'+v.uid+'" item_name="'+v.userName+'"  id="'+v.uid+'"  user_id="'+v.userId+'" uid="'+v.uid+'" title="'+v.userName+'"><span class="name">'+v.userName+' '+v.userPrivName+'<span class="status"></span></span></div>';
 						}	
 					}					
 				});
@@ -261,12 +261,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var that = $(this);
 					if(that.attr('class').indexOf('active') > 0){
 						that.removeClass("active");
-						
+                        if( $('#selectedDox .userItem #'+that.attr('uid')).length > 0){
+
+                            $('#selectedDox .userItem #'+that.attr('uid')).remove();
+                        }
 					}else{
 						var divObj = $(that.prop("outerHTML"));
 						divObj.addClass("active");
 						that.addClass("active");
-						$('#selectedDox .userItem').append(divObj);
+                        if( $('#selectedDox .userItem #'+that.attr('uid')).length < 1){
+                            $('#selectedDox .userItem').append(divObj);
+                        }
+
 					}
 					
 				});

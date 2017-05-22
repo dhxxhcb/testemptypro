@@ -3,9 +3,8 @@ package com.xoa.service.department;
 import java.util.List;
 
 import com.xoa.model.department.Department;
-import com.xoa.util.dataSource.DynDatasource;
 
- /**
+/**
  * 创建作者:   张龙飞
  * 创建日期:   2017年4月19日 上午9:36:46
  * 类介绍  :    部门
@@ -23,7 +22,6 @@ public interface DepartmentService {
 	 * 参数说明:   @return
 	 * @return     List<String>  部门名称集合
 	 */
-	@DynDatasource
 	public List<String> getDeptNameById(int... deptIds);
 	
 	/**
@@ -34,7 +32,6 @@ public interface DepartmentService {
 	 * 参数说明:   @return
 	 * @return     String 部门名称串
 	 */
-	@DynDatasource
 	public String getDpNameById(int... deptIds);
 	
 	/**
@@ -44,7 +41,6 @@ public interface DepartmentService {
 	 * 参数说明:   @return
 	 * @return     List<Department>  所有部门的集合
 	 */
-	@DynDatasource
     public List<Department> getDatagrid();
 	
 	/**
@@ -55,7 +51,6 @@ public interface DepartmentService {
 	 * 参数说明:   @return
 	 * @return     Department  部门信息
 	 */
-	@DynDatasource
 	public Department getDeptById(int deptId);
 	
 	/**
@@ -65,7 +60,6 @@ public interface DepartmentService {
 	 * 参数说明:   @param deptId  部门id
 	 * @return     void   无返回值
 	 */
-	@DynDatasource 
 	public void deleteDept(int deptId);
 	
 	/**
@@ -75,7 +69,6 @@ public interface DepartmentService {
 	 * 参数说明:   @param department  部门信息
 	 * @return     void  无返回值
 	 */
-	@DynDatasource 
 	public void insertDept(Department department);
 	/**
 	 * 创建作者:   张龙飞
@@ -84,8 +77,7 @@ public interface DepartmentService {
 	 * 参数说明:   @param department  部门信息
 	 * @return     void  无返回值
 	 */
-	@DynDatasource 
-	public void editDept(Department department);	
+	public void editDept(Department department);
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月19日 上午9:41:31
@@ -94,7 +86,6 @@ public interface DepartmentService {
 	 * 参数说明:   @return
 	 * @return     List<Department>  部门信息集合
 	 */
-	@DynDatasource 
 	public List<Department> getDeptByMany(Department department);
 	
 	/**
@@ -108,8 +99,7 @@ public interface DepartmentService {
 	 * 参数说明:   @return
 	 * @return     List<Department>  部门集合
 	 */
-	@DynDatasource 
-	public List<Department> getChDept(int deptId);	
+	public List<Department> getChDept(int deptId);
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月21日 下午1:12:18
@@ -117,7 +107,6 @@ public interface DepartmentService {
 	 * 参数说明:   @return
 	 * @return     List<Department> 返回上级部门信息
 	 */
-	@DynDatasource
 	public List<Department> getFatherDept(int deptParent,List<Department> list);
 	
 	/**
@@ -129,7 +118,6 @@ public interface DepartmentService {
 	 * 参数说明:   @return  
 	 * @return     List<Department>  部门信息
 	 */
-	@DynDatasource
 	public List<Department> getChDeptByNo(String deptNo,List<Department> list);
 	
 	/**
@@ -140,7 +128,6 @@ public interface DepartmentService {
 	 * 参数说明:   @return
 	 * @return     List<Department> 返回部门信息
 	 */
-	@DynDatasource
 	public List<Department> getChDeptUser(int deptId);
 	
 	/**
@@ -151,7 +138,6 @@ public interface DepartmentService {
 	 * 参数说明:   @return
 	 * @return     List<Department> 返回部门信息
 	 */
-	@DynDatasource
 	public List<Department> getChDtUser(int deptId);
 	/**
 	 * 创建作者:   张龙飞
@@ -161,9 +147,7 @@ public interface DepartmentService {
 	 * 参数说明:   @return
 	 * @return     int 数量
 	 */
-	@DynDatasource
 	public int getCountChDeptUser(String deptNo);
-	@DynDatasource
 	public List<Department> listDept();
 
 }

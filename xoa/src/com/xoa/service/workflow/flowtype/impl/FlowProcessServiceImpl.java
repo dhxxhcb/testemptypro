@@ -31,13 +31,14 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 	}
 	@Override
 	@Transactional
-	public ToJson<FlowProcess> updateByPrimaryKeySelective(FlowProcess record1) {
+	public ToJson<FlowProcess> updateByPrimaryKeySelective(FlowProcess record) {
 		ToJson<FlowProcess> tojson= new ToJson<FlowProcess>();
 		try{
-			flowProcessMapper.updateByPrimaryKeySelective(record1);
+			flowProcessMapper.updateByPrimaryKeySelective(record);
 			tojson.setFlag(0);
 			tojson.setMsg("OK");
 		}catch(Exception e){
+			e.printStackTrace();
 			tojson.setFlag(1);
 			tojson.setMsg("error");
 		}
@@ -55,9 +56,9 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 		flowProcessMapper.deleteByPrimaryKey(id);
 	}
 	@Override
-	public FlowProcess flowView(int flowId) {
+	public FlowProcessList flowView(int flowId) {
 		//定义用于返回的流程信息
-		FlowProcess f=new FlowProcess();
+		FlowProcessList f=new FlowProcessList();
 		Map<String, String> map=null;
 		//定义
 		List<Map<String, String>> lm=new ArrayList<Map<String,String>>();
@@ -89,31 +90,8 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 			}
 		}
 		f.setConnections(lm);
-		List<FlowProcessList> l1=new ArrayList<FlowProcessList>();
-		for (FlowProcess flowProcess : list) {			
-			FlowProcessList fl=new FlowProcessList();
-			Integer id=flowProcess.getId();
-			int prId=flowProcess.getPrcsId();
-			String prcsName=flowProcess.getPrcsName()==null?"":flowProcess.getPrcsName();
-			String prcsIn=flowProcess.getPrcsIn()==null? "":flowProcess.getPrcsIn().trim();
-			String prcsOut=flowProcess.getPrcsOut()==null?"":flowProcess.getPrcsOut();
-			Byte prcsType=flowProcess.getPrcsType();
-			String syncDeal=flowProcess.getSyncDeal()==null?"":flowProcess.getSyncDeal();
-			int setLeft=flowProcess.getSetLeft();
-			int top=flowProcess.getSetTop();
-			fl.setId(id);
-			fl.setPrcsId(prId);
-			fl.setPrcsName(prcsName);
-			fl.setPrcsIn(prcsIn);
-			fl.setPrcsOut(prcsOut);
-			fl.setPrcsType(prcsType);
-			fl.setSyncDeal(syncDeal);
-			fl.setSetLeft(setLeft);
-			fl.setSetTop(top);
-			l1.add(fl);
-		}
-		f.setDesigndata(l1);
-		f.setMax(l1.size());
+		f.setDesigndata(list);
+		f.setMax(list.size());
 		return f;
 	}
 

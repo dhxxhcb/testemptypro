@@ -587,7 +587,7 @@ public class EmailBodyModel implements Serializable {
 	 * 重要程度(空-一般邮件,1-重要,2-非常重要)
 	 */
 	public String getImportant() {
-		return important == null ? "0" : important.trim();
+		return important == null ? "" : important.trim();
 	}
 
 	/**
@@ -615,7 +615,7 @@ public class EmailBodyModel implements Serializable {
 	 * 从自己的哪个外部邮箱ID对应emailbox中id
 	 */
 	public Integer getFromWebmailId() {
-		return fromWebmailId;
+		return fromWebmailId == null ? 0 : fromWebmailId;
 	}
 
 	/**
@@ -671,7 +671,7 @@ public class EmailBodyModel implements Serializable {
 	 * 发送外部邮件ID
 	 */
 	public Integer getRecvToId() {
-		return recvToId;
+		return recvToId == null ? 0:recvToId;
 	}
 
 	/**
@@ -741,7 +741,7 @@ public class EmailBodyModel implements Serializable {
 	 * 邮件密级等级
 	 */
 	public Integer getSecretLevel() {
-		return secretLevel;
+		return secretLevel == null ? 0: secretLevel;
 	}
 
 	/**

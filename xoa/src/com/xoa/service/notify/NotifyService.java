@@ -7,7 +7,6 @@ import com.xoa.model.notify.Notify;
 
 
 import com.xoa.util.ToJson;
-import com.xoa.util.dataSource.DynDatasource;
 /**
  * 
  * 创建作者:   张丽军
@@ -32,8 +31,7 @@ public interface NotifyService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<Notify>
 	 */
-	@DynDatasource
-   public ToJson<Notify>  selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
+	public ToJson<Notify>  selectNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name) throws Exception;
 
 	
 	/**
@@ -49,7 +47,6 @@ public interface NotifyService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<Notify>
 	 */
-	@DynDatasource
 	public List<Notify> selectNotifyManage(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
 	/**
 	 * 
@@ -65,7 +62,6 @@ public interface NotifyService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<Notify>
 	 */
-	@DynDatasource
 	public ToJson<Notify>  unreadNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
 	/**
 	 * 
@@ -81,7 +77,6 @@ public interface NotifyService {
 	 * 参数说明:   @throws Exception
 	 * @return     List<Notify>
 	 */
-	@DynDatasource
 	public ToJson<Notify>  readNotify(Map<String, Object> maps,Integer page,Integer pageSize,boolean useFlag,String name,String sqlType) throws Exception;
    /**
    * 
@@ -92,8 +87,7 @@ public interface NotifyService {
    * 参数说明:   @return
    * @return     List<Notify>
    */
-	@DynDatasource
-   public List<Notify> getNotifyById(String id);
+	public List<Notify> getNotifyById(String id);
    
    /**
     * 
@@ -103,7 +97,6 @@ public interface NotifyService {
     * 参数说明:   @param notify
     * @return     void
     */
-   @DynDatasource
    public  void updateNotify(Notify notify);
    
    /**
@@ -115,7 +108,6 @@ public interface NotifyService {
     * 参数说明:   @return
     * @return     Notify
     */
-   @DynDatasource
    public Notify getNotifyById(Integer id);
   /**
    * 
@@ -125,7 +117,6 @@ public interface NotifyService {
    * 参数说明:   @param notify
    * @return     void
    */
-   @DynDatasource
    public  int addNotify(Notify notify);
    
    /**
@@ -136,7 +127,6 @@ public interface NotifyService {
     * 参数说明:   @param notifyId
     * @return     void
     */
-   @DynDatasource
    public void delete(Integer notifyId);
    /**
     * 
@@ -152,8 +142,7 @@ public interface NotifyService {
     * 参数说明:   @throws Exception
     * @return     Notify
     */
-   @DynDatasource
-public Notify queryById(Map<String, Object> maps, Integer page, Integer pageSize,boolean useFlag, String name,String sqlType) throws Exception;
+   public Notify queryById(Map<String, Object> maps, Integer page, Integer pageSize,boolean useFlag, String name,String sqlType) throws Exception;
 
  
 }

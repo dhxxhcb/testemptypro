@@ -6,10 +6,8 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xoa.model.enclosure.Attachment;
-import com.xoa.util.dataSource.DynDatasource;
 
 public interface EnclosureService {
-	@DynDatasource
 	public void saveAttachment(Attachment attachment);
 	
 	/**
@@ -20,7 +18,6 @@ public interface EnclosureService {
 	 * 参数说明:   @return
 	 * @return     Attachment
 	 */
-	@DynDatasource
 	public Attachment findByAttachId(int attachId);
 	
 	/**
@@ -30,7 +27,6 @@ public interface EnclosureService {
 	 * 参数说明:   @return
 	 * @return     Attachment 附件信息
 	 */
-	@DynDatasource
 	public Attachment findByLast();
 	
 	/**
@@ -44,7 +40,6 @@ public interface EnclosureService {
 	 * 参数说明:   @return
 	 * @return     List<Attachment>  附件信息集合
 	 */
-	@DynDatasource
 	public List<Attachment>  upload(MultipartFile[] files,String company,String module) throws UnsupportedEncodingException;
 	
 	
@@ -58,7 +53,6 @@ public interface EnclosureService {
 	 * 参数说明:   @return
 	 * @return     String 返回附件
 	 */
-	@DynDatasource
 	public String attachmenturl(Attachment att,String company,String module);
 	
 	

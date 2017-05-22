@@ -14,6 +14,7 @@ import com.xoa.service.users.UsersService;
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类  
 @ContextConfiguration(locations = {"classpath:config/spring/springs-beans.xml"})
 public class Atest {
+
 	
 	 
 	

@@ -1103,7 +1103,6 @@ GooFlow.prototype = {
     },
     //载入一组数据
     loadData: function (data) {
-        debugger;
         this.setTitle(data.title);
         for (var i in data.nodes)
             this.addNode(i, data.nodes[i]);
@@ -1114,26 +1113,26 @@ GooFlow.prototype = {
     },
     //用AJAX方式，远程读取一组数据
     //参数para为JSON结构，与JQUERY中$.ajax()方法的传参一样
-    loadDataAjax: function (para) {
-        var This = this;
-        $.ajax({
-            type: para.type,
-            url: para.url,
-            dataType: "json",
-            data: para.data,
-            success: function (msg) {
-                if (para.dataFilter) para.dataFilter(msg, "json");
-                This.loadData(msg);
-                if (para.success) para.success(msg);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                if (para.error) para.error(textStatus, errorThrown);
-            }
-        })
-    },
+    // loadDataAjax: function (para) {
+    //     var This = this;
+    //     $.ajax({
+    //         type: para.type,
+    //         url: para.url,
+    //         dataType: "json",
+    //         data: para.data,
+    //         success: function (msg) {
+    //             if (para.dataFilter) para.dataFilter(msg, "json");
+    //             This.loadData(msg);
+    //             if (para.success) para.success(msg);
+    //         },
+    //         error: function (XMLHttpRequest, textStatus, errorThrown) {
+    //             if (para.error) para.error(textStatus, errorThrown);
+    //         }
+    //     })
+    // },
     //把画好的结束导出到一个变量中(其实也可以直接访问GooFlow对象的$nodeData,$lineData,$areaData这三个JSON属性)
     exportData: function () {
-        return {nodes: this.$nodeData, lines: this.$lineData, areas: this.$areaData};
+        return {title: this.$title, nodes: this.$nodeData, lines: this.$lineData, areas: this.$areaData};
     },
     //清空工作区及已载入的数据
     clearData: function () {
@@ -1160,6 +1159,7 @@ GooFlow.prototype = {
         this.$nodeCount = 0;
         this.$areaCount = 0;
         this.$areaCount = 0;
+        this.title = null;
     },
 ///////////以下为有关画线的方法
     //绘制一条箭头线，并返回线的DOM
