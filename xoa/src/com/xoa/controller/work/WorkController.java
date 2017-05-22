@@ -17,7 +17,7 @@ import com.xoa.util.dataSource.ContextHolder;
  */
 @Controller
 @Scope(value = "prototype")
-@RequestMapping("/work")
+@RequestMapping("/workflow/work")
 public class WorkController {
 	
 	@RequestMapping("/addwork")
