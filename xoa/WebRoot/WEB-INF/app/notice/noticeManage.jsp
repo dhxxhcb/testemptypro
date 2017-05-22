@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
     <style>
         .btn_ok{
-            width:100px;
+            width:26%;
             height:40px;
             background: #f0f0f0;
             float:left;
@@ -108,11 +108,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         .empty {
 
             color: #999 !important;
-
+            line-height: 5px;
         }
-        /*table{
-            text-align: center;
-        }*/
+        .notice_change,.notice_delete,#add_send,#add_baocun,.release3{
+            cursor: pointer;
+        }
+        .release3{
+            margin-top:0px !important;
+            line-height: 26px;
+        }
     </style>
 </head>
 <body>
@@ -224,8 +228,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
                 <div class="td_title1">
                     <!-- 需调整 -->
+
                     <input type="text" name="titileTime" id="add_titileTime"  style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;"
                            placeholder=" <fmt:message code="global.lang.printsubject"/>..." >
+
                     <!-- 后续需要调整 -->
                     <button ></button>
                     <%--请输入发布时间...--%>
@@ -265,7 +271,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <fmt:message code="notice.th.role"/>：
             </td>
             <td>
-                <textarea readonly="readonly" class="td_title1  release1"></textarea>
+                <textarea readonly="readonly" id="add_selectjuese" class="td_title1  release1"></textarea>
                 <img class="td_title2 release4" src="../img/mg2.png" alt=""/>
                 <div class="release3"><fmt:message code="global.lang.add"/></div>
                 <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
@@ -330,7 +336,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="blue_text"><fmt:message code="notice.th.contentValidity"/>：</td>
             <td class="abstract">
                 <div class="abstract1">
-                    <input type="text"  name="summny" id="add_summny" class="summny" style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
+                    <input type="text"  name="summny" id="add_summny" class="summny" style="height: 20px;    color: #000; width: 255px; margin-left: -4.2px; margin-top: -1px;">
                 </div>
                 <div class="abstract2"><fmt:message code="notice.th.contentHigh"/></div>
             </td>
@@ -349,6 +355,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div><img src="../img/mg14.png" alt=""/></div>
                 <div class="enclosure_t"><fmt:message code="notice.th.up"/></div><br/>
                 <div class="add_down">
+
                     <input type="checkbox" name="textEnclosure" class="textEnclosure">
                     <h1><fmt:message code="notice.th.office"/></h1>
                 </div>
@@ -530,6 +537,7 @@ $(function () {
 				}else  if( data.read == 0){
 					$('.step1').hide();
 					$('.step2').show();
+					$('#add_send').attr('ac','add');
 					$('.center').hide();
 				
 				}
@@ -559,7 +567,7 @@ $(function () {
                                	       "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].name+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].typeName+"</ a></td>"+
                                        "<td><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+toTypeName+"</ a></td>"+
-                                       "<td class='title' notifyId="+data.obj[i].notifyId+"><a href='#'  class='windowOpen'>"+data.obj[i].subject+"</ a></td>"+
+                                       "<td class='title' notifyId="+data.obj[i].notifyId+"><a href='#'  class='windowOpen'>"+data.obj[i].subject+"</a></td>"+
                                        "<td class='send_time'><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</a></td>"+
                                        "<td class='start_time'><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</a></td>"+
                                        "<td class='end_time'><a href='#' notifyId="+data.obj[i].notifyId+" class='windowOpen'>"+data.obj[i].notifyDateTime.split(' ')[0]+"</a></td>"+
@@ -602,7 +610,7 @@ $(function () {
 
 		            $.popWindow('detail?notifyId='+nid);
 		        });
-		        /* 新闻查询按钮 */
+		        /* 公告查询按钮 */
         		$('.submit').click(function (){
 					data.read = $('.index_head .one').parent().attr('data_id');
 					data.typeId = $('#select option:checked').attr("tid");
@@ -626,34 +634,61 @@ $(function () {
 
        //新建公告通知
         $('#add_send').on('click',function(){
+         var action=$(this).attr("ac");
 
-         var data_notice={
-             subject:$('#add_titileTime').val(),//标题
-             toId:$('#add_texta').val(),//部门发布范围
-             format:$('#add_sel option:checked').attr('value'),//格式
-             typeId:$('#add_type_notice option:checked').attr('value'),//公告类型
-             userId:$('#add_selectUser').attr("dataid"),//按人员发布
-             privId:'',//按角色发布
-             attachmentId:'',//附件ID串
-             attachmentName:'',//附件名称串
-             download:$(".textEnclosure").is(':checked')==false?0:1,//是否允许下载office附件(0-不允许,1-允许)
-             subjectColor:'',//标题颜色
-             keyword:$('.keyword_ip').val(),//内容关键词
-             topDays:$('#textDay').val(),//置顶天数
-             publish:$(this).attr('value'),//发布标识(0-未发布,1-已发布,2-待审批,3-未通过)
-             top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
-             summary:$('#add_summny').val(),//内容简介
-             content:ue.getContent(),//内容
-             sendTimes:$('#add_newDate').val(),//发布时间
-             beginDates:$('#start_add').val(),//开始日期
-             endDates:$('#end_add').val()  //结束日期
+         alert(action);
+            var data_notice={
+                subject:$('#add_titileTime').val(),//标题
+                toId:$('#add_texta').val(),//部门发布范围
+                format:$('#add_sel option:checked').attr('value'),//格式
+                typeId:$('#add_type_notice option:checked').attr('value'),//公告类型
+                userId:$('#add_selectUser').attr("dataid"),//按人员发布
+                privId:'',//按角色发布
+                attachmentId:'',//附件ID串
+                attachmentName:'',//附件名称串
+                download:$(".down").is(':checked')==false?0:1,//是否允许下载office附件(0-不允许,1-允许)
+                subjectColor:'',//标题颜色
+                keyword:$('.keyword_ip').val(),//内容关键词
+                topDays:$('#textDay').val(),//置顶天数
+                publish:$(this).attr('value'),//发布标识(0-未发布,1-已发布,2-待审批,3-未通过)
+                top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
+                summary:$('#add_summny').val(),//内容简介
+                content:ue.getContent(),//内容
+                sendTimes:$('#add_newDate').val(),//发布时间
+                beginDates:$('#start_add').val(),//开始日期
+                endDates:$('#end_add').val()  //结束日期
+            }
+         if(action=="update"){
+                var noId=$(this).attr("noId");
+             data_notice['lastEditTimes']=$('#add_newDate').val();
+             data_notice['notifyId']=noId;
+             update(data_notice);
+         }else{
+             //空数据
+             $('#add_selectUser').val();//选人
+             $('#add_texta').val();//选部门
+             $('#add_texta').val();//选角色
+             $('#add_selectjuese').val();//角色
+             $('#add_newDate').val();//发布时间
+             $('#start_add').val();//起始时间
+             $('#end_add').val();//结束时间
+             /*$('#add_selectUser').val(data.userId);*/
+             /*$('#add_type_notice').selected(data.typeName);*/
+             $("#add_type_notice").find("option[value=选择公告类型]").attr("selected",true);//类型
+            /* if(data.top==1){
+                 $('#textTop').prop('checked',true);//是否置顶
+             };*/
+
+             ue.setContent();//内容
+
+             $("#add_sel").find("option[value=普通格式]").attr("selected",true);//格式
+             $('#add_summny').val();//内容
+             $('.keyword_ip').val();//关键词
+             /*add_notice(data_notice);*/
          }
 
-         console.log(data_notice);
-            add_notice(data_notice);
-
          })
-
+        //新建保存的数据接口
          function add_notice(data_notice){
 
             /* var layerIndex = layer.load(0, {shade: false});*/
@@ -673,37 +708,81 @@ $(function () {
              });
          }
 
+        //修改保存的数据接口
+        function update(data_notice){
+            $.ajax({
+                url: "updateNotify",
+                type: "get",
+                data: data_notice,
+                dataType: 'json',
+                success: function (obj) {
+
+                    if(obj.flag==true){
+                        window.location.reload();
+                    }
+
+                }
+            })
+        }
+
      /*add_notice();*/
             //修改公告通知管理
            $('#j_tb').on('click','.notice_change',function(){
+
                var tid=$(this).attr('notifyId');
                $('.step1').hide();
                $('.step2').show();
+               $('#add_send').attr('ac',"update");
+               $('#add_send').attr('noId',tid);
                $('.center').hide();
-                //公告详情
-               $.ajax({
-                   url: "getOneById",
-                   type: "get",
-                   data:{
-                       notifyId:tid
-                   },
-                   dataType: 'json',
-                   success: function (obj) {
-                       console.log(obj.object);
-                       var data=obj.object;
-                       var sendTime=new Date((data.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-                       var beginDate=new Date((data.beginDate)*1000).Format('yyyy-MM-dd hh:mm');
-                       $('#add_titileTime').val(data.subject);
-                       $('#add_texta').val(data.toId);
-                       $('#add_selectUser').val(data.userId);
-                       $('.td_title1').val(data.privId);//角色
-                       $('#add_newDate').val(data.sendTime);
-                       $('#start_add').val(data.beginDate);
-                       $('#end_add').val(data.endDate);
-                       $('#add_selectUser').val(data.userId);
-                   }
+               ue.ready(function(){
+                   //公告详情
+                   $.ajax({
+                       url: "getOneById",
+                       type: "get",
+                       data:{
+                           notifyId:tid
+                       },
+                       dataType: 'json',
+                       success: function (obj) {
+                           console.log(obj.object);
+                           var data=obj.object;
+                           var sendTime=new Date((data.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                           var sendTime=new Date((data.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                           var beginDate=new Date((data.beginDate)*1000).Format('yyyy-MM-dd hh:mm');
+                           $('#add_titileTime').val(data.subject);
+                           $('#add_texta').val(data.toId);
+                           $('#add_selectUser').val(data.userrange);//选人
+                           $('#add_texta').val(data.toId);//选部门
+                           $('#add_texta').val(data.toId);//选角色
+                           $('#add_selectjuese').val(data.privId);//角色
+                           $('#add_newDate').val(data.notifyDateTime);//发布时间
+                           $('#start_add').val(data.beginDate);//起始时间
+                           $('#end_add').val(data.endDate);//结束时间
+                           /*$('#add_selectUser').val(data.userId);*/
+                           /*$('#add_type_notice').selected(data.typeName);*/
+                           $("#add_type_notice").find("option[value="+data.typeId+"]").attr("selected",true);//类型
+                           if(data.top==1){
+                               $('#textTop').prop('checked',true);//是否置顶
+                           };
 
+                           ue.setContent(data.content);//内容
+                           if(data.top==1){
+                               $('.print').prop('checked',true);//是否打印
+                           }
+                           if(data.top==1){
+                               $('.down').prop('checked',true);//是否下载
+                           }
+                            $('#textDay').val(data.topDays)//置顶天数
+
+                           $("#add_sel").find("option[value="+data.format+"]").attr("selected",true);//格式
+                            $('#add_summny').val(data.summary);//内容
+                           $('.keyword_ip').val(data.keyword);//关键词
+                       }
+
+                   })
                })
+
 
               /* var title=$(this).parent().siblings('.title').find('a').text();
                alert(title);
@@ -720,7 +799,7 @@ $(function () {
 
 
 
-               $.ajax({
+           /*    $.ajax({
                     url: "updateNotify",
                     type: "get",
                     data:{
@@ -733,7 +812,7 @@ $(function () {
                         privId:'',//按角色发布
                         attachmentId:'',//附件ID串
                         attachmentName:'',//附件名称串
-                        download:$(".textEnclosure").is(':checked')==false?0:1,//是否允许下载office附件(0-不允许,1-允许)
+                        download:$(".down").is(':checked')==false?0:1,//是否允许下载office附件(0-不允许,1-允许)
                         subjectColor:'',//标题颜色
                         keyword:$('.keyword_ip').val(),//内容关键词
                         topDays:$('#textDay').val(),//置顶天数
@@ -754,7 +833,7 @@ $(function () {
                         }
 
                     }
-                })
+                })*/
             });
 
 
