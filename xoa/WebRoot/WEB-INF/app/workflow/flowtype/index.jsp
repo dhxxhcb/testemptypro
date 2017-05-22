@@ -21,8 +21,15 @@
     <script type="text/javascript" src="../js/index.js" ></script>
     <title>s首页</title>
     <style>
+	    .noDatas {margin-top:10px;}
+		.noDatas_pic {margin-top:20%;}
+		.noData_out{margin:0 auto;text-align:center;}
+	    .head_rig h1 {width:78px;height:28px;font-size:13px !important;background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt !important;}
+		.head_rig {background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt !important;}
+     	.inp {height:24px;}
+		.search {width:72px;background-image:url(../../img/work/flow/btn_check_nor_03.png) no-reapt !important;background: #FF5722;}
         .new_excell_pic{
-            border-radius: 0;border: none; width: 50px;height: 50px;margin-top: -3px;
+            border-radius: 0;border: none; width: 73px;height: 73px;margin:10px 24px 10px 20px;
         }
         .deldel{
             color: #fff;font-size: 12px;float: right;margin-right: 10px;margin-left: 10px;line-height: 28px;cursor: pointer;
@@ -43,7 +50,7 @@
             width: 100%;
             height: 28px;
             position: relative;
-            background-color: #f7bd00;
+            background-color: #59bdf0;
         }
         .new_excell_head {
             position: relative;
@@ -51,53 +58,60 @@
             height: 30px;
         }
         .new_excell_name {
-            border-left: 4px solid #f7bd00;
-            color: #f7bd00;
+            border-left: 4px solid #59bdf0;
+            color: #59bdf0;
             position: absolute;
             bottom: 0;
             font-size: 16px;
             font-weight: 700;
-            height: 20px;
+            height: 24px;
             margin-left: 15px;
         }
         .new_excell_info {
             width: 100%;
-            height: 113px;
+            height: 116px;
             position: relative;
         }
+		.new_excell_center {
+			    margin-left: 6%;
+		}
         .new_excell_info_main {
-            width: 95%;
+            width: 100%;
             height: 62px;
             position: absolute;
-            left: 5%;
-            top: 14%;
+           
         }
 
         .new_excell_info_other {
             position: absolute;
             top: 10px;
             height: 100%;
-            margin: 0;
+            margin-left:45px;
+			margin-top:10px;
             list-style-type: none;
             left: 20%;
         }
 
         .new_excell_main {
-            width: 330px;
-            height: 171px;
+            width: 332px;
+            height: 174px;
             border: 1px solid #ddd;
             margin: auto;
             margin-top: 10px;
             border-radius: 5px;
-			margin-left: 15px;
         }
         .new_excell_main:hover {
             border: 2px solid #59bdf0;
         }
+		.new_excell_info_mian_pic {
+			float:left;
+			}
         .new_excell {
             width: 360px;
             height: 191px;
-           float:left;
+            float:left;
+			margin-left: 0px;
+            margin-right: 64px;
         }
 		
         .new_excell_info_other span {
@@ -124,7 +138,9 @@
             <input  id="flow_search_value" class="inp" type="text" placeholder="输入流程名称搜索">
             <div id="btn_search" class="search"><h1>搜索</h1></div>
         </div>
-        <div class="head_rig"><h1>新建</h1></div>
+        <div class="head_rig">
+			<h1 style='background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt;'>+&nbsp;&nbsp;&nbsp;&nbsp;新建</h1>
+		</div>
     </div>
 
     <div class="cont">
@@ -302,7 +318,7 @@
         }
 
         function renderNoDatas() {
-            var html="抱歉暂时还没有流程，您可以前往新建";
+           var html='<div class="noData_out"><div class="noDatas_pic"><img src="../../img/workflow/img_nomessage_03.png"></div><div class="noDatas" >抱歉现在还没有表单，请您新建</div></div>';
             $(".cont_rig").html(html);
         }
 
@@ -315,19 +331,19 @@
                 if(data[i].flowType==1){
                     //固定
                     typeName="固定流程";
-                    img_url="../../img/workflow/flow_type_G.png";
+                    img_url="../../img/workflow/icon_fixedprocess_03.png";
                 }
                 if(data[i].flowType==2){
                     //自由
                     typeName="自由流程";
-                    img_url="../../img/workflow/flow_type_Z.png";
+                    img_url="../../img/workflow/con_freeprocess_03.png";
                 }
-
+				if(i%3==0) {html+='<div class="new_excell_center">';}
                 html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main">'+
-                    '<a class="set" flow_id="'+data[i].flowId+'" title="编辑" target="_blank" href="flowdesigner?formId='+data[i].flowId+'"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
+                    '<a class="set" flow_id="'+data[i].flowId+'" title="编辑" href="flowdesigner?formId='+data[i].flowId+'"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
                     '<div class="new_excell_info"><div class="new_excell_info_main">'+
-                   ' <div style="float: left;width: 122px;">'+
+                   ' <div class="new_excell_info_mian_pic">'+
                    ' <img src="'+img_url+'" class="new_excell_pic">'+
                    ' <ul class="new_excell_info_other">'+
                    ' <li><span class="new_excell_info_username">'+typeName+'</span></li>'+
@@ -344,7 +360,7 @@
                     '</div>'+
                    ' <div style="position: absolute;bottom: 5px;left: 20px;"><div style="float: left;">'+
                     '<img src="" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
-                    '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">'+data[i].depName+'</span>'+
+                    '<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;display:block;">'+data[i].depName+'</span>'+
                    ' </div>'+
 //                    '<div style="float: right;margin-left: 30px;">'+
 //                   ' <img src="/ui/erp_img/new_excell_info_time_pic.png" class="new_excell_info_img position_img" style="vertical-align: middle;">'+
@@ -356,12 +372,10 @@
                    ' <div class="new_excell_footer">'+
                     '<span class="deldel">删除</span>'+
                    ' <img src="../../img/workflow/new_excell_info_img_shanchu.png" class="deldel_img" >'+
-                    '<span class="footer_span_space">&nbsp;|&nbsp;</span>'+
-                '<span class="edit" >编辑</span>'+
-                   '<img src="../../img/workflow/new_excell_info_img_bianji.png" class="edit_img">'+
                     '</div>'+
                     '</div>'+
                     '</div>';
+					if(i%3==2){html+='</div>';}
             }
             $(".cont_rig").html(html);
         }
