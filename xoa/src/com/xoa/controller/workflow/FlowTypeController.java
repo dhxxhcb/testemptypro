@@ -58,6 +58,20 @@ public class FlowTypeController {
         Map<String,Object> maps = new HashMap<String,Object>();
         maps.put("flowId",flowId);
         return flowTypeService.selectAllFlow(maps);
+    } 
+    
+   /**
+    * 创建作者:   张勇
+    * 创建日期:   2017/5/23 19:41
+    * 方法介绍:   自定义属性根据flowId修改
+    * 参数说明:   
+    * @return     
+    */
+    @RequestMapping(value = "updateFlow",produces = {"application/json;charset=UTF-8"},method = RequestMethod.POST)
+    public  @ResponseBody ToJson<FlowTypeModel> updateFlow(FlowTypeModel flowTypeModel, HttpServletRequest request){
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        return flowTypeService.updateFlow(flowTypeModel);
     }
 
 

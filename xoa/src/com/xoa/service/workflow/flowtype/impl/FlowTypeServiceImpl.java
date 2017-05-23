@@ -105,6 +105,29 @@ public class FlowTypeServiceImpl implements FlowTypeService {
             toJson.setMsg("no data");
         }
         return toJson;
-
     }
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/5/23 19:35
+     * 方法介绍:   自定义属性根据flowId修改
+     * 参数说明:
+     * @return
+     */
+    @SuppressWarnings("all")
+    @Override
+    @Transactional
+    public ToJson<FlowTypeModel> updateFlow(FlowTypeModel flowTypeModel){
+        ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
+        try{
+            flowTypeModelMapper.update(flowTypeModel);
+            toJson.setFlag(0);
+            toJson.setMsg("ok");
+        }catch (Exception e){
+            toJson.setFlag(1);
+            toJson.setMsg("error");
+        }
+        return toJson;
+    }
+
 }

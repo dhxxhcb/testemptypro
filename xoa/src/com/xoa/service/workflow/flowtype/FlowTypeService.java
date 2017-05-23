@@ -31,6 +31,14 @@ public interface FlowTypeService {
          */
         public  ToJson<FlowTypeModel> selectAllFlow(Map<String, Object> maps);
 
+        /**
+         * 创建作者:   张勇
+         * 创建日期:   2017/5/23 19:35
+         * 方法介绍:   自定义属性根据flowId修改
+         * 参数说明:
+         * @return
+         */
+        public ToJson<FlowTypeModel> updateFlow(FlowTypeModel flowTypeModel);
 
 
         public ToJson<FlowTypeModel> quertBySortId(Integer flowId);

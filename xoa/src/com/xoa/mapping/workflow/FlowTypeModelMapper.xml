@@ -74,6 +74,126 @@
     FLOW_ID =#{flowId}
   </select>
 
+  <!-- 修改自定义属性 -->
+  <update id="update" parameterType="com.xoa.model.workflow.FlowTypeModel">
+    UPDATE FLOW_TYPE
+    <set>
+      <if test="flowName != null and flowName != ''">
+      FLOW_NAME = #{flowName},
+      </if>
+    <if test="formId != null and formId != ''">
+      FORM_ID = #{formId},
+    </if>
+    <if test="flowDoc != null and flowDoc != ''">
+      FLOW_DOC = #{flowDoc},
+    </if>
+    <if test="flowType != null and flowType != ''">
+      FLOW_TYPE = #{flowType},
+    </if>
+      <if test="flowNo != null and flowNo = ''">
+        FLOW_NO = #{flowNo},
+      </if>
+      <if test="flowSort != null and flowSort != ''">
+      FLOW_SORT = #{flowSort},
+      </if>
+      <if test="autoNum != null and autoNum != ''">
+      AUTO_NUM = #{autoNum},
+      </if>
+      <if test="autoLen != null and autoLen != ''">
+      AUTO_LEN = #{autoLen},
+      </if>
+      <if test="autoEdit != null and autoEdit != ''">
+      AUTO_EDIT = #{autoEdit},
+      </if>
+      <if test="commentPriv!=null and commentPriv != ''">
+      COMMENT_PRIV = #{commentPriv},
+      </if>
+      <if test="deptId != null and deptId != ''">
+      DEPT_ID = #{deptId},
+      </if>
+      <if test="freePreset != null and freePreset != ''">
+      FREE_PRESET = #{freePreset},
+      </if>
+      <if test="freeOther != null and freeOther != ''">
+      FREE_OTHER = #{freeOther},
+      </if>
+      <if test="allowPreSet != null and allowPreSet != '' ">
+      ALLOW_PRE_SET = #{allowPreSet},
+      </if>
+      <if test="forcePreSet != null and forcePreSet != '' ">
+      FORCE_PRE_SET = #{forcePreSet},
+      </if>
+      <if test="viewPriv != null and viewPriv != ''">
+      VIEW_PRIV = #{viewPriv},
+      </if>
+      <if test="isVersion != null and isVersion != '' ">
+      IS_VERSION = #{isVersion},
+      </if>
+      <if test="flowAction != null and flowAction != ''">
+      FLOW_ACTION != #{flowAction},
+      </if>
+      <if test="autoNumYear != null and autoNumYear != ''">
+      AUTO_NUM_YEAR = #{autoNumYear},
+      </if>
+      <if test="autoNumMonth != null and autoNumMonth != ''">
+      AUTO_NUM_MONTH = #{autoNumMonth},
+      </if>
+      <if test="autoNumTime != null and autoNumTime != ''">
+      AUTO_NUM_TIME = #{autoNumTime},
+      </if>
+      <if test="manageUser != null and manageUser != ''">
+      MANAGE_USER = #{manageUser},
+      </if>
+      <if test="autoName != null and autoName != ''">
+      AUTO_NAME = #{autoName},
+      </if>
+      <if test="queryUser != null and queryUser != ''">
+      QUERY_USER = #{queryUser},
+      </if>
+      <if test="flowDesc != null and flowDesc != ''">
+      FLOW_DESC = #{flowDesc},
+      </if>
+      <if test="newUser != null and newUser != ''">
+      NEW_USER = #{newUser},
+      </if>
+      <if test="queryItem != null and queryItem != ''">
+      QUERY_ITEM = #{queryItem},
+      </if>
+      <if test="queryUserDept != null and queryUserDept != ''">
+      QUERY_USER_DEPT = #{queryUserDept},
+      </if>
+      <if test="manageUserDept != null and manageUserDept != ''">
+      MANAGE_USER_DEPT = #{manageUserDept},
+      </if>
+      <if test="editPriv != null and editPriv != ''">
+      EDIT_PRIV = #{editPriv},
+      </if>
+      <if test="listFldsStr != null and listFldsStr!= ''">
+      LIST_FLDS_STR = #{listFldsStr},
+      </if>
+      <if test="modelId != null and modelId != ''">
+      MODEL_ID = #{modelId},
+      </if>
+      <if test="modelName != null and modelName != ''">
+      MODEL_NAME = #{modelName},
+      </if>
+      <if test="attachmentId != null and attachmentId != ''">
+      ATTACHMENT_ID = #{attachmentId},
+      </if>
+      <if test="attachmentName != null and attachmentName != ''">
+      ATTACHMENT_NAME = #{attachmentName},
+      </if>
+      <if test="viewUser != null and viewUser != ''">
+      VIEW_USER = #{viewUser},
+      </if>
+      <if test="viewDept != null and  viewDept != ''">
+      VIEW_DEPT = #{viewDept}
+      </if>
+    </set>
+    WHERE
+    FLOW_ID = #{flowId}
+  </update>
+
 
   <select id="selectBySortid" resultMap="FlowWithDep" parameterType="java.lang.Integer">
     SELECT  flow_type.*,department.DEPT_NAME FROM  flow_type LEFT JOIN department ON department.DEPT_ID=flow_type.DEPT_ID
