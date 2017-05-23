@@ -44,7 +44,7 @@
                     <div class="header_r">扩展控件</div>
                 </li>
 
-                <li><a href="javascript:void(0);" type="text" onclick="formDesign.exec('text');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="text"  class="btn btn-link">
                     <img src="../img/icon_textbox_03.png" alt="">单行文本框
                 </a></li>
                 <li><a href="javascript:void(0);" type="textarea"  class="btn btn-link">
