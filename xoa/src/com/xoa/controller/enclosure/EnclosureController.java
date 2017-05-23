@@ -59,8 +59,8 @@ public class EnclosureController {
 	 * @return     ToJson<Attachment> 返回附件信息
 	 */
 	@RequestMapping(value ="/upload",produces = {"application/json;charset=UTF-8"}) 
-	public @ResponseBody ToJson<Attachment> upload( @RequestParam("file") MultipartFile[] files,String module,
-			  HttpServletRequest request) {	
+	public @ResponseBody ToJson<Attachment> upload( @RequestParam("file") MultipartFile[] files,String module, 
+			HttpServletRequest request) {	
 //		L.w("0=||==============》"+request.getSession().getId());
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
