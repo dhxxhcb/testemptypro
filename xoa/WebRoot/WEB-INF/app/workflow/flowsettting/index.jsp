@@ -407,8 +407,16 @@
         $list.each(function (index,item) {
             $(item).click(function () {
                 if(index==1) $('.hide_list1').toggle();
-
                 $('.cont_r .item').eq(index).show().siblings().hide()
+              $.ajax({
+                  type:'get',
+                  url:'',
+                  dataType:'json',
+
+
+
+              })
+
             })
         })
 
