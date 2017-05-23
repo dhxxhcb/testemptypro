@@ -489,8 +489,8 @@
    <select id="selectByUUID" parameterType="Map" resultMap="ResultMap">
        SELECT * FROM im_message WHERE FROM_UID=#{fromId} AND UUID=#{uuid}  ORDER BY ATIME DESC LIMIT 0,1
    </select> -->
-   <select id="selectMessageByPage" parameterType="Map" resultMap="ResultMap" >
+ <!--   <select id="selectMessageByPage" parameterType="Map" resultMap="BaseResultMap" >
       SELECT * FROM im_message WHERE ((FROM_UID=#{fromId} AND TO_UID =#{toId}) OR (FROM_UID=#{toId} AND TO_UID =#{fromId})) AND #{lastTime} >= ATIME  ORDER BY ATIME
       limit #{pageNo},#{pageSize} 
-   </select>
+   </select> -->
 </mapper>
