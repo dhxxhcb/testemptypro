@@ -1,14 +1,4 @@
-html,body{
-    background: #fafafa;
-    margin:0;
-    overflow:auto;
-}
-html{
-    min-width: 1300px;
-}
-body{
-    padding-bottom: 185px;
-}
+
 .container-fluid{
     padding:0;
 }
@@ -23,9 +13,21 @@ body{
 }
 .date{
     width: 315px;
-    background: #FAFAFA;
     z-index: 100;
     position: relative;
+}
+.title_img,.new_work{
+    float:left;
+}
+.title_img{
+    margin-top: 13px;
+}
+.new_search{
+    margin-top: 9px !important;
+}
+.new_work{
+    margin-left: 10px;
+    line-height: 27px !important;
 }
 .abs-right{
     position: absolute;
@@ -244,10 +246,10 @@ body{
 }
 
 /* dialog */
-#dialog_body .footer{
+/*#dialog_body .footer{
     margin: auto;
     width: 140px;
-}
+}*/
 
 .tab-content {
     background: #fff;
@@ -598,10 +600,10 @@ i.icon-clock{
     background: url('images/tc_clock.png') no-repeat 0 0px;
 }
 
-#dialog_body .small p{
+/*#dialog_body .small p{
     margin:0;
     word-break: break-all;
-}
+}*/
 /* countdown */
 #rock_display{
     position: absolute;

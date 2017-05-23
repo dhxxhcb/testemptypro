@@ -17,7 +17,7 @@ import com.xoa.util.dataSource.ContextHolder;
  */
 @Controller
 @Scope(value = "prototype")
-@RequestMapping("/work")
+@RequestMapping("/workflow/work")
 public class WorkController {
 	
 	@RequestMapping("/addwork")
@@ -27,5 +27,17 @@ public class WorkController {
 	        return "app/workflow/work/add_work";
 	    }
 
+	@RequestMapping("workList")
+	public String workList(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/workflow/work/workList";
+	}
+	@RequestMapping("workform")
+	public String workform(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/workflow/work/workform";
+	}
 
 }

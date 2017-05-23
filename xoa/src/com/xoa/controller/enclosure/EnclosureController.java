@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.enclosure.EnclosureService;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.dataSource.ContextHolder;
 
  
@@ -53,29 +54,28 @@ public class EnclosureController {
 	 * 方法介绍:   附件上传
 	 * 参数说明:   @param files 文件
 	 * 参数说明:   @param module 模块名
-	 * 参数说明:   @param isAttach 是否直接显示上传路径
+	 * 参数说明:   @param company 公司名
 	 * 参数说明:   @param request 请求
 	 * 参数说明:   @return
 	 * @return     ToJson<Attachment> 返回附件信息
 	 */
 	@RequestMapping(value ="/upload",produces = {"application/json;charset=UTF-8"}) 
-	public @ResponseBody ToJson<Attachment> upload( @RequestParam("file") MultipartFile[] files,String module,
-			  HttpServletRequest request) {	
+	public @ResponseBody ToJson<Attachment> upload( @RequestParam("file") MultipartFile[] files,String module, 
+			String company,
+			HttpServletRequest request) {	
 //		L.w("0=||==============》"+request.getSession().getId());
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		String pd=(String) request.getSession().getAttribute(
-				"loginDateSouse");
 		StringBuffer sb=new StringBuffer();
-			if(pd==null){
-			sb.append("xoa1001");
+			if(StringUtils.checkNull(company)){
+			sb.append("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
 			}else{
-			sb.append("xoa"+pd.toString());
+			sb.append(company);
 			}
-			String company=sb.toString();
 			ToJson<Attachment> json=new ToJson<Attachment>(0, null);
 			try {	
-				List<Attachment> list=enclosureService.upload(files, company, module);  
+				List<Attachment> list=enclosureService.upload(files, sb.toString(), module);  
 				json.setObj(list);
 	            json.setMsg("OK");
 	            json.setFlag(0);

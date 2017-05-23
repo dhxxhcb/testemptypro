@@ -20,6 +20,52 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="/static/js/ccorrect_btn.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" >
+        var MYOA_JS_SERVER = "";
+        var MYOA_STATIC_SERVER = "";
+    </script>
+</head>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/newwork.css" />
+<link rel="stylesheet" type="text/css" href="css/new.css">
+<script type="text/javascript" src="/inc/js_lang.php"></script>
+<script type="text/javascript" src="/static/js/jquery-1.10.2/jquery.min.js"></script>
+<!--<script src="/static/js/bootstrap/js/bootstrap.min.js"></script>-->
+if(window.external && typeof window.external.OA_SMS != 'undefined') //如果从OA精灵打开，则最大化窗口
+{
+var h = Math.min(800, screen.availHeight - 180);
+var w = Math.min(1280, screen.availWidth - 80);
+window.external.OA_SMS(w, h, "SET_SIZE");
+}
+</script>
+<style type="text/css">
+#flow_sort_nav > a{
+text-decoration:none;
+color:#666666;
+font-size: 18px;
+font-weight:bold;
+}
+#flow_sort_nav > a:hover{
+text-decoration:none;
+color:#589Fff;
+font-weight:bold;
+<!--[if IE 6 ]> <html class="ie6 lte_ie6 lte_ie7 lte_ie8 lte_ie9"> <![endif]-->
+<!--[if lte IE 6 ]> <html class="lte_ie6 lte_ie7 lte_ie8 lte_ie9"> <![endif]-->
+<!--[if lte IE 7 ]> <html class="lte_ie7 lte_ie8 lte_ie9"> <![endif]-->
+<!--[if lte IE 8 ]> <html class="lte_ie8 lte_ie9"> <![endif]-->
+<!--[if lte IE 9 ]> <html class="lte_ie9"> <![endif]-->
+<!--[if (gte IE 10)|!(IE)]><!--><html><!--<![endif]-->
+<head>
+    <title>新建工作</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8 ? MYOA_CHARSET : htmlspecialchars($HTML_PAGE_CHARSET))?>" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/workflow/work/style.css" />
     <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
     <script src="../js/base/base.js"></script>

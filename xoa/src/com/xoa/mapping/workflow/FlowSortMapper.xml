@@ -251,5 +251,33 @@ ORDER BY SORT_ID,SORT_NO ASC
     SELECT COUNT(flow_type.FLOW_ID) AS FLOW_COUNTS,flow_type.FLOW_SORT FROM flow_type  WHERE  flow_type.FLOW_SORT=#{flowId}
   </select>
 
+  <select id="selectFlowSortByAuth" resultMap="BaseResultMap" parameterType="Map">
+    SELECT flow_sort.* FROM flow_sort ,
+    (SELECT GROUP_CONCAT(flow_sort.SORT_ID) childId,GROUP_CONCAT(flow_sort.SORT_PARENT) parentId  FROM flow_sort
+    INNER JOIN flow_type ON flow_type.FLOW_SORT = flow_sort.SORT_ID
+    INNER JOIN flow_process ON flow_process.FLOW_ID=flow_type.FLOW_ID  AND flow_process.PRCS_ID in (
+    SELECT MIN(flow_process.PRCS_ID) FROM flow_process WHERE flow_process.FLOW_ID=flow_type.FLOW_ID
+    )
+    AND (
+   <trim suffixOverrides="OR">
+     FIND_IN_SET(#{user},flow_process.PRCS_USER) OR
+     FIND_IN_SET(#{deptId},flow_process.PRCS_DEPT) OR
+     FIND_IN_SET(#{privId},flow_process.PRCS_PRIV) OR flow_process.PRCS_DEPT='ALL_DEPT' OR
+     <if test="privIds!=null">
+       <foreach item="item" collection="privIds">
+         FIND_IN_SET(#{item},flow_process.PRCS_PRIV) OR
+       </foreach>
+     </if>
+     <if test="deptIds!=null">
+       <foreach item="item" collection="deptIds">
+         FIND_IN_SET(#{item},flow_process.PRCS_DEPT) OR
+       </foreach>
+     </if>
+   </trim>
+    )
+    GROUP BY flow_sort.SORT_ID) AS child
+    WHERE FIND_IN_SET(flow_sort.SORT_ID,child.parentId) OR FIND_IN_SET(flow_sort.SORT_ID,child.childId) GROUP BY flow_sort.SORT_ID  ORDER BY flow_sort.SORT_ID ,flow_sort.SORT_NO ASC
+
+  </select>
 
 </mapper>

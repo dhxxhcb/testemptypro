@@ -54,9 +54,10 @@ public class EmailController {
      * 参数说明:	   @param emailBodyModel 邮件参数对象
      * 参数说明:	   @param sendFlag 是否为草稿箱发送 （0：是）
      * 参数说明:   @return
+     * method = RequestMethod.POST,
      * @return String
      */
-    @RequestMapping(value = "/sendEmail",method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/sendEmail",produces = {"application/json;charset=UTF-8"})
     public @ResponseBody
     ToJson<EmailBodyModel> insertEmailBody(
             EmailBodyModel emailBodyModel,
@@ -82,9 +83,10 @@ public class EmailController {
      * 类介绍:       保存或修改草稿箱
      * 方法介绍:   发送邮件并保存
      * 参数说明:	   @param emailBodyModel 邮件参数对象
+     *  method = RequestMethod.POST,
      * 参数说明:      @return
      */
-    @RequestMapping(value = "/saveEmail", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/saveEmail",produces = {"application/json;charset=UTF-8"})
     public @ResponseBody
     ToJson<EmailBodyModel> saveEmailBody(
             EmailBodyModel emailBodyModel,
@@ -251,6 +253,7 @@ public class EmailController {
         } else if (flag.trim().equals("recycle")) {
             returnRes = emailService.deleteRecycleEmail(emailId, deleteFlag);
         }
+
 //		else if (flag.trim().equals("drafts")) {
 //			emailService.deleteRecycleEmail(emailBodyModel, deleteFlag);
 //		}

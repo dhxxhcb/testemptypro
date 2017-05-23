@@ -73,5 +73,6 @@ public class CommonController {
 				"loginDateSouse"));
 		return "app/sys/userManagement";
 	}
+
 	
 }

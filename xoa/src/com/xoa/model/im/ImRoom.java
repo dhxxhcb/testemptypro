@@ -1,30 +1,30 @@
 package com.xoa.model.im;
 
-import com.xoa.util.page.PageParams;
 
-public class ImRoom extends PageParams{
-    private Integer rid;
+public class ImRoom{
+	
+    private Integer rid;//PRIMARY KEY (`RID`)
+    private String rnamr;//房间名
+    private String rsetUid;//创建人ID
+    private String rsetOfid;//创建人openforeID
+    private String rtime;//创建时间
+    private String rmemberUid;//房间成员ID
+    private String rmemberOfid;//房间成员openfireID
+    private String routUid;//已离开房间人员ID
+    private String routOfid;//已离开房间成员openfireID
+    private String rinvite;//邀请权限(1为有权限，0为无权限)
+    private String rchange;//修改房间名称的权限
+    private String roomOf;//房间openfirId
+	
+    public String getRoomOf() {
+		return roomOf;
+	}
 
-    private String rnamr;
+	public void setRoomOf(String roomOf) {
+		this.roomOf = roomOf;
+	}
 
-    private String rsetUid;
-
-    private String rsetOfid;
- 
-    private String rtime;
-
-    private String rmemberUid;
-
-    private String rmemberOfid;
-
-    private String routUid;
-
-    private String routOfid;
-
-    private String rinvite;
-
-    private String rchange;
-
+	
     public Integer getRid() {
         return rid;
     }
@@ -112,4 +112,5 @@ public class ImRoom extends PageParams{
     public void setRchange(String rchange) {
         this.rchange = rchange == null ? null : rchange.trim();
     }
+  
 }

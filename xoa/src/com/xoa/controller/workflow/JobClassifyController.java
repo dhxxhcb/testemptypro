@@ -3,10 +3,13 @@ package com.xoa.controller.workflow;
 import com.xoa.service.workflow.JobClassifyService;
 import com.xoa.service.workflow.wrapper.JobSelectorWrapper;
 import com.xoa.util.common.wrapper.BaseWrapper;
+import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 
@@ -23,9 +26,9 @@ public class JobClassifyController {
     @Autowired
     JobClassifyService service;
     /**
-     * 
+     *
      * @作者 韩东堂
-     * @创建日期 2017-5-5 下午5:59:08 
+     * @创建日期 2017-5-5 下午5:59:08
      * @方法介绍 表单分类接口
      * @参数说明 @return
      * @return
@@ -35,9 +38,9 @@ public class JobClassifyController {
         return   service.getJobSelector();
     }
     /**
-     * 
+     *
      * @作者 韩东堂
-     * @创建日期 2017-5-5 下午5:59:23 
+     * @创建日期 2017-5-5 下午5:59:23
      * @方法介绍 流程分类接口
      * @参数说明 @return
      * @return
@@ -46,6 +49,30 @@ public class JobClassifyController {
     public JobSelectorWrapper getFlowInfo(){
         return   service.getFlowsort();
     }
+
+
+    /**
+     *
+     * @作者 韩东堂
+     * @创建日期 2017-5-23 上午11:30:23
+     * @方法介绍 流程分类根据登录用户展示接口
+     * @参数说明 @return
+     * @return
+     */
+    @RequestMapping("/flowclassify/flowByAuth")
+    public JobSelectorWrapper getFlowSortByAuth(HttpServletRequest request){
+        return   service.getFlowsortByAuth(request);
+    }
+
+
+
+
+
+
+
+
+
+
     /**
      * 
      * @作者 韩东堂

@@ -40,10 +40,21 @@
 				background-image:url(../../img/workflow/btn_check_nor_03.png);
 				background-repeat:no-repeat;
 			}
+			.cont_rig {
+				overflow-y:hidden;
+				width: 84%;
+				height: 100%;
+			}
 		.head_rig {width: 10%;margin-top:0px;}
 		.head_rig {
 			background-repeat:no-repeat;
 			background-image:url(../../img/work/flow/btn_new_nor_03.png);
+			}
+			.cont_left {
+				width: 15%;
+				height: 100%;
+				border-right: 1px solid #000;
+				overflow-y: scroll;
 			}
 		.head_rig h1 :hover{
 			cursor:pointer;
@@ -355,6 +366,10 @@
                var flowId= $(this).attr("flow_id");
                 window.open("../../flowSetting/index?flowId="+flowId);
             })
+			 $(".deldel").click(function () {
+               var formId= $(this).attr("formId");
+                window.open("../../flow/type/flowdesigner?formId="+formId);
+            })
 
         }
 
@@ -402,8 +417,8 @@
                    ' <div class="new_excell_footer">'+
 				   //'<span class="lcsjq">流程设计器</span>'+
 				   //'<img src="../../img/workflow/new_excell_info_img_shanchu.png" class="deldel_img" >'+
-                    '<span class="deldel">流程设计器</span>'+
-                   '<img src="../../img/workflow/new_excell_info_img_shanchu.png" class="deldel_img" >'+
+                    '<span class="deldel" formId="'+data[i].formId+'">流程设计器</span>'+
+                   //'<img src="../../img/workflow/new_excell_info_img_shanchu.png" class="deldel_img" >'+
                     '</div>'+
                     '</div>'+
                     '</div>';
@@ -411,13 +426,7 @@
             }
             $(".cont_rig").html(html);
         }
-
-
-
-
-
-
-    })
+})
 </script>
 
 </html>

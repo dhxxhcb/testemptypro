@@ -93,26 +93,23 @@ $(function(){
 	var oNode = null,thePlugins = 'text';
 	    if( UE.plugins[thePlugins].editdom ){
 	        oNode = UE.plugins[thePlugins].editdom;
-			var gValue = oNode.getAttribute('value').replace(/&quot;/g,"\""),gName=oNode.getAttribute('fieldname'),gFlow=oNode.getAttribute('fieldflow'),gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gHidden=oNode.getAttribute('orghide'),gFontSize=oNode.getAttribute('orgfontsize'),gAlign=oNode.getAttribute('orgalign'),gWidth=oNode.getAttribute('orgwidth'),gHeight=oNode.getAttribute('orgheight'),gType=oNode.getAttribute('orgtype');
+
+			var gValue = oNode.value,gName=oNode.getAttribute('name'),gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gHidden=oNode.getAttribute('orghide'),gFontSize=oNode.getAttribute('orgfontsize'),gAlign=oNode.getAttribute('orgalign'),gWidth=oNode.getAttribute('orgwidth'),gHeight=oNode.getAttribute('orgheight'),gType=oNode.getAttribute('orgtype');
+
 			gValue = gValue==null ? '' : gValue;
 	        gTitle = gTitle==null ? '' : gTitle;
 	        gName = gName==null ? '' : gName;
 			$G('orgvalue').value = gValue;
-	        $G('orgname').value = gTitle;
-	        $G('fieldname').value = gName;
-	        if (gFlow == '1')
-	        {
-	            $G('fieldflow').checked = true;
-	        }
+	        $G('fieldname').value = gTitle;
+            $G('orgname').value = gTitle;
+	        //$G('fieldname').value = gName;
+
 	        if (gHidden == '1')
 	        {
 	            $G('orghide').checked = true;
 	        }
-	        $G('orgfontsize').value = gFontSize;
-	        $G('orgwidth').value = gWidth;
-	        $G('orgheight').value = gHeight;
-	        $G('orgalign').value = gAlign;
-	        $G('orgtype').value = gType;
+	        //$G('orgfontsize').value = gFontSize;
+
 	    }
 	
 	dialog.oncancel = function () {
@@ -134,46 +131,31 @@ $(function(){
 	    if( !oNode ) {
 	        try {
 	            oNode = createElement('input','NEWFIELD');
-	            oNode.setAttribute('type','text');
+                oNode.setAttribute('class', "form_item");
+                oNode.setAttribute('data-type', "text");
+	            oNode.setAttribute('type',gType);
 	            oNode.setAttribute('title',gTitle);
-	            //oNode.setAttribute('value',gValue);
+	            oNode.setAttribute('value',gValue);
 	            oNode.setAttribute('name','DATA_'+dataid);
-	           // oNode.setAttribute('fieldname',gName);
-	            //oNode.setAttribute('plugins',thePlugins);
+                oNode.setAttribute('id','DATA_'+dataid);
 	            if ( $G('orghide').checked ) {
 	                oNode.setAttribute('hidden',1);
 	            } else {
 	                oNode.setAttribute('hidden',0);
 	            }
-	           /*  if ( $G('fieldflow').checked ) {
-	                oNode.setAttribute('fieldflow',1);
-	            } else {
-	                oNode.setAttribute('fieldflow',0);
-	            } */
 	            if( gFontSize != '' ) {
 	                oNode.style.fontSize = gFontSize + 'px';
-	                //style += 'font-size:' + gFontSize + 'px;';
-	                oNode.setAttribute('orgfontsize',gFontSize );
 	            }
 	            if( gAlign != '' ) {
 	                //style += 'text-align:' + gAlign + ';';
 	                oNode.style.textAlign = gAlign;
 	                oNode.setAttribute('align',gAlign );
 	            }
-	            /* if( gWidth != '' ) {
-	                oNode.style.width = gWidth+ 'px';
-	                //style += 'width:' + gWidth + 'px;';
-	                oNode.setAttribute('orgwidth',gWidth );
-	            } */
+
 	            if( gHeight != '' ) {
 	                oNode.style.height = gHeight+ 'px';
-	                //style += 'height:' + gHeight + 'px;';
-	                oNode.setAttribute('hidden',gHeight );
+
 	            }
-	            /* if( gType != '' ) {
-	                oNode.setAttribute('orgtype',gType );
-	            } */
-	            console.log(oNode.outerHTML);
 	            editor.execCommand('insertHtml',oNode.outerHTML);
 	        } catch (e) {
 	            try {
@@ -184,51 +166,53 @@ $(function(){
 	            return false;
 	        }
 	    } else {
-	        
+            oNode.setAttribute('class', "form_item");
+            oNode.setAttribute('data-type', "text");
 	        oNode.setAttribute('title', gTitle);
 	        oNode.setAttribute('value', $G('orgvalue').value);
-	        oNode.setAttribute('fieldname',gName);
+	        oNode.setAttribute('name',gName);
+            oNode.setAttribute('type',gType);
 	        if( $G('orghide').checked ) {
-	            oNode.setAttribute('orghide', 1);
+	            oNode.setAttribute('hide', 1);
 	        } else {
-	            oNode.setAttribute('orghide', 0);
+	            oNode.setAttribute('hide', 0);
 	        }
-	        if ( $G('fieldflow').checked ) {
-	            oNode.setAttribute('fieldflow',1);
-	        } else {
-	            oNode.setAttribute('fieldflow',0);
-	        }
+//	        if ( $G('fieldflow').checked ) {
+//	            oNode.setAttribute('fieldflow',1);
+//	        } else {
+//	            oNode.setAttribute('fieldflow',0);
+//	        }
 	        if( gFontSize != '' ) {
 	            oNode.style.fontSize = gFontSize+ 'px';
-	            oNode.setAttribute('orgfontsize',gFontSize );
+	            //oNode.setAttribute('orgfontsize',gFontSize );
 	        }else{
 	            oNode.style.fontSize = '';
-	            oNode.setAttribute('orgfontsize', '');
+	           // oNode.setAttribute('orgfontsize', '');
 	        }
 	        if( gAlign != '' ) {
 	            oNode.style.textAlign = gAlign;
-	            oNode.setAttribute('orgalign',gAlign );
+	           // oNode.setAttribute('orgalign',gAlign );
 	        }else{
-	            oNode.setAttribute('orgalign', '');
+	           // oNode.setAttribute('orgalign', '');
 	        }
 	        if( gWidth != '' ) {
 	            oNode.style.width = gWidth+ 'px';
-	            oNode.setAttribute('orgwidth',gWidth );
+	            //oNode.setAttribute('orgwidth',gWidth );
 	        }else{
 	            oNode.style.width = '';
-	            oNode.setAttribute('orgwidth', '');
+	           // oNode.setAttribute('orgwidth', '');
 	        }
 	        if( gHeight != '' ) {
 	            oNode.style.height = gHeight+ 'px';
-	            oNode.setAttribute('orgheight',gHeight );
+	           // oNode.setAttribute('orgheight',gHeight );
 	        }else{
 	            oNode.style.height = '';
-	            oNode.setAttribute('orgheight', '');
+	           // oNode.setAttribute('orgheight', '');
 	        }
 	        if( gType != '' ) {
-	            oNode.setAttribute('orgtype',gType );
+	           // oNode.setAttribute('orgtype',gType );
 	        }else{
-	            oNode.setAttribute('orgtype', '');
+	           // oNode.setAttribute('orgtype', '');
 	        }
 	        delete UE.plugins[thePlugins].editdom;
 	    }

@@ -4,225 +4,352 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class FlowProcess implements Serializable{
-	
-	private static final long serialVersionUID =1233L;
+public class FlowProcess implements Serializable {
 
-	/** 主键ID **/
-	private int id;
-	/** 流程ID **/
-	private int flowId;
-	/** 步骤ID **/
-	private int prcsId;
-	/** 节点类型(0-步骤节点,1-自流程节点,2-外部流转节点) **/
-	private byte prcsType;
-	/** 步骤名称 **/
-	private String prcsName;
-	/** 经办人ID串 **/
-	private String prcsUser;
-	/** 可写字段串 **/
-	private String prcsItem;
-	/** 保密字段串 **/
-	private String hiddenItem;
-	/** 必填字段串 **/
-	private String requiredItem;
-	/** 经办部门ID串 **/
-	private String prcsDept;
-	/** 经办角色ID串 **/
-	private String prcsPriv;
-	/** 转交步骤ID串 **/
-	private String prcsTo;
-	/** 节点横坐标 **/
-	private int setLeft;
-	/** 节点纵坐标 **/
-	private int setTop;
-	/** 转交调用插件 **/
-	private String plugin;
-	/** 保存调用插件 **/
-	private String pluginSave;
-	/** 允许在不可写情况下自动赋值的宏控件 **/
-	private String prcsItemAuto;
-	/** 转入条件组成的串 **/
-	private String prcsIn;
-	/** 转出条件组成的串 **/
-	private String prcsOut;
-	/** 是否允许会签(0-允许会签,1-禁止会签,2-强制会签) **/
-	private String feedback;
-	/** 转入条件组成的逻辑表达式 **/
-	private String prcsInSet;
-	/** 转出条件组成的逻辑表达式 **/
-	private String prcsOutSet;
-	/** 自动选人规则(1-自动选择流程发起人,2-自动选择本部门主管,3-指定自动选择默认人员,4-自动选择上级主管领导,5-自动选择一级部门主管,6-自动选择上级分管领导,7-按表单字段选择,8-自动选择指定步骤主办人,9-自动选择本部门助理,10-自动选择本部门内符合条件所有人员,11-自动选择本一级部门内符合条件所有人员,12-自动选择指定部门主管,13-自动选择指定部门助理,14-自动选择指定部门上级主管领导,15-自动选择指定部门上级分管领导) **/
-	private String autoType;
-	/** 自动选择指定自动选择的部门 **/
-	private String autoDept;
-	/** 指定自动选择默认人员—主办人 **/
-	private String autoUserOp;
-	/** 指定自动选择默认人员—经办人 **/
-	private String autoUser;
-	/** 指定子流程返回父流程时自动选择默认人员—主办人 **/
-	private String autoUserOpReturn;
-	/** 指定子流程返回父流程时自动选择默认人员—经办人 **/
-	private String autoUserReturn;
-	/** 选人过滤规则(1-只允许选择本部门经办人,2-只允许选择本角色经办人,3-只允许选择上级部门经办人,4-只允许选择下级部门经办人,) **/
-	private String userFilter;
-	/** 选人过滤规则指定角色 **/
-	private String userFilterPrcsPriv;
-	/** 选人过滤规则指定辅助角色 **/
-	private String userFilterPrcsPrivOther;
-	/** 选人过滤规则指定部门 **/
-	private String userFilterPrcsDept;
-	/** 选人过滤规则指定辅助部门 **/
-	private String userFilterPrcsDeptOther;
-	/** 办理时限 **/
-	private String timeOut;
-	/** 是否允许转交时设置办理时限(0-不允许,1-允许) **/
-	private String timeOutModify;
-	/** 是否排除非工作时段(按排班类型)：(0-否,1-是,) **/
-	private String timeOutAttend;
-	/** 会签意见可见性(0-总是可见,1-本步骤经办人之间不可见,2-针对其他步骤不可见,) **/
-	private String signlook;
-	/** 主办人相关选项：(0-明确指定主办人,1-先接收者为主办人,2-无主办人会签,) **/
-	private String topDefault;
-	/** 是否允许修改主办人相关选项及默认经办人：(0-不允许,1-允许,) **/
-	private String userLock;
-	/** 转交时内部邮件通知以下人员ID串 **/
-	private String mailTo;
-	/** 转交时内部邮件通知以下部门人员ID串 **/
-	private String mailToDept;
-	/** 转交时内部邮件通知以下角色人员ID串 **/
-	private String mailToPriv;
-	/** 是否允许并发(0-禁止并发,1-允许并发,2-强制并发) **/
-	private String syncDeal;
-	/** 用途未知 **/
-	private String syncDealCheck;
-	/** 强制转交，经办人未办理完毕时是否允许主办人强制转交(0-不允许,1-允许,) **/
-	private String turnPriv;
-	/** 子流程的流程ID **/
-	private int childFlow;
-	/** 并发合并选项(0-非强制合并,1-强制合并,) **/
-	private String gatherNode;
-	/** 是否允许回退(0-不允许,1-允许回退上一步骤,2-允许回退之前步骤,) **/
-	private String allowBack;
-	/** 公共附件中的Office文档详细权限设置：(1-新建权限,2-编辑权限,3-删除权限,4-下载权限,5-打印权限,) **/
-	private String attachPriv;
-	/** 部门针对对象步骤的ID，0为当前步骤。配合自动选人规则使用。当自动选人规则为以下选项时启用(2-自动选择本部门主管,4-自动选择上级主管领导,6-自动选择上级分管领导,9-自动选择本部门助理,) **/
-	private int autoBaseUser;
-	/** 不符合条件公式时，给用户的文字描述 **/
-	private String conditionDesc;
-	/** 父流程->子流程映射关系 **/
-	private String relationIn;
-	/** 子流程->父流程映射关系 **/
-	private String relationOut;
-	/** 用途未知 **/
-	private int remindFlag;
-	/** 对应呈批单(0-表示不启用呈批单) **/
-	private int dispAip;
-	/** 超时计算方法(0-本步骤接收后开始计时,1-上一步骤转交后开始计时,) **/
-	private String timeOutType;
-	/** 是否允许本步骤经办人编辑附件(0-不允许,1-允许,) **/
-	private String attachEditPriv;
-	/** 是否允许本步骤经办人在线创建文档(0-允许,1-不允许,) **/
-	private String attachEditPrivOnline;
-	/** 宏标记附件上传为图片时展示效果(0-显示图片,1-显示图标和名称,) **/
-	private String attachMacroMark;
-	/** 列表控件模式(1-修改模式,2-添加模式,3-删除模式,保存格式如下例：列表控件1,列表控件2,|1`2`3,1`2,) **/
-	private String controlMode;
-	/** 列表控件单独列权限(1-只读,2-保密,4-必填，各项的与值) **/
-	private String listColumnPriv;
-	/** 传阅设置(0-不允许,1-允许,) **/
-	private int viewPriv;
-	/** 附件上传控件的权限(1-新建,2-编辑,3-删除,4-下载,5-打印) **/
-	private String fileuploadPriv;
-	/** 图片上传控件的权限(1-新建,2-删除,3-下载) **/
-	private String imguploadPriv;
-	/** 会签人设置(0-不允许,1-本步骤经办人,2-全部人员) **/
-	private boolean signType;
-	/** 会签人加签(0-不允许，1-允许) **/
-	private boolean countersign;
-	/** 工作天数换算方式(0-24小时为一天，1-按个人排班类型工作时长为一天) **/
-	private String workingdaysType;
+    private static final long serialVersionUID = 1233L;
+
+    /**
+     * 主键ID
+     **/
+    private int id;
+    /**
+     * 流程ID
+     **/
+    private int flowId;
+    /**
+     * 步骤ID
+     **/
+    private int prcsId;
+    /**
+     * 节点类型(0-步骤节点,1-自流程节点,2-外部流转节点)
+     **/
+    private byte prcsType;
+    /**
+     * 步骤名称
+     **/
+    private String prcsName;
+    /**
+     * 经办人ID串
+     **/
+    private String prcsUser;
+    /**
+     * 可写字段串
+     **/
+    private String prcsItem;
+    /**
+     * 保密字段串
+     **/
+    private String hiddenItem;
+    /**
+     * 必填字段串
+     **/
+    private String requiredItem;
+    /**
+     * 经办部门ID串
+     **/
+    private String prcsDept;
+    /**
+     * 经办角色ID串
+     **/
+    private String prcsPriv;
+    /**
+     * 转交步骤ID串
+     **/
+    private String prcsTo;
+    /**
+     * 节点横坐标
+     **/
+    private int setLeft;
+    /**
+     * 节点纵坐标
+     **/
+    private int setTop;
+    /**
+     * 转交调用插件
+     **/
+    private String plugin;
+    /**
+     * 保存调用插件
+     **/
+    private String pluginSave;
+    /**
+     * 允许在不可写情况下自动赋值的宏控件
+     **/
+    private String prcsItemAuto;
+    /**
+     * 转入条件组成的串
+     **/
+    private String prcsIn;
+    /**
+     * 转出条件组成的串
+     **/
+    private String prcsOut;
+    /**
+     * 是否允许会签(0-允许会签,1-禁止会签,2-强制会签)
+     **/
+    private String feedback;
+    /**
+     * 转入条件组成的逻辑表达式
+     **/
+    private String prcsInSet;
+    /**
+     * 转出条件组成的逻辑表达式
+     **/
+    private String prcsOutSet;
+    /**
+     * 自动选人规则(1-自动选择流程发起人,2-自动选择本部门主管,3-指定自动选择默认人员,4-自动选择上级主管领导,5-自动选择一级部门主管,6-自动选择上级分管领导,7-按表单字段选择,8-自动选择指定步骤主办人,9-自动选择本部门助理,10-自动选择本部门内符合条件所有人员,11-自动选择本一级部门内符合条件所有人员,12-自动选择指定部门主管,13-自动选择指定部门助理,14-自动选择指定部门上级主管领导,15-自动选择指定部门上级分管领导)
+     **/
+    private String autoType;
+    /**
+     * 自动选择指定自动选择的部门
+     **/
+    private String autoDept;
+    /**
+     * 指定自动选择默认人员—主办人
+     **/
+    private String autoUserOp;
+    /**
+     * 指定自动选择默认人员—经办人
+     **/
+    private String autoUser;
+    /**
+     * 指定子流程返回父流程时自动选择默认人员—主办人
+     **/
+    private String autoUserOpReturn;
+    /**
+     * 指定子流程返回父流程时自动选择默认人员—经办人
+     **/
+    private String autoUserReturn;
+    /**
+     * 选人过滤规则(1-只允许选择本部门经办人,2-只允许选择本角色经办人,3-只允许选择上级部门经办人,4-只允许选择下级部门经办人,)
+     **/
+    private String userFilter;
+    /**
+     * 选人过滤规则指定角色
+     **/
+    private String userFilterPrcsPriv;
+    /**
+     * 选人过滤规则指定辅助角色
+     **/
+    private String userFilterPrcsPrivOther;
+    /**
+     * 选人过滤规则指定部门
+     **/
+    private String userFilterPrcsDept;
+    /**
+     * 选人过滤规则指定辅助部门
+     **/
+    private String userFilterPrcsDeptOther;
+    /**
+     * 办理时限
+     **/
+    private String timeOut;
+    /**
+     * 是否允许转交时设置办理时限(0-不允许,1-允许)
+     **/
+    private String timeOutModify;
+    /**
+     * 是否排除非工作时段(按排班类型)：(0-否,1-是,)
+     **/
+    private String timeOutAttend;
+    /**
+     * 会签意见可见性(0-总是可见,1-本步骤经办人之间不可见,2-针对其他步骤不可见,)
+     **/
+    private String signlook;
+    /**
+     * 主办人相关选项：(0-明确指定主办人,1-先接收者为主办人,2-无主办人会签,)
+     **/
+    private String topDefault;
+    /**
+     * 是否允许修改主办人相关选项及默认经办人：(0-不允许,1-允许,)
+     **/
+    private String userLock;
+    /**
+     * 转交时内部邮件通知以下人员ID串
+     **/
+    private String mailTo;
+    /**
+     * 转交时内部邮件通知以下部门人员ID串
+     **/
+    private String mailToDept;
+    /**
+     * 转交时内部邮件通知以下角色人员ID串
+     **/
+    private String mailToPriv;
+    /**
+     * 是否允许并发(0-禁止并发,1-允许并发,2-强制并发)
+     **/
+    private String syncDeal;
+    /**
+     * 用途未知
+     **/
+    private String syncDealCheck;
+    /**
+     * 强制转交，经办人未办理完毕时是否允许主办人强制转交(0-不允许,1-允许,)
+     **/
+    private String turnPriv;
+    /**
+     * 子流程的流程ID
+     **/
+    private int childFlow;
+    /**
+     * 并发合并选项(0-非强制合并,1-强制合并,)
+     **/
+    private String gatherNode;
+    /**
+     * 是否允许回退(0-不允许,1-允许回退上一步骤,2-允许回退之前步骤,)
+     **/
+    private String allowBack;
+    /**
+     * 公共附件中的Office文档详细权限设置：(1-新建权限,2-编辑权限,3-删除权限,4-下载权限,5-打印权限,)
+     **/
+    private String attachPriv;
+    /**
+     * 部门针对对象步骤的ID，0为当前步骤。配合自动选人规则使用。当自动选人规则为以下选项时启用(2-自动选择本部门主管,4-自动选择上级主管领导,6-自动选择上级分管领导,9-自动选择本部门助理,)
+     **/
+    private int autoBaseUser;
+    /**
+     * 不符合条件公式时，给用户的文字描述
+     **/
+    private String conditionDesc;
+    /**
+     * 父流程->子流程映射关系
+     **/
+    private String relationIn;
+    /**
+     * 子流程->父流程映射关系
+     **/
+    private String relationOut;
+    /**
+     * 用途未知
+     **/
+    private int remindFlag;
+    /**
+     * 对应呈批单(0-表示不启用呈批单)
+     **/
+    private int dispAip;
+    /**
+     * 超时计算方法(0-本步骤接收后开始计时,1-上一步骤转交后开始计时,)
+     **/
+    private String timeOutType;
+    /**
+     * 是否允许本步骤经办人编辑附件(0-不允许,1-允许,)
+     **/
+    private String attachEditPriv;
+    /**
+     * 是否允许本步骤经办人在线创建文档(0-允许,1-不允许,)
+     **/
+    private String attachEditPrivOnline;
+    /**
+     * 宏标记附件上传为图片时展示效果(0-显示图片,1-显示图标和名称,)
+     **/
+    private String attachMacroMark;
+    /**
+     * 列表控件模式(1-修改模式,2-添加模式,3-删除模式,保存格式如下例：列表控件1,列表控件2,|1`2`3,1`2,)
+     **/
+    private String controlMode;
+    /**
+     * 列表控件单独列权限(1-只读,2-保密,4-必填，各项的与值)
+     **/
+    private String listColumnPriv;
+    /**
+     * 传阅设置(0-不允许,1-允许,)
+     **/
+    private int viewPriv;
+    /**
+     * 附件上传控件的权限(1-新建,2-编辑,3-删除,4-下载,5-打印)
+     **/
+    private String fileuploadPriv;
+    /**
+     * 图片上传控件的权限(1-新建,2-删除,3-下载)
+     **/
+    private String imguploadPriv;
+    /**
+     * 会签人设置(0-不允许,1-本步骤经办人,2-全部人员)
+     **/
+    private boolean signType;
+    /**
+     * 会签人加签(0-不允许，1-允许)
+     **/
+    private boolean countersign;
+    /**
+     * 工作天数换算方式(0-24小时为一天，1-按个人排班类型工作时长为一天)
+     **/
+    private String workingdaysType;
 
     private List<Map<String, String>> connections;
-    
+
     private Integer max;
-    
+
     private String flowName;
-    
-	public String getFlowName() {
-		return flowName;
-	}
 
-	public void setFlowName(String flowName) {
-		this.flowName = flowName;
-	}
+    public String getFlowName() {
+        return flowName;
+    }
 
-	public Integer getMax() {
-		return max;
-	}
+    public void setFlowName(String flowName) {
+        this.flowName = flowName;
+    }
 
-	public void setMax(Integer max) {
-		this.max = max;
-	}
+    public Integer getMax() {
+        return max;
+    }
 
-	public List<Map<String, String>> getConnections() {
-		return connections;
-	}
+    public void setMax(Integer max) {
+        this.max = max;
+    }
 
-	public void setConnections(List<Map<String,String>> connections) {
-		this.connections = connections;
-	}
+    public List<Map<String, String>> getConnections() {
+        return connections;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setConnections(List<Map<String, String>> connections) {
+        this.connections = connections;
+    }
 
-	public void setFlowId(int flowId) {
-		this.flowId = flowId;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setPrcsId(int prcsId) {
-		this.prcsId = prcsId;
-	}
+    public void setFlowId(int flowId) {
+        this.flowId = flowId;
+    }
 
-	public void setPrcsType(byte prcsType) {
-		this.prcsType = prcsType;
-	}
+    public void setPrcsId(int prcsId) {
+        this.prcsId = prcsId;
+    }
 
-	public void setSetLeft(int setLeft) {
-		this.setLeft = setLeft;
-	}
 
-	public void setSetTop(int setTop) {
-		this.setTop = setTop;
-	}
+    public void setSetLeft(int setLeft) {
+        this.setLeft = setLeft;
+    }
 
-	public void setChildFlow(int childFlow) {
-		this.childFlow = childFlow;
-	}
+    public void setSetTop(int setTop) {
+        this.setTop = setTop;
+    }
 
-	public void setAutoBaseUser(int autoBaseUser) {
-		this.autoBaseUser = autoBaseUser;
-	}
+    public void setChildFlow(int childFlow) {
+        this.childFlow = childFlow;
+    }
 
-	public void setRemindFlag(int remindFlag) {
-		this.remindFlag = remindFlag;
-	}
+    public void setAutoBaseUser(int autoBaseUser) {
+        this.autoBaseUser = autoBaseUser;
+    }
 
-	public void setDispAip(int dispAip) {
-		this.dispAip = dispAip;
-	}
+    public void setDispAip(int dispAip) {
+        this.dispAip = dispAip;
+    }
 
-	public void setViewPriv(int viewPriv) {
-		this.viewPriv = viewPriv;
-	}
+    public void setViewPriv(int viewPriv) {
+        this.viewPriv = viewPriv;
+    }
 
-	public void setSignType(boolean signType) {
-		this.signType = signType;
-	}
+    public void setSignType(boolean signType) {
+        this.signType = signType;
+    }
 
-	public String getPrcsUser() {
-        return prcsUser == null ? "" :prcsUser.trim();
+    public String getPrcsUser() {
+        return prcsUser == null ? "" : prcsUser.trim();
     }
 
     public void setPrcsUser(String prcsUser) {
@@ -234,15 +361,15 @@ public class FlowProcess implements Serializable{
     }
 
     public void setPrcsItem(String prcsItem) {
-        this.prcsItem = prcsItem ;
+        this.prcsItem = prcsItem;
     }
 
     public String getHiddenItem() {
-        return  hiddenItem == null ?"" : hiddenItem.trim();
+        return hiddenItem == null ? "" : hiddenItem.trim();
     }
 
     public void setHiddenItem(String hiddenItem) {
-        this.hiddenItem = hiddenItem ;
+        this.hiddenItem = hiddenItem;
     }
 
     public String getRequiredItem() {
@@ -250,11 +377,11 @@ public class FlowProcess implements Serializable{
     }
 
     public void setRequiredItem(String requiredItem) {
-        this.requiredItem = requiredItem ;
+        this.requiredItem = requiredItem;
     }
 
     public String getPrcsDept() {
-        return prcsDept;
+        return prcsDept == null ? "" : prcsDept;
     }
 
     public void setPrcsDept(String prcsDept) {
@@ -262,119 +389,120 @@ public class FlowProcess implements Serializable{
     }
 
     public String getPrcsPriv() {
-        return prcsPriv;
+        return prcsPriv == null ? "" : prcsPriv.trim();
     }
 
     public void setPrcsPriv(String prcsPriv) {
-        this.prcsPriv = prcsPriv ;
+        this.prcsPriv = prcsPriv;
     }
 
     public String getPrcsTo() {
-        return prcsTo;
+        return prcsTo == null ? "" : prcsTo.trim();
     }
 
     public void setPrcsTo(String prcsTo) {
-        this.prcsTo = prcsTo ;
+        this.prcsTo = prcsTo;
     }
 
     public String getPlugin() {
-        return plugin ;
+        return plugin == null ? "" : plugin.trim();
     }
 
     public void setPlugin(String plugin) {
-        this.plugin = plugin ;
+        this.plugin = plugin;
     }
 
     public String getPluginSave() {
-        return pluginSave=pluginSave==null?"":pluginSave.trim();
+        return pluginSave == null ? "" : pluginSave.trim();
     }
 
     public void setPluginSave(String pluginSave) {
-        this.pluginSave = pluginSave ;
+        this.pluginSave = pluginSave;
     }
 
+
     public String getPrcsItemAuto() {
-        return prcsItemAuto;
+        return prcsItemAuto == null ? "" : prcsItemAuto.trim();
     }
 
     public void setPrcsItemAuto(String prcsItemAuto) {
-        this.prcsItemAuto = prcsItemAuto == null ? null : prcsItemAuto.trim();
+        this.prcsItemAuto = prcsItemAuto;
     }
 
     public String getPrcsIn() {
-        return prcsIn;
+        return prcsIn == null ? "" : prcsIn;
     }
 
     public void setPrcsIn(String prcsIn) {
-        this.prcsIn = prcsIn == null ? null : prcsIn.trim();
+        this.prcsIn = prcsIn;
     }
 
     public String getPrcsOut() {
-        return prcsOut;
+        return prcsOut == null ? "" : prcsOut.trim();
     }
 
     public void setPrcsOut(String prcsOut) {
-        this.prcsOut = prcsOut == null ? null : prcsOut.trim();
+        this.prcsOut = prcsOut;
     }
 
     public String getPrcsInSet() {
-        return prcsInSet;
+        return prcsInSet == null ? "" : prcsInSet.trim();
     }
 
     public void setPrcsInSet(String prcsInSet) {
-        this.prcsInSet = prcsInSet == null ? null : prcsInSet.trim();
+        this.prcsInSet = prcsInSet;
     }
 
     public String getPrcsOutSet() {
-        return prcsOutSet;
+        return prcsOutSet == null ? "" : prcsOutSet;
     }
 
     public void setPrcsOutSet(String prcsOutSet) {
-        this.prcsOutSet = prcsOutSet == null ? null : prcsOutSet.trim();
+        this.prcsOutSet = prcsOutSet;
     }
 
     public String getAutoDept() {
-        return autoDept;
+        return autoDept == null ? "" : autoDept.trim();
     }
 
     public void setAutoDept(String autoDept) {
-        this.autoDept = autoDept == null ? null : autoDept.trim();
+        this.autoDept = autoDept;
     }
 
     public String getAutoUserOp() {
-        return autoUserOp;
+        return autoUserOp == null ? "" : autoUserOp.trim();
     }
 
     public void setAutoUserOp(String autoUserOp) {
-        this.autoUserOp = autoUserOp == null ? null : autoUserOp.trim();
+        this.autoUserOp = autoUserOp;
     }
 
     public String getAutoUser() {
-        return autoUser;
+        return autoUser == null ? "" : autoUser;
     }
 
     public void setAutoUser(String autoUser) {
-        this.autoUser = autoUser == null ? null : autoUser.trim();
+        this.autoUser = autoUser;
     }
 
     public String getAutoUserOpReturn() {
-        return autoUserOpReturn;
+        return autoUserOpReturn == null ? "" : autoUserOpReturn.trim();
     }
 
     public void setAutoUserOpReturn(String autoUserOpReturn) {
-        this.autoUserOpReturn = autoUserOpReturn == null ? null : autoUserOpReturn.trim();
+        this.autoUserOpReturn = autoUserOpReturn;
     }
 
     public String getAutoUserReturn() {
-        return autoUserReturn;
+        return autoUserReturn == null ? "" : autoUserReturn.trim();
     }
 
     public void setAutoUserReturn(String autoUserReturn) {
-        this.autoUserReturn = autoUserReturn == null ? null : autoUserReturn.trim();
+        this.autoUserReturn = autoUserReturn;
     }
 
     public String getUserFilterPrcsPriv() {
-        return userFilterPrcsPriv;
+        return userFilterPrcsPriv == null ? "" : userFilterPrcsPriv.trim();
     }
 
     public void setUserFilterPrcsPriv(String userFilterPrcsPriv) {
@@ -382,7 +510,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getUserFilterPrcsPrivOther() {
-        return userFilterPrcsPrivOther;
+        return userFilterPrcsPrivOther == null ? "" : userFilterPrcsPrivOther.trim();
     }
 
     public void setUserFilterPrcsPrivOther(String userFilterPrcsPrivOther) {
@@ -390,7 +518,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getUserFilterPrcsDept() {
-        return userFilterPrcsDept;
+        return userFilterPrcsDept == null ? "" : userFilterPrcsDept.trim();
     }
 
     public void setUserFilterPrcsDept(String userFilterPrcsDept) {
@@ -398,7 +526,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getUserFilterPrcsDeptOther() {
-        return userFilterPrcsDeptOther;
+        return userFilterPrcsDeptOther == null ? "" : userFilterPrcsDept.trim();
     }
 
     public void setUserFilterPrcsDeptOther(String userFilterPrcsDeptOther) {
@@ -406,55 +534,55 @@ public class FlowProcess implements Serializable{
     }
 
     public String getMailTo() {
-        return mailTo;
+        return mailTo == null ? "" : mailTo.trim();
     }
 
     public void setMailTo(String mailTo) {
-        this.mailTo = mailTo == null ? null : mailTo.trim();
+        this.mailTo = mailTo;
     }
 
     public String getMailToDept() {
-        return mailToDept;
+        return mailToDept == null ? "" : mailToDept.trim();
     }
 
     public void setMailToDept(String mailToDept) {
-        this.mailToDept = mailToDept == null ? null : mailToDept.trim();
+        this.mailToDept = mailToDept;
     }
 
     public String getMailToPriv() {
-        return mailToPriv;
+        return mailToPriv == null ? "" : mailToDept.trim();
     }
 
     public void setMailToPriv(String mailToPriv) {
-        this.mailToPriv = mailToPriv == null ? null : mailToPriv.trim();
+        this.mailToPriv = mailToPriv;
     }
 
     public String getConditionDesc() {
-        return conditionDesc;
+        return conditionDesc == null ? "" : conditionDesc.trim();
     }
 
     public void setConditionDesc(String conditionDesc) {
-        this.conditionDesc = conditionDesc == null ? null : conditionDesc.trim();
+        this.conditionDesc = conditionDesc;
     }
 
     public String getRelationIn() {
-        return relationIn;
+        return relationIn == null ? "" : relationIn.trim();
     }
 
     public void setRelationIn(String relationIn) {
-        this.relationIn = relationIn == null ? null : relationIn.trim();
+        this.relationIn = relationIn;
     }
 
     public String getRelationOut() {
-        return relationOut;
+        return relationOut == null ? "" : relationOut.trim();
     }
 
     public void setRelationOut(String relationOut) {
-        this.relationOut = relationOut == null ? null : relationOut.trim();
+        this.relationOut = relationOut;
     }
 
     public String getControlMode() {
-        return controlMode;
+        return controlMode == null ? "" : controlMode.trim();
     }
 
     public void setControlMode(String controlMode) {
@@ -462,7 +590,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getListColumnPriv() {
-        return listColumnPriv;
+        return listColumnPriv == null ? "" : listColumnPriv.trim();
     }
 
     public void setListColumnPriv(String listColumnPriv) {
@@ -470,7 +598,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getFileuploadPriv() {
-        return fileuploadPriv;
+        return fileuploadPriv == null ? "" : fileuploadPriv.trim();
     }
 
     public void setFileuploadPriv(String fileuploadPriv) {
@@ -478,14 +606,14 @@ public class FlowProcess implements Serializable{
     }
 
     public String getImguploadPriv() {
-        return imguploadPriv;
+        return imguploadPriv == null ? "" : imguploadPriv.trim();
     }
 
     public void setImguploadPriv(String imguploadPriv) {
         this.imguploadPriv = imguploadPriv == null ? null : imguploadPriv.trim();
     }
 
-    
+
     public Integer getId() {
         return id;
     }
@@ -510,16 +638,25 @@ public class FlowProcess implements Serializable{
         this.prcsId = prcsId;
     }
 
-    public Byte getPrcsType() {
-        return prcsType;
+//    public byte[] getPrcsType() {
+//        return prcsType == null ? new byte[0] : prcsType;
+//    }
+//
+//    public void setPrcsType(byte[] prcsType) {
+//        this.prcsType = prcsType;
+//    }
+
+
+    public byte getPrcsType() {
+        return prcsType == 0 ? 0 : prcsType;
     }
 
-    public void setPrcsType(Byte prcsType) {
+    public void setPrcsType(byte prcsType) {
         this.prcsType = prcsType;
     }
 
     public String getPrcsName() {
-        return prcsName;
+        return prcsName == null ? "" : prcsName.trim();
     }
 
     public void setPrcsName(String prcsName) {
@@ -543,15 +680,15 @@ public class FlowProcess implements Serializable{
     }
 
     public String getFeedback() {
-        return feedback;
+        return feedback == null ? "0" : feedback.trim();
     }
 
     public void setFeedback(String feedback) {
-        this.feedback = feedback ;
+        this.feedback = feedback;
     }
 
     public String getAutoType() {
-        return autoType;
+        return autoType == null ? "" : autoType.trim();
     }
 
     public void setAutoType(String autoType) {
@@ -559,7 +696,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getUserFilter() {
-        return userFilter;
+        return userFilter == null ? "" : userFilter.trim();
     }
 
     public void setUserFilter(String userFilter) {
@@ -567,7 +704,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getTimeOut() {
-        return timeOut;
+        return timeOut == null ? "" : timeOut.trim();
     }
 
     public void setTimeOut(String timeOut) {
@@ -575,7 +712,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getTimeOutModify() {
-        return timeOutModify;
+        return timeOutModify == null ? "0" : timeOutModify.trim();
     }
 
     public void setTimeOutModify(String timeOutModify) {
@@ -583,7 +720,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getTimeOutAttend() {
-        return timeOutAttend;
+        return timeOutAttend == null ? "0" : timeOutAttend.trim();
     }
 
     public void setTimeOutAttend(String timeOutAttend) {
@@ -591,7 +728,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getSignlook() {
-        return signlook;
+        return signlook == null ? "0" : signlook.trim();
     }
 
     public void setSignlook(String signlook) {
@@ -599,7 +736,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getTopDefault() {
-        return topDefault;
+        return topDefault == null ? "" : topDefault.trim();
     }
 
     public void setTopDefault(String topDefault) {
@@ -607,7 +744,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getUserLock() {
-        return userLock;
+        return userLock == null ? "" : userLock.trim();
     }
 
     public void setUserLock(String userLock) {
@@ -615,7 +752,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getSyncDeal() {
-        return syncDeal;
+        return syncDeal == null ? "" : syncDeal.trim();
     }
 
     public void setSyncDeal(String syncDeal) {
@@ -623,15 +760,15 @@ public class FlowProcess implements Serializable{
     }
 
     public String getSyncDealCheck() {
-        return syncDealCheck;
+        return syncDealCheck == null ? "" : syncDealCheck.trim();
     }
 
     public void setSyncDealCheck(String syncDealCheck) {
-        this.syncDealCheck = syncDealCheck == null ? null : syncDealCheck.trim();
+        this.syncDealCheck = syncDealCheck;
     }
 
     public String getTurnPriv() {
-        return turnPriv;
+        return turnPriv == null ? "" : turnPriv.trim();
     }
 
     public void setTurnPriv(String turnPriv) {
@@ -647,7 +784,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getGatherNode() {
-        return gatherNode;
+        return gatherNode == null ? "" : gatherNode.trim();
     }
 
     public void setGatherNode(String gatherNode) {
@@ -655,7 +792,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getAllowBack() {
-        return allowBack;
+        return allowBack == null ? "" : allowBack.trim();
     }
 
     public void setAllowBack(String allowBack) {
@@ -663,7 +800,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getAttachPriv() {
-        return attachPriv;
+        return attachPriv == null ? "" : attachPriv.trim();
     }
 
     public void setAttachPriv(String attachPriv) {
@@ -678,13 +815,6 @@ public class FlowProcess implements Serializable{
         this.autoBaseUser = autoBaseUser;
     }
 
-    public Integer getRemindFlag() {
-        return remindFlag;
-    }
-
-    public void setRemindFlag(Integer remindFlag) {
-        this.remindFlag = remindFlag;
-    }
 
     public Integer getDispAip() {
         return dispAip;
@@ -695,7 +825,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getTimeOutType() {
-        return timeOutType;
+        return timeOutType == null ? "" : timeOutType.trim();
     }
 
     public void setTimeOutType(String timeOutType) {
@@ -703,7 +833,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getAttachEditPriv() {
-        return attachEditPriv;
+        return attachEditPriv == null ? "" : attachEditPriv.trim();
     }
 
     public void setAttachEditPriv(String attachEditPriv) {
@@ -711,7 +841,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getAttachEditPrivOnline() {
-        return attachEditPrivOnline;
+        return attachEditPrivOnline == null ? "" : attachEditPrivOnline.trim();
     }
 
     public void setAttachEditPrivOnline(String attachEditPrivOnline) {
@@ -719,7 +849,7 @@ public class FlowProcess implements Serializable{
     }
 
     public String getAttachMacroMark() {
-        return attachMacroMark;
+        return attachMacroMark == null ? "" : attachMacroMark.trim();
     }
 
     public void setAttachMacroMark(String attachMacroMark) {
@@ -751,7 +881,15 @@ public class FlowProcess implements Serializable{
     }
 
     public String getWorkingdaysType() {
-        return workingdaysType;
+        return workingdaysType == null ? "" : workingdaysType.trim();
+    }
+
+    public int getRemindFlag() {
+        return remindFlag;
+    }
+
+    public void setRemindFlag(int remindFlag) {
+        this.remindFlag = remindFlag;
     }
 
     public void setWorkingdaysType(String workingdaysType) {

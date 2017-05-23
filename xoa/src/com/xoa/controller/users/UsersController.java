@@ -39,7 +39,13 @@ public class UsersController {
 	private Logger loger = Logger.getLogger(UsersController.class);
 	@Resource
 	private UsersService usersService;
-	
+
+	 @RequestMapping("/addUsers")
+	 public String addUser(HttpServletRequest request) {
+		 ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				 "loginDateSouse"));
+		 return "app/sys/addUser";
+	 }
 	
 	/**
 	 * 创建作者:   张龙飞
@@ -109,7 +115,7 @@ public class UsersController {
 		@RequestMapping(value = "/user/edit",method = RequestMethod.POST)
 	    public ToJson<Users> edit(
 	    		 Users user,
-	             @RequestParam(value = "imgFile") MultipartFile imageFile
+	             @RequestParam(value = "imgFile",required = false) MultipartFile imageFile
 	    		,HttpServletRequest request) throws IllegalStateException, IOException {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
@@ -125,19 +131,11 @@ public class UsersController {
 		                }
 		                File file = new File(dir,fileName);
 		                imageFile.transferTo(file);
-		                String avatar = realPath + resourcePath + fileName;
-		    			user.setAvatar("img/user/"+fileName);
+		                //String avatar = realPath + resourcePath + fileName;
+		    			user.setAvatar(fileName);
 		            }
 			 }
-			 try {
-					usersService.editUser(user);					
-		            json.setObject(user);
-		            json.setMsg("OK");
-		            json.setFlag(0);
-				} catch (Exception e) {
-					json.setMsg(e.getMessage());
-				}
-		        return json;
+		        return usersService.editUser(user);
 	    }
 	
 	

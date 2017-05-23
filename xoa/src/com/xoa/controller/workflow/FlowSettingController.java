@@ -32,14 +32,79 @@ public class FlowSettingController {
 
 
 
-
-
+    /**
+     * Created by:   pfl
+     * date:   2017/5/22 14:47
+     * description:   新建权限管理（
+     * @param privType 授权类型(1-管理,2-监控,3-查询,4-编辑,5-点评)
+     * @param scope [SELF_ORG-本机构 对应 -3,ALL_DEPT-所有部门 对应 -2,SELF_DEPT-本部门 对应 -1,部门ID串 直接拼写数组 1，2，3]
+     * @param user  授权用户id串 [1,2,3,4,5]
+     * @param role  授权角色id串 [1,2,3,4,5]
+     * @param dept  授权部门id串 [1,2,3,4,5]
+     * @param flowId 所属流程
+     * @return
+     */
     @RequestMapping("/newFlowPriv")
     public BaseWrapper newFlowPrivData(Integer privType, @RequestParam("scope[]") Integer scope[],
                                        @RequestParam("user[]") Integer user[], @RequestParam("role[]")Integer role[],
                                        @RequestParam("dept[]")Integer dept[],Integer flowId){
         return privService.newFlowPriv(privType,scope,user,role,dept,flowId);
     }
+
+
+    /**
+     * Created by:   pfl
+     * date:   2017/5/22 19:10
+     * description:   编辑权限管理（
+     * @param privType 授权类型(1-管理,2-监控,3-查询,4-编辑,5-点评)
+     * @param scope [SELF_ORG-本机构 对应 -3,ALL_DEPT-所有部门 对应 -2,SELF_DEPT-本部门 对应 -1,部门ID串 直接拼写数组 1，2，3]
+     * @param user  授权用户id串 [1,2,3,4,5]
+     * @param role  授权角色id串 [1,2,3,4,5]
+     * @param dept  授权部门id串 [1,2,3,4,5]
+     * @param flowId 所属流程
+     * @param privId 要编辑的权限
+     * @return
+     */
+    @RequestMapping("/updateFlowPriv")
+    public BaseWrapper updateFlowPriv(Integer privType,@RequestParam("scope[]")Integer scope[], @RequestParam("user[]")Integer user[],@RequestParam("role[]")Integer role[],@RequestParam("dept[]")Integer dept[],Integer flowId,Integer privId){
+        return privService.updateFlowPriv(privType,scope,user,role,dept,flowId,privId);
+    }
+
+
+    /**
+     * Created by:   pfl
+     * date:   2017/5/22 17:28
+     * description:   删除权限
+     * @param privId  权限Id
+     * @return
+     */
+    @RequestMapping("/deleteFlowPriv")
+    public BaseWrapper deleteFlowPriv(Integer privId){
+        return privService.deleteFlowPriv(privId);
+    }
+
+
+
+    /**
+     * Created by:   pfl
+     * date:   2017/5/22 17:44
+     * description:   获取所选流程的定时任务（根据流程id）
+     * @param flowId  流程Id
+     * @return
+     */
+    @RequestMapping("/getFlowTimerList")
+    public BaseWrappers getFlowTimerDatas(Integer flowId){
+        return privService.queryFlowTimer(flowId);
+    }
+
+
+
+
+    @RequestMapping("/newFlowTimer")
+    public BaseWrapper newFlowTimer(Integer flowId,Integer type,String date,@RequestParam("user[]")Integer user[],@RequestParam("dept[]")Integer dept[],@RequestParam("role[]")Integer role[]){
+        return privService.newFlowTimer(flowId,type,date,user,dept,role);
+    }
+
 
 
 }

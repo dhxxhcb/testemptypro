@@ -43,6 +43,7 @@
 			background-image:url(../../img/workflow/btn_new_nor_03.png),url(../../img/workflow/icon_plus_03.png); 
 			cursor:pointer;
 			background-repeat:no-repeat;
+			margin-top:6px;
 			}
 		 .head_left_pic {
 				display: inline-block;
@@ -51,11 +52,11 @@
 				margin-left: 50px;
 			}
 		.head_rig {width: 10%;margin-top:5px;}
-     	.inp {height:24px;}
+
 		.search {
 				width: 72px;
 				height: 29px;
-				margin-top: 16px;
+				margin-top: 13px;
 				background: #fff;
 			}
 		.search h1 {
@@ -257,7 +258,7 @@
 		}
 		.inp{
 			width: 221px;
-			height: 32px;
+			height: 26px;
 			border-radius: 4px;
 		}
 	/*	#layui-layer2{
@@ -299,6 +300,85 @@
 			border-right: 1px solid #000;
 			overflow-y: scroll;
 		}
+		.cont_left::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_left::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+
+.cont_left::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+.cont_left::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_left::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+.cont_left::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+	}
+	.cont_rig::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_rig::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+
+.cont_rig::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+.cont_rig::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_rig::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+.cont_rig::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
     </style>
 </head>
 <body>
@@ -310,7 +390,7 @@
 		<h1>表单设计</h1>
 		</div>
         <div class="head_mid">
-            <input id="form_value" class="inp" type="text" placeholder="输入表名称搜索">
+            <input id="form_value" class="inp" type="text" placeholder="&nbsp;请输入表名称搜索">
             <div id="btn_search" class="search">
 			<h1 style='cursor:pointer;'>搜索</h1></div>
         </div>

@@ -3,6 +3,7 @@ package com.xoa.dao.workflow;
 import com.xoa.model.workflow.FlowSort;
 import com.xoa.model.workflow.FlowSortExample;
 import java.util.List;
+import java.util.Map;
 
 import com.xoa.model.workflow.FormSort;
 import com.xoa.model.workflow.FormSortExample;
@@ -38,4 +39,6 @@ public interface FlowSortMapper {
     int updateByPrimaryKeySelective(FlowSort record);
 
     int updateByPrimaryKey(FlowSort record);
+
+    List<FlowSort> selectFlowSortByAuth(Map<String,Object> map);
 }

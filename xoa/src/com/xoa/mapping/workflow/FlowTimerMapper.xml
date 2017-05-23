@@ -14,6 +14,12 @@
     <result column="DEPT_STR" jdbcType="LONGVARCHAR" property="deptStr" />
     <result column="PRIV_STR" jdbcType="LONGVARCHAR" property="privStr" />
   </resultMap>
+  <resultMap extends="ResultMapWithBLOBs" id="ResultMapWithBLOBsExtend" type="com.xoa.model.workflow.FlowTimerWithBLOBs">
+    <result column="USER_NAME" javaType="java.lang.String" property="userName" />
+    <result column="TYPE_NAME" javaType="java.lang.String" property="typeName" />
+    <result column="DEPT_NAME" javaType="java.lang.String" property="deptName" />
+    <result column="ROLE_NAME" javaType="java.lang.String" property="roleName" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -316,4 +322,35 @@
       LAST_TIME = #{lastTime,jdbcType=TIMESTAMP}
     where TID = #{tid,jdbcType=INTEGER}
   </update>
+  <select id="queryByFlowId" resultMap="ResultMapWithBLOBsExtend" parameterType="java.lang.Integer">
+    SELECT flow_timer.*,
+        userName.USER_NAME,
+-- 提醒类型(1-仅此一次,2-按日,3-按周,4-按月,5-按年,)
+           case
+      WHEN flow_timer.TYPE='1' then '仅此一次'
+      WHEN flow_timer.TYPE='2' then '按日'
+      WHEN flow_timer.TYPE='3' then '按周'
+      WHEN flow_timer.TYPE='4' then '按月'
+      WHEN flow_timer.TYPE='5' then '按年'
+        ELSE '未知类型' END
+       AS TYPE_NAME,
+        departName.DPET_NAME AS  DEPT_NAME,
+         roleName.ROLE_NAME AS ROLE_NAME
+         FROM flow_timer LEFT JOIN
+        (SELECT GROUP_CONCAT(`user`.USER_NAME) as USER_NAME,flow_timer.TID AS b FROM
+          `user`,flow_timer WHERE FIND_IN_SET(`user`.UID,flow_timer.USER_STR) GROUP BY flow_timer.TID
+        ) AS userName ON b =flow_timer.TID
+
+        LEFT JOIN (
+         SELECT GROUP_CONCAT(department.DEPT_NAME) as DPET_NAME,flow_timer.TID AS d FROM
+          department,flow_timer WHERE FIND_IN_SET(department.DEPT_ID,flow_timer.DEPT_STR) GROUP BY flow_timer.TID
+        ) AS departName ON d =flow_timer.TID
+        LEFT JOIN (
+          SELECT GROUP_CONCAT(user_priv.PRIV_NAME) AS ROLE_NAME,flow_timer.TID AS c FROM
+           user_priv, flow_timer WHERE FIND_IN_SET(user_priv.USER_PRIV,flow_timer.PRIV_STR) GROUP BY flow_timer.TID
+       )AS roleName ON c =flow_timer.TID
+        WHERE flow_timer.FLOW_ID=#{flowId}
+  </select>
+
+
 </mapper>
