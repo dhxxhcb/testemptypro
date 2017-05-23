@@ -115,21 +115,22 @@ public class UsersController {
 		@RequestMapping(value = "/user/edit",method = RequestMethod.POST)
 	    public ToJson<Users> edit(
 	    		 Users user,
-	    		 HttpServletRequest request) throws IllegalStateException, IOException {
+	             @RequestParam(value = "imgFile") MultipartFile imageFile
+	    		,HttpServletRequest request) throws IllegalStateException, IOException {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
 			ToJson<Users> json=new ToJson<Users>();
 			String realPath = request.getSession().getServletContext().getRealPath("/");
 	        String resourcePath = "ui/img/user";
-			 if(user.getImageFile()!=null){
-		            if(FileUploadUtil.allowUpload(user.getImageFile().getContentType())){
-		                String fileName = FileUploadUtil.rename(user.getImageFile().getOriginalFilename());
+			 if(imageFile!=null){
+		            if(FileUploadUtil.allowUpload(imageFile.getContentType())){
+		                String fileName = FileUploadUtil.rename(imageFile.getOriginalFilename());
 		                File dir = new File(realPath + resourcePath);
 		                if(!dir.exists()){
 		                    dir.mkdirs();
 		                }
 		                File file = new File(dir,fileName);
-		                user.getImageFile().transferTo(file);
+		                imageFile.transferTo(file);
 		                //String avatar = realPath + resourcePath + fileName;
 		    			user.setAvatar(fileName);
 		            }
