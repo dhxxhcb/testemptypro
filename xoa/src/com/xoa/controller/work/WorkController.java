@@ -27,7 +27,7 @@ import com.xoa.util.dataSource.ContextHolder;
 @RequestMapping("/workflow/work")
 public class WorkController {
 	
-		@RequestMapping("index")
+		@RequestMapping("addwork")
 	    public String work(HttpServletRequest request) {
 	        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 	                "loginDateSouse"));
