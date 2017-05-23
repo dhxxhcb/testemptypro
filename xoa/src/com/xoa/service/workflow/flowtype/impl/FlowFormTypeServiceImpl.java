@@ -3,7 +3,6 @@ package com.xoa.service.workflow.flowtype.impl;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.xoa.dao.workflow.FlowFormTypeMapper;
 import com.xoa.model.workflow.FlowFormType;

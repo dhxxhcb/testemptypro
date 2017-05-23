@@ -1,29 +1,37 @@
 package com.xoa.model.workflow;
 
-import java.util.List;
-
 public class FlowFast {
 	
-	private List<FlowProcess> flowProcesses;
+	private FlowProcess flowProcesses;
 	
-	private List<FlowTypeModel> flowTypeModel;
+	private FlowTypeModel flowTypeModel;
+	
+	private FlowFormType flowFormType;
 
-	public List<FlowProcess> getFlowProcesses() {
+	public FlowFormType getFlowFormType() {
+		return flowFormType;
+	}
+
+	public void setFlowFormType(FlowFormType flowFormType) {
+		this.flowFormType = flowFormType;
+	}
+
+	public FlowProcess getFlowProcesses() {
 		return flowProcesses;
 	}
 
-	public void setFlowProcesses(List<FlowProcess> flowProcesses) {
+	public void setFlowProcesses(FlowProcess flowProcesses) {
 		this.flowProcesses = flowProcesses;
 	}
 
-	public List<FlowTypeModel> getFlowTypeModel() {
+	public FlowTypeModel getFlowTypeModel() {
 		return flowTypeModel;
 	}
 
-	public void setFlowTypeModel(List<FlowTypeModel> flowTypeModel) {
+	public void setFlowTypeModel(FlowTypeModel flowTypeModel) {
 		this.flowTypeModel = flowTypeModel;
 	}
-	
+
 	
 
 }

@@ -74,7 +74,9 @@
     <select id="findFlowId" resultMap="BaseResultMap">
         select Id,PRCS_ID,PRCS_TO,PRCS_NAME from flow_process where FLOW_ID=#{flowId}
     </select>
-
+  <select id="find" parameterType="Map" resultMap="BaseResultMap">
+  select * from flow_process where  ID = #{id} 
+  </select>
 
     <select id="findF" resultMap="BaseResultMap">
         select a.* ,b.FlOW_NAME as flowName from flow_process a,flow_type b where a.FLOW_ID=b.FLOW_ID and b.FLOW_ID=#{flowId}
