@@ -5,8 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.xoa.model.users.Users;
 import com.xoa.util.ToJson;
 
@@ -33,9 +31,9 @@ public interface UsersService {
 	 * 创建日期:   2017年4月18日 下午5:25:14
 	 * 方法介绍:   修改用户
 	 * 参数说明:   @param user
-	 * @return     void
+	 * @return     ToJson<Users>
 	 */
-	public void editUser(Users user);
+	public ToJson<Users> editUser(Users user);
 	
 	/**
 	 * 创建作者:   张龙飞

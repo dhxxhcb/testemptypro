@@ -1,5 +1,4 @@
 package com.xoa.service.users.impl;
-import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -9,16 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.xoa.dao.common.SyslogMapper;
 import com.xoa.dao.users.UsersMapper;
 import com.xoa.model.common.Syslog;
 import com.xoa.model.users.Users;
-import com.xoa.model.workflow.FlowProcess;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.CusAccessObjectUtil;
-import com.xoa.util.FileUploadUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
@@ -49,16 +45,32 @@ public class UsersServiceImpl implements UsersService {
 	public void addUser(Users user) {
 		usersMapper.addUser(user);
 	}
-	 /**
+	
+	/**
 	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月18日 下午4:44:34
+	 * 创建日期:   2017年5月23日 下午1:39:34
 	 * 方法介绍:   修改用户
-	 * 参数说明:   @param user  用户信息
-	 * @return     void    无
+	 * 参数说明:   @param user 用户
+	 * 参数说明:   @return
+	 * @return     ToJson<Users>  用户
 	 */
 	@Override
-	public void editUser(Users user) {
-		usersMapper.editUser(user);
+	@Transactional
+	public ToJson<Users> editUser(Users user) {
+		 ToJson<Users> tojson = new ToJson<Users>();
+		try{
+			usersMapper.editUser(user);
+			user=usersMapper.findUserByuid(user.getUid());
+			tojson.setObject(user);
+			tojson.setFlag(0);
+            tojson.setMsg("OK");
+		}catch(Exception e){
+			 e.printStackTrace();
+	         tojson.setFlag(1);
+	         tojson.setMsg("error");
+		}
+		return tojson;
+		
 	}
 
 
