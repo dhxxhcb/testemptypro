@@ -1,20 +1,18 @@
 package com.xoa.controller.syspara;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.xoa.model.common.SysPara;
+import com.xoa.service.syspara.SysParaService;
+import com.xoa.util.ToJson;
+import com.xoa.util.dataSource.ContextHolder;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xoa.model.common.SysPara;
-import com.xoa.service.syspara.SysParaService;
-import com.xoa.util.ToJson;
-import com.xoa.util.dataSource.ContextHolder;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 
@@ -91,4 +89,57 @@ public class SysParaController {
 		}
 		return tojson;
 	}
+
+
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/23 11:35
+     * @函数介绍: 获取sys_para, 前台传入key, 获取对应value
+     * @参数说明: @param paraName    sysParam表的PARA_NAME
+     * @return: json (sysParam表的PARA_NAME对应的value)
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/selectTheSysPara", produces = {"application/json;charset=UTF-8"})
+    public ToJson<SysPara> selectTheSysPara(HttpServletRequest request, String paraName) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<SysPara> tojson = new ToJson<SysPara>(0, "");
+        try {
+            List<SysPara> list = sysParaService.getTheSysParam(paraName);
+            //list=sysParaService.getIeTitle1();
+            tojson.setObject(list);
+            tojson.setMsg("ok");
+            tojson.setFlag(0);
+        } catch (Exception e) {
+            tojson.setMsg(e.getMessage());
+        }
+        return tojson;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/23 14:07
+     * @函数介绍: 修改sys_para表
+     * @参数说明: @param sysPara
+     * @return: json
+     **/
+    @RequestMapping(value = "/updateSysParaByParaName")
+    @ResponseBody
+    public ToJson<SysPara> updateSysPara(SysPara sysPara, HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<SysPara> tojson = new ToJson<SysPara>(0, "");
+        try {
+            sysParaService.updateSysPara(sysPara);
+            tojson.setObject(sysPara);
+            tojson.setMsg("ok");
+            tojson.setFlag(0);
+        } catch (Exception e) {
+            tojson.setMsg(e.getMessage());
+        }
+        return tojson;
+    }
+
+
 }
