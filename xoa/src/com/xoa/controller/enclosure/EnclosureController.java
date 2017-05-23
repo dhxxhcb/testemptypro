@@ -86,6 +86,38 @@ public class EnclosureController {
 	        return json;
 	    }
 
+	
+	  /**
+		 * 创建作者:   张龙飞
+		 * 创建日期:   2017年5月23日 上午11:12:17
+		 * 方法介绍:   附件上传适配手机端
+		 * 参数说明:   @param files 文件
+		 * 参数说明:   @param module 模块名
+		 * 参数说明:   @param isAttach 是否直接显示上传路径
+		 * 参数说明:   @param request 请求
+		 * 参数说明:   @return
+		 * @return     ToJson<Attachment> 返回附件信息
+		 */
+		@RequestMapping(value ="/uploadApp",produces = {"application/json;charset=UTF-8"}) 
+		public @ResponseBody ToJson<Attachment> uploadApp( @RequestParam("file") MultipartFile[] files,String module,
+				String company,  
+				HttpServletRequest request) {	
+//			L.w("0=||==============》"+request.getSession().getId());
+			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+					"loginDateSouse"));
+				ToJson<Attachment> json=new ToJson<Attachment>(0, null);
+				try {	
+					List<Attachment> list=enclosureService.upload(files, company, module);  
+					json.setObj(list);
+		            json.setMsg("OK");
+		            json.setFlag(0);
+		            System.out.println(json.toString());
+				} catch (Exception e) {
+					json.setMsg(e.getMessage());
+				}
+		        return json;
+		    }
+
 		public void listfile(File file, Map<String, String> map,String path) {
 			// 如果file代表的不是一个文件，而是一个目录
 			if (!file.isFile()) {

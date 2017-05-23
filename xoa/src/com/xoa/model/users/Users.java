@@ -2,6 +2,8 @@ package com.xoa.model.users;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.xoa.model.common.SysPara;
 import com.xoa.model.department.Department;
 import com.xoa.model.role.Role;
@@ -316,6 +318,18 @@ public class Users {
 	private String companyName;
    
 	private  SysPara para; 
+	
+	private	 MultipartFile imageFile;
+	
+	
+
+	public MultipartFile getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(MultipartFile imageFile) {
+		this.imageFile = imageFile;
+	}
 
 	public String getShowRss() {
 		return showRss;
