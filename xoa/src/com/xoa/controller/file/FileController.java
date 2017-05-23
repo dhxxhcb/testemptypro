@@ -521,6 +521,8 @@ public class FileController {
 			throws UnsupportedEncodingException {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
+			HttpSession session=request.getSession();
+			String userId=session.getAttribute("userId").toString();
 		Map<String, Object> model = null;
 		ModelAndView modelAndView = null;
 		if("".equals(file.getSortNo())||file.getSortNo()==null){
@@ -551,6 +553,7 @@ public class FileController {
 			return null;
 		}
 		//添加文件影响行
+		file.setUserId("||"+userId+",");
 		int resultSave = fileSortService.saveFileSort(file);
 		HtmlUtil.writerJson(response, resultSave);
 		return null;
@@ -918,7 +921,7 @@ public class FileController {
 		if(userId!=null&&!"".equals(userId)){
 		    String[] deptIds=userId.split(",");
 		    for(int i=0;i<deptIds.length;i++){
-		    	if(deptIds.equals(userIdOfuser_Id)){
+		    	if(deptIds[i].equals(userIdOfuser_Id)){
 		    		return true;
 		    	}
 		    }
