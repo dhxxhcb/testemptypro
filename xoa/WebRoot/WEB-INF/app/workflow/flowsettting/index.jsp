@@ -26,7 +26,8 @@
         <li class="list1">
             <a href="javascript:void(0)" class="btn_click btn_h btn1">
                 <img
-                    src="../../img/workflow/flowsetting/icon_workprocess_03.png" alt="">设计流程<i class="icon_d"></i></a>
+                        src="../../img/workflow/flowsetting/icon_workprocess_03.png" alt="">设计流程<i
+                    class="icon_d"></i></a>
             <ul class="hide_list1 hide">
                 <li><a href="javascript:void(0)" class="btn_h btn_h_1"><i class="icon"></i>定义流程属性</a>
                 </li>
@@ -39,7 +40,7 @@
         </li>
         <li>
             <a href="javascript:void(0)" class="btn_click btn_h btn2">
-            <img src="../../img/workflow/flowsetting/icon_authoritymanagement_03.png" alt="">管理权限</a>
+                <img src="../../img/workflow/flowsetting/icon_authoritymanagement_03.png" alt="">管理权限</a>
         </li>
         <li><a href="javascript:void(0)" class="btn_click btn_h btn3"><img
                 src="../../img/workflow/flowsetting/icon_timedtask_03.png" alt="">定时任务</a>
@@ -62,14 +63,14 @@
             <div class="con_flow">
                 <div class="define_r clearfix">
                     <h3>定义流程属性</h3>
-                    <span><a href="javascript:void(0)">保存</a></span>
+                    <span><a href="javascript:void(0)" class="keepmsg">保存</a></span>
                 </div>
                 <p class="define_p">基本属性</p>
                 <form class="pro_flow ">
                     <div class="con_form">
                         <div class="form_group">
                             <label for="projectName" class="flowName">流程名称<span class="save">*</span></label>
-                            <input type="text" id="projectName" placeholder="请假申请">
+                            <input type="text" id="projectName">
 
                         </div>
                         <div class="form_group">
@@ -188,7 +189,7 @@
                 </form>
 
             </div>
-    </div>
+        </div>
 
         <div class="item">
             <table class="table" cellspacing="0">
@@ -221,7 +222,7 @@
                     <td>2</td>
                     <td class="management" style="text-align: center">部门负责人审批</td>
                     <td>3,</td>
-                    <td  style="text-align: center">基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>
+                    <td style="text-align: center">基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>
                     <td>
                         <a href="javascript:void(0)">修改</a>
                         <a href="javascript:void(0)">删除</a>
@@ -391,8 +392,6 @@
         </div>
 
 
-
-
     </div>
 
 </div>
@@ -402,46 +401,53 @@
 
 <script type="text/javascript">
     $(function () {
-        var $list=$('.cont_list li a');
+        var $list = $('.cont_list li a');
 
-        $list.each(function (index,item) {
+        $list.each(function (index, item) {
             $(item).click(function () {
-                if(index==1) $('.hide_list1').toggle();
-                $('.cont_r .item').eq(index).show().siblings().hide()
-              $.ajax({
-                  type:'get',
-                  url:'',
-                  dataType:'json',
+                if (index == 1) $('.hide_list1').toggle();
+                $('.cont_r .item').eq(index).show().siblings().hide();
+              /*  $.ajax({
+                    type:"get",
+                    url:"",
+                    dataType:"json",
+                    success:function (data) {
+                        console.log(data);
+                    }
+                })*/
 
+                $('.keepmsg').on('click', function () {
+                    alert($('#projectName').val());
+                    var data = {
+                        "flowName": $('#projectName').val(),
+                        "flowNo": $('#orderID').val(),
+                        "deptId": $('#deptName').val(),
+//                        "flowSort": $('#classfiy').val(),
+                        "flowSort": "1",
+//                        "flowType": $('#class_f').val(),
+                        "flowType": "1",
+//                        "formId": $('#leave').val(),
+                        "formId": "117",
+//                        "freeOther": $('#delegate-type').val(),
+                        "freeOther": "2",
+                        "viewPriv": $('input[name=sex]').val(),
 
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: '/flow/newFlow',
+                        dataType: 'json',
+                        data: data,
+                        success: function (data) {
+                            alert(data.flag);
+                            console.log(data)
+                        }
+                    })
 
-              })
+                })
 
             })
         })
-
-
-//        $('.btn1').click(function (event) {
-//            $('.hide_list1').toggle();
-//            event.stopPropagation();
-//        });
-//        $('.btn2').click(function (event) {
-//            $('.table').toggle();
-//            event.stopPropagation();
-//
-//        });
-//        $('.btn3').click(function (event) {
-//            $('.table').hide();
-//            event.stopPropagation();
-//        })
-//        $('.btn4').click(function (event) {
-//            $('.table').show();
-//            event.stopPropagation();
-//        })
-//        $('.btn5').click(function (event) {
-//            $('.table').show();
-//            event.stopPropagation();
-//        })
 
 
         /*全选非全选*/
@@ -451,8 +457,6 @@
         $('.one').click(function () {
             $('#checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
         })
-
-
 
 
     })
