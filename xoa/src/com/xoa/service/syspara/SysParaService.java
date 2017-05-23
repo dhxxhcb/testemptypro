@@ -1,10 +1,9 @@
 package com.xoa.service.syspara;
 
-import java.util.List;
-
+import com.xoa.model.common.SysPara;
 import org.springframework.stereotype.Service;
 
-import com.xoa.model.common.SysPara;
+import java.util.List;
 
 /**
     * 
@@ -40,6 +39,18 @@ public interface SysParaService {
     void updateSysPara(SysPara sysPara);
 	
 	void updateSysPara1(SysPara sysPara);
-	
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/23 11:41
+     * @函数介绍: 获取sys_para, 前端传入key, 获取对应value
+     * @参数说明: @param sysPara 封装sys_para表对应的实体类
+     * @return: List<SysPara>
+     * @param paraName
+     * */
+    List<SysPara> getTheSysParam(String paraName);
+
+
+
 
 }

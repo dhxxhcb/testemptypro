@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/sys/userManagement.css"/>
     <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div class="content">
@@ -25,18 +26,20 @@
     </div>
     <div class="left">
         <div class="collect">
+            <div id="incum" class="divUP">
+                <span class="spanUP liUp AUP">在职人员</span>
+                    <ul id="ULDown" style="display:none;">
 
-            <ul>
-                <li class="liUp">在职人员</li>
-                <li class="liUp">离职人员/外部人员</li>
-                <li class="liUp">最近新增用户</li>
-                <li class="liUp">用户查询或导出</li>
-                <li class="liUp">用户导入</li>
-                <li class="liUp">批量用户个性设置</li>
-                <li class="liUp">提醒空密码用户</li>
-                <li class="liUp">导出RTX格式</li>
-                <li class="liUp">退出用户客户端登录</li>
-            </ul>
+                    </ul>
+            </div>
+            <div><span class="spanUP liUp">离职人员/外部人员</span></div>
+            <div><span class="spanUP liUp">最近新增用户</span></div>
+            <div><span class="spanUP liUp">用户查询或导出</span></div>
+            <div><span class="spanUP liUp">用户导入</span></div>
+            <div><span class="spanUP liUp">批量用户个性设置</span></div>
+            <div><span class="spanUP liUp">提醒空密码用户</span></div>
+            <div><span class="spanUP liUp">导出RTX格式</span></div>
+            <div><span class="spanUP liUp">退出用户客户端登录</span></div>
         </div>
     </div>
     <div class="right">
@@ -59,13 +62,13 @@
                     <th width="6%">
                         <input type="checkbox" name="checkbox" id="checkbox" value="" style="width:13px;height:13px;" />
                     </th>
-                    <th width="6%">用户名</th>
+                    <th width="8%">用户名</th>
                     <th width="8%">真实姓名</th>
                     <th width="6%">部门</th>
                     <th width="6%">排班</th>
                     <th width="6%">角色</th>
                     <th width="8%">管理范围</th>
-                    <th width="28%">最后访问</th>
+                    <th width="26%">最后访问</th>
                     <th width="16%">闲置</th>
                     <th width="10%">操作</th>
                 </tr>
@@ -102,13 +105,69 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        /*$('.collect ul li').click(function () {
-
-         })*/
         $('#btn').click(function(){
-            $.popWindow('addUsers','<fmt:message code="global.lang.reply" />','0','0','1500px','800px');
+            $.popWindow('../addUsers','新建用户','0','0','800px','600px');
         })
+
+        getChDept($('#ULDown'),30);
+        $('.AUP').click(function(){
+            //$('#ulList').slideToggle();
+            if($('#ULDown').css('display')=='block'){
+                $(this).addClass('liUp').removeClass('liDown');
+                $('#ULDown').slideUp();
+            }else{
+                $(this).addClass('liDown').removeClass('liUp');
+                $('#ULDown').slideDown();
+            }
+        })
+
+        $('#ULDown').on('click','.childdept',function(){
+            var  that = $(this);
+            $('.childdept').removeClass('on');
+            that.addClass('on')
+            getChDept(that.next(),that.attr('deptid'));
+            that.next().slideToggle();
+
+        })
+
+        function getChDept(element,deptId){
+            $.ajax({
+                url:'/department/getChDept',
+                type:'get',
+                data:{'deptId':deptId },
+                dataType:'json',
+                success:function(data){
+
+                    if(deptId==30){
+                        var str = '';
+                        data.obj.forEach(function(v,i){
+                            if(v.deptName){
+                                str+='<li><span deptid="'+v.deptId+'" class="childdept"><img style="margin-left: 42px;margin-right: 5px" src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul></ul></li>';
+                            }else{
+                                str+='<li><span deptid="'+v.deptId+'" class="childdept"><span><img style="margin-left: 65px;margin-right: 5px" src="../img/main_img/man.png" alt=""></span><img style="margin-left: 65px;margin-right: 5px" src="../img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul></ul></li>';
+                            }
+                        });
+                    }else{
+                        var str = '';
+                        data.obj.forEach(function(v,i){
+                            if(v.deptName){
+                                str+='<li><span deptid="'+v.deptId+'" class="childdept"><img style="margin-left: 65px;margin-right: 5px" src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul></ul></li>';
+                            }else{
+                                if(v.sex==0){
+                                    str+='<li><span deptid="'+v.deptId+'" class="childdept"><img style="margin-left: 65px;margin-right: 5px" src="../img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul></ul></li>';
+                                }else if(v.sex==1){
+                                    str+='<li><span deptid="'+v.deptId+'" class="childdept"><img style="margin-left: 65px;margin-right: 5px" src="../img/main_img/women.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul></ul></li>';
+                                }
+                            }
+
+                        });
+                    }
+                    element.html(str);
+                }
+            })
+        }
     })
+
 </script>
 </body>
 </html>

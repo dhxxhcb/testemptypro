@@ -75,4 +75,20 @@ public class SysParaServiceImpl  implements SysParaService{
 		
 	}
 
+    /**
+     *
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/23 11:41
+     * @函数介绍: 获取sys_para, 前端传入key, 获取对应value
+     * @参数说明: @param paraName
+     * @return: List<SysPara>
+     */
+    @Override
+    public List<SysPara> getTheSysParam(String paraName) {
+
+        return sysParaMapper.getTheSysParam(paraName);
+
+
+    }
+
 }

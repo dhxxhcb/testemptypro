@@ -34,7 +34,7 @@ public interface BaseMapper<T> {
 	 * @return: Integer   修改条数
 	 * @throws
 	 */
-	public Integer update(T t);
+	public void update(T t);
 	
 	/**
 	 * 
@@ -46,7 +46,7 @@ public interface BaseMapper<T> {
 	 * @return: Integer   删除数据条数
 	 * @throws
 	 */
-	public Integer delete(T t);
+	public void delete(T t);
 	
 	/**
 	 *  查询结果返回

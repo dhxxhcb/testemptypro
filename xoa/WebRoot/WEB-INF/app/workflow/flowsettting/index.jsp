@@ -194,44 +194,53 @@
 
             </div>
         </div>
-
+        <%--设计流程步骤--%>
         <div class="item">
-            <table class="table" cellspacing="0">
+            <table class="table" cellspacing="0" id="table_form">
                 <caption>
                     <a href="javascript:void (0)" class="newbuilt">新建</a>
                     <a href="javascript:void (0)" class="delete_c">删除</a>
                 </caption>
 
                 <thead>
-                <tr>
+               <%-- <tr>
                     <th class="check">序号</th>
                     <th>名称</th>
                     <th>下一步骤</th>
                     <th>编辑该步骤的各项属性</th>
                     <th>操作</th>
-                </tr>
-
+                </tr>--%>
                 </thead>
-                <tr>
+               <%-- <tr>
                     <td>1</td>
                     <td class="manage">督办内容填写</td>
                     <td class="ordernum">2,4</td>
                     <td class="cutout">基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>
                     <td class="opp">
-                        <a href="javascript:void(0)">修改</a>
+                        <a href="javascript:void(0)">克隆</a>
                         <a href="javascript:void(0)">删除</a>
                     </td>
-                </tr>
-                <tr>
+                </tr>--%>
+               <%-- <tr>
                     <td>2</td>
                     <td class="management" style="text-align: center">部门负责人审批</td>
                     <td>3,</td>
                     <td style="text-align: center">基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>
                     <td>
-                        <a href="javascript:void(0)">修改</a>
+                        <a href="javascript:void(0)">克隆</a>
                         <a href="javascript:void(0)">删除</a>
                     </td>
-                </tr>
+                </tr>--%>
+                <%--<tr>
+                    <td>3</td>
+                    <td class="management" style="text-align: center">总经理审核</td>
+                    <td>4</td>
+                    <td style="text-align: center">基本属性&nbsp;经办权限&nbsp;可写字段&nbsp;保密字段&nbsp;必填字段&nbsp;条件设置</td>
+                    <td>
+                        <a href="javascript:void(0)">克隆</a>
+                        <a href="javascript:void(0)">删除</a>
+                    </td>
+                </tr>--%>
             </table>
         </div>
 
@@ -406,61 +415,69 @@
 <script type="text/javascript">
     $(function () {
         var $list = $('.cont_list li a');
+        $.ajax({
+            type: "get",
+            url: "<%=basePath%>flowProcess/findFlowId",
+            dataType: "json",
+            data: {
+                flowId: 120
+            },
+            success: function (data) {
+                if (data.flag) {
+                    console.log(data.obj);
+                    var data = data.obj;
+                    var html = "<tr><th>序号</th><th>名称</th><th>下一步骤</th><th>编辑该步骤的各项属性</th><th>操作</th></tr>";
+                    for(var i=0;i<data.length;i++){
 
+                        html=html+"<tr>"+"<td>"+data[i].prcsId+"</td>"+"<td>"+data[i].prcsName+"</td>"+
+                            "<td></td>"+"<td style='text-align: center'>基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>"+"<td>修改 删除</td>"+"</tr>";
+
+                    }
+                    $('#table_form').append(html);
+
+
+
+                    /* $.each($data, function (index, item) {
+                     $('.table').append("<tr><td>"+item[0].prcsId+"</td></tr>")
+                     })*/
+
+
+                }
+
+
+            }
+        })
         $list.each(function (index, item) {
             $(item).click(function () {
                 if (index == 1) $('.hide_list1').toggle();
                 $('.cont_r .item').eq(index).show().siblings().hide();
-              /*  $.ajax({
-                    type:"get",
-                    url:"",
-                    dataType:"json",
-                    success:function (data) {
-                        console.log(data);
-                    }
-                })*/
 
                 $('.keepmsg').on('click', function () {
+
                     var data = {
-                        "flowName": $('#projectName').val(),
-                        "flowNo": $('#orderID').val(),
-//                        "deptId": $('#deptName').val(),
-                        "deptId": 1,
-//                        "flowSort": $('#classfiy').val(),
-                        "flowSort": 1,
-//                        "flowType": $('#class_f').val(),
-                        "flowType": 1,
-//                        "formId": $('#leave').val(),
-                        "formId": 117,
-//                        "freeOther": $('#delegate-type').val(),
-                        "freeOther": "2",
-                        "viewPriv": $('input[name=sex]').val(),
-
-                    }
-
-                    alert(data.flowSort);
+                        flowName: $('#projectName').val(),
+                        flowNo: $('#orderID').val(),
+                        deptId: 1,
+                        flowSort: 1,
+                        flowType: 1,
+                        formId: 117,
+                        freeOther: 2
+                    };
                     $.ajax({
                         type: 'POST',
                         url: '<%=basePath%>flow/newFlow',
                         dataType: 'json',
                         data: data,
                         success: function (data) {
-                            alert(data.msg);
                             console.log(data)
                         },
-                        error:function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert(XMLHttpRequest);
-                            alert(textStatus);
-                            alert(errorThrown);
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
                         }
                     })
-
                 })
-
             })
-        })
-
-
+        });
         /*全选非全选*/
         $('#checkAll').on('click', function () {
             $('.one').prop('checked', $(this).prop('checked'));
@@ -468,8 +485,6 @@
         $('.one').click(function () {
             $('#checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
         })
-
-
     })
 
 

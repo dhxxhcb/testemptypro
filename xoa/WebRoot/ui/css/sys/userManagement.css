@@ -2,7 +2,7 @@
 	margin: 0;
 	padding: 0;
 }
-body{
+body,html{
 	font-family: "微软雅黑";
 	position: relative;
     top: 0;
@@ -23,8 +23,8 @@ ul{list-style: none;}
 }
 .content .headDiv{
 	width: 100%;
-	height: 50px;
-	border-bottom: #999 2px solid;
+	height: 45px;
+	border-bottom: #999 1px solid;
 }
 .content .divP{
 	display: block;
@@ -46,7 +46,12 @@ ul{list-style: none;}
 	height: 750px;
 }
 
-.content .left .collect ul li{
+
+.content .left .collect .divUP{
+	width: 100%;
+	overflow: hidden;
+}
+.content .left .collect .spanUP{
 	display: block;
 	width: 100%;
 	padding-left: 30px;
@@ -56,12 +61,26 @@ ul{list-style: none;}
 	border-bottom: #ddd 1px solid;
 	cursor: pointer;
 }
-.content .left .collect ul li:first-of-type{
+.content .left .collect .liUp:first-of-type{
 	border-top: #ddd 1px solid;
 }
-.content .left .collect ul li:hover{
+.content .left .collect .liUp:hover{
 	background-color: #add2f8;
 }
+
+#ULDown span{
+	display: block;
+	width: 100%;
+	padding: 8px 0;
+}
+#ULDown span a{
+	font-size: 14px;
+}
+#ULDown span:hover{
+	background-color: #add2f8;
+}
+
+
 .content .right{
 	float: left;
 	width: 79%;
@@ -158,4 +177,25 @@ ul{list-style: none;}
 }
 .liDown{
 	background: url(../../img/sys/icon_downarrow_03.png) no-repeat 75% center;
+}
+.on{background-color: #add2f8;}
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+.left::-webkit-scrollbar{
+	width: 2px;
+	height: 16px;
+	background-color: #f5f5f5;
+}
+/*定义滚动条的轨道，内阴影及圆角*/
+.left::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	border-radius: 10px;
+	background-color: #f5f5f5;
+}
+/*定义滑块，内阴影及圆角*/
+.left::-webkit-scrollbar-thumb{
+	/*width: 10px;*/
+	height: 20px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
 }

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="fmt" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/" ;
 %>
 
 <!DOCTYPE html>
@@ -27,104 +28,35 @@
 <body>
 <div class="bx">
     <!--head开始-->
-    <div class="head w clearfix">
-        <ul class="index_head">
-            <li data_id="0"><span class="one headli1_1"><fmt:message
-                    code="news.title.unread"/></span><img class="headli1_2" src="../img/02.png" alt=""/>
-            </li>
-
-            <li data_id=""><span class="headli2_1"><fmt:message
-                    code="news.title.new"/></span><img src="../img/02.png" alt="" class="headli2_2"/>
-            </li>
-
-            <li data_id="1"><span class="headli3"><fmt:message code="news.title.query"/></span></li>
-
-        </ul>
-    </div>
-    <!--head通栏结束-->
-
-    <!--navigation开始-->
-    <div class="step1">
-        <div class="navigation  clearfix">
-            <div class="left">
-
-                <img src="../img/la2.png">
-
-                <div class="news">
-                    <fmt:message code="news.title.new"/>
-                </div>
-                <select name="TYPE" class="button1 nav_type" id="select">
-                    <option value="0" selected="">
-                        <fmt:message code="news.th.type"/>
-                    </option>
-                    <option value="01">
-                        <fmt:message code="news.th.company"/>
-                    </option>
-                    <option value="02">
-                        <fmt:message code="news.th.media"/>
-                    </option>
-                    <option value="03">
-                        <fmt:message code="news.th.industry"/>
-                    </option>
-                    <option value="04">
-                        <fmt:message code="news.th.partner"/>
-                    </option>
-                    <option value="05">
-                        <fmt:message code="news.th.client"/>
-                    </option>
-                    <option value="">
-                        <fmt:message code="news.th.none"/>
-                    </option>
-                </select>
-                <div>
-                    <div class="nav_date">
-                        <fmt:message code="global.lang.date"/>
-                        :
-                    </div>
-                    <input class="button1" id="sendTime">
-                </div>
-                <!-- 查询按钮 -->
-                <div id="cx" class="submit">
-                    <fmt:message code="global.lang.query"/>
-                </div>
-            </div>
-
-            <div class="right">
-                <!-- 分页按钮-->
-                <div class="M-box3">
-                </div>
-
-            </div>
-
-        </div>
-
-        <!--navigation结束-->
+    <br/>
+    <h6>多企业管理</h6>
+    </hr>
 
         <!--content部分开始-->
         <div>
             <div>
-                <table  id="tr_td">
+                <table id="tr_td">
                     <thead>
                     <tr>
                         <td class="th">
-                            <fmt:message code="notice.th.title"/>
+                            <%--<fmt:message code="notice.th.title"/>--%>公司id
                         </td>
                         <td class="th">
-                            <fmt:message code="news.th.type"/>
+                            <%--<fmt:message code="news.th.type"/>--%>公司名称
                         </td>
                         <!-- <td class="th" style="position: relative"><fmt:message code="notice.title.Releasedate" />
                                <img style="position: absolute;margin-left:9px;cursor: pointer;" src="../img/05.png" alt=""/>
                              <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;" src="../img/06.png " alt=""/>
                         </td> -->
                         <td class="th">
-                            <fmt:message code="notice.title.Releasedate"/>
+                          <%-- <fmt:message code="notice.title.Releasedate"/>--%>版本
                         </td>
 
                         <td class="th">
-                            <fmt:message code="news.th.clicks"/>
+                           <%-- <fmt:message code="news.th.clicks"/>--%>是否组织
                         </td>
                         <td class="th">
-                            <fmt:message code="news.th.comment"/>
+                            <%--<fmt:message code="news.th.comment"/>--%>修改
                         </td>
                         <!-- <td class="th">发布部门</td> -->
                     </tr>
@@ -141,102 +73,10 @@
 
     </div>
 </div>
-<!-- 新闻查询 -->
-<!-- <div class="center" style="width:100%;margin-top: 50px;display: none;"> -->
-<!-- 新闻nav部分 -->
 
-<div class="center" id="qt">
-    <div class="navigation  clearfix">
-        <div class="left">
-            <img src="../img/la2.png">
-            <div class="news">
-                新闻查询
-            </div>
-        </div>
-
-        <div class="login">
-            <div class="header">
-                <fmt:message code="global.lang.inputquerycondition"/>
-            </div>
-            <form id="empty">
-                <div class="middle">
-                    <div class="le publisher">
-                        <div class="color" style="width:105px;">
-                            <fmt:message code="notice.th.publisher"/> ：
-                        </div>
-                        <input id="input_text1" type="text"/>
-                        <div style="margin-right:23px; color:#207BD6">
-                            <a href="javascript:;" id="query_adduser"><fmt:message code="global.lang.add"/></a>
-                        </div>
-                        <div>
-                            <a href="javascript:;"  onclick="clearData()"><fmt:message code="global.lang.empty"/> </a>
-                        </div>
-                    </div>
-                    <div class="le subject">
-                        <div class="color" style="width:105px;">
-                            <fmt:message code="notice.th.title"/> ：</div>
-                        <input id="subject_query " class="input_text2" type="text"/>
-                    </div>
-                    <div class="le date">
-                        <div class="color" style="width:105px;"><fmt:message code="notice.title.Releasedate"/> ：</div>
-                        <input id="beginTime"class="input_text3" type="text"/>
-                        <div class="color">
-                            <fmt:message code="global.lang.to"/>
-                        </div>
-
-                        <div><input id="endTime" class="input_text4" type="text"/></div>
-                    </div>
-                    <div class="le ce1">
-                        <div class="color" style="width:105px;"><fmt:message code="news.title.new"/> ：</div>
-                        <div>
-                            <select name="TYPE"  class="button1 input_text5" id="select_query">
-                                <option value="0" selected="">
-                                    <fmt:message code="news.th.type"/>
-                                </option>
-                                <option value="01">
-                                    <fmt:message code="news.th.company"/>
-                                </option>
-                                <option value="02">
-                                    <fmt:message code="news.th.media"/>
-                                </option>
-                                <option value="03">
-                                    <fmt:message code="news.th.industry"/>
-                                </option>
-                                <option value="04">
-                                    <fmt:message code="news.th.partner"/>
-                                </option>
-                                <option value="05">
-                                    <fmt:message code="news.th.client"/>
-                                </option>
-                                <option value="">
-                                    <fmt:message code="news.th.none"/>
-                                </option>
-                            </select>
-                        </div>
-
-                    </div>
-                    <div class="le ce2">
-                        <div class="color" style="width:105px;"><fmt:message code="notice.th.content"/>:</div>
-                        <input id="content" class="input_text6" type="text"/>
-                    </div>
-                </div>
-            </form>
-            <div class="icons">
-                <!--   <img id="btn_query" style="margin-right:30px; cursor: pointer;" src="../img/3query.png" alt=""/>
-                  <img style="margin-right:30px; cursor: pointer;" src="../img/4query.png" alt=""/>
-                  <img style=" cursor: pointer;" src="../img/5query.png" alt=""/> -->
-                <div id="btn_query">查询</div>
-                <div class="export">导出</div>
-                <div  class="filling" onclick="Refillings()">重填</div>
-            </div>
-        </div>
-
-    </div>
-    <!--footer部分结束-->
-</div>
 
 <script>
-    user_id='input_text1';//选人控件
+    user_id = 'input_text1';//选人控件
     $(function () {
         var data = {
             read: $('.index_head .one').parent().attr('data_id'),
@@ -282,15 +122,16 @@
             }
         });
         function initPageList(cb) {
-            var layerIndex = layer.load(0, {shade: false}); /* 0代表加载的风格，支持0-2 */
+            var layerIndex = layer.load(0, {shade: false});
+            /* 0代表加载的风格，支持0-2 */
             $.ajax({
                 type: "get",
-                url: "<%=basePath%>news/newsManage",
+                url: "${pageContext.request.contextPath}/users/getOrgManage.do",
                 dataType: 'JSON',
                 data: data,
                 success: function (obj) {
                     layer.closeAll();
-                    if (obj.obj.length == 0) {
+                    if (obj.object.length == 0) {
                         if ($('.index_head .one').parent().attr('data_id') == '0') {
                             layer.msg('<fmt:message code="notice.alert.nodatealert" />', {icon: 6});
                             var turnindex = setInterval(function () {
@@ -303,12 +144,21 @@
                         };
                     } else {
                         var str = "";
-                        for (var i = 0; i < obj.obj.length; i++) {
-                            str += "<tr><td><a href='#' style='color:#666;' newsId=" + obj.obj[i].newsId + " class='windowOpen'>" + obj.obj[i].subject + "</ a></td>" +
-                                "<td><a href='#' style='color:#2B7FE0;' newsId=" + obj.obj[i].newsId + " class='windowOpen'>" + obj.obj[i].typeName + "</ a></td>" +
-                                "<td><a href='#'  style='color:#666;' newsId=" + obj.obj[i].newsId + " class='windowOpen'>" + obj.obj[i].newsDateTime + "</ a></td>" +
-                                "<td><a href='#'  style='color:#666;'  newsId=" + obj.obj[i].newsId + " class='windowOpen'>" + obj.obj[i].clickCount + "</ a></td>" +
-                                "<td><a href='#'  style='color:#666;' newsId=" + obj.obj[i].newsTime + " class='windowOpen'>" + '0' + "</ a></td>";
+
+
+                        for (var i = 0; i < obj.object.length; i++) {
+                            var isOrgValue;
+                            if(obj.object[i].isOrg == 1){
+                                isOrgValue = "是"
+                            }else{
+                                isOrgValue = "否"
+                            }
+
+                            str += "<tr><td><a href='#' style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen'>" + obj.object[i].oid + "</ a></td>" +
+                                    "<td><a href='#' style='color:#2B7FE0;' oid=" + obj.object[i].oid + " class='windowOpen'>" + obj.object[i].name + "</ a></td>" +
+                                    "<td><a href='#'  style='color:#666;' oid=" + obj.object[i].oid + " class='windowOpen'>" + obj.object[i].version + "</ a></td>" +
+                                    "<td><a href='#'  style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen'>" + isOrgValue + "</ a></td>" +
+                                    "<td><a href='#'  style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen'>" + '修改' + "</ a></td>";
                         }
                         var loadindex = setInterval(function () {
                             layer.closeAll();
@@ -342,13 +192,27 @@
                     initPageList();
                 }
             });
-        }
+        };
 
-        /* 新闻详情页 */
+
+
+
         $("#j_tb").on('click', '.windowOpen', function () {
-            var nid = $(this).attr('newsId');
-            $.popWindow('detail?newsId=' + nid, '1111');
+            var oid = $(this).attr('oid');
+
+            //$.popWindow('detail?oid=' + oid, '');
+
+
+            var top = top || '100';
+            var left = left || '300';
+            var width = width || '640';
+            var height = height || '500';
+            var specs = 'top='+top+',left='+left+',width='+width+',height='+height;
+            window.open("users/getOrgManageById?oid=1001","aa",specs);
+
         });
+
+
         $('.submit').click(function () {
             data.read = $('.index_head .one').parent().attr('data_id');
             data.typeId = $('#select').val();
@@ -401,22 +265,18 @@
     };
     laydate(start);
     laydate(end);
-    /* 新闻查询重填 */
-    function Refillings(){
-        document.getElementById("empty").reset();
-    }
-    /* 新闻查询清空 */
-    function clearData(){
-        $("#input_text1").val("");
-    }
-    /* 选人控件 */
-    $("#query_adduser").on("click",function(){
-        user_id = "input_text1";
-        $.popWindow("../common/selectUser");
-    });
+
 
 </script>
 </body>
 
 
 </html>
+
+
+
+
+
+
+
+

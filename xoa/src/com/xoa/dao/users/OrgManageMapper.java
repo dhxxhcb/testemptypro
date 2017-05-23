@@ -1,14 +1,18 @@
 package com.xoa.dao.users;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.xoa.model.users.OrgManage;
 
+import java.util.List;
+
 public interface OrgManageMapper {
-      public List<OrgManage> queryId();
-      
-      
-      void editOrgManage(OrgManage orgManage);
+    public List<OrgManage> queryId();
+
+
+    void editOrgManage(OrgManage orgManage);
+
+
+    List<OrgManage> getOrgManage();
+
+
+    OrgManage getOrgManageById(Integer oid);
 }

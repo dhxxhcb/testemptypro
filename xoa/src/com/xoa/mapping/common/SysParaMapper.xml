@@ -1,47 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.common.SysParaMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.common.SysPara" >
-    <id column="PARA_NAME" property="paraName" javaType="string" />
-    <result column="PARA_VALUE" property="paraValue" javaType="string" />
-  </resultMap>
-  
-  
-  
-  <select id="getSysPara" resultType="String" >
+<mapper namespace="com.xoa.dao.common.SysParaMapper">
+    <resultMap id="BaseResultMap" type="com.xoa.model.common.SysPara">
+        <id column="PARA_NAME" property="paraName" javaType="string"/>
+        <result column="PARA_VALUE" property="paraValue" javaType="string"/>
+    </resultMap>
+
+
+    <select id="getSysPara" resultType="String">
   SELECT s.PARA_VALUE FROM sys_para s WHERE s.PARA_NAME='MOBILE_SCREEN';
   </select>
-  <sql id="Base_Column_List" >
+
+    <select id="getTheSysParam" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT s.PARA_VALUE, s.PARA_NAME FROM sys_para s WHERE s.PARA_NAME=#{paraName};
+    </select>
+
+
+    <sql id="Base_Column_List">
     PARA_NAME, PARA_VALUE
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.xoa.model.common.SysPara" >
-    select 
-    <include refid="Base_Column_List" />
-    from sys_para
-    where PARA_NAME = #{paraName,jdbcType=VARCHAR}
-  </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.xoa.model.common.SysPara">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_para
+        where PARA_NAME = #{paraName,jdbcType=VARCHAR}
+    </select>
 
 
-
-  
-    <select id="getIeTitle" resultMap="BaseResultMap" >
+    <select id="getIeTitle" resultMap="BaseResultMap">
      SELECT  PARA_NAME,PARA_VALUE
       FROM sys_para 
       where PARA_NAME='STATUS_TEXT_MARQUEE'
    
   </select>
-  
-  
- 
-  <update id="updateSysPara" parameterType="com.xoa.model.common.SysPara" >
-    update sys_para 
-    <set >
-      <if test="paraValue != null" >
-        PARA_VALUE = #{paraValue},
-      </if>
-    </set>
-    where PARA_NAME = #{paraName}
-  </update>
-  
-  
+
+
+    <update id="updateSysPara" parameterType="com.xoa.model.common.SysPara">
+        update sys_para
+        <set>
+            <if test="paraValue != null">
+                PARA_VALUE = #{paraValue},
+            </if>
+        </set>
+        where PARA_NAME = #{paraName}
+    </update>
+
+
 </mapper>
