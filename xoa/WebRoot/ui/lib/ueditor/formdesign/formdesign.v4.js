@@ -66,7 +66,7 @@ UE.plugins['text'] = function () {
 	} );
 	popup.render();
 	me.addListener( 'mouseover', function( t, evt ) {
-	    console.log("3");
+
 		evt = evt || window.event;
 		var el = evt.target || evt.srcElement;
         var leipiPlugins = el.getAttribute('plugins');
