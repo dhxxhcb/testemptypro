@@ -253,7 +253,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"system_unit":"sys/companyInfo",
 				"system_dept":"common/deptManagement",
 				"system_org_manage":"sys/organizational",
-				"workflow_new":"workflow/work/add_work"
+				"workflow_new":"work/addwork"
 			}
 			
 			$('.cont_nav').on('click','li',function(){
