@@ -1,15 +1,19 @@
 package com.xoa.service.workflow.flowtype.impl;
 
 import com.xoa.dao.workflow.FlowTypeModelMapper;
+import com.xoa.model.users.Users;
 import com.xoa.model.workflow.FlowTypeModel;
 import com.xoa.service.workflow.flowtype.FlowTypeService;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
+import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.page.PageParams;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -129,5 +133,44 @@ public class FlowTypeServiceImpl implements FlowTypeService {
         }
         return toJson;
     }
+
+    @Override
+    public ToJson<FlowTypeModel> selectFlowAuthOrSearch(HttpServletRequest request, String searchValue, Integer sortId){
+        Map<String,Object> param =new HashMap<String,Object>();
+        ToJson<FlowTypeModel> toJson =new ToJson<FlowTypeModel>();
+        Users user= SessionUtils.getSessionInfo(request.getSession(),Users.class,new Users());
+        if(user.getUid()==null){
+            toJson.setFlag(1);
+            toJson.setMsg("无法获取用户信息");
+            return toJson;
+        }
+        String privOther= user.getUserPrivOther()==null?"":user.getUserPrivOther();//辅助角色
+        String privIds[] =privOther.split(",");
+        String deptOther = user.getDeptIdOther()==null?"":user.getDeptIdOther();//辅助部门
+        String deptIds[] =deptOther.split(",");
+        param.put("user", user.getUserId()==null?"":user.getUserId());
+        param.put("deptId",user.getDeptId()==null?"":user.getDeptId());
+        param.put("privId", user.getUserPriv()==null?"":user.getUserPriv());
+        if(privIds!=null&&privIds.length>0){
+            param.put("privIds",privIds);
+        }
+        if(deptIds!=null&&deptIds.length>0){
+            param.put("deptIds",deptIds);
+        }
+        param.put("searchValue",searchValue);
+        param.put("sortId",sortId);
+        List<FlowTypeModel> datas = flowTypeModelMapper.selectFlowAuthOrSearch(param);
+
+        if(datas!=null&&datas.size()>0){
+            toJson.setFlag(0);
+            toJson.setMsg("成功");
+            toJson.setObj(datas);
+        }else{
+            toJson.setFlag(1);
+            toJson.setMsg("失败");
+        }
+        return toJson;
+    }
+
 
 }

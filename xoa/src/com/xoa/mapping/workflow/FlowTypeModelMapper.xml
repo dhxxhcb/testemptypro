@@ -45,6 +45,10 @@
   <resultMap id="FlowWithDep" type="com.xoa.model.workflow.FlowTypeModel" extends="BaseResultMap">
     <result column="DEPT_NAME" property="depName"  javaType="string" />
   </resultMap>
+  <resultMap id="FlowWithRun" type="com.xoa.model.workflow.FlowTypeModel" extends="BaseResultMap">
+    <result column="runName_NAME" property="runName"  javaType="string" />
+  </resultMap>
+
   <!-- 新建流程自定义属性 -->
   <insert id="save" parameterType="com.xoa.model.workflow.FlowTypeModel" useGeneratedKeys="true" keyProperty="flowId" >
       insert into flow_type (FLOW_NAME,FORM_ID,FLOW_DOC,FLOW_TYPE,FLOW_NO,FLOW_SORT,AUTO_NUM,
@@ -214,6 +218,41 @@
     <if test="sortId!=null">
     AND  flow_type.FLOW_SORT = #{sortId}
     </if>
+  </select>
+  <select id="selectFlowAuthOrSearch" resultMap="FlowWithRun" parameterType="Map">
+    SELECT flow_type.*,flowRun.RUN_NAME FROM flow_type
+    INNER JOIN flow_process ON flow_process.FLOW_ID=flow_type.FLOW_ID  AND flow_process.PRCS_ID in (
+    SELECT MIN(flow_process.PRCS_ID) FROM flow_process WHERE flow_process.FLOW_ID=flow_type.FLOW_ID
+    )
+    AND (
+    <trim suffixOverrides="OR">
+      FIND_IN_SET(#{user},flow_process.PRCS_USER) OR
+      FIND_IN_SET(#{deptId},flow_process.PRCS_DEPT) OR
+      FIND_IN_SET(#{privId},flow_process.PRCS_PRIV) OR flow_process.PRCS_DEPT='ALL_DEPT' OR
+      <if test="privIds!=null">
+        <foreach item="item" collection="privIds">
+          FIND_IN_SET(#{item},flow_process.PRCS_PRIV) OR
+        </foreach>
+      </if>
+      <if test="deptIds!=null">
+        <foreach item="item" collection="deptIds">
+          FIND_IN_SET(#{item},flow_process.PRCS_DEPT) OR
+        </foreach>
+      </if>
+    </trim>
+    )
+    LEFT JOIN(
+    SELECT * FROM flow_run  ORDER BY flow_run.BEGIN_TIME DESC LIMIT 0,1
+    ) AS flowRun ON flowRun.FLOW_ID= flow_type.FLOW_ID
+    <where>
+      <if test="sortId!=null">
+        flow_type.FLOW_SORT =#{sortId}
+      </if>
+      <if test="searchValue!=null">
+        AND flow_type.FLOW_NAME LIKE CONCAT("%",#{searchValue},"%")
+      </if>
+    </where>
+    ORDER BY  flowRun.BEGIN_TIME
   </select>
 
 

@@ -227,6 +227,20 @@ public class FlowTypeModel implements Serializable{
      */
     private String depName;
 
+    /**
+     *  执行时流程名字
+     */
+    private String runName;
+
+
+    public String getRunName() {
+        return runName;
+    }
+
+    public void setRunName(String runName) {
+        this.runName = runName;
+    }
+
     public String getDepName() {
         if(depName==null){
             depName="全部部门";

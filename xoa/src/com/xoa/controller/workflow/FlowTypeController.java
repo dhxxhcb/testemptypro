@@ -104,7 +104,13 @@ public class FlowTypeController {
                 "loginDateSouse"));
         return flowTypeService.flowBySearch(searchValue,flowId);
     }
-
+    @RequestMapping("/flowAuthOrSearch")
+    @ResponseBody
+    public ToJson<FlowTypeModel> selectFlowAuthOrSearch(HttpServletRequest request, String searchValue, Integer sortId){
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        return flowTypeService.selectFlowAuthOrSearch(request,searchValue,sortId);
+    }
 
     @RequestMapping("/type/index")
     public String flowTypeIndex(HttpServletRequest request){

@@ -3,6 +3,7 @@ package com.xoa.service.workflow.flowtype;
 import com.xoa.model.workflow.FlowTypeModel;
 import com.xoa.util.ToJson;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -44,4 +45,5 @@ public interface FlowTypeService {
         public ToJson<FlowTypeModel> quertBySortId(Integer flowId);
 
         ToJson<FlowTypeModel> flowBySearch(String searchValue, Integer flowId);
+        ToJson<FlowTypeModel> selectFlowAuthOrSearch(HttpServletRequest request, String searchValue, Integer sortId);
 }
