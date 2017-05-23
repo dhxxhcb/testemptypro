@@ -45,7 +45,7 @@
   <resultMap id="FlowWithDep" type="com.xoa.model.workflow.FlowTypeModel" extends="BaseResultMap">
     <result column="DEPT_NAME" property="depName"  javaType="string" />
   </resultMap>
-  <!-- 新建流程 -->
+  <!-- 新建流程自定义属性 -->
   <insert id="save" parameterType="com.xoa.model.workflow.FlowTypeModel" useGeneratedKeys="true" keyProperty="flowId" >
       insert into flow_type (FLOW_NAME,FORM_ID,FLOW_DOC,FLOW_TYPE,FLOW_NO,FLOW_SORT,AUTO_NUM,
     AUTO_LEN,AUTO_EDIT,COMMENT_PRIV,DEPT_ID,FREE_PRESET,FREE_OTHER,ALLOW_PRE_SET,FORCE_PRE_SET,
@@ -60,6 +60,20 @@
     #{manageUserDept},#{editPriv},#{listFldsStr},#{modelId},#{modelName},#{attachmentId},
     #{attachmentName},#{viewUser},#{viewDept});
   </insert>
+
+  <!-- 流程查询自定义属性 -->
+  <select id="queryOne"  resultMap="BaseResultMap"
+          parameterType="Map">
+    SELECT FLOW_ID, FLOW_NAME,FORM_ID,FLOW_DOC,FLOW_TYPE,FLOW_NO,FLOW_SORT,AUTO_NUM,
+    AUTO_LEN,AUTO_EDIT,COMMENT_PRIV,DEPT_ID,FREE_PRESET,FREE_OTHER,ALLOW_PRE_SET,FORCE_PRE_SET,
+    VIEW_PRIV,IS_VERSION,FLOW_ACTION,AUTO_NUM_YEAR,AUTO_NUM_MONTH,AUTO_NUM_TIME,MANAGE_USER,AUTO_NAME,
+    QUERY_USER,FLOW_DESC,NEW_USER,QUERY_ITEM,QUERY_USER_DEPT,MANAGE_USER_DEPT,EDIT_PRIV,
+    LIST_FLDS_STR,MODEL_ID,MODEL_NAME,ATTACHMENT_ID,ATTACHMENT_NAME,VIEW_USER,VIEW_DEPT
+    FROM FLOW_TYPE
+    WHERE
+    FLOW_ID =#{flowId}
+  </select>
+
 
   <select id="selectBySortid" resultMap="FlowWithDep" parameterType="java.lang.Integer">
     SELECT  flow_type.*,department.DEPT_NAME FROM  flow_type LEFT JOIN department ON department.DEPT_ID=flow_type.DEPT_ID
@@ -81,5 +95,7 @@
     AND  flow_type.FLOW_SORT = #{sortId}
     </if>
   </select>
+
+
 
 </mapper>

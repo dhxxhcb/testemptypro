@@ -8,10 +8,14 @@ import org.apache.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 创建作者:   张勇
@@ -39,6 +43,23 @@ public class FlowTypeController {
                 "loginDateSouse"));
         return flowTypeService.saveFlow(flowTypeModel);
     }
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/5/23 17:47
+     * 方法介绍:   自定义属性所有查询，根据flowId
+     * 参数说明:
+     * @return     
+     */
+    @RequestMapping(value = "selectAllFlow",produces = {"application/json;charset=UTF-8"},method = RequestMethod.GET)
+    public  @ResponseBody ToJson<FlowTypeModel> selectAllFlow(@RequestParam("flowId")Integer flowId, HttpServletRequest request){
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        Map<String,Object> maps = new HashMap<String,Object>();
+        maps.put("flowId",flowId);
+        return flowTypeService.selectAllFlow(maps);
+    }
+
 
 
     @RequestMapping("/flowNews")
