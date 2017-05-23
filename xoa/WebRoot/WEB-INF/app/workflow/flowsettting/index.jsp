@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -417,30 +421,37 @@
                 })*/
 
                 $('.keepmsg').on('click', function () {
-                    alert($('#projectName').val());
                     var data = {
                         "flowName": $('#projectName').val(),
                         "flowNo": $('#orderID').val(),
-                        "deptId": $('#deptName').val(),
+//                        "deptId": $('#deptName').val(),
+                        "deptId": 1,
 //                        "flowSort": $('#classfiy').val(),
-                        "flowSort": "1",
+                        "flowSort": 1,
 //                        "flowType": $('#class_f').val(),
-                        "flowType": "1",
+                        "flowType": 1,
 //                        "formId": $('#leave').val(),
-                        "formId": "117",
+                        "formId": 117,
 //                        "freeOther": $('#delegate-type').val(),
                         "freeOther": "2",
                         "viewPriv": $('input[name=sex]').val(),
 
                     }
+
+                    alert(data.flowSort);
                     $.ajax({
                         type: 'POST',
-                        url: '/flow/newFlow',
+                        url: '<%=basePath%>flow/newFlow',
                         dataType: 'json',
                         data: data,
                         success: function (data) {
-                            alert(data.flag);
+                            alert(data.msg);
                             console.log(data)
+                        },
+                        error:function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(XMLHttpRequest);
+                            alert(textStatus);
+                            alert(errorThrown);
                         }
                     })
 
