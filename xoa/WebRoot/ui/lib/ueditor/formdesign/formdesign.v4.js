@@ -66,10 +66,11 @@ UE.plugins['text'] = function () {
 	} );
 	popup.render();
 	me.addListener( 'mouseover', function( t, evt ) {
+	    console.log("3");
 		evt = evt || window.event;
 		var el = evt.target || evt.srcElement;
         var leipiPlugins = el.getAttribute('plugins');
-		if ( /input/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
+		if ( /input/ig.test( el.tagName ) ) {
 			var html = popup.formatHtml(
 				'<nobr>单行输入框: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
 			if ( html ) {
