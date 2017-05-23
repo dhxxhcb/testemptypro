@@ -34,13 +34,7 @@ input{
     zoom: 1;
 }
 
-html,body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.content {
+html,body,.content{
     width: 100%;
     height: 100%;
 }
@@ -59,20 +53,27 @@ html,body {
     width: 261px;
     height: 100%;
     background: #f5f7f8;
-    border-right: 1px solid #919191;
+    /*border-right: 1px solid #919191;*/
 }
 
 .cont_list .btn_h {
     display: block;
     padding-left: 36px;
-    height: 55px;
-    line-height: 55px;
-    font-size: 20px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 16px;
     color: #262f34;
 }
 .cont_list .btn_click{
     position: relative;
     border-bottom: 1px solid #dcdfe0;
+}
+.cont_list .btnx{
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
 }
 
 .cont_list .btn_click .icon_d{
@@ -83,6 +84,11 @@ html,body {
     position: absolute;
     top: 20px;
     right: 30px;
+    transition: All 0.4s ease-in-out;
+    -webkit-transition: All 0.4s ease-in-out;
+    -moz-transition: All 0.4s ease-in-out;
+    -o-transition: All 0.4s ease-in-out;
+
 
 }
 .cont_list .btn_h img {
@@ -128,18 +134,19 @@ html,body {
     background: #c7e1ff;
 }
 
+
 .cont_r {
     height: 100%;
     margin-left: 262px;
     position: relative;
-
 }
-
-.cont_r .table {
+.cont_r .item{
     display: none;
+}
+.cont_r .table {
+    width: 95%;
     font-size: 16px;
-    border: 1px solid #919191;
-    /*margin: 0 auto;*/
+    border: 1px solid #dcdfe0;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -149,11 +156,48 @@ html,body {
 
 .cont_r .table caption {
     text-align: right;
+    margin-bottom: 8px;
+}
+.cont_r .table .newbuilt{
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 8px;
+    width: 63px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    background: #c7e1ff;
+}
+.cont_r .table .delete_c{
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 8px;
+    width: 63px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    background: #9c2721;
 }
 
 .cont_r .table th,td {
     text-align: center;
-    border: 1px solid #919191;
+    border: 1px solid #dcdfe0;
+}
+.cont_r .table tr{
+    background-color: #fff;
+    font-size: 15px;
+    height: 40px;
+    line-height: 40px;
+    color: #2F5C8F;
+    font-weight: bold;
+}
+
+.cont_r .con_flow{
+    border-left: 1px solid #919191;
 }
 
 .check {
@@ -169,15 +213,21 @@ html,body {
     text-align: left;
     padding-left: 10px;
 }
+.ordernum{
+    text-align: center;
+}
+.table .cutout{
+    text-align: center;
+}
 .cont_r .define_r{
-    height: 56px;
-    line-height: 56px;
+    height: 48px;
+    line-height: 48px;
 }
 .define_r h3{
     float: left;
     font-weight: 900;
     color: #262f34;
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 15px;
 }
 .define_r span{
@@ -192,18 +242,19 @@ html,body {
     color: #fff;
     font-size: 12px;
 }
-.cont_r p{
-    height: 56px;
-    line-height: 56px;
+.cont_r .define_p{
+    height: 48px;
+    line-height: 48px;
     padding-left: 22px;
     background: #c7e1ff;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 900;
     color: #262f34;
+
 }
 .con_form {
-    width: 532px;
-    padding: 100px 0 0 200px;
+    width: 600px;
+    padding: 50px 0 0 96px;
 }
 .con_form .form_group {
     width: 500px;
@@ -214,10 +265,88 @@ html,body {
 }
 .form_group .flowName .save{
     margin-left: 4px;
+    vertical-align: -3px;
 }
-.con_form input{
-    margin-bottom: 32px;
-    width: 288px;
+.form_group input{
+    margin-bottom: 24px;
+    font-size: 16px;
+    width: 278px;
     height: 26px;
     border-radius: 4px;
+    padding: 0 3px;
 }
+.form_group select{
+    font-size: 16px;
+}
+.form_group .depName{
+    width: 287px;
+    height: 26px;
+    padding: 0 3px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+}
+
+.sex_r input[type='radio']{
+    text-align: right;
+    padding-right: 50px;
+    width: 8px;
+    height: 8px
+}
+ .con_form .sex_r{
+    padding-right: 30px;
+    width: 500px;
+}
+ .con_form .sex_r .sex_save{
+     padding-right: 211px;
+ }
+.con_form .sex_r .sex_n{
+    margin-right: 24px;
+}
+.sex_r input[type='checkbox']{
+    display: inline-block;
+    margin-right: 8px;
+    width: 12px;
+    height: 12px;
+}
+.con_form .sex_r .placeFile{
+    padding-right: 1px;
+}
+.con_form .sex_r .set_form{
+    font-size: 14px;
+    color: #db6b20;
+}
+.con_flow .jobName{
+    background: #c7e1ff;
+    font-size: 18px;
+    font-weight: 900;
+    height: 48px;
+    line-height: 48px;
+    margin-top: 42px;
+    padding-left: 10px;
+}
+.flow_r{
+    position: relative;
+
+}
+.form_r .conForm_r{
+    position: absolute;
+    top: 50px;
+    left: 648px;
+}
+.form_group .notable{
+    padding-right: 260px;
+}
+.form_group .addfile{
+    width: 75px;
+}
+.form_group .appendfile{
+    width: 186px;
+}
+
+
+
+
+
+
+
+
