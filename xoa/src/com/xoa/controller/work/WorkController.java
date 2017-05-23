@@ -47,11 +47,14 @@ public class WorkController {
 		return "app/workflow/work/workform";
 	}
 	
-	/*public ToJson<FlowFast> fastAdd(HttpServletRequest request,
+	public ToJson<FlowFast> fastAdd(HttpServletRequest request,
 			int flowId){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-	}*/
+		
+		return null;
+		
+	}
 	
 	@RequestMapping("addFastwork")
 	public String addwork(String str,HttpServletRequest request) throws JSONException{
