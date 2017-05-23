@@ -253,6 +253,7 @@ public class EmailController {
         } else if (flag.trim().equals("recycle")) {
             returnRes = emailService.deleteRecycleEmail(emailId, deleteFlag);
         }
+
 //		else if (flag.trim().equals("drafts")) {
 //			emailService.deleteRecycleEmail(emailBodyModel, deleteFlag);
 //		}
