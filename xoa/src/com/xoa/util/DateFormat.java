@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.zip.DataFormatException;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.xoa.util.common.L;
@@ -22,10 +23,35 @@ public class DateFormat {
 			"MM月dd日 HH:mm");
 	private static SimpleDateFormat sdf_year = new SimpleDateFormat(
 			"yyyy年MM月dd日 HH:mm");
+//	private static SimpleDateFormat sdf_get_y_m_d = new SimpleDateFormat(
+//			"yyyy-MM-dd");
+//
+//	private static SimpleDateFormat sdf_year = new SimpleDateFormat(
+//			"yyyy年MM月dd日 HH:mm");
+
 	private static final Long THREE_MINUTE_TIME = 1000 * 3 * 60L;
 	private static final Long ONE_HOUR_TIME = 1000 * 3600L;
 	private static final Long ONE_DAY_TIME = 1000 * 3600 * 24L;
 	private static final Long TWO_DAY_TIME = 1000 * 3600 * 24 * 2L;
+
+
+	/**
+	 * 根据自定义格式，格式化时间
+	 * @param formatStr
+	 * @param date  Date或 String类型 yyyy-MM-dd HH:mm:ss
+	 * @return
+	 * @throws DataFormatException
+	 */
+	public static String getFormatByUse(String formatStr,Object date) throws DataFormatException{
+		if(date instanceof String){
+			date =DateFormat.getDate((String)date);
+		}
+
+		SimpleDateFormat format = new SimpleDateFormat(
+				formatStr);
+		return format.format(date);
+	}
+
 
 	/**
 	 * 

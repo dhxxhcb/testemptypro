@@ -3,6 +3,7 @@ package com.xoa.service.workflow;
 import com.xoa.dao.workflow.FlowSortMapper;
 import com.xoa.dao.workflow.FormSortMapper;
 import com.xoa.model.department.Department;
+import com.xoa.model.users.Users;
 import com.xoa.model.workflow.FlowSort;
 import com.xoa.model.workflow.FormSort;
 import com.xoa.model.workflow.FormSortExample;
@@ -12,12 +13,14 @@ import com.xoa.service.workflow.wrapper.JobSelectorWrapper;
 import com.xoa.util.common.CheckCallBack;
 import com.xoa.util.common.L;
 import com.xoa.util.common.StringUtils;
+import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.common.wrapper.BaseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -686,4 +689,81 @@ public class JobClassifyService {
         return  wrapper;
     }
 
+    /**
+     *
+     * @作者 韩东堂
+     * @创建日期 2017-5-23 上午10:01:23
+     * @方法介绍 流程分类根据登录用户展示接口
+     * @参数说明 @return
+     * @return
+     */
+    public JobSelectorWrapper getFlowsortByAuth(HttpServletRequest request) {
+
+        JobSelectorWrapper wrapper =new JobSelectorWrapper();
+        wrapper.setStatus(true);
+        wrapper.setFlag(false);
+        Users user= SessionUtils.getSessionInfo(request.getSession(),Users.class,new Users());
+        if(user.getUid()==null){
+            wrapper.setMsg("无法获取用户信息");
+            return wrapper;
+        }
+        Map<String,Object> param =new HashMap<String,Object>();
+        String privOther= user.getUserPrivOther()==null?"":user.getUserPrivOther();//辅助角色
+        String privIds[] =privOther.split(",");
+        String deptOther = user.getDeptIdOther()==null?"":user.getDeptIdOther();//辅助部门
+        String deptIds[] =deptOther.split(",");
+        param.put("user", user.getUserId()==null?"":user.getUserId());
+        param.put("deptId",user.getDeptId()==null?"":user.getDeptId());
+        param.put("privId", user.getUserPriv()==null?"":user.getUserPriv());
+        if(privIds!=null&&privIds.length>0){
+            param.put("privIds",privIds);
+        }
+        if(deptIds!=null&&deptIds.length>0){
+            param.put("deptIds",deptIds);
+        }
+        List<FlowSort> nosortDatas= flowSortMapper.selectAllFlowSort();
+        List<FlowSort> authdatas=flowSortMapper.selectFlowSortByAuth(param);
+
+        List<FlowSort> authdatasSort= sortDatasAuthFlow(authdatas,0,nosortDatas);
+        if(authdatasSort!=null&&authdatasSort.size()>0){
+            wrapper.setFlag(true);
+            wrapper.setMsg("获取成功");
+            wrapper.setDatas(authdatasSort);
+        }else{
+            wrapper.setFlag(false);
+            wrapper.setMsg("没有数据");
+        }
+
+        return  wrapper;
+    }
+
+
+    private List<FlowSort> sortDatasAuthFlow(List<FlowSort> authdatas,Integer sortIda,List<FlowSort> alldata) {
+        if(authdatas==null) return null;
+        List<FlowSort> datas = new ArrayList<FlowSort>();
+        for(FlowSort sort:authdatas ){
+            if(sort!=null) {
+                if(sort.getSortParent()!=0){
+                    int checkRes=0;
+                    for(FlowSort need:authdatas){
+                        if(need.getSortId()!=sort.getSortParent()){
+                            checkRes++;
+                        }
+                    }
+                    if(checkRes==authdatas.size()){
+                        for(FlowSort all:alldata){
+                            if(all.getSortId()==sort.getSortParent()){
+                                authdatas.add(all);
+                            }
+                        }
+                    }
+                }
+                if (sort.getSortParent() == sortIda) {
+                    sort.setChilds(sortDatasAuthFlow(authdatas, sort.getSortId(),alldata));
+                    datas.add(sort);
+                }
+            }
+        }
+        return datas;
+    }
 }

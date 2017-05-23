@@ -16,6 +16,7 @@
     <result column="PRIV_SCOPE_NAME" javaType="java.lang.String" property="privScopeName" />
     <result column="USER_NAME" javaType="java.lang.String" property="userName" />
     <result column="DEPT_NAME" javaType="java.lang.String" property="deptName"/>
+    <result column="ROLE_NAME" javaType="java.lang.String" property="roleName"/>
   </resultMap>
 
   <sql id="Example_Where_Clause">
@@ -293,7 +294,8 @@
         WHEN flow_priv.PRIV_SCOPE='SELF_DEPT' then '本部门'
         ELSE scopeName.SCOP_NAME END
         AS PRIV_SCOPE_NAME,
-        departName.DPET_NAME AS  DEPT_NAME
+        departName.DPET_NAME AS  DEPT_NAME,
+        roleName.ROLE_NAME AS ROLE_NAME
          FROM flow_priv LEFT JOIN
         (SELECT GROUP_CONCAT(`user`.USER_NAME) as USER_NAME,flow_priv.ID AS b FROM
           `user`,flow_priv WHERE FIND_IN_SET(`user`.UID,flow_priv.`USER`) GROUP BY flow_priv.ID
@@ -306,6 +308,10 @@
          SELECT GROUP_CONCAT(department.DEPT_NAME) as DPET_NAME,flow_priv.ID AS d FROM
           department,flow_priv WHERE FIND_IN_SET(department.DEPT_ID,flow_priv.DEPT) GROUP BY flow_priv.ID
         ) AS departName ON d =flow_priv.ID
+         LEFT JOIN (
+          SELECT GROUP_CONCAT(user_priv.PRIV_NAME) AS ROLE_NAME,flow_priv.ID AS c FROM
+           user_priv, flow_priv WHERE FIND_IN_SET(user_priv.USER_PRIV,flow_priv.ROLE) GROUP BY flow_priv.ID
+       )AS roleName ON c =flow_priv.ID
         WHERE flow_priv.FLOW_ID=#{flowId}
   </select>
 

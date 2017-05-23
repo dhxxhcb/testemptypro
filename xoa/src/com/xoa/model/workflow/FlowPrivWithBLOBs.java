@@ -15,6 +15,16 @@ public class FlowPrivWithBLOBs extends FlowPriv {
 
     private String deptName;
 
+    private String roleName;
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
 	public String getDeptName() {
 		return deptName;
 	}

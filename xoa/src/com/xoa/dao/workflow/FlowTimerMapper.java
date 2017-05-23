@@ -38,5 +38,7 @@ public interface FlowTimerMapper {
 
 	int updateByPrimaryKey(FlowTimer record);
 
+	List<FlowTimerWithBLOBs> queryByFlowId(Integer flowId);
+
 
 }
