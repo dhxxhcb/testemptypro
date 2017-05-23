@@ -1110,7 +1110,7 @@ GooFlow.prototype = {
             this.addLine(j, data.lines[j]);
         for (var k in data.areas)
             this.addArea(k, data.areas[k]);
-        this.$max = data.initNum;
+        this.$max = data.initNum+1;
         console.log(this.$max)
     },
     //用AJAX方式，远程读取一组数据

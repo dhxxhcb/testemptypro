@@ -73,12 +73,12 @@
             "nodes": {},
             "lines": {},
             "areas": {},
-            "initNum": 7
+            "initNum": 0
         }
         $(function () {
             var property = {
-                width: 1200,
-                height: 600,
+                width: 1500,
+                height: 800,
                 toolBtns: ["start round", "end round", "task round", "node", "chat", "state", "plug", "join", "fork", "complex mix"],
                 haveHead: true,
                 headBtns: ["new", "open", "save", "undo", "redo", "reload"],//如果haveHead=true，则定义HEAD区的按钮
@@ -259,7 +259,6 @@
        // 保存和修改需调试字段
         if(id == "" || id == null){
            var prcssId = $("#ele_id").val().substring(5,$("#ele_id").val().length);
-            alert(prcssId);
             var data={
                 "prcsId":prcssId,
                 "flowId":$("#ele_flow").val(),
