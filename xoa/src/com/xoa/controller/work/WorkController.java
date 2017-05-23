@@ -33,5 +33,11 @@ public class WorkController {
 				"loginDateSouse"));
 		return "app/workflow/work/workList";
 	}
+	@RequestMapping("workform")
+	public String workform(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/workflow/work/workform";
+	}
 
 }

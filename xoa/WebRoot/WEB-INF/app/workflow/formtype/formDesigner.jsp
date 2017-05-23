@@ -70,10 +70,6 @@
         </div>
         <div class="span10">
             <script id="formEditor" type="text/plain" style="width:100%;">${form.originalHtml}</script>
-            </div>
-            </div><!--end row-->
-            </form>
-            </div>
 
             <script type="text/javascript" charset="utf-8" src="../js/jquery-1.9.1.js"></script>
             <script type="text/javascript" charset="utf-8" src="../js/base/base.js"> </script>
