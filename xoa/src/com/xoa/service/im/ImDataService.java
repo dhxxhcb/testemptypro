@@ -42,7 +42,6 @@ import com.xoa.model.im.ImRoom;
 import com.xoa.util.common.CheckCallBack;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.wrapper.BaseWrapper;
-import com.xoa.util.dataSource.DynDatasource;
 import com.xoa.util.page.PageParams;
 import com.xoa.controller.im.Model.Files;
 /**
