@@ -8,34 +8,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
-<!--[if IE 6 ]> <html class="ie6 lte_ie6 lte_ie7 lte_ie8 lte_ie9"> <![endif]-->
-<!--[if lte IE 6 ]> <html class="lte_ie6 lte_ie7 lte_ie8 lte_ie9"> <![endif]-->
-<!--[if lte IE 7 ]> <html class="lte_ie7 lte_ie8 lte_ie9"> <![endif]-->
-<!--[if lte IE 8 ]> <html class="lte_ie8 lte_ie9"> <![endif]-->
-<!--[if lte IE 9 ]> <html class="lte_ie9"> <![endif]-->
-<!--[if (gte IE 10)|!(IE)]><!--><html><!--<![endif]-->
+
 <head>
     <title>新建工作</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8 ? MYOA_CHARSET : htmlspecialchars($HTML_PAGE_CHARSET))?>" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/workflow/work/style.css" />
     <!--[if lte IE 8]>
-    <script type="text/javascript" src="/static/js/ccorrect_btn.js"></script>
-    <![endif]-->
+<!--    <script type="text/javascript" src="/static/js/ccorrect_btn.js"></script>-->
+<%--    <![endif]-->--%>
 
     <script type="text/javascript" >
         var MYOA_JS_SERVER = "";
         var MYOA_STATIC_SERVER = "";
     </script>
 </head>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/newwork.css" />
-<link rel="stylesheet" type="text/css" href="css/new.css">
-<script type="text/javascript" src="/inc/js_lang.php"></script>
-<script type="text/javascript" src="/static/js/jquery-1.10.2/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/workflow/work/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/workflow/work/newwork.css" />
+<link rel="stylesheet" type="text/css" href="../css/workflow/work/new.css">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/main_js/index.js"></script>
+<script src="js/base/base.js"></script>
 <!--<script src="/static/js/bootstrap/js/bootstrap.min.js"></script>-->
+<script>
 if(window.external && typeof window.external.OA_SMS != 'undefined') //如果从OA精灵打开，则最大化窗口
 {
 var h = Math.min(800, screen.availHeight - 180);
@@ -50,42 +47,31 @@ color:#666666;
 font-size: 18px;
 font-weight:bold;
 }
-#flow_sort_nav > a:hover{
-text-decoration:none;
-color:#589Fff;
-font-weight:bold;
-<!--[if IE 6 ]> <html class="ie6 lte_ie6 lte_ie7 lte_ie8 lte_ie9"> <![endif]-->
-<!--[if lte IE 6 ]> <html class="lte_ie6 lte_ie7 lte_ie8 lte_ie9"> <![endif]-->
-<!--[if lte IE 7 ]> <html class="lte_ie7 lte_ie8 lte_ie9"> <![endif]-->
-<!--[if lte IE 8 ]> <html class="lte_ie8 lte_ie9"> <![endif]-->
-<!--[if lte IE 9 ]> <html class="lte_ie9"> <![endif]-->
-<!--[if (gte IE 10)|!(IE)]><!--><html><!--<![endif]-->
+#flow_sort_nav > a:hover {
+    text-decoration: none;
+    color: #589Fff;
+    font-weight: bold;
+}
+</style>
 <head>
     <title>新建工作</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8 ? MYOA_CHARSET : htmlspecialchars($HTML_PAGE_CHARSET))?>" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/workflow/work/style.css" />
-    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
-    <script src="../js/base/base.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/workflow/work/style.css" />
+    <script type="text/javascript" src="../../js/jquery-1.9.1.js"></script>
+    <script src="../../js/base/base.js"></script>
 </head>
-<link rel="stylesheet" type="text/css" href="../css/main/theme1/index.css"/>
-<link rel="stylesheet" type="text/css" href="../css/workflow/work/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../css/workflow/work/newwork.css" />
-<link rel="stylesheet" type="text/css" href="../css/workflow/work/new.css">
+<link rel="stylesheet" type="text/css" href="../../css/main/theme1/index.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/workflow/work/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../css/workflow/work/newwork.css" />
+<link rel="stylesheet" type="text/css" href="../../css/workflow/work/new.css">
 
 <script type="text/javascript" src="../js/main_js/index.js"></script>
 
-<!--<script src="/static/js/bootstrap/js/bootstrap.min.js"></script>-->
-<script>
-if(window.external && typeof window.external.OA_SMS != 'undefined') //如果从OA精灵打开，则最大化窗口
-{
-var h = Math.min(800, screen.availHeight - 180);
-var w = Math.min(1280, screen.availWidth - 80);
-window.external.OA_SMS(w, h, "SET_SIZE");
-}
-</script>
+<script src="/static/js/bootstrap/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 
     .container-fluid{
@@ -111,7 +97,15 @@ window.external.OA_SMS(w, h, "SET_SIZE");
     }
     .one_name{
         line-height: 40px !important;
+        text-align: center;
     }
+    .down_jiao{
+        margin-left: 16%;
+    }
+    .two_all h1{
+        margin-left: 27%;
+    }
+
     .cont_left{
         width:15%;
     }
@@ -210,6 +204,10 @@ window.external.OA_SMS(w, h, "SET_SIZE");
         width: 104% !important;
         height:99% !important;
     }
+    .er_img {
+        margin-top: 5% !important;
+        margin-left: 4% !important;
+    }
 </style>
 <script type="text/javascript">
 var loading='<div class="loading">正在加载，请稍候...</div>';
@@ -221,7 +219,7 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
 <div class="container-fluid">
     <div class="row-fluid title-row" style="background-color:#f8f8f8;z-index:99;border-bottom:1px solid #999;height:45px;">
         <div id="title" class="date">
-            <img class="title_img" src="../../img/workflow/work/add_work/new_work.png"><h3 class="new_work" style="margin-bottom:0px;">新建工作 </h3>
+            <img class="title_img" src="../../../img/workflow/work/add_work/new_work.png"><h3 class="new_work" style="margin-bottom:0px;">新建工作 </h3>
         </div>
 
         <div class="abs-right" style="position:fixed;">
@@ -256,7 +254,7 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
         <div class="cont_rig">
             <div class="rig_all">
                 <div class="rig_title">
-                    <img src="../img/workflow/work/add_work/all_works.png" alt="">
+                    <img src="../../img/workflow/work/add_work/all_works.png" alt="">
                     <h1 class="title_name">常用工作</h1>
                 </div>
                 <div class="rig_cont">
@@ -267,14 +265,14 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                                 <h2>出差申请（2017-05-22 10:21:12）</h2>
                             </div>
                             <div class="rig_mid">
-                                <div class="liucheng"><img src="../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>
-                                <div class="liucheng1"><img src="../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>
-                                <div class="liucheng2"><img src="../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div>
+                                <div class="liucheng"><img src="../../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>
+                                <div class="liucheng1"><img src="../../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>
+                                <div class="liucheng2"><img src="../../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div>
 
                             </div>
                             <div class="rig_rig">
-                                <div><img class="xinjian_img"  src="../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>
-                                <div><img src="../img/workflow/work/add_work/xiangdao.png" style="    margin-left: 6%;" alt=""><h1>新建向导</h1></div>
+                                <div><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>
+                                <div><img src="../../img/workflow/work/add_work/xiangdao.png" style="    margin-left: 6%;" alt=""><h1>新建向导</h1></div>
                             </div>
                         </li>
                     </ul>
@@ -291,31 +289,37 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
     $(function () {
         function init(){
             $.ajax({
-                url:'../showMenu',
+                url:'../../workflow/flowclassify/flowByAuth',
                 type:'get',
                 dataType:'json',
                 success:function(obj){
-                    var data= obj.obj;
+                    var data=obj.datas;
                     var str='';
                     console.log(data);
+                    console.log(data.length);
                     for(var i=0;i<data.length;i++){
                         var er='';
-                        for(var j=0;j<data[i].child.length;j++){
-                            /* var url=data[i].child[j].url; */
-                            if(data[i].child[j].child.length>0){
+                        for(var j=0;j<data[i].childs.length;j++){
+
+                            if(data[i].childs[j].childs.length>0){
                                 var three='';
-                                for(var k=0;k<data[i].child[j].child.length;k++){
-                                    three +='<li style="margin-left:18px;" class="three" menu_tid='+data[i].child[j].child[k].id+' url='+data[i].child[j].child[k].url+' title="'+data[i].child[j].child[k].name+'"><img class="sanji_circle" src=""><h1 style="margin-left:6%;">'+data[i].child[j].child[k].name+'</h1></li>' ;
+                                for(var k=0;k<data[i].childs[j].childs.length;k++){
+                                    three +='<li style="margin-left:18px;" class="three" menu_tid='+data[i].childs[j].childs[k].sortId+' url='+data[i].childs[j].childs[k].url+' title="'+data[i].childs[j].childs[k].sortName+'"><img class="sanji_circle" src=""><h1 style="margin-left:28%;">'+data[i].childs[j].childs[k].sortName+'</h1></li>' ;
                                 }
-                                er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"  title="'+data[i].child[j].name+'"><img class="erji_circle" src=""><h1>'+data[i].child[j].name+'</h1><img class="er_img" src=""></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
+                                er += '<li class="two"  menu_tid='+data[i].childs[j].sortId+'><div url='+data[i].childs[j].url+'  class="two_all click_erji"  title="'+data[i].childs[j].sortName+'"><img class="erji_circle" src=""><h1>'+data[i].childs[j].sortName+'</h1><img class="er_img" src="../../img/workflow/work/add_work/right.png"></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
 
                             }else{
 
-                                er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+' class="two_all" title="'+data[i].child[j].name+'"><img class="erji_circle" src=""><h1 class="erji_h1">'+data[i].child[j].name+'</h1></div></li>';
+                                er += '<li class="two" menu_tid='+data[i].childs[j].sortId+'><div url='+data[i].childs[j].url+' class="two_all" title="'+data[i].childs[j].sortName+'"><img class="erji_circle" src=""><h1 class="erji_h1">'+data[i].childs[j].sortName+'</h1></div></li>';
 
                             }
                         }
-                        str+='<li class="one person" id="administ"><div class="one_all" title="'+data[i].name+'"><img class="one_logo" src=""><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="down_jiao" src="../img/workflow/work/add_work/right.png"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>';
+                        if(data[i].childs==''){
+                            str+='<li class="one person" id="administ"><div class="one_all" title="'+data[i].sortName+'"><img class="one_logo" src=""><h1 class="one_name" id="administ">'+data[i].sortName+'</h1></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>';
+                        }else{
+                            str+='<li class="one person" id="administ"><div class="one_all" title="'+data[i].sortName+'"><img class="one_logo" src=""><h1 class="one_name" id="administ">'+data[i].sortName+'</h1><img class="down_jiao" src="../../img/workflow/work/add_work/right.png"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>';
+                        }
+
                     }
 
                     $(".tab_cone").html(str);
@@ -344,15 +348,15 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                     $('.one_all').on('click',function () {
                         var top_one=$(this).parent().next('li').find('.one_all');
                         if ($(this).siblings().find('.erji').css('display')=='none') {
-                            $(this).find('.down_jiao').attr('src','../img/workflow/work/add_work/down.png');
+                            $(this).find('.down_jiao').attr('src','../../img/workflow/work/add_work/down.png');
                             $(this).siblings().find('.erji').show();
                             $(this).siblings().find('.erji').css('background','#e8f4fc');
 
-                            top_one.css('border-top','1px solid #999');
+                            /*top_one.css('border-top','1px solid #999');*/
                         }else{
-                          $(this).find('.down_jiao').attr('src','../img/workflow/work/add_work/right.png');
+                          $(this).find('.down_jiao').attr('src','../../img/workflow/work/add_work/right.png');
                             $(this).siblings().find('.erji').hide();
-                            top_one.css('border-top','none');
+                           /* top_one.css('border-top','none');*/
                         }
 
 
@@ -363,11 +367,11 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                     $('.click_erji').on('click',function () {
                         var san= $(this).siblings().html();
                         if ($(this).siblings('.sanji').css('display')=='none') {
-                           /* $(this).find('.er_img').attr('src','img/main_img/up.png');*/
+                            $(this).find('.er_img').attr('src','../../img/workflow/work/add_work/down.png');
                             $(this).siblings('.sanji').show();
 
                         }else{
-                         /*   $(this).find('.er_img').attr('src','img/main_img/down.png');*/
+                           $(this).find('.er_img').attr('src','../../img/workflow/work/add_work/right.png');
                             $(this).siblings('.sanji').hide();
                         }
 
