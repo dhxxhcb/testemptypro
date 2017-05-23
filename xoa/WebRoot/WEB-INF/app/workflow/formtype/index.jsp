@@ -43,6 +43,7 @@
 			background-image:url(../../img/workflow/btn_new_nor_03.png),url(../../img/workflow/icon_plus_03.png); 
 			cursor:pointer;
 			background-repeat:no-repeat;
+			margin-top:6px;
 			}
 		 .head_left_pic {
 				display: inline-block;
@@ -55,7 +56,7 @@
 		.search {
 				width: 72px;
 				height: 29px;
-				margin-top: 16px;
+				margin-top: 13px;
 				background: #fff;
 			}
 		.search h1 {
@@ -389,7 +390,7 @@
 		<h1>表单设计</h1>
 		</div>
         <div class="head_mid">
-            <input id="form_value" class="inp" type="text" placeholder="输入表名称搜索">
+            <input id="form_value" class="inp" type="text" placeholder="&nbsp;请输入表名称搜索">
             <div id="btn_search" class="search">
 			<h1 style='cursor:pointer;'>搜索</h1></div>
         </div>
