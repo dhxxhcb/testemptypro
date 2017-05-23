@@ -35,6 +35,12 @@ public class DepartmentController {
 	
 	@Resource
 	private DepartmentService departmentService;
+	 @RequestMapping("/newDeptManagement")
+	 public String companyInfo(HttpServletRequest request) {
+		 ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				 "loginDateSouse"));
+		 return "app/sys/new_deptManagement";
+	 }
 	
 	/**
 	 * 创建作者:   张龙飞
