@@ -20,22 +20,19 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <!--[if lte IE 8]>
-    <script type="text/javascript" src="/static/js/ccorrect_btn.js"></script>
-    <![endif]-->
-
-    <script type="text/javascript" >
-        var MYOA_JS_SERVER = "";
-        var MYOA_STATIC_SERVER = "";
-    </script>
+    <link rel="stylesheet" type="text/css" href="../css/workflow/work/style.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script src="../js/base/base.js"></script>
 </head>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/newwork.css" />
-<link rel="stylesheet" type="text/css" href="css/new.css">
-<script type="text/javascript" src="/inc/js_lang.php"></script>
-<script type="text/javascript" src="/static/js/jquery-1.10.2/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/main/theme1/index.css"/>
+<link rel="stylesheet" type="text/css" href="../css/workflow/work/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/workflow/work/newwork.css" />
+<link rel="stylesheet" type="text/css" href="../css/workflow/work/new.css">
+
+<script type="text/javascript" src="../js/main_js/index.js"></script>
+
 <!--<script src="/static/js/bootstrap/js/bootstrap.min.js"></script>-->
+<script>
 if(window.external && typeof window.external.OA_SMS != 'undefined') //如果从OA精灵打开，则最大化窗口
 {
 var h = Math.min(800, screen.availHeight - 180);
@@ -44,32 +41,129 @@ window.external.OA_SMS(w, h, "SET_SIZE");
 }
 </script>
 <style type="text/css">
-#flow_sort_nav > a{
-text-decoration:none;
-color:#666666;
-font-size: 18px;
-font-weight:bold;
-}
-#flow_sort_nav > a:hover{
-text-decoration:none;
-color:#589Fff;
-font-weight:bold;
 
-}
-#flow_sort_nav > a:active{
-text-decoration:none;
-color:#589Fff;
-font-weight:bold;
-}
-div.pointer{
-background:url(/general/system/workflow/flow_form/css/images/pointer.png) no-repeat 100% 15%;
-width:16px;
-height:30px;
-float:left;
-position: relative;
-margin-top: 8px;
-
-}
+    .container-fluid{
+        width: 100%;
+        height:100%;
+    }
+    .cont_left{
+        background: none !important;
+        border-right: 1px solid #999 !important;
+    }
+    .all_ul{
+        width: 100% !important;
+        margin-left: 0% !important;
+    }
+    .tab_c{
+        margin-left: 0% !important;
+    }
+    .one_all{
+        height: 40px !important;
+        width: 100% !important;
+        border-left: none !important;
+        border-right: none !important;
+    }
+    .one_name{
+        line-height: 40px !important;
+    }
+    .cont_left{
+        width:15%;
+    }
+    .cont_rig{
+        width:84%;
+    }
+    .rig_all{
+        width:95%;
+        height:100%;
+        margin:auto;
+    }
+    .rig_cont ul li{
+        width: 100%;
+        height: 80px;
+        border: 1px solid #cccccc;
+        border-radius: 2px;
+        background: #f9fbff;
+        margin-top: 10px;
+    }
+    .rig_title img,.rig_title h1{
+        float:left;
+        margin-top:5px;
+    }
+    .rig_title img{
+        margin-top:10px;
+    }
+    .rig_title h1{
+        font-size: 15pt;
+        font-weight: normal;
+        font-family: '微软雅黑';
+        margin-left: 12px;
+        line-height: 35px;
+    }
+    .rig_left,.rig_mid,.rig_rig{
+        float: left;
+        height: 100%;
+    }
+    .rig_left,.rig_rig{
+       width:30%;
+    }
+    .rig_mid{
+        width:40%;
+    }
+    .liucheng,.liucheng1,.liucheng2{
+        width:33%;
+        height:100%;
+        float: left;
+    }
+    .liucheng img,.liucheng h1,.liucheng1 img,.liucheng1 h1,.liucheng2 img,.liucheng2 h1{
+        float:left;
+    }
+    .rig_rig div{
+        width: 50%;
+        float: left;
+        margin-top: 14px;
+    }
+    .xinjian_img{
+        margin-left: 39%;
+    }
+    .xinjian_h1{
+        text-align: center;
+    }
+    .rig_left h1{
+        font-size: 15pt;
+        font-weight: bold;
+        margin-left: 12px;
+        margin-top: 17px;
+    }
+    .rig_left h2{
+        margin-left: 12px;
+        color: #b7b8b9;
+        margin-top: 5px;
+    }
+    .liucheng h1,.liucheng1 h1,.liucheng2 h1{
+        line-height: 80px;
+        margin-left: 5px;
+    }
+    .liucheng img,.liucheng1 img,.liucheng2 img{
+        margin-top: 31px;
+    }
+    .new_work{
+        font-size: 16pt;
+        font-weight: bold;
+        margin-top: 9px;
+    }
+    .new-search{
+        margin-top:8px !important;
+    }
+    .one_all{
+        background: #f5f7f8 !important;
+    }
+    .tab_cone li .one_all:hover{
+        background: #add2f8 !important;
+    }
+    .tab_cone{
+        width: 104% !important;
+        height:99% !important;
+    }
 </style>
 <script type="text/javascript">
 var loading='<div class="loading">正在加载，请稍候...</div>';
@@ -79,36 +173,21 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
 <body>
 <input id="cur_user" type="hidden" value="1">
 <div class="container-fluid">
-    <div class="row-fluid title-row" style="position:fixed;background-color:#f8f8f8;z-index:99;border-bottom:1px solid #ddd;height:60px;">
+    <div class="row-fluid title-row" style="background-color:#f8f8f8;z-index:99;border-bottom:1px solid #999;height:45px;">
         <div id="title" class="date">
-            <h3 style="margin-bottom:0px;">
-                新建工作                </h3>
+            <img class="title_img" src="../../img/workflow/work/add_work/new_work.png"><h3 class="new_work" style="margin-bottom:0px;">新建工作 </h3>
         </div>
 
         <div class="abs-right" style="position:fixed;">
             <div class="search_area form-search">
-                <!--
-                <div class="navbar">
-                    <ul class="nav">
-                        <li class="dropdown">
-                            <button class="btn dropdown-toggle" id="compositor_id"><span class="icon-arrow-down" compositor_id="0"></span>最近使用&nbsp;<span class="caret"></span></button>
-                            <ul class="dropdown-menu" >
-                                <li><a href="#" ><span class="icon-arrow-up" compositor_id="1"></span>最近使用&nbsp;<span class="caret"></span></a></li>
-                                <li><a href="#" ><span class="icon-arrow-down" compositor_id="2"></span>名称&nbsp;<span class="caret"></span></a></li>
-                                <li><a href="#" ><span class="icon-arrow-up" compositor_id="3"></span>名称&nbsp;<span class="caret"></span></a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                -->
                 <div class="input-append new-search">
                     <input type="text" class="search-query" id="form_select" name="form_select" placeholder="请输入流程名称">
                     <button type="submit" class="btn btn-primary" id="searchbtn" onclick="form_select()">查询</button>
-                    <div class="btn-group" style="margin-left:8px;">
+                    <div class="btn-group" style="margin-left:8px;display: none;">
                         <a class="btn" style="zoom:1;font-weight:normal;" id="w_list_view" href="javascript:;" onclick=""><span>任务视图</span></a>
                     </div>
 
-                    <div class="btn-group" style="margin-left:-1px;" >
+                    <div class="btn-group" style="margin-left:-1px;display: none;" >
                         <button class="btn" style="font-weight:normal;" id="w_task_view" onclick="to_old_new_work()" ><span>列表视图</span></button>
                     </div>
                 </div>
@@ -116,124 +195,323 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
             </div>
         </div>
     </div>
-    <div style="padding-left: 200px;margin-top: 60px;font-size:14px;font-family: Simsun, Arial, sans-serif;padding-top: 3px;">
-        <div class="pointer" style="position:absolute;left: 190px;top:63px;">&nbsp;</div>&nbsp;
-        <div id="flow_sort_nav" class="" style="margin-top:12px;display:inline-block; color: #3D80B5;"></div>
-    </div>
-    <div id="taskbox" class="row-fluid" style="margin-top: -36px;" >
-        <div class="left" style="position: absolute;">
-            <div class="tabbable tabs-left" id="tabs-271640">
-                <ul class="nav nav-tabs" id="f_new_block">
+    <div class="cont" id="client">
+        <div class="cont_left">
+            <ul class="all_ul">
+                <div class="tab_c list">
 
-                </ul>
-            </div>
+                    <ul class="tab_cone a yiji" >
+
+                    </ul>
+                </div>
+            </ul>
+
         </div>
-        <div class="child_menu" id="child_menu"></div>
-        <div class="right">
-            <div class="count-title" id="count-title"></div>
-            <div class="new-tab-content">
-                <div class="tab-pane active" style="margin-top:31px;">
-                    <ul class='taskblock' id="panel-inbox">
+        <div class="cont_rig">
+            <div class="rig_all">
+                <div class="rig_title">
+                    <img src="../img/workflow/work/add_work/all_works.png" alt="">
+                    <h1 class="title_name">常用工作</h1>
+                </div>
+                <div class="rig_cont">
+                    <ul>
+                        <li>
+                            <div class="rig_left">
+                                <h1>出差申请</h1>
+                                <h2>出差申请（2017-05-22 10:21:12）</h2>
+                            </div>
+                            <div class="rig_mid">
+                                <div class="liucheng"><img src="../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>
+                                <div class="liucheng1"><img src="../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>
+                                <div class="liucheng2"><img src="../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div>
+
+                            </div>
+                            <div class="rig_rig">
+                                <div><img class="xinjian_img"  src="../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>
+                                <div><img src="../img/workflow/work/add_work/xiangdao.png" style="    margin-left: 6%;" alt=""><h1>新建向导</h1></div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <input type="hidden" id="user_id" name="user_id" value="admin">
-    <input type="hidden" id="sort_id" name="sort_id" value="">
-    <input type="hidden" id="user_priv" name="user_other_priv" value="1">
-    <input type="hidden" id="user_other_priv" name="user_other_priv" value="1">
-    <input type="hidden" id="user_dept" name="user_dept" value="2">
-    <input type="hidden" id="user_other_dept" name="user_other_dept" value="">
+
 </div>
-<!--by yzx to show flow explanation -->
-<!--<div id="div_explanation" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-header  hide_title">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	        <h3 id="myModalLabel">
-	            流程说明	        </h3>
-	    </div>
-	    <div class="modal-body dump_window_body" id="div_explanation_body">
-	    </div>
-	    <div class="modal-footer dump_window_footer">
-	        <button id="hide_window_close" class="btn" data-dismiss="modal" aria-hidden="true">
-	            关闭	        </button>
-	    </div>
-	</div>-->
-<!-- end -->
+
 </body>
 </html>
-<script id="f_new_blockTmpl" type="text/x-jsrender">
-	{{for runData}}
-        <li class="{{:className}}" data-submenu-id="{{:sort_id}}">
-            <a id="inbox_{{:count}}" sort_id="{{:sort_id}}" sort_parent="" class="inbox" data-toggle="tab"  href="#" hidefocus="hidefocus" onclick="flow_sort_list({{:sort_id}},'',this)"  title="{{:sort_name}}"><i class="icon icon-inbox"></i>{{:sort_name}}<em></em></a>
-            {{if child_category.length!=0}}
-                <div id="{{:sort_id}}" class="child_menu">
-                     <h4 style="color: rgb(47, 128, 209);font-weight: bold;">{{:sort_name}}</h4>
-                     {{for child_category}}
-                        <a class="filter_2" sort_id="{{:SORT_ID}}" sort_parent="{{:SORT_PARENT}}" style="color: rgb(88, 159, 224);font-weight: bold;" data-toggle="tab"  href="#" hidefocus="hidefocus" onclick="flow_sort_list({{:SORT_ID}},'',this)"  title="{{:REAL_NAME}}">{{:SORT_NAME}}<em></em></a>
-                        {{if child_category.length!=0}}
-                            <ul style="margin-left:0px;">
-                            {{for child_category}}
-                                <li> <a sort_id="{{:SORT_ID}}" sort_parent="{{:SORT_PARENT}}" style="color: #666666;font-size:12px;" data-toggle="tab"  href="#" hidefocus="hidefocus" onclick="flow_sort_list({{:SORT_ID}},'',this)"  title="{{:REAL_NAME}}">{{:SORT_NAME}}<em></em></a> </li>
-                                {{for child_category_all}}
-                                    <li style="margin-left:0;"> <a sort_id="{{:SORT_ID}}" sort_parent="{{:SORT_PARENT}}" style="color: #666666;font-size:12px;" data-toggle="tab"  href="#" hidefocus="hidefocus" onclick="flow_sort_list({{:SORT_ID}},'',this)"  title="{{:REAL_NAME}}">{{:SORT_NAME}}<em></em></a> </li>
-                                {{/for}}
-                            {{/for}}
-                            </ul>
-                        {{/if}}
-                     {{/for}}
-                </div>
-            {{/if}}
-
-        </li>
-	{{/for}}
-</script>
-
-<script id="panel-inboxTmpl" type="text/x-jsrender">
-	{{for runData}}
-		<li class='new-task-item clearfix'>
-			<div class='task-item-op pull-right'>
-				<div class='btn-group'>
-                	<button class='btn btn-success' onClick="quick_flow('{{:flow_id}}', '新建工作 - {{:flow_name}}', '{{:edit_str}}', '{{:trigger}}')" item_id='".$TCID."'  action='cal_ok_quick'>
-                    	快速新建                	</button>
-            	</div>
-                <div class='btn-group'>
-                	<button class='btn btn-warning' item_id='".$TCID."' onclick="guide_flow('{{:flow_id}}', '新建工作 - {{:flow_name}}')" action='delay'>
-                         新建向导                	</button>
-                </div>
-            </div>
-            <div class='new-item-info pull-left'>
-                <h4 title="{{:flow_names}} 【单击为新建向导，双击为快速新建】" onclick="javascript: clearTimeout(this.timer); this.timer=setTimeout(function(){guide_flow('{{:flow_id}}', '新建工作 - {{:flow_name}}');},300);" ondblclick="javascript: clearTimeout(this.timer);quick_flow('{{:flow_id}}', '新建工作 - {{:flow_name}}', '{{:edit_str}}', '{{:trigger}}');"><span class='new-item-run-name'>{{:flow_name}}</span></h4>
-                <p title="{{:flow_time}}">{{:flow_times}}</p>
-            </div>
-            <div class='new-item-time new_flow_img pull-left' title="点击查看流程设计图" onClick="view_graph({{:flow_id}})">
-            	<span class='new-item-time-span'>流程设计图</span>
-            </div>
-            <div class='new-item-time new_form_img pull-left'  title="点击查看表单模板" onClick="view_form({{:flow_id}},{{:form_id}})">
-            	<span class='new-item-time-span'>流程表单</span>
-            </div>
-            <div class='new-item-time new_content_img pull-left' title="点击查看流程说明" onClick="show_explanation({{:flow_id}})">
-            	<span class='new-item-time-span'>流程说明</span>
-            </div>
-		</li>
-	{{/for}}
-</script>
-
 <script>
-    $(window).resize((function(){
-        var timer = null,
-            sizes = ['w900', 'w1200'];
-        var response = function(){
-            var w = $(window).width();
-            var h = $(window).height();
-            var cls = sizes[w >=1170 ? 1 : 0];
-            $('html').removeClass(sizes.join(' ')).addClass(cls);
-            $('div .child_menu').height(h-65);
-        };
-        return function(){
-            timer && clearTimeout(timer);
-            timer = setTimeout(response, 100);
-        }
-    })()).resize();
+    $(function () {
+        function init(){
+            $.ajax({
+                url:'../showMenu',
+                type:'get',
+                dataType:'json',
+                success:function(obj){
+                    var data= obj.obj;
+                    var str='';
+                    console.log(data);
+                    for(var i=0;i<data.length;i++){
+                        var er='';
+                        for(var j=0;j<data[i].child.length;j++){
+                            /* var url=data[i].child[j].url; */
+                            if(data[i].child[j].child.length>0){
+                                var three='';
+                                for(var k=0;k<data[i].child[j].child.length;k++){
+                                    three +='<li style="margin-left:18px;" class="three" menu_tid='+data[i].child[j].child[k].id+' url='+data[i].child[j].child[k].url+' title="'+data[i].child[j].child[k].name+'"><img class="sanji_circle" src=""><h1 style="margin-left:6%;">'+data[i].child[j].child[k].name+'</h1></li>' ;
+                                }
+                                er += '<li class="two"  menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+'  class="two_all click_erji"  title="'+data[i].child[j].name+'"><img class="erji_circle" src=""><h1>'+data[i].child[j].name+'</h1><img class="er_img" src=""></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
+
+                            }else{
+
+                                er += '<li class="two" menu_tid='+data[i].child[j].id+'><div url='+data[i].child[j].url+' class="two_all" title="'+data[i].child[j].name+'"><img class="erji_circle" src=""><h1 class="erji_h1">'+data[i].child[j].name+'</h1></div></li>';
+
+                            }
+                        }
+                        str+='<li class="one person" id="administ"><div class="one_all" title="'+data[i].name+'"><img class="one_logo" src=""><h1 class="one_name" id="administ">'+data[i].name+'</h1><img class="down_jiao" src="../img/workflow/work/add_work/right.png"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>';
+                    }
+
+                    $(".tab_cone").html(str);
+
+
+
+                    //鼠标移动到一级菜单变样式，移出变回
+                    $('.one_all').on('mouseover',function () {
+                        $(this).css({
+                           /* 'background':'url(img/main_img/first_yes.png) 0px 0px no-repeat',*/
+                            'color':'#006bb8',
+                            /* 'border':'1px solid #999', */
+                            'cursor':'pointer'
+                        });
+                    });
+                    //移出
+                    $('.one_all').on('mouseout',function () {
+                        $(this).css({
+                            /*'background':'url(img/main_img/first_no.png) 0px -0px no-repeat',*/
+                            'color':'#000'
+                        });
+                    });
+
+                    //点击一级菜单。显示二级
+
+                    $('.one_all').on('click',function () {
+                        var top_one=$(this).parent().next('li').find('.one_all');
+                        if ($(this).siblings().find('.erji').css('display')=='none') {
+                            $(this).find('.down_jiao').attr('src','../img/workflow/work/add_work/down.png');
+                            $(this).siblings().find('.erji').show();
+                            $(this).siblings().find('.erji').css('background','#e8f4fc');
+
+                            top_one.css('border-top','1px solid #999');
+                        }else{
+                          $(this).find('.down_jiao').attr('src','../img/workflow/work/add_work/right.png');
+                            $(this).siblings().find('.erji').hide();
+                            top_one.css('border-top','none');
+                        }
+
+
+
+                    });
+
+                    //点击二级，出现三级
+                    $('.click_erji').on('click',function () {
+                        var san= $(this).siblings().html();
+                        if ($(this).siblings('.sanji').css('display')=='none') {
+                           /* $(this).find('.er_img').attr('src','img/main_img/up.png');*/
+                            $(this).siblings('.sanji').show();
+
+                        }else{
+                         /*   $(this).find('.er_img').attr('src','img/main_img/down.png');*/
+                            $(this).siblings('.sanji').hide();
+                        }
+
+                    });
+
+
+                    //二级菜单切换
+                    $('.two_menu li').on('mouseover','.two_all',function(){
+
+                        $(this).find('h1').css({
+                            'color':'#2f8ae3',
+
+                            'cursor':'pointer'
+                        });
+                        $(this).css('background','#ccebff');
+                      /*  $(this).find('.erji_circle').attr('src','img/main_img/lan.png');*/
+
+                    });
+                    $('.two_menu li').on('mouseout','.two_all',function(){
+
+                        $('.two_menu li .two_all').removeClass('xuan');
+                        $(this).find('h1').css({
+                            'color':'#000',
+                           /* 'background':'#e8f4fc',*/
+                        });
+                        $(this).css('background','#e8f4fc');
+                     /*   $(this).find('.erji_circle').attr('src','img/main_img/hei.png');*/
+                    });
+
+
+                    //点击二级菜单
+                    $('.two_menu li').on('click','.two_all',function(){
+                        var url=$(this).attr('url');
+                        var menu_tid=$(this).parent().attr('menu_tid');
+                        //console.log(url);
+                        if(menu[url.replace('/','_')]){
+                            url = menu[url.replace('/','_')];
+                        }else{
+                            url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
+                        }
+
+                        //判断标题id与iframeid是否相同
+                        //console.log(url);
+                        console.log($('#f_'+menu_tid).length>0);
+                        if($('#f_'+menu_tid).length>0){
+                            //页面一打开，切换显示
+                            $('.all_content .iItem').hide();
+                            $('#f_'+menu_tid).show();
+
+                            $('#t_'+menu_tid).css({
+                        /*        'background':'url(img/main_img/title_yes.png) 0px 4px no-repeat',*/
+                                'color':'#2a588c',
+                                'position':'relative',
+                                'z-index':99999
+                            })
+                            $('#t_'+menu_tid).siblings().css({
+                              /*  'background':'url(img/main_img/title_no.png) 0px 4px no-repeat',*/
+                                'color':'#fff',
+                                'position':'relative',
+                                'z-index':999
+                            })
+                        }else{
+                            if($(this).siblings('.sanji').length>0){
+                                /* return  false; */
+                                //console.log($(this).siblings('.sanji').length>0);
+                            }else{
+                                //页面不存在，新增 title和iframe
+
+                                var titlestr = '<li class="choose" index="0;" id="t_'+menu_tid+'" title="'+$(this).find('h1').html()+'"><h1>'+$(this).find('h1').html()+'</h1><div class="img" style="display:none;"><img class="close"  src="img/main_img/icon.png"></div></li>';
+
+                                var iframestr = '<div id="f_'+menu_tid+'" class="iItem" ><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
+
+                                $('.main_title ul').append(titlestr);
+
+                                $('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) 0px 4px no-repeat;');
+                                $('#t_'+menu_tid).siblings().css('color','#fff');
+                                /* console.log($('#t_'+menu_tid).siblings()); */
+                                $('.all_content').append(iframestr);
+                                $('.all_content .iItem').hide();
+                                $('#f_'+menu_tid).show();
+
+                            }
+
+                        }
+
+
+                    });
+
+
+                    //点击三级菜单，跳转页面。
+                    $('.sanji').on('click','li',function(){
+                        var url=$(this).attr('url');
+                        console.log(url);
+                        var menu_tid=$(this).attr('menu_tid');
+                        console.log(url.split);
+                        console.log(menu[url.split('/').join('_')]);
+                        if(menu[url.split('/').join('_')]){
+                            url = menu[url.split('/').join('_')];
+                        }else{
+                            url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
+                        }
+
+                        console.log(menu_tid);
+                        if($('#f_'+menu_tid).length>0){
+                            //页面一打开，切换显示
+                            $('.all_content .iItem').hide();
+                            $('#f_'+menu_tid).show();
+
+                            $('#t_'+menu_tid).siblings().css({
+                              /*  'background':'url(img/main_img/title_no.png) 0px 4px no-repeat',*/
+                                'color':'#fff',
+                                'position':'relative',
+                                'z-index':999
+                            });
+
+
+                            $('#t_'+menu_tid).css({
+                               /* 'background':'url(img/main_img/title_yes.png) 0px 4px no-repeat',*/
+                                'color':'#2a588c',
+                                'position':'relative',
+                                'z-index':99999
+                            })
+
+
+                        }else{
+
+                            //页面不存在，新增 title和iframe
+                            var titlestrs = '<li class="choose " index="0;" id="t_'+menu_tid+'" title="'+$(this).find('h1').html()+'"><h1>'+$(this).find('h1').html()+'</h1><div class="img" style="display:none;"><img class="close" src="img/main_img/icon.png"></div></li>';
+
+                            var iframestr = '<div id="f_'+menu_tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
+
+                            $('.main_title ul').append(titlestrs);
+
+                            $('#t_'+menu_tid).siblings().attr('style','background: url(img/main_img/title_no.png) 0px 4px no-repeat;');
+                            $('#t_'+menu_tid).siblings().css('color','#fff');
+                            $('.all_content').append(iframestr);
+                            $('.all_content .iItem').hide();
+                            $('#f_'+menu_tid).show();
+                        }
+
+                    });
+
+
+                    //三级菜单切换
+                    //三级菜单移入变样式
+                    $('.sanji').on('mouseover','li',function(){
+                        $(this).css({
+                            /* 'background':'url(img/main_img/first_yes.png) 0px 1.4px no-repeat', */
+                            'color':'#006bb8',
+                            'cursor':'pointer'
+                        });
+                        /*$(this).find('img').attr('src','img/main_img/lan.png');*/
+
+                    });
+                    //三级菜单移出
+                    $('.sanji').on('mouseout','li',function(){
+
+                        /* $('.sanji li').removeClass('xuan'); */
+                        $(this).css({
+                            /* 'background':'url(img/main_img/first_no.png) 0px 0px no-repeat', */
+                            'color':'#000'
+                        });
+                       /* $(this).find('img').attr('src','img/main_img/hei.png');*/
+                    });
+
+
+                    //success的后括号
+                }
+            });//ajax传入应用数据结束括号
+
+        }//init方法结束
+
+
+        init();//调用init()方法
+    })
+</script>
+<script>
+    autodivheight();
+    function autodivheight(){
+        var winHeight=0;
+        if (window.innerHeight)
+            winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;
+        if (document.documentElement && document.documentElement.clientHeight)
+            winHeight = document.documentElement.clientHeight;
+        winWidth = document.documentElement.clientWidth;
+        document.getElementById("client").style.height= winHeight - 50 +"px";
+        document.getElementById("client").style.width= winWidth  +"px";
+
+    }
+    window.onresize=autodivheight;
 </script>
