@@ -66,7 +66,6 @@ public class ImDataService {
 
     
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public Object putMessageInfo(HttpServletRequest request,Integer flag, String from_uid,
 			String to_uid, String of_from, String of_to, String content,
 			String type, String time, String uuid,String msg_type,String voice_time) {
@@ -224,7 +223,6 @@ public class ImDataService {
 	}
    
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public List<ImMessageModel> getImChatList(HttpServletRequest request,String ofFrom) throws FileNotFoundException, IOException, LineUnavailableException, UnsupportedAudioFileException {
 		List<Object> datas = null;
 		
@@ -317,7 +315,6 @@ public class ImDataService {
 	 * @return
 	 */
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public BaseWrapper rollBackMessage(String from_id, String delete_uuid) {
 		// 删除此消息
 		BaseWrapper bw = new BaseWrapper();
@@ -398,7 +395,6 @@ public class ImDataService {
 	}
     
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public List<ImMessageModel> showMessageList(HttpServletRequest request,String from_uid,String to_uid,String last_time) throws FileNotFoundException, IOException, LineUnavailableException, UnsupportedAudioFileException{
 		List<ImMessageModel> list=new ArrayList<ImMessageModel>();
 		String checkResult = StringUtils.checkNullUtils(
@@ -503,7 +499,6 @@ public class ImDataService {
 	}
 	
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public List<ImRoomModel> getAllRoom(String of_from) {
 		List<ImRoomModel> alist=new ArrayList<ImRoomModel>();
 		if(of_from==null||"".equals(of_from)){
@@ -549,7 +544,6 @@ public class ImDataService {
 		return alist;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public ImRoomModel getSingleRoom(String room_id) {
 		Map<String, String> map=new HashMap<String, String>();
 		map.put("roomOf", room_id);
@@ -559,7 +553,6 @@ public class ImDataService {
 		return ir;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public Status openInvite(String room_id, String check) {
 		Status s=new Status();
 		try {
@@ -577,7 +570,6 @@ public class ImDataService {
 		return s;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public Status insertRoom(String name, String set_uid, String set_of,
 			String member_uid, String stime, String room_of) {
 		Status s=new Status();
@@ -601,7 +593,6 @@ public class ImDataService {
 		return s;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public Status deleteMessage(String deleteuuid) {
 		Status s=new Status();
 		try {
@@ -617,7 +608,6 @@ public class ImDataService {
 		return s;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public Status getOutPerson(String room_id, String delete_uid, String opt) {
 		Status s=new Status();
 		
@@ -650,7 +640,6 @@ public class ImDataService {
 		return s;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public Status getPersonToRoom(String room_id, String invite_uid) {
         Status s=new Status();
 		
@@ -672,7 +661,6 @@ public class ImDataService {
 		return s;
 	}
 	@Transactional(readOnly = false)
-	@DynDatasource
 	public Status updateRoomName(String room_id, String room_name) {
 		 Status s=new Status();
 			
