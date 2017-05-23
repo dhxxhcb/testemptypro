@@ -1,6 +1,7 @@
 package com.xoa.service.im;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xoa.dao.enclosure.AttachmentMapper;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.enclosure.EnclosureService;
+import com.xoa.util.GetUUID;
 @Service
 public class ImEnclosureService{
 	@Resource
@@ -55,9 +57,9 @@ public class ImEnclosureService{
 	 * 参数说明:   @param module 模块名
 	 * 参数说明:   @return
 	 * @return     List<Attachment>  附件信息集合
-	 * @throws UnsupportedEncodingException 
+	 * @throws IOException 
 	 */
-	public List<Attachment> upload(MultipartFile[] files,String types,String module) throws UnsupportedEncodingException {
+	public List<Attachment> upload(MultipartFile[] files,String types,String module) throws IOException {
 		if(files.length==0){
 			return null;
 		}
@@ -70,7 +72,8 @@ public class ImEnclosureService{
 	     //存储路径
 	     String  ymd=new String(y+"/"+m+"/"+d);
 	     String path=System.getProperty("file.separator")+"imAttach"+System.getProperty("file.separator")
-	    		 +y+System.getProperty("file.separator")+m+System.getProperty("file.separator")+d;	 	 
+	    		 +y+System.getProperty("file.separator")+m+System.getProperty("file.separator")+d+System.getProperty("file.separator");
+	     
 	 	 Attachment attachment=new Attachment();
 	 	 for (int i = 0; i < files.length; i++) {  
 	        	MultipartFile file = files[i];
@@ -80,7 +83,7 @@ public class ImEnclosureService{
 	        	//String fileName = new String(file.getOriginalFilename().getBytes("gbk"),"utf-8");
 	    		int attachID=Math.abs((int) System.currentTimeMillis()); 	    		
 	    		StringBuffer s=new StringBuffer();
-	    		
+	    		byte[] filesize=file.getBytes();
 	    		String sf=Integer.toString(attachID)+"."+s.toString();
 		    	String newFileName=new String(sf.getBytes(),"UTF-8"); 
 	            if (!file.isEmpty()){  
@@ -94,19 +97,17 @@ public class ImEnclosureService{
 	                    e.printStackTrace();  
 	                }  
 	            }  
-	            
-	            File f=new File(path+newFileName); 
+	            File f=null;
+	            String thamPath="";
+	            String size="";
+	            f=new File(path+newFileName); 
+	            if("img".equals(types)){
+	            	thamPath=GetUUID.getUuid()+newFileName.substring(newFileName.lastIndexOf("."));
+	            	File newf=new File(path+thamPath);
+	            	CompressImg.compressImg(f, newf);
+	            }
 	            f.renameTo(new File(newFileName)); 
 	            byte isImg=3;
-	            //获取后缀名
-	            String filetype=fileName.substring(fileName.indexOf(".") + 1);
-	            String[] imagType={"jpg","png","bmp","gif","JPG","PNG","BMP","GIF"};
-	            List<String> imageTyepLists=Arrays.asList(imagType);
-	            if(imageTyepLists.contains(filetype)){
-	                isImg=0;
-	            }else{
-	            	isImg=1;
-	            }
 	            byte a=0;
 	            byte b=2;
 	            //获得模块名
@@ -115,20 +116,26 @@ public class ImEnclosureService{
 	            attachment=new Attachment();
 	            attachment.setAttachId(attachID);
 	            attachment.setModule(mid);
-	            attachment.setAttachFile(newFileName);
-	            attachment.setAttachName(fileName);
-	            attachment.setYm(ymd);
-	            attachment.setAttachSign(new Long(0));
+	            if("img".equals(types)){
+	            attachment.setAttachFile(thamPath);
+	            attachment.setAttachName(path+newFileName);
+	            }else{	    
+	            attachment.setAttachFile(path+newFileName);
+	            attachment.setAttachName(path+newFileName);
+	            }
+	            attachment.setYm("");
+	            attachment.setAttachSign((long)filesize.length/1024);
 	            attachment.setDelFlag(a);
 	            attachment.setPosition(b);            
 	            saveAttachment(attachment);
 	            //attachID
-	            attachment=findByLast();
+	            attachment=findByAttachId(attachID);
 //	        	String attUrl="AID="+attachment.getAid()+"&"+"MODULE="+module+"&"+"COMPANY="+company+"&"+"YM="+attachment.getYm()+"&"+"ATTACHMENT_ID="+attachment.getAttachId()+"&"+"ATTACHMENT_NAME="+attachment.getAttachName();
 //	            attachment.setAttUrl(attUrl);
-	            String url=path+System.getProperty("file.separator")+file.getOriginalFilename().trim();
-	            attachment.setUrl(url);
-	            attachment.setIsImage(isImg);
+	            if("img".equals(types)){
+	            	attachment.setAttUrl(thamPath);
+	            }
+	            attachment.setYm(newFileName);
 	            list.add(attachment);
 	  }
     }

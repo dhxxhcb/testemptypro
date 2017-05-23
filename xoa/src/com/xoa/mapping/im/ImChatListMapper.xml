@@ -17,12 +17,56 @@
 		<result column="UUID" property="uuid" javaType="string" />
 		<result column="LAST_CONTENT" property="lastContent" javaType="string" />
 	</resultMap>
+	
      <select id="getSingleObject" parameterType="Map">
       select * from IM_CHAT_LIST where FROM_UID=#{fromUid} and TO_UID=#{toUid}
      </select>
    <update id="updateChatlist" parameterType="com.xoa.model.im.ImChatList">
-   
+   update IM_CHAT_LIST 
+       <set>
+			<if test="fromUid != null">
+				FROM_UID = #{fromUid},
+			</if>
+			<if test="toUid != null">
+				TO_UID = #{toUid},
+			</if>
+			<if test="ofFrom != null">
+				OF_FROM = #{ofFrom},
+			</if>
+			<if test="ofTo != null">
+				OF_TO = #{ofTo},
+			</if>
+			<if test="lastTime != null">
+				LAST_TIME = #{lastTime},
+			</if>
+			<if test="lastAtime != null">
+				LAST_ATIME = #{lastAtime},
+			</if>
+			<if test="lastFileId != null">
+				LAST_FILE_ID = #{lastFileId},
+			</if>
+			<if test="lastFileName != null">
+				LAST_FILE_NAME = #{lastFileName},
+			</if>
+			<if test="lastThumbnailUrl != null">
+				LAST_THUMBNAIL_URL =#{lastThumbnailUrl},
+			</if>
+			<if test="type != null">
+				TYPE = #{type},
+			</if>
+			<if test="msgType != null">
+				MSG_TYPE = #{msgType},
+			</if>
+			<if test="uuid != null">
+				UUID = #{uuid},
+			</if>
+			<if test="lastContent != null">
+				LAST_CONTENT = #{lastContent},
+			</if>
+		</set>
+		where LIST_ID = #{listId}
    </update>
+
 
 <!-- 
 	<sql id="_Where_Clause">

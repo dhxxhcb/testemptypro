@@ -3,13 +3,16 @@ package com.xoa.service.im;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBuffer;
+import java.awt.image.DataBufferByte;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import javax.imageio.ImageIO;
 
 public class CompressImg {
 public static void compressImg(File oldfi,File newfo){
-	
+	 int size=0;
 	  try {  
           int nw = 500;  
           /* 
@@ -44,10 +47,15 @@ public static void compressImg(File oldfi,File newfo){
            * 对应于 Windows 风格的 BGR 颜色模型，具有用 3 字节存 
            * 储的 Blue、Green 和 Red 三种颜色。 
           */  
+          
+         /* ByteArrayOutputStream out = new ByteArrayOutputStream();  
+          boolean flag = ImageIO.write(bid, "gif", out);  
+          byte[] b = out.toByteArray();
+          size=(int) (b.length/1024);*/
           ato.filter(bis,bid);  
           ImageIO.write(bid,"jpeg",newfo);  
       } catch(Exception e) {  
-          e.printStackTrace();  
-      } 
+          e.printStackTrace(); 
+      }
 }
 }
