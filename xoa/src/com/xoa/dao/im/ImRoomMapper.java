@@ -1,30 +1,24 @@
 package com.xoa.dao.im;
 
-import com.xoa.model.im.ImRoom;
-import com.xoa.model.im.ImRoomExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import java.util.Map;
+
+import com.xoa.model.im.ImRoom;
+
+
 
 public interface ImRoomMapper {
-    int countByExample(ImRoomExample example);
+	List<ImRoom> getAllRoom(Map<String, String> map);
 
-    int deleteByExample(ImRoomExample example);
- 
-    int deleteByPrimaryKey(Integer rid);
+	ImRoom getRoomByRoomOf(Map<String, String> map);
 
-    int insert(ImRoom record);
+	int roomUpdateInvite(Map<String, String> map);
 
-    int insertSelective(ImRoom record);
+	int saveRoom(ImRoom ir);
 
-    List<ImRoom> selectByExample(ImRoomExample example);
+	int roomUpdateByroomOf(ImRoom irm);
 
-    ImRoom selectByPrimaryKey(Integer rid);
+	int updateRoomName(ImRoom irm);
 
-    int updateByExampleSelective(@Param("record") ImRoom record, @Param("example") ImRoomExample example);
-
-    int updateByExample(@Param("record") ImRoom record, @Param("example") ImRoomExample example);
-
-    int updateByPrimaryKeySelective(ImRoom record);
-
-    int updateByPrimaryKey(ImRoom record);
+	int updatePersonToRoom(ImRoom irm);
 }
