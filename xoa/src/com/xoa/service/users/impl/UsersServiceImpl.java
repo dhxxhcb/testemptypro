@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.xoa.dao.common.SyslogMapper;
 import com.xoa.dao.users.UsersMapper;
@@ -14,6 +15,7 @@ import com.xoa.model.common.Syslog;
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.CusAccessObjectUtil;
+import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
 
@@ -43,16 +45,32 @@ public class UsersServiceImpl implements UsersService {
 	public void addUser(Users user) {
 		usersMapper.addUser(user);
 	}
-	 /**
+	
+	/**
 	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月18日 下午4:44:34
+	 * 创建日期:   2017年5月23日 下午1:39:34
 	 * 方法介绍:   修改用户
-	 * 参数说明:   @param user  用户信息
-	 * @return     void    无
+	 * 参数说明:   @param user 用户
+	 * 参数说明:   @return
+	 * @return     ToJson<Users>  用户
 	 */
 	@Override
-	public void editUser(Users user) {
-		usersMapper.editUser(user);
+	@Transactional
+	public ToJson<Users> editUser(Users user) {
+		 ToJson<Users> tojson = new ToJson<Users>();
+		try{
+			usersMapper.editUser(user);
+			user=usersMapper.findUserByuid(user.getUid());
+			tojson.setObject(user);
+			tojson.setFlag(0);
+            tojson.setMsg("OK");
+		}catch(Exception e){
+			 e.printStackTrace();
+	         tojson.setFlag(1);
+	         tojson.setMsg("error");
+		}
+		return tojson;
+		
 	}
 
 
@@ -279,6 +297,33 @@ public class UsersServiceImpl implements UsersService {
 			}
 		}
 		return sb.toString();
+	}
+	
+	@Override
+	@Transactional
+	public ToJson<Users> edit(Integer uid, String userName, String sex, String birthday, String email, String oicqNo,
+			String mobilNo, String telNoDept, String avatar) {	
+		ToJson<Users> tojson= new ToJson<Users>();
+		Users u=new Users();
+		u.setUid(uid);
+		u.setUserName(userName);
+		u.setSex(sex);
+		u.setBirthday(birthday);
+		u.setEmail(email);
+		u.setOicqNo(oicqNo);
+		u.setMobilNo(mobilNo);
+		u.setTelNoDept(telNoDept);
+		u.setAvatar(avatar);
+		try{
+			usersMapper.editUser(u);
+			tojson.setFlag(0);
+			tojson.setMsg("ok");
+		}catch(Exception e){
+			e.printStackTrace();
+			tojson.setFlag(1);
+			tojson.setMsg("false");
+		}
+		return tojson;
 	}
 	
 }

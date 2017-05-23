@@ -20,27 +20,27 @@
 		<result column="DOWNLOAD" property="download" javaType="String" />
 		<result column="LAST_EDITOR" property="lastEditor" javaType="String" />
 		<result column="LAST_EDIT_TIME" property="lastEditTime"
-			javaType="Date" />
+				javaType="Date" />
 		<result column="SUBJECT_COLOR" property="subjectColor"
-			javaType="String" />
+				javaType="String" />
 		<result column="KEYWORD" property="keyword" javaType="String" />
 		<result column="IS_FW" property="isFw" javaType="String" />
 		<result column="TO_ID" property="toId" javaType="String" />
 		<result column="CONTENT" property="content" javaType="String" />
 		<result column="ATTACHMENT_ID" property="attachmentId"
-			javaType="String" />
+				javaType="String" />
 		<result column="ATTACHMENT_NAME" property="attachmentName"
-			javaType="String" />
+				javaType="String" />
 		<result column="READERS" property="readers" javaType="String" />
 		<result column="PRIV_ID" property="privId" javaType="String" />
 		<result column="USER_ID" property="userId" javaType="String" />
 		<result column="REASON" property="reason" javaType="String" />
 		<result column="COMPRESS_CONTENT" property="compressContent"
-			javaType="String" />
+				javaType="String" />
 		<result column="SUMMARY" property="summary" javaType="String" />
 
 		<association javaType="com.xoa.model.users.Users"
-			property="users">
+					 property="users">
 			<id javaType="int" property="uid" column="UID" />
 			<result javaType="string" property="userId" column="USER_ID" />
 			<result javaType="string" property="userName" column="USER_NAME" />
@@ -59,157 +59,157 @@
 	<select id="selectNotify" resultMap="BaseResultMap" parameterType="Map">
 		SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,
 		n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,
-		n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME 
-       FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
-      and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID
+		n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME
+		FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
+		and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID
 
 		<if test="format != null and format != ''"> AND FORMAT = #{format} </if>
 		<if test="toId != null and toId != ''"> AND TO_ID = #{toId} </if>
 		<if test="typeId != null and typeId != ''"> AND TYPE_ID = #{typeId} </if>
 		<if test="subject != null and subject != ''"> AND SUBJECT like CONCAT('%',#{subject},'%') </if>
 		<if test="sendTime != null and sendTime != ''">
-			 AND DATE(SEND_TIME) = #{sendTime}
+			AND DATE(SEND_TIME) = #{sendTime}
 		</if>
 		<if test="publish != null and publish != ''">
-				AND PUBLISH = #{publish}
-			</if>
-			<if test="fromId != null and fromId != ''">
-				AND FROM_ID = #{fromId}
-			</if>
-			<if test="fromDept != null and fromDept != ''">
-				AND FROM_DEPT = #{fromDept}
-			</if>
-			<if test="top != null and top != ''">
-				AND TOP = #{top}
-			</if>
+			AND PUBLISH = #{publish}
+		</if>
+		<if test="fromId != null and fromId != ''">
+			AND FROM_ID = #{fromId}
+		</if>
+		<if test="fromDept != null and fromDept != ''">
+			AND FROM_DEPT = #{fromDept}
+		</if>
+		<if test="top != null and top != ''">
+			AND TOP = #{top}
+		</if>
 		<if	test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
 			AND DATE(SEND_TIME) between #{beginDate} and #{endDate}
 		</if>
 		<if test="content != null and content != ''"> AND CONTENT like CONCAT('%',#{content},'%') </if>
-       ORDER BY n.SEND_TIME ASC
+		ORDER BY n.SEND_TIME ASC
 	</select>
 	<!-- 查询所有公告信息 -->
-	<!--<select id="selectCountNotify" parameterType="com.xoa.model.notify.Notify" 
-		resultMap="BaseResultMap"> SELECT NOTIFY_ID,FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT, 
-		BEGIN_DATE,END_DATE,ATTACHMENT_ID, ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID, 
-		TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON, AUDIT_DATE, COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR, 
-		SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW from notify where <if test="typeId != 
-		null and typeId != ''"> TYPE_ID = #{typeId} </if> <if test="sendTime != null 
+	<!--<select id="selectCountNotify" parameterType="com.xoa.model.notify.Notify"
+		resultMap="BaseResultMap"> SELECT NOTIFY_ID,FROM_DEPT,FROM_ID,TO_ID,SUBJECT,CONTENT,
+		BEGIN_DATE,END_DATE,ATTACHMENT_ID, ATTACHMENT_NAME,READERS,PRINT,PRIV_ID,USER_ID,
+		TYPE_ID,TOP,TOP_DAYS,FORMAT,PUBLISH,AUDITER,REASON, AUDIT_DATE, COMPRESS_CONTENT,DOWNLOAD,LAST_EDITOR,
+		SUBJECT_COLOR,SUMMARY,KEYWORD,IS_FW from notify where <if test="typeId !=
+		null and typeId != ''"> TYPE_ID = #{typeId} </if> <if test="sendTime != null
 		and sendTime != ''"> AND SEND_TIME = #{sendTime} </if> </select> -->
 
 	<!-- 查询公告管理信息 -->
 	<select id="selectNotifyManage" parameterType="Map" resultMap="BaseResultMap">
-	SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME 
-       FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
-      and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID
-      
-      <if test="format != null and format != ''"> AND FORMAT = #{format} </if>
+		SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME
+		FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
+		and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID
+
+		<if test="format != null and format != ''"> AND FORMAT = #{format} </if>
 		<if test="toId != null and toId != ''"> AND TO_ID = #{toId} </if>
 		<if test="typeId != null and typeId != ''"> AND TYPE_ID = #{typeId} </if>
 		<if test="subject != null and subject != ''"> AND SUBJECT like CONCAT('%',#{subject},'%') </if>
 		<if test="sendTime != null and sendTime != ''">
-			 AND DATE(SEND_TIME) = #{sendTime}
+			AND DATE(SEND_TIME) = #{sendTime}
 		</if>
 		<if test="publish != null and publish != ''">
-				AND PUBLISH = #{publish}
-			</if>
-			<if test="fromId != null and fromId != ''">
-				AND FROM_ID = #{fromId}
-			</if>
-			<if test="fromDept != null and fromDept != ''">
-				AND FROM_DEPT = #{fromDept}
-			</if>
-			<if test="top != null and top != ''">
-				AND TOP = #{top}
-			</if>
+			AND PUBLISH = #{publish}
+		</if>
+		<if test="fromId != null and fromId != ''">
+			AND FROM_ID = #{fromId}
+		</if>
+		<if test="fromDept != null and fromDept != ''">
+			AND FROM_DEPT = #{fromDept}
+		</if>
+		<if test="top != null and top != ''">
+			AND TOP = #{top}
+		</if>
 		<if
-			test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+				test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
 			AND DATE(SEND_TIME) between #{beginDate} and #{endDate}
 		</if>
 		<if test="content != null and content != ''"> AND CONTENT like CONCAT('%',#{content},'%') </if>
-       ORDER BY SEND_TIME ASC
+		ORDER BY SEND_TIME ASC
 	</select>
 
 
 	<!-- 查询未读信息并返回 列表 -->
 	<select id="unreadNotify" parameterType="Map" resultMap="BaseResultMap">
-	SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME 
-       FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
-      and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID
-      
-      <if test="format != null and format != ''"> AND FORMAT = #{format} </if>
+		SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME
+		FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
+		and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID
+
+		<if test="format != null and format != ''"> AND FORMAT = #{format} </if>
 		<if test="toId != null and toId != ''"> AND TO_ID = #{toId} </if>
 		<if test="typeId != null and typeId != ''"> AND TYPE_ID = #{typeId} </if>
 		<if test="subject != null and subject != ''"> AND SUBJECT like CONCAT('%',#{subject},'%') </if>
 		<if test="sendTime != null and sendTime != ''">
-			 AND DATE(SEND_TIME) = #{sendTime}
+			AND DATE(SEND_TIME) = #{sendTime}
 		</if>
 		<if test="publish != null and publish != ''">
-				AND PUBLISH = #{publish}
-			</if>
-			<if test="fromId != null and fromId != ''">
-				AND FROM_ID = #{fromId}
-			</if>
-			<if test="fromDept != null and fromDept != ''">
-				AND FROM_DEPT = #{fromDept}
-			</if>
-			<if test="top != null and top != ''">
-				AND TOP = #{top}
-			</if>
+			AND PUBLISH = #{publish}
+		</if>
+		<if test="fromId != null and fromId != ''">
+			AND FROM_ID = #{fromId}
+		</if>
+		<if test="fromDept != null and fromDept != ''">
+			AND FROM_DEPT = #{fromDept}
+		</if>
+		<if test="top != null and top != ''">
+			AND TOP = #{top}
+		</if>
 		<if
-			test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+				test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
 			AND DATE(SEND_TIME) between #{beginDate} and #{endDate}
 		</if>
 		<if test="content != null and content != ''"> AND CONTENT like CONCAT('%',#{content},'%') </if>
-       ORDER BY SEND_TIME ASC
+		ORDER BY SEND_TIME ASC
 	</select>
 
-    
-    <!-- 查询已读信息并返回 列表 -->
+
+	<!-- 查询已读信息并返回 列表 -->
 	<select id="readNotify" parameterType="Map" resultMap="BaseResultMap">
-		SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME 
-       FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
-      and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID
-      
-      <if test="format != null and format != ''"> AND FORMAT = #{format} </if>
+		SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME
+		FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
+		and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID
+
+		<if test="format != null and format != ''"> AND FORMAT = #{format} </if>
 		<if test="toId != null and toId != ''"> AND TO_ID = #{toId} </if>
 		<if test="typeId != null and typeId != ''"> AND TYPE_ID = #{typeId} </if>
 		<if test="subject != null and subject != ''"> AND SUBJECT like CONCAT('%',#{subject},'%') </if>
 		<if test="sendTime != null and sendTime != ''">
-			 AND DATE(SEND_TIME) = #{sendTime}
+			AND DATE(SEND_TIME) = #{sendTime}
 		</if>
 		<if test="publish != null and publish != ''">
-				AND PUBLISH = #{publish}
-			</if>
-			<if test="fromId != null and fromId != ''">
-				AND FROM_ID = #{fromId}
-			</if>
-			<if test="fromDept != null and fromDept != ''">
-				AND FROM_DEPT = #{fromDept}
-			</if>
-			<if test="top != null and top != ''">
-				AND TOP = #{top}
-			</if>
+			AND PUBLISH = #{publish}
+		</if>
+		<if test="fromId != null and fromId != ''">
+			AND FROM_ID = #{fromId}
+		</if>
+		<if test="fromDept != null and fromDept != ''">
+			AND FROM_DEPT = #{fromDept}
+		</if>
+		<if test="top != null and top != ''">
+			AND TOP = #{top}
+		</if>
 		<if
-			test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+				test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
 			AND DATE(SEND_TIME) between #{beginDate} and #{endDate}
 		</if>
 		<if test="content != null and content != ''"> AND CONTENT like CONCAT('%',#{content},'%') </if>
-       ORDER BY SEND_TIME ASC
+		ORDER BY SEND_TIME ASC
 	</select>
-    
+
 
 	<!-- 公告详情查询 -->
 	<select id="detailedNotify" resultMap="BaseResultMap">
-	SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME 
-       FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
-      and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID  and n.NOTIFY_ID=#{notifyId}
+		SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME
+		FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
+		and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID  and n.NOTIFY_ID=#{notifyId}
 	</select>
 
 	<!-- 保存公告信息 -->
 	<insert id="addNotify" useGeneratedKeys="true" keyProperty="notifyId" parameterType="com.xoa.model.notify.Notify" >
 		insert into notify
-		 <trim prefix="(" suffix=")" suffixOverrides="," >
+		<trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="fromId != null">
 				FROM_ID,
 			</if>
@@ -300,9 +300,9 @@
 			<if test="isFw != null">
 				IS_FW ,
 			</if>
-			</trim>
-          <trim prefix="values (" suffix=")" suffixOverrides="," >
-			 <if test="fromId != null">
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="fromId != null">
 				#{fromId},
 			</if>
 			<if test="fromDept != null">
@@ -393,102 +393,104 @@
 				#{isFw} ,
 			</if>
 		</trim>
-	  </insert>
+	</insert>
 
 	<!--根据Id修改公告 -->
 	<update id="updateNotify" parameterType="com.xoa.model.notify.Notify">
 		update notify
-		<set>
-			<if test="fromId != null">
-				FROM_ID = #{fromId},
-			</if>
-			<if test="fromDept != null">
-				FROM_DEPT = #{fromDept},
-			</if>
-			<if test="toId != null">
-				TO_ID = #{toId},
-			</if>
-			<if test="format != null">
-				FORMAT = #{format},
-			</if>
-			<if test="typeId != null">
-				TYPE_ID = #{typeId},
-			</if>
-			<if test="subject != null">
-				SUBJECT = #{subject},
-			</if>
-			<if test="sendTime != null">
-				SEND_TIME = #{sendTime},
-			</if>
-			<if test="content != null">
-				CONTENT = #{content},
-			</if>
-			<if test="beginDate != null">
-				BEGIN_DATE = #{beginDate},
-			</if>
-			<if test="attachmentId != null">
-				ATTACHMENT_ID = #{attachmentId},
-			</if>
-			<if test="readers != null">
-				READERS = #{readers},
-			</if>
-			<if test="privId != null">
-				PRIV_ID = #{privId},
-			</if>
-			<if test="top != null">
-				TOP = #{top},
-			</if>
-			<if test="topDays != null">
-				TOP_DAYS = #{topDays},
-			</if>
-			<if test="publish != null">
-				PUBLISH = #{publish},
-			</if>
-			<if test="reason != null">
-				REASON = #{reason},
-			</if>
-			<if test="compressContent != null">
-				COMPRESS_CONTENT = #{compressContent},
-			</if>
-			<if test="lastEditor != null">
-				LAST_EDITOR = #{lastEditor},
-			</if>
-			<if test="subjectColor != null">
-				SUBJECT_COLOR = #{subjectColor},
-			</if>
-			<if test="keyword != null">
-				KEYWORD = #{keyword},
-			</if>
-			<if test="endDate != null">
-				END_DATE = #{endDate},
-			</if>
-			<if test="attachmentName != null">
-				ATTACHMENT_NAME = #{attachmentName},
-			</if>
-			<if test="print != null">
-				PRINT = #{print},
-			</if>
-			<if test="userId != null">
-				USER_ID = #{userId},
-			</if>
-			<if test="auditer != null">
-				AUDITER = #{auditer},
-			</if>
-			<if test="auditDate != null">
-				AUDIT_DATE = #{auditDate},
-			</if>
-			<if test="download != null">
-				DOWNLOAD = #{download},
-			</if>
-			<if test="lastEditTime != null">
-				LAST_EDIT_TIME = #{lastEditTime},
-			</if>
-			<if test="summary != null">
-				SUMMARY = #{summary},
-			</if>
-			<if test="isFw != null">
-				IS_FW = #{isFw},
-			</if>
+		<set >
+			<trim suffixOverrides=",">
+				<if test="fromId != null">
+					FROM_ID = #{fromId},
+				</if>
+				<if test="fromDept != null">
+					FROM_DEPT = #{fromDept},
+				</if>
+				<if test="toId != null">
+					TO_ID = #{toId},
+				</if>
+				<if test="format != null">
+					FORMAT = #{format},
+				</if>
+				<if test="typeId != null">
+					TYPE_ID = #{typeId},
+				</if>
+				<if test="subject != null">
+					SUBJECT = #{subject},
+				</if>
+				<if test="sendTime != null">
+					SEND_TIME = #{sendTime},
+				</if>
+				<if test="content != null">
+					CONTENT = #{content},
+				</if>
+				<if test="beginDate != null">
+					BEGIN_DATE = #{beginDate},
+				</if>
+				<if test="attachmentId != null">
+					ATTACHMENT_ID = #{attachmentId},
+				</if>
+				<if test="readers != null">
+					READERS = #{readers},
+				</if>
+				<if test="privId != null">
+					PRIV_ID = #{privId},
+				</if>
+				<if test="top != null">
+					TOP = #{top},
+				</if>
+				<if test="topDays != null">
+					TOP_DAYS = #{topDays},
+				</if>
+				<if test="publish != null">
+					PUBLISH = #{publish},
+				</if>
+				<if test="reason != null">
+					REASON = #{reason},
+				</if>
+				<if test="compressContent != null">
+					COMPRESS_CONTENT = #{compressContent},
+				</if>
+				<if test="lastEditor != null">
+					LAST_EDITOR = #{lastEditor},
+				</if>
+				<if test="subjectColor != null">
+					SUBJECT_COLOR = #{subjectColor},
+				</if>
+				<if test="keyword != null">
+					KEYWORD = #{keyword},
+				</if>
+				<if test="endDate != null">
+					END_DATE = #{endDate},
+				</if>
+				<if test="attachmentName != null">
+					ATTACHMENT_NAME = #{attachmentName},
+				</if>
+				<if test="print != null">
+					PRINT = #{print},
+				</if>
+				<if test="userId != null">
+					USER_ID = #{userId},
+				</if>
+				<if test="auditer != null">
+					AUDITER = #{auditer},
+				</if>
+				<if test="auditDate != null">
+					AUDIT_DATE = #{auditDate},
+				</if>
+				<if test="download != null">
+					DOWNLOAD = #{download},
+				</if>
+				<if test="lastEditTime != null">
+					LAST_EDIT_TIME = #{lastEditTime},
+				</if>
+				<if test="summary != null">
+					SUMMARY = #{summary},
+				</if>
+				<if test="isFw != null">
+					IS_FW = #{isFw},
+				</if>
+			</trim>
 			where NOTIFY_ID = #{notifyId}
 		</set>
 	</update>

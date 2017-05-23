@@ -38,7 +38,8 @@ public class Test {
 //		List<String> result = new ArrayList<String>();
 //		String reg = "<" + "input" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>";
 		//String i1="<option\b(?=[^>]*value='([^']*)')(?:[^>]*([^']*)')?[^>]*>(.*?)</option>"+"<option(?=[^>]*value='([^']*)')(?:[^>]*([^']*)')?[^>]*>(.*?)</option>";
-		String reg1 = "<" + "select" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>"+"<([^>]*)/>"+"</select>";
+//		String reg1 = "<" + "textarea" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>"+"</textarea>";
+		String reg1 = "<" + "option" + "[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?>"+"(.*?)";
 //		String reg1=""
 //		StringBuffer reg1 = new StringBuffer();
 //		if (source.matches("<input")){
@@ -50,7 +51,7 @@ public class Test {
 
 
 		//String reg2 = "/<.*?[input|textarea|select].*?>/i";
-		 m = Pattern.compile(reg1.toString()).matcher(source);
+		 m = Pattern.compile(reg1).matcher(source);
 		// m = Pattern.compile(reg1).matcher(source);
 //		System.out.print(m.pattern());
        int regl=source.length();
@@ -63,11 +64,45 @@ public class Test {
 //			String r = m.group();
 //		    String b=	source.replaceAll(r,"a");
 //			result.add(a);
-			a="{"+a+"}";
+			/*a="{"+a+"}";*/
 			System.out.println("start:"+start+"end:"+end+"length:"+source.length());
 			source=replaceByPostion(source,a,start,end);
 //			System.out.println(source);
 			source=	match(source,element,attr);
+		}
+		return source;
+	}
+	public static String matchB(String source , String attr) {
+		Matcher m;
+		String reg = "<" + "input" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>";
+		m = Pattern.compile(reg).matcher(source);
+		int regl=source.length();
+		int i=0;
+		if(m.find()) {
+			String 	a=m.group(1);
+			int start=m.start();
+			int end=m.end();
+			a="{"+a+"}";
+			System.out.println("start:"+start+"end:"+end+"length:"+source.length());
+			source=replaceByPostion(source,a,start,end);
+			source=	matchB(source,attr);
+		}
+		return source;
+	}
+	public static String matchC(String source , String attr) {
+		Matcher m;
+		String reg = "<" + "img" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?/>";
+		m = Pattern.compile(reg).matcher(source);
+		int regl=source.length();
+		int i=0;
+		if(m.find()) {
+			String 	a=m.group(1);
+			int start=m.start();
+			int end=m.end();
+			a="{"+a+"}";
+			System.out.println("start:"+start+"end:"+end+"length:"+source.length());
+			source=replaceByPostion(source,a,start,end);
+			source=	matchC(source,attr);
 		}
 		return source;
 	}
@@ -125,6 +160,7 @@ public class Test {
 				"<p>测试件：<input title=\"宏控件\" class=\"AUTO\" \n" +
 				"datafld=\"SYS_USERNAME\" hidden=\"0\" style=\"\" name=\"DATA_7\" value=\"{MACRO}\" type=\"text\"/></p> ";
 		String list = match(b, "input", "name");
+
 
 		System.out.println(list);
 	}

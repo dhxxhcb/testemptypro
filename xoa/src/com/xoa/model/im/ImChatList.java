@@ -1,41 +1,44 @@
 package com.xoa.model.im;
 
-import com.xoa.util.page.PageParams;
-
-public class ImChatList extends PageParams {
-    private Integer listId;
-
-    private String fromUid;
- 
-    private String toUid;
-
-    private String ofFrom;
-
-    private String ofTo;
-
-    private String lastTime;
-
-    private String lastAtime;
-
+public class ImChatList {
+	
+	
+    private String listId;//云办公用户UID
+	
+    private String fromUid;//云办公发消息人UID
+	
+    private String toUid;//云办公接收消息人UID
+	
+    private String ofFrom;//OF发消息人UID
+	
+    private String ofTo;//OF收消息人UID
+	
+    private String lastTime;//最后消息时间
+	
+    private String lastAtime;//入库时间
+	
     private String lastFileId;
-
+	
     private String lastFileName;
-
+	
     private String lastThumbnailUrl;
-
+	
     private String type;
-
-    private String msgType;
-
+	
+    private String msgType;//会话类型（1单聊，2群聊）
+	
+	
     private String uuid;
+	
+    private String lastContent;//最后消息内容
+	
+	
 
-    private String lastContent;
-
-    public Integer getListId() {
+	public String  getListId() {
         return listId;
     }
 
-    public void setListId(Integer listId) {
+    public void setListId(String listId) {
         this.listId = listId;
     }
 
@@ -142,4 +145,5 @@ public class ImChatList extends PageParams {
     public void setLastContent(String lastContent) {
         this.lastContent = lastContent == null ? null : lastContent.trim();
     }
+    
 }

@@ -2,82 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.im.ImMessageMapper" >
   <resultMap id="BaseResultMap" type="com.xoa.model.im.ImMessage" >
-    <id column="IMID" property="imid" jdbcType="INTEGER" />
-    <result column="FROM_UID" property="fromUid" jdbcType="VARCHAR" />
-    <result column="TO_UID" property="toUid" jdbcType="VARCHAR" />
-    <result column="OF_FROM" property="ofFrom" jdbcType="VARCHAR" />
-    <result column="OF_TO" property="ofTo" jdbcType="VARCHAR" />
-    <result column="THUMBNAIL_URL" property="thumbnailUrl" jdbcType="VARCHAR" />
-    <result column="STIME" property="stime" jdbcType="VARCHAR" />
-    <result column="ATIME" property="atime" jdbcType="VARCHAR" />
-    <result column="TYPE" property="type" jdbcType="VARCHAR" />
-    <result column="DFLAG" property="dflag" jdbcType="CHAR" />
-    <result column="MSG_TYPE" property="msgType" jdbcType="VARCHAR" />
-    <result column="UUID" property="uuid" jdbcType="VARCHAR" />
+    <id column="IMID" property="imid" javaType="string" />
+    <result column="FROM_UID" property="fromUid" javaType="string" />
+    <result column="TO_UID" property="toUid" javaType="string" />
+    <result column="OF_FROM" property="ofFrom" javaType="string" />
+    <result column="OF_TO" property="ofTo" javaType="string" />
+    <result column="THUMBNAIL_URL" property="thumbnailUrl" javaType="string" />
+    <result column="STIME" property="stime" javaType="string" />
+    <result column="ATIME" property="atime" javaType="string" />
+    <result column="TYPE" property="type" javaType="string" />
+    <result column="DFLAG" property="dflag" javaType="string" />
+    <result column="MSG_TYPE" property="msgType" javaType="string" />
+    <result column="UUID" property="uuid" javaType="string" />
+    <result column="CONTENT" property="content" javaType="string" />
+    <result column="FILE_ID" property="fileId" javaType="string" />
+    <result column="FILE_NAME" property="fileName" javaType="string" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.xoa.model.im.ImMessageWithBLOBs" extends="BaseResultMap" >
-    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
-    <result column="FILE_ID" property="fileId" jdbcType="LONGVARCHAR" />
-    <result column="FILE_NAME" property="fileName" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" > 
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
+
   <sql id="Base_Column_List" >
     IMID, FROM_UID, TO_UID, OF_FROM, OF_TO, THUMBNAIL_URL, STIME, ATIME, TYPE, DFLAG, 
     MSG_TYPE, UUID
@@ -85,7 +26,120 @@
   <sql id="Blob_Column_List" >
     CONTENT, FILE_ID, FILE_NAME
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.xoa.model.im.ImMessageExample" >
+  
+  <select id="getLastMessage" parameterType="map">
+  select * from im_message where UUID=#{uuid};
+  </select>
+  
+   <select id="selectMessageByPage" parameterType="Map" resultMap="BaseResultMap" >
+      SELECT * FROM im_message WHERE ((FROM_UID=#{fromId} AND TO_UID =#{toId}) OR (FROM_UID=#{toId} AND TO_UID =#{fromId})) AND #{lastTime} >= ATIME  ORDER BY ATIME
+   </select>
+  <insert id="save" parameterType="com.xoa.model.im.ImMessage">
+  insert into im_message 
+        (FROM_UID,TO_UID,OF_FROM,OF_TO,THUMBNAIL_URL,STIME,ATIME,TYPE,DFLAG,MSG_TYPE,UUID,CONTENT,FILE_ID,FILE_NAME)
+    
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fromUid == null" >
+        '',
+      </if>
+      <if test="fromUid != null" >
+        #{fromUid},
+      </if>
+      
+      <if test="toUid == null" >
+       '',
+      </if>
+      <if test="toUid != null" >
+        #{toUid},
+      </if>
+      
+      <if test="ofFrom == null" >
+        '',
+      </if>
+      <if test="ofFrom != null" >
+        #{ofFrom},
+      </if>
+      
+      <if test="ofTo == null" >
+        '',
+      </if>
+      <if test="ofTo != null" >
+        #{ofTo},
+      </if>
+      
+      <if test="thumbnailUrl == null" >
+        '',
+      </if>
+      <if test="thumbnailUrl != null" >
+        #{thumbnailUrl},
+      </if>
+      
+      <if test="stime == null" >
+       '',
+      </if>
+      <if test="stime != null" >
+        #{stime},
+      </if>
+      
+       <if test="atime == null" >
+        '',
+      </if>
+      <if test="atime != null" >
+        #{atime},
+      </if>
+      
+       <if test="type == null" >
+       '',
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      
+      <if test="dflag == null" >
+        '',
+      </if>
+      <if test="dflag != null" >
+        #{dflag},
+      </if>
+      
+      <if test="msgType == null" >
+        '',
+      </if>
+      <if test="msgType != null" >
+        #{msgType},
+      </if>
+      
+       <if test="uuid == null" >
+        '',
+      </if>
+      <if test="uuid != null" >
+        #{uuid},
+      </if>
+      
+      <if test="content == null" >
+       '',
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      
+      <if test="fileId == null" >
+       '',
+      </if>
+      <if test="fileId != null" >
+        #{fileId},
+      </if>
+      
+      <if test="fileName == null" >
+       '',
+      </if>
+      <if test="fileName != null" >
+        #{fileName},
+      </if>
+    </trim>
+  </insert>
+  
+<!--   <select id="selectBy" resultMap="ResultMap" parameterType="com.xoa.model.im.ImMessage" >
     select
     <if test="distinct" >
       distinct
@@ -95,13 +149,13 @@
     <include refid="Blob_Column_List" />
     from im_message
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xoa.model.im.ImMessageExample" >
+  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.xoa.model.im.ImMessage" >
     select
     <if test="distinct" >
       distinct
@@ -109,45 +163,45 @@
     <include refid="Base_Column_List" />
     from im_message
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from im_message
-    where IMID = #{imid,jdbcType=INTEGER}
+    where IMID = #{imid}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="map" >
     delete from im_message
-    where IMID = #{imid,jdbcType=INTEGER}
+    where IMID = #{imid}
   </delete>
-  <delete id="deleteByExample" parameterType="com.xoa.model.im.ImMessageExample" >
+  <delete id="deleteBy" parameterType="map" >
     delete from im_message
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.im.ImMessageWithBLOBs" >
+  <insert id="insert" parameterType="map" >
     insert into im_message (IMID, FROM_UID, TO_UID, 
       OF_FROM, OF_TO, THUMBNAIL_URL, 
       STIME, ATIME, TYPE, 
       DFLAG, MSG_TYPE, UUID, 
       CONTENT, FILE_ID, FILE_NAME
       )
-    values (#{imid,jdbcType=INTEGER}, #{fromUid,jdbcType=VARCHAR}, #{toUid,jdbcType=VARCHAR}, 
-      #{ofFrom,jdbcType=VARCHAR}, #{ofTo,jdbcType=VARCHAR}, #{thumbnailUrl,jdbcType=VARCHAR}, 
-      #{stime,jdbcType=VARCHAR}, #{atime,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{dflag,jdbcType=CHAR}, #{msgType,jdbcType=VARCHAR}, #{uuid,jdbcType=VARCHAR}, 
-      #{content,jdbcType=LONGVARCHAR}, #{fileId,jdbcType=LONGVARCHAR}, #{fileName,jdbcType=LONGVARCHAR}
+    values (#{imid}, #{fromUid}, #{toUid}, 
+      #{ofFrom}, #{ofTo}, #{thumbnailUrl}, 
+      #{stime}, #{atime}, #{type}, 
+      #{dflag}, #{msgType}, #{uuid}, 
+      #{content}, #{fileId}, #{fileName}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.im.ImMessageWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.xoa.model.im.ImMessage" >
     insert into im_message
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="imid != null" >
@@ -198,230 +252,230 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="imid != null" >
-        #{imid,jdbcType=INTEGER},
+        #{imid},
       </if>
       <if test="fromUid != null" >
-        #{fromUid,jdbcType=VARCHAR},
+        #{fromUid},
       </if>
       <if test="toUid != null" >
-        #{toUid,jdbcType=VARCHAR},
+        #{toUid},
       </if>
       <if test="ofFrom != null" >
-        #{ofFrom,jdbcType=VARCHAR},
+        #{ofFrom},
       </if>
       <if test="ofTo != null" >
-        #{ofTo,jdbcType=VARCHAR},
+        #{ofTo},
       </if>
       <if test="thumbnailUrl != null" >
-        #{thumbnailUrl,jdbcType=VARCHAR},
+        #{thumbnailUrl},
       </if>
       <if test="stime != null" >
-        #{stime,jdbcType=VARCHAR},
+        #{stime},
       </if>
       <if test="atime != null" >
-        #{atime,jdbcType=VARCHAR},
+        #{atime},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
+        #{type},
       </if>
       <if test="dflag != null" >
-        #{dflag,jdbcType=CHAR},
+        #{dflag},
       </if>
       <if test="msgType != null" >
-        #{msgType,jdbcType=VARCHAR},
+        #{msgType},
       </if>
       <if test="uuid != null" >
-        #{uuid,jdbcType=VARCHAR},
+        #{uuid},
       </if>
       <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
+        #{content},
       </if>
       <if test="fileId != null" >
-        #{fileId,jdbcType=LONGVARCHAR},
+        #{fileId},
       </if>
       <if test="fileName != null" >
-        #{fileName,jdbcType=LONGVARCHAR},
+        #{fileName},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xoa.model.im.ImMessageExample" resultType="java.lang.Integer" >
+  <select id="countBy" parameterType="com.xoa.model.im.ImMessage" resultType="java.lang.Integer" >
     select count(*) from im_message
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateBySelective" parameterType="map" >
     update im_message
     <set >
       <if test="record.imid != null" >
-        IMID = #{record.imid,jdbcType=INTEGER},
+        IMID = #{record.imid},
       </if>
       <if test="record.fromUid != null" >
-        FROM_UID = #{record.fromUid,jdbcType=VARCHAR},
+        FROM_UID = #{record.fromUid},
       </if>
       <if test="record.toUid != null" >
-        TO_UID = #{record.toUid,jdbcType=VARCHAR},
+        TO_UID = #{record.toUid},
       </if>
       <if test="record.ofFrom != null" >
-        OF_FROM = #{record.ofFrom,jdbcType=VARCHAR},
+        OF_FROM = #{record.ofFrom},
       </if>
       <if test="record.ofTo != null" >
-        OF_TO = #{record.ofTo,jdbcType=VARCHAR},
+        OF_TO = #{record.ofTo},
       </if>
       <if test="record.thumbnailUrl != null" >
-        THUMBNAIL_URL = #{record.thumbnailUrl,jdbcType=VARCHAR},
+        THUMBNAIL_URL = #{record.thumbnailUrl},
       </if>
       <if test="record.stime != null" >
-        STIME = #{record.stime,jdbcType=VARCHAR},
+        STIME = #{record.stime},
       </if>
       <if test="record.atime != null" >
-        ATIME = #{record.atime,jdbcType=VARCHAR},
+        ATIME = #{record.atime},
       </if>
       <if test="record.type != null" >
-        TYPE = #{record.type,jdbcType=VARCHAR},
+        TYPE = #{record.type},
       </if>
       <if test="record.dflag != null" >
-        DFLAG = #{record.dflag,jdbcType=CHAR},
+        DFLAG = #{record.dflag},
       </if>
       <if test="record.msgType != null" >
-        MSG_TYPE = #{record.msgType,jdbcType=VARCHAR},
+        MSG_TYPE = #{record.msgType},
       </if>
       <if test="record.uuid != null" >
-        UUID = #{record.uuid,jdbcType=VARCHAR},
+        UUID = #{record.uuid},
       </if>
       <if test="record.content != null" >
-        CONTENT = #{record.content,jdbcType=LONGVARCHAR},
+        CONTENT = #{record.content},
       </if>
       <if test="record.fileId != null" >
-        FILE_ID = #{record.fileId,jdbcType=LONGVARCHAR},
+        FILE_ID = #{record.fileId},
       </if>
       <if test="record.fileName != null" >
-        FILE_NAME = #{record.fileName,jdbcType=LONGVARCHAR},
+        FILE_NAME = #{record.fileName},
       </if>
     </set>
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By__Where_Clause" />
     </if>
   </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
+  <update id="updateBy" parameterType="map" >
     update im_message
-    set IMID = #{record.imid,jdbcType=INTEGER},
-      FROM_UID = #{record.fromUid,jdbcType=VARCHAR},
-      TO_UID = #{record.toUid,jdbcType=VARCHAR},
-      OF_FROM = #{record.ofFrom,jdbcType=VARCHAR},
-      OF_TO = #{record.ofTo,jdbcType=VARCHAR},
-      THUMBNAIL_URL = #{record.thumbnailUrl,jdbcType=VARCHAR},
-      STIME = #{record.stime,jdbcType=VARCHAR},
-      ATIME = #{record.atime,jdbcType=VARCHAR},
-      TYPE = #{record.type,jdbcType=VARCHAR},
-      DFLAG = #{record.dflag,jdbcType=CHAR},
-      MSG_TYPE = #{record.msgType,jdbcType=VARCHAR},
-      UUID = #{record.uuid,jdbcType=VARCHAR},
-      CONTENT = #{record.content,jdbcType=LONGVARCHAR},
-      FILE_ID = #{record.fileId,jdbcType=LONGVARCHAR},
-      FILE_NAME = #{record.fileName,jdbcType=LONGVARCHAR}
+    set IMID = #{record.imid},
+      FROM_UID = #{record.fromUid},
+      TO_UID = #{record.toUid},
+      OF_FROM = #{record.ofFrom},
+      OF_TO = #{record.ofTo},
+      THUMBNAIL_URL = #{record.thumbnailUrl},
+      STIME = #{record.stime},
+      ATIME = #{record.atime},
+      TYPE = #{record.type},
+      DFLAG = #{record.dflag},
+      MSG_TYPE = #{record.msgType},
+      UUID = #{record.uuid},
+      CONTENT = #{record.content},
+      FILE_ID = #{record.fileId},
+      FILE_NAME = #{record.fileName}
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By__Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByClause" parameterType="map" >
     update im_message
-    set IMID = #{record.imid,jdbcType=INTEGER},
-      FROM_UID = #{record.fromUid,jdbcType=VARCHAR},
-      TO_UID = #{record.toUid,jdbcType=VARCHAR},
-      OF_FROM = #{record.ofFrom,jdbcType=VARCHAR},
-      OF_TO = #{record.ofTo,jdbcType=VARCHAR},
-      THUMBNAIL_URL = #{record.thumbnailUrl,jdbcType=VARCHAR},
-      STIME = #{record.stime,jdbcType=VARCHAR},
-      ATIME = #{record.atime,jdbcType=VARCHAR},
-      TYPE = #{record.type,jdbcType=VARCHAR},
-      DFLAG = #{record.dflag,jdbcType=CHAR},
-      MSG_TYPE = #{record.msgType,jdbcType=VARCHAR},
-      UUID = #{record.uuid,jdbcType=VARCHAR}
+    set IMID = #{record.imid},
+      FROM_UID = #{record.fromUid},
+      TO_UID = #{record.toUid},
+      OF_FROM = #{record.ofFrom},
+      OF_TO = #{record.ofTo},
+      THUMBNAIL_URL = #{record.thumbnailUrl},
+      STIME = #{record.stime},
+      ATIME = #{record.atime},
+      TYPE = #{record.type},
+      DFLAG = #{record.dflag},
+      MSG_TYPE = #{record.msgType},
+      UUID = #{record.uuid}
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By__Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.im.ImMessageWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.im.ImMessage" >
     update im_message
     <set >
       <if test="fromUid != null" >
-        FROM_UID = #{fromUid,jdbcType=VARCHAR},
+        FROM_UID = #{fromUid},
       </if>
       <if test="toUid != null" >
-        TO_UID = #{toUid,jdbcType=VARCHAR},
+        TO_UID = #{toUid},
       </if>
       <if test="ofFrom != null" >
-        OF_FROM = #{ofFrom,jdbcType=VARCHAR},
+        OF_FROM = #{ofFrom},
       </if>
       <if test="ofTo != null" >
-        OF_TO = #{ofTo,jdbcType=VARCHAR},
+        OF_TO = #{ofTo},
       </if>
       <if test="thumbnailUrl != null" >
-        THUMBNAIL_URL = #{thumbnailUrl,jdbcType=VARCHAR},
+        THUMBNAIL_URL = #{thumbnailUrl},
       </if>
       <if test="stime != null" >
-        STIME = #{stime,jdbcType=VARCHAR},
+        STIME = #{stime},
       </if>
       <if test="atime != null" >
-        ATIME = #{atime,jdbcType=VARCHAR},
+        ATIME = #{atime},
       </if>
       <if test="type != null" >
-        TYPE = #{type,jdbcType=VARCHAR},
+        TYPE = #{type},
       </if>
       <if test="dflag != null" >
-        DFLAG = #{dflag,jdbcType=CHAR},
+        DFLAG = #{dflag},
       </if>
       <if test="msgType != null" >
-        MSG_TYPE = #{msgType,jdbcType=VARCHAR},
+        MSG_TYPE = #{msgType},
       </if>
       <if test="uuid != null" >
-        UUID = #{uuid,jdbcType=VARCHAR},
+        UUID = #{uuid},
       </if>
       <if test="content != null" >
-        CONTENT = #{content,jdbcType=LONGVARCHAR},
+        CONTENT = #{content},
       </if>
       <if test="fileId != null" >
-        FILE_ID = #{fileId,jdbcType=LONGVARCHAR},
+        FILE_ID = #{fileId},
       </if>
       <if test="fileName != null" >
-        FILE_NAME = #{fileName,jdbcType=LONGVARCHAR},
+        FILE_NAME = #{fileName},
       </if>
     </set>
-    where IMID = #{imid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.im.ImMessageWithBLOBs" >
-    update im_message
-    set FROM_UID = #{fromUid,jdbcType=VARCHAR},
-      TO_UID = #{toUid,jdbcType=VARCHAR},
-      OF_FROM = #{ofFrom,jdbcType=VARCHAR},
-      OF_TO = #{ofTo,jdbcType=VARCHAR},
-      THUMBNAIL_URL = #{thumbnailUrl,jdbcType=VARCHAR},
-      STIME = #{stime,jdbcType=VARCHAR},
-      ATIME = #{atime,jdbcType=VARCHAR},
-      TYPE = #{type,jdbcType=VARCHAR},
-      DFLAG = #{dflag,jdbcType=CHAR},
-      MSG_TYPE = #{msgType,jdbcType=VARCHAR},
-      UUID = #{uuid,jdbcType=VARCHAR},
-      CONTENT = #{content,jdbcType=LONGVARCHAR},
-      FILE_ID = #{fileId,jdbcType=LONGVARCHAR},
-      FILE_NAME = #{fileName,jdbcType=LONGVARCHAR}
-    where IMID = #{imid,jdbcType=INTEGER}
+    where IMID = #{imid}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xoa.model.im.ImMessage" >
     update im_message
-    set FROM_UID = #{fromUid,jdbcType=VARCHAR},
-      TO_UID = #{toUid,jdbcType=VARCHAR},
-      OF_FROM = #{ofFrom,jdbcType=VARCHAR},
-      OF_TO = #{ofTo,jdbcType=VARCHAR},
-      THUMBNAIL_URL = #{thumbnailUrl,jdbcType=VARCHAR},
-      STIME = #{stime,jdbcType=VARCHAR},
-      ATIME = #{atime,jdbcType=VARCHAR},
-      TYPE = #{type,jdbcType=VARCHAR},
-      DFLAG = #{dflag,jdbcType=CHAR},
-      MSG_TYPE = #{msgType,jdbcType=VARCHAR},
-      UUID = #{uuid,jdbcType=VARCHAR}
-    where IMID = #{imid,jdbcType=INTEGER}
+    set FROM_UID = #{fromUid},
+      TO_UID = #{toUid},
+      OF_FROM = #{ofFrom},
+      OF_TO = #{ofTo},
+      THUMBNAIL_URL = #{thumbnailUrl},
+      STIME = #{stime},
+      ATIME = #{atime},
+      TYPE = #{type},
+      DFLAG = #{dflag},
+      MSG_TYPE = #{msgType},
+      UUID = #{uuid},
+      CONTENT = #{content},
+      FILE_ID = #{fileId},
+      FILE_NAME = #{fileName}
+    where IMID = #{imid}
+  </update>
+  <update id="updateByPrimaryKeyClause" parameterType="com.xoa.model.im.ImMessage" >
+    update im_message
+    set FROM_UID = #{fromUid},
+      TO_UID = #{toUid},
+      OF_FROM = #{ofFrom},
+      OF_TO = #{ofTo},
+      THUMBNAIL_URL = #{thumbnailUrl},
+      STIME = #{stime},
+      ATIME = #{atime},
+      TYPE = #{type},
+      DFLAG = #{dflag},
+      MSG_TYPE = #{msgType},
+      UUID = #{uuid}
+    where IMID = #{imid}
   </update>
   
   <delete id="deleteByUUID" parameterType="Map">
@@ -429,14 +483,14 @@
 		im_message
 		where UUID = #{uuid} and FROM_UID = #{fromId} and ATIME > #{now}
 	</delete>
-	<select id="selectByFromAndTo" parameterType="Map" resultMap="ResultMapWithBLOBs">
+	<select id="selectByFromAndTo" parameterType="Map" resultMap="ResultMap">
        SELECT * FROM im_message WHERE FROM_UID=#{fromId} AND TO_UID=#{toId}  ORDER BY ATIME DESC LIMIT 0,2
    </select>
-   <select id="selectByUUID" parameterType="Map" resultMap="ResultMapWithBLOBs">
+   <select id="selectByUUID" parameterType="Map" resultMap="ResultMap">
        SELECT * FROM im_message WHERE FROM_UID=#{fromId} AND UUID=#{uuid}  ORDER BY ATIME DESC LIMIT 0,1
-   </select>
-   <select id="selectMessageByPage" parameterType="Map" resultMap="ResultMapWithBLOBs" >
+   </select> -->
+ <!--   <select id="selectMessageByPage" parameterType="Map" resultMap="BaseResultMap" >
       SELECT * FROM im_message WHERE ((FROM_UID=#{fromId} AND TO_UID =#{toId}) OR (FROM_UID=#{toId} AND TO_UID =#{fromId})) AND #{lastTime} >= ATIME  ORDER BY ATIME
       limit #{pageNo},#{pageSize} 
-   </select>
+   </select> -->
 </mapper>

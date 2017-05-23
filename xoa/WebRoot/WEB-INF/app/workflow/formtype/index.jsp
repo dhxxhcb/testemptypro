@@ -43,19 +43,20 @@
 			background-image:url(../../img/workflow/btn_new_nor_03.png),url(../../img/workflow/icon_plus_03.png); 
 			cursor:pointer;
 			background-repeat:no-repeat;
+			margin-top:6px;
 			}
-			#cont_left::-webkit-scrollbar  {  
-				width:10px;    
+		 .head_left_pic {
+				display: inline-block;
+				margin-top: 10px;
+				float: left;
+				margin-left: 50px;
 			}
-			#cont_left::-webkit-scrollbar-corner {
-		        background:#82AFFF;
-		    }
 		.head_rig {width: 10%;margin-top:5px;}
-     	.inp {height:24px;}
+
 		.search {
 				width: 72px;
 				height: 29px;
-				margin-top: 16px;
+				margin-top: 13px;
 				background: #fff;
 			}
 		.search h1 {
@@ -257,7 +258,7 @@
 		}
 		.inp{
 			width: 221px;
-			height: 32px;
+			height: 26px;
 			border-radius: 4px;
 		}
 	/*	#layui-layer2{
@@ -299,15 +300,97 @@
 			border-right: 1px solid #000;
 			overflow-y: scroll;
 		}
+		.cont_left::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_left::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+
+.cont_left::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+.cont_left::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_left::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+.cont_left::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+	}
+	.cont_rig::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_rig::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+
+.cont_rig::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+.cont_rig::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_rig::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+.cont_rig::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
     </style>
 </head>
 <body>
 
 <div class="wrap" style="margin-left:0px !important;">
     <div class="head">
-        <div class="head_left"><h1>表单设计</h1></div>
+        <div class="head_left">
+		<div class='head_left_pic'><img src='../../img/workflow/icon_processdesign_03.png'></div>
+		<h1>表单设计</h1>
+		</div>
         <div class="head_mid">
-            <input id="form_value" class="inp" type="text" placeholder="输入表名称搜索">
+            <input id="form_value" class="inp" type="text" placeholder="&nbsp;请输入表名称搜索">
             <div id="btn_search" class="search">
 			<h1 style='cursor:pointer;'>搜索</h1></div>
         </div>
@@ -470,9 +553,10 @@
         function bindClick() {
             $(".set").click(function () {
 				var formId = $(this).attr("formId");
+				//var edit=$(this).attr("edit");
                 //alert("design"+formId);
                 //window.location.href="../../form/designer?formId="+formId;
-				window.open("../../form/designer?formId="+formId);
+				window.open("../../form/designer?formId="+formId+"&type=edit");
             })
             $(".foot_span_show").click(function () {
                 var formId = $(this).attr("formId");
@@ -480,6 +564,10 @@
 				
             })
             $(".deldel").click(function () {
+			var qunding=confirm('确定删除吗？');
+			if(!qunding){
+				return false;
+				}else if(qunding){
 			var formId = $(this).attr("formId");
 			console.log(formId);
 			var sortId=$(this).attr("sortId");
@@ -491,11 +579,8 @@
 			data:{formId:formId},
 			success:function (ret) {
 						//var sortId=$('#sort_parent option:checked').attr('value');
-							console.log(sortId);
-						var qunding=alert('确定删除吗?');
-						if(qunding){
-							return false;
-							}else{
+							//console.log(sortId);
+						//var qunding=alert('确定删除吗?');
 								if(ret.flag==true){
 								$.ajax({
 									url:'../../form/formlistbysort',
@@ -517,14 +602,14 @@
 								}else{
 									alert(ret.msg);
 								}
-						}		
+								
 					},
 			});
-			
+				}
             })
 			//编辑
             $(".edit").click(function () {
-				//var sortId=$(this).attr("sortId");
+				var sortId=$(this).attr("sortId");
                 var formId = $(this).attr("formId");
                 var formName = $(this).attr("formName");
                 var formSort = $(this).attr("formSort");

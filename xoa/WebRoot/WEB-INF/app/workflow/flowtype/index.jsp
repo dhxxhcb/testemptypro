@@ -24,8 +24,41 @@
 	    .noDatas {margin-top:10px;}
 		.noDatas_pic {margin-top:20%;}
 		.noData_out{margin:0 auto;text-align:center;}
-	    .head_rig h1 {width:78px;height:28px;font-size:13px !important;background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt !important;}
-		.head_rig {background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt !important;}
+	    .head_rig h1 {
+			width:78px;
+			height:30px;
+			font-size:13px !important;
+			background-image:url(../../img/workflow/btn_new_nor_03.png),url(../../img/workflow/icon_plus_03.png); 
+			cursor:pointer;
+			background-repeat:no-repeat;
+			}
+		.search h1 {
+				text-align: center;
+				color: #fff;
+				font-size: 14px;
+				line-height: 28px;
+				background-image:url(../../img/workflow/btn_check_nor_03.png);
+				background-repeat:no-repeat;
+			}
+			.cont_rig {
+				overflow-y:hidden;
+				width: 84%;
+				height: 100%;
+			}
+		.head_rig {width: 10%;margin-top:0px;}
+		.head_rig {
+			background-repeat:no-repeat;
+			background-image:url(../../img/work/flow/btn_new_nor_03.png);
+			}
+			.cont_left {
+				width: 15%;
+				height: 100%;
+				border-right: 1px solid #000;
+				overflow-y: scroll;
+			}
+		.head_rig h1 :hover{
+			cursor:pointer;
+			}
      	.inp {height:24px;}
 		.search {width:72px;background-image:url(../../img/work/flow/btn_check_nor_03.png) no-reapt !important;background: #FF5722;}
         .new_excell_pic{
@@ -111,7 +144,7 @@
             height: 191px;
             float:left;
 			margin-left: 0px;
-            margin-right: 64px;
+            margin-right:0px;
         }
 		
         .new_excell_info_other span {
@@ -136,10 +169,10 @@
         <div class="head_left"><h1>流程设计</h1></div>
         <div class="head_mid">
             <input  id="flow_search_value" class="inp" type="text" placeholder="输入流程名称搜索">
-            <div id="btn_search" class="search"><h1>搜索</h1></div>
+            <div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
         </div>
         <div class="head_rig">
-			<h1 style='background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt;'>+&nbsp;&nbsp;&nbsp;&nbsp;新建</h1>
+			<!--<h1 style='background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt;'>+&nbsp;&nbsp;&nbsp;&nbsp;新建</h1>-->
 		</div>
     </div>
 
@@ -333,6 +366,10 @@
                var flowId= $(this).attr("flow_id");
                 window.open("../../flowSetting/index?flowId="+flowId);
             })
+			 $(".deldel").click(function () {
+               var formId= $(this).attr("formId");
+                window.open("../../flow/type/flowdesigner?formId="+formId);
+            })
 
         }
 
@@ -378,8 +415,10 @@
                    ' </div>'+
                     '</a>'+
                    ' <div class="new_excell_footer">'+
-                    '<span class="deldel">删除</span>'+
-                   ' <img src="../../img/workflow/new_excell_info_img_shanchu.png" class="deldel_img" >'+
+				   //'<span class="lcsjq">流程设计器</span>'+
+				   //'<img src="../../img/workflow/new_excell_info_img_shanchu.png" class="deldel_img" >'+
+                    '<span class="deldel" formId="'+data[i].formId+'">流程设计器</span>'+
+                   //'<img src="../../img/workflow/new_excell_info_img_shanchu.png" class="deldel_img" >'+
                     '</div>'+
                     '</div>'+
                     '</div>';
@@ -387,13 +426,7 @@
             }
             $(".cont_rig").html(html);
         }
-
-
-
-
-
-
-    })
+})
 </script>
 
 </html>

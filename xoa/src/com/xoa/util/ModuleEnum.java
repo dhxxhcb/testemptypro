@@ -9,7 +9,7 @@ package com.xoa.util;
  *
  */
 public enum ModuleEnum {
-	EMAIL("email",1),WORKFLOW("workflow",2),FILEFLODER("filefolder",3);
+	EMAIL("email",1),WORKFLOW("workflow",2),FILEFLODER("filefolder",3),IM("im",26);
 	
 	private String name;
 	private int index;

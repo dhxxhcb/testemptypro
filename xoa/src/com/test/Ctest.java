@@ -12,8 +12,10 @@ import javax.swing.*;
 import com.xoa.model.email.EmailBoxModel;
 import com.xoa.model.unitmanagement.UnitManage;
 import com.xoa.model.users.Users;
+import com.xoa.model.workflow.FlowProcess;
 import com.xoa.service.unitmanagement.UnitManageService;
 import com.xoa.service.users.UsersService;
+import com.xoa.service.workflow.flowtype.FlowProcessService;
 import com.xoa.service.workflow.flowtype.FlowTypeService;
 import com.xoa.util.dataSource.ContextHolder;
 import org.junit.Test;
@@ -52,8 +54,12 @@ public class Ctest {
 //	private NewService newService;
 
 //	邮箱测试
+//	@Resource
+//	private EmailService emailUtilService;
+
+	//新建流程测试
 	@Resource
-	private EmailService emailUtilService;
+	private FlowProcessService flowProcessService;
 
 //    @Resource
 //    private UsersService usersService;
@@ -63,11 +69,19 @@ public class Ctest {
 	
 	@Test
 	public void test() throws Exception {
-		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("fromId", "admin");
-
-		ToJson<EmailBodyModel> toJson = emailUtilService.selectIsRead(maps, 1, 10, false, "xoa1001");
-		System.out.println(JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
+		FlowProcess flowProcess = new FlowProcess();
+//		==>  Preparing: insert into flow_process ( FLOW_ID , PRCS_ID , PRCS_NAME , SET_LEFT , SET_TOP ) values ( ?, ?, ?, ?, ? )
+//==> Parameters: 2(Integer), 9(Integer), node_1(String), 719(Integer), 280(Integer)
+		flowProcess.setFlowId(2);
+		flowProcess.setPrcsId(9);
+		flowProcess.setPrcsName("node_1");
+		flowProcess.setSetLeft(719);
+		flowProcess.setSetTop(280);
+//		flowProcess.setPluginSave("4546546");
+		flowProcess.setRemindFlag(0);
+		flowProcessService.insertSelective(flowProcess);
+//		System.out.println(JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
+//		System.out.println(i);
 
 	}
 

@@ -73,12 +73,12 @@
             "nodes": {},
             "lines": {},
             "areas": {},
-            "initNum": 7
+            "initNum": 0
         }
         $(function () {
             var property = {
-                width: 1200,
-                height: 600,
+                width: 1500,
+                height: 800,
                 toolBtns: ["start round", "end round", "task round", "node", "chat", "state", "plug", "join", "fork", "complex mix"],
                 haveHead: true,
                 headBtns: ["new", "open", "save", "undo", "redo", "reload"],//如果haveHead=true，则定义HEAD区的按钮
@@ -114,15 +114,16 @@
                     if (json.flag) {
                         var designdata = json.object.designdata;
                         var connections = json.object.connections;
-                        jsondata.title = json.object.flowName;
+                        jsondata.title = json.object.designdata[0].flowName;
                         jsondata.initNum = designdata.length;
                         designdata.forEach(function (v, i) {
                             jsondata.nodes['node_' + v.prcsId] = {
-                                flowId:v.id,
+                                designerId:v.id,
                                 name: v.prcsName,
                                 left: v.setLeft,
                                 type: "chat",
                                 top: v.setTop
+
                             }
                         });
                         connections.forEach(function (v, i) {
@@ -156,19 +157,22 @@
                             $("#ele_top").val("");
                             $("#ele_width").val("");
                             $("#ele_height").val("");
-                            $("#ele_flowId").val("");
+                            $("#ele_designerId").val("");
                             $("#ele_from").val(obj.from);
                             $("#ele_to").val(obj.to);
+                            $("#ele_flow").val("");
+
                         } else if (model == "node") {
                             obj = this.$nodeData[id];
                             $("#ele_type").val(obj.type);
-                            $("#ele_flowId").val(obj.flowId);
+                            $("#ele_designerId").val(obj.designerId);
                             $("#ele_left").val(obj.left);
                             $("#ele_top").val(obj.top);
                             $("#ele_width").val(obj.width);
                             $("#ele_height").val(obj.height);
                             $("#ele_from").val("");
                             $("#ele_to").val("");
+                            $("#ele_flow").val('${formId}');
                         }
                         $("#ele_name").val(obj.name);
                         return true;
@@ -193,15 +197,19 @@
             <table>
                 <tr>
                     <td class="th">Id：</td>
-                    <td><input type="text" style="width:120px" id="ele_id"/></td>
+                    <td><input type="text" style="width:120px" id="ele_id"/>
+                        <input type="hidden" style="width:120px" id="ele_designerId"/></td>
                 </tr>
-                <tr>
+                <%--<tr>
                     <td class="th">FlowId：</td>
-                    <td><input type="text" style="width:120px" id="ele_flowId"/></td>
-                </tr>
+                    <td><input type="hidden" style="width:120px" id="ele_flowId"/></td>
+                </tr>--%>
                 <tr>
                     <td class="th">Name：</td>
-                    <td><input type="text" style="width:120px" id="ele_name"/></td>
+                    <td>
+                        <input type="text" style="width:120px" id="ele_name"/>
+                        <input type="hidden" style="width:120px" id="ele_flow"/>
+                    </td>
                 </tr>
                 <tr>
                     <td class="th">Type：</td>
@@ -247,14 +255,18 @@
 </body>
 <script type="text/javascript">
     $("#saveOrUpdate").click(function () {
-       var data={
-         "id":$("#ele_flowId").val(),
-        "prcsName":$("#ele_name").val(),
-        "setLeft" : $("#ele_left").val(),
-        "setTop" : $("#ele_top").val()
-        };
+        var id = $("#ele_designerId").val();
        // 保存和修改需调试字段
-        if(data.id == null){
+        if(id == "" || id == null){
+           var prcssId = $("#ele_id").val().substring(5,$("#ele_id").val().length);
+            var data={
+                "prcsId":prcssId,
+                "flowId":$("#ele_flow").val(),
+                "prcsName":$("#ele_name").val(),
+                "setLeft" : $("#ele_left").val(),
+                "setTop" : $("#ele_top").val()
+            };
+            alert("进入新建方法");
             //保存
             $.ajax({
                 type: 'POST',
@@ -264,9 +276,9 @@
                 success: function (json) {
 //                alert(json.flag);
                     if (json.flag) {
-                        alert("修改成功");
+                        alert("新建流程节点成功");
                     }else{
-                        alert("修改失败");
+                        alert("新建流程节点失败");
                     }
                 },
                 error:function (XMLHttpRequest, textStatus, errorThrown) {
@@ -274,6 +286,12 @@
                 }
             });
         }else{
+            var data={
+                "id":id,
+                "prcsName":$("#ele_name").val(),
+                "setLeft" : $("#ele_left").val(),
+                "setTop" : $("#ele_top").val()
+            };
             //修改
         $.ajax({
             type: 'POST',

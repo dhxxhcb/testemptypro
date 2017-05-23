@@ -196,7 +196,7 @@ public class FlowFormService {
          return wrapper;
      }
 
-    public BaseWrapper updateFormType(Integer formId,String formName,Integer deptId,Integer formSort,String printModel,String printModelShort){
+    public BaseWrapper updateFormType(Integer formId,String formName,Integer deptId,Integer formSort,String printModel){
         BaseWrapper wrapper =new BaseWrapper();
 
         if(formId==null){
@@ -211,19 +211,11 @@ public class FlowFormService {
             wrapper.setMsg("表单名称不能为空");
             return wrapper;
         }
-        if(StringUtils.checkNull(printModelShort)){
-            wrapper.setFlag(false);
-            wrapper.setStatus(true);
-            wrapper.setMsg("表单名称不能为空");
-            return wrapper;
-        }
+
         FlowFormType flowFormType =new FlowFormType();
-        flowFormType.setFormName(formName);
-        flowFormType.setDeptId(deptId);
-        flowFormType.setFormSort(formSort);
-        flowFormType.setFormId(formId);
+         flowFormType.setFormId(formId);
         flowFormType.setPrintModel(printModel);
-        flowFormType.setPrintModelShort(printModelShort);
+        flowFormType.setPrintModelShort(printModel);
         int res =flowFormTypeMapper.updateSelectParam(flowFormType);
         if(res>0){
             wrapper.setFlag(true);

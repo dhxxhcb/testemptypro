@@ -2,28 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.im.ImChatListMapper">
 	<resultMap id="BaseResultMap" type="com.xoa.model.im.ImChatList">
-		<id column="LIST_ID" property="listId" jdbcType="INTEGER" />
-		<result column="FROM_UID" property="fromUid" jdbcType="VARCHAR" />
-		<result column="TO_UID" property="toUid" jdbcType="VARCHAR" />
-		<result column="OF_FROM" property="ofFrom" jdbcType="VARCHAR" />
-		<result column="OF_TO" property="ofTo" jdbcType="VARCHAR" />
-		<result column="LAST_TIME" property="lastTime" jdbcType="VARCHAR" />
-		<result column="LAST_ATIME" property="lastAtime" jdbcType="VARCHAR" />
-		<result column="LAST_FILE_ID" property="lastFileId" jdbcType="VARCHAR" />
-		<result column="LAST_FILE_NAME" property="lastFileName"
-			jdbcType="VARCHAR" />
-		<result column="LAST_THUMBNAIL_URL" property="lastThumbnailUrl"
-			jdbcType="VARCHAR" />
-		<result column="TYPE" property="type" jdbcType="VARCHAR" />
-		<result column="MSG_TYPE" property="msgType" jdbcType="CHAR" />
-		<result column="UUID" property="uuid" jdbcType="VARCHAR" />
+		<id column="LIST_ID" property="listId" javaType="string" />
+		<result column="FROM_UID" property="fromUid" javaType="string" />
+		<result column="TO_UID" property="toUid" javaType="string" />
+		<result column="OF_FROM" property="ofFrom" javaType="string" />
+		<result column="OF_TO" property="ofTo" javaType="string" />
+		<result column="LAST_TIME" property="lastTime" javaType="string" />
+		<result column="LAST_ATIME" property="lastAtime" javaType="string" />
+		<result column="LAST_FILE_ID" property="lastFileId" javaType="string" />
+		<result column="LAST_FILE_NAME" property="lastFileName" javaType="string" />
+		<result column="LAST_THUMBNAIL_URL" property="lastThumbnailUrl" javaType="string" />
+		<result column="TYPE" property="type" javaType="string" />
+		<result column="MSG_TYPE" property="msgType" javaType="string" />
+		<result column="UUID" property="uuid" javaType="string" />
+		<result column="LAST_CONTENT" property="lastContent" javaType="string" />
 	</resultMap>
-	<resultMap id="ResultMapWithBLOBs" type="com.xoa.model.im.ImChatList"
-		extends="BaseResultMap">
-		<result column="LAST_CONTENT" property="lastContent" jdbcType="LONGVARCHAR" />
-	</resultMap>
+     <select id="getSingleObject" parameterType="Map">
+      select * from IM_CHAT_LIST where FROM_UID=#{fromUid} and TO_UID=#{toUid}
+     </select>
+   <update id="updateChatlist" parameterType="com.xoa.model.im.ImChatList">
+   
+   </update>
 
-	<sql id="Example_Where_Clause">
+<!-- 
+	<sql id="_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria" separator="or">
 				<if test="criteria.valid">
@@ -55,9 +57,9 @@
 			</foreach>
 		</where>
 	</sql>
-	<sql id="Update_By_Example_Where_Clause">
+	<sql id="Update_By__Where_Clause">
 		<where>
-			<foreach collection="example.oredCriteria" item="criteria"
+			<foreach collection=".oredCriteria" item="criteria"
 				separator="or">
 				<if test="criteria.valid">
 					<trim prefix="(" suffix=")" prefixOverrides="and">
@@ -119,8 +121,8 @@
 		<if test="msgType != null"> and MSG_TYPE=#{msgType}</if>
 		<if test="uuid != null"> and UUID=#{uuid}</if>
 	</select>
-	<select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs"
-		parameterType="com.xoa.model.im.ImChatListExample">
+	<select id="selectByWithBLOBs" resultMap="ResultMapWithBLOBs"
+		parameterType="com.xoa.model.im.ImChatList">
 		select
 		<if test="distinct">
 			distinct
@@ -130,14 +132,14 @@
 		<include refid="Blob_Column_List" />
 		from im_chat_list
 		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
+			<include refid="_Where_Clause" />
 		</if>
 		<if test="orderByClause != null">
 			order by ${orderByClause}
 		</if>
 	</select>
-	<select id="selectByExample" resultMap="BaseResultMap"
-		parameterType="com.xoa.model.im.ImChatListExample">
+	<select id="selectBy" resultMap="BaseResultMap"
+		parameterType="com.xoa.model.im.ImChatList">
 		select
 		<if test="distinct">
 			distinct
@@ -145,7 +147,7 @@
 		<include refid="Base_Column_List" />
 		from im_chat_list
 		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
+			<include refid="_Where_Clause" />
 		</if>
 		<if test="orderByClause != null">
 			order by ${orderByClause}
@@ -158,18 +160,18 @@
 		,
 		<include refid="Blob_Column_List" />
 		from im_chat_list
-		where LIST_ID = #{listId,jdbcType=INTEGER}
+		where LIST_ID = #{listId}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		im_chat_list
-		where LIST_ID = #{listId,jdbcType=INTEGER}
+		where LIST_ID = #{listId}
 	</delete>
 	
-	<delete id="deleteByExample" parameterType="com.xoa.model.im.ImChatListExample">
+	<delete id="deleteBy" parameterType="com.xoa.model.im.ImChatList">
 		delete from im_chat_list
 		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
+			<include refid="_Where_Clause" />
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.xoa.model.im.ImChatList">
@@ -181,20 +183,20 @@
 		LAST_THUMBNAIL_URL, TYPE, MSG_TYPE,
 		UUID,
 		LAST_CONTENT)
-		values (#{listId,jdbcType=INTEGER},
-		#{fromUid,jdbcType=VARCHAR},
-		#{toUid,jdbcType=VARCHAR},
-		#{ofFrom,jdbcType=VARCHAR}, #{ofTo,jdbcType=VARCHAR},
-		#{lastTime,jdbcType=VARCHAR},
-		#{lastAtime,jdbcType=VARCHAR},
-		#{lastFileId,jdbcType=VARCHAR},
-		#{lastFileName,jdbcType=VARCHAR},
-		#{lastThumbnailUrl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
-		#{msgType,jdbcType=CHAR},
-		#{uuid,jdbcType=VARCHAR},
-		#{lastContent,jdbcType=LONGVARCHAR})
+		values (#{listId},
+		#{fromUid},
+		#{toUid},
+		#{ofFrom}, #{ofTo},
+		#{lastTime},
+		#{lastAtime},
+		#{lastFileId},
+		#{lastFileName},
+		#{lastThumbnailUrl}, #{type},
+		#{msgType},
+		#{uuid},
+		#{lastContent})
 	</insert>
-	<insert id="insertSelective" parameterType="com.xoa.model.im.ImChatList">
+	<insert id="saveChat" parameterType="com.xoa.model.im.ImChatList">
 		insert into im_chat_list
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="listId != null">
@@ -242,308 +244,308 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="listId != null">
-				#{listId,jdbcType=INTEGER},
+				#{listId},
 			</if>
 			<if test="fromUid != null">
-				#{fromUid,jdbcType=VARCHAR},
+				#{fromUid},
 			</if>
 			<if test="toUid != null">
-				#{toUid,jdbcType=VARCHAR},
+				#{toUid},
 			</if>
 			<if test="ofFrom != null">
-				#{ofFrom,jdbcType=VARCHAR},
+				#{ofFrom},
 			</if>
 			<if test="ofTo != null">
-				#{ofTo,jdbcType=VARCHAR},
+				#{ofTo},
 			</if>
 			<if test="lastTime != null">
-				#{lastTime,jdbcType=VARCHAR},
+				#{lastTime},
 			</if>
 			<if test="lastAtime != null">
-				#{lastAtime,jdbcType=VARCHAR},
+				#{lastAtime},
 			</if>
 			<if test="lastFileId != null">
-				#{lastFileId,jdbcType=VARCHAR},
+				#{lastFileId},
 			</if>
 			<if test="lastFileName != null">
-				#{lastFileName,jdbcType=VARCHAR},
+				#{lastFileName},
 			</if>
 			<if test="lastThumbnailUrl != null">
-				#{lastThumbnailUrl,jdbcType=VARCHAR},
+				#{lastThumbnailUrl},
 			</if>
 			<if test="type != null">
-				#{type,jdbcType=VARCHAR},
+				#{type},
 			</if>
 			<if test="msgType != null">
-				#{msgType,jdbcType=CHAR},
+				#{msgType},
 			</if>
 			<if test="uuid != null">
-				#{uuid,jdbcType=VARCHAR},
+				#{uuid},
 			</if>
 			<if test="lastContent != null">
-				#{lastContent,jdbcType=LONGVARCHAR},
+				#{lastContent},
 			</if>
 		</trim>
 	</insert>
-	<select id="countByExample" parameterType="com.xoa.model.im.ImChatListExample"
+	<select id="countBy" parameterType="com.xoa.model.im.ImChatList"
 		resultType="java.lang.Integer">
 		select count(*) from im_chat_list
 		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
+			<include refid="_Where_Clause" />
 		</if>
 	</select>
-	<update id="updateByExampleSelective" parameterType="map">
+	<update id="updateBySelective" parameterType="map">
 		update im_chat_list
 		<set>
 			<if test="record.listId != null">
-				LIST_ID = #{record.listId,jdbcType=INTEGER},
+				LIST_ID = #{record.listId},
 			</if>
 			<if test="record.fromUid != null">
-				FROM_UID = #{record.fromUid,jdbcType=VARCHAR},
+				FROM_UID = #{record.fromUid},
 			</if>
 			<if test="record.toUid != null">
-				TO_UID = #{record.toUid,jdbcType=VARCHAR},
+				TO_UID = #{record.toUid},
 			</if>
 			<if test="record.ofFrom != null">
-				OF_FROM = #{record.ofFrom,jdbcType=VARCHAR},
+				OF_FROM = #{record.ofFrom},
 			</if>
 			<if test="record.ofTo != null">
-				OF_TO = #{record.ofTo,jdbcType=VARCHAR},
+				OF_TO = #{record.ofTo},
 			</if>
 			<if test="record.lastTime != null">
-				LAST_TIME = #{record.lastTime,jdbcType=VARCHAR},
+				LAST_TIME = #{record.lastTime},
 			</if>
 			<if test="record.lastAtime != null">
-				LAST_ATIME = #{record.lastAtime,jdbcType=VARCHAR},
+				LAST_ATIME = #{record.lastAtime},
 			</if>
 			<if test="record.lastFileId != null">
-				LAST_FILE_ID = #{record.lastFileId,jdbcType=VARCHAR},
+				LAST_FILE_ID = #{record.lastFileId},
 			</if>
 			<if test="record.lastFileName != null">
-				LAST_FILE_NAME = #{record.lastFileName,jdbcType=VARCHAR},
+				LAST_FILE_NAME = #{record.lastFileName},
 			</if>
 			<if test="record.lastThumbnailUrl != null">
 				LAST_THUMBNAIL_URL =
-				#{record.lastThumbnailUrl,jdbcType=VARCHAR},
+				#{record.lastThumbnailUrl},
 			</if>
 			<if test="record.type != null">
-				TYPE = #{record.type,jdbcType=VARCHAR},
+				TYPE = #{record.type},
 			</if>
 			<if test="record.msgType != null">
-				MSG_TYPE = #{record.msgType,jdbcType=CHAR},
+				MSG_TYPE = #{record.msgType},
 			</if>
 			<if test="record.uuid != null">
-				UUID = #{record.uuid,jdbcType=VARCHAR},
+				UUID = #{record.uuid},
 			</if>
 			<if test="record.lastContent != null">
 				LAST_CONTENT =
-				#{record.lastContent,jdbcType=LONGVARCHAR},
+				#{record.lastContent},
 			</if>
 		</set>
 		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
+			<include refid="Update_By__Where_Clause" />
 		</if>
 	</update>
-	<update id="updateByExampleWithBLOBs" parameterType="map">
+	<update id="updateByWithBLOBs" parameterType="map">
 		update im_chat_list
-		set LIST_ID = #{record.listId,jdbcType=INTEGER},
-		FROM_UID = #{record.fromUid,jdbcType=VARCHAR},
+		set LIST_ID = #{record.listId},
+		FROM_UID = #{record.fromUid},
 		TO_UID =
-		#{record.toUid,jdbcType=VARCHAR},
+		#{record.toUid},
 		OF_FROM =
-		#{record.ofFrom,jdbcType=VARCHAR},
+		#{record.ofFrom},
 		OF_TO =
-		#{record.ofTo,jdbcType=VARCHAR},
+		#{record.ofTo},
 		LAST_TIME =
-		#{record.lastTime,jdbcType=VARCHAR},
+		#{record.lastTime},
 		LAST_ATIME =
-		#{record.lastAtime,jdbcType=VARCHAR},
+		#{record.lastAtime},
 		LAST_FILE_ID =
-		#{record.lastFileId,jdbcType=VARCHAR},
+		#{record.lastFileId},
 		LAST_FILE_NAME =
-		#{record.lastFileName,jdbcType=VARCHAR},
+		#{record.lastFileName},
 		LAST_THUMBNAIL_URL =
-		#{record.lastThumbnailUrl,jdbcType=VARCHAR},
+		#{record.lastThumbnailUrl},
 		TYPE =
-		#{record.type,jdbcType=VARCHAR},
+		#{record.type},
 		MSG_TYPE =
-		#{record.msgType,jdbcType=CHAR},
+		#{record.msgType},
 		UUID =
-		#{record.uuid,jdbcType=VARCHAR},
+		#{record.uuid},
 		LAST_CONTENT =
-		#{record.lastContent,jdbcType=LONGVARCHAR}
+		#{record.lastContent}
 		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
+			<include refid="Update_By__Where_Clause" />
 		</if>
 	</update>
-	<update id="updateByExample" parameterType="map">
+	<update id="updateBy" parameterType="map">
 		update im_chat_list
-		set LIST_ID = #{record.listId,jdbcType=INTEGER},
-		FROM_UID = #{record.fromUid,jdbcType=VARCHAR},
+		set LIST_ID = #{record.listId},
+		FROM_UID = #{record.fromUid},
 		TO_UID =
-		#{record.toUid,jdbcType=VARCHAR},
+		#{record.toUid},
 		OF_FROM =
-		#{record.ofFrom,jdbcType=VARCHAR},
+		#{record.ofFrom},
 		OF_TO =
-		#{record.ofTo,jdbcType=VARCHAR},
+		#{record.ofTo},
 		LAST_TIME =
-		#{record.lastTime,jdbcType=VARCHAR},
+		#{record.lastTime},
 		LAST_ATIME =
-		#{record.lastAtime,jdbcType=VARCHAR},
+		#{record.lastAtime},
 		LAST_FILE_ID =
-		#{record.lastFileId,jdbcType=VARCHAR},
+		#{record.lastFileId},
 		LAST_FILE_NAME =
-		#{record.lastFileName,jdbcType=VARCHAR},
+		#{record.lastFileName},
 		LAST_THUMBNAIL_URL =
-		#{record.lastThumbnailUrl,jdbcType=VARCHAR},
+		#{record.lastThumbnailUrl},
 		TYPE =
-		#{record.type,jdbcType=VARCHAR},
+		#{record.type},
 		MSG_TYPE =
-		#{record.msgType,jdbcType=CHAR},
-		UUID = #{record.uuid,jdbcType=VARCHAR}
+		#{record.msgType},
+		UUID = #{record.uuid}
 		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
+			<include refid="Update_By__Where_Clause" />
 		</if>
 	</update>
 	<update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.im.ImChatList">
 		update im_chat_list
 		<set>
 			<if test="fromUid != null">
-				FROM_UID = #{fromUid,jdbcType=VARCHAR},
+				FROM_UID = #{fromUid},
 			</if>
 			<if test="toUid != null">
-				TO_UID = #{toUid,jdbcType=VARCHAR},
+				TO_UID = #{toUid},
 			</if>
 			<if test="ofFrom != null">
-				OF_FROM = #{ofFrom,jdbcType=VARCHAR},
+				OF_FROM = #{ofFrom},
 			</if>
 			<if test="ofTo != null">
-				OF_TO = #{ofTo,jdbcType=VARCHAR},
+				OF_TO = #{ofTo},
 			</if>
 			<if test="lastTime != null">
-				LAST_TIME = #{lastTime,jdbcType=VARCHAR},
+				LAST_TIME = #{lastTime},
 			</if>
 			<if test="lastAtime != null">
-				LAST_ATIME = #{lastAtime,jdbcType=VARCHAR},
+				LAST_ATIME = #{lastAtime},
 			</if>
 			<if test="lastFileId != null">
-				LAST_FILE_ID = #{lastFileId,jdbcType=VARCHAR},
+				LAST_FILE_ID = #{lastFileId},
 			</if>
 			<if test="lastFileName != null">
-				LAST_FILE_NAME = #{lastFileName,jdbcType=VARCHAR},
+				LAST_FILE_NAME = #{lastFileName},
 			</if>
 			<if test="lastThumbnailUrl != null">
 				LAST_THUMBNAIL_URL =
-				#{lastThumbnailUrl,jdbcType=VARCHAR},
+				#{lastThumbnailUrl},
 			</if>
 			<if test="type != null">
-				TYPE = #{type,jdbcType=VARCHAR},
+				TYPE = #{type},
 			</if>
 			<if test="msgType != null">
-				MSG_TYPE = #{msgType,jdbcType=CHAR},
+				MSG_TYPE = #{msgType},
 			</if>
 			<if test="uuid != null">
-				UUID = #{uuid,jdbcType=VARCHAR},
+				UUID = #{uuid},
 			</if>
 			<if test="lastContent != null">
-				LAST_CONTENT = #{lastContent,jdbcType=LONGVARCHAR},
+				LAST_CONTENT = #{lastContent},
 			</if>
 		</set>
-		where LIST_ID = #{listId,jdbcType=INTEGER}
+		where LIST_ID = #{listId}
 	</update>
 	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.im.ImChatList">
 		update
 		im_chat_list
-		set FROM_UID = #{fromUid,jdbcType=VARCHAR},
+		set FROM_UID = #{fromUid},
 		TO_UID =
-		#{toUid,jdbcType=VARCHAR},
-		OF_FROM = #{ofFrom,jdbcType=VARCHAR},
+		#{toUid},
+		OF_FROM = #{ofFrom},
 		OF_TO =
-		#{ofTo,jdbcType=VARCHAR},
-		LAST_TIME = #{lastTime,jdbcType=VARCHAR},
-		LAST_ATIME = #{lastAtime,jdbcType=VARCHAR},
+		#{ofTo},
+		LAST_TIME = #{lastTime},
+		LAST_ATIME = #{lastAtime},
 		LAST_FILE_ID =
-		#{lastFileId,jdbcType=VARCHAR},
+		#{lastFileId},
 		LAST_FILE_NAME =
-		#{lastFileName,jdbcType=VARCHAR},
+		#{lastFileName},
 		LAST_THUMBNAIL_URL =
-		#{lastThumbnailUrl,jdbcType=VARCHAR},
-		TYPE = #{type,jdbcType=VARCHAR},
-		MSG_TYPE = #{msgType,jdbcType=CHAR},
-		UUID = #{uuid,jdbcType=VARCHAR},
-		LAST_CONTENT = #{lastContent,jdbcType=LONGVARCHAR}
+		#{lastThumbnailUrl},
+		TYPE = #{type},
+		MSG_TYPE = #{msgType},
+		UUID = #{uuid},
+		LAST_CONTENT = #{lastContent}
 		where LIST_ID =
-		#{listId,jdbcType=INTEGER}
+		#{listId}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.xoa.model.im.ImChatList">
 		update
 		im_chat_list
-		set FROM_UID = #{fromUid,jdbcType=VARCHAR},
+		set FROM_UID = #{fromUid},
 		TO_UID =
-		#{toUid,jdbcType=VARCHAR},
-		OF_FROM = #{ofFrom,jdbcType=VARCHAR},
+		#{toUid},
+		OF_FROM = #{ofFrom},
 		OF_TO =
-		#{ofTo,jdbcType=VARCHAR},
-		LAST_TIME = #{lastTime,jdbcType=VARCHAR},
-		LAST_ATIME = #{lastAtime,jdbcType=VARCHAR},
+		#{ofTo},
+		LAST_TIME = #{lastTime},
+		LAST_ATIME = #{lastAtime},
 		LAST_FILE_ID =
-		#{lastFileId,jdbcType=VARCHAR},
+		#{lastFileId},
 		LAST_FILE_NAME =
-		#{lastFileName,jdbcType=VARCHAR},
+		#{lastFileName},
 		LAST_THUMBNAIL_URL =
-		#{lastThumbnailUrl,jdbcType=VARCHAR},
-		TYPE = #{type,jdbcType=VARCHAR},
-		MSG_TYPE = #{msgType,jdbcType=CHAR},
-		UUID = #{uuid,jdbcType=VARCHAR}
-		where LIST_ID = #{listId,jdbcType=INTEGER}
+		#{lastThumbnailUrl},
+		TYPE = #{type},
+		MSG_TYPE = #{msgType},
+		UUID = #{uuid}
+		where LIST_ID = #{listId}
 	</update>
 	<update id="updateByRollBack" parameterType="com.xoa.model.im.ImChatList">
 	   update im_chat_list
 		<set>
 			<if test="fromUid != null">
-				FROM_UID = #{fromUid,jdbcType=VARCHAR},
+				FROM_UID = #{fromUid},
 			</if>
 			<if test="toUid != null">
-				TO_UID = #{toUid,jdbcType=VARCHAR},
+				TO_UID = #{toUid},
 			</if>
 			<if test="ofFrom != null">
-				OF_FROM = #{ofFrom,jdbcType=VARCHAR},
+				OF_FROM = #{ofFrom},
 			</if>
 			<if test="ofTo != null">
-				OF_TO = #{ofTo,jdbcType=VARCHAR},
+				OF_TO = #{ofTo},
 			</if>
 			<if test="lastTime != null">
-				LAST_TIME = #{lastTime,jdbcType=VARCHAR},
+				LAST_TIME = #{lastTime},
 			</if>
 			<if test="lastAtime != null">
-				LAST_ATIME = #{lastAtime,jdbcType=VARCHAR},
+				LAST_ATIME = #{lastAtime},
 			</if>
 			<if test="lastFileId != null">
-				LAST_FILE_ID = #{lastFileId,jdbcType=VARCHAR},
+				LAST_FILE_ID = #{lastFileId},
 			</if>
 			<if test="lastFileName != null">
-				LAST_FILE_NAME = #{lastFileName,jdbcType=VARCHAR},
+				LAST_FILE_NAME = #{lastFileName},
 			</if>
 			<if test="lastThumbnailUrl != null">
 				LAST_THUMBNAIL_URL =
-				#{lastThumbnailUrl,jdbcType=VARCHAR},
+				#{lastThumbnailUrl},
 			</if>
 			<if test="type != null">
-				TYPE = #{type,jdbcType=VARCHAR},
+				TYPE = #{type},
 			</if>
 			<if test="msgType != null">
-				MSG_TYPE = #{msgType,jdbcType=CHAR},
+				MSG_TYPE = #{msgType},
 			</if>
 			<if test="uuid != null">
-				UUID = #{uuid,jdbcType=VARCHAR},
+				UUID = #{uuid},
 			</if>
 			<if test="lastContent != null">
-				LAST_CONTENT = #{lastContent,jdbcType=LONGVARCHAR},
+				LAST_CONTENT = #{lastContent},
 			</if>
 		</set>
-		where FROM_UID = #{fromUid,jdbcType=VARCHAR} and TO_UID = #{toUid,jdbcType=VARCHAR}
+		where FROM_UID = #{fromUid} and TO_UID = #{toUid}
 	  
 	</update>
 	
-	
+	 -->
 </mapper>

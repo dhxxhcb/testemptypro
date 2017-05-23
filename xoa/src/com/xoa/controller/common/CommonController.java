@@ -55,11 +55,11 @@ public class CommonController {
 				"loginDateSouse"));
 		return "app/common/addPageDemo";
 	}
-	@RequestMapping("/divisionalManagement")
+	@RequestMapping("/deptManagement")
 	public String divisionalManagement(HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		return "app/sys/divisionalManagement";
+		return "app/sys/deptManagement";
 	}
 	@RequestMapping("/roleManagement")
 	public String roleManagement(HttpServletRequest request) {
@@ -73,5 +73,6 @@ public class CommonController {
 				"loginDateSouse"));
 		return "app/sys/userManagement";
 	}
+
 	
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.xoa.model.users.Users;
+import com.xoa.util.ToJson;
 
 
 /**
@@ -30,9 +31,26 @@ public interface UsersService {
 	 * 创建日期:   2017年4月18日 下午5:25:14
 	 * 方法介绍:   修改用户
 	 * 参数说明:   @param user
-	 * @return     void
+	 * @return     ToJson<Users>
 	 */
-	public void editUser(Users user);
+	public ToJson<Users> editUser(Users user);
+	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月22日 下午1:28:01
+	 * 方法介绍:   修改
+	 * 参数说明:   @param uid 主键
+	 * 参数说明:   @param userName 用户名
+	 * 参数说明:   @param sex 性别
+	 * 参数说明:   @param birthday 生日
+	 * 参数说明:   @param email 邮箱
+	 * 参数说明:   @param oicqNo qq号
+	 * 参数说明:   @param mobilNo 电话号码
+	 * 参数说明:   @param telNoDept 工作号码
+	 * 参数说明:   @param avatar 头像
+	 * @return     void 无
+	 */
+	public ToJson<Users> edit(Integer uid,String userName,String sex,String birthday,String email,String oicqNo,String mobilNo,String telNoDept,String avatar);
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年4月18日 下午5:25:20

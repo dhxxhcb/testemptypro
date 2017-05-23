@@ -22,7 +22,7 @@
 </script>
 
 
-<div class="container" style="padding-top: 5px; padding-left: 5px">
+<div class="container" style="padding-top: 5px; padding-left: 5px;overflow: auto;">
     <span class="title">请假申请单</span>
     <div class="title_nav" class="clearfix">
         <p class="nav-left">表单智能设计器:您需要先布局,才可以拖拽右侧的组件到左侧内容里设计工作流表单</p>
@@ -36,7 +36,7 @@
     <form method="post" id="saveform" name="saveform" action="" class="clearfix">
         <input type="hidden" name="fields" id="fields" value="${form.fieldNum }">
 
-        <div class="row">
+        <div class="row" id="content">
             <%--<div class="span2">--%>
             <ul class="nav nav-list">
                 <li class="nav-header">
@@ -44,18 +44,18 @@
                     <div class="header_r">扩展控件</div>
                 </li>
 
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('text');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="text"  class="btn btn-link">
                     <img src="../img/icon_textbox_03.png" alt="">单行文本框
                 </a></li>
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('textarea');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="textarea"  class="btn btn-link">
                     <img src="../img/icon_multiplelinetextbox_03.png" alt="">多行文本框</a></li>
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('select');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="select"  class="btn btn-link">
                     <img src="../img/icon_dropmenu_03.png" alt="">下拉菜单</a></li>
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('radios');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="radios"  class="btn btn-link">
                     <img src="../img/icon_radiobutton_03.png" alt="">单选框</a></li>
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('checkboxs');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="checkboxs"  class="btn btn-link">
                     <img src="../img/icon_checkbox_03.png" alt="">复选框</a></li>
-                <li><a href="javascript:void(0);" onclick="formDesign.exec('macros');" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="macros" class="btn btn-link">
                     <img src="../img/icon_hongcontrol_03.png" alt="">宏控件</a></li>
                 <li><a href="javascript:void(0);">
                     <img src="../img/icon_calendar_03.png" alt="">日历控件</a></li>
@@ -70,18 +70,23 @@
         </div>
         <div class="span10">
             <script id="formEditor" type="text/plain" style="width:100%;">${form.originalHtml}</script>
-            </div>
-            </div><!--end row-->
-            </form>
-            </div>
 
-            <script type="text/javascript" charset="utf-8" src="../js/jquery-1.10.2/jquery.min.js"></script>
+            <script type="text/javascript" charset="utf-8" src="../js/jquery-1.9.1.js"></script>
+            <script type="text/javascript" charset="utf-8" src="../js/base/base.js"> </script>
             <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.config.js"></script>
             <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.all.js"> </script>
             <script type="text/javascript" charset="utf-8" src="../lib/ueditor/lang/zh-cn/zh-cn.js"></script>
             <script type="text/javascript" charset="utf-8" src="../lib/ueditor/formdesign/formdesign.v4.js"></script>
             <!-- script start-->
             <script type="text/javascript">
+                var  formDesign = {}
+                $(function () {
+                    var formid = $.getQueryString("formId")
+                    var type = $.getQueryString("type")
+                    $("#content .nav-list ").on("click",'a',function(){
+                        console.log($(this).attr('type'));
+                        formDesign.exec($(this).attr('type'));
+                    })
                 var formEditor = UE.getEditor('formEditor',{
                     toolleipi:true,//是否显示，设计器的 toolbars
                     textarea: 'design_content',
@@ -102,8 +107,24 @@
                     iframeCssUrl:"../css/ueditor/bootstrap.css" //引入自身 css使编辑器兼容你网站css
                     //更多其他参数，请参考ueditor.config.js中的配置项
                 });
+                    formEditor.ready(function() {
 
-                var formDesign = {
+                        if(type == 'edit'){
+                            $.ajax({
+                                type: "get",
+                                url: "../form/formType",
+                                dataType: 'JSON',
+                                data: {
+                                    fromId :formid
+                                },
+                                success: function (res) {
+                                    console.log(formEditor);
+                                    formEditor.setContent(res.object.printModel,true);
+                                }
+                            });
+                        }
+                    });
+                   formDesign = {
 
                     /*执行控件*/
                     exec : function (method) {
@@ -150,7 +171,6 @@
                                     }
                                     name = val;
                                 }
-
                                 if(tag=='select' && attr=='value')
                                 {
                                     if(!attr_arr_all[attr]) attr_arr_all[attr] = '';
@@ -174,7 +194,6 @@
                                 attr_arr_all['parse_name'] = name;
                                 attr_arr_all['name'] = '';
                                 attr_arr_all['value'] = '';
-
                                 attr_arr_all['content'] = '<span plugins="checkboxs"  title="'+attr_arr_all['title']+'">';
                                 var dot_name ='', dot_value = '';
                                 p5.replace(preg_group, function(parse_group) {
@@ -188,16 +207,13 @@
                                                 fields++;
                                                 val = 'data_'+fields;
                                             }
-
                                             attr_arr_all['name'] += dot_name + val;
                                             dot_name = ',';
-
                                         }
                                         else if(k=='value')
                                         {
                                             attr_arr_all['value'] += dot_value + val;
                                             dot_value = ',';
-
                                         }
                                         option[k] = val;
                                     });
@@ -220,7 +236,6 @@
 
                                 });
                                 attr_arr_all['content'] += '</span>';
-
                                 //parse
                                 template = template.replace(plugin,attr_arr_all['content']);
                                 template_parse = template_parse.replace(plugin,'{'+name+'}');
@@ -228,7 +243,6 @@
                                 template_parse = template_parse.replace('-|}','');
                                 template_data[pno] = attr_arr_all;
                                 checkboxs++;
-
                             }else if(name)
                             {
                                 if(tag =='radios') /*单选组  一个字段*/
@@ -281,8 +295,6 @@
                                     add_fields[arr['name']] = arr;
                                 }
                                 template_data[pno] = attr_arr_all;
-
-
                             }
                             pno++;
                         })
@@ -299,14 +311,14 @@
                     },
                     /*type  =  save 保存设计 versions 保存版本  close关闭 */
                     fnCheckForm : function ( type ) {
+
                         if(formEditor.queryCommandState( 'source' ))
                             formEditor.execCommand('source');//切换到编辑模式才提交，否则有bug
 
                         if(formEditor.hasContents()){
                             formEditor.sync();/*同步内容*/
-
                             //--------------以下仅参考-----------------------------------------------------------------------------------------------------
-                            var type_value='',formid=0,fields=$("#fields").val(),formeditor='';
+                            var type_value='',fields=$("#fields").val(),formeditor='';
 
                             if( typeof type!=='undefined' ){
                                 type_value = type;
@@ -314,24 +326,27 @@
                             //获取表单设计器里的内容
                             formeditor=formEditor.getContent();
                             //解析表单设计器控件
-                            var parse_form = this.parse_form(formeditor,fields);
-                            //alert(parse_form);
+                           // var parse_form = this.parse_form(formeditor,fields);
+
+                            alert(formid);
                             //异步提交数据
                             $.ajax({
                                 type: 'POST',
-                                url : '${ctx}/config/form/processor',
+                                url : 'updateFormType',
                                 //dataType : 'json',
-                                data : {'type' : type_value,'formid':'${form.id}','parse_form':parse_form},
+                                data : {
+                                   'formId':formid,
+                                    'printModel':formeditor
+                                },
                                 success : function(data){
-                                    if(data == true) {
+                                   if(data) {
                                         alert('表单保存成功');
-                                        window.location.href='${ctx}/config/form';
+                                      // window.location.href='${ctx}/config/form';
                                     } else {
                                         alert('表单保存失败');
                                     }
                                 }
                             });
-
                         } else {
                             alert('表单内容不能为空！')
                             $('#submitbtn').button('reset');
@@ -342,15 +357,11 @@
                     fnReview : function (){
                         if(formEditor.queryCommandState( 'source' ))
                             formEditor.execCommand('source');/*切换到编辑模式才提交，否则部分浏览器有bug*/
-
                         if(formEditor.hasContents()){
                             formEditor.sync();       /*同步内容*/
-
                             alert("你点击了预览,请自行处理....");
                             return false;
                             //--------------以下仅参考-------------------------------------------------------------------
-
-
                             /*设计form的target 然后提交至一个新的窗口进行预览*/
                             document.saveform.target="mywin";
                             window.open('','mywin',"menubar=0,toolbar=0,status=0,resizable=1,left=0,top=0,scrollbars=1,width=" +(screen.availWidth-10) + ",height=" + (screen.availHeight-50) + "\"");
@@ -363,7 +374,7 @@
                         }
                     }
                 };
-
+                });
             </script>
             <!-- script end -->
         </div>
@@ -375,7 +386,7 @@
     $(function () {
         var $width=$(window).width();
         $('.span10').width($width-330);
-    })();
+    })
 
 
 </script>

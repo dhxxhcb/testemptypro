@@ -2,121 +2,77 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.im.ImRoomMapper" >
   <resultMap id="BaseResultMap" type="com.xoa.model.im.ImRoom" >
-    <id column="RID" property="rid" jdbcType="INTEGER" />
-    <result column="RNAMR" property="rnamr" jdbcType="VARCHAR" />
-    <result column="RSET_UID" property="rsetUid" jdbcType="VARCHAR" />
-    <result column="RSET_OFID" property="rsetOfid" jdbcType="VARCHAR" />
-    <result column="RTIME" property="rtime" jdbcType="VARCHAR" />
-    <result column="RMEMBER_UID" property="rmemberUid" jdbcType="VARCHAR" />
-    <result column="RMEMBER_OFID" property="rmemberOfid" jdbcType="VARCHAR" />
-    <result column="ROUT_UID" property="routUid" jdbcType="VARCHAR" />
-    <result column="ROUT_OFID" property="routOfid" jdbcType="VARCHAR" />
-    <result column="RINVITE" property="rinvite" jdbcType="VARCHAR" />
-    <result column="RCHANGE" property="rchange" jdbcType="VARCHAR" />
+    <id column="RID" property="rid" javaType="int" />
+    <result column="RNAMR" property="rnamr" javaType="string" />
+    <result column="RSET_UID" property="rsetUid" javaType="string" />
+    <result column="RSET_OFID" property="rsetOfid" javaType="string" />
+    <result column="RTIME" property="rtime" javaType="string" />
+    <result column="RMEMBER_UID" property="rmemberUid" javaType="string" />
+    <result column="RMEMBER_OFID" property="rmemberOfid" javaType="string" />
+    <result column="ROUT_UID" property="routUid" javaType="string" />
+    <result column="ROUT_OFID" property="routOfid" javaType="string" />
+    <result column="RINVITE" property="rinvite" javaType="string" />
+    <result column="RCHANGE" property="rchange" javaType="string" />
+    <result column="ROOM_OF" property="roomOf" javaType="string" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" > 
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    RID, RNAMR, RSET_UID, RSET_OFID, RTIME, RMEMBER_UID, RMEMBER_OFID, ROUT_UID, ROUT_OFID, 
-    RINVITE, RCHANGE
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xoa.model.im.ImRoomExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from im_room
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
+  
+  <select id="getAllRoom" parameterType="map" resultMap="BaseResultMap">
+  select * from im_room where ROOM_OF like '%${roomOf}%';
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="getRoomByRoomOf" parameterType="map" resultMap="BaseResultMap">
+  select * from im_room where ROOM_OF=#{roomOf}
+  </select>
+   <update id="roomUpdateInvite" parameterType="map">
+    update im_room set RINVITE=#{check}  where  ROOM_OF=#{roomOf}
+   </update>
+  <update id="roomUpdateByroomOf" parameterType="com.xoa.model.im.ImRoom">
+    update im_room
+    set 
+      RMEMBER_UID = #{rmemberUid},
+      ROUT_UID = #{routUid}
+    where ROOM_OF = #{roomOf}
+  </update>
+  <update id="updateRoomName" parameterType="com.xoa.model.im.ImRoom">
+   update im_room
+     set 
+      RNAMR=#{rnamr}
+    where ROOM_OF = #{roomOf}
+  </update>
+  <update id="updatePersonToRoom" parameterType="com.xoa.model.im.ImRoom"> 
+  update im_room
+     set 
+      RMEMBER_UID=#{rmemberUid} 
+    where ROOM_OF = #{roomOf}
+  </update>
+  
+  
+  <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from im_room
-    where RID = #{rid,jdbcType=INTEGER}
+    where RID = #{rid}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from im_room
-    where RID = #{rid,jdbcType=INTEGER}
+    where RID = #{rid}
   </delete>
-  <delete id="deleteByExample" parameterType="com.xoa.model.im.ImRoomExample" >
+  <delete id="deleteBy" parameterType="com.xoa.model.im.ImRoom" >
     delete from im_room
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.im.ImRoom" >
+  <insert id="insertIm_room" parameterType="com.xoa.model.im.ImRoom" >
     insert into im_room (RID, RNAMR, RSET_UID, 
       RSET_OFID, RTIME, RMEMBER_UID, 
       RMEMBER_OFID, ROUT_UID, ROUT_OFID, 
       RINVITE, RCHANGE)
-    values (#{rid,jdbcType=INTEGER}, #{rnamr,jdbcType=VARCHAR}, #{rsetUid,jdbcType=VARCHAR}, 
-      #{rsetOfid,jdbcType=VARCHAR}, #{rtime,jdbcType=VARCHAR}, #{rmemberUid,jdbcType=VARCHAR}, 
-      #{rmemberOfid,jdbcType=VARCHAR}, #{routUid,jdbcType=VARCHAR}, #{routOfid,jdbcType=VARCHAR}, 
-      #{rinvite,jdbcType=VARCHAR}, #{rchange,jdbcType=VARCHAR})
+    values (#{rid}, #{rnamr}, #{rsetUid}, 
+      #{rsetOfid}, #{rtime}, #{rmemberUid}, 
+      #{rmemberOfid}, #{routUid}, #{routOfid}, 
+      #{rinvite}, #{rchange})
   </insert>
-  <insert id="insertSelective" parameterType="com.xoa.model.im.ImRoom" >
+  <insert id="saveRoom" parameterType="com.xoa.model.im.ImRoom" >
     insert into im_room
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="rid != null" >
@@ -152,155 +108,161 @@
       <if test="rchange != null" >
         RCHANGE,
       </if>
+       <if test="roomOf != null" >
+        ROOM_OF,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="rid != null" >
-        #{rid,jdbcType=INTEGER},
+        #{rid},
       </if>
       <if test="rnamr != null" >
-        #{rnamr,jdbcType=VARCHAR},
+        #{rnamr},
       </if>
       <if test="rsetUid != null" >
-        #{rsetUid,jdbcType=VARCHAR},
+        #{rsetUid},
       </if>
       <if test="rsetOfid != null" >
-        #{rsetOfid,jdbcType=VARCHAR},
+        #{rsetOfid},
       </if>
       <if test="rtime != null" >
-        #{rtime,jdbcType=VARCHAR},
+        #{rtime},
       </if>
       <if test="rmemberUid != null" >
-        #{rmemberUid,jdbcType=VARCHAR},
+        #{rmemberUid},
       </if>
       <if test="rmemberOfid != null" >
-        #{rmemberOfid,jdbcType=VARCHAR},
+        #{rmemberOfid},
       </if>
       <if test="routUid != null" >
-        #{routUid,jdbcType=VARCHAR},
+        #{routUid},
       </if>
       <if test="routOfid != null" >
-        #{routOfid,jdbcType=VARCHAR},
+        #{routOfid},
       </if>
       <if test="rinvite != null" >
-        #{rinvite,jdbcType=VARCHAR},
+        #{rinvite},
       </if>
       <if test="rchange != null" >
-        #{rchange,jdbcType=VARCHAR},
+        #{rchange},
+      </if>
+        <if test="roomOf != null" >
+        #{roomOf},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xoa.model.im.ImRoomExample" resultType="java.lang.Integer" >
+  <select id="countBy" parameterType="com.xoa.model.im.ImRoom" resultType="java.lang.Integer" >
     select count(*) from im_room
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateBySelective" parameterType="map" >
     update im_room
     <set >
       <if test="record.rid != null" >
-        RID = #{record.rid,jdbcType=INTEGER},
+        RID = #{record.rid},
       </if>
       <if test="record.rnamr != null" >
-        RNAMR = #{record.rnamr,jdbcType=VARCHAR},
+        RNAMR = #{record.rnamr},
       </if>
       <if test="record.rsetUid != null" >
-        RSET_UID = #{record.rsetUid,jdbcType=VARCHAR},
+        RSET_UID = #{record.rsetUid},
       </if>
       <if test="record.rsetOfid != null" >
-        RSET_OFID = #{record.rsetOfid,jdbcType=VARCHAR},
+        RSET_OFID = #{record.rsetOfid},
       </if>
       <if test="record.rtime != null" >
-        RTIME = #{record.rtime,jdbcType=VARCHAR},
+        RTIME = #{record.rtime},
       </if>
       <if test="record.rmemberUid != null" >
-        RMEMBER_UID = #{record.rmemberUid,jdbcType=VARCHAR},
+        RMEMBER_UID = #{record.rmemberUid},
       </if>
       <if test="record.rmemberOfid != null" >
-        RMEMBER_OFID = #{record.rmemberOfid,jdbcType=VARCHAR},
+        RMEMBER_OFID = #{record.rmemberOfid},
       </if>
       <if test="record.routUid != null" >
-        ROUT_UID = #{record.routUid,jdbcType=VARCHAR},
+        ROUT_UID = #{record.routUid},
       </if>
       <if test="record.routOfid != null" >
-        ROUT_OFID = #{record.routOfid,jdbcType=VARCHAR},
+        ROUT_OFID = #{record.routOfid},
       </if>
       <if test="record.rinvite != null" >
-        RINVITE = #{record.rinvite,jdbcType=VARCHAR},
+        RINVITE = #{record.rinvite},
       </if>
       <if test="record.rchange != null" >
-        RCHANGE = #{record.rchange,jdbcType=VARCHAR},
+        RCHANGE = #{record.rchange},
       </if>
     </set>
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By__Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateBy" parameterType="map" >
     update im_room
-    set RID = #{record.rid,jdbcType=INTEGER},
-      RNAMR = #{record.rnamr,jdbcType=VARCHAR},
-      RSET_UID = #{record.rsetUid,jdbcType=VARCHAR},
-      RSET_OFID = #{record.rsetOfid,jdbcType=VARCHAR},
-      RTIME = #{record.rtime,jdbcType=VARCHAR},
-      RMEMBER_UID = #{record.rmemberUid,jdbcType=VARCHAR},
-      RMEMBER_OFID = #{record.rmemberOfid,jdbcType=VARCHAR},
-      ROUT_UID = #{record.routUid,jdbcType=VARCHAR},
-      ROUT_OFID = #{record.routOfid,jdbcType=VARCHAR},
-      RINVITE = #{record.rinvite,jdbcType=VARCHAR},
-      RCHANGE = #{record.rchange,jdbcType=VARCHAR}
+    set RID = #{record.rid},
+      RNAMR = #{record.rnamr},
+      RSET_UID = #{record.rsetUid},
+      RSET_OFID = #{record.rsetOfid},
+      RTIME = #{record.rtime},
+      RMEMBER_UID = #{record.rmemberUid},
+      RMEMBER_OFID = #{record.rmemberOfid},
+      ROUT_UID = #{record.routUid},
+      ROUT_OFID = #{record.routOfid},
+      RINVITE = #{record.rinvite},
+      RCHANGE = #{record.rchange}
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By__Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.im.ImRoom" >
     update im_room
     <set >
       <if test="rnamr != null" >
-        RNAMR = #{rnamr,jdbcType=VARCHAR},
+        RNAMR = #{rnamr},
       </if>
       <if test="rsetUid != null" >
-        RSET_UID = #{rsetUid,jdbcType=VARCHAR},
+        RSET_UID = #{rsetUid},
       </if>
       <if test="rsetOfid != null" >
-        RSET_OFID = #{rsetOfid,jdbcType=VARCHAR},
+        RSET_OFID = #{rsetOfid},
       </if>
       <if test="rtime != null" >
-        RTIME = #{rtime,jdbcType=VARCHAR},
+        RTIME = #{rtime},
       </if>
       <if test="rmemberUid != null" >
-        RMEMBER_UID = #{rmemberUid,jdbcType=VARCHAR},
+        RMEMBER_UID = #{rmemberUid},
       </if>
       <if test="rmemberOfid != null" >
-        RMEMBER_OFID = #{rmemberOfid,jdbcType=VARCHAR},
+        RMEMBER_OFID = #{rmemberOfid},
       </if>
       <if test="routUid != null" >
-        ROUT_UID = #{routUid,jdbcType=VARCHAR},
+        ROUT_UID = #{routUid},
       </if>
       <if test="routOfid != null" >
-        ROUT_OFID = #{routOfid,jdbcType=VARCHAR},
+        ROUT_OFID = #{routOfid},
       </if>
       <if test="rinvite != null" >
-        RINVITE = #{rinvite,jdbcType=VARCHAR},
+        RINVITE = #{rinvite},
       </if>
       <if test="rchange != null" >
-        RCHANGE = #{rchange,jdbcType=VARCHAR},
+        RCHANGE = #{rchange},
       </if>
     </set>
-    where RID = #{rid,jdbcType=INTEGER}
+    where RID = #{rid}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xoa.model.im.ImRoom" >
     update im_room
-    set RNAMR = #{rnamr,jdbcType=VARCHAR},
-      RSET_UID = #{rsetUid,jdbcType=VARCHAR},
-      RSET_OFID = #{rsetOfid,jdbcType=VARCHAR},
-      RTIME = #{rtime,jdbcType=VARCHAR},
-      RMEMBER_UID = #{rmemberUid,jdbcType=VARCHAR},
-      RMEMBER_OFID = #{rmemberOfid,jdbcType=VARCHAR},
-      ROUT_UID = #{routUid,jdbcType=VARCHAR},
-      ROUT_OFID = #{routOfid,jdbcType=VARCHAR},
-      RINVITE = #{rinvite,jdbcType=VARCHAR},
-      RCHANGE = #{rchange,jdbcType=VARCHAR}
-    where RID = #{rid,jdbcType=INTEGER}
-  </update>
+    set RNAMR = #{rnamr},
+      RSET_UID = #{rsetUid},
+      RSET_OFID = #{rsetOfid},
+      RTIME = #{rtime},
+      RMEMBER_UID = #{rmemberUid},
+      RMEMBER_OFID = #{rmemberOfid},
+      ROUT_UID = #{routUid},
+      ROUT_OFID = #{routOfid},
+      RINVITE = #{rinvite},
+      RCHANGE = #{rchange}
+    where RID = #{rid}
+  </update> -->
 </mapper>
