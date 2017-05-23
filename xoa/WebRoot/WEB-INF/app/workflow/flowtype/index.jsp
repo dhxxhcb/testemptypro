@@ -40,10 +40,21 @@
 				background-image:url(../../img/workflow/btn_check_nor_03.png);
 				background-repeat:no-repeat;
 			}
+			.cont_rig {
+				overflow-y:hidden;
+				width: 84%;
+				height: 100%;
+			}
 		.head_rig {width: 10%;margin-top:0px;}
 		.head_rig {
 			background-repeat:no-repeat;
 			background-image:url(../../img/work/flow/btn_new_nor_03.png);
+			}
+			.cont_left {
+				width: 15%;
+				height: 100%;
+				border-right: 1px solid #000;
+				overflow-y: scroll;
 			}
 		.head_rig h1 :hover{
 			cursor:pointer;
