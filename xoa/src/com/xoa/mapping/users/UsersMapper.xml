@@ -22,7 +22,7 @@
 		<result column="DEPT_ID" property="deptId" javaType="int" />
 		<result column="DEPT_ID_OTHER" property="deptIdOther" javaType="string" />
 		<result column="SEX" property="sex" javaType="string" />
-		<result column="BIRTHDAY" property="birthday" javaType="java.util.Date" />
+		<result column="BIRTHDAY" property="birthday" javaType="string" />
 		<result column="IS_LUNAR" property="isLunar" javaType="string" />
 		<result column="TEL_NO_DEPT" property="telNoDept" javaType="string" />
 		<result column="FAX_NO_DEPT" property="faxNoDept" javaType="string" />
@@ -88,10 +88,11 @@
 		<result column="MY_RSS" property="myRss" javaType="string" />
 		<result column="REMARK" property="remark" javaType="string" />
 		<result column="USER_PARA" property="userPara" javaType="string" />
+		<result column="DEPT_NAME" property="deptName" javaType="string"/>
 		<association property="dep"
 			javaType="com.xoa.model.department.Department">
 			<id column="DEPT_ID" property="deptId" />
-			<result column="DEPT_NAME" property="deptName" />
+			<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR"/>
 			<result column="TEL_NO" property="telNo" jdbcType="VARCHAR"
 				javaType="string" />
 			<result column="FAX_NO" property="faxNo" jdbcType="VARCHAR"
@@ -147,9 +148,9 @@
 		</association> 
 	</resultMap>
 	<select id="getByDeptId" parameterType="Map"
-		resultType="com.xoa.model.users.Users">
-		select u.USER_NAME as userName,u.USER_PRIV_NAME as userPrivName
-		 from user u where DEPT_ID= #{deptId}
+		resultMap="UserResultMap">
+		select u.* ,d.*,d.DEPT_NAME as deptName
+		 from user u , department d where u.DEPT_ID= #{deptId} and u.DEPT_ID=d.DEPT_ID
 	</select>	
 	<select id="findUserByuid" parameterType="Map"
 		resultType="com.xoa.model.users.Users">
@@ -1097,6 +1098,58 @@
 	<delete id="deleteUser">
 		DELETE FROM user WHERE UID = #{uid}
 	</delete>
+<insert id="insert"  parameterType="com.xoa.model.users.Users"  useGeneratedKeys="true" keyProperty="uid">
+    insert into user (USER_ID, USER_NAME, 
+      USER_NAME_INDEX, BYNAME, USEING_KEY, 
+      USING_FINGER, PASSWORD, KEY_SN, 
+      SECURE_KEY_SN, USER_PRIV, USER_PRIV_NO, 
+      USER_PRIV_NAME, POST_PRIV, POST_DEPT, 
+      DEPT_ID, DEPT_ID_OTHER, SEX, 
+      BIRTHDAY, IS_LUNAR, TEL_NO_DEPT, 
+      FAX_NO_DEPT, ADD_HOME, POST_NO_HOME, 
+      TEL_NO_HOME, MOBIL_NO, BP_NO, 
+      EMAIL, OICQ_NO, ICQ_NO, 
+      MSN, AVATAR, CALL_SOUND, 
+      LAST_VISIT_TIME, SMS_ON, MENU_TYPE, 
+      LAST_PASS_TIME, THEME, PORTAL, 
+      PANEL, ONLINE, ON_STATUS, 
+      ATTEND_STATUS, MOBIL_NO_HIDDEN, MYTABLE_LEFT, 
+      MYTABLE_RIGHT, USER_PRIV_OTHER, USER_NO, 
+      NOT_LOGIN, NOT_VIEW_USER, NOT_VIEW_TABLE, 
+      NOT_SEARCH, BKGROUND, BIND_IP, 
+      LAST_VISIT_IP, MENU_IMAGE, WEATHER_CITY, 
+      SHOW_RSS, MENU_EXPAND, MY_STATUS, 
+      LIMIT_LOGIN, PHOTO, IM_RANGE, 
+      LEAVE_TIME, SECRET_LEVEL, NOT_MOBILE_LOGIN, 
+      MANAGE_MODULE_TYPE, USER_PRIV_TYPE, USER_MANAGE_ORGS, 
+      SHORTCUT, MY_RSS, REMARK, 
+      USER_PARA)
+    values ( #{userId}, #{userName}, 
+      #{userNameIndex}, #{byname}, #{useingKey}, 
+      #{usingFinger}, #{password}, #{keySn}, 
+      #{secureKeySn}, #{userPriv}, #{userPrivNo}, 
+      #{userPrivName}, #{postPriv}, #{postDept}, 
+      #{deptId}, #{deptIdOther}, #{sex}, 
+      #{birthday}, #{isLunar}, #{telNoDept}, 
+      #{faxNoDept}, #{addHome}, #{postNoHome}, 
+      #{telNoHome}, #{mobilNo}, #{bpNo}, 
+      #{email}, #{oicqNo}, #{icqNo}, 
+      #{msn}, #{avatar}, #{callSound}, 
+      #{lastVisitTime}, #{smsOn}, #{menuType}, 
+      #{lastPassTime}, #{theme}, #{portal}, 
+      #{panel}, #{online}, #{onStatus}, 
+      #{attendStatus}, #{mobilNoHidden}, #{mytableLeft}, 
+      #{mytableRight}, #{userPrivOther}, #{userNo}, 
+      #{notLogin}, #{notViewUser}, #{notViewTable}, 
+      #{notSearch}, #{bkground}, #{bindIp}, 
+      #{lastVisitIp}, #{menuImage}, #{weatherCity}, 
+      #{showRss}, #{menuExpand}, #{myStatus}, 
+      #{limitLogin}, #{photo}, #{imRange}, 
+      #{leaveTime}, #{secretLevel}, #{notMobileLogin}, 
+      #{manageModuleType}, #{userPrivType}, #{userManageOrgs}, 
+      #{shortcut}, #{myRss}, #{remark}, 
+      #{userPara})
+  </insert>
 </mapper>
 
 

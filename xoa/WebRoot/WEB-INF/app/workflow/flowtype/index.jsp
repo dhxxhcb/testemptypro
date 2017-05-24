@@ -21,6 +21,19 @@
     <script type="text/javascript" src="../js/index.js" ></script>
     <title>s首页</title>
     <style>
+    .head {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border-bottom: 1px solid #919191;
+}
+
+.cont_left {
+    width: 15%;
+    height: 100%;
+    border-right: 1px solid #919191;
+    overflow-y: scroll;
+}
 	    .noDatas {margin-top:10px;}
 		.noDatas_pic {margin-top:20%;}
 		.noData_out{margin:0 auto;text-align:center;}
@@ -172,7 +185,9 @@
             <div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
         </div>
         <div class="head_rig">
-			<!--<h1 style='background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt;'>+&nbsp;&nbsp;&nbsp;&nbsp;新建</h1>-->
+            <a href="../../flowSetting/index?flowId="+flowId  target="_blank">
+			<h1 style='background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt;'>新建</h1>
+            </a>
 		</div>
     </div>
 

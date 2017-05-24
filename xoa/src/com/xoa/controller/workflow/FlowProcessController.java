@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.model.workflow.FlowProcessList;
+import com.xoa.service.workflow.flowtype.FlowFormTypeService;
 import com.xoa.service.workflow.flowtype.FlowProcessService;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
@@ -25,6 +26,9 @@ public class FlowProcessController {
 	
 	@Resource
 	private FlowProcessService flowProcessService; 
+	
+	@Resource
+	private FlowFormTypeService  flowFormTypeService;
 	
 		/**
 		 * 创建作者:   张龙飞

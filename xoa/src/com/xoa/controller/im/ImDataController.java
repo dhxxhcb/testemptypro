@@ -132,11 +132,9 @@ public class ImDataController {
 	public List<ImMessageModel> showMessageList(HttpServletRequest request,String of_from,String of_to,String last_time){
 		System.out.println("-------showMessageList----------");
 		List<ImMessageModel> list=null;
-		
 		try {
 			 list=imDataService.showMessageList(request,of_from, of_to, last_time);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();

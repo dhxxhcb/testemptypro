@@ -119,7 +119,6 @@ public class UsersController {
 	    		,HttpServletRequest request) throws IllegalStateException, IOException {
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
-			ToJson<Users> json=new ToJson<Users>();
 			String realPath = request.getSession().getServletContext().getRealPath("/");
 	        String resourcePath = "ui/img/user";
 			 if(imageFile!=null){
@@ -131,7 +130,6 @@ public class UsersController {
 		                }
 		                File file = new File(dir,fileName);
 		                imageFile.transferTo(file);
-		                //String avatar = realPath + resourcePath + fileName;
 		    			user.setAvatar(fileName);
 		            }
 			 }

@@ -43,7 +43,7 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	@Override
 	public void addUser(Users user) {
-		usersMapper.addUser(user);
+		usersMapper.insert(user);
 	}
 	
 	/**

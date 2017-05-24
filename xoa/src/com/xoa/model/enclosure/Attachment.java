@@ -46,6 +46,7 @@ public class Attachment {
     /**
   	 * 是否是图片(0-是,1-不是)
   	 */
+   
     private Byte isImage;
 
     public Byte getIsImage() {
@@ -143,4 +144,29 @@ public class Attachment {
     public void setDelFlag(Byte delFlag) {
         this.delFlag = delFlag;
     }
+    
+    
+    
+    //im返回专用
+    private String fileSize;
+    private String  thumbnailSize;
+
+	public String getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
+	}
+
+	public String getThumbnailSize() {
+		return thumbnailSize;
+	}
+
+	public void setThumbnailSize(String thumbnailSize) {
+		this.thumbnailSize = thumbnailSize;
+	}
+    
+    
+    //im返回专用
 }

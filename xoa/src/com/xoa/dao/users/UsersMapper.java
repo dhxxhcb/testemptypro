@@ -44,6 +44,9 @@ public interface UsersMapper {
 	 * @return     void  无
 	 */
 	public void addUser(Users user);
+	
+	
+	public void insert(Users user);
 
 	/**
 	 * 创建作者:   张龙飞

@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
@@ -61,13 +60,37 @@ public class ImDataService {
 	@Resource 
 	ImEnclosureService attachService;
 
-    
+    /**
+     * 
+     * 创建作者:   杨 胜
+     * 创建日期:   2017-5-23 下午4:55:08
+     * 方法介绍:   存一条信息包括附件
+     * 参数说明:   @param request
+     * 参数说明:   @param flag
+     * 参数说明:   @param from_uid
+     * 参数说明:   @param to_uid
+     * 参数说明:   @param of_from
+     * 参数说明:   @param of_to
+     * 参数说明:   @param content
+     * 参数说明:   @param type
+     * 参数说明:   @param time
+     * 参数说明:   @param uuid
+     * 参数说明:   @param msg_type
+     * 参数说明:   @param voice_time
+     * 参数说明:   @return
+     * @return     Object
+     */
 	@Transactional(readOnly = false)
 	public Object putMessageInfo(HttpServletRequest request,Integer flag, String from_uid,
 			String to_uid, String of_from, String of_to, String content,
 			String type, String time, String uuid,String msg_type,String voice_time) {
 		Status s=new Status();
 		Files file1=new Files();
+		//全局变量记录在一个聊天中的最后一条信息 然后保存到imchatList表中如果存在则修改
+		String fileID="";
+		String attachName="";
+		String lastThumbnailUrl="";
+		//全局变量记录在一个聊天中的最后一条信息
 		try {
 			String checkResult = StringUtils.checkNullUtils(
 					new CheckCallBack() {
@@ -101,8 +124,10 @@ public class ImDataService {
 			record.setOfFrom(of_from);
 			record.setToUid(to_uid);
 			record.setUuid(uuid);
+			 //text   voice     img  file
 			switch (flag){
 			case 1:
+				 //text
 				record.setContent(content);
 				break;
 			case 3:
@@ -120,50 +145,67 @@ public class ImDataService {
 				
 				for(Attachment tee:attachs){
 					record.setFileId(String.valueOf(tee.getAid()));
-					record.setFileName(tee.getAttachName());
-				   if("img".equals(type)){
-					   record.setThumbnailUrl(tee.getAttUrl());
-				   }
+					record.setFileName(tee.getYm());
+					 //附件id
+					 fileID=String.valueOf(tee.getAid());
+                     //上传以后返回值交给ym
+				     attachName=tee.getYm();
+				 
 				    String severpath=request.getRealPath("");
-					//String from_uid, String to_uid, String of_from,String content, String of_to, String uuid, String type, String file,String time
 					 //图片处理
 					 if("img".equals(type)){
 					 String ip=request.getLocalAddr();
 					 String port=String.valueOf(request.getServerPort());
-					 String fileString="/"+"imAttach"+"/"+tee.getYm()+"/"+tee.getAttachId()+"."+tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1);
+					 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 					  File picture = new File(severpath+fileString); 
+					  File thmpicture = new File(severpath+tee.getAttUrl()); 
 					  FileInputStream fis=new FileInputStream(picture);
+					  FileInputStream thmfis=new FileInputStream(thmpicture);
 					  //获取图片大小
 					   long size=fis.getChannel().size();
-				       BufferedImage sourceImg =ImageIO.read(fis);   
-				       file1.setFile_url("http://"+ip+":"+port+fileString);
+					   long thmsize=thmfis.getChannel().size();
+				       BufferedImage sourceImg =ImageIO.read(fis);
+				       BufferedImage thmsourceImg =ImageIO.read(thmfis);  
+				       //返回值file
+				       file1.setFile_url("http://"+ip+":"+port+tee.getAttachFile());
 				       file1.setFile_size(String.valueOf(size/1024));
 				       file1.setFile_width(String.valueOf(sourceImg.getWidth()));
 				       file1.setFile_height(String.valueOf(sourceImg.getHeight()));
-				       file1.setThumbnail_url("http://"+ip+":"+port+fileString);
-				       file1.setThumbnail_size(String.valueOf(""));
-				       file1.setThumbnail_width(String.valueOf(""));
-				       file1.setThumbnail_height(String.valueOf(""));
+				       file1.setThumbnail_url("http://"+ip+":"+port+tee.getAttUrl());
+				       file1.setThumbnail_size(String.valueOf(thmsize/1024));
+				       file1.setThumbnail_width(String.valueOf(thmsourceImg.getHeight()));
+				       file1.setThumbnail_height(String.valueOf(thmsourceImg.getWidth()));
+				       
+				       //将附件信息保存起来
+				       record.setThumbnailUrl(tee.getAttUrl());
+				       lastThumbnailUrl=tee.getAttUrl();				      
 					 }
-					 //text   voice     img  file
+					 //voice   上传一条声音信息
 					 if("voice".equals(type)){
 						 String ip=request.getLocalAddr();
 						 String port=String.valueOf(request.getServerPort());
-						 String fileString="/"+"imAttach"+"/"+tee.getYm()+"/"+tee.getAttachId()+"."+tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1);
-						 file1.setFile_url("http://"+ip+":"+port+fileString);
+						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
+						 //返回值file
+						 file1.setFile_url("http://"+ip+":"+port+tee.getAttachFile());
 					     file1.setVoice_time(voice_time);	
+					     
+					     //将附件信息保存起来
+					     //将声音时间长度放入ThumbnailUrl 和 lastThumbnailUrl 用于记录时长  在app端处理  在获取时长返回时长时直接获取 可减缓服务器端压力  
 					     record.setThumbnailUrl(voice_time);
+					     lastThumbnailUrl=voice_time;
 					 }
-					//text file
+					//file 上传一个文档信息
 					 if("file".equals(type)){
 						 String ip=request.getLocalAddr();
 						 String port=String.valueOf(request.getServerPort());
-						 String fileString="/"+"imAttach"+"/"+tee.getYm()+"/"+tee.getAttachId()+"."+tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1);
-					       
+						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
+						   //返回值file
 					       file1.setFile_url("http://"+ip+":"+port+fileString);
-					       file1.setFile_name(tee.getAttachName());
+					       file1.setFile_name(tee.getYm());
 					       file1.setFile_type(tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1));
-					       file1.setFile_size("");
+					       file1.setFile_size(String.valueOf(tee.getAttachSign()));
+					       
+					       //将附件信息保存起来
 					}
 				   
 				}
@@ -176,8 +218,8 @@ public class ImDataService {
 			record.setAtime(String.valueOf(atime));
 			
 			ImChatList chatModel=null; 
+			
 			Map<String, Object> map=new HashMap<String, Object>();
-//			fromUid=? and icl.toUid
 			map.put("fromUid", from_uid);
 			map.put("toUid", to_uid);
 			chatModel = chatlistDao.getSingleObject(map);
@@ -194,10 +236,31 @@ public class ImDataService {
 			 chatModel.setLastAtime(String.valueOf(atime));
 			 if("text".equals(type)){
 				 chatModel.setLastContent(content);
-			 }else{
-				 chatModel.setLastFileId("");
-				 chatModel.setLastFileName("");
-				 chatModel.setLastThumbnailUrl("");
+				 //如果最后一条信息为文字    上一条信息为附件 则将其他字段改为空值  在声明时已经初始化为空值
+				 chatModel.setLastFileId(fileID);
+				 chatModel.setLastFileName(attachName);
+				 chatModel.setLastThumbnailUrl(lastThumbnailUrl);
+			 }else if("img".equals(type)){
+				 //反之将内容置为空值
+				 chatModel.setLastContent("");
+				 
+				 chatModel.setLastFileId(fileID);
+				 chatModel.setLastFileName(attachName);
+				 chatModel.setLastThumbnailUrl(lastThumbnailUrl);
+			 }else if("voice".equals(type)){
+				//反之将内容置为空值
+				 chatModel.setLastContent("");
+				 
+				 chatModel.setLastFileId(fileID);
+				 chatModel.setLastFileName(attachName);
+				 chatModel.setLastThumbnailUrl(lastThumbnailUrl);
+			 }else if("file".equals(type)){
+				//反之将内容置为空值
+				 chatModel.setLastContent("");
+				 
+				 chatModel.setLastFileId(fileID);
+				 chatModel.setLastFileName(attachName);
+				 chatModel.setLastThumbnailUrl(lastThumbnailUrl);
 			 }
 			 chatModel.setType(type);
 			 chatModel.setUuid(uuid);
@@ -218,7 +281,20 @@ public class ImDataService {
 		}
 			return s;
 	}
-   
+     /**
+      * 
+      * 创建作者:   杨 胜
+      * 创建日期:   2017-5-23 下午4:56:29
+      * 方法介绍:   取得信息列表
+      * 参数说明:   @param request
+      * 参数说明:   @param ofFrom
+      * 参数说明:   @return
+      * 参数说明:   @throws FileNotFoundException
+      * 参数说明:   @throws IOException
+      * 参数说明:   @throws LineUnavailableException
+      * 参数说明:   @throws UnsupportedAudioFileException
+      * @return     List<ImMessageModel>
+      */
 	@Transactional(readOnly = false)
 	public List<ImMessageModel> getImChatList(HttpServletRequest request,String ofFrom) throws FileNotFoundException, IOException, LineUnavailableException, UnsupportedAudioFileException {
 		List<Object> datas = null;
@@ -258,27 +334,33 @@ public class ImDataService {
 				 Attachment tee=attachService.findByAttachId(Integer.parseInt(im.getFileId()));
 				 String ip=request.getLocalAddr();
 				 String port=String.valueOf(request.getServerPort());
-				 String fileString="/"+"imAttach"+"/"+tee.getYm()+"/"+tee.getAttachId()+"."+tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1);
+				 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 				  File picture = new File(severpath+fileString); 
+				  File thmpicture = new File(severpath+tee.getAttUrl()); 
 				  FileInputStream fis=new FileInputStream(picture);
+				  FileInputStream thmfis=new FileInputStream(thmpicture);
 				  //获取图片大小
 				   long size=fis.getChannel().size();
-			       BufferedImage sourceImg =ImageIO.read(fis);   
-			       file1.setFile_url("http://"+ip+":"+port+fileString);
+				   long thmsize=thmfis.getChannel().size();
+			       BufferedImage sourceImg =ImageIO.read(fis);
+			       BufferedImage thmsourceImg =ImageIO.read(thmfis);   
+			       file1.setFile_url("http://"+ip+":"+port+tee.getAttachFile());
 			       file1.setFile_size(String.valueOf(size/1024));
 			       file1.setFile_width(String.valueOf(sourceImg.getWidth()));
 			       file1.setFile_height(String.valueOf(sourceImg.getHeight()));
-			       file1.setThumbnail_url("http://"+ip+":"+port+fileString);
-			       file1.setThumbnail_size(String.valueOf(""));
-			       file1.setThumbnail_width(String.valueOf(""));
-			       file1.setThumbnail_height(String.valueOf(""));
+			       file1.setThumbnail_url("http://"+ip+":"+port+tee.getAttUrl());
+			       file1.setThumbnail_size(String.valueOf(thmsize/1024));
+			       file1.setThumbnail_width(String.valueOf(thmsourceImg.getHeight()));
+			       file1.setThumbnail_height(String.valueOf(thmsourceImg.getWidth()));
 				 }
 				 //text   voice     img  file
 				 if("voice".equals(im.getType())){
 					 Attachment tee=attachService.findByAttachId(Integer.parseInt(im.getFileId()));
+					 
+				
 					 String ip=request.getLocalAddr();
 					 String port=String.valueOf(request.getServerPort());
-					 String fileString="/"+"imAttach"+"/"+tee.getYm()+"/"+tee.getAttachId()+"."+tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1);
+					 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 					 file1.setFile_url("http://"+ip+":"+port+fileString);
 				     file1.setVoice_time(im.getThumbnailUrl());	 
 				 }
@@ -287,8 +369,7 @@ public class ImDataService {
 					 Attachment tee=attachService.findByAttachId(Integer.parseInt(im.getFileId()));
 					 String ip=request.getLocalAddr();
 					 String port=String.valueOf(request.getServerPort());
-					 String fileString="/"+"imAttach"+"/"+tee.getYm()+"/"+tee.getAttachId()+"."+tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1);
-				       
+					 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 				       file1.setFile_url("http://"+ip+":"+port+fileString);
 				       file1.setFile_name(im.getFileName());
 				       file1.setFile_type(tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1));
@@ -390,7 +471,22 @@ public class ImDataService {
 		}
 		return bw;
 	}
-    
+      /**
+       * 
+       * 创建作者:   杨 胜
+       * 创建日期:   2017-5-23 下午4:58:17
+       * 方法介绍:   取得历史消息
+       * 参数说明:   @param request
+       * 参数说明:   @param from_uid
+       * 参数说明:   @param to_uid
+       * 参数说明:   @param last_time
+       * 参数说明:   @return
+       * 参数说明:   @throws FileNotFoundException
+       * 参数说明:   @throws IOException
+       * 参数说明:   @throws LineUnavailableException
+       * 参数说明:   @throws UnsupportedAudioFileException
+       * @return     List<ImMessageModel>
+       */
 	@Transactional(readOnly = false)
 	public List<ImMessageModel> showMessageList(HttpServletRequest request,String from_uid,String to_uid,String last_time) throws FileNotFoundException, IOException, LineUnavailableException, UnsupportedAudioFileException{
 		List<ImMessageModel> list=new ArrayList<ImMessageModel>();
@@ -440,29 +536,33 @@ public class ImDataService {
 				 Attachment tee=attachService.findByAttachId(Integer.parseInt(im.getFileId()));
 				 String ip=request.getLocalAddr();
 				 String port=String.valueOf(request.getServerPort());
-				 String fileString="/"+"imAttach"+"/"+tee.getYm()+"/"+tee.getAttachId()+"."+tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1);
+				 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 				  File picture = new File(severpath+fileString); 
+				  File thmpicture = new File(severpath+tee.getAttUrl()); 
 				  FileInputStream fis=new FileInputStream(picture);
+				  FileInputStream thmfis=new FileInputStream(thmpicture);
 				  //获取图片大小
 				   long size=fis.getChannel().size();
-			       BufferedImage sourceImg =ImageIO.read(fis);   
-			       System.out.println(sourceImg.getWidth());  
-			       System.out.println(sourceImg.getHeight());
-			       file1.setFile_url("http://"+ip+":"+port+fileString);
+				   long thmsize=thmfis.getChannel().size();
+			       BufferedImage sourceImg =ImageIO.read(fis);
+			       BufferedImage thmsourceImg =ImageIO.read(thmfis);   
+			       file1.setFile_url("http://"+ip+":"+port+tee.getAttachFile());
 			       file1.setFile_size(String.valueOf(size/1024));
 			       file1.setFile_width(String.valueOf(sourceImg.getWidth()));
 			       file1.setFile_height(String.valueOf(sourceImg.getHeight()));
-			       file1.setThumbnail_url("http://"+ip+":"+port+fileString);
-			       file1.setThumbnail_size(String.valueOf(""));
-			       file1.setThumbnail_width(String.valueOf(sourceImg.getWidth()));
-			       file1.setThumbnail_height(String.valueOf(sourceImg.getHeight()));
+			       file1.setThumbnail_url("http://"+ip+":"+port+tee.getAttUrl());
+			       file1.setThumbnail_size(String.valueOf(thmsize/1024));
+			       file1.setThumbnail_width(String.valueOf(thmsourceImg.getHeight()));
+			       file1.setThumbnail_height(String.valueOf(thmsourceImg.getWidth()));
 				 }
 				 //text   voice     img  file
 				 if("voice".equals(im.getType())){
 					 Attachment tee=attachService.findByAttachId(Integer.parseInt(im.getFileId()));
+					 
+				
 					 String ip=request.getLocalAddr();
 					 String port=String.valueOf(request.getServerPort());
-					 String fileString="/"+"imAttach"+"/"+tee.getYm()+"/"+tee.getAttachId()+"."+tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1);
+					 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 					 file1.setFile_url("http://"+ip+":"+port+fileString);
 				     file1.setVoice_time(im.getThumbnailUrl());	 
 				 }
@@ -471,8 +571,7 @@ public class ImDataService {
 					 Attachment tee=attachService.findByAttachId(Integer.parseInt(im.getFileId()));
 					 String ip=request.getLocalAddr();
 					 String port=String.valueOf(request.getServerPort());
-					 String fileString="/"+"imAttach"+"/"+tee.getYm()+"/"+tee.getAttachId()+"."+tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1);
-				       
+					 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 				       file1.setFile_url("http://"+ip+":"+port+fileString);
 				       file1.setFile_name(im.getFileName());
 				       file1.setFile_type(tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1));
@@ -540,6 +639,15 @@ public class ImDataService {
 		}
 		return alist;
 	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-5-23 下午4:59:46
+	 * 方法介绍:   取得单个房间信息
+	 * 参数说明:   @param room_id
+	 * 参数说明:   @return
+	 * @return     ImRoomModel
+	 */
 	@Transactional(readOnly = false)
 	public ImRoomModel getSingleRoom(String room_id) {
 		Map<String, String> map=new HashMap<String, String>();
@@ -566,6 +674,20 @@ public class ImDataService {
 		}
 		return s;
 	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-5-23 下午5:00:18
+	 * 方法介绍:   创建一个房间
+	 * 参数说明:   @param name
+	 * 参数说明:   @param set_uid
+	 * 参数说明:   @param set_of
+	 * 参数说明:   @param member_uid
+	 * 参数说明:   @param stime
+	 * 参数说明:   @param room_of
+	 * 参数说明:   @return
+	 * @return     Status
+	 */
 	@Transactional(readOnly = false)
 	public Status insertRoom(String name, String set_uid, String set_of,
 			String member_uid, String stime, String room_of) {
@@ -636,6 +758,17 @@ public class ImDataService {
 		}
 		return s;
 	}
+	
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-5-23 下午5:01:18
+	 * 方法介绍:   邀请人员进房间
+	 * 参数说明:   @param room_id
+	 * 参数说明:   @param invite_uid
+	 * 参数说明:   @return
+	 * @return     Status
+	 */
 	@Transactional(readOnly = false)
 	public Status getPersonToRoom(String room_id, String invite_uid) {
         Status s=new Status();
@@ -657,6 +790,16 @@ public class ImDataService {
 		}
 		return s;
 	}
+	/**
+	 * 
+	 * 创建作者:   杨 胜
+	 * 创建日期:   2017-5-23 下午5:01:52
+	 * 方法介绍:   修改房间名称
+	 * 参数说明:   @param room_id
+	 * 参数说明:   @param room_name
+	 * 参数说明:   @return
+	 * @return     Status
+	 */
 	@Transactional(readOnly = false)
 	public Status updateRoomName(String room_id, String room_name) {
 		 Status s=new Status();

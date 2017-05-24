@@ -45,6 +45,10 @@
   <resultMap id="FlowWithDep" type="com.xoa.model.workflow.FlowTypeModel" extends="BaseResultMap">
     <result column="DEPT_NAME" property="depName"  javaType="string" />
   </resultMap>
+  <resultMap id="FlowWithRun" type="com.xoa.model.workflow.FlowTypeModel" extends="BaseResultMap">
+    <result column="runName_NAME" property="runName"  javaType="string" />
+  </resultMap>
+
   <!-- 新建流程自定义属性 -->
   <insert id="save" parameterType="com.xoa.model.workflow.FlowTypeModel" useGeneratedKeys="true" keyProperty="flowId" >
       insert into flow_type (FLOW_NAME,FORM_ID,FLOW_DOC,FLOW_TYPE,FLOW_NO,FLOW_SORT,AUTO_NUM,
@@ -74,6 +78,126 @@
     FLOW_ID =#{flowId}
   </select>
 
+  <!-- 修改自定义属性 -->
+  <update id="update" parameterType="com.xoa.model.workflow.FlowTypeModel">
+    UPDATE FLOW_TYPE
+    <set>
+      <if test="flowName != null and flowName != ''">
+      FLOW_NAME = #{flowName},
+      </if>
+    <if test="formId != null and formId != ''">
+      FORM_ID = #{formId},
+    </if>
+    <if test="flowDoc != null and flowDoc != ''">
+      FLOW_DOC = #{flowDoc},
+    </if>
+    <if test="flowType != null and flowType != ''">
+      FLOW_TYPE = #{flowType},
+    </if>
+      <if test="flowNo != null and flowNo = 0">
+        FLOW_NO = #{flowNo},
+      </if>
+      <if test="flowSort != null and flowSort != ''">
+      FLOW_SORT = #{flowSort},
+      </if>
+      <if test="autoNum != null and autoNum != ''">
+      AUTO_NUM = #{autoNum},
+      </if>
+      <if test="autoLen != null and autoLen != ''">
+      AUTO_LEN = #{autoLen},
+      </if>
+      <if test="autoEdit != null and autoEdit != ''">
+      AUTO_EDIT = #{autoEdit},
+      </if>
+      <if test="commentPriv!=null and commentPriv != ''">
+      COMMENT_PRIV = #{commentPriv},
+      </if>
+      <if test="deptId != null and deptId != ''">
+      DEPT_ID = #{deptId},
+      </if>
+      <if test="freePreset != null and freePreset != ''">
+      FREE_PRESET = #{freePreset},
+      </if>
+      <if test="freeOther != null and freeOther != ''">
+      FREE_OTHER = #{freeOther},
+      </if>
+      <if test="allowPreSet != null and allowPreSet != '' ">
+      ALLOW_PRE_SET = #{allowPreSet},
+      </if>
+      <if test="forcePreSet != null and forcePreSet != '' ">
+      FORCE_PRE_SET = #{forcePreSet},
+      </if>
+      <if test="viewPriv != null and viewPriv != ''">
+      VIEW_PRIV = #{viewPriv},
+      </if>
+      <if test="isVersion != null and isVersion != '' ">
+      IS_VERSION = #{isVersion},
+      </if>
+      <if test="flowAction != null and flowAction != ''">
+      FLOW_ACTION != #{flowAction},
+      </if>
+      <if test="autoNumYear != null and autoNumYear != ''">
+      AUTO_NUM_YEAR = #{autoNumYear},
+      </if>
+      <if test="autoNumMonth != null and autoNumMonth != ''">
+      AUTO_NUM_MONTH = #{autoNumMonth},
+      </if>
+      <if test="autoNumTime != null and autoNumTime != ''">
+      AUTO_NUM_TIME = #{autoNumTime},
+      </if>
+      <if test="manageUser != null and manageUser != ''">
+      MANAGE_USER = #{manageUser},
+      </if>
+      <if test="autoName != null and autoName != ''">
+      AUTO_NAME = #{autoName},
+      </if>
+      <if test="queryUser != null and queryUser != ''">
+      QUERY_USER = #{queryUser},
+      </if>
+      <if test="flowDesc != null and flowDesc != ''">
+      FLOW_DESC = #{flowDesc},
+      </if>
+      <if test="newUser != null and newUser != ''">
+      NEW_USER = #{newUser},
+      </if>
+      <if test="queryItem != null and queryItem != ''">
+      QUERY_ITEM = #{queryItem},
+      </if>
+      <if test="queryUserDept != null and queryUserDept != ''">
+      QUERY_USER_DEPT = #{queryUserDept},
+      </if>
+      <if test="manageUserDept != null and manageUserDept != ''">
+      MANAGE_USER_DEPT = #{manageUserDept},
+      </if>
+      <if test="editPriv != null and editPriv != ''">
+      EDIT_PRIV = #{editPriv},
+      </if>
+      <if test="listFldsStr != null and listFldsStr!= ''">
+      LIST_FLDS_STR = #{listFldsStr},
+      </if>
+      <if test="modelId != null and modelId != ''">
+      MODEL_ID = #{modelId},
+      </if>
+      <if test="modelName != null and modelName != ''">
+      MODEL_NAME = #{modelName},
+      </if>
+      <if test="attachmentId != null and attachmentId != ''">
+      ATTACHMENT_ID = #{attachmentId},
+      </if>
+      <if test="attachmentName != null and attachmentName != ''">
+      ATTACHMENT_NAME = #{attachmentName},
+      </if>
+      <if test="viewUser != null and viewUser != ''">
+      VIEW_USER = #{viewUser},
+      </if>
+      <if test="viewDept != null and  viewDept != ''">
+      VIEW_DEPT = #{viewDept}
+      </if>
+    </set>
+    WHERE
+    FLOW_ID = #{flowId}
+  </update>
+
 
   <select id="selectBySortid" resultMap="FlowWithDep" parameterType="java.lang.Integer">
     SELECT  flow_type.*,department.DEPT_NAME FROM  flow_type LEFT JOIN department ON department.DEPT_ID=flow_type.DEPT_ID
@@ -94,6 +218,41 @@
     <if test="sortId!=null">
     AND  flow_type.FLOW_SORT = #{sortId}
     </if>
+  </select>
+  <select id="selectFlowAuthOrSearch" resultMap="FlowWithRun" parameterType="Map">
+    SELECT flow_type.*,flowRun.RUN_NAME FROM flow_type
+    INNER JOIN flow_process ON flow_process.FLOW_ID=flow_type.FLOW_ID  AND flow_process.PRCS_ID in (
+    SELECT MIN(flow_process.PRCS_ID) FROM flow_process WHERE flow_process.FLOW_ID=flow_type.FLOW_ID
+    )
+    AND (
+    <trim suffixOverrides="OR">
+      FIND_IN_SET(#{user},flow_process.PRCS_USER) OR
+      FIND_IN_SET(#{deptId},flow_process.PRCS_DEPT) OR
+      FIND_IN_SET(#{privId},flow_process.PRCS_PRIV) OR flow_process.PRCS_DEPT='ALL_DEPT' OR
+      <if test="privIds!=null">
+        <foreach item="item" collection="privIds">
+          FIND_IN_SET(#{item},flow_process.PRCS_PRIV) OR
+        </foreach>
+      </if>
+      <if test="deptIds!=null">
+        <foreach item="item" collection="deptIds">
+          FIND_IN_SET(#{item},flow_process.PRCS_DEPT) OR
+        </foreach>
+      </if>
+    </trim>
+    )
+    LEFT JOIN(
+    SELECT * FROM flow_run  ORDER BY flow_run.BEGIN_TIME DESC LIMIT 0,1
+    ) AS flowRun ON flowRun.FLOW_ID= flow_type.FLOW_ID
+    <where>
+      <if test="sortId!=null">
+        FIND_IN_SET(flow_type.FLOW_SORT,#{sortId})
+      </if>
+      <if test="searchValue!=null">
+        AND flow_type.FLOW_NAME LIKE CONCAT("%",#{searchValue},"%")
+      </if>
+    </where>
+    ORDER BY  flowRun.BEGIN_TIME
   </select>
 
 

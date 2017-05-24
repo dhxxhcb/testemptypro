@@ -3,6 +3,7 @@ package com.xoa.service.workflow.flowtype;
 import com.xoa.model.workflow.FlowTypeModel;
 import com.xoa.util.ToJson;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -31,9 +32,18 @@ public interface FlowTypeService {
          */
         public  ToJson<FlowTypeModel> selectAllFlow(Map<String, Object> maps);
 
+        /**
+         * 创建作者:   张勇
+         * 创建日期:   2017/5/23 19:35
+         * 方法介绍:   自定义属性根据flowId修改
+         * 参数说明:
+         * @return
+         */
+        public ToJson<FlowTypeModel> updateFlow(FlowTypeModel flowTypeModel);
 
 
         public ToJson<FlowTypeModel> quertBySortId(Integer flowId);
 
         ToJson<FlowTypeModel> flowBySearch(String searchValue, Integer flowId);
+        ToJson<FlowTypeModel> selectFlowAuthOrSearch(HttpServletRequest request, String searchValue, Integer sortId);
 }

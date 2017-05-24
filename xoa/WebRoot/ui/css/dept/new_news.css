@@ -7,6 +7,34 @@
     display: inline-block;
     float: left;
 }
+.nav_box .head_rig .new_dept {
+    width: 130px;
+    height: 30px;
+    font-size: 13px !important;
+    background-image: url(../../img/sys/dept_personnel.png);
+    cursor: pointer;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+.head_rig .import {
+    width: 56px;
+    height: 30px;
+    font-size: 13px !important;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-image: url(../../img/sys/import.png);
+    padding-left: 25px;
+}
+.head_rig .export {
+    width: 56px;
+    height: 30px;
+    font-size: 13px !important;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-image: url(../../img/sys/export.png);
+    padding-left: 25px;
+}
+
 .nav_box .nav_t1 img {
     width:23px;
     height:23px;
@@ -29,14 +57,14 @@
     height:25px;
 }
 
-
-
-
-
     /*表格*/
 table {
     border-collapse: collapse;
     border-spacing: 0;
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
 
 td {
@@ -46,7 +74,7 @@ td {
 }
 
 .td_w {
-    width: 18%;
+    width: 25%;
 }
 
 .newNews tr td {
@@ -73,11 +101,17 @@ td {
     display: inline-block;
     float: left;
     border: 1px solid #d9d9d9;
-    width: 250px;
+    width: 200px;
   /*   height: 20px;
     line-height: 20px; */
     color: #999999;
     padding-left: 3px;
+}
+.tit {
+    display: inline-block;
+    width: 294px;
+    margin-top: 5px;
+    margin-left: 10px
 }
 
 .td_title2 {
@@ -290,6 +324,11 @@ td {
   	width:12px;
   	height:12px;
   }
- /* .texta {
-      resize: none;
-  }*/
+
+.new_but {
+    width: 60px;
+    height: 30px;
+    border-radius: 4px;
+    margin-left: 48%;
+    cursor:pointer;
+}
