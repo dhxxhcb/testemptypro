@@ -132,10 +132,12 @@ public class ImEnclosureService{
 	            attachment=findByAttachId(attachID);
 //	        	String attUrl="AID="+attachment.getAid()+"&"+"MODULE="+module+"&"+"COMPANY="+company+"&"+"YM="+attachment.getYm()+"&"+"ATTACHMENT_ID="+attachment.getAttachId()+"&"+"ATTACHMENT_NAME="+attachment.getAttachName();
 //	            attachment.setAttUrl(attUrl);
+	            //图片格式的压缩图    将压缩图地址存入
 	            if("img".equals(types)){
 	            	attachment.setAttUrl(thamPath);
 	            }
-	            attachment.setYm(newFileName);
+	            //将文件名字 放入ym属性 返回时传给表中的filename字段
+	            attachment.setYm(fileName);
 	            list.add(attachment);
 	  }
     }

@@ -247,6 +247,12 @@ ORDER BY SORT_ID,SORT_NO ASC
     SELECT COUNT(*) FROM flow_sort WHERE flow_sort.SORT_PARENT=#{sordId}
   </select>
 
+  <select id="getChildDatas" resultMap="BaseResultMap" parameterType="Integer">
+    SELECT * FROM flow_sort WHERE flow_sort.SORT_PARENT=#{sordId}
+  </select>
+
+
+
   <select id="selectflowSortNum" resultType="Integer" parameterType="Integer" >
     SELECT COUNT(flow_type.FLOW_ID) AS FLOW_COUNTS,flow_type.FLOW_SORT FROM flow_type  WHERE  flow_type.FLOW_SORT=#{flowId}
   </select>

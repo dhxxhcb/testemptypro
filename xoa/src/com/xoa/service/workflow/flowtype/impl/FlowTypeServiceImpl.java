@@ -1,22 +1,24 @@
 package com.xoa.service.workflow.flowtype.impl;
 
+import com.xoa.dao.workflow.FlowSortMapper;
 import com.xoa.dao.workflow.FlowTypeModelMapper;
 import com.xoa.model.users.Users;
+import com.xoa.model.workflow.FlowSort;
 import com.xoa.model.workflow.FlowTypeModel;
+import com.xoa.service.workflow.JobClassifyService;
 import com.xoa.service.workflow.flowtype.FlowTypeService;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.page.PageParams;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 创建作者:   张勇
@@ -29,6 +31,8 @@ public class FlowTypeServiceImpl implements FlowTypeService {
 
     @Resource
     private FlowTypeModelMapper flowTypeModelMapper;
+    @Autowired
+    JobClassifyService classifyService;
 
 
     @Override
@@ -146,6 +150,19 @@ public class FlowTypeServiceImpl implements FlowTypeService {
             toJson.setMsg("无法获取用户信息");
             return toJson;
         }
+
+        List<Integer> sirtIds = classifyService.getSortChildId(sortId,new ArrayList<Integer>());
+        StringBuffer sirtIdsTr =new StringBuffer();
+        int i=0;
+        for(Integer integer:sirtIds){
+            sirtIdsTr.append(integer);
+            if(i!=sirtIds.size()){
+                sirtIdsTr.append(",");
+            }
+                i++;
+        }
+        Integer[] arry=new Integer[]{};
+        arry=sirtIds.toArray(arry);
         String privOther= user.getUserPrivOther()==null?"":user.getUserPrivOther();//辅助角色
         String privIds[] =privOther.split(",");
         String deptOther = user.getDeptIdOther()==null?"":user.getDeptIdOther();//辅助部门
@@ -160,7 +177,11 @@ public class FlowTypeServiceImpl implements FlowTypeService {
             param.put("deptIds",deptIds);
         }
         param.put("searchValue",searchValue);
-        param.put("sortId",sortId);
+        L.w(arry);
+        if(sortId!=null){
+            param.put("sortId",sirtIdsTr.toString());
+        }
+
         List<FlowTypeModel> datas = flowTypeModelMapper.selectFlowAuthOrSearch(param);
 
         if(datas!=null&&datas.size()>0){
@@ -173,6 +194,7 @@ public class FlowTypeServiceImpl implements FlowTypeService {
         }
         return toJson;
     }
+
 
 
 }
