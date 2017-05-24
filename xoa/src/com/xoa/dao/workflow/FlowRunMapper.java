@@ -16,4 +16,6 @@ public interface FlowRunMapper {
     int updateByPrimaryKeyWithBLOBs(FlowRun record);
 
     int updateByPrimaryKey(FlowRun record);
+    
+    int getMaxRunId();
 }

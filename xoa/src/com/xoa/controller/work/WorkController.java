@@ -60,7 +60,12 @@ public class WorkController {
 				"loginDateSouse"));
 		return "app/workflow/work/workform";
 	}
-	
+	@RequestMapping("workform1")
+	public String workform(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/workflow/work/workform1";
+	}
 	@RequestMapping("workfastAdd")
 	@ResponseBody
 	public ToJson<FlowFast> fastAdd(HttpServletRequest request,

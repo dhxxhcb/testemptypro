@@ -4,16 +4,11 @@
     <title>宏控件</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
-    <meta name="generator" content="www.leipi.org" />
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <!--[if lte IE 6]>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-ie6.css">
-    <![endif]-->
-    <!--[if lte IE 7]>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
-    <![endif]-->
-    <link rel="stylesheet" href="leipi.style.css">
+    <link rel="stylesheet" href="../formdesign/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../../css/ueditor/site.css">
     <script type="text/javascript" src="../dialogs/internal.js"></script>
+    <script type="text/javascript" src="../../../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../../../js/base/base.js"></script>
     <script type="text/javascript">
 function createElement(type, name)
 {     
@@ -42,7 +37,7 @@ function createElement(type, name)
                 <input id="orgname" type="text" placeholder="必填项"/>
             </td>
             <td>
-                <select  id="orgtype" class="span7">
+                <select  id="datafld" class="span7">
                     <optgroup label="----单行输入框----">
                         <option value="SYS_DATE">当前日期，形如：1999-01-01</option>
                         <option value="SYS_DATE_CN">当前日期，形如：2009年1月1日</option>
@@ -113,114 +108,122 @@ function createElement(type, name)
     </table>
 </div>
 <script type="text/javascript">
-var oNode = null,thePlugins = 'macros';
-window.onload = function() {
-    if( UE.plugins[thePlugins].editdom ) {
-        oNode = UE.plugins[thePlugins].editdom;
-        var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gHidden=oNode.getAttribute('orghide'),gFontSize=oNode.getAttribute('orgfontsize'),gWidth=oNode.getAttribute('orgwidth'),gType=oNode.getAttribute('orgtype');
-        gTitle = gTitle==null ? '' : gTitle;
-        $G('orgname').value = gTitle;
-        //if( oNode.tagName == 'INPUT' ) {}
-        if(oNode.getAttribute('orghide')=='1'){
-            $G('orghide').checked = true;
-        }
-        $G('orgname').value    = gTitle;
-        $G('orgtype').value    = gType; 
-        $G('orgwidth').value = gWidth;
-        $G('orgfontsize').value = gFontSize;
-    }
-}
+    $(function () {
+        debugger;
+          var oNode = null,thePlugins = 'macros';
+          var dataid = $.getQueryString('dataid');
+            if( UE.plugins[thePlugins].editdom ) {
+                oNode = UE.plugins[thePlugins].editdom;
+                var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gHidden=oNode.getAttribute('orghide'),gFontSize=oNode.getAttribute('orgfontsize'),gWidth=oNode.getAttribute('orgwidth'),gType=oNode.getAttribute('datafld');
+                gTitle = gTitle==null ? '' : gTitle;
+                $G('orgname').value = gTitle;
+                //if( oNode.tagName == 'INPUT' ) {}
+                if(oNode.getAttribute('orghide')=='1'){
+                    $G('orghide').checked = true;
+                }
+                $G('orgname').value    = gTitle;
+                $G('datafld').value    = gType;
+                $G('orgwidth').value = gWidth;
+                $G('orgfontsize').value = gFontSize;
+            }
 
-dialog.oncancel = function () {
-    if( UE.plugins[thePlugins].editdom ) {
-        delete UE.plugins[thePlugins].editdom;
-    }
-};
-dialog.onok = function (){
-    if ( $G('orgname').value == '' ) {
-        alert('控件名称不能为空');
-        return false;
-    }
-    var gTitle=$G('orgname').value.replace(/\"/g,"&quot;"),gFontSize=$G('orgfontsize').value,gWidth=$G('orgwidth').value,gType=$G('orgtype').value;
-    if( !oNode ) {
-        try {
-                /*
-                if ( $G('orgtype').value.indexOf('sys_list')>0 ) {
-                    oNode = document.createElement("select");
-                    var objOption = new Option('{macros}', '');
-                    oNode.options[oNode.options.length] = objOption;
-                } else {
-                    //input
-                }*/
-                oNode = createElement('input','leipiNewField');
-                oNode.setAttribute('type','text');
-                oNode.setAttribute('value','{macros}');
-                
-                oNode.setAttribute('title',gTitle);
-                oNode.setAttribute('name','leipiNewField');
-                oNode.setAttribute('leipiPlugins',thePlugins);
-                oNode.setAttribute('orgtype',gType); 
-                if( $G('orghide').checked ) {
-                    oNode.setAttribute('orghide', '1' ) ;
-                } else {
-                    oNode.setAttribute('orghide', '0' ) ;
-                }
-                if( gFontSize != '' ) {
-                    oNode.style.fontSize = gFontSize + 'px';
-                    oNode.setAttribute('orgfontsize',gFontSize );
-                }
-                if( gWidth != '' ) {
-                    oNode.style.width = gWidth + 'px';
-                    oNode.setAttribute('orgwidth',gWidth );
-                }
-                editor.execCommand('insertHtml',oNode.outerHTML);
-                return true;
-            } catch ( e ) {
-                try {
-                    editor.execCommand('error');
-                } catch ( e ) {
-                    alert('控件异常，请到 [雷劈网] 反馈或寻求帮助！');
-                }
+
+        dialog.oncancel = function () {
+            if( UE.plugins[thePlugins].editdom ) {
+                delete UE.plugins[thePlugins].editdom;
+            }
+        };
+        dialog.onok = function (){
+            if ( $G('orgname').value == '' ) {
+                alert('控件名称不能为空');
                 return false;
             }
-    } else {
-        var norgname = oNode.getAttribute('name').replace(/\"/g,"&quot;");
-        var oNewNode = null;
-        domUtils.remove(oNode,false);  //删除当前控件，再创建一个新的
-        /*
-        if ( $G('orgtype').value.indexOf('sys_list') > 0 ) {
-            oNewNode = document.createElement("select");
-            var objOption = new Option('{macros}', '');
-            oNewNode.options[oNewNode.options.length] = objOption;
-        }*/
-        oNewNode = createElement('input','leipiNewField');
-        oNewNode.setAttribute('type','text');
-        oNewNode.setAttribute('value','{macros}');
-        oNewNode.setAttribute('title',gTitle);
-        oNewNode.setAttribute('name',norgname);
-        oNewNode.setAttribute('leipiPlugins',thePlugins ); 
-        oNewNode.setAttribute('orgtype',gType); 
-        if( $G('orghide').checked ) {
-            oNewNode.setAttribute('orghide', '1' ) ;
-        } else {
-            oNewNode.setAttribute('orghide', '0' ) ;
-        }
-        if( gFontSize != '' ) {
-            oNewNode.style.fontSize = gFontSize + 'px';
-            oNewNode.setAttribute('orgfontsize',gFontSize );
-        }else{
-            oNewNode.setAttribute('orgfontsize', '');
-        }
-        if( gWidth != '' ) {
-            oNewNode.style.width = gWidth + 'px';
-            oNewNode.setAttribute('orgwidth',gWidth );
-        }else{
-            oNewNode.setAttribute('orgwidth', '');
-        }
-        editor.execCommand('insertHtml',oNewNode.outerHTML);
-        delete UE.plugins[thePlugins].editdom;
-    }
-};
+            var gTitle=$G('orgname').value.replace(/\"/g,"&quot;"),gFontSize=$G('orgfontsize').value,gWidth=$G('orgwidth').value,gType=$G('datafld').value;
+            if( !oNode ) {
+                try {
+                    /*
+                     if ( $G('datafld').value.indexOf('sys_list')>0 ) {
+                     oNode = document.createElement("select");
+                     var objOption = new Option('{macros}', '');
+                     oNode.options[oNode.options.length] = objOption;
+                     } else {
+                     //input
+                     }*/
+                    oNode = createElement('input','leipiNewField');
+                    oNode.setAttribute('type','text');
+                    oNode.setAttribute('value','{macros}');
+                    oNode.setAttribute('class', "AUTO  form_item ");
+                    oNode.setAttribute('data-type', "text");
+                    oNode.setAttribute('title',gTitle);
+                    oNode.setAttribute('name','DATA_'+dataid);
+                    oNode.setAttribute('id','DATA_'+dataid);
+                    oNode.setAttribute('datafld',gType);
+                    if( $G('orghide').checked ) {
+                        oNode.setAttribute('orghide', '1' ) ;
+                    } else {
+                        oNode.setAttribute('orghide', '0' ) ;
+                    }
+                    if( gFontSize != '' ) {
+                        oNode.style.fontSize = gFontSize + 'px';
+                        oNode.setAttribute('orgfontsize',gFontSize );
+                    }
+                    if( gWidth != '' ) {
+                        oNode.style.width = gWidth + 'px';
+                        oNode.setAttribute('orgwidth',gWidth );
+                    }
+                    editor.execCommand('insertHtml',oNode.outerHTML);
+                    return true;
+                } catch ( e ) {
+                    try {
+                        editor.execCommand('error');
+                    } catch ( e ) {
+                        alert('控件异常，请到 [雷劈网] 反馈或寻求帮助！');
+                    }
+                    return false;
+                }
+            } else {
+                var norgname = oNode.getAttribute('name').replace(/\"/g,"&quot;");
+                var oNewNode = null;
+                domUtils.remove(oNode,false);  //删除当前控件，再创建一个新的
+                /*
+                 if ( $G('datafld').value.indexOf('sys_list') > 0 ) {
+                 oNewNode = document.createElement("select");
+                 var objOption = new Option('{macros}', '');
+                 oNewNode.options[oNewNode.options.length] = objOption;
+                 }*/
+                oNewNode = createElement('input','leipiNewField');
+                oNode.setAttribute('type','text');
+                oNode.setAttribute('value','{macros}');
+                oNode.setAttribute('class', "AUTO  form_item ");
+                oNode.setAttribute('data-type', "text");
+                oNode.setAttribute('title',gTitle);
+                oNode.setAttribute('name','DATA_'+dataid);
+                oNode.setAttribute('id','DATA_'+dataid);
+                oNode.setAttribute('datafld',gType);
+                if( $G('orghide').checked ) {
+                    oNewNode.setAttribute('orghide', '1' ) ;
+                } else {
+                    oNewNode.setAttribute('orghide', '0' ) ;
+                }
+                if( gFontSize != '' ) {
+                    oNewNode.style.fontSize = gFontSize + 'px';
+                    oNewNode.setAttribute('orgfontsize',gFontSize );
+                }else{
+                    oNewNode.setAttribute('orgfontsize', '');
+                }
+                if( gWidth != '' ) {
+                    oNewNode.style.width = gWidth + 'px';
+                    oNewNode.setAttribute('orgwidth',gWidth );
+                }else{
+                    oNewNode.setAttribute('orgwidth', '');
+                }
+                editor.execCommand('insertHtml',oNewNode.outerHTML);
+                delete UE.plugins[thePlugins].editdom;
+            }
+        };
+
+    });
+
 </script>
 </body>
 </html>

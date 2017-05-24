@@ -316,8 +316,8 @@ public class Users {
 	private String companyName;
    
 	private  SysPara para; 
-
-
+	
+	
 	public String getShowRss() {
 		return showRss;
 	}

@@ -64,13 +64,13 @@
                     </th>
                     <th width="8%">用户名</th>
                     <th width="8%">真实姓名</th>
-                    <th width="6%">部门</th>
-                    <th width="6%">排班</th>
-                    <th width="6%">角色</th>
+                    <th width="8%">部门</th>
+                    <th width="8%">排班</th>
+                    <th width="8%">角色</th>
                     <th width="8%">管理范围</th>
-                    <th width="20%">最后访问</th>
+                    <th width="18%">最后访问</th>
                     <th width="10%">闲置</th>
-                    <th width="22%">操作</th>
+                    <th width="18%">操作</th>
                 </tr>
 
             </table>
@@ -134,6 +134,7 @@
 
         //部门人员树状图方法
         function getChDept(element,deptId){
+
             $.ajax({
                 url:'/department/getChDept',
                 type:'get',
@@ -172,6 +173,7 @@
 
         //人员列表展示
         function deptById(id,element){
+            $('.tab').find('.userData').remove();
             $.ajax({
                 url:'/user/getByDeptId',
                 type:'get',
@@ -181,9 +183,9 @@
                     var data1=rsp.obj;
                     var str='';
                     for(var i=0;i<data1.length;i++){
-                        str+='<tr><td><input type="checkbox" name="checkbox" id="checkboxs" value="" style="width:13px;height:13px;" /></td>'+
+                        str+='<tr class="userData"><td><input type="checkbox" name="checkbox" id="checkboxs" value="" style="width:13px;height:13px;" /></td>'+
                             '<td>用户名</td><td>用户名</td><td>用户名</td><td>用户名</td><td>用户名</td><td>用户名</td>'+
-                            '<td>用户名</td><td>用户名</td><td><a href="javascript:;">编辑</a><a href="javascript:;">菜单权限查看 </a></td></tr>';
+                            '<td>用户名</td><td>用户名</td><td><a href="javascript:;" style="margin-right: 5px;">编辑</a><a href="javascript:;">菜单权限查看 </a></td></tr>';
                     }
                     element.after(str);
                 }
