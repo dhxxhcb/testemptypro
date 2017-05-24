@@ -159,7 +159,7 @@
         }
 
         .new_excell_main {
-            width: 332px;
+            width: 286px;
             height: 181px;
             border: 1px solid #ddd;
             margin: auto;
@@ -173,7 +173,7 @@
 			float:left;
 			}
         .new_excell {
-            width: 360px;
+            width: 300px;
             height: 191px;
             float:left;
 			margin-left: 0px;
