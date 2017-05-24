@@ -33,7 +33,7 @@
             <li><span class="spanTxt">排序</span></li>
             <li>新建</li>
             <li>导出</li>
-            <li><img src="img/refesh.png"/></li>
+            <li><img src="../img/spirit/refesh.png"/></li>
         </ul>
     </div>
     <div class="noteMain">

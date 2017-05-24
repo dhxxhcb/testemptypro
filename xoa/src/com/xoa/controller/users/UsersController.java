@@ -56,7 +56,7 @@ public class UsersController {
 	 * @return     ToJson<Users>  返回显示信息
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/user/addUser",method = RequestMethod.GET)
+	@RequestMapping(value = "/user/addUser",method = RequestMethod.POST)
     public ToJson<Users> addUser(Users user,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
