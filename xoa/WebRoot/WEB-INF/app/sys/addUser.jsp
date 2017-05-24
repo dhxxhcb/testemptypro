@@ -39,14 +39,32 @@
             $('#trOther').click(function(){
                 $('.otherOption').toggle();
             })
-
-
-            var radioValOA=$('input:radio[name="notLogin"]:checked').val();
-            var radioValOther=$('input:radio[name="notMobileLogin"]:checked').val();
-
-
+           /* var radioValOA=$('input:radio[name="notLogin"]:checked').val();
+            var radioValOther=$('input:radio[name="notMobileLogin"]:checked').val();*/
 
             $('#btn1').click(function(){
+                if($('input[name="userId"]').val()==''){
+                    alert('请填写用户名');
+                    return;
+                }
+                if($('input[name="userName"]').val()==''){
+                    alert('请填写真实姓名');
+                    return;
+                }
+                var notLogin=$('input:radio[name="notLogin"]:checked').val();
+                var notMobileLogin=$('input:radio[name="notMobileLogin"]:checked').val();
+                var isLunar='';
+                var mobilNoHidden='';
+                if($('input[name="isLunar"]').prop('checked')==true){
+                    isLunar=1;
+                }else{
+                    isLunar=0;
+                }
+                if($('input[name="mobilNoHidden"]').prop('checked')==true){
+                    mobilNoHidden=0;
+                }else{
+                    mobilNoHidden=1;
+                }
                 var data= {
                     'userId': $('input[name="userId"]').val(),
                     'userName': $('input[name="userName"]').val(),
@@ -55,8 +73,18 @@
                     'userNo': $('input[name="userNo"]').val(),
                     'postPriv': $('select[name="postPriv"] option:checked').val(),
                     'imRange': $('select[name="imRange"] option:checked').val(),
-                    'notLogin': radioValOA,
-                    'notMobileLogin': radioValOther
+                    'notLogin': notLogin,
+                    'notMobileLogin': notMobileLogin,
+                    'bindIp':$('#bindIp').val(),
+                    'remark':$('#remark').val(),
+                    'password':$('input[name="password"]').val(),
+                    'sex':$('select[name="sex"] option:checked').val(),
+                    'birthday':$('input[name="birthday"]').val(),
+                    'isLunar':isLunar,
+                    'mobilNo':$('input[name="mobilNo"]').val(),
+                    'mobilNoHidden':mobilNoHidden,
+                    'email':$('input[name="email"]').val(),
+                    'telNoDept':$('input[name="telNoDept"]').val()
                 }
                 $.ajax({
                     type:'post',
@@ -64,7 +92,12 @@
                     dataType:'json',
                     data:data,
                     success:function(rsp){
-                        console.log(rsp.flag);
+                        if(rsp.flag == true){
+                            alert('新建成功');
+                            parent.location.reload();
+                        }else{
+                            alert('新建失败');
+                        }
                     }
                 })
             })
@@ -261,7 +294,7 @@
                         <tr>
                             <td width="15%">绑定IP地址：</td>
                             <td width="70%">
-                                <textarea name="txt" id="senduser3" user_id='admin' value="admin" style="height: 30px;min-height: 30px;"></textarea>
+                                <textarea name="txt" id="bindIp" value="" style="height: 30px;min-height: 30px;"></textarea>
                                 <p>为空则该用户不绑定固定的IP地址，绑定多个IP地址用英文逗号(,)隔开</p>
                                 <p>也可以绑定IP段，如“192.168.0.60,192.168.0.100-192.168.0.200”</p>
                                 <p>表示192.168.0.60或192.168.0.100到192.168.0.200这个范围内都可以登录</p>
@@ -270,7 +303,7 @@
                         <tr>
                             <td width="15%">备注：</td>
                             <td width="70%">
-                                <textarea name="txt" id="senduser4" user_id='admin' value="admin" style="height: 30px;min-height: 30px;"></textarea>
+                                <textarea name="txt" id="remark" value="" style="height: 30px;min-height: 30px;"></textarea>
                             </td>
                         </tr>
                     </table>
@@ -369,7 +402,7 @@
                         <tr>
                             <td width="15%">密码：</td>
                             <td width="70%">
-                                <input type="password" name="SUMMARY" value="">
+                                <input type="password" name="password" value="">
                                 <span>8-20位，必须同时包含字母和数字</span>
                             </td>
                         </tr>
@@ -377,8 +410,8 @@
                             <td width="15%">性别：</td>
                             <td width="70%">
                                 <select name="sex">
-                                    <option value="01">男</option>
-                                    <option value="01">女</option>
+                                    <option value="0">男</option>
+                                    <option value="1">女</option>
                                 </select>
                             </td>
                         </tr>
@@ -386,8 +419,8 @@
                             <td width="15%">生日：</td>
                             <td width="70%">
                     <span class="spanChech">
-                        <input type="text" name="SUMMARY" value="">
-                        <input type="checkbox" name="SUMMARY" value="">
+                        <input type="text" name="birthday" value="">
+                        <input type="checkbox" name="isLunar" value="">
                         <span>是农历生日</span>
                     </span>
                             </td>
@@ -408,24 +441,24 @@
                         <tr>
                             <td width="15%">手机：</td>
                             <td width="70%">
-                                <input type="text" name="SUMMARY" value="">
+                                <input type="text" name="mobilNo" value="">
                                 <span class="spanChech">
-                        <input type="checkbox" name="SUMMARY" value="">
-                        <span>手机号码不公开</span>
-                        <p>填写后可接收OA系统发送的手机短信，手机号码不公开仍可接收短信</p>
-                    </span>
+                                    <input type="checkbox" name="mobilNoHidden" value="">
+                                    <span>手机号码不公开</span>
+                                    <p>填写后可接收OA系统发送的手机短信，手机号码不公开仍可接收短信</p>
+                                </span>
                             </td>
                         </tr>
                         <tr>
                             <td width="15%">电子邮件：</td>
                             <td width="70%">
-                                <input type="email" name="SUMMARY" value="">
+                                <input type="email" name="email" value="">
                             </td>
                         </tr>
                         <tr>
                             <td width="15%">工作电话：</td>
                             <td width="70%">
-                                <input type="text" name="SUMMARY" value="">
+                                <input type="text" name="telNoDept" value="">
                             </td>
                         </tr>
                     </table>
