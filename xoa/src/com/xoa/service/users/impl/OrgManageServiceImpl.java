@@ -77,4 +77,16 @@ public class OrgManageServiceImpl implements OrgManageService {
         orgManageMapper.editOrgManage(orgManage);
     }
 
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/24 18:50
+    *@函数介绍:  添加分公司
+    *@参数说明:  @param orgManage
+    *@return:   void
+    **/
+    @Override
+    public void addOrgManage(OrgManage orgManage) {
+        orgManageMapper.addOrgManage(orgManage);
+    }
+
 }
