@@ -6,19 +6,11 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%--
-  Created by IntelliJ IDEA.
-  User: gsubo
-  Date: 2017/5/22
-  Time: 17:30
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>新建工作</title>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8 ? MYOA_CHARSET : htmlspecialchars($HTML_PAGE_CHARSET))?>" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
@@ -53,7 +45,9 @@
         </div>
     </div>
     <div class="cont" id="client">
+        <div class="cont_form">
 
+        </div>
     </div>
     <div class="foot">
         <div class="foot_left">
@@ -76,6 +70,22 @@
 </div>
 </body>
 </html>
+<script>
+    /*$('.abs_right ul').on('click','li',function(){
+        $('#tab_t li').removeClass('act');
+        $(this).addClass('act');
+    })*/
+    /*$('#tab_t ul').on('click','li',function(){
+        console.log('111');
+        $('#tab_t li').removeClass('act');
+        $(this).addClass('act');
+        if($(this).attr('id')==me){
+            initList_share('d');
+        }else{
+            initList_me('d');
+        }
+    })*/
+</script>
 <script>
     autodivheight();
     function autodivheight(){
