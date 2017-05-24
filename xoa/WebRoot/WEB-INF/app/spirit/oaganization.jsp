@@ -34,7 +34,6 @@
                 $(this).removeClass('slideUp').addClass('slideDown');
                 $(this).find('.ulThree').slideDown();
             }
-
         })
     })
 </script>
@@ -46,44 +45,44 @@
             <li>分组</li>
             <li>最近</li>
             <li>群组</li>
-            <li><img src="img/refesh.png"/></li>
+            <li><img src="../img/spirit/refesh.png"/></li>
         </ul>
     </div>
     <div class="mainCont">
         <ul class="ulOne">
             <li>
-                <span><img src="img/icon_company.png"/></span>
+                <span><img src="../img/spirit/icon_company.png"/></span>
                 <span class="spanFirst">心通达OA</span>
             </li>
             <li>
                 <ul class="ulTwo">
-                    <li class="slideUp"><img src="img/icon_department.png"/><span>管理部</span>
+                    <li class="slideUp"><img src="../img/spirit/icon_department.png"/><span>管理部</span>
                         <ul class="ulThree" style="display: none;">
-                            <li><img src="img/icon_man.png"/><span>云云</span></li>
-                            <li><img src="img/icon_woman.png"/><span>李云</span></li>
+                            <li><img src="../img/spirit/icon_man.png"/><span>云云</span></li>
+                            <li><img src="../img/spirit/icon_woman.png"/><span>李云</span></li>
                         </ul>
                     </li>
                 </ul>
             </li>
             <li>
                 <ul class="ulTwo">
-                    <li class="slideUp"><img src="img/icon_department.png"/><span>技术研究院</span>
+                    <li class="slideUp"><img src="../img/spirit/icon_department.png"/><span>技术研究院</span>
                         <ul class="ulThree" style="display: none;">
-                            <li><img src="img/icon_man.png"/><span>王云</span></li>
-                            <li><img src="img/icon_woman.png"/><span>马云</span></li>
-                            <li><img src="img/icon_man.png"/><span>云云</span></li>
+                            <li><img src="../img/spirit/icon_man.png"/><span>王云</span></li>
+                            <li><img src="../img/spirit/icon_woman.png"/><span>马云</span></li>
+                            <li><img src="../img/spirit/icon_man.png"/><span>云云</span></li>
                         </ul>
                     </li>
                 </ul>
             </li>
             <li>
                 <ul class="ulTwo">
-                    <li class="slideUp"><img src="img/icon_department.png"/><span>研发部</span></li>
+                    <li class="slideUp"><img src="../img/spirit/icon_department.png"/><span>研发部</span></li>
                 </ul>
             </li>
             <li>
                 <ul class="ulTwo">
-                    <li class="slideUp"><img src="img/icon_department.png"/><span>市场部</span></li>
+                    <li class="slideUp"><img src="../img/spirit/icon_department.png"/><span>市场部</span></li>
                 </ul>
             </li>
         </ul>
