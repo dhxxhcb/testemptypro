@@ -313,6 +313,82 @@ UE.plugins['radios'] = function () {
     });
 };
 /**
+ * 复选框组
+ * @command checkboxs
+ * @method execCommand
+ * @param { String } cmd 命令字符串
+ * @example
+ * ```javascript
+ * editor.execCommand( 'checkboxs');
+ * ```
+ */
+UE.plugins['checkboxs'] = function () {
+    var me = this,thePlugins = 'checkboxs';
+    me.commands[thePlugins] = {
+        execCommand:function () {
+            var dialog = new UE.ui.Dialog({
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/checkboxs.html?dataid='+(pluginId++),
+                name:thePlugins,
+                editor:this,
+                title: '复选框组',
+                cssRules:"width:600px;height:400px;",
+                buttons:[
+                    {
+                        className:'edui-okbutton',
+                        label:'确定',
+                        onclick:function () {
+                            dialog.close(true);
+                        }
+                    },
+                    {
+                        className:'edui-cancelbutton',
+                        label:'取消',
+                        onclick:function () {
+                            dialog.close(false);
+                        }
+                    }]
+            });
+            dialog.render();
+            dialog.open();
+        }
+    };
+    var popup = new baidu.editor.ui.Popup( {
+        editor:this,
+        content: '',
+        className: 'edui-bubble',
+        _edittext: function () {
+            baidu.editor.plugins[thePlugins].editdom = popup.anchorEl;
+            me.execCommand(thePlugins);
+            this.hide();
+        },
+        _delete:function(){
+            if( window.confirm('确认删除该控件吗？') ) {
+                baidu.editor.dom.domUtils.remove(this.anchorEl,false);
+            }
+            this.hide();
+        }
+    } );
+    popup.render();
+    me.addListener( 'mouseover', function( t, evt ) {
+        evt = evt || window.event;
+        var el = evt.target || evt.srcElement;
+        var leipiPlugins = el.getAttribute('plugins');
+        if ( /span/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
+            var html = popup.formatHtml(
+                '<nobr>复选框组: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
+            if ( html ) {
+                var elInput = el.getElementsByTagName("input");
+                var rEl = elInput.length>0 ? elInput[0] : el;
+                popup.getDom( 'content' ).innerHTML = html;
+                popup.anchorEl = el;
+                popup.showAnchor( rEl);
+            } else {
+                popup.hide();
+            }
+        }
+    });
+};
+/**
  * 宏控件
  * @command macros
  * @method execCommand
@@ -539,82 +615,7 @@ UE.plugins['checkbox'] = function () {
 };
 */
 
-/**
- * 复选框组
- * @command checkboxs
- * @method execCommand
- * @param { String } cmd 命令字符串
- * @example
- * ```javascript
- * editor.execCommand( 'checkboxs');
- * ```
- */
-UE.plugins['checkboxs'] = function () {
-    var me = this,thePlugins = 'checkboxs';
-    me.commands[thePlugins] = {
-        execCommand:function () {
-            var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/checkboxs.html',
-                name:thePlugins,
-                editor:this,
-                title: '复选框组',
-                cssRules:"width:600px;height:400px;",
-                buttons:[
-                {
-                    className:'edui-okbutton',
-                    label:'确定',
-                    onclick:function () {
-                        dialog.close(true);
-                    }
-                },
-                {
-                    className:'edui-cancelbutton',
-                    label:'取消',
-                    onclick:function () {
-                        dialog.close(false);
-                    }
-                }]
-            });
-            dialog.render();
-            dialog.open();
-        }
-    };
-    var popup = new baidu.editor.ui.Popup( {
-        editor:this,
-        content: '',
-        className: 'edui-bubble',
-        _edittext: function () {
-              baidu.editor.plugins[thePlugins].editdom = popup.anchorEl;
-              me.execCommand(thePlugins);
-              this.hide();
-        },
-        _delete:function(){
-            if( window.confirm('确认删除该控件吗？') ) {
-                baidu.editor.dom.domUtils.remove(this.anchorEl,false);
-            }
-            this.hide();
-        }
-    } );
-    popup.render();
-    me.addListener( 'mouseover', function( t, evt ) {
-        evt = evt || window.event;
-        var el = evt.target || evt.srcElement;
-        var leipiPlugins = el.getAttribute('plugins');
-        if ( /span/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
-            var html = popup.formatHtml(
-                '<nobr>复选框组: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
-            if ( html ) {
-                var elInput = el.getElementsByTagName("input");
-                var rEl = elInput.length>0 ? elInput[0] : el;
-                popup.getDom( 'content' ).innerHTML = html;
-                popup.anchorEl = el;
-                popup.showAnchor( rEl);
-            } else {
-                popup.hide();
-            }
-        }
-    });
-};
+
 
 
 /**
