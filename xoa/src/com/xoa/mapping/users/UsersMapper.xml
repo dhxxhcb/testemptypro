@@ -1097,6 +1097,58 @@
 	<delete id="deleteUser">
 		DELETE FROM user WHERE UID = #{uid}
 	</delete>
+<insert id="insert"  parameterType="com.xoa.model.users.Users"  useGeneratedKeys="true" keyProperty="uid">
+    insert into user (USER_ID, USER_NAME, 
+      USER_NAME_INDEX, BYNAME, USEING_KEY, 
+      USING_FINGER, PASSWORD, KEY_SN, 
+      SECURE_KEY_SN, USER_PRIV, USER_PRIV_NO, 
+      USER_PRIV_NAME, POST_PRIV, POST_DEPT, 
+      DEPT_ID, DEPT_ID_OTHER, SEX, 
+      BIRTHDAY, IS_LUNAR, TEL_NO_DEPT, 
+      FAX_NO_DEPT, ADD_HOME, POST_NO_HOME, 
+      TEL_NO_HOME, MOBIL_NO, BP_NO, 
+      EMAIL, OICQ_NO, ICQ_NO, 
+      MSN, AVATAR, CALL_SOUND, 
+      LAST_VISIT_TIME, SMS_ON, MENU_TYPE, 
+      LAST_PASS_TIME, THEME, PORTAL, 
+      PANEL, ONLINE, ON_STATUS, 
+      ATTEND_STATUS, MOBIL_NO_HIDDEN, MYTABLE_LEFT, 
+      MYTABLE_RIGHT, USER_PRIV_OTHER, USER_NO, 
+      NOT_LOGIN, NOT_VIEW_USER, NOT_VIEW_TABLE, 
+      NOT_SEARCH, BKGROUND, BIND_IP, 
+      LAST_VISIT_IP, MENU_IMAGE, WEATHER_CITY, 
+      SHOW_RSS, MENU_EXPAND, MY_STATUS, 
+      LIMIT_LOGIN, PHOTO, IM_RANGE, 
+      LEAVE_TIME, SECRET_LEVEL, NOT_MOBILE_LOGIN, 
+      MANAGE_MODULE_TYPE, USER_PRIV_TYPE, USER_MANAGE_ORGS, 
+      SHORTCUT, MY_RSS, REMARK, 
+      USER_PARA)
+    values ( #{userId}, #{userName}, 
+      #{userNameIndex}, #{byname}, #{useingKey}, 
+      #{usingFinger}, #{password}, #{keySn}, 
+      #{secureKeySn}, #{userPriv}, #{userPrivNo}, 
+      #{userPrivName}, #{postPriv}, #{postDept}, 
+      #{deptId}, #{deptIdOther}, #{sex}, 
+      #{birthday}, #{isLunar}, #{telNoDept}, 
+      #{faxNoDept}, #{addHome}, #{postNoHome}, 
+      #{telNoHome}, #{mobilNo}, #{bpNo}, 
+      #{email}, #{oicqNo}, #{icqNo}, 
+      #{msn}, #{avatar}, #{callSound}, 
+      #{lastVisitTime}, #{smsOn}, #{menuType}, 
+      #{lastPassTime}, #{theme}, #{portal}, 
+      #{panel}, #{online}, #{onStatus}, 
+      #{attendStatus}, #{mobilNoHidden}, #{mytableLeft}, 
+      #{mytableRight}, #{userPrivOther}, #{userNo}, 
+      #{notLogin}, #{notViewUser}, #{notViewTable}, 
+      #{notSearch}, #{bkground}, #{bindIp}, 
+      #{lastVisitIp}, #{menuImage}, #{weatherCity}, 
+      #{showRss}, #{menuExpand}, #{myStatus}, 
+      #{limitLogin}, #{photo}, #{imRange}, 
+      #{leaveTime}, #{secretLevel}, #{notMobileLogin}, 
+      #{manageModuleType}, #{userPrivType}, #{userManageOrgs}, 
+      #{shortcut}, #{myRss}, #{remark}, 
+      #{userPara})
+  </insert>
 </mapper>
 
 
