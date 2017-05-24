@@ -333,10 +333,25 @@ html,body,.content{
     padding-right: 260px;
 }
 .form_group .addfile{
-    width: 75px;
+    /*background: url("../../../img/workflow/flowsetting/icon_plus_03.png") no-repeat;*/
+    width: 70px;
+    padding: 0 22px;
+}
+.form_icon{
+    position: relative;
+}
+.form_group .icon_plus{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url("../../../img/workflow/flowsetting/icon_plus_03.png") no-repeat 0 0;
+    position: absolute;
+    top: 10px;
+    margin: 0 10px;
 }
 .form_group .appendfile{
-    width: 186px;
+    width: 134px;
+    padding-left: 24px;
 }
 
 

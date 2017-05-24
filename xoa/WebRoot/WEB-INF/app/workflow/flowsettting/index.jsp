@@ -86,7 +86,7 @@
                         <div class="form_group">
                             <label for="deptName" class="flowName">所属部门 <span class="save">*</span></label>
                             <select name="" id="deptName" class="depName">
-                                <option value="1" checked="checked"><%--系统(仅有系统管理员管理)--%></option>
+                                <option value="1"><%--系统(仅有系统管理员管理)--%></option>
                                 <option value="2"><%--系统(仅有系统管理员管理--%></option>
                                 <option value="3"><%--系统(仅有系统管理员管理)--%></option>
                             </select>
@@ -186,10 +186,10 @@
                                 class="notable">暂无</span>
 
                         </div>
-                        <div class="form_group">
+                        <div class="form_group form_icon">
                             <label for="counteer" class="flowName">上传附件<span class="save">*</span></label>
-                            <input type="text" value="上传附件" class="addfile">
-                            <input type="text" value="从文件柜选择附件" class="appendfile">
+                            <i class="icon_plus"></i><input type="text" value="上传附件" class="addfile">
+                            <i class="icon_plus"></i><input type="text" value="从文件柜选择附件" class="appendfile">
                         </div>
 
                     </div>
@@ -259,7 +259,7 @@
 
                 <thead>
                 <tr>
-                    <th class="check"><input type="checkbox" id="checkAll">全选</th>
+                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
                     <th>权限类型</th>
                     <th>授权范围</th>
                     <th>管理范围</th>
@@ -298,7 +298,7 @@
 
                 <thead>
                 <tr>
-                    <th class="check"><input type="checkbox" id="checkAll">全选</th>
+                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
                     <th>权限类型</th>
                     <th>授权范围</th>
                     <th>管理范围</th>
@@ -337,7 +337,7 @@
 
                 <thead>
                 <tr>
-                    <th class="check"><input type="checkbox" id="checkAll">全选</th>
+                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
                     <th>权限类型</th>
                     <th>授权范围</th>
                     <th>管理范围</th>
@@ -376,7 +376,7 @@
 
                 <thead>
                 <tr>
-                    <th class="check"><input type="checkbox" id="checkAll">全选</th>
+                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
                     <th>权限类型</th>
                     <th>授权范围</th>
                     <th>管理范围</th>
@@ -450,8 +450,7 @@
             url: "<%=basePath%>flow/selectAllFlow",
             dataType: "JSON",
             data: {
-                flowId: 2
-
+                flowId: ${flowId},
             },
             success: function (data) {
                 console.log(data)
@@ -459,7 +458,9 @@
                     $("#flowId").val(data.object.flowId);
                     $("#projectName").val(data.object.flowName);
                     $('#orderID').val(data.object.flowNo);
-                    $('#deptName option:selected').val(data.object.deptId);
+                    //$('#deptName').find("option:selected").text(data.object.deptId)
+                    //$('#deptName option:selected').text(data.object.deptId);
+//                    $('#deptName').find('option').eq(0).text()
 //                    console.log($('#deptName option:selected'))
 
 
@@ -470,16 +471,18 @@
         });
         $('.keepmsg').on('click', function () {
             var flowId = $("#flowId").val();
-            if (flowId != null || flowId != "") {
+            alert(flowId);
+
+            if (flowId == null || flowId == "") {
                 //保存
                 var data = {
                     flowName: $('#projectName').val(),
                     flowNo: $('#orderID').val(),
                     deptId: 1,
                     flowSort: 1,
-                    flowType: 1,
+                    flowType: '1',
                     formId: 117,
-                    freeOther: 2,
+                    freeOther: '2',
                     flowDoc:0,
                     autoNum:$('#counteer').val(),
                     autoLen:$('#figure').val(),
@@ -509,9 +512,9 @@
                     flowNo: $('#orderID').val(),
                     deptId: 1,
                     flowSort: 1,
-                    flowType: 1,
+                    flowType: '1',
                     formId: 117,
-                    freeOther: 2
+                    freeOther: '2'
                 };
 //                        ajax  补充完全
                 $.ajax({
@@ -520,7 +523,7 @@
                     dataType: 'json',
                     data: data,
                     success:function (data) {
-                    alert(data)
+                    alert(data.flag);
                     }
                 })
             }
@@ -535,12 +538,22 @@
 
             })
         });
+        /*管理权限查询*/
+        $.ajax({
+            type:'get',
+            url:"",
+            dataType:"json",
+            success:function (data) {
+                console.log(data);
+
+            }
+        })
         /*全选非全选*/
-        $('#checkAll').on('click', function () {
+        $('.checkAll').on('click', function () {
             $('.one').prop('checked', $(this).prop('checked'));
         });
         $('.one').click(function () {
-            $('#checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
+            $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
         })
     })
 
