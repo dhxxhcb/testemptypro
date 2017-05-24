@@ -176,7 +176,7 @@
             width: 300px;
             height: 191px;
             float:left;
-			margin-left: 0px;
+			margin-left:20px;
             margin-right:0px;
         }
 		
@@ -560,7 +560,7 @@
             })
             $(".foot_span_show").click(function () {
                 var formId = $(this).attr("formId");
-                window.open("../../workflow/work/workform?formId="+formId);
+                window.open("../../form/previews?formId="+formId);
 				
             })
             $(".deldel").click(function () {
@@ -714,7 +714,7 @@
         function renderDatas(data) {
            var html="";
            for(var i =0 ;i<data.length;i++){
-			     if(i%3==0) {html+='<div class="new_excell_center">';}
+			     //if(i%3==0) {html+='<div class="new_excell_center">';}
                  html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main" formId="'+data[i].formId+'" >'+
                     '<a class="set" formId="'+data[i].formId+'" title="编辑" href="javascript:void(0)"><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].formName+'</span></div>'+
@@ -747,7 +747,7 @@
                     '</div>'+
                     '</div>'+
                     '</div>';
-					if(i%3==2){html+='</div>';}
+					//if(i%3==2){html+='</div>';}
             }
 			$(".cont_rig").html(html);
         }
