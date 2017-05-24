@@ -3,6 +3,7 @@ package com.xoa.controller.workflow;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.xoa.model.workflow.TMacroCtrl;
 import com.xoa.service.workflow.flowformtype.FlowFormService;
 import com.xoa.service.workflow.wrapper.FlowFormWrappers;
 import com.xoa.util.common.wrapper.BaseWrapper;
@@ -128,6 +129,14 @@ public class FlowFormTypeController {
 	public BaseWrapper deleteForm(Integer formId){
 		return flowFormService.deleteForm(formId);
 	}
+
+	@RequestMapping(value = "qureyCtrl",produces = {"application/json;charset=UTF-8"})
+	public @ResponseBody ToJson<TMacroCtrl> qureyCtrl(String controlId,String SYS_LIST_DEPT, String SYS_LIST_USER, String SYS_LIST_PRIV,HttpServletRequest request){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return flowFormTypeService.qureyCtrl(controlId,SYS_LIST_DEPT,SYS_LIST_USER,SYS_LIST_PRIV,request);
+	}
+
 
 
 }

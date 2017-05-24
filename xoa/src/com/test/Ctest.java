@@ -67,7 +67,9 @@ public class Ctest {
 
 	@Test
 	public void test()throws  Exception{
-		FlowTypeModel flowTypeModel = new FlowTypeModel();
+		Date   curDate   =   new   Date(System.currentTimeMillis());//获取当前时间
+		System.out.print(DateFormat.getStrDate(curDate));
+		/*FlowTypeModel flowTypeModel = new FlowTypeModel();
 		flowTypeModel.setFlowName("测试修改");
 		flowTypeModel.setFlowNo(1);
 		flowTypeModel.setDeptId(1);
@@ -77,7 +79,7 @@ public class Ctest {
 		flowTypeModel.setFreeOther("2");
 		flowTypeModel.setFlowId(136);
 		ToJson<FlowTypeModel> toJson = flowTypeService.updateFlow(flowTypeModel);
-		System.out.println(toJson.getMsg());
+		System.out.println(toJson.getMsg());*/
 //		flowName: $('#projectName').val(),
 //				flowNo: $('#orderID').val(),
 //				deptId: 1,
