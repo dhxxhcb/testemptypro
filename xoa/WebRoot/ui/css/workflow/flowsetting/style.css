@@ -53,7 +53,6 @@ html,body,.content{
     width: 261px;
     height: 100%;
     background: #f5f7f8;
-    /*border-right: 1px solid #919191;*/
 }
 
 .cont_list .btn_h {
@@ -84,12 +83,6 @@ html,body,.content{
     position: absolute;
     top: 20px;
     right: 30px;
-    transition: All 0.4s ease-in-out;
-    -webkit-transition: All 0.4s ease-in-out;
-    -moz-transition: All 0.4s ease-in-out;
-    -o-transition: All 0.4s ease-in-out;
-
-
 }
 .cont_list .btn_h img {
     width: 12px;
@@ -99,6 +92,9 @@ html,body,.content{
 }
 
 .cont_list .btn_click:hover {
+    background: #c7e1ff;
+}
+.clickBack{
     background: #c7e1ff;
 }
 
@@ -272,9 +268,9 @@ html,body,.content{
     font-size: 16px;
     width: 278px;
     height: 26px;
-    border-radius: 4px;
     padding: 0 3px;
 }
+
 .form_group select{
     font-size: 16px;
 }
