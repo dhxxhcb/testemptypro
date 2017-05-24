@@ -245,7 +245,7 @@ font-weight:bold;
     .xiangdao h1:hover{
         color:#fe8562;
     }
-    #searchbtn,.rig_mid h1,.rig_rig h1{
+    #searchbtn,.rig_mid{
         cursor: pointer;
     }
 
@@ -597,6 +597,9 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
             url:'../../flow/flowAuthOrSearch',
             type:'get',
             dataType:'json',
+            data:{
+                sortId:sortId
+            },
             success:function(obj){
                 var data=obj.obj;
                 var str='';

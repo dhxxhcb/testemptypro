@@ -6,79 +6,95 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%--
+  Created by IntelliJ IDEA.
+  User: gsubo
+  Date: 2017/5/22
+  Time: 17:30
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
 <head>
-    <title>处理表单</title>
-    <link rel="stylesheet" href="../../css/workflow/work/form.css">
-    <%--<link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>--%>
-    <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="../../js/base/base.js"></script>
-    <script src="../../lib/laydate/laydate.js"></script>
+    <title>新建工作</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8 ? MYOA_CHARSET : htmlspecialchars($HTML_PAGE_CHARSET))?>" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../css/workflow/m_reset.css">
+    <link rel="stylesheet" type="text/css" href="../../css/workflow/work/new_work.css">
+    <script src="../js/base/base.js"></script>
 </head>
-<body>
-<div>
-    <div class="content">
-        <div class="formDesign">
 
+<style type="text/css">
+</style>
+
+<body>
+<div class="body">
+    <div class="head">
+        <div id="title" class="abs_left">
+            <h1 class="num">NO.767 督查督办</h1>
+            <h1 class="step">主办（第一步 : 督查内容填写 2017-5-24 13:58）</h1>
+            <select>
+                <option>普通</option>
+                <option>紧急</option>
+            </select>
+        </div>
+
+        <div class="abs_right">
+            <ul>
+                <li id="check">附件</li>
+                <li>会签</li>
+                <li>流程</li>
+                <li>关联</li>
+            </ul>
+        </div>
+    </div>
+    <div class="cont" id="client">
+
+    </div>
+    <div class="foot">
+        <div class="foot_left">
+            <ul>
+                <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">流程图</h1></li>
+                <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">委托</h1></li>
+                <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">打印</h1></li>
+                <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">其他</h1></li>
+            </ul>
+        </div>
+        <div class="foot_rig">
+            <ul>
+                <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">转交下一步</h1></li>
+                <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">保存</h1></li>
+                <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">保存返回</h1></li>
+                <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">其他</h1></li>
+            </ul>
         </div>
     </div>
 </div>
-
-<script>
-    $(function(){
-        var formid = $.getQueryString("formId");
-        var workForm = {
-            formhtmlurl : '../../form/formType',
-            render:function(){
-                this.bindDateEvent();
-            },
-            bindDateEvent:function(){
-                console.log( $('img.DATE').length);
-                //过滤老版本数据
-
-                var olddata = $('img.DATE');
-                for(var i=0;i< olddata.length;i++){
-                    var obj = olddata.eq(i);
-                    var objprev = obj.prev();
-                    var date_format =  obj.attr('date_format');
-                    var name = objprev.attr('name')
-                   // var laydate = 'laydate({istime: true,format:"YYYY-MM-DD hh:mm:ss"})';
-                    var laydate = 'laydate({istime: true})';
-                    var inputObj = '<div id="'+name+'" date_format="'+date_format+'" name="'+name+'"  style="'+objprev.attr('style')+'" title="'+objprev.attr('title')+'" class="laydate-icon form_item" onclick="'+laydate+'"></div>';
-
-                    olddata.eq(i).prev().remove();
-                    olddata.eq(i).before(inputObj);
-                    olddata.eq(i).remove();
-
-                }
-                $('img.DATE').prev().on("click",function(){
-                    console.log(22);
-                    laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})
-                })
-            },
-            buildHTML:function(target,formid){
-                var that = this;
-                $.ajax({
-                    type: "get",
-                    url: that.formhtmlurl,
-                    dataType: 'JSON',
-                    data: {
-                        fromId :formid
-                    },
-                    success: function (res) {
-
-                        target.html(res.object.printModel);
-                        that.render();
-                    }
-                });
-            }
-        }
-        workForm.buildHTML($('.formDesign'),formid);
-
-    })
-
-
-
-</script>
 </body>
 </html>
+<script>
+    autodivheight();
+    function autodivheight(){
+        var winHeight=0;
+        if (window.innerHeight)
+            winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;
+        if (document.documentElement && document.documentElement.clientHeight)
+            winHeight = document.documentElement.clientHeight;
+        winWidth = document.documentElement.clientWidth;
+        document.getElementById("client").style.height= winHeight - 104 +"px";
+        document.getElementById("client").style.width= winWidth  +"px";
+
+    }
+    window.onresize=autodivheight;
+
+</script>
+
+
+
+
