@@ -34,7 +34,7 @@ function createElement(type, name)
         <th><span>字段标题</span><span class="label label-important">*</span> </th>
     </tr>
     <tr>
-        <td><input type="text" id="fieldname" placeholder="必填项"></td>
+        <td><input type="text" id="fieldname" placeholder="必填项"><input type="hidden" id="fielid" placeholder="必填项"></td>
         <td><input type="text" id="orgname" placeholder="必填项"></td>
     </tr>
      <tr>
@@ -102,6 +102,7 @@ $(function(){
 	        gName = gName==null ? '' : gName;
 			$G('orgvalue').value = gValue;
 	        $G('fieldname').value = gTitle;
+            $G('fielid').value = gName;
             $G('orgname').value = gTitle;
 	        //$G('fieldname').value = gName;
 
@@ -127,7 +128,7 @@ $(function(){
 	        alert('请输入控件名称');
 	        return false;
 	    }
-	    var gValue=$G('orgvalue').value.replace(/\"/g,"&quot;"),gTitle=$G('orgname').value.replace(/\"/g,"&quot;"),gName=$G('fieldname').value,gFontSize=$G('orgfontsize').value,gAlign=$G('orgalign').value,gWidth=$G('orgwidth').value,gHeight=$G('orgheight').value,gType=$G('orgtype').value;
+	    var gValue=$G('orgvalue').value.replace(/\"/g,"&quot;"),gid=$G('fielid').value,gTitle=$G('orgname').value.replace(/\"/g,"&quot;"),gName=$G('fieldname').value,gFontSize=$G('orgfontsize').value,gAlign=$G('orgalign').value,gWidth=$G('orgwidth').value,gHeight=$G('orgheight').value,gType=$G('orgtype').value;
 	    
 	    if( !oNode ) {
 	        try {
@@ -171,7 +172,8 @@ $(function(){
             oNode.setAttribute('data-type', "text");
 	        oNode.setAttribute('title', gTitle);
 	        oNode.setAttribute('value', $G('orgvalue').value);
-	        oNode.setAttribute('name',gName);
+            oNode.setAttribute('name',gid);
+            oNode.setAttribute('id',gid);
             oNode.setAttribute('type',gType);
 	        if( $G('orghide').checked ) {
 	            oNode.setAttribute('hide', 1);
