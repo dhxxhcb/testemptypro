@@ -136,6 +136,7 @@ public class FlowTypeServiceImpl implements FlowTypeService {
         }catch (Exception e){
             toJson.setFlag(1);
             toJson.setMsg("error");
+            L.e("错误消息："+e);
         }
         return toJson;
     }

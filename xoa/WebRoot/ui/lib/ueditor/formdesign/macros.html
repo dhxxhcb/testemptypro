@@ -43,21 +43,50 @@ function createElement(type, name)
             </td>
             <td>
                 <select  id="orgtype" class="span7">
-                    <optgroup label="----常用日期宏控件----">
-                        <option value="sys_datetime">当前日期+时间 [ 1997-01-01 12:30 ]</option>
-                        <option value="sys_date">当前日期 [ 1997-01-01 ]</option>
-                        <option value="sys_date_cn">当前日期 [ 1997年1月1日 ]</option>
-                        <option value="sys_date_cn_short1">当前日期 [ 1997年1月 ]</option>
-                        <option value="sys_date_cn_short4">当前年份 [ 1997 ]</option>
-                        <option value="sys_date_cn_short3">当前年份 [ 1997年 ]</option>
-                        <option value="sys_date_cn_short2">当前日期 [ 1月1日 ]</option>
-                        <option value="sys_time">当前时间 [ 12:30 ]</option>
-                        <option value="sys_week">当前星期 [ 星期一 ]</option>
+                    <optgroup label="----单行输入框----">
+                        <option value="SYS_DATE">当前日期，形如：1999-01-01</option>
+                        <option value="SYS_DATE_CN">当前日期，形如：2009年1月1日</option>
+                        <option value="SYS_DATE_CN_SHORT3">当前日期，形如：2009年</option>
+                        <option value="SYS_DATE_CN_SHORT4">当前年份，形如：2009</option>
+                        <option value="SYS_DATE_CN_SHORT1">当前日期，形如：2009年1月</option>
+                        <option value="SYS_DATE_CN_SHORT2">当前日期，形如：1月1日</option>
+                        <option value="SYS_TIME">当前时间</option>
+                        <option value="SYS_DATETIME">当前日期+时间</option>
+                        <option value="SYS_WEEK">当前星期中的第几天，形如：星期一</option>
+                        <option value="SYS_USERID">当前用户ID</option>
+                        <option value="SYS_USERNAME">当前用户姓名</option>
+                        <option value="SYS_DEPTNAME">当前用户部门(长名称)</option>
+                        <option value="SYS_DEPTNAME_SHORT">当前用户部门(短名称)</option>
+                        <option value="SYS_USERPRIV">当前用户角色</option>
+                        <option value="SYS_USERPRIVOTHER">当前用户辅助角色</option>
+                        <option value="SYS_USERNAME_DATE">当前用户姓名+日期</option>
+                        <option value="SYS_USERNAME_DATETIME">当前用户姓名+日期+时间</option>
+                        <option value="SYS_FORMNAME">表单名称</option>
+                        <option value="SYS_RUNNAME">工作名称/文号</option>
+                        <option value="SYS_RUNDATE">流程开始日期</option>
+                        <option value="SYS_RUNDATETIME">流程开始日期+时间</option>
+                        <option value="SYS_RUNID">流水号</option>
+                        <option value="SYS_AUTONUM">文号计数器</option>
+                        <option value="SYS_AUTONUM_YEAR">文号计数器(按年编号)</option>
+                        <option value="SYS_AUTONUM_MONTH">文号计数器(按月编号)</option>
+                        <option value="SYS_IP">经办人IP地址</option>
+                        <option value="SYS_MANAGER1">部门主管(本部门)</option>
+                        <option value="SYS_MANAGER2">部门主管(上级部门)</option>
+                        <option value="SYS_MANAGER3">部门主管(一级部门)</option>
+                        <option value="SYS_SQL">来自SQL查询语句</option>
                     </optgroup>
-                    <optgroup label="----扩展定义----">
-                        <option value="sys_userid">当前用户ID，如 9527</option>
-                        <option value="sys_realname">当前用户姓名，如 唐伯虎</option>
-                        <option value="sys_dept">当前用户部门，如 华府</option>
+                    <optgroup label="----下拉菜单----">
+                        <option value="SYS_LIST_DEPT">部门列表</option>
+                        <option value="SYS_LIST_USER">人员列表</option>
+                        <option value="SYS_LIST_PRIV">角色列表</option>
+                        <option value="SYS_LIST_PRIV_ONLY">主角色列表</option>
+                        <option value="SYS_LIST_PRIV_OTHER">辅助角色列表</option>
+                        <option value="SYS_LIST_PRCSUSER1">流程设置所有经办人列表</option>
+                        <option value="SYS_LIST_PRCSUSER2">本步骤设置经办人列表</option>
+                        <option value="SYS_LIST_MANAGER1">部门主管(本部门)</option>
+                        <option value="SYS_LIST_MANAGER2">部门主管(上级部门)</option>
+                        <option value="SYS_LIST_MANAGER3">部门主管(一级部门)</option>
+                        <option value="SYS_LIST_SQL">来自SQL查询语句的列表</option>
                     </optgroup>
                 </select>
             </td>

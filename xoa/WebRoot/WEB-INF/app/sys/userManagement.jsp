@@ -68,9 +68,9 @@
                     <th width="6%">排班</th>
                     <th width="6%">角色</th>
                     <th width="8%">管理范围</th>
-                    <th width="26%">最后访问</th>
-                    <th width="16%">闲置</th>
-                    <th width="10%">操作</th>
+                    <th width="20%">最后访问</th>
+                    <th width="10%">闲置</th>
+                    <th width="22%">操作</th>
                 </tr>
 
             </table>
@@ -123,13 +123,16 @@
 
         $('#ULDown').on('click','.childdept',function(){
             var  that = $(this);
+            var deptid=that.attr('deptid');
             $('.childdept').removeClass('on');
             that.addClass('on')
-            getChDept(that.next(),that.attr('deptid'));
+            getChDept(that.next(),deptid);
             that.next().slideToggle();
+            deptById(deptid,$('.tr_befor'));
 
         })
 
+        //部门人员树状图方法
         function getChDept(element,deptId){
             $.ajax({
                 url:'/department/getChDept',
@@ -163,6 +166,26 @@
                         });
                     }
                     element.html(str);
+                }
+            })
+        }
+
+        //人员列表展示
+        function deptById(id,element){
+            $.ajax({
+                url:'/user/getByDeptId',
+                type:'get',
+                dataType:'json',
+                data:{'deptId':id},
+                success:function(rsp){
+                    var data1=rsp.obj;
+                    var str='';
+                    for(var i=0;i<data1.length;i++){
+                        str+='<tr><td><input type="checkbox" name="checkbox" id="checkboxs" value="" style="width:13px;height:13px;" /></td>'+
+                            '<td>用户名</td><td>用户名</td><td>用户名</td><td>用户名</td><td>用户名</td><td>用户名</td>'+
+                            '<td>用户名</td><td>用户名</td><td><a href="javascript:;">编辑</a><a href="javascript:;">菜单权限查看 </a></td></tr>';
+                    }
+                    element.after(str);
                 }
             })
         }

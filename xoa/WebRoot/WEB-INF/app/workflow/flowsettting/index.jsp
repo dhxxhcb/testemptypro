@@ -74,6 +74,7 @@
                     <div class="con_form">
                         <div class="form_group">
                             <label for="projectName" class="flowName">流程名称<span class="save">*</span></label>
+                            <input type="hidden" id="flowId">
                             <input type="text" id="projectName">
 
                         </div>
@@ -85,7 +86,9 @@
                         <div class="form_group">
                             <label for="deptName" class="flowName">所属部门 <span class="save">*</span></label>
                             <select name="" id="deptName" class="depName">
-                                <option value="">系统(仅有系统管理员管理)</option>
+                                <option value="1"><%--系统(仅有系统管理员管理)--%></option>
+                                <option value="2"><%--系统(仅有系统管理员管理--%></option>
+                                <option value="3"><%--系统(仅有系统管理员管理)--%></option>
                             </select>
 
                         </div>
@@ -183,10 +186,10 @@
                                 class="notable">暂无</span>
 
                         </div>
-                        <div class="form_group">
+                        <div class="form_group form_icon">
                             <label for="counteer" class="flowName">上传附件<span class="save">*</span></label>
-                            <input type="text" value="上传附件" class="addfile">
-                            <input type="text" value="从文件柜选择附件" class="appendfile">
+                            <i class="icon_plus"></i><input type="text" value="上传附件" class="addfile">
+                            <i class="icon_plus"></i><input type="text" value="从文件柜选择附件" class="appendfile">
                         </div>
 
                     </div>
@@ -203,34 +206,34 @@
                 </caption>
 
                 <thead>
-               <%-- <tr>
-                    <th class="check">序号</th>
-                    <th>名称</th>
-                    <th>下一步骤</th>
-                    <th>编辑该步骤的各项属性</th>
-                    <th>操作</th>
-                </tr>--%>
+                <%-- <tr>
+                     <th class="check">序号</th>
+                     <th>名称</th>
+                     <th>下一步骤</th>
+                     <th>编辑该步骤的各项属性</th>
+                     <th>操作</th>
+                 </tr>--%>
                 </thead>
-               <%-- <tr>
-                    <td>1</td>
-                    <td class="manage">督办内容填写</td>
-                    <td class="ordernum">2,4</td>
-                    <td class="cutout">基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>
-                    <td class="opp">
-                        <a href="javascript:void(0)">克隆</a>
-                        <a href="javascript:void(0)">删除</a>
-                    </td>
-                </tr>--%>
-               <%-- <tr>
-                    <td>2</td>
-                    <td class="management" style="text-align: center">部门负责人审批</td>
-                    <td>3,</td>
-                    <td style="text-align: center">基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>
-                    <td>
-                        <a href="javascript:void(0)">克隆</a>
-                        <a href="javascript:void(0)">删除</a>
-                    </td>
-                </tr>--%>
+                <%-- <tr>
+                     <td>1</td>
+                     <td class="manage">督办内容填写</td>
+                     <td class="ordernum">2,4</td>
+                     <td class="cutout">基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>
+                     <td class="opp">
+                         <a href="javascript:void(0)">克隆</a>
+                         <a href="javascript:void(0)">删除</a>
+                     </td>
+                 </tr>--%>
+                <%-- <tr>
+                     <td>2</td>
+                     <td class="management" style="text-align: center">部门负责人审批</td>
+                     <td>3,</td>
+                     <td style="text-align: center">基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>
+                     <td>
+                         <a href="javascript:void(0)">克隆</a>
+                         <a href="javascript:void(0)">删除</a>
+                     </td>
+                 </tr>--%>
                 <%--<tr>
                     <td>3</td>
                     <td class="management" style="text-align: center">总经理审核</td>
@@ -256,7 +259,7 @@
 
                 <thead>
                 <tr>
-                    <th class="check"><input type="checkbox" id="checkAll">全选</th>
+                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
                     <th>权限类型</th>
                     <th>授权范围</th>
                     <th>管理范围</th>
@@ -295,7 +298,7 @@
 
                 <thead>
                 <tr>
-                    <th class="check"><input type="checkbox" id="checkAll">全选</th>
+                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
                     <th>权限类型</th>
                     <th>授权范围</th>
                     <th>管理范围</th>
@@ -334,7 +337,7 @@
 
                 <thead>
                 <tr>
-                    <th class="check"><input type="checkbox" id="checkAll">全选</th>
+                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
                     <th>权限类型</th>
                     <th>授权范围</th>
                     <th>管理范围</th>
@@ -373,7 +376,7 @@
 
                 <thead>
                 <tr>
-                    <th class="check"><input type="checkbox" id="checkAll">全选</th>
+                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
                     <th>权限类型</th>
                     <th>授权范围</th>
                     <th>管理范围</th>
@@ -410,11 +413,12 @@
 </div>
 
 </body>
-<script src="../../js/jquery-1.10.2/jquery.min.js"></script>
+<script src="../../js/jquery-1.9.1.js"></script>
 
 <script type="text/javascript">
     $(function () {
         var $list = $('.cont_list li a');
+        /*设计步骤流程*/
         $.ajax({
             type: "get",
             url: "<%=basePath%>flowProcess/findFlowId",
@@ -424,66 +428,132 @@
             },
             success: function (data) {
                 if (data.flag) {
-                    console.log(data.obj);
                     var data = data.obj;
                     var html = "<tr><th>序号</th><th>名称</th><th>下一步骤</th><th>编辑该步骤的各项属性</th><th>操作</th></tr>";
-                    for(var i=0;i<data.length;i++){
+                    for (var i = 0; i < data.length; i++) {
 
-                        html=html+"<tr>"+"<td>"+data[i].prcsId+"</td>"+"<td>"+data[i].prcsName+"</td>"+
-                            "<td></td>"+"<td style='text-align: center'>基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>"+"<td>修改 删除</td>"+"</tr>";
+                        html = html + "<tr>" + "<td>" + data[i].prcsId + "</td>" + "<td>" + data[i].prcsName + "</td>" +
+                            "<td></td>" + "<td style='text-align: center'>基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>" + "<td>修改 删除</td>" + "</tr>";
 
                     }
                     $('#table_form').append(html);
-
-
-
-                    /* $.each($data, function (index, item) {
-                     $('.table').append("<tr><td>"+item[0].prcsId+"</td></tr>")
-                     })*/
-
 
                 }
 
 
             }
+        });
+
+        /*定义流程属性查询*/
+        $.ajax({
+            type: "GET",
+            url: "<%=basePath%>flow/selectAllFlow",
+            dataType: "JSON",
+            data: {
+                flowId: ${flowId},
+            },
+            success: function (data) {
+                console.log(data)
+                if (data.flag) {
+                    $("#flowId").val(data.object.flowId);
+                    $("#projectName").val(data.object.flowName);
+                    $('#orderID').val(data.object.flowNo);
+                    //$('#deptName').find("option:selected").text(data.object.deptId)
+                    //$('#deptName option:selected').text(data.object.deptId);
+//                    $('#deptName').find('option').eq(0).text()
+//                    console.log($('#deptName option:selected'))
+
+
+                }
+
+            }
+
+        });
+        $('.keepmsg').on('click', function () {
+            var flowId = $("#flowId").val();
+            alert(flowId);
+
+            if (flowId == null || flowId == "") {
+                //保存
+                var data = {
+                    flowName: $('#projectName').val(),
+                    flowNo: $('#orderID').val(),
+                    deptId: 1,
+                    flowSort: 1,
+                    flowType: '1',
+                    formId: 117,
+                    freeOther: '2',
+                    flowDoc:0,
+                    autoNum:$('#counteer').val(),
+                    autoLen:$('#figure').val(),
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '<%=basePath%>flow/newFlow',
+                    dataType: 'json',
+                    data: data,
+                    success: function (data) {
+                        console.log(data)
+                        if (data.flag) {
+                            alert("保存成功");
+                        } else {
+                            alert("保存失败");
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("数据源连接异常,请联系管理员");
+                    }
+                })
+            } else {
+                //修改|编辑
+                var data = {
+                    flowId: flowId,
+                    flowName: $('#projectName').val(),
+                    flowNo: $('#orderID').val(),
+                    deptId: 1,
+                    flowSort: 1,
+                    flowType: '1',
+                    formId: 117,
+                    freeOther: '2'
+                };
+//                        ajax  补充完全
+                $.ajax({
+                    type: "post",
+                    url: "<%=basePath%>flow/updateFlow",
+                    dataType: 'json',
+                    data: data,
+                    success:function (data) {
+                    alert(data.flag);
+                    }
+                })
+            }
         })
+
         $list.each(function (index, item) {
             $(item).click(function () {
+//                $("#cont_list li a").addClass('clickBack').siblings().removeClass("clickBack");
+//                e.preventDefault();
                 if (index == 1) $('.hide_list1').toggle();
                 $('.cont_r .item').eq(index).show().siblings().hide();
 
-                $('.keepmsg').on('click', function () {
-
-                    var data = {
-                        flowName: $('#projectName').val(),
-                        flowNo: $('#orderID').val(),
-                        deptId: 1,
-                        flowSort: 1,
-                        flowType: 1,
-                        formId: 117,
-                        freeOther: 2
-                    };
-                    $.ajax({
-                        type: 'POST',
-                        url: '<%=basePath%>flow/newFlow',
-                        dataType: 'json',
-                        data: data,
-                        success: function (data) {
-                            console.log(data)
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-
-                        }
-                    })
-                })
             })
         });
+        /*管理权限查询*/
+        $.ajax({
+            type:'get',
+            url:"",
+            dataType:"json",
+            success:function (data) {
+                console.log(data);
+
+            }
+        })
         /*全选非全选*/
-        $('#checkAll').on('click', function () {
+        $('.checkAll').on('click', function () {
             $('.one').prop('checked', $(this).prop('checked'));
         });
         $('.one').click(function () {
-            $('#checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
+            $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
         })
     })
 

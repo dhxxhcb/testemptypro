@@ -138,16 +138,16 @@ ul{list-style: none;}
 .tab table tr:nth-child(even){
 	background-color: #F6F7F9;
 }
-.tab table tr th,.UP_INBOX .tab table tr td{
+.tab table tr th,.tab table tr td{
 	padding:10px;
 }
-.tab table tr th.theme{
+.tab table tr th,.tab table tr td{
 	text-align: center;
 }
-.tab table .theme_a a{
+.tab table a{
 	text-decoration: none;
 	text-align: left;
-	display: block;
+	display: inline-block;
 	color:#2B7FE0;
 }
 .bottom {
