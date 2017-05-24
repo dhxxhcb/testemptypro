@@ -38,12 +38,13 @@ public class Test {
 //		List<String> result = new ArrayList<String>();
 //		String reg = "<" + "input" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>";
 		//String i1="<option\b(?=[^>]*value='([^']*)')(?:[^>]*([^']*)')?[^>]*>(.*?)</option>"+"<option(?=[^>]*value='([^']*)')(?:[^>]*([^']*)')?[^>]*>(.*?)</option>";
-//		String reg1 = "<" + "textarea" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>"+"</textarea>";
-		String reg1 = "<" + "option" + "[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?>"+"(.*?)";
+     	//String reg = "<" + "textarea" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>"+"</textarea>";
+		String reg1 = "<" + "select" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?"+"<option[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?>[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?</option>"+"</select>";
+			//String reg1 = "<option[^>]*?>[\\\\s\\\\S]*?<\\\\/option>";
 //		String reg1=""
 //		StringBuffer reg1 = new StringBuffer();
 //		if (source.matches("<input")){
-//			reg1.append( "<" + "input" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>");
+//			reg1.append( "<" + "input" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>");ss
 //		}else if (){
 //			reg1.append("<" + "textarea" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>"+"</textarea>");
 //
@@ -122,7 +123,7 @@ public class Test {
 					"    多行输入框：<textarea title=\"多行输入框\" rich=\"0\" style=\"\" name=\"DATA_2\"></textarea>\n" +
 					"</p>\n" +
 					"<p>\n" +
-					"    下拉菜单：<select title=\"下拉菜单\" name=\"DATA_3\">&nbsp;\n" +
+					"    下拉菜单：<select title=\"下拉菜单\" name=\"DATA_3\">" +
 					"    <option value=\"A项目\">\n" +
 					"        A项目\n" +
 					"    </option>\n" +
