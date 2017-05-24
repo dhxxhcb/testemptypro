@@ -88,11 +88,11 @@ public class WorkController {
 		Map<String, Object> maps=new HashMap<String, Object>();
 		 ToJson<FlowFast> tj=new ToJson<FlowFast>();
 		 ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
-	        PageParams pageParams = new PageParams();
+/*	        PageParams pageParams = new PageParams();
 	        pageParams.setUseFlag(false);
 	        pageParams.setPage(1);
 	        pageParams.setPageSize(5);
-	        maps.put("page", pageParams);
+	        maps.put("page", pageParams);*/
 	        maps.put("flowId", flowId);
 		toJson=flowTypeService.selectAllFlow(maps);
 		FlowTypeModel flowTypeModel=(FlowTypeModel) toJson.getObject();
@@ -116,6 +116,7 @@ public class WorkController {
 		flowRunPrcs.setUserId(userId);
 		flowRunPrcs.setPrcsDept(deptId);
 		//flowRunPrcs.setPrcsFlag(prcsFlag);
+		flowRunPrcs.setCreateTime(beginTime);
 		
 		
 		ToJson<FlowFormType> json=new ToJson<FlowFormType>();
