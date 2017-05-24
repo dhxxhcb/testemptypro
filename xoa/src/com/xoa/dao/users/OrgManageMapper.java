@@ -15,4 +15,6 @@ public interface OrgManageMapper {
 
 
     OrgManage getOrgManageById(Integer oid);
+
+    void addOrgManage(OrgManage orgManage);
 }
