@@ -23,7 +23,7 @@
 
 
 <div class="container" style="padding-top: 5px; padding-left: 5px;overflow: auto;">
-    <span class="title">请假申请单</span>
+    <span id="formtitle" class="title">请假申请单</span>
     <div class="title_nav" class="clearfix">
         <p class="nav-left">表单智能设计器:您需要先布局,才可以拖拽右侧的组件到左侧内容里设计工作流表单</p>
         <p class="nav-right">
@@ -84,7 +84,7 @@
                     var formid = $.getQueryString("formId")
                     var type = $.getQueryString("type")
                     $("#content .nav-list ").on("click",'a',function(){
-                        console.log($(this).attr('type'));
+
                         formDesign.exec($(this).attr('type'));
                     })
                 var formEditor = UE.getEditor('formEditor',{
@@ -119,6 +119,7 @@
                                 },
                                 success: function (res) {
                                     console.log(formEditor);
+                                    $('#formtitle').html(res.object.formName);
                                     formEditor.setContent(res.object.printModel,true);
                                 }
                             });
