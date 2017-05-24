@@ -560,7 +560,7 @@
             })
             $(".foot_span_show").click(function () {
                 var formId = $(this).attr("formId");
-                window.open("../../form/previews?formId="+formId);
+                window.open("../../workflow/work/workform?formId="+formId);
 				
             })
             $(".deldel").click(function () {
