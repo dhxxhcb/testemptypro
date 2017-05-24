@@ -68,7 +68,13 @@ select{
 	color:#fff;
 }
 .cont{
+	/*background:yellow;*/
+}
+.cont_form{
+	width:60%;
+	height:100%;
 	background:yellow;
+	margin:auto;
 }
 .foot{
 	width:100%;
