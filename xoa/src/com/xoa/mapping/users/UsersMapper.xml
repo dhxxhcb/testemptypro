@@ -88,10 +88,11 @@
 		<result column="MY_RSS" property="myRss" javaType="string" />
 		<result column="REMARK" property="remark" javaType="string" />
 		<result column="USER_PARA" property="userPara" javaType="string" />
+		<result column="DEPT_NAME" property="deptName" javaType="string"/>
 		<association property="dep"
 			javaType="com.xoa.model.department.Department">
 			<id column="DEPT_ID" property="deptId" />
-			<result column="DEPT_NAME" property="deptName" />
+			<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR"/>
 			<result column="TEL_NO" property="telNo" jdbcType="VARCHAR"
 				javaType="string" />
 			<result column="FAX_NO" property="faxNo" jdbcType="VARCHAR"
@@ -148,8 +149,8 @@
 	</resultMap>
 	<select id="getByDeptId" parameterType="Map"
 		resultMap="UserResultMap">
-		select *
-		 from user u where DEPT_ID= #{deptId}
+		select u.* ,d.*,d.DEPT_NAME as deptName
+		 from user u , department d where u.DEPT_ID= #{deptId} and u.DEPT_ID=d.DEPT_ID
 	</select>	
 	<select id="findUserByuid" parameterType="Map"
 		resultType="com.xoa.model.users.Users">
