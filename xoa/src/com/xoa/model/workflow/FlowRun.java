@@ -1,11 +1,5 @@
 package com.xoa.model.workflow;
- /**
- * 创建作者:   张龙飞
- * 创建日期:   2017年5月24日 上午11:15:42
- * 类介绍  :   流程实例基本信息
- * 构造参数:   
- *
- */
+
 public class FlowRun {
 	/** 主键ID **/
 	private int rid;

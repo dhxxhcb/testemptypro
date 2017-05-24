@@ -2,6 +2,610 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xoa.dao.workflow.FlowRunMapper">
   <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowRun">
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="RUN_ID" jdbcType="INTEGER" property="runId" />
+    <result column="RUN_NAME" jdbcType="VARCHAR" property="runName" />
+    <result column="FLOW_ID" jdbcType="INTEGER" property="flowId" />
+    <result column="BEGIN_USER" jdbcType="VARCHAR" property="beginUser" />
+    <result column="BEGIN_DEPT" jdbcType="INTEGER" property="beginDept" />
+    <result column="BEGIN_TIME" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+    <result column="PARENT_RUN" jdbcType="INTEGER" property="parentRun" />
+    <result column="FROM_USER" jdbcType="VARCHAR" property="fromUser" />
+    <result column="ARCHIVE" jdbcType="INTEGER" property="archive" />
+    <result column="work_level" jdbcType="INTEGER" property="workLevel" />
+    <result column="DEL_TIME" jdbcType="TIMESTAMP" property="delTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xoa.model.workflow.FlowRunWithBLOBs">
+    <result column="ATTACHMENT_ID" jdbcType="LONGVARCHAR" property="attachmentId" />
+    <result column="ATTACHMENT_NAME" jdbcType="LONGVARCHAR" property="attachmentName" />
+    <result column="FOCUS_USER" jdbcType="LONGVARCHAR" property="focusUser" />
+    <result column="AIP_FILES" jdbcType="LONGVARCHAR" property="aipFiles" />
+    <result column="PRE_SET" jdbcType="LONGVARCHAR" property="preSet" />
+    <result column="VIEW_USER" jdbcType="LONGVARCHAR" property="viewUser" />
+    <result column="FORCE_OVER" jdbcType="LONGVARCHAR" property="forceOver" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RID, RUN_ID, RUN_NAME, FLOW_ID, BEGIN_USER, BEGIN_DEPT, BEGIN_TIME, END_TIME, DEL_FLAG, 
+    PARENT_RUN, FROM_USER, ARCHIVE, work_level, DEL_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    ATTACHMENT_ID, ATTACHMENT_NAME, FOCUS_USER, AIP_FILES, PRE_SET, VIEW_USER, FORCE_OVER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from flow_run
+    where RID = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from flow_run
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xoa.model.workflow.FlowRunWithBLOBs">
+    insert into flow_run (RID, RUN_ID, RUN_NAME, 
+      FLOW_ID, BEGIN_USER, BEGIN_DEPT, 
+      BEGIN_TIME, END_TIME, DEL_FLAG, 
+      PARENT_RUN, FROM_USER, ARCHIVE, 
+      work_level, DEL_TIME, ATTACHMENT_ID, 
+      ATTACHMENT_NAME, FOCUS_USER, AIP_FILES, 
+      PRE_SET, VIEW_USER, FORCE_OVER
+      )
+    values (#{rid,jdbcType=INTEGER}, #{runId,jdbcType=INTEGER}, #{runName,jdbcType=VARCHAR}, 
+      #{flowId,jdbcType=INTEGER}, #{beginUser,jdbcType=VARCHAR}, #{beginDept,jdbcType=INTEGER}, 
+      #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR}, 
+      #{parentRun,jdbcType=INTEGER}, #{fromUser,jdbcType=VARCHAR}, #{archive,jdbcType=INTEGER}, 
+      #{workLevel,jdbcType=INTEGER}, #{delTime,jdbcType=TIMESTAMP}, #{attachmentId,jdbcType=LONGVARCHAR}, 
+      #{attachmentName,jdbcType=LONGVARCHAR}, #{focusUser,jdbcType=LONGVARCHAR}, #{aipFiles,jdbcType=LONGVARCHAR}, 
+      #{preSet,jdbcType=LONGVARCHAR}, #{viewUser,jdbcType=LONGVARCHAR}, #{forceOver,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xoa.model.workflow.FlowRunWithBLOBs">
+    insert into flow_run
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        RID,
+      </if>
+      <if test="runId != null">
+        RUN_ID,
+      </if>
+      <if test="runName != null">
+        RUN_NAME,
+      </if>
+      <if test="flowId != null">
+        FLOW_ID,
+      </if>
+      <if test="beginUser != null">
+        BEGIN_USER,
+      </if>
+      <if test="beginDept != null">
+        BEGIN_DEPT,
+      </if>
+      <if test="beginTime != null">
+        BEGIN_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="parentRun != null">
+        PARENT_RUN,
+      </if>
+      <if test="fromUser != null">
+        FROM_USER,
+      </if>
+      <if test="archive != null">
+        ARCHIVE,
+      </if>
+      <if test="workLevel != null">
+        work_level,
+      </if>
+      <if test="delTime != null">
+        DEL_TIME,
+      </if>
+      <if test="attachmentId != null">
+        ATTACHMENT_ID,
+      </if>
+      <if test="attachmentName != null">
+        ATTACHMENT_NAME,
+      </if>
+      <if test="focusUser != null">
+        FOCUS_USER,
+      </if>
+      <if test="aipFiles != null">
+        AIP_FILES,
+      </if>
+      <if test="preSet != null">
+        PRE_SET,
+      </if>
+      <if test="viewUser != null">
+        VIEW_USER,
+      </if>
+      <if test="forceOver != null">
+        FORCE_OVER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="runId != null">
+        #{runId,jdbcType=INTEGER},
+      </if>
+      <if test="runName != null">
+        #{runName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null">
+        #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="beginUser != null">
+        #{beginUser,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDept != null">
+        #{beginDept,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="parentRun != null">
+        #{parentRun,jdbcType=INTEGER},
+      </if>
+      <if test="fromUser != null">
+        #{fromUser,jdbcType=VARCHAR},
+      </if>
+      <if test="archive != null">
+        #{archive,jdbcType=INTEGER},
+      </if>
+      <if test="workLevel != null">
+        #{workLevel,jdbcType=INTEGER},
+      </if>
+      <if test="delTime != null">
+        #{delTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attachmentId != null">
+        #{attachmentId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachmentName != null">
+        #{attachmentName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="focusUser != null">
+        #{focusUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="aipFiles != null">
+        #{aipFiles,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="preSet != null">
+        #{preSet,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="viewUser != null">
+        #{viewUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="forceOver != null">
+        #{forceOver,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowRunWithBLOBs">
+    update flow_run
+    <set>
+      <if test="runId != null">
+        RUN_ID = #{runId,jdbcType=INTEGER},
+      </if>
+      <if test="runName != null">
+        RUN_NAME = #{runName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null">
+        FLOW_ID = #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="beginUser != null">
+        BEGIN_USER = #{beginUser,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDept != null">
+        BEGIN_DEPT = #{beginDept,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="parentRun != null">
+        PARENT_RUN = #{parentRun,jdbcType=INTEGER},
+      </if>
+      <if test="fromUser != null">
+        FROM_USER = #{fromUser,jdbcType=VARCHAR},
+      </if>
+      <if test="archive != null">
+        ARCHIVE = #{archive,jdbcType=INTEGER},
+      </if>
+      <if test="workLevel != null">
+        work_level = #{workLevel,jdbcType=INTEGER},
+      </if>
+      <if test="delTime != null">
+        DEL_TIME = #{delTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attachmentId != null">
+        ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachmentName != null">
+        ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="focusUser != null">
+        FOCUS_USER = #{focusUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="aipFiles != null">
+        AIP_FILES = #{aipFiles,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="preSet != null">
+        PRE_SET = #{preSet,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="viewUser != null">
+        VIEW_USER = #{viewUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="forceOver != null">
+        FORCE_OVER = #{forceOver,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.workflow.FlowRunWithBLOBs">
+    update flow_run
+    set RUN_ID = #{runId,jdbcType=INTEGER},
+      RUN_NAME = #{runName,jdbcType=VARCHAR},
+      FLOW_ID = #{flowId,jdbcType=INTEGER},
+      BEGIN_USER = #{beginUser,jdbcType=VARCHAR},
+      BEGIN_DEPT = #{beginDept,jdbcType=INTEGER},
+      BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      PARENT_RUN = #{parentRun,jdbcType=INTEGER},
+      FROM_USER = #{fromUser,jdbcType=VARCHAR},
+      ARCHIVE = #{archive,jdbcType=INTEGER},
+      work_level = #{workLevel,jdbcType=INTEGER},
+      DEL_TIME = #{delTime,jdbcType=TIMESTAMP},
+      ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
+      ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
+      FOCUS_USER = #{focusUser,jdbcType=LONGVARCHAR},
+      AIP_FILES = #{aipFiles,jdbcType=LONGVARCHAR},
+      PRE_SET = #{preSet,jdbcType=LONGVARCHAR},
+      VIEW_USER = #{viewUser,jdbcType=LONGVARCHAR},
+      FORCE_OVER = #{forceOver,jdbcType=LONGVARCHAR}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.workflow.FlowRun">
+    update flow_run
+    set RUN_ID = #{runId,jdbcType=INTEGER},
+      RUN_NAME = #{runName,jdbcType=VARCHAR},
+      FLOW_ID = #{flowId,jdbcType=INTEGER},
+      BEGIN_USER = #{beginUser,jdbcType=VARCHAR},
+      BEGIN_DEPT = #{beginDept,jdbcType=INTEGER},
+      BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      PARENT_RUN = #{parentRun,jdbcType=INTEGER},
+      FROM_USER = #{fromUser,jdbcType=VARCHAR},
+      ARCHIVE = #{archive,jdbcType=INTEGER},
+      work_level = #{workLevel,jdbcType=INTEGER},
+      DEL_TIME = #{delTime,jdbcType=TIMESTAMP}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowRun">
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="RUN_ID" jdbcType="INTEGER" property="runId" />
+    <result column="RUN_NAME" jdbcType="VARCHAR" property="runName" />
+    <result column="FLOW_ID" jdbcType="INTEGER" property="flowId" />
+    <result column="BEGIN_USER" jdbcType="VARCHAR" property="beginUser" />
+    <result column="BEGIN_DEPT" jdbcType="INTEGER" property="beginDept" />
+    <result column="BEGIN_TIME" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+    <result column="PARENT_RUN" jdbcType="INTEGER" property="parentRun" />
+    <result column="FROM_USER" jdbcType="VARCHAR" property="fromUser" />
+    <result column="ARCHIVE" jdbcType="INTEGER" property="archive" />
+    <result column="work_level" jdbcType="INTEGER" property="workLevel" />
+    <result column="DEL_TIME" jdbcType="TIMESTAMP" property="delTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xoa.model.workflow.FlowRunWithBLOBs">
+    <result column="ATTACHMENT_ID" jdbcType="LONGVARCHAR" property="attachmentId" />
+    <result column="ATTACHMENT_NAME" jdbcType="LONGVARCHAR" property="attachmentName" />
+    <result column="FOCUS_USER" jdbcType="LONGVARCHAR" property="focusUser" />
+    <result column="AIP_FILES" jdbcType="LONGVARCHAR" property="aipFiles" />
+    <result column="PRE_SET" jdbcType="LONGVARCHAR" property="preSet" />
+    <result column="VIEW_USER" jdbcType="LONGVARCHAR" property="viewUser" />
+    <result column="FORCE_OVER" jdbcType="LONGVARCHAR" property="forceOver" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RID, RUN_ID, RUN_NAME, FLOW_ID, BEGIN_USER, BEGIN_DEPT, BEGIN_TIME, END_TIME, DEL_FLAG, 
+    PARENT_RUN, FROM_USER, ARCHIVE, work_level, DEL_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    ATTACHMENT_ID, ATTACHMENT_NAME, FOCUS_USER, AIP_FILES, PRE_SET, VIEW_USER, FORCE_OVER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from flow_run
+    where RID = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from flow_run
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xoa.model.workflow.FlowRunWithBLOBs">
+    insert into flow_run (RID, RUN_ID, RUN_NAME, 
+      FLOW_ID, BEGIN_USER, BEGIN_DEPT, 
+      BEGIN_TIME, END_TIME, DEL_FLAG, 
+      PARENT_RUN, FROM_USER, ARCHIVE, 
+      work_level, DEL_TIME, ATTACHMENT_ID, 
+      ATTACHMENT_NAME, FOCUS_USER, AIP_FILES, 
+      PRE_SET, VIEW_USER, FORCE_OVER
+      )
+    values (#{rid,jdbcType=INTEGER}, #{runId,jdbcType=INTEGER}, #{runName,jdbcType=VARCHAR}, 
+      #{flowId,jdbcType=INTEGER}, #{beginUser,jdbcType=VARCHAR}, #{beginDept,jdbcType=INTEGER}, 
+      #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR}, 
+      #{parentRun,jdbcType=INTEGER}, #{fromUser,jdbcType=VARCHAR}, #{archive,jdbcType=INTEGER}, 
+      #{workLevel,jdbcType=INTEGER}, #{delTime,jdbcType=TIMESTAMP}, #{attachmentId,jdbcType=LONGVARCHAR}, 
+      #{attachmentName,jdbcType=LONGVARCHAR}, #{focusUser,jdbcType=LONGVARCHAR}, #{aipFiles,jdbcType=LONGVARCHAR}, 
+      #{preSet,jdbcType=LONGVARCHAR}, #{viewUser,jdbcType=LONGVARCHAR}, #{forceOver,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xoa.model.workflow.FlowRunWithBLOBs">
+    insert into flow_run
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        RID,
+      </if>
+      <if test="runId != null">
+        RUN_ID,
+      </if>
+      <if test="runName != null">
+        RUN_NAME,
+      </if>
+      <if test="flowId != null">
+        FLOW_ID,
+      </if>
+      <if test="beginUser != null">
+        BEGIN_USER,
+      </if>
+      <if test="beginDept != null">
+        BEGIN_DEPT,
+      </if>
+      <if test="beginTime != null">
+        BEGIN_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="parentRun != null">
+        PARENT_RUN,
+      </if>
+      <if test="fromUser != null">
+        FROM_USER,
+      </if>
+      <if test="archive != null">
+        ARCHIVE,
+      </if>
+      <if test="workLevel != null">
+        work_level,
+      </if>
+      <if test="delTime != null">
+        DEL_TIME,
+      </if>
+      <if test="attachmentId != null">
+        ATTACHMENT_ID,
+      </if>
+      <if test="attachmentName != null">
+        ATTACHMENT_NAME,
+      </if>
+      <if test="focusUser != null">
+        FOCUS_USER,
+      </if>
+      <if test="aipFiles != null">
+        AIP_FILES,
+      </if>
+      <if test="preSet != null">
+        PRE_SET,
+      </if>
+      <if test="viewUser != null">
+        VIEW_USER,
+      </if>
+      <if test="forceOver != null">
+        FORCE_OVER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="runId != null">
+        #{runId,jdbcType=INTEGER},
+      </if>
+      <if test="runName != null">
+        #{runName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null">
+        #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="beginUser != null">
+        #{beginUser,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDept != null">
+        #{beginDept,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="parentRun != null">
+        #{parentRun,jdbcType=INTEGER},
+      </if>
+      <if test="fromUser != null">
+        #{fromUser,jdbcType=VARCHAR},
+      </if>
+      <if test="archive != null">
+        #{archive,jdbcType=INTEGER},
+      </if>
+      <if test="workLevel != null">
+        #{workLevel,jdbcType=INTEGER},
+      </if>
+      <if test="delTime != null">
+        #{delTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attachmentId != null">
+        #{attachmentId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachmentName != null">
+        #{attachmentName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="focusUser != null">
+        #{focusUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="aipFiles != null">
+        #{aipFiles,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="preSet != null">
+        #{preSet,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="viewUser != null">
+        #{viewUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="forceOver != null">
+        #{forceOver,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowRunWithBLOBs">
+    update flow_run
+    <set>
+      <if test="runId != null">
+        RUN_ID = #{runId,jdbcType=INTEGER},
+      </if>
+      <if test="runName != null">
+        RUN_NAME = #{runName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null">
+        FLOW_ID = #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="beginUser != null">
+        BEGIN_USER = #{beginUser,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDept != null">
+        BEGIN_DEPT = #{beginDept,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="parentRun != null">
+        PARENT_RUN = #{parentRun,jdbcType=INTEGER},
+      </if>
+      <if test="fromUser != null">
+        FROM_USER = #{fromUser,jdbcType=VARCHAR},
+      </if>
+      <if test="archive != null">
+        ARCHIVE = #{archive,jdbcType=INTEGER},
+      </if>
+      <if test="workLevel != null">
+        work_level = #{workLevel,jdbcType=INTEGER},
+      </if>
+      <if test="delTime != null">
+        DEL_TIME = #{delTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attachmentId != null">
+        ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachmentName != null">
+        ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="focusUser != null">
+        FOCUS_USER = #{focusUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="aipFiles != null">
+        AIP_FILES = #{aipFiles,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="preSet != null">
+        PRE_SET = #{preSet,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="viewUser != null">
+        VIEW_USER = #{viewUser,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="forceOver != null">
+        FORCE_OVER = #{forceOver,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.workflow.FlowRunWithBLOBs">
+    update flow_run
+    set RUN_ID = #{runId,jdbcType=INTEGER},
+      RUN_NAME = #{runName,jdbcType=VARCHAR},
+      FLOW_ID = #{flowId,jdbcType=INTEGER},
+      BEGIN_USER = #{beginUser,jdbcType=VARCHAR},
+      BEGIN_DEPT = #{beginDept,jdbcType=INTEGER},
+      BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      PARENT_RUN = #{parentRun,jdbcType=INTEGER},
+      FROM_USER = #{fromUser,jdbcType=VARCHAR},
+      ARCHIVE = #{archive,jdbcType=INTEGER},
+      work_level = #{workLevel,jdbcType=INTEGER},
+      DEL_TIME = #{delTime,jdbcType=TIMESTAMP},
+      ATTACHMENT_ID = #{attachmentId,jdbcType=LONGVARCHAR},
+      ATTACHMENT_NAME = #{attachmentName,jdbcType=LONGVARCHAR},
+      FOCUS_USER = #{focusUser,jdbcType=LONGVARCHAR},
+      AIP_FILES = #{aipFiles,jdbcType=LONGVARCHAR},
+      PRE_SET = #{preSet,jdbcType=LONGVARCHAR},
+      VIEW_USER = #{viewUser,jdbcType=LONGVARCHAR},
+      FORCE_OVER = #{forceOver,jdbcType=LONGVARCHAR}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.workflow.FlowRun">
+    update flow_run
+    set RUN_ID = #{runId,jdbcType=INTEGER},
+      RUN_NAME = #{runName,jdbcType=VARCHAR},
+      FLOW_ID = #{flowId,jdbcType=INTEGER},
+      BEGIN_USER = #{beginUser,jdbcType=VARCHAR},
+      BEGIN_DEPT = #{beginDept,jdbcType=INTEGER},
+      BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      PARENT_RUN = #{parentRun,jdbcType=INTEGER},
+      FROM_USER = #{fromUser,jdbcType=VARCHAR},
+      ARCHIVE = #{archive,jdbcType=INTEGER},
+      work_level = #{workLevel,jdbcType=INTEGER},
+      DEL_TIME = #{delTime,jdbcType=TIMESTAMP}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowRun">
     <id column="RID" javaType="int" property="rid" />
     <result column="RUN_ID" javaType="int" property="runId" />
     <result column="RUN_NAME" javaType="string" property="runName" />
@@ -46,8 +650,8 @@
     delete from flow_run
     where RID = #{rid}
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.workflow.FlowRun">
-    insert into flow_run (RID, RUN_ID, RUN_NAME, 
+  <insert id="insert" keyProperty="rid" parameterType="com.xoa.model.workflow.FlowRun" useGeneratedKeys="true">
+    insert into flow_run (RUN_ID, RUN_NAME, 
       FLOW_ID, BEGIN_USER, BEGIN_DEPT, 
       BEGIN_TIME, END_TIME, DEL_FLAG, 
       PARENT_RUN, FROM_USER, ARCHIVE, 
@@ -55,7 +659,7 @@
       ATTACHMENT_NAME, FOCUS_USER, AIP_FILES, 
       PRE_SET, VIEW_USER, FORCE_OVER
       )
-    values (#{rid}, #{runId}, #{runName}, 
+    values ( #{runId}, #{runName}, 
       #{flowId}, #{beginUser}, #{beginDept}, 
       #{beginTime}, #{endTime}, #{delFlag}, 
       #{parentRun}, #{fromUser}, #{archive}, 
