@@ -69,14 +69,14 @@ public class OrgManageController {
         if (orgManage != null && orgManage.getOid() != null) {
 
             //解决编码问题
-            if(orgManage.getName() != null){
+            if (orgManage.getName() != null) {
                 orgManage.setName(new String(orgManage.getName().getBytes("iso8859-1"), "utf-8"));
             }
-            if(orgManage.getIsOrg() != null){
+            if (orgManage.getIsOrg() != null) {
                 orgManage.setIsOrg(new String(orgManage.getIsOrg().getBytes("iso8859-1"), "utf-8"));
             }
-            if(orgManage.getVersion() != null){
-                orgManage.setVersion(new String (orgManage.getVersion().getBytes("iso8859-1"), "utf-8"));
+            if (orgManage.getVersion() != null) {
+                orgManage.setVersion(new String(orgManage.getVersion().getBytes("iso8859-1"), "utf-8"));
             }
 
             orgManageService.editOrgManage(orgManage);
@@ -121,6 +121,24 @@ public class OrgManageController {
         }
 
         return toJson;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/24 18:18
+     * @函数介绍: 添加公司
+     * @参数说明: @param orgManage 公司
+     * @return: json
+     **/
+    @RequestMapping(value = "/addOrgManage", produces = {"application/json;charset=UTF-8"})
+    public String addOrgManage(OrgManage orgManage, HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        if (orgManage != null) {
+            orgManageService.addOrgManage(orgManage);
+            return "redirect:getOrgManage";
+        }
+        return null;
     }
 
 }
