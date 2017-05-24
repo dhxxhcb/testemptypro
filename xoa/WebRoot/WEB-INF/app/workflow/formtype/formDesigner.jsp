@@ -51,7 +51,7 @@
                     <img src="../img/icon_multiplelinetextbox_03.png" alt="">多行文本框</a></li>
                 <li><a href="javascript:void(0);" type="select"  class="btn btn-link">
                     <img src="../img/icon_dropmenu_03.png" alt="">下拉菜单</a></li>
-                <li><a href="javascript:void(0);" type="radios"  class="btn btn-link">
+                <li><a href="javascript:void(0);" type="radio"  class="btn btn-link">
                     <img src="../img/icon_radiobutton_03.png" alt="">单选框</a></li>
                 <li><a href="javascript:void(0);" type="checkboxs"  class="btn btn-link">
                     <img src="../img/icon_checkbox_03.png" alt="">复选框</a></li>
