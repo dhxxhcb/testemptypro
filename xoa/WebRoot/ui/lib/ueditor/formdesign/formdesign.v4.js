@@ -247,7 +247,7 @@ UE.plugins['select'] = function () {
  * editor.execCommand( 'radio');
  * ```
  */
-/*UE.plugins['radios'] = function () {
+UE.plugins['radios'] = function () {
     var me = this,thePlugins = 'radios';
     me.commands[thePlugins] = {
         execCommand:function () {
@@ -312,7 +312,7 @@ UE.plugins['select'] = function () {
             }
         }
     });
-};*/
+};
 /**
  * 复选框组
  * @command checkboxs
@@ -550,7 +550,7 @@ UE.plugins['radio'] = function () {
  * editor.execCommand( 'checkbox');
  * ```
  */
- /*
+
 UE.plugins['checkbox'] = function () {
     var me = this,thePlugins = 'checkbox';
     me.commands[thePlugins] = {
@@ -615,7 +615,7 @@ UE.plugins['checkbox'] = function () {
         }
     });
 };
-*/
+
 
 
 

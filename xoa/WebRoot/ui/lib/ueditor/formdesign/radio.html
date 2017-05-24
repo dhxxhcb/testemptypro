@@ -3,17 +3,12 @@
 <head>
     <title>单选框</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
-    <meta name="generator" content="www.leipi.org" />
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <!--[if lte IE 6]>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-ie6.css">
-    <![endif]-->
-    <!--[if lte IE 7]>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
-    <![endif]-->
-    <link rel="stylesheet" href="leipi.style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" href="../formdesign/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/ueditor/site.css">
     <script type="text/javascript" src="../dialogs/internal.js"></script>
+    <script type="text/javascript" src="../../../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../../../js/base/base.js"></script>
     <script type="text/javascript">
 function createElement(type, name)
 {     
@@ -202,17 +197,18 @@ function fnSetAttribute( element, attName, attValue ) {
 </div>
 <script type="text/javascript">
 
+
 var oNode = null,oListText='',thePlugins = 'radio';
 window.onload = function() {
     oListText    = $G( 'orglist' ) ;
-    
+
     if( UE.plugins[thePlugins].editdom ){
         oNode = UE.plugins[thePlugins].editdom;
         var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gRadios=oNode.getAttribute('orgradios'),gChecked=oNode.getAttribute("orgchecked");
         gTitle = gTitle==null ? '' : gTitle;
         $G('orgvalue').innerHTML = gChecked;
         $G('orgname').value = gTitle;
-        
+
         var sDataField = gRadios;
         var aDataField = sDataField.split('`');
         var sLvCheck = gChecked;
@@ -241,8 +237,8 @@ dialog.onok = function (){
         return false;
     }
     var gValue=$G('orgvalue').innerHTML,gTitle=$G('orgname').value.replace(/\"/g,"&quot;");
-    
-    
+
+
     var sDataField = '',sLvCheck = '';
     for ( var i = 0 ; i < oListText.options.length ; i++ ) {
         var sText    = oListText.options[i].value ;
