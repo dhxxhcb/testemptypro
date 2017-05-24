@@ -21,6 +21,19 @@
     <script type="text/javascript" src="../js/index.js" ></script>
     <title>s首页</title>
     <style>
+    .head {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border-bottom: 1px solid #919191;
+}
+
+.cont_left {
+    width: 15%;
+    height: 100%;
+    border-right: 1px solid #919191;
+    overflow-y: scroll;
+}
 	    .noDatas {margin-top:10px;}
 		.noDatas_pic {margin-top:20%;}
 		.noData_out{margin:0 auto;text-align:center;}
