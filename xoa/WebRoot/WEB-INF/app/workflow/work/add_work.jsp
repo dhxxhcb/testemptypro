@@ -125,6 +125,10 @@ font-weight:bold;
         background: #f9fbff;
         margin-top: 10px;
     }
+    .rig_cont{
+        overflow-y: scroll;
+        height: 98%;
+    }
     .rig_title img,.rig_title h1{
         float:left;
         margin-top:5px;
@@ -208,6 +212,29 @@ font-weight:bold;
         margin-top: 5% !important;
         margin-left: 4% !important;
     }
+    /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+    .tab_cone::-webkit-scrollbar{
+        width: 4px;
+        height: 16px;
+        background-color: #f5f5f5;
+    }
+    /*定义滚动条的轨道，内阴影及圆角*/
+    .tab_cone::-webkit-scrollbar-track{
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        border-radius: 10px;
+        background-color: #f5f5f5;
+    }
+    /*定义滑块，内阴影及圆角*/
+    .tab_cone::-webkit-scrollbar-thumb{
+        /*width: 10px;*/
+        height: 20px;
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #555;
+    }
+
+
+
 </style>
 <script type="text/javascript">
 var loading='<div class="loading">正在加载，请稍候...</div>';
@@ -258,8 +285,8 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                     <h1 class="title_name">常用工作</h1>
                 </div>
                 <div class="rig_cont">
-                    <ul>
-                        <li>
+                    <ul id="sort_cont">
+                        <%--<li>
                             <div class="rig_left">
                                 <h1>出差申请</h1>
                                 <h2>出差申请（2017-05-22 10:21:12）</h2>
@@ -274,7 +301,7 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                                 <div><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>
                                 <div><img src="../../img/workflow/work/add_work/xiangdao.png" style="    margin-left: 6%;" alt=""><h1>新建向导</h1></div>
                             </div>
-                        </li>
+                        </li>--%>
                     </ul>
                 </div>
             </div>
@@ -295,8 +322,8 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                 success:function(obj){
                     var data=obj.datas;
                     var str='';
-                    console.log(data);
-                    console.log(data.length);
+                    /*console.log(data);
+                    console.log(data.length);*/
                     for(var i=0;i<data.length;i++){
                         var er='';
                         for(var j=0;j<data[i].childs.length;j++){
@@ -304,44 +331,44 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                             if(data[i].childs[j].childs.length>0){
                                 var three='';
                                 for(var k=0;k<data[i].childs[j].childs.length;k++){
-                                    three +='<li style="margin-left:18px;" class="three" menu_tid='+data[i].childs[j].childs[k].sortId+' url='+data[i].childs[j].childs[k].url+' title="'+data[i].childs[j].childs[k].sortName+'"><img class="sanji_circle" src=""><h1 style="margin-left:28%;">'+data[i].childs[j].childs[k].sortName+'</h1></li>' ;
+                                    three +='<li style="margin-left:18px;" class="three checked" menu_tid='+data[i].childs[j].childs[k].sortId+' url='+data[i].childs[j].childs[k].url+' title="'+data[i].childs[j].childs[k].sortName+'"><div class=""><img class="sanji_circle" src=""><h1 style="margin-left:28%;">'+data[i].childs[j].childs[k].sortName+'</h1></div></li>' ;
                                 }
-                                er += '<li class="two"  menu_tid='+data[i].childs[j].sortId+'><div url='+data[i].childs[j].url+'  class="two_all click_erji"  title="'+data[i].childs[j].sortName+'"><img class="erji_circle" src=""><h1>'+data[i].childs[j].sortName+'</h1><img class="er_img" src="../../img/workflow/work/add_work/right.png"></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
+                                er += '<li class="two"  ><div url='+data[i].childs[j].url+' menu_tid='+data[i].childs[j].sortId+'  class="two_all click_erji  checked"  title="'+data[i].childs[j].sortName+'"><img class="erji_circle" src=""><h1>'+data[i].childs[j].sortName+'</h1><img class="er_img" src="../../img/workflow/work/add_work/right.png"></div><ul class="sanji" style="display:none;">'+three+'</ul></li>';
 
                             }else{
 
-                                er += '<li class="two" menu_tid='+data[i].childs[j].sortId+'><div url='+data[i].childs[j].url+' class="two_all" title="'+data[i].childs[j].sortName+'"><img class="erji_circle" src=""><h1 class="erji_h1">'+data[i].childs[j].sortName+'</h1></div></li>';
+                                er += '<li class="two" ><div url='+data[i].childs[j].url+' menu_tid='+data[i].childs[j].sortId+' class="two_all  checked" title="'+data[i].childs[j].sortName+'"><img class="erji_circle" src=""><h1 class="erji_h1">'+data[i].childs[j].sortName+'</h1></div></li>';
 
                             }
                         }
                         if(data[i].childs==''){
-                            str+='<li class="one person" id="administ"><div class="one_all" title="'+data[i].sortName+'"><img class="one_logo" src=""><h1 class="one_name" id="administ">'+data[i].sortName+'</h1></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>';
+                            str+='<li class="one person" id="administ"><div class="one_all checked" title="'+data[i].sortName+'" menu_tid='+data[i].sortId+'><img class="one_logo" src=""><h1 class="one_name" id="administ">'+data[i].sortName+'</h1></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>';
                         }else{
-                            str+='<li class="one person" id="administ"><div class="one_all" title="'+data[i].sortName+'"><img class="one_logo" src=""><h1 class="one_name" id="administ">'+data[i].sortName+'</h1><img class="down_jiao" src="../../img/workflow/work/add_work/right.png"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>';
+                            str+='<li class="one person" id="administ"><div class="one_all checked" title="'+data[i].sortName+'" menu_tid='+data[i].sortId+'><img class="one_logo" src=""><h1 class="one_name" id="administ">'+data[i].sortName+'</h1><img class="down_jiao" src="../../img/workflow/work/add_work/right.png"></div><div class="two_menu"><ul class="erji b"  style="width:100%;display:none;"><li class="two"><div class="two_all">'+er+'</div></li></ul></div></li>';
                         }
 
                     }
-
-                    $(".tab_cone").html(str);
+                    var stt='<li class="one person" id="administ"><div class="one_all checked"><h1 class="one_name" id="administ">常用工作</h1></div></li><li class="one person" id="administ"><div class="one_all checked"><h1 class="one_name" id="administ">全部工作</h1></div></li>';
+                    $(".tab_cone").html(stt+str);
 
 
 
                     //鼠标移动到一级菜单变样式，移出变回
-                    $('.one_all').on('mouseover',function () {
-                        $(this).css({
-                           /* 'background':'url(img/main_img/first_yes.png) 0px 0px no-repeat',*/
-                            'color':'#006bb8',
-                            /* 'border':'1px solid #999', */
-                            'cursor':'pointer'
-                        });
-                    });
-                    //移出
-                    $('.one_all').on('mouseout',function () {
-                        $(this).css({
-                            /*'background':'url(img/main_img/first_no.png) 0px -0px no-repeat',*/
-                            'color':'#000'
-                        });
-                    });
+                  $('.one_all').on('mouseover',function () {
+                      $(this).css({
+
+                          'color':'#006bb8',
+
+                         'cursor':'pointer'
+                      });
+                  });
+                  //移出
+                  $('.one_all').on('mouseout',function () {
+                     $(this).css({
+
+                       'color':'#000'
+                      });
+                   });
 
                     //点击一级菜单。显示二级
 
@@ -407,11 +434,11 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                         var url=$(this).attr('url');
                         var menu_tid=$(this).parent().attr('menu_tid');
                         //console.log(url);
-                        if(menu[url.replace('/','_')]){
+                        /*if(menu[url.replace('/','_')]){
                             url = menu[url.replace('/','_')];
                         }else{
                             url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
-                        }
+                        }*/
 
                         //判断标题id与iframeid是否相同
                         //console.log(url);
@@ -435,8 +462,6 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                             })
                         }else{
                             if($(this).siblings('.sanji').length>0){
-                                /* return  false; */
-                                //console.log($(this).siblings('.sanji').length>0);
                             }else{
                                 //页面不存在，新增 title和iframe
 
@@ -546,6 +571,45 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
 
 
         init();//调用init()方法
+
+        //右侧内容接口对接
+        $('.tab_cone').on('click','.checked',function(){
+            var sortId=$(this).attr('menu_tid');
+        /*  alert(sortId);*/
+            $.ajax({
+                url:'../../flow/flowAuthOrSearch',
+                type:'get',
+                dataType:'json',
+                data:{
+                    sortId:sortId
+                },
+                success:function(obj){
+                    var data=obj.obj;
+                    var str='';
+                    console.log(data);
+                    for(var i=0;i<data.length;i++){
+                        if(data[i].runName){
+                            $('.runName').html('未添加');
+                        }else{
+                            $('.runName').html(data[i].runName);
+                        }
+                        str+='<li tid='+data[i].flowId+' sortId='+data[i].flowSort+'><div class="rig_left">'+
+                            '<h1>'+data[i].flowName+'</h1><h2 class="runName">未添加</h2></div>'+
+                            '<div class="rig_mid">'+
+                            '<div class="liucheng"><img src="../../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>'+
+                            '<div class="liucheng1"><img src="../../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>'+
+                            '<div class="liucheng2"><img src="../../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div></div>'+
+                            '<div class="rig_rig"><div><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>'+
+                            '<div><img src="../../img/workflow/work/add_work/xiangdao.png" style="margin-left: 6%;" alt=""><h1>新建向导</h1></div></div></li>'
+
+
+
+                    }
+                    $('#sort_cont').html(str);
+                }
+            })
+        })
+
     })
 </script>
 <script>
