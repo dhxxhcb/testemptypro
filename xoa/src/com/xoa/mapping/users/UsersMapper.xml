@@ -22,7 +22,7 @@
 		<result column="DEPT_ID" property="deptId" javaType="int" />
 		<result column="DEPT_ID_OTHER" property="deptIdOther" javaType="string" />
 		<result column="SEX" property="sex" javaType="string" />
-		<result column="BIRTHDAY" property="birthday" javaType="java.util.Date" />
+		<result column="BIRTHDAY" property="birthday" javaType="string" />
 		<result column="IS_LUNAR" property="isLunar" javaType="string" />
 		<result column="TEL_NO_DEPT" property="telNoDept" javaType="string" />
 		<result column="FAX_NO_DEPT" property="faxNoDept" javaType="string" />
@@ -147,8 +147,8 @@
 		</association> 
 	</resultMap>
 	<select id="getByDeptId" parameterType="Map"
-		resultType="com.xoa.model.users.Users">
-		select u.USER_NAME as userName,u.USER_PRIV_NAME as userPrivName
+		resultMap="UserResultMap">
+		select *
 		 from user u where DEPT_ID= #{deptId}
 	</select>	
 	<select id="findUserByuid" parameterType="Map"

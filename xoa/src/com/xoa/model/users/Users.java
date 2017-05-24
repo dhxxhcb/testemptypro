@@ -280,7 +280,7 @@ public class Users {
 	/**
 	 * 禁止登录OA系统手机客户端(1-禁止,0-不禁止)
 	 */
-	private Byte notMobileLogin;
+	private String notMobileLogin;
 	/**
 	 * 用户管理的模块
 	 */
@@ -756,10 +756,10 @@ public class Users {
 	public void setSecretLevel(Integer secretLevel) {
 		this.secretLevel = secretLevel;
 	}
-	public Byte getNotMobileLogin() {
+	public String getNotMobileLogin() {
 		return notMobileLogin;
 	}
-	public void setNotMobileLogin(Byte notMobileLogin) {
+	public void setNotMobileLogin(String notMobileLogin) {
 		this.notMobileLogin = notMobileLogin;
 	}
 	public String getManageModuleType() {
