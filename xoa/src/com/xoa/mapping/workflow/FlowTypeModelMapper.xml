@@ -246,7 +246,7 @@
     ) AS flowRun ON flowRun.FLOW_ID= flow_type.FLOW_ID
     <where>
       <if test="sortId!=null">
-        flow_type.FLOW_SORT =#{sortId}
+        FIND_IN_SET(flow_type.FLOW_SORT,#{sortId})
       </if>
       <if test="searchValue!=null">
         AND flow_type.FLOW_NAME LIKE CONCAT("%",#{searchValue},"%")

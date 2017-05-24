@@ -738,6 +738,22 @@ public class JobClassifyService {
     }
 
 
+    public List<Integer> getSortChildId(Integer sortId,List<Integer> ret){
+      List<FlowSort> childs=   flowSortMapper.getChildDatas(sortId);
+        ret.add(sortId);
+      if(childs==null) return ret;
+      for(FlowSort child:childs){
+         if("1".equals(child.getHaveChild().trim())){
+             ret= getSortChildId(child.getSortId(),ret);
+         }
+          ret.add(child.getSortId());
+      }
+      return  ret;
+    }
+
+
+
+
     private List<FlowSort> sortDatasAuthFlow(List<FlowSort> authdatas,Integer sortIda,List<FlowSort> alldata) {
         if(authdatas==null) return null;
         List<FlowSort> datas = new ArrayList<FlowSort>();

@@ -27,6 +27,7 @@ public interface FlowSortMapper {
     int getChildNumber(Integer sortId);
 
     int  selectflowSortNum(Integer flowId);
+    List<FlowSort> getChildDatas(Integer sortId);
 
     int selectNoflowSort();
 
