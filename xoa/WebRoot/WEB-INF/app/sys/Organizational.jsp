@@ -141,7 +141,7 @@
                 <thead>
                 <tr>
                     <td class="th">
-                        <%--<fmt:message code="notice.th.title"/>--%>公司id
+                        <%--<fmt:message code="notice.th.title"/>--%>公司ID
                     </td>
                     <td class="th">
                         <%--<fmt:message code="news.th.type"/>--%>公司名称
