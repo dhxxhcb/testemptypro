@@ -620,7 +620,7 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                         '<div class="liucheng"><img src="../../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>'+
                         '<div class="liucheng1"><img src="../../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>'+
                         '<div class="liucheng2"><img src="../../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div></div>'+
-                        '<div class="rig_rig"><div class="quick"><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" id="quick_new" >快速新建</h1></div>'+
+                        '<div class="rig_rig"><div class="quick" formId='+data[i].formId+'><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" id="quick_new" >快速新建</h1></div>'+
                         '<div class="xiangdao"><img src="../../img/workflow/work/add_work/xiangdao.png" style="margin-left: 6%;" alt=""><h1>新建向导</h1></div></div></li>'
                 }else{
                     str+='<li class="sort_new" tid='+data[i].flowId+' sortId='+data[i].flowSort+'><div class="rig_left">'+
@@ -629,7 +629,7 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                         '<div class="liucheng"><img src="../../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>'+
                         '<div class="liucheng1"><img src="../../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>'+
                         '<div class="liucheng2"><img src="../../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div></div>'+
-                        '<div class="rig_rig"><div class="quick"><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1"  id="quick_new" >快速新建</h1></div>'+
+                        '<div class="rig_rig"><div class="quick" formId='+data[i].formId+'><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1"  id="quick_new" >快速新建</h1></div>'+
                         '<div class="xiangdao"><img src="../../img/workflow/work/add_work/xiangdao.png" style="margin-left: 6%;" alt=""><h1>新建向导</h1></div></div></li>'
                 }
             }
@@ -660,9 +660,10 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
 
         //点击出现
         $('#sort_cont').on('click','.quick',function(){
-            alert('111');
+           var formId= $(this).attr('formId');
+            alert(formId);
             user_id='quick';
-            $.popWindow("workform");
+            $.popWindow("workform?formId="+formId);
         });
 
     })

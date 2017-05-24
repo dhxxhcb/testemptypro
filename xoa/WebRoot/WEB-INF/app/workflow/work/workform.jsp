@@ -75,7 +75,6 @@
 <script>
     $(function(){
         var formid = $.getQueryString("formId");
-
         workForm.buildHTML($('.cont_form'),formid);
 
     });
