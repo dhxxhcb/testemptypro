@@ -127,7 +127,9 @@ ul{list-style: none;}
 }
 .tab table tr{
 	border: 1px solid #c0c0c0;
+	cursor: pointer;
 }
+
 .tab table tr th{
 	color: #2F5C8F;
 	font-weight: normal;
@@ -137,6 +139,9 @@ ul{list-style: none;}
 }
 .tab table tr:nth-child(even){
 	background-color: #F6F7F9;
+}
+.tab table tr.userData:hover{
+	background-color: #74d174;
 }
 .tab table tr th,.tab table tr td{
 	padding:10px;
