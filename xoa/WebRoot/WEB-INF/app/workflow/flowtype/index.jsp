@@ -181,11 +181,11 @@
     <div class="head">
         <div class="head_left"><h1>流程设计</h1></div>
         <div class="head_mid">
-            <input  id="flow_search_value" class="inp" type="text" placeholder="输入流程名称搜索">
+            <input  id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输入流程名称搜索">
             <div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
         </div>
         <div class="head_rig">
-            <a href="../../flowSetting/index"  target="_blank">
+            <a href="../../flowSetting/index?flowId="+flowId  target="_blank">
 			<h1 style='background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt;'>新建</h1>
             </a>
 		</div>
@@ -409,16 +409,20 @@
                     typeName="自由流程";
                     img_url="../../img/workflow/con_freeprocess_03.png";
                 }
-				if(i%3==0) {html+='<div class="new_excell_center">';}
+				//if(i%3==0) {html+='<div class="new_excell_center">';}
                 html+=  ' <div class="new_excell" id="new_excell1">'+
                     '<div class="new_excell_main">'+
-                    '<a class="set" flow_id="'+data[i].flowId+'" ><div class="new_excell_head"><span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
+                    '<a class="set" flow_id="'+data[i].flowId+'" href="javascript:void(0)">'+
+					'<div class="new_excell_head">'+
+					'<span class="new_excell_name">&nbsp;'+data[i].flowName+'</span></div>'+
                     '<div class="new_excell_info"><div class="new_excell_info_main">'+
                    ' <div class="new_excell_info_mian_pic">'+
                    ' <img src="'+img_url+'" class="new_excell_pic">'+
                    ' <ul class="new_excell_info_other">'+
                    ' <li><span class="new_excell_info_username">'+typeName+'</span></li>'+
-                    '<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">流程类型</span></li>'+
+                    '<li style="font-size: 12px;height: 16px;line-height: 16px;">'+
+					'<span class="new_excell_info_time" style="margin-left: 13px;color: #999;">'+
+					'流程类型</span></li>'+
                     '</ul>'+
                     '</div>'+
                     '</div>'+
@@ -437,7 +441,7 @@
                     '</div>'+
                     '</div>'+
                     '</div>';
-					if(i%3==2){html+='</div>';}
+					//if(i%3==2){html+='</div>';}
             }
             $(".cont_rig").html(html);
         }
