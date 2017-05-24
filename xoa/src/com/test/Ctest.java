@@ -62,11 +62,24 @@ public class Ctest {
 //	@Resource
 //	private FlowProcessService flowProcessService;
 
-//	@Resource
-//	private FlowTypeService flowTypeService;
+	@Resource
+	private FlowTypeService flowTypeService;
 
 	@Test
 	public void test()throws  Exception{
+		Date   curDate   =   new   Date(System.currentTimeMillis());//获取当前时间
+		System.out.print(DateFormat.getStrDate(curDate));
+		/*FlowTypeModel flowTypeModel = new FlowTypeModel();
+		flowTypeModel.setFlowName("测试修改");
+		flowTypeModel.setFlowNo(1);
+		flowTypeModel.setDeptId(1);
+		flowTypeModel.setFlowSort(1);
+		flowTypeModel.setFlowType("1");
+		flowTypeModel.setFormId(117);
+		flowTypeModel.setFreeOther("2");
+		flowTypeModel.setFlowId(136);
+		ToJson<FlowTypeModel> toJson = flowTypeService.updateFlow(flowTypeModel);
+		System.out.println(toJson.getMsg());*/
 //		FlowTypeModel flowTypeModel = new FlowTypeModel();
 //		flowTypeModel.setFlowName("测试修改");
 //		flowTypeModel.setFlowNo(1);
