@@ -86,6 +86,11 @@ public class ImDataService {
 			String type, String time, String uuid,String msg_type,String voice_time) {
 		Status s=new Status();
 		Files file1=new Files();
+		//全局变量记录在一个聊天中的最后一条信息 然后保存到imchatList表中如果存在则修改
+		String fileID="";
+		String attachName="";
+		String lastThumbnailUrl="";
+		//全局变量记录在一个聊天中的最后一条信息
 		try {
 			String checkResult = StringUtils.checkNullUtils(
 					new CheckCallBack() {
@@ -119,8 +124,10 @@ public class ImDataService {
 			record.setOfFrom(of_from);
 			record.setToUid(to_uid);
 			record.setUuid(uuid);
+			 //text   voice     img  file
 			switch (flag){
 			case 1:
+				 //text
 				record.setContent(content);
 				break;
 			case 3:
@@ -139,11 +146,12 @@ public class ImDataService {
 				for(Attachment tee:attachs){
 					record.setFileId(String.valueOf(tee.getAid()));
 					record.setFileName(tee.getYm());
-				   if("img".equals(type)){
-					   record.setThumbnailUrl(tee.getAttUrl());
-				   }
+					 //附件id
+					 fileID=String.valueOf(tee.getAid());
+                     //上传以后返回值交给ym
+				     attachName=tee.getYm();
+				 
 				    String severpath=request.getRealPath("");
-					//String from_uid, String to_uid, String of_from,String content, String of_to, String uuid, String type, String file,String time
 					 //图片处理
 					 if("img".equals(type)){
 					 String ip=request.getLocalAddr();
@@ -157,7 +165,8 @@ public class ImDataService {
 					   long size=fis.getChannel().size();
 					   long thmsize=thmfis.getChannel().size();
 				       BufferedImage sourceImg =ImageIO.read(fis);
-				       BufferedImage thmsourceImg =ImageIO.read(thmfis);   
+				       BufferedImage thmsourceImg =ImageIO.read(thmfis);  
+				       //返回值file
 				       file1.setFile_url("http://"+ip+":"+port+tee.getAttachFile());
 				       file1.setFile_size(String.valueOf(size/1024));
 				       file1.setFile_width(String.valueOf(sourceImg.getWidth()));
@@ -166,26 +175,37 @@ public class ImDataService {
 				       file1.setThumbnail_size(String.valueOf(thmsize/1024));
 				       file1.setThumbnail_width(String.valueOf(thmsourceImg.getHeight()));
 				       file1.setThumbnail_height(String.valueOf(thmsourceImg.getWidth()));
+				       
+				       //将附件信息保存起来
+				       record.setThumbnailUrl(tee.getAttUrl());
+				       lastThumbnailUrl=tee.getAttUrl();				      
 					 }
-					 //text   voice     img  file
+					 //voice   上传一条声音信息
 					 if("voice".equals(type)){
 						 String ip=request.getLocalAddr();
 						 String port=String.valueOf(request.getServerPort());
 						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
+						 //返回值file
 						 file1.setFile_url("http://"+ip+":"+port+tee.getAttachFile());
 					     file1.setVoice_time(voice_time);	
+					     
+					     //将附件信息保存起来
+					     //将声音时间长度放入ThumbnailUrl 和 lastThumbnailUrl 用于记录时长  在app端处理  在获取时长返回时长时直接获取 可减缓服务器端压力  
 					     record.setThumbnailUrl(voice_time);
+					     lastThumbnailUrl=voice_time;
 					 }
-					//text file
+					//file 上传一个文档信息
 					 if("file".equals(type)){
 						 String ip=request.getLocalAddr();
 						 String port=String.valueOf(request.getServerPort());
 						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
-					       
+						   //返回值file
 					       file1.setFile_url("http://"+ip+":"+port+fileString);
 					       file1.setFile_name(tee.getYm());
 					       file1.setFile_type(tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1));
 					       file1.setFile_size(String.valueOf(tee.getAttachSign()));
+					       
+					       //将附件信息保存起来
 					}
 				   
 				}
@@ -216,10 +236,31 @@ public class ImDataService {
 			 chatModel.setLastAtime(String.valueOf(atime));
 			 if("text".equals(type)){
 				 chatModel.setLastContent(content);
-			 }else{
-				 chatModel.setLastFileId("");
-				 chatModel.setLastFileName("");
-				 chatModel.setLastThumbnailUrl("");
+				 //如果最后一条信息为文字    上一条信息为附件 则将其他字段改为空值  在声明时已经初始化为空值
+				 chatModel.setLastFileId(fileID);
+				 chatModel.setLastFileName(attachName);
+				 chatModel.setLastThumbnailUrl(lastThumbnailUrl);
+			 }else if("img".equals(type)){
+				 //反之将内容置为空值
+				 chatModel.setLastContent("");
+				 
+				 chatModel.setLastFileId(fileID);
+				 chatModel.setLastFileName(attachName);
+				 chatModel.setLastThumbnailUrl(lastThumbnailUrl);
+			 }else if("voice".equals(type)){
+				//反之将内容置为空值
+				 chatModel.setLastContent("");
+				 
+				 chatModel.setLastFileId(fileID);
+				 chatModel.setLastFileName(attachName);
+				 chatModel.setLastThumbnailUrl(lastThumbnailUrl);
+			 }else if("file".equals(type)){
+				//反之将内容置为空值
+				 chatModel.setLastContent("");
+				 
+				 chatModel.setLastFileId(fileID);
+				 chatModel.setLastFileName(attachName);
+				 chatModel.setLastThumbnailUrl(lastThumbnailUrl);
 			 }
 			 chatModel.setType(type);
 			 chatModel.setUuid(uuid);
