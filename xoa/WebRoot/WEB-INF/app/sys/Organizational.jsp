@@ -25,6 +25,76 @@
     <script src="../lib/layer/layer.js"></script>
     <script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.js"></script>
     <style>
+         .bx{width: 100%}
+         .headDiv{
+            width: 100%;
+            height: 45px;
+            border-bottom: #999 1px solid;
+        }
+         .divP{
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+            font-size: 20px;
+            margin-left: 30px;
+        }
+         #btn{
+             float: right;
+             display: inline-block;
+             width: 85px;
+             height:32px;
+             text-align: center;
+             line-height: 26px;
+             margin-top: 7px;
+             margin-right: 10.3%;
+             font-size: 14px;
+             cursor: pointer;
+             background-color: #2f80d1;
+             outline: none;
+             border: #ccc 1px solid;
+             color: #fff;
+             border-radius: 5px;
+         }
+         .tab{
+             width: 80%;
+             margin: 0 auto;
+             margin-top: 20px;
+         }
+         .tab table{
+             width: 99%;
+             font-size: 14px;
+             margin: 0 auto;
+         }
+         .tab table tr{
+             border: 1px solid #c0c0c0;
+             cursor: pointer;
+         }
+
+         .tab table tr th{
+             color: #2F5C8F;
+             font-weight: normal;
+         }
+         .tab table tr:nth-child(odd){
+             background-color: #fff;
+         }
+         .tab table tr:nth-child(even){
+             background-color: #F6F7F9;
+         }
+         .tab table tr.userData:hover{
+             background-color: #74d174;
+         }
+         .tab table tr th,.tab table tr td{
+             padding:10px;
+         }
+         .tab table tr th,.tab table tr td{
+             text-align: center;
+         }
+         .tab table a{
+             text-decoration: none;
+             text-align: left;
+             display: inline-block;
+             color:#2B7FE0;
+         }
         .searchBox li {
             margin-bottom: 15px;
         }
@@ -59,14 +129,15 @@
 <body>
 <div class="bx">
     <!--head开始-->
-    <br/>
-    <h6>多企业管理</h6>
-    </hr>
+    <div class="headDiv">
+        <p class="divP">系统架构管理</p>
+        <input type="button" name="btn" id="btn" value="新建用户" />
+    </div>
 
     <!--content部分开始-->
     <div>
-        <div>
-            <table id="tr_td">
+        <div class="tab">
+            <table id="tr_td" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
                 <thead>
                 <tr>
                     <td class="th">
@@ -190,7 +261,7 @@
                                     "<td><a href='###' style='color:#2B7FE0;' oid=" + obj.object[i].oid + " class='windowOpen'>" + obj.object[i].name + "</ a></td>" +
                                     "<td><a href='###'  style='color:#666;' oid=" + obj.object[i].oid + " class='windowOpen'>" + obj.object[i].version + "</ a></td>" +
                                     "<td><a href='###'  style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen'>" + isOrgValue + "</ a></td>" +
-                                    "<td><a href='###'  style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen thupdate'>" + '修改' + "</ a></td>";
+                                    "<td><a href='###' oid=" + obj.object[i].oid + "  class='windowOpen thupdate'>" + '修改' + "</ a></td>";
                         }
                         var loadindex = setInterval(function () {
                             layer.closeAll();
