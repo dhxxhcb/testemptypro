@@ -94,10 +94,11 @@
                     success:function(rsp){
                         if(rsp.flag == true){
                             alert('新建成功');
-                            parent.location.reload();
                         }else{
                             alert('新建失败');
                         }
+                        window.close()
+                        parent.opener.location.reload()
                     }
                 })
             })
