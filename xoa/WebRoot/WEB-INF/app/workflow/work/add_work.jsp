@@ -61,7 +61,7 @@ font-weight:bold;
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/style.css" />
     <script type="text/javascript" src="../../js/jquery-1.9.1.js"></script>
-    <script src="../../js/base/base.js"></script>
+    <script src="../../../js/base/base.js"></script>
 </head>
 <link rel="stylesheet" type="text/css" href="../../css/main/theme1/index.css"/>
 <link rel="stylesheet" type="text/css" href="../../css/workflow/work/bootstrap.css">
@@ -212,6 +212,10 @@ font-weight:bold;
         margin-top: 5% !important;
         margin-left: 4% !important;
     }
+    #searchbtn,.rig_mid h1,.rig_rig h1{
+        cursor: pointer;
+    }
+
     /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
     .rig_cont::-webkit-scrollbar{
         width: 0px;
@@ -243,10 +247,7 @@ font-weight:bold;
         color:#2b7fe0;
     }
     .xiangdao h1:hover{
-        color:#fe8562;
-    }
-    #searchbtn,.rig_mid{
-        cursor: pointer;
+        color:#2b7fe0;
     }
 
 </style>
@@ -313,6 +314,8 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
 </html>
 <script>
     $(function () {
+
+
         function init(){
             $.ajax({
                 url:'../../workflow/flowclassify/flowByAuth',
@@ -597,9 +600,7 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
             url:'../../flow/flowAuthOrSearch',
             type:'get',
             dataType:'json',
-            data:{
-                sortId:sortId
-            },
+
             success:function(obj){
                 var data=obj.obj;
                 var str='';
@@ -613,22 +614,22 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
             var str='';
             for(var i=0;i<data.length;i++){
                 if(data[i].runName){
-                    str+='<li tid='+data[i].flowId+' sortId='+data[i].flowSort+'><div class="rig_left">'+
+                    str+='<li class="sort_new" tid='+data[i].flowId+' sortId='+data[i].flowSort+'><div class="rig_left">'+
                         '<h1>'+data[i].flowName+'</h1><h2 class="runName">'+data[i].runName+'</h2></div>'+
                         '<div class="rig_mid">'+
                         '<div class="liucheng"><img src="../../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>'+
                         '<div class="liucheng1"><img src="../../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>'+
                         '<div class="liucheng2"><img src="../../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div></div>'+
-                        '<div class="rig_rig"><div class="quick"><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>'+
+                        '<div class="rig_rig"><div class="quick" formId='+data[i].formId+'><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" id="quick_new" >快速新建</h1></div>'+
                         '<div class="xiangdao"><img src="../../img/workflow/work/add_work/xiangdao.png" style="margin-left: 6%;" alt=""><h1>新建向导</h1></div></div></li>'
                 }else{
-                    str+='<li tid='+data[i].flowId+' sortId='+data[i].flowSort+'><div class="rig_left">'+
+                    str+='<li class="sort_new" tid='+data[i].flowId+' sortId='+data[i].flowSort+'><div class="rig_left">'+
                         '<h1>'+data[i].flowName+'</h1><h2 class="runName">未添加</h2></div>'+
                         '<div class="rig_mid">'+
                         '<div class="liucheng"><img src="../../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>'+
                         '<div class="liucheng1"><img src="../../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>'+
                         '<div class="liucheng2"><img src="../../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div></div>'+
-                        '<div class="rig_rig"><div class="quick"><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>'+
+                        '<div class="rig_rig"><div class="quick" formId='+data[i].formId+'><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1"  id="quick_new" >快速新建</h1></div>'+
                         '<div class="xiangdao"><img src="../../img/workflow/work/add_work/xiangdao.png" style="margin-left: 6%;" alt=""><h1>新建向导</h1></div></div></li>'
                 }
             }
@@ -656,6 +657,14 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                 }
             })
         })
+
+        //点击出现
+        $('#sort_cont').on('click','.quick',function(){
+           var formId= $(this).attr('formId');
+            alert(formId);
+            user_id='quick';
+            $.popWindow("workform?formId="+formId);
+        });
 
     })
 </script>

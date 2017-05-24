@@ -38,7 +38,7 @@
             font-size: 20px;
             margin-left: 30px;
         }
-         #btn{
+         #user_btn{
              float: right;
              display: inline-block;
              width: 85px;
@@ -131,7 +131,7 @@
     <!--head开始-->
     <div class="headDiv">
         <p class="divP">系统架构管理</p>
-        <input type="button" name="btn" id="btn" value="新建用户" />
+        <input type="button" name="user_btn" id="user_btn" value="新建公司" />
     </div>
 
     <!--content部分开始-->
@@ -296,6 +296,27 @@
                 }
             });
         };
+        //新建公司
+        $('#user_btn').click(function(){
+            layer.open({
+                title: '新建',
+                shade: 0,
+                content: '<div style="width: 462px"><form id="updatecom" action="${pageContext.request.contextPath}/users/editOrgManage.do">' +
+                '<ul class="searchBox clearfix">' +
+                '<li style="float: left">' +
+                '<label>公司名称:</label><input type="text" name="name" value="">' +
+                '</li>' +
+                '<li style="float: left">' +
+                '<label>版本:</label><input type="text" name="version"  value="">' +
+                '</li>' +
+                '<li style="float: left">' +
+                '<label>是否组织:</label><input type="text" name="isOrg" value="">' +
+                '</li>' +
+                '</ul></form></div>',
+                area: ['500px', '280px'],
+                btn: ['确定', '取消'],
+            })
+        })
 
 
         $("#j_tb").on('click', '.thupdate', function () {

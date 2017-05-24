@@ -6,26 +6,20 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%--
-  Created by IntelliJ IDEA.
-  User: gsubo
-  Date: 2017/5/22
-  Time: 17:30
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>新建工作</title>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8 ? MYOA_CHARSET : htmlspecialchars($HTML_PAGE_CHARSET))?>" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/m_reset.css">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/new_work.css">
-    <script src="../js/base/base.js"></script>
+    <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
+    <script src="../../js/base/base.js"></script>
+    <script src="../../js/workflow/work/workform.js"></script>
 </head>
 
 <style type="text/css">
@@ -53,7 +47,9 @@
         </div>
     </div>
     <div class="cont" id="client">
+        <div class="cont_form">
 
+        </div>
     </div>
     <div class="foot">
         <div class="foot_left">
@@ -76,6 +72,13 @@
 </div>
 </body>
 </html>
+<script>
+    $(function(){
+        var formid = $.getQueryString("formId");
+        workForm.buildHTML($('.cont_form'),formid);
+
+    });
+</script>
 <script>
     autodivheight();
     function autodivheight(){

@@ -1,5 +1,7 @@
 package com.xoa.model.workflow;
 
+import java.util.Date;
+
 public class FlowRun {
 	/** 主键ID **/
 	private int rid;
@@ -42,7 +44,7 @@ public class FlowRun {
 	/** 工作等级 0-普通 1-重要 2-紧急 **/
 	private int workLevel;
 	/** 删除时间 **/
-	private String delTime;
+	private Date delTime;
 	
 	public int getRid() {
 		return rid;
@@ -57,7 +59,7 @@ public class FlowRun {
 		this.runId = runId;
 	}
 	public String getRunName() {
-		return runName;
+		return runName==null?"":runName;
 	}
 	public void setRunName(String runName) {
 		this.runName = runName;
@@ -69,7 +71,7 @@ public class FlowRun {
 		this.flowId = flowId;
 	}
 	public String getBeginUser() {
-		return beginUser;
+		return beginUser==null?"":beginUser;
 	}
 	public void setBeginUser(String beginUser) {
 		this.beginUser = beginUser;
@@ -93,7 +95,7 @@ public class FlowRun {
 		this.endTime = endTime;
 	}
 	public String getAttachmentId() {
-		return attachmentId;
+		return attachmentId==null?"":attachmentId.trim();
 	}
 	public void setAttachmentId(String attachmentId) {
 		this.attachmentId = attachmentId;
@@ -123,7 +125,7 @@ public class FlowRun {
 		this.parentRun = parentRun;
 	}
 	public String getFromUser() {
-		return fromUser;
+		return fromUser==null?"":fromUser.trim();
 	}
 	public void setFromUser(String fromUser) {
 		this.fromUser = fromUser;
@@ -164,10 +166,10 @@ public class FlowRun {
 	public void setWorkLevel(int workLevel) {
 		this.workLevel = workLevel;
 	}
-	public String getDelTime() {
+	public Date getDelTime() {
 		return delTime;
 	}
-	public void setDelTime(String delTime) {
+	public void setDelTime(Date delTime) {
 		this.delTime = delTime;
 	}
 	
