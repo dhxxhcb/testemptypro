@@ -403,7 +403,7 @@ UE.plugins['macros'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/macros.html',
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/macros.html?dataid='+(pluginId++),
                 name:thePlugins,
                 editor:this,
                 title: '宏控件',
