@@ -118,7 +118,7 @@ font-weight:bold;
         margin:auto;
     }
     .rig_cont ul li{
-        width: 100%;
+        width: 99%;
         height: 80px;
         border: 1px solid #cccccc;
         border-radius: 2px;
@@ -173,7 +173,7 @@ font-weight:bold;
         text-align: center;
     }
     .rig_left h1{
-        font-size: 15pt;
+        font-size: 13pt;
         font-weight: bold;
         margin-left: 12px;
         margin-top: 17px;
@@ -213,19 +213,19 @@ font-weight:bold;
         margin-left: 4% !important;
     }
     /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
-    .tab_cone::-webkit-scrollbar{
-        width: 4px;
+    .rig_cont::-webkit-scrollbar{
+        width: 0px;
         height: 16px;
         background-color: #f5f5f5;
     }
     /*定义滚动条的轨道，内阴影及圆角*/
-    .tab_cone::-webkit-scrollbar-track{
+    .rig_cont::-webkit-scrollbar-track{
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
         border-radius: 10px;
         background-color: #f5f5f5;
     }
     /*定义滑块，内阴影及圆角*/
-    .tab_cone::-webkit-scrollbar-thumb{
+    .rig_cont::-webkit-scrollbar-thumb{
         /*width: 10px;*/
         height: 20px;
         border-radius: 10px;
@@ -233,7 +233,21 @@ font-weight:bold;
         background-color: #555;
     }
 
-
+    #sort_cont li:hover{
+        background: #e8f4fc;
+    }
+    .rig_mid h1:hover{
+        color:#2b7fe0;
+    }
+    .quick h1:hover{
+        color:#2b7fe0;
+    }
+    .xiangdao h1:hover{
+        color:#fe8562;
+    }
+    #searchbtn,.rig_mid h1,.rig_rig h1{
+        cursor: pointer;
+    }
 
 </style>
 <script type="text/javascript">
@@ -286,22 +300,7 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                 </div>
                 <div class="rig_cont">
                     <ul id="sort_cont">
-                        <%--<li>
-                            <div class="rig_left">
-                                <h1>出差申请</h1>
-                                <h2>出差申请（2017-05-22 10:21:12）</h2>
-                            </div>
-                            <div class="rig_mid">
-                                <div class="liucheng"><img src="../../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>
-                                <div class="liucheng1"><img src="../../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>
-                                <div class="liucheng2"><img src="../../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div>
 
-                            </div>
-                            <div class="rig_rig">
-                                <div><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>
-                                <div><img src="../../img/workflow/work/add_work/xiangdao.png" style="    margin-left: 6%;" alt=""><h1>新建向导</h1></div>
-                            </div>
-                        </li>--%>
                     </ul>
                 </div>
             </div>
@@ -385,8 +384,6 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                             $(this).siblings().find('.erji').hide();
                            /* top_one.css('border-top','none');*/
                         }
-
-
 
                     });
 
@@ -491,13 +488,13 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                         var url=$(this).attr('url');
                         console.log(url);
                         var menu_tid=$(this).attr('menu_tid');
-                        console.log(url.split);
+             /*           console.log(url.split);
                         console.log(menu[url.split('/').join('_')]);
                         if(menu[url.split('/').join('_')]){
                             url = menu[url.split('/').join('_')];
                         }else{
                             url='http://192.168.0.17:81/gotophp.php?uid=admin&url='+url;
-                        }
+                        }*/
 
                         console.log(menu_tid);
                         if($('#f_'+menu_tid).length>0){
@@ -575,6 +572,9 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
         //右侧内容接口对接
         $('.tab_cone').on('click','.checked',function(){
             var sortId=$(this).attr('menu_tid');
+
+            $('.title_name').html($(this).find('h1').text());
+
         /*  alert(sortId);*/
             $.ajax({
                 url:'../../flow/flowAuthOrSearch',
@@ -587,25 +587,69 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                     var data=obj.obj;
                     var str='';
                     console.log(data);
-                    for(var i=0;i<data.length;i++){
-                        if(data[i].runName){
-                            $('.runName').html('未添加');
-                        }else{
-                            $('.runName').html(data[i].runName);
-                        }
-                        str+='<li tid='+data[i].flowId+' sortId='+data[i].flowSort+'><div class="rig_left">'+
-                            '<h1>'+data[i].flowName+'</h1><h2 class="runName">未添加</h2></div>'+
-                            '<div class="rig_mid">'+
-                            '<div class="liucheng"><img src="../../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>'+
-                            '<div class="liucheng1"><img src="../../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>'+
-                            '<div class="liucheng2"><img src="../../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div></div>'+
-                            '<div class="rig_rig"><div><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>'+
-                            '<div><img src="../../img/workflow/work/add_work/xiangdao.png" style="margin-left: 6%;" alt=""><h1>新建向导</h1></div></div></li>'
+                    renderData(data);
 
+                }
+            })
+        })
 
+        $.ajax({
+            url:'../../flow/flowAuthOrSearch',
+            type:'get',
+            dataType:'json',
+            success:function(obj){
+                var data=obj.obj;
+                var str='';
+                console.log(data);
+                renderData(data);
 
+            }
+        })
+
+        function renderData(data) {
+            var str='';
+            for(var i=0;i<data.length;i++){
+                if(data[i].runName){
+                    str+='<li tid='+data[i].flowId+' sortId='+data[i].flowSort+'><div class="rig_left">'+
+                        '<h1>'+data[i].flowName+'</h1><h2 class="runName">'+data[i].runName+'</h2></div>'+
+                        '<div class="rig_mid">'+
+                        '<div class="liucheng"><img src="../../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>'+
+                        '<div class="liucheng1"><img src="../../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>'+
+                        '<div class="liucheng2"><img src="../../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div></div>'+
+                        '<div class="rig_rig"><div class="quick"><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>'+
+                        '<div class="xiangdao"><img src="../../img/workflow/work/add_work/xiangdao.png" style="margin-left: 6%;" alt=""><h1>新建向导</h1></div></div></li>'
+                }else{
+                    str+='<li tid='+data[i].flowId+' sortId='+data[i].flowSort+'><div class="rig_left">'+
+                        '<h1>'+data[i].flowName+'</h1><h2 class="runName">未添加</h2></div>'+
+                        '<div class="rig_mid">'+
+                        '<div class="liucheng"><img src="../../img/workflow/work/add_work/sheji.png" alt=""><h1>流程设计图</h1></div>'+
+                        '<div class="liucheng1"><img src="../../img/workflow/work/add_work/liucheng.png" alt=""><h1>流程表单</h1></div>'+
+                        '<div class="liucheng2"><img src="../../img/workflow/work/add_work/speak.png" alt=""><h1>流程说明</h1></div></div>'+
+                        '<div class="rig_rig"><div class="quick"><img class="xinjian_img"  src="../../img/workflow/work/add_work/xinjian.png" alt=""><h1 class="xinjian_h1" >快速新建</h1></div>'+
+                        '<div class="xiangdao"><img src="../../img/workflow/work/add_work/xiangdao.png" style="margin-left: 6%;" alt=""><h1>新建向导</h1></div></div></li>'
+                }
+            }
+            $('#sort_cont').html(str);
+        }
+        //查询按钮接口
+        $('#searchbtn').on('click',function(){
+            $('.title_name').html('全部工作');
+            var text=$(this).siblings('#form_select').val();
+            alert(text);
+            $.ajax({
+                url:'../../flow/flowAuthOrSearch',
+                type:'get',
+                dataType:'json',
+                data:{
+                    searchValue:text
+                },
+                success:function(obj){
+                    if(obj.flag==true){
+                        var data=obj.obj;
+                        var str='';
+                        console.log(data);
+                        renderData(data);
                     }
-                    $('#sort_cont').html(str);
                 }
             })
         })
