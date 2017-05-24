@@ -445,33 +445,34 @@
         });
 
         /*定义流程属性查询*/
-        $.ajax({
-            type: "GET",
-            url: "<%=basePath%>flow/selectAllFlow",
-            dataType: "JSON",
-            data: {
-                flowId: ${flowId},
-            },
-            success: function (data) {
-                console.log(data)
-                if (data.flag) {
-                    $("#flowId").val(data.object.flowId);
-                    $("#projectName").val(data.object.flowName);
-                    $('#orderID').val(data.object.flowNo);
-                    //$('#deptName').find("option:selected").text(data.object.deptId)
-                    //$('#deptName option:selected').text(data.object.deptId);
+
+        var flowId = '${flowId}';
+
+        if(flowId != null || flowId.length>0) {
+            $.ajax({
+                type: "GET",
+                url: "<%=basePath%>flow/selectAllFlow",
+                dataType: "JSON",
+                data: {
+                    flowId: flowId
+                },
+                success: function (data) {
+                    console.log(data)
+                    if (data.flag) {
+                        $("#flowId").val(data.object.flowId);
+                        $("#projectName").val(data.object.flowName);
+                        $('#orderID').val(data.object.flowNo);
+                        //$('#deptName').find("option:selected").text(data.object.deptId)
+                        //$('#deptName option:selected').text(data.object.deptId);
 //                    $('#deptName').find('option').eq(0).text()
 //                    console.log($('#deptName option:selected'))
-
-
+                    }
                 }
-
-            }
-
-        });
+            });
+        }
         $('.keepmsg').on('click', function () {
-            var flowId = $("#flowId").val();
-            alert(flowId);
+//            var flowId = $("#flowId").val();
+//            alert(flowId);
 
             if (flowId == null || flowId == "") {
                 //保存

@@ -11,7 +11,7 @@
 	</resultMap>
 
 	<insert id="save" parameterType="com.xoa.model.common.Syslog">
-		insert into SYS_LOG (LOG_ID,USER_ID,TIME,IP,TYPE,
+		insert into sys_log (LOG_ID,USER_ID,TIME,IP,TYPE,
 				REMARK
 		) values
 		(#{logId},#{userId},#{time},#{ip},#{type},
