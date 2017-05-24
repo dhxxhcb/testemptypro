@@ -55,7 +55,7 @@
 			}
 			.cont_rig {
 				width: 84%;
-				height: 100%;
+				height: 91%;
 				overflow-y: scroll;
 			}
 		.head_rig {width: 10%;margin-top:0px;}
