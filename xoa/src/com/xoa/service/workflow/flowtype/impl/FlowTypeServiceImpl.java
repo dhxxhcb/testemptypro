@@ -151,7 +151,7 @@ public class FlowTypeServiceImpl implements FlowTypeService {
             return toJson;
         }
 
-        List<Integer> sirtIds = classifyService.getSortChildId(sortId,new ArrayList<>());
+        List<Integer> sirtIds = classifyService.getSortChildId(sortId,new ArrayList<Integer>());
         StringBuffer sirtIdsTr =new StringBuffer();
         int i=0;
         for(Integer integer:sirtIds){
