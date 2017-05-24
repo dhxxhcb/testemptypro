@@ -39,7 +39,7 @@
     from flow_run
     where RID = #{rid}
   </select>
-  <select id="getMaxRunId">
+  <select id="getMaxRunId" resultType="int">
   SELECT MAX(RUN_ID) from FLOW_RUN
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

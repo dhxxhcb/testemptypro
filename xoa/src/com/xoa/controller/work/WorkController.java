@@ -23,6 +23,7 @@ import com.xoa.model.workflow.FlowRun;
 import com.xoa.model.workflow.FlowRunPrcs;
 import com.xoa.model.workflow.FlowTypeModel;
 import com.xoa.service.workflow.flowtype.FlowFormTypeService;
+import com.xoa.service.workflow.flowtype.FlowRunPrcsService;
 import com.xoa.service.workflow.flowtype.FlowRunService;
 import com.xoa.service.workflow.flowtype.FlowTypeService;
 import com.xoa.util.ToJson;
@@ -50,6 +51,9 @@ public class WorkController {
 	
 	@Resource
 	private FlowRunService flowRunService;
+	
+	@Resource
+	private FlowRunPrcsService flowRunPrcsService;
 	
 	 @RequestMapping("addwork")
 	 public String work(HttpServletRequest request) {
@@ -108,6 +112,8 @@ public class WorkController {
 		flowRun.setBeginUser(userId);
 		flowRun.setBeginTime(beginTime);
 		flowRun.setBeginDept(deptId);
+		flowRun.setDelFlag("0");
+		flowRun.setDelTime(new Date());
 		flowRunService.save(flowRun);	
 		
 		FlowRunPrcs flowRunPrcs =new FlowRunPrcs();
@@ -117,7 +123,7 @@ public class WorkController {
 		flowRunPrcs.setPrcsDept(deptId);
 		//flowRunPrcs.setPrcsFlag(prcsFlag);
 		flowRunPrcs.setCreateTime(beginTime);
-		
+		flowRunPrcsService.save(flowRunPrcs);
 		
 		ToJson<FlowFormType> json=new ToJson<FlowFormType>();
 		json=flowFormTypeService.qureyItemMax(flowTypeModel.getFormId());
@@ -125,6 +131,9 @@ public class WorkController {
 		FlowFast f=new FlowFast();
 		f.setFlowTypeModel(flowTypeModel);
 		f.setFlowFormType(flowFormType);
+		f.setFlowRun(flowRun);
+		f.setFlowRunPrcs(flowRunPrcs);
+		
 		try {
             tj.setObject(f);
             tj.setMsg("OK");
