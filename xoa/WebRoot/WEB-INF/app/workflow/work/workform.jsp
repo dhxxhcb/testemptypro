@@ -26,6 +26,7 @@
 
 <script>
     $(function(){
+        var formid = $.getQueryString("formId");
         var workForm = {
             formhtmlurl : '../../form/formType',
             render:function(){
@@ -72,7 +73,7 @@
                 });
             }
         }
-        workForm.buildHTML($('.formDesign'),116);
+        workForm.buildHTML($('.formDesign'),formid);
 
     })
 
