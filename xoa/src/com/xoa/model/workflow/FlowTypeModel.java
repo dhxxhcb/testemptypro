@@ -428,7 +428,7 @@ public class FlowTypeModel implements Serializable{
      * @return     Integer
      */
     public Integer getAutoNum() {
-        return autoNum;
+        return autoNum == null ? 0 : autoNum;
     }
 
     /**
@@ -452,7 +452,7 @@ public class FlowTypeModel implements Serializable{
      * @return     Integer
      */
     public Integer getAutoLen() {
-        return autoLen;
+        return autoLen == null ? 0 : autoLen;
     }
 
     /**
@@ -684,7 +684,7 @@ public class FlowTypeModel implements Serializable{
      * @return     Integer
      */
     public Integer getIsVersion() {
-        return isVersion;
+        return isVersion == null ? 0 : isVersion;
     }
 
     /**
@@ -732,7 +732,7 @@ public class FlowTypeModel implements Serializable{
      * @return     Integer
      */
     public Integer getAutoNumYear() {
-        return autoNumYear;
+        return autoNumYear == null ? 0 : autoNumYear;
     }
 
     /**
@@ -756,7 +756,7 @@ public class FlowTypeModel implements Serializable{
      * @return     Integer
      */
     public Integer getAutoNumMonth() {
-        return autoNumMonth;
+        return autoNumMonth == null ? 0 : autoNumMonth;
     }
 
     /**

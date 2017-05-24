@@ -5,6 +5,7 @@ import com.xoa.model.users.Users;
 import com.xoa.model.workflow.FlowTypeModel;
 import com.xoa.service.workflow.flowtype.FlowTypeService;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.L;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.page.PageParams;
@@ -39,6 +40,7 @@ public class FlowTypeServiceImpl implements FlowTypeService {
             toJson.setMsg("ok");
             toJson.setFlag(0);
         } catch (Exception e) {
+            L.e("保存异常："+e);
             toJson.setMsg("error");
             toJson.setFlag(1);
         }

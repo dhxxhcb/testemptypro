@@ -13,6 +13,7 @@ import com.xoa.model.email.EmailBoxModel;
 import com.xoa.model.unitmanagement.UnitManage;
 import com.xoa.model.users.Users;
 import com.xoa.model.workflow.FlowProcess;
+import com.xoa.model.workflow.FlowTypeModel;
 import com.xoa.service.unitmanagement.UnitManageService;
 import com.xoa.service.users.UsersService;
 import com.xoa.service.workflow.flowtype.FlowProcessService;
@@ -58,8 +59,37 @@ public class Ctest {
 //	private EmailService emailUtilService;
 
 	//新建流程测试
+//	@Resource
+//	private FlowProcessService flowProcessService;
+
 	@Resource
-	private FlowProcessService flowProcessService;
+	private FlowTypeService flowTypeService;
+
+	@Test
+	public void test()throws  Exception{
+		FlowTypeModel flowTypeModel = new FlowTypeModel();
+		flowTypeModel.setFlowName("测试");
+		flowTypeModel.setFlowNo(1);
+		flowTypeModel.setDeptId(1);
+		flowTypeModel.setFlowSort(1);
+		flowTypeModel.setFlowType("1");
+		flowTypeModel.setFormId(117);
+		flowTypeModel.setFreeOther("2");
+		ToJson<FlowTypeModel> toJson = flowTypeService.saveFlow(flowTypeModel);
+		System.out.println(toJson.getMsg());
+//		flowName: $('#projectName').val(),
+//				flowNo: $('#orderID').val(),
+//				deptId: 1,
+//				flowSort: 1,
+//				flowType: 1,
+//				formId: 117,
+//				freeOther: 2
+	}
+
+
+
+
+
 
 //    @Resource
 //    private UsersService usersService;
@@ -67,23 +97,23 @@ public class Ctest {
 //    @Resource
 //	private UnitManageService unitManageService;
 	
-	@Test
-	public void test() throws Exception {
-		FlowProcess flowProcess = new FlowProcess();
-//		==>  Preparing: insert into flow_process ( FLOW_ID , PRCS_ID , PRCS_NAME , SET_LEFT , SET_TOP ) values ( ?, ?, ?, ?, ? )
-//==> Parameters: 2(Integer), 9(Integer), node_1(String), 719(Integer), 280(Integer)
-		flowProcess.setFlowId(2);
-		flowProcess.setPrcsId(9);
-		flowProcess.setPrcsName("node_1");
-		flowProcess.setSetLeft(719);
-		flowProcess.setSetTop(280);
-//		flowProcess.setPluginSave("4546546");
-		flowProcess.setRemindFlag(0);
-		flowProcessService.insertSelective(flowProcess);
-//		System.out.println(JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
-//		System.out.println(i);
-
-	}
+//	@Test
+//	public void test() throws Exception {
+//		FlowProcess flowProcess = new FlowProcess();
+////		==>  Preparing: insert into flow_process ( FLOW_ID , PRCS_ID , PRCS_NAME , SET_LEFT , SET_TOP ) values ( ?, ?, ?, ?, ? )
+////==> Parameters: 2(Integer), 9(Integer), node_1(String), 719(Integer), 280(Integer)
+//		flowProcess.setFlowId(2);
+//		flowProcess.setPrcsId(9);
+//		flowProcess.setPrcsName("node_1");
+//		flowProcess.setSetLeft(719);
+//		flowProcess.setSetTop(280);
+////		flowProcess.setPluginSave("4546546");
+//		flowProcess.setRemindFlag(0);
+//		flowProcessService.insertSelective(flowProcess);
+////		System.out.println(JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
+////		System.out.println(i);
+//
+//	}
 
 //		Integer page = 1;
 //		Integer pageSize = 5;

@@ -39,8 +39,8 @@ public class Test {
 //		String reg = "<" + "input" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>";
 		//String i1="<option\b(?=[^>]*value='([^']*)')(?:[^>]*([^']*)')?[^>]*>(.*?)</option>"+"<option(?=[^>]*value='([^']*)')(?:[^>]*([^']*)')?[^>]*>(.*?)</option>";
      	//String reg = "<" + "textarea" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>"+"</textarea>";
-		String reg1 = "<" + "select" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?"+"<option[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?>[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?</option>"+"</select>";
-			//String reg1 = "<option[^>]*?>[\\\\s\\\\S]*?<\\\\/option>";
+		String reg1 = /*"<" + "select" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?"+*/"<option[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?>[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?</option>"/*+"</select>"*/;
+		//String reg1 = "<option[^>]*?>[\\\\s\\\\S]*?<\\\\/option>";
 //		String reg1=""
 //		StringBuffer reg1 = new StringBuffer();
 //		if (source.matches("<input")){
@@ -53,6 +53,7 @@ public class Test {
 
 		//String reg2 = "/<.*?[input|textarea|select].*?>/i";
 		 m = Pattern.compile(reg1).matcher(source);
+		 System.out.print(m.pattern());
 		// m = Pattern.compile(reg1).matcher(source);
 //		System.out.print(m.pattern());
        int regl=source.length();
@@ -75,7 +76,8 @@ public class Test {
 	}
 	public static String matchB(String source , String attr) {
 		Matcher m;
-		String reg = "<" + "input" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>";
+//		String reg = "<" + "input" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>";
+		String reg = "<" + "select" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?"+"</select>";
 		m = Pattern.compile(reg).matcher(source);
 		int regl=source.length();
 		int i=0;
@@ -107,11 +109,47 @@ public class Test {
 		}
 		return source;
 	}
+	public static String matchD(String source , String attr) {
+		Matcher m;
+		String reg = "<" + "input" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>";
+		//String reg = "<" + "select" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>[^<>]*?['\"]?(.*?)['\"]?(\\s.*?)?"+"</select>";
+		m = Pattern.compile(reg).matcher(source);
+		int regl=source.length();
+		int i=0;
+		if(m.find()) {
+			String 	a=m.group(1);
+			int start=m.start();
+			int end=m.end();
+			a="{"+a+"}";
+			System.out.println("start:"+start+"end:"+end+"length:"+source.length());
+			source=replaceByPostion(source,a,start,end);
+			source=	matchD(source,attr);
+		}
+		return source;
+	}
 
 	public static String replaceByPostion(String source,String replace,Integer start,Integer end){
 
 		String res=source.substring(0,start)+replace+source.substring(end,source.length());
         return res;
+	}
+	public static String matchE(String source , String attr) {
+		Matcher m;
+		//String reg = "<" + "input" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>";
+		String reg = "<" + "textarea" + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?(\\s.*?)?>"+"</textarea>";
+		m = Pattern.compile(reg).matcher(source);
+		int regl=source.length();
+		int i=0;
+		if(m.find()) {
+			String 	a=m.group(1);
+			int start=m.start();
+			int end=m.end();
+			a="{"+a+"}";
+			System.out.println("start:"+start+"end:"+end+"length:"+source.length());
+			source=replaceByPostion(source,a,start,end);
+			source=	matchE(source,attr);
+		}
+		return source;
 	}
 
 	public static void main(String[] args) {
@@ -160,10 +198,14 @@ public class Test {
 				"</p>" +
 				"<p>测试件：<input title=\"宏控件\" class=\"AUTO\" \n" +
 				"datafld=\"SYS_USERNAME\" hidden=\"0\" style=\"\" name=\"DATA_7\" value=\"{MACRO}\" type=\"text\"/></p> ";
-		String list = match(b, "input", "name");
+		        String list = match(b, "input", "name");
+		        String aw=matchB(list,"name");
+		       String a2=matchC(aw,"name");
+				String a3=matchD(a2,"name");
+		       String a4=matchE(a3,"name");
 
 
-		System.out.println(list);
+		System.out.println(a4);
 	}
 
 }
