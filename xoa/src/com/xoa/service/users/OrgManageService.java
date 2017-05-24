@@ -36,4 +36,12 @@ public interface OrgManageService {
      **/
     void editOrgManage(OrgManage orgManage);
 
+    /**
+     *@创建作者:  韩成冰
+     *@创建日期:  2017/5/24 18:50
+     *@函数介绍:  添加分公司
+     *@参数说明:  @param orgManage
+     *@return:   void
+     **/
+    void addOrgManage(OrgManage orgManage);
 }
