@@ -17,7 +17,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/m_reset.css">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/new_work.css">
-    <script src="../js/base/base.js"></script>
+    <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
+    <script src="../../js/base/base.js"></script>
+    <script src="../../js/workflow/work/workform.js"></script>
 </head>
 
 <style type="text/css">
@@ -71,20 +73,12 @@
 </body>
 </html>
 <script>
-    /*$('.abs_right ul').on('click','li',function(){
-        $('#tab_t li').removeClass('act');
-        $(this).addClass('act');
-    })*/
-    /*$('#tab_t ul').on('click','li',function(){
-        console.log('111');
-        $('#tab_t li').removeClass('act');
-        $(this).addClass('act');
-        if($(this).attr('id')==me){
-            initList_share('d');
-        }else{
-            initList_me('d');
-        }
-    })*/
+    $(function(){
+        var formid = $.getQueryString("formId");
+
+        workForm.buildHTML($('.cont_form'),formid);
+
+    });
 </script>
 <script>
     autodivheight();
