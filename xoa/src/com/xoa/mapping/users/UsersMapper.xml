@@ -194,7 +194,7 @@
 	</select>
 	<select id="findUserByName" resultMap="UserResultMap">
 		select
-		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD`,u.DEPT_ID,u.DEPT_ID_OTHER,u.USER_PRIV,u.USER_PRIV_OTHER,d.DEPT_NAME,u.USER_PRIV_NAME,u.SEX,u.AVATAR,S.PARA_NAME,S.PARA_VALUE
+		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD`,u.DEPT_ID,u.DEPT_ID_OTHER,u.USER_PRIV,u.USER_PRIV_OTHER,d.DEPT_NAME,u.USER_PRIV_NAME,u.SEX,u.AVATAR,s.PARA_NAME,s.PARA_VALUE
 		from user u,department d,sys_para s WHERE
 		u.USER_ID= #{byname} and u.DEPT_ID=d.DEPT_ID and s.PARA_NAME='IM_WINDOW_CAPTION'
 	</select>

@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/" ;
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 
 <!DOCTYPE html>
@@ -23,7 +23,38 @@
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/layer/layer.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.js"></script>
+    <style>
+        .searchBox li {
+            margin-bottom: 15px;
+        }
 
+        .searchBox li input[type="text"] {
+            border: 1px solid #ccc;
+            font-size: 14px;
+            height: 32px;
+            line-height: 34px;
+            padding: 0 10px;
+            width: 265px;
+            float: left;
+            border-radius: 4px;
+            text-align: left;
+        }
+
+        .searchBox li input[type="text"]:focus {
+            border-color: #0090e3;
+        }
+
+        .searchBox li label {
+            height: 34px;
+            width: 92px;
+            line-height: 32px;
+            text-align: right;
+            margin-right: 10px;
+            float: left;
+            padding-right: 8px;
+        }
+    </style>
 </head>
 <body>
 <div class="bx">
@@ -32,46 +63,46 @@
     <h6>多企业管理</h6>
     </hr>
 
-        <!--content部分开始-->
+    <!--content部分开始-->
+    <div>
         <div>
-            <div>
-                <table id="tr_td">
-                    <thead>
-                    <tr>
-                        <td class="th">
-                            <%--<fmt:message code="notice.th.title"/>--%>公司id
-                        </td>
-                        <td class="th">
-                            <%--<fmt:message code="news.th.type"/>--%>公司名称
-                        </td>
-                        <!-- <td class="th" style="position: relative"><fmt:message code="notice.title.Releasedate" />
+            <table id="tr_td">
+                <thead>
+                <tr>
+                    <td class="th">
+                        <%--<fmt:message code="notice.th.title"/>--%>公司id
+                    </td>
+                    <td class="th">
+                        <%--<fmt:message code="news.th.type"/>--%>公司名称
+                    </td>
+                    <!-- <td class="th" style="position: relative"><fmt:message code="notice.title.Releasedate" />
                                <img style="position: absolute;margin-left:9px;cursor: pointer;" src="../img/05.png" alt=""/>
                              <img style="position: absolute;margin-top:13px;margin-left:9px;cursor: pointer;" src="../img/06.png " alt=""/>
                         </td> -->
-                        <td class="th">
-                          <%-- <fmt:message code="notice.title.Releasedate"/>--%>版本
-                        </td>
+                    <td class="th">
+                        <%-- <fmt:message code="notice.title.Releasedate"/>--%>版本
+                    </td>
 
-                        <td class="th">
-                           <%-- <fmt:message code="news.th.clicks"/>--%>是否组织
-                        </td>
-                        <td class="th">
-                            <%--<fmt:message code="news.th.comment"/>--%>修改
-                        </td>
-                        <!-- <td class="th">发布部门</td> -->
-                    </tr>
-                    </thead>
-                    <tbody id="j_tb" calss="tr_td">
+                    <td class="th">
+                        <%-- <fmt:message code="news.th.clicks"/>--%>是否组织
+                    </td>
+                    <td class="th">
+                        <%--<fmt:message code="news.th.comment"/>--%>修改
+                    </td>
+                    <!-- <td class="th">发布部门</td> -->
+                </tr>
+                </thead>
+                <tbody id="j_tb" class="tr_td">
 
-                    </tbody>
-                </table>
-            </div>
-
-
+                </tbody>
+            </table>
         </div>
-        <!--content部分结束-->
+
 
     </div>
+    <!--content部分结束-->
+
+</div>
 </div>
 
 
@@ -141,24 +172,25 @@
                             }, 2 * 1000);
                         } else {
                             layer.msg('没有更多数据！', {icon: 6});
-                        };
+                        }
+                        ;
                     } else {
                         var str = "";
 
 
                         for (var i = 0; i < obj.object.length; i++) {
                             var isOrgValue;
-                            if(obj.object[i].isOrg == 1){
+                            if (obj.object[i].isOrg == 1) {
                                 isOrgValue = "是"
-                            }else{
+                            } else {
                                 isOrgValue = "否"
                             }
 
-                            str += "<tr><td><a href='#' style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen'>" + obj.object[i].oid + "</ a></td>" +
-                                    "<td><a href='#' style='color:#2B7FE0;' oid=" + obj.object[i].oid + " class='windowOpen'>" + obj.object[i].name + "</ a></td>" +
-                                    "<td><a href='#'  style='color:#666;' oid=" + obj.object[i].oid + " class='windowOpen'>" + obj.object[i].version + "</ a></td>" +
-                                    "<td><a href='#'  style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen'>" + isOrgValue + "</ a></td>" +
-                                    "<td><a href='#'  style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen'>" + '修改' + "</ a></td>";
+                            str += "<tr><td><a href='###' style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen'>" + obj.object[i].oid + "</ a></td>" +
+                                    "<td><a href='###' style='color:#2B7FE0;' oid=" + obj.object[i].oid + " class='windowOpen'>" + obj.object[i].name + "</ a></td>" +
+                                    "<td><a href='###'  style='color:#666;' oid=" + obj.object[i].oid + " class='windowOpen'>" + obj.object[i].version + "</ a></td>" +
+                                    "<td><a href='###'  style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen'>" + isOrgValue + "</ a></td>" +
+                                    "<td><a href='###'  style='color:#666;' oid=" + obj.object[i].oid + "  class='windowOpen thupdate'>" + '修改' + "</ a></td>";
                         }
                         var loadindex = setInterval(function () {
                             layer.closeAll();
@@ -195,20 +227,61 @@
         };
 
 
+        $("#j_tb").on('click', '.thupdate', function () {
+            var $oid = $(this).parents('tr').find('td')[0].innerText;
+            var $name = jQuery($(this).parents('tr').find('td')[1]).text();
+            var $version = $(this).parents('tr').find('td')[2].innerText;
+            var $isOrg = $(this).parent().prev().text();
+            if ($isOrg == '是') {
+                $isOrg = 1;
+            } else {
+                $isOrg = 0;
+            }
+            var me = this;
 
 
-        $("#j_tb").on('click', '.windowOpen', function () {
-            var oid = $(this).attr('oid');
+            layer.open({
+                title: '修改',
+                shade: 0,
+                content: '<div style="width: 462px"><form id="updatecom" action="${pageContext.request.contextPath}/users/editOrgManage.do">' +
+                '<ul class="searchBox clearfix">' +
+                '<li style="float: left">' +
+                '<label>公司ID:</label><input type="text" name="oid" value="' + $oid + '" readonly="true" style="background: #fff">' +
+                '</li>' +
+                '<li style="float: left">' +
+                '<label>公司名称:</label><input type="text" name="name" value="' + $name + '">' +
+                '</li>' +
+                '<li style="float: left">' +
+                '<label>版本:</label><input type="text" name="version"  value="' + $version + '">' +
+                '</li>' +
+                '<li style="float: left">' +
+                '<label>是否组织:</label><input type="text" name="isOrg" value="' + $isOrg + '">' +
+                '</li>' +
+                '</ul></form></div>',
+                area: ['500px', '350px'],
+                btn: ['确定', '取消'],
+                yes: function (index) {
+                    $('#updatecom').ajaxSubmit(function (json) {
 
-            //$.popWindow('detail?oid=' + oid, '');
+                        for (var i = 0; i < json.object.length; i++) {
+                            if (json.object[i].oid == $oid) {
+
+                                $(me).parents('tr').find('td')[1].innerText = json.object[i].name;
+                                $(me).parents('tr').find('td')[2].innerText = json.object[i].version;
+
+                                if (json.object[i].isOrg == 1) {
+                                    $(me).parents('tr').find('td')[3].innerText = '是'
+                                } else {
+                                    $(me).parents('tr').find('td')[3].innerText = '否'
+                                }
+                            }
+
+                        }
 
 
-            var top = top || '100';
-            var left = left || '300';
-            var width = width || '640';
-            var height = height || '500';
-            var specs = 'top='+top+',left='+left+',width='+width+',height='+height;
-            window.open("users/getOrgManageById?oid=1001","aa",specs);
+                    })
+                }
+            })
 
         });
 
