@@ -31,13 +31,11 @@ public class TodolistController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/todoList/list",produces = {"application/json;charset=UTF-8"})
-    public ToJson<Daiban> list(HttpServletRequest request,String userId) {
+    public ToJson<Daiban> list(HttpServletRequest request,String userId,String sqlType) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		ToJson<Daiban> json=new ToJson<Daiban>(0, null);
 		try {
-			String sqlType="xoa" + (String) request.getSession().getAttribute(
-					"loginDateSouse");
 			Daiban db=todolistService.list(userId,sqlType);
             json.setObject(db);
             json.setMsg("OK");
