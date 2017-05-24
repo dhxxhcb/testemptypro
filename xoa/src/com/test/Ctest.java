@@ -68,14 +68,15 @@ public class Ctest {
 	@Test
 	public void test()throws  Exception{
 		FlowTypeModel flowTypeModel = new FlowTypeModel();
-		flowTypeModel.setFlowName("测试");
+		flowTypeModel.setFlowName("测试修改");
 		flowTypeModel.setFlowNo(1);
 		flowTypeModel.setDeptId(1);
 		flowTypeModel.setFlowSort(1);
 		flowTypeModel.setFlowType("1");
 		flowTypeModel.setFormId(117);
 		flowTypeModel.setFreeOther("2");
-		ToJson<FlowTypeModel> toJson = flowTypeService.saveFlow(flowTypeModel);
+		flowTypeModel.setFlowId(136);
+		ToJson<FlowTypeModel> toJson = flowTypeService.updateFlow(flowTypeModel);
 		System.out.println(toJson.getMsg());
 //		flowName: $('#projectName').val(),
 //				flowNo: $('#orderID').val(),

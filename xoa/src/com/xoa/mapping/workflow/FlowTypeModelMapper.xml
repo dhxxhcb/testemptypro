@@ -94,7 +94,7 @@
     <if test="flowType != null and flowType != ''">
       FLOW_TYPE = #{flowType},
     </if>
-      <if test="flowNo != null and flowNo = ''">
+      <if test="flowNo != null and flowNo = 0">
         FLOW_NO = #{flowNo},
       </if>
       <if test="flowSort != null and flowSort != ''">
