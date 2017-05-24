@@ -67,6 +67,8 @@ public class WorkController {
 			int flowId){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
+		
+		
 		Map<String, Object> maps=new HashMap<String, Object>();
 		 ToJson<FlowFast> tj=new ToJson<FlowFast>();
 		 ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
