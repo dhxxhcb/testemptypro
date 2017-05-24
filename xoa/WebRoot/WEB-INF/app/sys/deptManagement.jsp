@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="../lib/easyui/themes/icon.css"/>
     <link rel="stylesheet" type="text/css" href="../css/base.css"/>
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/dept/new_news.css"/>
+   <%-- <link rel="stylesheet" type="text/css" href="../css/dept/new_news.css"/>--%>
     <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
     <script src="../lib/laydate.js"></script>
     <script type="text/javascript" src="../lib/easyui/jquery.easyui.min.js"></script>
@@ -26,6 +26,13 @@
     <script src="../lib/layer/layer.js"></script>
     <title>s首页</title>
     <style>
+        html,
+        body,
+        .wrap{
+            width:100%;
+            height:100%;
+           /* overflow: hidden;*/
+        }
         .noDatas {
             margin-top: 10px;
         }
@@ -46,26 +53,44 @@
             margin-right: 15px;
             cursor: pointer
         }
-
-        .head_rig h1 {
-            width: 78px;
+        .head_rig  .import {
+            width: 56px;
             height: 30px;
             font-size: 13px !important;
-            background-image: url(../img/workflow/btn_new_nor_03.png), url(../img/workflow/icon_plus_03.png);
             cursor: pointer;
             background-repeat: no-repeat;
+            background-image: url(../img/sys/import.png);
+            padding-left: 25px;
+        }
+        .head_rig  .export {
+            width: 56px;
+            height: 30px;
+            font-size: 13px !important;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-image: url(../img/sys/export.png);
+            padding-left: 25px;
+        }
+        .head_rig .new_dept {
+            width: 130px;
+            height: 30px;
+            font-size: 13px !important;
+            background-image:url(../img/sys/dept_personnel.png);
+            cursor: pointer;
+            background-repeat: no-repeat;
+            color: #fff;
         }
 
         #cont_left::-webkit-scrollbar {
-            width: 10px;
+            width: 0px;
         }
 
         #cont_left::-webkit-scrollbar-corner {
-            background: #82AFFF;
+            /*background: #82AFFF;*/
         }
 
         .head_rig {
-            width: 25%;
+            width: 29%;
             margin-top: 0px;
             float: right;
         }
@@ -101,14 +126,16 @@
         }
 
         .head {
-            border-bottom: 1px solid #9E9E9E;
-            height: 44px;
+            border-bottom: 1px solid #dedede;
+            height: 43px;
         }
 
         .cont_rig {
-            overflow-y: scroll;
-            width: 84%;
+            /*overflow-y: scroll;*/
+            width: 81%;
             height: 95%;
+            overflow-y:hidden;
+            overflow-x: hidden;
         }
 
         .new_excell_pic {
@@ -391,40 +418,46 @@
         }
 
         .cont_left {
-            width: 15%;
+            width: 18%;
             height: 95%;
-            border-right: 1px solid #000;
+            border-right: 1px solid #dedede;
             overflow-y: scroll;
         }
     </style>
 </head>
-<body>
+<body style="overflow:scroll;overflow-y: hidden;overflow-x:hidden;">
 
 <div class="wrap" style="margin-left:0px !important;">
     <div class="head">
         <div class="head_left">
-            <img src="../img/newsManages2_1.png" alt="">
+            <img src="../img/sys/dept.png" alt="">
             <h1>部门/成员单位管理</h1>
         </div>
-       <%-- <div class="head_mid">
-            <input id="form_value" class="inp" type="text" placeholder="输入表名称搜索">
-            <div id="btn_search" class="search">
-                <h1 style='cursor:pointer;'>搜索</h1></div>
+       <%-- <div class="head_rig" id="head_rig">
+            <h1 style='cursor:pointer;' class="new_dept">新建部门/成员单位</h1>
+            <h1 style='cursor:pointer;' class="import">导入</h1>
+            <h1 style='cursor:pointer;' class="export">导出</h1>
         </div>--%>
-        <div class="head_rig" id="head_rig">
-            <h1 style='cursor:pointer;'>新建</h1>
-            <h1 style='cursor:pointer;'>新建</h1>
-            <h1 style='cursor:pointer;'>新建</h1>
-
-
-        </div>
-
-
     </div>
 
     <div class="cont">
         <div class="cont_left" id="cont_left">
-            <div class="left_all">
+            <ul>
+                <li class="liUp dept_li" id="dept_lis">部门列表</li>
+                <li class="pick" style="display: none;">
+                    <ul class="tab_ctwo a" id="deptOrg">
+                        <!-- <li>
+
+                        </li> -->
+                    </ul>
+                </li>
+                <li class="liUp dept_li">离职人员/外部人员</li>
+                <li class="liUp dept_li">公共自定义组</li>
+                <li class="liUp dept_li">修正部门级别</li>
+
+            </ul>
+
+            <%--<div class="left_all">
                 <ul>
                     <li class="lis">
                         部门列表
@@ -443,133 +476,20 @@
                 </ul>
 
 
-            </div>
+            </div>--%>
 
         </div>
 
         <div class="cont_rig">
             <!-- 部门右侧页面 -->
-           <%-- <iframe src="<%=basePath%>" width="100%" height="100%"> ceshi</iframe>--%>
+            <iframe src="<%=basePath%>department/newDeptManagement/" width="100%" height="100%"></iframe>
 
 
-            <div class="step2" style="display: block;margin-left: 10px;">
-                <!-- 中间部分 -->
-                <table class="newNews">
-                    <div class="nav_box clearfix">
-                        <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
-                        <div class="nav_t2" class="news">新建部门/成员单位-当前节点：[北京高速波软件有限公司]</div>
-                    </div>
-                    <tbody>
-                    <tr>
-                        <td class="td_w blue_text">
-                            部门排序号:
-                        </td>
-                        <td>
-                            <input class="td_title1" id="" type="text" placeholder=""/>
-                            <div> 3位数字，用于同一级次部门排序，不能重复</div>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td_w blue_text">
-                            部门名称:
-                        </td>
-                        <td>
-                            <input class="td_title1" id="" type="text" placeholder=""/>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td_w blue_text">
-                            上级部门:
-                        </td>
-                        <td>
-                            <input class="td_title1" id="" type="text" placeholder=""/>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="blue_text">部门主管（选填）:</td>
-                        <td>
-                            <input class="td_title1  release1" id="query_toId" type="text"/>
-                            <%-- <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                            <div class="release3">添加</div>
-                            <div class="release4 empty">清空</div>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="blue_text">部门助理（选填）:</td>
-                        <td>
-                            <input class="td_title1  release1" id="query_privId" type="text"/>
-                            <%-- <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                            <div class="release3">添加</div>
-                            <div class="release4 empty" onclick="empty('query_privId')">清空</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="blue_text">上级主管领导（选填）:</td>
-                        <td>
-                            <input class="td_title1  release1" id="query_userId" dataid="" type="text"/>
-                            <%--  <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                            <div class="release3" id="query_adduser">添加</div>
-                            <div class="release4 empty" onclick="empty('query_userId')">清空</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="blue_text">上级分管领导（选填）:</td>
-                        <td>
-                            <input class="td_title1  release1" id="query_userId" dataid="" type="text"/>
-                            <%--  <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                            <div class="release3" id="query_adduser">添加</div>
-                            <div class="release4 empty" onclick="empty('query_userId')">清空</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="blue_text">
-                            电话 :
-                        </td>
-                        <td>
-                            <input class="td_title1 time_coumon" id="" type="text" placeholder=""/>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="blue_text">
-                            传真 :
-                        </td>
-                        <td>
-                            <input class="td_title1 time_coumon" id="" type="text" placeholder=""/>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="blue_text">
-                            地址 :
-                        </td>
-                        <td>
-                            <input class="td_title1 time_coumon" id="" type="text" placeholder=""/>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="blue_text">
-                            部门职责 :
-                        </td>
-                        <td>
-                            <textarea name="" cols="60" rows="5"></textarea>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div style="border:1px solid #dedede;height:30px;width:50px;">新建</div>
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
-            </div>
 
 
 
@@ -597,11 +517,10 @@
     </div>
 </div>
 </body>
-<script
-        type="text/javascript">
+<script type="text/javascript">
     $(function () {
         //部门列表
-        $('.left_all .tab_ctwo').on('click', '.childdept', function () {
+        $('.cont_left .tab_ctwo').on('click', '.childdept', function () {
             var that = $(this);
 
             getChDept(that.next(), that.attr('deptid'));
@@ -620,15 +539,10 @@
                         var str = '';
                         data.obj.forEach(function (v, i) {
                             if (v.deptName) {
-                                str += '<li><span deptid="' + v.deptId + '" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;"></ul></li>';
+                                str += '<li><span  deptid="' + v.deptId + '" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;"></ul></li>';
                             } else {
-
-
                                 str += '<li><span deptid="' + v.deptId + '" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span><img src="../img/main_img/man.png" alt=""></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
-
-
                             }
-
                         });
                     } else {
                         var str = '';
@@ -642,19 +556,30 @@
                                 } else if (v.sex == 1) {
                                     str += '<li><span deptid="' + v.deptId + '" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/women.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
                                 }
-
-
                             }
-
                         });
                     }
-
                     target.html(str);
                 }
             })
         }
-
         getChDept($('#deptOrg'), 20);
+
+        /*左侧点击事件*/
+        $("#dept_lis").on('click', function () {
+
+            if ($(this).siblings('.pick').css('display') == 'none') {
+                $(this).siblings('.pick').show();
+                $(this).addClass("liDown").removeClass("liUp");
+            } else {
+                $(this).siblings('.pick').hide();
+                $(this).addClass("liUp").removeClass("liDown");
+            }
+        });
+
+
+
+
 
 
     });

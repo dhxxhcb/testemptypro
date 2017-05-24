@@ -2,9 +2,9 @@
 html,
 body,
 .wrap{
-	width:100%;
+	/*width:100%;
 	height:100%;
-	overflow: hidden;
+	overflow: hidden;*/
 }
 .head{
 	width:100%;
@@ -23,12 +23,11 @@ body,
 .head_left img {
 	display: inline-block;
 	float:left;
-	width: 8%;
+	width: 11%;
 	margin-top: 14px;
 	margin-left: 15px;
 }
 .head_left h1{
-	color: #2f80dd;
 	font-size: 22px;
 	font-weight: bold;
 	height: 100%;
@@ -37,6 +36,7 @@ body,
 	display: inline-block;
 	float:left;
 	width: 75%;
+	/*margin-left: 13px;*/
 }
 .inp{
 	width: 200px;
@@ -72,13 +72,14 @@ body,
 .head_rig h1{
 	width: 72px;
 	height: 30px;
-	background: #4093f3;
-	color: #fff;
+	/*background: #4093f3;*/
+	/*color: #fff;*/
 	font-size: 16px;
 	text-align: center;
 	line-height: 30px;
 	border-radius: 4px;
 	margin: 10px auto;
+	/*border:1px solid red;*/
 }
 .cont{
 	width:100%;
@@ -100,7 +101,44 @@ body,
 .cont_left,.cont_rig{
 	float:left;
 }
-/*.rig_every{*/
+.cont_left .dept_li {
+	display: block;
+	width: 100%;
+	padding-left: 30px;
+	font-size: 14px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: #ddd 1px solid;
+	cursor: pointer;
+}
+.cont_left .liUp:hover {
+	background-color: #add2f8;
+}
+/*.cont_left  li:first-of-type {*/
+	/*border-top: #ddd 1px solid;*/
+/*}*/
+.liUp {
+	background: url(../../img/sys/icon_rightarrow_03.png) no-repeat 80% center;
+}
+.liDown {
+	background: url(../../img/sys/icon_downarrow_03.png) no-repeat 80% center;
+}
+.cont_left  .pick {
+	border-bottom: 1px solid #ddd;
+	padding-left:12%;
+}
+.cont_left  .pick a {
+	font-size: 14px;
+	height: 40px;
+	line-height: 40px;
+
+}
+
+
+
+
+
+	/*.rig_every{*/
 	/*width:25%;*/
 	/*height:200px;*/
 	/*border:1px solid #000;*/
