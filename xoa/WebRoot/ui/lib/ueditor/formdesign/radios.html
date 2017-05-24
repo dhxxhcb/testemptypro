@@ -2,11 +2,13 @@
 <html>
 <head>
     <title>复选框</title>
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
     <link rel="stylesheet" href="../formdesign/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../css/ueditor/site.css">
     <script type="text/javascript" src="../dialogs/internal.js"></script>
+    <script type="text/javascript" src="../../../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../../../js/base/base.js"></script>
     <script type="text/javascript">
 function createElement(type, name)
 {     
@@ -125,6 +127,7 @@ function fnAdd() {
 /*组合checkbox*/
 function fnParseOptions(gName,gChecked)
 {
+    var dataid = $.getQueryString('dataid');
     var oTable = document.getElementById('options_table');
     var nTr = oTable.getElementsByTagName('tr'),trLength = nTr.length,html="";
     for(var i=0;i<trLength;i++)
@@ -136,7 +139,7 @@ function fnParseOptions(gName,gChecked)
             if(!inputs[1].value) continue;
             var sChecked = '';
             if(inputs[0].checked) sChecked = 'checked="checked"';
-            html += '<input name="'+gName+'" value="'+inputs[1].value+'" '+sChecked+' type="radio"/>'+inputs[1].value+'&nbsp;';
+            html += '<input name="'+'DATA_'+dataid+'" id="'+'DATA_'+dataid+'" class="form_item" data-type="radios" title="'+inputs[1].value+'" '+sChecked+' value="'+inputs[1].value+'" '+sChecked+' type="radio"/>'+inputs[1].value+'&nbsp;';
             if(gChecked=='orgchecked1')//竖排
                 html+='<br/>';
         }
