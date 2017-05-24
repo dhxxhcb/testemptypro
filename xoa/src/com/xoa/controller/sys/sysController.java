@@ -36,4 +36,10 @@ public class sysController {
 				"loginDateSouse"));
 		return "app/sys/Organizational";
 	}
+	@RequestMapping("/statusBar")
+	public String statusBar(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/statusBar";
+	}
 }

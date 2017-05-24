@@ -17,7 +17,6 @@ var workForm = {
             var laydate = 'laydate({istime: true})';
             //var inputObj = '<div id="'+name+'" date_format="'+date_format+'" name="'+name+'"  style="'+objprev.attr('style')+'" title="'+objprev.attr('title')+'" class="laydate-icon form_item" onclick="'+laydate+'"></div>';
             var inputObj = '<div id="'+name+'" date_format="'+date_format+'" name="'+name+'"  style="'+objprev.attr('style')+'" title="'+objprev.attr('title')+'" class="laydate-icon form_item" onclick="laydate({istime: true,format:"'+date_format+'"})"></div>';
-
             olddata.eq(i).prev().remove();
             olddata.eq(i).before(inputObj);
             olddata.eq(i).remove();
