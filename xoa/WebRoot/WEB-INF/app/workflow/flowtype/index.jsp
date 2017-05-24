@@ -185,7 +185,7 @@
             <div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
         </div>
         <div class="head_rig">
-			<!--<h1 style='background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt;'>+&nbsp;&nbsp;&nbsp;&nbsp;新建</h1>-->
+			<h1 style='background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt;'>新建</h1>
 		</div>
     </div>
 
