@@ -15,7 +15,8 @@ public interface FlowRunPrcsService {
 	 * 参数说明:   
 	 * @return     
 	 */
-	public ToJson<FlowRunPrcs> selectObject(Map<String,Object> maps);
+	public ToJson<FlowRunPrcs> selectObject(Map<String,Object> maps,Integer page,
+											Integer pageSize, boolean useFlag);
 	
 	/**
 	 * 创建作者:   张勇
@@ -24,7 +25,8 @@ public interface FlowRunPrcsService {
 	 * 参数说明:   
 	 * @return     
 	 */
-	public ToJson<FlowRunPrcs> selectEnd(Map<String,Object> maps);
+	public ToJson<FlowRunPrcs> selectEnd(Map<String,Object> maps,Integer page,
+										 Integer pageSize, boolean useFlag);
 
 
 }
