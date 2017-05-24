@@ -30,7 +30,7 @@
 
 .cont_left {
     width: 15%;
-    height: 100%;
+    height:100%;
     border-right: 1px solid #919191;
     overflow-y: scroll;
 }
@@ -54,9 +54,9 @@
 				background-repeat:no-repeat;
 			}
 			.cont_rig {
-				overflow-y:hidden;
 				width: 84%;
-				height: 100%;
+				height: 91%;
+				overflow-y: scroll;
 			}
 		.head_rig {width: 10%;margin-top:0px;}
 		.head_rig {
@@ -168,11 +168,93 @@
             line-height: 24px;
             font-size: 20px;
         }
-        user agent stylesheet
-        li {
+        user agent stylesheet li {
             display: list-item;
             text-align: -webkit-match-parent;
         }
+		.cont_left::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_left::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+.cont{
+    width: 100%;
+    height: 101%;
+    overflow-y: hidden;
+}
+
+.cont_left::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+.cont_left::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_left::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+.cont_left::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+	}
+	.cont_rig::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_rig::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+
+.cont_rig::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+.cont_rig::-webkit-scrollbar{
+    width: 4px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.cont_rig::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+.cont_rig::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
     </style>
 </head>
 <body>

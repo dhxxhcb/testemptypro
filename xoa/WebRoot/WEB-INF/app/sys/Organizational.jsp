@@ -351,6 +351,7 @@
 
 
                     })
+                    location.reload();
                 }
             })
 

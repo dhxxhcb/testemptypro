@@ -18,7 +18,7 @@
 			<th><span>字段标题</span><span class="label label-important">*</span> </th>
 		</tr>
 		<tr>
-			<td><input type="text" id="fieldname" placeholder="必填项"></td>
+			<td><input type="text" id="fieldname" placeholder="必填项"></td><input type="hidden" id="fielid" placeholder="必填项"></td>
 			<td><input type="text" id="orgname" placeholder="必填项"></td>
 		</tr>
 		<tr>
@@ -55,14 +55,14 @@
         var oNode = null,thePlugins = 'textarea';;
             if( UE.plugins[thePlugins].editdom ){
                 oNode = UE.plugins[thePlugins].editdom;
-                var gValue = oNode.getAttribute('value').replace(/&quot;/g,"\""),gName=oNode.getAttribute('fieldname'),gFlow=oNode.getAttribute('fieldflow'),gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gFontSize=oNode.getAttribute('orgfontsize'),gWidth=oNode.getAttribute('orgwidth'),gHeight=oNode.getAttribute('orgheight'),gRich=oNode.getAttribute('orgrich');
+                var gValue = oNode.getAttribute('value').replace(/&quot;/g,"\""),gid=oNode.getAttribute('fieldname'),gFlow=oNode.getAttribute('fieldflow'),gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gFontSize=oNode.getAttribute('orgfontsize'),gWidth=oNode.getAttribute('orgwidth'),gHeight=oNode.getAttribute('orgheight'),gRich=oNode.getAttribute('orgrich');
 
                 gValue = gValue==null ? '' : gValue;
                 gTitle = gTitle==null ? '' : gTitle;
-                gName = gName==null ? '' : gName;
+                gid = gid==null ? '' : gid;
                 $G('orgvalue').value = gValue;
                 $G('orgname').value = gTitle;
-                $G('fieldname').value = gName;
+                $G('fieldname').value = gid;
                 if (gFlow == '1')
                 {
                     $G('fieldflow').checked = true;
@@ -91,7 +91,7 @@
             }
             var gValue=$G('orgvalue').value.replace(/\"/g,"&quot;"),
 				gTitle=$G('orgname').value.replace(/\"/g,"&quot;"),
-				gName=$G('fieldname').value,
+                gid=$G('fieldname').value,
 				gFontSize=$G('orgfontsize').value,
 				gWidth=$G('orgwidth').value,
 				gHeight=$G('orgheight').value;
@@ -145,6 +145,7 @@
                     }
                     html += '">';
                     html += gValue + '</textarea>';
+                    console.log(html);
                     editor.execCommand('insertHtml',html);
                 } catch (e) {
                     try {
@@ -155,27 +156,32 @@
                     return false;
                 }
             } else {
+                oNode.setAttribute('class', "form_item");
+                oNode.setAttribute('data-type', "textarea");
                 oNode.setAttribute('title', gTitle);
                 oNode.setAttribute('value',gValue);
-                oNode.setAttribute('fieldname',gTitle);
+               // oNode.setAttribute('fieldname',gTitle);
+                oNode.setAttribute('name',gid);
+                oNode.setAttribute('id',gid);
                 oNode.innerHTML = gValue;
                 if( $G('orgrich').checked ) {
-                    oNode.setAttribute('orgrich', 1);
+                    oNode.setAttribute('rich', 1);
                 } else {
-                    oNode.setAttribute('orgrich', 0);
+                    oNode.setAttribute('rich', 0);
                 }
-                if ( $G('fieldflow').checked ) {
+             /*   if ( $G('fieldflow').checked ) {
                     oNode.setAttribute('fieldflow',1);
                 } else {
                     oNode.setAttribute('fieldflow',0);
-                }
+                }*/
                 if( gFontSize != '' ) {
                     oNode.style.fontSize = gFontSize+ 'px';
                     oNode.setAttribute('orgfontsize',gFontSize );
                 }else{
                     oNode.setAttribute('orgfontsize', '');
                 }
-                if( gWidth != '' ) {
+                console.log(oNode);
+               /* if( gWidth != '' ) {
                     oNode.style.width = gWidth+ 'px';
                     oNode.setAttribute('orgwidth',gWidth );
                 }else{
@@ -186,7 +192,7 @@
                     oNode.setAttribute('orgheight',gHeight );
                 }else{
                     oNode.setAttribute('orgheight', '');
-                }
+                }*/
                 delete UE.plugins[thePlugins].editdom;
             }
         };

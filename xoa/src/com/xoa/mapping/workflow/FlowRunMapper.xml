@@ -46,8 +46,8 @@
     delete from flow_run
     where RID = #{rid}
   </delete>
-  <insert id="insert" parameterType="com.xoa.model.workflow.FlowRun">
-    insert into flow_run (RID, RUN_ID, RUN_NAME, 
+  <insert id="insert" parameterType="com.xoa.model.workflow.FlowRun" useGeneratedKeys="true" keyProperty="id">
+    insert into flow_run (RUN_ID, RUN_NAME, 
       FLOW_ID, BEGIN_USER, BEGIN_DEPT, 
       BEGIN_TIME, END_TIME, DEL_FLAG, 
       PARENT_RUN, FROM_USER, ARCHIVE, 
@@ -55,7 +55,7 @@
       ATTACHMENT_NAME, FOCUS_USER, AIP_FILES, 
       PRE_SET, VIEW_USER, FORCE_OVER
       )
-    values (#{rid}, #{runId}, #{runName}, 
+    values ( #{runId}, #{runName}, 
       #{flowId}, #{beginUser}, #{beginDept}, 
       #{beginTime}, #{endTime}, #{delFlag}, 
       #{parentRun}, #{fromUser}, #{archive}, 

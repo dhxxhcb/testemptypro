@@ -11,23 +11,23 @@
     <script type="text/javascript" src="../../../js/base/base.js"></script>
     <script type="text/javascript">
 function createElement(type, name)
-{     
-    var element = null;     
-    try {        
-        element = document.createElement('<'+type+' name="'+name+'">');     
-    } catch (e) {}   
-    if(element==null) {     
-        element = document.createElement(type);     
-        element.name = name;     
-    } 
-    return element;     
+{
+    var element = null;
+    try {
+        element = document.createElement('<'+type+' name="'+name+'">');
+    } catch (e) {}
+    if(element==null) {
+        element = document.createElement(type);
+        element.name = name;
+    }
+    return element;
 }
 
 
 //checkboxs
 function isIE()
 {
-    if(window.attachEvent){   
+    if(window.attachEvent){
         return true;
     }
     return false;
@@ -79,9 +79,9 @@ function fnMoveUp(obj)
     var curRowIndex = obj.rowIndex;
     if(curRowIndex-1>=minRowIndex)
     {
-        oTable.moveRow(curRowIndex,curRowIndex-1); 
+        oTable.moveRow(curRowIndex,curRowIndex-1);
     }
-    
+
 }
 /*下移*/
 function fnMoveDown(obj)
@@ -95,7 +95,7 @@ function fnMoveDown(obj)
     var curRowIndex = obj.rowIndex;
     if(curRowIndex+1<maxRowIndex)
     {
-        oTable.moveRow(curRowIndex,curRowIndex+1); 
+        oTable.moveRow(curRowIndex,curRowIndex+1);
     }
 }
 
@@ -210,7 +210,7 @@ window.onload = function() {
         var gName=oNode.getAttribute('name').replace(/&quot;/g,"\"");
         var gFlow=oNode.getAttribute('fieldflow');
         $G('orgname').value = gTitle;
-        $G('fieldname').value = gTitle;
+        $G('fieldname').value = oNode.getAttribute('fieldname');
         if (gFlow == '1')
         {
             $G('fieldflow').checked = true;
@@ -224,12 +224,12 @@ window.onload = function() {
         var aInputs = [];
         for(var i=0;i<length;i++)
         {
-            //testEle.setAttribute("test","aaa"); // 自定义属性 设置  
-            //testEle.attributes["test"].nodeValue; // 获得 
+            //testEle.setAttribute("test","aaa"); // 自定义属性 设置
+            //testEle.attributes["test"].nodeValue; // 获得
             if(inputTags[i].type =='radio')
                 fnAddComboTr(gName,inputTags[i]);
         }
-        
+
 
     }
 }
@@ -283,7 +283,7 @@ dialog.onok = function (){
         oNode.setAttribute('fieldname',gName);
         oNode.setAttribute('fieldflow',gFlow);
         oNode.innerHTML = fnParseOptions(gName,gChecked);
-        delete UE.plugins[thePlugins].editdom; 
+        delete UE.plugins[thePlugins].editdom;
         return true;
     }
 };
