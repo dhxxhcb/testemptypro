@@ -1,9 +1,20 @@
 package com.xoa.service.workflow.flowtype.impl;
 
-import com.xoa.service.workflow.flowtype.FlowRunService;
+import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
+import com.xoa.dao.workflow.FlowRunMapper;
+import com.xoa.service.workflow.flowtype.FlowRunService;
+@Service
 public class FlowRunServiceImpl implements FlowRunService{
+	@Resource
+	private FlowRunMapper flowRunMapper;
 	
-	//public Integer getMax();
+	@Override
+	public int getMaxRunId() {
+		int runid=flowRunMapper.getMaxRunId()+1;
+		return runid;
+	}
 
 }
