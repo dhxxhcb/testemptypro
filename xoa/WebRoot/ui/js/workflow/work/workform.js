@@ -14,9 +14,33 @@ var workForm = {
         this.DateRender();
         this.ReBuild();
         this.MacrosRender();
+        this.RadioRender();
     },
     filter:function(){
         this.MacrosRender();
+    },
+    RadioRender:function(){
+        $('input[data-type="radio"]').each(function(){
+            var _this = $(this);
+            var name = _this.attr('name');
+            var title = _this.attr('title');
+            var radio_field = _this.attr("radio_field").split('`');
+            var checked = _this.attr('orgchecked');
+            var eleStr = "";
+            radio_field.forEach(function(v,i){
+                if(v){
+                    var checked = "";
+                    if(v == checked){
+                        checked="checked";
+                    }
+                    eleStr+='<input name="'+name+'" title="'+title+'" type="radio" class="form_item"/>'+v+' ';
+                }
+            });
+            _this.before(eleStr);
+            _this.remove();
+
+        });
+
     },
     ReBuild:function(){
         $("input").each(function(){
@@ -26,6 +50,12 @@ var workForm = {
         $("textarea").each(function(){
             $(this).addClass("form_item");
             $(this).attr("id",$(this).attr("name"));
+        });
+        $('img.RADIO').each(function(){
+            var _this = $(this);
+            var radioStr = ' <input name="'+_this.attr('name')+'" checked="checked" id="'+_this.attr('name')+'" title="'+_this.attr('title')+'" type="radio"  radio_field="'+_this.attr('radio_field')+'" orgchecked="'+_this.attr('radio_checked')+'" classname="radio" class="form_item" data-type="radio" />';
+            _this.before(radioStr);
+            _this.remove();
         });
     },
     MacrosRender:function(){

@@ -57,7 +57,7 @@ public class EmailController {
      * method = RequestMethod.POST,
      * @return String
      */
-    @RequestMapping(value = "/sendEmail",produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/sendEmail",produces = {"application/json;charset=UTF-8"},method = RequestMethod.POST)
     public @ResponseBody
     ToJson<EmailBodyModel> insertEmailBody(
             EmailBodyModel emailBodyModel,
@@ -86,7 +86,7 @@ public class EmailController {
      *  method = RequestMethod.POST,
      * 参数说明:      @return
      */
-    @RequestMapping(value = "/saveEmail",produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/saveEmail",produces = {"application/json;charset=UTF-8"},method = RequestMethod.POST)
     public @ResponseBody
     ToJson<EmailBodyModel> saveEmailBody(
             EmailBodyModel emailBodyModel,

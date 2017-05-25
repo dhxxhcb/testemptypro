@@ -558,5 +558,83 @@
     fr.WORK_LEVEL DESC
   </select>
 
+    <!-- 查询办结工作 -->
+    <select id="selectHang" resultMap="BaseResultMap" parameterType="Map">
+        SELECT
+        fr.RUN_ID,
+        fr.WORK_LEVEL,
+        fr.FLOW_ID,
+        fr.RUN_NAME,
+        fr.BEGIN_USER,
+        fr.BEGIN_DEPT,
+        frp.ID,
+        frp.USER_ID,
+        frp.PRCS_ID,
+        frp.FLOW_PRCS,
+        frp.COMMENT,
+        frp.OP_FLAG,
+        frp.TOP_FLAG,
+        frp.PRCS_FLAG,
+        frp.TIME_OUT_FLAG,
+        frp.PRCS_TIME,
+        frp.CREATE_TIME,
+        frp.DELIVER_TIME,
+        frp.TIME_OUT_TYPE,
+        frp.TIME_OUT_ATTEND,
+        frp.IS_REMIND,
+        frp.TIME_OUT
+        FROM
+        FLOW_RUN_PRCS frp
+        INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
+        where
+        frp.PRCS_FLAG = '6'
+        AND frp.CHILD_RUN = '0'
+        AND frp.USER_ID=#{userId}
+        AND fr.DEL_FLAG = '0'
+        ORDER BY
+        frp.IS_REMIND DESC,
+        frp.RUN_ID DESC,
+        fr.WORK_LEVEL DESC
+    </select>
+
+
+    <!-- 查询所有工作 -->
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="Map">
+        SELECT
+        fr.RUN_ID,
+        fr.WORK_LEVEL,
+        fr.FLOW_ID,
+        fr.RUN_NAME,
+        fr.BEGIN_USER,
+        fr.BEGIN_DEPT,
+        frp.ID,
+        frp.USER_ID,
+        frp.PRCS_ID,
+        frp.FLOW_PRCS,
+        frp.COMMENT,
+        frp.OP_FLAG,
+        frp.TOP_FLAG,
+        frp.PRCS_FLAG,
+        frp.TIME_OUT_FLAG,
+        frp.PRCS_TIME,
+        frp.CREATE_TIME,
+        frp.DELIVER_TIME,
+        frp.TIME_OUT_TYPE,
+        frp.TIME_OUT_ATTEND,
+        frp.IS_REMIND,
+        frp.TIME_OUT
+        FROM
+        FLOW_RUN_PRCS frp
+        INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
+        where
+         frp.CHILD_RUN = '0'
+        AND frp.USER_ID=#{userId}
+        AND fr.DEL_FLAG = '0'
+        ORDER BY
+        frp.IS_REMIND DESC,
+        frp.RUN_ID DESC,
+        fr.WORK_LEVEL DESC
+    </select>
+
 
 </mapper>

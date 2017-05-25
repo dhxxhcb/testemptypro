@@ -97,8 +97,8 @@
                         }else{
                             alert('新建失败');
                         }
-                        window.close()
-                        parent.opener.location.reload()
+                        //window.close()
+                        //parent.opener.location.reload()
                     }
                 })
             })
@@ -130,7 +130,7 @@
             <tr>
                 <td width="15%">主角色：</td>
                 <td width="70%">
-                    <textarea name="txt" id="senduser1" user_id='admin' value="admin"></textarea>
+                    <textarea name="txt" id="senduser1" user_id='admin' value=""></textarea>
                     <a href="javascript:;" id="selectUser1" class="Add ">添加</a>
                 </td>
             </tr>

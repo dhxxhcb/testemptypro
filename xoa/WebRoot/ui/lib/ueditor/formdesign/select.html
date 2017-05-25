@@ -220,6 +220,7 @@
        var dataid = $.getQueryString('dataid');
          oListText = $G('orglist');
          if( UE.plugins[thePlugins].editdom ){
+             debugger;
              oNode = UE.plugins[thePlugins].editdom;
              var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),
                  gName=oNode.getAttribute('fieldname'),
@@ -279,7 +280,7 @@
                  oNode.setAttribute('title',$G('orgname').value);
                  oNode.setAttribute('plugins',thePlugins );
                  oNode.setAttribute('size',gSize);
-                 oNode.setAttribute('fieldname',$G('fieldname').value);
+                // oNode.setAttribute('fieldname',$G('fieldname').value);
                  if ( $G('fieldflow').checked ) {
                      oNode.setAttribute('fieldflow',1);
                  } else {
@@ -319,7 +320,7 @@
              }
          } else {
              oNode.setAttribute('title', $G('orgname').value);
-             oNode.setAttribute('fieldname',$G('fieldname').value);
+            // oNode.setAttribute('fieldname',$G('fieldname').value);
              oNode.setAttribute('size',gSize);
              if ( $G('fieldflow').checked ) {
                  oNode.setAttribute('fieldflow',1);
