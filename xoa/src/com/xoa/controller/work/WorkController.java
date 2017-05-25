@@ -148,7 +148,8 @@ public class WorkController {
 	@RequestMapping("nextwork")
 	public String addwork(String str,HttpServletRequest request,
 			@RequestParam("flowId") String flowId,
-			@RequestParam("json") JSONObject hostObject) throws JSONException{
+			@RequestParam("json") JSONObject hostObject,
+			FlowRun flowRun) throws JSONException{
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		String tableName="flow_data_"+flowId;
@@ -156,10 +157,11 @@ public class WorkController {
 			//JSONObject json = JSONObject.fromObject(jsonObject);  
 			
 		}else{
-			String sql="run_id,run_name,begin_time,begin_user";
+			String keys="run_id,run_name,begin_time,begin_user";
+			String values=""+flowRun.getRunId()+","+flowRun.getRunName()+","+flowRun.getBeginTime()+","+flowRun.getBeginUser();
 			StringBuffer sb=new StringBuffer();
-			sb.append(sql);
-			
+			StringBuffer sb1=new StringBuffer();
+			sb.append(keys);
 			     hostObject = new JSONObject();  
 			    Iterator<String> sIterator = hostObject.keys();  
 			    while(sIterator.hasNext()){  
@@ -168,9 +170,11 @@ public class WorkController {
 			        // 根据key获得value, value也可以是JSONObject,JSONArray,使用对应的参数接收即可  
 			        String value = hostObject.getString(key);  
 			        sb.append(",").append(key);
-			        
+			        sb1.append(",").append(value);
 			        System.out.println("key: "+key+",value"+value);  
 			    }  
+			    
+			   String sqlAll="insert into "+tableName+"("+sb.toString()+") "+"values("+sb1.toString()+")";
 			
 			
 		}

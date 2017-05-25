@@ -188,11 +188,11 @@
                     console.log(data1);
                     var str='';
                     for(var i=0;i<data1.length;i++){
-                        str+='<tr class="userData"><td><input type="checkbox" uId="'+data1[i].deptId+'" name="checkbox" id="checkboxs" value="" style="width:13px;height:13px;" /></td>'+
-                            '<td>'+data1[i].userId+'</td><td>'+data1[i].userName+'</td><td>部门</td><td>排班</td><td>'+data1[i].userPrivName+'</td><td>'+data1[i].postPriv+'</td>'+
-                            '<td>最后访问</td><td>闲置</td><td><a href="javascript:;" style="margin-right: 5px;">编辑</a><a href="javascript:;">菜单权限查看 </a></td></tr>';
+                        str+='<tr class="userData"><td><input type="checkbox" name="checkbox" id="checkboxs" value="" style="width:13px;height:13px;" /></td>'+
+                            '<td>'+data1[i].userId+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].deptName+'</td><td></td><td>'+data1[i].userPrivName+'</td><td>'+data1[i].postPriv+'</td>'+
+                            '<td></td><td></td><td><a href="javascript:;" style="margin-right: 5px;">编辑</a><a href="javascript:;">菜单权限查看 </a></td></tr>';
                     }
-                    console.log(data1[i].deptId);
+
                     element.after(str);
                 }
             })
