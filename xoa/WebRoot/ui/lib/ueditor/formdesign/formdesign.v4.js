@@ -69,8 +69,8 @@ UE.plugins['text'] = function () {
 
 		evt = evt || window.event;
 		var el = evt.target || evt.srcElement;
-        var leipiPlugins = el.getAttribute('plugins');
-		if ( /input/ig.test( el.tagName ) ) {
+        var leipiPlugins = el.getAttribute('data-type');
+		if ( /input/ig.test( el.tagName )  && leipiPlugins==thePlugins) {
 			var html = popup.formatHtml(
 				'<nobr>单行输入框: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
 			if ( html ) {
@@ -143,7 +143,8 @@ UE.plugins['textarea'] = function () {
     me.addListener( 'mouseover', function( t, evt ) {
         evt = evt || window.event;
         var el = evt.target || evt.srcElement;
-        if ( /textarea/ig.test( el.tagName ) ) {
+        var leipiPlugins = el.getAttribute('data-type');
+        if ( /textarea/ig.test( el.tagName )  && leipiPlugins==thePlugins) {
             var html = popup.formatHtml(
                 '<nobr>多行文本框: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
             if ( html ) {
@@ -216,7 +217,7 @@ UE.plugins['select'] = function () {
     me.addListener( 'mouseover', function( t, evt ) {
         evt = evt || window.event;
         var el = evt.target || evt.srcElement;
-        var leipiPlugins = el.getAttribute('plugins');
+        var leipiPlugins = el.getAttribute('data-type');
         if ( /select|span/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
             var html = popup.formatHtml(
                 '<nobr>下拉菜单: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
@@ -296,8 +297,8 @@ UE.plugins['radios'] = function () {
     me.addListener( 'mouseover', function( t, evt ) {
         evt = evt || window.event;
         var el = evt.target || evt.srcElement;
-        var leipiPlugins = el.getAttribute('plugins');
-        if ( /span/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
+        var leipiPlugins = el.getAttribute('data-type');
+        if ( /input/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
             var html = popup.formatHtml(
                 '<nobr>单选框组: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
             if ( html ) {
@@ -372,7 +373,7 @@ UE.plugins['checkboxs'] = function () {
     me.addListener( 'mouseover', function( t, evt ) {
         evt = evt || window.event;
         var el = evt.target || evt.srcElement;
-        var leipiPlugins = el.getAttribute('plugins');
+        var leipiPlugins = el.getAttribute('data-type');
         if ( /span/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
             var html = popup.formatHtml(
                 '<nobr>复选框组: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
@@ -403,7 +404,7 @@ UE.plugins['macros'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/macros.html',
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/macros.html?dataid='+(pluginId++),
                 name:thePlugins,
                 editor:this,
                 title: '宏控件',
@@ -448,7 +449,7 @@ UE.plugins['macros'] = function () {
     me.addListener( 'mouseover', function( t, evt ) {
         evt = evt || window.event;
         var el = evt.target || evt.srcElement;
-        var leipiPlugins = el.getAttribute('plugins');
+        var leipiPlugins = el.getAttribute('data-type');
         if ( /input/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
             var html = popup.formatHtml(
                 '<nobr>宏控件: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
@@ -471,6 +472,7 @@ UE.plugins['macros'] = function () {
  * ```javascript
  * editor.execCommand( 'radio');
  * ```
+ *  */
 
 UE.plugins['radio'] = function () {
     var me = this,thePlugins = 'radio';
@@ -536,7 +538,7 @@ UE.plugins['radio'] = function () {
         }
     });
 };
- */
+
 
 /**
  * 复选框
@@ -548,7 +550,7 @@ UE.plugins['radio'] = function () {
  * editor.execCommand( 'checkbox');
  * ```
  */
- /*
+
 UE.plugins['checkbox'] = function () {
     var me = this,thePlugins = 'checkbox';
     me.commands[thePlugins] = {
@@ -613,7 +615,7 @@ UE.plugins['checkbox'] = function () {
         }
     });
 };
-*/
+
 
 
 

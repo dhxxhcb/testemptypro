@@ -445,21 +445,24 @@
         });
 
         /*定义流程属性查询*/
-        $('.btn_h_1').click(function () {
+
+        var flowId = '${flowId}';
+
+        if(flowId != null || flowId.length>0) {
             $.ajax({
                 type: "GET",
                 url: "<%=basePath%>flow/selectAllFlow",
                 dataType: "JSON",
                 data: {
-                    flowId: ${flowId},
+                    flowId: flowId
                 },
                 success: function (data) {
+                    console.log(data)
                     if (data.flag) {
                         $("#flowId").val(data.object.flowId);
                         $("#projectName").val(data.object.flowName);
                         $('#orderID').val(data.object.flowNo);
-                        $('#deptName').html('<option>' + data.object.deptId + '</option>')
-                        //$('#deptName').find("ooption:selected").text(data.object.deptId)
+                        //$('#deptName').find("option:selected").text(data.object.deptId)
                         //$('#deptName option:selected').text(data.object.deptId);
 //                    $('#deptName').find('option').eq(0).text()
 //                    console.log($('#deptName option:selected'))

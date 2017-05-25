@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xoa.dao.workflow.FlowRunMapper">
+  <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowRun">
+    <id column="RID" javaType="int" property="rid" />
+    <result column="RUN_ID" javaType="int" property="runId" />
+    <result column="RUN_NAME" javaType="string" property="runName" />
+    <result column="FLOW_ID" javaType="int" property="flowId" />
+    <result column="BEGIN_USER" javaType="string" property="beginUser" />
+    <result column="BEGIN_DEPT" javaType="int" property="beginDept" />
+    <result column="BEGIN_TIME" javaType="java.sql.Timestamp" property="beginTime" />
+    <result column="END_TIME" javaType="java.sql.Timestamp" property="endTime" />
+    <result column="DEL_FLAG" javaType="string" property="delFlag" />
+    <result column="PARENT_RUN" javaType="int" property="parentRun" />
+    <result column="FROM_USER" javaType="string" property="fromUser" />
+    <result column="ARCHIVE" javaType="int" property="archive" />
+    <result column="work_level" javaType="int" property="workLevel" />
+    <result column="DEL_TIME" javaType="java.sql.Timestamp" property="delTime" />
+    <result column="ATTACHMENT_ID" javaType="string" property="attachmentId" />
+    <result column="ATTACHMENT_NAME" javaType="string" property="attachmentName" />
+    <result column="FOCUS_USER" javaType="string" property="focusUser" />
+    <result column="AIP_FILES" javaType="string" property="aipFiles" />
+    <result column="PRE_SET" javaType="string" property="preSet" />
+    <result column="VIEW_USER" javaType="string" property="viewUser" />
+    <result column="FORCE_OVER" javaType="string" property="forceOver" />
+  </resultMap>
+ <sql id="Base_Column_List">
+    RID, RUN_ID, RUN_NAME, FLOW_ID, BEGIN_USER, BEGIN_DEPT, BEGIN_TIME, END_TIME, DEL_FLAG, 
+    PARENT_RUN, FROM_USER, ARCHIVE, work_level, DEL_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    ATTACHMENT_ID, ATTACHMENT_NAME, FOCUS_USER, AIP_FILES, PRE_SET, VIEW_USER, FORCE_OVER
+  </sql> 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from flow_run
+    where RID = #{rid}
+  </select>
+  <select id="getMaxRunId" resultType="int">
+  SELECT MAX(RUN_ID) from FLOW_RUN
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from flow_run
+    where RID = #{rid}
+  </delete>
+  <insert id="insert" parameterType="com.xoa.model.workflow.FlowRun" useGeneratedKeys="true" keyProperty="id">
+    insert into flow_run (RUN_ID, RUN_NAME, 
+      FLOW_ID, BEGIN_USER, BEGIN_DEPT, 
+      BEGIN_TIME, END_TIME, DEL_FLAG, 
+      PARENT_RUN, FROM_USER, ARCHIVE, 
+      work_level, DEL_TIME, ATTACHMENT_ID, 
+      ATTACHMENT_NAME, FOCUS_USER, AIP_FILES, 
+      PRE_SET, VIEW_USER, FORCE_OVER
+      )
+    values ( #{runId}, #{runName}, 
+      #{flowId}, #{beginUser}, #{beginDept}, 
+      #{beginTime}, #{endTime}, #{delFlag}, 
+      #{parentRun}, #{fromUser}, #{archive}, 
+      #{workLevel}, #{delTime}, #{attachmentId}, 
+      #{attachmentName}, #{focusUser}, #{aipFiles}, 
+      #{preSet}, #{viewUser}, #{forceOver}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xoa.model.workflow.FlowRun">
+    insert into flow_run
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        RID,
+      </if>
+      <if test="runId != null">
+        RUN_ID,
+      </if>
+      <if test="runName != null">
+        RUN_NAME,
+      </if>
+      <if test="flowId != null">
+        FLOW_ID,
+      </if>
+      <if test="beginUser != null">
+        BEGIN_USER,
+      </if>
+      <if test="beginDept != null">
+        BEGIN_DEPT,
+      </if>
+      <if test="beginTime != null">
+        BEGIN_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="parentRun != null">
+        PARENT_RUN,
+      </if>
+      <if test="fromUser != null">
+        FROM_USER,
+      </if>
+      <if test="archive != null">
+        ARCHIVE,
+      </if>
+      <if test="workLevel != null">
+        work_level,
+      </if>
+      <if test="delTime != null">
+        DEL_TIME,
+      </if>
+      <if test="attachmentId != null">
+        ATTACHMENT_ID,
+      </if>
+      <if test="attachmentName != null">
+        ATTACHMENT_NAME,
+      </if>
+      <if test="focusUser != null">
+        FOCUS_USER,
+      </if>
+      <if test="aipFiles != null">
+        AIP_FILES,
+      </if>
+      <if test="preSet != null">
+        PRE_SET,
+      </if>
+      <if test="viewUser != null">
+        VIEW_USER,
+      </if>
+      <if test="forceOver != null">
+        FORCE_OVER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid},
+      </if>
+      <if test="runId != null">
+        #{runId},
+      </if>
+      <if test="runName != null">
+        #{runName},
+      </if>
+      <if test="flowId != null">
+        #{flowId},
+      </if>
+      <if test="beginUser != null">
+        #{beginUser},
+      </if>
+      <if test="beginDept != null">
+        #{beginDept},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime},
+      </if>
+      <if test="endTime != null">
+        #{endTime},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag},
+      </if>
+      <if test="parentRun != null">
+        #{parentRun},
+      </if>
+      <if test="fromUser != null">
+        #{fromUser},
+      </if>
+      <if test="archive != null">
+        #{archive},
+      </if>
+      <if test="workLevel != null">
+        #{workLevel},
+      </if>
+      <if test="delTime != null">
+        #{delTime},
+      </if>
+      <if test="attachmentId != null">
+        #{attachmentId},
+      </if>
+      <if test="attachmentName != null">
+        #{attachmentName},
+      </if>
+      <if test="focusUser != null">
+        #{focusUser},
+      </if>
+      <if test="aipFiles != null">
+        #{aipFiles},
+      </if>
+      <if test="preSet != null">
+        #{preSet},
+      </if>
+      <if test="viewUser != null">
+        #{viewUser},
+      </if>
+      <if test="forceOver != null">
+        #{forceOver},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowRun">
+    update flow_run
+    <set>
+      <if test="runId != null">
+        RUN_ID = #{runId},
+      </if>
+      <if test="runName != null">
+        RUN_NAME = #{runName},
+      </if>
+      <if test="flowId != null">
+        FLOW_ID = #{flowId},
+      </if>
+      <if test="beginUser != null">
+        BEGIN_USER = #{beginUser},
+      </if>
+      <if test="beginDept != null">
+        BEGIN_DEPT = #{beginDept},
+      </if>
+      <if test="beginTime != null">
+        BEGIN_TIME = #{beginTime},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag},
+      </if>
+      <if test="parentRun != null">
+        PARENT_RUN = #{parentRun},
+      </if>
+      <if test="fromUser != null">
+        FROM_USER = #{fromUser},
+      </if>
+      <if test="archive != null">
+        ARCHIVE = #{archive},
+      </if>
+      <if test="workLevel != null">
+        work_level = #{workLevel},
+      </if>
+      <if test="delTime != null">
+        DEL_TIME = #{delTime},
+      </if>
+      <if test="attachmentId != null">
+        ATTACHMENT_ID = #{attachmentId},
+      </if>
+      <if test="attachmentName != null">
+        ATTACHMENT_NAME = #{attachmentName},
+      </if>
+      <if test="focusUser != null">
+        FOCUS_USER = #{focusUser},
+      </if>
+      <if test="aipFiles != null">
+        AIP_FILES = #{aipFiles},
+      </if>
+      <if test="preSet != null">
+        PRE_SET = #{preSet},
+      </if>
+      <if test="viewUser != null">
+        VIEW_USER = #{viewUser},
+      </if>
+      <if test="forceOver != null">
+        FORCE_OVER = #{forceOver},
+      </if>
+    </set>
+    where RID = #{rid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xoa.model.workflow.FlowRun">
+    update flow_run
+    set RUN_ID = #{runId},
+      RUN_NAME = #{runName},
+      FLOW_ID = #{flowId},
+      BEGIN_USER = #{beginUser},
+      BEGIN_DEPT = #{beginDept},
+      BEGIN_TIME = #{beginTime},
+      END_TIME = #{endTime},
+      DEL_FLAG = #{delFlag},
+      PARENT_RUN = #{parentRun},
+      FROM_USER = #{fromUser},
+      ARCHIVE = #{archive},
+      work_level = #{workLevel},
+      DEL_TIME = #{delTime,jdbcType=TIMESTAMP},
+      ATTACHMENT_ID = #{attachmentId},
+      ATTACHMENT_NAME = #{attachmentName},
+      FOCUS_USER = #{focusUser},
+      AIP_FILES = #{aipFiles},
+      PRE_SET = #{preSet},
+      VIEW_USER = #{viewUser},
+      FORCE_OVER = #{forceOver}
+    where RID = #{rid}
+  </update>
+</mapper>

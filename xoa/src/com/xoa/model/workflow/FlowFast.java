@@ -7,6 +7,26 @@ public class FlowFast {
 	private FlowTypeModel flowTypeModel;
 	
 	private FlowFormType flowFormType;
+	
+	private FlowRun flowRun;
+	
+	private FlowRunPrcs flowRunPrcs;
+
+	public FlowRunPrcs getFlowRunPrcs() {
+		return flowRunPrcs;
+	}
+
+	public void setFlowRunPrcs(FlowRunPrcs flowRunPrcs) {
+		this.flowRunPrcs = flowRunPrcs;
+	}
+
+	public FlowRun getFlowRun() {
+		return flowRun;
+	}
+
+	public void setFlowRun(FlowRun flowRun) {
+		this.flowRun = flowRun;
+	}
 
 	public FlowFormType getFlowFormType() {
 		return flowFormType;

@@ -23,7 +23,7 @@
 
 
 <div class="container" style="padding-top: 5px; padding-left: 5px;overflow: auto;">
-    <span class="title">请假申请单</span>
+    <span id="formtitle" class="title">请假申请单</span>
     <div class="title_nav" class="clearfix">
         <p class="nav-left">表单智能设计器:您需要先布局,才可以拖拽右侧的组件到左侧内容里设计工作流表单</p>
         <p class="nav-right">
@@ -51,10 +51,14 @@
                     <img src="../img/icon_multiplelinetextbox_03.png" alt="">多行文本框</a></li>
                 <li><a href="javascript:void(0);" type="select"  class="btn btn-link">
                     <img src="../img/icon_dropmenu_03.png" alt="">下拉菜单</a></li>
-                <li><a href="javascript:void(0);" type="radios"  class="btn btn-link">
+              <li><a href="javascript:void(0);" type="radios"  class="btn btn-link">
                     <img src="../img/icon_radiobutton_03.png" alt="">单选框</a></li>
-                <li><a href="javascript:void(0);" type="checkboxs"  class="btn btn-link">
+                <li><a href="javascript:void(0);" type="radio"  class="btn btn-link">
+                    <img src="../img/icon_radiobutton_03.png" alt="">单选框2</a></li>
+            <li><a href="javascript:void(0);" type="checkboxs"  class="btn btn-link">
                     <img src="../img/icon_checkbox_03.png" alt="">复选框</a></li>
+                <li><a href="javascript:void(0);" type="checkbox"  class="btn btn-link">
+                    <img src="../img/icon_checkbox_03.png" alt="">复选框2</a></li>
                 <li><a href="javascript:void(0);" type="macros" class="btn btn-link">
                     <img src="../img/icon_hongcontrol_03.png" alt="">宏控件</a></li>
                 <li><a href="javascript:void(0);">
@@ -84,7 +88,7 @@
                     var formid = $.getQueryString("formId")
                     var type = $.getQueryString("type")
                     $("#content .nav-list ").on("click",'a',function(){
-                        console.log($(this).attr('type'));
+
                         formDesign.exec($(this).attr('type'));
                     })
                 var formEditor = UE.getEditor('formEditor',{
@@ -119,6 +123,7 @@
                                 },
                                 success: function (res) {
                                     console.log(formEditor);
+                                    $('#formtitle').html(res.object.formName);
                                     formEditor.setContent(res.object.printModel,true);
                                 }
                             });

@@ -5,6 +5,7 @@ import com.xoa.model.users.OrgManage;
 import com.xoa.service.users.OrgManageService;
 import com.xoa.util.ToJson;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * 类介绍: 对Orgmanage操作
  * 构造参数: 无
  **/
+@Transactional
 @Service
 public class OrgManageServiceImpl implements OrgManageService {
 
@@ -71,7 +73,20 @@ public class OrgManageServiceImpl implements OrgManageService {
      **/
     @Override
     public void editOrgManage(OrgManage orgManage) {
+
         orgManageMapper.editOrgManage(orgManage);
+    }
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/24 18:50
+    *@函数介绍:  添加分公司
+    *@参数说明:  @param orgManage
+    *@return:   void
+    **/
+    @Override
+    public void addOrgManage(OrgManage orgManage) {
+        orgManageMapper.addOrgManage(orgManage);
     }
 
 }

@@ -361,6 +361,20 @@ html,body,.content{
     width: 134px;
     padding-left: 24px;
 }
+.processDesigner{
+    position: absolute;
+    border: 1px solid;
+    border-radius: 8px;
+    width: 133px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    right:0%;
+    top:-36px;
+    color: #fff;
+    cursor: pointer;
+    background: #c7e1ff;
+}
 
 
 

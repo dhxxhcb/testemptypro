@@ -19,8 +19,13 @@ public class FlowSettingPageController {
     public String indexPage(Model model,Integer flowId,HttpServletRequest request){
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
+        System.out.println("页面获取参数："+flowId);
         model.addAttribute("flowId",flowId);
         return "app/workflow/flowsettting/index";
+    }
+    @RequestMapping("/processDesignTool")
+    public String processDesignToolpage(){
+        return "app/workflow/flowsettting/processDesignTool";
     }
 
 }

@@ -22,7 +22,7 @@
 		<result column="DEPT_ID" property="deptId" javaType="int" />
 		<result column="DEPT_ID_OTHER" property="deptIdOther" javaType="string" />
 		<result column="SEX" property="sex" javaType="string" />
-		<result column="BIRTHDAY" property="birthday" javaType="java.util.Date" />
+		<result column="BIRTHDAY" property="birthday" javaType="string" />
 		<result column="IS_LUNAR" property="isLunar" javaType="string" />
 		<result column="TEL_NO_DEPT" property="telNoDept" javaType="string" />
 		<result column="FAX_NO_DEPT" property="faxNoDept" javaType="string" />
@@ -88,10 +88,11 @@
 		<result column="MY_RSS" property="myRss" javaType="string" />
 		<result column="REMARK" property="remark" javaType="string" />
 		<result column="USER_PARA" property="userPara" javaType="string" />
+		<result column="DEPT_NAME" property="deptName" javaType="string"/>
 		<association property="dep"
 			javaType="com.xoa.model.department.Department">
 			<id column="DEPT_ID" property="deptId" />
-			<result column="DEPT_NAME" property="deptName" />
+			<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR"/>
 			<result column="TEL_NO" property="telNo" jdbcType="VARCHAR"
 				javaType="string" />
 			<result column="FAX_NO" property="faxNo" jdbcType="VARCHAR"
@@ -147,9 +148,9 @@
 		</association> 
 	</resultMap>
 	<select id="getByDeptId" parameterType="Map"
-		resultType="com.xoa.model.users.Users">
-		select u.USER_NAME as userName,u.USER_PRIV_NAME as userPrivName
-		 from user u where DEPT_ID= #{deptId}
+		resultMap="UserResultMap">
+		select u.* ,d.*,d.DEPT_NAME as deptName
+		 from user u , department d where u.DEPT_ID= #{deptId} and u.DEPT_ID=d.DEPT_ID
 	</select>	
 	<select id="findUserByuid" parameterType="Map"
 		resultType="com.xoa.model.users.Users">
@@ -193,7 +194,7 @@
 	</select>
 	<select id="findUserByName" resultMap="UserResultMap">
 		select
-		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD`,u.DEPT_ID,u.DEPT_ID_OTHER,u.USER_PRIV,u.USER_PRIV_OTHER,d.DEPT_NAME,u.USER_PRIV_NAME,u.SEX,u.AVATAR,S.PARA_NAME,S.PARA_VALUE
+		u.UID,u.USER_ID,u.USER_NAME,u.BYNAME,u.`PASSWORD`,u.DEPT_ID,u.DEPT_ID_OTHER,u.USER_PRIV,u.USER_PRIV_OTHER,d.DEPT_NAME,u.USER_PRIV_NAME,u.SEX,u.AVATAR,s.PARA_NAME,s.PARA_VALUE
 		from user u,department d,sys_para s WHERE
 		u.USER_ID= #{byname} and u.DEPT_ID=d.DEPT_ID and s.PARA_NAME='IM_WINDOW_CAPTION'
 	</select>
