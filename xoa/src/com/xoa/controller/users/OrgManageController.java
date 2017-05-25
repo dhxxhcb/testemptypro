@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -25,6 +26,9 @@ import java.util.List;
 @Scope(value = "prototype")
 @RequestMapping("/users")
 public class OrgManageController {
+
+    //是否添加成功，0表示是失败
+    private static final Integer ADD_ORGMANAGE_RESULT = 0;
 
     @Resource
     private OrgManageService orgManageService;
@@ -52,6 +56,9 @@ public class OrgManageController {
         }
         return toJson;
     }
+
+
+
 
     /**
      * 创建作者: 韩成冰
@@ -131,14 +138,16 @@ public class OrgManageController {
      * @return: json
      **/
     @RequestMapping(value = "/addOrgManage", produces = {"application/json;charset=UTF-8"})
-    public String addOrgManage(OrgManage orgManage, HttpServletRequest request) {
+    public String addOrgManage(OrgManage orgManage, HttpServletRequest request, HttpServletResponse response) throws IOException {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         if (orgManage != null) {
             orgManageService.addOrgManage(orgManage);
             return "redirect:getOrgManage";
         }
+
         return null;
+
     }
 
 }
