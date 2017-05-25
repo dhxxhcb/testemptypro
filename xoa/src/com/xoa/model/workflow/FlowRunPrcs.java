@@ -52,32 +52,32 @@ public class FlowRunPrcs {
 	/** 返回步骤FLOW_PRCS标志 **/
 	private int backFlowPrcs;
 	/** 是否排除工作时段按排班类型(0-否,1-是) **/
-	private String timeOutAttend;
+	private Object timeOutAttend;
 	/** 超时计算方法(0-本步骤接收后开始计时,1-上一步骤转交后开始计时 ) **/
-	private String timeOutType;
+	private Integer timeOutType;
 	/**  **/
 	private String runPrcsName;
 	/**  **/
 	private String runPrcsId;
 	/** 是否是移动端操作(0-否,1-是) **/
-	private String mobileFlag;
+	private Integer mobileFlag;
 	/** 是否催办 **/
 	private int isRemind;
 	/** 区分自由流程回收的是预设步骤还是普通流转步骤，1-普通流转步骤，5-预设步骤 **/
-	private String tempPrcsFlag;
+	private Integer tempPrcsFlag;
 	/** 工作天数换算方式(0-24小时为一天，1-按个人排班类型工作时长为一天) **/
 	private String workingdaysType;
 
     public String getFreeItem() {
-        return freeItem;
+        return freeItem == null ? "" : freeItem.trim();
     }
 
     public void setFreeItem(String freeItem) {
-        this.freeItem = freeItem == null ? null : freeItem.trim();
+        this.freeItem = freeItem == null ? "" : freeItem.trim();
     }
 
     public String getOtherUser() {
-        return otherUser;
+        return otherUser==null?"":otherUser.trim();
     }
 
     public void setOtherUser(String otherUser) {
@@ -85,7 +85,7 @@ public class FlowRunPrcs {
     }
 
     public String getComment() {
-        return comment;
+        return comment==null?"":comment.trim();
     }
 
     public void setComment(String comment) {
@@ -117,7 +117,7 @@ public class FlowRunPrcs {
     }
 
     public String getUserId() {
-        return userId;
+        return userId==null?"":userId.trim();
     }
 
     public void setUserId(String userId) {
@@ -125,7 +125,7 @@ public class FlowRunPrcs {
     }
 
     public String getPrcsTime() {
-        return prcsTime;
+        return prcsTime==null?"":prcsTime;
     }
 
     public void setPrcsTime(String prcsTime) {
@@ -133,7 +133,7 @@ public class FlowRunPrcs {
     }
 
     public String getDeliverTime() {
-        return deliverTime;
+        return deliverTime==null?"":deliverTime.trim();
     }
 
     public void setDeliverTime(String deliverTime) {
@@ -141,7 +141,7 @@ public class FlowRunPrcs {
     }
 
     public String getPrcsFlag() {
-        return prcsFlag;
+        return prcsFlag==null?"":prcsFlag.trim();
     }
 
     public void setPrcsFlag(String prcsFlag) {
@@ -157,7 +157,7 @@ public class FlowRunPrcs {
     }
 
     public String getOpFlag() {
-        return opFlag;
+        return opFlag==null?"":opFlag.trim();
     }
 
     public void setOpFlag(String opFlag) {
@@ -165,7 +165,7 @@ public class FlowRunPrcs {
     }
 
     public String getTopFlag() {
-        return topFlag;
+        return topFlag==null?"":topFlag.trim();
     }
 
     public void setTopFlag(String topFlag) {
@@ -173,7 +173,7 @@ public class FlowRunPrcs {
     }
 
     public String getParent() {
-        return parent;
+        return parent==null?"":parent.trim();
     }
 
     public void setParent(String parent) {
@@ -189,7 +189,7 @@ public class FlowRunPrcs {
     }
 
     public String getTimeOut() {
-        return timeOut;
+        return timeOut==null?"":timeOut.trim();
     }
 
     public void setTimeOut(String timeOut) {
@@ -197,7 +197,7 @@ public class FlowRunPrcs {
     }
 
     public String getTimeOutTemp() {
-        return timeOutTemp;
+        return timeOutTemp==null?"":timeOutTemp.trim();
     }
 
     public void setTimeOutTemp(String timeOutTemp) {
@@ -205,7 +205,7 @@ public class FlowRunPrcs {
     }
 
     public String getTimeOutFlag() {
-        return timeOutFlag;
+        return timeOutFlag==null?"":timeOutFlag.trim();
     }
 
     public void setTimeOutFlag(String timeOutFlag) {
@@ -213,7 +213,7 @@ public class FlowRunPrcs {
     }
 
     public String getCreateTime() {
-        return createTime;
+        return createTime==null?"":createTime.trim();
     }
 
     public void setCreateTime(String createTime) {
@@ -221,7 +221,7 @@ public class FlowRunPrcs {
     }
 
     public String getFromUser() {
-        return fromUser;
+        return fromUser==null?"":fromUser.trim();
     }
 
     public void setFromUser(String fromUser) {
@@ -229,7 +229,7 @@ public class FlowRunPrcs {
     }
 
     public String getActiveTime() {
-        return activeTime;
+        return activeTime==null?"":activeTime.trim();
     }
 
     public void setActiveTime(String activeTime) {
@@ -245,7 +245,7 @@ public class FlowRunPrcs {
     }
 
     public String getParentPrcsId() {
-        return parentPrcsId;
+        return parentPrcsId==null?"":parentPrcsId.trim();
     }
 
     public void setParentPrcsId(String parentPrcsId) {
@@ -268,24 +268,24 @@ public class FlowRunPrcs {
         this.backFlowPrcs = backFlowPrcs;
     }
 
-    public String getTimeOutAttend() {
+    public Object getTimeOutAttend() {
         return timeOutAttend;
     }
 
-    public void setTimeOutAttend(String timeOutAttend) {
+    public void setTimeOutAttend(Object timeOutAttend) {
         this.timeOutAttend = timeOutAttend;
     }
 
-    public String getTimeOutType() {
+    public Integer getTimeOutType() {
         return timeOutType;
     }
 
-    public void setTimeOutType(String timeOutType) {
+    public void setTimeOutType(Integer timeOutType) {
         this.timeOutType = timeOutType;
     }
 
     public String getRunPrcsName() {
-        return runPrcsName;
+        return runPrcsName==null?"":runPrcsName.trim();
     }
 
     public void setRunPrcsName(String runPrcsName) {
@@ -293,18 +293,18 @@ public class FlowRunPrcs {
     }
 
     public String getRunPrcsId() {
-        return runPrcsId;
+        return runPrcsId==null?"":runPrcsId.trim();
     }
 
     public void setRunPrcsId(String runPrcsId) {
         this.runPrcsId = runPrcsId == null ? null : runPrcsId.trim();
     }
 
-    public String getMobileFlag() {
+    public Integer getMobileFlag() {
         return mobileFlag;
     }
 
-    public void setMobileFlag(String mobileFlag) {
+    public void setMobileFlag(Integer mobileFlag) {
         this.mobileFlag = mobileFlag;
     }
 
@@ -316,16 +316,16 @@ public class FlowRunPrcs {
         this.isRemind = isRemind;
     }
 
-    public String getTempPrcsFlag() {
+    public Integer getTempPrcsFlag() {
         return tempPrcsFlag;
     }
 
-    public void setTempPrcsFlag(String tempPrcsFlag) {
+    public void setTempPrcsFlag(Integer tempPrcsFlag) {
         this.tempPrcsFlag = tempPrcsFlag;
     }
 
     public String getWorkingdaysType() {
-        return workingdaysType;
+        return workingdaysType==null?"":workingdaysType.trim();
     }
 
     public void setWorkingdaysType(String workingdaysType) {

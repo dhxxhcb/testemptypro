@@ -51,7 +51,7 @@
       FLOW_ID, BEGIN_USER, BEGIN_DEPT, 
       BEGIN_TIME, END_TIME, DEL_FLAG, 
       PARENT_RUN, FROM_USER, ARCHIVE, 
-      work_level, DEL_TIME, ATTACHMENT_ID, 
+      work_level, ATTACHMENT_ID, 
       ATTACHMENT_NAME, FOCUS_USER, AIP_FILES, 
       PRE_SET, VIEW_USER, FORCE_OVER
       )
@@ -59,7 +59,7 @@
       #{flowId}, #{beginUser}, #{beginDept}, 
       #{beginTime}, #{endTime}, #{delFlag}, 
       #{parentRun}, #{fromUser}, #{archive}, 
-      #{workLevel}, #{delTime}, #{attachmentId}, 
+      #{workLevel}, #{attachmentId}, 
       #{attachmentName}, #{focusUser}, #{aipFiles}, 
       #{preSet}, #{viewUser}, #{forceOver}
       )
