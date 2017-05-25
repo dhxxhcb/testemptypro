@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 		</table>
 		<script type="text/javascript">
-			
+
 			user_id='senduser';
        		 var ue = UE.getEditor('container');
        		 var res
@@ -132,10 +132,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					if(target[0].files && target[0].files[0]){
 						file=target[0].files[0];
 					}
-					console.log(file);
+					//console.log(file);
 					if(file){
 						$.upload($('#uploadimgform'),function(res){
-							//console.log(res);
+							console.log(res);
 							var data=res.obj;
 							var str='';
 							var str1='';
