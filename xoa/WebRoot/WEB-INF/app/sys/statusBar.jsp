@@ -35,17 +35,74 @@
     <script>
         $(function(){
             $('#btn').click(function(){
-                console.log('')
+                modifyTime();
+                modifyText()
             })
+            scarchTime($('.seaTime'));
+            searchText($('#seachTxt'));
 
-
-            /*function scarchData(){
+            //修改时间
+            function modifyTime(){
+                var moTime=$('.seaTime').val();
                 $.ajax({
                     type:'get',
-                    url:''
+                    url:'/syspara/updateSysParaByParaName',
+                    dataType:'json',
+                    data:{'paraName':'STATUS_TEXT_MARQUEE','paraValue':moTime},
+                    success:function(rsp){
+                        if(rsp.flag==true){
+                            console.log('修改成功')
+                        }else{
+                            console.log('修改失败');
+                        }
+                    }
                 })
-            }*/
+            }
+            //修改文字
+            function modifyText(){
+                var moTxt=$('#seachTxt').val();
+                $.ajax({
+                    type:'get',
+                    url:'/sys/editStatusText',
+                    dataType:'json',
+                    data:{'paraValue':moTxt},
+                    success:function(rsp){
+                        if(rsp.flag==true){
+                            alert('修改成功');
+                        }else{
+                            alert('修改失败');
+                        }
+                        //location.reload()
+                    }
+                })
+            }
+
         })
+        //查询时间
+        function scarchTime(element){
+            $.ajax({
+                type:'get',
+                url:'/syspara/selectTheSysPara',
+                dataType:'json',
+                data:{'paraName':'STATUS_TEXT_MARQUEE'},
+                success:function(rsp){
+                    var data=rsp.object;
+                    element.val(data[0].paraValue);
+                }
+            })
+        }
+        //查询状态栏文字
+        function searchText(element){
+            $.ajax({
+                type:'get',
+                url:'/sys/getStatusText',
+                dataType:'json',
+                success:function(rsp){
+                    var data=rsp.object;
+                    element.val(data[0].statusText);
+                }
+            })
+        }
     </script>
 </head>
 <body>
@@ -58,12 +115,12 @@
             <span>状态栏文字设置</span>
         </div>
         <div class="text">
-            <textarea name="txt" ></textarea>
+            <textarea name="txt" id="seachTxt" ></textarea>
             <p>提示：多行文字可以实现轮换显示</p>
         </div>
         <div class="time">
             <span>滚动时间设置为：</span>
-            <input type="text" />
+            <input type="text" class="seaTime" />
             <span>秒</span>
         </div>
         <div class="sureBtn">

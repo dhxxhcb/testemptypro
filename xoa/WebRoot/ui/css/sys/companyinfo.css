@@ -52,3 +52,6 @@ table tr td input[type="text"]{
     margin-top: 3px;
     margin-right: 3px;
 }
+.enclosure a{
+    display: block;
+}

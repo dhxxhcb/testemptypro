@@ -10,20 +10,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 	<head>
+
 	<meta charset="UTF-8">
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-        <title>首页</title>
-        <%--<link rel="stylesheet" href="../css/base.css" />
-        <link rel="stylesheet" type="text/css" href="../css/common/addpage.css"/>
-        <link rel="stylesheet" href="../lib/pagination/style/pagination.css" />--%>
-        <link rel="stylesheet" href="../css/sys/companyinfo.css" />
-        <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+    <title>首页</title>
+	<%--<link rel="stylesheet" href="../css/base.css" />
+	<link rel="stylesheet" type="text/css" href="../css/common/addpage.css"/>
+	<link rel="stylesheet" href="../lib/pagination/style/pagination.css" />--%>
+	<link rel="stylesheet" href="../css/sys/companyinfo.css" />
+    <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
         <script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
         <script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
         <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../js/ajaxupload.js" type="text/javascript" charset="utf-8"></script>
+
    <%-- <script type="text/javascript" src="../js/sys/companyinfo.js"></script>--%>
     <style type="text/css">
     </style>
@@ -35,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="divP">单位管理</div>
         </div>
         <div class="tab">
-            <form action="" method="post" name="form1">
+
                 <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
                     <tr>
                         <td>单位名称：</td>
@@ -110,17 +111,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </tr>
                     <tr>
                         <td colspan="2">
+                            <div id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
                             <div class="btn">
                                 <input id="submit" type="button" value="保存单位设置"/>
                             </div>
                         </td>
                     </tr>
                 </table>
-            </form>
         </div>
     </div>
 </body>
     <script type="text/javascript">
+        var ue = UE.getEditor('container');
         var res;
         $(function(){
             //附件上传
@@ -133,10 +139,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 if(target[0].files && target[0].files[0]){
                     file=target[0].files[0];
                 }
-                console.log(file);
                 if(file){
                     $.upload($('#uploadimgform'),function(res){
-                        console.log('123');
                         var data=res.obj;
                         var str='';
                         var str1='';
@@ -144,7 +148,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             str+='<a href="<%=basePath %>download?'+data[i].attUrl+'" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
                             str1+='<input type="hidden" class="inHidden" value="'+data[i].aid+'@'+data[i].ym+'_'+data[i].attachId+',">';
                         }
-                        console.log(str);
                         $('.enclosure').append(str+str1);
                     });
                 }
