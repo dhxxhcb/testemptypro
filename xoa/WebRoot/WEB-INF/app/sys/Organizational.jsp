@@ -124,6 +124,11 @@
             float: left;
             padding-right: 8px;
         }
+        .select{
+            width: 100px;
+            height: 32px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -296,12 +301,13 @@
                 }
             });
         };
+
         //新建公司
         $('#user_btn').click(function(){
             layer.open({
                 title: '新建',
                 shade: 0,
-                content: '<div style="width: 462px"><form id="updatecom" action="${pageContext.request.contextPath}/users/editOrgManage.do">' +
+                content: '<div style="width: 462px">' +
                 '<ul class="searchBox clearfix">' +
                 '<li style="float: left">' +
                 '<label>公司名称:</label><input type="text" name="name" value="">' +
@@ -310,11 +316,32 @@
                 '<label>版本:</label><input type="text" name="version"  value="">' +
                 '</li>' +
                 '<li style="float: left">' +
-                '<label>是否组织:</label><input type="text" name="isOrg" value="">' +
+                '<label>是否组织:</label><select name="sele" class="select"><option value="0">否</option><option value="1">是</option></select>' +
                 '</li>' +
-                '</ul></form></div>',
+                '</ul></div>',
                 area: ['500px', '280px'],
                 btn: ['确定', '取消'],
+                yes:function () {
+                    var data={
+                        'name':$('input[name="name"]').val(),
+                        'version':$('input[name="version"]').val(),
+                        'isOrg':$('.select option:checked').val()
+                    }
+                    $.ajax({
+                        type:'get',
+                        url:'/users/addOrgManage',
+                        dataType:'json',
+                        data:data,
+                        success:function(json){
+                            if(json.msg=="ok"){
+                                alert('新建成功');
+                            }else{
+                                alert('新建失败');
+                            }
+                        }
+                    })
+                    location.reload();
+                }
             })
         })
 

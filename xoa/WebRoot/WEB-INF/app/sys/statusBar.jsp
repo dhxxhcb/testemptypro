@@ -18,8 +18,8 @@
         a{text-decoration: none;color: #2B7FE0;}
         ul{list-style: none;}
         .content{width: 100%;height: 100%;overflow: hidden;}
-        .content .headDiv{width: 100%;height: 50px;border-bottom: #999 1px solid;font-weight: bold;}
-        .content .header{display: block;height: 50px;line-height: 50px;font-size: 20px;margin-left: 30px;}
+        .content .headDiv{width: 100%;height: 45px;border-bottom: #999 1px solid;font-weight: bold;}
+        .content .header{display: block;height: 45px;line-height: 45px;font-size: 20px;margin-left: 30px;}
         .content .main{width: 95%;margin: 20px auto;border: #ccc 1px solid;}
         .content .main .title{width: 100%;height: 34px;border-bottom: #ccc 1px solid;}
         .content .main .title span{height: 100%;line-height: 34px;font-size: 14px;margin-left: 10px;}
@@ -31,7 +31,22 @@
         .content .main .sureBtn{width: 100%;}
         .content .main .sureBtn .btn{border: #ddd 1px solid;width: 50px;height: 24px;margin: 5px auto;text-align: center;line-height: 24px;font-size: 14px;border-radius: 5px;background-color: #fafafa;cursor: pointer;}
     </style>
+    <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        $(function(){
+            $('#btn').click(function(){
+                console.log('')
+            })
 
+
+            /*function scarchData(){
+                $.ajax({
+                    type:'get',
+                    url:''
+                })
+            }*/
+        })
+    </script>
 </head>
 <body>
 <div class="content">
