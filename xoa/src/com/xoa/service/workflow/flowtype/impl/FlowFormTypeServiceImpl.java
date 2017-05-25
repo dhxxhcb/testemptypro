@@ -88,7 +88,7 @@ public class FlowFormTypeServiceImpl implements FlowFormTypeService {
             tM.setSYS_DEPTNAME_SHORT(users.getDep().getDeptName());
             tM.setSYS_USERPRIV(users.getUserPrivName());
             tM.setSYS_USERPRIVOTHER(users.getUserPrivName());
-            tM.setSYS_USERNAME_DATE(users.getUserName()+ DateFormat.getStrDate(curDate));
+            tM.setSYS_USERNAME_DATE(users.getUserName()+""+ DateFormat.getStrDate(curDate));
             strArray= option.split(",");
             for(int j = 0; j < strArray.length; j++){
                 L.a("ASASASASASA"+strArray[j]);
