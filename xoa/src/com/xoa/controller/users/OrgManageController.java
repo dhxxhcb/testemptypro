@@ -74,18 +74,6 @@ public class OrgManageController {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         if (orgManage != null && orgManage.getOid() != null) {
-
-            //解决编码问题
-            if (orgManage.getName() != null) {
-                orgManage.setName(new String(orgManage.getName().getBytes("iso8859-1"), "utf-8"));
-            }
-            if (orgManage.getIsOrg() != null) {
-                orgManage.setIsOrg(new String(orgManage.getIsOrg().getBytes("iso8859-1"), "utf-8"));
-            }
-            if (orgManage.getVersion() != null) {
-                orgManage.setVersion(new String(orgManage.getVersion().getBytes("iso8859-1"), "utf-8"));
-            }
-
             orgManageService.editOrgManage(orgManage);
         }
 
