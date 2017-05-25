@@ -221,14 +221,18 @@
          oListText = $G('orglist');
          if( UE.plugins[thePlugins].editdom ){
              oNode = UE.plugins[thePlugins].editdom;
-             var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gName=oNode.getAttribute('fieldname'),gFlow=oNode.getAttribute('fieldflow'),gWidth=oNode.getAttribute('orgwidth'),gSize=oNode.getAttribute('size');
+             var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),
+                 gName=oNode.getAttribute('fieldname'),
+                 gFlow=oNode.getAttribute('fieldflow'),
+                 gWidth=oNode.getAttribute('orgwidth'),
+                 gSize=oNode.getAttribute('size');
              gTitle = gTitle==null ? '' : gTitle;
              gName = gName==null ? '' : gName;
              $G('orgvalue').innerHTML = oNode.value;
              $G('orgname').value = gTitle;
              $G('orgsize').value = gSize;
              $G('orgwidth').value = gWidth;
-             $G('fieldname').value = gName;
+             $G('fieldname').value = gTitle;
              if (gFlow == '1')
              {
                  $G('fieldflow').checked = true;
