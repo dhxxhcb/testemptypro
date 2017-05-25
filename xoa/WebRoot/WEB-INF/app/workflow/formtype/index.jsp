@@ -49,10 +49,19 @@
 				display: inline-block;
 				margin-top: 10px;
 				float: left;
-				margin-left: 50px;
+				margin-left: 30px;
 			}
 		.head_rig {width: 10%;margin-top:5px;}
-
+		.head_left h1 {
+		    color: #2f80dd;
+		    font-size: 22px;
+		    font-weight: bold;
+		    height: 100%;
+		    line-height: 50px;
+		    /* text-align: center; */
+		    margin-left: 7px;
+		    float: left;
+		}
 		.search {
 				width: 72px;
 				height: 29px;
