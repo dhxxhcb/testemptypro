@@ -87,8 +87,6 @@ public class SysParaServiceImpl  implements SysParaService{
     public List<SysPara> getTheSysParam(String paraName) {
 
         return sysParaMapper.getTheSysParam(paraName);
-
-
     }
 
 }
