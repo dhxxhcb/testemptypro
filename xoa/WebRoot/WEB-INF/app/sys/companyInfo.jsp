@@ -41,56 +41,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <tr>
                         <td>单位名称：</td>
                         <td>
-                            <input type="text" name="company" class="inputTd" placeholder="北京集团总部"/>
+                            <input type="text" name="unitName" class="inputTd" placeholder="北京集团总部"/>
                             <span style="font-size: 12px;color: #666;">软件注册后，请不要随意修改单位名称，这会导致需要重新注册</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">电话：</td>
                         <td>
-                            <input type="text" name="company" class="inputTd" placeholder=""/>
+                            <input type="text" name="telNo" class="inputTd" placeholder=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">传真：</td>
                         <td>
-                            <input type="text" name="company" class="inputTd" placeholder=""/>
+                            <input type="text" name="faxNo" class="inputTd" placeholder=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">邮编：</td>
                         <td>
-                            <input type="text" name="company" class="inputTd" placeholder=""/>
+                            <input type="text" name="postNo" class="inputTd" placeholder=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">地址：</td>
                         <td>
-                            <input type="text" name="company" class="inputTd" placeholder=""/>
+                            <input type="text" name="address" class="inputTd" placeholder=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">网站：</td>
                         <td>
-                            <input type="text" name="company" class="inputTd" placeholder=""/>
+                            <input type="text" name="url" class="inputTd" placeholder=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">电子信箱：</td>
                         <td>
-                            <input type="text" name="company" class="inputTd" placeholder=""/>
+                            <input type="text" name="email" class="inputTd" placeholder=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">开户行：</td>
                         <td>
-                            <input type="text" name="company" class="inputTd" placeholder=""/>
+                            <input type="text" name="bankName" class="inputTd" placeholder=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">账号：</td>
                         <td>
-                            <input type="text" name="company" class="inputTd" placeholder=""/>
+                            <input type="text" name="bankNo" class="inputTd" placeholder=""/>
                         </td>
                     </tr>
                     <tr>
@@ -152,6 +152,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     });
                 }
             });
+
+            $('#submit').click(function(){
+                var txt = ue.getContentTxt();
+                var html = ue.getContent();
+                var attach=$('.enclosure').find('a');
+                var aId='';
+                var uId='';
+                for(var i=0;i<$('.enclosure .inHidden').length;i++){
+                    aId += $('.enclosure .inHidden').eq(i).val();
+                }
+                for(var i=0;i<$('.enclosure .inHidden').length;i++){
+                    uId += attach.eq(i).attr('NAME');
+                }
+                var data={
+                    'unitName':$('input[name="unitName"]').val(),
+                    'telNo':$('input[name="telNo"]').val(),
+                    'faxNo':$('input[name="faxNo"]').val(),
+                    'postNo':$('input[name="postNo"]').val(),
+                    'address':$('input[name="address"]').val(),
+                    'url':$('input[name="url"]').val(),
+                    'email':$('input[name="email"]').val(),
+                    'bankName':$('input[name="bankName"]').val(),
+                    'bankNo':$('input[name="bankNo"]').val(),
+                    'attachmentId':aId,
+                    'attachmentName':uId,
+                    'content':html
+                }
+                $.ajax({
+                    type:'get',
+                    url:'/sys/updateUnit',
+                    dataType:'json',
+                    data:data,
+                    success:function(rsp){
+                        console.log(rsp.flag);
+                    }
+                })
+            })
         })
     </script>
 </html>

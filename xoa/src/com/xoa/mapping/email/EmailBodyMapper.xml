@@ -196,7 +196,7 @@
 			AND eb.ATTACHMENT_NAME like CONCAT('%',#{attachmentName},'%')
 		</if>
 		GROUP BY eb.BODY_ID ORDER BY
-		eb.BODY_ID DESC
+		eb.SEND_TIME DESC
 	</select>
 
 
@@ -224,7 +224,7 @@
 			AND eb.ATTACHMENT_NAME like CONCAT('%',#{attachmentName},'%')
 		</if>
 		 GROUP BY eb.BODY_ID order by
-		SEND_TIME DESC
+		eb.SEND_TIME DESC
 	</select>
 	<!-- 发件箱查询 -->
 	<select id="listSendEmail" parameterType="Map" resultMap="BaseResultMap">
@@ -252,7 +252,7 @@
 			AND eb.ATTACHMENT_NAME like CONCAT('%',#{attachmentName},'%')
 		</if>
 		 GROUP BY eb.BODY_ID
-		ORDER BY eb.BODY_ID DESC
+		ORDER BY eb.SEND_TIME DESC
 	</select>
 
 	<!-- 废纸篓查询 空值 -->
@@ -310,7 +310,7 @@
 			AND eb.ATTACHMENT_NAME like CONCAT('%',#{attachmentName},'%')
 		</if>
 		GROUP BY eb.BODY_ID ORDER BY
-		eb.BODY_ID DESC
+		eb.SEND_TIME DESC
 	</select>
 
     <!--未读查询-->
@@ -325,7 +325,7 @@
 		AND e.BOX_ID='0' 
 		AND e.READ_FLAG='0'
 		GROUP BY eb.BODY_ID ORDER BY
-		eb.BODY_ID DESC
+		eb.SEND_TIME DESC
 	</select>
 
 
@@ -342,7 +342,7 @@
 		AND e.BOX_ID='0'
 		AND e.READ_FLAG='0'
 		GROUP BY eb.BODY_ID ORDER BY
-		eb.BODY_ID DESC
+		eb.SEND_TIME DESC
 	</select>
 
 
