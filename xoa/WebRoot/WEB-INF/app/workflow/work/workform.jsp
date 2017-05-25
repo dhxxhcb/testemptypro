@@ -17,12 +17,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/m_reset.css">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/new_work.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/laydate.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/pagination/style/pagination.css"/>
     <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
     <script src="../../js/base/base.js"></script>
     <script src="../../js/workflow/work/workform.js"></script>
+    <script src="../../lib/laydate.js"></script>
+    <script src="../../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/layer/layer.js"></script>
 </head>
 
 <style type="text/css">
+    .cont{
+        position: relative;
+    }
+    #tab_c{
+        width:22%;
+        height:100%;
+        position: absolute;
+        right: -316px;
+       /* background: red;*/
+        overflow-y: scroll;
+        box-shadow: -2px 0 20px 0px #c4c4c4;
+    }
+    .cont_form{
+        position: absolute;
+        right: 320px;
+    }
+    #tab_c,.cont_form{
+        float:left;
+    }
+    .tab_one,#tab_ctwo{
+        width:100%;
+        height:100%;
+    }
+    .cont_ctwo{
+        width:100%;
+        height:100%;
+    }
+    .cont_cone{
+        width:100%;
+        height:85%;
+    }
+   .tab_one{
+        width:100%;
+        height:100%;
+    }
+    .cont_cone li{
+        width: 85%;
+        height:50px;
+        margin:10px auto;
+        border: 1px solid #cccccc;
+        border-radius: 3px;
+
+    }
+ /*   #tab_ctwo{
+        display:none;
+    }*/
+    .one_all,.two_all{
+        width:100%;
+        height:50%;
+    }
+    #tab_ctwo ul{
+        width:100%;
+        height:100%;
+        display:none;
+    }
+    .item_logo,.item_word{
+        float:left;
+    }
+    .item_logo{
+        width: 40px;
+        height: 40px;
+        margin-left: 3px;
+        margin-top: 5px;
+        background: #00a2d4;
+    }
+    .item_word{
+        margin-top: 5px;
+        margin-left: 7px;
+    }
+    .item_word h1{
+        color: #4b4b4b;
+        font-size: 10pt;
+    }
+    .item_word h2{
+        color: #919191;
+    }
+    .position{
+        position: absolute;
+        right: 0px;
+        top: 13px;
+        clear: both;
+    }
+    .fujian_logo,.fujian_h1{
+        float: left;
+
+    }
+    .fujian_logo{
+        margin-top: 3px;
+    }
+    .fujian_h1{
+        margin-left: 5px;
+        font-size: 11pt;
+/*        line-height: 40px;*/
+    }
+    button{
+        width: 85%;
+        height: 40px;
+        border-radius: 7px;
+        /*border: none;*/
+        background: #54a9fc;
+        color: #fff;
+        margin: auto;
+        margin-left: 24px;
+        text-align: center;
+        line-height: 40px;
+        outline: none;
+    }
 </style>
 
 <body>
@@ -37,46 +149,164 @@
             </select>
         </div>
 
-        <div class="abs_right">
+        <div id="tab_t" class="abs_right">
             <ul>
-                <li id="check">附件</li>
-                <li>会签</li>
-                <li>流程</li>
-                <li>关联</li>
+                <li class="fujian">附件</li>
+                <li class="huiqian">会签</li>
+                <li class="liucheng">流程</li>
+                <li class="guanlian">关联</li>
             </ul>
         </div>
     </div>
-    <div class="cont" id="client">
-        <div class="cont_form">
+    <div class="content">
+        <div class="cont" id="client">
+            <div class="cont_form">
 
+            </div>
+            <div id="tab_c">
+                <div class="tab_one">
+                    <div class="one_all">
+                        <ul class="cont_cone">
+                            <li style="height:21px;position:relative;border:none;"><img class="fujian_logo" src="../../img/workflow/work/add_work/sheji.png"><h1 class="fujian_h1">附件</h1></li><div class="position"><img src="../../img/workflow/work/add_work/sheji.png"></div>
+                            <li><div class="item_logo"></div><div class="item_word"><h1>Saas事业部5月...任务工单.xlsx</h1><h2>10.8k</h2></div></li>
+                            <li><div class="item_logo"></div><div class="item_word"><h1>Saas事业部5月...任务工单.xlsx</h1><h2>10.8k</h2></div></li>
+                            <li><div class="item_logo"></div><div class="item_word"><h1>Saas事业部5月...任务工单.xlsx</h1><h2>10.8k</h2></div></li>
+                        </ul>
+                        <button>添加附件</button>
+                    </div>
+                    <div class="two_all">
+                        <ul class="cont_ctwo" style="background: yellow;">
+                            <li>会签</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div id="tab_ctwo">
+                    <ul class="cont_cthr" style="background: green;">
+                        <li>流程</li>
+                    </ul>
+                    <ul class="cont_cfour" style="background: cyan;">
+                        <li>关联</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="foot">
+            <div class="foot_left">
+                <ul>
+                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">流程图</h1></li>
+                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">委托</h1></li>
+                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">打印</h1></li>
+                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">其他</h1></li>
+                </ul>
+            </div>
+            <div class="foot_rig">
+                <ul>
+                    <li class="rig_li zhuanjiao"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">转交下一步</h1></li>
+                    <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">保存</h1></li>
+                    <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">保存返回</h1></li>
+                    <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">其他</h1></li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="foot">
-        <div class="foot_left">
-            <ul>
-                <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">流程图</h1></li>
-                <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">委托</h1></li>
-                <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">打印</h1></li>
-                <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">其他</h1></li>
-            </ul>
-        </div>
-        <div class="foot_rig">
-            <ul>
-                <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">转交下一步</h1></li>
-                <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">保存</h1></li>
-                <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">保存返回</h1></li>
-                <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">其他</h1></li>
-            </ul>
-        </div>
-    </div>
+
 </div>
 </body>
 </html>
 <script>
     $(function(){
         var formid = $.getQueryString("formId");
-        workForm.buildHTML($('.cont_form'),formid);
+        workForm.init({
+                formhtmlurl:'../../form/formType',
+                formid:formid,
+                target:$('.formDesign')},
+            function(data){
+                console.log(data);
+            });
+        //右侧tab切换
+       /* var currentIndex=0;
+        var index;
+        $('.abs_right').on('click','li',function(){
+            index=$(this).index();
+            console.log(index);
+            if(currentIndex!=index){
+                currentIndex=index;
+                $("#tab_t li").removeClass("check");
+                $(this).addClass('check');
+                //内容
+                var contents=$("#tab_c").find("ul");
 
+                $(contents[index]).show();
+                $(contents[index]).siblings().hide();
+            }
+
+        });*/
+       //第一个
+       $('.fujian').on('click',function(){
+
+           $(this).siblings().removeClass("check");
+           $(this).addClass('check');
+            $('#tab_c').animate({right:'0px'},"slow");
+            $('#tab_ctwo').hide();
+            $('.tab_one').show();
+            $('.cont_cone').show();
+       })
+        //第二个
+        $('.huiqian').on('click',function(){
+            $(this).siblings().removeClass("check");
+            $(this).addClass('check');
+            $('.cont_cone').hide();
+            $('#tab_ctwo').hide();
+            $('.tab_one').show();
+            $('.cont_ctwo').show();
+        })
+        //第三个
+        $('.liucheng').on('click',function(){
+            $(this).siblings().removeClass("check");
+            $(this).addClass('check');
+            $('.cont_cthr').siblings().hide();
+            $('.tab_one').hide();
+            $('#tab_ctwo').show();
+            $('.cont_cthr').show();
+        })
+        //第四个
+        $('.guanlian').on('click',function(){
+            $(this).siblings().removeClass("check");
+            $(this).addClass('check');
+            $('.cont_cfour').siblings().hide();
+            $('.tab_one').hide();
+            $('#tab_ctwo').show();
+            $('.cont_cfour').show();
+        })
+
+        //转交下一步
+        $('.zhuanjiao').on('click',function(){
+            /*alert('111');*/
+            $(this).css({
+                'color':'#fff',
+                'background':'#4889f0'
+            });
+
+            layer.open({
+                type: 1,
+                /* skin: 'layui-layer-rim', //加上边框 */
+                offset: '80px',
+                area: ['600px', '400px'], //宽高
+                title:$(this).find('h1').text(),
+                closeBtn: 0,
+                content: '内容',
+
+                btn:['确认', '取消'],
+                yes: function(index, layero){
+                    //按钮【按钮三】的回调
+                    /*alert($('.name_biaodan').val());*/
+                    layer.closeAll();
+                }
+            });
+
+        })
     });
 </script>
 <script>
