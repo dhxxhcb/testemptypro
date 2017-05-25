@@ -65,14 +65,13 @@
                     type:'get',
                     url:'/sys/editStatusText',
                     dataType:'json',
-                    data:{'paraValue':moTxt},
+                    data:{'statusText':moTxt},
                     success:function(rsp){
                         if(rsp.flag==true){
                             alert('修改成功');
                         }else{
                             alert('修改失败');
                         }
-                        //location.reload()
                     }
                 })
             }
