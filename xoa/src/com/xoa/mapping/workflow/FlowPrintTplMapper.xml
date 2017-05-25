@@ -282,4 +282,7 @@
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where T_ID = #{tId,jdbcType=INTEGER}
   </update>
+  <select id="queryByFlowId" resultMap="ResultMapWithBLOBs" parameterType="Integer">
+    SELECT  *   FROM flow_print_tpl WHERE flow_print_tpl.FLOW_ID=#{flowId}
+  </select>
 </mapper>

@@ -34,4 +34,6 @@ public interface FlowPrintTplMapper {
     int updateByPrimaryKeyWithBLOBs(FlowPrintTplWithBLOBs record);
 
     int updateByPrimaryKey(FlowPrintTpl record);
+
+    List<FlowPrintTplWithBLOBs> queryByFlowId(Integer flowId);
 }
