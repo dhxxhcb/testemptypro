@@ -45,6 +45,7 @@ var workForm = {
     ReBuild:function(){
         $("input").each(function(){
             $(this).addClass("form_item");
+            $(this).attr("data-type",$(this).attr("type"));
             $(this).attr("id",$(this).attr("name"));
         });
         $("textarea").each(function(){

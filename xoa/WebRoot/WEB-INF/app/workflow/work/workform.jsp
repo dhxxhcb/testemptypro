@@ -291,7 +291,7 @@
         workForm.init({
                 formhtmlurl:'../../form/formType',
                 formid:formid,
-                target:$('.formDesign')},
+                target:$('.cont_form')},
             function(data){
                 console.log(data);
             });
