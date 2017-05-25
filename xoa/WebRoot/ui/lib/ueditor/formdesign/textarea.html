@@ -55,14 +55,16 @@
         var oNode = null,thePlugins = 'textarea';;
             if( UE.plugins[thePlugins].editdom ){
                 oNode = UE.plugins[thePlugins].editdom;
-                var gValue = oNode.getAttribute('value').replace(/&quot;/g,"\""),gName=oNode.getAttribute('name'),gFlow=oNode.getAttribute('fieldflow'),gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gFontSize=oNode.getAttribute('orgfontsize'),gWidth=oNode.getAttribute('orgwidth'),gHeight=oNode.getAttribute('orgheight'),gRich=oNode.getAttribute('orgrich');
+                var /*gValue = oNode.getAttribute('value').replace(/&quot;/g,"\""),*/
+					gName=oNode.getAttribute('name'),gFlow=oNode.getAttribute('fieldflow'),gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gFontSize=oNode.getAttribute('orgfontsize'),gWidth=oNode.getAttribute('orgwidth'),gHeight=oNode.getAttribute('orgheight'),gRich=oNode.getAttribute('orgrich');
 
-                gValue = gValue==null ? '' : gValue;
+                //gValue = gValue==null ? '' : gValue;
                 gTitle = gTitle==null ? '' : gTitle;
                 gName = gName == null ? '' : gName;
-                $G('orgvalue').value = gValue;
-                $G('orgname').value = gTitle;
+             //   $G('orgvalue').value = gValue;
+                $G('fieldname').value = gTitle;
                 $G('fielid').value = gName;
+                $G('orgname').value = gTitle;
                 if (gFlow == '1')
                 {
                     $G('fieldflow').checked = true;

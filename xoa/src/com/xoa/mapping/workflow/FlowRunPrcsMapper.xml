@@ -556,10 +556,6 @@
     frp.IS_REMIND DESC,
     frp.RUN_ID DESC,
     fr.WORK_LEVEL DESC
-    --     frp.PRCS_FLAG IN (1, 2)
-    --     AND frp.CHILD_RUN = '0'
-    --     AND frp.USER_ID='admin'
-    --     AND fr.DEL_FLAG = '0'
   </select>
 
 
