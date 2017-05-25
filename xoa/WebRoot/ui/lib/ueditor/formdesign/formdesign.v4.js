@@ -479,7 +479,7 @@ UE.plugins['radio'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/radio.html',
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/radio.html?dataid='+(pluginId++),
                 name:thePlugins,
                 editor:this,
                 title: '单选框',
@@ -556,7 +556,7 @@ UE.plugins['checkbox'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/checkbox.html',
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/checkbox.html?dataid='+(pluginId++),
                 name:thePlugins,
                 editor:this,
                 title: '复选框',

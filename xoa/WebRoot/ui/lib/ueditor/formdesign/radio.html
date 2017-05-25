@@ -9,6 +9,7 @@
     <script type="text/javascript" src="../dialogs/internal.js"></script>
     <script type="text/javascript" src="../../../js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../../js/base/base.js"></script>
+    <link rel="stylesheet" href="leipi.style.css">
     <script type="text/javascript">
 function createElement(type, name)
 {     
@@ -162,7 +163,7 @@ function fnSetAttribute( element, attName, attValue ) {
         <th><span>初始选定</span></th>
     </tr>
     <tr>
-        <td> <input id="orgname" type="text" placeholder="必填项" /> </td>
+        <td> <input id="orgname" type="text" placeholder="必填项" /> </td></td><input type="hidden" id="fielid" placeholder="必填项">
         <td> <span id="orgvalue" class="uneditable-input"></span> </td>
     </tr>
     <tr>
@@ -196,91 +197,100 @@ function fnSetAttribute( element, attName, attValue ) {
     <div class="alert alert-danger">提示：需要预览才能看到实际效果</div>
 </div>
 <script type="text/javascript">
-
-
-var oNode = null,oListText='',thePlugins = 'radio';
-window.onload = function() {
+    var oNode = null,oListText='',thePlugins = 'radio';
     oListText    = $G( 'orglist' ) ;
+    $(function () {
+        var dataid = $.getQueryString('dataid');
+     if( UE.plugins[thePlugins].editdom ){
+            oNode = UE.plugins[thePlugins].editdom;
+            var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gRadios=oNode.getAttribute('radio_field'),gChecked=oNode.getAttribute("orgchecked");
+            gTitle = gTitle==null ? '' : gTitle;
+            $G('orgvalue').innerHTML = gChecked;
+            $G('orgname').value = gTitle;
 
-    if( UE.plugins[thePlugins].editdom ){
-        oNode = UE.plugins[thePlugins].editdom;
-        var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gRadios=oNode.getAttribute('orgradios'),gChecked=oNode.getAttribute("orgchecked");
-        gTitle = gTitle==null ? '' : gTitle;
-        $G('orgvalue').innerHTML = gChecked;
-        $G('orgname').value = gTitle;
-
-        var sDataField = gRadios;
-        var aDataField = sDataField.split('`');
-        var sLvCheck = gChecked;
-        // Load the actual options
-        for ( var i = 0 ; i < aDataField.length ; i++ ) {
-            var sText    = aDataField[i] ;
-            if(aDataField[i] == "") {
-                continue;
+            var sDataField = gRadios;
+            var aDataField = sDataField.split('`');
+            var sLvCheck = gChecked;
+            // Load the actual options
+            for ( var i = 0 ; i < aDataField.length ; i++ ) {
+                var sText    = aDataField[i] ;
+                if(aDataField[i] == "") {
+                    continue;
+                }
+                fnAddComboOption( oListText, sText, sText ) ;
             }
-            fnAddComboOption( oListText, sText, sText ) ;
         }
-    }
-}
-dialog.oncancel = function () {
-    if( UE.plugins[thePlugins].editdom ) {
-        delete UE.plugins[thePlugins].editdom;
-    }
-};
-dialog.onok = function (){
-    if($G('orgname').value == '') {
-        alert('控件名称不能为空');
-        return false;
-    }
-    if( oListText.options.length == 0 ) {
-        alert('请添加选项！');
-        return false;
-    }
-    var gValue=$G('orgvalue').innerHTML,gTitle=$G('orgname').value.replace(/\"/g,"&quot;");
 
-
-    var sDataField = '',sLvCheck = '';
-    for ( var i = 0 ; i < oListText.options.length ; i++ ) {
-        var sText    = oListText.options[i].value ;
-        if ( sText.length == 0 ) sText = sText ;
-
-        if ( sText == gValue ) {
-            sLvCheck = sText;
+    dialog.oncancel = function () {
+        if( UE.plugins[thePlugins].editdom ) {
+            delete UE.plugins[thePlugins].editdom;
         }
-        if( sDataField.indexOf(sText+"`") != -1 && sText != "`") {
-            alert("选项 ["+sText+"] 重复");
+    };
+    dialog.onok = function (){
+        if($G('orgname').value == '') {
+            alert('控件名称不能为空');
             return false;
         }
-        sDataField += sText+"`";
-    }
-    if( !oNode ) {
-        try {
-            oNode = createElement('input','leipiNewField');
-            oNode.setAttribute('title',gTitle);
-            oNode.setAttribute('name','leipiNewField');
-            oNode.setAttribute('type','radio');
-            oNode.setAttribute('checked','checked');
-            oNode.setAttribute('orgradios',sDataField);
-            oNode.setAttribute('orgchecked',sLvCheck);
-            oNode.setAttribute('leipiPlugins',thePlugins);
-            editor.execCommand('insertHtml',oNode.outerHTML);
-            return true ;
-        } catch ( e ) {
+        if( oListText.options.length == 0 ) {
+            alert('请添加选项！');
+            return false;
+        }
+        var gValue=$G('orgvalue').innerHTML,gTitle=$G('orgname').value.replace(/\"/g,"&quot;"),gid = $G('fielid').value;;
+
+
+        var sDataField = '',sLvCheck = '';
+        for ( var i = 0 ; i < oListText.options.length ; i++ ) {
+            var sText    = oListText.options[i].value ;
+            if ( sText.length == 0 ) sText = sText ;
+
+            if ( sText == gValue ) {
+                sLvCheck = sText;
+            }
+            if( sDataField.indexOf(sText+"`") != -1 && sText != "`") {
+                alert("选项 ["+sText+"] 重复");
+                return false;
+            }
+            sDataField += sText+"`";
+        }
+        if( !oNode ) {
             try {
-                editor.execCommand('error');
+                oNode = createElement('input','leipiNewField');
+                oNode.setAttribute('title',gTitle);
+                oNode.setAttribute('type','radio');
+                oNode.setAttribute('checked','checked');
+                oNode.setAttribute('radio_field',sDataField);
+                oNode.setAttribute('orgchecked',sLvCheck);
+                oNode.setAttribute('classname',thePlugins);
+                 oNode.setAttribute('class', "form_item");
+                oNode.setAttribute('data-type', "radio");
+                oNode.setAttribute('name', 'DATA_' + dataid);
+                oNode.setAttribute('id', 'DATA_' + dataid);
+                editor.execCommand('insertHtml',oNode.outerHTML);
+                return true ;
             } catch ( e ) {
-                alert('控件异常，请到 [雷劈网] 反馈或寻求帮助！');
+                try {
+                    editor.execCommand('error');
+                } catch ( e ) {
+                    alert('控件异常，请到 [雷劈网] 反馈或寻求帮助！');
+                }
+                return false;
             }
-            return false;
+        } else {
+            oNode.setAttribute('class', "form_item");
+            oNode.setAttribute('data-type', "radio");
+            oNode.setAttribute('title',gTitle);
+            oNode.setAttribute('radio_field',sDataField);
+            oNode.setAttribute('orgchecked',sLvCheck);
+            oNode.setAttribute('name', gid);
+            oNode.setAttribute('id', gid);
+            delete UE.plugins[thePlugins].editdom;
+            return true;
         }
-    } else {
-        oNode.setAttribute('title',gTitle);
-        oNode.setAttribute('orgradios',sDataField);
-        oNode.setAttribute('orgchecked',sLvCheck);
-        delete UE.plugins[thePlugins].editdom;
-        return true;
-    }
-};
+    };
+
+});
+
+
 </script>
 </body>
 </html>
