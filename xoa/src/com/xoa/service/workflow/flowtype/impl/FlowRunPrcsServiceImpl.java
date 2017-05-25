@@ -21,7 +21,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 
 	@Override
 	public void save(FlowRunPrcs flowRunPrcs) {
-		flowRunPrcsMapper.insert(flowRunPrcs);
+		flowRunPrcsMapper.insertSelective(flowRunPrcs);
 	}
 
 	/**
@@ -82,5 +82,65 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		}
 		return toJson;
 	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/25 15:47
+	 * 方法介绍:   查询挂起工作
+	 * 参数说明:
+	 * @return
+	 */
+	@SuppressWarnings("all")
+	@Override
+	public ToJson<FlowRunPrcs> selectHang(Map<String,Object> maps,Integer page,
+										  Integer pageSize, boolean useFlag){
+		ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
+		PageParams pageParams = new PageParams();
+		pageParams.setPage(page);
+		pageParams.setPageSize(pageSize);
+		pageParams.setUseFlag(useFlag);
+		maps.put("page", pageParams);
+		List<FlowRunPrcs> list = flowRunPrcsMapper.selectHang(maps);
+		int len = list.size();
+		if(len>0){
+			toJson.setFlag(0);
+			toJson.setMsg("ok");
+			toJson.setObj(list);
+		}else{
+			toJson.setFlag(1);
+			toJson.setMsg("error");
+		}
+		return toJson;
+	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/25 15:47
+	 * 方法介绍:   查询所有工作
+	 * 参数说明:
+	 * @return
+	 */
+	@SuppressWarnings("all")
+	@Override
+	public ToJson<FlowRunPrcs> selectAll(Map<String,Object> maps,Integer page,Integer pageSize, boolean useFlag){
+		ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
+		PageParams pages = new PageParams();
+		pages.setPage(page);
+		pages.setPageSize(pageSize);
+		pages.setUseFlag(useFlag);
+		maps.put("page",pages);
+		List<FlowRunPrcs> list = flowRunPrcsMapper.selectAll(maps);
+		int len = list.size();
+		if(len>0){
+			toJson.setFlag(0);
+			toJson.setMsg("ok");
+			toJson.setObj(list);
+		}else{
+			toJson.setFlag(1);
+			toJson.setMsg("error");
+		}
+		return toJson;
+	}
+
 
 }

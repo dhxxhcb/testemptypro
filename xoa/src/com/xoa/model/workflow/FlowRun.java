@@ -1,7 +1,5 @@
 package com.xoa.model.workflow;
 
-import java.util.Date;
-
 public class FlowRun {
 	/** 主键ID **/
 	private int rid;
@@ -44,7 +42,7 @@ public class FlowRun {
 	/** 工作等级 0-普通 1-重要 2-紧急 **/
 	private int workLevel;
 	/** 删除时间 **/
-	private Date delTime;
+	private String delTime;
 	
 	public int getRid() {
 		return rid;
@@ -83,13 +81,13 @@ public class FlowRun {
 		this.beginDept = beginDept;
 	}
 	public String getBeginTime() {
-		return beginTime;
+		return beginTime==null?null:beginTime;
 	}
 	public void setBeginTime(String beginTime) {
 		this.beginTime = beginTime;
 	}
 	public String getEndTime() {
-		return endTime;
+		return endTime==null?null:endTime;
 	}
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
@@ -101,19 +99,19 @@ public class FlowRun {
 		this.attachmentId = attachmentId;
 	}
 	public String getAttachmentName() {
-		return attachmentName;
+		return attachmentName==null?"":attachmentName.trim();
 	}
 	public void setAttachmentName(String attachmentName) {
 		this.attachmentName = attachmentName;
 	}
 	public String getDelFlag() {
-		return delFlag;
+		return delFlag==null?"":delFlag;
 	}
 	public void setDelFlag(String delFlag) {
 		this.delFlag = delFlag;
 	}
 	public String getFocusUser() {
-		return focusUser;
+		return focusUser==null?"":focusUser;
 	}
 	public void setFocusUser(String focusUser) {
 		this.focusUser = focusUser;
@@ -131,19 +129,19 @@ public class FlowRun {
 		this.fromUser = fromUser;
 	}
 	public String getAipFiles() {
-		return aipFiles;
+		return aipFiles==null?"":aipFiles;
 	}
 	public void setAipFiles(String aipFiles) {
 		this.aipFiles = aipFiles;
 	}
 	public String getPreSet() {
-		return preSet;
+		return preSet==null?"":preSet;
 	}
 	public void setPreSet(String preSet) {
 		this.preSet = preSet;
 	}
 	public String getViewUser() {
-		return viewUser;
+		return viewUser==null?"":viewUser;
 	}
 	public void setViewUser(String viewUser) {
 		this.viewUser = viewUser;
@@ -155,7 +153,7 @@ public class FlowRun {
 		this.archive = archive;
 	}
 	public String getForceOver() {
-		return forceOver;
+		return forceOver==null?"":forceOver;
 	}
 	public void setForceOver(String forceOver) {
 		this.forceOver = forceOver;
@@ -166,10 +164,10 @@ public class FlowRun {
 	public void setWorkLevel(int workLevel) {
 		this.workLevel = workLevel;
 	}
-	public Date getDelTime() {
-		return delTime;
+	public String getDelTime() {
+		return delTime==null?"":delTime;
 	}
-	public void setDelTime(Date delTime) {
+	public void setDelTime(String delTime) {
 		this.delTime = delTime;
 	}
 	

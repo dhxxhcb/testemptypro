@@ -29,8 +29,14 @@
     $(function(){
         var formid = $.getQueryString("formId");
 
-        workForm.buildHTML($('.formDesign'),formid);
 
+        workForm.init({
+            formhtmlurl:'../../form/formType',
+            formid:formid,
+            target:$('.formDesign')},
+            function(data){
+                console.log(data);
+        });
     })
 
 

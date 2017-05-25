@@ -49,10 +49,19 @@
 				display: inline-block;
 				margin-top: 10px;
 				float: left;
-				margin-left: 50px;
+				margin-left: 30px;
 			}
 		.head_rig {width: 10%;margin-top:5px;}
-
+		.head_left h1 {
+		    color: #2f80dd;
+		    font-size: 22px;
+		    font-weight: bold;
+		    height: 100%;
+		    line-height: 50px;
+		    /* text-align: center; */
+		    margin-left: 7px;
+		    float: left;
+		}
 		.search {
 				width: 72px;
 				height: 29px;
@@ -77,10 +86,12 @@
 			height:44px;
 				}
 			.cont_rig {
-				overflow-y: scroll;
-				width: 84%;
-				height: 95%;
-			}	
+			    overflow-y: scroll;
+			    width: 78%;
+			    height: 95%;
+			    margin-left: 67px;
+			    margin-right: 5px;
+			}
         .new_excell_pic{
             border-radius: 0;border: none; width: 73px;height: 73px;margin:10px 24px 10px 20px;
         }
@@ -134,7 +145,7 @@
         }
         .new_excell_info {
             width: 100%;
-            height: 123px;
+            height: 116px;
             position: relative;
         }
 		.new_excell_center {
@@ -159,8 +170,8 @@
         }
 
         .new_excell_main {
-            width: 286px;
-            height: 181px;
+            width: 332px;
+            height: 174px;
             border: 1px solid #ddd;
             margin: auto;
             margin-top: 10px;
@@ -173,8 +184,8 @@
 			float:left;
 			}
         .new_excell {
-            width: 300px;
-            height: 191px;
+            width: 332px;
+            height: 185px;
             float:left;
 			margin-left:20px;
             margin-right:0px;
@@ -457,7 +468,7 @@
        $('#li_parent').tree({
             url: '../../workflow/flowclassify/formJsTree',
             animate:true,
-            lines:true,
+            lines:false,
             loadFilter: function(rows){
                 //console.log(rows);
                 return convert(rows.datas);

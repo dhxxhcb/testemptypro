@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.sys.SysInterfaceMapper">
+    <resultMap id="BaseResultMap" type="com.xoa.model.sys.InterfaceModel">
+        <result column="IE_TITLE" property="ieTitle" jdbcType="VARCHAR"/>
+        <result column="STATUS_TEXT" property="statusText" jdbcType="VARCHAR"/>
+        <result column="BANNER_TEXT" property="bannerText" jdbcType="VARCHAR"/>
+        <result column="BANNER_FONT" property="bannerFont" jdbcType="VARCHAR"/>
+        <result column="ATTACHMENT_ID" property="attachmentId" jdbcType="VARCHAR"/>
+        <result column="ATTACHMENT_NAME" property="attachmentName" jdbcType="VARCHAR"/>
+        <result column="IMG_WIDTH" property="imgWidth" jdbcType="INTEGER"/>
+        <result column="IMG_HEIGHT" property="imgHeight" jdbcType="INTEGER"/>
+        <result column="ATTACHMENT_ID1" property="attachmentId1" jdbcType="VARCHAR"/>
+        <result column="ATTACHMENT_NAME1" property="attachmentName1" jdbcType="VARCHAR"/>
+        <result column="AVATAR_UPLOAD" property="avatarUpload" jdbcType="CHAR"/>
+        <result column="AVATAR_WIDTH" property="avatarWidth" jdbcType="INTEGER"/>
+        <result column="AVATAR_HEIGHT" property="avatarHeight" jdbcType="INTEGER"/>
+        <result column="LOGIN_INTERFACE" property="loginInterface" jdbcType="VARCHAR"/>
+        <result column="UI" property="ui" jdbcType="VARCHAR"/>
+        <result column="THEME_SELECT" property="themeSelect" jdbcType="VARCHAR"/>
+        <result column="THEME" property="theme" jdbcType="VARCHAR"/>
+        <result column="TEMPLATE" property="template" jdbcType="VARCHAR"/>
+        <result column="WEATHER_CITY" property="weatherCity" jdbcType="VARCHAR"/>
+        <result column="SHOW_RSS" property="showRss" jdbcType="CHAR"/>
+        <result column="IMG_TOS" property="imgTos" jdbcType="BIT"/>
+    </resultMap>
+
+
+    <select id="getStatusText" resultMap="BaseResultMap">
+        SELECT  i.STATUS_TEXT FROM interface i;
+    </select>
+
+    <select id="editStatusText" parameterType="java.lang.String">
+        update interface i set i.STATUS_TEXT = #{statusText}
+    </select>
+
+
+
+
+</mapper>

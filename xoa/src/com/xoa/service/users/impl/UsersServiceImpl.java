@@ -42,8 +42,21 @@ public class UsersServiceImpl implements UsersService {
 	 * @return     void   无
 	 */
 	@Override
-	public void addUser(Users user) {
-		usersMapper.insert(user);
+	@Transactional
+	public ToJson<Users> addUser(Users user) {
+		ToJson<Users> tojson = new ToJson<Users>();
+		try{
+			usersMapper.insert(user);
+			//user=usersMapper.findUserByuid(user.getUid());
+			tojson.setObject(user);
+			tojson.setFlag(0);
+			tojson.setMsg("OK");
+			}catch(Exception e){
+		 	e.printStackTrace();
+		 	tojson.setFlag(1);
+		 	tojson.setMsg("error");
+			}
+		return tojson;
 	}
 	
 	/**

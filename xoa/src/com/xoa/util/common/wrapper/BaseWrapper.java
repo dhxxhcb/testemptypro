@@ -1,5 +1,7 @@
 package com.xoa.util.common.wrapper;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 /**
@@ -16,16 +18,12 @@ public class BaseWrapper {
 	String msg;
 	Date time; 
 	Object data;
-	
-
-	
 
 	public BaseWrapper() {
 		super();
 		this.time = new Date();
 		
 	}
-
 	public BaseWrapper(boolean status, boolean flag, String msg,Object data) {
 		super();
 		this.status = status;
@@ -65,6 +63,7 @@ public class BaseWrapper {
 		this.msg = msg;
 	}
 
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	public Date getTime() {
 		if (time == null) {
 			time = new Date();

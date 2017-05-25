@@ -1,5 +1,6 @@
 package com.xoa.service.workflow.flowsetting;
 
+import com.xoa.dao.workflow.FlowPrintTplMapper;
 import com.xoa.dao.workflow.FlowPrivMapper;
 import com.xoa.dao.workflow.FlowQueryTplMapper;
 import com.xoa.dao.workflow.FlowTimerMapper;
@@ -31,7 +32,8 @@ public class FlowSettingService {
     FlowTimerMapper flowTimerMapper;
     @Autowired
     FlowQueryTplMapper flowQueryTplMapper;
-
+    @Autowired
+    FlowPrintTplMapper flowPrintTplMapper;
 
 //    提醒日期(1-仅此一次，存具体日期,2-按日，为空,3-按周，存星期几,4-按月，存每月几号,5-按年，存每年几月几号,)
 
@@ -101,8 +103,6 @@ public class FlowSettingService {
             wrapper.setMsg("授权类型不能为空");
             return wrapper;
         }
-
-
         if(scope.length>1){
             //自定义
             for(Integer s:scope){
@@ -726,7 +726,7 @@ public class FlowSettingService {
      * @param tplId
      * @return
      */
-      public BaseWrapper queryFlowQuertTplById(Integer tplId) {
+    public BaseWrapper queryFlowQuertTplById(Integer tplId) {
         BaseWrapper wrapper =new BaseWrapper();
         wrapper.setFlag(false);
         wrapper.setStatus(true);
@@ -765,4 +765,84 @@ public class FlowSettingService {
         }
         return wrapper;
     }
+
+
+    /**
+     * Created by:   pfl
+     * date:   2017/5/24 19:27
+     * description:   应用板式文件查询（根据流程id）
+     * @param flowId
+     * @return
+     */
+    public BaseWrappers getFlowPrintTpl(Integer flowId){
+        BaseWrappers wrappers = new BaseWrappers();
+        wrappers.setStatus(true);
+        wrappers.setFlag(false);
+        if(flowId==null){
+            wrappers.setMsg("缺少必要的请求参数：flowId");
+            return wrappers;
+        }
+        List<FlowPrintTplWithBLOBs> datas = flowPrintTplMapper.queryByFlowId(flowId);
+        if(datas!=null&&datas.size()>0){
+            wrappers.setDatas(datas);
+            wrappers.setFlag(true);
+        }else{
+            wrappers.setMsg("暂时没有数据");
+        }
+        return wrappers;
+    }
+
+    /**
+     * Created by:   pfl
+     * date:   2017/5/25 19:27
+     * description:   应用板式文件添加（根据流程id）
+     * @param flowId
+     * @param tType
+     * @param tName
+     * @param content
+     * @param flowPrcs
+     * @return
+     */
+    public BaseWrapper newFlowPrintTpl(Integer flowId,Integer tType,String tName,String content,String flowPrcs){
+        BaseWrapper wrapper =new BaseWrapper();
+        wrapper.setFlag(false);
+        wrapper.setStatus(true);
+        String checkRes=StringUtils.checkNullUtils(new CheckCallBack() {
+            @Override
+            public boolean isNull(Object obj) {
+                if (obj instanceof String) {
+                    String a = (String) obj;
+                    if (a == null || "".equals(a)
+                            || a.length() == 0)
+                        return true;
+                }
+                if (obj instanceof Integer) {
+                    Integer a = (Integer) obj;
+                    if (a == null)
+                        return true;
+                }
+                return false;
+            }
+        },flowId,"flowId不能为空",tType,"模板类型不能为空",tName,"模板名称不能为空");
+        if(checkRes!=null){
+            wrapper.setMsg(checkRes);
+            return wrapper;
+        }
+        FlowPrintTplWithBLOBs flowPrintTplWithBLOBs =new FlowPrintTplWithBLOBs();
+        flowPrintTplWithBLOBs.setContent(content==null?"":content);
+        flowPrintTplWithBLOBs.setFlowPrcs(flowPrcs==null?"":flowPrcs);
+        flowPrintTplWithBLOBs.setCreateTime(new Date());
+        flowPrintTplWithBLOBs.settName(tName);
+        flowPrintTplWithBLOBs.settType(tType.toString());
+        flowPrintTplWithBLOBs.setFlowId(flowId);
+        int res = flowPrintTplMapper.insertSelective(flowPrintTplWithBLOBs);
+         if(res>0){
+             wrapper.setFlag(true);
+             wrapper.setMsg("操作成功");
+         }else{
+             wrapper.setMsg("操作失败");
+         }
+         return wrapper;
+    }
+
 }

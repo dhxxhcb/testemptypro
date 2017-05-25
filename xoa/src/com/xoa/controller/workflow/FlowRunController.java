@@ -23,66 +23,12 @@ import java.util.Map;
  * 类介绍  :
  * 构造参数:
  */
-@Controller
+//@Controller
 public class FlowRunController {
 
-    @Resource
-    private FlowRunPrcsService flowRunPrcsService;
+//    @Resource
+//    private FlowRunPrcsService flowRunPrcsService;
 
-    /**
-     * 创建作者:   张勇
-     * 创建日期:   2017/5/24 20:29
-     * 方法介绍:   查询代办工作
-     * 参数说明:
-     *
-     * @return
-     */
-    @RequestMapping(value = "selectWork", produces = {"application/json;charset=UTF-8"})
-    public @ResponseBody
-    ToJson<FlowRunPrcs> selectObject(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
-                                 @RequestParam(value = "flag", required = false) boolean flag,
-                                 @RequestParam(value = "page", required = false) Integer page,
-                                 @RequestParam(value = "pageSize", required = false) Integer pageSize,
-                                 @RequestParam(value = "useFlag", required = false) boolean useFlag
-    ) {
-        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));
-        Map<String, Object> maps = new HashMap<String, Object>();
-        if (StringUtils.checkNull(flowRunPrcs.getUserId())) {
-            String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
-            maps.put("userId", userId);
-        }else {
-            maps.put("userId", flowRunPrcs.getUserId());
-        }
-        return flowRunPrcsService.selectObject(maps, page, pageSize, useFlag);
-    }
 
-    /**
-     * 创建作者:   张勇
-     * 创建日期:   2017/5/24 20:29
-     * 方法介绍:   查询代办工作
-     * 参数说明:
-     *
-     * @return
-     */
-    @RequestMapping(value = "selectEndWord", produces = {"application/json;charset=UTF-8"})
-    public @ResponseBody
-    ToJson<FlowRunPrcs> selectEnd(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
-                                 @RequestParam(value = "flag", required = false) boolean flag,
-                                 @RequestParam(value = "page", required = false) Integer page,
-                                 @RequestParam(value = "pageSize", required = false) Integer pageSize,
-                                 @RequestParam(value = "useFlag", required = false) boolean useFlag
-    ) {
-        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));
-        Map<String, Object> maps = new HashMap<String, Object>();
-        if (StringUtils.checkNull(flowRunPrcs.getUserId())) {
-            String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
-            maps.put("userId", userId);
-        }else {
-            maps.put("userId", flowRunPrcs.getUserId());
-        }
-        return flowRunPrcsService.selectEnd(maps, page, pageSize, useFlag);
-    }
 
 }

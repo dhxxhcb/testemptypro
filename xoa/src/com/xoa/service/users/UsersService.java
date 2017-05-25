@@ -24,7 +24,7 @@ public interface UsersService {
 	 * 参数说明:   @param user
 	 * @return     void
 	 */
-	public void addUser(Users user);
+	public ToJson<Users> addUser(Users user);
 
 	/**
 	 * 创建作者:   张龙飞

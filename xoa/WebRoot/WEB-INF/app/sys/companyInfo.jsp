@@ -6,247 +6,193 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="../css/base.css" />
-	<link rel="stylesheet" type="text/css" href="../css/common/addpage.css"/>
-	<link rel="stylesheet" href="../lib/pagination/style/pagination.css" />
-	<link rel="stylesheet" href="../css/sys/companyinfo.css" />
 
-	<title>首页</title>
+	<meta charset="UTF-8">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>首页</title>
+	<%--<link rel="stylesheet" href="../css/base.css" />
+	<link rel="stylesheet" type="text/css" href="../css/common/addpage.css"/>
+	<link rel="stylesheet" href="../lib/pagination/style/pagination.css" />--%>
+	<link rel="stylesheet" href="../css/sys/companyinfo.css" />
+    <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
+
+   <%-- <script type="text/javascript" src="../js/sys/companyinfo.js"></script>--%>
+    <style type="text/css">
+    </style>
 	</head>
 	<body>
-	<!-- 新建新闻 -->
-	<div class="step2" style="margin: 0px 14px;">
-	<!-- 中间部分 -->
-	 <table class="newNews">
-        <div class="nav_box clearfix">
+    <div class="content">
+        <div class="headDiv">
             <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
-            <div class="nav_t2" class="news">单位管理</div>
-             <%--<div class="nav_t3" >
-            	<select name="" class="sel format" id="query_format">
-                    <option value="" selected="">全部</option>
-			        <option value="0">普通格式</option>
-			        <option value="1">MHT格式</option>
-			        <option value="2">超链接格式</option>                    
-                </select>            
-            </div>          --%>
+            <div class="divP">单位管理</div>
         </div>
-        <tbody>
-       <%-- <tr>
-            <td class="td_w">
-                <!-- <div class="text1 blue_text">请选择新闻类型</div>
-                <img class="text2" src="../../img/mg1.png" alt=""/> -->
-                <select name="" class="typeId" id="query_typeId">
-                    <option value="">&nbsp;选择新闻类型</option>
-		          	<option value="01">公司动态</option>
-					<option value="02">媒体关注</option>
-					<option value="03">行业资讯</option>
-					<option value="04">合作伙伴新闻</option>
-					<option value="05">客户新闻</option>                    
-                </select>
-            </td>
-            <td>
-                <input class="td_title1" id="query_subject" type="text"  placeholder="请输入新闻标题..."/>
-                <img class="td_title2" src="../img/mg2.png" alt=""/>
-            </td>
-        </tr>--%>
-        <tr>
-            <td class="blue_text">  单位名称：</td>
-            <td>
-                <input class="td_title1  release1" id="query_1" type="text"/>
-                软件注册后，请不要随意修改单位名称，这会导致需要重新注册
-                <%--<img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-               <!--  <div class="release3">添加</div>
-                <div class="release4 empty">清空</div> -->
-                <%--<div class="release3" style="color:#dfdfdf">添加</div>--%>
-                <%--<div class="release4 empty" style="color:#dfdfdf">清空</div> --%>
-            </td>
-        </tr>
-        <tr>
-            <td class="blue_text">  电话：</td>
-            <td>
-                <input class="td_title1  release1" id="query_2" type="text"/>
-                <%--<img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                <%--<div class="release3" style="color:#dfdfdf">添加</div>--%>
-                <%--<div class="release4 empty" style="color:#dfdfdf">清空</div>--%>
-            </td>
-        </tr>
-        <tr>
-            <td class="blue_text">  传真：</td>
-            <td>
-                <input class="td_title1  release1" id="query_3" type="text"/>
-                <%--<img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                <%--<div class="release3" id="query_adduser">添加</div>--%>
-                <%--<div class="release4 empty" style="color:#dfdfdf;">清空</div>--%>
-            </td>
-        </tr>
-        <tr>
-            <td class="blue_text">
-           		  邮编：
-            </td>
-            <td>
-                <input class="td_title1  release1" id="query_4" type="text"/>
-                <%--<input class="td_title1 time_coumon" id="query_newTime" type="text" placeholder="请输入发布时间..."/>--%>
-                <%--<a href="javascript:;" id="step_release2"><div class="release3">设置为当前时间</div></a>--%>
-            </td>
-        </tr>
-        <tr>
-            <td class="blue_text">
-           		 地址:
-            </td>
-            <td>
-                <input class="td_title1  release1" id="query_5" type="text"/>
-               <%-- <select name="" class="anonymityYn" id="query_anonymityYn">
-                    <option value="0">实名评论</option>
-          			<option value="1">匿名评论</option>
-          			<option value="2">禁止评论</option>
-                </select>--%>
-            </td>
-        </tr>
-tr>
-       <%-- <tr>
-            <td class="blue_text">
-              	  提醒：
-            </td>
-            <td class="remind">
-                <div><input class="news_t1"  type="checkbox" checked/></div>
-             
-                <div class="news_t">发送事物提醒消息</div>
-                <div><input class="news_t1" type="checkbox" checked/></div>
-               
-                <div class="news_t2">分享到企业社区</div>
-            </td>
-        </tr>--%>
-       <tr>
-           <td class="blue_text">
-               网站：
-           </td>
-           <td>
-               <input class="td_title1  release1" id="query_6" type="text"/>
-               <%--<input class="td_title1 time_coumon" id="query_newTime" type="text" placeholder="请输入发布时间..."/>--%>
-               <%--<a href="javascript:;" id="step_release2"><div class="release3">设置为当前时间</div></a>--%>
-           </td>
-       </tr>
-       <%-- <tr>
-            <td class="blue_text">
-               	 置顶：
-            </td>
-            <td class="top_box">
-                <div><input class="news_t1 " id="query_top" type="checkbox"/></div>
-                <!-- <div><input type="checkbox" style="height:14px;width:14px;margin-top: 4px;"/></div> -->
-                <!-- <div><img src="../../img/mg4.png" alt=""/></div> -->
-                <div class="news_t3">使新闻置顶，显示为重要</div>
-                <input class="t_box" id="add_topDate" type="text" value="0"/>
-                <div class="news_t4">天后结束置顶（0表示一直置顶）</div>
-            </td>		
-        </tr>--%>
-       <tr>
-           <td class="blue_text">
-               电子信箱：
-           </td>
-           <td>
-               <input class="td_title1  release1" id="query_7" type="text"/>
-               <%--<input class="td_title1 time_coumon" id="query_newTime" type="text" placeholder="请输入发布时间..."/>--%>
-               <%--<a href="javascript:;" id="step_release2"><div class="release3">设置为当前时间</div></a>--%>
-           </td>
-       </tr>
-       <tr>
-           <td class="blue_text">
-               开户行：
-           </td>
-           <td>
-               <input class="td_title1  release1" id="query_8" type="text"/>
-               <%--<input class="td_title1 time_coumon" id="query_newTime" type="text" placeholder="请输入发布时间..."/>--%>
-               <%--<a href="javascript:;" id="step_release2"><div class="release3">设置为当前时间</div></a>--%>
-           </td>
-       </tr>
-       <tr>
-           <td class="blue_text">
-               账号：
-           </td>
-           <td>
-               <input class="td_title1  release1" id="query_9" type="text"/>
-               <%--<input class="td_title1 time_coumon" id="query_newTime" type="text" placeholder="请输入发布时间..."/>--%>
-               <%--<a href="javascript:;" id="step_release2"><div class="release3">设置为当前时间</div></a>--%>
-           </td>
-       </tr>
-       <tr>
-           <td class="black_text" id="units">单位简介</td>
-       </tr>
-      <%-- <tr>
-            <td class="blue_text">
-              	  内容简介：
-            </td>
-            <td class="abstract">
-                <input class="abstract1" id="ip4" type="text"  maxlength="39" placeholder="请输入内容..."/>
-                <div class="abstract2">(最多输入30个字)</div>
-            </td>
-        </tr>--%>
-        <tr>
-            <td class="blue_text">
-           附件文档：
-           </td>
-           <td class="enclosure" id="query_10">
+        <div class="tab">
 
-              <%-- <div id="query_uploadArr">
-
-               </div><br>--%>
-
-               <%--<div><img src="../img/mg11.png" alt=""/></div>
-               <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
-               <div>
-                   <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
-                       <input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
-                       <a id="uploadimg" style="cursor: pointer;">添加附件</a>
-                   </form>
-               </div>
-               <div><img class="left_img" src="../img/mg12.png" alt=""/></div>
-               <div class="enclosure_t"><a href="#">从文件柜和网络硬盘选择附件</a></div>
-               <div><img src="../img/mg13.png" alt=""/></div>--%>
-               <%-- <div class="enclosure_t"><a href="#">批量插入图片</a></div>
-                <div><img src="../img/mg14.png" alt=""/></div>
-                <div class="enclosure_t"><a href="#">批量上传过</a></div>--%>
-           </td>
-       </tr>
-        <tr>
-            <td class="blue_text">
-               	 附件上传：
-            </td>
-            <td class="enclosure" id="query_11">
-            	<div id="query_uploadArr">
-
-            	</div><br>
-                <div><img src="../img/mg11.png" alt=""/></div>
-               <!--  <div class="enclosure_t"><a href="#">添加附件</a></div> -->
-                <div>
-	                <form id="uploadimgform" target="uploadiframe"  action="../upload?module=news" enctype="multipart/form-data" method="post" >
-						<input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
-						<a id="uploadimg" style="cursor: pointer;">添加附件</a>
-					</form>
-				</div>
-                <div><img class="left_img" src="../img/mg12.png" alt=""/></div>
-                <div class="enclosure_t"><a href="#">从文件柜和网络硬盘选择附件</a></div>
-                <%--<div><img src="../img/mg13.png" alt=""/></div>--%>
-               <%-- <div class="enclosure_t"><a href="#">批量插入图片</a></div>
-                <div><img src="../img/mg14.png" alt=""/></div>
-                <div class="enclosure_t"><a href="#">批量上传过</a></div>--%>
-            </td>
-        </tr>
-       <tr>
-           <td class="blue_text">
-               <input class="td_title1  release1" id="submit" type="button" value="提交"/>
-           </td>
-
-       </tr>
-        <!--word编辑器-->
-        </tbody>        
-    </table>
-
-</div>
+                <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
+                    <tr>
+                        <td>单位名称：</td>
+                        <td>
+                            <input type="text" name="unitName" class="inputTd" placeholder="北京集团总部"/>
+                            <span style="font-size: 12px;color: #666;">软件注册后，请不要随意修改单位名称，这会导致需要重新注册</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">电话：</td>
+                        <td>
+                            <input type="text" name="telNo" class="inputTd" placeholder=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">传真：</td>
+                        <td>
+                            <input type="text" name="faxNo" class="inputTd" placeholder=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">邮编：</td>
+                        <td>
+                            <input type="text" name="postNo" class="inputTd" placeholder=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">地址：</td>
+                        <td>
+                            <input type="text" name="address" class="inputTd" placeholder=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">网站：</td>
+                        <td>
+                            <input type="text" name="url" class="inputTd" placeholder=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">电子信箱：</td>
+                        <td>
+                            <input type="text" name="email" class="inputTd" placeholder=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">开户行：</td>
+                        <td>
+                            <input type="text" name="bankName" class="inputTd" placeholder=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">账号：</td>
+                        <td>
+                            <input type="text" name="bankNo" class="inputTd" placeholder=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">单位简介</td>
+                    </tr>
+                    <tr>
+                        <td>附件文档：</td>
+                        <td class="enclosure"></td>
+                    </tr>
+                    <tr>
+                        <td>附件上传：</td>
+                        <td class="files">
+                            <form id="uploadimgform" target="uploadiframe"  action="../upload?module=sys" enctype="multipart/form-data" method="post" >
+                                <input type="file" name="file" id="uploadinputimg"  class="w-icon5" style="display:none;">
+                                <a href="#" id="uploadimg"><div class="div_upload_im"><img src="../img/mg11.png" alt=""/></div>附件上传</a>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="container" style="width: 99.9%;min-height: 300px;" name="content" type="text/plain"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="btn">
+                                <input id="submit" type="button" value="保存单位设置"/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+    </div>
 </body>
-    <script type="text/javascript" src="../js/jquery-1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/sys/companyinfo.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('container');
+        var res;
+        $(function(){
+            //附件上传
+            $('#uploadimg').on('click', function(ele) {
+                $('#uploadinputimg').click();
+            })
+            $('#uploadinputimg').change(function(e){
+                var target = $(e.target);
+                var file;
+                if(target[0].files && target[0].files[0]){
+                    file=target[0].files[0];
+                }
+                if(file){
+                    $.upload($('#uploadimgform'),function(res){
+                        var data=res.obj;
+                        var str='';
+                        var str1='';
+                        for(var i=0;i<data.length;i++){
+                            str+='<a href="<%=basePath %>download?'+data[i].attUrl+'" NAME="'+data[i].attachName+'*">'+data[i].attachName+'</a>';
+                            str1+='<input type="hidden" class="inHidden" value="'+data[i].aid+'@'+data[i].ym+'_'+data[i].attachId+',">';
+                        }
+                        $('.enclosure').append(str+str1);
+                    });
+                }
+            });
+
+            $('#submit').click(function(){
+                var txt = ue.getContentTxt();
+                var html = ue.getContent();
+                var attach=$('.enclosure').find('a');
+                var aId='';
+                var uId='';
+                for(var i=0;i<$('.enclosure .inHidden').length;i++){
+                    aId += $('.enclosure .inHidden').eq(i).val();
+                }
+                for(var i=0;i<$('.enclosure .inHidden').length;i++){
+                    uId += attach.eq(i).attr('NAME');
+                }
+                var data={
+                    'unitName':$('input[name="unitName"]').val(),
+                    'telNo':$('input[name="telNo"]').val(),
+                    'faxNo':$('input[name="faxNo"]').val(),
+                    'postNo':$('input[name="postNo"]').val(),
+                    'address':$('input[name="address"]').val(),
+                    'url':$('input[name="url"]').val(),
+                    'email':$('input[name="email"]').val(),
+                    'bankName':$('input[name="bankName"]').val(),
+                    'bankNo':$('input[name="bankNo"]').val(),
+                    'attachmentId':aId,
+                    'attachmentName':uId,
+                    'content':html
+                }
+                $.ajax({
+                    type:'get',
+                    url:'/sys/updateUnit',
+                    dataType:'json',
+                    data:data,
+                    success:function(rsp){
+                        console.log(rsp.flag);
+                    }
+                })
+            })
+        })
+    </script>
 </html>
+
+<%--
+<div><img class="left_img" src="../img/mg12.png" alt=""/></div>
+<div class="enclosure_t"><a href="#">从文件柜和网络硬盘选择附件</a></div>--%>

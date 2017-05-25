@@ -658,12 +658,12 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
             })
         })
 
-        //点击出现
+        //点击出现快速新建页面
         $('#sort_cont').on('click','.quick',function(){
            var formId= $(this).attr('formId');
-            alert(formId);
+      /*      alert(formId);*/
             user_id='quick';
-            $.popWindow("workform?formId="+formId);
+            $.popWindow("workform?formId="+formId,'快速新建页面','0','0','1500px','800px');
         });
 
     })

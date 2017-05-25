@@ -22,6 +22,7 @@ import com.xoa.model.workflow.FlowFormType;
 import com.xoa.service.workflow.flowtype.FlowFormTypeService;
 import com.xoa.util.ToJson;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -80,6 +81,10 @@ public class FlowFormTypeServiceImpl implements FlowFormTypeService {
 		ToJson<TMacroCtrl>  json=new ToJson<TMacroCtrl>();
 		TMacroCtrl   tM=new TMacroCtrl();
         Date  curDate   =   new   Date();//获取当前时间
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        String date=sdf.format(curDate);
+        String date1=sdf1.format(curDate);
         Map<String, Object> maps=new HashMap<String, Object>();
         if (tM.getControlId().equals(controlId)){
             tM.setSYS_USERID(users.getUserId());
@@ -88,23 +93,24 @@ public class FlowFormTypeServiceImpl implements FlowFormTypeService {
             tM.setSYS_DEPTNAME_SHORT(users.getDep().getDeptName());
             tM.setSYS_USERPRIV(users.getUserPrivName());
             tM.setSYS_USERPRIVOTHER(users.getUserPrivName());
-            tM.setSYS_USERNAME_DATE(users.getUserName()+""+ DateFormat.getStrDate(curDate));
-            strArray= option.split(",");
-            for(int j = 0; j < strArray.length; j++){
-                L.a("ASASASASASA"+strArray[j]);
+            tM.setSYS_USERNAME_DATE(users.getUserName()+" "+ date1);
+            tM.setSYS_RUNDATETIME(users.getUserName()+" "+ date);
+            if (!StringUtils.checkNull(option)){
+               strArray= option.split(",");
+            for(int j = 0; j < strArray.length; j++) {
                 if ("SYS_LIST_DEPT".equals(strArray[j])) {
                     List<Department> deptList = departmentService.getDatagrid();
                     tM.setSYS_LIST_DEPT(deptList);
                 }
-                if("SYS_LIST_USER".equals(strArray[j])){
-                    List<Users> list=usersService.getAlluser(maps,1,5,false);
+                if ("SYS_LIST_USER".equals(strArray[j])) {
+                    List<Users> list = usersService.getAlluser(maps, 1, 5, false);
                     tM.setSYS_LIST_USER(list);
                 }
-                if ("SYS_LIST_PRIV".equals(strArray[j])){
-                    List<UserPriv> list=usersPrivService.getAllPriv(maps,1,5,false);
+                if ("SYS_LIST_PRIV".equals(strArray[j])) {
+                    List<UserPriv> list = usersPrivService.getAllPriv(maps, 1, 5, false);
                     tM.setSYS_LIST_PRIV(list);
                 }
-
+            }
             }
 
             json.setFlag(0);
