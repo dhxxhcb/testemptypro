@@ -18,10 +18,21 @@ var workForm = {
     },
     MacrosRender:function(){
         that = this;
-        $(".AUTO").each(function(){
+        var flagStr = "";
+        $(".AUTO").each(function(index,obj){
 
-            $(this).val(that.tool.getMacrosDate($(this).attr("datafld")));
+            if(that.tool.MacrosDate.option[$(this).attr("datafld")]){
+                flagStr+=($(this).attr("datafld")+',');
+            }
+
         });
+        that.tool.MacrosDate.ready(flagStr,function(MacrosDate){
+            $(".AUTO").each(function(index,obj){
+                $(this).val(that.tool.getMacrosDate($(this).attr("datafld")));
+            });
+
+        });
+
     },
     DateRender:function(){
         //过滤老版本数据
@@ -35,7 +46,6 @@ var workForm = {
             olddata.eq(i).prev().remove();
             olddata.eq(i).before(inputObj);
             olddata.eq(i).remove();
-
             $(".laydate-icon").on("click",function(){
                 var format = $(this).attr("date_format");
                 var formatArr = format.split(' ')[0].toUpperCase() + " " +format.split(' ')[1].toLowerCase();
@@ -65,12 +75,128 @@ var workForm = {
     },
     tool:{
         MacrosDate:{
+            option:{
+                SYS_LIST_DEPT:true,//部门列表
+                SYS_LIST_USER:true,//人员列表
+                SYS_LIST_PRIV:true,//角色列表
+                SYS_LIST_PRIV_ONLY:true,
+                SYS_LIST_PRIV_OTHER:true,
+                SYS_LIST_PRCSUSER1:true,
+                SYS_LIST_PRCSUSER2:true,
+                SYS_LIST_MANAGER1:true,
+                SYS_LIST_MANAGER2:true,
+                SYS_LIST_MANAGER3:true,
+                SYS_LIST_SQL:true
+            },
+            data:{},
+            SYS_DATE_CN : function(){
+                return "";
+            },
+            SYS_DATE_CN_SHORT3 : function(){
+                return "";
+            },
+            SYS_DATE_CN_SHORT4 : function(){
+                return "";
+            },
+            SYS_DATE_CN_SHORT1 : function(){
+                return "";
+            },
+            SYS_DATE_CN_SHORT2 : function(){
+                return "";
+            },
+            SYS_TIME : function(){
+                return "";
+            },
+            SYS_DATETIME : function(){
+                return "";
+            },
+            SYS_WEEK : function(){
+                return "";
+            },
+            SYS_USERID : function(){
+                return "";
+            },
+            SYS_USERNAME : function(obj){
+                console.log(workForm.tool.MacrosDate)
+                return workForm.tool.MacrosDate.data.sYS_USERNAME;
+            },
+            SYS_DEPTNAME : function(){
+                return workForm.tool.MacrosDate.data.sYS_DEPTNAME;
+            },
+            SYS_DEPTNAME_SHORT : function(){
+                return workForm.tool.MacrosDate.data.sYS_DEPTNAME_SHORT;
+            },
+            SYS_USERPRIV : function(){
+                return workForm.tool.MacrosDate.data.sYS_USERPRIV;
+            },
+            SYS_USERPRIVOTHER : function(){
+                return "";
+            },
+            SYS_USERNAME_DATE : function(){
+                return workForm.tool.MacrosDate.sYS_USERNAME+' '+new Date().Format("yyyy-MM-dd hh:mm:ss");
+            },
+            SYS_USERNAME_DATETIME : function(){
+                return "";
+            },
+            SYS_FORMNAME : function(){
+                return "";
+            },
+            SYS_RUNNAME : function(){
+                return "";
+            },
+            SYS_RUNDATE : function(){
+                return "";
+            },
+            SYS_RUNDATETIME : function(){
+                return "";
+            },
+            SYS_RUNID : function(){
+                return "";
+            },
+            SYS_AUTONUM : function(){
+                return "";
+            },
+            SYS_AUTONUM_YEAR : function(){
+                return "";
+            },
+            SYS_AUTONUM_MONTH : function(){
+                return "";
+            },
+            SYS_IP : function(){
+                return "";
+            },
+            SYS_MANAGER1 : function(){
+                return "";
+            },
+            SYS_MANAGER2 : function(){
+                return "";
+            },
+            SYS_MANAGER3 : function(){
+                return "";
+            },
+            SYS_SQL : function(){
+                return "";
+            },
+
             SYS_DATE:function(){
                 return new Date().Format("yyyy-MM-dd");
+            },
+            ready:function(options,cb){
+                var that = this;
+                $.ajax({
+                    type: "get",
+                    url: "../../form/qureyCtrl?controlId=Macro&option="+options,
+                    dataType: 'JSON',
+                    success: function (res) {
+                        console.log(res.object);
+                        that["data"] = res.object;
+                        cb(that);
+                    }
+                })
             }
         },
         getMacrosDate:function(flag){
-            return MacrosDate[flag];
+            return this.MacrosDate[flag];
         },
         Date_format:function(date, format)
         {
