@@ -258,9 +258,9 @@ dialog.onok = function (){
             }
             debugger;
             //{|- 使用边界，防止用户删除了span标签，程序处理要把边界替换为空
-          //  var html = '{|-<span plugins="checkboxs" title="'+gTitle+'" fieldname="' + gName + '" fieldflow="' + gFlow + '">';
-            var   html =options;
-           //     html +='</span>-|}';
+        var html = '<span plugins="checkboxs" title="'+gTitle+'" fieldname="' + gName + '" fieldflow="' + gFlow + '">';
+             html  +=options;
+             html +='</span>';
             editor.execCommand('insertHtml',html);
             return true ;
         } catch ( e ) {
