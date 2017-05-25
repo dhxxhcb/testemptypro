@@ -524,7 +524,7 @@ UE.plugins['radio'] = function () {
     me.addListener( 'mouseover', function( t, evt ) {
         evt = evt || window.event;
         var el = evt.target || evt.srcElement;
-        var leipiPlugins = el.getAttribute('leipiplugins');
+        var leipiPlugins = el.getAttribute('data-type');
         if ( /input/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
             var html = popup.formatHtml(
                 '<nobr>单选框: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
@@ -601,7 +601,7 @@ UE.plugins['checkbox'] = function () {
     me.addListener( 'mouseover', function( t, evt ) {
         evt = evt || window.event;
         var el = evt.target || evt.srcElement;
-        var leipiPlugins = el.getAttribute('leipiplugins');
+        var leipiPlugins = el.getAttribute('data-type');
         if ( /input/ig.test( el.tagName ) && leipiPlugins==thePlugins) {
             var html = popup.formatHtml(
                 '<nobr>复选框: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
