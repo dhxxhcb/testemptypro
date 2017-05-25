@@ -77,7 +77,7 @@ public class FlowFormTypeServiceImpl implements FlowFormTypeService {
 	public ToJson<TMacroCtrl> qureyCtrl(String controlId,String option,HttpServletRequest request) {
         Users  users= SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users());
         String[] strArray = null;
-		ToJson<TMacroCtrl>  json=new ToJson<>();
+		ToJson<TMacroCtrl>  json=new ToJson<TMacroCtrl>();
 		TMacroCtrl   tM=new TMacroCtrl();
         Date  curDate   =   new   Date();//获取当前时间
         Map<String, Object> maps=new HashMap<>();

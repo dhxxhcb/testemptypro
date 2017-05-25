@@ -35,16 +35,16 @@ public class TMacroCtrl {
     private String SYS_MANAGER3;//部门主管(一级部门)
     private String SYS_SQL;//来自SQL查询语句
     //0=||>>>>>>>>>>>>>>>>>
-    private List<Department>  SYS_LIST_DEPT=new ArrayList<>();//部门列表
-    private List<Users>  SYS_LIST_USER=new ArrayList<>();//人员列表
-    private List<UserPriv> SYS_LIST_PRIV=new ArrayList<>();//角色列表
-    private List<UserPriv>  SYS_LIST_PRIV_ONLY=new ArrayList<>();//主角色列表
-    private List<UserPriv>  SYS_LIST_PRIV_OTHER=new ArrayList<>();//辅助角色列表
+    private List<Department>  SYS_LIST_DEPT=new ArrayList<Department>();//部门列表
+    private List<Users>  SYS_LIST_USER=new ArrayList<Users>();//人员列表
+    private List<UserPriv> SYS_LIST_PRIV=new ArrayList<UserPriv>();//角色列表
+    private List<UserPriv>  SYS_LIST_PRIV_ONLY=new ArrayList<UserPriv>();//主角色列表
+    private List<UserPriv>  SYS_LIST_PRIV_OTHER=new ArrayList<UserPriv>();//辅助角色列表
     /*private List<UserPriv>  SYS_LIST_PRCSUSER1=new ArrayList<>();//流程设置所有经办人列表
     private List<UserPriv>  SYS_LIST_PRCSUSER2=new ArrayList<>();//本步骤设置经办人列表*/
-    private List<Department>  SYS_LIST_MANAGER1=new ArrayList<>();//部门主管(本部门)
-    private List<Department>  SYS_LIST_MANAGER2=new ArrayList<>();//部门主管(上级部门)
-    private List<Department>  SYS_LIST_MANAGER3=new ArrayList<>();//部门主管(一级部门)
+    private List<Department>  SYS_LIST_MANAGER1=new ArrayList<Department>();//部门主管(本部门)
+    private List<Department>  SYS_LIST_MANAGER2=new ArrayList<Department>();//部门主管(上级部门)
+    private List<Department>  SYS_LIST_MANAGER3=new ArrayList<Department>();//部门主管(一级部门)
 
     public String getControlId() {
         return controlId;
