@@ -56,11 +56,25 @@
                 src="../../img/workflow/flowsetting/icon_article_03.png" alt="">应用版式文件</a>
         </li>
         <li><a href="javascript:void(0)" class="btn_click btn_h btn6"><img
-                src="../../img/workflow/flowsetting/icon_more_03.png" alt="">其他 <i class="icon_d"></i></a></li>
+                src="../../img/workflow/flowsetting/icon_more_03.png" alt="">其他 <i class="icon_d"></i></a>
+            <ul class="hide_list2 hide">
+                <li><a href="javascript:void(0)" class="btn_h btn_h_1"><i class="icon"></i>清空</a>
+                </li>
+                <li><a href="javascript:void(0)" class="btn_h btn_h_2"><i class="icon"></i>删除</a>
+                </li>
+                <li><a href="javascript:void(0)" class="btn_h btn_h_3"><i class="icon"></i>数据匹配</a>
+                </li>
+                <li><a href="javascript:void(0)" class="btn_h btn_h_4"><i class="icon"></i>数据迁移</a></li>
+                <li><a href="javascript:void(0)" class="btn_h btn_h_4"><i class="icon"></i>菜单定义</a></li>
+                <li><a href="javascript:void(0)" class="btn_h btn_h_4"><i class="icon"></i>查询字段</a></li>
+                <li><a href="javascript:void(0)" class="btn_h btn_h_4"><i class="icon"></i>校验</a></li>
+                <li><a href="javascript:void(0)" class="btn_h btn_h_4"><i class="icon"></i>导出</a></li>
+            </ul>
+        </li>
     </ul>
 
     <div class="cont_r">
-        <div class="item"></div>
+        <div class="item item1"></div>
         <div class="item"></div>
         <%--定义流程属性--%>
         <div class="item">
@@ -134,12 +148,12 @@
                             <input type="radio" name="sex" value="否"><label class="sex_save">否</label>
 
                         </div>
-                        <div class="form_group sex_r">
+                        <div class="form_group sex_r sex_r_f">
                             <label class="flowName">更多操作项设置<span class="save">*</span></label>
                             <input type="checkbox"><label class="label_f">公告通知</label>
                             <input type="checkbox"><label class="label_f">内部邮件</label>
                             <input type="checkbox"><label class="label_f">转存</label>
-                            <input type="checkbox"><label class="placeFile">归档</label>
+                            <input type="checkbox"><label class="label_f placeFile">归档</label>
                             <p class="set_form">设置表单打印页面更多操作以及工作办理页面分享和更多的操作</p>
 
                         </div>
@@ -328,8 +342,8 @@
         </div>
         <%--配置查询模板--%>
         <div class="item">
-            <table class="table" cellspacing="0">
-                <caption>
+            <table class="table table_temp" cellspacing="0">
+              <%--  <caption>
                     <a href="javascript:void (0)" class="newbuilt">新建</a>
                     <a href="javascript:void (0)" class="delete_c">删除</a>
                 </caption>
@@ -342,7 +356,6 @@
                     <th>管理范围</th>
                     <th>操作</th>
                 </tr>
-
                 </thead>
                 <tr>
                     <td><input type="checkbox" class="one"></td>
@@ -363,7 +376,7 @@
                         <a href="javascript:void(0)">修改</a>
                         <a href="javascript:void(0)">删除</a>
                     </td>
-                </tr>
+                </tr>--%>
             </table>
         </div>
         <div class="item">
@@ -416,36 +429,54 @@
 <script src="../../js/jquery-1.9.1.js"></script>
 
 <script type="text/javascript">
+   /* (function (pro) {
+        function queryUrl() {
+            var reg = /([^?&#=]+)=([^?&#=]+)/g;
+            var obj = {};
+            this.replace(reg,function () {
+                obj[arguments[1]]=arguments[2];
+            });
+            return obj;
+        }
+        pro.queryUrl = queryUrl;
+    })(String.prototype);
+   $(function () {
+       var urlObj = window.location.href.queryUrl();
+       console.log(urlObj.type);
+   });*/
+
+
     $(function () {
         var flowIdFromPage = '${flowId}';
         /*设计步骤流程*/
-        $.ajax({
-            type: "get",
-            url: "<%=basePath%>flowProcess/findFlowId",
-            dataType: "json",
-            data: {
-                flowId: 120
-            },
-            success: function (data) {
-                if (data.flag) {
-                    var data = data.obj;
-                    var html = "<tr><th>序号</th><th>名称</th><th>下一步骤</th><th>编辑该步骤的各项属性</th><th>操作</th></tr>";
-                    for (var i = 0; i < data.length; i++) {
+        $('.btn_h_2').click(function () {
+            $.ajax({
+                type: "get",
+                url: "<%=basePath%>flowProcess/findFlowId",
+                dataType: "json",
+                data: {
+                    flowId: 120
+                },
+                success: function (data) {
+                    if (data.flag) {
+                        var data = data.obj;
+                        var html = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
+                            '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
+                            '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
+                            '</caption>' +
+                            "<tr><th>序号</th><th>名称</th><th>下一步骤</th><th>编辑该步骤的各项属性</th><th>操作</th></tr>";
+                        for (var i = 0; i < data.length; i++) {
+                            html = html + "<tr>" + "<td>" + data[i].prcsId + "</td>" + "<td>" + data[i].prcsName + "</td>" +
+                                "<td></td>" + "<td style='text-align: center'>基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>" + "<td>修改 删除</td>" + "</tr>";
 
-                        html = html + "<tr>" + "<td>" + data[i].prcsId + "</td>" + "<td>" + data[i].prcsName + "</td>" +
-                            "<td></td>" + "<td style='text-align: center'>基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>" + "<td>修改 删除</td>" + "</tr>";
-
+                        }
+                        $('#table_form').html(html);
                     }
-                    $('#table_form').append(html);
-
                 }
-
-
-            }
-        });
+            });
+        })
 
         /*定义流程属性查询*/
-
         var flowId = '${flowId}';
 
         if(flowId != null || flowId.length>0) {
@@ -457,25 +488,23 @@
                     flowId: flowId
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.flag) {
                         $("#flowId").val(data.object.flowId);
                         $("#projectName").val(data.object.flowName);
                         $('#orderID').val(data.object.flowNo);
-                        //$('#deptName').find("option:selected").text(data.object.deptId)
-                        //$('#deptName option:selected').text(data.object.deptId);
-//                    $('#deptName').find('option').eq(0).text()
-//                    console.log($('#deptName option:selected'))
+
                     }
                 }
             });
-        })
-
+        }
         $('.keepmsg').on('click', function () {
-            var flowId = $("#flowId").val();
+            var flowId = ${flowId};
+//            var flowId = $("#flowId").val();
             alert(flowId);
 
             if (flowId == null || flowId == "") {
+                console.log('空')
+
                 //保存
                 var data = {
                     flowName: $('#projectName').val(),
@@ -527,18 +556,17 @@
                     }
                 })
             }
-        })
+        });
+
         var $list = $('.cont_list li a');
         $list.each(function (index, item) {
-            $(item).click(function (event) {
-
-                /* $(item).addClass('clickBack');
-                 event.preventDefault();*/
-
-
-                if (index == 1) $('.hide_list1').toggle();
+            $(item).click(function () {
                 $('.cont_r .item').eq(index).show().siblings().hide();
-
+                if (index == 1){
+                    $('.hide_list1').toggle();
+                }else if(index==10){
+                    $('.hide_list2').toggle();
+                }
             })
         });
         /*点击绑定颜色*/
@@ -553,7 +581,7 @@
                 '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
                 '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
                 '</caption>' +
-                "<t><th><input type='checkbox' class='checkAll'>全选</th><th>权限类型</th><th>授权范围</th><th>管理范围</th><th>操作</th></t>";
+                "<tr><th><input type='checkbox' class='checkAll'>全选</th><th>权限类型</th><th>授权范围</th><th>管理范围</th><th>操作</th></tr>";
             $.ajax({
                 type: 'get',
                 url: "<%=basePath%>flowSetDatas/getFlowPrivList",
@@ -564,7 +592,6 @@
                 success: function (data) {
                     var datas = data.datas;
                     if (data.flag) {
-                        console.log(datas);
                         for (var i = 0; i < datas.length; i++) {
                             var type = (datas[i].privType) * 1;
                             var typeStr = "未知类型";
@@ -585,12 +612,7 @@
                         }
                         $('#table_power').html(html);
                         /*全选非全选*/
-                        $('.checkAll').on('click', function () {
-                            $('.one').prop('checked', $(this).prop('checked'));
-                        });
-                        $('.one').click(function () {
-                            $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
-                        })
+                        checkAll();
                     }
                 }
             })
@@ -614,10 +636,10 @@
                     var data_d = data.datas;
                     if (data.flag) {
                         for (var i = 0; i < data_d.length; i++) {
-                            console.log(data_d[i])
                             strData += "<tbody>"+"<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data_d[i].typeName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].userName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].remindDate + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].lastTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>"+"</tbody>";
                         }
                         $('#table_task').html(strData);
+                        checkAll();
 
                     }
                 }
@@ -625,28 +647,50 @@
         })
         /*配置查询模板*/
         $('.btn4').click(function () {
-         var html = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
-             '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
-             '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
-             '</caption>' +
-             "<t><th><input type='checkbox' class='checkAll'>全选</th><th>定时类型</th><th>流程发起人</th><th>发起日期</th><th>发起时间</th><th>操作</th></t>";
          $.ajax({
              type:'get',
-             url:'',
+             url:'<%=basePath%>/flowSetDatas/getFlowQueryTplList',
              dataType:'json',
              data:{
                  flowId:flowIdFromPage
              },
-             success:function (data) {
-                 
-                 
+             success:function () {
+                 var html = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
+                     '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
+                     '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
+                     '</caption>' +
+                     "<th><th><input type='checkbox' class='checkAll'>全选</th><th>模板名称</th><th>创建时间</th><th>操作</th></th>";
+                 $('.table_temp').html(html);
+                 checkAll();
+
              }
          })
         })
+        /*应用版式文件*/
+        $('.btn5').click(function () {
+            $.ajax({
+                type:'get',
+                url:'<%=basePath%>/flowSetDatas/getFlowPrintTpl',
+                dataType:'json',
+                data:{
+                    flowId:flowIdFromPage
+                },
+                success:function (data) {
+                    console.log(data)
+                }
+            })
+        })
 
     })
-
-
+   function checkAll() {
+       $('.checkAll').on('click', function () {
+           $('.one').prop('checked', $(this).prop('checked'));
+       });
+       $('.one').click(function () {
+           $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
+       })
+   }
+   checkAll();
 </script>
 
 </html>

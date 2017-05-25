@@ -178,4 +178,13 @@ public class FlowSettingController {
     ){
         return privService.deleteFlowQuertTpl(tplId);
     }
+
+    @RequestMapping("/getFlowPrintTpl")
+    public BaseWrappers getFlowPrintTpl(Integer flowId){
+        return privService.getFlowPrintTpl(flowId);
+    }
+    @RequestMapping("/newFlowPrintTpl")
+    public BaseWrapper newFlowPrintTpl(Integer flowId,Integer tType,String tName,String content,String flowPrcs){
+        return privService.newFlowPrintTpl(flowId,tType,tName,content,flowPrcs);
+    }
 }

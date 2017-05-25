@@ -60,16 +60,7 @@ public class UsersController {
     public ToJson<Users> addUser(Users user,HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		ToJson<Users> json=new ToJson<Users>(0, null);
-		try {
-			usersService.addUser(user);
-            json.setObject(user);
-            json.setMsg("OK");
-            json.setFlag(0);
-		} catch (Exception e) {
-			json.setMsg(e.getMessage());
-		}
-        return json;
+        return usersService.addUser(user);
     }
 	
 	/**

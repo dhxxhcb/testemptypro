@@ -1,7 +1,7 @@
 #propertyForm{
     width:19.5%;
     position: fixed;
-    right: 0px;
+
     top: 0px;
     bottom: 1px;
     z-index: 9999;
@@ -10,6 +10,7 @@
     font-size: 20px;
     font-family: "Microsoft YaHei" ! important;
     overflow-y: auto ;
+    transition: all 0.2s ease 0s;
 }
 input{
     outline: none;
@@ -22,6 +23,9 @@ input{
     position: relative;
     height: 49px;
     cursor: pointer;
+}
+.setUpThe.active{
+    background: #add2f8;
 }
 body{
     font-size: 12px;
@@ -75,6 +79,9 @@ body{
 .candidatesUl li .candidatesPone{
     padding:16px 0px;
 }
+.candidatesUl li .candidatesPone.activeall{
+    font-size: 14px;
+}
 .candidatesUl li .candidatesPTwo{
     border:1px solid #ccc;
     border-radius: 4px;
@@ -122,9 +129,18 @@ body{
 .candidatesPothree{
     margin-bottom: 10px;
 }
+.candidatesPothree.activeall label{
+    font-size: 14px!important;
+}
 .candidatesPoform{
     width: 99%;
     padding-bottom:15px;
+}
+.bottomstepstwoss{
+    width:100%;
+    height: 480px;
+    max-height: 700px;
+    overflow-y: auto;
 }
 .candidatesUl li .candidatesPoform input[type=text]{
     font-size: 14px;
@@ -156,10 +172,10 @@ body{
     height: 65px;
     position: fixed;
     bottom: 0px;
-    right: 0px;
     width:19.5%;
     z-index:999999;
     background: #f7f7f7;
+    transition: all 0.2s ease 0s;
 }
 .btnstorage a{
     float: right;
@@ -265,12 +281,100 @@ body{
     border-radius: 2px 2px 0 0!important;
 }
 .bottomstepstwo label{
-    display: block;
-    margin: 20px;
-    font-size: 16px;
+    display: inline-block;
+    margin: 10px;
+    font-size: 14px;
 }
 .bottomstepstwo label input{
     vertical-align: middle;
+}
+.bottomstepstwo{
+    height: 153px;
+    max-height: 800px;
+    overflow-y: auto;
+}
+.btnzhuanru{
+    text-align: center;
+    margin-top: 20px;
+}
+.btnzhuanru a{
+    display: inline-block;
+    padding:8px 15px;
+    border-radius: 4px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    background: #2f8ae3;
+    color: #fff;
+    font-size: 14px;
+}
+.candidatesPTwo table{
+    width: 100% ;
+    text-align: center;
+    border-collapse: collapse;
+    table-layout: fixed;
+    word-wrap: break-word;
+    font-style: normal;
+    font-size: 14px;
+    border:1px solid #ddd;
+    border-left: none;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+.candidatesPTwo table th{
+    background: #FCFCFC;
+    color: #111;
+    height: 40px;
+ vertical-align: middle;
+    border-left: 1px solid #ddd;
+
+}
+.newtheTrigger{
+    float: right;
+    margin-right: 94px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius:4px;
+    color: #fff!important;
+    background: #2b7fe0;
+    font-size: 14px!important;
+    padding:5px 10px;
+}
+.candidatesPTwo table td{
+    color: #111;
+    height: 40px;
+    vertical-align: middle;
+    border-left: 1px solid #ddd;
+    border-top:1px solid #ddd;
+    font-size: 14px;
+}
+.candidatesPTwo textarea{
+    width: 76%;
+    height: 57px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -zom-border-radius: 4px;
+    -ms-border-radius: 4px;
+    float: left;
+    background: #eee;
+    border: 1px solid #ccc;
+    resize: none;
+}
+.canWriteFie{
+    color: #111;
+    font-size: 14px;
+}
+.btnradius{
+    display: inline-block;
+    padding:5px 10px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    color: #fff;
+    background: #2f8ae3;
 }
 ul,
 ol {
@@ -279,4 +383,7 @@ ol {
 a{
     text-decoration: none;
     color: #333;
+}
+input{
+    vertical-align: middle;
 }
