@@ -41,7 +41,7 @@ public class InterfaceController {
                 "loginDateSouse"));
 
 
-        ToJson<InterfaceModel> tojson = new ToJson<>(0, "");
+        ToJson<InterfaceModel> tojson = new ToJson<InterfaceModel>(0, "");
         try {
 
             List<InterfaceModel> interfaceModelList = interfaceService.getStaTusText();
