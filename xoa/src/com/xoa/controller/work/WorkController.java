@@ -28,6 +28,7 @@ import com.xoa.service.workflow.flowtype.FlowFormTypeService;
 import com.xoa.service.workflow.flowtype.FlowRunPrcsService;
 import com.xoa.service.workflow.flowtype.FlowRunService;
 import com.xoa.service.workflow.flowtype.FlowTypeService;
+import com.xoa.util.CheckTableExist;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
@@ -94,11 +95,6 @@ public class WorkController {
 		Map<String, Object> maps=new HashMap<String, Object>();
 		 ToJson<FlowFast> tj=new ToJson<FlowFast>();
 		 ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
-/*	        PageParams pageParams = new PageParams();
-	        pageParams.setUseFlag(false);
-	        pageParams.setPage(1);
-	        pageParams.setPageSize(5);
-	        maps.put("page", pageParams);*/
 	        maps.put("flowId", flowId);
 		toJson=flowTypeService.selectAllFlow(maps);
 		FlowTypeModel flowTypeModel=(FlowTypeModel) toJson.getObject();
@@ -149,20 +145,35 @@ public class WorkController {
         return tj;		
 	}
 	
-	@RequestMapping("addFastwork")
-	public String addwork(String str,HttpServletRequest request) throws JSONException{
+	@RequestMapping("nextwork")
+	public String addwork(String str,HttpServletRequest request,
+			@RequestParam("flowId") String flowId,
+			@RequestParam("json") JSONObject hostObject) throws JSONException{
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-	    JSONObject hostObject = new JSONObject();  
-	    Iterator<String> sIterator = hostObject.keys();  
-	    while(sIterator.hasNext()){  
-	        // 获得key  
-	        String key = sIterator.next();  
-	        // 根据key获得value, value也可以是JSONObject,JSONArray,使用对应的参数接收即可  
-	        String value = hostObject.getString(key);  
-	        System.out.println("key: "+key+",value"+value);  
-	    }  
-        
+		String tableName="flow_data_"+flowId;
+		if(!CheckTableExist.haveTable(tableName)){
+			//JSONObject json = JSONObject.fromObject(jsonObject);  
+			
+		}else{
+			String sql="run_id,run_name,begin_time,begin_user";
+			StringBuffer sb=new StringBuffer();
+			sb.append(sql);
+			
+			     hostObject = new JSONObject();  
+			    Iterator<String> sIterator = hostObject.keys();  
+			    while(sIterator.hasNext()){  
+			        // 获得key  
+			        String key = sIterator.next();  
+			        // 根据key获得value, value也可以是JSONObject,JSONArray,使用对应的参数接收即可  
+			        String value = hostObject.getString(key);  
+			        sb.append(",").append(key);
+			        
+			        System.out.println("key: "+key+",value"+value);  
+			    }  
+			
+			
+		}
 		
 		
 		return "";
@@ -220,6 +231,61 @@ public class WorkController {
 			maps.put("userId", flowRunPrcs.getUserId());
 		}
 		return flowRunPrcsService.selectEnd(maps, page, pageSize, useFlag);
+	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/24 20:29
+	 * 方法介绍:   查询挂起工作
+	 * 参数说明:
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "selectHang", produces = {"application/json;charset=UTF-8"})
+	public @ResponseBody
+	ToJson<FlowRunPrcs> selectEndHang(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
+								  @RequestParam(value = "page", required = false) Integer page,
+								  @RequestParam(value = "pageSize", required = false) Integer pageSize,
+								  @RequestParam(value = "useFlag", required = false) boolean useFlag
+	) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		Map<String, Object> maps = new HashMap<String, Object>();
+		if (StringUtils.checkNull(flowRunPrcs.getUserId())) {
+			String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+			maps.put("userId", userId);
+		}else {
+			maps.put("userId", flowRunPrcs.getUserId());
+		}
+		return flowRunPrcsService.selectHang(maps, page, pageSize, useFlag);
+	}
+
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/24 20:29
+	 * 方法介绍:   查询所有工作
+	 * 参数说明:
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "selectAll", produces = {"application/json;charset=UTF-8"})
+	public @ResponseBody
+	ToJson<FlowRunPrcs> selectAll(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
+								  @RequestParam(value = "page", required = false) Integer page,
+								  @RequestParam(value = "pageSize", required = false) Integer pageSize,
+								  @RequestParam(value = "useFlag", required = false) boolean useFlag
+	) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		Map<String, Object> maps = new HashMap<String, Object>();
+		if (StringUtils.checkNull(flowRunPrcs.getUserId())) {
+			String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+			maps.put("userId", userId);
+		}else {
+			maps.put("userId", flowRunPrcs.getUserId());
+		}
+		return flowRunPrcsService.selectAll(maps, page, pageSize, useFlag);
 	}
 
 }
