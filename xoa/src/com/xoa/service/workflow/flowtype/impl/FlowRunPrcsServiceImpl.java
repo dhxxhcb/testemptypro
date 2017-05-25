@@ -47,12 +47,17 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		pageParams.setUseFlag(useFlag);
 		maps.put("page", pageParams);
 		List<FlowRunPrcs> list = flowRunPrcsMapper.selectObjcet(maps);
+		List<FlowRunPrcs> returnList = new ArrayList<FlowRunPrcs>();
 		int len = list.size();
 		if(len>0){
+			for (FlowRunPrcs flowRunPrcs : list) {
+				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
+				returnList.add(flowRunPrcs);
+			}
 			toJson.setFlag(0);
 			toJson.setMsg("ok");
 			toJson.setTotleNum(pageParams.getTotal());
-			toJson.setObj(list);
+			toJson.setObj(returnList);
 		}else{
 			toJson.setFlag(1);
 			toJson.setMsg("error");

@@ -43,7 +43,8 @@ public class FlowRun {
 	private int workLevel;
 	/** 删除时间 **/
 	private String delTime;
-	
+
+
 	public int getRid() {
 		return rid;
 	}
@@ -170,7 +171,5 @@ public class FlowRun {
 	public void setDelTime(String delTime) {
 		this.delTime = delTime;
 	}
-	
-	
-   
+
 }
