@@ -10,17 +10,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 	<head>
-
 	<meta charset="UTF-8">
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <title>首页</title>
-	<%--<link rel="stylesheet" href="../css/base.css" />
-	<link rel="stylesheet" type="text/css" href="../css/common/addpage.css"/>
-	<link rel="stylesheet" href="../lib/pagination/style/pagination.css" />--%>
-	<link rel="stylesheet" href="../css/sys/companyinfo.css" />
-    <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+        <title>首页</title>
+        <%--<link rel="stylesheet" href="../css/base.css" />
+        <link rel="stylesheet" type="text/css" href="../css/common/addpage.css"/>
+        <link rel="stylesheet" href="../lib/pagination/style/pagination.css" />--%>
+        <link rel="stylesheet" href="../css/sys/companyinfo.css" />
+        <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
         <script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
         <script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
         <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>

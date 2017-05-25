@@ -1,8 +1,21 @@
 var workForm = {
     formhtmlurl : '../../form/formType',
+    option : {
+        formhtmlurl : '../../form/formType',
+        formid : 1,
+        target:""
+    },
+    init:function(options,cb){
+        var _this = this;
+        $.extend( _this.option, options );
+        _this.buildHTML(cb);
+    },
     render:function(){
         this.DateRender();
         this.ReBuild();
+        this.MacrosRender();
+    },
+    filter:function(){
         this.MacrosRender();
     },
     ReBuild:function(){
@@ -14,7 +27,6 @@ var workForm = {
             $(this).addClass("form_item");
             $(this).attr("id",$(this).attr("name"));
         });
-
     },
     MacrosRender:function(){
         that = this;
@@ -57,19 +69,24 @@ var workForm = {
             laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})
         })
     },
-    buildHTML:function(target,formid){
+    buildHTML:function(cb){
         var that = this;
         $.ajax({
             type: "get",
             url: that.formhtmlurl,
             dataType: 'JSON',
             data: {
-                fromId :formid
+                fromId :that.option.formid
             },
             success: function (res) {
 
-                target.html(res.object.printModel);
+                that.option.target.html(res.object.printModel);
                 that.render();
+                if(cb){
+                   return cb(res);
+                }
+                return cb;
+
             }
         });
     },
@@ -133,7 +150,7 @@ var workForm = {
                 return "";
             },
             SYS_USERNAME_DATE : function(){
-                return workForm.tool.MacrosDate.sYS_USERNAME+' '+new Date().Format("yyyy-MM-dd hh:mm:ss");
+                return workForm.tool.MacrosDate.data.sYS_USERNAME+' '+new Date().Format("yyyy-MM-dd hh:mm:ss");
             },
             SYS_USERNAME_DATETIME : function(){
                 return "";
