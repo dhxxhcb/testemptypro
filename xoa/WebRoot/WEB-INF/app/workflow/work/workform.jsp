@@ -78,6 +78,9 @@
         width:100%;
         height:50%;
     }
+    .one_all{
+        border-bottom: 1px solid #ccc;
+    }
     #tab_ctwo ul{
         width:100%;
         height:100%;
@@ -110,19 +113,25 @@
         top: 13px;
         clear: both;
     }
-    .fujian_logo,.fujian_h1{
+    .fujian_logo,.fujian_h1,.huiqian_logo,.huiqian_h1{
         float: left;
 
     }
     .fujian_logo{
         margin-top: 3px;
     }
-    .fujian_h1{
+    .huiqian_logo{
+        margin-top: 10px;
+    }
+    .fujian_h1,.huiqian_h1{
         margin-left: 5px;
-        font-size: 11pt;
+        font-size: 12pt;
 /*        line-height: 40px;*/
     }
-    button{
+    .huiqian_h1{
+        line-height: 40px;
+    }
+    .add_fujian{
         width: 85%;
         height: 40px;
         border-radius: 7px;
@@ -134,6 +143,64 @@
         text-align: center;
         line-height: 40px;
         outline: none;
+    }
+    .cont_ctwo li{
+        width: 90%;
+        height: 70px;
+        border-radius: 3px;
+        margin: auto;
+        border:1px solid #cccccc;
+        margin-top: 7px;
+    }
+    .huiqian_inp,.huiqian_send{
+        float:left;
+    }
+    .huiqian_inp{
+        width: 68%;
+        height: 30px;
+        border-radius: 3px;
+        border: none;
+        outline: none;
+        text-align: left;
+        border: 1px solid #cccccc;
+        margin-left: 0px;
+    }
+    .huiqian_send{
+        width: 24%;
+        height: 30px;
+        background: #ff9b30;
+        color: #fff;
+        margin-left: 8px;
+        outline: none;
+        border-radius: 3px;
+        border: none;
+    }
+    .huiqian_word{
+        width:80%;
+        height:100%;
+        margin-left: 4px;
+    }
+    .huiqian_word h1{
+        margin-top: 8px;
+    }
+    .huiqian_word h2{
+        color: #919191;
+    }
+    .huiqian_touxiang{
+        margin-left: 2px;
+    }
+    .huiqian_touxiang,.huiqian_word{
+        float: left;
+    }
+    .huiqian_word h3{
+        overflow: hidden;/*内容超出后隐藏*/
+        text-overflow: ellipsis;/* 超出内容显示为省略号*/
+        white-space: nowrap;/*文本不进行换行*/
+
+    }
+    .huiqian_touxiang{
+        width: 40px;
+        height: 40px;
     }
 </style>
 
@@ -167,16 +234,19 @@
                 <div class="tab_one">
                     <div class="one_all">
                         <ul class="cont_cone">
-                            <li style="height:21px;position:relative;border:none;"><img class="fujian_logo" src="../../img/workflow/work/add_work/sheji.png"><h1 class="fujian_h1">附件</h1></li><div class="position"><img src="../../img/workflow/work/add_work/sheji.png"></div>
+                            <li style="height:21px;position:relative;border:none;"><img class="fujian_logo" src="../../img/workflow/work/add_work/black.png"><h1 class="fujian_h1">附件</h1></li><div class="position"><img src="../../img/workflow/work/add_work/back.png"></div>
                             <li><div class="item_logo"></div><div class="item_word"><h1>Saas事业部5月...任务工单.xlsx</h1><h2>10.8k</h2></div></li>
                             <li><div class="item_logo"></div><div class="item_word"><h1>Saas事业部5月...任务工单.xlsx</h1><h2>10.8k</h2></div></li>
                             <li><div class="item_logo"></div><div class="item_word"><h1>Saas事业部5月...任务工单.xlsx</h1><h2>10.8k</h2></div></li>
                         </ul>
-                        <button>添加附件</button>
+                        <button class="add_fujian">添加附件</button>
                     </div>
                     <div class="two_all">
-                        <ul class="cont_ctwo" style="background: yellow;">
-                            <li>会签</li>
+                        <ul class="cont_ctwo">
+                            <li style="height:33px;border: none;"><img class="huiqian_logo" src="../../img/workflow/work/add_work/black.png"><h1 class="huiqian_h1">会签</h1></li>
+                            <li style="height:33px;border: none;"><input type="text" class="huiqian_inp"><button class="huiqian_send">发送</button></li>
+                            <li><div class="huiqian_touxiang"><img class="huiqian_logo" src="../../img/workflow/work/add_work/touxiang.png"></div><div class="huiqian_word"><h1>部门经理</h1><h2>2017年5月24日 15:34</h2><h3>会签意见会签意见会签意见会签意见会签意见</h3></div></li>
+                            <li><div class="huiqian_touxiang"><img class="huiqian_logo" src="../../img/workflow/work/add_work/touxiang.png"></div><div class="huiqian_word"><h1>部门经理</h1><h2>2017年5月24日 15:34</h2><h3>会签意见会签意见会签意见会签意见会签意见</h3></div></li>
                         </ul>
                     </div>
 
@@ -196,17 +266,17 @@
             <div class="foot_left">
                 <ul>
                     <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">流程图</h1></li>
-                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">委托</h1></li>
-                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">打印</h1></li>
-                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">其他</h1></li>
+                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/weituo.png"><h1 class="left_h1">委托</h1></li>
+                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/print.png"><h1 class="left_h1">打印</h1></li>
+                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/lan.png"><h1 class="left_h1">附件</h1></li>
                 </ul>
             </div>
             <div class="foot_rig">
                 <ul>
-                    <li class="rig_li zhuanjiao"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">转交下一步</h1></li>
-                    <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">保存</h1></li>
-                    <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">保存返回</h1></li>
-                    <li class="rig_li"><img class="rig_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="rig_h1">其他</h1></li>
+                    <li class="rig_li zhuanjiao"><h1 class="rig_h1">转交下一步</h1></li>
+                    <li class="rig_li"><h1 class="rig_h1">保存</h1></li>
+                    <li class="rig_li"><h1 class="rig_h1">保存返回</h1></li>
+                    <li class="rig_li"><h1 class="rig_h1">取消</h1></li>
                 </ul>
             </div>
         </div>
@@ -251,13 +321,13 @@
             $('#tab_c').animate({right:'0px'},"slow");
             $('#tab_ctwo').hide();
             $('.tab_one').show();
-            $('.cont_cone').show();
+            $('.one_all').show();
        })
         //第二个
         $('.huiqian').on('click',function(){
             $(this).siblings().removeClass("check");
             $(this).addClass('check');
-            $('.cont_cone').hide();
+            $('.one_all').hide();
             $('#tab_ctwo').hide();
             $('.tab_one').show();
             $('.cont_ctwo').show();
