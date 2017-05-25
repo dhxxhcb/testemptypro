@@ -29,4 +29,27 @@ public interface FlowRunPrcsService {
 										 Integer pageSize, boolean useFlag);
 
 
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/25 15:47
+	 * 方法介绍:   查询挂起工作
+	 * 参数说明:
+	 * @return
+	 */
+	public ToJson<FlowRunPrcs> selectHang(Map<String,Object> maps,Integer page,
+										 Integer pageSize, boolean useFlag);
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/25 15:47
+	 * 方法介绍:   查询所有工作
+	 * 参数说明:
+	 * @return
+	 */
+	public ToJson<FlowRunPrcs> selectAll(Map<String,Object> maps,Integer page,
+										 Integer pageSize, boolean useFlag);
+
+
+
+
 }

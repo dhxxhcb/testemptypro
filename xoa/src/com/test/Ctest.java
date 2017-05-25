@@ -76,8 +76,8 @@ public class Ctest {
 
 		Map<String,Object> maps = new HashMap<String,Object>();
 		maps.put("userId","admin");
-		ToJson<FlowRunPrcs> toJson = flowRunPrcsService.selectEnd(maps,1,5,false);
-		System.out.println(toJson.getMsg());
+		ToJson<FlowRunPrcs> toJson = flowRunPrcsService.selectHang(maps,1,5,false);
+		System.out.println(toJson.isFlag());
 
 //		4516
 //		10434

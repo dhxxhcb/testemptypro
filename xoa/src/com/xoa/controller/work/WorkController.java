@@ -233,4 +233,59 @@ public class WorkController {
 		return flowRunPrcsService.selectEnd(maps, page, pageSize, useFlag);
 	}
 
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/24 20:29
+	 * 方法介绍:   查询挂起工作
+	 * 参数说明:
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "selectHang", produces = {"application/json;charset=UTF-8"})
+	public @ResponseBody
+	ToJson<FlowRunPrcs> selectEndHang(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
+								  @RequestParam(value = "page", required = false) Integer page,
+								  @RequestParam(value = "pageSize", required = false) Integer pageSize,
+								  @RequestParam(value = "useFlag", required = false) boolean useFlag
+	) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		Map<String, Object> maps = new HashMap<String, Object>();
+		if (StringUtils.checkNull(flowRunPrcs.getUserId())) {
+			String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+			maps.put("userId", userId);
+		}else {
+			maps.put("userId", flowRunPrcs.getUserId());
+		}
+		return flowRunPrcsService.selectHang(maps, page, pageSize, useFlag);
+	}
+
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/24 20:29
+	 * 方法介绍:   查询所有工作
+	 * 参数说明:
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "selectAll", produces = {"application/json;charset=UTF-8"})
+	public @ResponseBody
+	ToJson<FlowRunPrcs> selectAll(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
+								  @RequestParam(value = "page", required = false) Integer page,
+								  @RequestParam(value = "pageSize", required = false) Integer pageSize,
+								  @RequestParam(value = "useFlag", required = false) boolean useFlag
+	) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		Map<String, Object> maps = new HashMap<String, Object>();
+		if (StringUtils.checkNull(flowRunPrcs.getUserId())) {
+			String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+			maps.put("userId", userId);
+		}else {
+			maps.put("userId", flowRunPrcs.getUserId());
+		}
+		return flowRunPrcsService.selectAll(maps, page, pageSize, useFlag);
+	}
+
 }
