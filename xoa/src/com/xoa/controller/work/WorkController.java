@@ -106,14 +106,14 @@ public class WorkController {
 		String runName=flowName+" "+beginTime;
 		
 		FlowRun flowRun=new FlowRun();
-		flowRun.setRid(runId);
+		flowRun.setRunId(runId);
 		flowRun.setRunName(runName);
 		flowRun.setFlowId(flowId);
 		flowRun.setBeginUser(userId);
 		flowRun.setBeginTime(beginTime);
 		flowRun.setBeginDept(deptId);
 		flowRun.setDelFlag("0");
-		flowRun.setDelTime(new Date());
+		//flowRun.setDelTime(beginTime);
 		flowRunService.save(flowRun);	
 		
 		FlowRunPrcs flowRunPrcs =new FlowRunPrcs();
@@ -123,6 +123,9 @@ public class WorkController {
 		flowRunPrcs.setPrcsDept(deptId);
 		//flowRunPrcs.setPrcsFlag(prcsFlag);
 		flowRunPrcs.setCreateTime(beginTime);
+		flowRunPrcs.setPrcsTime(beginTime);
+		flowRunPrcs.setDeliverTime(beginTime);
+		flowRunPrcs.setActiveTime(beginTime);
 		flowRunPrcsService.save(flowRunPrcs);
 		
 		ToJson<FlowFormType> json=new ToJson<FlowFormType>();
