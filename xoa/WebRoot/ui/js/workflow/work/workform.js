@@ -1,5 +1,4 @@
 var workForm = {
-    formhtmlurl : '../../form/formType',
     option : {
         formhtmlurl : '../../form/formType',
         formid : 1,
@@ -104,10 +103,10 @@ var workForm = {
         var that = this;
         $.ajax({
             type: "get",
-            url: that.formhtmlurl,
+            url: that.option.formhtmlurl,
             dataType: 'JSON',
             data: {
-                fromId :that.option.formid
+                flowId :that.option.formid
             },
             success: function (res) {
 

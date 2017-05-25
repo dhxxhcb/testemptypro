@@ -18,12 +18,10 @@
     <link rel="stylesheet" type="text/css" href="../../css/workflow/m_reset.css">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/new_work.css">
     <link rel="stylesheet" type="text/css" href="../../lib/laydate.css"/>
-    <link rel="stylesheet" type="text/css" href="../../lib/pagination/style/pagination.css"/>
     <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
     <script src="../../js/base/base.js"></script>
     <script src="../../js/workflow/work/workform.js"></script>
     <script src="../../lib/laydate.js"></script>
-    <script src="../../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../lib/layer/layer.js"></script>
 </head>
 
@@ -289,7 +287,7 @@
     $(function(){
         var formid = $.getQueryString("formId");
         workForm.init({
-                formhtmlurl:'../../form/formType',
+                formhtmlurl:'../../workflow/work/workfastAdd',//URL
                 formid:formid,
                 target:$('.cont_form')},
             function(data){
