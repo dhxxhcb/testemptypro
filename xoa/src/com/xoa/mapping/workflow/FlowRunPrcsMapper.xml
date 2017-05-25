@@ -25,7 +25,7 @@
         <result column="BACK_PRCS_ID" javaType="int" property="backPrcsId"/>
         <result column="BACK_FLOW_PRCS" javaType="int" property="backFlowPrcs"/>
         <result column="TIME_OUT_ATTEND" javaType="string" property="timeOutAttend"/>
-        <result column="TIME_OUT_TYPE" javaType="string" property="timeOutType"/>
+        <result column="TIME_OUT_TYPE" javaType="Integer" property="timeOutType"/>
         <result column="RUN_PRCS_NAME" javaType="string" property="runPrcsName"/>
         <result column="RUN_PRCS_ID" javaType="string" property="runPrcsId"/>
         <result column="MOBILE_FLAG" javaType="string" property="mobileFlag"/>
@@ -35,6 +35,31 @@
         <result column="FREE_ITEM" javaType="string" property="freeItem"/>
         <result column="OTHER_USER" javaType="string" property="otherUser"/>
         <result column="COMMENT" javaType="string" property="comment"/>
+
+        <!-- 一对一关联 -->
+        <association property="flowRun" column="RUN_ID" javaType="com.xoa.model.workflow.FlowRun" >
+            <result column="RUN_ID" javaType="int" property="runId" />
+            <result column="RUN_NAME" javaType="string" property="runName" />
+            <result column="FLOW_ID" javaType="int" property="flowId" />
+            <result column="BEGIN_USER" javaType="string" property="beginUser" />
+            <result column="BEGIN_DEPT" javaType="int" property="beginDept" />
+            <result column="BEGIN_TIME" javaType="java.sql.Timestamp" property="beginTime" />
+            <result column="END_TIME" javaType="java.sql.Timestamp" property="endTime" />
+            <result column="DEL_FLAG" javaType="string" property="delFlag" />
+            <result column="PARENT_RUN" javaType="int" property="parentRun" />
+            <result column="FROM_USER" javaType="string" property="fromUser" />
+            <result column="ARCHIVE" javaType="int" property="archive" />
+            <result column="work_level" javaType="int" property="workLevel" />
+            <result column="DEL_TIME" javaType="java.sql.Timestamp" property="delTime" />
+            <result column="ATTACHMENT_ID" javaType="string" property="attachmentId" />
+            <result column="ATTACHMENT_NAME" javaType="string" property="attachmentName" />
+            <result column="FOCUS_USER" javaType="string" property="focusUser" />
+            <result column="AIP_FILES" javaType="string" property="aipFiles" />
+            <result column="PRE_SET" javaType="string" property="preSet" />
+            <result column="VIEW_USER" javaType="string" property="viewUser" />
+            <result column="FORCE_OVER" javaType="string" property="forceOver" />
+        </association>
+
     </resultMap>
     <sql id="Base_Column_List">
     ID, RUN_ID, PRCS_ID, USER_ID, PRCS_TIME, DELIVER_TIME, PRCS_FLAG, FLOW_PRCS, OP_FLAG, 
@@ -483,19 +508,15 @@
     FROM
     FLOW_RUN_PRCS frp
     INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
-    where
+    WHERE
     frp.PRCS_FLAG IN ('1', '2')
-AND frp.CHILD_RUN = '0'
-AND frp.USER_ID=#{userId}
-AND fr.DEL_FLAG = '0'
+    AND frp.CHILD_RUN ='0'
+    AND frp.USER_ID=#{userId}
+    AND fr.DEL_FLAG = '0'
     ORDER BY
     frp.IS_REMIND DESC,
     frp.RUN_ID DESC,
     fr.WORK_LEVEL DESC
---     frp.PRCS_FLAG IN (1, 2)
---     AND frp.CHILD_RUN = '0'
---     AND frp.USER_ID='admin'
---     AND fr.DEL_FLAG = '0'
   </select>
 
     <!-- 查询办结工作 -->
