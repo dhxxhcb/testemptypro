@@ -469,7 +469,7 @@
                     }
                 }
             });
-        })
+        }
 
         $('.keepmsg').on('click', function () {
             var flowId = $("#flowId").val();
