@@ -46,32 +46,36 @@ select{
     background: #f6f6f6;
 }
 .abs_right ul {
-	width: 280px;
+	width: 279px;
     height: 28px;
 	border: 1px solid #4889f0;
 	border-radius: 5px;
 	margin:7px auto;
 }
-.abs_right ul li{
+.check{
+	background: #4889f0 ;
+	color:#fff ;
+}
+.abs_right{
+	color:#4889f0;
+	background: #fff;
+}
+#tab_t ul li{
 	float:left;
     width: 69px;
     height:100%;
 	border-right:1px solid #4889f0;
     text-align: center;
     line-height: 28px;
-	color:#4889f0;
 }
 .abs_right ul li:nth-child(4){
 	border:none !important;
 }
-#check{
-	 background: #4889f0;
-	color:#fff;
-}
+
 .cont{
 }
 .cont_form{
-	width:60%;
+	width:61%;
 	height:99%;
 	margin:auto;
 	overflow-x: hidden;
