@@ -42,4 +42,16 @@ public class sysController {
 				"loginDateSouse"));
 		return "app/sys/statusBar";
 	}
+	@RequestMapping("/sysInfo")
+	public String sysInfo(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/sysInfo";
+	}
+	@RequestMapping("/interfaceSettings")
+	public String interfaceSettings(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/interfaceSettings";
+	}
 }

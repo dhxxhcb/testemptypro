@@ -257,7 +257,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"workflow_list":"workflow/work/workList",
 				"system_user":"common/userManagement",
                 "system_user_priv":"common/roleManagement",
-				"system_status_text":"sys/statusBar"
+				"system_status_text":"sys/statusBar",
+				"system_interface":"sys/interfaceSettings",
+				"system_reg_view":"sys/sysInfo"
 			}
 			
 			$('.cont_nav').on('click','li',function(){
