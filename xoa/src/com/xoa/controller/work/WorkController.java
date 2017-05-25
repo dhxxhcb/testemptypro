@@ -174,7 +174,7 @@ public class WorkController {
 			        System.out.println("key: "+key+",value"+value);  
 			    }  
 			    
-			   //String sqlAll="insert into "
+			   String sqlAll="insert into "+tableName+"("+sb.toString()+") "+"values("+sb1.toString()+")";
 			
 			
 		}
