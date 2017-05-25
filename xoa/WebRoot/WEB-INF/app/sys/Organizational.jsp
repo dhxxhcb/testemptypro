@@ -12,7 +12,10 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>系统架构管理</title>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
     <link rel="stylesheet" type="text/css" href="../css/base.css"/>
