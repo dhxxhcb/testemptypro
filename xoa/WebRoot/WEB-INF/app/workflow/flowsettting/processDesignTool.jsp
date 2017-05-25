@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../../lib/GooFlow/GooFlow.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/workflow/flowtype/default.css"/>
     <link rel="stylesheet" href="../../css/workflow/flowsetting/processDesignTool.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/layer/mobile/need/layer.css" media="all"/>
     <script type="text/javascript" src="../../js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../js/base/base.js"></script>
     <script type="text/javascript" src="../../lib/layer/layer.js"></script>
@@ -186,15 +187,13 @@
                 },
             });
 
-            $(document).on('click',function () {
 
-            })
         });
     </script>
 </head>
 <body>
     <div id="flowDesignTable" ></div>
-    <div id="propertyForm">
+    <div id="propertyForm" >
         <div class="setUpThe">
             <span class="basic"></span>
             <label>基本设置</label>
@@ -256,20 +255,6 @@
                 </div>
 
             </li>
-            <li>
-                <p class="candidatesPone">
-                    备选步骤
-                </p>
-                <div class="candidatesPTwoall" style="margin-bottom: 20px;">
-                    <ul>
-
-                    </ul>
-                    <div style="float:left;">
-                        <a href="javascript:;" class="bottomsteps">选择</a>
-                    </div>
-                </div>
-
-            </li>
         </ul>
         <div class="setUpThe">
             <span class="agent"></span>
@@ -316,7 +301,11 @@
                 </p>
                <p class="candidatesPothree">
                    <label>
-                       <input type="radio">不允许
+                       <div class="layui-input-block">
+                           <input type="radio" name="sex" value="男" title="男" checked="">
+                           <input type="radio" name="sex" value="女" title="女">
+                           <input type="radio" name="sex" value="禁" title="禁用" disabled="">
+                       </div>
                    </label>
                </p>
                 <p class="candidatesPothree">
@@ -491,7 +480,7 @@
             </li>
         </ul>
 
-        <div class="setUpThe">
+        <div class="setUpThe" id="canWriteField">
             <span class="conditionsSet"></span>
             <label>可写字段</label>
             <b class="notstart"></b>
@@ -501,29 +490,42 @@
             <label>保密字段</label>
             <b class="notstart"></b>
         </div>
+        <ul class="candidatesUl">
+            <li>
+                <p class="candidatesPone">
+                    编辑保密字段
+                </p>
+                <div class="candidatesPTwoall" style="margin-bottom: 20px;">
+                    <ul></ul>
+                    <div style="float: left">
+                        <a href="javascript:;" class="bottomsteps">选择</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
         <div class="setUpThe">
             <span class="conditionsSet"></span>
             <label>必填字段</label>
             <b class="notstart"></b>
         </div>
-        <div class="setUpThe">
+        <ul class="candidatesUl">
+            <li>
+                <p class="candidatesPone">
+                    编辑必填字段
+                </p>
+                <div class="candidatesPTwoall" style="margin-bottom: 20px;">
+                    <ul></ul>
+                    <div style="float: left">
+                        <a href="javascript:;" class="bottomsteps">选择</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="setUpThe" id="conditions">
             <span class="conditionsSet"></span>
             <label>条件设置</label>
             <b class="notstart"></b>
         </div>
-        <ul class="candidatesUl" style="display: none">
-            <li>
-                <p class="candidatesPone">
-                    条件生成器
-                </p>
-                <p class="candidatesPothree">
-                    <label><input type="radio">允许</label>
-                </p>
-                <p class="candidatesPothree">
-                    <label><input type="radio">不允许</label>
-                </p>
-            </li>
-        </ul>
         <div class="setUpThe">
             <span class="dealWithTime"></span>
             <label>办理时限</label>
@@ -578,7 +580,7 @@
                 </p>
             </li>
         </ul>
-        <div class="setUpThe">
+        <div class="setUpThe" id="theTrigger">
             <span class="dealWithTime"></span>
             <label>触发器</label>
             <b class="notstart"></b>
@@ -588,15 +590,97 @@
             <label>提醒设置</label>
             <b class="notstart"></b>
         </div>
+        <ul class="candidatesUl" style="display: none">
+            <li>
+                <p class="candidatesPone">
+                    事务提醒设置
+                </p>
+                <p class="candidatesPothree">
+                    <label><input type="checkbox">此步骤是否独立设置提醒方式</label>
+                </p>
+                <p class="candidatesPone activeall">
+                    提醒开启状态
+                </p>
+                <p class="candidatesPothree activeall">
+                    <label>下一步骤<br><input type="checkbox"><i></i><input type="checkbox"><i></i><input type="checkbox"><i></i></label>
+                </p>
+                <p class="candidatesPothree activeall" style="margin-top: 10px;">
+                    <label>发起人<br><input type="checkbox"><i></i><input type="checkbox"><i></i><input type="checkbox"><i></i></label>
+                </p>
+            </li>
+            <li>
+                <p class="candidatesPone">
+                    转交时内部邮件通知以下人员
+                </p>
+                <p class="candidatesPone activeall">
+                    通知范围（人员）
+                </p>
+                <div class="candidatesPTwoall" style="margin-bottom: 20px;">
+                    <input type="text" readonly="true" id="query_userIds">
+                    <div style="float: left;line-height: 25px">
+                        <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">添加</a>
+                        <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">清空</a>
+                    </div>
+                </div>
+                <p class="candidatesPone activeall">
+                    通知范围（部门）
+                </p>
+                <div class="candidatesPTwoall" style="margin-bottom: 20px;">
+                    <input type="text" readonly="true" id="">
+                    <div style="float: left;line-height: 25px">
+                        <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">添加</a>
+                        <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">清空</a>
+                    </div>
+                </div>
+                <p class="candidatesPone activeall">
+                    通知范围（角色）
+                </p>
+                <div class="candidatesPTwoall" style="margin-bottom: 20px;">
+                    <input type="text" readonly="true" id="">
+                    <div style="float: left;line-height: 25px">
+                        <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">添加</a>
+                        <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">清空</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
         <div class="setUpThe">
             <span class="dealWithTime"></span>
             <label>呈批单设置</label>
             <b class="notstart"></b>
         </div>
+        <ul class="candidatesUl" style="display: none">
+            <li>
+                <p class="candidatesPone">
+                    选择呈批单
+                </p>
+                <div class="dropDownDiv">
+                    <p class="candidatesPTwo">
+                        <input type="text" readonly="true"  style="cursor: pointer;"><span><b></b></span>
+                        <input type="hidden">
+                    </p>
+                    <ol class="dropDown">
+                        <li>
+                            <span>步骤节点</span>
+                            <input type="hidden" value="1">
+                        </li>
+                        <li>
+                            <span>子流程节点</span>
+                            <input type="hidden" value="2">
+                        </li>
+                        <li>
+                            <span>柔性节点</span>
+                            <input type="hidden" value="3">
+                        </li>
+                    </ol>
+                </div>
+            </li>
+        </ul>
     </div>
     <div class="btnstorage">
-        <a href="javascript:;" style="background: #5ab65a">关闭</a>
-        <a href="javascript:;" style="background: #ff880a">保存</a>
+        <a href="javascript:;" class="closebtns" style="background: #5ab65a">关闭</a>
+        <a href="javascript:;"  style="background: #ff880a">保存</a>
     </div>
 </body>
 </html>
