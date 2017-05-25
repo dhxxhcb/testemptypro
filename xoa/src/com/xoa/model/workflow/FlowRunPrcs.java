@@ -68,6 +68,11 @@ public class FlowRunPrcs {
 	/** 工作天数换算方式(0-24小时为一天，1-按个人排班类型工作时长为一天) **/
 	private String workingdaysType;
 
+    /**
+     * 发起人姓名
+     */
+	private String userName;
+
 	/**
 	 * 创建作者:   张勇
 	 * 创建日期:   2017/5/25 14:04
@@ -347,5 +352,13 @@ public class FlowRunPrcs {
 
     public void setWorkingdaysType(String workingdaysType) {
         this.workingdaysType = workingdaysType == null ? null : workingdaysType.trim();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
