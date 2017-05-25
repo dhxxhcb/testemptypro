@@ -40,7 +40,6 @@ public class FlowRunController {
     @RequestMapping(value = "selectWork", produces = {"application/json;charset=UTF-8"})
     public @ResponseBody
     ToJson<FlowRunPrcs> selectObject(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
-                                 @RequestParam(value = "flag", required = false) boolean flag,
                                  @RequestParam(value = "page", required = false) Integer page,
                                  @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                  @RequestParam(value = "useFlag", required = false) boolean useFlag
@@ -68,7 +67,6 @@ public class FlowRunController {
     @RequestMapping(value = "selectEndWord", produces = {"application/json;charset=UTF-8"})
     public @ResponseBody
     ToJson<FlowRunPrcs> selectEnd(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
-                                 @RequestParam(value = "flag", required = false) boolean flag,
                                  @RequestParam(value = "page", required = false) Integer page,
                                  @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                  @RequestParam(value = "useFlag", required = false) boolean useFlag
