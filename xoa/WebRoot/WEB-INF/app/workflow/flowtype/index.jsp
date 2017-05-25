@@ -267,7 +267,7 @@
             <div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
         </div>
         <div class="head_rig">
-            <a href="../../flowSetting/index?flowId="+flowId  target="_blank">
+            <a href="../../flowSetting/index?type=add&flowId="+flowId  target="_blank">
 			<h1 style='background-image:url(../../img/work/flow/btn_new_nor_03.png) no-reapt;'>新建</h1>
             </a>
 		</div>
@@ -289,64 +289,9 @@
         </div>
 
         <div class="cont_rig">
-            <%--<div class="new_excell" id="new_excell1">--%>
-                <%--<div class="new_excell_main">--%>
-                    <%--<a class="set" set_id="undefined" title="编辑"><div class="new_excell_head"><span class="new_excell_name">&nbsp;潜在客户</span></div>--%>
-                        <%--<div class="new_excell_info"><div class="new_excell_info_main">--%>
-                            <%--<div style="float: left;width: 122px;">--%>
-                                <%--<img src="http://devapp.gsubo.com/ui/erp_img/zb.png" class="new_excell_pic">--%>
-                                <%--<ul class="new_excell_info_other">--%>
-                                    <%--<li><span class="new_excell_info_username">主表</span></li>--%>
-                                    <%--<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">表类型</span></li>--%>
-                                <%--</ul>--%>
-                            <%--</div>--%>
-                            <%--<div style="float: left;width: 122px; margin-left: 20px;">--%>
-                                <%--<img src="http://devapp.gsubo.com/file0/APPC/TYPE/1001.png" class="new_excell_pic">--%>
-                                <%--<ul class="new_excell_info_other" style="left: 205px;">--%>
-                                    <%--<li><span class="new_excell_info_username" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100px;display: inline-block;">CRM</span></li>--%>
-                                    <%--<li style="font-size: 12px;height: 16px;line-height: 16px;"><span class="new_excell_info_time" style="margin-left: 13px;color: #999;">表分类</span></li>--%>
-                                <%--</ul>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                            <%--<div style="position: absolute;bottom: 5px;left: 20px;"><div style="float: left;">--%>
-                                <%--<img src="" class="new_excell_info_img position_img" style="vertical-align: middle;">--%>
-                                <%--<span class="new_excell_info_username" style="font-size: 12px;margin-left: 5px;color: #999;">张明</span>--%>
-                            <%--</div>--%>
-                                <%--<div style="float: right;margin-left: 30px;">--%>
-                                    <%--<img src="/ui/erp_img/new_excell_info_time_pic.png" class="new_excell_info_img position_img" style="vertical-align: middle;">--%>
-                                    <%--<span class="new_excell_info_time" style="font-size: 12px;margin-left: 5px;color: #999;">2015-09-29</span>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                    <%--<div class="new_excell_footer">--%>
-                        <%--<span class="deldel">删除</span>--%>
-                        <%--<img src="/ui/erp_img/new_excell_info_img_shanchu.png" class="deldel_img" >--%>
-                        <%--<span class="footer_span_space">&nbsp;|&nbsp;</span>--%>
-                        <%--<span class="edit" >编辑</span>--%>
-                        <%--<img src="/ui/erp_img/new_excell_info_img_bianji.png" class="edit_img">--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-
-            <%--<div class="rig_every"></div>--%>
-            <%--<div class="rig_every"></div>--%>
-            <%--<div class="rig_every"></div>--%>
-            <%--<div class="rig_every"></div>--%>
-            <%--<div class="rig_every"></div>--%>
-            <%--<div class="rig_every"></div>--%>
         </div>
-
-
-
-
-
     </div>
-
-
-
     <div class="footer">
-
     </div>
 </div>
 </body>
@@ -461,7 +406,7 @@
         function bindClick() {
             $(".set").click(function () {
                var flowId= $(this).attr("flow_id");
-                window.open("../../flowSetting/index?flowId="+flowId);
+                window.open("../../flowSetting/index?type=edit&flowId="+flowId);
             })
 			 $(".deldel").click(function () {
                var formId= $(this).attr("formId");
