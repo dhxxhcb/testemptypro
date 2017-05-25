@@ -201,6 +201,9 @@
         <div class="item">
             <table class="table" cellspacing="0" id="table_form">
                 <caption>
+            <table class="table" cellspacing="0">
+                <caption style="position: relative">
+                    <a href="/flowSetting/processDesignTool" class="processDesigner" target="_blank">流程设计器</a>
                     <a href="javascript:void (0)" class="newbuilt">新建</a>
                     <a href="javascript:void (0)" class="delete_c">删除</a>
                 </caption>
@@ -337,7 +340,7 @@
 
                 <thead>
                 <tr>
-                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
+                    <th class="check"><input type="checkbox" id="checkAll">全选</th>
                     <th>权限类型</th>
                     <th>授权范围</th>
                     <th>管理范围</th>

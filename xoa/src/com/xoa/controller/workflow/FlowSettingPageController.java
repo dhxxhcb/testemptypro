@@ -23,5 +23,9 @@ public class FlowSettingPageController {
         model.addAttribute("flowId",flowId);
         return "app/workflow/flowsettting/index";
     }
+    @RequestMapping("/processDesignTool")
+    public String processDesignToolpage(){
+        return "app/workflow/flowsettting/processDesignTool";
+    }
 
 }
