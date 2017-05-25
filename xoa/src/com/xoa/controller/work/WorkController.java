@@ -9,11 +9,13 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.xoa.util.common.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xoa.model.users.Users;
@@ -165,4 +167,59 @@ public class WorkController {
 		
 		return "";
 	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/24 20:29
+	 * 方法介绍:   查询代办工作
+	 * 参数说明:
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "selectWork", produces = {"application/json;charset=UTF-8"})
+	public @ResponseBody
+	ToJson<FlowRunPrcs> selectObject(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
+									 @RequestParam(value = "page", required = false) Integer page,
+									 @RequestParam(value = "pageSize", required = false) Integer pageSize,
+									 @RequestParam(value = "useFlag", required = false) boolean useFlag
+	) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		Map<String, Object> maps = new HashMap<String, Object>();
+		if (StringUtils.checkNull(flowRunPrcs.getUserId())) {
+			String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+			maps.put("userId", userId);
+		}else {
+			maps.put("userId", flowRunPrcs.getUserId());
+		}
+		return flowRunPrcsService.selectObject(maps, page, pageSize, useFlag);
+	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/5/24 20:29
+	 * 方法介绍:   查询代办工作
+	 * 参数说明:
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "selectEndWord", produces = {"application/json;charset=UTF-8"})
+	public @ResponseBody
+	ToJson<FlowRunPrcs> selectEnd(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
+								  @RequestParam(value = "page", required = false) Integer page,
+								  @RequestParam(value = "pageSize", required = false) Integer pageSize,
+								  @RequestParam(value = "useFlag", required = false) boolean useFlag
+	) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		Map<String, Object> maps = new HashMap<String, Object>();
+		if (StringUtils.checkNull(flowRunPrcs.getUserId())) {
+			String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+			maps.put("userId", userId);
+		}else {
+			maps.put("userId", flowRunPrcs.getUserId());
+		}
+		return flowRunPrcsService.selectEnd(maps, page, pageSize, useFlag);
+	}
+
 }
