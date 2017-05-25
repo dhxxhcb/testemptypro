@@ -11,6 +11,7 @@ import com.xoa.service.department.DepartmentService;
 import com.xoa.service.users.UsersPrivService;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.DateFormat;
+import com.xoa.util.common.L;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.session.SessionUtils;
 import org.springframework.messaging.simp.user.UserSessionRegistry;
@@ -73,8 +74,9 @@ public class FlowFormTypeServiceImpl implements FlowFormTypeService {
 	}
 
 	@Override
-	public ToJson<TMacroCtrl> qureyCtrl(String controlId,String SYS_LIST_DEPT, String SYS_LIST_USER, String SYS_LIST_PRIV,HttpServletRequest request) {
+	public ToJson<TMacroCtrl> qureyCtrl(String controlId,String option,HttpServletRequest request) {
         Users  users= SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users());
+        String[] strArray = null;
 		ToJson<TMacroCtrl>  json=new ToJson<>();
 		TMacroCtrl   tM=new TMacroCtrl();
         Date  curDate   =   new   Date();//获取当前时间
@@ -87,18 +89,24 @@ public class FlowFormTypeServiceImpl implements FlowFormTypeService {
             tM.setSYS_USERPRIV(users.getUserPrivName());
             tM.setSYS_USERPRIVOTHER(users.getUserPrivName());
             tM.setSYS_USERNAME_DATE(users.getUserName()+ DateFormat.getStrDate(curDate));
-            if ("SYS_LIST_DEPT".equals(SYS_LIST_DEPT)) {
-                List<Department> deptList = departmentService.getDatagrid();
-                tM.setSYS_LIST_DEPT(deptList);
+            strArray= option.split(",");
+            for(int j = 0; j < strArray.length; j++){
+                L.a("ASASASASASA"+strArray[j]);
+                if ("SYS_LIST_DEPT".equals(strArray[j])) {
+                    List<Department> deptList = departmentService.getDatagrid();
+                    tM.setSYS_LIST_DEPT(deptList);
+                }
+                if("SYS_LIST_USER".equals(strArray[j])){
+                    List<Users> list=usersService.getAlluser(maps,1,5,false);
+                    tM.setSYS_LIST_USER(list);
+                }
+                if ("SYS_LIST_PRIV".equals(strArray[j])){
+                    List<UserPriv> list=usersPrivService.getAllPriv(maps,1,5,false);
+                    tM.setSYS_LIST_PRIV(list);
+                }
+
             }
-            if("SYS_LIST_USER".equals(SYS_LIST_USER)){
-                List<Users> list=usersService.getAlluser(maps,1,5,false);
-                tM.setSYS_LIST_USER(list);
-            }
-            if ("SYS_LIST_PRIV".equals(SYS_LIST_PRIV)){
-                List<UserPriv> list=usersPrivService.getAllPriv(maps,1,5,false);
-                tM.setSYS_LIST_PRIV(list);
-            }
+
             json.setFlag(0);
             json.setMsg("ok");
             json.setObject(tM);

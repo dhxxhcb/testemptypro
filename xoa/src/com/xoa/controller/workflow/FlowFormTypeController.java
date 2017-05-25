@@ -132,10 +132,10 @@ public class FlowFormTypeController {
 
 	@RequestMapping(value = "qureyCtrl",produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
-	public  ToJson<TMacroCtrl> qureyCtrl(String controlId,String SYS_LIST_DEPT, String SYS_LIST_USER, String SYS_LIST_PRIV,HttpServletRequest request){
+	public  ToJson<TMacroCtrl> qureyCtrl(String controlId,String option,HttpServletRequest request){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		return flowFormTypeService.qureyCtrl(controlId,SYS_LIST_DEPT,SYS_LIST_USER,SYS_LIST_PRIV,request);
+		return flowFormTypeService.qureyCtrl(controlId,option,request);
 	}
 
 
