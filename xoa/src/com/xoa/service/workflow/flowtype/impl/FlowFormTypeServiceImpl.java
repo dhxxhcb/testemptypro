@@ -80,7 +80,7 @@ public class FlowFormTypeServiceImpl implements FlowFormTypeService {
 		ToJson<TMacroCtrl>  json=new ToJson<TMacroCtrl>();
 		TMacroCtrl   tM=new TMacroCtrl();
         Date  curDate   =   new   Date();//获取当前时间
-        Map<String, Object> maps=new HashMap<>();
+        Map<String, Object> maps=new HashMap<String, Object>();
         if (tM.getControlId().equals(controlId)){
             tM.setSYS_USERID(users.getUserId());
             tM.setSYS_USERNAME(users.getUserName());
