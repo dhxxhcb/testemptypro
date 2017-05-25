@@ -21,7 +21,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 
 	@Override
 	public void save(FlowRunPrcs flowRunPrcs) {
-		flowRunPrcsMapper.insert(flowRunPrcs);
+		flowRunPrcsMapper.insertSelective(flowRunPrcs);
 	}
 
 	/**
