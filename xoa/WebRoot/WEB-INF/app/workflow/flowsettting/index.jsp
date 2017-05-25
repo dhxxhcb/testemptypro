@@ -15,8 +15,9 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/workflow/flowsetting/style.css">
-    <%--<link rel="stylesheet" href="../../css/base.css">--%>
+
 </head>
 <body>
 <div class="content clearfix">
@@ -25,12 +26,11 @@
     </div>
     <ul id="cont_list" class="cont_list">
         <li><a href="javascript:void(0)" class="btn_click btn_h btn"><img
-                src="../../img/workflow/flowsetting/icon_workprocess_03.png" alt="">流程主页</a>
+                src="../../img/workflow/flowsetting/icon_mainprocess_03.png" alt="">流程主页</a>
         </li>
         <li class="list1">
             <a href="javascript:void(0)" class="btn_click btn_h btn1">
-                <img
-                        src="../../img/workflow/flowsetting/icon_workprocess_03.png" alt="">设计流程<i
+                <img src="../../img/workflow/flowsetting/icon_process_leftbar_03.png" alt="">设计流程<i
                     class="icon_d"></i></a>
             <ul class="hide_list1 hide">
                 <li><a href="javascript:void(0)" class="btn_h btn_h_1"><i class="icon"></i>定义流程属性</a>
@@ -44,19 +44,19 @@
         </li>
         <li>
             <a href="javascript:void(0)" class="btn_click btn_h btn2">
-                <img src="../../img/workflow/flowsetting/icon_authoritymanagement_03.png" alt="">管理权限</a>
+                <img src="../../img/workflow/flowsetting/icon_management_03.png" alt="">管理权限</a>
         </li>
         <li><a href="javascript:void(0)" class="btn_click btn_h btn3"><img
                 src="../../img/workflow/flowsetting/icon_timedtask_03.png" alt="">定时任务</a>
         </li>
         <li><a href="javascript:void(0)" class="btn_click btn_h btn4"><img
-                src="../../img/workflow/flowsetting/icon_searchtemplate_03.png" alt="">配置查询模板</a>
+                src="../../img/workflow/flowsetting/icon_search_03.png" alt="">配置查询模板</a>
         </li>
         <li><a href="javascript:void(0)" class="btn_click btn_h btn5"><img
-                src="../../img/workflow/flowsetting/icon_layoutfiles_03.png" alt="">应用版式文件</a>
+                src="../../img/workflow/flowsetting/icon_article_03.png" alt="">应用版式文件</a>
         </li>
         <li><a href="javascript:void(0)" class="btn_click btn_h btn6"><img
-                src="../../img/workflow/flowsetting/icon_others_03.png" alt="">其他 <i class="icon_d"></i></a></li>
+                src="../../img/workflow/flowsetting/icon_more_03.png" alt="">其他 <i class="icon_d"></i></a></li>
     </ul>
 
     <div class="cont_r">
@@ -246,27 +246,22 @@
                 </tr>--%>
             </table>
         </div>
-
         <div class="item"></div>
         <div class="item"></div>
         <%--管理权限表格--%>
         <div class="item">
-            <table class="table" cellspacing="0">
-                <caption>
-                    <a href="javascript:void (0)" class="newbuilt">新建</a>
-                    <a href="javascript:void (0)" class="delete_c">删除</a>
-                </caption>
+            <table class="table" cellspacing="0" id="table_power">
 
-                <thead>
-                <tr>
-                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
-                    <th>权限类型</th>
-                    <th>授权范围</th>
-                    <th>管理范围</th>
-                    <th>操作</th>
-                </tr>
-
-                </thead>
+               <%-- <thead>
+                 <tr>
+                     <th class="check"><input type="checkbox" class="checkAll">全选</th>
+                     <th>权限类型</th>
+                     <th>授权范围</th>
+                     <th>管理范围</th>
+                     <th>操作</th>
+                 </tr>
+                 </thead>
+                <tbody>
                 <tr>
                     <td><input type="checkbox" class="one"></td>
                     <td class="manage">管理</td>
@@ -287,11 +282,14 @@
                         <a href="javascript:void(0)">删除</a>
                     </td>
                 </tr>
+                </tbody>--%>
+
             </table>
         </div>
+        <%--定时任务--%>
         <div class="item">
-            <table class="table" cellspacing="0">
-                <caption>
+            <table class="table" cellspacing="0" id="table_task">
+                <%--<caption>
                     <a href="javascript:void (0)" class="newbuilt">新建</a>
                     <a href="javascript:void (0)" class="delete_c">删除</a>
                 </caption>
@@ -325,9 +323,10 @@
                         <a href="javascript:void(0)">修改</a>
                         <a href="javascript:void(0)">删除</a>
                     </td>
-                </tr>
+                </tr>--%>
             </table>
         </div>
+        <%--配置查询模板--%>
         <div class="item">
             <table class="table" cellspacing="0">
                 <caption>
@@ -412,12 +411,13 @@
 
 </div>
 
+
 </body>
 <script src="../../js/jquery-1.9.1.js"></script>
 
 <script type="text/javascript">
     $(function () {
-        var $list = $('.cont_list li a');
+        var flowIdFromPage = '${flowId}';
         /*设计步骤流程*/
         $.ajax({
             type: "get",
@@ -445,30 +445,29 @@
         });
 
         /*定义流程属性查询*/
-        $.ajax({
-            type: "GET",
-            url: "<%=basePath%>flow/selectAllFlow",
-            dataType: "JSON",
-            data: {
-                flowId: ${flowId},
-            },
-            success: function (data) {
-                console.log(data)
-                if (data.flag) {
-                    $("#flowId").val(data.object.flowId);
-                    $("#projectName").val(data.object.flowName);
-                    $('#orderID').val(data.object.flowNo);
-                    //$('#deptName').find("option:selected").text(data.object.deptId)
-                    //$('#deptName option:selected').text(data.object.deptId);
+        $('.btn_h_1').click(function () {
+            $.ajax({
+                type: "GET",
+                url: "<%=basePath%>flow/selectAllFlow",
+                dataType: "JSON",
+                data: {
+                    flowId: ${flowId},
+                },
+                success: function (data) {
+                    if (data.flag) {
+                        $("#flowId").val(data.object.flowId);
+                        $("#projectName").val(data.object.flowName);
+                        $('#orderID').val(data.object.flowNo);
+                        $('#deptName').html('<option>' + data.object.deptId + '</option>')
+                        //$('#deptName').find("ooption:selected").text(data.object.deptId)
+                        //$('#deptName option:selected').text(data.object.deptId);
 //                    $('#deptName').find('option').eq(0).text()
 //                    console.log($('#deptName option:selected'))
-
-
+                    }
                 }
+            });
+        })
 
-            }
-
-        });
         $('.keepmsg').on('click', function () {
             var flowId = $("#flowId").val();
             alert(flowId);
@@ -483,9 +482,9 @@
                     flowType: '1',
                     formId: 117,
                     freeOther: '2',
-                    flowDoc:0,
-                    autoNum:$('#counteer').val(),
-                    autoLen:$('#figure').val(),
+                    flowDoc: 0,
+                    autoNum: $('#counteer').val(),
+                    autoLen: $('#figure').val(),
                 };
                 $.ajax({
                     type: 'POST',
@@ -493,7 +492,6 @@
                     dataType: 'json',
                     data: data,
                     success: function (data) {
-                        console.log(data)
                         if (data.flag) {
                             alert("保存成功");
                         } else {
@@ -516,45 +514,133 @@
                     formId: 117,
                     freeOther: '2'
                 };
-//                        ajax  补充完全
                 $.ajax({
                     type: "post",
                     url: "<%=basePath%>flow/updateFlow",
                     dataType: 'json',
                     data: data,
-                    success:function (data) {
-                    alert(data.flag);
+                    success: function (data) {
+                        alert(data.flag);
                     }
                 })
             }
         })
-
+        var $list = $('.cont_list li a');
         $list.each(function (index, item) {
-            $(item).click(function () {
-//                $("#cont_list li a").addClass('clickBack').siblings().removeClass("clickBack");
-//                e.preventDefault();
+            $(item).click(function (event) {
+
+                /* $(item).addClass('clickBack');
+                 event.preventDefault();*/
+
+
                 if (index == 1) $('.hide_list1').toggle();
                 $('.cont_r .item').eq(index).show().siblings().hide();
 
             })
         });
-        /*管理权限查询*/
-        $.ajax({
-            type:'get',
-            url:"",
-            dataType:"json",
-            success:function (data) {
-                console.log(data);
-
-            }
-        })
-        /*全选非全选*/
-        $('.checkAll').on('click', function () {
-            $('.one').prop('checked', $(this).prop('checked'));
+        /*点击绑定颜色*/
+        $('.btn_h').on('click', function () {
+            $('.btn_h').removeClass('clickBack');
+            $(this).addClass('clickBack');
         });
-        $('.one').click(function () {
-            $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
+        /*管理权限查询*/
+        var priv_type = ['管理', '监控', '查询', '编辑', '点评']
+        $(".btn2").click(function () {
+            var html = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
+                '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
+                '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
+                '</caption>' +
+                "<t><th><input type='checkbox' class='checkAll'>全选</th><th>权限类型</th><th>授权范围</th><th>管理范围</th><th>操作</th></t>";
+            $.ajax({
+                type: 'get',
+                url: "<%=basePath%>flowSetDatas/getFlowPrivList",
+                dataType: "json",
+                data: {
+                    flowId: flowIdFromPage
+                },
+                success: function (data) {
+                    var datas = data.datas;
+                    if (data.flag) {
+                        console.log(datas);
+                        for (var i = 0; i < datas.length; i++) {
+                            var type = (datas[i].privType) * 1;
+                            var typeStr = "未知类型";
+                            if (i >= 1 && i <= 5) {
+                                typeStr = priv_type[type - 1];
+                            }
+                            var u_d_r_Str = "";
+                            if (datas[i].userName) {
+                                u_d_r_Str += "用户:" + datas[i].userName + "</br>";
+                            }
+                            if (datas[i].roleName) {
+                                u_d_r_Str += "角色:" + datas[i].roleName + "</br>";
+                            }
+                            if (datas[i].deptName) {
+                                u_d_r_Str += "部门:" + datas[i].deptName + "</br>";
+                            }
+                            html += "<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + typeStr + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + u_d_r_Str + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + datas[i].privScopeName + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>";
+                        }
+                        $('#table_power').html(html);
+                        /*全选非全选*/
+                        $('.checkAll').on('click', function () {
+                            $('.one').prop('checked', $(this).prop('checked'));
+                        });
+                        $('.one').click(function () {
+                            $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
+                        })
+                    }
+                }
+            })
         })
+
+        /*定时任务*/
+        $('.btn3').click(function () {
+            var strData = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
+                '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
+                '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
+                '</caption>' +
+                "<t><th><input type='checkbox' class='checkAll'>全选</th><th>定时类型</th><th>流程发起人</th><th>发起日期</th><th>发起时间</th><th>操作</th></t>";
+            $.ajax({
+                type: 'get',
+                url: '<%=basePath%>flowSetDatas/getFlowTimerList',
+                dataType: 'json',
+                data: {
+                    flowId: flowIdFromPage
+                },
+                success: function (data) {
+                    var data_d = data.datas;
+                    if (data.flag) {
+                        for (var i = 0; i < data_d.length; i++) {
+                            console.log(data_d[i])
+                            strData += "<tbody>"+"<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data_d[i].typeName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].userName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].remindDate + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].lastTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>"+"</tbody>";
+                        }
+                        $('#table_task').html(strData);
+
+                    }
+                }
+            })
+        })
+        /*配置查询模板*/
+        $('.btn4').click(function () {
+         var html = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
+             '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
+             '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
+             '</caption>' +
+             "<t><th><input type='checkbox' class='checkAll'>全选</th><th>定时类型</th><th>流程发起人</th><th>发起日期</th><th>发起时间</th><th>操作</th></t>";
+         $.ajax({
+             type:'get',
+             url:'',
+             dataType:'json',
+             data:{
+                 flowId:flowIdFromPage
+             },
+             success:function (data) {
+                 
+                 
+             }
+         })
+        })
+
     })
 
 

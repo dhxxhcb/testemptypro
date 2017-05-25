@@ -142,17 +142,20 @@ html,body,.content{
 .cont_r .table {
     width: 95%;
     font-size: 16px;
-    border: 1px solid #dcdfe0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    border: 1px solid #e5e5e5;
+    margin: 14px 0 0 26px;
 
 }
 
 .cont_r .table caption {
     text-align: right;
     margin-bottom: 8px;
+}
+.priv_t{
+    float: left;
+    font-weight: 900;
+    color: #262f34;
+    font-size: 18px;
 }
 .cont_r .table .newbuilt{
     display: inline-block;
@@ -164,7 +167,7 @@ html,body,.content{
     text-align: center;
     color: #fff;
     cursor: pointer;
-    background: #c7e1ff;
+    background: #4b8cf7;
 }
 .cont_r .table .delete_c{
     display: inline-block;
@@ -181,8 +184,12 @@ html,body,.content{
 
 .cont_r .table th,td {
     text-align: center;
-    border: 1px solid #dcdfe0;
+    /*border: 1px solid #e5e5e5;*/
 }
+.cont_r .table td{
+    border-top: 1px solid #e5e5e5;
+}
+
 .cont_r .table tr{
     background-color: #fff;
     font-size: 15px;
@@ -190,16 +197,15 @@ html,body,.content{
     line-height: 40px;
     color: #2F5C8F;
     font-weight: bold;
+    /*border: 1px solid #e5e5e5;*/
 }
 
 .cont_r .con_flow{
     border-left: 1px solid #919191;
 }
-
 .check {
     padding: 0 20px;
 }
-
 .management {
     text-align: left;
     padding-left: 10px;
@@ -285,12 +291,14 @@ html,body,.content{
 .sex_r input[type='radio']{
     text-align: right;
     padding-right: 50px;
-    width: 8px;
-    height: 8px
+    width: 16px;
+    height: 16px;
+    vertical-align: -3px;
+
 }
  .con_form .sex_r{
     padding-right: 30px;
-    width: 500px;
+    width: 517px;
 }
  .con_form .sex_r .sex_save{
      padding-right: 211px;
