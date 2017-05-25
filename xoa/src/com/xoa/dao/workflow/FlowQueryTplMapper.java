@@ -4,6 +4,7 @@ import com.xoa.model.workflow.FlowQueryTpl;
 import com.xoa.model.workflow.FlowQueryTplExample;
 import com.xoa.model.workflow.FlowQueryTplWithBLOBs;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface FlowQueryTplMapper {
@@ -21,6 +22,8 @@ public interface FlowQueryTplMapper {
 			FlowQueryTplExample example);
 
 	List<FlowQueryTpl> selectByExample(FlowQueryTplExample example);
+
+	List<FlowQueryTpl> queryByFlowId(Integer flowId);
 
 	FlowQueryTplWithBLOBs selectByPrimaryKey(Integer seqId);
 

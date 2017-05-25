@@ -1,6 +1,6 @@
 package com.xoa.controller.workflow;
 
-import com.xoa.service.workflow.flowsetting.FlowPrivService;
+import com.xoa.service.workflow.flowsetting.FlowSettingService;
 import com.xoa.util.common.wrapper.BaseWrapper;
 import com.xoa.util.common.wrapper.BaseWrappers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by 韩东堂 on 2017/5/20.
  */
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/flowSetDatas")
 public class FlowSettingController {
     @Autowired
-    FlowPrivService privService;
+    FlowSettingService privService;
 
     /**
      * Created by:   pfl
@@ -98,13 +100,82 @@ public class FlowSettingController {
     }
 
 
-
-
     @RequestMapping("/newFlowTimer")
     public BaseWrapper newFlowTimer(Integer flowId,Integer type,String date,@RequestParam("user[]")Integer user[],@RequestParam("dept[]")Integer dept[],@RequestParam("role[]")Integer role[]){
         return privService.newFlowTimer(flowId,type,date,user,dept,role);
     }
 
+    @RequestMapping("/updateFlowTimer")
+    public BaseWrapper updateFlowTimer(Integer timerId,Integer flowId,Integer type,String date,@RequestParam("user[]")Integer user[],@RequestParam("dept[]")Integer dept[],@RequestParam("role[]")Integer role[]){
+        return privService.updateFlowTimer(timerId,flowId,type,date,user,dept,role);
+    }
 
 
+    @RequestMapping("/deleteFlowTimer")
+    public BaseWrapper deleteFlowTimer(Integer timerId){
+        return privService.deleteFlowTimer(timerId);
+    }
+
+    @RequestMapping("/getFlowQueryTplList")
+    public BaseWrappers getFlowQueryTpl(Integer flowId){
+        return  privService.getFlowQueryTpl(flowId);
+    }
+
+
+    /**
+     * Created by:   pfl
+     * date:   2017/5/24 19:27
+     * description:   配置查询模板接口 添加（根据流程id）
+     * @param request  从session 中获取 用户ID
+     * @param tplName 模板名称
+     * @param flowId 流程ID
+     * @param viewFields 扩展显示字段
+     * @param groupFields 分组字段
+     * @param dataConditions 表单数据过滤条件
+     * @param flowConditions 流程过滤条件
+     * @param dataXml 查询模板内容
+     * @param condFormula 查询条件公式
+     * @return
+     */
+   @RequestMapping("/newFlowQuertTpl")
+    public BaseWrapper newFlowQuertTpl(HttpServletRequest request,String tplName,Integer flowId,String viewFields,
+       String groupFields,String dataConditions,String flowConditions,String dataXml,String condFormula
+       ){
+        return privService.newFlowQuertIpl(request,tplName,flowId,viewFields,groupFields,dataConditions,flowConditions,dataXml,condFormula);
+   }
+
+
+    /**
+     * Created by:   pfl
+     * date:   2017/5/24 19:27
+     * description:   配置查询模板接口 更新
+     * @param tplId 要修改的模板Id
+     * @param request  从session 中获取 用户ID
+     * @param tplName 模板名称
+     * @param flowId 流程ID
+     * @param viewFields 扩展显示字段
+     * @param groupFields 分组字段
+     * @param dataConditions 表单数据过滤条件
+     * @param flowConditions 流程过滤条件
+     * @param dataXml 查询模板内容
+     * @param condFormula 查询条件公式
+     * @return
+     */
+    @RequestMapping("/updateFlowQuertTpl")
+    public BaseWrapper updateFlowQuertTpl(Integer tplId,HttpServletRequest request,String tplName,Integer flowId,String viewFields,
+                                       String groupFields,String dataConditions,String flowConditions,String dataXml,String condFormula
+    ){
+        return privService.updateFlowQuertTpl(tplId,request,tplName,flowId,viewFields,groupFields,dataConditions,flowConditions,dataXml,condFormula);
+    }
+
+    @RequestMapping("/queryFlowQuertTplById")
+    public BaseWrapper queryFlowQuertTplById(Integer tplId
+    ){
+        return privService.queryFlowQuertTplById(tplId);
+    }
+    @RequestMapping("/deleteFlowQuertTpl")
+    public BaseWrapper deleteFlowQuertTpl(Integer tplId
+    ){
+        return privService.deleteFlowQuertTpl(tplId);
+    }
 }

@@ -346,5 +346,7 @@
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where SEQ_ID = #{seqId,jdbcType=INTEGER}
   </update>
-
+  <select id="queryByFlowId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+     SELECT * FROM flow_query_tpl WHERE flow_query_tpl.FLOW_ID=#{flowId}
+  </select>
 </mapper>
