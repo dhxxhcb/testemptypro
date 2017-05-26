@@ -386,7 +386,7 @@
                 /* skin: 'layui-layer-rim', //加上边框 */
                 offset: '80px',
                 closeBtn: 0,
-              
+                title:'NO. 838 督察督办(2017-05-26 10:05:34)',
                 content: '<div class="modal-body" style="max-height: 274px;">'+
                 '<div class="work-prcs-title" id="op_user_show_info" style="margin-bottom: 10px;font-weight: normal;border-radius: 4px;-webkit-border-radius: 4px;">'+
                 '当前步骤为第<font color="red">1</font>步[人力资源部拟定]<font color="red"><div self_type="self" style="display:inline;">系统管理员</div>'+
