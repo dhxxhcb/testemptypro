@@ -187,7 +187,7 @@
 	</select>
 	<select id="getUserAndDept" parameterType="java.lang.Integer"
 		resultType="com.xoa.model.users.Users">
-		select u.UID,u.USER_ID as userId,u.USER_NAME as
+		select u.UID,u.USER_ID as userId,u.USER_NAME as name,u.USER_NAME as
 		userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,
 		u.DEPT_ID,u.SEX,u.AVATAR, d.DEPT_NAME as deptName from user u
 		,department d
