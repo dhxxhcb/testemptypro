@@ -27,17 +27,10 @@
         </div>
         <div class="collect">
             <div id="incum" class="divUP">
-                <span class="spanUP liUp">增加菜单主分类</span>
+                <span class="spanUP liUp" id="Addspan">增加菜单主分类</span>
                 <div id="ulList">
                     <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
-                        <%--<tr>
-                            <td width="55%"><span class="margspan">01</span><span>个人事务</span></td>
-                            <td width="44.5%">
-                                <a href="javascript:;">编辑</a>
-                                <a href="javascript:;">下一级</a>
-                                <a href="javascript:;">删除</a>
-                            </td>
-                        </tr>--%>
+
                     </table>
                 </div>
                 <div><span class="spanUP liUp">错误子菜单列表</span></div>
@@ -47,29 +40,41 @@
         </div>
     </div>
     <div class="right">
-        <div class="addClass">
+        <div class="addClass" style="display: block;">
             <div class="header">
                 <span class="divP">增加菜单主分类</span>
             </div>
             <div class="tab">
-                <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
+                <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff;width: 55%;">
                     <tr>
                         <td>主菜单分类代码：</td>
                         <td>
-                            <input type="text" style="width: 80px;" name="unitName" class="inputTd" value="" />
+                            <input type="text" style="width: 80px;" name="id" class="inputTd" value="" />
                             <span>代码请尽量间隔开，2位数字</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="blue_text">菜单名称：(简体中文)：</td>
+                        <td class="blue_text">菜单名称：(简体中文)</td>
                         <td>
-                            <input type="text" name="telNo" class="inputTd" value=""/>
+                            <input type="text" name="name" class="inputTd" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">菜单名称：(繁体中文)</td>
+                        <td>
+                            <input type="text" name="name1" class="inputTd" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">菜单名称：(English)</td>
+                        <td>
+                            <input type="text" name="name2" class="inputTd" value=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">图片名：</td>
                         <td>
-                            <input type="text" name="faxNo" class="inputTd" value=""/>
+                            <input type="text" name="img" class="inputTd" value=""/>
                         </td>
                     </tr>
                     <tr>
@@ -127,14 +132,14 @@
                     <tr>
                         <td colspan="2">个人事务：</td>
                     </tr>
-                    <tr>
+                    <tr class="childMenu">
                         <td colspan="2" class="blue_text">
                             <div class="childBtn">
                                 <input type="button" name="childBtn" id="childBtn" value="增加子菜单项" />
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <%--<tr>
                         <td width="40%"><span class="margspan">01</span><span>电子邮件</span></td>
                         <td width="59.5%">
                             <a href="javascript:;">编辑</a>
@@ -142,7 +147,7 @@
                             <a href="javascript:;">添加权限</a>
                             <a href="javascript:;">删除权限</a>
                         </td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                         <td colspan="2" class="blue_text">
                             <div class="childrenBtn">

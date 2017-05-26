@@ -82,7 +82,12 @@ ul{
 	border-right: 1px solid #c0c0c0;
 }
 .left table tr td span.margspan{
-	margin-left: 20px;
+	margin-right: 5px;
+}
+.one_logo{
+	display: inline-block;
+	width: 18px;
+	line-height: 20px;
 	margin-right: 5px;
 }
 .left table tr td a:first-of-type{
