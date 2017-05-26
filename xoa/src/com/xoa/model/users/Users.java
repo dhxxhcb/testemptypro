@@ -317,7 +317,16 @@ public class Users {
    
 	private  SysPara para; 
 	
-	
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getShowRss() {
 		return showRss;
 	}
