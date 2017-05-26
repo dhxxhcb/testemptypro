@@ -107,4 +107,17 @@ public class MenuServiceImpl implements MenuService {
         sysMenuMapper.updateSysMenu(sysMenu);
     }
 
+    /**
+     * @param sysMenu
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 13:03
+     * @函数介绍: 添加一级菜单
+     * @参数说明: @param paramname paramintroduce
+     * @return: void
+     */
+    @Override
+    public void addSysMenu(SysMenu sysMenu) {
+        sysMenuMapper.addSysMenu(sysMenu);
+    }
+
 }

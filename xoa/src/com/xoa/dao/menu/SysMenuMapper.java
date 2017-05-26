@@ -26,4 +26,6 @@ public interface SysMenuMapper {
 
 
     void updateSysMenu(SysMenu sysMenu);
+
+    void addSysMenu(SysMenu sysMenu);
 }

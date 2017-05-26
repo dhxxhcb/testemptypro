@@ -196,4 +196,38 @@ public class MenuController {
         }
     }
 
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/26 13:01
+    *@函数介绍:  添加主菜单(由于主菜单和其它子菜单对应不同的表，所以添加时分开)
+    *@参数说明:  @param sysMenu
+    *@return:   String
+    **/
+    @RequestMapping(value = "/addSysMenu", produces = {"application/json;charset=UTF-8"})
+    public String addSysMenu(SysMenu sysMenu, HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        //菜单代码，菜单的中、英、繁体名不能为null才可以修改。
+        if (sysMenu != null && sysMenu.getId() != null && sysMenu.getName() != null
+                && sysMenu.getName1() != null && sysMenu.getName2() != null && sysMenu.getImg() != null) {
+
+            //数据库要求字段不为空，但是前端没传入，这里设置为“”
+            sysMenu.setName3("");
+            sysMenu.setName4("");
+            sysMenu.setName5("");
+            sysMenu.setExt("");
+
+            //菜单id长度为2
+            if (sysMenu.getId().length() == 2) {
+                try {
+                    menuService.addSysMenu(sysMenu);
+                    return "redirect:showMenu";
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
 }
