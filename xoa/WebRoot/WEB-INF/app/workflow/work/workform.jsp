@@ -289,6 +289,7 @@
         workForm.init({
                 formhtmlurl:'../../workflow/work/workfastAdd',//URL
                 flowId:formid,
+                formid:formid,
                 target:$('.cont_form')},
             function (data) {
               /* if(data.flag==true){
