@@ -499,12 +499,12 @@
             </ul>
 
             <div class="setUpThe" id="canWriteField">
-                <span class="conditionsSet"></span>
+                <span class="canWriteField"></span>
                 <label>可写字段</label>
                 <b class="notstart"></b>
             </div>
             <div class="setUpThe">
-                <span class="conditionsSet"></span>
+                <span class="confidentialFields"></span>
                 <label>保密字段</label>
                 <b class="notstart"></b>
             </div>
@@ -522,7 +522,7 @@
                 </li>
             </ul>
             <div class="setUpThe">
-                <span class="conditionsSet"></span>
+                <span class="requiredFields"></span>
                 <label>必填字段</label>
                 <b class="notstart"></b>
             </div>
@@ -605,12 +605,12 @@
                 </li>
             </ul>
             <div class="setUpThe" id="theTrigger">
-                <span class="dealWithTime"></span>
+                <span class="theTrigger"></span>
                 <label>触发器</label>
                 <b class="notstart"></b>
             </div>
             <div class="setUpThe">
-                <span class="dealWithTime"></span>
+                <span class="remindSet"></span>
                 <label>提醒设置</label>
                 <b class="notstart"></b>
             </div>
@@ -676,7 +676,7 @@
             </ul>
 
             <div class="setUpThe">
-                <span class="dealWithTime"></span>
+                <span class="groupOfSingleSet"></span>
                 <label>呈批单设置</label>
                 <b class="notstart"></b>
             </div>
