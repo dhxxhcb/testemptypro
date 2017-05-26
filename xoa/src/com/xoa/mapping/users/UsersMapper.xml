@@ -170,9 +170,10 @@
 	</select>	
 	<select id="getBySearch" parameterType="Map"
 		resultType="com.xoa.model.users.Users">
-		select u.USER_NAME as
-		userName,u.USER_PRIV_NAME as userPrivName,
-		 d.DEPT_NAME as deptName ,u.UID ,u.AVATAR ,u.USER_ID as userId from user u
+		select u.USER_NAME as userName,
+		u.USER_NAME as name ,u.USER_PRIV_NAME as userPrivName,
+		 d.DEPT_NAME as deptName ,u.UID ,u.AVATAR ,u.USER_ID as userId 
+		 from user u
 		,department d  where  u.DEPT_ID= d.DEPT_ID  
         <if test="userName != null and userName !=''">
 			and  u.USER_NAME like CONCAT(CONCAT('%', #{userName}), '%')
@@ -213,7 +214,8 @@
 	<select id="getAlluser" resultType="java.util.Map"
 		parameterType="com.xoa.model.users.Users">
 		select
-		UID,USER_ID,USER_NAME,BYNAME,USER_PRIV,USER_PRIV_NAME,DEPT_ID,SEX,AVATAR
+		UID as uid,USER_ID as userId,USER_NAME as userName,BYNAME as byName,USER_PRIV as userPriv,
+		USER_PRIV_NAME as userPrivName,DEPT_ID as deptId,SEX as sex,AVATAR as avatar,USER_NAME as name
 		from user
 		where 1=1
 		<if test="userId != null and userId !=''">
