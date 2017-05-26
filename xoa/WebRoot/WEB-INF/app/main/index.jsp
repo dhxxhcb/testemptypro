@@ -259,7 +259,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 "system_user_priv":"common/roleManagement",
 				"system_status_text":"sys/statusBar",
 				"system_interface":"sys/interfaceSettings",
-				"system_reg_view":"sys/sysInfo"
+				"system_reg_view":"sys/sysInfo",
+				"system_menu":"sys/menuSetting"
 			}
 			
 			$('.cont_nav').on('click','li',function(){
