@@ -72,4 +72,6 @@ public interface MenuService {
     void addFunctionMenu(SysFunction sysFunction);
 
     void editSysFunction(SysFunction sysFunction);
+
+    List<SysFunction> findChildMenu(String id);
 }

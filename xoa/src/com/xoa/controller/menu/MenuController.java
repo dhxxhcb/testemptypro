@@ -240,8 +240,8 @@ public class MenuController {
      **/
     @RequestMapping(value = "/deleteSysMenu", produces = {"application/json;charset=UTF-8"})
     public String deleteSysMenu(String id, HttpServletRequest request) {
-      /*  ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));*/
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         //id不为空，去除空格，id长度大于等于2
         if (id != null && id.trim().length() >= 2) {
             try {
@@ -265,8 +265,8 @@ public class MenuController {
     @ResponseBody
     @RequestMapping(value = "/addFunction", produces = {"application/json;charset=UTF-8"})
     public ToJson<SysFunction> addFunctionMenu(SysFunction sysFunction, HttpServletRequest request, String parentId) {
-       /* ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));*/
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         //localhost:8081/addFunction?fid=343&id=76&name=myname&parentId=1090&url=myurl
         //ext是 国际版多语言菜单名称，先用“”，留好接口
         sysFunction.setExt("");
@@ -326,6 +326,37 @@ public class MenuController {
 
         }
         return json;
+
+    }
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/26 16:53
+    *@函数介绍: 查询2/3级菜单
+    *@参数说明:  @param id 菜单id
+    *@return:   Json
+    **/
+    @ResponseBody
+    @RequestMapping(value = "/findChildMenu", produces = {"application/json;charset=UTF-8"})
+    public ToJson<SysFunction> findChildMenu(String id, HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<SysFunction> json = new ToJson<SysFunction>(0, null);
+
+
+        List<SysFunction> menuList = menuService.findChildMenu(id);
+        String msg;
+        if (menuList.size() > 0) {
+            flag = 0;
+            msg = ok;
+        } else {
+            flag = 1;
+            msg = err;
+        }
+        json.setObj(menuList);
+
+        return json;
+
 
     }
 }
