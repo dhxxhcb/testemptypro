@@ -174,7 +174,7 @@ public class FlowSettingController {
         return privService.queryFlowQuertTplById(tplId);
     }
     @RequestMapping("/deleteFlowQuertTpl")
-    public BaseWrapper deleteFlowQuertTpl(Integer tplId
+    public BaseWrapper deleteFlowQuertTpl(@RequestParam("tplId") Integer tplId[]
     ){
         return privService.deleteFlowQuertTpl(tplId);
     }
