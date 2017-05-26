@@ -33,12 +33,12 @@
 .step{
 	    color: #4b4b4b;
     line-height: 45px;
-    margin-left: 5px;
+    margin-left: 13px;
     font-size: 10pt;
 }
-select{
-	margin-top: 9px;
-    margin-left: 17px;
+.opt{
+	margin-top: 10px !important;
+    margin-left: 17px !important;
     color: #205f82;
     width: 62px;
     height: 28px;
@@ -132,9 +132,9 @@ select{
 .left_h1{
 	    margin-left: 5px;
 }
-select{
+/*select{
 	margin-top: 10px !important;
-}
+}*/
 /*注意*/
 .rig_h1{
 	width: 100%;
