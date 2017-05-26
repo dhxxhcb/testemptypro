@@ -101,6 +101,7 @@ var workForm = {
     },
     buildHTML:function(cb){
         var that = this;
+        layer.load();
         $.ajax({
             type: "get",
             url: that.option.formhtmlurl,
@@ -112,6 +113,7 @@ var workForm = {
                // that.option.target.html(res.object.printModel);
                 that.option.target.html(formHtml.printModel);
                 that.render();
+                layer.closeAll();
                 if(cb){
                    return cb(res);
                 }
