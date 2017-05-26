@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javax.annotation.Resource;
 import javax.swing.*;
 
+import com.alibaba.fastjson.JSONWriter;
 import com.xoa.model.email.EmailBoxModel;
 import com.xoa.model.unitmanagement.UnitManage;
 import com.xoa.model.users.Users;
@@ -76,8 +77,8 @@ public class Ctest {
 
 		Map<String,Object> maps = new HashMap<String,Object>();
 		maps.put("userId","admin");
-		ToJson<FlowRunPrcs> toJson = flowRunPrcsService.selectHang(maps,1,5,false);
-		System.out.println(toJson.isFlag());
+		ToJson<FlowRunPrcs> toJson = flowRunPrcsService.selectObject(maps,1,5,false);
+		System.out.println(JSON.toJSONStringWithDateFormat(toJson.getObj(),"yyyy-MM-dd HH:mm:ss"));
 
 //		4516
 //		10434

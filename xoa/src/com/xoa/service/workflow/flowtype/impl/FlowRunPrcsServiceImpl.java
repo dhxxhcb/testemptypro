@@ -2,6 +2,7 @@ package com.xoa.service.workflow.flowtype.impl;
 
 import javax.annotation.Resource;
 
+import com.xoa.dao.workflow.FlowTypeModelMapper;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
@@ -23,6 +24,9 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 
 	@Resource
 	private UsersService usersService;
+
+	@Resource
+	private FlowTypeModelMapper flowTypeModelMapper;
 
 	@Override
 	public void save(FlowRunPrcs flowRunPrcs) {
@@ -50,14 +54,20 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		List<FlowRunPrcs> returnList = new ArrayList<FlowRunPrcs>();
 		int len = list.size();
 		if(len>0){
+			long start =  System.currentTimeMillis();
 			for (FlowRunPrcs flowRunPrcs : list) {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
+				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
+				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
 				returnList.add(flowRunPrcs);
 			}
+			long end = System.currentTimeMillis();
 			toJson.setFlag(0);
 			toJson.setMsg("ok");
 			toJson.setTotleNum(pageParams.getTotal());
 			toJson.setObj(returnList);
+			System.out.println("查询时长："+(end-start));
+
 		}else{
 			toJson.setFlag(1);
 			toJson.setMsg("error");
@@ -88,6 +98,8 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		if(len>0){
 			for (FlowRunPrcs flowRunPrcs : list) {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
+				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
+				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
 				returnList.add(flowRunPrcs);
 			}
 			toJson.setFlag(0);
@@ -124,6 +136,8 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		if(len>0){
 			for (FlowRunPrcs flowRunPrcs : list) {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
+				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
+				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
 				returnList.add(flowRunPrcs);
 			}
 			toJson.setFlag(0);
@@ -159,6 +173,8 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		if(len>0){
 			for (FlowRunPrcs flowRunPrcs : list) {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
+				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
+				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
 				returnList.add(flowRunPrcs);
 			}
 			toJson.setFlag(0);

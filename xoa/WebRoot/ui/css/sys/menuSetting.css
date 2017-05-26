@@ -81,11 +81,15 @@ ul{
 	padding: 5px;
 	border-right: 1px solid #c0c0c0;
 }
-.left table tr td span{
+.left table tr td span.margspan{
 	margin-left: 20px;
+	margin-right: 5px;
 }
 .left table tr td a:first-of-type{
 	margin-left: 8px;
+}
+.left table tr td a{
+	margin-right: 8px;
 }
 .content .right{
 	float: left;

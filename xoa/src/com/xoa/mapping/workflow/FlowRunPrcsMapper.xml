@@ -60,12 +60,6 @@
             <result column="FORCE_OVER" javaType="string" property="forceOver" />
         </association>
 
-        <!--&lt;!&ndash; 一对一关联 &ndash;&gt;-->
-        <!--<association property="flowTypeModel" column="FLOW_ID" javaType="com.xoa.model.workflow.FlowTypeModel" >-->
-            <!--<id column="FLOW_ID" property="flowId" javaType="java.lang.Integer" />-->
-            <!--<result column="FLOW_NAME" property="flowName" javaType="java.lang.String" />-->
-        <!--</association>-->
-
     </resultMap>
     <sql id="Base_Column_List">
     ID, RUN_ID, PRCS_ID, USER_ID, PRCS_TIME, DELIVER_TIME, PRCS_FLAG, FLOW_PRCS, OP_FLAG, 
@@ -514,7 +508,6 @@
     FROM
     FLOW_RUN_PRCS frp
     INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
-    LEFT  JOIN  FLOW_TYPE ft on fr.FLOW_ID = ft.FLOW_ID
     WHERE
     frp.PRCS_FLAG IN ('1', '2')
     AND frp.CHILD_RUN ='0'
