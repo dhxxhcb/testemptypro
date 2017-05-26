@@ -367,6 +367,7 @@ public class MenuController {
      * @参数说明: @param String
      * @return: json
      **/
+    @ResponseBody
     @RequestMapping(value = "/getTheFirstMenu", produces = {"application/json;charset=UTF-8"})
     public ToJson<SysMenu> getTheFirstMenu(String id, HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
