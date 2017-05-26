@@ -49,9 +49,17 @@ var workForm = {
             target = $("body");
         }
         target.find("input").each(function(){
-            $(this).addClass("form_item");
-            $(this).attr("data-type",$(this).attr("type"));
-            $(this).attr("id",$(this).attr("name"));
+            var _this = $(this);
+           // console.log(_this.attr("class").indexOf('AUTO'));
+            console.log(_this.attr("class") &&  _this.attr("class").indexOf('AUTO') > -1);
+            if(_this.attr("class") &&  _this.attr("class").indexOf('AUTO') > -1){
+                _this.attr("data-type","macros");
+            }else{
+                _this.attr("data-type",$(this).attr("type"));
+            }
+            _this.addClass("form_item");
+            _this.attr("id",$(this).attr("name"));
+
         });
         target.find("textarea").each(function(){
             $(this).addClass("form_item");
