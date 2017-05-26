@@ -30,4 +30,6 @@ public interface SysMenuMapper {
     void addSysMenu(SysMenu sysMenu);
 
     void deleteSysMenu(String id);
+
+    List<SysMenu> getTheFirstMenu(String id);
 }

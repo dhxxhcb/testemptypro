@@ -159,6 +159,13 @@ public class MenuServiceImpl implements MenuService {
         sysFunctionMapper.editSysFunction(sysFunction);
     }
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 19:37
+     * @函数介绍: 查询子菜单
+     * @参数说明: @param id
+     * @return: List<SysFunction></SysFunction>
+     **/
     @Override
     public List<SysFunction> findChildMenu(String id) {
         List<SysFunction> list = null;
@@ -210,5 +217,21 @@ public class MenuServiceImpl implements MenuService {
             return list;
         }
 
+    }
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 19:37
+     * @函数介绍: 根据id查一级菜单
+     * @参数说明: @param Stirng
+     * @return: List<SysMenu></SysMenu>
+     **/
+    @Override
+    public List<SysMenu> getTheFirstMenu(String id) {
+
+        if (id != null) {
+            List<SysMenu> list = sysMenuMapper.getTheFirstMenu(id);
+            return list;
+        }
+        return null;
     }
 }

@@ -330,12 +330,12 @@ public class MenuController {
     }
 
     /**
-    *@创建作者:  韩成冰
-    *@创建日期:  2017/5/26 16:53
-    *@函数介绍: 查询2/3级菜单
-    *@参数说明:  @param id 菜单id
-    *@return:   Json
-    **/
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 16:53
+     * @函数介绍: 查询2/3级菜单
+     * @参数说明: @param id 菜单id
+     * @return: Json
+     **/
     @ResponseBody
     @RequestMapping(value = "/findChildMenu", produces = {"application/json;charset=UTF-8"})
     public ToJson<SysFunction> findChildMenu(String id, HttpServletRequest request) {
@@ -357,6 +357,28 @@ public class MenuController {
 
         return json;
 
+
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 19:36
+     * @函数介绍: 根据id查一级菜单
+     * @参数说明: @param String
+     * @return: json
+     **/
+    @RequestMapping(value = "/getTheFirstMenu", produces = {"application/json;charset=UTF-8"})
+    public ToJson<SysMenu> getTheFirstMenu(String id, HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        List<SysMenu> list = menuService.getTheFirstMenu(id);
+        ToJson<SysMenu> json = new ToJson<SysMenu>(0, null);
+
+
+        if (list != null & list.size() == 1) {
+            json.setObject(list.get(0));
+        }
+        return json;
 
     }
 }

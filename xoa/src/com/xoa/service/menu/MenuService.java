@@ -54,24 +54,47 @@ public interface MenuService {
     void addSysMenu(SysMenu sysMenu);
 
     /**
-    *@创建作者:  韩成冰
-    *@创建日期:  2017/5/26 13:16
-    *@函数介绍:  删除菜单
-    *@参数说明:  @param paramname paramintroduce
-    *@return:   void
-    **/
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 13:16
+     * @函数介绍: 删除菜单
+     * @参数说明: @param paramname paramintroduce
+     * @return: void
+     **/
     void deleteSysMenu(String id);
 
     /**
-    *@创建作者:  韩成冰
-    *@创建日期:  2017/5/26 13:59
-    *@函数介绍:  添加二级菜单
-    *@参数说明:  @param SysFunctioni
-    *@return:   void
-    **/
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 13:59
+     * @函数介绍: 添加二级菜单
+     * @参数说明: @param SysFunctioni
+     * @return: void
+     **/
     void addFunctionMenu(SysFunction sysFunction);
 
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/26 19:38
+    *@函数介绍:  编辑一级菜单
+    *@参数说明:  @param SysFunction
+    *@return:   void
+    **/
     void editSysFunction(SysFunction sysFunction);
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 19:37
+     * @函数介绍: 查询子菜单
+     * @参数说明: @param id
+     * @return: List<SysFunction></SysFunction>
+     **/
     List<SysFunction> findChildMenu(String id);
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 19:37
+     * @函数介绍: 根据id查一级菜单
+     * @参数说明: @param Stirng
+     * @return: List<SysMenu></SysMenu>
+     **/
+    List<SysMenu> getTheFirstMenu(String id);
 }

@@ -65,5 +65,9 @@
         delete from sys_menu
          where MENU_ID = #{id,jdbcType=VARCHAR}
     </delete>
+    <select id="getTheFirstMenu" parameterType="java.lang.String" resultMap="menuResultMap">
+        select MENU_ID, MENU_NAME, MENU_NAME1, MENU_NAME2, MENU_NAME3, MENU_NAME4,
+          MENU_NAME5, MENU_EXT, IMAGE  from sys_menu s WHERE s.MENU_ID=#{id};
+    </select>
 
 </mapper>
