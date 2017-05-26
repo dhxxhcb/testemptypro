@@ -230,4 +230,27 @@ public class MenuController {
         }
         return null;
     }
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/26 13:15
+    *@函数介绍:  删除菜单
+    *@参数说明:  @param id（对应数据库MENU_ID）
+    *@return:   String
+    **/
+    @RequestMapping(value = "/deleteSysMenu", produces = {"application/json;charset=UTF-8"})
+    public String deleteSysMenu(String id, HttpServletRequest request) {
+      /*  ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));*/
+        //id不为空，去除空格，id长度大于等于2
+        if (id != null && id.trim().length() >= 2) {
+            try {
+                menuService.deleteSysMenu(id);
+                return "redirect:showMenu";
+            }catch (Exception e){
+                return null;
+            }
+        }
+        return null;
+    }
 }

@@ -61,4 +61,9 @@
             )
         </insert>
 
+    <delete id="deleteSysMenu" parameterType="java.lang.String">
+        delete from sys_menu
+         where MENU_ID = #{id,jdbcType=VARCHAR}
+    </delete>
+
 </mapper>

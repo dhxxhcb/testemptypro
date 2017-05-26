@@ -52,4 +52,13 @@ public interface MenuService {
      * @return: void
      **/
     void addSysMenu(SysMenu sysMenu);
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/26 13:16
+    *@函数介绍:  删除菜单
+    *@参数说明:  @param paramname paramintroduce
+    *@return:   void
+    **/
+    void deleteSysMenu(String id);
 }
