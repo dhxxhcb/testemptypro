@@ -111,9 +111,19 @@ var workForm = {
                 var formHtml = res.object.flowFormType || res.object;
 
                // that.option.target.html(res.object.printModel);
-                that.option.target.html(formHtml.printModel);
-                that.render();
-                layer.closeAll();
+                if(formHtml.printModel != ''){
+                    that.option.target.html(formHtml.printModel);
+                    that.render();
+                    layer.closeAll();
+                }else{
+                    layer.closeAll();
+                    layer.msg('没有加载到数据。。', {icon: 6});
+                    var noformdata = '<div class="cont_rig" style="text-align: center;margin-top: 200px;"><div class="noData_out"><div class="noDatas_pic"><img src="../../img/workflow/img_nomessage_03.png"></div><div class="noDatas">抱歉现在还没有表单，请您新建</div></div></div>'
+                    that.option.target.html(noformdata);
+                }
+
+
+
                 if(cb){
                    return cb(res);
                 }

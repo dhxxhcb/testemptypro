@@ -14,7 +14,9 @@
     <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../../js/base/base.js"></script>
     <script src="../../lib/laydate/laydate.js"></script>
+    <script src="../../lib/layer/layer.js"></script>
     <script src="../../js/workflow/work/workform.js"></script>
+
 </head>
 <body>
 <div>
