@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/workflow/m_reset.css">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/new_work.css">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/handle.css">
+    <link rel="stylesheet" type="text/css" href="../../css/workflow/work/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../lib/laydate.css"/>
     <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
     <script src="../../js/base/base.js"></script>
@@ -27,6 +28,9 @@
 </head>
 
 <style type="text/css">
+    /*.modal-body {
+     overflow: hidden !;
+    }*/
     .cont{
         position: relative;
     }
@@ -201,6 +205,10 @@
         width: 40px;
         height: 40px;
     }
+    .layui-layer-page .layui-layer-content {
+
+        overflow: hidden !important;
+    }
 </style>
 
 <body>
@@ -349,6 +357,9 @@
             $('#tab_ctwo').show();
             $('.cont_cfour').show();
         })
+        $('.position').on('click',function () {
+            $('#tab_c').animate({right:'-316px'},"slow");
+        })
 
         //转交下一步
         $('.zhuanjiao').on('click',function(){
@@ -402,11 +413,11 @@
                     '提醒指定步骤经办人： <input type="hidden" name="remind_others_id" id="remind_others_id" value="">'+
                     '<textarea name="remind_others_name" id="remind_others_name" readonly="" style="width:376px;"></textarea>'+
                     '<a class="orgAdd" id="others-add" href="javascript:void(0);">选择</a>'+
-                        '<a class="orgClear" id="others-clear" href="javascript:ClearUser("remind_others_id", "remind_others_name");">清空</a>'+
+                    '<a class="orgClear" id="others-clear" href="javascript:ClearUser("remind_others_id", "remind_others_name");">清空</a>'+
                     '</div>'+
-                        '<div class="work-msg-sms-block">'+
+                     '<div class="work-msg-sms-block">'+
                     '提醒内容：<input type="text" style="width: 600px;" name="SMS_CONTENT" id="SMS_CONTENT" value="您有新的工作需要办理，流水号：829，工作名称/文号：岗位说明书-企业(2017-05-25 18:47:35)">'+
-                        ' </div></div>',
+                        ' </div></div></div></div>',
 
                 btn:['确认', '取消'],
                 yes: function(index, layero){
