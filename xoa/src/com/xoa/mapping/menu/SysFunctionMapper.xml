@@ -138,4 +138,10 @@
         </set>
         where FUNC_ID = #{fId,jdbcType=INTEGER}
     </update>
+
+    <select id="findChildMenu" parameterType="java.lang.String" resultMap="menuResultMap">
+      	SELECT FUNC_ID, FUNC_NAME,FUNC_NAME1,FUNC_NAME2,FUNC_NAME3,FUNC_NAME4,FUNC_NAME5,MENU_ID,FUNC_NAME,FUNC_CODE,FUNC_EXT FROM sys_function WHERE
+		MENU_ID LIKE CONCAT(#{d},'__') OR MENU_ID LIKE CONCAT(#{id}, '____')
+		 ORDER BY MENU_ID ASC
+    </select>
 </mapper>

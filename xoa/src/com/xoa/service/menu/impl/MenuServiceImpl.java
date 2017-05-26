@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -158,4 +159,56 @@ public class MenuServiceImpl implements MenuService {
         sysFunctionMapper.editSysFunction(sysFunction);
     }
 
+    @Override
+    public List<SysFunction> findChildMenu(String id) {
+        List<SysFunction> list = null;
+
+        //查出所以的2级3级菜单
+        if (id != null) {
+            list = sysFunctionMapper.findChildMenu(id);
+        }
+
+        //是否查询的是2级菜单，如果是，把三级菜单放到对应的二级菜单。
+        // 如果不是就直接返回多个三级
+        boolean isFindSecond = false;
+
+        //把三级菜单放到对应的二级菜单。
+        List<SysFunction> secondMenuList = new ArrayList<SysFunction>();
+        List<SysFunction> thirdList = new ArrayList<SysFunction>();
+
+
+        if (list != null && list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                SysFunction sysFunction = list.get(i);
+                if (sysFunction.getId().length() == 4) {
+                    //查询的是2级
+                    isFindSecond = true;
+                    secondMenuList.add(sysFunction);
+                } else if (sysFunction.getId().length() == 6) {
+                    thirdList.add(sysFunction);
+                }
+            }
+        }
+
+
+        if (secondMenuList.size() > 0) {
+            for (int i = 0; i < secondMenuList.size(); i++) {
+                secondMenuList.get(i).setChild(new ArrayList<SysFunction>());
+                for (int j = 0; j < thirdList.size(); j++) {
+                    String thirdMenuId = thirdList.get(j).getId().substring(0, 4);
+                    String theSecondMenuId = secondMenuList.get(i).getId();
+                    if (theSecondMenuId != null && theSecondMenuId.equals(thirdMenuId)) {
+                        secondMenuList.get(i).getChild().add(thirdList.get(j));
+                    }
+                }
+            }
+        }
+
+        if (isFindSecond) {
+            return secondMenuList;
+        } else {
+            return list;
+        }
+
+    }
 }

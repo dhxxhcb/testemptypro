@@ -328,4 +328,35 @@ public class MenuController {
         return json;
 
     }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 16:53
+     * @函数介绍: 查询2/3级菜单
+     * @参数说明: @param id 菜单id
+     * @return: Json
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/findChildMenu", produces = {"application/json;charset=UTF-8"})
+    public ToJson<SysFunction> findChildMenu(String id, HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<SysFunction> json = new ToJson<SysFunction>(0, null);
+
+
+        List<SysFunction> menuList = menuService.findChildMenu(id);
+        String msg;
+        if (menuList.size() > 0) {
+            flag = 0;
+            msg = ok;
+        } else {
+            flag = 1;
+            msg = err;
+        }
+        json.setObj(menuList);
+
+        return json;
+
+
+    }
 }
