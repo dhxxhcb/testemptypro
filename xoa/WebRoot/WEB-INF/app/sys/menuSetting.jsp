@@ -97,19 +97,31 @@
                     <tr>
                         <td>主菜单分类代码：</td>
                         <td>
-                            <input type="text" name="unitName" class="inputTd" value="01" disabled="disabled"/>
+                            <input type="text" name="id" class="inputTd" value="01" disabled="disabled"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">菜单名称：(简体中文)：</td>
                         <td>
-                            <input type="text" name="telNo" class="inputTd" value="个人事务"/>
+                            <input type="text" name="name" class="inputTd" value="个人事务"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">菜单名称：(繁体中文)</td>
+                        <td>
+                            <input type="text" name="name1" class="inputTd" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">菜单名称：(English)</td>
+                        <td>
+                            <input type="text" name="name2" class="inputTd" value=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">图片名：</td>
                         <td>
-                            <input type="text" name="faxNo" class="inputTd" value="mytable"/>
+                            <input type="text" name="img" class="inputTd" value="mytable"/>
                         </td>
                     </tr>
                     <tr>
