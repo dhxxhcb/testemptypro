@@ -351,6 +351,11 @@
        )AS roleName ON c =flow_timer.TID
         WHERE flow_timer.FLOW_ID=#{flowId}
   </select>
-
+  <delete id="deleteBatchKey" parameterType="java.lang.Integer">
+    delete from flow_timer where TID in
+    <foreach item="timerId" collection="array" open="(" separator="," close=")">
+      #{timerId}
+    </foreach>
+  </delete>
 
 </mapper>

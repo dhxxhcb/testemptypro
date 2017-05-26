@@ -42,4 +42,5 @@ public interface FlowQueryTplMapper {
 
 	int updateByPrimaryKey(FlowQueryTpl record);
 
+    int deleteBatchKey(Integer[] tplId);
 }

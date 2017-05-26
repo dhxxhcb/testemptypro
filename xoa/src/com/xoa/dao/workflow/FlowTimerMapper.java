@@ -41,4 +41,5 @@ public interface FlowTimerMapper {
 	List<FlowTimerWithBLOBs> queryByFlowId(Integer flowId);
 
 
+    int deleteBatchKey(Integer[] timerId);
 }

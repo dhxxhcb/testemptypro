@@ -112,7 +112,7 @@ public class FlowSettingController {
 
 
     @RequestMapping("/deleteFlowTimer")
-    public BaseWrapper deleteFlowTimer(Integer timerId){
+    public BaseWrapper deleteFlowTimer(@RequestParam("timerId") Integer timerId[]){
         return privService.deleteFlowTimer(timerId);
     }
 
@@ -193,7 +193,7 @@ public class FlowSettingController {
     }
 
     @RequestMapping("/deleteFlowPrintTpl")
-    public BaseWrapper deleteFlowPrintTpl(Integer tId){
+    public BaseWrapper deleteFlowPrintTpl(@RequestParam("tId") Integer tId[]){
         return privService.deleteFlowPrintTpl(tId);
     }
 

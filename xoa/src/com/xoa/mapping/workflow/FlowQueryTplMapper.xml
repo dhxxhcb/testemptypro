@@ -349,4 +349,11 @@
   <select id="queryByFlowId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
      SELECT * FROM flow_query_tpl WHERE flow_query_tpl.FLOW_ID=#{flowId}
   </select>
+
+  <delete id="deleteBatchKey" parameterType="java.lang.Integer">
+    delete from flow_query_tpl where seqId in
+    <foreach item="tplId" collection="array" open="(" separator="," close=")">
+      #{tplId}
+    </foreach>
+  </delete>
 </mapper>

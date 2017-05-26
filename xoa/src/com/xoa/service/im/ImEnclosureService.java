@@ -217,8 +217,6 @@ public class ImEnclosureService{
     }
 	 	return list;
   }
-	
-	
 	public String attachmenturl(Attachment att,String company,String module){
 		String attUrl="AID="+att.getAid()+"&"+"MODULE="+module+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
 		return attUrl;

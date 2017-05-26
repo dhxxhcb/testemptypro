@@ -534,7 +534,7 @@ public class FlowSettingService {
     }
 
 
-    public BaseWrapper deleteFlowTimer(Integer timerId) {
+    public BaseWrapper deleteFlowTimer(Integer timerId[]) {
         BaseWrapper wrapper =new BaseWrapper();
         if(timerId==null){
             wrapper.setFlag(false);
@@ -542,7 +542,7 @@ public class FlowSettingService {
             wrapper.setMsg("timerId不能为空");
             return wrapper;
         }
-        int res =flowTimerMapper.deleteByPrimaryKey(timerId);
+        int res =flowTimerMapper.deleteBatchKey(timerId);
         if(res>0){
             wrapper.setFlag(true);
             wrapper.setStatus(true);
@@ -745,7 +745,7 @@ public class FlowSettingService {
         return wrapper;
     }
 
-    public BaseWrapper deleteFlowQuertTpl(Integer tplId) {
+    public BaseWrapper deleteFlowQuertTpl(Integer tplId[]) {
         BaseWrapper wrapper =new BaseWrapper();
         if(tplId==null){
             wrapper.setFlag(false);
@@ -753,7 +753,7 @@ public class FlowSettingService {
             wrapper.setMsg("tplId不能为空");
             return wrapper;
         }
-        int res =flowQueryTplMapper.deleteByPrimaryKey(tplId);
+        int res =flowQueryTplMapper.deleteBatchKey(tplId);
         if(res>0){
             wrapper.setFlag(true);
             wrapper.setStatus(true);
@@ -899,7 +899,7 @@ public class FlowSettingService {
         }
         return wrapper;
     }
-    public BaseWrapper deleteFlowPrintTpl(Integer tId) {
+    public BaseWrapper deleteFlowPrintTpl(Integer tId[]) {
         BaseWrapper wrapper =new BaseWrapper();
         if(tId==null){
             wrapper.setFlag(false);
@@ -907,7 +907,7 @@ public class FlowSettingService {
             wrapper.setMsg("tId不能为空");
             return wrapper;
         }
-        int res =flowPrintTplMapper.deleteByPrimaryKey(tId);
+        int res =flowPrintTplMapper.deleteBatchKey(tId);
         if(res>0){
             wrapper.setFlag(true);
             wrapper.setStatus(true);
