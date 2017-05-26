@@ -214,9 +214,9 @@
 <div class="body">
     <div class="head">
         <div id="title" class="abs_left">
-            <h1 class="num">NO.767 督查督办</h1>
-            <h1 class="step">主办（第一步 : 督查内容填写 2017-5-24 13:58）</h1>
-            <select>
+            <h1 class="num"></h1>
+            <h2 class="step"></h2>
+            <select class="opt">
                 <option>普通</option>
                 <option>紧急</option>
             </select>
@@ -296,19 +296,17 @@
         var formid = $.getQueryString("formId");
         workForm.init({
                 formhtmlurl:'../../workflow/work/workfastAdd',//URL
-                flowId:formid,
-                formid:formid,
+                resdata:{
+                    flowId:formid
+                },
                 target:$('.cont_form')},
             function (data) {
-              /* if(data.flag==true){
-                  var obj= data.object;
-                  var flow=obj.flowFormType;
-                  if(flow){
-                      var str=flow.printModel;
-                      $("#a2").html(str);
-                  }
+                var obj=data.object.flowRun
+                $('.num').html(obj.runName);
+                var obj2=data.object.listFp[0];
+                console.log(obj2);
+                $('.step').html('主办：(第一步：'+obj2.prcsName+')');
 
-               }*/
              })
 
 //            function(data){
@@ -386,7 +384,7 @@
                 /* skin: 'layui-layer-rim', //加上边框 */
                 offset: '80px',
                 closeBtn: 0,
-              
+                title:'NO. 838 督察督办(2017-05-26 10:05:34)',
                 content: '<div class="modal-body" style="max-height: 274px;">'+
                 '<div class="work-prcs-title" id="op_user_show_info" style="margin-bottom: 10px;font-weight: normal;border-radius: 4px;-webkit-border-radius: 4px;">'+
                 '当前步骤为第<font color="red">1</font>步[人力资源部拟定]<font color="red"><div self_type="self" style="display:inline;">系统管理员</div>'+

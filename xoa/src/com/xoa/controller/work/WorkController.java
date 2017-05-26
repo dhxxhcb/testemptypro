@@ -163,7 +163,6 @@ public class WorkController {
 		String tableName="flow_data_"+flowId;
 		if(!CheckTableExist.haveTable(tableName)){
 			//JSONObject json = JSONObject.fromObject(jsonObject);  
-			
 		}else{
 			String keys="run_id,run_name,begin_time,begin_user";
 			String values=""+flowRun.getRunId()+","+flowRun.getRunName()+","+flowRun.getBeginTime()+","+flowRun.getBeginUser();
