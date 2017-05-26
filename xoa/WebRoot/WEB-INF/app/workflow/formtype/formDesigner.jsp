@@ -52,17 +52,13 @@
                     <img src="../img/icon_multiplelinetextbox_03.png" alt="">多行文本框</a></li>
                 <li><a href="javascript:void(0);" type="select"  class="btn btn-link">
                     <img src="../img/icon_dropmenu_03.png" alt="">下拉菜单</a></li>
-              <li><a href="javascript:void(0);" type="radios"  class="btn btn-link">
+               <li><a href="javascript:void(0);" type="radio"  class="btn btn-link">
                     <img src="../img/icon_radiobutton_03.png" alt="">单选框</a></li>
-                <li><a href="javascript:void(0);" type="radio"  class="btn btn-link">
-                    <img src="../img/icon_radiobutton_03.png" alt="">单选框2</a></li>
-            <li><a href="javascript:void(0);" type="checkboxs"  class="btn btn-link">
+              <li><a href="javascript:void(0);" type="checkbox"  class="btn btn-link">
                     <img src="../img/icon_checkbox_03.png" alt="">复选框</a></li>
-                <li><a href="javascript:void(0);" type="checkbox"  class="btn btn-link">
-                    <img src="../img/icon_checkbox_03.png" alt="">复选框2</a></li>
                 <li><a href="javascript:void(0);" type="macros" class="btn btn-link">
                     <img src="../img/icon_hongcontrol_03.png" alt="">宏控件</a></li>
-                <li><a href="javascript:void(0);">
+                <li><a href="javascript:void(0);" type="date" class="btn btn-link">
                     <img src="../img/icon_calendar_03.png" alt="">日历控件</a></li>
                 <li><a href="javascript:void(0);">
                     <img src="../img/icon_calculator_03.png" alt="">计算控件</a></li>
