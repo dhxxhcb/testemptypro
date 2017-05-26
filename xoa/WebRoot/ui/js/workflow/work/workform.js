@@ -107,9 +107,10 @@ var workForm = {
             dataType: 'JSON',
             data:  that.option.resdata,
             success: function (res) {
+                var formHtml = res.object.flowFormType || res.object;
 
                // that.option.target.html(res.object.printModel);
-                that.option.target.html(res.object.flowFormType.printModel);
+                that.option.target.html(formHtml.printModel);
                 that.render();
                 if(cb){
                    return cb(res);
