@@ -1,5 +1,7 @@
 package com.xoa.model.workflow;
 
+import java.util.List;
+
 public class FlowRunPrcs {
 	/** 主键ID **/
 	private int id;
@@ -81,6 +83,11 @@ public class FlowRunPrcs {
 	 * @return     
 	 */
 	private FlowRun flowRun;
+
+    /**
+     * 流程设置
+     */
+	private FlowTypeModel flowType;
 
 
     public FlowRun getFlowRun() {
@@ -363,5 +370,11 @@ public class FlowRunPrcs {
         this.userName = userName;
     }
 
+    public FlowTypeModel getFlowType() {
+        return flowType;
+    }
 
+    public void setFlowType(FlowTypeModel flowType) {
+        this.flowType = flowType;
+    }
 }
