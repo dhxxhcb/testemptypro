@@ -54,6 +54,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		List<FlowRunPrcs> returnList = new ArrayList<FlowRunPrcs>();
 		int len = list.size();
 		if(len>0){
+			toJson.setTotleNum(pageParams.getTotal());
 			long start =  System.currentTimeMillis();
 			for (FlowRunPrcs flowRunPrcs : list) {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
@@ -64,7 +65,6 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 			long end = System.currentTimeMillis();
 			toJson.setFlag(0);
 			toJson.setMsg("ok");
-			toJson.setTotleNum(pageParams.getTotal());
 			toJson.setObj(returnList);
 			System.out.println("查询时长："+(end-start));
 
@@ -96,6 +96,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		List<FlowRunPrcs> returnList = new ArrayList<FlowRunPrcs>();
 		int len = list.size();
 		if(len>0){
+			toJson.setTotleNum(pageParams.getTotal());
 			for (FlowRunPrcs flowRunPrcs : list) {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
 				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
@@ -104,7 +105,6 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 			}
 			toJson.setFlag(0);
 			toJson.setMsg("ok");
-			toJson.setTotleNum(pageParams.getTotal());
 			toJson.setObj(returnList);
 		}else{
 			toJson.setFlag(1);
@@ -134,6 +134,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		List<FlowRunPrcs> returnList = new ArrayList<FlowRunPrcs>();
 		int len = list.size();
 		if(len>0){
+			toJson.setTotleNum(pageParams.getTotal());
 			for (FlowRunPrcs flowRunPrcs : list) {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
 				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
@@ -142,7 +143,6 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 			}
 			toJson.setFlag(0);
 			toJson.setMsg("ok");
-			toJson.setTotleNum(pageParams.getTotal());
 			toJson.setObj(returnList);
 		}else{
 			toJson.setFlag(1);

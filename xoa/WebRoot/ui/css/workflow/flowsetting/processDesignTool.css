@@ -6,7 +6,7 @@
     z-index: 9999;
     background: #fff;
     box-shadow: -11px 1px 14px #ccc;
-    font-size: 20px;
+    font-size: 18px;
     font-family: "Microsoft YaHei" ! important;
     overflow-y: auto ;
     transition: all 0.2s ease 0s;
@@ -57,6 +57,24 @@ body{
 }
 .setUpThe .conditionsSet{
     background:url("/img/workflow/flowsetting/conditionsSet.png") no-repeat ;
+}
+.setUpThe .canWriteField{
+    background:url("/img/workflow/flowsetting/canWriteField.png") no-repeat ;
+}
+.setUpThe .confidentialFields{
+    background:url("/img/workflow/flowsetting/confidentialFields.png") no-repeat ;
+}
+.setUpThe .requiredFields{
+    background:url("/img/workflow/flowsetting/requiredFields.png") no-repeat ;
+}
+.setUpThe .theTrigger{
+    background:url("/img/workflow/flowsetting/theTrigger.png") no-repeat ;
+}
+.setUpThe .remindSet{
+    background:url("/img/workflow/flowsetting/remindSet.png") no-repeat ;
+}
+.setUpThe .groupOfSingleSet{
+    background:url("/img/workflow/flowsetting/groupOfSingleSet.png") no-repeat ;
 }
 .notstart{
     background:url("/img/workflow/flowsetting/notstart.png") no-repeat ;

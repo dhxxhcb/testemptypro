@@ -282,7 +282,7 @@ public class FlowSettingService {
      * @param privId  权限Id
      * @return
      */
-    public BaseWrapper deleteFlowPriv(Integer privId){
+    public BaseWrapper deleteFlowPriv(Integer privId[]){
         BaseWrapper wrapper =new BaseWrapper();
         if(privId==null){
             wrapper.setFlag(false);
@@ -290,7 +290,7 @@ public class FlowSettingService {
             wrapper.setMsg("流程权限Id不能为空");
             return wrapper;
         }
-        int res =flowPrivMapper.deleteByPrimaryKey(privId);
+        int res =flowPrivMapper.deleteBatchKey(privId);
          if(res>0){
              wrapper.setFlag(true);
              wrapper.setStatus(true);
@@ -845,4 +845,78 @@ public class FlowSettingService {
          return wrapper;
     }
 
+    /**
+     * Created by:   pfl
+     * date:   2017/5/25 19:12
+     * description:   应用板式文件更新（根据流程id）
+     * @param tId
+     * @param flowId
+     * @param tType
+     * @param tName
+     * @param content
+     * @param flowPrcs
+     * @return
+     */
+    public BaseWrapper updateFlowPrintTpl(Integer tId,Integer flowId,Integer tType,String tName,String content,String flowPrcs){
+        BaseWrapper wrapper =new BaseWrapper();
+        wrapper.setFlag(false);
+        wrapper.setStatus(true);
+        String checkRes=StringUtils.checkNullUtils(new CheckCallBack() {
+            @Override
+            public boolean isNull(Object obj) {
+                if (obj instanceof String) {
+                    String a = (String) obj;
+                    if (a == null || "".equals(a)
+                            || a.length() == 0)
+                        return true;
+                }
+                if (obj instanceof Integer) {
+                    Integer a = (Integer) obj;
+                    if (a == null)
+                        return true;
+                }
+                return false;
+            }
+        },tId,"tId不能为空",flowId,"flowId不能为空",tType,"模板类型不能为空",tName,"模板名称不能为空");
+        if(checkRes!=null){
+            wrapper.setMsg(checkRes);
+            return wrapper;
+        }
+        FlowPrintTplWithBLOBs flowPrintTplWithBLOBs =new FlowPrintTplWithBLOBs();
+        flowPrintTplWithBLOBs.setContent(content==null?"":content);
+        flowPrintTplWithBLOBs.setFlowPrcs(flowPrcs==null?"":flowPrcs);
+        flowPrintTplWithBLOBs.setCreateTime(new Date());
+        flowPrintTplWithBLOBs.settName(tName);
+        flowPrintTplWithBLOBs.settType(tType.toString());
+        flowPrintTplWithBLOBs.setFlowId(flowId);
+        flowPrintTplWithBLOBs.settId(tId);
+        int res = flowPrintTplMapper.updateByPrimaryKeySelective(flowPrintTplWithBLOBs);
+        if(res>0){
+            wrapper.setFlag(true);
+            wrapper.setMsg("操作成功");
+        }else{
+            wrapper.setMsg("操作失败");
+        }
+        return wrapper;
+    }
+    public BaseWrapper deleteFlowPrintTpl(Integer tId) {
+        BaseWrapper wrapper =new BaseWrapper();
+        if(tId==null){
+            wrapper.setFlag(false);
+            wrapper.setStatus(true);
+            wrapper.setMsg("tId不能为空");
+            return wrapper;
+        }
+        int res =flowPrintTplMapper.deleteByPrimaryKey(tId);
+        if(res>0){
+            wrapper.setFlag(true);
+            wrapper.setStatus(true);
+            wrapper.setMsg("删除成功");
+        }else{
+            wrapper.setFlag(false);
+            wrapper.setStatus(true);
+            wrapper.setMsg("删除失败");
+        }
+        return wrapper;
+    }
 }

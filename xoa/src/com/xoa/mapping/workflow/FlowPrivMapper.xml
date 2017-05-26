@@ -314,5 +314,10 @@
        )AS roleName ON c =flow_priv.ID
         WHERE flow_priv.FLOW_ID=#{flowId}
   </select>
-
+  <delete id="deleteBatchKey" parameterType="java.lang.Integer">
+    delete from flow_priv where ID in
+    <foreach item="privId" collection="array" open="(" separator="," close=")">
+      #{privId}
+    </foreach>
+  </delete>
 </mapper>
