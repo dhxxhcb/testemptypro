@@ -15,6 +15,7 @@
     <link href="../css/ueditor/site.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../css/ueditor/styleUpdate.css">
     <link rel="stylesheet" href="../css/base.css">
+    <script src="../../js/workflow/work/workform.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -122,9 +123,11 @@
                                     fromId :formid
                                 },
                                 success: function (res) {
-                                    console.log(formEditor);
+                                    var formObj = $('<div>'+res.object.printModel+'</div>');
+                                    console.log(formObj.prop("outerHTML"))
+                                    workForm.ReBuild(formObj);
                                     $('#formtitle').html(res.object.formName);
-                                    formEditor.setContent(res.object.printModel,true);
+                                    formEditor.setContent(formObj.html(),true);
                                 }
                             });
                         }
