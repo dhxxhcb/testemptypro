@@ -40,4 +40,6 @@ public interface FlowPrivMapper {
 
 	List<FlowPrivWithBLOBs> queryByFlowId(Integer flowId);
 
+	int deleteBatchKey(Integer privId[]);
+
 }

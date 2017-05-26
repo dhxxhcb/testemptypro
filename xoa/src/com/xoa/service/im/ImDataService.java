@@ -81,7 +81,7 @@ public class ImDataService {
      * @return     Object
      */
 	@Transactional(readOnly = false)
-	public Object putMessageInfo(HttpServletRequest request,Integer flag, String from_uid,
+	public Object putMessageInfo(MultipartFile files[],HttpServletRequest request,Integer flag, String from_uid,
 			String to_uid, String of_from, String of_to, String content,
 			String type, String time, String uuid,String msg_type,String voice_time) {
 		Status s=new Status();
@@ -131,17 +131,17 @@ public class ImDataService {
 				record.setContent(content);
 				break;
 			case 3:
-				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-				String path=request.getRealPath("");
-				MultiValueMap<String, MultipartFile> map=multipartRequest.getMultiFileMap();
-				Collection<List<MultipartFile>> MultipartFileList=map.values();
-				MultipartFile[] mf=null;
-				Iterator<List<MultipartFile>> it=MultipartFileList.iterator();
-				while(it.hasNext()){
-					List<MultipartFile> list=it.next();
-					mf=list.toArray(new MultipartFile[map.size()]);
-				}
-				List<Attachment> attachs = attachService.upload(mf, type,"");
+//				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+//				String path=request.getRealPath("");
+//				MultiValueMap<String, MultipartFile> map=multipartRequest.getMultiFileMap();
+//				Collection<List<MultipartFile>> MultipartFileList=map.values();
+//				MultipartFile[] mf=null;
+//				Iterator<List<MultipartFile>> it=MultipartFileList.iterator();
+//				while(it.hasNext()){
+//					List<MultipartFile> list=it.next();
+//					mf=list.toArray(new MultipartFile[map.size()]);
+//				}
+				List<Attachment> attachs = attachService.upload(files, type,"im","xoa1001");
 				
 				for(Attachment tee:attachs){
 					record.setFileId(String.valueOf(tee.getAid()));
@@ -150,15 +150,17 @@ public class ImDataService {
 					 fileID=String.valueOf(tee.getAid());
                      //上传以后返回值交给ym
 				     attachName=tee.getYm();
-				 
-				    String severpath=request.getRealPath("");
+//
+//				    String severpath=request.getRealPath("");
+					String fileString=	tee.getUrl();
 					 //图片处理
 					 if("img".equals(type)){
 					 String ip=request.getLocalAddr();
+
 					 String port=String.valueOf(request.getServerPort());
-					 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
-					  File picture = new File(severpath+fileString); 
-					  File thmpicture = new File(severpath+tee.getAttUrl()); 
+//					 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
+					  File picture = new File(fileString);
+					  File thmpicture = new File(fileString);
 					  FileInputStream fis=new FileInputStream(picture);
 					  FileInputStream thmfis=new FileInputStream(thmpicture);
 					  //获取图片大小
@@ -167,11 +169,11 @@ public class ImDataService {
 				       BufferedImage sourceImg =ImageIO.read(fis);
 				       BufferedImage thmsourceImg =ImageIO.read(thmfis);  
 				       //返回值file
-				       file1.setFile_url("http://"+ip+":"+port+tee.getAttachFile());
+				       file1.setFile_url("http://"+ip+":"+port+"/xoa/xs?"+tee.getAttUrl());
 				       file1.setFile_size(String.valueOf(size/1024));
 				       file1.setFile_width(String.valueOf(sourceImg.getWidth()));
 				       file1.setFile_height(String.valueOf(sourceImg.getHeight()));
-				       file1.setThumbnail_url("http://"+ip+":"+port+tee.getAttUrl());
+				       file1.setThumbnail_url("http://"+ip+":"+port+"/xoa/xs?"+tee.getAttUrl());
 				       file1.setThumbnail_size(String.valueOf(thmsize/1024));
 				       file1.setThumbnail_width(String.valueOf(thmsourceImg.getHeight()));
 				       file1.setThumbnail_height(String.valueOf(thmsourceImg.getWidth()));
@@ -184,7 +186,7 @@ public class ImDataService {
 					 if("voice".equals(type)){
 						 String ip=request.getLocalAddr();
 						 String port=String.valueOf(request.getServerPort());
-						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
+//						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 						 //返回值file
 						 file1.setFile_url("http://"+ip+":"+port+tee.getAttachFile());
 					     file1.setVoice_time(voice_time);	
@@ -198,7 +200,7 @@ public class ImDataService {
 					 if("file".equals(type)){
 						 String ip=request.getLocalAddr();
 						 String port=String.valueOf(request.getServerPort());
-						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
+//						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 						   //返回值file
 					       file1.setFile_url("http://"+ip+":"+port+fileString);
 					       file1.setFile_name(tee.getYm());

@@ -81,7 +81,7 @@ public class FlowSettingController {
      * @return
      */
     @RequestMapping("/deleteFlowPriv")
-    public BaseWrapper deleteFlowPriv(Integer privId){
+    public BaseWrapper deleteFlowPriv(@RequestParam("privId[]") Integer privId[]){
         return privService.deleteFlowPriv(privId);
     }
 
@@ -187,4 +187,14 @@ public class FlowSettingController {
     public BaseWrapper newFlowPrintTpl(Integer flowId,Integer tType,String tName,String content,String flowPrcs){
         return privService.newFlowPrintTpl(flowId,tType,tName,content,flowPrcs);
     }
+    @RequestMapping("/updateFlowPrintTpl")
+    public BaseWrapper updateFlowPrintTpl(Integer tId,Integer flowId,Integer tType,String tName,String content,String flowPrcs){
+        return privService.updateFlowPrintTpl(tId,flowId,tType,tName,content,flowPrcs);
+    }
+
+    @RequestMapping("/deleteFlowPrintTpl")
+    public BaseWrapper deleteFlowPrintTpl(Integer tId){
+        return privService.deleteFlowPrintTpl(tId);
+    }
+
 }
