@@ -36,7 +36,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="divP">单位管理</div>
         </div>
         <div class="tab">
-
                 <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
                     <tr>
                         <td>单位名称：</td>

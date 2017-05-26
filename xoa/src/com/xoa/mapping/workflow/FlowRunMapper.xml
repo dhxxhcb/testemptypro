@@ -23,6 +23,13 @@
     <result column="PRE_SET" javaType="string" property="preSet" />
     <result column="VIEW_USER" javaType="string" property="viewUser" />
     <result column="FORCE_OVER" javaType="string" property="forceOver" />
+
+    <!--&lt;!&ndash; 一对一关联 &ndash;&gt;-->
+    <!--<association property="flowTypeModel" column="FLOW_ID" javaType="com.xoa.model.workflow.FlowTypeModel" >-->
+      <!--<id column="FLOW_ID" property="flowId" javaType="java.lang.Integer" />-->
+      <!--<result column="FLOW_NAME" property="flowName" javaType="java.lang.String" />-->
+    <!--</association>-->
+
   </resultMap>
  <sql id="Base_Column_List">
     RID, RUN_ID, RUN_NAME, FLOW_ID, BEGIN_USER, BEGIN_DEPT, BEGIN_TIME, END_TIME, DEL_FLAG, 

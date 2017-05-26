@@ -27,6 +27,15 @@
     <script src="../../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
 <style type="text/css">
+span.host-span {
+    background: url(images/host.png) no-repeat;
+    padding-left: 12px;
+}
+.operation_text_left {
+    padding-left: 20px;
+}
+.operation_text_left {
+    padding-left: 20px;
 .button-operation {
     float: left;
     padding-top: 4px;
@@ -288,6 +297,21 @@ input.span4, textarea.span4,.uneditable-input.span4 {
     width: 700px;
     float: left;
 }
+.inp {
+    height: 24px;
+	width: 200px;
+    height: 27px;
+    border-radius: 6px;
+    margin-top: 10px;
+    margin-left: 97px;
+}
+.inp, .search {
+    float: left;
+}
+.navigation .right {
+    float: right;
+    margin-top: 0px;
+}
 </style>
 
 </head>
@@ -296,153 +320,640 @@ input.span4, textarea.span4,.uneditable-input.span4 {
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
-            <li data_id="" id='db'>
-				<a  href="#todo" data-toggle="tab">待办工作</a>
+           <li data_id="0"><span class="headli1_1">代办工作</span><img class="headli1_2" src="../img/02.png" alt="">
             </li>
-            <li data_id="0" id='bj'>
-				<a  href="#settles" data-toggle="tab">办结工作</a>
-				
+            
+            <li data_id=""><span class="headli2_1 one">办结工作</span><img src="../img/02.png" alt="" class="headli2_2">
             </li>
-			<li data_id="1" id='gz'>
-				<a href="#concern" data-toggle="tab">关注工作</a>
-			</li>
-			<li data_id="" id='db'>
-			<span class="">
-				<a  href="#pending" data-toggle="tab">挂起工作</a>
-				
+                    
+           <li data_id="1"><span class="headli3">关注</span><img src="../img/02.png" alt="" class="headli2_2"></li> 
+		   <li data_id="0"><span class="headli1_1">挂起</span><img class="headli1_2" src="../img/02.png" alt="">
             </li>
-            <li data_id="0" id='bj'>
-				<a href="#intrust" data-toggle="tab">委托工作</a>
+            
+            <li data_id=""><span class="headli2_1 one">委托</span><img src="../img/02.png" alt="" class="headli2_2">
             </li>
-            <li data_id="1" id='gz'>
-				<a  href="#data_all" data-toggle="tab">全部工作</a>
-			</li>
+                    
+           <li data_id="1"><span class="headli3">全部工作</span><img src="../img/02.png" alt="" class="headli2_2"></li> 
+           
         </ul>
     </div>
     <!--head通栏结束-->
-	<!--搜索开始-->
-	<div class="search_area search_normal" id="search_normal_div" pagetype="">
-		<div class="form-search">
-			<div class="input-append">
-				<input type="text" id="search_para" class="span4 search-query" placeholder="请输入要查询的流水号或工作名称/文号">
-				 <button type="button" id="normalSearchBtn" class="btn btn-primary">查询</button>
-			</div>
-			&nbsp;&nbsp;
-			<button type="button" id="toAdvSearch" class="btn_checked">切换至高级查询</button>
-		</div>
-	</div>
-<!--搜索结束-->
+
     <!--navigation开始-->
-    <div class="step1">
-	<div class="navigation  clearfix">
-            <div class="left">
-            <img src="../../img/la2.png">
-			 <div class="news">全部新闻</div>
-                <div class="data-operation">
-					<div class="button-operation" style="width:1000px;">
-						<button type="button" action="new_work" class="btn btn-success">新建工作</button>
-						<button type="button" action="cancel_concern" class="btn btn-danger">取消关注</button>
-						<form name="selected_export_form" id="selected_export_form" style="display: none;" method="post" action="data/work_to_export_concern.php">
-							<input type="hidden" name="THE_ID_STR" id="THE_ID_STR" value="">
-							<button type="submit" id="selected_export" class="btn btn-info">导出</button>
-						</form>
-						<button type="button" id="export" action="export_concern" class="btn btn-info">导出工作列表</button>
-						<button type="button" action="refresh" class="btn btn-info">刷新</button>
-					</div>
-				</div>
-				<div class="data-list">
-				<table id='table1' class="table">
-					 <thead>
-                    <tr>
-                        <td class="th">
-                            标题
-                        </td>
-                        <td class="th">
-                            所有类型
-                        </td>
-                       
-                        <td class="th">
-                            发布日期
-                        </td>
+	<div>
+    <div class="step">
+		<div class="navigation  clearfix">
+			<div class="left">
+				<img src="../img/la2.png"> 
+				<div class="news">全部新闻</div>                
+				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
+				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
+			</div>
+			<div class="right">
+				<!-- 分页按钮-->
+				<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
+			</div>
+		</div>
 
-                        <td class="th">
-                            点击次数
-                        </td>
-                        <td class="th">
-                            评论
-                        </td>
-                        <!-- <td class="th">发布部门</td> -->
-                    </tr>
-                    </thead>
-					<tbody id="j_tb" calss="tr_td">
-						<tr>
-							<td>11</td>
-							<td>11</td>
-							<td>11</td>
-							<td>11</td>
-							<td>11</td>
-						</tr>
-						<tr>
-							<td>22</td>
-							<td>22</td>
-							<td>22</td>
-							<td>22</td>
-							<td>22</td>
-						</tr>
-					</tbody>
-				</table>
-				</div>
-            </div>
-
-            <div class="right">
-                <!-- 分页按钮-->
-                <div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
-
-            </div>
-        </div>
         <!--navigation结束-->
 
         <!--content部分开始-->
+        <div>
+            <div>
+                <table id="tr_td">
+                    <thead>
+                    <tr>
+                        <td class="th">
+                            流水号
+                        </td>
+                        <td class="th">
+                            公文名称/文号
+                        </td>
+                        <td class="th">
+                            我经办的步骤
+                        </td>
+
+                        <td class="th">
+                            发起人
+                        </td>
+                        <td class="th">
+                            状态
+                        </td>
+                        <td class="th">
+                            到达时间
+                        </td>
+						<td class="th">
+                           已停留
+                        </td>
+						<td class="th">
+                            操作
+                        </td>
+
+                    </tr>
+                    </thead>
+                    <tbody id="dbgz" calss="tr_td">
+						
+                    </tbody>
+                </table>
+            </div>
+		</div>
         <!--content部分结束-->
+
+    </div>
+<div class="step" style='display:none;'>
+		<div class="navigation  clearfix">
+			<div class="left">
+				<img src="../img/la2.png"> 
+				<div class="news">全部新闻</div>                
+				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
+				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
+			</div>
+			<div class="right">
+				<!-- 分页按钮-->
+				<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
+			</div>
+		</div>
+
+        <!--navigation结束-->
+
+        <!--content部分开始-->
+        <div>
+            <div>
+                <table id="tr_td">
+                    <thead>
+                    <tr>
+                        <td class="th">
+                            流水号
+                        </td>
+                        <td class="th">
+                            公文名称/文号
+                        </td>
+                        <td class="th">
+                            我经办的步骤
+                        </td>
+
+                        <td class="th">
+                            发起人
+                        </td>
+                        <td class="th">
+                            办结时间
+                        </td>
+                        <td class="th">
+                            流程状态
+                        </td>
+						<td class="th">
+                           操作
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody id="j_tb" calss="tr_td">
+						<tr>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11
+							</td>
+							<td class="th">
+								1111
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11111
+							</td>
+							<td class="th">
+							   11111
+							</td>
+                    </tr>
+					<tr>
+							<td class="th">
+								22
+							</td>
+							<td class="th">
+								112
+							</td>
+							<td class="th">
+								11112
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								1112
+							</td>
+							<td class="th">
+								111112
+							</td>
+							<td class="th">
+							   111112
+							</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+		</div>
+        <!--content部分结束-->
+
+    </div>
+<div class="step" style='display:none;'>
+		<div class="navigation  clearfix">
+			<div class="left">
+				<img src="../img/la2.png"> 
+				<div class="news">全部新闻</div>                
+				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
+				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
+			</div>
+			<div class="right">
+				<!-- 分页按钮-->
+				<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
+			</div>
+		</div>
+
+        <!--navigation结束-->
+
+        <!--content部分开始-->
+        <div>
+            <div>
+                <table id="tr_td">
+                    <thead>
+                    <tr>
+                        <td class="th">
+                            流水号
+                        </td>
+                        <td class="th">
+                            公文名称/文号
+                        </td>
+                        <td class="th">
+                            我经办的步骤
+                        </td>
+
+                        <td class="th">
+                            发起人
+                        </td>
+                        <td class="th">
+                            办结时间
+                        </td>
+                        <td class="th">
+                            流程状态
+                        </td>
+						<td class="th">
+                           操作
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody id="j_tb" calss="tr_td">
+						<tr>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11
+							</td>
+							<td class="th">
+								1111
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11111
+							</td>
+							<td class="th">
+							   11111
+							</td>
+                    </tr>
+					<tr>
+							<td class="th">
+								22
+							</td>
+							<td class="th">
+								112
+							</td>
+							<td class="th">
+								11112
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								1112
+							</td>
+							<td class="th">
+								111112
+							</td>
+							<td class="th">
+							   111112
+							</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+		</div>
+        <!--content部分结束-->
+
     </div>
 
-    <!-- 新建新闻页面********************* -->
-    <div class="step2" style="display: none;margin-left: 10px;">
-		<table>
-		<tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
-		<tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
-		<tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
-		</table>
-       </div>
-    <!--content部分结束-->
+	<div class="step" style='display:none;'>
+		<div class="navigation  clearfix">
+			<div class="left">
+				<img src="../img/la2.png"> 
+				<div class="news">全部新闻</div>                
+				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
+				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
+			</div>
+			<div class="right">
+				<!-- 分页按钮-->
+				<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
+			</div>
+		</div>
 
-    <!-- 新闻查询 ***********************-->
-    <div class="step3" style="display:none; margin-left:10px">
-       111111
+        <!--navigation结束-->
+
+        <!--content部分开始-->
+        <div>
+            <div>
+                <table id="tr_td">
+                    <thead>
+                    <tr>
+                        <td class="th">
+                            流水号
+                        </td>
+                        <td class="th">
+                            公文名称/文号
+                        </td>
+                        <td class="th">
+                            我经办的步骤
+                        </td>
+
+                        <td class="th">
+                            发起人
+                        </td>
+                        <td class="th">
+                            办结时间
+                        </td>
+                        <td class="th">
+                            流程状态
+                        </td>
+						<td class="th">
+                           操作
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody id="j_tb" calss="tr_td">
+						<tr>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11
+							</td>
+							<td class="th">
+								1111
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11111
+							</td>
+							<td class="th">
+							   11111
+							</td>
+                    </tr>
+					<tr>
+							<td class="th">
+								22
+							</td>
+							<td class="th">
+								112
+							</td>
+							<td class="th">
+								11112
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								1112
+							</td>
+							<td class="th">
+								111112
+							</td>
+							<td class="th">
+							   111112
+							</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+		</div>
+        <!--content部分结束-->
+
     </div>
-    <!--content部分结束-->
-    <!--<script type="text/javascript">
-    <!--
-		 $("#db").click(function(){
-		 		console.log('11');
-				$('.step1').show();
-				$('.step2').hide();
-				$('.step3').hide();
-				});
-		$("#bj").click(function(){
-		console.log('22');
-			$('.step2').show();
-			$('.step1').hide();
-			$('.step3').hide();
 
-		});
-		$("#gz").click(function(){
-		console.log('33');
-			$('.step3').show();
-			$('.step1').hide();
-			$('.step2').hide();
-		});
- 
-    </script>-->
+	<div class="step" style='display:none;'>
+		<div class="navigation  clearfix">
+			<div class="left">
+				<img src="../img/la2.png"> 
+				<div class="news">全部新闻</div>                
+				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
+				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
+			</div>
+			<div class="right">
+				<!-- 分页按钮-->
+				<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
+			</div>
+		</div>
+
+        <!--navigation结束-->
+
+        <!--content部分开始-->
+        <div>
+            <div>
+                <table id="tr_td">
+                    <thead>
+                    <tr>
+                        <td class="th">
+                            流水号
+                        </td>
+                        <td class="th">
+                            公文名称/文号
+                        </td>
+                        <td class="th">
+                            我经办的步骤
+                        </td>
+
+                        <td class="th">
+                            发起人
+                        </td>
+                        <td class="th">
+                            办结时间
+                        </td>
+                        <td class="th">
+                            流程状态
+                        </td>
+						<td class="th">
+                           操作
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody id="j_tb" calss="tr_td">
+						<tr>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11
+							</td>
+							<td class="th">
+								1111
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11111
+							</td>
+							<td class="th">
+							   11111
+							</td>
+                    </tr>
+					<tr>
+							<td class="th">
+								22
+							</td>
+							<td class="th">
+								112
+							</td>
+							<td class="th">
+								11112
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								1112
+							</td>
+							<td class="th">
+								111112
+							</td>
+							<td class="th">
+							   111112
+							</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+		</div>
+        <!--content部分结束-->
+
+    </div>
+
+	<div class="step" style='display:none;'>
+		<div class="navigation  clearfix">
+			<div class="left">
+				<img src="../img/la2.png"> 
+				<div class="news">全部新闻</div>                
+				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
+				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
+			</div>
+			<div class="right">
+				<!-- 分页按钮-->
+				<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
+			</div>
+		</div>
+
+        <!--navigation结束-->
+
+        <!--content部分开始-->
+        <div>
+            <div>
+                <table id="tr_td">
+                    <thead>
+                    <tr>
+                        <td class="th">
+                            流水号
+                        </td>
+                        <td class="th">
+                            流程类型
+                        </td>
+                        <td class="th">
+                           工作名称/文号
+                        </td>
+
+                        <td class="th">
+                            发起人
+                        </td>
+                        <td class="th">
+                            我的经办步骤
+                        </td>
+                        <td class="th">
+                            步骤状态
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody id="j_tb" calss="tr_td">
+						<tr>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11
+							</td>
+							<td class="th">
+								1111
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11111
+							</td>
+                    </tr>
+					<tr>
+							<td class="th">
+								22
+							</td>
+							<td class="th">
+								112
+							</td>
+							<td class="th">
+								11112
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								1112
+							</td>
+							<td class="th">
+								111112
+							</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+		</div>
+        <!--content部分结束-->
+
+    </div>
+</div>
+
+</div>
+<script type="text/javascript">
+<!--
+$(function(){
+ $(".index_head li").click(function(){
+ var index=$(this).index(); 
+ $(".step").eq(index).show().siblings().hide(); 
+ });
+//处理数据状态字段
+	function handleData(data){
+			var str;
+			if(data==0||data==''){
+				var str="代办中";
+			} else if(data==4){
+				var str='已完结';
+			}
+			return str;
+		}
+
+$(document).ready($.ajax({
+	url:'../../workflow/work/selectWork?page=1&pageSize=5&useFlag=true&userId=admin',
+	type:'post',
+	dataType:'json',
+	success:function(data){
+						console.log(data);
+						var length=data.obj.length;
+						var str='';
+						for(var i=0;i<length;i++){
+					    var status=handleData(data.obj[i].delFlag);
+						var str+='<tr><td class="th">'+data.obj[i].runId+'</td>'+
+								  '<td><td class="th">'+data.obj[i].flowRun.runName+'</td>'+
+								  '<td class="th"></td><td class="th">'+data.obj[i].userId+'</td>'+
+								  '<td class="th">'+status+'</td><td class="th"></td>'+
+								  '<td class="th"></td><td style="text-align:left;" title="主办导出删除"><a href="javascript:"><span class="host-span">主办</span></a><a href=""><span class="operation_text_left">导出</span></a><a href="javascript:"><span class="operation_text_left">删除</span></a></td></tr>';
+							}
+						$('#dbgz').html(str);
+						}
+					});
+				);
+
+
+});
+//-->
+</script>
+
 </body>
 </html>

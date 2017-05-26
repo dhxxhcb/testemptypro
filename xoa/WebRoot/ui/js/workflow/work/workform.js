@@ -110,7 +110,8 @@ var workForm = {
             },
             success: function (res) {
 
-                that.option.target.html(res.object.printModel);
+               // that.option.target.html(res.object.printModel);
+                that.option.target.html(res.object.flowFormType.printModel);
                 that.render();
                 if(cb){
                    return cb(res);

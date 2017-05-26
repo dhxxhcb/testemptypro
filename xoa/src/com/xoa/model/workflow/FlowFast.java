@@ -1,5 +1,7 @@
 package com.xoa.model.workflow;
 
+import java.util.List;
+
 public class FlowFast {
 	
 	private FlowProcess flowProcesses;
@@ -11,6 +13,18 @@ public class FlowFast {
 	private FlowRun flowRun;
 	
 	private FlowRunPrcs flowRunPrcs;
+	
+	private List<FlowProcess> listFp;
+	
+	
+
+	public List<FlowProcess> getListFp() {
+		return listFp;
+	}
+
+	public void setListFp(List<FlowProcess> listFp) {
+		this.listFp = listFp;
+	}
 
 	public FlowRunPrcs getFlowRunPrcs() {
 		return flowRunPrcs;

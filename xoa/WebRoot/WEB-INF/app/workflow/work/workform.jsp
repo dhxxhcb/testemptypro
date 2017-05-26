@@ -17,7 +17,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/m_reset.css">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/new_work.css">
-    <link rel="stylesheet" type="text/css" href="../../css/workflow/work/handle.css">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../lib/laydate.css"/>
     <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
@@ -234,7 +233,7 @@
     </div>
     <div class="content">
         <div class="cont" id="client">
-            <div class="cont_form">
+            <div class="cont_form" id="a2">
 
             </div>
             <div id="tab_c">
@@ -297,11 +296,24 @@
         var formid = $.getQueryString("formId");
         workForm.init({
                 formhtmlurl:'../../workflow/work/workfastAdd',//URL
+                flowId:formid,
                 formid:formid,
                 target:$('.cont_form')},
-            function(data){
-                console.log(data);
-            });
+            function (data) {
+              /* if(data.flag==true){
+                  var obj= data.object;
+                  var flow=obj.flowFormType;
+                  if(flow){
+                      var str=flow.printModel;
+                      $("#a2").html(str);
+                  }
+
+               }*/
+             })
+
+//            function(data){
+//               /* console.log(data.flowFormTyp.printModel);*/
+//            });
         //右侧tab切换
        /* var currentIndex=0;
         var index;
@@ -373,10 +385,8 @@
                 type: 1,
                 /* skin: 'layui-layer-rim', //加上边框 */
                 offset: '80px',
-                area: ['700px', '400px'], //宽高
-               /* title:$(this).find('h1').text(),*/
-                title:'NO. 829 岗位说明书-企业(2017-05-25 18:47:35)',
                 closeBtn: 0,
+              
                 content: '<div class="modal-body" style="max-height: 274px;">'+
                 '<div class="work-prcs-title" id="op_user_show_info" style="margin-bottom: 10px;font-weight: normal;border-radius: 4px;-webkit-border-radius: 4px;">'+
                 '当前步骤为第<font color="red">1</font>步[人力资源部拟定]<font color="red"><div self_type="self" style="display:inline;">系统管理员</div>'+

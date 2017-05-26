@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -21,10 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xoa.model.users.Users;
 import com.xoa.model.workflow.FlowFast;
 import com.xoa.model.workflow.FlowFormType;
+import com.xoa.model.workflow.FlowProcess;
 import com.xoa.model.workflow.FlowRun;
 import com.xoa.model.workflow.FlowRunPrcs;
 import com.xoa.model.workflow.FlowTypeModel;
 import com.xoa.service.workflow.flowtype.FlowFormTypeService;
+import com.xoa.service.workflow.flowtype.FlowProcessService;
 import com.xoa.service.workflow.flowtype.FlowRunPrcsService;
 import com.xoa.service.workflow.flowtype.FlowRunService;
 import com.xoa.service.workflow.flowtype.FlowTypeService;
@@ -32,8 +35,6 @@ import com.xoa.util.CheckTableExist;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
-import com.xoa.util.page.PageParams;
-
 /**
  * 创建作者:   张龙飞
  * 创建日期:   2017年5月22日 上午11:43:13
@@ -57,6 +58,9 @@ public class WorkController {
 	
 	@Resource
 	private FlowRunPrcsService flowRunPrcsService;
+	
+	@Resource
+	private FlowProcessService flowProcessService;
 	
 	 @RequestMapping("addwork")
 	 public String work(HttpServletRequest request) {
@@ -92,6 +96,9 @@ public class WorkController {
 		int runId=flowRunService.getMaxRunId();
 		String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
 		int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
+		
+		List<FlowProcess> lf=flowProcessService.findFlowId(flowId);
+		
 		Map<String, Object> maps=new HashMap<String, Object>();
 		 ToJson<FlowFast> tj=new ToJson<FlowFast>();
 		 ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
@@ -134,6 +141,7 @@ public class WorkController {
 		f.setFlowFormType(flowFormType);
 		f.setFlowRun(flowRun);
 		f.setFlowRunPrcs(flowRunPrcs);
+		f.setListFp(lf);
 		
 		try {
             tj.setObject(f);
@@ -173,9 +181,8 @@ public class WorkController {
 			        sb1.append(",").append(value);
 			        System.out.println("key: "+key+",value"+value);  
 			    }  
-			    
-			   String sqlAll="insert into "+tableName+"("+sb.toString()+") "+"values("+sb1.toString()+")";
-			
+			 String sqlAll="insert into "+tableName+"("+sb.toString()+") "+"values("+sb1.toString()+")";
+			CheckTableExist.createTable(sqlAll);
 			
 		}
 		
