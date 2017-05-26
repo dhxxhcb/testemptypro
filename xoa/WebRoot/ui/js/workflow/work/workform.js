@@ -10,7 +10,6 @@ var workForm = {
         _this.buildHTML(cb);
     },
     render:function(){
-
         this.ReBuild();
         this.MacrosRender();
         this.RadioRender();
@@ -58,7 +57,6 @@ var workForm = {
             }
             _this.addClass("form_item");
             _this.attr("id",$(this).attr("name"));
-
         });
         target.find('img.DATE').each(function(){
             var _this = $(this);
@@ -84,42 +82,43 @@ var workForm = {
         that = this;
         var flagStr = "";
         $(".AUTO").each(function(index,obj){
-
             if(that.tool.MacrosDate.option[$(this).attr("datafld")]){
                 flagStr+=($(this).attr("datafld")+',');
             }
-
         });
         that.tool.MacrosDate.ready(flagStr,function(MacrosDate){
             $(".AUTO").each(function(index,obj){
-                $(this).val(that.tool.getMacrosDate($(this).attr("datafld")));
+                if(that.tool.MacrosDate.option[$(this).attr("datafld")]){
+                    var selectObj = $('<select id="'+$(this).attr('name')+'" title="'+$(this).attr('title')+'" data-type="'+$(this).attr('data-type')+'" style="'+$(this).attr('style')+'" datafld="'+$(this).attr('datafld')+'" class="form_item AUTO"></select>');
+                    that.tool.getMacrosDate($(this).attr("datafld"))(selectObj);
+                    $(this).before(selectObj);
+                    $(this).remove();
+                }else{
+                    $(this).val(that.tool.getMacrosDate($(this).attr("datafld")));
+                }
+
             });
 
         });
 
     },
     DateRender:function(){
-
         $(".laydate-icon").each(function(){
             var _this = $(this);
             var divObj = '<input name="'+_this.attr('name')+'" title="'+_this.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+_this.attr('name')+'"   date_format="'+_this.attr('date_format')+'"/>';
             _this.before(divObj);
             _this.remove();
-
         });
         $(".laydate-icon").on("click",function(){
             var format = $(this).attr("date_format");
             var formatArr = '';
-
             if(format.split(' ').length > 1){
                 formatArr = format.split(' ')[0].toUpperCase() + " " +format.split(' ')[1].toLowerCase();
             }else{
                 formatArr = format.split(' ')[0].toUpperCase();
             }
-
             laydate({istime: true,format:formatArr});
         });
-
     },
     buildHTML:function(cb){
         var that = this;
@@ -172,6 +171,23 @@ var workForm = {
                 SYS_LIST_SQL:true
             },
             data:{},
+            SYS_LIST_DEPT :function(target){
+                return target.deptSelect();//dept List
+            },
+            SYS_LIST_USER:function(target){
+                var optionStr = '<option value="">请选择用户</option>';
+                workForm.tool.MacrosDate.data.sYS_LIST_USER.forEach(function (v,i) {
+                    optionStr+='<option value="'+v.uid+'">'+v.name+'</option>';
+                });
+                return target.html(optionStr);
+            },
+            SYS_LIST_PRIV:function (target) {
+                var optionStr = '<option value="">请选择角色</option>';
+                workForm.tool.MacrosDate.data.sYS_LIST_PRIV.forEach(function (v,i) {
+                    optionStr+='<option value="'+v.userPriv+'">'+v.privName+'</option>';
+                });
+                return target.html(optionStr);
+            },
             SYS_DATE_CN : function(){
                 return "";
             },
@@ -197,7 +213,7 @@ var workForm = {
                 return "";
             },
             SYS_USERID : function(){
-                return "";
+                return workForm.tool.MacrosDate.data.sYS_USERID;
             },
             SYS_USERNAME : function(obj){
                 return workForm.tool.MacrosDate.data.sYS_USERNAME;
@@ -212,7 +228,7 @@ var workForm = {
                 return workForm.tool.MacrosDate.data.sYS_USERPRIV;
             },
             SYS_USERPRIVOTHER : function(){
-                return "";
+                return workForm.tool.MacrosDate.data.sYS_USERPRIVOTHER;
             },
             SYS_USERNAME_DATE : function(){
                 return workForm.tool.MacrosDate.data.sYS_USERNAME+' '+new Date().Format("yyyy-MM-dd hh:mm:ss");

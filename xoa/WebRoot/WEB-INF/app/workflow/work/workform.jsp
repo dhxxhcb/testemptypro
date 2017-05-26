@@ -319,7 +319,6 @@
                 var obj2=data.object.listFp[0];
                 console.log(obj2);
                 $('.step').html('主办：(第一步：'+obj2.prcsName+')');
-
              })
 
 //            function(data){

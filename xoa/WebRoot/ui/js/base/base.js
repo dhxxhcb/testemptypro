@@ -1,4 +1,5 @@
-;;$(function(){
+;;var domain = "http://localhost:8080";
+$(function(){
 	$.extend({
 		popWindow:function(url,title,top,left,width,height) {
 			
@@ -10,6 +11,25 @@
 			window.open(url,title,specs);
 	    }
 	});
+    $.fn.deptSelect = function(args){
+    	var _this = $(this);
+		$.ajax({
+            url:domain+"/department/getAlldept",
+            type:'get',
+            data:{},
+            dataType:'json',
+			success:function(obj){
+                console.log(obj)
+                var data=obj.obj;
+                departmentData= digui(data,0);
+                var str = departmentChild(departmentData,'<option >请选择部门</option>',0,-1);
+                _this.html(str);
+			},
+			error:function(){
+
+			}
+		});
+	}
 	$.extend({
 		getQueryString:function(name) {
 	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -61,4 +81,45 @@ Date.prototype.Format = function(fmt)
     if(new RegExp("("+ k +")").test(fmt))   
   fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
   return fmt;   
-}  
+}
+//部门遍历方法
+function digui(datas,departId) {
+    var data=new Array();
+    for(var i=0;i<datas.length;i++){
+        if(datas[i].deptParent==departId){
+            datas[i]["childs"]=digui(datas,datas[i].deptId);
+            data.push(datas[i]);
+        }
+    }
+    return data;
+}
+//部门遍历方法
+function departmentChild(datas,opt_li,level,dept){
+    for(var i=0;i<datas.length;i++){
+        var String="";
+        var space=""
+        for(var j=0;j<level;j++){
+            space+="├&nbsp;";
+        }
+		/* console.log("kongge"+space+"kongge")*/
+        if(i==0){
+            String=space+"┌";
+        }else
+        if(i!=0){
+            String=space+"├";
+        }else
+        if(i==datas.length-1){
+            String=space+"└";
+        }
+        if(dept==datas[i].deptId){
+            opt_li+='<option value="'+datas[i].deptId+'" selected="selected">'+String+datas[i].deptName+'</option>';
+        }else{
+            opt_li+='<option value="'+datas[i].deptId+'">'+String+datas[i].deptName+'</option>';
+        }
+		/* 	console.log(datas[i].childs);*/
+        if(datas[i].childs!=null){
+            opt_li = departmentChild(datas[i].childs,opt_li,level+1,dept);
+        }
+    }
+    return opt_li;
+}
