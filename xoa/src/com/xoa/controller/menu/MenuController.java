@@ -43,7 +43,7 @@ public class MenuController {
 	private int flag; 
 	private	String err="err";
 	private	String  ok="ok";
-	
+
 
 	
 	 /**
