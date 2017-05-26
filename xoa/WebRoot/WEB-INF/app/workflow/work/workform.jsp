@@ -296,8 +296,9 @@
         var formid = $.getQueryString("formId");
         workForm.init({
                 formhtmlurl:'../../workflow/work/workfastAdd',//URL
-                flowId:formid,
-                formid:formid,
+                resdata:{
+                    flowId:formid
+                },
                 target:$('.cont_form')},
             function (data) {
               /* if(data.flag==true){

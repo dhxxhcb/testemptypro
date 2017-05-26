@@ -105,9 +105,7 @@ var workForm = {
             type: "get",
             url: that.option.formhtmlurl,
             dataType: 'JSON',
-            data: {
-                flowId :that.option.formid
-            },
+            data:  that.option.resdata,
             success: function (res) {
 
                // that.option.target.html(res.object.printModel);
