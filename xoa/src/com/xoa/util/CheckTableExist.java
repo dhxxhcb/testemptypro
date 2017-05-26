@@ -25,15 +25,7 @@ public class CheckTableExist {
 	            ResultSet rs = md.getTables(null, null, tableName, null);  
 	            if (rs.next()) {  
 	                System.out.println("Table " + tableName + " exist");  
-	                return true;
-	               // rs = md.getColumns(null, null, tableName, columnName);  
-	               /* if (rs.next()) {  
-	                    System.out.println("Table " + tableName  
-	                            + " exist in Table " + tableName);  
-	                } else {  
-	                    System.out.println("Column " + tableName  
-	                            + " not exist in Table " + tableName);  
-	                }  */
+	                return true;	         
 	            } else {  
 	                System.out.println("Table " + tableName + " not exist");  
 	                return false;
@@ -54,7 +46,7 @@ public class CheckTableExist {
 	}
 	
 	
-	 public static void createTable(String sql ) {  
+	 public static boolean createTable(String sql) {  
 	        Connection connection = null;  
 	        try {  
 	            String userName = "root";  
@@ -65,35 +57,11 @@ public class CheckTableExist {
 	                    password); 
 	             //第三步：建立一个statement的对象
 	            Statement st = connection.createStatement();
-	            
-	            
-	            //DatabaseMetaData md = connection.getMetaData();  
-	            ResultSet rs=st.executeQuery(sql);                   //查询用这条执行语句         查询的结果保存在结果集 ResultSet 类的对象rs中
-	            while(rs.next()){                                                      //rs.next()   表示如果结果集rs还有下一条记录，那么返回true；否则，返回false
-	                int id = rs.getInt("personid");
-	                String name = rs.getString(2);
-	                String sex = rs.getString(3);
-	                System.out.println(id+"--->"+name+"--------"+sex);
+ 
+	            ResultSet rs=st.executeQuery(sql);                  
+	            while(rs.next()){  
+	            	return true;
 	            }
-	            
-	            
-	            
-	           /* String tableName = "staff";  
-	            String columnName = "column_name";  
-	            ResultSet rs = md.getTables(null, null, tableName, null);  
-	            if (rs.next()) {  
-	                System.out.println("Table " + tableName + " exist");  
-	                rs = md.getColumns(null, null, tableName, columnName);  
-	                if (rs.next()) {  
-	                    System.out.println("Table " + tableName  
-	                            + " exist in Table " + tableName);  
-	                } else {  
-	                    System.out.println("Column " + tableName  
-	                            + " not exist in Table " + tableName);  
-	                }  
-	            } else {  
-	                System.out.println("Table " + tableName + " not exist");  
-	            }  */
 	        } catch (Exception e) {  
 	            System.err.println("Cannot connect to database server,Exception:"  
 	                    + e.getMessage());  
@@ -102,10 +70,11 @@ public class CheckTableExist {
 	                try {  
 	                    connection.close();  
 	                    connection = null;  
-	                } catch (Exception e) { /* ignore close errors */  
+	                } catch (Exception e) {
 	                }  
 	            }  
-	        }  
+	        }
+			return false;  
 	    }  
 	
 	

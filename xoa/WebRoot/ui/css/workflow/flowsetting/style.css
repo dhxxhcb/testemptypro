@@ -85,15 +85,17 @@ html,body,.content{
     right: 30px;
 }
 .cont_list .btn_h img {
-    width: 12px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     margin-right: 12px;
-    vertical-align: -2px;
+    vertical-align: -4px;
 }
 
+/*
 .cont_list .btn_click:hover {
     background: #c7e1ff;
 }
+*/
 .clickBack{
     background: #c7e1ff;
 }
@@ -129,8 +131,6 @@ html,body,.content{
 .hide .btn_h:hover {
     background: #c7e1ff;
 }
-
-
 .cont_r {
     height: 100%;
     margin-left: 262px;
@@ -144,9 +144,7 @@ html,body,.content{
     font-size: 16px;
     border: 1px solid #e5e5e5;
     margin: 14px 0 0 26px;
-
 }
-
 .cont_r .table caption {
     text-align: right;
     margin-bottom: 8px;
@@ -167,7 +165,7 @@ html,body,.content{
     text-align: center;
     color: #fff;
     cursor: pointer;
-    background: #4b8cf7;
+    background: #2f80d1;
 }
 .cont_r .table .delete_c{
     display: inline-block;
@@ -179,7 +177,7 @@ html,body,.content{
     text-align: center;
     color: #fff;
     cursor: pointer;
-    background: #9c2721;
+    background: #de5837;
 }
 
 .cont_r .table th,td {
@@ -263,6 +261,9 @@ html,body,.content{
     text-align: right;
 }
 .con_form .form_group .flowName{
+    font-size: 16px;
+    font-weight: 900;
+    vertical-align: 8px;
     margin-right: 24px;
 }
 .form_group .flowName .save{
@@ -293,18 +294,20 @@ html,body,.content{
     padding-right: 50px;
     width: 16px;
     height: 16px;
-    vertical-align: -3px;
+    vertical-align: 6px;
 
 }
  .con_form .sex_r{
     padding-right: 30px;
-    width: 517px;
+    width: 508px;
 }
  .con_form .sex_r .sex_save{
      padding-right: 211px;
+     vertical-align: 10px;
  }
 .con_form .sex_r .sex_n{
     margin-right: 24px;
+    vertical-align: 10px;
 }
 .sex_r input[type='checkbox']{
     display: inline-block;
@@ -313,9 +316,17 @@ html,body,.content{
     height: 12px;
 }
 .con_form .sex_r .placeFile{
-    padding-right: 1px;
+    padding-right: 59px;
 }
+.con_form .label_f{
+vertical-align: 10px;
+}
+.con_form .sex_r_f{
+    position: relative;
+}
+
 .con_form .sex_r .set_form{
+    position: absolute;
     font-size: 14px;
     color: #db6b20;
 }
@@ -375,7 +386,16 @@ html,body,.content{
     cursor: pointer;
     background: #c7e1ff;
 }
+/*新建弹窗*/
+.pop_up{
+    width: 500px;
+    height: 500px;
+}
+.pop_up .new_b{
+    font-size: 16px;
+    color: #3a90f2;
 
+}
 
 
 

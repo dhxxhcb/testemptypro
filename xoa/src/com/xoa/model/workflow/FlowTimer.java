@@ -1,5 +1,10 @@
 package com.xoa.model.workflow;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.xoa.global.jsondate.DateSerializerHMS;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+
 import java.util.Date;
 
 public class FlowTimer {
@@ -11,6 +16,7 @@ public class FlowTimer {
 
 	private String remindDate;
 
+    @JsonSerialize(using = DateSerializerHMS.class)
 	private Date remindTime;
 
 	private Date lastTime;
@@ -47,6 +53,8 @@ public class FlowTimer {
 		this.remindDate = remindDate == null ? null : remindDate.trim();
 	}
 
+
+    @JSONField(format = "HH:mm:ss")
 	public Date getRemindTime() {
 		return remindTime;
 	}
@@ -54,7 +62,7 @@ public class FlowTimer {
 	public void setRemindTime(Date remindTime) {
 		this.remindTime = remindTime;
 	}
-
+    @JsonSerialize(using = DateSerializerHMS.class)
 	public Date getLastTime() {
 		return lastTime;
 	}

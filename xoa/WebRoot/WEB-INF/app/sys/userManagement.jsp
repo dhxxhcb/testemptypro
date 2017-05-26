@@ -177,7 +177,7 @@
 
         //人员列表展示
         function deptById(id,element){
-            //$('.tab').find('.userData').remove();
+            $('.tab').find('.userData').remove();
             $.ajax({
                 url:'/user/getByDeptId',
                 type:'get',

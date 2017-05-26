@@ -26,10 +26,25 @@
 			</bean>
 		</mvc:message-converters> 
 	</mvc:annotation-driven>
-	
+	<!--<mvc:annotation-driven conversion-service="conversionService"/>-->
+	<!--<bean id="conversionService"-->
+		  <!--class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
+		<!--<property name="converters">-->
+			<!--<set>-->
+				 <!--<bean class="com.xoa.global.converter.DateConvert" />-->
+			<!--</set>-->
+		<!--</property>-->
+	<!--</bean>-->
 
-
-
+	<!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
+		<!--<property name="converters">-->
+			<!--<set>-->
+				<!--<bean class="com.xoa.global.converter.DateConvert" />-->
+			<!--</set>-->
+		<!--</property>-->
+	<!--</bean>-->
+	<!--<er.Dmvc:annotation-driven conversion-service="conversionService">&ndash;&gt;-->
+	<!--&lt;!&ndash;</mvc:annotation-driven>&ndash;&gt;-->
 	<!-- 静态资源(js/image/css/fonts/flash)的访问 -->
 	<mvc:resources location="/ui/js/" mapping="/js/**" />
 	<mvc:resources location="/ui/css/" mapping="/css/**" />

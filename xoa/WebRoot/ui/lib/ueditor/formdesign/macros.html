@@ -109,7 +109,7 @@ function createElement(type, name)
 </div>
 <script type="text/javascript">
     $(function () {
-        debugger;
+
           var oNode = null,thePlugins = 'macros';
           var dataid = $.getQueryString('dataid');
             if( UE.plugins[thePlugins].editdom ) {
@@ -192,14 +192,15 @@ function createElement(type, name)
                  oNewNode.options[oNewNode.options.length] = objOption;
                  }*/
                 oNewNode = createElement('input','leipiNewField');
-                oNode.setAttribute('type','text');
-                oNode.setAttribute('value','{macros}');
-                oNode.setAttribute('class', "AUTO  form_item ");
-                oNode.setAttribute('data-type', "macros");
-                oNode.setAttribute('title',gTitle);
-                oNode.setAttribute('name','DATA_'+dataid);
-                oNode.setAttribute('id','DATA_'+dataid);
-                oNode.setAttribute('datafld',gType);
+                oNewNode.setAttribute('type','text');
+                oNewNode.setAttribute('value','{macros}');
+                oNewNode.setAttribute('class', "AUTO  form_item ");
+                oNewNode.setAttribute('data-type', "macros");
+                console.log(oNewNode.outerHTML);
+                oNewNode.setAttribute('title',gTitle);
+                oNewNode.setAttribute('name','DATA_'+dataid);
+                oNewNode.setAttribute('id','DATA_'+dataid);
+                oNewNode.setAttribute('datafld',gType);
                 if( $G('orghide').checked ) {
                     oNewNode.setAttribute('orghide', '1' ) ;
                 } else {
@@ -217,6 +218,7 @@ function createElement(type, name)
                 }else{
                     oNewNode.setAttribute('orgwidth', '');
                 }
+
                 editor.execCommand('insertHtml',oNewNode.outerHTML);
                 delete UE.plugins[thePlugins].editdom;
             }

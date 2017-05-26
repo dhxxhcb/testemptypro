@@ -1,11 +1,8 @@
 package com.xoa.dao.menu;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
-
 import com.xoa.model.menu.SysMenu;
+
+import java.util.List;
 
 /**
  * 
@@ -26,6 +23,11 @@ public interface SysMenuMapper {
 	 * @return     List<SysMenu>
 	 */
 	public List<SysMenu> getDatagrid();
-	
-	
+
+
+    void updateSysMenu(SysMenu sysMenu);
+
+    void addSysMenu(SysMenu sysMenu);
+
+    void deleteSysMenu(String id);
 }

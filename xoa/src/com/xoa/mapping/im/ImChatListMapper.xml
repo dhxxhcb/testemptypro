@@ -18,7 +18,7 @@
 		<result column="LAST_CONTENT" property="lastContent" javaType="string" />
 	</resultMap>
 	
-     <select id="getSingleObject" parameterType="Map">
+     <select id="getSingleObject" parameterType="Map" resultMap="BaseResultMap">
       select * from IM_CHAT_LIST where FROM_UID=#{fromUid} and TO_UID=#{toUid}
      </select>
    <update id="updateChatlist" parameterType="com.xoa.model.im.ImChatList">
@@ -67,7 +67,97 @@
 		where LIST_ID = #{listId}
    </update>
 
-
+	<insert id="saveChat" parameterType="com.xoa.model.im.ImChatList">
+		insert into im_chat_list
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="listId != null">
+				LIST_ID,
+			</if>
+			<if test="fromUid != null">
+				FROM_UID,
+			</if>
+			<if test="toUid != null">
+				TO_UID,
+			</if>
+			<if test="ofFrom != null">
+				OF_FROM,
+			</if>
+			<if test="ofTo != null">
+				OF_TO,
+			</if>
+			<if test="lastTime != null">
+				LAST_TIME,
+			</if>
+			<if test="lastAtime != null">
+				LAST_ATIME,
+			</if>
+			<if test="lastFileId != null">
+				LAST_FILE_ID,
+			</if>
+			<if test="lastFileName != null">
+				LAST_FILE_NAME,
+			</if>
+			<if test="lastThumbnailUrl != null">
+				LAST_THUMBNAIL_URL,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+			<if test="msgType != null">
+				MSG_TYPE,
+			</if>
+			<if test="uuid != null">
+				UUID,
+			</if>
+			<if test="lastContent != null">
+				LAST_CONTENT,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="listId != null">
+				#{listId},
+			</if>
+			<if test="fromUid != null">
+				#{fromUid},
+			</if>
+			<if test="toUid != null">
+				#{toUid},
+			</if>
+			<if test="ofFrom != null">
+				#{ofFrom},
+			</if>
+			<if test="ofTo != null">
+				#{ofTo},
+			</if>
+			<if test="lastTime != null">
+				#{lastTime},
+			</if>
+			<if test="lastAtime != null">
+				#{lastAtime},
+			</if>
+			<if test="lastFileId != null">
+				#{lastFileId},
+			</if>
+			<if test="lastFileName != null">
+				#{lastFileName},
+			</if>
+			<if test="lastThumbnailUrl != null">
+				#{lastThumbnailUrl},
+			</if>
+			<if test="type != null">
+				#{type},
+			</if>
+			<if test="msgType != null">
+				#{msgType},
+			</if>
+			<if test="uuid != null">
+				#{uuid},
+			</if>
+			<if test="lastContent != null">
+				#{lastContent},
+			</if>
+		</trim>
+	</insert>
 <!-- 
 	<sql id="_Where_Clause">
 		<where>
@@ -240,97 +330,7 @@
 		#{uuid},
 		#{lastContent})
 	</insert>
-	<insert id="saveChat" parameterType="com.xoa.model.im.ImChatList">
-		insert into im_chat_list
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="listId != null">
-				LIST_ID,
-			</if>
-			<if test="fromUid != null">
-				FROM_UID,
-			</if>
-			<if test="toUid != null">
-				TO_UID,
-			</if>
-			<if test="ofFrom != null">
-				OF_FROM,
-			</if>
-			<if test="ofTo != null">
-				OF_TO,
-			</if>
-			<if test="lastTime != null">
-				LAST_TIME,
-			</if>
-			<if test="lastAtime != null">
-				LAST_ATIME,
-			</if>
-			<if test="lastFileId != null">
-				LAST_FILE_ID,
-			</if>
-			<if test="lastFileName != null">
-				LAST_FILE_NAME,
-			</if>
-			<if test="lastThumbnailUrl != null">
-				LAST_THUMBNAIL_URL,
-			</if>
-			<if test="type != null">
-				TYPE,
-			</if>
-			<if test="msgType != null">
-				MSG_TYPE,
-			</if>
-			<if test="uuid != null">
-				UUID,
-			</if>
-			<if test="lastContent != null">
-				LAST_CONTENT,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="listId != null">
-				#{listId},
-			</if>
-			<if test="fromUid != null">
-				#{fromUid},
-			</if>
-			<if test="toUid != null">
-				#{toUid},
-			</if>
-			<if test="ofFrom != null">
-				#{ofFrom},
-			</if>
-			<if test="ofTo != null">
-				#{ofTo},
-			</if>
-			<if test="lastTime != null">
-				#{lastTime},
-			</if>
-			<if test="lastAtime != null">
-				#{lastAtime},
-			</if>
-			<if test="lastFileId != null">
-				#{lastFileId},
-			</if>
-			<if test="lastFileName != null">
-				#{lastFileName},
-			</if>
-			<if test="lastThumbnailUrl != null">
-				#{lastThumbnailUrl},
-			</if>
-			<if test="type != null">
-				#{type},
-			</if>
-			<if test="msgType != null">
-				#{msgType},
-			</if>
-			<if test="uuid != null">
-				#{uuid},
-			</if>
-			<if test="lastContent != null">
-				#{lastContent},
-			</if>
-		</trim>
-	</insert>
+
 	<select id="countBy" parameterType="com.xoa.model.im.ImChatList"
 		resultType="java.lang.Integer">
 		select count(*) from im_chat_list

@@ -1,5 +1,7 @@
 package com.xoa.model.workflow;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 public class FlowPrintTpl {
@@ -44,7 +46,7 @@ public class FlowPrintTpl {
     public void settName(String tName) {
         this.tName = tName == null ? null : tName.trim();
     }
-
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     public Date getCreateTime() {
         return createTime;
     }

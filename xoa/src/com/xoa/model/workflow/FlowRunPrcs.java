@@ -1,5 +1,7 @@
 package com.xoa.model.workflow;
 
+import java.util.List;
+
 public class FlowRunPrcs {
 	/** 主键ID **/
 	private int id;
@@ -68,6 +70,11 @@ public class FlowRunPrcs {
 	/** 工作天数换算方式(0-24小时为一天，1-按个人排班类型工作时长为一天) **/
 	private String workingdaysType;
 
+    /**
+     * 发起人姓名
+     */
+	private String userName;
+
 	/**
 	 * 创建作者:   张勇
 	 * 创建日期:   2017/5/25 14:04
@@ -76,6 +83,12 @@ public class FlowRunPrcs {
 	 * @return     
 	 */
 	private FlowRun flowRun;
+
+    /**
+     * 流程设置
+     */
+	private FlowTypeModel flowType;
+
 
     public FlowRun getFlowRun() {
         return flowRun;
@@ -347,5 +360,21 @@ public class FlowRunPrcs {
 
     public void setWorkingdaysType(String workingdaysType) {
         this.workingdaysType = workingdaysType == null ? null : workingdaysType.trim();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public FlowTypeModel getFlowType() {
+        return flowType;
+    }
+
+    public void setFlowType(FlowTypeModel flowType) {
+        this.flowType = flowType;
     }
 }
