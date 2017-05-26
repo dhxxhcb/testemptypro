@@ -915,6 +915,7 @@ input.span4, textarea.span4,.uneditable-input.span4 {
 <!--
 $(function(){
  $(".index_head li").click(function(){
+ //$(this).addClass("on").siblings().removeClass("on"); //切换选中的按钮高亮状态
  var index=$(this).index(); 
  $(".step").eq(index).show().siblings().hide(); 
  });
@@ -938,16 +939,20 @@ $(document).ready($.ajax({
 						var length=data.obj.length;
 						var str='';
 						for(var i=0;i<length;i++){
-					    var status=handleData(data.obj[i].delFlag);
-						var str+='<tr><td class="th">'+data.obj[i].runId+'</td>'+
-								  '<td><td class="th">'+data.obj[i].flowRun.runName+'</td>'+
-								  '<td class="th"></td><td class="th">'+data.obj[i].userId+'</td>'+
+						var status=handleData(data.obj[i].delFlag);
+						var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td><td><td class="th">'+data.obj[i].flowRun.runName+'</td>'+
+						          '<td class="th"></td><td class="th">'+data.obj[i].userId+'</td>'+
 								  '<td class="th">'+status+'</td><td class="th"></td>'+
-								  '<td class="th"></td><td style="text-align:left;" title="主办导出删除"><a href="javascript:"><span class="host-span">主办</span></a><a href=""><span class="operation_text_left">导出</span></a><a href="javascript:"><span class="operation_text_left">删除</span></a></td></tr>';
+								  '<td class="th"></td><td style="text-align:left;" title="主办导出删除">'+
+								  '<a href="javascript:"><span class="host-span">主办</span></a>'+
+								  '<a href=""><span class="operation_text_left">导出</span></a>'+
+								  '<a href="javascript:">'+
+								  '<span class="operation_text_left">删除</span></a></td></tr>';
+								  //$('#dbgz').html(str);
+								}
+								$('#dbgz').html(str);
 							}
-						$('#dbgz').html(str);
-						}
-					});
+						})
 				);
 
 
