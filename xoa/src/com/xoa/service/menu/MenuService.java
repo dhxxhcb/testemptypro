@@ -1,9 +1,9 @@
 package com.xoa.service.menu;
 
-import java.util.List;
-
 import com.xoa.model.menu.SysFunction;
 import com.xoa.model.menu.SysMenu;
+
+import java.util.List;
 
 /**
   * 
@@ -35,7 +35,14 @@ public interface MenuService {
 	 * @return     List<SysFunction>
 	 */
 	public List<SysFunction> getDadMenu(String menuId);
-	
-	
 
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/26 12:50
+    *@函数介绍:  修改一级菜单
+    *@参数说明:  @param sysMenu
+    *@return:   void
+    **/
+    void updateSysMenu(SysMenu sysMenu);
 }

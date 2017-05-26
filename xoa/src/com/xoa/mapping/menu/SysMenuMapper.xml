@@ -17,4 +17,35 @@
    <select id="getDatagrid" resultMap="menuResultMap" >
 		SELECT MENU_ID,MENU_NAME,MENU_NAME1,MENU_NAME2,MENU_NAME3,MENU_NAME4,MENU_NAME5,IMAGE,MENU_EXT from sys_menu 
 	</select>
+
+    <update id="updateSysMenu" parameterType="com.xoa.model.menu.SysMenu">
+        update sys_menu
+        <set>
+            <if test="name != null">
+                MENU_NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="name1 != null">
+                MENU_NAME1 = #{name1,jdbcType=VARCHAR},
+            </if>
+            <if test="name2 != null">
+                MENU_NAME2 = #{name2,jdbcType=VARCHAR},
+            </if>
+            <if test="name3 != null">
+                MENU_NAME3 = #{name3,jdbcType=VARCHAR},
+            </if>
+            <if test="name4 != null">
+                MENU_NAME4 = #{name4,jdbcType=VARCHAR},
+            </if>
+            <if test="name5 != null">
+                MENU_NAME5 = #{name5,jdbcType=VARCHAR},
+            </if>
+            <if test="ext != null">
+                MENU_EXT = #{ext,jdbcType=VARCHAR},
+            </if>
+            <if test="img != null">
+                IMAGE = #{img,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where MENU_ID = #{id,jdbcType=VARCHAR}
+    </update>
 </mapper>
