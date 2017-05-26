@@ -1,7 +1,6 @@
 #propertyForm{
     width:19.5%;
     position: fixed;
-
     top: 0px;
     bottom: 1px;
     z-index: 9999;
@@ -11,6 +10,7 @@
     font-family: "Microsoft YaHei" ! important;
     overflow-y: auto ;
     transition: all 0.2s ease 0s;
+
 }
 input{
     outline: none;
@@ -81,6 +81,7 @@ body{
 }
 .candidatesUl li .candidatesPone.activeall{
     font-size: 14px;
+
 }
 .candidatesUl li .candidatesPTwo{
     border:1px solid #ccc;
@@ -101,7 +102,7 @@ body{
     vertical-align: middle;
     border:none;
 }
-.candidatesUl>li p span{
+.candidatesUl>li p .xiala{
     width:12%;
     display: inline-block;
     vertical-align: middle;
@@ -131,6 +132,15 @@ body{
 }
 .candidatesPothree.activeall label{
     font-size: 14px!important;
+    color: #3994f7;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.layui-form-checked i, .layui-form-checked:hover i{
+    color:#3994f7!important; ;
+}
+.layui-form-checked span, .layui-form-checked:hover span{
+    background:#3994f7!important; ;
 }
 .candidatesPoform{
     width: 99%;
@@ -176,6 +186,7 @@ body{
     z-index:999999;
     background: #f7f7f7;
     transition: all 0.2s ease 0s;
+
 }
 .btnstorage a{
     float: right;
@@ -375,6 +386,43 @@ body{
     -ms-border-radius: 8px;
     color: #fff;
     background: #2f8ae3;
+}
+.layui-form-radio i:hover, .layui-form-radioed i{
+    color: #2f8ae3!important;
+}
+table .layui-form-checked span,table .layui-form-checked:hover span{
+    background: transparent!important;
+}
+table .layui-form-checkbox[lay-skin=primary]:hover i{
+    background-color: #2f8ae3!important;
+    color: #fff!important;
+}
+table .layui-form-checked[lay-skin=primary] i{
+    background-color: #2f8ae3!important;
+    color: #fff!important;
+}
+.candidatesPTwo .layui-form-checkbox[lay-skin=primary]{
+    float: left;
+    margin-left: 14px;
+}
+.layui-form-select dl dd.layui-this{
+    background-color: #3994f7!important;
+    color: #fff!important;
+}
+.layui-form-select dl dd{
+    color: #111;
+    font-size: 14px;
+}
+.candidatesUl>li .layui-select-title input[type=text]{
+    width: 100%;
+}
+.candidatesPothree.activeall .layui-form-checked[lay-skin=primary] i{
+    border-color: #3994f7;
+    background-color: #3994f7;
+    color: #fff!important;
+}
+.layui-form-select .layui-edge{
+    border-top-color: #3994f7!important;
 }
 ul,
 ol {

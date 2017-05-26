@@ -4282,6 +4282,9 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
      * 更新range的collapse状态
      * @param  {Range}   range    range对象
      */
+
+
+
     function updateCollapse(range) {
         range.collapsed =
             range.startContainer && range.endContainer &&
