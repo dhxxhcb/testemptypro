@@ -1,8 +1,8 @@
 package com.xoa.dao.menu;
 
-import java.util.List;
-
 import com.xoa.model.menu.SysFunction;
+
+import java.util.List;
 
 /**
  * 
@@ -42,4 +42,12 @@ public interface SysFunctionMapper {
 	   * @return     List<SysFunction>
 	   */
 	 public List<SysFunction> getAll();
+
+    void deleteFunction(String id);
+
+    void addFunctionMenu(SysFunction sysFunction);
+
+    void editSysFunction(SysFunction sysFunction);
+
+    List<SysFunction> findChildMenu(String id);
 }

@@ -44,6 +44,11 @@ public class FlowRun {
 	/** 删除时间 **/
 	private String delTime;
 
+	/**
+	 * 流程表
+	 */
+	private FlowTypeModel flowTypeModel;
+
 
 	public int getRid() {
 		return rid;
@@ -172,4 +177,11 @@ public class FlowRun {
 		this.delTime = delTime;
 	}
 
+	public FlowTypeModel getFlowTypeModel() {
+		return flowTypeModel;
+	}
+
+	public void setFlowTypeModel(FlowTypeModel flowTypeModel) {
+		this.flowTypeModel = flowTypeModel;
+	}
 }

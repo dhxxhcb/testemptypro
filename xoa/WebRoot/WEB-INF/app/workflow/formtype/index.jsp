@@ -78,7 +78,7 @@
 			}
 		.cont {
 			width: 102%;
-			height:95%;
+			height:94%;
 			overflow-y: scroll;
 			}
 		.head {
@@ -87,13 +87,13 @@
 				}
 			.cont_rig {
 			    overflow-y: scroll;
-			    width: 78%;
-			    height: 95%;
-			    margin-left: 67px;
+			    width: 83%;
+			    height: 94%;
+			    margin-left:25px;
 			    margin-right: 5px;
 			}
         .new_excell_pic{
-            border-radius: 0;border: none; width: 73px;height: 73px;margin:10px 24px 10px 20px;
+            border-radius: 0;border: none; width: 70px;height: 70px;margin:10px 24px 10px 20px;
         }
 		.head_rig h1 :hover{
 			cursor:pointer;
@@ -145,7 +145,7 @@
         }
         .new_excell_info {
             width: 100%;
-            height: 116px;
+            height: 113px;
             position: relative;
         }
 		.new_excell_center {
@@ -170,8 +170,8 @@
         }
 
         .new_excell_main {
-            width: 332px;
-            height: 174px;
+            width: 300px;
+            height: 170px;
             border: 1px solid #ddd;
             margin: auto;
             margin-top: 10px;
@@ -184,11 +184,12 @@
 			float:left;
 			}
         .new_excell {
-            width: 332px;
+            width: 295px;
             height: 185px;
             float:left;
-			margin-left:20px;
+			margin-left:18px;
             margin-right:0px;
+            margin-top:5px;
         }
 		
         .new_excell_info_other span {
@@ -306,7 +307,7 @@
 				    text-align: center;
 				}
 			.cont_left {
-			width: 15%;
+			width: 14%;
 			height:95%;
 			border-right: 1px solid #000;
 			overflow-y: scroll;
@@ -656,6 +657,7 @@
                             formName:$('#sort_name').val(),
                         };
 						var layerIndex = layer.load(0, {shade: false});
+
                             $.ajax({
                                 url:url,
                                 type:'get',
