@@ -28,6 +28,11 @@
     border-bottom: 1px solid #919191;
 }
 
+.wrap {
+    width: 101%;
+    height: 100%;
+    overflow: hidden;
+}
 .cont_left {
     width: 15%;
     height:100%;
@@ -75,7 +80,7 @@
      	.inp {height:24px;}
 		.search {width:72px;background-image:url(../../img/work/flow/btn_check_nor_03.png) no-reapt !important;background: #FF5722;}
         .new_excell_pic{
-            border-radius: 0;border: none; width: 73px;height: 73px;margin:10px 24px 10px 20px;
+            border-radius: 0;border: none; width: 70px;height: 70px;margin:10px 24px 10px 20px;
         }
         .deldel{
             color: #fff;font-size: 12px;float: right;margin-right: 10px;margin-left: 10px;line-height: 28px;cursor: pointer;
@@ -139,13 +144,13 @@
         }
 
         .new_excell_main {
-            width: 332px;
+            width:285px;
             height: 174px;
             border: 1px solid #ddd;
             margin: auto;
             margin-top: 10px;
             border-radius: 5px;
-            margin-left:120px;
+            margin-left:40px
         }
         .new_excell_main:hover {
             border: 2px solid #59bdf0;
@@ -154,13 +159,16 @@
 			float:left;
 			}
         .new_excell {
-            width: 360px;
+            width: 318px;
             height: 191px;
             float:left;
 			margin-left: 0px;
             margin-right:0px;
         }
-		
+		.new_excell_info_other span {
+		    margin-left: 10px;
+		    color: black;
+		}
         .new_excell_info_other span {
             margin-left: 10px;
         }
@@ -255,14 +263,33 @@
     height: 20px;
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #555;
+    background-color: #555;}
+    .head_left_pic {
+	display: inline-block;
+	margin-top: 10px;
+	float: left;
+	margin-left: 30px;
+	}
+	.head_left h1 {
+    color: #494d59;
+    font-size: 22px;
+    font-weight: bold;
+    height: 100%;
+    line-height: 50px;
+    /* text-align: center; */
+    margin-left: 7px;
+    float: left;
+}
     </style>
 </head>
 <body>
 
 <div class="wrap">
     <div class="head">
-        <div class="head_left"><h1>流程设计</h1></div>
+       <div class="head_left">
+		<div class="head_left_pic"><img src="../../img/workflow/icon_processdesign_03.png"></div>
+		<h1>表单设计</h1>
+		</div>
         <div class="head_mid">
             <input  id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输入流程名称搜索">
             <div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
