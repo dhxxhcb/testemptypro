@@ -128,7 +128,7 @@
                 <span class="divP"> 子菜单项设置</span>
             </div>
             <div class="tab">
-                <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
+                <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff;width: 50%">
                     <tr>
                         <td colspan="2">个人事务：</td>
                     </tr>
