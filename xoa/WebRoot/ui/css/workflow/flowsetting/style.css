@@ -386,7 +386,16 @@ vertical-align: 10px;
     cursor: pointer;
     background: #c7e1ff;
 }
+/*新建弹窗*/
+.pop_up{
+    width: 500px;
+    height: 500px;
+}
+.pop_up .new_b{
+    font-size: 16px;
+    color: #3a90f2;
 
+}
 
 
 

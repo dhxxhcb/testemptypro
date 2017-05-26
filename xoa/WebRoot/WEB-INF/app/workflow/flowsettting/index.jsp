@@ -74,10 +74,10 @@
     </ul>
 
     <div class="cont_r">
-        <div class="item item1"></div>
+        <div class="item "></div>
         <div class="item"></div>
         <%--定义流程属性--%>
-        <div class="item">
+        <div class="item item1">
             <div class="con_flow">
                 <div class="define_r clearfix">
                     <h3>定义流程属性</h3>
@@ -100,22 +100,21 @@
                         <div class="form_group">
                             <label for="deptName" class="flowName">所属部门 <span class="save">*</span></label>
                             <select name="" id="deptName" class="depName">
-                                <option value="1"><%--系统(仅有系统管理员管理)--%></option>
-                                <option value="2"><%--系统(仅有系统管理员管理--%></option>
-                                <option value="3"><%--系统(仅有系统管理员管理)--%></option>
+                                <option value="1">系统(仅有系统管理员管理)</option>
                             </select>
-
                         </div>
                         <div class="form_group">
                             <label for="classfiy" class="flowName">流程分类 <span class="save">*</span></label>
                             <select name="" id="classfiy" class="depName">
-                                <option value="">考勤管理</option>
+                                <option value="1">固定流程</option>
+                                <option value="2">自由流程</option>
                             </select>
                         </div>
                         <div class="form_group">
                             <label for="class_f" class="flowName">流程类型 <span class="save">*</span></label>
                             <select name="" id="class_f" class="depName">
-                                <option value="">固定流程</option>
+                                <option value="1">固定流程</option>
+                                <option value="2">自由流程</option>
                             </select>
                         </div>
                         <div class="form_group">
@@ -189,7 +188,6 @@
                             <p>一，文号表达式说明</p>
                             <p>表达式中可以使用一下特殊标记</p>
                         </div>
-
                     </div>
                 </form>
                 <div class="jobName">流程说明</div>
@@ -266,39 +264,74 @@
         <div class="item">
             <table class="table" cellspacing="0" id="table_power">
 
-               <%-- <thead>
+                <%-- <thead>
+                  <tr>
+                      <th class="check"><input type="checkbox" class="checkAll">全选</th>
+                      <th>权限类型</th>
+                      <th>授权范围</th>
+                      <th>管理范围</th>
+                      <th>操作</th>
+                  </tr>
+                  </thead>
+                 <tbody>
                  <tr>
-                     <th class="check"><input type="checkbox" class="checkAll">全选</th>
-                     <th>权限类型</th>
-                     <th>授权范围</th>
-                     <th>管理范围</th>
-                     <th>操作</th>
+                     <td><input type="checkbox" class="one"></td>
+                     <td class="manage">管理</td>
+                     <td class="management">用户：系统管理员</td>
+                     <td class="sector">所有部门</td>
+                     <td class="opp">
+                         <a href="javascript:void(0)">修改</a>
+                         <a href="javascript:void(0)">删除</a>
+                     </td>
                  </tr>
-                 </thead>
-                <tbody>
-                <tr>
-                    <td><input type="checkbox" class="one"></td>
-                    <td class="manage">管理</td>
-                    <td class="management">用户：系统管理员</td>
-                    <td class="sector">所有部门</td>
-                    <td class="opp">
-                        <a href="javascript:void(0)">修改</a>
-                        <a href="javascript:void(0)">删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="one"></td>
-                    <td>监控</td>
-                    <td class="management">用户：系统管理员</td>
-                    <td class="sector">所有部门</td>
-                    <td>
-                        <a href="javascript:void(0)">修改</a>
-                        <a href="javascript:void(0)">删除</a>
-                    </td>
-                </tr>
-                </tbody>--%>
+                 <tr>
+                     <td><input type="checkbox" class="one"></td>
+                     <td>监控</td>
+                     <td class="management">用户：系统管理员</td>
+                     <td class="sector">所有部门</td>
+                     <td>
+                         <a href="javascript:void(0)">修改</a>
+                         <a href="javascript:void(0)">删除</a>
+                     </td>
+                 </tr>
+                 </tbody>--%>
 
             </table>
+        </div>
+        <%--新建弹窗--%>
+        <div class="pop_up">
+         <div class="new_b">新建</div>
+            <div class="pop_con">
+                <div class="con_t">
+                    <div class="con_l">
+                        <div class="con_title">
+                            <div class="title_1">
+                                <div class="title_label"><span>表单名称</span></div>
+                                <div class="title_put">
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <sapn class="filed"></sapn>
+                            <div class="title_2">
+                                <select name="" id=""></select>
+                                <span class>(为空为一级分类)</span>
+                            </div>
+                            <div class="title_3">
+                                <div class="title3_label">
+                                    <span class="file_label">所属部门</span>
+                                </div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="con_footer">
+                <a href="javascript:void(0)">保存</a>
+                <a href="javascript:void(0)">关闭</a>
+            </div>
+
         </div>
         <%--定时任务--%>
         <div class="item">
@@ -343,83 +376,82 @@
         <%--配置查询模板--%>
         <div class="item">
             <table class="table table_temp" cellspacing="0">
-              <%--  <caption>
-                    <a href="javascript:void (0)" class="newbuilt">新建</a>
-                    <a href="javascript:void (0)" class="delete_c">删除</a>
-                </caption>
+                <%--  <caption>
+                      <a href="javascript:void (0)" class="newbuilt">新建</a>
+                      <a href="javascript:void (0)" class="delete_c">删除</a>
+                  </caption>
 
-                <thead>
-                <tr>
-                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
-                    <th>权限类型</th>
-                    <th>授权范围</th>
-                    <th>管理范围</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tr>
-                    <td><input type="checkbox" class="one"></td>
-                    <td class="manage">管理</td>
-                    <td class="management">用户：系统管理员</td>
-                    <td class="sector">所有部门</td>
-                    <td class="opp">
-                        <a href="javascript:void(0)">修改</a>
-                        <a href="javascript:void(0)">删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="one"></td>
-                    <td>监控</td>
-                    <td class="management">用户：系统管理员</td>
-                    <td class="sector">所有部门</td>
-                    <td>
-                        <a href="javascript:void(0)">修改</a>
-                        <a href="javascript:void(0)">删除</a>
-                    </td>
-                </tr>--%>
+                  <thead>
+                  <tr>
+                      <th class="check"><input type="checkbox" class="checkAll">全选</th>
+                      <th>权限类型</th>
+                      <th>授权范围</th>
+                      <th>管理范围</th>
+                      <th>操作</th>
+                  </tr>
+                  </thead>
+                  <tr>
+                      <td><input type="checkbox" class="one"></td>
+                      <td class="manage">管理</td>
+                      <td class="management">用户：系统管理员</td>
+                      <td class="sector">所有部门</td>
+                      <td class="opp">
+                          <a href="javascript:void(0)">修改</a>
+                          <a href="javascript:void(0)">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><input type="checkbox" class="one"></td>
+                      <td>监控</td>
+                      <td class="management">用户：系统管理员</td>
+                      <td class="sector">所有部门</td>
+                      <td>
+                          <a href="javascript:void(0)">修改</a>
+                          <a href="javascript:void(0)">删除</a>
+                      </td>
+                  </tr>--%>
             </table>
         </div>
+        <%--应用版式文件--%>
         <div class="item">
-            <table class="table" cellspacing="0">
-                <caption>
-                    <a href="javascript:void (0)" class="newbuilt">新建</a>
-                    <a href="javascript:void (0)" class="delete_c">删除</a>
-                </caption>
+            <table class="table table_prc" cellspacing="0">
+                <%-- <caption>
+                     <a href="javascript:void (0)" class="newbuilt">新建</a>
+                     <a href="javascript:void (0)" class="delete_c">删除</a>
+                 </caption>
 
-                <thead>
-                <tr>
-                    <th class="check"><input type="checkbox" class="checkAll">全选</th>
-                    <th>权限类型</th>
-                    <th>授权范围</th>
-                    <th>管理范围</th>
-                    <th>操作</th>
-                </tr>
+                 <thead>
+                 <tr>
+                     <th class="check"><input type="checkbox" class="checkAll">全选</th>
+                     <th>权限类型</th>
+                     <th>授权范围</th>
+                     <th>管理范围</th>
+                     <th>操作</th>
+                 </tr>
 
-                </thead>
-                <tr>
-                    <td><input type="checkbox" class="one"></td>
-                    <td class="manage">管理</td>
-                    <td class="management">用户：系统管理员</td>
-                    <td class="sector">所有部门</td>
-                    <td class="opp">
-                        <a href="javascript:void(0)">修改</a>
-                        <a href="javascript:void(0)">删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="one"></td>
-                    <td>监控</td>
-                    <td class="management">用户：系统管理员</td>
-                    <td class="sector">所有部门</td>
-                    <td>
-                        <a href="javascript:void(0)">修改</a>
-                        <a href="javascript:void(0)">删除</a>
-                    </td>
-                </tr>
+                 </thead>
+                 <tr>
+                     <td><input type="checkbox" class="one"></td>
+                     <td class="manage">管理</td>
+                     <td class="management">用户：系统管理员</td>
+                     <td class="sector">所有部门</td>
+                     <td class="opp">
+                         <a href="javascript:void(0)">修改</a>
+                         <a href="javascript:void(0)">删除</a>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td><input type="checkbox" class="one"></td>
+                     <td>监控</td>
+                     <td class="management">用户：系统管理员</td>
+                     <td class="sector">所有部门</td>
+                     <td>
+                         <a href="javascript:void(0)">修改</a>
+                         <a href="javascript:void(0)">删除</a>
+                     </td>
+                 </tr>--%>
             </table>
         </div>
-
-
     </div>
 
 </div>
@@ -429,21 +461,21 @@
 <script src="../../js/jquery-1.9.1.js"></script>
 
 <script type="text/javascript">
-   /* (function (pro) {
-        function queryUrl() {
-            var reg = /([^?&#=]+)=([^?&#=]+)/g;
-            var obj = {};
-            this.replace(reg,function () {
-                obj[arguments[1]]=arguments[2];
-            });
-            return obj;
-        }
-        pro.queryUrl = queryUrl;
-    })(String.prototype);
-   $(function () {
-       var urlObj = window.location.href.queryUrl();
-       console.log(urlObj.type);
-   });*/
+    /* (function (pro) {
+     function queryUrl() {
+     var reg = /([^?&#=]+)=([^?&#=]+)/g;
+     var obj = {};
+     this.replace(reg,function () {
+     obj[arguments[1]]=arguments[2];
+     });
+     return obj;
+     }
+     pro.queryUrl = queryUrl;
+     })(String.prototype);
+     $(function () {
+     var urlObj = window.location.href.queryUrl();
+     console.log(urlObj.type);
+     });*/
 
 
     $(function () {
@@ -478,8 +510,7 @@
 
         /*定义流程属性查询*/
         var flowId = '${flowId}';
-
-        if(flowId != null || flowId.length>0) {
+        if (flowId != "") {
             $.ajax({
                 type: "GET",
                 url: "<%=basePath%>flow/selectAllFlow",
@@ -488,23 +519,24 @@
                     flowId: flowId
                 },
                 success: function (data) {
+                    console.log(data);
                     if (data.flag) {
+                        console.log(1)
                         $("#flowId").val(data.object.flowId);
                         $("#projectName").val(data.object.flowName);
                         $('#orderID').val(data.object.flowNo);
+                        $('#class_f').html('<option value="1">固定流程<option/>'+'<option value="2">自由流程<option/>');
+
 
                     }
                 }
             });
         }
         $('.keepmsg').on('click', function () {
-            var flowId = ${flowId};
-//            var flowId = $("#flowId").val();
+            var flowId = '${flowId}';
             alert(flowId);
 
             if (flowId == null || flowId == "") {
-                console.log('空')
-
                 //保存
                 var data = {
                     flowName: $('#projectName').val(),
@@ -516,7 +548,7 @@
                     freeOther: '2',
                     flowDoc: 0,
                     autoNum: $('#counteer').val(),
-                    autoLen: $('#figure').val(),
+                    autoLen: $('#figure').val()
                 };
                 $.ajax({
                     type: 'POST',
@@ -562,9 +594,9 @@
         $list.each(function (index, item) {
             $(item).click(function () {
                 $('.cont_r .item').eq(index).show().siblings().hide();
-                if (index == 1){
+                if (index == 1) {
                     $('.hide_list1').toggle();
-                }else if(index==10){
+                } else if (index == 10) {
                     $('.hide_list2').toggle();
                 }
             })
@@ -620,7 +652,7 @@
 
         /*定时任务*/
         $('.btn3').click(function () {
-            var strData = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
+            var strData = '<caption class="clearfix"> <span class="priv_t">定时任务</span> ' +
                 '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
                 '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
                 '</caption>' +
@@ -636,7 +668,7 @@
                     var data_d = data.datas;
                     if (data.flag) {
                         for (var i = 0; i < data_d.length; i++) {
-                            strData += "<tbody>"+"<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data_d[i].typeName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].userName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].remindDate + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].lastTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>"+"</tbody>";
+                            strData += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data_d[i].typeName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].userName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].remindDate + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].lastTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>" + "</tbody>";
                         }
                         $('#table_task').html(strData);
                         checkAll();
@@ -647,50 +679,71 @@
         })
         /*配置查询模板*/
         $('.btn4').click(function () {
-         $.ajax({
-             type:'get',
-             url:'<%=basePath%>/flowSetDatas/getFlowQueryTplList',
-             dataType:'json',
-             data:{
-                 flowId:flowIdFromPage
-             },
-             success:function () {
-                 var html = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
-                     '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
-                     '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
-                     '</caption>' +
-                     "<th><th><input type='checkbox' class='checkAll'>全选</th><th>模板名称</th><th>创建时间</th><th>操作</th></th>";
-                 $('.table_temp').html(html);
-                 checkAll();
-
-             }
-         })
-        })
-        /*应用版式文件*/
-        $('.btn5').click(function () {
+            var html = '<caption class="clearfix"> <span class="priv_t">配置查询模板</span> ' +
+                '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
+                '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
+                '</caption>' +
+                "<th><th><input type='checkbox' class='checkAll'>全选</th><th>模板名称</th><th>创建时间</th><th>操作</th></th>";
             $.ajax({
-                type:'get',
-                url:'<%=basePath%>/flowSetDatas/getFlowPrintTpl',
-                dataType:'json',
-                data:{
-                    flowId:flowIdFromPage
+                type: 'get',
+                url: '<%=basePath%>/flowSetDatas/getFlowQueryTplList',
+                dataType: 'json',
+                data: {
+                    flowId: flowIdFromPage
                 },
-                success:function (data) {
-                    console.log(data)
+                success: function () {
+
+                    $('.table_temp').html(html);
+                    checkAll();
+
                 }
             })
         })
+        /*应用版式文件*/
+        $('.btn5').click(function () {
+            var html = '<caption class="clearfix"> <span class="priv_t">应用版式文件</span> ' +
+                '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
+                '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
+                '</caption>' +
+                "<t><th><input type='checkbox' class='checkAll'>全选</th><th>模板名称</th><th>模板类别</th><th>创建日期</th><th>操作</th></t>";
+            $.ajax({
+                type: 'get',
+                url: '<%=basePath%>/flowSetDatas/getFlowPrintTpl',
+                dataType: 'json',
+                data: {
+                    flowId: flowIdFromPage
+                },
+                success: function (data) {
+                    if (data.flag) {
+                        var data = data.datas;
+                        console.log(data);
+                        for (var i = 0; i < data.length; i++) {
+                          html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data[i].content + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].flowPrcs + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>"  + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                        }
+                        $('.table_prc').html(html);
+                        checkAll();
+                    }
+
+
+
+                }
+
+        })
+    })
+
+        /*新建弹窗*/
+
 
     })
-   function checkAll() {
-       $('.checkAll').on('click', function () {
-           $('.one').prop('checked', $(this).prop('checked'));
-       });
-       $('.one').click(function () {
-           $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
-       })
-   }
-   checkAll();
+    function checkAll() {
+        $('.checkAll').on('click', function () {
+            $('.one').prop('checked', $(this).prop('checked'));
+        });
+        $('.one').click(function () {
+            $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
+        })
+    }
+    checkAll();
 </script>
 
 </html>
