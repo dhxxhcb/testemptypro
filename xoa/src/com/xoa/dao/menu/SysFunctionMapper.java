@@ -44,4 +44,8 @@ public interface SysFunctionMapper {
 	 public List<SysFunction> getAll();
 
     void deleteFunction(String id);
+
+    void addFunctionMenu(SysFunction sysFunction);
+
+    void editSysFunction(SysFunction sysFunction);
 }

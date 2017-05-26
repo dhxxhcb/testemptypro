@@ -198,12 +198,12 @@ public class MenuController {
 
 
     /**
-    *@创建作者:  韩成冰
-    *@创建日期:  2017/5/26 13:01
-    *@函数介绍:  添加主菜单(由于主菜单和其它子菜单对应不同的表，所以添加时分开)
-    *@参数说明:  @param sysMenu
-    *@return:   String
-    **/
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 13:01
+     * @函数介绍: 添加主菜单(由于主菜单和其它子菜单对应不同的表，所以添加时分开)
+     * @参数说明: @param sysMenu
+     * @return: String
+     **/
     @RequestMapping(value = "/addSysMenu", produces = {"application/json;charset=UTF-8"})
     public String addSysMenu(SysMenu sysMenu, HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
@@ -232,12 +232,12 @@ public class MenuController {
     }
 
     /**
-    *@创建作者:  韩成冰
-    *@创建日期:  2017/5/26 13:15
-    *@函数介绍:  删除菜单
-    *@参数说明:  @param id（对应数据库MENU_ID）
-    *@return:   String
-    **/
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 13:15
+     * @函数介绍: 删除菜单
+     * @参数说明: @param id（对应数据库MENU_ID）
+     * @return: String
+     **/
     @RequestMapping(value = "/deleteSysMenu", produces = {"application/json;charset=UTF-8"})
     public String deleteSysMenu(String id, HttpServletRequest request) {
       /*  ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
@@ -247,10 +247,85 @@ public class MenuController {
             try {
                 menuService.deleteSysMenu(id);
                 return "redirect:showMenu";
-            }catch (Exception e){
+            } catch (Exception e) {
                 return null;
             }
         }
         return null;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/24 17:10
+     * @函数介绍: 非一级菜单的添加。（参考本类中方法addMenu）
+     * @参数说明: @param sysFunction 子类菜单实体类
+     * @参数说明: @param parentId 子类菜单的父菜单id
+     * @return: String(重定向到查询某级子菜单)
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/addFunction", produces = {"application/json;charset=UTF-8"})
+    public ToJson<SysFunction> addFunctionMenu(SysFunction sysFunction, HttpServletRequest request, String parentId) {
+       /* ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));*/
+        //localhost:8081/addFunction?fid=343&id=76&name=myname&parentId=1090&url=myurl
+        //ext是 国际版多语言菜单名称，先用“”，留好接口
+        sysFunction.setExt("");
+        ToJson<SysFunction> json = new ToJson<SysFunction>(0, null);
+
+        //数据库某些字段不允许为空，所以判断
+        if (sysFunction != null && sysFunction.getId() != null && sysFunction.getName() != null &&
+                sysFunction.getfId() != null && sysFunction.getExt() != null && sysFunction.getUrl() != null && parentId != null) {
+
+            if (sysFunction.getId().length() == 2) {
+                //二级菜单 ，三级菜单的id是拼接用户输入的一个id,和父菜单id.
+                sysFunction.setId(parentId.concat(sysFunction.getId()));
+                try {
+                    menuService.addFunctionMenu(sysFunction);
+                    json.setMsg("OK");
+                    json.setFlag(0);
+                } catch (Exception e) {
+                    System.out.println(e);
+                    json.setMsg(e.getMessage());
+                }
+            }
+        }
+
+        return json;
+    }
+
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 14:12
+     * @函数介绍: 修改二级菜单
+     * @参数说明: @param sysFunction
+     * @参数说明: @param parentId
+     * @return: String
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/editSysFunction", produces = {"application/json;charset=UTF-8"})
+    public ToJson<SysFunction> editSysFunction(SysFunction sysFunction, String parentId, HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<SysFunction> json = new ToJson<SysFunction>(0, null);
+
+        if (sysFunction != null && sysFunction.getfId() != null && parentId != null &&
+                sysFunction.getId() != null && sysFunction.getName() != null && sysFunction.getUrl() != null) {
+
+            //前端传来的parentId,和id拼接后即要存入数据库的菜单id（MENU_ID）
+            sysFunction.setId(parentId.concat(sysFunction.getId()));
+            try {
+
+                menuService.editSysFunction(sysFunction);
+                json.setMsg("OK");
+                json.setFlag(0);
+            } catch (Exception e) {
+                json.setMsg(e.getMessage());
+            }
+
+
+        }
+        return json;
+
     }
 }

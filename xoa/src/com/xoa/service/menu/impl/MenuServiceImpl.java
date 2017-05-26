@@ -113,7 +113,6 @@ public class MenuServiceImpl implements MenuService {
     }
 
     /**
-     *
      * @创建作者: 韩成冰
      * @创建日期: 2017/5/26 13:16
      * @函数介绍: 删除菜单
@@ -132,6 +131,31 @@ public class MenuServiceImpl implements MenuService {
         }
 
 
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 13:59
+     * @函数介绍: 添加二级菜单
+     * @参数说明: @param SysFunctioni
+     * @return: void
+     */
+    @Override
+    public void addFunctionMenu(SysFunction sysFunction) {
+
+        sysFunctionMapper.addFunctionMenu(sysFunction);
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 14:14
+     * @函数介绍: 修改二级菜单
+     * @参数说明: @param sysFunction
+     * @return: void
+     **/
+    @Override
+    public void editSysFunction(SysFunction sysFunction) {
+        sysFunctionMapper.editSysFunction(sysFunction);
     }
 
 }

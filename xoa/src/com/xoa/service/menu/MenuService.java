@@ -61,4 +61,15 @@ public interface MenuService {
     *@return:   void
     **/
     void deleteSysMenu(String id);
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/26 13:59
+    *@函数介绍:  添加二级菜单
+    *@参数说明:  @param SysFunctioni
+    *@return:   void
+    **/
+    void addFunctionMenu(SysFunction sysFunction);
+
+    void editSysFunction(SysFunction sysFunction);
 }
