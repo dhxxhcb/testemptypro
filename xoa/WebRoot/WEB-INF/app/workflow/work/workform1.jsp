@@ -8,7 +8,7 @@
 %>
 <html>
 <head>
-    <title>处理表单</title>
+    <title>表单预览</title>
     <link rel="stylesheet" href="../../css/workflow/work/form.css">
     <%--<link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>--%>
     <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
@@ -28,11 +28,11 @@
 <script>
     $(function(){
         var formid = $.getQueryString("formId");
-
-
         workForm.init({
             formhtmlurl:'../../form/formType',
-            formid:formid,
+            resdata:{
+                fromId:formid
+            },
             target:$('.formDesign')},
             function(data){
                 console.log(data);

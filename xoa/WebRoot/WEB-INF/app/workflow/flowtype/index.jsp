@@ -145,6 +145,7 @@
             margin: auto;
             margin-top: 10px;
             border-radius: 5px;
+            margin-left:120px;
         }
         .new_excell_main:hover {
             border: 2px solid #59bdf0;
@@ -462,9 +463,9 @@
                     '</a>'+
                    ' <div class="new_excell_footer">'+
 				   //'<span class="lcsjq">流程设计器</span>'+
-				   //'<img src="../../img/workflow/new_excell_info_img_shanchu.png" class="deldel_img" >'+
+				   //'<img src="../../img/workflow/design_03.png" class="deldel_img" >'+
                     '<span class="deldel" formId="'+data[i].formId+'">流程设计器</span>'+
-                   //'<img src="../../img/workflow/new_excell_info_img_shanchu.png" class="deldel_img" >'+
+                   '<img src="../../img/workflow/design_03.png" class="deldel_img" >'+
                     '</div>'+
                     '</div>'+
                     '</div>';
