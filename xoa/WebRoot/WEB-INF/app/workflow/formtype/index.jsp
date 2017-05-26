@@ -657,6 +657,7 @@
                             formName:$('#sort_name').val(),
                         };
 						var layerIndex = layer.load(0, {shade: false});
+
                             $.ajax({
                                 url:url,
                                 type:'get',

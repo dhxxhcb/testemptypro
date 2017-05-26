@@ -10,9 +10,9 @@ var workForm = {
         _this.buildHTML(cb);
     },
     render:function(){
-        this.DateRender();
-        this.ReBuild();
-        this.MacrosRender();
+        //this.DateRender();
+        //this.ReBuild();
+        //this.MacrosRender();
         this.RadioRender();
     },
     filter:function(){
@@ -50,8 +50,6 @@ var workForm = {
         }
         target.find("input").each(function(){
             var _this = $(this);
-           // console.log(_this.attr("class").indexOf('AUTO'));
-            console.log(_this.attr("class") &&  _this.attr("class").indexOf('AUTO') > -1);
             if(_this.attr("class") &&  _this.attr("class").indexOf('AUTO') > -1){
                 _this.attr("data-type","macros");
             }else{

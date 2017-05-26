@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>日历控件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" href="../formdesign/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/ueditor/site.css">
+    <script type="text/javascript" src="../dialogs/internal.js"></script>
+    <script type="text/javascript" src="../../../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../../../js/base/base.js"></script>
+    <link rel="stylesheet" href="leipi.style.css">
+   <script type="text/javascript">
+function createElement(type, name)
+{     
+    var element = null;     
+    try {        
+        element = document.createElement('<'+type+' name="'+name+'">');     
+    } catch (e) {}   
+    if(element==null) {     
+        element = document.createElement(type);     
+        element.name = name;     
+    } 
+    return element;     
+}
+    </script>
+</head>
+<body>
+<div class="content">
+    <table class="table table-bordered table-striped table-hover">
+     <tr>
+        <th><span>控件名称</span><span class="label label-important">*</span></th>
+        <th><span>日期格式</span></th>
+    </tr>
+    <tr>
+        <td><input id="orgname" placeholder="必填项" type="text"/> </td><input type="hidden" id="fielid" placeholder="必填项">
+        <td>
+            <select  id="dataformat" class="span7">
+                <option value="YYYY-MM-DD">日期，形如：2010-09-09</option>
+                <option value="YYYY-MM-DD hh:mm:ss">日期，形如：2010-09-09 09:25:00</option>
+            </select>
+        </td>
+    </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var dataid = $.getQueryString('dataid');
+        var oNode = null,thePlugins = 'calendar';
+
+            if( UE.plugins[thePlugins].editdom ){
+                oNode = UE.plugins[thePlugins].editdom;
+                var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\"");
+                var date_format=oNode.getAttribute('date_format');
+                console.log(gTitle);
+                $G('orgname').value = "333";
+                //$G('dataformat').find("option[text='"+date_format+"']").attr("selected","selected");
+
+            }
+
+        dialog.oncancel = function () {
+            if( UE.plugins[thePlugins].editdom ) {
+                delete UE.plugins[thePlugins].editdom;
+            }
+        };
+        dialog.onok = function (){
+            if( $G('orgname').value == '') {
+                alert('控件名称不能为空');
+                return false;
+            }
+            var gTitle=$G('orgname').value.replace(/\"/g,"&quot;");
+            var dataformat =$G('dataformat').value;
+            if( !oNode ) {
+                try {
+                    oNode = createElement('input','DATA_' + dataid);
+                    oNode.setAttribute('title',gTitle);
+                    oNode.setAttribute('class', "form_item");
+                    oNode.setAttribute('data-type', "calendar");
+                    oNode.setAttribute('id', 'DATA_' + dataid);
+                    oNode.setAttribute('value', dataformat);
+                    oNode.setAttribute('date_format', dataformat);
+                    console.log(oNode.outerHTML);
+                    editor.execCommand('insertHtml',oNode.outerHTML);
+                    return true ;
+                } catch ( e ) {
+                    try {
+                        editor.execCommand('error');
+                    } catch ( e ) {
+                        alert('控件异常');
+                    }
+                    return false;
+                }
+            } else {
+                oNode.setAttribute('title',gTitle);
+                oNode.setAttribute('class', "form_item");
+                oNode.setAttribute('data-type', "calendar");
+
+                delete UE.plugins[thePlugins].editdom;
+                return true;
+            }
+        };
+
+    });
+
+</script>
+</body>
+</html>

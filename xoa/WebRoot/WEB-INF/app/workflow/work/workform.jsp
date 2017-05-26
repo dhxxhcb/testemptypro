@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/new_work.css">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../lib/laydate.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/workflow/work/handle.css"/>
     <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
     <script src="../../js/base/base.js"></script>
     <script src="../../js/workflow/work/workform.js"></script>
@@ -208,6 +209,18 @@
 
         overflow: hidden !important;
     }
+    .foot li:hover {
+        color:#fff !important;
+        background:#4889f0 !important;
+    }
+    /*.choose{
+       color:#fff;
+        background:#4889f0 !important;
+    }*/
+    #remind_name{
+        width: 100px;
+        height: 20px;
+    }
 </style>
 
 <body>
@@ -274,7 +287,7 @@
                     <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/sheji.png"><h1 class="left_h1">流程图</h1></li>
                     <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/weituo.png"><h1 class="left_h1">委托</h1></li>
                     <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/print.png"><h1 class="left_h1">打印</h1></li>
-                    <li class="left_li"><img class="left_img" src="../../img/workflow/work/add_work/lan.png"><h1 class="left_h1">附件</h1></li>
+                    <li class="left_li" id="attach_name"><img class="left_img" src="../../img/workflow/work/add_work/lan.png"><h1 class="left_h1" >附件</h1></li>
                 </ul>
             </div>
             <div class="foot_rig">
@@ -370,19 +383,28 @@
         $('.position').on('click',function () {
             $('#tab_c').animate({right:'-316px'},"slow");
         })
+        //点击左下角的附件
+        $('#attach_name').on('click',function(){
 
+            $('#tab_c').animate({right:'0px'},"slow");
+            /*$(this).css({
+                'color':'#fff',
+                'background':'#4889f0'
+            });*/
+        })
         //转交下一步
         $('.zhuanjiao').on('click',function(){
             /*alert('111');*/
-            $(this).css({
+            /*$(this).css({
                 'color':'#fff',
                 'background':'#4889f0'
-            });
+            });*/
 
             layer.open({
                 type: 1,
                 /* skin: 'layui-layer-rim', //加上边框 */
                 offset: '80px',
+                area: ['800px', '400px'],
                 closeBtn: 0,
                 title:'NO. 838 督察督办(2017-05-26 10:05:34)',
                 content: '<div class="modal-body" style="max-height: 274px;">'+
@@ -402,10 +424,10 @@
                     '<div id="TOP_FLAG_SHOW2_menu" class="attach_div small" style="display: none; top: 33px; left: 153px;">'+
                         '<a href="javascript:set_top(0,"2");">主办人：</a><a href="javascript:set_top(2,"2");">无主办人会签：</a>'+
                     '<a href="javascript:set_top(1,"2");">先接收者主办：</a></div></div>'+
-                    '<div class="user-tags" user_id="admin">系统管理员<i gather_node_have_flag="0" class="close">×</i></div></div>'+
+                    '<div class="user-tags" id="remind_name" user_id="admin"><i gather_node_have_flag="0" class="close">×</i></div></div>'+
                     '<div id="prcs_op_block_div2" class="clearfix">'+
                     '<input type="hidden" data_type="op_user_btn" id="PRCS_USER2" name="PRCS_USER2" value="admin,">'+
-                    '<div class="managers">经办人：</div><div class="user-tags" user_id="admin">系统管理员<i gather_node_have_flag="0" class="close"></i></div>'+
+                    '<div class="managers">经办人：</div><div class="user-tags" user_id="admin" id="jingban"><i gather_node_have_flag="0" class="close"></i></div>'+
                     '</div></div></li></ul></div></div></div><div class="work-msg-block">'+
                     '<div class="work-msg-title"><a id="msg-control" href="#"><img style="vertical-align: text-top;" src="/static/modules/workflow/images/unfold.png"></a> 向以下人员发送事务提醒消息</div>'+
                     '<div class="work-msg-content" style="display: block;"><div class="clearfix">'+
@@ -420,7 +442,7 @@
                         '<div class="clearfix">'+
                     '提醒指定步骤经办人： <input type="hidden" name="remind_others_id" id="remind_others_id" value="">'+
                     '<textarea name="remind_others_name" id="remind_others_name" readonly="" style="width:376px;"></textarea>'+
-                    '<a class="orgAdd" id="others-add" href="javascript:void(0);">选择</a>'+
+                    '<a class="orgAdd" id="others-add">选择</a>'+
                     '<a class="orgClear" id="others-clear" href="javascript:ClearUser("remind_others_id", "remind_others_name");">清空</a>'+
                     '</div>'+
                      '<div class="work-msg-sms-block">'+
@@ -428,14 +450,30 @@
                         ' </div></div></div></div>',
 
                 btn:['确认', '取消'],
+                success: function(layero,index){
+                    $('#chose_user2').on('click',function(){
+                            user_id='remind_name';
+                            $.popWindow("../../common/selectUser");
+                    })
+                    //底部选择人员
+                    $('#others-add').on('click',function(){
+                        user_id='remind_others_name';
+                        $.popWindow("../../common/selectUser");
+                    })
+
+                },
                 yes: function(index, layero){
                     //按钮【按钮三】的回调
                     /*alert($('.name_biaodan').val());*/
+                    //选择人员
+
+
                     layer.closeAll();
                 }
             });
 
-        })
+        });
+
     });
 </script>
 <script>
