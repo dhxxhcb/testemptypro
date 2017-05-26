@@ -1,4 +1,5 @@
 ﻿//定义一个区域图类：
+var me;
 function GooFlow(bgDiv, property) {
     if (navigator.userAgent.indexOf("MSIE 8.0") > 0 || navigator.userAgent.indexOf("MSIE 7.0") > 0 || navigator.userAgent.indexOf("MSIE 6.0") > 0)
         GooFlow.prototype.useSVG = "";
@@ -29,6 +30,7 @@ function GooFlow(bgDiv, property) {
     this.$cursor = "default";//鼠标指针在工作区内的样式
     this.$editable = false;//工作区是否可编辑
     var headHeight = 0;
+    me=this;
     var tmp = "";
     if (property.haveHead) {
         tmp = "<div class='GooFlow_head'><label title='" + (property.initLabelText || "newFlow_1") + "'>" + (property.initLabelText || "newFlow_1") + "</label><span></span>";
@@ -139,12 +141,13 @@ function GooFlow(bgDiv, property) {
             var ev = mousePosition(e), t = getElCoordinate(this);
             X = ev.x - t.left + this.parentNode.scrollLeft;
             Y = ev.y - t.top + this.parentNode.scrollTop;
-            e.data.inthis.addNode("node_" + e.data.inthis.$max, {
-                name: "node_" + e.data.inthis.$max,
-                left: X,
-                top: Y,
-                type: e.data.inthis.$nowType
-            });
+                e.data.inthis.addNode("步骤" + e.data.inthis.$max, {
+                    name: "步骤" + e.data.inthis.$max,
+                    left: X,
+                    top: Y,
+                    type: e.data.inthis.$nowType
+                });
+
             e.data.inthis.$max++;
         });
         //划线时用的绑定
@@ -813,8 +816,14 @@ GooFlow.prototype = {
         });
         //绑定结点的删除功能
         this.$workArea.delegate(".rs_close", "click", {inthis: this}, function (e) {
+
             if (!e) e = window.event;
             e.data.inthis.delNode(e.data.inthis.$focus);
+            console.log(this)
+            console.log(me.$max)
+            if(me.$max>0){
+                me.$max--;
+            };
             return false;
         });
         //绑定结点的RESIZE功能
