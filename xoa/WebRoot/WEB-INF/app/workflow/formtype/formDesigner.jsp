@@ -58,7 +58,7 @@
                     <img src="../img/icon_checkbox_03.png" alt="">复选框</a></li>
                 <li><a href="javascript:void(0);" type="macros" class="btn btn-link">
                     <img src="../img/icon_hongcontrol_03.png" alt="">宏控件</a></li>
-                <li><a href="javascript:void(0);" type="date" class="btn btn-link">
+                <li><a href="javascript:void(0);" type="calendar" class="btn btn-link">
                     <img src="../img/icon_calendar_03.png" alt="">日历控件</a></li>
                 <li><a href="javascript:void(0);">
                     <img src="../img/icon_calculator_03.png" alt="">计算控件</a></li>
@@ -120,7 +120,7 @@
                                 },
                                 success: function (res) {
                                     var formObj = $('<div>'+res.object.printModel+'</div>');
-                                    console.log(formObj.prop("outerHTML"))
+
                                     workForm.ReBuild(formObj);
                                     $('#formtitle').html(res.object.formName);
                                     formEditor.setContent(formObj.html(),true);
