@@ -10,10 +10,11 @@ var workForm = {
         _this.buildHTML(cb);
     },
     render:function(){
-        //this.DateRender();
-        //this.ReBuild();
-        //this.MacrosRender();
+
+        this.ReBuild();
+        this.MacrosRender();
         this.RadioRender();
+        this.DateRender();
     },
     filter:function(){
         this.MacrosRender();
@@ -59,6 +60,14 @@ var workForm = {
             _this.attr("id",$(this).attr("name"));
 
         });
+        target.find('img.DATE').each(function(){
+            var _this = $(this);
+            var objprev = _this.prev();
+            var inputObj = '<input name="'+objprev.attr('name')+'" title="'+objprev.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+objprev.attr('name')+'" value="'+_this.attr('date_format')+'"  date_format="'+_this.attr('date_format')+'"/>';
+            objprev.remove();
+            _this.before(inputObj);
+            _this.remove();
+        });
         target.find("textarea").each(function(){
             $(this).addClass("form_item");
             $(this).attr("data-type","textarea");
@@ -90,32 +99,27 @@ var workForm = {
 
     },
     DateRender:function(){
-        //过滤老版本数据
-        var olddata = $('img.DATE');
-        for(var i=0;i< olddata.length;i++){
-            var obj = olddata.eq(i);
-            var objprev = obj.prev();
-            var date_format =  obj.attr('date_format');
-            var name = objprev.attr('name')
-            var inputObj = '<div id="'+name+'" date_format="'+date_format+'" name="'+name+'"  style="'+objprev.attr('style')+'" title="'+objprev.attr('title')+'" class="laydate-icon form_item" ></div>';
-            olddata.eq(i).prev().remove();
-            olddata.eq(i).before(inputObj);
-            olddata.eq(i).remove();
-            $(".laydate-icon").on("click",function(){
-                var format = $(this).attr("date_format");
-                var formatArr = '';
-                if(format.split(' ').lenth > 1){
-                    formatArr = format.split(' ')[0].toUpperCase() + " " +format.split(' ')[1].toLowerCase();
-                }else{
-                    formatArr = format.split(' ')[0].toUpperCase();
-                }
 
-                laydate({istime: true,format:formatArr});
-            });
-        }
-        $('img.DATE').prev().on("click",function(){
-            laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})
-        })
+        $(".laydate-icon").each(function(){
+            var _this = $(this);
+            var divObj = '<input name="'+_this.attr('name')+'" title="'+_this.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+_this.attr('name')+'"   date_format="'+_this.attr('date_format')+'"/>';
+            _this.before(divObj);
+            _this.remove();
+
+        });
+        $(".laydate-icon").on("click",function(){
+            var format = $(this).attr("date_format");
+            var formatArr = '';
+
+            if(format.split(' ').length > 1){
+                formatArr = format.split(' ')[0].toUpperCase() + " " +format.split(' ')[1].toLowerCase();
+            }else{
+                formatArr = format.split(' ')[0].toUpperCase();
+            }
+
+            laydate({istime: true,format:formatArr});
+        });
+
     },
     buildHTML:function(cb){
         var that = this;
