@@ -214,9 +214,9 @@
 <div class="body">
     <div class="head">
         <div id="title" class="abs_left">
-            <h1 class="num">NO.767 督查督办</h1>
-            <h1 class="step">主办（第一步 : 督查内容填写 2017-5-24 13:58）</h1>
-            <select>
+            <h1 class="num"></h1>
+            <h2 class="step"></h2>
+            <select class="opt">
                 <option>普通</option>
                 <option>紧急</option>
             </select>
@@ -301,15 +301,12 @@
                 },
                 target:$('.cont_form')},
             function (data) {
-              /* if(data.flag==true){
-                  var obj= data.object;
-                  var flow=obj.flowFormType;
-                  if(flow){
-                      var str=flow.printModel;
-                      $("#a2").html(str);
-                  }
+                var obj=data.object.flowRun
+                $('.num').html(obj.runName);
+                var obj2=data.object.listFp[0];
+                console.log(obj2);
+                $('.step').html('主办：(第一步：'+obj2.prcsName+')');
 
-               }*/
              })
 
 //            function(data){
