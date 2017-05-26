@@ -126,15 +126,22 @@ select{
 	float:left;
 }
 .left_img,.rig_img{
-	    margin-left: 5px;
+	margin-left: 5px;
     margin-top: 6px;
 }
 .left_h1{
 	    margin-left: 5px;
 }
+select{
+	margin-top: 10px !important;
+}
+/*注意*/
 .rig_h1{
 	width: 100%;
 	text-align: center;
+}
+#tab_t ul li,.foot ul li{
+	cursor: pointer;
 }
 /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
 .cont_form::-webkit-scrollbar{
