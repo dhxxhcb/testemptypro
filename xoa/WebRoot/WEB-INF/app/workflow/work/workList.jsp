@@ -26,6 +26,8 @@
     <!-- word文本编辑器 -->
     <script src="../../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
+	 <script src="../../js/news/page.js"></script>
+	 <script src="../../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
 <style type="text/css">
 span.host-span {
     background: url(images/host.png) no-repeat;
@@ -302,7 +304,7 @@ input.span4, textarea.span4,.uneditable-input.span4 {
 	width: 200px;
     height: 27px;
     border-radius: 6px;
-    margin-top: 10px;
+    margin-top: 16px;
     margin-left: 97px;
 }
 .inp, .search {
@@ -312,6 +314,59 @@ input.span4, textarea.span4,.uneditable-input.span4 {
     float: right;
     margin-top: 0px;
 }
+.subsearch {
+    width: 63px;
+    height: 33px;
+    line-height: 28px;
+    margin-top: 18px;
+    margin-left: 10px;
+    text-align: center;
+    background-image: url(../../img/center_q.png);
+    background-repeat: no-repeat;
+    color: #fff;
+    cursor: pointer;
+    font-family: "微软雅黑";
+}
+.button-operation {
+    float: left;
+    padding-top: 4px;
+}
+.btn-success {
+    border: 1px solid #359947;
+    color: #ffffff;
+    background-color: #35aa47;
+    background-image: -moz-linear-gradient(top, #35aa47, #35aa47);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#35aa47), to(#35aa47));
+    background-image: -webkit-linear-gradient(top, #35aa47, #35aa47);
+    background-image: -o-linear-gradient(top, #35aa47, #35aa47);
+    background-image: linear-gradient(to bottom, #35aa47, #35aa47);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff35aa47', endColorstr='#ff35aa47', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    height: 30px;
+    width: 70px;
+}
+.btn-info {
+    border: 1px solid #46b8da;
+    color: #ffffff;
+    background-color: #5bc0de;
+    background-image: -moz-linear-gradient(top, #5bc0de, #5bc0de);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#5bc0de));
+    background-image: -webkit-linear-gradient(top, #5bc0de, #5bc0de);
+    background-image: -o-linear-gradient(top, #5bc0de, #5bc0de);
+    background-image: linear-gradient(to bottom, #5bc0de, #5bc0de);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff5bc0de', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    height: 30px;
+    width: 70px;
+}
+.head .one {
+    background-color: #2F8AE3;
+    font-size: 14px;
+    color: #ffffff;
+    border-radius: 20px;
+}
 </style>
 
 </head>
@@ -320,20 +375,19 @@ input.span4, textarea.span4,.uneditable-input.span4 {
     <!--head开始-->
     <div class="head w clearfix">
         <ul class="index_head">
-           <li data_id="0"><span class="headli1_1">代办工作</span><img class="headli1_2" src="../img/02.png" alt="">
+           <li><span class="headli1_1">代办工作</span><img class="headli1_2" src="../../img/02.png" alt="">
             </li>
             
-            <li data_id=""><span class="headli2_1 one">办结工作</span><img src="../img/02.png" alt="" class="headli2_2">
-            </li>
-                    
-           <li data_id="1"><span class="headli3">关注</span><img src="../img/02.png" alt="" class="headli2_2"></li> 
-		   <li data_id="0"><span class="headli1_1">挂起</span><img class="headli1_2" src="../img/02.png" alt="">
+            <li><span class="headli2_1">办结工作</span><img src="../../img/02.png" alt="" class="headli2_2">
+            </li>   
+           <li><span class="headli3">关注</span><img src="../../img/02.png" alt="" class="headli2_2"></li> 
+		   <li data_id="0"><span class="headli1_1">挂起</span><img class="headli1_2" src="../../img/02.png" alt="">
             </li>
             
-            <li data_id=""><span class="headli2_1 one">委托</span><img src="../img/02.png" alt="" class="headli2_2">
+            <li><span class="headli2_1">委托</span><img src="../../img/02.png" alt="" class="headli2_2">
             </li>
                     
-           <li data_id="1"><span class="headli3">全部工作</span><img src="../img/02.png" alt="" class="headli2_2"></li> 
+           <li id='qbgz_list'><span class="headli3">全部工作</span></li> 
            
         </ul>
     </div>
@@ -344,10 +398,22 @@ input.span4, textarea.span4,.uneditable-input.span4 {
     <div class="step">
 		<div class="navigation  clearfix">
 			<div class="left">
-				<img src="../img/la2.png"> 
-				<div class="news">全部新闻</div>                
+				<img src="../../img/la2.png"> 
+				<div class="news">待办工作</div>
+				<div class="button-operation">
+					<button type="button" action="new_work" class="btn btn-success">新建工作</button>
+					<button type="button" action="intrust" class="btn btn-info">委托</button>
+					<button type="button" action="pending" class="btn btn-info">挂起</button>
+					<button type="button" action="comment" class="btn btn-info">批注</button>
+					<form name="selected_export_form" id="selected_export_form" style="display: none;" method="post" action="data/work_to_export.php?ispirit_export=1">
+						<input type="hidden" name="THE_ID_STR" id="THE_ID_STR" value="">
+						<button type="submit" id="selected_export" class="btn btn-info">导出</button>
+					</form>
+					<button type="button" id="export" action="export" class="btn btn-info">导出工作列</button>
+					<button type="button" action="refresh" class="btn btn-info">刷新</button>
+				</div>
 				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
-				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
+				<div id="btn_search" class="search"><h1 style="cursor:pointer;" class='subsearch'>搜索</h1></div>
 			</div>
 			<div class="right">
 				<!-- 分页按钮-->
@@ -403,7 +469,7 @@ input.span4, textarea.span4,.uneditable-input.span4 {
 <div class="step" style='display:none;'>
 		<div class="navigation  clearfix">
 			<div class="left">
-				<img src="../img/la2.png"> 
+				<img src="../../img/la2.png"> 
 				<div class="news">全部新闻</div>                
 				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
 				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
@@ -506,7 +572,7 @@ input.span4, textarea.span4,.uneditable-input.span4 {
 <div class="step" style='display:none;'>
 		<div class="navigation  clearfix">
 			<div class="left">
-				<img src="../img/la2.png"> 
+				<img src="../../img/la2.png"> 
 				<div class="news">全部新闻</div>                
 				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
 				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
@@ -610,7 +676,7 @@ input.span4, textarea.span4,.uneditable-input.span4 {
 	<div class="step" style='display:none;'>
 		<div class="navigation  clearfix">
 			<div class="left">
-				<img src="../img/la2.png"> 
+				<img src="../../img/la2.png"> 
 				<div class="news">全部新闻</div>                
 				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
 				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
@@ -714,7 +780,7 @@ input.span4, textarea.span4,.uneditable-input.span4 {
 	<div class="step" style='display:none;'>
 		<div class="navigation  clearfix">
 			<div class="left">
-				<img src="../img/la2.png"> 
+				<img src="../../img/la2.png"> 
 				<div class="news">全部新闻</div>                
 				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
 				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
@@ -818,14 +884,14 @@ input.span4, textarea.span4,.uneditable-input.span4 {
 	<div class="step" style='display:none;'>
 		<div class="navigation  clearfix">
 			<div class="left">
-				<img src="../img/la2.png"> 
-				<div class="news">全部新闻</div>                
+				<img src="../../img/la2.png"> 
+				<div class="news">待办工作</div>                
 				<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
 				<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
 			</div>
 			<div class="right">
 				<!-- 分页按钮-->
-				<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
+				<div class="M-box3"></div>
 			</div>
 		</div>
 
@@ -858,49 +924,8 @@ input.span4, textarea.span4,.uneditable-input.span4 {
                         </td>
                     </tr>
                     </thead>
-                    <tbody id="j_tb" calss="tr_td">
-						<tr>
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								11
-							</td>
-							<td class="th">
-								1111
-							</td>
-
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								11111
-							</td>
-                    </tr>
-					<tr>
-							<td class="th">
-								22
-							</td>
-							<td class="th">
-								112
-							</td>
-							<td class="th">
-								11112
-							</td>
-
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								1112
-							</td>
-							<td class="th">
-								111112
-							</td>
-                    </tr>
+                    <tbody id="qbgz" calss="tr_td">
+						
                     </tbody>
                 </table>
             </div>
@@ -913,10 +938,17 @@ input.span4, textarea.span4,.uneditable-input.span4 {
 </div>
 <script type="text/javascript">
 <!--
+var datas = {
+            page: 1,
+            pageSize: 5,
+            useFlag: true,
+	};
 $(function(){
  $(".index_head li").click(function(){
- //$(this).addClass("on").siblings().removeClass("on"); //切换选中的按钮高亮状态
+ $(this).addClass("one").siblings().removeClass("one"); 
  var index=$(this).index(); 
+ var head_title=$(this).text();
+ $('.news').text(head_title);
  $(".step").eq(index).show().siblings().hide(); 
  });
 //处理数据状态字段
@@ -939,11 +971,13 @@ $(document).ready($.ajax({
 						var length=data.obj.length;
 						var str='';
 						for(var i=0;i<length;i++){
-						var status=handleData(data.obj[i].delFlag);
-						var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td><td><td class="th">'+data.obj[i].flowRun.runName+'</td>'+
-						          '<td class="th"></td><td class="th">'+data.obj[i].userId+'</td>'+
+						var status=handleData(data.obj[i].prcsFlag);
+						var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
+						          '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
+						          '<td class="th"></td><td class="th">'+data.obj[i].userName+'</td>'+
 								  '<td class="th">'+status+'</td><td class="th"></td>'+
-								  '<td class="th"></td><td style="text-align:left;" title="主办导出删除">'+
+								  '<td class="th"></td>'+
+								  '<td style="text-align:left;" title="主办导出删除">'+
 								  '<a href="javascript:"><span class="host-span">主办</span></a>'+
 								  '<a href=""><span class="operation_text_left">导出</span></a>'+
 								  '<a href="javascript:">'+
@@ -955,7 +989,61 @@ $(document).ready($.ajax({
 						})
 				);
 
+	$("#qbgz_list").click(function(){
+	initPageList(function (pageCount) {
+            console.log(pageCount);
+            initPagination(pageCount, datas.pageSize);
+			});
 
+	}
+	);
+		function initPageList(cb) {
+            //var layerIndex = layer.load(0, {shade: false}); /* 0代表加载的风格，支持0-2 */
+            $.ajax({
+				url:'../../workflow/work/selectAll',
+				type:'get',
+				dataType:'json',
+				data:datas,
+				success:function(data){
+									console.log(data);
+									var length=data.obj.length;
+									var str='';
+									for(var i=0;i<length;i++){
+									var status=handleData(data.obj[i].delFlag);
+									var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
+											  '<td class="th">流程类型</td>'+
+											  '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
+											  '<td class="th">'+data.obj[i].userName+'</td>'+
+											  '<td class="th">我的步骤流程</td>'+
+											  '<td class="th">'+status+'</td>';
+											  //$('#dbgz').html(str);
+											}
+											$('#qbgz').html(str);
+											if (cb) {
+												alert(data.obj.totleNum);
+												cb(data.obj.totleNum);
+											}
+										}
+									})
+					};
+	 function initPagination(totalData, pageSize) {
+            $('.M-box3').pagination({
+                totalData: totalData,  
+                showData: pageSize,
+                jump: true,
+                coping: true,
+                homePage:'',
+                endPage: '',
+                //prevContent: '',
+                //nextContent: '',
+                //jumpBtn: '',
+                callback: function (index) {
+                    data.page = index.getCurrent();
+                    console.log(index.getCurrent());
+                    initPageList();
+                }
+            });
+        }
 });
 //-->
 </script>
