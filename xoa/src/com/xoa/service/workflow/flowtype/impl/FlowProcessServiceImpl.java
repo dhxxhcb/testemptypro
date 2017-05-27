@@ -83,14 +83,17 @@ public class FlowProcessServiceImpl implements FlowProcessService {
         List<Map<String, String>> lm = new ArrayList<Map<String, String>>();
         //根据flowId获取流程信息
         List<FlowProcess> list = flowProcessMapper.findF(flowId);
+        int len = list.size();
         //f.setFlowName(list.get(0).getFlowName());
-        for (int i = 0; i < list.size(); i++) {
+        list.get(0).setSetType("start");
+        list.get(len-1).setSetType("end");
+        for (int i = 0; i < len; i++) {
             Integer prId = list.get(i).getPrcsId();
             String prceTo = list.get(i).getPrcsTo();
             if (StringUtils.checkNull(prceTo)) {
                 map = new HashMap<String, String>();
                 map.put("from", Integer.toString(prId));
-                if (i < list.size() - 1) {
+                if (i < len - 1) {
                     if (list.get(i + 1).getPrcsId() == prId + 1) {
                         map.put("to", Integer.toString(list.get(i + 1).getPrcsId()));
                     }
