@@ -4,6 +4,7 @@ var workForm = {
         formid : 1,
         target:"",
         flowStep:1,//-1预览
+        listFp:'',
         pageModel:''
     },
     init:function(options,cb){
@@ -16,9 +17,23 @@ var workForm = {
         this.MacrosRender();
         this.RadioRender();
         this.DateRender();
+
+        this.filter();//表单流程权限控制
     },
     filter:function(){
-        this.MacrosRender();
+        console.log(this.option.listFp);
+        if(this.option.flowStep != -1){
+            var steptOpt =  this.option.listFp[this.option.flowStep];
+            $(this.option.homeEl).find('.form_item').each(function(){
+                var _this = $(this);
+                console.log(_this.attr(name));
+                if(steptOpt.indexOf(_this.attr(name)) > -1){
+                    console.log(_this.attr(name));
+                }
+
+
+            });
+        }
     },
     RadioRender:function(){
         $('input[data-type="radio"]').each(function(){
@@ -48,10 +63,13 @@ var workForm = {
         if(ele){
             target = ele;
         }else{
-            target = $(".cont_form");
+            target = $(this.option.target);
         }
         target.find("input").each(function(){
             var _this = $(this);
+            if(_this.attr('hidden')){
+                _this.attr("orghidden",_this.attr('hidden'));
+            }
             if(_this.attr("class") &&  _this.attr("class").indexOf('AUTO') > -1){
                 _this.attr("data-type","macros");
             }else{
@@ -138,16 +156,19 @@ var workForm = {
             data:  that.option.resdata,
             success: function (res) {
                 if(res.flag){
-                    var formHtml = res.object.flowFormType || res.object;
-                    if(formHtml.printModel != ''){
-                        that.option.target.html(formHtml.printModel);
+                    var formObj = res.object.flowFormType || res.object;
+                    if(formObj.printModel != ''){
+                        $(that.option.target).html(formObj.printModel);
+                        if(that.option.flowStep != -1){
+                            that.option.listFp = res.object.listFp
+                        }
                         that.render();
                         layer.closeAll();
                     }else{
                         layer.closeAll();
                         layer.msg('没有加载到数据。。', {icon: 6});
                         var noformdata = '<div class="cont_rig" style="text-align: center;margin-top: 200px;"><div class="noData_out"><div class="noDatas_pic"><img src="../../img/workflow/img_nomessage_03.png"></div><div class="noDatas">抱歉现在还没有表单，请您新建</div></div></div>'
-                        that.option.target.html(noformdata);
+                        $(that.option.target).html(noformdata);
                     }
                 }else{
                     layer.closeAll();
@@ -236,10 +257,10 @@ var workForm = {
                 return workForm.tool.MacrosDate.data.sYS_USERPRIVOTHER;
             },
             SYS_USERNAME_DATE : function(){
-                return workForm.tool.MacrosDate.data.sYS_USERNAME+' '+new Date().Format("yyyy-MM-dd hh:mm:ss");
+                return workForm.tool.MacrosDate.data.sYS_USERNAME+' '+new Date().Format("yyyy-MM-dd");
             },
             SYS_USERNAME_DATETIME : function(){
-                return "";
+                return workForm.tool.MacrosDate.data.sYS_USERNAME+' '+new Date().Format("yyyy-MM-dd hh:mm:ss");
             },
             SYS_FORMNAME : function(){
                 return "";

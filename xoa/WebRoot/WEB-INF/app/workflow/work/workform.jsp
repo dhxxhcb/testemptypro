@@ -320,14 +320,15 @@
 </html>
 <script>
     $(function(){
-        var formid = $.getQueryString("formId");
-
+        var flowId = $.getQueryString("flowId");
+        var flowStep = $.getQueryString("flowStep");
         workForm.init({
                 formhtmlurl:'../../workflow/work/workfastAdd',//URL
                 resdata:{
-                    flowId:formid
+                    flowId:flowId
                 },
-                target:$('.cont_form')},
+                flowStep:flowStep,//预览
+                target:'.cont_form'},
             function (data) {
                 zhuanjiao(data);
                 var obj=data.object.flowRun
