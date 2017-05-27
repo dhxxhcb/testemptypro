@@ -3,7 +3,6 @@ package com.xoa.controller.work;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.xoa.util.common.StringUtils;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -184,8 +182,8 @@ public class WorkController {
                           @RequestParam(value="runId",required = false) int runId,
                           @RequestParam(value="runName",required = false) String runName,
                           @RequestParam(value="beginTime",required =false) String beginTime,
-                          @RequestParam(value="beginUser",required =false) String beginUser,
-                          @RequestParam(value="prcsId",required =false) int prcsId 
+                          @RequestParam(value="beginUser",required =false) String beginUser
+                         
                          ) throws JSONException {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
@@ -243,8 +241,41 @@ public class WorkController {
 
         }
 		return null;
-     
     }
+    
+    @RequestMapping("saveWork")
+    @ResponseBody
+	public ToJson<FlowRunPrcs> savework(HttpServletRequest request,
+              @RequestParam(value="runId",required = false) int runId,
+              @RequestParam(value="beginTime",required =false) String beginTime,
+              @RequestParam(value="beginUser",required =false) String beginUser ) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+		"loginDateSouse"));
+		
+		ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
+		
+		  FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
+          flowRunPrcs.setRunId(runId);
+          flowRunPrcs.setPrcsId(1);
+         // flowRunPrcs.setUserId(userId);
+          //flowRunPrcs.setPrcsDept(deptId);
+          flowRunPrcs.setPrcsTime(beginTime);
+          SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+          flowRunPrcs.setDeliverTime(df.format(new Date()));
+          flowRunPrcs.setPrcsTime(beginTime);
+          flowRunPrcs.setDeliverTime(beginTime);
+          flowRunPrcs.setActiveTime(beginTime);
+          flowRunPrcsService.save(flowRunPrcs);
+      	try {
+    		toJson.setObject(flowRunPrcs);
+    		toJson.setMsg("OK");
+    		toJson.setFlag(0);
+    		} catch (Exception e) {
+    		toJson.setMsg(e.getMessage());
+    		}
+    		return toJson;
+    }
+    
     
     /**
      * 创建作者:   张勇
