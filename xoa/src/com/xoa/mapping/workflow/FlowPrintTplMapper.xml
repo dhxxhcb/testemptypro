@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowPrintTpl" >
     <id column="T_ID" property="tId" jdbcType="INTEGER" />
     <result column="FLOW_ID" property="flowId" jdbcType="INTEGER" />
-    <result column="T_TYPE" property="tType" jdbcType="CHAR" />
+    <result column="T_TYPE" property="tType" javaType="java.lang.String" />
     <result column="T_NAME" property="tName" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -283,7 +283,7 @@
     where T_ID = #{tId,jdbcType=INTEGER}
   </update>
   <select id="queryByFlowId" resultMap="ResultMapWithBLOBs" parameterType="Integer">
-    SELECT  *   FROM flow_print_tpl WHERE flow_print_tpl.FLOW_ID=#{flowId}
+    SELECT  flow_print_tpl.*  FROM flow_print_tpl WHERE flow_print_tpl.FLOW_ID=#{flowId}
   </select>
   <delete id="deleteBatchKey" parameterType="java.lang.Integer">
     delete from flow_print_tpl where T_ID in

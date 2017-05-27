@@ -15,11 +15,11 @@ public class FlowPrintTpl {
 
     private Date createTime;
 
-    public Integer gettId() {
+    public Integer getTId() {
         return tId;
     }
 
-    public void settId(Integer tId) {
+    public void setTId(Integer tId) {
         this.tId = tId;
     }
 
@@ -31,21 +31,22 @@ public class FlowPrintTpl {
         this.flowId = flowId;
     }
 
-    public String gettType() {
+    public String getTType() {
         return tType;
     }
 
-    public void settType(String tType) {
-        this.tType = tType == null ? null : tType.trim();
+    public void setTType(String tType) {
+        this.tType = tType;
     }
 
-    public String gettName() {
+    public String getTName() {
         return tName;
     }
 
-    public void settName(String tName) {
-        this.tName = tName == null ? null : tName.trim();
+    public void setTName(String tName) {
+        this.tName = tName ;
     }
+
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     public Date getCreateTime() {
         return createTime;

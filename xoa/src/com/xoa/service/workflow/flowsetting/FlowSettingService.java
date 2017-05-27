@@ -833,8 +833,8 @@ public class FlowSettingService {
         flowPrintTplWithBLOBs.setContent(content==null?"":content);
         flowPrintTplWithBLOBs.setFlowPrcs(flowPrcs==null?"":flowPrcs);
         flowPrintTplWithBLOBs.setCreateTime(new Date());
-        flowPrintTplWithBLOBs.settName(tName);
-        flowPrintTplWithBLOBs.settType(tType.toString());
+        flowPrintTplWithBLOBs.setTName(tName);
+        flowPrintTplWithBLOBs.setTType(tType.toString());
         flowPrintTplWithBLOBs.setFlowId(flowId);
         int res = flowPrintTplMapper.insertSelective(flowPrintTplWithBLOBs);
          if(res>0){
@@ -887,10 +887,10 @@ public class FlowSettingService {
         flowPrintTplWithBLOBs.setContent(content==null?"":content);
         flowPrintTplWithBLOBs.setFlowPrcs(flowPrcs==null?"":flowPrcs);
         flowPrintTplWithBLOBs.setCreateTime(new Date());
-        flowPrintTplWithBLOBs.settName(tName);
-        flowPrintTplWithBLOBs.settType(tType.toString());
+        flowPrintTplWithBLOBs.setTName(tName);
+        flowPrintTplWithBLOBs.setTType(tType.toString());
         flowPrintTplWithBLOBs.setFlowId(flowId);
-        flowPrintTplWithBLOBs.settId(tId);
+        flowPrintTplWithBLOBs.setTId(tId);
         int res = flowPrintTplMapper.updateByPrimaryKeySelective(flowPrintTplWithBLOBs);
         if(res>0){
             wrapper.setFlag(true);
