@@ -17,7 +17,6 @@ var workForm = {
         this.MacrosRender();
         this.RadioRender();
         this.DateRender();
-
         this.filter();//表单流程权限控制
     },
     filter:function(){
@@ -50,7 +49,7 @@ var workForm = {
                     if(v == checked){
                         checked="checked";
                     }
-                    eleStr+='<input name="'+name+'" title="'+title+'" type="radio" class="form_item"/>'+v+' ';
+                    eleStr+='<input name="'+name+'" title="'+title+'" value="'+v+'" type="radio" class="form_item"/>'+v+' ';
                 }
             });
             _this.before(eleStr);
