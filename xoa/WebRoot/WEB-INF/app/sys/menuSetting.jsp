@@ -17,7 +17,11 @@
     <title>菜单设置</title>
     <link rel="stylesheet" type="text/css" href="../css/sys/menuSetting.css"/>
     <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/sys/menuSetting.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .trTextP p{margin-bottom: 15px;}
+    </style>
 </head>
 <body>
 <div class="content">
@@ -97,31 +101,31 @@
                     <tr>
                         <td>主菜单分类代码：</td>
                         <td>
-                            <input type="text" name="id" class="inputTd" value="01" disabled="disabled"/>
+                            <input type="text" name="mainId" class="inputTd" value="01" disabled="disabled"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">菜单名称：(简体中文)：</td>
                         <td>
-                            <input type="text" name="name" class="inputTd" value="个人事务"/>
+                            <input type="text" name="mainName" class="inputTd" value="个人事务"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">菜单名称：(繁体中文)</td>
                         <td>
-                            <input type="text" name="name1" class="inputTd" value=""/>
+                            <input type="text" name="mainName1" class="inputTd" value=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">菜单名称：(English)</td>
                         <td>
-                            <input type="text" name="name2" class="inputTd" value=""/>
+                            <input type="text" name="mainName2" class="inputTd" value=""/>
                         </td>
                     </tr>
                     <tr>
                         <td class="blue_text">图片名：</td>
                         <td>
-                            <input type="text" name="img" class="inputTd" value="mytable"/>
+                            <input type="text" name="mainImg" class="inputTd" value="mytable"/>
                         </td>
                     </tr>
                     <tr>
@@ -151,15 +155,6 @@
                             </div>
                         </td>
                     </tr>
-                    <%--<tr>
-                        <td width="40%"><span class="margspan">01</span><span>电子邮件</span></td>
-                        <td width="59.5%">
-                            <a href="javascript:;">编辑</a>
-                            <a href="javascript:;">删除</a>
-                            <a href="javascript:;">添加权限</a>
-                            <a href="javascript:;">删除权限</a>
-                        </td>
-                    </tr>--%>
                     <tr>
                         <td colspan="2" class="blue_text">
                             <div class="childrenBtn">
@@ -170,7 +165,7 @@
                 </table>
             </div>
         </div><%--子菜单项设置--%>
-        <div class="superPassword" style="display: none">
+        <%--<div class="superPassword" style="display: none">
             <div class="header">
                 <span class="divP"> 输入超级密码</span>
             </div>
@@ -187,14 +182,78 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="blue_text">
-                            <div class="childBtn">
-                                <input type="button" name="childBtn" id="passwSure" value="确定" />
+                            <div class="passBtn">
+                                <input type="button" name="passBtn" id="passwSure" value="确定" />
                             </div>
                         </td>
                     </tr>
                 </table>
             </div>
-        </div><%--超级密码结束--%>
+        </div>--%><%--超级密码结束--%>
+        <div class="AddChild" style="display:none;">
+            <div class="header">
+                <span class="divP"> 新建子菜单项</span>
+            </div>
+            <div class="tab">
+                <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff;width:75%;">
+                    <tr>
+                        <td width="25%">子菜单项ID：</td>
+                        <td width="70%">
+                            <input type="text" name="userId" value="">
+                            <p style="font-size: 12px;">说明：用户添加的菜单项ID务必大于1000，小于10000；1000以内及10000以上为系统保留</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">上级菜单：</td>
+                        <td width="70%">
+                            <select name="postPriv" style="width: 204px;">
+                                <option value="01">本部门</option>
+                                <option value="02">全体</option>
+                                <option value="03">指定部门</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">子菜单项代码：</td>
+                        <td width="70%">
+                            <input type="text" name="userId" value="">
+                            <p style="font-size: 12px;">说明：此代码为两位，作为排序之用。在同一父菜单下的平级菜单，该代码不能重复</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">子菜单名称：(简体中文)</td>
+                        <td width="70%">
+                            <input type="text" name="userId" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">子菜单模块路径：</td>
+                        <td width="70%">
+                            <input type="text" name="userId" value="">
+                            <input type="checkbox" name="check">
+                            <span style="font-size: 12px;">在新窗口打开该菜单</span>
+                        </td>
+                    </tr>
+                    <tr class="trTextP">
+                        <td colspan="2">
+                            <p style="font-size: 12px;font-weight: bold;">说明：子菜单模块路径定义方式，应根据此菜单项的类型决定:</p>
+                            <p><span style="font-size: 12px;font-weight: bold;">类型一，此菜单下仍存在下级菜单：</span><span style="font-size: 12px;">则填写@英文名称，格式如：@mail，对应的图片是：OA安装目录/webroot/static/images/menu/@mail.gif，注意：请一定要以@开头</span></p>
+                            <p><span style="font-size: 12px;font-weight: bold;">类型二，此菜单挂接OA系统中的模块：</span><span style="font-size: 12px;">则填写程序路径，格式如：email，则实际对应的路径是：OA安装目录/webroot/general/email，对应的图片是：OA安装目录/webroot/static/images/menu/email.gif</span></p>
+                            <p><span style="font-size: 12px;font-weight: bold;">类型三，此菜单挂接外部的B/S结构的系统：</span><span style="font-size: 12px;">则填写该系统网址，格式如：http://TD_MYOA_WEB_SITE，注意：请一定要以http://开头</span></p>
+                            <p><span style="font-size: 12px;font-weight: bold;">类型四，此菜单挂接外部的C/S结构或单机版系统：</span><span style="font-size: 12px;">则填写可执行文件路径，格式如：file://c:/abc.exe，注意：请一定要以file://开头，后面的程序路径用斜杠或反斜杠均可,对应的图片是：OA安装目录/webroot/static/images/menu/abc.gif </span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="div_btn">
+                                <input type="button" class="inpuBtn" id="btn_sure" value="确定" />
+                                <input type="button" class="inpuBtn" id="btn_back" value="返回" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div><%--增加子菜单结束--%>
         <div class="editChild" style="display:none;">
             <div class="header">
                 <span class="divP"> 编辑子菜单项</span>
@@ -210,19 +269,17 @@
                     <tr>
                         <td width="25%">上级菜单：</td>
                         <td width="70%">
-                            <select name="postPriv">
-                                <option value="01">本部门</option>
-                                <option value="02">全体</option>
-                                <option value="03">指定部门</option>
+                            <select name="postPriv" id="menuTree">
+
                             </select>
-                            <span>在管理型模块中起约束作用</span>
+                            <span style="font-size: 12px;">在管理型模块中起约束作用</span>
                         </td>
                     </tr>
                     <tr>
                         <td width="25%">子菜单项代码：</td>
                         <td width="70%">
                             <input type="text" name="userId" value="">
-                            <p>说明：此代码为两位，作为排序之用。在同一父菜单下的平级菜单，该代码不能重复</p>
+                            <p style="font-size: 12px;">说明：此代码为两位，作为排序之用。在同一父菜单下的平级菜单，该代码不能重复</p>
                         </td>
                     </tr>
                     <tr>
@@ -236,17 +293,23 @@
                         <td width="70%">
                             <input type="text" name="userId" value="">
                             <input type="checkbox" name="check">
-                            <span>在新窗口打开该菜单</span>
+                            <span style="font-size: 12px;">在新窗口打开该菜单</span>
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="2"></td>
+                    <tr class="trTextP">
+                        <td colspan="2">
+                            <p style="font-size: 12px;font-weight: bold;">说明：子菜单模块路径定义方式，应根据此菜单项的类型决定:</p>
+                            <p><span style="font-size: 12px;font-weight: bold;">类型一，此菜单下仍存在下级菜单：</span><span style="font-size: 12px;">则填写@英文名称，格式如：@mail，对应的图片是：OA安装目录/webroot/static/images/menu/@mail.gif，注意：请一定要以@开头</span></p>
+                            <p><span style="font-size: 12px;font-weight: bold;">类型二，此菜单挂接OA系统中的模块：</span><span style="font-size: 12px;">则填写程序路径，格式如：email，则实际对应的路径是：OA安装目录/webroot/general/email，对应的图片是：OA安装目录/webroot/static/images/menu/email.gif</span></p>
+                            <p><span style="font-size: 12px;font-weight: bold;">类型三，此菜单挂接外部的B/S结构的系统：</span><span style="font-size: 12px;">则填写该系统网址，格式如：http://TD_MYOA_WEB_SITE，注意：请一定要以http://开头</span></p>
+                            <p><span style="font-size: 12px;font-weight: bold;">类型四，此菜单挂接外部的C/S结构或单机版系统：</span><span style="font-size: 12px;">则填写可执行文件路径，格式如：file://c:/abc.exe，注意：请一定要以file://开头，后面的程序路径用斜杠或反斜杠均可,对应的图片是：OA安装目录/webroot/static/images/menu/abc.gif </span></p>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <div class="div_btn">
-                                <input type="button" class="inpuBtn" id="btn_sure" value="确定" />
-                                <input type="button" class="inpuBtn" id="btn_back" value="返回" />
+                                <input type="button" class="inpuBtn" id="edBtn_sure" value="确定" />
+                                <input type="button" class="inpuBtn" id="edBtn_back" value="返回" />
                             </div>
                         </td>
                     </tr>
@@ -255,6 +318,11 @@
         </div> <%--编辑子菜单项结束--%>
     </div>
 </div>
+<script type="text/javascript">
+    $(function(){
+        $('#menuTree').deptSelect();
+    })
+</script>
 </body>
 </html>
 
