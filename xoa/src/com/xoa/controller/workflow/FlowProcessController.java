@@ -173,15 +173,7 @@ public class FlowProcessController {
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
-			ToJson<FlowProcess> json= new ToJson<FlowProcess>(0,null);			
-			try {
-				flowProcessService.delete(id);
-		        json.setMsg("OK");
-		        json.setFlag(0);
-			} catch (Exception e) {
-				json.setMsg(e.getMessage());
-			}
-		    return json;
+				return flowProcessService.delete(id);
 		}
 	
 		/**
@@ -211,9 +203,9 @@ public class FlowProcessController {
 			}
 		    return json;
 		}
-		
 
-		
+
+
 
 	  	@RequestMapping(value = "xs",produces = {"application/json;charset=UTF-8"})
 		public String xs(){

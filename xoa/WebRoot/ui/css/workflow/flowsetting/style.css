@@ -37,6 +37,7 @@ input{
 html,body,.content{
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 .content .title{
     height: 38px;
@@ -53,6 +54,7 @@ html,body,.content{
     width: 261px;
     height: 100%;
     background: #f5f7f8;
+    overflow-y: scroll;
 }
 
 .cont_list .btn_h {
@@ -134,9 +136,11 @@ html,body,.content{
 .cont_r {
     height: 100%;
     margin-left: 262px;
+    /*overflow-y: scroll;*/
     position: relative;
 }
 .cont_r .item{
+    height: 100%;
     display: none;
 }
 .cont_r .table {
@@ -199,7 +203,12 @@ html,body,.content{
 }
 
 .cont_r .con_flow{
+    height: 100%;
     border-left: 1px solid #919191;
+}
+.cont_r .con_flow .over_f{
+    height: 100%;
+    overflow: scroll;
 }
 .check {
     padding: 0 20px;
@@ -349,7 +358,9 @@ vertical-align: 10px;
     left: 648px;
 }
 .form_group .notable{
-    padding-right: 260px;
+    font-size: 16px;
+    vertical-align: 9px;
+    padding-right: 255px;
 }
 .form_group .addfile{
     /*background: url("../../../img/workflow/flowsetting/icon_plus_03.png") no-repeat;*/
@@ -388,18 +399,133 @@ vertical-align: 10px;
 }
 /*新建弹窗*/
 .pop_up{
-    width: 500px;
-    height: 500px;
+    display: none;
+    overflow: hidden;
+    position: relative;
+    z-index: 100;
+    width: 600px;
+    height: 400px;
+    top: 80px;
+    left: -6.5px;
+    border-radius: 2px;
+    background-color: #fff;
+    -webkit-background-clip: content;
+    box-shadow: 1px 1px 50px rgba(0,0,0,.3);
 }
 .pop_up .new_b{
+    padding: 0 80px 0 20px;
+    height: 42px;
+    line-height: 42px;
+    border-bottom: 1px solid #eee;
     font-size: 16px;
-    color: #3a90f2;
+    color: #fff;
+    overflow: hidden;
+    background-color: #2b7fe0;
+    border-radius: 2px 2px 0 0;
+}
+.pop_con{
+    height: 299px;
+    position: relative;
+    overflow: auto;
+}
+.con_t{
+    height: 299px;
+    overflow-y: hidden;
+}
+.con_l{
+    width: 461px;
+    height: 800px;
+    margin: auto;
+}
+.title_1{
+    margin-top: 48px;
+    width: 100%;
+    height: 68px;
+    margin-bottom: 4px;
+    display: block;
+    text-align: left;
+}
+.title_label{
+    width: 100px;
+    float: left;
+}
+.con_title .title_s{
+    display: inline-block;
+    width: 100px;
+    float: left;
+    height: 18px;
+    line-height: 41px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.title_put{
+    margin-top: 5px;
+    margin-left: 2px;
+}
+.title_put input{
+    float: left;
+    width: 221px;
+    height: 26px;
+    border-radius: 4px;
+    color: #000;
+}
+.title2{
+    float: left;
+    margin-top: 5px;
+    margin-left: 2px;
 
 }
+.con_title .select_t{
+    height: 32px;
+    line-height: 28px;
+    width: 227px;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+}
+.title_3{
+    width: 100%;
+    height: 68px;
+    margin-top: 42px;
+    margin-bottom: 4px;
+    display: block;
+    text-align: left;
+}
+.title3 .title3_label{
+    width: 100px;
+    float: left;
+}
+.select_put{
+    margin-top: 5px;
+    margin-left: 2px;
+}
+.con_footer{
+    padding-top: 10px;
+    text-align: center;
+}
+.con_footer a{
+    display: inline-block;
+    color: #fff;
+    height: 28px;
+    line-height: 28px;
+    margin: 6px 6px 0;
+    padding: 0 15px;
+    border-radius: 2px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+}
 
-
-
-
-
+.con_footer .footer_btn1{
+    border-color: #4898d5;
+    background-color: #2e8ded;
+}
+.con_footer .footer_btn2{
+    border: 1px solid #dedede;
+    background-color: #f1f1f1;
+    color: #333;
+}
 
 

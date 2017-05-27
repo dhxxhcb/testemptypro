@@ -23,7 +23,7 @@ ul{
 	background-color: #f5f7f8;
 }
 .content .left{
-	width: 19.9%;
+	width: 22.9%;
 	float: left;
 	height: 100%;
 	overflow-y: auto;  
@@ -98,7 +98,7 @@ ul{
 }
 .content .right{
 	float: left;
-	width: 80%;
+	width: 77%;
 }
 .right .tab table{
     width: 40%;

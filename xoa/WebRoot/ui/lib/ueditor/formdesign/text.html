@@ -150,9 +150,9 @@
                     oNode.setAttribute('name', 'DATA_' + dataid);
                     oNode.setAttribute('id', 'DATA_' + dataid);
                     if ($G('orghide').checked) {
-                        oNode.setAttribute('hidden', 1);
+                        oNode.setAttribute('orghidden', 1);
                     } else {
-                        oNode.setAttribute('hidden', 0);
+                        oNode.setAttribute('orghidden', 0);
                     }
                     if (gFontSize != '') {
                         oNode.style.fontSize = gFontSize + 'px';
@@ -185,9 +185,9 @@
                 oNode.setAttribute('id', gid);
                 oNode.setAttribute('type', gType);
                 if ($G('orghide').checked) {
-                    oNode.setAttribute('hide', 1);
+                    oNode.setAttribute('orghidden', 1);
                 } else {
-                    oNode.setAttribute('hide', 0);
+                    oNode.setAttribute('orghidden', 0);
                 }
 //	        if ( $G('fieldflow').checked ) {
 //	            oNode.setAttribute('fieldflow',1);
