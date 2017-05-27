@@ -84,7 +84,7 @@
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from flow_process
-        where ID = #{id,jdbcType=INTEGER}
+        where ID = #{id}
     </delete>
     <!-- 新建流程 -->
     <insert id="insert" parameterType="com.xoa.model.workflow.FlowProcess" useGeneratedKeys="true" keyProperty="id">

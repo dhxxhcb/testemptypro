@@ -112,4 +112,27 @@ public class FlowProcessServiceImpl implements FlowProcessService {
         return toJson;
     }
 
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/5/27 11:35
+     * 方法介绍:   删除节点
+     * 参数说明:
+     * @return
+     */
+    @Override
+    @Transactional
+    public ToJson<FlowProcess> deletePrcss(Integer id){
+        ToJson<FlowProcess> toJson = new ToJson<FlowProcess>();
+        try{
+            flowProcessMapper.deleteByPrimaryKey(id);
+            toJson.setFlag(0);
+            toJson.setMsg("ok");
+        }catch (Exception e){
+            toJson.setFlag(1);
+            toJson.setMsg("error");
+        }
+        return toJson;
+    }
+
 }
