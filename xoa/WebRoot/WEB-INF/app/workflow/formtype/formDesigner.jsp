@@ -39,7 +39,7 @@
 
         <div class="row" id="content">
             <%--<div class="span2">--%>
-            <ul class="nav nav-list">
+            <ul class="nav nav-list" id="nav">
                 <li class="nav-header">
                     <div class="header_l">表单控件</div>
                     <div class="header_r">扩展控件</div>
@@ -59,10 +59,10 @@
                 <li><a href="javascript:void(0);" type="macros" class="btn btn-link">
                     <img src="../img/icon_hongcontrol_03.png" alt="">宏控件</a></li>
                 <li><a href="javascript:void(0);" type="listing" class="btn btn-link">
-                    <img src="../img/icon_hongcontrol_03.png" alt="">列表控件</a></li>
+                    <img src="../img/icon_list_03.png" alt="">列表控件</a></li>
                <li><a href="javascript:void(0);" type="calendar" class="btn btn-link">
                     <img src="../img/icon_calendar_03.png" alt="">日历控件</a></li>
-                <li><a href="javascript:void(0);">
+                <li><a href="javascript:void(0);" class="btn btn-link">
                     <img src="../img/icon_calculator_03.png" alt="">计算控件</a></li>
                 <%--<li><a href="javascript:void(0);" onclick="formDesign.exec('progressbar');" class="btn btn-link">进度条</a></li>
                  <li><a href="javascript:void(0);" onclick="formDesign.exec('qrcode');" class="btn btn-link">二维码</a></li>
@@ -392,6 +392,13 @@
     $(function () {
         var $width=$(window).width();
         $('.span10').width($width-330);
+
+        $('#nav').on('click','.btn',function () {
+            $('.btn').removeClass('bgBack');
+            $(this).addClass('bgBack');
+        })
+
+
     })
 
 
