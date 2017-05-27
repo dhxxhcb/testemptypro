@@ -286,7 +286,7 @@
     SELECT  *   FROM flow_print_tpl WHERE flow_print_tpl.FLOW_ID=#{flowId}
   </select>
   <delete id="deleteBatchKey" parameterType="java.lang.Integer">
-    delete from flow_print_tpl where tId in
+    delete from flow_print_tpl where T_ID in
     <foreach item="tId" collection="array" open="(" separator="," close=")">
       #{tId}
     </foreach>

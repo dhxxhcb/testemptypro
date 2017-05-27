@@ -3,7 +3,8 @@ var workForm = {
         formhtmlurl : '../../form/formType',
         formid : 1,
         target:"",
-        flowStep:1,
+        flowStep:1,//-1预览
+        listFp:'',
         pageModel:''
     },
     init:function(options,cb){
@@ -16,9 +17,24 @@ var workForm = {
         this.MacrosRender();
         this.RadioRender();
         this.DateRender();
+
+        this.filter();//表单流程权限控制
     },
     filter:function(){
-        this.MacrosRender();
+        if(this.option.flowStep != -1){
+            var steptOpt =  this.option.listFp[this.option.flowStep-1];
+
+            $(this.option.target).find('.form_item').each(function(){
+                var _this = $(this);
+
+                if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
+                    console.log(_this.attr("title"));
+                    _this.attr("disabled","disabled")
+                }
+
+
+            });
+        }
     },
     RadioRender:function(){
         $('input[data-type="radio"]').each(function(){
@@ -48,10 +64,15 @@ var workForm = {
         if(ele){
             target = ele;
         }else{
-            target = $(".cont_form");
+            target = $(this.option.target);
         }
         target.find("input").each(function(){
             var _this = $(this);
+            if(_this.attr('hidden')){
+                console.log(_this.attr('hidden'));
+                _this.attr("orghidden",_this.attr('hidden'));
+                _this.removeAttr("hidden");
+            }
             if(_this.attr("class") &&  _this.attr("class").indexOf('AUTO') > -1){
                 _this.attr("data-type","macros");
             }else{
@@ -60,7 +81,12 @@ var workForm = {
             _this.addClass("form_item");
             _this.attr("id",$(this).attr("name"));
         });
+        //
         target.find('img.DATE').each(function(){
+            if(_this.attr('hidden')){
+                _this.attr("orghidden",_this.attr('hidden'));
+                _this.removeAttr("hidden");
+            }
             var _this = $(this);
             var objprev = _this.prev();
             var inputObj = '<input name="'+objprev.attr('name')+'" title="'+objprev.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+objprev.attr('name')+'" value="'+_this.attr('date_format')+'"  date_format="'+_this.attr('date_format')+'"/>';
@@ -68,19 +94,33 @@ var workForm = {
             _this.before(inputObj);
             _this.remove();
         });
+        //
         target.find("textarea").each(function(){
+            if( $(this).attr('hidden')){
+                $(this).attr("orghidden",_this.attr('hidden'));
+                $(this).removeAttr("hidden");
+            }
             $(this).addClass("form_item");
             $(this).attr("data-type","textarea");
             $(this).attr("id",$(this).attr("name"));
         });
         target.find("select").each(function () {
+
             var _this = $(this);
             $(this).addClass("form_item");
+            if(_this.attr('hidden')){
+                _this.attr("orghidden",_this.attr('hidden'));
+                _this.removeAttr("hidden");
+            }
             $(this).attr("data-type","select");
             $(this).attr("id",$(this).attr("name"));
         });
         target.find("img.RADIO").each(function(){
             var _this = $(this);
+            if(_this.attr('hidden')){
+                _this.attr("orghidden",_this.attr('hidden'));
+                _this.removeAttr("hidden");
+            }
             var radioStr = ' <input name="'+_this.attr('name')+'" checked="checked" id="'+_this.attr('name')+'" title="'+_this.attr('title')+'" type="radio"  radio_field="'+_this.attr('radio_field')+'" orgchecked="'+_this.attr('radio_checked')+'" classname="radio" class="form_item" data-type="radio" />';
             _this.before(radioStr);
             _this.remove();
@@ -90,6 +130,9 @@ var workForm = {
         that = this;
         var flagStr = "";
         $(".AUTO").each(function(index,obj){
+            if($(this).attr("orghidden") == 1){
+                $(this).attr("hidden","1");
+            }
             if(that.tool.MacrosDate.option[$(this).attr("datafld")]){
                 flagStr+=($(this).attr("datafld")+',');
             }
@@ -138,16 +181,19 @@ var workForm = {
             data:  that.option.resdata,
             success: function (res) {
                 if(res.flag){
-                    var formHtml = res.object.flowFormType || res.object;
-                    if(formHtml.printModel != ''){
-                        that.option.target.html(formHtml.printModel);
+                    var formObj = res.object.flowFormType || res.object;
+                    if(formObj.printModel != ''){
+                        $(that.option.target).html(formObj.printModel);
+                        if(that.option.flowStep != -1){
+                            that.option.listFp = res.object.listFp
+                        }
                         that.render();
                         layer.closeAll();
                     }else{
                         layer.closeAll();
                         layer.msg('没有加载到数据。。', {icon: 6});
                         var noformdata = '<div class="cont_rig" style="text-align: center;margin-top: 200px;"><div class="noData_out"><div class="noDatas_pic"><img src="../../img/workflow/img_nomessage_03.png"></div><div class="noDatas">抱歉现在还没有表单，请您新建</div></div></div>'
-                        that.option.target.html(noformdata);
+                        $(that.option.target).html(noformdata);
                     }
                 }else{
                     layer.closeAll();
@@ -236,10 +282,10 @@ var workForm = {
                 return workForm.tool.MacrosDate.data.sYS_USERPRIVOTHER;
             },
             SYS_USERNAME_DATE : function(){
-                return workForm.tool.MacrosDate.data.sYS_USERNAME+' '+new Date().Format("yyyy-MM-dd hh:mm:ss");
+                return workForm.tool.MacrosDate.data.sYS_USERNAME+' '+new Date().Format("yyyy-MM-dd");
             },
             SYS_USERNAME_DATETIME : function(){
-                return "";
+                return workForm.tool.MacrosDate.data.sYS_USERNAME+' '+new Date().Format("yyyy-MM-dd hh:mm:ss");
             },
             SYS_FORMNAME : function(){
                 return "";

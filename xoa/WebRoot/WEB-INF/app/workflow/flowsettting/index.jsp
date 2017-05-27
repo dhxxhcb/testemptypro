@@ -46,6 +46,45 @@
             <a href="javascript:void(0)" class="btn_click btn_h btn2">
                 <img src="../../img/workflow/flowsetting/icon_management_03.png" alt="">管理权限</a>
         </li>
+        <div class="pop_up">
+            <div class="new_b">新建</div>
+            <div class="pop_con">
+                <div class="con_t">
+                    <div class="con_l">
+                        <div class="con_title">
+                            <div class="title_1">
+                                <div class="title_label"></div>
+                                <span class="title_s">表单名称:</span>
+                                <div class="title_put">
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <sapn class="title_s">表单父分类:</sapn>
+                            <div class="title_2">
+                                <select name="" id="" class="select_t"></select>
+                                <span class>(为空为一级分类)</span>
+                            </div>
+                            <div class="title_3">
+                                <div class="title3_label">
+                                    <span class="title_s">所属部门:</span>
+                                </div>
+                                <div class="select_put">
+                                    <select name="" class="select_t">
+                                        <option value="1">所有部门</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="con_footer">
+                <a href="javascript:void(0)" class="footer_btn1">保存</a>
+                <a href="javascript:void(0)" class="footer_btn2">关闭</a>
+            </div>
+
+        </div>
         <li><a href="javascript:void(0)" class="btn_click btn_h btn3"><img
                 src="../../img/workflow/flowsetting/icon_timedtask_03.png" alt="">定时任务</a>
         </li>
@@ -55,6 +94,7 @@
         <li><a href="javascript:void(0)" class="btn_click btn_h btn5"><img
                 src="../../img/workflow/flowsetting/icon_article_03.png" alt="">应用版式文件</a>
         </li>
+
         <li><a href="javascript:void(0)" class="btn_click btn_h btn6"><img
                 src="../../img/workflow/flowsetting/icon_more_03.png" alt="">其他 <i class="icon_d"></i></a>
             <ul class="hide_list2 hide">
@@ -71,6 +111,8 @@
                 <li><a href="javascript:void(0)" class="btn_h btn_h_4"><i class="icon"></i>导出</a></li>
             </ul>
         </li>
+
+
     </ul>
 
     <div class="cont_r">
@@ -78,134 +120,137 @@
         <div class="item"></div>
         <%--定义流程属性--%>
         <div class="item item1">
-            <div class="con_flow">
+            <div class="con_flow clearfix">
                 <div class="define_r clearfix">
                     <h3>定义流程属性</h3>
                     <span><a href="javascript:void(0)" class="keepmsg">保存</a></span>
                 </div>
-                <p class="define_p">基本属性</p>
-                <form class="pro_flow ">
-                    <div class="con_form">
-                        <div class="form_group">
-                            <label for="projectName" class="flowName">流程名称<span class="save">*</span></label>
-                            <input type="hidden" id="flowId">
-                            <input type="text" id="projectName">
+
+                <div class="over_f">
+                    <p class="define_p">基本属性</p>
+                    <form class="pro_flow ">
+                        <div class="con_form">
+                            <div class="form_group">
+                                <label for="projectName" class="flowName">流程名称<span class="save">*</span></label>
+                                <input type="hidden" id="flowId">
+                                <input type="text" id="projectName">
+
+                            </div>
+                            <div class="form_group">
+                                <label for="orderID" class="flowName">流程排序号 <span class="save">*</span></label>
+                                <input type="text" id="orderID">
+
+                            </div>
+                            <div class="form_group">
+                                <label for="deptName" class="flowName">所属部门 <span class="save">*</span></label>
+                                <select name="" id="deptName" class="depName">
+                                    <option value="1">系统(仅有系统管理员管理)</option>
+                                </select>
+                            </div>
+                            <div class="form_group">
+                                <label for="classfiy" class="flowName">流程分类 <span class="save">*</span></label>
+                                <select name="" id="classfiy" class="depName">
+                                    <option value="1">考勤管理</option>
+
+                                </select>
+                            </div>
+                            <div class="form_group">
+                                <label for="class_f" class="flowName">流程类型 <span class="save">*</span></label>
+                                <select name="" id="class_f" class="depName">
+                                    <option value="1">固定流程</option>
+                                    <option value="2">自由流程</option>
+                                </select>
+                            </div>
+                            <div class="form_group">
+                                <label for="leave" class="flowName">表单 <span class="save">*</span></label>
+                                <select name="" id="leave" class="depName">
+                                    <option value="">请假登记</option>
+                                </select>
+                            </div>
+                            <div class="form_group">
+                                <label for="delegate-type" class="flowName">委托类型<span class="save">*</span></label>
+                                <select name="" id="delegate-type" class="depName">
+                                    <option value="">自由委托</option>
+                                </select>
+                            </div>
+                            <div class="form_group sex_r">
+                                <label class="flowName">是否允许传阅<span class="save">*</span></label>
+                                <input type="radio" name="sex" value="是" checked><label class="sex_n">是</label>
+                                <input type="radio" name="sex" value="否"><label class="sex_save">否</label>
+
+                            </div>
+                            <div class="form_group sex_r">
+                                <label class="flowName">是否允许上传附件<span class="save">*</span></label>
+                                <input type="radio" name="sex" value="是" checked><label class="sex_n">是</label>
+                                <input type="radio" name="sex" value="否"><label class="sex_save">否</label>
+
+                            </div>
+                            <div class="form_group sex_r">
+                                <label class="flowName">是否启用版本控制<span class="save">*</span></label>
+                                <input type="radio" name="sex" value="是" checked><label class="sex_n">是</label>
+                                <input type="radio" name="sex" value="否"><label class="sex_save">否</label>
+
+                            </div>
+                            <div class="form_group sex_r sex_r_f">
+                                <label class="flowName">更多操作项设置<span class="save">*</span></label>
+                                <input type="checkbox"><label class="label_f">公告通知</label>
+                                <input type="checkbox"><label class="label_f">内部邮件</label>
+                                <input type="checkbox"><label class="label_f">转存</label>
+                                <input type="checkbox"><label class="label_f placeFile">归档</label>
+                                <p class="set_form">设置表单打印页面更多操作以及工作办理页面分享和更多的操作</p>
+
+                            </div>
 
                         </div>
-                        <div class="form_group">
-                            <label for="orderID" class="flowName">流程排序号 <span class="save">*</span></label>
-                            <input type="text" id="orderID">
 
-                        </div>
-                        <div class="form_group">
-                            <label for="deptName" class="flowName">所属部门 <span class="save">*</span></label>
-                            <select name="" id="deptName" class="depName">
-                                <option value="1">系统(仅有系统管理员管理)</option>
-                            </select>
-                        </div>
-                        <div class="form_group">
-                            <label for="classfiy" class="flowName">流程分类 <span class="save">*</span></label>
-                            <select name="" id="classfiy" class="depName">
-                                <option value="1">固定流程</option>
-                                <option value="2">自由流程</option>
-                            </select>
-                        </div>
-                        <div class="form_group">
-                            <label for="class_f" class="flowName">流程类型 <span class="save">*</span></label>
-                            <select name="" id="class_f" class="depName">
-                                <option value="1">固定流程</option>
-                                <option value="2">自由流程</option>
-                            </select>
-                        </div>
-                        <div class="form_group">
-                            <label for="leave" class="flowName">表单 <span class="save">*</span></label>
-                            <select name="" id="leave" class="depName">
-                                <option value="">请假登记</option>
-                            </select>
-                        </div>
-                        <div class="form_group">
-                            <label for="delegate-type" class="flowName">委托类型<span class="save">*</span></label>
-                            <select name="" id="delegate-type" class="depName">
-                                <option value="">自由委托</option>
-                            </select>
-                        </div>
-                        <div class="form_group sex_r">
-                            <label class="flowName">是否允许传阅<span class="save">*</span></label>
-                            <input type="radio" name="sex" value="是" checked><label class="sex_n">是</label>
-                            <input type="radio" name="sex" value="否"><label class="sex_save">否</label>
-
-                        </div>
-                        <div class="form_group sex_r">
-                            <label class="flowName">是否允许上传附件<span class="save">*</span></label>
-                            <input type="radio" name="sex" value="是" checked><label class="sex_n">是</label>
-                            <input type="radio" name="sex" value="否"><label class="sex_save">否</label>
-
-                        </div>
-                        <div class="form_group sex_r">
-                            <label class="flowName">是否启用版本控制<span class="save">*</span></label>
-                            <input type="radio" name="sex" value="是" checked><label class="sex_n">是</label>
-                            <input type="radio" name="sex" value="否"><label class="sex_save">否</label>
-
-                        </div>
-                        <div class="form_group sex_r sex_r_f">
-                            <label class="flowName">更多操作项设置<span class="save">*</span></label>
-                            <input type="checkbox"><label class="label_f">公告通知</label>
-                            <input type="checkbox"><label class="label_f">内部邮件</label>
-                            <input type="checkbox"><label class="label_f">转存</label>
-                            <input type="checkbox"><label class="label_f placeFile">归档</label>
-                            <p class="set_form">设置表单打印页面更多操作以及工作办理页面分享和更多的操作</p>
-
+                    </form>
+                    <div class="jobName">工作名称/文好</div>
+                    <form class="pro_flow flow_r">
+                        <div class="con_form">
+                            <div class="form_group">
+                                <label for="reference" class="flowName">文号表达式<span class="save">*</span></label>
+                                <input type="text" id="reference">
+                            </div>
+                            <div class="form_group">
+                                <label for="counteer" class="flowName">编号计数器<span class="save">*</span></label>
+                                <input type="text" id="counteer">
+                            </div>
+                            <div class="form_group">
+                                <label for="figure" class="flowName">编号位数<span class="save">*</span></label>
+                                <input type="text" id="figure">
+                            </div>
+                            <div class="form_group">
+                                <label for="update_n" class="flowName">是否允许修改<span class="save">*</span></label>
+                                <select name="" id="update_n" class="depName">
+                                    <option value="">允许修改</option>
+                                </select>
+                            </div>
                         </div>
 
-                    </div>
-
-                </form>
-                <div class="jobName">工作名称/文好</div>
-                <form class="pro_flow flow_r">
-                    <div class="con_form">
-                        <div class="form_group">
-                            <label for="reference" class="flowName">文号表达式<span class="save">*</span></label>
-                            <input type="text" id="reference">
+                        <div class="form_r">
+                            <div class="conForm_r">
+                                <p>一，文号表达式说明</p>
+                                <p>表达式中可以使用一下特殊标记</p>
+                            </div>
                         </div>
-                        <div class="form_group">
-                            <label for="counteer" class="flowName">编号计数器<span class="save">*</span></label>
-                            <input type="text" id="counteer">
+                    </form>
+                    <div class="jobName">流程说明</div>
+                    <form class="pro_flow flow_r">
+                        <div class="con_form">
+                            <div class="form_group">
+                                <label for="reference" class="flowName">说明文档<span class="save">*</span></label><span
+                                    class="notable">暂无</span>
+                            </div>
+                            <div class="form_group form_icon">
+                                <label for="counteer" class="flowName">上传附件<span class="save">*</span></label>
+                                <i class="icon_plus"></i><input type="text" value="上传附件" class="addfile">
+                                <i class="icon_plus"></i><input type="text" value="从文件柜选择附件" class="appendfile">
+                            </div>
                         </div>
-                        <div class="form_group">
-                            <label for="figure" class="flowName">编号位数<span class="save">*</span></label>
-                            <input type="text" id="figure">
-                        </div>
-                        <div class="form_group">
-                            <label for="update_n" class="flowName">是否允许修改<span class="save">*</span></label>
-                            <select name="" id="update_n" class="depName">
-                                <option value="">允许修改</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form_r">
-                        <div class="conForm_r">
-                            <p>一，文号表达式说明</p>
-                            <p>表达式中可以使用一下特殊标记</p>
-                        </div>
-                    </div>
-                </form>
-                <div class="jobName">流程说明</div>
-                <form class="pro_flow flow_r">
-                    <div class="con_form">
-                        <div class="form_group">
-                            <label for="reference" class="flowName">说明文档<span class="save">*</span></label><span
-                                class="notable">暂无</span>
-
-                        </div>
-                        <div class="form_group form_icon">
-                            <label for="counteer" class="flowName">上传附件<span class="save">*</span></label>
-                            <i class="icon_plus"></i><input type="text" value="上传附件" class="addfile">
-                            <i class="icon_plus"></i><input type="text" value="从文件柜选择附件" class="appendfile">
-                        </div>
-
-                    </div>
-                </form>
+                        <div id="container" style="width: 96%;min-height: 300px;margin: 30px 20px 0 20px" name="content"
+                             type="text/plain"></div>
+                    </form>
+                </div>
 
             </div>
         </div>
@@ -299,40 +344,43 @@
             </table>
         </div>
         <%--新建弹窗--%>
-        <div class="pop_up">
-         <div class="new_b">新建</div>
-            <div class="pop_con">
-                <div class="con_t">
-                    <div class="con_l">
-                        <div class="con_title">
-                            <div class="title_1">
-                                <div class="title_label"><span>表单名称</span></div>
-                                <div class="title_put">
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <sapn class="filed"></sapn>
-                            <div class="title_2">
-                                <select name="" id=""></select>
-                                <span class>(为空为一级分类)</span>
-                            </div>
-                            <div class="title_3">
-                                <div class="title3_label">
-                                    <span class="file_label">所属部门</span>
-                                </div>
-                                <div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="con_footer">
-                <a href="javascript:void(0)">保存</a>
-                <a href="javascript:void(0)">关闭</a>
-            </div>
-
-        </div>
+        <%-- <div class="pop_up" id="poo">
+             <div class="new_b">新建</div>
+             <div class="pop_con">
+                 <div class="con_t">
+                     <div class="con_l">
+                         <div class="con_title">
+                             <div class="title_1">
+                                 <div class="title_label"></div>
+                                 <span class="title_s">表单名称:</span>
+                                 <div class="title_put">
+                                     <input type="text">
+                                 </div>
+                             </div>
+                             <sapn class="title_s">表单父分类:</sapn>
+                             <div class="title_2">
+                                 <select name="" id="" class="select_t"></select>
+                                 <span class>(为空为一级分类)</span>
+                             </div>
+                             <div class="title_3">
+                                 <div class="title3_label">
+                                     <span class="title_s">所属部门:</span>
+                                 </div>
+                                 <div class="select_put">
+                                     <select name="" class="select_t">
+                                         <option value="1">所有部门</option>
+                                     </select>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="con_footer">
+                 <a href="javascript:void(0)" class="footer_btn1">保存</a>
+                 <a href="javascript:void(0)" class="footer_btn2">关闭</a>
+             </div>
+         </div>--%>
         <%--定时任务--%>
         <div class="item">
             <table class="table" cellspacing="0" id="table_task">
@@ -459,6 +507,9 @@
 
 </body>
 <script src="../../js/jquery-1.9.1.js"></script>
+<script src="../../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/layer/layer.js"></script>
 
 <script type="text/javascript">
     /* (function (pro) {
@@ -476,7 +527,7 @@
      var urlObj = window.location.href.queryUrl();
      console.log(urlObj.type);
      });*/
-
+    var ue = UE.getEditor('container');
 
     $(function () {
         var flowIdFromPage = '${flowId}';
@@ -525,7 +576,7 @@
                         $("#flowId").val(data.object.flowId);
                         $("#projectName").val(data.object.flowName);
                         $('#orderID').val(data.object.flowNo);
-                        $('#class_f').html('<option value="1">固定流程<option/>'+'<option value="2">自由流程<option/>');
+                        $('#class_f').html('<option value="1">固定流程<option/>' + '<option value="2">自由流程<option/>');
 
 
                     }
@@ -609,9 +660,13 @@
         /*管理权限查询*/
         var priv_type = ['管理', '监控', '查询', '编辑', '点评']
         $(".btn2").click(function () {
+            renderPriv();
+        });
+
+        function renderPriv() {
             var html = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
-                '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
-                '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
+                '<a href="javascript:void (0)" class="newbuilt" id="new">新建</a> ' +
+                '<a href="javascript:void (0)" class="delete_c delete_d" >删除</a> ' +
                 '</caption>' +
                 "<tr><th><input type='checkbox' class='checkAll'>全选</th><th>权限类型</th><th>授权范围</th><th>管理范围</th><th>操作</th></tr>";
             $.ajax({
@@ -640,21 +695,49 @@
                             if (datas[i].deptName) {
                                 u_d_r_Str += "部门:" + datas[i].deptName + "</br>";
                             }
-                            html += "<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + typeStr + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + u_d_r_Str + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + datas[i].privScopeName + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>";
+                            html += "<tr>" + "<td style='display: none'>" + datas[i].id + "</td>" + "<td>" + "<input type='checkbox' privId='" + datas[i].id + "' class='one'>" + "</td>" + "<td>" + typeStr + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + u_d_r_Str + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + datas[i].privScopeName + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)" class="delete_d" privId="' + datas[i].id + '">删除</a>' + "</td>" + "</tr>";
                         }
+
                         $('#table_power').html(html);
                         /*全选非全选*/
                         checkAll();
                     }
                 }
             })
-        })
+        }
+        /*管理权限删除*/
+        $('#table_power').on('click', '.delete_d', function () {
+            alert('确定要删除吗!');
+            //获取选中项ID
+            var privId = [];
+            var pId = $(this).attr("privId");
+            privId.push(pId);
+            $.ajax({
+                type: 'get',
+                url: '<%=basePath%>/flowSetDatas/deleteFlowPriv',
+                dataType: 'json',
+                data: {
+                    'privId[]': privId
+                },
+                success: function (ret) {
+                    console.log(ret)
+                    if (ret.flag) {
+                        renderPriv();
+                    }
+
+                }
+            })
+
+        });
 
         /*定时任务*/
         $('.btn3').click(function () {
+            dele();
+        });
+        function dele() {
             var strData = '<caption class="clearfix"> <span class="priv_t">定时任务</span> ' +
-                '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
-                '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
+                '<a href="javascript:void (0)" class="newbuilt task_n">新建</a> ' +
+                '<a href="javascript:void (0)" class="delete_c del">删除</a> ' +
                 '</caption>' +
                 "<t><th><input type='checkbox' class='checkAll'>全选</th><th>定时类型</th><th>流程发起人</th><th>发起日期</th><th>发起时间</th><th>操作</th></t>";
             $.ajax({
@@ -668,19 +751,46 @@
                     var data_d = data.datas;
                     if (data.flag) {
                         for (var i = 0; i < data_d.length; i++) {
-                            strData += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data_d[i].typeName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].userName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].remindDate + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].lastTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                            strData += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'  timerId='" + data_d[i].tid + "'>" + "</td>" + "<td>" + data_d[i].typeName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].userName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].remindDate + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].lastTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a class="del" href="javascript:void(0)" timerId="' + data_d[i].tid + '" >删除</a>' + "</td>" + "</tr>" + "</tbody>";
                         }
+
                         $('#table_task').html(strData);
                         checkAll();
 
                     }
                 }
             })
+        }
+
+        /*定时任务删除*/
+        $('#table_task').on('click', '.del', function () {
+            alert('确定要删除吗');
+            var timerId = [];
+            var pId = $(this).attr("timerId");
+
+            timerId.push(pId);
+            console.log(timerId)
+
+            $.ajax({
+                type: 'get',
+                url: '<%=basePath%>/flowSetDatas/deleteFlowTimer',
+                dataType: 'json',
+                data: {
+                    'timerId[]': timerId
+                },
+                success: function (ret) {
+                    console.log(ret)
+                    if (ret.flag) {
+                        dele();
+                    }
+
+                }
+            })
         })
         /*配置查询模板*/
         $('.btn4').click(function () {
             var html = '<caption class="clearfix"> <span class="priv_t">配置查询模板</span> ' +
-                '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
+                '<a href="javascript:void (0)" class="newbuilt temp_n">新建</a> ' +
                 '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
                 '</caption>' +
                 "<th><th><input type='checkbox' class='checkAll'>全选</th><th>模板名称</th><th>创建时间</th><th>操作</th></th>";
@@ -702,7 +812,7 @@
         /*应用版式文件*/
         $('.btn5').click(function () {
             var html = '<caption class="clearfix"> <span class="priv_t">应用版式文件</span> ' +
-                '<a href="javascript:void (0)" class="newbuilt">新建</a> ' +
+                '<a href="javascript:void (0)" class="newbuilt file_n">新建</a> ' +
                 '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
                 '</caption>' +
                 "<t><th><input type='checkbox' class='checkAll'>全选</th><th>模板名称</th><th>模板类别</th><th>创建日期</th><th>操作</th></t>";
@@ -718,32 +828,217 @@
                         var data = data.datas;
                         console.log(data);
                         for (var i = 0; i < data.length; i++) {
-                          html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data[i].content + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].flowPrcs + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>"  + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data[i].content + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].flowPrcs + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>" + "</tbody>";
                         }
                         $('.table_prc').html(html);
                         checkAll();
                     }
-
-
-
                 }
 
+            })
         })
-    })
 
-        /*新建弹窗*/
+        /*管理权限新建弹窗*/
+        $('.table').on('click', '#new', function () {
+            layer.open({
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
+                shade: 0,
+                content: '<div class="pop_con">' +
+                '<div class="con_t">' +
+                '<div class="con_l">' +
+                '<div class="con_title">' +
+                '<div class="title_1">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">授权类型 *</span>' +
+                '<div class="title_put"><select name="" id="" class="select_t"></select></div></div>' +
+                '<sapn class="title_s">管理范围 *</sapn>' +
+                '<div class="title_2">' +
+                '<select name="" id="" class="select_t"></select></div>' +
+                '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">授权范围(人员)</span></div>' +
+                '<div class="select_put">' +
+                '<select name="" class="select_t">' +
+                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>删除</span></div></div></div></div></div>' +
+                '</div>',
+                area: ['600px', '450px'],
+                btn: ['保存', '关闭'],
+                yes: function () {
+                    var data = {
+                        'name': $('input[name="name"]').val(),
+                        'version': $('input[name="version"]').val(),
+                        'isOrg': $('.select option:checked').val()
+                    }
+                    $.ajax({
+                        type: 'get',
+                        url: '/users/addOrgManage',
+                        dataType: 'json',
+                        data: data,
+                        success: function (json) {
+                            if (json.msg == "ok") {
+                                alert('新建成功');
+                            } else {
+                                alert('新建失败');
+                            }
+                        }
+                    })
+                    location.reload();
+                }
+            })
 
-
-    })
-    function checkAll() {
-        $('.checkAll').on('click', function () {
-            $('.one').prop('checked', $(this).prop('checked'));
         });
-        $('.one').click(function () {
-            $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
-        })
-    }
-    checkAll();
+        /*定时任务新建*/
+        $('.table').on('click', '.task_n', function () {
+            layer.open({
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
+                shade: 0,
+                content: '<div class="pop_con">' +
+                '<div class="con_t">' +
+                '<div class="con_l">' +
+                '<div class="con_title">' +
+                '<div class="title_1">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">发起频率 *</span>' +
+                '<div class="title_put"><select name="" id="" class="select_t"></select></div></div>' +
+                '<sapn class="title_s">发起时间 *</sapn>' +
+                '<div class="title_2">' +
+                '<select name="" id="" class="select_t"></select></div>' +
+                '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">发起人(人员)</span></div>' +
+                '<div class="select_put">' +
+                '<select name="" class="select_t">' +
+                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>删除</span></div></div>' + '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">发起人(人员)</span></div>' +
+                '<div class="select_put">' +
+                '<select name="" class="select_t">' +
+                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>删除</span></div>' + '</div>' +
+                '</div></div></div>' +
+                '</div>',
+                area: ['600px', '500px'],
+                btn: ['保存', '关闭'],
+                yes: function () {
+                    var data = {
+                        'name': $('input[name="name"]').val(),
+                        'version': $('input[name="version"]').val(),
+                        'isOrg': $('.select option:checked').val()
+                    }
+                    $.ajax({
+                        type: 'get',
+                        url: '/users/addOrgManage',
+                        dataType: 'json',
+                        data: data,
+                        success: function (json) {
+                            if (json.msg == "ok") {
+                                alert('新建成功');
+                            } else {
+                                alert('新建失败');
+                            }
+                        }
+                    })
+                    location.reload();
+                }
+            })
+        });
+        /*配置模板查询新建*/
+        $('.table').on('click', '.temp_n', function () {
+            layer.open({
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
+                shade: 0,
+                content: '<div class="pop_con">' +
+                '<div class="con_t">' +
+                '<div class="con_l">' +
+                '<div class="con_title">' +
+                '<div class="title_1">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">模板名称 *</span>' +
+                '<div class="title_put"><select name="" id="" class="select_t"></select></div></div>' +
+                '</div></div></div>' +
+                '</div>',
+                area: ['600px', '500px'],
+                btn: ['保存', '关闭'],
+                yes: function () {
+                    var data = {
+                        'name': $('input[name="name"]').val(),
+                        'version': $('input[name="version"]').val(),
+                        'isOrg': $('.select option:checked').val()
+                    }
+                    $.ajax({
+                        type: 'get',
+                        url: '/users/addOrgManage',
+                        dataType: 'json',
+                        data: data,
+                        success: function (json) {
+                            if (json.msg == "ok") {
+                                alert('新建成功');
+                            } else {
+                                alert('新建失败');
+                            }
+                        }
+                    })
+                    location.reload();
+                }
+            })
+        });
+        /*应用版式文件*/
+        $('.table').on('click', '.file_n', function () {
+            layer.open({
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
+                shade: 0,
+                content: '<div class="pop_con">' +
+                '<div class="con_t">' +
+                '<div class="con_l">' +
+                '<div class="con_title">' +
+                '<div class="title_1">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">模板名称 *</span>' +
+                '<div class="title_put"><select name="" id="" class="select_t"></select></div></div>' +
+                '<div class="title_2">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">模板类别 *</span>' +
+                '<div class="title_put"><select name="" id="" class="select_t"></select></div></div>' +
+                '</div></div></div>' +
+                '</div>',
+                area: ['600px', '500px'],
+                btn: ['保存', '关闭'],
+                yes: function () {
+                    var data = {
+                        'name': $('input[name="name"]').val(),
+                        'version': $('input[name="version"]').val(),
+                        'isOrg': $('.select option:checked').val()
+                    }
+                    $.ajax({
+                        type: 'get',
+                        url: '/users/addOrgManage',
+                        dataType: 'json',
+                        data: data,
+                        success: function (json) {
+                            if (json.msg == "ok") {
+                                alert('新建成功');
+                            } else {
+                                alert('新建失败');
+                            }
+                        }
+                    })
+                    location.reload();
+                }
+            })
+        });
+
+
+        function checkAll() {
+            $('.checkAll').on('click', function () {
+                $('.one').prop('checked', $(this).prop('checked'));
+            });
+            $('.one').click(function () {
+                $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
+            })
+        }
+
+        checkAll();
+    });
+
 </script>
 
 </html>

@@ -62,6 +62,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							str='<li><div style="display: inline-block; position: relative;top: -4px"><fmt:message code="news.th.postdept" />：</div><div class="spanbreak" title="'+toTypeName+'">'+toTypeName+'</div></li><li><span><fmt:message code="notice.th.publisher" />：</span><span>'+data1.users.userName+'</span></li><li><span><fmt:message code="notice.th.PostedTime" />：</span><span>'+data1.newsDateTime+'</span></li>';
 							$('ul').append(str);
 							$('.divTxt').append('<p>'+data1.content+'</p>');
+                            var  str1="";
+                            var arr=new Array();
+                            arr=data1.attachment;
+                            if(data1.attachmentName!=''){
+                                for(var i=0;i<(arr.length);i++){
+                                    str1+='<div><a href="<%=basePath %>download?'+arr[i].attUrl+'"><img src="../img/icon_print_07.png"/>'+arr[i].attachName+'</a></div>';
+								}
+                               str1+='<tr><td class="attachment">'+data1.attachmentName+'</td></tr>';
+                                $('.Table').append(str1);
+							}
+
 						}
 				}); 
 				
@@ -73,16 +84,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="title"></div>
 			<div class="infor">
 				<ul>
-					<!-- <li><span>高波</span></li> -->
-					<!-- <li><span>发布于：</span><span>2017-03-23 10:17</span></li> -->
-					<!-- <li><span>点击次数<span>92</span>次</span></li> -->
+
 				</ul>
 			</div>
 			<div class="divContent">
 				<div class="divTxt">
 			</div>
+			<div class="divContent1">
+				<table class="Table"  cellspacing="0" cellpadding="0">
+				</table>
+		  </div>
+			</div>
 		</div>
-		
 	</body>
 </html>
 

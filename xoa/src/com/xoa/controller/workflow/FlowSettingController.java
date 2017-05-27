@@ -112,7 +112,7 @@ public class FlowSettingController {
 
 
     @RequestMapping("/deleteFlowTimer")
-    public BaseWrapper deleteFlowTimer(@RequestParam("timerId") Integer timerId[]){
+    public BaseWrapper deleteFlowTimer(@RequestParam("timerId[]") Integer timerId[]){
         return privService.deleteFlowTimer(timerId);
     }
 
@@ -174,7 +174,7 @@ public class FlowSettingController {
         return privService.queryFlowQuertTplById(tplId);
     }
     @RequestMapping("/deleteFlowQuertTpl")
-    public BaseWrapper deleteFlowQuertTpl(@RequestParam("tplId") Integer tplId[]
+    public BaseWrapper deleteFlowQuertTpl(@RequestParam("tplId[]") Integer tplId[]
     ){
         return privService.deleteFlowQuertTpl(tplId);
     }
@@ -193,7 +193,7 @@ public class FlowSettingController {
     }
 
     @RequestMapping("/deleteFlowPrintTpl")
-    public BaseWrapper deleteFlowPrintTpl(@RequestParam("tId") Integer tId[]){
+    public BaseWrapper deleteFlowPrintTpl(@RequestParam("tId[]") Integer tId[]){
         return privService.deleteFlowPrintTpl(tId);
     }
 
