@@ -15,7 +15,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.xoa.dao.email.EmailBodyMapper;
 import com.xoa.model.daiban.Daiban;
 import com.xoa.model.daiban.TodoList;
 import com.xoa.model.email.EmailBodyModel;
@@ -71,7 +70,7 @@ public class TodolistImpl implements TodolistService{
 			String s=f.format(e);
 			td.setTime(s);
 			td.setUserName(em.getUsers().getUserName());
-			td.setIsAttach(em.getAttachment()==null?"0":"1");
+			td.setIsAttach(em.getAttachmentId()==""?"0":"1");
 			list.add(td);
 		}
 		ToJson<Notify> ln = notifyService.unreadNotify(maps,1,10,true,le.get(0).getUsers().getUserId(),sqlType);
@@ -89,7 +88,7 @@ public class TodolistImpl implements TodolistService{
 			td.setTime(s);
 			td.setDeleteFlag("");
 			td.setUserName(no.getUsers().getUserName());
-			td.setIsAttach(no.getAttachment()==null?"0":"1");
+			td.setIsAttach(no.getAttachmentId()==""?"0":"1");
 			list1.add(td);
 		}
 		db.setEmail(list);

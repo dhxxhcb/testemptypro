@@ -68,5 +68,16 @@ public interface FlowProcessService {
 	 */
 	public ToJson<FlowProcess> insertSelective(FlowProcess record);
 	
+	/**
+	 * 创建作者:   张龙飞
+	 * 创建日期:   2017年5月27日 上午11:01:07
+	 * 方法介绍:   根据flowId和prcsId获取流程
+	 * 参数说明:   @param flowId
+	 * 参数说明:   @param prcsId
+	 * 参数说明:   @return
+	 * @return     FlowProcess
+	 */
+	public  FlowProcess findbyprcsId(int flowId,int prcsId);
+	
 
 }

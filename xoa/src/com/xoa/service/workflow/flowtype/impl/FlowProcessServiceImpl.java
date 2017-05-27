@@ -129,4 +129,13 @@ public class FlowProcessServiceImpl implements FlowProcessService {
         return toJson;
     }
 
+    @Override
+    public  FlowProcess findbyprcsId(int flowId,int prcsId){
+    	  Map<String, Object> maps = new HashMap<String, Object>();
+          maps.put("folwId", flowId);
+          maps.put("prcsId", prcsId);
+          FlowProcess flowProcess = flowProcessMapper.find(maps);
+          return flowProcess;
+    }
+
 }

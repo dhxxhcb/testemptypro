@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
 import com.xoa.model.users.Users;
 import com.xoa.model.workflow.FlowFast;
 import com.xoa.model.workflow.FlowFormType;
@@ -92,106 +94,140 @@ public class WorkController {
 
     @RequestMapping("workfastAdd")
     @ResponseBody
-    public ToJson<FlowFast> fastAdd(HttpServletRequest request,
-                                    int flowId) {
-        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));
-        int runId = flowRunService.getMaxRunId();
-        String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
-        int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
+	public ToJson<FlowFast> fastAdd(HttpServletRequest request,
+		            int flowId,
+		            int prcsId) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+		"loginDateSouse"));
+		int runId = flowRunService.getMaxRunId();
+		String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+		int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
+		
+		FlowProcess flowProcess= flowProcessService.findbyprcsId(flowId, prcsId);
+		
+		Map<String, Object> maps = new HashMap<String, Object>();
+		ToJson<FlowFast> tj = new ToJson<FlowFast>();
+		ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
+		maps.put("flowId", flowId);
+		toJson = flowTypeService.selectAllFlow(maps);
+		FlowTypeModel flowTypeModel = (FlowTypeModel) toJson.getObject();
+		String flowName = flowTypeModel.getFlowName();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String beginTime = df.format(new Date());
+		String runName = flowName + " " + beginTime;
+		
+		FlowRun flowRun = new FlowRun();
+		flowRun.setRunId(runId);
+		flowRun.setRunName(runName);
+		flowRun.setFlowId(flowId);
+		flowRun.setBeginUser(userId);
+		flowRun.setBeginTime(beginTime);
+		flowRun.setBeginDept(deptId);
+		flowRun.setDelFlag("0");
+		//flowRun.setDelTime(beginTime);
+		flowRunService.save(flowRun);
+		
+		FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
+		flowRunPrcs.setRunId(runId);
+		flowRunPrcs.setPrcsId(flowProcess.getPrcsId());
+		flowRunPrcs.setUserId(userId);
+		flowRunPrcs.setPrcsDept(deptId);
+		//flowRunPrcs.setPrcsFlag(prcsFlag);
+		flowRunPrcs.setCreateTime(beginTime);
+		flowRunPrcs.setPrcsTime(beginTime);
+		flowRunPrcs.setDeliverTime(beginTime);
+		flowRunPrcs.setActiveTime(beginTime);
+		flowRunPrcsService.save(flowRunPrcs);
+		
+		ToJson<FlowFormType> json = new ToJson<FlowFormType>();
+		json = flowFormTypeService.qureyItemMax(flowTypeModel.getFormId());
+		FlowFormType flowFormType = (FlowFormType) json.getObject();
+		FlowFast f = new FlowFast();
+		f.setFlowTypeModel(flowTypeModel);
+		f.setFlowFormType(flowFormType);
+		f.setFlowRun(flowRun);
+		f.setFlowRunPrcs(flowRunPrcs);
+		f.setFlowProcesses(flowProcess);
+		
+		try {
+		tj.setObject(f);
+		tj.setMsg("OK");
+		tj.setFlag(0);
+		} catch (Exception e) {
+		tj.setMsg(e.getMessage());
+		}
+		return tj;
+		}
 
-        List<FlowProcess> lf = flowProcessService.findFlowId(flowId);
 
-        Map<String, Object> maps = new HashMap<String, Object>();
-        ToJson<FlowFast> tj = new ToJson<FlowFast>();
-        ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
-        maps.put("flowId", flowId);
-        toJson = flowTypeService.selectAllFlow(maps);
-        FlowTypeModel flowTypeModel = (FlowTypeModel) toJson.getObject();
-        String flowName = flowTypeModel.getFlowName();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        String beginTime = df.format(new Date());
-        String runName = flowName + " " + beginTime;
-
-        FlowRun flowRun = new FlowRun();
-        flowRun.setRunId(runId);
-        flowRun.setRunName(runName);
-        flowRun.setFlowId(flowId);
-        flowRun.setBeginUser(userId);
-        flowRun.setBeginTime(beginTime);
-        flowRun.setBeginDept(deptId);
-        flowRun.setDelFlag("0");
-        //flowRun.setDelTime(beginTime);
-        flowRunService.save(flowRun);
-
-        FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
-        flowRunPrcs.setRunId(runId);
-        flowRunPrcs.setPrcsId(1);
-        flowRunPrcs.setUserId(userId);
-        flowRunPrcs.setPrcsDept(deptId);
-        //flowRunPrcs.setPrcsFlag(prcsFlag);
-        flowRunPrcs.setCreateTime(beginTime);
-        flowRunPrcs.setPrcsTime(beginTime);
-        flowRunPrcs.setDeliverTime(beginTime);
-        flowRunPrcs.setActiveTime(beginTime);
-        flowRunPrcsService.save(flowRunPrcs);
-
-        ToJson<FlowFormType> json = new ToJson<FlowFormType>();
-        json = flowFormTypeService.qureyItemMax(flowTypeModel.getFormId());
-        FlowFormType flowFormType = (FlowFormType) json.getObject();
-        FlowFast f = new FlowFast();
-        f.setFlowTypeModel(flowTypeModel);
-        f.setFlowFormType(flowFormType);
-        f.setFlowRun(flowRun);
-        f.setFlowRunPrcs(flowRunPrcs);
-        f.setListFp(lf);
-
-        try {
-            tj.setObject(f);
-            tj.setMsg("OK");
-            tj.setFlag(0);
-        } catch (Exception e) {
-            tj.setMsg(e.getMessage());
-        }
-        return tj;
-    }
-
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年5月27日 上午9:54:09
+     * 方法介绍:   转交保存表单数据
+     * 参数说明:   @param request 请求
+     * 参数说明:   @param flowId 流程id
+     * 参数说明:   @param formdata 表单json串
+     * 参数说明:   @param runId  flowRun的流程实例Id
+     * 参数说明:   @param runName flowRun的流程实例名称
+     * 参数说明:   @param beginTime flowRun流程实例创建时间
+     * 参数说明:   @param beginUser  flowRun流程发起人Id
+     * 参数说明:   @return
+     * 参数说明:   @throws JSONException
+     * @return     String 
+     */
     @RequestMapping("nextwork")
-    public String addwork(String str, HttpServletRequest request,
-                          @RequestParam("flowId") String flowId,
-                          @RequestParam("json") JSONObject hostObject,
-                          FlowRun flowRun) throws JSONException {
+    public String nextwork(HttpServletRequest request,
+                          @RequestParam(value="flowId",required = false) String flowId,
+                          @RequestParam(value="formdata",required = false) String formdata,
+                          @RequestParam(value="runId",required = false) int runId,
+                          @RequestParam(value="runName",required = false) String runName,
+                          @RequestParam(value="beginTime",required =false) String beginTime,
+                          @RequestParam(value="beginUser",required =false) String beginUser                
+                         ) throws JSONException {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         String tableName = "flow_data_" + flowId;
+        JSONArray json =new JSONArray();
+        Map<String,Object> map =json.parseObject(formdata,Map.class);
+	
         if (!CheckTableExist.haveTable(tableName)) {
             //JSONObject json = JSONObject.fromObject(jsonObject);
         } else {
-            String keys = "run_id,run_name,begin_time,begin_user";
-            String values = "" + flowRun.getRunId() + "," + flowRun.getRunName() + "," + flowRun.getBeginTime() + "," + flowRun.getBeginUser();
-            StringBuffer sb = new StringBuffer();
-            StringBuffer sb1 = new StringBuffer();
-            sb.append(keys);
-            hostObject = new JSONObject();
-            Iterator<String> sIterator = hostObject.keys();
-            while (sIterator.hasNext()) {
-                // 获得key
-                String key = sIterator.next();
-                // 根据key获得value, value也可以是JSONObject,JSONArray,使用对应的参数接收即可
-                String value = hostObject.getString(key);
-                sb.append(",").append(key);
-                sb1.append(",").append(value);
-                System.out.println("key: " + key + ",value" + value);
-            }
+        	 String keys = "run_id,run_name,begin_time,begin_user";
+             String values = "" + runId + "," + runName + "," + beginTime + "," + beginUser;
+             StringBuffer sb = new StringBuffer();
+             sb.append(keys);
+             StringBuffer sb1 = new StringBuffer();
+             sb1.append(values);
+        	for(Entry<String, Object> m:map.entrySet()){
+        		sb.append(",").append(m.getKey());
+                sb1.append(",").append(m.getValue());
+        		
+    		}
             String sqlAll = "insert into " + tableName + "(" + sb.toString() + ") " + "values(" + sb1.toString() + ")";
-            CheckTableExist.createTable(sqlAll);
+            CheckTableExist.createSql(sqlAll);
+            
+            
+            
+            //String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+           // int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
+            FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
+            flowRunPrcs.setRunId(runId);
+            flowRunPrcs.setPrcsId(1);
+           // flowRunPrcs.setUserId(userId);
+            //flowRunPrcs.setPrcsDept(deptId);
+            flowRunPrcs.setPrcsTime(beginTime);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            flowRunPrcs.setDeliverTime(df.format(new Date()));
+            flowRunPrcs.setPrcsTime(beginTime);
+            flowRunPrcs.setDeliverTime(beginTime);
+            flowRunPrcs.setActiveTime(beginTime);
+            flowRunPrcsService.save(flowRunPrcs);
 
         }
-
-
         return "";
     }
-
+    
     /**
      * 创建作者:   张勇
      * 创建日期:   2017/5/24 20:29

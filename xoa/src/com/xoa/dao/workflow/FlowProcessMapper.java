@@ -24,4 +24,6 @@ public interface FlowProcessMapper {
     List<FlowProcess> findFlowId(int flowId);
     
     List<FlowProcess> findF(int flowId);
+    
+    FlowProcess findbyprcsId(Map<String, Object> maps);
 }
