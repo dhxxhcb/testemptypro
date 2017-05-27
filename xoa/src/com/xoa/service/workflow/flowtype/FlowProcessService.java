@@ -48,7 +48,7 @@ public interface FlowProcessService {
 	 * 参数说明:   @param id 
 	 * @return     void
 	 */
-	public void delete(int id);
+	public ToJson<FlowProcess> delete(int id);
 	/**
 	 * 创建作者:   张龙飞
 	 * 创建日期:   2017年5月22日 上午9:45:01
@@ -68,14 +68,5 @@ public interface FlowProcessService {
 	 */
 	public ToJson<FlowProcess> insertSelective(FlowProcess record);
 	
-
-	/**
-	 * 创建作者:   张勇
-	 * 创建日期:   2017/5/27 11:35
-	 * 方法介绍:   删除节点
-	 * 参数说明:
-	 * @return
-	 */
-	public ToJson<FlowProcess> deletePrcss(Integer id);
 
 }
