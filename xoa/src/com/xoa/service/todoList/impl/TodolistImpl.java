@@ -51,6 +51,7 @@ public class TodolistImpl implements TodolistService{
 		ToJson<EmailBodyModel> tojson=emailService.selectInboxIsRead(maps,1,10,false,sqlType);
 		List<EmailBodyModel> le=tojson.getObj();
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		if(le!=null){
 		for(EmailBodyModel em:le){
 			TodoList td=new TodoList();
 			td.setAvater(0);
@@ -73,8 +74,10 @@ public class TodolistImpl implements TodolistService{
 			td.setIsAttach(em.getAttachmentId()==""?"0":"1");
 			list.add(td);
 		}
-		ToJson<Notify> ln = notifyService.unreadNotify(maps,1,10,true,le.get(0).getUsers().getUserId(),sqlType);
+		}
+		ToJson<Notify> ln = notifyService.unreadNotify(maps,1,10,true,userId,sqlType);
 		List<Notify> l=ln.getObj();
+		if(l!=null){
 		for(Notify no:l){
 			TodoList td=new TodoList();
 			td.setAvater(0);
@@ -90,6 +93,7 @@ public class TodolistImpl implements TodolistService{
 			td.setUserName(no.getUsers().getUserName());
 			td.setIsAttach(no.getAttachmentId()==""?"0":"1");
 			list1.add(td);
+		}
 		}
 		db.setEmail(list);
 		db.setNotify(list1);	
