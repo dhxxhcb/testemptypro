@@ -641,6 +641,7 @@ public class FlowSettingService {
         flowQueryTplWithBLOBs.setTplName(tplName);
         flowQueryTplWithBLOBs.setFlowId(flowId);
         flowQueryTplWithBLOBs.setViewExtFields(viewFields);
+        flowQueryTplWithBLOBs.setCreateTime(new Date());
         Integer res = flowQueryTplMapper.insertSelective(flowQueryTplWithBLOBs);
         if(res>0){
             wrapper.setFlag(true);
