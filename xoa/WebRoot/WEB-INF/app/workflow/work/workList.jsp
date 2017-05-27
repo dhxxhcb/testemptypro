@@ -417,7 +417,7 @@ input.span4, textarea.span4,.uneditable-input.span4 {
 			</div>
 			<div class="right">
 				<!-- 分页按钮-->
-				<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
+				<div class="M-box3"></div>
 			</div>
 		</div>
 
@@ -940,7 +940,7 @@ input.span4, textarea.span4,.uneditable-input.span4 {
 <!--
 var datas = {
             page: 1,
-            pageSize: 5,
+            pageSize:10,
             useFlag: true,
 	};
 $(function(){
@@ -952,42 +952,68 @@ $(function(){
  $(".step").eq(index).show().siblings().hide(); 
  });
 //处理数据状态字段
-	function handleData(data){
-			var str;
-			if(data==0||data==''){
-				var str="代办中";
-			} else if(data==4){
-				var str='已完结';
+function handleData(data){
+			switch(data){
+				case 1: 
+					str='未接收';
+					break;
+				case 2: 
+					str='办理中';
+					break;
+				case 3: 
+					str='转交下一步，下一步经办人无人接收';
+					break;
+				case 4: 
+					str='已办结';
+					break;
+				case 5: 
+					str='自由流程预设步骤';
+					break;
+				case 6: 
+					str='已挂起';
+					break;
+				default:
+					str='办理中';
 			}
-			return str;
 		}
-
-$(document).ready($.ajax({
+function initPageList_db(cb){
+	$.ajax({
 	url:'../../workflow/work/selectWork?page=1&pageSize=5&useFlag=true&userId=admin',
-	type:'post',
+	type:'get',
 	dataType:'json',
+	//data:datas
 	success:function(data){
-						console.log(data);
-						var length=data.obj.length;
-						var str='';
-						for(var i=0;i<length;i++){
-						var status=handleData(data.obj[i].prcsFlag);
-						var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
-						          '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
-						          '<td class="th"></td><td class="th">'+data.obj[i].userName+'</td>'+
-								  '<td class="th">'+status+'</td><td class="th"></td>'+
-								  '<td class="th"></td>'+
-								  '<td style="text-align:left;" title="主办导出删除">'+
-								  '<a href="javascript:"><span class="host-span">主办</span></a>'+
-								  '<a href=""><span class="operation_text_left">导出</span></a>'+
-								  '<a href="javascript:">'+
-								  '<span class="operation_text_left">删除</span></a></td></tr>';
-								  //$('#dbgz').html(str);
-								}
-								$('#dbgz').html(str);
+					console.log(data);
+					var length=data.obj.length;
+					var str='';
+					for(var i=0;i<length;i++){
+					var status=handleData(data.obj[i].prcsFlag);
+					var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
+							  '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
+							  '<td class="th"></td><td class="th">'+data.obj[i].userName+'</td>'+
+							  '<td class="th">'+status+'</td><td class="th"></td>'+
+							  '<td class="th"></td>'+
+							  '<td style="text-align:left;" title="主办导出删除">'+
+							  '<a href="javascript:"><span class="host-span">主办</span></a>'+
+							  '<a href=""><span class="operation_text_left">导出</span></a>'+
+							  '<a href="javascript:">'+
+							  '<span class="operation_text_left">删除</span></a></td></tr>';
+							  //$('#dbgz').html(str);
 							}
-						})
-				);
+							$('#dbgz').html(str);
+							if (cb) {
+									alert(data.totleNum);
+									cb(data.totleNum);
+								}
+						}
+					});
+			}
+	$(document).ready(function(){
+		initPageList_db(function (pageCount) {
+            console.log(pageCount);
+            initPagination(pageCount, datas.pageSize);
+			});
+	})
 
 	$("#qbgz_list").click(function(){
 	initPageList(function (pageCount) {
@@ -1000,10 +1026,10 @@ $(document).ready($.ajax({
 		function initPageList(cb) {
             //var layerIndex = layer.load(0, {shade: false}); /* 0代表加载的风格，支持0-2 */
             $.ajax({
-				url:'../../workflow/work/selectAll',
+				url:'../../workflow/work/selectAll?page=1&pageSize=5&useFlag=true&userId=admin',
 				type:'get',
 				dataType:'json',
-				data:datas,
+				//data:datas,
 				success:function(data){
 									console.log(data);
 									var length=data.obj.length;
@@ -1020,8 +1046,8 @@ $(document).ready($.ajax({
 											}
 											$('#qbgz').html(str);
 											if (cb) {
-												alert(data.obj.totleNum);
-												cb(data.obj.totleNum);
+												alert(data.totleNum);
+												cb(data.totleNum);
 											}
 										}
 									})
@@ -1038,9 +1064,9 @@ $(document).ready($.ajax({
                 //nextContent: '',
                 //jumpBtn: '',
                 callback: function (index) {
-                    data.page = index.getCurrent();
+                    datas.page = index.getCurrent();
                     console.log(index.getCurrent());
-                    initPageList();
+                    initPageList_db();
                 }
             });
         }
