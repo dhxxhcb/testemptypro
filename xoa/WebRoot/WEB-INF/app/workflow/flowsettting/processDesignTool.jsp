@@ -21,9 +21,10 @@
     <script type="text/javascript" src="../../js/base/base.js"></script>
     <script type="text/javascript" src="../../lib/layer/layer.js"></script>
     <script type="text/javascript" src="../../lib/layui-v1.0.9_rls/layui/layui.js"></script>
+    <script src="../../js/workflow/flowtype/processDesignTool.js"></script>
     <script type="text/javascript" src="../../lib/GooFlow/GooFunc.js"></script>
     <script type="text/javascript" src="../../lib/GooFlow/GooFlow.js"></script>
-    <script src="../../js/workflow/flowtype/processDesignTool.js"></script>
+
     <!-- <script type="text/javascript" src="../../js/workflow/json2.js"></script> -->
 
     <style>
@@ -73,128 +74,15 @@
     </style>
     <script type="text/javascript">
 
-        var flowDesign;
-        var jsondata = {
-            "title": "",
-            "nodes": {},
-            "lines": {},
-            "areas": {},
-            "initNum": 0
-        }
-        $(function () {
-            var $width=$('body').width();
-            var $height=$('body').height();
-            console.log($width)
-            var property = {
-                width: $width,
-                height: $height,
-                toolBtns: ["chat"],
-//                "start round", "end round", "task round", "node","state", "plug", "join", "fork", "complex mix"
-                haveHead: true,
-                headBtns: ["new", "open", "save", "undo", "redo", "reload"],//如果haveHead=true，则定义HEAD区的按钮
-                haveTool: true,
-                haveGroup: true,
-                useOperStack: true
-            };
-            var remark = {
-                cursor: "选择指针",
-                direct: "结点连线",
-                start: "入口结点",
-                end: "结束结点",
-                task: "任务结点",
-                node: "自动结点",
-                chat: "决策结点",
-                state: "状态结点",
-                plug: "附加插件",
-                fork: "分支结点",
-                join: "联合结点",
-                "complex mix": "复合结点",
-                group: "组织划分框编辑开关"
-            };
-            flowDesign = $.createGooFlow($("#flowDesignTable"), property);
-            flowDesign.setNodeRemarks(remark);
-            $.ajax({
-                type: 'get',
-                url: 'flowProcess/flowview',
-                dataType: 'json',
-                data: {"flowId":''},
-                success: function (json) {
-                    // debugger;
-//                    获取数据并添加到流程设计器的插件中
-                    if (json.flag) {
-                        var designdata = json.object.designdata;
-                        var connections = json.object.connections;
-                        jsondata.title = json.object.designdata[0].flowName;
-                        jsondata.initNum = designdata.length;
-                        designdata.forEach(function (v, i) {
-                            jsondata.nodes['步骤_' + v.prcsId] = {
-                                designerId:v.id,
-                                name: v.prcsName,
-                                left: v.setLeft,
-                                type: "chat",
-                                top: v.setTop
 
-                            }
-                        });
-                        connections.forEach(function (v, i) {
-                            jsondata.lines['line_' + i] = {
-                                type: "sl",
-                                from: "node_" + v.from,
-                                to: "node_" + v.to,
-                                name: "",
-                                "M": 41.5,
-                                alt: true
-                            }
-                        });
-                    }
-                    flowDesign.onItemDel = function (id, type) {
-                        if (confirm("确定要删除该单元吗?")) {
-                            this.blurItem();
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    };
-                    flowDesign.loadData(jsondata);
-                    flowDesign.onItemFocus = function (id, model) {
-                        var obj;
-                        $("#ele_model").val(model);
-                        $("#ele_id").val(id);
-                        if (model == "line") {
-                            obj = this.$lineData[id];
-                            $("#ele_type").val(obj.M);
-                            $("#ele_left").val("");
-                            $("#ele_top").val("");
-                            $("#ele_width").val("");
-                            $("#ele_height").val("");
-                            $("#ele_designerId").val("");
-                            $("#ele_from").val(obj.from);
-                            $("#ele_to").val(obj.to);
-                            $("#ele_flow").val("");
-
-                        } else if (model == "node") {
-                            obj = this.$nodeData[id];
-                            $("#ele_type").val(obj.type);
-                            $("#ele_designerId").val(obj.designerId);
-                            $("#ele_left").val(obj.left);
-                            $("#ele_top").val(obj.top);
-                            $("#ele_width").val(obj.width);
-                            $("#ele_height").val(obj.height);
-                            $("#ele_from").val("");
-                            $("#ele_to").val("");
-                            $("#ele_flow").val('${formId}');
-                        }
-                        $("#ele_name").val(obj.name);
-                        return true;
-                    };
-                },
-            });
-
-
-        });
     </script>
 </head>
 <body>
+<input type="hidden" id="ele_id">
+<input type="hidden" id="ele_model">
+<input type="hidden" id="ele_designerId">
+
+
     <div id="flowDesignTable" ></div>
     <form action="" class="layui-form">
         <div id="propertyForm" >
@@ -209,7 +97,7 @@
                         序号
                     </p>
                     <p class="candidatesPTwo">
-                        <input type="text" value="">
+                        <input type="text" name="prcsId" value="">
                     </p>
                 </li>
                 <li>
@@ -220,11 +108,11 @@
                         <p class="candidatesPTwo">
                             <%--<input type="text" readonly="true" value="不进行自动选择" style="cursor: pointer;"><span class="xiala"><b></b></span>--%>
                             <%--<input type="hidden">--%>
-                                <select name="city" lay-verify="">
+                                <select name="prcsType" lay-verify="">
                                     <option value="">不进行自动选择</option>
-                                    <option value="010">北京</option>
-                                    <option value="021">上海</option>
-                                    <option value="0571">杭州</option>
+                                    <option value="0">步骤节点</option>
+                                    <option value="1">自流程节点</option>
+                                    <option value="2">外部流转节点</option>
                                 </select>
                         </p>
                         <%--<ol class="dropDown">--%>
@@ -248,7 +136,7 @@
                         步骤名称
                     </p>
                     <p class="candidatesPTwo" style="margin-bottom: 20px">
-                        <input type="text"  value="提交出差申请">
+                        <input type="text" name="prcsName"  value="提交出差申请">
                     </p>
                 </li>
                 <li>
@@ -276,8 +164,9 @@
                     <p class="candidatesPone">
                         授权范围（人员）
                     </p>
-                    <div class="candidatesPTwoall" style="margin-bottom: 20px;">
+                    <div class="candidatesPTwoall" style="margin-bottom: 4px;">
                         <input type="text" id="query_userId" readonly="true">
+                        <input type="hidden" name="prcsUser">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="1" class="theCandidates">添加</a>
                         </div>
@@ -287,8 +176,9 @@
                     <p class="candidatesPone">
                         授权范围（部门）
                     </p>
-                    <div class="candidatesPTwoall" style="margin-bottom: 20px;">
+                    <div class="candidatesPTwoall" style="margin-bottom: 4px;">
                         <input type="text" id="department" readonly="true">
+                        <input type="hidden" name="prcsDept">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="2" class="theCandidates">添加</a>
                         </div>
@@ -298,8 +188,9 @@
                     <p class="candidatesPone">
                         授权范围（角色）
                     </p>
-                    <div class="candidatesPTwoall" style="margin-bottom: 20px;">
+                    <div class="candidatesPTwoall" style="margin-bottom: 4px;">
                         <input type="text" id="theScopeOf" readonly="true">
+                        <input type="hidden" value="prcsPriv">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="3" class="theCandidates">添加</a>
                         </div>
@@ -309,22 +200,20 @@
                     <p class="candidatesPone">
                         会签人设置
                     </p>
-                   <p class="candidatesPothree">
-                       <label>
-                               <input type="radio" name="" value="男" title="不允许">
-                               <input type="radio" name="" value="女" title="本步骤经办人">
-                               <input type="radio" name="" value="禁" title="全部人员">
-                       </label>
-                   </p>
                     <p class="candidatesPothree">
-                        <label>
-                            <input type="radio" title="本步骤经办人">
-                        </label>
+
+                        <input type="radio" name="signType" value="0" title="不允许">
+
                     </p>
                     <p class="candidatesPothree">
-                        <label>
-                            <input type="radio" title="全部人员">
-                        </label>
+
+                            <input type="radio" name="signType" value="1" title="本步骤经办人">
+
+                    </p>
+                    <p class="candidatesPothree">
+
+                            <input type="radio" name="signType" value="2" title="全部人员">
+
                     </p>
                 </li>
                 <li>
@@ -332,14 +221,14 @@
                         是否允许会签人加签
                     </p>
                     <p class="candidatesPothree">
-                        <label>
-                            <input type="radio" title="不允许">
-                        </label>
+
+                            <input type="radio" name="countersign" value="0" title="不允许">
+
                     </p>
-                    <p class="candidatesPothree">
-                        <label>
-                            <input type="radio" title="允许">
-                        </label>
+                    <p class="candidatesPothree" style="margin-bottom: 10px">
+
+                            <input type="radio" name="countersign"  value="1" title="允许">
+
                     </p>
                 </li>
             </ul>
@@ -492,7 +381,7 @@
                     <p class="candidatesPothree">
                         <label><input type="radio" title="允许"></label>
                     </p>
-                    <p class="candidatesPothree">
+                    <p class="candidatesPothree" style="margin-bottom: 10px">
                         <label><input type="radio" title="不允许"></label>
                     </p>
                 </li>
@@ -515,6 +404,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
                         <ul></ul>
+                        <input type="hidden" name="hiddenItem">
                         <div style="float: left">
                             <a href="javascript:;" class="bottomsteps">选择</a>
                         </div>
@@ -533,6 +423,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
                         <ul></ul>
+                        <input type="hidden" name="requiredItem">
                         <div style="float: left">
                             <a href="javascript:;" class="bottomsteps">选择</a>
                         </div>
@@ -552,22 +443,16 @@
             <ul class="candidatesUl" style="display: none">
                 <li>
                     <p class="candidatesPoform" style="margin-top: 20px;">
-                        <%--<input type="text"><span>小时</span>--%>
-                            <select name="city" lay-verify="">
-                                <option value="">小时</option>
-                                <option value="010">北京</option>
-                                <option value="021">上海</option>
-                                <option value="0571">杭州</option>
-                            </select>
+                        <input type="text" name="timeOut"><span>小时</span>
                     </p>
                     <p class="candidatesPone">
                         是否允许转交时设置办理时限
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="允许"></label>
+                        <label><input type="radio" name="timeOutModify" value="0" title="允许"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="不允许"></label>
+                        <label><input type="radio" name="timeOutModify" value="1" title="不允许"></label>
                     </p>
                 </li>
                 <li>
@@ -575,10 +460,10 @@
                         超时计算方法
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="本步骤接收后开始计时"></label>
+                        <label><input type="radio" name="timeOutType" value="0" title="本步骤接收后开始计时"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="上一步骤转交后开始计时"></label>
+                        <label><input type="radio" name="timeOutType" value="1" title="上一步骤转交后开始计时"></label>
                     </p>
                 </li>
                 <li>
@@ -586,10 +471,10 @@
                         工作天数换算方式
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="24小时为一天"></label>
+                        <label><input type="radio" name="workingdaysType" value="0" title="24小时为一天"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="按个人排班类型工作时长为一天"></label>
+                        <label><input type="radio" name="workingdaysType" value="1" title="按个人排班类型工作时长为一天"></label>
                     </p>
                 </li>
                 <li>
@@ -597,10 +482,10 @@
                         是否排除非工作时段(按排班类型)
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="否"></label>
+                        <label><input type="radio" name="timeOutAttend" value="0" title="否"></label>
                     </p>
-                    <p class="candidatesPothree">
-                        <label><input type="radio" title="是"></label>
+                    <p class="candidatesPothree" style="margin-bottom: 10px">
+                        <label><input type="radio" name="timeOutAttend" value="1" title="是"></label>
                     </p>
                 </li>
             </ul>
@@ -620,7 +505,7 @@
                         事务提醒设置
                     </p>
                     <p class="candidatesPothree">
-                      <input type="checkbox" title="此步骤是否独立设置提醒方式">
+                      <input type="checkbox"  title="此步骤是否独立设置提醒方式">
 
                     </p>
                     <p class="candidatesPone activeall">
@@ -633,6 +518,12 @@
                     </p>
                     <p class="candidatesPothree activeall" style="margin-top: 10px;">
                         <label>发起人</label><br>
+                        <input type="checkbox" lay-skin="primary"><i></i>
+                        <input type="checkbox" lay-skin="primary"><i></i>
+                        <input type="checkbox" lay-skin="primary"><i></i>
+                    </p>
+                    <p class="candidatesPothree activeall" style="margin-top: 10px;">
+                        <label>全部经办人</label><br>
                         <input type="checkbox" lay-skin="primary"><i></i>
                         <input type="checkbox" lay-skin="primary"><i></i>
                         <input type="checkbox" lay-skin="primary"><i></i>

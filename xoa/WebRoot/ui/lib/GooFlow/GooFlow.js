@@ -1,4 +1,5 @@
 ﻿//定义一个区域图类：
+
 var me;
 function GooFlow(bgDiv, property) {
     if (navigator.userAgent.indexOf("MSIE 8.0") > 0 || navigator.userAgent.indexOf("MSIE 7.0") > 0 || navigator.userAgent.indexOf("MSIE 6.0") > 0)
@@ -141,7 +142,7 @@ function GooFlow(bgDiv, property) {
             var ev = mousePosition(e), t = getElCoordinate(this);
             X = ev.x - t.left + this.parentNode.scrollLeft;
             Y = ev.y - t.top + this.parentNode.scrollTop;
-                e.data.inthis.addNode("步骤" + e.data.inthis.$max, {
+                e.data.inthis.addNode("node_" + e.data.inthis.$max, {
                     name: "步骤" + e.data.inthis.$max,
                     left: X,
                     top: Y,
@@ -149,6 +150,10 @@ function GooFlow(bgDiv, property) {
                 });
 
             e.data.inthis.$max++;
+
+            saveOrUpdate();
+
+
         });
         //划线时用的绑定
         this.$workArea.mousemove({inthis: this}, function (e) {
@@ -675,6 +680,7 @@ GooFlow.prototype = {
             this.pushOper("delNode", [id]);
         }
         var mark = json.mark ? " item_mark" : "";
+        console.log(json.type)
         if (json.type != "start" && json.type != "end") {
             json.width = json.width ? json.width : 86;
             json.height = json.height ? json.height : 24;
@@ -696,6 +702,11 @@ GooFlow.prototype = {
         this.$workArea.append(this.$nodeDom[id]);
         this.$nodeData[id] = json;
         ++this.$nodeCount;
+        numId.prcsId=id.substring(id.indexOf('_')+1);
+        numId.setTop=json.top;
+        numId.setLeft=json.left;
+        numId.flowId=flowstr;
+        numId.prcsName=json.name;
     },
     initWorkForNode: function () {
         //绑定点击事件
@@ -1120,7 +1131,6 @@ GooFlow.prototype = {
         for (var k in data.areas)
             this.addArea(k, data.areas[k]);
         this.$max = data.initNum+1;
-        console.log(this.$max)
     },
     //用AJAX方式，远程读取一组数据
     //参数para为JSON结构，与JQUERY中$.ajax()方法的传参一样
