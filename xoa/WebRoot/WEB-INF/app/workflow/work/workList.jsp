@@ -976,12 +976,17 @@
                     str='办理中';
             }
         }
-        function initPageList_db(cb){
+        function initPageList_db(cb,page){
+            var datas ={
+                page:page,
+                pageSize:10,
+                useFlag:true
+			};
             $.ajax({
-                url:'../../workflow/work/selectWork?page=1&pageSize=5&useFlag=true&userId=admin',
+                url:'../../workflow/work/selectWork',
                 type:'get',
                 dataType:'json',
-                //data:datas
+                data:datas,
                 success:function(data){
                     console.log(data);
                     var length=data.obj.length;
@@ -1012,7 +1017,7 @@
             initPageList_db(function (pageCount) {
                 console.log(pageCount);
                 initPagination(pageCount, datas.pageSize);
-            });
+            },1);
         })
 
         $("#qbgz_list").click(function(){
@@ -1064,9 +1069,12 @@
                 //nextContent: '',
                 //jumpBtn: '',
                 callback: function (index) {
-                    datas.page = index.getCurrent();
+                  var   page = index.getCurrent();
                     console.log(index.getCurrent());
-                    initPageList_db();
+                    initPageList_db(function (pageCount) {
+                        console.log(pageCount);
+                        initPagination(pageCount, datas.pageSize);
+                    } ,page);
                 }
             });
         }
