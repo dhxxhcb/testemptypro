@@ -66,6 +66,7 @@
             resdata:{
                 fromId:formid
             },
+            flowStep:-1,//预览
             target:$('.formDesign')},
             function(data){
                 console.log(data);

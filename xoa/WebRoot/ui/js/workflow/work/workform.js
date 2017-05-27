@@ -3,7 +3,7 @@ var workForm = {
         formhtmlurl : '../../form/formType',
         formid : 1,
         target:"",
-        flowStep:1,
+        flowStep:1,//-1预览
         pageModel:''
     },
     init:function(options,cb){
