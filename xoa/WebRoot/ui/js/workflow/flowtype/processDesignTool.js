@@ -53,7 +53,6 @@ function ajaxSvg() {
                 jsondata.title = json.object.designdata[0].flowName;
                 jsondata.initNum = designdata.length;
                 designdata.forEach(function (v, i) {
-                    console.log(v)
                     jsondata.nodes['node_' + v.prcsId] = {
                         designerId:v.id,
                         name: v.prcsName,
@@ -61,7 +60,28 @@ function ajaxSvg() {
                         type: "chat",
                         top: v.setTop,
                         data:{
-
+                            prcsId:v.prcsId,
+                            prcsType:v.prcsType,
+                            prcsName:v.prcsName,
+                            //下一步骤
+                            prcsUser:v.prcsUser,
+                            prcsDept:v.prcsDept,
+                            prcsPriv:v.prcsPriv,
+                            signType:v.signType,
+                            countersign:v.countersign,
+                            //流转设置
+                            //可写字段
+                            hiddenItem:v.hiddenItem,
+                            requiredItem:v.requiredItem,
+                            //条件设置
+                            timeOut:v.timeOut,
+                            timeOutModify:v.timeOutModify,
+                            timeOutType:v.timeOutType,
+                            workingdaysType:v.workingdaysType,
+                            timeOutAttend:v.timeOutAttend
+                            //触发器
+                            //提醒设置
+                            //呈批单设置
                         }
                     }
                 });
@@ -78,7 +98,13 @@ function ajaxSvg() {
             }
             flowDesign.onItemDel = function (id, type) {
                 if (confirm("确定要删除该单元吗?")) {
-                    this.blurItem();
+                    console.log(numId.prcsId)
+                    // this.blurItem();
+                    $.get('/flowProcess/delete',{'id':$('#ele_designerId').val()},function (json) {
+                        if(json.flag) {
+                            ajaxSvg();
+                        }
+                    },'json')
                     return true;
                 } else {
                     return false;
@@ -115,6 +141,7 @@ function ajaxSvg() {
                     // $("#ele_from").val("");
                     // $("#ele_to").val("");
                     $("#ele_flow").val('${formId}');
+                    console.log(obj)
                 }
                 $("#ele_name").val(obj.name);
                 return true;
@@ -125,7 +152,7 @@ function ajaxSvg() {
 $(function () {
 
         var $width=$('body').width();
-        var $height=$('body').height();
+        var $height=$(document).height();
 
         var property = {
             width: $width,

@@ -190,7 +190,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 4px;">
                         <input type="text" id="theScopeOf" readonly="true">
-                        <input type="hidden" value="prcsPriv">
+                        <input type="hidden" name="prcsPriv">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="3" class="theCandidates">添加</a>
                         </div>
