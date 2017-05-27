@@ -78,7 +78,11 @@ var workForm = {
             _this.addClass("form_item");
             _this.attr("id",$(this).attr("name"));
         });
+        //
         target.find('img.DATE').each(function(){
+            if(_this.attr('hidden')){
+                _this.attr("orghidden",_this.attr('hidden'));
+            }
             var _this = $(this);
             var objprev = _this.prev();
             var inputObj = '<input name="'+objprev.attr('name')+'" title="'+objprev.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+objprev.attr('name')+'" value="'+_this.attr('date_format')+'"  date_format="'+_this.attr('date_format')+'"/>';
@@ -86,19 +90,30 @@ var workForm = {
             _this.before(inputObj);
             _this.remove();
         });
+        //
         target.find("textarea").each(function(){
+            if(_this.attr('hidden')){
+                _this.attr("orghidden",_this.attr('hidden'));
+            }
             $(this).addClass("form_item");
             $(this).attr("data-type","textarea");
             $(this).attr("id",$(this).attr("name"));
         });
         target.find("select").each(function () {
+
             var _this = $(this);
             $(this).addClass("form_item");
+            if(_this.attr('hidden')){
+                _this.attr("orghidden",_this.attr('hidden'));
+            }
             $(this).attr("data-type","select");
             $(this).attr("id",$(this).attr("name"));
         });
         target.find("img.RADIO").each(function(){
             var _this = $(this);
+            if(_this.attr('hidden')){
+                _this.attr("orghidden",_this.attr('hidden'));
+            }
             var radioStr = ' <input name="'+_this.attr('name')+'" checked="checked" id="'+_this.attr('name')+'" title="'+_this.attr('title')+'" type="radio"  radio_field="'+_this.attr('radio_field')+'" orgchecked="'+_this.attr('radio_checked')+'" classname="radio" class="form_item" data-type="radio" />';
             _this.before(radioStr);
             _this.remove();
