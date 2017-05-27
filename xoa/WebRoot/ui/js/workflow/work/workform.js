@@ -21,14 +21,15 @@ var workForm = {
         this.filter();//表单流程权限控制
     },
     filter:function(){
-        console.log(this.option.listFp);
         if(this.option.flowStep != -1){
-            var steptOpt =  this.option.listFp[this.option.flowStep];
-            $(this.option.homeEl).find('.form_item').each(function(){
+            var steptOpt =  this.option.listFp[this.option.flowStep-1];
+
+            $(this.option.target).find('.form_item').each(function(){
                 var _this = $(this);
-                console.log(_this.attr(name));
-                if(steptOpt.indexOf(_this.attr(name)) > -1){
-                    console.log(_this.attr(name));
+
+                if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
+                    console.log(_this.attr("title"));
+                    _this.attr("disabled","disabled")
                 }
 
 
@@ -68,7 +69,9 @@ var workForm = {
         target.find("input").each(function(){
             var _this = $(this);
             if(_this.attr('hidden')){
+                console.log(_this.attr('hidden'));
                 _this.attr("orghidden",_this.attr('hidden'));
+                _this.removeAttr("hidden");
             }
             if(_this.attr("class") &&  _this.attr("class").indexOf('AUTO') > -1){
                 _this.attr("data-type","macros");
@@ -82,6 +85,7 @@ var workForm = {
         target.find('img.DATE').each(function(){
             if(_this.attr('hidden')){
                 _this.attr("orghidden",_this.attr('hidden'));
+                _this.removeAttr("hidden");
             }
             var _this = $(this);
             var objprev = _this.prev();
@@ -92,8 +96,9 @@ var workForm = {
         });
         //
         target.find("textarea").each(function(){
-            if(_this.attr('hidden')){
-                _this.attr("orghidden",_this.attr('hidden'));
+            if( $(this).attr('hidden')){
+                $(this).attr("orghidden",_this.attr('hidden'));
+                $(this).removeAttr("hidden");
             }
             $(this).addClass("form_item");
             $(this).attr("data-type","textarea");
@@ -105,6 +110,7 @@ var workForm = {
             $(this).addClass("form_item");
             if(_this.attr('hidden')){
                 _this.attr("orghidden",_this.attr('hidden'));
+                _this.removeAttr("hidden");
             }
             $(this).attr("data-type","select");
             $(this).attr("id",$(this).attr("name"));
@@ -113,6 +119,7 @@ var workForm = {
             var _this = $(this);
             if(_this.attr('hidden')){
                 _this.attr("orghidden",_this.attr('hidden'));
+                _this.removeAttr("hidden");
             }
             var radioStr = ' <input name="'+_this.attr('name')+'" checked="checked" id="'+_this.attr('name')+'" title="'+_this.attr('title')+'" type="radio"  radio_field="'+_this.attr('radio_field')+'" orgchecked="'+_this.attr('radio_checked')+'" classname="radio" class="form_item" data-type="radio" />';
             _this.before(radioStr);
@@ -123,6 +130,9 @@ var workForm = {
         that = this;
         var flagStr = "";
         $(".AUTO").each(function(index,obj){
+            if($(this).attr("orghidden") == 1){
+                $(this).attr("hidden","1");
+            }
             if(that.tool.MacrosDate.option[$(this).attr("datafld")]){
                 flagStr+=($(this).attr("datafld")+',');
             }
