@@ -249,7 +249,9 @@ font-weight:bold;
     .xiangdao h1:hover{
         color:#2b7fe0;
     }
-
+    #form_select{
+        height: 28.4px !important;
+    }
 </style>
 <script type="text/javascript">
 var loading='<div class="loading">正在加载，请稍候...</div>';
@@ -663,7 +665,7 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
            var formId= $(this).attr('formId');
       /*      alert(formId);*/
             user_id='quick';
-            $.popWindow("workform?formId="+formId+'&flowStep=1','快速新建页面','0','0','1500px','800px');
+            $.popWindow("workform?formId="+formId,'快速新建页面','0','0','1500px','800px');
         });
 
     })
