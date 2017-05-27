@@ -76,6 +76,24 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="blue_text">菜单名称：(扩展一)</td>
+                        <td>
+                            <input type="text" name="name2" class="inputTd" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">菜单名称：(扩展二)</td>
+                        <td>
+                            <input type="text" name="name2" class="inputTd" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="blue_text">菜单名称：(扩展三)</td>
+                        <td>
+                            <input type="text" name="name2" class="inputTd" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="blue_text">图片名：</td>
                         <td>
                             <input type="text" name="img" class="inputTd" value=""/>
