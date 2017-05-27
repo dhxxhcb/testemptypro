@@ -663,7 +663,7 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
            var formId= $(this).attr('formId');
       /*      alert(formId);*/
             user_id='quick';
-            $.popWindow("workform?formId="+formId,'快速新建页面','0','0','1500px','800px');
+            $.popWindow("workform?formId="+formId+'&flowStep=1','快速新建页面','0','0','1500px','800px');
         });
 
     })

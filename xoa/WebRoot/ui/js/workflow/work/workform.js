@@ -2,7 +2,9 @@ var workForm = {
     option : {
         formhtmlurl : '../../form/formType',
         formid : 1,
-        target:""
+        target:"",
+        flowStep:1,
+        pageModel:''
     },
     init:function(options,cb){
         var _this = this;
@@ -46,7 +48,7 @@ var workForm = {
         if(ele){
             target = ele;
         }else{
-            target = $("body");
+            target = $(".cont_form");
         }
         target.find("input").each(function(){
             var _this = $(this);
@@ -69,6 +71,12 @@ var workForm = {
         target.find("textarea").each(function(){
             $(this).addClass("form_item");
             $(this).attr("data-type","textarea");
+            $(this).attr("id",$(this).attr("name"));
+        });
+        target.find("select").each(function () {
+            var _this = $(this);
+            $(this).addClass("form_item");
+            $(this).attr("data-type","select");
             $(this).attr("id",$(this).attr("name"));
         });
         target.find("img.RADIO").each(function(){
@@ -131,8 +139,6 @@ var workForm = {
             success: function (res) {
                 if(res.flag){
                     var formHtml = res.object.flowFormType || res.object;
-
-                    // that.option.target.html(res.object.printModel);
                     if(formHtml.printModel != ''){
                         that.option.target.html(formHtml.printModel);
                         that.render();
@@ -143,7 +149,6 @@ var workForm = {
                         var noformdata = '<div class="cont_rig" style="text-align: center;margin-top: 200px;"><div class="noData_out"><div class="noDatas_pic"><img src="../../img/workflow/img_nomessage_03.png"></div><div class="noDatas">抱歉现在还没有表单，请您新建</div></div></div>'
                         that.option.target.html(noformdata);
                     }
-
                 }else{
                     layer.closeAll();
                 }
@@ -319,7 +324,6 @@ var workForm = {
                     real_format = real_format.replace(RegExp.$1, date[k]);
                 }
             }
-
             var date_now = new Date();
             var o =
                 {
@@ -336,7 +340,6 @@ var workForm = {
             {
                 real_format = real_format.replace(RegExp.$1,(date_now.getFullYear().toString()));
             }
-
             for(var k in o)
                 if(new RegExp("("+ k +")").test(real_format))
                     real_format = real_format.replace(RegExp.$1,RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length));

@@ -18,8 +18,6 @@
     <script src="../../lib/layer/layer.js"></script>
     <%--<script src="../../lib/easyui/jquery.easyui.min.js"></script>--%>
     <script src="../../js/workflow/work/workform.js"></script>
-
-
 </head>
 <body>
 <div>
