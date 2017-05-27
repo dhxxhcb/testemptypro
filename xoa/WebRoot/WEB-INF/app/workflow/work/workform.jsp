@@ -434,18 +434,30 @@
 
                //找到表格上的内容
                var form_item=$('.form_item');
-               console.log(form_item);
+               /*console.log(form_item);*/
              /*  console.log($('.form_item'));*/
              var arr='';
               for(var i=0;i<form_item.length;i++){
-                    if(form_item.eq(i).attr("data-type")=="" ||"macros" ){
-                        arr={
-                            name:form_item.eq(i).attr("name"),
-                            id:form_item.eq(i).attr("id")
-                        }
+              /*||"textarea" || "calendar"*/
+                  console.log(form_item.eq(i).attr('name'));
+                  console.log(form_item.eq(i).attr("data-type")=="input" );
+                  console.log(form_item.eq(i).attr("data-type")=="textarea");
+                  console.log(form_item.eq(i).attr("data-type")=="calendar");
+                    if(form_item.eq(i).attr("data-type")=="select" ||"macros" ){
+                        var select= $('#select').val()==0?'':$('#select').val();
+                        console.log(select);
+                    }else if(form_item.eq(i).attr("data-type")=="input"  ){
+                       /*var val= $().val();*/
+                        console.log($(this).val());
+
+                    }else if(form_item.eq(i).attr("type")=="radio"){
+                        var radio=$('#add_type_notice option:checked').val();
+                        console.log(radio);
                     }
-                   console.log(form_item.eq(i).val());
+                  /* console.log(arr);*/
                }
+
+
 
                layer.open({
                    type: 1,
