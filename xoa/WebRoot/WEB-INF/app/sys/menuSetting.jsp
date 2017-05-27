@@ -199,37 +199,34 @@
                     <tr>
                         <td width="25%">子菜单项ID：</td>
                         <td width="70%">
-                            <input type="text" name="userId" value="">
+                            <input type="text" name="addfId" value="">
                             <p style="font-size: 12px;">说明：用户添加的菜单项ID务必大于1000，小于10000；1000以内及10000以上为系统保留</p>
                         </td>
                     </tr>
                     <tr>
                         <td width="25%">上级菜单：</td>
                         <td width="70%">
-                            <select name="postPriv" style="width: 204px;">
-                                <option value="01">本部门</option>
-                                <option value="02">全体</option>
-                                <option value="03">指定部门</option>
+                            <select name="addParentId" id="menuTree" style="width: 204px;">
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td width="25%">子菜单项代码：</td>
                         <td width="70%">
-                            <input type="text" name="userId" value="">
+                            <input type="text" name="addId" value="">
                             <p style="font-size: 12px;">说明：此代码为两位，作为排序之用。在同一父菜单下的平级菜单，该代码不能重复</p>
                         </td>
                     </tr>
                     <tr>
                         <td width="25%">子菜单名称：(简体中文)</td>
                         <td width="70%">
-                            <input type="text" name="userId" value="">
+                            <input type="text" name="addName" value="">
                         </td>
                     </tr>
                     <tr>
                         <td width="25%">子菜单模块路径：</td>
                         <td width="70%">
-                            <input type="text" name="userId" value="">
+                            <input type="text" name="addUrl" value="">
                             <input type="checkbox" name="check">
                             <span style="font-size: 12px;">在新窗口打开该菜单</span>
                         </td>
@@ -263,13 +260,13 @@
                     <tr>
                         <td width="25%">子菜单项ID：</td>
                         <td width="70%">
-                            <input type="text" name="userId" value="">
+                            <input type="text" name="editfId" value="">
                         </td>
                     </tr>
                     <tr>
                         <td width="25%">上级菜单：</td>
                         <td width="70%">
-                            <select name="postPriv" id="menuTree">
+                            <select name="editParentId" id="menuTrees">
 
                             </select>
                             <span style="font-size: 12px;">在管理型模块中起约束作用</span>
@@ -278,20 +275,20 @@
                     <tr>
                         <td width="25%">子菜单项代码：</td>
                         <td width="70%">
-                            <input type="text" name="userId" value="">
+                            <input type="text" name="editId" value="">
                             <p style="font-size: 12px;">说明：此代码为两位，作为排序之用。在同一父菜单下的平级菜单，该代码不能重复</p>
                         </td>
                     </tr>
                     <tr>
                         <td width="25%">子菜单名称：(简体中文)</td>
                         <td width="70%">
-                            <input type="text" name="userId" value="">
+                            <input type="text" name="editName" value="">
                         </td>
                     </tr>
                     <tr>
                         <td width="25%">子菜单模块路径：</td>
                         <td width="70%">
-                            <input type="text" name="userId" value="">
+                            <input type="text" name="editUrl" value="">
                             <input type="checkbox" name="check">
                             <span style="font-size: 12px;">在新窗口打开该菜单</span>
                         </td>
@@ -320,8 +317,31 @@
 </div>
 <script type="text/javascript">
     $(function(){
-        $('#menuTree').deptSelect();
+        //$('#menuTree').deptSelect();
+        selectMenu($('#menuTrees'));
+        selectMenu($('#menuTree'));
     })
+    function selectMenu(element){
+        $.ajax({
+            type:'get',
+            url:'../../showMenu',
+            dataType:'json',
+            success:function(rsp){
+                var data=rsp.obj;
+                var str='';
+                for(var i=0;i<data.length;i++){
+                    if(data[i].child.length>0){
+                        for(var j=0;j<data[i].child.length;j++){
+                            str+='<option value="'+data[i].id+'">'+data[i].name+'</option><option value="'+data[i].child[j].id+'">&nbsp'+data[i].child[j].name+'</option>';
+                        }
+                    }else{
+                        str+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                    }
+                }
+                element.append(str);
+            }
+        })
+    }
 </script>
 </body>
 </html>
