@@ -28,7 +28,7 @@
     <script type="text/javascript" src="../../lib/GooFlow/GooFlow.js"></script>
 
     <!-- <script type="text/javascript" src="../../js/workflow/json2.js"></script> -->
-
+    <script src="../../js/workflow/work/workform.js"></script>
     <style>
         .myForm {
             display: block;
@@ -599,4 +599,24 @@
         </div>
     </form>
 </body>
+<script type="text/javascript">
+    $(function(){
+//        var formid = $.getQueryString("formId");
+        var formid = 17;
+        workForm.init({
+                formhtmlurl:'../../form/formType',
+                resdata:{
+                    fromId:formid
+                },
+              //  flowStep:-1,//预览
+            //    target:$('.formDesign')
+            flag:3
+            },
+            function(data){
+                console.log(123321);
+                console.log(data);
+            });
+    })
+</script>
+
 </html>
