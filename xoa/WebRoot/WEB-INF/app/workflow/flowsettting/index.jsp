@@ -646,7 +646,7 @@
                     if (data.flag) {
                         var data = data.obj;
                         var html = '<caption class="clearfix"> <span class="priv_t">设计流程步骤</span> ' +
-                            '<a href="javascript:void (0)" class="flowJpdl">流程设计器</a> ' +
+                            '<a href="<%=basePath %>flowSetting/processDesignTool?flowId=${flowId}" class="flowJpdl">流程设计器</a> ' +
                             '</caption>' +
                             "<tr><th>序号</th><th>名称</th><th>下一步骤</th><th>编辑该步骤的各项属性</th><th>操作</th></tr>";
                         for (var i = 0; i < data.length; i++) {
