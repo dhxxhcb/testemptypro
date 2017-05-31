@@ -268,7 +268,7 @@
                     </tr>
                 </table>
             </div>
-        </div><%--增加子菜单结束--%>
+        </div><%--新建子菜单结束--%>
         <div class="editChild" style="display:none;">
             <div class="header">
                 <span class="divP"> 编辑子菜单项</span>

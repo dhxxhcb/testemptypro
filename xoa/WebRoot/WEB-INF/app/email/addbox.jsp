@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
-		 <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/email/writeMail.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/ajaxupload.js" type="text/javascript" charset="utf-8"></script>
 		<style>
