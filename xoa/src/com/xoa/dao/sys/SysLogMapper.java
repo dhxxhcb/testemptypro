@@ -28,4 +28,6 @@ public interface SysLogMapper {
     List<Syslog> findLogOption(Map<String, Object> hashMap);
 
     void deleteLogOption(Map<String, Object> hashMap);
+
+    String getLogNameByNo(String codeNo);
 }

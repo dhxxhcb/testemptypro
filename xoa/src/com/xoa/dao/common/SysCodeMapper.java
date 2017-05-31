@@ -41,4 +41,6 @@ public interface SysCodeMapper {
 	public void update(SysCode sysCode);
 
     List<SysCode> getLogType(String parent_no);
+
+    String getLogNameByNo(String codeNo);
 }

@@ -106,4 +106,7 @@ public interface SysLogService {
      * @return: 无
      **/
     void deleteSyslog(Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog);
+
+
+
 }
