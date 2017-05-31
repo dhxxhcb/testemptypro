@@ -168,8 +168,18 @@ public class SysLogServiceImpl implements SysLogService {
             String thisDateStr = sdf.format(thisDate);
             String thisYear = thisDateStr.substring(0, 4);
 
-            startEndYearList.add(Integer.parseInt(startYear));
-            startEndYearList.add(Integer.parseInt(thisYear));
+            Integer startYearInt = Integer.parseInt(startYear);
+            Integer endYearInt = Integer.parseInt(thisYear);
+
+            if (startYearInt.equals(endYearInt)) {
+
+                startEndYearList.add(startYearInt);
+            } else {
+                for (int i = startYearInt; i <= endYearInt; i++) {
+                    startEndYearList.add(i);
+                }
+            }
+
 
             return startEndYearList;
         }

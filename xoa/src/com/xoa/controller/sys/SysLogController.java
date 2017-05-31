@@ -135,7 +135,7 @@ public class SysLogController {
             monthDayData.add(monthDataList);
             monthDayData.add(dayDataList);
 
-            tojson.setObj(monthDataList);
+            tojson.setObj(monthDayData);
             tojson.setMsg("OK");
             tojson.setFlag(0);
         } catch (ClassCastException e) {
