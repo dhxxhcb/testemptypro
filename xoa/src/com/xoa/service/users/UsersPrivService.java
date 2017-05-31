@@ -1,9 +1,9 @@
 package com.xoa.service.users;
 
+import com.xoa.model.users.UserPriv;
+
 import java.util.List;
 import java.util.Map;
-
-import com.xoa.model.users.UserPriv;
 
 
  /**
@@ -77,4 +77,11 @@ public interface UsersPrivService {
 	 */
 	public List<UserPriv> getPrivByMany(UserPriv priv);
 
-}
+     /**
+     *@创建作者:  韩成冰
+     *@创建日期:  2017/5/30 10:45
+     *@函数介绍:  查询所有用户Priv
+     *@return:   List<UserPriv></UserPriv>
+     **/
+     List<UserPriv> getAllUserPriv();
+ }

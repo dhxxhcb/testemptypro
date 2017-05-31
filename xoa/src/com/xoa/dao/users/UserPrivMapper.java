@@ -1,9 +1,9 @@
 package com.xoa.dao.users;
 
+import com.xoa.model.users.UserPriv;
+
 import java.util.List;
 import java.util.Map;
-
-import com.xoa.model.users.UserPriv;
 
 
  /**
@@ -101,5 +101,7 @@ public interface UserPrivMapper {
      * 参数说明:   @return
      * @return     List<UserPriv>  返回角色信息
      */
-    List<UserPriv> getPrivByMany(UserPriv userPriv); 
-}
+    List<UserPriv> getPrivByMany(UserPriv userPriv);
+
+
+ }

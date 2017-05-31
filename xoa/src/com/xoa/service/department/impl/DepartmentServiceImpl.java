@@ -1,216 +1,224 @@
 package com.xoa.service.department.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
 import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.model.department.Department;
 import com.xoa.service.department.DepartmentService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 
- /**
+/**
  * 创建作者:   张龙飞
  * 创建日期:   2017年4月19日 上午9:41:51
  * 类介绍  :    部门实现类
  * 构造参数:   无
- *
  */
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
-	@Resource
-	private DepartmentMapper departmentMapper;
-	
-	
-	static int times=0;
-	 /**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月19日 上午9:42:08
-	 * 方法介绍:   根据部门id串获取部门名称
-	 * 参数说明:   @param deptID 部门id
-	 * 参数说明:   @return
-	 * @return     List<String>    返回部门名称
-	 */
-	@Override
-	public List<String> getDeptNameById(int... deptID){
-		//定义返回的list
-		List<String> list=new ArrayList<String>();
-		//定义用户拼接部门名称的字符串
-		StringBuffer sb=new StringBuffer();
-		  for (int i = 0; i < deptID.length; i++) { 			  
-			     if(deptID.length==1){
-			            String deptName=departmentMapper.getDeptNameById(deptID[i]);
-			            list.add(deptName);
-			            return list;
-			            }else{
-			            String deptName=departmentMapper.getDeptNameById(deptID[i]);
-			            if(i<deptID.length-1){
-			            sb.append(deptName).append(",");
-			            }else{
-			            sb.append(deptName);
-			            } 
-			            } 
-			        }  
-		     list.add(sb.toString());
-				return list;		
-	}
-	
-	/**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年5月3日 上午11:39:25
-	 * 方法介绍:   根据部门id串获取部门名称串
-	 * 参数说明:   @param deptIds
-	 * 参数说明:   @return
-	 * @return     String 部门名称串
-	 */
-	@Override
-	public String getDpNameById(int... deptID){
-		//定义用户拼接部门名称的字符串
-		StringBuffer sb=new StringBuffer();
-		  for (int i = 0; i < deptID.length; i++) { 			  
-			     if(deptID.length==1){
-			            String deptName=departmentMapper.getDeptNameById(deptID[i]);
-			            return deptName;
-			            }else{
-			            String deptName=departmentMapper.getDeptNameById(deptID[i]);
-			            if(i<deptID.length-1){
-			            sb.append(deptName).append(",");
-			            }else{
-			            sb.append(deptName);
-			            } 
-			            } 
-			        }  
-				return sb.toString();		
-	}
-
-	
-	 /**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月19日 上午9:42:36
-	 * 方法介绍:   获取所有部门
-	 * 参数说明:   @return 
-	 * @return     List<Department>   返回所有部门 
-	 */
-	@Override
-	public List<Department> getDatagrid() {	
-		return departmentMapper.getDatagrid();
-	}
-
-	
-	 /**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月19日 上午9:42:50
-	 * 方法介绍:   根据部门id获取部门
-	 * 参数说明:   @param deptId  部门id
-	 * 参数说明:   @return
-	 * @return     Department   返回部门信息
-	 */
-	@Override
-	public Department getDeptById(int deptId) {
-		Department department =departmentMapper.getDeptById(deptId);
-		return department;
-	}
-
-	 /**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月19日 上午9:43:07
-	 * 方法介绍:   根据部门id删除部门
-	 * 参数说明:   @param deptId  部门id
-	 * @return     void   无
-	 */
-	@Override
-	public void deleteDept(int deptId) {
-		departmentMapper.deleteDept(deptId);
-		
-	}
-
-	 /**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月19日 上午9:43:23
-	 * 方法介绍:   修改部门
-	 * 参数说明:   @param department 部门信息
-	 * @return     void   无
-	 */
-	@Override
-	public void editDept(Department department) {
-		departmentMapper.editDept(department);
-		
-	}
-
-	 /**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月19日 上午9:43:34
-	 * 方法介绍:   保存部门
-	 * 参数说明:   @param department 部门信息
-	 * @return     void    无
-	 */ 
-	@Override
-	public void insertDept(Department department) {
-		departmentMapper.insertDept(department);	
-	}
-
-	
-	 /**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月19日 上午9:43:51
-	 * 方法介绍:   多条件查询部门信息
-	 * 参数说明:   @param department  部门信息
-	 * 参数说明:   @return
-	 * @return     List<Department>    返回部门信息
-	 */
-	@Override
-	public List<Department> getDeptByMany(Department department) {
-		List<Department> list=departmentMapper.getDeptByMany(department);
-		return list;
-	}
-	
-
-	 /**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月21日 上午10:50:37
-	 * 方法介绍:   获取子目录
-	 * 参数说明:   @param maps 集合
-	 * 参数说明:   @param page 当前页面
-	 * 参数说明:   @param pageSize 页面大小
-	 * 参数说明:   @param useFlag  是否开启分页
-	 * 参数说明:   @return
-	 * @return     List<Department>   返回子目录
-	 */
-	@Override
-	public List<Department> getChDept(int deptId) {
-	    List<Department> list=departmentMapper.getChDept(deptId);  
-	    
-		return list;
-	}
+    @Resource
+    private DepartmentMapper departmentMapper;
 
 
-	 /**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月21日 下午1:55:52
-	 * 方法介绍:   递归获取所有父级部门信息
-	 * 参数说明:   @param deptParent 部门
-	 * 参数说明:   @param list 用于存储父级部门信息
-	 * 参数说明:   @return
-	 * @return     List<Department>  返回父级部门信息
-	 */
-	@Override
-	public List<Department> getFatherDept(int deptParent,List<Department> list) {
-		 Department dep=departmentMapper.getFatherDept(deptParent);
-		if(dep.getDeptParent()!=0){
-			list.add(dep);
-		}else{
-			list.add(dep);
-			return list;
-		}
-		return getFatherDept(dep.getDeptParent(),list);
-	}
+    static int times = 0;
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月19日 上午9:42:08
+     * 方法介绍:   根据部门id串获取部门名称
+     * 参数说明:   @param deptID 部门id
+     * 参数说明:   @return
+     *
+     * @return List<String>    返回部门名称
+     */
+    @Override
+    public List<String> getDeptNameById(int... deptID) {
+        //定义返回的list
+        List<String> list = new ArrayList<String>();
+        //定义用户拼接部门名称的字符串
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < deptID.length; i++) {
+            if (deptID.length == 1) {
+                String deptName = departmentMapper.getDeptNameById(deptID[i]);
+                list.add(deptName);
+                return list;
+            } else {
+                String deptName = departmentMapper.getDeptNameById(deptID[i]);
+                if (i < deptID.length - 1) {
+                    sb.append(deptName).append(",");
+                } else {
+                    sb.append(deptName);
+                }
+            }
+        }
+        list.add(sb.toString());
+        return list;
+    }
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年5月3日 上午11:39:25
+     * 方法介绍:   根据部门id串获取部门名称串
+     * 参数说明:   @param deptIds
+     * 参数说明:   @return
+     *
+     * @return String 部门名称串
+     */
+    @Override
+    public String getDpNameById(int... deptID) {
+        //定义用户拼接部门名称的字符串
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < deptID.length; i++) {
+            if (deptID.length == 1) {
+                String deptName = departmentMapper.getDeptNameById(deptID[i]);
+                return deptName;
+            } else {
+                String deptName = departmentMapper.getDeptNameById(deptID[i]);
+                if (i < deptID.length - 1) {
+                    sb.append(deptName).append(",");
+                } else {
+                    sb.append(deptName);
+                }
+            }
+        }
+        return sb.toString();
+    }
 
 
-	public List<Department> getChDeptByNo(String deptNo,List<Department> list){
-		return list;
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月19日 上午9:42:36
+     * 方法介绍:   获取所有部门
+     * 参数说明:   @return
+     *
+     * @return List<Department>   返回所有部门
+     */
+    @Override
+    public List<Department> getDatagrid() {
+        return departmentMapper.getDatagrid();
+    }
+
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月19日 上午9:42:50
+     * 方法介绍:   根据部门id获取部门
+     * 参数说明:   @param deptId  部门id
+     * 参数说明:   @return
+     *
+     * @return Department   返回部门信息
+     */
+    @Override
+    public Department getDeptById(int deptId) {
+        Department department = departmentMapper.getDeptById(deptId);
+        return department;
+    }
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月19日 上午9:43:07
+     * 方法介绍:   根据部门id删除部门
+     * 参数说明:   @param deptId  部门id
+     *
+     * @return void   无
+     */
+    @Override
+    public void deleteDept(int deptId) {
+        departmentMapper.deleteDept(deptId);
+
+    }
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月19日 上午9:43:23
+     * 方法介绍:   修改部门
+     * 参数说明:   @param department 部门信息
+     *
+     * @return void   无
+     */
+    @Override
+    public void editDept(Department department) {
+        departmentMapper.editDept(department);
+
+    }
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月19日 上午9:43:34
+     * 方法介绍:   保存部门
+     * 参数说明:   @param department 部门信息
+     *
+     * @return void    无
+     */
+    @Override
+    public void insertDept(Department department) {
+        departmentMapper.insertDept(department);
+    }
+
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月19日 上午9:43:51
+     * 方法介绍:   多条件查询部门信息
+     * 参数说明:   @param department  部门信息
+     * 参数说明:   @return
+     *
+     * @return List<Department>    返回部门信息
+     */
+    @Override
+    public List<Department> getDeptByMany(Department department) {
+        List<Department> list = departmentMapper.getDeptByMany(department);
+        return list;
+    }
+
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月21日 上午10:50:37
+     * 方法介绍:   获取子目录
+     * 参数说明:   @param maps 集合
+     * 参数说明:   @param page 当前页面
+     * 参数说明:   @param pageSize 页面大小
+     * 参数说明:   @param useFlag  是否开启分页
+     * 参数说明:   @return
+     *
+     * @return List<Department>   返回子目录
+     */
+    @Override
+    public List<Department> getChDept(int deptId) {
+        List<Department> list = departmentMapper.getChDept(deptId);
+
+        return list;
+    }
+
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月21日 下午1:55:52
+     * 方法介绍:   递归获取所有父级部门信息
+     * 参数说明:   @param deptParent 部门
+     * 参数说明:   @param list 用于存储父级部门信息
+     * 参数说明:   @return
+     *
+     * @return List<Department>  返回父级部门信息
+     */
+    @Override
+    public List<Department> getFatherDept(int deptParent, List<Department> list) {
+        Department dep = departmentMapper.getFatherDept(deptParent);
+        if (dep.getDeptParent() != 0) {
+            list.add(dep);
+        } else {
+            list.add(dep);
+            return list;
+        }
+        return getFatherDept(dep.getDeptParent(), list);
+    }
+
+
+    public List<Department> getChDeptByNo(String deptNo, List<Department> list) {
+        return list;
 //		list=new ArrayList<Department>(); 
 //		List<Department> list1=departmentMapper.getChDeptByNo(deptNo);
 //		if(list!=null){
@@ -223,91 +231,149 @@ public class DepartmentServiceImpl implements DepartmentService {
 //		}else{
 //			return list;
 //		}		
-	}
-	/**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年5月2日 下午3:52:49
-	 * 方法介绍:   获取部门人员
-	 * 参数说明:   @param deptId 部门id
-	 * 参数说明:   @return
-	 * @return     List<Department> 返回部门信息
-	 */
-	public List<Department> getChDtUser(int deptId){
-		List<Department> list=departmentMapper.getChDeptUser(deptId);
-		
-		return list;
-		
-	}
+    }
 
-	/**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年4月25日 下午2:13:28
-	 * 方法介绍:   获取当前部门下子部门与部门人员
-	 * 参数说明:   @param deptId 部门id
-	 * 参数说明:   @return
-	 * @return     List<Department> 返回部门编号
-	 */
-	@Override
-	public List<Department> getChDeptUser(int deptId) {	
-		List<Department> list=departmentMapper.getChDeptUser(deptId);
-		List<Department> list1=departmentMapper.getChDept(deptId); 	
-		if(list.size()!=0&&list1.size()!=0){
-		for(int i=0;i<list1.size();i++){
-			list.add(list1.get(i));
-		}
-		return list;
-		}
-		if(list.size()!=0&&list1.size()==0){
-			return list;
-		}
-		if(list.size()==0&&list1.size()!=0){
-			return list1;
-		}
-		if(list.size()==0&&list1.size()==0){
-			return list;
-		}
-		return list;
-	}
-	/**
-	 * 创建作者:   张龙飞
-	 * 创建日期:   2017年5月3日 上午9:04:34
-	 * 方法介绍:   获取部门下人数
-	 * 参数说明:   @param deptNo 部门排序号
-	 * 参数说明:   @return
-	 * @return     int 数量
-	 */
-	@Override
-	public int getCountChDeptUser(String deptNo) {
-		int count=departmentMapper.getCountChDeptUser(deptNo);
-		return count;
-	}
-	
-	public List<Department> listDept(){
-		List<Department> resultList = new ArrayList<Department>();
-		List<Department> allDept=this.getDatagrid();
-		for(Department department : allDept){
-			if(department.getDeptParent()==0){//父级菜单开始添加
-				//resultList.add(department);
-				if(ifChilds(allDept, department.getDeptId())){//存在子集
-					List<Department> childs = new ArrayList<Department>();
-					childs=getChildList(allDept, department.getDeptId(), resultList);
-					//resultList.addAll(childs);
-				}
-			}
-			
-		}
-		return resultList;
-		
-	}
-	
-	
-	 /**
-     *   获取父id下的子集合
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年5月2日 下午3:52:49
+     * 方法介绍:   获取部门人员
+     * 参数说明:   @param deptId 部门id
+     * 参数说明:   @return
+     *
+     * @return List<Department> 返回部门信息
      */
-    private static List<Department> getChildList(List<Department> list,int deptId,List<Department> reList) {
+    public List<Department> getChDtUser(int deptId) {
+        List<Department> list = departmentMapper.getChDeptUser(deptId);
+
+        return list;
+
+    }
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年4月25日 下午2:13:28
+     * 方法介绍:   获取当前部门下子部门与部门人员
+     * 参数说明:   @param deptId 部门id
+     * 参数说明:   @return
+     *
+     * @return List<Department> 返回部门编号
+     */
+    @Override
+    public List<Department> getChDeptUser(int deptId) {
+        List<Department> list = departmentMapper.getChDeptUser(deptId);
+        List<Department> list1 = departmentMapper.getChDept(deptId);
+        if (list.size() != 0 && list1.size() != 0) {
+            for (int i = 0; i < list1.size(); i++) {
+                list.add(list1.get(i));
+            }
+            return list;
+        }
+        if (list.size() != 0 && list1.size() == 0) {
+            return list;
+        }
+        if (list.size() == 0 && list1.size() != 0) {
+            return list1;
+        }
+        if (list.size() == 0 && list1.size() == 0) {
+            return list;
+        }
+        return list;
+    }
+
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年5月3日 上午9:04:34
+     * 方法介绍:   获取部门下人数
+     * 参数说明:   @param deptNo 部门排序号
+     * 参数说明:   @return
+     *
+     * @return int 数量
+     */
+    @Override
+    public int getCountChDeptUser(String deptNo) {
+        int count = departmentMapper.getCountChDeptUser(deptNo);
+        return count;
+    }
+
+    public List<Department> listDept() {
+        List<Department> resultList = new ArrayList<Department>();
+        List<Department> allDept = this.getDatagrid();
+        for (Department department : allDept) {
+            if (department.getDeptParent() == 0) {//父级菜单开始添加
+                //resultList.add(department);
+                if (ifChilds(allDept, department.getDeptId())) {//存在子集
+                    List<Department> childs = new ArrayList<Department>();
+                    childs = getChildList(allDept, department.getDeptId(), resultList);
+                    //resultList.addAll(childs);
+                }
+            }
+
+        }
+        return resultList;
+
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/30 8:01
+     * @函数介绍: 查询所有部门，子部门存储在父部门的list属性集合中
+     * @参数说明: 无
+     * @return: List<Department></Department>
+     **/
+    @Override
+    public List<Department> getFatherChildDept() {
+        List<Department> allDeptList = departmentMapper.getDatagrid();
+        List<Department> departments = addChildDeptToFather(allDeptList);
+
+        return departments;
+    }
+
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/30 8:05
+     * @函数介绍: 将子部门存储在父部门的list属性集合中
+     * @参数说明: @param List<Department></Department>
+     * @return: List<Department>
+     **/
+    public List<Department> addChildDeptToFather(List<Department> departments) {
+        ArrayList<Department> departmentList = new ArrayList<Department>();
+        for (int i = 0; i < departments.size(); i++) {
+            Department department = departments.get(i);
+            department.setChild(new ArrayList<Department>());
+            Integer deptId = department.getDeptId();
+            for (int j = 0; j < departments.size(); j++) {
+                if (departments.get(j).getDeptParent().equals(deptId)) {
+                    department.getChild().add(departments.get(j));
+                }
+
+            }
+
+
+            departmentList.add(department);
+        }
+
+        ArrayList<Department> fatherDeptList = new ArrayList<Department>();
+        //某些部门作为子部门添加后，就从departmentList中移除，因为该部门存存储在父部门的属性中
+        for (int i = 0; i < departmentList.size(); i++) {
+            Integer deptParrentId = departmentList.get(i).getDeptParent();
+            //parentId为0的是顶级部门
+            if (deptParrentId == 0) {
+                fatherDeptList.add(departmentList.get(i));
+            }
+        }
+
+        return fatherDeptList;
+    }
+
+
+    /**
+     * 获取父id下的子集合
+     */
+    private static List<Department> getChildList(List<Department> list, int deptId, List<Department> reList) {
         for (Department department : list) {
-            if (department.getDeptParent()==deptId) {//查询下级菜单
-            	List<Department> l=	department.getChild();
+            if (department.getDeptParent() == deptId) {//查询下级菜单
+                List<Department> l = department.getChild();
                 reList.add(department);
                 if (ifChilds(list, department.getDeptId())) {
                     getChildList(list, department.getDeptId(), reList);
@@ -321,11 +387,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     /**
      * 判断是否存在子集
      */
-    private static boolean ifChilds(List<Department> list,int deptId) {
+    private static boolean ifChilds(List<Department> list, int deptId) {
         boolean flag = false;
         for (Department department : list) {
-            if (department.getDeptParent()==deptId) {
-                flag=true;
+            if (department.getDeptParent() == deptId) {
+                flag = true;
                 break;
             }
         }

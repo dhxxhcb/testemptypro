@@ -1,12 +1,11 @@
 package com.xoa.service.users;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.xoa.model.users.Users;
 import com.xoa.util.ToJson;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -173,4 +172,22 @@ public interface UsersService {
 	 * @return     String 用户姓名串
 	 */
 	public String findUsersByuid(int... uid);
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/30 9:40
+    *@函数介绍:   根据User的角色或部门id, 查询用户，其他条件可在serverce层扩展
+    *@参数说明:  @param Users
+    *@return:   List<Users></Users>
+    **/
+    List<Users> getUsersByCondition(Users users);
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/5/30 11:10
+    *@函数介绍:  查询在线用户
+    *@参数说明:  @param paramname paramintroduce
+    *@return:   List<User></User>
+    **/
+    List<Users> getUsersOnline();
 }

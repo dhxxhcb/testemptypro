@@ -1,8 +1,8 @@
 package com.xoa.service.department;
 
-import java.util.List;
-
 import com.xoa.model.department.Department;
+
+import java.util.List;
 
 /**
  * 创建作者:   张龙飞
@@ -150,4 +150,5 @@ public interface DepartmentService {
 	public int getCountChDeptUser(String deptNo);
 	public List<Department> listDept();
 
+    List<Department> getFatherChildDept();
 }

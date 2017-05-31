@@ -1,10 +1,10 @@
 package com.xoa.dao.users;
 
+import com.xoa.model.users.Users;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
-
-import org.apache.ibatis.annotations.Param;
-import com.xoa.model.users.Users;
 
  /**
  * 创建作者:   张龙飞
@@ -166,4 +166,10 @@ public interface UsersMapper {
 	 * @return     String 返回用户姓名拼接串
 	 */
 	public String getUsernameByUserId(String userId);
-}
+
+     List<Users> getUserByDeptId(Users user);
+
+     List<Users> getUserByRoleId(Users user);
+
+     List<Users> getUserOnline();
+ }

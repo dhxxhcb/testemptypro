@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.common.SysCodeMapper" >
-  <resultMap id="BaseResultMap" type="com.xoa.model.common.SysCode" >
-    <id column="CODE_ID" property="codeId" javaType="int" />
-    <result column="CODE_NO" property="codeNo" javaType="string" />
-    <result column="CODE_NAME" property="codeName" javaType="string" />
-    <result column="CODE_ORDER" property="codeOrder" javaType="string" />
-    <result column="PARENT_NO" property="parentNo" javaType="string" />
-    <result column="CODE_FLAG" property="codeFlag" javaType="string" />
-    <result column="CODE_EXT" property="codeExt" javaType="string" />
-  </resultMap>
-  <select id="getSysCode"  parameterType="string" resultMap="BaseResultMap"> 
+<mapper namespace="com.xoa.dao.common.SysCodeMapper">
+    <resultMap id="BaseResultMap" type="com.xoa.model.common.SysCode">
+        <id column="CODE_ID" property="codeId" javaType="int"/>
+        <result column="CODE_NO" property="codeNo" javaType="string"/>
+        <result column="CODE_NAME" property="codeName" javaType="string"/>
+        <result column="CODE_ORDER" property="codeOrder" javaType="string"/>
+        <result column="PARENT_NO" property="parentNo" javaType="string"/>
+        <result column="CODE_FLAG" property="codeFlag" javaType="string"/>
+        <result column="CODE_EXT" property="codeExt" javaType="string"/>
+    </resultMap>
+    <select id="getSysCode" parameterType="string" resultMap="BaseResultMap">
     select  s.CODE_NAME,s.CODE_ID,s.CODE_NO,s.CODE_EXT,s.CODE_FLAG,s.CODE_ORDER  from sys_code s WHERE s.PARENT_NO=#{parentNo}
   </select>
-   <select id="getAllSysCode"  parameterType="java.lang.String" resultMap="BaseResultMap" >
+    <select id="getAllSysCode" parameterType="java.lang.String" resultMap="BaseResultMap">
   	select  s.CODE_NAME,s.CODE_ID,s.CODE_NO,s.CODE_EXT,s.CODE_FLAG,s.CODE_ORDER from sys_code s where PARENT_NO='' order by CODE_ORDER
   </select>
-  <select id="getCode" resultMap="BaseResultMap" >
+    <select id="getCode" resultMap="BaseResultMap">
   select * from sys_code where PARENT_NO=#{codeNo} order by CODE_ORDER
   </select>
-  <delete id="delete" parameterType="com.xoa.model.common.SysCode">
+    <delete id="delete" parameterType="com.xoa.model.common.SysCode">
   delete from sys_code where CODE_ID=#{codeId} or PARENT_NO=#{codeNo} and CODE_FLAG=1
   </delete>
-  <update id="update">
-  update sys_code 
-   <set>
-      <if test="codeId != null">
-        CODE_NO= #{codeNo},
-      </if>
-      <if test="codeName != null">
-        CODE_NAME = #{codeName},
-      </if>
-      <if test="codeOrder != null">
-        CODE_ORDER = #{codeOrder},
-      </if>
-      </set>
-      where CODE_ID = #{codeId}
-  
-  </update>
-  
+    <update id="update">
+        update sys_code
+        <set>
+            <if test="codeId != null">
+                CODE_NO= #{codeNo},
+            </if>
+            <if test="codeName != null">
+                CODE_NAME = #{codeName},
+            </if>
+            <if test="codeOrder != null">
+                CODE_ORDER = #{codeOrder},
+            </if>
+        </set>
+        where CODE_ID = #{codeId}
+
+    </update>
+    <select id="getLogType" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select s.CODE_ID, s.CODE_NO, s.CODE_NAME, s.CODE_NAME1, s.PARENT_NO from sys_code s WHERE s.PARENT_NO='SYS_LOG' ORDER BY s.CODE_ORDER ASC;
+    </select>
+
 </mapper>

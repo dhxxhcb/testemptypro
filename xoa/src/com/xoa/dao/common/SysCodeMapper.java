@@ -1,8 +1,8 @@
 package com.xoa.dao.common;
 
-import java.util.List;
-
 import com.xoa.model.common.SysCode;
+
+import java.util.List;
 
 /**
  * 
@@ -40,4 +40,5 @@ public interface SysCodeMapper {
 	 */
 	public void update(SysCode sysCode);
 
+    List<SysCode> getLogType(String parent_no);
 }

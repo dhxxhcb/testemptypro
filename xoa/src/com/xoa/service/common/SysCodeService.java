@@ -1,9 +1,9 @@
 package com.xoa.service.common;
 
-import java.util.List;
-
 import com.xoa.model.common.SysCode;
 import com.xoa.util.ToJson;
+
+import java.util.List;
 
 /**
 * 创建作者:   王曰岐
@@ -44,4 +44,5 @@ public interface SysCodeService {
 	 */
 	public void update(SysCode sysCode);
 
+    List<SysCode> getLogType();
 }
