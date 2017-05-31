@@ -13,8 +13,11 @@
     <meta charset="UTF-8">
     <title>系统日志管理</title>
     <link rel="stylesheet" type="text/css" href="../css/sys/journal.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
     <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lib/echarts/echarts.common.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../lib/laydate.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/sys/journal.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css">
 
@@ -41,7 +44,7 @@
             <div class="table">
                 <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
                     <tr>
-                        <td colspan="2">日志概况</td>
+                        <td colspan="2" style="text-align: center;color: #2F5C8F;font-weight: bold;">日志概况</td>
                     </tr>
                     <tr>
                         <td width="20%">总统计天数：</td>
@@ -71,14 +74,8 @@
             </div>
             <div class="tabTwo">
                 <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
-                    <tr>
-                        <td colspan="4">最近10条日志</td>
-                    </tr>
-                    <tr>
-                        <td>系统管理员</td>
-                        <td>2017-05-27 13:30:02</td>
-                        <td>192.168.0.176</td>
-                        <td>登录日志</td>
+                    <tr class="newly">
+                        <td colspan="4" style="color: #2F5C8F;font-weight: bold;">最近10条日志</td>
                     </tr>
                 </table>
             </div>
@@ -130,7 +127,7 @@
             <div class="tabTwo">
                 <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
                     <tr>
-                        <td colspan="4">2017年度按月访问数据</td>
+                        <td colspan="4">05月份按日访问数据</td>
                     </tr>
                     <tr>
                         <td>1</td>
@@ -144,10 +141,131 @@
                     </tr>
                 </table>
             </div>
-        </div>
+        </div><%--年度数据统计结束--%>
+        <div class="timeInterval" style="display: none">
+            <div class="title">
+                <span class="news">时段统计</span>
+            </div>
+            <div class="hourEcharts">
+                <div id="hourData" style="width: 900px;height:300px;margin: 0 auto;"></div>
+            </div>
+            <div class="tabTwo">
+                <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
+                    <tr>
+                        <td colspan="4">总访问量小时分布数据</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0%</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>0%</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+            </div>
+        </div><%--时段统计结束--%>
+        <div class="journalQuery" style="display: none;">
+            <div class="title">
+                <span class="news">系统日志查询</span>
+            </div>
+            <div class="table">
+                <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff;width: 40%;">
+                    <tr>
+                        <td width="25%">日志表：</td>
+                        <td>
+                            <input type="radio" name="radio">
+                            <span>当前日志 </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">日志类型：</td>
+                        <td>
+                            <select id="journalType" style="width: 150px;height: 25px;">
+
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">用户：</td>
+                        <td>
+                            <div class="inPole">
+                                <textarea name="txt" id="senduser" user_id='admin' value="admin" disabled style="min-width: 200px;min-height: 50px;"></textarea>
+                                <span class="add_img" style="margin-left: 10px">
+                                    <a href="javascript:;" id="selectUser" class="Add ">添加</a>
+                                </span>
+                                <span class="add_img">
+                                    <a href="javascript:;" class="clear">清除</a>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">起始时间：</td>
+                        <td>
+                            <%--<input type="text" name="timer" id="startTimer">--%>
+                            <input type="text" class="laydate-icon" id="start">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">截止时间：</td>
+                        <td>
+                            <%--<input type="text" name="timer" id="endTimer">--%>
+                                <input type="text" class="laydate-icon" id="end">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">IP地址：</td>
+                        <td>
+                            <input type="text" name="timer" id="IP">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">备注：</td>
+                        <td>
+                            <input type="text" name="timer" id="remarks">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%">操作类型：</td>
+                        <td>
+                            <input type="radio" name="TYPE">
+                            <span>查询</span>
+                            <input type="radio" name="TYPE">
+                            <span>导出</span>
+                            <input type="radio" name="TYPE">
+                            <span>删除</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="blue_text">
+                            <div class="sureBtn">
+                                <input type="button" name="Btn" id="Btn" value="确定" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <hr style="width: 100%;border-color: #ddd;border: #eee 1px solid;margin-top: 15px;"/>
+            <div class="title">
+                <span class="news">清空系统日志</span>
+            </div>
+            <div class="emptyBtn" id="emptyBtn">清空系统日志</div>
+        </div><%--系统日志查询结束--%>
     </div>
 </div>
 <script type="text/javascript">
+    var user_id='senduser';
+    var res
+    $(function(){
+        //选人控件
+        $("#selectUser").on("click",function(){
+            user_id='senduser';
+            $.popWindow("../common/selectUser");
+        });
+    })
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('monthData'));
 
@@ -170,7 +288,7 @@
         },
         yAxis: {},
         series: [{
-            name: '销量',
+            name: '访问量',
             type: 'bar',
             data: [0, 0, 67, 140, 5, 0, 0, 0, 0, 0, 0, 0]
         }]
@@ -203,7 +321,7 @@
         },
         yAxis: {},
         series: [{
-            name: '销量',
+            name: '访问量',
             type: 'bar',
             data: [0, 0, 5, 39, 72, 1, 0, 99, 67, 25, 29, 13, 0, 0, 27, 23, 14, 38, 72, 7, 0, 38, 100, 200, 157, 102, 82, 0, 0, 0, 128]
         }]
@@ -211,6 +329,65 @@
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
+</script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('hourData'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '总访问量小时分布统计',
+            left:'45%',
+            textStyle:{
+                fontSize:14
+            },
+            textAlign:'center'
+
+        },
+        tooltip: {},
+        legend: {
+        },
+        xAxis: {
+            data: ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+        },
+        yAxis: {},
+        series: [{
+            name: '访问量',
+            type: 'bar',
+            data: [0, 0, 0, 0, 0, 0, 0, 1, 122, 177, 167, 36, 149, 159, 136, 190, 113, 59, 21, 6, 1, 0, 0]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+    //时间控件调用
+    var start = {
+        elem: '#start',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        /* min: laydate.now(), //设定最小日期为当前日期*/
+        /* max: '2099-06-16 23:59:59', //最大日期*/
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    var end = {
+        elem: '#end',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        /*min: laydate.now(),*/
+        /*max: '2099-06-16 23:59:59',*/
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            start.max = datas; //结束日选好后，重置开始日的最大日期
+        }
+    };
+    laydate(start);
+    laydate(end);
 </script>
 </body>
 </html>
