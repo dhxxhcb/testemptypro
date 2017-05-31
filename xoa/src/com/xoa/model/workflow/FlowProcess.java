@@ -907,7 +907,7 @@ public class FlowProcess implements Serializable {
      * @return
      */
     public String getSetType() {
-        return setType==null?"":setType.trim();
+        return setType==null?"chat":setType.trim();
     }
 
     /**
