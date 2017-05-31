@@ -26,8 +26,8 @@ UE.plugins['listing'] = function () {
                 iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/listing.html?dataid='+(pluginId++),
                 name:thePlugins,
                 editor:this,
-                title: '单行输入框',
-                cssRules:"width:600px;height:380px;",
+                title: '列表控件',
+                cssRules:"width:900px;height:380px;",
                 buttons:[
                     {
                         className:'edui-okbutton',

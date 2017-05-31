@@ -72,13 +72,14 @@
         </tr>
         <tr>
             <td><span>是否新建子表：</span></td>
-            <td><input id="orgname" placeholder="必填项" type="text"/> </td><input type="hidden" id="fielid" placeholder="必填项"></td>
+            <td><select>
+                <option value="inData">是</option>
+                <option value="outData">否</option>
+            </select></td>
         </tr>
     </table>
     <table width="100%" id="col_def_table">
-        <tbody>
         <tr id="tr_header">
-            <td nowrap="" align="center"></td>
             <td nowrap="" align="center">序号</td>
             <td nowrap="" align="center" title="Tab键切换输入框">表头名称&nbsp;&nbsp;</td>
             <td nowrap="" align="center" id="selectName" title="Tab键切换输入框">字段名称</td>
@@ -89,12 +90,74 @@
             <td nowrap="" align="center" title="Tab键切换输入框">值(多个值之间用英文逗号分隔)</td>
         </tr>
         <tr id="tr_1">
-            <td><a title="删除" href="javascript:delete_row(1)"><img src="/static/images/form/delete.png"></a><input type="hidden" id="row_delete_1" value="0" <="" td=""></td>
-            <td nowrap="" align="center"><span id="no_1">1</span></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="item_1" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text"></td><td nowrap="" id="tdId_1" align="center" title="不能包含特殊字符"><input id="field_1" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')"></td>
-            <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_1" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"> px</td><td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_1" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_1" type="checkbox" class="cke_dialog_ui_checkbox_input"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="cal_1" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text"></td>
-            <td nowrap="" align="center" title="不能包含特殊字符"><input id="colvalue_1" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text"></td></tr><tr id="tr_2"><td><a title="删除" href="javascript:delete_row(2)"><img src="/static/images/form/delete.png"></a><input type="hidden" id="row_delete_2" value="0" <="" td=""></td><td nowrap="" align="center"><span id="no_2">2</span></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="item_2" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text"></td><td nowrap="" id="tdId_2" align="center" title="不能包含特殊字符"><input id="field_2" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="size_2" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"> px</td>
-            <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_2" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_2" type="checkbox" class="cke_dialog_ui_checkbox_input"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="cal_2" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="colvalue_2" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text"></td></tr><tr id="tr_3"><td><a title="删除" href="javascript:delete_row(3)"><img src="/static/images/form/delete.png"></a><input type="hidden" id="row_delete_3" value="0" <="" td=""></td><td nowrap="" align="center"><span id="no_3">3</span></td>
-            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_3" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text"></td><td nowrap="" id="tdId_3" align="center" title="不能包含特殊字符"><input id="field_3" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="size_3" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"> px</td><td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_3" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_3" type="checkbox" class="cke_dialog_ui_checkbox_input"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="cal_3" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="colvalue_3" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text"></td></tr><tr id="tr_4"><td><a title="删除" href="javascript:delete_row(4)"><img src="/static/images/form/delete.png"></a><input type="hidden" id="row_delete_4" value="0" <="" td=""></td><td nowrap="" align="center"><span id="no_4">4</span></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="item_4" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text"></td><td nowrap="" id="tdId_4" align="center" title="不能包含特殊字符"><input id="field_4" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="size_4" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"> px</td><td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_4" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_4" type="checkbox" class="cke_dialog_ui_checkbox_input"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="cal_4" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="colvalue_4" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text"></td></tr><tr id="tr_5"><td><a title="删除" href="javascript:delete_row(5)"><img src="/static/images/form/delete.png"></a><input type="hidden" id="row_delete_5" value="0" <="" td=""></td><td nowrap="" align="center"><span id="no_5">5</span></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="item_5" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text"></td><td nowrap="" id="tdId_5" align="center" title="不能包含特殊字符"><input id="field_5" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="size_5" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"> px</td><td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_5" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_5" type="checkbox" class="cke_dialog_ui_checkbox_input"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="cal_5" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text"></td><td nowrap="" align="center" title="不能包含特殊字符"><input id="colvalue_5" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text"></td></tr></tbody></table>
+            <td nowrap="" align="center">
+                <a style="margin-left: -29px;margin-right: 12px;" title="删除" href="javascript:delete_row(1)"><img src="/img/workflow/delete.png" /></a><input type="hidden" id="row_delete_1" value="0" <="" td="" />
+                <span id="no_1">1</span>
+            </td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_1" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+            <td nowrap="" id="tdId_1" align="center" title="不能包含特殊字符"><input id="field_1" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_1" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"  placeholder="px" /> </td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_1" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_1" type="checkbox" class="cke_dialog_ui_checkbox_input" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="cal_1" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="colvalue_1" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+        </tr>
+        <tr id="tr_2">
+            <td nowrap="" align="center">
+                <a style="margin-left: -29px;margin-right: 12px;" title="删除" href="javascript:delete_row(1)"><img src="/img/workflow/delete.png" /></a><input type="hidden" id="row_delete_1" value="0" <="" td="" />
+                <span id="no_1">2</span>
+            </td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_2" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+            <td nowrap="" id="tdId_2" align="center" title="不能包含特殊字符"><input id="field_2" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_2" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" placeholder="px" /> </td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_2" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_2" type="checkbox" class="cke_dialog_ui_checkbox_input" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="cal_2" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="colvalue_2" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+        </tr>
+        <tr id="tr_3">
+            <td nowrap="" align="center">
+                <a style="margin-left: -29px;margin-right: 12px;" title="删除" href="javascript:delete_row(1)"><img src="/img/workflow/delete.png" /></a><input type="hidden" id="row_delete_1" value="0" <="" td="" />
+                <span id="no_1">3</span>
+            </td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_3" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+            <td nowrap="" id="tdId_3" align="center" title="不能包含特殊字符"><input id="field_3" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_3" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"  placeholder="px" /> </td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_3" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_3" type="checkbox" class="cke_dialog_ui_checkbox_input" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="cal_3" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="colvalue_3" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+        </tr>
+        <tr id="tr_4">
+            <td nowrap="" align="center">
+                <a style="margin-left: -29px;margin-right: 12px;" title="删除" href="javascript:delete_row(1)"><img src="/img/workflow/delete.png" /></a><input type="hidden" id="row_delete_1" value="0" <="" td="" />
+                <span id="no_1">4</span>
+            </td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_4" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+            <td nowrap="" id="tdId_4" align="center" title="不能包含特殊字符"><input id="field_4" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_4" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"  placeholder="px" /> </td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_4" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_4" type="checkbox" class="cke_dialog_ui_checkbox_input" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="cal_4" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="colvalue_4" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+        </tr>
+        <tr id="tr_5">
+            <td nowrap="" align="center">
+                <a style="margin-left: -29px;margin-right: 12px;" title="删除" href="javascript:delete_row(1)"><img src="/img/workflow/delete.png" /></a><input type="hidden" id="row_delete_1" value="0" <="" td="" />
+                <span id="no_1">5</span>
+            </td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_5" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+            <td nowrap="" id="tdId_5" align="center" title="不能包含特殊字符"><input id="field_5" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_5" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"  placeholder="px" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_5" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_5" type="checkbox" class="cke_dialog_ui_checkbox_input" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="cal_5" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="colvalue_5" type="text" size="15" style="width:90%" class="cke_dialog_ui_input_text" /></td>
+        </tr>
+        <tr>
+            <td><a id="btn_add" class="button cke_dialog_ui_button" href="javascript:;" onclick="add_row();"><span class="button cke_dialog_ui_button">增加</span></a></td>
+        </tr>
+    </table>
 </div>
 <script type="text/javascript">
     $(function () {

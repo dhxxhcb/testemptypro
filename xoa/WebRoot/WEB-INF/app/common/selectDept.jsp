@@ -3,8 +3,6 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +22,6 @@
     <script type="text/javascript" src="../lib/easyui/jquery.easyui.min.js" ></script>
     <script type="text/javascript" src="../lib/easyui/tree.js" ></script>
 </head>
-
-
-
-
 <style>
     #dept_menu{
         overflow-x: auto;
