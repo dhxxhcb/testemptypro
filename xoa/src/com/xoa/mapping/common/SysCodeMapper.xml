@@ -41,5 +41,9 @@
     <select id="getLogType" parameterType="java.lang.String" resultMap="BaseResultMap">
         select s.CODE_ID, s.CODE_NO, s.CODE_NAME, s.CODE_NAME1, s.PARENT_NO from sys_code s WHERE s.PARENT_NO='SYS_LOG' ORDER BY s.CODE_ORDER ASC;
     </select>
+    <select id="getLogNameByNo" parameterType="java.lang.String" resultType="java.lang.String">
+        select s.CODE_NAME FROM sys_code s WHERE s.CODE_NO = #{codeNo} AND s.PARENT_NO = 'SYS_LOG';
+    </select>
+
 
 </mapper>

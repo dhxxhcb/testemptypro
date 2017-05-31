@@ -45,4 +45,13 @@ public interface SysCodeService {
 	public void update(SysCode sysCode);
 
     List<SysCode> getLogType();
+
+    /**
+     *@创建作者:  韩成冰
+     *@创建日期:  2017/5/31 16:49
+     *@函数介绍:   根据日志的NO,查询日志TYPENa
+     *@参数说明:  @param String
+     *@return:   String
+     **/
+    String getLogNameByNo(String codeNo);
 }

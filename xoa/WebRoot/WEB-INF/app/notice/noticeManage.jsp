@@ -586,7 +586,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         </table>
         <div class="foot_mg">
-            <div  id="add_send" value="1" type="publish" class="fot_1 btn_ok"><fmt:message code="global.lang.publish"/></div>
+            <div  id="adds_send" value="1" type="publish" class="fot_1 btn_ok"><fmt:message code="global.lang.publish"/></div>
             <div  id="add_baocun" value="0" type="save" class="btn_ok"><fmt:message code="global.lang.save"/></div>
         </div>
     </div>
@@ -842,70 +842,59 @@ $(function () {
             $('.step1').show();
             $('.center').hide();
         });
+        //全局data 参数
+
+    var data_notice={
+        subject:$('#add_titileTime').val(),//标题
+        toId:$('#add_texta').val(),//部门发布范围
+        format:$('#add_sel option:checked').attr('value'),//格式
+        typeId:$('#add_type_notice option:checked').attr('value'),//公告类型
+        userId:$('#adds_selectUser').attr("dataid"),//按人员发布
+        privId:'',//按角色发布
+        attachmentId:'',//附件ID串
+        attachmentName:'',//附件名称串
+        download:$(".down").is(':checked')==false?0:1,//是否允许下载office附件(0-不允许,1-允许)
+        subjectColor:'',//标题颜色
+        keyword:$('.keyword_ip').val(),//内容关键词
+        topDays:$('#textDay').val(),//置顶天数
+        publish:$('#textDay').attr('value'),//发布标识(0-未发布,1-已发布,2-待审批,3-未通过)
+        top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
+        summary:$('#add_summny').val(),//内容简介
+        content:ue.getContent(),//内容
+        sendTimes:$('#adds_newDate').val(),//发布时间
+        beginDates:$('#starts_add').val(),//开始日期
+        endDates:$('#ends_add').val()  //结束日期
+    }
 
        //新建公告通知
-        $('#add_send').on('click',function(){
-         var action=$(this).attr("ac");
+        $('#adds_send').on('click',function(){
+            alert('111');
+        /* var action=$(this).attr("ac");*/
 
-         alert(action);
-            var data_notice={
-                subject:$('#add_titileTime').val(),//标题
-                toId:$('#add_texta').val(),//部门发布范围
-                format:$('#add_sel option:checked').attr('value'),//格式
-                typeId:$('#add_type_notice option:checked').attr('value'),//公告类型
-                userId:$('#adds_selectUser').attr("dataid"),//按人员发布
-                privId:'',//按角色发布
-                attachmentId:'',//附件ID串
-                attachmentName:'',//附件名称串
-                download:$(".down").is(':checked')==false?0:1,//是否允许下载office附件(0-不允许,1-允许)
-                subjectColor:'',//标题颜色
-                keyword:$('.keyword_ip').val(),//内容关键词
-                topDays:$('#textDay').val(),//置顶天数
-                publish:$(this).attr('value'),//发布标识(0-未发布,1-已发布,2-待审批,3-未通过)
-                top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
-                summary:$('#add_summny').val(),//内容简介
-                content:ue.getContent(),//内容
-                sendTimes:$('#adds_newDate').val(),//发布时间
-                beginDates:$('#starts_add').val(),//开始日期
-                endDates:$('#ends_add').val()  //结束日期
-            }
-         if(action=="update"){
-                var noId=$(this).attr("noId");
-             data_notice['lastEditTimes']=$('#add_newDate').val();
-             data_notice['notifyId']=noId;
-             update(data_notice);
-         }else{
-             //空数据
-             $('#add_selectUser').val();//选人
-             $('#add_texta').val();//选部门
-             $('#add_texta').val();//选角色
-             $('#add_selectjuese').val();//角色
-             $('#add_newDate').val();//发布时间
-             $('#start_add').val();//起始时间
-             $('#end_add').val();//结束时间
-             /*$('#add_selectUser').val(data.userId);*/
-             /*$('#add_type_notice').selected(data.typeName);*/
-             $("#add_type_notice").find("option[value=选择公告类型]").attr("selected",true);//类型
-            /* if(data.top==1){
-                 $('#textTop').prop('checked',true);//是否置顶
-             };*/
+         /*alert(action);*/
+            //新建保存的数据接口
+            $.ajax({
+                type: "post",
+                url: "<%=basePath%>notice/addNotify",
+                dataType: 'json',
+                data: data_notice,
+                success: function (obj) {
+                    console.log(obj);
+                    if(obj.flag==true){
+                        window.location.reload();
+                    }
 
-             ue.setContent();//内容
+                },
 
-             $("#add_sel").find("option[value=普通格式]").attr("selected",true);//格式
-             $('#add_summny').val();//内容
-             $('.keyword_ip').val();//关键词
-             /*add_notice(data_notice);*/
-         }
-
+            });
          })
-        //新建保存的数据接口
-         function add_notice(data_notice){
 
-            /* var layerIndex = layer.load(0, {shade: false});*/
+       /*  function add_notice(){
+
+            /!* var layerIndex = layer.load(0, {shade: false});*!/
              $.ajax({
                  type: "post",
-                 url: "<%=basePath%>notice/addNotify",
+                 url: "notice/addNotify",
                  dataType: 'json',
                  data: data_notice,
                  success: function (obj) {
@@ -918,9 +907,11 @@ $(function () {
 
              });
          }
+         add_notice();*/
+
 
         //修改保存的数据接口
-        function update(data_notice){
+        function update(){
             $.ajax({
                 url: "updateNotify",
                 type: "get",
@@ -935,6 +926,7 @@ $(function () {
                 }
             })
         }
+        update();
 
      /*add_notice();*/
             //修改公告通知管理
@@ -995,57 +987,6 @@ $(function () {
                    })
                })
 
-
-              /* var title=$(this).parent().siblings('.title').find('a').text();
-               alert(title);
-               var send_time=$(this).parent().siblings('.send_time').find('a').text();
-               var start_time=$(this).parent().siblings('.start_time').find('a').text();
-               var end_time=$(this).parent().siblings('.end_time').find('a').text();*/
-               /*  window.location.reload();
-                //跳转页面
-                $('.step1').hide();
-                $('.step2').show();
-                $('.center').hide();*/
-
-                //添加到修改页面
-
-
-
-           /*    $.ajax({
-                    url: "updateNotify",
-                    type: "get",
-                    data:{
-                        notifyId:tid,
-                        subject:$('#add_titileTime').val(),//标题
-                        toId:$('#add_texta').val(),//部门发布范围
-                        format:$('#add_sel option:checked').attr('value'),//格式
-                        typeId:$('#add_type_notice option:checked').attr('value'),//公告类型
-                        userId:$('#add_selectUser').val(),//按人员发布
-                        privId:'',//按角色发布
-                        attachmentId:'',//附件ID串
-                        attachmentName:'',//附件名称串
-                        download:$(".down").is(':checked')==false?0:1,//是否允许下载office附件(0-不允许,1-允许)
-                        subjectColor:'',//标题颜色
-                        keyword:$('.keyword_ip').val(),//内容关键词
-                        topDays:$('#textDay').val(),//置顶天数
-                        publish:$(this).attr('value'),//发布标识(0-未发布,1-已发布,2-待审批,3-未通过)
-                        top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
-                        summary:$('#add_summny').val(),//内容简介
-                        content:ue.getContent(),//内容
-                        sendTimes:$('#add_newDate').val(),//发布时间
-                        beginDates:$('#start_add').val(),//开始日期
-                        endDates:$('#end_add').val()  //结束日期
-
-                    },
-                    dataType: 'json',
-                    success: function (obj) {
-
-                        if(obj.flag==true){
-                            window.location.reload();
-                        }
-
-                    }
-                })*/
             });
 
 

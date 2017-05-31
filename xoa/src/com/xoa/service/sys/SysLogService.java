@@ -54,27 +54,59 @@ public interface SysLogService {
      * @创建作者: 韩成冰
      * @创建日期: 2017/5/27 11:14
      * @函数介绍: 获取月份，如果是今年就是到本月月份值，如果是去年（以前）就是12
-     * @参数说明: @param paramname paramintroduce
-     * @return: XXType(value introduce)
+     * @参数说明: @param year 年份
+     * @return: Integer
      **/
     Integer getMonth(String year);
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 9:56
+     * @函数介绍: 获取某月每天的日志信息
+     * @参数说明: @param String year
+     * @参数说明: @param String month
+     * @return: List
+     **/
     List<Object> getEachDayLogData(String year, String month);
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 9:55
+     * @函数介绍: 获取日志时段信息
+     * @参数说明: 无
+     * @return: List<Object></Object>
+     **/
     List<Object> getHourLog();
 
 
     /**
-     * @param optionType 操作类型， 1 查询，2导出， 3 删除
      * @param type
-     * @param uid        多个用户的id数组
-     * @param startTime  日志开始时间
-     * @param endTime    日志结束时间
-     * @param syslog     属性中的ip,备注     @创建作者: 韩成冰
+     * @param uid       多个用户的id数组
+     * @param startTime 日志开始时间
+     * @param endTime   日志结束时间
+     * @param syslog    属性中的ip,备注
+     * @创建作者: 韩成冰
      * @创建日期: 2017/5/30 11:35
      * @函数介绍: 日志管理
      * @return: List<Syslog></Syslog>
      **/
 
-    List<Syslog> logManage(String optionType, Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog);
+    List<Syslog> logManage(Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog);
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 10:36
+     * @函数介绍: 删除日志
+     * param type      日志类型id
+     * param uid       多个用户的id数组
+     * param startTime 日志开始时间
+     * param endTime   日志结束时间
+     * param syslog    属性中的ip,备注
+     * param request
+     * @return: 无
+     **/
+    void deleteSyslog(Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog);
+
+
+
 }
