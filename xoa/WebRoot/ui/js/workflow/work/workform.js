@@ -214,15 +214,11 @@ var workForm = {
         });
     },
     getSearchData:function (cb) {
-        console.log(this);
         var that = this;
         this.tool.ajaxHtml(this.option.resdata,function (data) {
             var formObj = data.object;
-
             that.option.eleObject = $('<div>'+formObj.printModel+'</div>');
-
             that.ReBuild();
-            console.log(that.option.eleObject.find(".form_item"));
             var arr = [];
             that.option.eleObject.find(".form_item").each(function () {
                 var _this = $(this);
