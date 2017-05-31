@@ -1,5 +1,7 @@
 package com.xoa.service.netdisk;
 
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.List;
 
 import com.xoa.model.netdisk.Netdisk;
@@ -13,6 +15,9 @@ import com.xoa.model.netdisk.Netdisk;
  */
 
 public interface NetdiskService {
+
+
+
 	
 	/**
 	 * 
@@ -23,7 +28,7 @@ public interface NetdiskService {
 	 * @return: void   
 	 * @throws
 	 */
-	public void addNetdisk(Netdisk netdisk);
+	public int addNetdisk(Netdisk netdisk);
 	
 	/**
 	 * 
@@ -56,6 +61,6 @@ public interface NetdiskService {
 	 * @return: void   
 	 * @throws
 	 */
-	public void editNetdisk(Netdisk netdisk);
+	public int editNetdisk(Netdisk netdisk);
 
 }

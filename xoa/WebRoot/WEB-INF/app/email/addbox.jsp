@@ -104,10 +104,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</table>
 		<script type="text/javascript">
 
-			user_id='senduser';
+			var user_id='senduser';
+                //获取输入框内容
        		 var ue = UE.getEditor('container');
        		 var res
-       		 //获取输入框内容
+
        		 $(function(){
 				 //选人控件
        		 	$("#selectUser").on("click",function(){

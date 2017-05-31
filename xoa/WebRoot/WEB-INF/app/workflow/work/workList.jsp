@@ -41,6 +41,7 @@
 		.button-operation {
 			float: left;
 			padding-top: 4px;
+			padding-bottom: 10px;
 		}
 		.navigation .right {
 			float: right;
@@ -198,6 +199,7 @@
 			border: 0px;
 			cursor: pointer;
 		}
+
 	</style>
 	<style type="text/css">
 		.search_area {
@@ -330,6 +332,7 @@
 		.button-operation {
 			float: left;
 			padding-top: 4px;
+			padding-bottom: 10px;
 		}
 		.btn-success {
 			border: 1px solid #359947;
@@ -400,25 +403,26 @@
 				<div class="left">
 					<img src="../../img/la2.png">
 					<div class="news">待办工作</div>
-					<div class="button-operation">
-						<button type="button" action="new_work" class="btn btn-success">新建工作</button>
-						<button type="button" action="intrust" class="btn btn-info">委托</button>
-						<button type="button" action="pending" class="btn btn-info">挂起</button>
-						<button type="button" action="comment" class="btn btn-info">批注</button>
-						<form name="selected_export_form" id="selected_export_form" style="display: none;" method="post" action="data/work_to_export.php?ispirit_export=1">
-							<input type="hidden" name="THE_ID_STR" id="THE_ID_STR" value="">
-							<button type="submit" id="selected_export" class="btn btn-info">导出</button>
-						</form>
-						<button type="button" id="export" action="export" class="btn btn-info">导出工作列</button>
-						<button type="button" action="refresh" class="btn btn-info">刷新</button>
-					</div>
 					<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
 					<div id="btn_search" class="search"><h1 style="cursor:pointer;" class='subsearch'>搜索</h1></div>
 				</div>
 				<div class="right">
 					<!-- 分页按钮-->
-					<div class="M-box3"></div>
+					<div class="M-box3" id="dbgz_page"></div>
 				</div>
+
+			</div>
+			<div class="button-operation">
+				<button type="button" action="new_work" class="btn btn-success">新建工作</button>
+				<button type="button" action="intrust" class="btn btn-info">委托</button>
+				<button type="button" action="pending" class="btn btn-info">挂起</button>
+				<button type="button" action="comment" class="btn btn-info">批注</button>
+				<form name="selected_export_form" id="selected_export_form" style="display: none;" method="post" action="data/work_to_export.php?ispirit_export=1">
+					<input type="hidden" name="THE_ID_STR" id="THE_ID_STR" value="">
+					<button type="submit" id="selected_export" class="btn btn-info">导出</button>
+				</form>
+				<button type="button" id="export" action="export" class="btn btn-info">导出工作列</button>
+				<button type="button" action="refresh" class="btn btn-info">刷新</button>
 			</div>
 
 			<!--navigation结束-->
@@ -426,7 +430,7 @@
 			<!--content部分开始-->
 			<div>
 				<div>
-					<table id="tr_td">
+					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
 							<td class="th">
@@ -476,7 +480,7 @@
 				</div>
 				<div class="right">
 					<!-- 分页按钮-->
-					<div class="M-box3" id="bjgz"></div>
+					<div class="M-box3" id="bjgz_page"></div>
 				</div>
 			</div>
 			<!--navigation结束-->
@@ -484,7 +488,7 @@
 			<!--content部分开始-->
 			<div>
 				<div>
-					<table id="tr_td">
+					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
 							<td class="th">
@@ -529,7 +533,7 @@
 				</div>
 				<div class="right">
 					<!-- 分页按钮-->
-					<div class="M-box3" id="gzgz"></div>
+					<div class="M-box3" id="gzgz_page"></div>
 				</div>
 			</div>
 
@@ -538,7 +542,7 @@
 			<!--content部分开始-->
 			<div>
 				<div>
-					<table id="tr_td">
+					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
 							<td class="th">
@@ -633,7 +637,7 @@
 				</div>
 				<div class="right">
 					<!-- 分页按钮-->
-					<div class="M-box3" id="gqgz"></div>
+					<div class="M-box3" id="gqgz_page"></div>
 				</div>
 			</div>
 
@@ -642,7 +646,7 @@
 			<!--content部分开始-->
 			<div>
 				<div>
-					<table id="tr_td">
+					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
 							<td class="th">
@@ -689,7 +693,7 @@
 				</div>
 				<div class="right">
 					<!-- 分页按钮-->
-					<div class="M-box3"></div>
+					<div class="M-box3" id="wtgz_page"></div>
 				</div>
 			</div>
 
@@ -698,7 +702,7 @@
 			<!--content部分开始-->
 			<div>
 				<div>
-					<table id="tr_td">
+					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
 							<td class="th">
@@ -796,13 +800,20 @@
 					<div class="M-box3" id="qbgz_page"></div>
 				</div>
 			</div>
-
+			<div class="button-operation">
+				<button type="button" action="new_work" class="btn btn-success">新建工作</button>
+				<form name="selected_export_form" id="selected_export_form" style="display: none;" method="post" action="data/work_to_export.php?ispirit_export=1">
+					<input type="hidden" name="THE_ID_STR" id="THE_ID_STR" value="">
+					<button type="submit" id="selected_export" class="btn btn-info">导出</button>
+				</form>
+				<button type="button" action="refresh" class="btn btn-info">刷新</button>
+			</div>
 			<!--navigation结束-->
 
 			<!--content部分开始-->
 			<div>
 				<div>
-					<table id="tr_td">
+					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
 							<td class="th">
@@ -857,34 +868,35 @@
 //处理数据状态字段
         function handleData(data){
             switch(data){
-                case 1:
+                case "1":
                     str='未接收';
                     break;
-                case 2:
+                case "2":
                     str='办理中';
                     break;
-                case 3:
+                case "3":
                     str='转交下一步，下一步经办人无人接收';
                     break;
-                case 4:
+                case "4":
                     str='已办结';
                     break;
-                case 5:
+                case "5":
                     str='自由流程预设步骤';
                     break;
-                case 6:
+                case "6":
                     str='已挂起';
                     break;
                 default:
                     str='办理中';
             }
+            return str;
         }
         $(document).ready(function(){
             initPageList_db(function (pageCount) {
                 console.log(pageCount);
                 initPagination_db(pageCount, datas.pageSize);
             },1);
-        })
+        });
 
         $('#allwork').click(function(){
                 initPageList_qb(function (pageCount) {
@@ -899,7 +911,7 @@
                 initPageList_bj(function (pageCount) {
                     console.log(pageCount);
                     initPagination_bj(pageCount,datas.pageSize);
-                },page);
+                },1);
 
             }
         );
@@ -908,7 +920,7 @@
                 initPageList_gq(function (pageCount) {
                     console.log(pageCount);
                     initPagination_gq(pageCount,datas.pageSize);
-                },page);
+                },1);
 
             }
         );
@@ -927,7 +939,7 @@
                     for(var i=0;i<length;i++){
                         var status=handleData(data.obj[i].delFlag);
                         var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
-                            '<td class="th">流程类型</td>'+
+                            '<td class="th">'+data.obj[i].flowType.flowType+'</td>'+
                             '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
                             '<td class="th">'+data.obj[i].userName+'</td>'+
                             '<td class="th">我的步骤流程</td>'+
@@ -944,7 +956,7 @@
         };
 
         function initPagination_qb(totalData, pageSize) {
-            $('.M-box3').pagination({
+            $('#qbgz_page').pagination({
                 totalData: totalData,
                 showData: pageSize,
                 jump: true,
@@ -986,7 +998,7 @@
                         var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
                             '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
                             '<td class="th"></td><td class="th">'+data.obj[i].userName+'</td>'+
-                            '<td class="th">'+status+'</td><td class="th"></td>'+
+                            '<td class="th">'+status+'</td><td class="th">'+data.obj[i].createTime+'</td>'+
                             '<td class="th"></td>'+
                             '<td style="text-align:left;" title="主办导出删除">'+
                             '<a href="javascript:"><span class="host-span">主办</span></a>'+
@@ -1005,7 +1017,7 @@
         }
 
         function initPagination_db(totalData, pageSize) {
-            $('.M-box3').pagination({
+            $('#dbgz_page').pagination({
                 totalData: totalData,
                 showData: pageSize,
                 jump: true,
@@ -1067,7 +1079,7 @@
 
 
         function initPagination_bj(totalData, pageSize) {
-            $('.M-box3').pagination({
+            $('#bjgz_page').pagination({
                 totalData: totalData,
                 showData: pageSize,
                 jump: true,
@@ -1129,7 +1141,7 @@
 
 
         function initPagination_gq(totalData, pageSize) {
-            $('.M-box3').pagination({
+            $('#gqgz_page').pagination({
                 totalData: totalData,
                 showData: pageSize,
                 jump: true,

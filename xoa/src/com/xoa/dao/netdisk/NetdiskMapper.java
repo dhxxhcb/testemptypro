@@ -24,7 +24,7 @@ public interface NetdiskMapper {
     * @return: void   
     * @throws
     */
-	void addNetdisk(Netdisk netdisk);
+	int addNetdisk(Netdisk netdisk);
    /**
     * 
     * @Title: selectNetdisk
@@ -54,5 +54,5 @@ public interface NetdiskMapper {
       * @return: void   
       * @throws
       */
-	void editNetdisk(Netdisk netdisk);
+	 int editNetdisk(Netdisk netdisk);
 }

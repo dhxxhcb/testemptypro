@@ -83,30 +83,27 @@ public class NetdiskController {
 	@ResponseBody
 	@RequestMapping(value="/addNetdisk",produces = {"application/json;charset=UTF-8"})
 	public ToJson<Netdisk> addNetdisk(
-			@RequestParam(value="diskNo",required=false)String diskNo,
-			@RequestParam(value="diskName",required=false)String diskName,
-			@RequestParam(value="diskPath",required=false)String diskPath,
-			@RequestParam(value="spaceLimit",required=false)String spaceLimit,
-			@RequestParam(value="orderBy",required=false)String orderBy,
+			Netdisk netdisk,
 			HttpServletRequest request){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		Netdisk netdisk=new Netdisk();
-		netdisk.setDiskId(0);
-		netdisk.setDiskNo(Integer.valueOf(diskNo));
-		netdisk.setDiskName(this.returnValue(diskName));
-		netdisk.setDiskPath(this.returnValue(diskPath));
-		netdisk.setSpaceLimit(Integer.valueOf(spaceLimit));
-		netdisk.setOrderBy(this.returnValue(orderBy));
+		ToJson<Netdisk> json=new ToJson<Netdisk>();
 		try {
-			netdiskService.addNetdisk(netdisk);
-			return new ToJson<Netdisk>(0,"");
+			int a=netdiskService.addNetdisk(netdisk);
+			if (a>0){
+				json.setFlag(0);
+				json.setMsg("ok");
+			}else {
+				json.setFlag(1);
+				json.setMsg("err");
+			}
+
 			
 		} catch (Exception e) {
-			loger.debug("addNetdisk:"+e);
-			return new ToJson<Netdisk>(1, "");
+			json.setMsg(e.getMessage());
+
 		}
-		
+		return  json;
 	}
 	
 	/**
@@ -128,31 +125,26 @@ public class NetdiskController {
 	@ResponseBody
 	@RequestMapping(value="/editNetdisk",produces = {"application/json;charset=UTF-8"})
 	public ToJson<Netdisk> editNetdisk(
-			@RequestParam(value="diskNo",required=false)String diskNo,
-			@RequestParam(value="diskName",required=false)String diskName,
-			@RequestParam(value="diskPath",required=false)String diskPath,
-			@RequestParam(value="spaceLimit",required=false)String spaceLimit,
-			@RequestParam(value="orderBy",required=false)String orderBy,
-			@RequestParam(value="remark",required=false)String remark,
+			Netdisk netdisk,
 			HttpServletRequest request){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
-		Netdisk netdisk=new Netdisk();
-		netdisk.setDiskId(0);
-		netdisk.setDiskNo(Integer.valueOf(diskNo));
-		netdisk.setDiskName(this.returnValue(diskName));
-		netdisk.setDiskPath(this.returnValue(diskPath));
-		netdisk.setSpaceLimit(Integer.valueOf(spaceLimit));
-		netdisk.setOrderBy(this.returnValue(orderBy));
-		netdisk.setRemark(this.returnValue(remark));
+		ToJson<Netdisk> json=new ToJson<Netdisk>();
 		try {
-			netdiskService.editNetdisk(netdisk);
-			return new ToJson<Netdisk>(0,"");
+			int a=netdiskService.editNetdisk(netdisk);
+			if (a>0){
+				json.setFlag(0);
+				json.setMsg("ok");
+			}else {
+				json.setFlag(1);
+				json.setMsg("err");
+			}
+
 			
 		} catch (Exception e) {
-			loger.debug("editNetdisk:"+e);
-			return new ToJson<Netdisk>(1, "");
+			json.setMsg(e.getMessage());
 		}
+		return json;
 		
 	}
 	

@@ -347,7 +347,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="blue_text"><fmt:message code="notice.th.fileUpload"/>：</td>
             <td class="enclosure">
                 <div><img src="../img/mg11.png" alt=""/></div>
-                <div class="enclosure_t"><fmt:message code="notice.th.addfile"/></div>
+                <div class="enclosure_t">
+                    <form id="uploadimgform_" target="uploadiframe" action="../upload?module=news" enctype="multipart/form-data" method="post">
+                        <input type="file" name="file" id="uploadinputimg_" class="w-icon5" style="display:none;">
+                        <a id="uploadimg_"><fmt:message code="notice.th.addfile"/></a>
+                    </form>
+
+                </div>
                 <div><img src="../img/mg12.png" alt=""/></div>
                 <div class="enclosure_t"><fmt:message code="notice.th.net"/></div>
                 <div><img src="../img/mg13.png" alt=""/></div>
@@ -544,7 +550,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <td class="blue_text"><fmt:message code="notice.th.fileUpload"/>：</td>
                 <td class="enclosure">
                     <div><img src="../img/mg11.png" alt=""/></div>
-                    <div class="enclosure_t"><fmt:message code="notice.th.addfile"/></div>
+                    <div class="enclosure_t">
+                        <form id="uploadimgform" target="uploadiframe" action="../upload?module=news" enctype="multipart/form-data" method="post">
+                            <input type="file" name="file" id="uploadinputimg" class="w-icon5" style="display:none;">
+                            <a id="uploadimg" style="cursor: pointer;"> <fmt:message code="notice.th.addfile"/></a>
+                        </form>
+
+                    </div>
                     <div><img src="../img/mg12.png" alt=""/></div>
                     <div class="enclosure_t"><fmt:message code="notice.th.net"/></div>
                     <div><img src="../img/mg13.png" alt=""/></div>
@@ -691,6 +703,64 @@ $(function () {
         $.popWindow("../common/selectUser");
     });
 
+     //新增----添加附件
+    $('#uploadimg').click(function(){
+        $('#uploadinputimg').click();
+    });
+
+    $('#uploadinputimg').change(function(e){
+        var target = $(e.target);
+        var file;
+        if(target[0].files && target[0].files[0]){
+            file=target[0].files[0];
+        }
+        console.log(file);
+        if(file){
+            $.upload($('#uploadimgform'),function(res){
+                console.log(res);
+                var str = "";
+                var str1="";
+                res.obj.forEach(function(v,i){
+                    console.log(v.attachId);
+
+                    str+='<a class="ATTACH_a" NAME="'+v.attachName+'*" href="<%=basePath %>download?'+v.attUrl+'">'+v.attachName+'</a><br>';
+                    str1+='<input type="hidden" class="inHidden" NAME="'+v.attachName+'*" value="'+v.aid+'@'+v.ym+'_'+v.attachId+',">';
+                });
+                console.log(str);
+                $('#query_uploadArr').append(str+str1);
+
+            });
+        }
+    });
+
+    /* 修改页面的附件插件 */
+    $('#uploadimg_').click(function(){
+        $('#uploadinputimg_').click();
+    });
+    $('#uploadinputimg_').change(function(e){
+        var target = $(e.target);
+        var file;
+        if(target[0].files && target[0].files[0]){
+            file=target[0].files[0];
+        }
+        console.log(file);
+        if(file){
+            $.upload($('#uploadimgform_'),function(res){
+                console.log(res);
+                var str = "";
+                var str1="";
+                res.obj.forEach(function(v,i){
+                    console.log(v.attachId);
+
+                    str+='<a class="ATTACH_a" NAME="'+v.attachName+'*" href="<%=basePath %>download?'+v.attUrl+'">'+v.attachName+'</a><br>';
+                    str1+='<input type="hidden" NAME="'+v.attachName+'*"  class="inHidden" value="'+v.aid+'@'+v.ym+'_'+v.attachId+',">';
+                });
+                console.log(str);
+                $('#query_uploadArr_').append(str+str1);
+
+            });
+        }
+    });
 
 
 			/* word文本编辑器 */
@@ -931,7 +1001,7 @@ $(function () {
      /*add_notice();*/
             //修改公告通知管理
            $('#j_tb').on('click','.notice_change',function(){
-
+                alert('111');
                var tid=$(this).attr('notifyId');
                $('.step1').hide();
                $('.step2').show();
