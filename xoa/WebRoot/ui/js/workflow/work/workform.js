@@ -10,10 +10,12 @@ var workForm = {
     },
     init:function(options,cb){
         var _this = this;
+        $.extend( _this.option, options );
         if(options.flag == '3'){
+
              return _this.getSearchData(cb);
         }
-        $.extend( _this.option, options );
+       // $.extend( _this.option, options );
         _this.buildHTML(cb);
     },
     render:function(){

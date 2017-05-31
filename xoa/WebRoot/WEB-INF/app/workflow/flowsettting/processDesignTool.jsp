@@ -602,11 +602,11 @@
 <script type="text/javascript">
     $(function(){
 //        var formid = $.getQueryString("formId");
-        var formid = 17;
+        var fromId = 17;
         workForm.init({
                 formhtmlurl:'../../form/formType',
                 resdata:{
-                    fromId:formid
+                    fromId:fromId
                 },
               //  flowStep:-1,//预览
             //    target:$('.formDesign')
