@@ -33,8 +33,8 @@
         <result column="ATTACH_EDIT_PRIV_ONLINE" property="attachEditPrivOnline" javaType="string"/>
         <result column="ATTACH_MACRO_MARK" property="attachMacroMark" javaType="string"/>
         <result column="VIEW_PRIV" javaType="int" property="viewPriv"/>
-        <result column="SIGN_TYPE" javaType="boolean" property="signType"/>
-        <result column="COUNTERSIGN" javaType="boolean" property="countersign"/>
+        <result column="SIGN_TYPE" javaType="int" property="signType"/>
+        <result column="COUNTERSIGN" javaType="int" property="countersign"/>
         <result column="WORKINGDAYS_TYPE" javaType="string" property="workingdaysType"/>
         <result column="PRCS_USER" javaType="string" property="prcsUser"/>
         <result column="PRCS_ITEM" javaType="string" property="prcsItem"/>

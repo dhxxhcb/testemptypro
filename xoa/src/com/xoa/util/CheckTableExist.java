@@ -56,12 +56,11 @@ public class CheckTableExist {
 	            connection = DriverManager.getConnection(jdbcurl, userName,  
 	                    password); 
 	             //第三步：建立一个statement的对象
-	            Statement st = connection.createStatement();
- 
-	            ResultSet rs=st.executeQuery(sql);                  
-	            while(rs.next()){  
-	            	return true;
-	            }
+	            Statement st = connection.prepareStatement(sql);
+				st.executeUpdate(sql);
+				st.close();
+				connection.close();
+				return true;
 	        } catch (Exception e) {  
 	            System.err.println("Cannot connect to database server,Exception:"  
 	                    + e.getMessage());  

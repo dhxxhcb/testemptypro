@@ -94,6 +94,7 @@ font-weight:bold;
         width: 100% !important;
         border-left: none !important;
         border-right: none !important;
+        border-radius: none !important;
     }
     .one_name{
         line-height: 40px !important;

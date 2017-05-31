@@ -10,22 +10,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title> 	      
+    <title></title>
     <link rel="stylesheet" type="text/css" href="../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/pagination/style/pagination.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/base.css" /> 
-    <link rel="stylesheet" type="text/css" href="../css/news/new_news.css"/> 
-    <!-- 新闻管理  --> 
-    <link rel="stylesheet" type="text/css" href="../css/news/management_query.css" />          
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../css/news/new_news.css"/>
+    <!-- 新闻管理  -->
+    <link rel="stylesheet" type="text/css" href="../css/news/management_query.css" />
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/news/page.js"></script>
     <script src="../lib/laydate.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../lib/pagination/js/jquery.pagination.min.js" type="text/javascript" charset="utf-8"></script>
-	<!-- word文本编辑器 -->	
+	<!-- word文本编辑器 -->
 	<script src="../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>				
+	<script src="../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div class="bx">
@@ -34,24 +34,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ul class="index_head">
            <li data_id=""><span class="one headli1_1"><fmt:message
                     code="news.th.newsmanage"/></span><img class="headli1_2" src="../img/02.png" alt=""/>
-            </li>            
+            </li>
             <li data_id="0"><span class="headli2_1"><fmt:message
                     code="news.th.newbuild"/></span><img src="../img/02.png" alt="" class="headli2_2"/>
-            </li>                    
-           <li data_id="1"><span class="headli3"><fmt:message code="news.title.query"/></span></li>            
+            </li>
+           <li data_id="1"><span class="headli3"><fmt:message code="news.title.query"/></span></li>
         </ul>
     </div>
     <!--head通栏结束-->
-    
+
     <!--navigation开始-->
-    <div class="step1"> 
+    <div class="step1">
     	<div class="navigation  clearfix">
-        <div class="left">            
-			<img src="../img/la2.png">           
+        <div class="left">
+			<img src="../img/la2.png">
            <div class="news">
                     <fmt:message code="news.title.new"/>
-           </div>            
-           <select name="TYPE" class="button1 nav_type" id="select">          
+           </div>
+           <select name="TYPE" class="button1 nav_type" id="select">
 				<option value="0" selected=""><fmt:message code="news.th.type"/></option>
 				<option value="01"><fmt:message code="news.th.company"/></option>
 				<option value="02"><fmt:message code="news.th.media"/></option>
@@ -65,12 +65,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 <div id="cx" class="submit">
                     <fmt:message code="global.lang.query"/>
              </div>
-        </div>            
+        </div>
        	<div class="right">
                 <!-- 分页按钮-->
                 <div class="M-box3">
                 </div>
-        </div>                             
+        </div>
     </div>
     <!--navigation结束-->
 
@@ -89,18 +89,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                    <td class="th"><fmt:message code="news.title.query"/></td>
 		                    <td class="th"><fmt:message code="news.th.commentnew"/></td>
 		                    <td class="th"><fmt:message code="notice.th.state"/></td>
-		                    <td class="th"><fmt:message code="news.th.clicks"/></td> 	                   
+		                    <td class="th"><fmt:message code="news.th.clicks"/></td>
 		                </tr>
 	                </thead>
 	                <tbody id="j_tb">
-		                                                            
-	                </tbody>                
+
+	                </tbody>
 	            </table>
 	        </div>
-	    </div>    
+	    </div>
     <!--content部分结束-->
     </div>
-    
+
     <!-- 新建新闻页面********************* -->
 	<div class="step2" style="display: none;margin-left: 10px;">
 	<!-- 中间部分 -->
@@ -108,14 +108,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="nav_box clearfix">
             <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
             <div class="nav_t2" class="news"><fmt:message code="news.th.newbuild"/></div>
-             <div class="nav_t3" > 
+             <div class="nav_t3" >
             	<select name="" class="sel format" id="query_format">
                     <option value="" selected=""><fmt:message code="notice.th.all"/></option>
 			        <option value="0"><fmt:message code="notice.format.Commonformat"/></option>
 			        <option value="1"><fmt:message code="notice.format.MHTformat"/></option>
-			        <option value="2"><fmt:message code="notice.format.hyperlink"/></option>                   
-                </select>            
-            </div>                
+			        <option value="2"><fmt:message code="notice.format.hyperlink"/></option>
+                </select>
+            </div>
         </div>
         <tbody>
         <tr>
@@ -128,7 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option value="02"><fmt:message code="news.th.media"/></option>
 					<option value="03"><fmt:message code="news.th.industry"/></option>
 					<option value="04"><fmt:message code="news.th.partner"/></option>
-					<option value="05"><fmt:message code="news.th.client"/></option>                     
+					<option value="05"><fmt:message code="news.th.client"/></option>
                 </select>
             </td>
             <td>
@@ -142,8 +142,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="td_title1  release1"  id="query_toId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3"><fmt:message code="global.lang.add"/></div>
-                <div class="release4 empty"onclick="empty('query_toId')"><fmt:message code="global.lang.empty"/></div> 
-               
+                <div class="release4 empty"onclick="empty('query_toId')"><fmt:message code="global.lang.empty"/></div>
+
             </td>
         </tr>
         <tr id="role">
@@ -152,7 +152,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="td_title1  release1" id="query_privId" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3"><fmt:message code="global.lang.add"/></div>
-                <div class="release4 empty" onclick="empty('query_privId')"><fmt:message code="global.lang.empty"/></div> 
+                <div class="release4 empty" onclick="empty('query_privId')"><fmt:message code="global.lang.empty"/></div>
             </td>
         </tr>
         <tr id="man">
@@ -161,7 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="td_title1  release1" id="query_userId" dataid="" type="text"/>
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3"  id="query_adduser"><fmt:message code="global.lang.add"/></div>
-                <div class="release4 empty" onclick="empty('query_userId')"><fmt:message code="global.lang.empty"/></div> 
+                <div class="release4 empty" onclick="empty('query_userId')"><fmt:message code="global.lang.empty"/></div>
             </td>
         </tr>
         <tr>
@@ -177,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="blue_text">
            		<fmt:message code="news.th.comment"/>:
             </td>
-            <td>            
+            <td>
                 <select name="" class="anonymityYn" id="query_anonymityYn">
                     <option value="0"><fmt:message code="new.th.noanonymity"/></option>
           			<option value="1"><fmt:message code="new.th.anonymous"/></option>
@@ -191,10 +191,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
             <td class="remind">
                 <div><input class="news_t1"  type="checkbox" checked/></div>
-             
+
                <div class="news_t"><fmt:message code="notice.th.remindermessage"/></div>
                 <div><input class="news_t1" type="checkbox" checked/></div>
-               
+
                 <div class="news_t2"><fmt:message code="notice.th.share"/></div>
             </td>
         </tr>
@@ -209,7 +209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="news_t3"><fmt:message code="new.th.topMajor"/></div>
                 <input class="t_box" id="add_topDate" type="text" value="0"/>
                 <div class="news_t4"><fmt:message code="notice.th.endTop"/></div>
-            </td>		
+            </td>
         </tr>
         <tr>
             <td class="blue_text">
@@ -246,10 +246,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <!--word编辑器-->
          <tr>
-            <td colspan="2">            
-				<script class="content" id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script>			
-            </td>
-        </tr> 
+            <td colspan="2"><script class="content" id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script></td>
+        </tr>
         <tr>
             <td class="blue_text">
                	<fmt:message code="notice.th.keyWord"/>：
@@ -258,11 +256,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="keyword_ip" id="query_keyword" type="text" placeholder="<fmt:message code="notice.th.key"/>..."/>
                 <div class="keyword_t"><fmt:message code="notice.th.AutomaticKeywordAcquisition"/></div>
                 <div class="keyword_t2"><fmt:message code="notice.th.keyContent"/></div>
+
         </tr>
-        </tbody>        
+        </tbody>
     </table>
     <div class="foot_mg">
-       <!--<img  id="hd" type="publish" class="fot_1 btn_ok" src="../img/mg5.png" alt=""/> 
+       <!--<img  id="hd" type="publish" class="fot_1 btn_ok" src="../img/mg5.png" alt=""/>
         <img  id="rs" type="save" class="btn_ok"  src="../img/mg6.png" alt=""/>  -->
         <div class="btn_">
 	        <div  id="hd" type="publish" class="fot_1 btn_ok"><fmt:message code="global.lang.publish"/></div>
@@ -277,15 +276,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 <table class="newNews">
         <div class="nav_box clearfix">
             <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
-            <div class="nav_t2" class="news"><fmt:message code="news.title.new"/></div>           
-             <div class="nav_t3" > 
+            <div class="nav_t2" class="news"><fmt:message code="news.title.new"/></div>
+             <div class="nav_t3" >
             	<select name="" class="sel" id="format_">
                     <option value="" selected=""><fmt:message code="notice.th.all"/></option>
 			        <option value="0"><fmt:message code="notice.format.Commonformat"/></option>
 			        <option value="1"><fmt:message code="notice.format.MHTformat"/></option>
-			        <option value="2"><fmt:message code="notice.format.hyperlink"/></option>        
-                </select>            
-            </div>                        
+			        <option value="2"><fmt:message code="notice.format.hyperlink"/></option>
+                </select>
+            </div>
         </div>
         <tbody>
         <tr>
@@ -298,7 +297,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option value="02"><fmt:message code="news.th.media"/></option>
 					<option value="03"><fmt:message code="news.th.industry"/></option>
 					<option value="04"><fmt:message code="news.th.partner"/></option>
-					<option value="05"><fmt:message code="news.th.client"/></option>                    
+					<option value="05"><fmt:message code="news.th.client"/></option>
                 </select>
             </td>
             <td>
@@ -315,7 +314,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>
                 <div class="release3"><fmt:message code="global.lang.add"/></div>
                 <div class="release4 empty" onclick="empty('step3_ip2')"><fmt:message code="global.lang.empty"/></div>
-                 
+
             </td>
         </tr>
         <tr id="role_">
@@ -353,12 +352,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="blue_text">
                 	<fmt:message code="news.th.comment"/>:
             </td>
-            <td>            
+            <td>
                 <select name="step3_anonymityYn" class="" id="anonymityYn_">
                     <option value="0"><<fmt:message code="new.th.noanonymity"/>/option>
 			        <option value="1"><fmt:message code="new.th.anonymous"/></option>
-			        <option value="2"><fmt:message code="new.th.prohibit"/></option>                       
-                </select>                
+			        <option value="2"><fmt:message code="new.th.prohibit"/></option>
+                </select>
             </td>
         </tr>
         <tr>
@@ -379,7 +378,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<fmt:message code="notice.th.top"/>：
             </td>
             <td class="top_box">
-                <div><input class="news_t1" id="top_" type="checkbox"/></div>             
+                <div><input class="news_t1" id="top_" type="checkbox"/></div>
                 <div class="news_t3"><fmt:message code="new.th.topMajor"/></div>
                 <input class="t_box topDays" id="topDays" type="text" placeholder="0"/>
                 <div class="news_t4"><fmt:message code="notice.th.endTop"/></div>
@@ -409,7 +408,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a id="uploadimg_"><fmt:message code="notice.th.addfile"/></a>
 					</form>
 				</div>
-            	
+
                 <!-- <div><img src="../img/mg11.png" alt=""/></div>
                 <div class="enclosure_t"><a href="#">添加附件</a></div> -->
                 <div><img src="../img/mg12.png" alt=""/></div>
@@ -424,12 +423,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         </tr>
         <!--word编辑器-->
+
         <tr>
             <td colspan="2">
-				<script id="container3" name="content" type="text/plain" style="width: 100%;min-height: 200px;">
-
-
-				</script>
+				<script id="container3" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></script>
             </td>
         </tr>
         <tr>
@@ -440,18 +437,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input class="keyword_ip step3_5 Keyword" id="ip5" type="text" placeholder="请输入关键词..."/>
                 <div class="keyword_t"><fmt:message code="notice.th.AutomaticKeywordAcquisition"/></div>
                 <div class="keyword_t2"><fmt:message code="notice.th.keyContent"/></div>
+                </td>
         </tr>
         </tbody>
-        
+
     </table>
-    <div class="foot_mg">
+    <div  class="foot_mg">
         <!-- <img  id="hd" class="fot_1 submit_ok" src="../img/mg5.png" alt=""/> 发布
         <img  id="step3_rs" class="submit_ok"   src="../img/mg6.png" alt=""/> 保存 -->
          <div class="btn_">
 	        <div  id="" type_="publish" class="fot_1 submit_ok"><fmt:message code="global.lang.publish"/></div>
 			<div  id="rs" type_="save" class="btn_style btn_ok"><fmt:message code="global.lang.save"/></div>
 			<div  id="goBack"><fmt:message code="notice.th.return"/></div>
-        
+
        	<input id="hidden_id" type='hidden' value="">
     </div>
 </div>
@@ -459,16 +457,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </div>
 <!--content部分结束-->
-	 
+
  <!-- 新闻查询 ***********************-->
-    <div class="center" id="qt">   	
+    <div class="center" id="qt">
    <!--content部分开始-->
    <!-- 新闻nav部分 -->
 	<div class="nav_box clearfix">
         <div class="nav_t1"><img src="../img/la2.png"></div>
         <div class="nav_t2" class="news"><fmt:message code="news.title.query"/></div>
-	</div>     
-    <form id="queryNews">                  
+	</div>
+    <form id="queryNews">
     <table class="clearfix total">
         <tbody>
         <tr>
@@ -476,7 +474,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <fmt:message code="global.lang.inputquerycondition"/>
             </td>
         </tr>
-        
+
         <tr>
             <td class="td_w size_color">
             <fmt:message code="notice.th.format"/>：
@@ -505,9 +503,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option value="05"><fmt:message code="news.th.client"/></option>
 
                 </select>
-
             </td>
-
         </tr>
         <tr>
             <td class="blue_text size_color">
@@ -582,23 +578,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr class="table_b">
             <td colspan="2">
                     <div class="bt determine"><fmt:message code="global.lang.ok"/></div>
-                    <div onclick="Refillings('queryNews')"><fmt:message code="global.lang.refillings"/></div>                              
+                    <div onclick="Refillings('queryNews')"><fmt:message code="global.lang.refillings"/></div>
             </td>
         </tr>
 
         </tbody>
     </table>
-    </form>  
+    </form>
 </div>
 <!--content部分结束-->
-    	
+
 <script>
 
 user_id='query_userId';//选人控件
 	/* 保存页面附件添加 */
-	$(function () {	
+	$(function () {
 			$('#uploadimg').click(function(){
-				$('#uploadinputimg').click();  
+				$('#uploadinputimg').click();
 			});
 			$('#uploadinputimg').change(function(e){
 				var target = $(e.target);
@@ -614,19 +610,19 @@ user_id='query_userId';//选人控件
 						var str1="";
 						res.obj.forEach(function(v,i){
 							console.log(v.attachId);
-							
+
 							str+='<a class="ATTACH_a" NAME="'+v.attachName+'*" href="<%=basePath %>download?'+v.attUrl+'">'+v.attachName+'</a><br>';
 							str1+='<input type="hidden" class="inHidden" NAME="'+v.attachName+'*" value="'+v.aid+'@'+v.ym+'_'+v.attachId+',">';
 						});
 						console.log(str);
 						$('#query_uploadArr').append(str+str1);
-						
+
 					});
 				}
 			});
 			 /* 修改页面的附件插件 */
 			$('#uploadimg_').click(function(){
-				$('#uploadinputimg_').click();  
+				$('#uploadinputimg_').click();
 			});
 			$('#uploadinputimg_').change(function(e){
 				var target = $(e.target);
@@ -642,22 +638,22 @@ user_id='query_userId';//选人控件
 						var str1="";
 						res.obj.forEach(function(v,i){
 							console.log(v.attachId);
-							
+
 							str+='<a class="ATTACH_a" NAME="'+v.attachName+'*" href="<%=basePath %>download?'+v.attUrl+'">'+v.attachName+'</a><br>';
 							str1+='<input type="hidden" NAME="'+v.attachName+'*"  class="inHidden" value="'+v.aid+'@'+v.ym+'_'+v.attachId+',">';
 						});
 						console.log(str);
 						$('#query_uploadArr_').append(str+str1);
-						
+
 					});
 				}
-			}); 
-		
-	
+			});
+
+
 			/* word文本编辑器 */
 			 var ue = UE.getEditor('container');//新建新闻页面
 			 var sue = UE.getEditor('container3');//修改新闻页面
-			
+
             var data = {
                 read : $('.index_head .one').parent().attr('data_id'),
 				typeId : $('#select').val()==0?'':$('#select').val(),
@@ -694,7 +690,7 @@ user_id='query_userId';//选人控件
            }
            initPageList(function(pageCount){
            		 initPagination(pageCount,data.pageSize);
-           });          		  
+           });
            $(".index_head li").click(function (){
                 $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
                 $(".news").html($(this).find('span').text());
@@ -722,9 +718,9 @@ user_id='query_userId';//选人控件
 					$('.step1').hide();
 					$('.step2').show();
 					$('.step3').hide();
-					$('.center').hide();				
-				}				
-            });                               
+					$('.center').hide();
+				}
+            });
             function initPageList(cb){
             	$.ajax({
 					type: "get",
@@ -733,7 +729,7 @@ user_id='query_userId';//选人控件
 					data: data,
 					success: function(data){
 						var news = "";
-                           for (var i = 0; i < data.obj.length; i++) {                          
+                           for (var i = 0; i < data.obj.length; i++) {
                                        news = "<tr class='trs' rid='"+data.obj[i].newsId+"'><input class='input_hide' type='hidden' newsID='"+data.obj[i].newsId+"'><td><input  id='input1' name='' type='checkbox' value=''/></td>"+//选择
                                		   "<td class='name' nid='"+data.obj[i].newsId+"'>"+data.obj[i].providerName+"</td>"+//发布人
                                        "<td class='type' nid='"+data.obj[i].newsId+"'>"+data.obj[i].typeName+"</td>"+//类型
@@ -744,23 +740,23 @@ user_id='query_userId';//选人控件
                                        "<td class='num'>"+data.obj[i].newsId+"</td>"+//评论（条）
                                         "<td class='state' id=publish"+data.obj[i].newsId+">"+data.obj[i].publish+"</td>"+//状态
                                         "<td>"+
-                                       	 	"<a  href='javascript:;' id='xg' tid='"+data.obj[i].newsId+"'>"+"修改"+"</a>&nbsp"+ 
+                                       	 	"<a  href='javascript:;' id='xg' tid='"+data.obj[i].newsId+"'>"+"修改"+"</a>&nbsp"+
 											 "<a  href='javascript:;'>"+"管理评论"+"</a>&nbsp"+
-											  "<a  href='javascript:;' id=stop"+data.obj[i].newsId+" onclick=\"stop("+data.obj[i].newsId+",publish"+data.obj[i].newsId+",stop"+data.obj[i].newsId+")\">终止</a>&nbsp"+ 
+											  "<a  href='javascript:;' id=stop"+data.obj[i].newsId+" onclick=\"stop("+data.obj[i].newsId+",publish"+data.obj[i].newsId+",stop"+data.obj[i].newsId+")\">终止</a>&nbsp"+
 											 /*"<a href='javascript:;' onclick='deleteData("+data.obj[i].newsId+"))'>"+"删除"+"</a>&nbsp"+ */
-										 	 "<a href='javascript:;' id='deleteData' >"+"删除"+"</a>&nbsp"+ 
-                                       "</td>"+//操作 
+										 	 "<a href='javascript:;' id='deleteData' >"+"删除"+"</a>&nbsp"+
+                                       "</td>"+//操作
                                       /*  "<td>"+"修改  管理评论  终止  删除</td>"+//操作 */
                                      /*  "<td style='overflow: hidden;'>"+data.obj[i].newsId+"</td>"+ */
                                        news;
                            }
-                           
-							
+
+
 						$("#j_tb").html(news);
 						if(cb){
 							cb(data.totleNum);
 						}
-					}   
+					}
 				})
             };
             function initPagination(totalData,pageSize){
@@ -785,11 +781,11 @@ user_id='query_userId';//选人控件
               $("#j_tb").on('click','.windowOpen',function(){
 	            var nid=$(this).attr('newsId');
 	            $.popWindow('detail?newsId='+nid);
-	        });		        
+	        });
 		    /*删除时 调用的方法*/
 			 $("#j_tb").on('click','#deleteData',function(){
 			 	 var attR=$(this).parents('tr').find('input.input_hide').attr('newsID');
-		        /*  alert(attR); */		           
+		        /*  alert(attR); */
 			     var data = {
 		           		"newsId":attR
 		           	};
@@ -804,21 +800,21 @@ user_id='query_userId';//选人控件
 		           		success:function(){
 		           			location.reload();
 		           			//alert(data);
-		           		}	           		
-		           	});	           
+		           		}
+		           	});
 						return true;
-					 }else{ 
-					 	return false; 
+					 }else{
+					 	return false;
 					 }
-		           	
-		        
+
+
 		        });
-		        
+
 		        /* 新闻管理修改页面 */
-		         $("#j_tb").on('click', '#xg', function(){  
+		         $("#j_tb").on('click', '#xg', function(){
 		         	var sue = UE.getEditor('container3');//修改新闻页面
 		         	var id=$(this).attr('tid');
-		         	 if(id==$(this).parent().parent().attr('rid')){	               		
+		         	 if(id==$(this).parent().parent().attr('rid')){
 					//新闻详情获得内容：
 					sue.ready(function(){
 						$.ajax({
@@ -826,59 +822,59 @@ user_id='query_userId';//选人控件
 		                    type:'get',
 		                	dataType:"JSON",
 			       			data : {
-			       				"newsId":id,			
-			       			},		                   
+			       				"newsId":id,
+			       			},
 		                   success:function(data){
 		                        $('#step3_type  option:checked').attr(data.object.codes.codeName),//类型
 								$("#step3_ip2").val(); //发布人
-								$("#step3_ip4").val();//发布范围 
-								$("#step3_ip1").val(data.object.subject);//标题	
-								$("#anonymityYn  option:checked").attr(data.object.anonymityYn),//类型					
+								$("#step3_ip4").val();//发布范围
+								$("#step3_ip1").val(data.object.subject);//标题
+								$("#anonymityYn  option:checked").attr(data.object.anonymityYn),//类型
 								$("#step3_ip3").val(data.object.newsDateTime);//发布时间
 								/* $(this).parent().siblings('.data').text();//点击数
 								$(this).parent().siblings('.num').text();//评论(条)
-								$(this).parent().siblings('.state').text();//状态  
-								*/	
+								$(this).parent().siblings('.state').text();//状态
+								*/
 								$("#hidden_id").val(data.object.newsId);
-								$(".step3_5").val(data.object.keyword);                     
+								$(".step3_5").val(data.object.keyword);
 		                        sue.setContent(data.object.content);
-		                        		                       
-			           		},	  
+
+			           		},
 			           		error:function(){
 			            		alert("<fmt:message code="global.th.error" />");
 			            		return;
-		            		}   				                   
-		                });															
-					});																 	
+		            		}
+		                });
+					});
 						 $('.step1').hide();
 			          	 $('.center').hide();
 						 $('.step2').hide();
-						 $('.step3').show(); 
-					 } 
-		        });	
-		     
-		        
+						 $('.step3').show();
+					 }
+		        });
+
+
 		        //修改新闻页面  保存时调用的方法***************
-		         $(".submit_ok").click(function(){	
+		         $(".submit_ok").click(function(){
 		         	var aId_='';
 					var uId_='';
 					for(var i=0;i<$('.query_uploadArr_  .inHidden').length;i++){
 						aId_ += $('#query_uploadArr_ .inHidden').eq(i).val();
 						uId_ += $('#query_uploadArr_ .inHidden').eq(i).attr('NAME');
 					}
-        			         
-					  var data = {	
-					  		"newsId":$("#hidden_id").val(),	 		       			           		
-							"subject": $("#step3_ip1").val(),    //标题 
-							"newTime": $("#step3_ip3").val(),      //发布时间 					
+
+					  var data = {
+					  		"newsId":$("#hidden_id").val(),
+							"subject": $("#step3_ip1").val(),    //标题
+							"newTime": $("#step3_ip3").val(),      //发布时间
 							"keyword":$("#ip5").val(),  //内容关键词
 							"topDays": $("#topDays").val(),// 限制新闻置顶时间
-							"content":  sue.getContent(),//  新闻内容							
-							"toId":  $("#step3_ip2").val(),//发布部门	
-							"anonymityYn": $("#anonymityYn_").val(), //评论类型(0-实名评论,1-匿名评论,2-禁止评论)							
+							"content":  sue.getContent(),//  新闻内容
+							"toId":  $("#step3_ip2").val(),//发布部门
+							"anonymityYn": $("#anonymityYn_").val(), //评论类型(0-实名评论,1-匿名评论,2-禁止评论)
 							"format":$("#format_ option:checked").attr('value'),//新闻格式(0-普通格式,1-MHT格式,2-超链接)
 							"typeId":$("#query_typeId").val(),
-							"publish":0,  // 发布标识(0-未发布,1-已发布,2-已终止)							
+							"publish":0,  // 发布标识(0-未发布,1-已发布,2-已终止)
 							"top":$("top_").eq(0).is(':checked')==false?0:1,//是否置顶(0-否,1-是)
 							"clickCount":'0',//点击数
 							"lastEditor":'1',//最后编辑人
@@ -890,84 +886,84 @@ user_id='query_userId';//选人控件
                       		"attachmentName":uId_,//附件名称串
                         	"privId":$("#privId_").attr("dataid"),//发布 -
                          	"userId":$("#userId_").attr("dataid"),//发布用户 -
-                         	"readers": ''//发布角色 						           		
-			           	}; 
+                         	"readers": ''//发布角色
+			           	};
 			            console.log(data);
 			            if($(this).attr("type_") == "publish"){
 			           		data.publish = '1';
 			           	};
-			           
+
 		                $.ajax({
 		                    url:"<%=basePath%>news/updateNews",
 		                    type:'get',
-		                    dataType:"JSON",		    
-			       			 data : data,		                   
+		                    dataType:"JSON",
+			       			 data : data,
 		                   	success:function(data){
-		                        console.log(data);		           			 				           			
+		                        console.log(data);
 									 $('.step1').show();
 						          	 $('.center').hide();
 									 $('.step2').hide();
-									 $('.step3').hide(); 
+									 $('.step3').hide();
 									/*  initPageList(); */
 								  location.reload();
-			           		},	  
+			           		},
 			           		error:function(e){
-			            		console.log(e);			            		
-		            		}   		                  
-		                });      
-			        }); 
+			            		console.log(e);
+		            		}
+		                });
+			        });
 			        /* 返回按钮 */
 			        $("#goBack").click(function(){
         			 	 $('.step1').show();
 			          	 $('.center').hide();
 						 $('.step2').hide();
-						 $('.step3').hide(); 
-					}); 		 		        	
+						 $('.step3').hide();
+					});
 			        /* 选人控件修改页面 */
 			        $("#adduser_").on("click",function(){
    					user_id = "userId_";
        		 		$.popWindow("../common/selectUser");
-       		 		 
-       		 		}); 		        
-				var now = null;		        
+
+       		 		});
+				var now = null;
 		        function queryTime(){
 			         function p(s) {
 					    return s < 10 ? '0' + s: s;
 					}
-					
+
 					var myDate = new Date();
 					//获取当前年
 					var year=myDate.getFullYear();
 					//获取当前月
 					var month=myDate.getMonth()+1;
 					//获取当前日
-					var date=myDate.getDate(); 
+					var date=myDate.getDate();
 					var h=myDate.getHours();       //获取当前小时数(0-23)
 					var m=myDate.getMinutes();     //获取当前分钟数(0-59)
-					var s=myDate.getSeconds();  
-					
+					var s=myDate.getSeconds();
+
 					now=year+'-'+p(month)+"-"+p(date)+" "+p(h)+':'+p(m)+":"+p(s);
 		        }
-		        
+
 		   laydate({
 		        elem: '.td_title1', //目标元素。
 		        format: 'YYYY-MM-DD', //日期格式
 		        istime: true, //显示时、分、秒
 		    });
-		        
+
 		        //获取当前时间 修改时页面
 		        $("#step_release3").click(function(){
 		          queryTime();
 		      	  $("#step3_ip3").val(now);
 		        });
-		        
+
 		         //获取当前时间 新建时页面
 		        $("#step_release2").click(function(){
 		          queryTime();
 		      	  $("#query_newTime").val(now);
 		        });
-		        
-		             
+
+
 		        /* 新闻查询按钮 */
         		$('.submit').click(function (){
 					data.read = $('.index_head .one').parent().attr('data_id');
@@ -976,9 +972,9 @@ user_id='query_userId';//选人控件
 					//console.log(read,typeId,nTime);
 					initPageList();
 				});
-				//时间控件调用  
+				//时间控件调用
 			   $('#btn_query').click(function (){
-					
+
 					data.subject = $('#subject').val();
 					data.beginTime = $('#beginTime').val();
 					data.endTime = $('#endTime').val();
@@ -998,17 +994,17 @@ user_id='query_userId';//选人控件
 					}
 					console.log(aId);
 					console.log(uId);
-			        var data = {	  		       			           												           		
-							"subject": $("#query_subject").val(),    //标题 
-							"newTime": $("#query_newTime").val(),      //发布时间 					
+			        var data = {
+							"subject": $("#query_subject").val(),    //标题
+							"newTime": $("#query_newTime").val(),      //发布时间
 							"keyword":$("#query_keyword").val(),  //内容关键词
 							"topDays": $("#add_topDate").val(),// 限制新闻置顶时间
-							"content":  ue.getContent()  ,//  新闻内容							
-							"toId":  '',//发布部门	
+							"content":  ue.getContent()  ,//  新闻内容
+							"toId":  '',//发布部门
 							"anonymityYn": $("#query_format").val(),
 							"format":$("#query_format").val(),//新闻格式(0-普通格式,1-MHT格式,2-超链接)
 							"typeId":$("#query_typeId").val(),
-							"publish":0,  // 发布标识(0-未发布,1-已发布,2-已终止)							
+							"publish":0,  // 发布标识(0-未发布,1-已发布,2-已终止)
 							"top":$("#query_top").eq(0).is(':checked')==false?0:1,//是否置顶(0-否,1-是)
                       		"subjectColor":'',//新闻标题颜色
                             "summary":' ',//新闻内容简介  */
@@ -1024,28 +1020,28 @@ user_id='query_userId';//选人控件
 		                $.ajax({
 		                    url:"<%=basePath%>news/sendNews",
 		                    type:'get',
-		                    dataType:"JSON",		    
-			       			data : data,		                   
+		                    dataType:"JSON",
+			       			data : data,
 		                   	success:function(data){
-		                        	alert("发布成功");	           			 				           			
+		                        	alert("发布成功");
 									 $('.step1').show();
 						          	 $('.center').hide();
 									 $('.step2').hide();
 									 $('.step3').hide();
 									/*  initPageList(); */
 									 location.reload();
-			           		},	  
+			           		},
 			           		error:function(e){
-			            		console.log(e);			            		
-		            		}   		                  
-		                });     
+			            		console.log(e);
+		            		}
+		                });
    				 });
-   				/* 选人控件 */ 
+   				/* 选人控件 */
    				$("#query_adduser").on("click",function(){
    					user_id = "query_userId";
-       		 		$.popWindow("../common/selectUser");      		 		 
+       		 		$.popWindow("../common/selectUser");
        		 	});
-        
+
        /* 新闻管理查询的确定按钮 */
           $('.determine').click(function () {
 					data.format=$("#format").val(); //新闻格式(0-普通格式,1-MHT格式,2-超链接)
@@ -1057,7 +1053,7 @@ user_id='query_userId';//选人控件
 					data.lastEditTime=$("#endTime").val();//发布日期
 					data.content=$("#beginTime").val(); //内容
 					data.clickCount=$(".c_time1").val();
-					data.click=$(".c_time2").val();//点击次数   
+					data.click=$(".c_time2").val();//点击次数
 					data.read="";
 					initPageList();
 					clearData();
@@ -1068,13 +1064,13 @@ user_id='query_userId';//选人控件
 			});
 			/* 新闻查询清空方法  */
 			function Refillings(id){
-				document.getElementById(id).reset(); 
+				document.getElementById(id).reset();
 			}
-			 /* 新建新闻、修改新闻人员控件清空 */	
+			 /* 新建新闻、修改新闻人员控件清空 */
 		    function empty(id){
 				$("#"+id).val("");
 			};
-			/* 新闻人员控件显示和隐藏 */	
+			/* 新闻人员控件显示和隐藏 */
 			function showAndHidden(persion,role,man){
 				if($("#"+persion).html() =='按人员或角色发布'){
 					$("#"+persion).html("隐藏按人员或角色发布");
@@ -1086,8 +1082,8 @@ user_id='query_userId';//选人控件
 					$("#"+man).hide();
 				}
 			}
-			
-			/* 终止和生效方法 */	
+
+			/* 终止和生效方法 */
 
 		function stop(id,publishId,stopId){
 			/* alert(1111); */
@@ -1099,34 +1095,34 @@ user_id='query_userId';//选人控件
 			}else if($(stopId).html() == '生效'){
 				publish = "2";
 			}
-			
+
 			var data={
-					"newsId":id,	 		       			           		
-					"publish":pulbish,  // 发布标识(0-未发布,1-已发布,2-已终止)	
+					"newsId":id,
+					"publish":pulbish,  // 发布标识(0-未发布,1-已发布,2-已终止)
 					};
 				  $.ajax({
 		                    url:"<%=basePath%>news/updateNews",
 		                    type:'get',
-		                    dataType:"JSON",		    
-			       			 data : data,		                   
+		                    dataType:"JSON",
+			       			 data : data,
 		                   	success:function(data){
 		                  /*  	alert(data); */
-		                      /*   console.log(data); */	
+		                      /*   console.log(data); */
 		                        alert("修改完成");
 		                        if($(stopId).html()=='终止'){
-									$(publishId).html("终止"); 
-									$(stopId).html("生效"); 
+									$(publishId).html("终止");
+									$(stopId).html("生效");
 								}else if($(stopId).html() == '生效'){
-									$(publishId).html("生效"); 
-									$(stopId).html("终止"); 
-								}	
+									$(publishId).html("生效");
+									$(stopId).html("终止");
+								}
 								// location.reload();
-			           		},	  
+			           		},
 			           		error:function(e){
-			            		console.log(e);			            		
-		            		}   		                  
+			            		console.log(e);
+		            		}
 		                });
-			
+
 			}
 
 
@@ -1140,7 +1136,7 @@ user_id='query_userId';//选人控件
 		     format: 'YYYY-MM-DD hh:mm:ss', //日期格式
 		     istime: true, //显示时、分、秒
 		   });
-   
+
    //时间控件调用
    var start = {
      elem: '#beginTime',
@@ -1167,11 +1163,12 @@ user_id='query_userId';//选人控件
    };
    laydate(start);
    laydate(end);
-	
-	
 
-  
+
+
+
 </script>
+
 </body>
 
 

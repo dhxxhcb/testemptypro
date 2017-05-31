@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.xoa.util.common.StringUtils;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -189,7 +190,8 @@ public class WorkController {
                 "loginDateSouse"));
         String tableName = "flow_data_" + flowId;
         JSONArray json =new JSONArray();
-        Map<String,Object> map =json.parseObject(formdata,Map.class);
+        List<Map<String,Object>> l=json.parseObject(formdata,List.class);
+     // Map<String,Object> map =json.parseObject(formdata,Map.class);
         StringBuffer sbcreate=new StringBuffer();
         if (!CheckTableExist.haveTable(tableName)) {
         	String sql = " create table if not exists "+tableName+ ""
@@ -202,8 +204,8 @@ public class WorkController {
         			+ "`flow_auto_num_year` int(11) not null default '0', "
         			+ "`flow_auto_num_month` int(11) not null default '0',";
         	sbcreate.append(sql.toString());
-        	for(Entry<String, Object> m:map.entrySet()){        
-        		String sql1= ""+ "`"+m.getKey()+"`"+ "text not null default '',";
+        	for(Map<String,Object> map: l){        
+        		String sql1= ""+ "`"+map.get("key")+"`"+ "text not null default '',";
         		sbcreate.append(sql1);
     		}
         	String sqlprimary=" primary key(id),unique key(run_id) );";
@@ -217,10 +219,14 @@ public class WorkController {
              sb.append(keys);
              StringBuffer sb1 = new StringBuffer();
              sb1.append(values);
-        	for(Entry<String, Object> m:map.entrySet()){
+        	/*for(Entry<String, Object> m:map.entrySet()){
         		sb.append(",").append(m.getKey());
                 sb1.append(",").append(m.getValue());
-    		}
+    		}*/
+             for(Map<String,Object> map: l){
+            	 sb.append(",").append(map.get("key"));
+                 sb1.append(",").append(map.get("value"));
+             }
             String sqlAll = "insert into " + tableName + "(" + sb.toString() + ") " + "values(" + sb1.toString() + ")";
             CheckTableExist.createSql(sqlAll);
 

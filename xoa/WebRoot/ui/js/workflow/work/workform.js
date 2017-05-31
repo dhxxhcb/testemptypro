@@ -5,7 +5,8 @@ var workForm = {
         target:"",
         flowStep:1,//-1预览
         listFp:'',
-        pageModel:''
+        pageModel:'',
+        eleObject:{}
     },
     init:function(options,cb){
         var _this = this;
@@ -18,25 +19,21 @@ var workForm = {
         this.RadioRender();
         this.DateRender();
         this.filter();//表单流程权限控制
+        return   this.option.eleObject;
     },
     filter:function(){
         if(this.option.flowStep != -1){
             var steptOpt =  this.option.listFp[this.option.flowStep-1];
-
             $(this.option.target).find('.form_item').each(function(){
                 var _this = $(this);
-
                 if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
-                    console.log(_this.attr("title"));
                     _this.attr("disabled","disabled")
                 }
-
-
             });
         }
     },
     RadioRender:function(){
-        $('input[data-type="radio"]').each(function(){
+        this.option.eleObject.find('input[data-type="radio"]').each(function(){
             var _this = $(this);
             var name = _this.attr('name');
             var title = _this.attr('title');
@@ -63,12 +60,20 @@ var workForm = {
         if(ele){
             target = ele;
         }else{
-            target = $(this.option.target);
+            target = this.option.eleObject;
         }
+        target.find('link').each(function () {
+            var href = $(this).attr('href');
+            var link = domain+'/tdold'+href.substring(22);
+            console.log(link);
+            $(this).attr('href',domain+'/tdold'+href.substring(22));
+        });
         target.find("input").each(function(){
             var _this = $(this);
+            var cssLink = '';
+
             if(_this.attr('hidden')){
-                console.log(_this.attr('hidden'));
+
                 _this.attr("orghidden",_this.attr('hidden'));
                 _this.removeAttr("hidden");
             }
@@ -82,12 +87,13 @@ var workForm = {
         });
         //
         target.find('img.DATE').each(function(){
+            var _this = $(this);
+            var objprev = _this.prev();
             if(_this.attr('hidden')){
                 _this.attr("orghidden",_this.attr('hidden'));
                 _this.removeAttr("hidden");
             }
-            var _this = $(this);
-            var objprev = _this.prev();
+
             var inputObj = '<input name="'+objprev.attr('name')+'" title="'+objprev.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+objprev.attr('name')+'" value="'+_this.attr('date_format')+'"  date_format="'+_this.attr('date_format')+'"/>';
             objprev.remove();
             _this.before(inputObj);
@@ -126,9 +132,11 @@ var workForm = {
         });
     },
     MacrosRender:function(){
-        that = this;
+        var that = this;
         var flagStr = "";
-        $(".AUTO").each(function(index,obj){
+
+        that.option.eleObject.find(".AUTO").each(function(index,obj){
+
             if($(this).attr("orghidden") == 1){
                 $(this).attr("hidden","1");
             }
@@ -137,7 +145,8 @@ var workForm = {
             }
         });
         that.tool.MacrosDate.ready(flagStr,function(MacrosDate){
-            $(".AUTO").each(function(index,obj){
+            that.option.eleObject.find(".AUTO").each(function(index,obj){
+
                 if(that.tool.MacrosDate.option[$(this).attr("datafld")]){
                     var selectObj = $('<select id="'+$(this).attr('name')+'" title="'+$(this).attr('title')+'" data-type="'+$(this).attr('data-type')+'" style="'+$(this).attr('style')+'" datafld="'+$(this).attr('datafld')+'" class="form_item AUTO"></select>');
                     that.tool.getMacrosDate($(this).attr("datafld"))(selectObj);
@@ -153,13 +162,13 @@ var workForm = {
 
     },
     DateRender:function(){
-        $(".laydate-icon").each(function(){
+        this.option.eleObject.find(".laydate-icon").each(function(){
             var _this = $(this);
             var divObj = '<input name="'+_this.attr('name')+'" title="'+_this.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+_this.attr('name')+'"   date_format="'+_this.attr('date_format')+'"/>';
             _this.before(divObj);
             _this.remove();
         });
-        $(".laydate-icon").on("click",function(){
+        this.option.eleObject.find(".laydate-icon").on("click",function(){
             var format = $(this).attr("date_format");
             var formatArr = '';
             if(format.split(' ').length > 1){
@@ -182,11 +191,13 @@ var workForm = {
                 if(res.flag){
                     var formObj = res.object.flowFormType || res.object;
                     if(formObj.printModel != ''){
-                        $(that.option.target).html(formObj.printModel);
+                        //$(that.option.target).html(formObj.printModel);
                         if(that.option.flowStep != -1){
                             that.option.listFp = res.object.listFp
                         }
-                        that.render();
+                        that.option.eleObject = $('<div>'+formObj.printModel+'</div>');
+
+                        $(that.option.target).html(that.render());
                         layer.closeAll();
                     }else{
                         layer.closeAll();
@@ -239,28 +250,28 @@ var workForm = {
                 return target.html(optionStr);
             },
             SYS_DATE_CN : function(){
-                return "";
+                return new Date().Format("yyyy年MM月dd日");
             },
             SYS_DATE_CN_SHORT3 : function(){
-                return "";
+                return new Date().Format("yyyy年");
             },
             SYS_DATE_CN_SHORT4 : function(){
-                return "";
+                return new Date().Format("yyyy");
             },
             SYS_DATE_CN_SHORT1 : function(){
-                return "";
+                return new Date().Format("yyyy年MM月");
             },
             SYS_DATE_CN_SHORT2 : function(){
-                return "";
+                return new Date().Format("MM月dd日");
             },
             SYS_TIME : function(){
-                return "";
+                return new Date().Format("yyyy-MM-dd  hh:mm:ss");
             },
             SYS_DATETIME : function(){
-                return "";
+                return new Date().Format("yyyy-MM-dd  hh:mm:ss");
             },
             SYS_WEEK : function(){
-                return "";
+                return "日一二三四五六".charAt(new Date().getDay());//星期几
             },
             SYS_USERID : function(){
                 return workForm.tool.MacrosDate.data.sYS_USERID;
@@ -333,6 +344,7 @@ var workForm = {
                 var that = this;
                 $.ajax({
                     type: "get",
+                    async: false,
                     url: "../../form/qureyCtrl?controlId=Macro&option="+options,
                     dataType: 'JSON',
                     success: function (res) {

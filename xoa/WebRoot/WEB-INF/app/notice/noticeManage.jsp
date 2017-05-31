@@ -260,9 +260,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <fmt:message code="notice.th.somebody"/>：
             </td>
             <td>
-                <textarea readonly="readonly" id="add_selectUser" class="td_title1  release1"></textarea>
+                <textarea readonly="readonly" id="adds_selectUser" class="td_title1  release1"></textarea>
                 <img class="td_title2 release3" src="../img/mg2.png" alt=""/>
-                <div class="release3" id="add_selectUserbtn"><fmt:message code="global.lang.add"/></div>
+                <div class="release3" id="adds_selectUserbtn"><fmt:message code="global.lang.add"/></div>
                 <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
             </td>
         </tr>
@@ -393,6 +393,203 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div  id="add_baocun" value="0" type="save" class="btn_ok"><fmt:message code="global.lang.save"/></div>
     </div>
 </div>
+    <%--修改--%>
+    <div class="step3" style="display: none;">
+        <table class="newNews">
+            <div class="nav_box clearfix">
+                <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
+                <div class="nav_t2" class="news"><fmt:message code="notice.th.newnotify"/> </div>
+
+                <!-- <div class="nav_t3">选择格式 -->
+                <div class="nav_t3" >
+                    <select name="" class="sel" id="add_sel">
+
+                        <option value="0" selected><fmt:message code="notice.format.Commonformat"/></option>
+                        <option value="1"><fmt:message code="notice.format.MHTformat"/></option>
+                        <option value="2"><fmt:message code="notice.format.hyperlink"/></option>
+                    </select>
+                </div>
+            </div>
+            <!-- 二级选项 -->
+            <tbody>
+            <tr>
+                <td class="td_w">
+                    <select name="" class="type_notice" id="add_type_notice">
+                        <option value=""><fmt:message code="notice.th.chosenotifytype"/></option>
+                        <option value="01"><fmt:message code="notice.type.Decision"/></option>
+                        <option value="02"><fmt:message code="notice.type.notice"/></option>
+                        <option value="03"><fmt:message code="notice.type.Bulletin"/></option>
+                        <option value="04"><fmt:message code="notice.type.other"/></option>
+                    </select>
+                </td>
+                <td>
+                    <div class="td_title1">
+                        <!-- 需调整 -->
+
+                        <input type="text" name="titileTime" id="add_titileTime"  style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;"
+                               placeholder=" <fmt:message code="global.lang.printsubject"/>..." >
+
+                        <!-- 后续需要调整 -->
+                        <button ></button>
+                        <%--请输入发布时间...--%>
+                    </div>
+                    <img class="td_title2" src="../img/mg2.png" alt=""/>
+                </td>
+            </tr>
+            <tr>
+                <td class="blue_text">
+                    <fmt:message code="notice.th.IssuedByDepartment"/>：
+                </td>
+                <td>
+                    <textarea readonly="readonly" class=" td_title1  release1" id="add_texta"  dataid=""   resize="auto" ></textarea>
+                    <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
+                    <div class="release3" ><fmt:message code="global.lang.add"/></div>
+                    <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
+                </td>
+            </tr>
+
+
+
+            <!--- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+            <!-- 需调整样式 建议采取div展示和隐藏模式  或者可以采取盒子格式 -->
+            <tr>
+                <td class="blue_text">
+                    <fmt:message code="notice.th.somebody"/>：
+                </td>
+                <td>
+                    <textarea readonly="readonly" id="add_selectUser" class="td_title1  release1"></textarea>
+                    <img class="td_title2 release3" src="../img/mg2.png" alt=""/>
+                    <div class="release3" id="add_selectUserbtn"><fmt:message code="global.lang.add"/></div>
+                    <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="blue_text">
+                    <fmt:message code="notice.th.role"/>：
+                </td>
+                <td>
+                    <textarea readonly="readonly" id="add_selectjuese" class="td_title1  release1"></textarea>
+                    <img class="td_title2 release4" src="../img/mg2.png" alt=""/>
+                    <div class="release3"><fmt:message code="global.lang.add"/></div>
+                    <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
+                </td>
+            </tr>
+            <!--- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+
+            <tr>
+                <td class="blue_text"><fmt:message code="notice.th.PostedTime"/>：</td>
+                <td>
+                    <div class="td_title1">
+                        <!-- 需引入时间插件 -->
+                        <input type="text" id="adds_newDate"  name="publishTime" class="publishTime" style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
+                    </div>
+                    <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
+
+                    <div class="release3"><fmt:message code="notice.th.ResetToCurrentTime"/></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="blue_text"><fmt:message code="notice.th.validity"/>：</td>
+                <td>
+                    <div class="td_title1 start_end_time">
+                        <!-- 引入时间控件 和 css 调整  -->
+                        <input type="text"  name="startTime" id="starts_add" class="startTime" style="height: 20px; width: 130px; margin-left: -4.2px; margin-top: -1px;">
+                        <fmt:message code="global.lang.to"/>
+                        <input type="text"  name="endTime" id="ends_add" class="endTime" style="height: 20px;width: 130px;  margin-top: -1px;">
+                        <fmt:message code="notice.th.null"/>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- 复选框样式调整  -->
+            <tr>
+                <td class="blue_text"><fmt:message code="notice.th.reminder"/>：</td>
+                <td class="remind">
+                    <div class="news_t">
+                        <input type="checkbox" name="remind" ><h1><fmt:message code="notice.th.remindermessage"/></h1>
+                    </div>
+                    <div class="news_two">
+                        <input type="checkbox" name="remind" ><h1><fmt:message code="notice.th.share"/></h1>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="blue_text"><fmt:message code="notice.th.top"/>：</td>
+                <td class="top_box">
+                    <div>
+                        <input type="checkbox" name="textTop" id="textTop" class="textTop">
+                        <h1 class="add_show"><fmt:message code="notice.th.topMajor"/></h1>
+                    </div>
+                    <div class="t_box">
+                        <input type="text" name="textDay" id="textDay" class="textDay" value="0"
+                               style="height: 20px; width: 40px; margin-left: -5.2px; margin-top: -1px;">
+                    </div>
+                    <div class="zhiding"><fmt:message code="notice.th.endTop"/></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="blue_text"><fmt:message code="notice.th.contentValidity"/>：</td>
+                <td class="abstract">
+                    <div class="abstract1">
+                        <input type="text"  name="summny" id="add_summny" class="summny" style="height: 20px;    color: #000; width: 255px; margin-left: -4.2px; margin-top: -1px;">
+                    </div>
+                    <div class="abstract2"><fmt:message code="notice.th.contentHigh"/></div>
+                </td>
+            </tr>
+
+            <!-- 需调整 -->
+            <tr>
+                <td class="blue_text"><fmt:message code="notice.th.fileUpload"/>：</td>
+                <td class="enclosure">
+                    <div><img src="../img/mg11.png" alt=""/></div>
+                    <div class="enclosure_t"><fmt:message code="notice.th.addfile"/></div>
+                    <div><img src="../img/mg12.png" alt=""/></div>
+                    <div class="enclosure_t"><fmt:message code="notice.th.net"/></div>
+                    <div><img src="../img/mg13.png" alt=""/></div>
+                    <div class="enclosure_t"><fmt:message code="notice.th.poto"/></div>
+                    <div><img src="../img/mg14.png" alt=""/></div>
+                    <div class="enclosure_t"><fmt:message code="notice.th.up"/></div><br/>
+                    <div class="add_down">
+
+                        <input type="checkbox" name="textEnclosure" class="textEnclosure">
+                        <h1><fmt:message code="notice.th.office"/></h1>
+                    </div>
+                    <div class="add_print">
+                        <input type="checkbox" name="textEnclosure" class="textEnclosure" >
+                        <h1><fmt:message code="notice.th.printoffice"/></h1>
+                    </div>
+
+                    <%--<input >--%>
+                    <h1 class="add_nochose"> <fmt:message code="notice.th.noselect"/></h1>
+
+                </td>
+            </tr>
+
+            <!--word编辑器-->
+            <tr>
+                <td colspan="2">
+                    <div id="containers" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="blue_text">
+                    <fmt:message code="notice.th.keyWord"/>：
+                </td>
+                <td class="keyword">
+                    <input class="keyword_ip"><fmt:message code="global.th.printkey"/></input>
+                    <div class="keyword_t"><fmt:message code="notice.th.AutomaticKeywordAcquisition"/></div>
+                    <div><fmt:message code="notice.th.keyContent"/></div>
+            </tr>
+            </tbody>
+
+        </table>
+        <div class="foot_mg">
+            <div  id="add_send" value="1" type="publish" class="fot_1 btn_ok"><fmt:message code="global.lang.publish"/></div>
+            <div  id="add_baocun" value="0" type="save" class="btn_ok"><fmt:message code="global.lang.save"/></div>
+        </div>
+    </div>
 </div>
 
 
@@ -483,15 +680,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
     user_id='';
 $(function () {
+    //修改
     $('#add_selectUserbtn').click(function(){
         user_id='add_selectUser';
+        $.popWindow("../common/selectUser");
+    });
+    //新增
+    $('#adds_selectUserbtn').click(function(){
+        user_id='adds_selectUser';
         $.popWindow("../common/selectUser");
     });
 
 
 
 			/* word文本编辑器 */
+			//修改---插件
 			 var ue = UE.getEditor('container');
+
+			 //新增ue插件
+            var ue = UE.getEditor('containers');
 		 
             var data = {
                 read : $('.index_head .one').parent().attr('data_id'),
@@ -520,14 +727,17 @@ $(function () {
 				data.typeId = $('#select').val()==0?'':$('#select').val();
 				data.nTime = $('#sendTime').val();
 				console.log(data);
+
 				if(data.read == ''){
 					$('.step1').show();
 					$('.step2').hide();
+                    $('.step3').hide();
 					$('.center').hide();
 					initPageList();
 				}else if(data.read == 1){
 					$('.step1').hide();
 					$('.step2').hide();
+                    $('.step3').hide();
 					$('.center').show('');
 					$('#subject').val('');
 					$('#beginTime').val('');
@@ -536,7 +746,8 @@ $(function () {
 					$('#content').val('');
 				}else  if( data.read == 0){
 					$('.step1').hide();
-					$('.step2').show();
+					$('.step2').hide();
+                    $('.step3').show();
 					$('#add_send').attr('ac','add');
 					$('.center').hide();
 				
@@ -642,7 +853,7 @@ $(function () {
                 toId:$('#add_texta').val(),//部门发布范围
                 format:$('#add_sel option:checked').attr('value'),//格式
                 typeId:$('#add_type_notice option:checked').attr('value'),//公告类型
-                userId:$('#add_selectUser').attr("dataid"),//按人员发布
+                userId:$('#adds_selectUser').attr("dataid"),//按人员发布
                 privId:'',//按角色发布
                 attachmentId:'',//附件ID串
                 attachmentName:'',//附件名称串
@@ -654,9 +865,9 @@ $(function () {
                 top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
                 summary:$('#add_summny').val(),//内容简介
                 content:ue.getContent(),//内容
-                sendTimes:$('#add_newDate').val(),//发布时间
-                beginDates:$('#start_add').val(),//开始日期
-                endDates:$('#end_add').val()  //结束日期
+                sendTimes:$('#adds_newDate').val(),//发布时间
+                beginDates:$('#starts_add').val(),//开始日期
+                endDates:$('#ends_add').val()  //结束日期
             }
          if(action=="update"){
                 var noId=$(this).attr("noId");
@@ -732,6 +943,7 @@ $(function () {
                var tid=$(this).attr('notifyId');
                $('.step1').hide();
                $('.step2').show();
+               $('.step3').hide();
                $('#add_send').attr('ac',"update");
                $('#add_send').attr('noId',tid);
                $('.center').hide();
@@ -858,10 +1070,18 @@ $(function () {
 
 
 });
+    //修改
     laydate({
          elem: '#add_newDate', //目标元素。
          format: 'YYYY-MM-DD hh:mm:ss', //日期格式
          istime: true, //显示时、分、秒
+    });
+
+    //新增时间控件
+    laydate({
+        elem: '#adds_newDate', //目标元素。
+        format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+        istime: true, //显示时、分、秒
     });
    
    //查询公告时间控件调用
@@ -890,7 +1110,7 @@ $(function () {
    };
 
     /*新建公告时间控件调用*/
-
+    //修改-----开始时间
     var starts = {
         elem: '#start_add',
         format: 'YYYY/MM/DD hh:mm:ss',
@@ -903,8 +1123,34 @@ $(function () {
             end.start = datas; //将结束日的初始值设定为开始日
         }
     };
+    //新增-----开始时间
+    var starts_zeng = {
+        elem: '#starts_add',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas; //将结束日的初始值设定为开始日
+        }
+    };
+    //修改----结束时间
     var ends = {
         elem: '#end_add',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        min: laydate.now(),
+        max: '2099-06-16 23:59:59',
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            start.max = datas; //结束日选好后，重置开始日的最大日期
+        }
+    };
+    //新增----结束时间
+    var ends_zeng = {
+        elem: '#ends_add',
         format: 'YYYY/MM/DD hh:mm:ss',
         min: laydate.now(),
         max: '2099-06-16 23:59:59',
@@ -918,6 +1164,8 @@ $(function () {
    laydate(start);
    laydate(end);
     laydate(starts);
+    laydate(starts_zeng);
+    laydate(ends_zeng);
     laydate(ends);
 
 </script>

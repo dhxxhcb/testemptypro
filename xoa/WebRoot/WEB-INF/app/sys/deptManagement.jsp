@@ -482,9 +482,9 @@
 
         <div class="cont_rig">
             <!-- 部门右侧页面 -->
-            <iframe src="<%=basePath%>department/newDeptManagement/" width="100%" height="100%"></iframe>
-
-
+           <%-- <iframe src="<%=basePath%>department/newDeptManagement/" width="100%" height="100%"></iframe>--%>
+          <%--  <%@ include file="new_deptManagement.jsp" %>--%>
+            <jsp:include page="new_deptManagement.jsp"/>
 
 
 
@@ -518,6 +518,14 @@
 </div>
 </body>
 <script type="text/javascript">
+    function newData(){
+
+        $("#telNo").val("ceshi");
+
+        alert(1);
+        alert("ceshi");
+    };
+
     $(function () {
         //部门列表
         $('.cont_left .tab_ctwo').on('click', '.childdept', function () {
