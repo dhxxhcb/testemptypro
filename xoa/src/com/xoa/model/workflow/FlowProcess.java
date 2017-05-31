@@ -267,11 +267,11 @@ public class FlowProcess implements Serializable {
     /**
      * 会签人设置(0-不允许,1-本步骤经办人,2-全部人员)
      **/
-    private boolean signType;
+    private int signType;
     /**
      * 会签人加签(0-不允许，1-允许)
      **/
-    private boolean countersign;
+    private int countersign;
     /**
      * 工作天数换算方式(0-24小时为一天，1-按个人排班类型工作时长为一天)
      **/
@@ -281,6 +281,11 @@ public class FlowProcess implements Serializable {
      * 返回页面参数
      */
     private String setType;
+
+    /**
+     * 关联创建工作流
+     */
+    private FlowTypeModel flowTypeModel;
 
 
     private List<Map<String, String>> connections;
@@ -350,9 +355,6 @@ public class FlowProcess implements Serializable {
         this.viewPriv = viewPriv;
     }
 
-    public void setSignType(boolean signType) {
-        this.signType = signType;
-    }
 
     public String getPrcsUser() {
         return prcsUser == null ? "" : prcsUser.trim();
@@ -870,22 +872,6 @@ public class FlowProcess implements Serializable {
         this.viewPriv = viewPriv;
     }
 
-    public Boolean getSignType() {
-        return signType;
-    }
-
-    public void setSignType(Boolean signType) {
-        this.signType = signType;
-    }
-
-    public boolean getCountersign() {
-        return countersign;
-    }
-
-    public void setCountersign(boolean countersign) {
-        this.countersign = countersign;
-    }
-
     public String getWorkingdaysType() {
         return workingdaysType == null ? "" : workingdaysType.trim();
     }
@@ -916,5 +902,37 @@ public class FlowProcess implements Serializable {
      */
     public void setSetType(String setType) {
         this.setType = setType;
+    }
+
+    /**
+     * 关联创建工作流
+     * @return
+     */
+    public FlowTypeModel getFlowTypeModel() {
+        return flowTypeModel;
+    }
+
+    /**
+     * 关联创建工作流
+     * @param flowTypeModel
+     */
+    public void setFlowTypeModel(FlowTypeModel flowTypeModel) {
+        this.flowTypeModel = flowTypeModel;
+    }
+
+    public int getSignType() {
+        return signType;
+    }
+
+    public void setSignType(int signType) {
+        this.signType = signType;
+    }
+
+    public int getCountersign() {
+        return countersign;
+    }
+
+    public void setCountersign(int countersign) {
+        this.countersign = countersign;
     }
 }
