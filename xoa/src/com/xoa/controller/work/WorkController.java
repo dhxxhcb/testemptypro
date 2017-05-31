@@ -194,7 +194,7 @@ public class WorkController {
      // Map<String,Object> map =json.parseObject(formdata,Map.class);
         StringBuffer sbcreate=new StringBuffer();
         if (!CheckTableExist.haveTable(tableName)) {
-        	String sql = " create table if not exists "+tableName+ ""
+        	String sql = " create table "+tableName+ ""
         			+ "(`id` int(10) not null auto_increment,"
         			+ "`run_id` int(10) not null default '0', "
         			+ "`run_name` varchar(200) not null default '',"
