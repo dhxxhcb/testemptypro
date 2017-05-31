@@ -35,6 +35,7 @@ import com.xoa.util.page.PageParams;
  * 构造参数:   无
  *
  */
+@SuppressWarnings("all")
 @Service
 public class NotifyServiceImpl implements  NotifyService{
    
@@ -388,6 +389,7 @@ public class NotifyServiceImpl implements  NotifyService{
       if (roleId!=null&&!roleId.equals("")) {
     	  strArray2=roleId.split(",");
     	  for (int i = 0; i < strArray2.length; i++) {
+
     		  String name3=usersPrivService.getPrivNameById(Integer.parseInt(strArray2[i]));
     		  if (name3!=null) {
     			  s2.append(name3);
