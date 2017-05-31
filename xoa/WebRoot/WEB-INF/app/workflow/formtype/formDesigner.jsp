@@ -15,6 +15,8 @@
     <link href="../css/ueditor/site.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../css/ueditor/styleUpdate.css">
     <link rel="stylesheet" href="../css/base.css">
+    <script type="text/javascript" src="../../js/jquery-1.9.1.js" ></script>
+    <script src="../../js/base/base.js"></script>
     <script src="../../js/workflow/work/workform.js"></script>
 </head>
 <body>

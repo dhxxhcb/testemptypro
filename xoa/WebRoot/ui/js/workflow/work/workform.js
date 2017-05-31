@@ -41,7 +41,6 @@ var workForm = {
                         if(_this.is('input')){
                             _this.attr("readonly","readonly");
                         }
-
                     }
                 }
             });

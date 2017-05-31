@@ -35,7 +35,7 @@
         <tr>
             <td>数据来源</td>
             <td>
-                <select>
+                <select id="dataFrom">
                     <option value="inData">内部数据</option>
                     <option value="outData">外部数据</option>
                 </select>
@@ -223,7 +223,9 @@
                 return true;
             }
         };
-
+        $("#dataFrom").change(function () {
+            console.log($("#dataFrom").val());
+        });
     });
 
 </script>
