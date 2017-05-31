@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title><fmt:message code="news.th.newsDetail"/>11111</title>
+    <title><fmt:message code="news.th.newsDetail"/></title>
     <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css">
@@ -107,11 +107,15 @@
         }
         .font_ {
             font-weight: bold;
+            font-size: 16px;
             margin-left: 20px;
+            font-family: "微软雅黑";
         }
         .img_ {
-            width: 18px;
-            height: 18px
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
         }
     </style>
     <script type="text/javascript">
@@ -148,7 +152,7 @@
                     arr = data1.attachment;
                     if (data1.attachmentName != '') {
                         for (var i = 0; i < (arr.length); i++) {
-                            str1 += '<div class="font_">附件文件：<a href="<%=basePath %>download?' + arr[i].attUrl + '"><img class="img_" src="../img/icon_print_07_.png"/>' + arr[i].attachName + '</a></div>';
+                            str1 += '<div class="font_">附件文件：<a href="<%=basePath %>download?' + arr[i].attUrl + '"><img class="img_" src="../img/enclosure.png"/>' + arr[i].attachName + '</a></div>';
                         }
 //                        str1 += '<tr><td class="attachment">' + data1.attachmentName + '</td></tr>';
                         $('.Table').append(str1);
