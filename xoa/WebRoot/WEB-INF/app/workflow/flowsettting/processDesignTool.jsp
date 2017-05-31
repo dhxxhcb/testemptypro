@@ -608,8 +608,6 @@
                 resdata:{
                     fromId:fromId
                 },
-              //  flowStep:-1,//预览
-            //    target:$('.formDesign')
             flag:3
             },
             function(data){
