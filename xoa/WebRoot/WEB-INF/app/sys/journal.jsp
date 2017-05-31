@@ -84,10 +84,10 @@
             <div class="title">
                 <span class="news">年度数据</span>
                 <select name="yeay" class="selectYear" id="select">
-                    <option value="01">2017年</option>
+                    <option value="2017">2017年</option>
                 </select>
-                <select name="month" class="selectMonth">
-                    <option value="01">1月</option>
+                <select name="month" class="selectMonth" id="seleMonth">
+                    <%--<option value="01">1月</option>
                     <option value="02">2月</option>
                     <option value="03">2月</option>
                     <option value="04">4月</option>
@@ -98,7 +98,7 @@
                     <option value="09">9月</option>
                     <option value="10">10月</option>
                     <option value="11">11月</option>
-                    <option value="12">12月</option>
+                    <option value="12">12月</option>--%>
                 </select>
             </div>
             <div class="yearEcharts">
@@ -106,10 +106,10 @@
             </div>
             <div class="tabTwo">
                 <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
-                    <tr>
+                    <tr class="yearJournal">
                         <td colspan="4">2017年度按月访问数据</td>
                     </tr>
-                    <tr>
+                    <%--<tr>
                         <td>1月</td>
                         <td>0%</td>
                         <td>0</td>
@@ -118,7 +118,7 @@
                         <td>2月</td>
                         <td>0%</td>
                         <td>0</td>
-                    </tr>
+                    </tr>--%>
                 </table>
             </div>
             <div class="dateEcharts">
