@@ -27,7 +27,7 @@ var workForm = {
                 var _this = $(this);
 
                 if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
-                    console.log(_this.attr("title"));
+
                     _this.attr("disabled","disabled")
                 }
 
@@ -67,8 +67,9 @@ var workForm = {
         }
         target.find("input").each(function(){
             var _this = $(this);
+
             if(_this.attr('hidden')){
-                console.log(_this.attr('hidden'));
+
                 _this.attr("orghidden",_this.attr('hidden'));
                 _this.removeAttr("hidden");
             }
@@ -82,12 +83,13 @@ var workForm = {
         });
         //
         target.find('img.DATE').each(function(){
+            var _this = $(this);
+            var objprev = _this.prev();
             if(_this.attr('hidden')){
                 _this.attr("orghidden",_this.attr('hidden'));
                 _this.removeAttr("hidden");
             }
-            var _this = $(this);
-            var objprev = _this.prev();
+
             var inputObj = '<input name="'+objprev.attr('name')+'" title="'+objprev.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+objprev.attr('name')+'" value="'+_this.attr('date_format')+'"  date_format="'+_this.attr('date_format')+'"/>';
             objprev.remove();
             _this.before(inputObj);
