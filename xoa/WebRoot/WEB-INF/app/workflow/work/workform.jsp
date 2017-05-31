@@ -494,7 +494,16 @@
                            var radio=form_item.eq(i).prop("checked");
                            if(radio){
                                console.log("0=||=============>")
-                               value=form_item.eq(i).next().text();
+//                               value=form_item.eq(i).next().text();
+                              /* value=form_item.eq(i).val();*/
+                              if(form_item.eq(i).attr('disabled')=='disabled'){
+
+                              }else{
+                                  value= form_item.eq(i).attr('value');
+                                  console.log( form_item.eq(i).attr('value'));
+                              }
+
+
                            }else{
                                console.log(radio);
                            }
