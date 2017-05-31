@@ -680,7 +680,6 @@ GooFlow.prototype = {
             this.pushOper("delNode", [id]);
         }
         var mark = json.mark ? " item_mark" : "";
-        console.log(json.type)
         if (json.type != "start" && json.type != "end") {
             json.width = json.width ? json.width : 86;
             json.height = json.height ? json.height : 24;
@@ -830,11 +829,8 @@ GooFlow.prototype = {
 
             if (!e) e = window.event;
             e.data.inthis.delNode(e.data.inthis.$focus);
-            console.log(this)
-            console.log(me.$max)
-            if(me.$max>0){
-                me.$max--;
-            };
+
+
             return false;
         });
         //绑定结点的RESIZE功能
@@ -1096,25 +1092,36 @@ GooFlow.prototype = {
         this.resetLines(id, this.$nodeData[id]);
     },
     //删除结点
-    delNode: function (id) {
+    delNode: function (id,type) {
         if (!this.$nodeData[id])    return;
         if (this.$undoStack) {
             var paras = [id, this.$nodeData[id]];
             this.pushOper("addNode", paras);
         }
         if (this.onItemDel != null && !this.onItemDel(id, "node"))    return;
-        delete this.$nodeData[id];
-        this.$nodeDom[id].remove();
-        delete this.$nodeDom[id];
-        --this.$nodeCount;
-        if (this.$focus == id) this.$focus = "";
-        for (var k in this.$lineData) {
-            if (this.$lineData[k].from == id || this.$lineData[k].to == id) {
-                this.$draw.removeChild(this.$lineDom[k]);
-                delete this.$lineData[k];
-                delete this.$lineDom[k];
+        var metwo=this;
+        $.get('/flowProcess/delete',{'id':$('#ele_designerId').val()},function (json) {
+            if(json.flag) {
+                location.reload();
+                // delete metwo.$nodeData[id];
+                // // metwo.$nodeDom[id].remove();
+                // $('#'+$(metwo.$nodeDom[id])[0].id).remove()
+                // delete metwo.$nodeDom[id];
+                // --metwo.$nodeCount;
+                // if(metwo.$max>0){
+                //     --metwo.$max;
+                // };
+                // if (metwo.$focus == id) this.$focus = "";
+                // for (var k in metwo.$lineData) {
+                //     if (metwo.$lineData[k].from == id || metwo.$lineData[k].to == id) {
+                //         metwo.$draw.removeChild(metwo.$lineDom[k]);
+                //         delete metwo.$lineData[k];
+                //         delete metwo.$lineDom[k];
+                //     }
+                // }
+
             }
-        }
+        },'json')
     },
     //设置流程图的名称
     setTitle: function (text) {
