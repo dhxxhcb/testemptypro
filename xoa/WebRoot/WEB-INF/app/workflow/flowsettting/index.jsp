@@ -651,7 +651,7 @@
                             "<tr><th>序号</th><th>名称</th><th>下一步骤</th><th>编辑该步骤的各项属性</th><th>操作</th></tr>";
                         for (var i = 0; i < data.length; i++) {
                             html = html + "<tr>" + "<td>" + data[i].prcsId + "</td>" + "<td>" + data[i].prcsName + "</td>" +
-                                "<td></td>" + "<td style='text-align: center'>基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>" + "<td>修改 删除</td>" + "</tr>";
+                                "<td></td>" + "<td style='text-align: center'>基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>" + "<td>"+"<a href='javascript:void(0)'>修改</a><a href='javascript:void(0)'>删除</a>"+"</td>" + "</tr>";
 
                         }
                     }
@@ -1017,7 +1017,7 @@
                         var data = data.datas;
                         console.log(data);
                         for (var i = 0; i < data.length; i++) {
-                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data[i].content + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].flowPrcs + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)" class="del_priv">删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one' tid="+data[i].tid+">" + "</td>" + "<td>" + data[i].content + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].flowPrcs + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)" class="del_priv"  tid="+data[i].tid+">删除</a>' + "</td>" + "</tr>" + "</tbody>";
                         }
                         $('.table_prc').html(html);
                         checkAll();
@@ -1030,12 +1030,20 @@
         /*应用版式文件删除*/
         $('.table_prc').on('click', '.del_priv', function () {
             alert('确定要删除吗！');
+            var seqId = [];
+            var tempId = $(this).attr('tid');
+            seqId.push(tempId);
             $.ajax({
                 url: '<%=basePath%>/flowSetDatas/deleteFlowPrintTpl',
                 type: 'get',
                 dataType: 'json',
-                data: {},
-                success: function () {
+                data: {
+                    'tplId[]': seqId
+                },
+                success: function (data) {
+                    alert('删除成功！')
+                },
+                error:function (data) {
 
                 }
             })
@@ -1182,26 +1190,26 @@
                 area: ['600px', '500px'],
                 btn: ['保存', '关闭'],
                 yes: function () {
-                /*   var data = {
-                   'tplName':
-                   'viewFields':
-                   'groupFields':
-                   'flowId': 1
-                    };
-                    $.ajax({
-                        type: 'GET',
-                        url:  '<%=basePath%>/flowSetDatas//newFlowQuertTpl',
-                        dataType: 'json',
-                        data: data,
-                        success: function (data) {
-                            if (data.flag) {
-                                alert('新建成功');
-                            } else {
-                                alert('新建失败');
-                            }
-                        }
-                    });
-*/
+                    /*   var data = {
+                     'tplName':
+                     'viewFields':
+                     'groupFields':
+                     'flowId': 1
+                     };
+                     $.ajax({
+                     type: 'GET',
+                     url:  '<%=basePath%>/flowSetDatas//newFlowQuertTpl',
+                     dataType: 'json',
+                     data: data,
+                     success: function (data) {
+                     if (data.flag) {
+                     alert('新建成功');
+                     } else {
+                     alert('新建失败');
+                     }
+                     }
+                     });
+                     */
                 }
             })
         });
@@ -1217,35 +1225,40 @@
                 '<div class="title_1">' +
                 '<div class="title_label"></div>' +
                 '<span class="title_s">模板名称 *</span>' +
-                '<div class="title_put"><select name="" id="" class="select_t"></select></div></div>' +
+                '<div class="title_put"><input type="text" id="select_con" class="select_t"></div></div>' +
                 '<div class="title_2">' +
                 '<div class="title_label"></div>' +
                 '<span class="title_s">模板类别 *</span>' +
-                '<div class="title_put"><select name="" id="" class="select_t"></select></div></div>' +
+                '<div class="title_put"><select name="" id="select_type" class="select_t"><option value="1" selected="selected">打印模板</option></select></div></div>'+'<div class="title_1">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">模板文件 *</span>' +
+                '<div class="title_put"><input type="text" id="put_file" class="put_file" placeholder="选择模板文件"></div></div>' +
                 '</div></div></div>' +
                 '</div>',
                 area: ['600px', '500px'],
                 btn: ['保存', '关闭'],
                 yes: function () {
                     var data = {
-                        'name': $('input[name="name"]').val(),
-                        'version': $('input[name="version"]').val(),
-                        'isOrg': $('.select option:checked').val()
+                        'tType': $('#select_type').val(),
+                        'tName': $('#select_con').val(),
+                        'content':"",
+                        'flowPrcs':'',
+                        'flowId':1,
                     }
                     $.ajax({
-                        type: 'get',
-                        url: '/users/addOrgManage',
+                        type: 'GET',
+                        url: '/flowSetDatas/newFlowPrintTpl',
                         dataType: 'json',
                         data: data,
-                        success: function (json) {
-                            if (json.msg == "ok") {
+                        success: function (data) {
+                            if (data.flag) {
                                 alert('新建成功');
                             } else {
                                 alert('新建失败');
                             }
                         }
-                    })
-                    location.reload();
+                    });
+
                 }
             })
         });
