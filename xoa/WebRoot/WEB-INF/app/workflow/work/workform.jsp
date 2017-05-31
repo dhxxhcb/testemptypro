@@ -276,6 +276,7 @@
         </div>
     </div>
     <div class="content">
+        <form action="<%=basePath%>/workflow/work/nextwork"   id="ajaxform">
         <div class="cont" id="client">
             <div class="cont_form" id="a2">
 
@@ -330,6 +331,7 @@
                 </ul>
             </div>
         </div>
+        </form>
     </div>
 
 </div>
@@ -463,55 +465,50 @@
            }
 
                $('.zhuanjiao').on('click',function(){
+
+
                    console.log($('.opt').val()==0?'':$('.opt').val());
                    //找到表格上的内容
                    var form_item=$('.cont_form .form_item');
                    var realData=[];
-
+                    var radioArr = {}
                    for(var i=0;i<form_item.length;i++){
-//                 console.log("↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓");
-//                  console.log(form_item.eq(i).attr("type"));
-//                  console.log("↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑");
-                       /*  console.log(form_item.eq(i).attr("data-type")=="select");*/
-                       /*   console.log(form_item.eq(i).attr('name'));*/
-                       var datatype=form_item.eq(i).attr("data-type")
                        var baseData={};
                        var value="";
-                       var key=form_item.eq(i).attr("name");
+                       var obj = form_item.eq(i);
+                       var datatype = obj.attr("data-type");
+                       var key=obj.attr("name");
                        if(datatype=="select"){
-
-                           value= form_item.eq(i).val()==0?'':form_item.eq(i).val();
-
+                           value= obj.val()==0?'':form_item.eq(i).val();
                        }
-                       if(datatype=="textarea" || datatype=="text" || datatype=="macros" ){
-
-                           value= form_item.eq(i).val();
-
-
+                       if(datatype=="textarea" || datatype=="text" ){
+                           value=obj.val();
                        }
-                       if(form_item.eq(i).attr("type")=="radio"){
-
-                           var radio=form_item.eq(i).prop("checked");
-                           if(radio){
-                               console.log("0=||=============>")
-//                               value=form_item.eq(i).next().text();
-                              /* value=form_item.eq(i).val();*/
-                              if(form_item.eq(i).attr('disabled')=='disabled'){
-
-                              }else{
-                                  value= form_item.eq(i).attr('value');
-                                  console.log( form_item.eq(i).attr('value'));
-                              }
-
-
-                           }else{
-                               console.log(radio);
-                           }
-
+                       if(datatype=="macros"){
+                            if(obj.attr('type') == "text"){
+                                value= obj.val();
+                            }else{
+                                value= obj.val()==0?'':form_item.eq(i).val();
+                            }
                        }
-                       baseData["key"]=key;
-                       baseData["value"]=value;
-                       realData.push(baseData);
+                       if(obj.attr("type")=="radio"){
+                           var name = obj.attr('name');
+                            if(!radioArr[obj.attr('name')]){
+                                radioArr[obj.attr('name')] = true;
+                                if($("input[name='"+name+"']:checked")){
+
+                                    value= $("input[name='"+name+"']:checked").val();
+                                }else{
+                                    value = '';
+                                }
+                            }
+                       }
+                       if(value != '' && value){
+                           baseData["key"]=key;
+                           baseData["value"]=value;
+                           realData.push(baseData);
+                       }
+
                    }
                    console.log(realData);
                    console.log(JSON.stringify(realData));
@@ -527,7 +524,7 @@
 
                     $.ajax({
                         type: "post",
-                        url: "<%=basePath%>/workflow/work/nextwork",
+                        url: "",
                         dataType: 'JSON',
                         data: datas,
                         success: function(ret){
