@@ -405,7 +405,7 @@
             <div class="nav_t1"><img src="../../img/sys/new_dept.png"></div>
             <div class="nav_t2" class="news">新建部门/成员单位-当前节点：[北京高速波软件有限公司]</div>
             <div class="head_rig" id="head_rig">
-                <h1 style='cursor:pointer;' class="new_dept">新建部门/成员单位</h1>
+                <h1 style='cursor:pointer;' class="new_dept" onclick="newData()" >新建部门/成员单位</h1>
                 <h1 style='cursor:pointer;' class="import">导入</h1>
                 <h1 style='cursor:pointer;' class="export">导出</h1>
             </div>
