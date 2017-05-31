@@ -2,7 +2,9 @@ package com.xoa.service.sys.impl;
 
 import com.xoa.dao.sys.SysLogMapper;
 import com.xoa.model.common.Syslog;
+import com.xoa.service.common.SysCodeService;
 import com.xoa.service.sys.SysLogService;
+import com.xoa.service.users.UsersService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,6 +24,11 @@ public class SysLogServiceImpl implements SysLogService {
 
     @Resource
     private SysLogMapper sysLogMapper;
+
+    @Resource
+    private UsersService usersService;
+    @Resource
+    private SysCodeService sysCodeService;
 
     /**
      * @创建作者: 韩成冰
@@ -75,7 +82,17 @@ public class SysLogServiceImpl implements SysLogService {
      **/
     @Override
     public List<Syslog> getTenLog() {
-        return sysLogMapper.getTenLog();
+        List<Syslog> list = sysLogMapper.getTenLog();
+        if (list != null) {
+            for (int i = 0; i < list.size(); i++) {
+                String username = usersService.getUserNameById(list.get(i).getUserId());
+                list.get(i).setUserName(username);
+                String typeName = sysCodeService.getLogNameByNo("" + list.get(i).getType());
+                list.get(i).setTypeName(typeName);
+            }
+        }
+        return list;
+
     }
 
     /**
@@ -488,7 +505,7 @@ public class SysLogServiceImpl implements SysLogService {
 
 
         //查询
-        List<Syslog> syslogList ;
+        List<Syslog> syslogList;
 
         Map<String, Object> hashMap = new HashMap<String, Object>();
         if (uid != null) {

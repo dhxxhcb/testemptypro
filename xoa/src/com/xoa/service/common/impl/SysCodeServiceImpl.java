@@ -78,5 +78,20 @@ public class SysCodeServiceImpl implements SysCodeService {
         return sysCodeList;
     }
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 16:49
+     * @函数介绍: 根据日志的NO, 查询日志TYPENa
+     * @参数说明: @param String
+     * param codeNo
+     * @return: String
+     */
+    @Override
+    public String getLogNameByNo(String codeNo) {
+        String logTypeName = sysCodeMapper.getLogNameByNo(codeNo);
+
+        return logTypeName;
+    }
+
 
 }

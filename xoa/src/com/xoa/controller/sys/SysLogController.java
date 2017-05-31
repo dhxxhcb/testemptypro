@@ -356,7 +356,7 @@ public class SysLogController {
             HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum() + 1);
 
             //根据用户的id找的用户的name，每条数据都要查询一次，
-            // 以后可以把user的id和name匹配到一个map，每次遍历匹配
+            // 以后可以把user的id和name匹配到一个map，每次遍历匹配，来优化
             String userName = userService.getUserNameById(log.getUserId());
             dataRow.createCell(0).setCellValue(userName);
 
