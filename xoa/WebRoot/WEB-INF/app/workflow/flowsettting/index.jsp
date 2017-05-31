@@ -359,11 +359,11 @@
         <%--设计流程步骤--%>
         <div class="item item_s">
             <table class="table" cellspacing="0" id="table_form">
-               <%-- <caption>
-                    <a href="javascript:void (0)" class="newbuilt">新建</a>
-                    <a href="javascript:void (0)" class="delete_c">删除</a>
-                </caption>
---%>
+                <%-- <caption>
+                     <a href="javascript:void (0)" class="newbuilt">新建</a>
+                     <a href="javascript:void (0)" class="delete_c">删除</a>
+                 </caption>
+ --%>
                 <thead>
                 <%-- <tr>
                      <th class="check">序号</th>
@@ -445,44 +445,6 @@
 
             </table>
         </div>
-        <%--新建弹窗--%>
-        <%--  <div class="pop_up" id="poo">
-              <div class="new_b">新建</div>
-              <div class="pop_con">
-                  <div class="con_t">
-                      <div class="con_l">
-                          <div class="con_title">
-                              <div class="title_1">
-                                  <div class="title_label"></div>
-                                  <span class="title_s">表单名称:</span>
-                                  <div class="title_put">
-                                      <input type="text">
-                                  </div>
-                              </div>
-                              <sapn class="title_s">表单父分类:</sapn>
-                              <div class="title_2">
-                                  <select name="" id="" class="select_t"></select>
-                                  <span class>(为空为一级分类)</span>
-                              </div>
-                              <div class="title_3">
-                              <div class="title3_label">
-                                  <span class="title_s">所属部门:</span>
-                              </div>
-                              <div class="select_put">
-                                  <select name="" class="select_t">
-                                      <option value="1">所有部门</option>
-                                  </select>
-                              </div>
-                          </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="con_footer">
-                  <a href="javascript:void(0)" class="footer_btn1">保存</a>
-                  <a href="javascript:void(0)" class="footer_btn2">关闭</a>
-              </div>
-          </div>--%>
         <%--定时任务--%>
         <div class="item item_s">
             <table class="table" cellspacing="0" id="table_task">
@@ -612,23 +574,10 @@
 <script src="../../lib/ueditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../lib/layer/layer.js"></script>
+<script src="../../js/base/base.js"></script>
 
 <script type="text/javascript">
-    /* (function (pro) {
-     function queryUrl() {
-     var reg = /([^?&#=]+)=([^?&#=]+)/g;
-     var obj = {};
-     this.replace(reg,function () {
-     obj[arguments[1]]=arguments[2];
-     });
-     return obj;
-     }
-     pro.queryUrl = queryUrl;
-     })(String.prototype);
-     $(function () {
-     var urlObj = window.location.href.queryUrl();
-     console.log(urlObj.type);
-     });*/
+
     var ue = UE.getEditor('container');
 
     $(function () {
@@ -651,7 +600,7 @@
                             "<tr><th>序号</th><th>名称</th><th>下一步骤</th><th>编辑该步骤的各项属性</th><th>操作</th></tr>";
                         for (var i = 0; i < data.length; i++) {
                             html = html + "<tr>" + "<td>" + data[i].prcsId + "</td>" + "<td>" + data[i].prcsName + "</td>" +
-                                "<td></td>" + "<td style='text-align: center'>基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>" + "<td>"+"<a href='javascript:void(0)'>修改</a><a href='javascript:void(0)'>删除</a>"+"</td>" + "</tr>";
+                                "<td></td>" + "<td style='text-align: center'>基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>" + "<td>" + "<a href='javascript:void(0)'>修改</a><a href='javascript:void(0)'>删除</a>" + "</td>" + "</tr>";
 
                         }
                     }
@@ -794,7 +743,7 @@
                             if (datas[i].deptName) {
                                 u_d_r_Str += "部门:" + datas[i].deptName + "</br>";
                             }
-                            html += "<tr>" + "<td style='display: none'>" + datas[i].id + "</td>" + "<td>" + "<input type='checkbox' privId='" + datas[i].id + "' class='one'>" + "</td>" + "<td>" + typeStr + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + u_d_r_Str + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + datas[i].privScopeName + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)" class="delete_d" privId="' + datas[i].id + '">删除</a>' + "</td>" + "</tr>";
+                            html += "<tr>" + "<td style='display: none'>" + datas[i].id + "</td>" + "<td>" + "<input type='checkbox' privId='" + datas[i].id + "' class='one'>" + "</td>" + "<td>" + typeStr + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + u_d_r_Str + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + datas[i].privScopeName + "</td>" + "<td>" + '<a href="javascript:void(0)" class="powerUpdate" privId="' + datas[i].id + '">修改</a>' + '<a href="javascript:void(0)" class="delete_d" privId="' + datas[i].id + '">删除</a>' + "</td>" + "</tr>";
                         }
                     }
                     $('#table_power').html(html);
@@ -803,6 +752,7 @@
                 }
             })
         }
+
 
         /*管理权限多选删除*/
         $('#table_power').on('click', '#deleteAll', function () {
@@ -840,6 +790,7 @@
             var privId = [];
             var pId = $(this).attr("privId");
             privId.push(pId);
+            console.log(privId)
             $.ajax({
                 type: 'get',
                 url: '<%=basePath%>/flowSetDatas/deleteFlowPriv',
@@ -881,7 +832,7 @@
                     var data_d = data.datas;
                     if (data.flag) {
                         for (var i = 0; i < data_d.length; i++) {
-                            strData += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'  timerId='" + data_d[i].tid + "'>" + "</td>" + "<td>" + data_d[i].typeName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].userName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].remindDate + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].lastTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a class="del" href="javascript:void(0)" timerId="' + data_d[i].tid + '" >删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                            strData += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'  timerId='" + data_d[i].tid + "'>" + "</td>" + "<td>" + data_d[i].typeName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].userName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].remindDate + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].lastTime + "</td>" + "<td>" + '<a href="javascript:void(0)" timerId="' + data_d[i].tid + '" class="privUp">修改</a>' + '<a class="del" href="javascript:void(0)" timerId="' + data_d[i].tid + '" >删除</a>' + "</td>" + "</tr>" + "</tbody>";
                         }
                     }
                     $('#table_task').html(strData);
@@ -914,12 +865,12 @@
             })
         });
         /*定时任务多选删除*/
-        $('#table_task').on('click','#del',function () {
+        $('#table_task').on('click', '#del', function () {
             alert('确定全部删除吗！');
             var timerId = [];
             var checkAlls = $('.one:checked');
-            if(checkAlls){
-                for(var i=0;i<checkAlls.length;i++){
+            if (checkAlls) {
+                for (var i = 0; i < checkAlls.length; i++) {
                     timerId.push($(checkAlls[i]).attr('timerId'));
                 }
             }
@@ -988,7 +939,6 @@
                     'tplId[]': seqId
                 },
                 success: function (data) {
-                    console.log(data);
                     TempPriv();
                 }
             })
@@ -1015,13 +965,12 @@
                 success: function (data) {
                     if (data.flag) {
                         var data = data.datas;
-                        console.log(data);
                         for (var i = 0; i < data.length; i++) {
-                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one' tid="+data[i].tid+">" + "</td>" + "<td>" + data[i].content + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].flowPrcs + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)" class="del_priv"  tid="+data[i].tid+">删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one' tId='" + data[i].tId + "'>" + "</td>" + "<td>" + data[i].content + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].flowPrcs + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)"  tId="' + data[i].tId + '" class="fileUpdate">修改</a>' + '<a href="javascript:void(0)" class="del_priv"  tId="' + data[i].tId + '">删除</a>' + "</td>" + "</tr>" + "</tbody>";
                         }
-                        $('.table_prc').html(html);
-                        checkAll();
                     }
+                    $('.table_prc').html(html);
+                    checkAll();
                 }
 
             })
@@ -1031,22 +980,53 @@
         $('.table_prc').on('click', '.del_priv', function () {
             alert('确定要删除吗！');
             var seqId = [];
-            var tempId = $(this).attr('tid');
+            var tempId = $(this).attr('tId');
             seqId.push(tempId);
+
             $.ajax({
                 url: '<%=basePath%>/flowSetDatas/deleteFlowPrintTpl',
                 type: 'get',
                 dataType: 'json',
                 data: {
-                    'tplId[]': seqId
+                    'tId[]': seqId
                 },
                 success: function (data) {
-                    alert('删除成功！')
-                },
-                error:function (data) {
+                    if (data.flag) {
+                        privFile();
+                        alert('删除成功！')
+                    }
 
-                }
+                },
+
             })
+        })
+        /*应用版式文件多选删除*/
+        $('.table_prc').on('click', '.delete_c', function () {
+            alert('确定删除吗！')
+            var seqId = [];
+            var checkAttr = $('.one:checked')
+            if (checkAttr) {
+                for (var i = 0; i < checkAttr.length; i++) {
+                    seqId.push($(checkAttr[i]).attr('tId'))
+                }
+            }
+            $.ajax({
+                url: '<%=basePath%>/flowSetDatas/deleteFlowPrintTpl',
+                type: 'get',
+                dataType: 'json',
+                data: {
+                    'tId[]': seqId
+                },
+                success: function (data) {
+                    if (data.flag) {
+                        alert('删除成功！')
+                        privFile();
+                    }
+
+                },
+
+            })
+
         })
 
         /*管理权限新建弹窗*/
@@ -1069,33 +1049,39 @@
                 '<div class="title3_label">' +
                 '<span class="title_s">授权范围(人员)</span></div>' +
                 '<div class="select_put">' +
-                '<select name="" class="select_t">' +
-                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>清空</span></div></div>' + '<div class="title_3">' +
+                '<textarea name="txt" id="senduser" user_id="admin" value="admin" disabled></textarea><a style="margin-left: 10px;cursor: pointer" id="selectUser">添加</a><a>清空</a></div></div>' + '<div class="title_3">' +
                 '<div class="title3_label">' +
                 '<span class="title_s">授权范围(部门)</span></div>' +
                 '<div class="select_put">' +
-                '<select name="" class="select_t">' +
-                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>清空</span></div></div>' + '<div class="title_3">' +
+                '<textarea name="txt" id="sendept" dept_id="admin" value="admin" disabled></textarea><span style="margin-left: 10px;cursor: pointer" id="selectUser_t">添加</span><span>清空</span></div></div>' + '<div class="title_3">' +
                 '<div class="title3_label">' +
                 '<span class="title_s">授权范围(角色)</span></div>' +
                 '<div class="select_put">' +
-                '<select name="" class="select_t">' +
-                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>清空</span></div></div>' +
+                '<textarea name="txt" id="sendRole" user_id="admin" value="admin" disabled></textarea><span style="margin-left: 10px;cursor: pointer" id="selectUser_s">添加</span><span>清空</span></div></div>' +
                 '</div></div></div>' +
                 '</div>',
                 area: ['600px', '450px'],
                 btn: ['保存', '关闭'],
                 scrolling: 'no',
                 yes: function () {
+                    var userId = $("#senduser").attr("dataid");
+                    userId=userId.split(',');
+                    var deptId = $('#sendept').attr('deptid');
+                    var deptIdAry = [];
+                    deptIdAry.push(deptId);
+                    var privid = $('#sendRole').attr('privid');
+                    var privIdAry = [];
+                    privIdAry.push(privid);
+
                     var scopeVal = [];
                     scopeVal.push($('#select_ment').val());
                     var data = {
                         privType: $('#select_t').val(),
                         'scope[]': scopeVal,
-                        'user[]': [1, 2, 3],
-                        'role[]': [1, 2, 3],
-                        'dept[]': [1, 2, 3],
-                        'flowId': 1
+                        'user[]': userId,
+                        'role[]': privIdAry,
+                        'dept[]': deptIdAry,
+                        'flowId': 1,
                     };
                     $.ajax({
                         type: 'GET',
@@ -1105,20 +1091,121 @@
                         success: function (data) {
                             if (data.flag) {
                                 alert('新建成功')
+                                renderPriv();
                             } else {
                                 alert('新建失败')
                             }
                         }
                     })
-
                 }
             })
-
+            /*弹窗控件*/
+            $("#selectUser").click(function () {
+                user_id = 'senduser';
+                $.popWindow("../common/selectUser");
+            });
+            $("#selectUser_t").click(function () {
+                dept_id = 'sendept';
+                $.popWindow("../common/selectDept");
+            })
+            $("#selectUser_s").click(function () {
+                priv_id = 'sendRole';
+                $.popWindow("../common/selectPriv");
+            })
+            checkAll();
         });
+        /*管理权限修改*/
+        $('.table').on('click', '.powerUpdate', function () {
+            var privId = $(this).attr("privId");
+            layer.open({
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 10px;color: #fff">修改</p>',
+                shade: 0,
+                content: '<div class="pop_con">' +
+                '<div class="con_t">' +
+                '<div class="con_l">' +
+                '<div class="con_title">' +
+                '<div class="title_1">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">授权类型 *</span>' +
+                '<div class="title_put"><select name="" id="select_t" class="select_t"><option value="1">管理</option><option value="2">监控</option><option value="3">查询</option><option value="4">编辑</option><option value="5">点评</option></select></div></div>' +
+                '<sapn class="title_s">管理范围 *</sapn>' +
+                '<div class="title_2">' +
+                '<select name="" id="select_ment" class="select_t"><option value="-2">所有部门</option><option value="-3">本机构</option><option value="-1">本部门</option></select></div>' +
+                '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">授权范围(人员)</span></div>' +
+                '<div class="select_put">' +
+                '<textarea name="txt" id="senduser" user_id="admin" value="admin" disabled></textarea><a style="margin-left: 10px;cursor: pointer" id="selectUser">添加</a><a>清空</a></div></div>' + '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">授权范围(部门)</span></div>' +
+                '<div class="select_put">' +
+                '<textarea name="txt" id="sendept" dept_id="admin" value="admin" disabled></textarea><span style="margin-left: 10px;cursor: pointer" id="selectUser_t">添加</span><span>清空</span></div></div>' + '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">授权范围(角色)</span></div>' +
+                '<div class="select_put">' +
+                '<textarea name="txt" id="sendRole" user_id="admin" value="admin" disabled></textarea><span style="margin-left: 10px;cursor: pointer" id="selectUser_s">添加</span><span>清空</span></div></div>' +
+                '</div></div></div>' +
+                '</div>',
+                area: ['600px', '450px'],
+                btn: ['保存', '关闭'],
+                scrolling: 'no',
+                yes: function () {
+                    var userId = $("#senduser").attr("dataid");
+                    userId=userId.split(',');
+                    var deptId = $('#sendept').attr('deptid');
+                    var deptIdAry = [];
+                    deptIdAry.push(deptId);
+                    var privid = $('#sendRole').attr('privid');
+                    var privIdAry = [];
+                    privIdAry.push(privid);
+
+                    var scopeVal = [];
+                    scopeVal.push($('#select_ment').val());
+                    var data = {
+                        privType: $('#select_t').val(),
+                        'scope[]': scopeVal,
+                        'user[]': userId,
+                        'role[]': privIdAry,
+                        'dept[]': deptIdAry,
+                        'flowId': 1,
+                        'privId': privId
+                    };
+                    $.ajax({
+                        type: 'GET',
+                        url: '/flowSetDatas/updateFlowPriv',
+                        dataType: 'json',
+                        data: data,
+                        success: function (data) {
+                            if (data.flag) {
+                                alert('修改成功');
+                                renderPriv();
+                            } else {
+                                alert('修改失败')
+                            }
+                        }
+                    })
+                }
+            })
+            /*弹窗控件*/
+            $("#selectUser").click(function () {
+                user_id = 'senduser';
+                $.popWindow("../common/selectUser");
+            });
+            $("#selectUser_t").click(function () {
+                dept_id = 'sendept';
+                $.popWindow("../common/selectDept");
+            })
+            $("#selectUser_s").click(function () {
+                priv_id = 'sendRole';
+                $.popWindow("../common/selectPriv");
+            })
+            checkAll();
+        })
+
         /*定时任务新建弹窗*/
         $('.table').on('click', '.task_n', function () {
             layer.open({
-                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 15px;color: #fff">新建</p>',
                 shade: 0,
                 content: '<div class="pop_con">' +
                 '<div class="con_t">' +
@@ -1133,26 +1220,36 @@
                 '<select name="" id="" class="select_t"><option value=""></option></select></div>' +
                 '<div class="title_3">' +
                 '<div class="title3_label">' +
-                '<span class="title_s">发起人(人员)</span></div>' +
+                '<span class="title_s">发起人 *</span></div>' +
                 '<div class="select_put">' +
-                '<select name="" class="select_t">' +
-                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>删除</span></div></div>' + '<div class="title_3">' +
+                '<textarea name="txt" id="addUser" user_id="admin" value="admin" disabled></textarea><a style="margin-left: 10px;cursor: pointer" id="addSave_u">添加</a><a>清空</a></div></div>' + '<div class="title_3">' +
                 '<div class="title3_label">' +
-                '<span class="title_s">发起人(人员)</span></div>' +
+                '<span class="title_s">发起部门 *</span></div>' +
                 '<div class="select_put">' +
-                '<select name="" class="select_t">' +
-                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>删除</span></div>' + '</div>' +
+                '<textarea name="txt" id="addDep" user_id="admin" value="admin" disabled></textarea><a style="margin-left: 10px;cursor: pointer" id="addSave_d">添加</a><a>清空</a></div>' + '</div>' + '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">发起角色 *</span></div>' +
+                '<div class="select_put">' +
+                '<textarea name="txt" id="addRole" user_id="admin" value="admin" disabled></textarea><a style="margin-left: 10px;cursor: pointer" id="addSave_r">添加</a><a>清空</a></div>' + '</div>' +
                 '</div></div></div>' +
                 '</div>',
                 area: ['600px', '500px'],
                 btn: ['保存', '关闭'],
                 yes: function () {
+                    var userId = $("#addUser").attr("dataid");
+                    userId=userId.split(',');
+                    var deptId = $('#addDep').attr('deptid');
+                    var deptIdAry = [];
+                    deptIdAry.push(deptId);
+                    var privid = $('#addRole').attr('privid');
+                    var privIdAry = [];
+                    privIdAry.push(privid);
                     var data = {
                         type: 1,
                         'date': "2017-03-21 11:55:33",
-                        'user[]': [1, 2, 3],
-                        'role[]': [1, 2, 3],
-                        'dept[]': [1, 2, 3],
+                        'user[]': userId,
+                        'role[]': privIdAry,
+                        'dept[]': deptIdAry,
                         'flowId': 1
                     }
                     $.ajax({
@@ -1168,14 +1265,106 @@
                             }
                         }
                     })
+                }
+            })
+            /*弹窗控件*/
+            $("#addSave_u").click(function () {
+                user_id = 'addUser';
+                $.popWindow("../common/selectUser");
+            });
+            $("#addSave_d").click(function () {
+                dept_id = 'addDep';
+                $.popWindow("../common/selectDept");
+            })
+            $("#addSave_r").click(function () {
+                priv_id = 'addRole';
+                $.popWindow("../common/selectPriv");
+            })
+            checkAll();
+        });
+        /*定时任务修改*/
+        $('.table').on('click', '.privUp', function () {
+            alert('确定要修改吗！');
+            var timerId = $(this).attr('timerId');
+
+            layer.open({
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 15px;color: #fff">新建</p>',
+                shade: 0,
+                content: '<div class="pop_con">' +
+                '<div class="con_t">' +
+                '<div class="con_l">' +
+                '<div class="con_title">' +
+                '<div class="title_1">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">发起频率 *</span>' +
+                '<div class="title_put"><select name="" id="" class="select_t"><option value="1">1</option></select></div></div>' +
+                '<sapn class="title_s">发起时间 *</sapn>' +
+                '<div class="title_2">' +
+                '<select name="" id="" class="select_t"><option value=""></option></select></div>' +
+                '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">发起人 *</span></div>' +
+                '<div class="select_put">' +
+                '<textarea name="txt" id="addUser" user_id="admin" value="admin" disabled></textarea><a style="margin-left: 10px;cursor: pointer" id="addSave_u">添加</a><a>清空</a></div></div>' + '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">发起部门 *</span></div>' +
+                '<div class="select_put">' +
+                '<textarea name="txt" id="addDep" user_id="admin" value="admin" disabled></textarea><a style="margin-left: 10px;cursor: pointer" id="addSave_d">添加</a><a>清空</a></div>' + '</div>' + '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">发起角色 *</span></div>' +
+                '<div class="select_put">' +
+                '<textarea name="txt" id="addRole" user_id="admin" value="admin" disabled></textarea><a style="margin-left: 10px;cursor: pointer" id="addSave_r">添加</a><a>清空</a></div>' + '</div>' +
+                '</div></div></div>' +
+                '</div>',
+                area: ['600px', '500px'],
+                btn: ['保存', '关闭'],
+                yes: function () {
+                    var data = {
+                        type: 1,
+                        'date': "2017-03-21 11:55:33",
+                        'user[]': [1, 2, 3],
+                        'role[]': [1, 2, 3],
+                        'dept[]': [1, 2, 3],
+                        'flowId': 1,
+                        'timerId': timerId
+                    }
+                    $.ajax({
+                        type: 'GET',
+                        url: '<%=basePath%>/flowSetDatas/updateFlowTimer',
+                        dataType: 'json',
+                        data: data,
+                        success: function (data) {
+                            if (data.flag) {
+                                alert('修改成功');
+                                dele();
+                            } else {
+                                alert('修改失败');
+                            }
+                        }
+                    })
 
                 }
             })
+            /*弹窗控件*/
+            $("#addSave_u").click(function () {
+                user_id = 'addUser';
+                $.popWindow("../common/selectUser");
+            });
+            $("#addSave_d").click(function () {
+                dept_id = 'addDep';
+                $.popWindow("../common/selectDept");
+            })
+            $("#addSave_r").click(function () {
+                priv_id = 'addRole';
+                $.popWindow("../common/selectPriv");
+            })
+            checkAll();
         });
+
         /*配置模板查询新建弹窗*/
         $('.table').on('click', '.temp_n', function () {
             layer.open({
-                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 15px;color: #fff">新建</p>',
                 shade: 0,
                 content: '<div class="pop_con">' +
                 '<div class="con_t">' +
@@ -1189,34 +1378,34 @@
                 '</div>',
                 area: ['600px', '500px'],
                 btn: ['保存', '关闭'],
-                yes: function () {
-                    /*   var data = {
-                     'tplName':
-                     'viewFields':
-                     'groupFields':
-                     'flowId': 1
-                     };
-                     $.ajax({
-                     type: 'GET',
-                     url:  '<%=basePath%>/flowSetDatas//newFlowQuertTpl',
-                     dataType: 'json',
-                     data: data,
-                     success: function (data) {
-                     if (data.flag) {
-                     alert('新建成功');
-                     } else {
-                     alert('新建失败');
-                     }
-                     }
-                     });
-                     */
-                }
+                /*  yes: function () {
+                 var data = {
+                 'tplName':
+                 'viewFields':
+                 'groupFields':
+                 'flowId': 1
+                 };
+                 $.ajax({
+                 type: 'GET',
+                 url: '<%=basePath%>/flowSetDatas//newFlowQuertTpl',
+                 dataType: 'json',
+                 data: data,
+                 success: function (data) {
+                 if (data.flag) {
+                 alert('新建成功');
+                 } else {
+                 alert('新建失败');
+                 }
+                 }
+                 });
+                 }*/
+
             })
         });
         /*应用版式文件弹窗*/
         $('.table').on('click', '.file_n', function () {
             layer.open({
-                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 15px;color: #fff">新建</p>',
                 shade: 0,
                 content: '<div class="pop_con">' +
                 '<div class="con_t">' +
@@ -1229,21 +1418,20 @@
                 '<div class="title_2">' +
                 '<div class="title_label"></div>' +
                 '<span class="title_s">模板类别 *</span>' +
-                '<div class="title_put"><select name="" id="select_type" class="select_t"><option value="1" selected="selected">打印模板</option></select></div></div>'+'<div class="title_1">' +
+                '<div class="title_put"><select name="" id="select_type" class="select_t"><option value="1" selected="selected">打印模板</option></select></div></div>' + '<div class="title_1">' +
                 '<div class="title_label"></div>' +
                 '<span class="title_s">模板文件 *</span>' +
-                '<div class="title_put"><input type="text" id="put_file" class="put_file" placeholder="选择模板文件"></div></div>' +
+                '<textarea name="" id="addtext" disabled>选择模板文件</textarea></div>' +
                 '</div></div></div>' +
                 '</div>',
+
                 area: ['600px', '500px'],
                 btn: ['保存', '关闭'],
                 yes: function () {
                     var data = {
-                        'tType': $('#select_type').val(),
                         'tName': $('#select_con').val(),
-                        'content':"",
-                        'flowPrcs':'',
-                        'flowId':1,
+                        'tType': $('#select_type option:selected').val(),
+                        'flowId': 1,
                     }
                     $.ajax({
                         type: 'GET',
@@ -1251,17 +1439,74 @@
                         dataType: 'json',
                         data: data,
                         success: function (data) {
+                            console.log(data)
                             if (data.flag) {
                                 alert('新建成功');
+                                privFile();
                             } else {
                                 alert('新建失败');
                             }
                         }
                     });
-
                 }
             })
         });
+        /*应用版式文件修改*/
+        $('.table').on('click', '.fileUpdate', function () {
+            alert('确定修改吗！')
+            var tId = $(this).attr('tId');
+            layer.open({
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 15px;color: #fff">新建</p>',
+                shade: 0,
+                content: '<div class="pop_con">' +
+                '<div class="con_t">' +
+                '<div class="con_l">' +
+                '<div class="con_title">' +
+                '<div class="title_1">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">模板名称 *</span>' +
+                '<div class="title_put"><input type="text" id="select_con" class="select_t"></div></div>' +
+                '<div class="title_2">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">模板类别 *</span>' +
+                '<div class="title_put"><select name="" id="select_type" class="select_t"><option value="1" selected="selected">打印模板</option></select></div></div>' + '<div class="title_1">' +
+                '<div class="title_label"></div>' +
+                '<span class="title_s">模板文件 *</span>' +
+                '<textarea name="" id="addtext" disabled>选择模板文件</textarea></div>' +
+                '</div></div></div>' +
+                '</div>',
+
+                area: ['600px', '500px'],
+                btn: ['保存', '关闭'],
+                yes: function () {
+                    var data = {
+                        'tName': $('#select_con').val(),
+                        'tType': $('#select_type option:selected').val(),
+                        'flowId': 1,
+                        'tId': tId
+                    }
+                    $.ajax({
+                        type: 'GET',
+                        url: '/flowSetDatas/updateFlowPrintTpl',
+                        dataType: 'json',
+                        data: data,
+                        success: function (data) {
+                            console.log(data)
+                            if (data.flag) {
+                                alert('修改成功');
+                                checkAll();
+                            } else {
+                                alert('修改失败');
+                            }
+                        }
+                    });
+
+                }
+
+            })
+        });
+
+        /*全选非全选*/
         function checkAll() {
             $('.checkAll').on('click', function () {
                 $('.one').prop('checked', $(this).prop('checked'));
@@ -1270,6 +1515,7 @@
                 $('.checkAll').prop('checked', $('.one').length == $('.one:checked').length ? true : false);
             })
         }
+
         checkAll();
     });
 
