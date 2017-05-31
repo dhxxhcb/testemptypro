@@ -29,9 +29,10 @@ var workForm = {
     filter:function(){
         if(this.option.flowStep != -1){
             var steptOpt =  this.option.listFp[this.option.flowStep-1];
-            $(this.option.target).find('.form_item').each(function(){
+           this.option.eleObject.find('.form_item').each(function(){
                 var _this = $(this);
                 if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
+
                     _this.attr("disabled","disabled")
                 }
             });
