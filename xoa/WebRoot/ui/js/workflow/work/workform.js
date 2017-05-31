@@ -140,9 +140,7 @@ var workForm = {
     MacrosRender:function(){
         var that = this;
         var flagStr = "";
-
         that.option.eleObject.find(".AUTO").each(function(index,obj){
-
             if($(this).attr("orghidden") == 1){
                 $(this).attr("hidden","1");
             }
@@ -152,15 +150,33 @@ var workForm = {
         });
         that.tool.MacrosDate.ready(flagStr,function(MacrosDate){
             that.option.eleObject.find(".AUTO").each(function(index,obj){
-
-                if(that.tool.MacrosDate.option[$(this).attr("datafld")]){
-                    var selectObj = $('<select id="'+$(this).attr('name')+'" title="'+$(this).attr('title')+'" data-type="'+$(this).attr('data-type')+'" style="'+$(this).attr('style')+'" datafld="'+$(this).attr('datafld')+'" class="form_item AUTO"></select>');
-                    that.tool.getMacrosDate($(this).attr("datafld"))(selectObj);
-                    $(this).before(selectObj);
-                    $(this).remove();
+                if(that.option.flowStep != -1){
+                    var steptOpt =  that.option.listFp[that.option.flowStep-1];
+                    if(steptOpt.prcsItem.indexOf($(this).attr("title")) != -1){
+                        if(that.tool.MacrosDate.option[$(this).attr("datafld")]){
+                            var selectObj = $('<select id="'+$(this).attr('name')+'" title="'+$(this).attr('title')+'" data-type="'+$(this).attr('data-type')+'" style="'+$(this).attr('style')+'" datafld="'+$(this).attr('datafld')+'" class="form_item AUTO"></select>');
+                            that.tool.getMacrosDate($(this).attr("datafld"))(selectObj);
+                            $(this).before(selectObj);
+                            $(this).remove();
+                        }else{
+                            $(this).val(that.tool.getMacrosDate($(this).attr("datafld")));
+                            $(this).attr("readonly","readonly")
+                        }
+                    }else{
+                        $(this).val("");
+                        $(this).attr("disabled","disabled");
+                    }
                 }else{
-                    $(this).val(that.tool.getMacrosDate($(this).attr("datafld")));
+                    if(that.tool.MacrosDate.option[$(this).attr("datafld")]){
+                        var selectObj = $('<select id="'+$(this).attr('name')+'" title="'+$(this).attr('title')+'" data-type="'+$(this).attr('data-type')+'" style="'+$(this).attr('style')+'" datafld="'+$(this).attr('datafld')+'" class="form_item AUTO"></select>');
+                        that.tool.getMacrosDate($(this).attr("datafld"))(selectObj);
+                        $(this).before(selectObj);
+                        $(this).remove();
+                    }else{
+                        $(this).val(that.tool.getMacrosDate($(this).attr("datafld")));
+                    }
                 }
+
 
             });
 
