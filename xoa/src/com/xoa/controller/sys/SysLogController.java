@@ -5,6 +5,7 @@ import com.xoa.model.common.SysCode;
 import com.xoa.model.common.Syslog;
 import com.xoa.service.common.SysCodeService;
 import com.xoa.service.sys.SysLogService;
+import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.log.FileUtils;
 import com.xoa.util.dataSource.ContextHolder;
@@ -39,7 +40,16 @@ public class SysLogController {
     @Resource
     private SysCodeService sysCodeService;
 
+    @Resource
+    private UsersService userService;
 
+    /**
+     * @创建作者: 王曰岂
+     * @创建日期: 2017/5/31 14:57
+     * @函数介绍: 无
+     * @参数说明: @param paramname paramintroduce
+     * @return: XXType(value introduce)
+     **/
     @RequestMapping("/journal")
     public String journal(HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa"
@@ -344,8 +354,16 @@ public class SysLogController {
 
         for (Syslog log : syslogList) {// 循环list，将数据写到Excel文件中
             HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum() + 1);
-            dataRow.createCell(0).setCellValue(log.getUserId());
-            dataRow.createCell(1).setCellValue(log.getTime());
+
+            //根据用户的id找的用户的name，每条数据都要查询一次，
+            // 以后可以把user的id和name匹配到一个map，每次遍历匹配
+            String userName = userService.getUserNameById(log.getUserId());
+            dataRow.createCell(0).setCellValue(userName);
+
+            SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd hh:MM:ss");
+            String timeString = sdf.format(log.getTime());
+
+            dataRow.createCell(1).setCellValue(timeString);
             dataRow.createCell(2).setCellValue(log.getIp());
             dataRow.createCell(3).setCellValue("");
             dataRow.createCell(4).setCellValue(log.getType());
