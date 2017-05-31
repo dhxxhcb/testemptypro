@@ -1,6 +1,6 @@
 var workForm = {
     option : {
-        formhtmlurl : '../../form/formType',
+        formhtmlurl :domain+ '/form/formType',
         formid : 1,
         target:"",
         flowStep:1,//-1预览
@@ -10,6 +10,9 @@ var workForm = {
     },
     init:function(options,cb){
         var _this = this;
+        if(options.flag == '3'){
+             return _this.getSearchData(cb);
+        }
         $.extend( _this.option, options );
         _this.buildHTML(cb);
     },
@@ -65,7 +68,6 @@ var workForm = {
         target.find('link').each(function () {
             var href = $(this).attr('href');
             var link = domain+'/tdold'+href.substring(22);
-            console.log(link);
             $(this).attr('href',domain+'/tdold'+href.substring(22));
         });
         target.find("input").each(function(){
@@ -128,7 +130,7 @@ var workForm = {
             }
             var radioStr = ' <input name="'+_this.attr('name')+'" checked="checked" id="'+_this.attr('name')+'" title="'+_this.attr('title')+'" type="radio"  radio_field="'+_this.attr('radio_field')+'" orgchecked="'+_this.attr('radio_checked')+'" classname="radio" class="form_item" data-type="radio" />';
             _this.before(radioStr);
-            console.log(radioStr)
+
             _this.remove();
         });
     },
@@ -183,39 +185,54 @@ var workForm = {
     buildHTML:function(cb){
         var that = this;
         layer.load();
-        $.ajax({
-            type: "get",
-            url: that.option.formhtmlurl,
-            dataType: 'JSON',
-            data:  that.option.resdata,
-            success: function (res) {
-                if(res.flag){
-                    var formObj = res.object.flowFormType || res.object;
-                    if(formObj.printModel != ''){
-                        //$(that.option.target).html(formObj.printModel);
-                        if(that.option.flowStep != -1){
-                            that.option.listFp = res.object.listFp
-                        }
-                        that.option.eleObject = $('<div>'+formObj.printModel+'</div>');
-
-                        $(that.option.target).html(that.render());
-                        layer.closeAll();
-                    }else{
-                        layer.closeAll();
-                        layer.msg('没有加载到数据。。', {icon: 6});
-                        var noformdata = '<div class="cont_rig" style="text-align: center;margin-top: 200px;"><div class="noData_out"><div class="noDatas_pic"><img src="../../img/workflow/img_nomessage_03.png"></div><div class="noDatas">抱歉现在还没有表单，请您新建</div></div></div>'
-                        $(that.option.target).html(noformdata);
+        that.tool.ajaxHtml(that.option.resdata,function (res) {
+            if(res.flag){
+                var formObj = res.object.flowFormType || res.object;
+                if(formObj.printModel != ''){
+                    //$(that.option.target).html(formObj.printModel);
+                    if(that.option.flowStep != -1){
+                        that.option.listFp = res.object.listFp
                     }
+                    that.option.eleObject = $('<div>'+formObj.printModel+'</div>');
+                    $(that.option.target).html(that.render());
+                    layer.closeAll();
                 }else{
                     layer.closeAll();
+                    layer.msg('没有加载到数据。。', {icon: 6});
+                    var noformdata = '<div class="cont_rig" style="text-align: center;margin-top: 200px;"><div class="noData_out"><div class="noDatas_pic"><img src="../../img/workflow/img_nomessage_03.png"></div><div class="noDatas">抱歉现在还没有表单，请您新建</div></div></div>'
+                    $(that.option.target).html(noformdata);
                 }
-                if(cb){
-                    return cb(res);
-                }
-                return cb;
-
+            }else{
+                layer.closeAll();
             }
+            if(cb){
+                return cb(res);
+            }
+            return cb;
         });
+    },
+    getSearchData:function (cb) {
+        console.log(this);
+        var that = this;
+        this.tool.ajaxHtml(this.option.resdata,function (data) {
+            var formObj = data.object;
+
+            that.option.eleObject = $('<div>'+formObj.printModel+'</div>');
+
+            that.ReBuild();
+            console.log(that.option.eleObject.find(".form_item"));
+            var arr = [];
+            that.option.eleObject.find(".form_item").each(function () {
+                var _this = $(this);
+                var item = {
+                    name:_this.attr('name'),
+                    title:_this.attr("title"),
+                    dataType:_this.attr('data-type')
+                }
+                arr.push(item);
+            });
+            cb(arr);
+        })
     },
     tool:{
         MacrosDate:{
@@ -357,6 +374,23 @@ var workForm = {
         },
         getMacrosDate:function(flag){
             return this.MacrosDate[flag];
+        },
+        ajaxHtml:function (data,cb) {
+            var that = this;
+            $.ajax({
+                type: "get",
+                url: workForm.option.formhtmlurl,
+                dataType: 'JSON',
+                data:  data,
+                success: function (res) {
+                    if(cb){
+                        cb(res);
+                    }
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            });
         },
         Date_format:function(date, format)
         {
