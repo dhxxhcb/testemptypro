@@ -440,6 +440,7 @@
            //转交下一步
            var obj=data.object.flowRun
            var titleName=obj.runName;
+           console.log(titleName);
            var prcsTo;
            for(var i=0;i<data.object.listFp.length;i++){
                var obj2=data.object.listFp[i];
@@ -524,10 +525,11 @@
 
                     $.ajax({
                         type: "post",
-                        url: "",
+                        url: "../../workflow/work/nextwork",
                         dataType: 'JSON',
                         data: datas,
                         success: function(ret){
+                            console.log(obj.runId);
                             if(ret.flag==true){
                                 //传入的参数
                                 layer.open({
