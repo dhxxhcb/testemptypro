@@ -135,7 +135,7 @@ public class SysLogServiceImpl implements SysLogService {
             String[] dataArr = percentageStr.split("\\.");
             String intStr = dataArr[0];
             String floatStr = dataArr[1].concat("%");
-            percentageStr = intStr.concat(floatStr);
+            percentageStr = intStr.concat(".").concat(floatStr);
             monthInYearCount.add(percentageStr);
         }
 
