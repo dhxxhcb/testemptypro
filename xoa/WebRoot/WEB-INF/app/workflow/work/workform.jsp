@@ -64,7 +64,7 @@
     }
    .tab_one{
         width:100%;
-        height:100%;
+       height: 200%;
     }
     .cont_cone li{
         width: 85%;
@@ -236,6 +236,23 @@
         color:#fff;
         background: #5B7FCB  url("../../../img/workflow/work/add_work/checked.png") no-repeat 20px center;
     }
+    .fujian a,.huiqian a{
+        width: 70px;
+        height: 28px;
+        display: block;
+        text-decoration: none;
+    }
+    .top_one{
+
+        position: absolute;
+        top: 0px;
+
+    }
+    .top_two{
+
+        position: absolute;
+        top: 696px;
+    }
 </style>
 <body>
 <div class="body">
@@ -251,8 +268,8 @@
 
         <div id="tab_t" class="abs_right">
             <ul>
-                <li class="fujian">附件</li>
-                <li class="huiqian">会签</li>
+                <li class="fujian"><a  href="#fu">附件</a></li>
+                <li class="huiqian" ><a  href="#hui">会签</a></li>
                 <li class="liucheng">流程</li>
                 <li class="guanlian">关联</li>
             </ul>
@@ -265,7 +282,7 @@
             </div>
             <div id="tab_c">
                 <div class="tab_one">
-                    <div class="one_all">
+                    <div class="one_all" id="fu">
                         <ul class="cont_cone">
                             <li style="height:21px;position:relative;border:none;"><img class="fujian_logo" src="../../img/workflow/work/add_work/black.png"><h1 class="fujian_h1">附件</h1></li><div class="position"><img src="../../img/workflow/work/add_work/back.png"></div>
                             <li><div class="item_logo"></div><div class="item_word"><h1>Saas事业部5月...任务工单.xlsx</h1><h2>10.8k</h2></div></li>
@@ -274,7 +291,7 @@
                         </ul>
                         <button class="add_fujian">添加附件</button>
                     </div>
-                    <div class="two_all">
+                    <div class="two_all" id="hui">
                         <ul class="cont_ctwo">
                             <li style="height:33px;border: none;"><img class="huiqian_logo" src="../../img/workflow/work/add_work/black.png"><h1 class="huiqian_h1">会签</h1></li>
                             <li style="height:33px;border: none;"><input type="text" class="huiqian_inp"><button class="huiqian_send">发送</button></li>
@@ -352,25 +369,39 @@
 
        //第一个
        $('.fujian').on('click',function(){
+             $('.fujian').find('a').css('color','#fff');
+              $('.huiqian').find('a').css('color','#4889f0');
+              $(this).siblings().removeClass("check");
+              $(this).addClass('check');
+              $('#tab_c').animate({right:'0px'},"slow");
+              $('#tab_ctwo').hide();
+              $('.tab_one').show();
 
-           $(this).siblings().removeClass("check");
-           $(this).addClass('check');
-            $('#tab_c').animate({right:'0px'},"slow");
-            $('#tab_ctwo').hide();
-            $('.tab_one').show();
-            $('.one_all').show();
+
+          /* $('.one_all').addClass('top_one');
+           $('.two_all').addClass('top_two');*/
+            /*$('.tab_one').show();*/
+            /*$('.tab_one').show();*/
+            /*$('.one_all').show();*/
        })
         //第二个
         $('.huiqian').on('click',function(){
+            $('.fujian').find('a').css('color','#4889f0');
+            $(this).find('a').css('color','#fff');
             $(this).siblings().removeClass("check");
             $(this).addClass('check');
-            $('.one_all').hide();
             $('#tab_ctwo').hide();
             $('.tab_one').show();
-            $('.cont_ctwo').show();
+            /*$('.one_all').hide();
+
+            $('.tab_one').show();
+            $('.cont_ctwo').show();*/
+
         })
         //第三个
         $('.liucheng').on('click',function(){
+            $('.huiqian').find('a').css('color','#4889f0');
+            $('.fujian').find('a').css('color','#4889f0');
             $(this).siblings().removeClass("check");
             $(this).addClass('check');
             $('.cont_cthr').siblings().hide();
@@ -380,6 +411,8 @@
         })
         //第四个
         $('.guanlian').on('click',function(){
+            $('.huiqian').find('a').css('color','#4889f0');
+            $('.fujian').find('a').css('color','#4889f0');
             $(this).siblings().removeClass("check");
             $(this).addClass('check');
             $('.cont_cfour').siblings().hide();
