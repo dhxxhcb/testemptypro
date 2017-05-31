@@ -596,6 +596,7 @@ user_id='query_userId';//选人控件
 			$('#uploadimg').click(function(){
 				$('#uploadinputimg').click();
 			});
+
 			$('#uploadinputimg').change(function(e){
 				var target = $(e.target);
 				var file;
