@@ -378,16 +378,16 @@
 			<li><span class="headli1_1">代办工作</span><img class="headli1_2" src="../../img/02.png" alt="">
 			</li>
 
-			<li><span class="headli2_1">办结工作</span><img src="../../img/02.png" alt="" class="headli2_2">
+			<li><span class="headli2_1 endWork"  id="endWork">办结工作</span><img src="../../img/02.png" alt="" class="headli2_2">
 			</li>
 			<li><span class="headli3">关注</span><img src="../../img/02.png" alt="" class="headli2_2"></li>
-			<li data_id="0"><span class="headli1_1">挂起</span><img class="headli1_2" src="../../img/02.png" alt="">
+			<li><span class="headli1_1 hungwork"  id="hungwork">挂起工作</span><img class="headli1_2" src="../../img/02.png" alt="">
 			</li>
 
 			<li><span class="headli2_1">委托</span><img src="../../img/02.png" alt="" class="headli2_2">
 			</li>
 
-			<li id='qbgz_list'><span class="headli3">全部工作</span></li>
+			<li id="allwork" class="allwork"><span class="headli3 allwork"  id="allwork">全部工作</span></li>
 
 		</ul>
 	</div>
@@ -457,7 +457,7 @@
 
 						</tr>
 						</thead>
-						<tbody id="dbgz" calss="tr_td">
+						<tbody id="dbgz" class="tr_td">
 
 						</tbody>
 					</table>
@@ -470,13 +470,66 @@
 			<div class="navigation  clearfix">
 				<div class="left">
 					<img src="../../img/la2.png">
-					<div class="news">全部新闻</div>
+					<div class="news">办结工作</div>
 					<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
 					<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
 				</div>
 				<div class="right">
 					<!-- 分页按钮-->
-					<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
+					<div class="M-box3" id="bjgz"></div>
+				</div>
+			</div>
+			<!--navigation结束-->
+
+			<!--content部分开始-->
+			<div>
+				<div>
+					<table id="tr_td">
+						<thead>
+						<tr>
+							<td class="th">
+								流水号
+							</td>
+							<td class="th">
+								公文名称/文号
+							</td>
+							<td class="th">
+								我经办的步骤
+							</td>
+
+							<td class="th">
+								发起人
+							</td>
+							<td class="th">
+								办结时间
+							</td>
+							<td class="th">
+								流程状态
+							</td>
+							<td class="th">
+								操作
+							</td>
+						</tr>
+						</thead>
+						<tbody id="bjwork" class="tr_td">
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!--content部分结束-->
+
+		</div>
+		<div class="step" style='display:none;'>
+			<div class="navigation  clearfix">
+				<div class="left">
+					<img src="../../img/la2.png">
+					<div class="news">关注工作</div>
+					<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
+					<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
+				</div>
+				<div class="right">
+					<!-- 分页按钮-->
+					<div class="M-box3" id="gzgz"></div>
 				</div>
 			</div>
 
@@ -512,214 +565,7 @@
 							</td>
 						</tr>
 						</thead>
-						<tbody id="j_tb" calss="tr_td">
-						<tr>
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								11
-							</td>
-							<td class="th">
-								1111
-							</td>
-
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								11111
-							</td>
-							<td class="th">
-								11111
-							</td>
-						</tr>
-						<tr>
-							<td class="th">
-								22
-							</td>
-							<td class="th">
-								112
-							</td>
-							<td class="th">
-								11112
-							</td>
-
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								1112
-							</td>
-							<td class="th">
-								111112
-							</td>
-							<td class="th">
-								111112
-							</td>
-
-						</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<!--content部分结束-->
-
-		</div>
-		<div class="step" style='display:none;'>
-			<div class="navigation  clearfix">
-				<div class="left">
-					<img src="../../img/la2.png">
-					<div class="news">全部新闻</div>
-					<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
-					<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
-				</div>
-				<div class="right">
-					<!-- 分页按钮-->
-					<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
-				</div>
-			</div>
-
-			<!--navigation结束-->
-
-			<!--content部分开始-->
-			<div>
-				<div>
-					<table id="tr_td">
-						<thead>
-						<tr>
-							<td class="th">
-								流水号
-							</td>
-							<td class="th">
-								公文名称/文号
-							</td>
-							<td class="th">
-								我经办的步骤
-							</td>
-
-							<td class="th">
-								发起人
-							</td>
-							<td class="th">
-								办结时间
-							</td>
-							<td class="th">
-								流程状态
-							</td>
-							<td class="th">
-								操作
-							</td>
-						</tr>
-						</thead>
-						<tbody id="j_tb" calss="tr_td">
-						<tr>
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								11
-							</td>
-							<td class="th">
-								1111
-							</td>
-
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								11111
-							</td>
-							<td class="th">
-								11111
-							</td>
-						</tr>
-						<tr>
-							<td class="th">
-								22
-							</td>
-							<td class="th">
-								112
-							</td>
-							<td class="th">
-								11112
-							</td>
-
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								1112
-							</td>
-							<td class="th">
-								111112
-							</td>
-							<td class="th">
-								111112
-							</td>
-
-						</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<!--content部分结束-->
-
-		</div>
-
-		<div class="step" style='display:none;'>
-			<div class="navigation  clearfix">
-				<div class="left">
-					<img src="../../img/la2.png">
-					<div class="news">全部新闻</div>
-					<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
-					<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
-				</div>
-				<div class="right">
-					<!-- 分页按钮-->
-					<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
-				</div>
-			</div>
-
-			<!--navigation结束-->
-
-			<!--content部分开始-->
-			<div>
-				<div>
-					<table id="tr_td">
-						<thead>
-						<tr>
-							<td class="th">
-								流水号
-							</td>
-							<td class="th">
-								公文名称/文号
-							</td>
-							<td class="th">
-								我经办的步骤
-							</td>
-
-							<td class="th">
-								发起人
-							</td>
-							<td class="th">
-								办结时间
-							</td>
-							<td class="th">
-								流程状态
-							</td>
-							<td class="th">
-								操作
-							</td>
-						</tr>
-						</thead>
-						<tbody id="j_tb" calss="tr_td">
+						<tbody id="j_tb" class="tr_td">
 						<tr>
 							<td class="th">
 								111
@@ -781,13 +627,13 @@
 			<div class="navigation  clearfix">
 				<div class="left">
 					<img src="../../img/la2.png">
-					<div class="news">全部新闻</div>
+					<div class="news">挂起工作</div>
 					<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
 					<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
 				</div>
 				<div class="right">
 					<!-- 分页按钮-->
-					<div class="M-box3"><span class="active">1</span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="next">下页</a><input type="text" class="jump-ipt"><a href="javascript:;" class="jump-btn">跳转</a></div>
+					<div class="M-box3" id="gqgz"></div>
 				</div>
 			</div>
 
@@ -823,56 +669,8 @@
 							</td>
 						</tr>
 						</thead>
-						<tbody id="j_tb" calss="tr_td">
-						<tr>
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								11
-							</td>
-							<td class="th">
-								1111
-							</td>
+						<tbody id="gqwork" class="tr_td">
 
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								11111
-							</td>
-							<td class="th">
-								11111
-							</td>
-						</tr>
-						<tr>
-							<td class="th">
-								22
-							</td>
-							<td class="th">
-								112
-							</td>
-							<td class="th">
-								11112
-							</td>
-
-							<td class="th">
-								111
-							</td>
-							<td class="th">
-								1112
-							</td>
-							<td class="th">
-								111112
-							</td>
-							<td class="th">
-								111112
-							</td>
-
-						</tr>
 						</tbody>
 					</table>
 				</div>
@@ -885,13 +683,117 @@
 			<div class="navigation  clearfix">
 				<div class="left">
 					<img src="../../img/la2.png">
-					<div class="news">待办工作</div>
+					<div class="news">委托工作</div>
 					<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
 					<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
 				</div>
 				<div class="right">
 					<!-- 分页按钮-->
 					<div class="M-box3"></div>
+				</div>
+			</div>
+
+			<!--navigation结束-->
+
+			<!--content部分开始-->
+			<div>
+				<div>
+					<table id="tr_td">
+						<thead>
+						<tr>
+							<td class="th">
+								流水号
+							</td>
+							<td class="th">
+								公文名称/文号
+							</td>
+							<td class="th">
+								我经办的步骤
+							</td>
+
+							<td class="th">
+								发起人
+							</td>
+							<td class="th">
+								办结时间
+							</td>
+							<td class="th">
+								流程状态
+							</td>
+							<td class="th">
+								操作
+							</td>
+						</tr>
+						</thead>
+						<tbody id="j_tb" class="tr_td">
+						<tr>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11
+							</td>
+							<td class="th">
+								1111
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								11111
+							</td>
+							<td class="th">
+								11111
+							</td>
+						</tr>
+						<tr>
+							<td class="th">
+								22
+							</td>
+							<td class="th">
+								112
+							</td>
+							<td class="th">
+								11112
+							</td>
+
+							<td class="th">
+								111
+							</td>
+							<td class="th">
+								1112
+							</td>
+							<td class="th">
+								111112
+							</td>
+							<td class="th">
+								111112
+							</td>
+
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!--content部分结束-->
+
+		</div>
+
+		<div class="step" style='display:none;'>
+			<div class="navigation  clearfix">
+				<div class="left">
+					<img src="../../img/la2.png">
+					<div class="news">全部工作</div>
+					<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
+					<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
+				</div>
+				<div class="right">
+					<!-- 分页按钮-->
+					<div class="M-box3" id="qbgz_page"></div>
 				</div>
 			</div>
 
@@ -924,7 +826,7 @@
 							</td>
 						</tr>
 						</thead>
-						<tbody id="qbgz" calss="tr_td">
+						<tbody id="qbgz" class="tr_td">
 
 						</tbody>
 					</table>
@@ -942,6 +844,7 @@
         page: 1,
         pageSize:10,
         useFlag: true,
+        userId:'admin',
     };
     $(function(){
         $(".index_head li").click(function(){
@@ -976,12 +879,99 @@
                     str='办理中';
             }
         }
+        $(document).ready(function(){
+            initPageList_db(function (pageCount) {
+                console.log(pageCount);
+                initPagination_db(pageCount, datas.pageSize);
+            },1);
+        })
+
+        $('#allwork').click(function(){
+                initPageList_qb(function (pageCount) {
+                    console.log(pageCount);
+                    initPagination_qb(pageCount,datas.pageSize);
+                },page);
+
+            }
+        );
+
+        $('#endWork').click(function(){
+                initPageList_bj(function (pageCount) {
+                    console.log(pageCount);
+                    initPagination_bj(pageCount,datas.pageSize);
+                },page);
+
+            }
+        );
+
+        $('#hungwork').click(function(){
+                initPageList_gq(function (pageCount) {
+                    console.log(pageCount);
+                    initPagination_gq(pageCount,datas.pageSize);
+                },page);
+
+            }
+        );
+
+        function initPageList_qb(cb) {
+            //var layerIndex = layer.load(0, {shade: false}); /* 0代表加载的风格，支持0-2 */
+            $.ajax({
+                url:'../../workflow/work/selectAll?page=1&pageSize=5&useFlag=true&userId=admin',
+                type:'get',
+                dataType:'json',
+                //data:datas,
+                success:function(data){
+                    console.log(data);
+                    var length=data.obj.length;
+                    var str='';
+                    for(var i=0;i<length;i++){
+                        var status=handleData(data.obj[i].delFlag);
+                        var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
+                            '<td class="th">流程类型</td>'+
+                            '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
+                            '<td class="th">'+data.obj[i].userName+'</td>'+
+                            '<td class="th">我的步骤流程</td>'+
+                            '<td class="th">'+status+'</td>';
+                        //$('#dbgz').html(str);
+                    }
+                    $('#qbgz').html(str);
+                    if (cb) {
+                        alert(data.totleNum);
+                        cb(data.totleNum);
+                    }
+                }
+            })
+        };
+
+        function initPagination_qb(totalData, pageSize) {
+            $('.M-box3').pagination({
+                totalData: totalData,
+                showData: pageSize,
+                jump: true,
+                coping: true,
+                homePage:'',
+                endPage: '',
+                //prevContent: '',
+                //nextContent: '',
+                //jumpBtn: '',
+                callback: function (index) {
+                    var page = index.getCurrent();
+                    console.log(index.getCurrent());
+                    initPageList_qb(function (pageCount) {
+                        console.log(pageCount);
+                        initPagination_qb(pageCount, datas.pageSize);
+                    } ,page);
+                }
+            });
+        }
+
         function initPageList_db(cb,page){
             var datas ={
                 page:page,
                 pageSize:10,
-                useFlag:true
-			};
+                useFlag:true,
+                userId:'admin',
+            };
             $.ajax({
                 url:'../../workflow/work/selectWork',
                 type:'get',
@@ -1013,51 +1003,8 @@
                 }
             });
         }
-        $(document).ready(function(){
-            initPageList_db(function (pageCount) {
-                console.log(pageCount);
-                initPagination(pageCount, datas.pageSize);
-            },1);
-        })
 
-        $("#qbgz_list").click(function(){
-                initPageList(function (pageCount) {
-                    console.log(pageCount);
-                    initPagination(pageCount, datas.pageSize);
-                });
-
-            }
-        );
-        function initPageList(cb) {
-            //var layerIndex = layer.load(0, {shade: false}); /* 0代表加载的风格，支持0-2 */
-            $.ajax({
-                url:'../../workflow/work/selectAll?page=1&pageSize=5&useFlag=true&userId=admin',
-                type:'get',
-                dataType:'json',
-                //data:datas,
-                success:function(data){
-                    console.log(data);
-                    var length=data.obj.length;
-                    var str='';
-                    for(var i=0;i<length;i++){
-                        var status=handleData(data.obj[i].delFlag);
-                        var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
-                            '<td class="th">流程类型</td>'+
-                            '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
-                            '<td class="th">'+data.obj[i].userName+'</td>'+
-                            '<td class="th">我的步骤流程</td>'+
-                            '<td class="th">'+status+'</td>';
-                        //$('#dbgz').html(str);
-                    }
-                    $('#qbgz').html(str);
-                    if (cb) {
-                        alert(data.totleNum);
-                        cb(data.totleNum);
-                    }
-                }
-            })
-        };
-        function initPagination(totalData, pageSize) {
+        function initPagination_db(totalData, pageSize) {
             $('.M-box3').pagination({
                 totalData: totalData,
                 showData: pageSize,
@@ -1069,15 +1016,141 @@
                 //nextContent: '',
                 //jumpBtn: '',
                 callback: function (index) {
-                  var   page = index.getCurrent();
+                    var page = index.getCurrent();
                     console.log(index.getCurrent());
                     initPageList_db(function (pageCount) {
                         console.log(pageCount);
-                        initPagination(pageCount, datas.pageSize);
+                        initPagination_db(pageCount, datas.pageSize);
                     } ,page);
                 }
             });
         }
+
+        function initPageList_bj(cb,page){
+            var datas ={
+                page:page,
+                pageSize:10,
+                useFlag:true,
+                userId:'admin',
+            };
+            $.ajax({
+                url:'../../workflow/work/selectEndWord',
+                //http://192.168.0.21/xoa/workflow/work/selectEndWord?page=1&pageSize=5&useFlag=true&userId=admin
+                type:'get',
+                dataType:'json',
+                data:datas,
+                success:function(data){
+                    console.log(data);
+                    var length=data.obj.length;
+                    var str='';
+                    for(var i=0;i<length;i++){
+                        var status=handleData(data.obj[i].prcsFlag);
+                        var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
+                            '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
+                            '<td class="th">我经办的步骤</td><td class="th">'+data.obj[i].userName+'</td>'+
+                            '<td class="th">'+data.obj[i].deliverTime+'</td><td class="th">流程状态</td>'+
+                            '<td style="text-align:left;" title="主办导出删除">'+
+                            '<a href="javascript:"><span class="host-span">主办</span></a>'+
+                            '<a href=""><span class="operation_text_left">导出</span></a>'+
+                            '<a href="javascript:">'+
+                            '<span class="operation_text_left">删除</span></a></td></tr>';
+                        //$('#dbgz').html(str);
+                    }
+                    $('#bjwork').html(str);
+                    if (cb) {
+                        alert(data.totleNum);
+                        cb(data.totleNum);
+                    }
+                }
+            });
+        }
+
+
+        function initPagination_bj(totalData, pageSize) {
+            $('.M-box3').pagination({
+                totalData: totalData,
+                showData: pageSize,
+                jump: true,
+                coping: true,
+                homePage:'',
+                endPage: '',
+                //prevContent: '',
+                //nextContent: '',
+                //jumpBtn: '',
+                callback: function (index) {
+                    var   page = index.getCurrent();
+                    console.log(index.getCurrent());
+                    initPageList_bj(function (pageCount) {
+                        console.log(pageCount);
+                        initPagination_bj(pageCount, datas.pageSize);
+                    } ,page);
+                }
+            });
+        }
+
+        function initPageList_gq(cb,page){
+            var datas ={
+                page:page,
+                pageSize:10,
+                useFlag:true,
+                userId:'admin',
+            };
+            $.ajax({
+                url:'../../workflow/work/selectHang',
+                //http://192.168.0.21/xoa/workflow/work/selectHang?page=1&pageSize=5&useFlag=true&userId=admin
+                type:'get',
+                dataType:'json',
+                data:datas,
+                success:function(data){
+                    console.log(data);
+                    var length=data.obj.length;
+                    var str='';
+                    for(var i=0;i<length;i++){
+                        var status=handleData(data.obj[i].prcsFlag);
+                        var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
+                            '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
+                            '<td class="th">我经办的步骤</td><td class="th">'+data.obj[i].userName+'</td>'+
+                            '<td class="th">'+data.obj[i].deliverTime+'</td><td class="th">流程状态</td>'+
+                            '<td style="text-align:left;" title="主办导出删除">'+
+                            '<a href="javascript:"><span class="host-span">主办</span></a>'+
+                            '<a href=""><span class="operation_text_left">导出</span></a>'+
+                            '<a href="javascript:">'+
+                            '<span class="operation_text_left">删除</span></a></td></tr>';
+                        //$('#dbgz').html(str);
+                    }
+                    $('#gqwork').html(str);
+                    if (cb) {
+                        alert(data.totleNum);
+                        cb(data.totleNum);
+                    }
+                }
+            });
+        }
+
+
+        function initPagination_gq(totalData, pageSize) {
+            $('.M-box3').pagination({
+                totalData: totalData,
+                showData: pageSize,
+                jump: true,
+                coping: true,
+                homePage:'',
+                endPage: '',
+                //prevContent: '',
+                //nextContent: '',
+                //jumpBtn: '',
+                callback: function (index) {
+                    var   page = index.getCurrent();
+                    console.log(index.getCurrent());
+                    initPageList_gq(function (pageCount) {
+                        console.log(pageCount);
+                        initPagination_gq(pageCount, datas.pageSize);
+                    } ,page);
+                }
+            });
+        }
+
+
     });
     //-->
 </script>
