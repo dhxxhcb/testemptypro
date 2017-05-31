@@ -744,7 +744,7 @@ public class FlowProcess implements Serializable {
     }
 
     public String getTopDefault() {
-        return topDefault == null ? "" : topDefault.trim();
+        return topDefault == null ? "0" : topDefault.trim();
     }
 
     public void setTopDefault(String topDefault) {
@@ -752,7 +752,7 @@ public class FlowProcess implements Serializable {
     }
 
     public String getUserLock() {
-        return userLock == null ? "" : userLock.trim();
+        return userLock == null ? "1" : userLock.trim();
     }
 
     public void setUserLock(String userLock) {
@@ -760,7 +760,7 @@ public class FlowProcess implements Serializable {
     }
 
     public String getSyncDeal() {
-        return syncDeal == null ? "" : syncDeal.trim();
+        return syncDeal == null ? "0" : syncDeal.trim();
     }
 
     public void setSyncDeal(String syncDeal) {
@@ -776,7 +776,7 @@ public class FlowProcess implements Serializable {
     }
 
     public String getTurnPriv() {
-        return turnPriv == null ? "" : turnPriv.trim();
+        return turnPriv == null ? "1" : turnPriv.trim();
     }
 
     public void setTurnPriv(String turnPriv) {
@@ -792,7 +792,7 @@ public class FlowProcess implements Serializable {
     }
 
     public String getGatherNode() {
-        return gatherNode == null ? "" : gatherNode.trim();
+        return gatherNode == null ? "0" : gatherNode.trim();
     }
 
     public void setGatherNode(String gatherNode) {
@@ -800,7 +800,7 @@ public class FlowProcess implements Serializable {
     }
 
     public String getAllowBack() {
-        return allowBack == null ? "" : allowBack.trim();
+        return allowBack == null ? "0" : allowBack.trim();
     }
 
     public void setAllowBack(String allowBack) {

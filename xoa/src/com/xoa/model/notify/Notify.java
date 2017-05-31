@@ -138,9 +138,10 @@ public class Notify {
 	 * 内容简介
 	 */
 	private String summary;
-
+   //用户对象
 	private Users users;
 	private String name;
+
 	private SysCode codes;
 
 	private String notifyDateTime;

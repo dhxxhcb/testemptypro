@@ -32,8 +32,10 @@ public class NetdiskServiceImpl  implements NetdiskService{
      * @see com.xoa.service.netdisk.NetdiskService#addNetdisk(com.xoa.model.netdisk.Netdisk)
      */
 	@Override
-	public void addNetdisk(Netdisk netdisk) {
-		netdiskMapper.addNetdisk(netdisk);
+	public int addNetdisk(Netdisk netdisk) {
+		int a=netdiskMapper.addNetdisk(netdisk);
+
+		return  a;
 		
 	}
     /**
@@ -72,8 +74,9 @@ public class NetdiskServiceImpl  implements NetdiskService{
 	 * @see com.xoa.service.netdisk.NetdiskService#editNetdisk(com.xoa.model.netdisk.Netdisk)
 	 */
 	@Override
-	public void editNetdisk(Netdisk netdisk){
+	public int editNetdisk(Netdisk netdisk){
 		
-		netdiskMapper.editNetdisk(netdisk);
+		int a=netdiskMapper.editNetdisk(netdisk);
+		return a;
 	}
 }

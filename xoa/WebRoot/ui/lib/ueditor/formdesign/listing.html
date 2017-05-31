@@ -35,7 +35,7 @@
         <tr>
             <td>数据来源</td>
             <td>
-                <select>
+                <select id="dataFrom">
                     <option value="inData">内部数据</option>
                     <option value="outData">外部数据</option>
                 </select>
@@ -94,8 +94,8 @@
                 <a style="margin-left: -29px;margin-right: 12px;" title="删除" href="javascript:delete_row(1)"><img src="/img/workflow/delete.png" /></a><input type="hidden" id="row_delete_1" value="0" <="" td="" />
                 <span id="no_1">1</span>
             </td>
-            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_1" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text" /></td>
-            <td nowrap="" id="tdId_1" align="center" title="不能包含特殊字符"><input id="field_1" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_1" type="text" size="18" style="width:90%" class="lv_field" /></td>
+            <td nowrap="" id="tdId_1" align="center" title="不能包含特殊字符"><input id="field_1" type="text" size="5" style="width:70%" class="lv_name" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_1" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"  placeholder="px" /> </td>
             <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_1" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_1" type="checkbox" class="cke_dialog_ui_checkbox_input" /></td>
@@ -107,8 +107,8 @@
                 <a style="margin-left: -29px;margin-right: 12px;" title="删除" href="javascript:delete_row(1)"><img src="/img/workflow/delete.png" /></a><input type="hidden" id="row_delete_1" value="0" <="" td="" />
                 <span id="no_1">2</span>
             </td>
-            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_2" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text" /></td>
-            <td nowrap="" id="tdId_2" align="center" title="不能包含特殊字符"><input id="field_2" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_2" type="text" size="18" style="width:90%" class="lv_field" /></td>
+            <td nowrap="" id="tdId_2" align="center" title="不能包含特殊字符"><input id="field_2" type="text" size="5" style="width:70%" class="lv_title" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_2" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" placeholder="px" /> </td>
             <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_2" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_2" type="checkbox" class="cke_dialog_ui_checkbox_input" /></td>
@@ -120,8 +120,8 @@
                 <a style="margin-left: -29px;margin-right: 12px;" title="删除" href="javascript:delete_row(1)"><img src="/img/workflow/delete.png" /></a><input type="hidden" id="row_delete_1" value="0" <="" td="" />
                 <span id="no_1">3</span>
             </td>
-            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_3" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text" /></td>
-            <td nowrap="" id="tdId_3" align="center" title="不能包含特殊字符"><input id="field_3" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_3" type="text" size="18" style="width:90%" class="lv_field" /></td>
+            <td nowrap="" id="tdId_3" align="center" title="不能包含特殊字符"><input id="field_3" type="text" size="5" style="width:70%" class="lv_title" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_3" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"  placeholder="px" /> </td>
             <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_3" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_3" type="checkbox" class="cke_dialog_ui_checkbox_input" /></td>
@@ -133,8 +133,8 @@
                 <a style="margin-left: -29px;margin-right: 12px;" title="删除" href="javascript:delete_row(1)"><img src="/img/workflow/delete.png" /></a><input type="hidden" id="row_delete_1" value="0" <="" td="" />
                 <span id="no_1">4</span>
             </td>
-            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_4" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text" /></td>
-            <td nowrap="" id="tdId_4" align="center" title="不能包含特殊字符"><input id="field_4" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_4" type="text" size="18" style="width:90%" class="lv_field" /></td>
+            <td nowrap="" id="tdId_4" align="center" title="不能包含特殊字符"><input id="field_4" type="text" size="5" style="width:70%" class="lv_title" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_4" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"  placeholder="px" /> </td>
             <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_4" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_4" type="checkbox" class="cke_dialog_ui_checkbox_input" /></td>
@@ -146,8 +146,8 @@
                 <a style="margin-left: -29px;margin-right: 12px;" title="删除" href="javascript:delete_row(1)"><img src="/img/workflow/delete.png" /></a><input type="hidden" id="row_delete_1" value="0" <="" td="" />
                 <span id="no_1">5</span>
             </td>
-            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_5" type="text" size="18" style="width:90%" class="cke_dialog_ui_input_text" /></td>
-            <td nowrap="" id="tdId_5" align="center" title="不能包含特殊字符"><input id="field_5" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
+            <td nowrap="" align="center" title="不能包含特殊字符"><input id="item_5" type="text" size="18" style="width:90%" class="lv_field" /></td>
+            <td nowrap="" id="tdId_5" align="center" title="不能包含特殊字符"><input id="field_5" type="text" size="5" style="width:70%" class="lv_title" onkeyup="value=value.replace(/[^a-zA-Z0-9]/g,'')" onpaste="value=value.replace(/[^a-zA-Z0-9]/g,'')" oncontextmenu="value=value.replace(/[^a-zA-Z0-9]/g,'')" /></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><input id="size_5" type="text" size="5" style="width:70%" class="cke_dialog_ui_input_text"  placeholder="px" /></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><select id="coltype_5" class="cke_dialog_ui_input_select"><option value="text">单行输入框</option><option value="textarea">多行输入框</option><option value="select">下拉菜单</option><option value="radio">单选框</option><option value="checkbox">复选框</option><option value="datetime">日期</option><option value="dateAndTime">日期+时间</option></select></td>
             <td nowrap="" align="center" title="不能包含特殊字符"><input id="sum_5" type="checkbox" class="cke_dialog_ui_checkbox_input" /></td>
@@ -162,7 +162,7 @@
 <script type="text/javascript">
     $(function () {
         var dataid = $.getQueryString('dataid');
-        var oNode = null,thePlugins = 'checkbox';
+        var oNode = null,thePlugins = 'list';
 
         if( UE.plugins[thePlugins].editdom ){
             oNode = UE.plugins[thePlugins].editdom;
@@ -185,18 +185,30 @@
             var gTitle=$G('orgname').value.replace(/\"/g,"&quot;"),gid = $G('fielid').value;
             if( !oNode ) {
                 try {
-                    oNode = createElement('input','leipiNewField');
+
+                    oNode = createElement('input','list');
                     oNode.setAttribute('title',gTitle);
-                    oNode.setAttribute('type','checkbox');
+                    oNode.setAttribute('type','text');
                     oNode.setAttribute('class', "form_item");
-                    oNode.setAttribute('data-type', "checkbox");
+                    oNode.setAttribute('data-type', "list");
                     oNode.setAttribute('name', 'DATA_' + dataid);
                     oNode.setAttribute('id', 'DATA_' + dataid);
-                    if ($G('orgchecked1').checked) {
-                        oNode.setAttribute('checked','checked');
-                    } else {
-                        oNode.checked = false;
-                    }
+                    oNode.setAttribute('lv_title','');
+                    oNode.setAttribute('lv_sum', '');
+                    oNode.setAttribute('lv_field', '');
+                    oNode.setAttribute('lv_size', '');
+                    oNode.setAttribute('lv_colvalue', '');
+                    oNode.setAttribute('lv_coltype', '');
+                    oNode.setAttribute('datafrom', $('#dataFrom').val());
+                    oNode.setAttribute('lv_cal', '');
+
+
+
+//                    if ($G('orgchecked1').checked) {
+//                        oNode.setAttribute('checked','checked');
+//                    } else {
+//                        oNode.checked = false;
+//                    }
                     editor.execCommand('insertHtml',oNode.outerHTML);
                     return true ;
                 } catch ( e ) {
@@ -223,7 +235,16 @@
                 return true;
             }
         };
+        $("#dataFrom").change(function () {
+            if($("#dataFrom").val() == "inData"){
+                $('#inData').show();
+                $('#outData').hide();
+            }else{
+                $('#inData').hide();
+                $('#outData').show();
+            }
 
+        });
     });
 
 </script>

@@ -332,6 +332,7 @@
 		.button-operation {
 			float: left;
 			padding-top: 4px;
+			padding-bottom: 10px;
 		}
 		.btn-success {
 			border: 1px solid #359947;
@@ -910,7 +911,7 @@
                 initPageList_bj(function (pageCount) {
                     console.log(pageCount);
                     initPagination_bj(pageCount,datas.pageSize);
-                },page);
+                },1);
 
             }
         );
@@ -919,7 +920,7 @@
                 initPageList_gq(function (pageCount) {
                     console.log(pageCount);
                     initPagination_gq(pageCount,datas.pageSize);
-                },page);
+                },1);
 
             }
         );

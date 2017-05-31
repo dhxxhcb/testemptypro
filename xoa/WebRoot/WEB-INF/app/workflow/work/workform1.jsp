@@ -71,8 +71,21 @@ workForm.init({
     function(data){
         console.log(data);
     });
-})
-    
+
+
+
+    workForm.init({
+            formhtmlurl:'../../form/formType',
+            resdata:{
+                fromId:formid
+            },
+            flag:3
+        },
+        function(data){
+            console.log(data);
+        });
+    });
+
 </script>
 </body>
 </html>

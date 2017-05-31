@@ -11,7 +11,7 @@ import java.util.Date;
  * Created by eagle on 2017/5/24.
  * 测试类，没什么用了
  */
-public class DateConvert implements Converter<Date, String> {
+public class  DateConvert implements Converter<Date, String> {
 
     private final SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
     private final SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

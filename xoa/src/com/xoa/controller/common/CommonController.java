@@ -73,6 +73,11 @@ public class CommonController {
 				"loginDateSouse"));
 		return "app/sys/userManagement";
 	}
-
+	@RequestMapping("/systemCode")
+	public String systemCode(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/sysCode";
+	}
 	
 }

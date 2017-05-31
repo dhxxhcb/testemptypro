@@ -2,7 +2,6 @@
 body{font-family: "微软雅黑";position: relative;top: 0;left: 0;width: 100%;height: 100%;}
 a{text-decoration: none;color: #2B7FE0;}
 ul{list-style: none;}
-.content{padding-bottom: 10px;}
 .head{border-bottom: 1px solid #9E9E9E;height: 42px;width: 100%;margin: 0 auto;padding-bottom: 3px;}
 .head li{width: 120px;height: 28px;line-height: 28px;display: inline-block;float: left;font-family: "微软雅黑";font-size: 14px;margin-left: 20px;margin-top: 6px;cursor: pointer;}
 .head .headli{width: 90px;display: inline-block;text-align: center;}
@@ -14,8 +13,40 @@ table{width: 60%;margin:0 auto;font-size: 14px;margin-top: 10px;}
 table tr{border: 1px solid #c0c0c0;}
 .table table tr td{padding: 5px;border-right: 1px solid #c0c0c0;}
 .tabTwo table tr td:last-of-type{border-right: 1px solid #c0c0c0;}
-.tabTwo{margin-top: 15px;}
+.tabTwo{margin-top: 15px;margin-bottom: 20px;}
 .tabTwo table tr td{padding: 5px;text-align: center;}
 .yearEcharts{width: 100%;}
 .selectYear{width: 168px;border: 1px solid #d0d0d0;border-radius: 3px;margin: 10px 20px;float: left;font-size: 14px;font-family: '微软雅黑';height: 30px;line-height: 30px;}
 .selectMonth{width: 80px;border: 1px solid #d0d0d0;border-radius: 3px;margin: 10px 0px;float: left;font-size: 14px;font-family: '微软雅黑';height: 30px;line-height: 30px;}
+.tabTwo table tr:nth-child(even){background-color: #F6F7F9;}
+.tabTwo table tr:nth-child(odd){background-color: #fff;}
+
+.sureBtn{
+    width: 53px;
+    margin: 5px auto;
+}
+.sureBtn input#Btn{
+    padding: 0 6px;
+    border-radius: 5px;
+    border-width:1px;
+    border-style:solid;
+    background-color: #eee;
+    cursor: pointer;
+    margin-left: 5px;
+    line-height: 23px;
+}
+.table table tr td input[type="text"]{
+    width: 200px;
+    height: 25px;
+}
+.emptyBtn{
+    font-size: 14px;
+    width: 130px;
+    height: 30px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #eee;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}

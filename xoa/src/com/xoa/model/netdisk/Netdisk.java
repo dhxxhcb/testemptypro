@@ -49,292 +49,100 @@ public class Netdisk {
      * 备注
      */
     private String remark;
-    /**
-     * 
-     * @Title: getDiskName
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
-    public String getDiskName() {
-        return diskName;
-    }
-    /**
-     * 
-     * @Title: setDiskName
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param diskName   
-     * @return: void   
-     * @throws
-     */
-    public void setDiskName(String diskName) {
-        this.diskName = diskName == null ? null : diskName.trim();
-    }
-    /**
-     * 
-     * @Title: getDiskPath
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
-    public String getDiskPath() {
-        return diskPath;
-    }
-    /**
-     * 
-     * @Title: setDiskPath
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param diskPath   
-     * @return: void   
-     * @throws
-     */
-    public void setDiskPath(String diskPath) {
-        this.diskPath = diskPath == null ? null : diskPath.trim();
-    }
-    /**
-     * 
-     * @Title: getNewUser
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
-    public String getNewUser() {
-        return newUser;
-    }
-    /**
-     * 
-     * @Title: setNewUser
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param newUser   
-     * @return: void   
-     * @throws
-     */
-    public void setNewUser(String newUser) {
-        this.newUser = newUser == null ? null : newUser.trim();
-    }
-    /**
-     * 
-     * @Title: getManageUser
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
-    public String getManageUser() {
-        return manageUser;
-    }
-    /**
-     * 
-     * @Title: setManageUser
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param manageUser   
-     * @return: void   
-     * @throws
-     */
-    public void setManageUser(String manageUser) {
-        this.manageUser = manageUser == null ? null : manageUser.trim();
-    }
-    /**
-     * 
-     * @Title: getUserId
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
-    public String getUserId() {
-        return userId;
-    }
-    /**
-     * 
-     * @Title: setUserId
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param userId   
-     * @return: void   
-     * @throws
-     */
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
-    }
-    /**
-     * 
-     * @Title: getDownUser
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
-    public String getDownUser() {
-        return downUser;
-    }
-    /**
-     * 
-     * @Title: setDownUser
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param downUser   
-     * @return: void   
-     * @throws
-     */
-    public void setDownUser(String downUser) {
-        this.downUser = downUser == null ? null : downUser.trim();
-    }
-    /**
-     * 
-     * @Title: getRemark
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
-    public String getRemark() {
-        return remark;
-    }
-    /**
-     * 
-     * @Title: setRemark
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param remark   
-     * @return: void   
-     * @throws
-     */
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
-    }
-    /**
-     * 
-     * @Title: getDiskId
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: Integer   
-     * @throws
-     */
+
     public Integer getDiskId() {
-        return diskId;
+        return diskId==null?0:diskId;
     }
-    /**
-     * 
-     * @Title: setDiskId
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param diskId   
-     * @return: void   
-     * @throws
-     */
+
     public void setDiskId(Integer diskId) {
         this.diskId = diskId;
     }
-    /**
-     * 
-     * @Title: getDiskNo
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: Integer   
-     * @throws
-     */
+
     public Integer getDiskNo() {
         return diskNo;
     }
-    /**
-     * 
-     * @Title: setDiskNo
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param diskNo   
-     * @return: void   
-     * @throws
-     */
+
     public void setDiskNo(Integer diskNo) {
         this.diskNo = diskNo;
     }
-    /**
-     * 
-     * @Title: getSpaceLimit
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: Integer   
-     * @throws
-     */
+
     public Integer getSpaceLimit() {
-        return spaceLimit;
+        return spaceLimit==null?0:spaceLimit;
     }
-    /**
-     * 
-     * @Title: setSpaceLimit
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param spaceLimit   
-     * @return: void   
-     * @throws
-     */
+
     public void setSpaceLimit(Integer spaceLimit) {
         this.spaceLimit = spaceLimit;
     }
-    /**
-     * 
-     * @Title: getOrderBy
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
+
     public String getOrderBy() {
-        return orderBy;
+        return orderBy==null?"":orderBy;
     }
-    /**
-     * 
-     * @Title: setOrderBy
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param orderBy   
-     * @return: void   
-     * @throws
-     */
+
     public void setOrderBy(String orderBy) {
-        this.orderBy = orderBy == null ? null : orderBy.trim();
-    } 
-    /**
-     * 
-     * @Title: getAscDesc
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @return   
-     * @return: String   
-     * @throws
-     */
-    public String getAscDesc() {
-        return ascDesc;
+        this.orderBy = orderBy;
     }
-    /**
-     * 
-     * @Title: setAscDesc
-     * @Description: TODO
-     * @author(作者): 张丽军
-     * @param: @param ascDesc   
-     * @return: void   
-     * @throws
-     */
+
+    public String getAscDesc() {
+        return ascDesc==null?"":ascDesc;
+    }
+
     public void setAscDesc(String ascDesc) {
-        this.ascDesc = ascDesc == null ? null : ascDesc.trim();
+        this.ascDesc = ascDesc;
+    }
+
+    public String getDiskName() {
+        return diskName==null?"":diskName;
+    }
+
+    public void setDiskName(String diskName) {
+        this.diskName = diskName;
+    }
+
+    public String getDiskPath() {
+        return diskPath==null?"":diskPath;
+    }
+
+    public void setDiskPath(String diskPath) {
+        this.diskPath = diskPath;
+    }
+
+    public String getNewUser() {
+        return newUser==null?"":newUser;
+    }
+
+    public void setNewUser(String newUser) {
+        this.newUser = newUser;
+    }
+
+    public String getManageUser() {
+        return manageUser==null?"":manageUser;
+    }
+
+    public void setManageUser(String manageUser) {
+        this.manageUser = manageUser;
+    }
+
+    public String getUserId() {
+        return userId==null?"":userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getDownUser() {
+        return downUser==null?"":downUser;
+    }
+
+    public void setDownUser(String downUser) {
+        this.downUser = downUser;
+    }
+
+    public String getRemark() {
+        return remark==null?"":remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

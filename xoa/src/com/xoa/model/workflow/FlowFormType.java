@@ -62,7 +62,6 @@ public class FlowFormType implements Serializable {
         * 分类名称
         */
     private String sortName;
-
        public String getSortName() {
            return sortName==null?"未分类":sortName;
        }
