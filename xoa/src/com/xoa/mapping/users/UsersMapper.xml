@@ -930,13 +930,13 @@
             <if test="sex != null and sex !=''">
                 SEX = #{sex},
             </if>
-            <if test="birthday != null and birthday !=''">
+            <if test="birthday != null ">
                 BIRTHDAY = #{birthday},
             </if>
             <if test="isLunar != null and isLunar !=''">
                 IS_LUNAR = #{isLunar},
             </if>
-            <if test="telNoDept != null and telNoDept !=''">
+            <if test="telNoDept != null">
                 TEL_NO_DEPT = #{telNoDept},
             </if>
             <if test="faxNoDept != null and faxNoDept !=''">
@@ -957,19 +957,19 @@
             <if test="bpNo != null and bpNo !=''">
                 BP_NO = #{bpNo},
             </if>
-            <if test="email != null and email !=''">
+            <if test="email != null ">
                 EMAIL = #{email},
             </if>
-            <if test="oicqNo != null and oicqNo !=''">
+            <if test="oicqNo != null ">
                 OICQ_NO = #{oicqNo},
             </if>
-            <if test="icqNo != null and icqNo !=''">
+            <if test="icqNo != null">
                 ICQ_NO = #{icqNo},
             </if>
-            <if test="msn != null and msn !=''">
+            <if test="msn != null ">
                 MSN = #{msn},
             </if>
-            <if test="avatar != null and avatar !=''">
+            <if test="avatar != null ">
                 AVATAR = #{avatar},
             </if>
             <if test="callSound != null and callSound !=''">
