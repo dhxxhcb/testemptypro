@@ -103,7 +103,24 @@
             </select>
         </div>
         <div class="yearEcharts">
-            <div id="main" style="width: 600px;height:400px;"></div>
+            <div id="main" style="width: 60%;height:400px;margin: 0 auto;"></div>
+        </div>
+        <div class="tabTwo">
+            <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
+                <tr>
+                    <td colspan="4">2017年度按月访问数据</td>
+                </tr>
+                <tr>
+                    <td>1月</td>
+                    <td>0%</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>2月</td>
+                    <td>0%</td>
+                    <td>0</td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
