@@ -6,13 +6,22 @@ import com.xoa.model.common.Syslog;
 import com.xoa.service.common.SysCodeService;
 import com.xoa.service.sys.SysLogService;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.log.FileUtils;
 import com.xoa.util.dataSource.ContextHolder;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -31,6 +40,13 @@ public class SysLogController {
     private SysCodeService sysCodeService;
 
 
+    @RequestMapping("/journal")
+    public String journal(HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa"
+                + (String) request.getSession().getAttribute("loginDateSouse"));
+        return "app/sys/journal";
+    }
+
     /**
      * @创建作者: 韩成冰
      * @创建日期: 2017/5/27 9:58
@@ -39,10 +55,10 @@ public class SysLogController {
      * @return: Json
      **/
     @ResponseBody
-    @RequestMapping(value = "/getLogMessage")
+    @RequestMapping(value = "/getLogMessage", produces = {"application/json;charset=UTF-8"})
     public ToJson<Map> getLogMessage(HttpServletRequest request) {
-  /*      ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));*/
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         ToJson<Map> tojson = new ToJson<Map>(0, "");
         HashMap<String, Long> logMap = new HashMap<String, Long>();
 
@@ -69,10 +85,10 @@ public class SysLogController {
      * @return: json
      **/
     @ResponseBody
-    @RequestMapping(value = "/getTenLog")
+    @RequestMapping(value = "/getTenLog", produces = {"application/json;charset=UTF-8"})
     public ToJson<Syslog> getTenLog(HttpServletRequest request) {
- /*       ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));*/
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         ToJson<Syslog> tojson = new ToJson<Syslog>(0, "");
         try {
 
@@ -96,10 +112,10 @@ public class SysLogController {
      * @return: json
      **/
     @ResponseBody
-    @RequestMapping("/getEachMouthLogData")
+    @RequestMapping(value = "/getEachMouthLogData", produces = {"application/json;charset=UTF-8"})
     public ToJson<Object> getEachMouthLogData(String year, String month, HttpServletRequest request) {
-       /* ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));*/
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         ToJson<Object> tojson = new ToJson<Object>(0, "");
         ArrayList<Object> monthDayData = new ArrayList<Object>();
         try {
@@ -127,7 +143,7 @@ public class SysLogController {
      * @return: json
      **/
     @ResponseBody
-    @RequestMapping("/getYear")
+    @RequestMapping(value = "/getYear", produces = {"application/json;charset=UTF-8"})
     public ToJson<Integer> getYear(HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
@@ -157,8 +173,8 @@ public class SysLogController {
     @ResponseBody
     @RequestMapping(value = "/getMonth", produces = {"application/json;charset=UTF-8"})
     public ToJson<Integer> getMonth(HttpServletRequest request, String year) {
-    /*    ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));*/
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         ToJson<Integer> toJson = new ToJson<Integer>(0, "");
         try {
             Integer endMonth = sysLogService.getMonth(year);
@@ -171,11 +187,18 @@ public class SysLogController {
         return toJson;
     }
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 9:47
+     * @函数介绍: 时段统计
+     * @参数说明: @param HttpServletRequest
+     * @return: json
+     **/
     @ResponseBody
-    @RequestMapping(value = "/getHourLog")
+    @RequestMapping(value = "/getHourLog", produces = {"application/json;charset=UTF-8"})
     public ToJson<Object> getHourLog(HttpServletRequest request) {
-    /*    ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));*/
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         List<Object> hourDataList = new ArrayList<Object>();
 
         ToJson<Object> toJson = new ToJson<Object>(0, "");
@@ -191,8 +214,15 @@ public class SysLogController {
 
     }
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 9:48
+     * @函数介绍: 获取日志所有类型
+     * @参数说明: @param HttpServletRequest
+     * @return: json
+     **/
     @ResponseBody
-    @RequestMapping("/getLogType")
+    @RequestMapping(value = "/getLogType", produces = {"application/json;charset=UTF-8"})
     public ToJson<SysCode> getLogType(HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
@@ -210,14 +240,134 @@ public class SysLogController {
 
     }
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 9:49
+     * @函数介绍: 日志管理
+     * param type      日志类型id
+     * param uid       多个用户的id数组
+     * param startTime 日志开始时间
+     * param endTime   日志结束时间
+     * param syslog    属性中的ip,备注
+     * param request
+     * return: json
+     **/
     @ResponseBody
-    @RequestMapping(value = "/logManage")
-    public ToJson<Syslog> logManage(HttpServletRequest request, String optionType,Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog) {
- /*       ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));*/
+    @RequestMapping(value = "/logManage", produces = {"application/json;charset=UTF-8"})
+    public ToJson<Syslog> findLogManage(HttpServletRequest request, Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
 
-       List<Syslog> syslogList = sysLogService.logManage(optionType,type, uid, startTime, endTime, syslog);
+        ToJson<Syslog> toJson = new ToJson<Syslog>(0, "");
+        //查询成功
+        List<Syslog> syslogList;
+        try {
+            syslogList = sysLogService.logManage(type, uid, startTime, endTime, syslog);
+            toJson.setObj(syslogList);
+            toJson.setMsg("OK");
+            toJson.setFlag(0);
+
+        } catch (Exception e) {
+            toJson.setMsg(e.getMessage());
+        }
+        return toJson;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 10:36
+     * @函数介绍: 删除日志
+     * param type      日志类型id
+     * param uid       多个用户的id数组
+     * param startTime 日志开始时间
+     * param endTime   日志结束时间
+     * param syslog    属性中的ip,备注
+     * param request
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/deleteSyslog", produces = {"application/json;charset=UTF-8"})
+    public ToJson<Syslog> deleteSyslog(HttpServletRequest request, Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+
+        ToJson<Syslog> toJson = new ToJson<Syslog>(0, "");
+
+        try {
+            sysLogService.deleteSyslog(type, uid, startTime, endTime, syslog);
+            toJson.setMsg("OK");
+            toJson.setFlag(0);
+        } catch (Exception e) {
+            toJson.setMsg(e.getMessage());
+        }
+        return toJson;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 10:36
+     * @函数介绍: 导出日志
+     * param type      日志类型id
+     * param uid       多个用户的id数组
+     * param startTime 日志开始时间
+     * param endTime   日志结束时间
+     * param syslog    属性中的ip,备注
+     * param request
+     * @return: json
+     **/
+    @RequestMapping(value = "/exportLogXls", produces = {"application/json;charset=UTF-8"})
+    public String exportLogXls(HttpServletResponse response, HttpServletRequest request, Integer type, String[] uid1, Date startTime, Date endTime, Syslog syslog) throws IOException, ParseException {
+
+
+        syslog = new Syslog();
+        syslog.setIp("192.168.0.204");
+        syslog.setRemark("");
+        String[] uid = {"admin"};
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:SS");
+        startTime = sdf.parse("2017-02-02 00:00:00");
+        endTime = sdf.parse("2017-05-30 00:00:00");
+
+
+        // 查询所有的分区数据
+        List<Syslog> syslogList = sysLogService.logManage(type, uid, startTime, endTime, syslog);
+        // 将list集合中的数据写到一个Excel文件中
+        HSSFWorkbook workbook = new HSSFWorkbook();// 创建一个Excel文件，当前这个文件在内存中
+        HSSFSheet sheet = workbook.createSheet("日志数据");// 创建一个sheet页
+        HSSFRow headRow = sheet.createRow(0);// 创建标题行
+        headRow.createCell(0).setCellValue("用户姓名");
+        headRow.createCell(1).setCellValue("时间");
+        headRow.createCell(2).setCellValue("IP地址");
+        headRow.createCell(3).setCellValue("ip所在地");
+        headRow.createCell(4).setCellValue("日志类型");
+        headRow.createCell(5).setCellValue("备注");
+
+        for (Syslog log : syslogList) {// 循环list，将数据写到Excel文件中
+            HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum() + 1);
+            dataRow.createCell(0).setCellValue(log.getUserId());
+            dataRow.createCell(1).setCellValue(log.getTime());
+            dataRow.createCell(2).setCellValue(log.getIp());
+            dataRow.createCell(3).setCellValue("");
+            dataRow.createCell(4).setCellValue(log.getType());
+            dataRow.createCell(5).setCellValue(log.getRemark());
+
+        }
+
+        // 文件下载：一个流（输出流）、两个头
+        ServletOutputStream out = response.getOutputStream();
+
+        String filename = "系统日志.xls";
+        filename = FileUtils.encodeDownloadFilename(filename,
+                request.getHeader("user-agent"));
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("content-disposition",
+                "attachment;filename=" + filename);
+        workbook.write(out);
 
         return null;
+
     }
 }
+
+
+

@@ -19,10 +19,6 @@ import java.util.*;
 @Service
 public class SysLogServiceImpl implements SysLogService {
 
-    //操作：1 查询，2导出，3删除。
-    private final String LOG_OPTION_FIND = "1";
-    private final String LOG_OPTION_OUT = "2";
-    private final String LOG_OPTION_DELETE = "3";
 
     @Resource
     private SysLogMapper sysLogMapper;
@@ -189,6 +185,14 @@ public class SysLogServiceImpl implements SysLogService {
 
     }
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 9:56
+     * @函数介绍: 获取某月每天的日志信息
+     * @参数说明: @param String year
+     * @参数说明: @param String month
+     * @return: List
+     **/
     @Override
     public List<Object> getEachDayLogData(String year, String month) {
 
@@ -425,7 +429,13 @@ public class SysLogServiceImpl implements SysLogService {
         return dayLogDataList;
     }
 
-
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 9:55
+     * @函数介绍: 获取日志时段信息
+     * @参数说明: 无
+     * @return: List<Object></Object>
+     **/
     @Override
     public List<Object> getHourLog() {
         List<Object> hourDataList = new ArrayList<Object>();
@@ -464,78 +474,89 @@ public class SysLogServiceImpl implements SysLogService {
     }
 
     /**
-     * @param optionType 操作类型， 1 查询，2导出， 3 删除
      * @param type
-     * @param uid        多个用户的id数组
-     * @param startTime  日志开始时间
-     * @param endTime    日志结束时间
-     * @param syslog     属性中的ip,备注     @创建作者: 韩成冰
+     * @param uid       多个用户的id数组
+     * @param startTime 日志开始时间
+     * @param endTime   日志结束时间
+     * @param syslog    属性中的ip,备注     @创建作者: 韩成冰
      * @创建日期: 2017/5/30 11:35
      * @函数介绍: 日志管理
      * @return: List<Syslog></Syslog>
      **/
     @Override
-    public List<Syslog> logManage(String optionType, Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog) {
-
+    public List<Syslog> logManage(Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog) {
 
 
         //查询
-        List<Syslog> syslogList;
-        if (LOG_OPTION_FIND.equals(optionType)) {
-            Map<String, Object> hashMap = new HashMap<String, Object>();
-            if (uid != null) {
-                hashMap.put("ids", uid);
-            }
-            if (startTime != null) {
+        List<Syslog> syslogList ;
 
-                hashMap.put("startTime", startTime);
-            }
-            if (endTime != null) {
+        Map<String, Object> hashMap = new HashMap<String, Object>();
+        if (uid != null) {
+            hashMap.put("ids", uid);
+        }
+        if (startTime != null) {
 
-                hashMap.put("endTime", endTime);
-            }
-            if (syslog.getIp() != null) {
-                hashMap.put("ip", syslog.getIp());
-            }
-            if (syslog.getRemark() != null) {
-                hashMap.put("remark", syslog.getRemark());
-            }
-            if (type != null) {
-                hashMap.put("type", type);
-            }
-            syslogList = sysLogMapper.findLogOption(hashMap);
+            hashMap.put("startTime", startTime);
+        }
+        if (endTime != null) {
+
+            hashMap.put("endTime", endTime);
+        }
+        if (syslog.getIp() != null) {
+            hashMap.put("ip", syslog.getIp());
+        }
+        if (syslog.getRemark() != null) {
+            hashMap.put("remark", syslog.getRemark());
+        }
+        if (type != null) {
+            hashMap.put("type", type);
         }
 
-        if(LOG_OPTION_DELETE.equals(optionType)){
 
-            Map<String, Object> hashMap = new HashMap<String, Object>();
-            if (uid != null) {
-                hashMap.put("ids", uid);
-            }
-            if (startTime != null) {
+        syslogList = sysLogMapper.findLogOption(hashMap);
+        return syslogList;
 
-                hashMap.put("startTime", startTime);
-            }
-            if (endTime != null) {
+    }
 
-                hashMap.put("endTime", endTime);
-            }
-            if (syslog.getIp() != null) {
-                hashMap.put("ip", syslog.getIp());
-            }
-            if (syslog.getRemark() != null) {
-                hashMap.put("remark", syslog.getRemark());
-            }
-            if (type != null) {
-                hashMap.put("type", type);
-            }
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/31 10:36
+     * @函数介绍: 删除日志
+     * param type      日志类型id
+     * param uid       多个用户的id数组
+     * param startTime 日志开始时间
+     * param endTime   日志结束时间
+     * param syslog    属性中的ip,备注
+     * param request
+     * @return: 无
+     */
+    @Override
+    public void deleteSyslog(Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog) {
 
-            sysLogMapper.deleteLogOption(hashMap);
+        Map<String, Object> hashMap = new HashMap<String, Object>();
+        if (uid != null) {
+            hashMap.put("ids", uid);
+        }
+        if (startTime != null) {
+
+            hashMap.put("startTime", startTime);
+        }
+        if (endTime != null) {
+
+            hashMap.put("endTime", endTime);
+        }
+        if (syslog.getIp() != null) {
+            hashMap.put("ip", syslog.getIp());
+        }
+        if (syslog.getRemark() != null) {
+            hashMap.put("remark", syslog.getRemark());
+        }
+        if (type != null) {
+            hashMap.put("type", type);
         }
 
-        //SysLogMapper.deleteLogOption(hashMap);
+        sysLogMapper.deleteLogOption(hashMap);
 
-        return null;
     }
 
 
@@ -566,7 +587,6 @@ public class SysLogServiceImpl implements SysLogService {
                 int dayCount = Integer.parseInt(thisDay.substring(6, 8));
                 map.put("thisMonthdayCount", "" + dayCount);
             }
-
         }
         return map;
 
@@ -577,8 +597,8 @@ public class SysLogServiceImpl implements SysLogService {
      * @创建作者: 韩成冰
      * @创建日期: 2017/5/26 20:32
      * @函数介绍: 计算两个时间之间的天数，比如处理2017-5-27:22:22:22 到2017-5-28:22:22:22之间是2天。
-     * @参数说明: @param paramname paramintroduce
-     * @return: XXType(value introduce)
+     * @参数说明: @param startDay 日志开始的时间
+     * @return: int
      **/
     public int getDay(Date startDay) throws ParseException {
 

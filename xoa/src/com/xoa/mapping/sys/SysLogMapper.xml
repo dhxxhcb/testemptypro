@@ -13,7 +13,7 @@
         select s.LOG_ID, s.USER_ID, s.TIME, s.IP, s.TYPE from sys_log s where s.LOG_ID>(select max(LOG_ID)-10 from sys_log) order by s.LOG_ID desc
     </select>
     <select id="findTotalCount" resultType="java.lang.Long">
-    select COUNT(s.LOG_ID)  from sys_log s;
+        select COUNT(s.LOG_ID)  from sys_log s;
     </select>
     <!--  <select id="findDayCount" resultType="com.xoa.model.common.Syslog">
           select * from sys_log s HAVING s.LOG_ID =  min(s.LOG_ID);
@@ -22,14 +22,14 @@
         SELECT count(LOG_ID) FROM sys_log WHERE date(TIME) between concat(#{year}, '-01-01') AND concat(#{year},'-12-31');
     </select>
     <select id="findMouthCount" resultType="java.lang.Long">
-            SELECT count(LOG_ID) FROM sys_log WHERE date(TIME) between concat(#{yearmouth}, '-01') AND concat(#{yearmouth},'-31');
+        SELECT count(LOG_ID) FROM sys_log WHERE date(TIME) between concat(#{yearmouth}, '-01') AND concat(#{yearmouth},'-31');
     </select>
     <select id="findDayCount" resultType="java.lang.Long" parameterType="java.lang.String">
-                SELECT count(LOG_ID) FROM sys_log WHERE date(TIME)=#{yearmouthday};
+        SELECT count(LOG_ID) FROM sys_log WHERE date(TIME)=#{yearmouthday};
     </select>
 
     <select id="findTotalDay" resultMap="BaseResultMap">
-     select s.TIME from sys_log s WHERE s.LOG_ID=(SELECT min(s1.LOG_ID) from sys_log s1) AND s.TYPE=1;
+        select s.TIME from sys_log s WHERE s.LOG_ID=(SELECT min(s1.LOG_ID) from sys_log s1) AND s.TYPE=1;
     </select>
 
     <select id="getThisMonthCount" parameterType="java.lang.String" resultType="java.lang.Integer">
@@ -37,38 +37,61 @@
     </select>
 
     <select id="getEachDayLogData" parameterType="java.lang.String" resultType="java.lang.Integer">
-                select count(s.LOG_ID) FROM sys_log s WHERE date(s.TIME ) LIKE concat(#{dayTime}, '%');
+        select count(s.LOG_ID) FROM sys_log s WHERE date(s.TIME ) LIKE concat(#{dayTime}, '%');
     </select>
     <select id="getHourLog" parameterType="java.util.HashMap" resultType="java.lang.Integer">
         SELECT count(*) from SYS_LOG where TYPE='1' and RIGHT(TIME,8)>=concat(#{hourTime}, ":00:00") and concat(#{hourTime}, ':59:59') >= RIGHT(TIME,8);
     </select>
 
-    <select id="findLogOption" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    <select id="findLogOption" parameterType="hashMap" resultMap="BaseResultMap">
         select * from sys_log s
         <where>
             <if test="type != null">
-               and s.TYPE = #{type}
+                and s.TYPE = #{type}
             </if>
             <if test="startTime != null">
-              AND  date(TIME) >= #{startTime}
+                AND date(TIME) >= #{startTime}
             </if>
             <if test="endTime != null">
-              AND  #{endTime} >= date(TIME)
+                AND #{endTime} >= date(TIME)
             </if>
             <if test="ip != null">
-             AND   s.IP = #{ip}
+                AND s.IP = #{ip}
             </if>
             <if test="remark != null">
-            AND    s.REMARK LIKE concat("%",#{remark}, "%")
+                AND s.REMARK LIKE concat("%",#{remark}, "%")
             </if>
             <foreach collection="ids" item="id" open=" AND  s.USER_ID  IN ( " close=" ) " separator=" , ">
                 #{id}
             </foreach>
         </where>
-
-
-
     </select>
+
+    <delete id="deleteLogOption" parameterType="hashMap">
+        delete from sys_log
+        <where>
+            <if test="type != null">
+                and TYPE = #{type}
+            </if>
+            <if test="startTime != null">
+                AND date(TIME) >= #{startTime}
+            </if>
+            <if test="endTime != null">
+                AND #{endTime} >= date(TIME)
+            </if>
+            <if test="ip != null">
+                AND IP = #{ip}
+            </if>
+            <if test="remark != null">
+                AND REMARK LIKE concat("%",#{remark}, "%")
+            </if>
+            <foreach collection="ids" item="id" open=" AND  USER_ID  IN ( " close=" ) " separator=" , ">
+                #{id}
+            </foreach>
+        </where>
+
+    </delete>
 
 
 </mapper>
+
