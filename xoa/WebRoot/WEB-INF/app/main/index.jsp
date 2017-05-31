@@ -259,7 +259,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"system_status_text":"sys/statusBar",
 				"system_interface":"sys/interfaceSettings",
 				"system_reg_view":"sys/sysInfo",
-				"system_menu":"sys/menuSetting"
+				"system_menu":"sys/menuSetting",
+				"system_log":"sys/journal"
 			};
 			
 			$('.cont_nav').on('click','li',function(){
