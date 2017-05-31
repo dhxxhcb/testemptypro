@@ -513,14 +513,15 @@
                    }
                    console.log(realData);
                    console.log(JSON.stringify(realData));
-
+                   var obj3=data.object.flowRun;
+                   console.log(obj3);
                    datas={
-                       flowId:obj.flowId,
+                       flowId:obj3.flowId,
                        formdata:JSON.stringify(realData),
-                       runId:obj.runId,
-                       runName:obj.runName,
-                       beginTime:obj.beginTime,
-                       beginUser:obj.beginUser
+                       runId:obj3.runId,
+                       runName:obj3.runName,
+                       beginTime:obj3.beginTime,
+                       beginUser:obj3.beginUser
                    }
 
                     $.ajax({
@@ -529,7 +530,7 @@
                         dataType: 'JSON',
                         data: datas,
                         success: function(ret){
-                            console.log(obj.runId);
+                            console.log(obj3.runId);
                             if(ret.flag==true){
                                 //传入的参数
                                 layer.open({
