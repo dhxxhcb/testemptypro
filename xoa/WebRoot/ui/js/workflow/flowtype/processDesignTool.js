@@ -15,6 +15,7 @@ var flowidurl=window.location.href;
 var flowstr=flowidurl.substring(flowidurl.indexOf('=')+1)
 var numId={};
 
+
 function saveOrUpdate() {
     $.ajax({
         type: 'POST',
@@ -34,8 +35,25 @@ function saveOrUpdate() {
     });
 }
 
+function inputTheEcho(names,dataNames) {  //input回显
+    $('[name="'+names+'"]').val(dataNames);
+}
+function seleTheEcho(names,dataNames) {  //下拉框回显
+    $('[name="'+names+'"]').next().find('dd').each(function (i,n) {
+        if($(this).attr('lay-value')==dataNames){
+            $(this).parent().prev().find('input').val($(this).text())
+        }
+    })
+}
 
-
+function radioTheEcho(names,dataNames) {
+    $('[name="'+names+'"]').each(function (i,n) {
+        if($(this).val()==dataNames){
+            $(this).prop('checked',true);
+            $(this).next().click();
+        }
+    })
+}
 
 
 function ajaxSvg() {
@@ -50,6 +68,17 @@ function ajaxSvg() {
             if (json.flag) {
                 var designdata = json.object.designdata;
                 var connections = json.object.connections;
+
+                for(var inde=0;inde<designdata.length;inde++){
+
+                }
+                jsondata={
+                    "title": "",
+                    "nodes": {},
+                    "lines": {},
+                    "areas": {},
+                    "initNum": 0
+                }
                 jsondata.title = json.object.designdata[0].flowName;
                 jsondata.initNum = designdata.length;
                 designdata.forEach(function (v, i) {
@@ -73,7 +102,9 @@ function ajaxSvg() {
                             //可写字段
                             hiddenItem:v.hiddenItem,
                             requiredItem:v.requiredItem,
-                            //条件设置
+                            conditionsSet:{
+                                conditionDesc:''//不符合条件公式时，给用户的文字描述
+                            },
                             timeOut:v.timeOut,
                             timeOutModify:v.timeOutModify,
                             timeOutType:v.timeOutType,
@@ -98,21 +129,16 @@ function ajaxSvg() {
             }
             flowDesign.onItemDel = function (id, type) {
                 if (confirm("确定要删除该单元吗?")) {
-                    console.log(numId.prcsId)
                     // this.blurItem();
-                    $.get('/flowProcess/delete',{'id':$('#ele_designerId').val()},function (json) {
-                        if(json.flag) {
-                            ajaxSvg();
-                        }
-                    },'json')
-                    return true;
+                            return true;
                 } else {
                     return false;
                 }
             };
+
             flowDesign.loadData(jsondata);
+          console.log(jsondata)
             flowDesign.onItemFocus = function (id, model) {
-                console.log(model)
                 $('#propertyForm').css('right','0px')
                 $('.btnstorage').css('right','0px')
                 var obj;
@@ -141,7 +167,31 @@ function ajaxSvg() {
                     // $("#ele_from").val("");
                     // $("#ele_to").val("");
                     $("#ele_flow").val('${formId}');
-                    console.log(obj)
+                    var objtwo=obj.data;
+                    console.log(objtwo);
+                    inputTheEcho('prcsId',objtwo.prcsId)
+                    seleTheEcho('prcsType',objtwo.prcsType)
+                    inputTheEcho('prcsName',objtwo.prcsName)
+                    inputTheEcho('prcsUser',objtwo.prcsUser)
+                    inputTheEcho('prcsDept',objtwo.prcsDept)
+                    inputTheEcho('prcsPriv',objtwo.prcsPriv)
+                    radioTheEcho('signType',objtwo.signType)
+                    radioTheEcho('countersign',objtwo.countersign)
+                    seleTheEcho('userFilter',objtwo.userFilter)
+                    seleTheEcho('autoType',objtwo.autoType)
+                    inputTheEcho('timeOut',objtwo.timeOut)
+                    radioTheEcho('timeOutModify',objtwo.timeOutModify)
+                    radioTheEcho('timeOutType',objtwo.timeOutType)
+                    radioTheEcho('workingdaysType',objtwo.workingdaysType)
+                    radioTheEcho('timeOutAttend',objtwo.timeOutAttend)
+
+
+                    //下一步骤
+                    for(var inde=0;inde<designdata.length;inde++){
+                        if(designdata[inde]==$('[name="prcsName"]')){
+
+                        }
+                    }
                 }
                 $("#ele_name").val(obj.name);
                 return true;
@@ -150,6 +200,19 @@ function ajaxSvg() {
     });
 }
 $(function () {
+
+
+    $('.savetwo').click(function () {
+        $('#datasave').ajaxSubmit({
+            type:'post',
+            dataType:'json',
+            success:function () {
+                ajaxSvg();
+            }
+        })
+    })
+
+
 
         var $width=$('body').width();
         var $height=$(document).height();
@@ -733,6 +796,9 @@ ajaxSvg();
             })
 
         })
+
+
+
 
 
 

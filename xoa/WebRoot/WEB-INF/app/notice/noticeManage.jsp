@@ -887,8 +887,6 @@ $(function () {
                 },
 
             });
-
-
          })
 
        /*  function add_notice(){
@@ -896,7 +894,7 @@ $(function () {
             /!* var layerIndex = layer.load(0, {shade: false});*!/
              $.ajax({
                  type: "post",
-                 url: "<%=basePath%>notice/addNotify",
+                 url: "notice/addNotify",
                  dataType: 'json',
                  data: data_notice,
                  success: function (obj) {

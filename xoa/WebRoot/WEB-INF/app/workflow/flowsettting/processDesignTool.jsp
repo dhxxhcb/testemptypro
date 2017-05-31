@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../../css/workflow/flowsetting/processDesignTool.css">
     <%--<link rel="stylesheet" type="text/css" href="../../lib/layer/mobile/need/layer.css" media="all"/>--%>
     <link rel="stylesheet" href="../../lib/layui-v1.0.9_rls/layui/css/layui.css">
+
     <script>
         var changeTheValue=true;
     </script>
@@ -21,6 +22,7 @@
     <script type="text/javascript" src="../../js/base/base.js"></script>
     <script type="text/javascript" src="../../lib/layer/layer.js"></script>
     <script type="text/javascript" src="../../lib/layui-v1.0.9_rls/layui/layui.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.min.js"></script>
     <script src="../../js/workflow/flowtype/processDesignTool.js"></script>
     <script type="text/javascript" src="../../lib/GooFlow/GooFunc.js"></script>
     <script type="text/javascript" src="../../lib/GooFlow/GooFlow.js"></script>
@@ -78,13 +80,14 @@
     </script>
 </head>
 <body>
-<input type="hidden" id="ele_id">
-<input type="hidden" id="ele_model">
-<input type="hidden" id="ele_designerId">
+
 
 
     <div id="flowDesignTable" ></div>
-    <form action="" class="layui-form">
+    <form action="/flowProcess/saveFlow" class="layui-form" id="datasave">
+        <input type="hidden" id="ele_id">
+        <input type="hidden" id="ele_model">
+        <input type="hidden" id="ele_designerId" name="id">
         <div id="propertyForm" >
             <div class="setUpThe">
                 <span class="basic"></span>
@@ -244,7 +247,7 @@
                     </p>
                     <p class="candidatesPTwo">
                     <%--<input type="text" readonly="true" value="允许选择全部指定的经办人"><span class="xiala"><b></b></span>--%>
-                        <select name="city" lay-verify="">
+                        <select name="userFilter" lay-verify="">
                             <option value="010">北京</option>
                             <option value="021" disabled>上海（禁用效果）</option>
                             <option value="0571" selected>杭州</option>
@@ -257,7 +260,7 @@
                     </p>
                     <p class="candidatesPTwo" style="margin-bottom: 20px">
                         <%--<input type="text" readonly="true" value="不进行自动选择"><span class="xiala"><b></b></span>--%>
-                            <select name="city" lay-verify="">
+                            <select name="autoType" lay-verify="">
                                 <option value="010">北京</option>
                                 <option value="021" disabled>上海（禁用效果）</option>
                                 <option value="0571" selected>杭州</option>
@@ -276,13 +279,13 @@
                         主办人相关选项
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio"title="明确指定主办人"></label>
+                        <label><input name="topDefault" type="radio"title="明确指定主办人"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="无主办人会签">	</label>
+                        <label><input name="topDefault" type="radio" title="无主办人会签">	</label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="先接收者为主办人">	</label>
+                        <label><input name="topDefault" type="radio" title="先接收者为主办人">	</label>
                     </p>
                 </li>
                 <li>
@@ -290,10 +293,10 @@
                         是否允许修改主办人相关选项
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="不允许"></label>
+                        <label><input name="userLock" type="radio" title="不允许"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="允许"	</label>
+                        <label><input name="userLock" type="radio" title="允许">	</label>
                     </p>
                 </li>
                 <li>
@@ -301,13 +304,13 @@
                         是否允许会签
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="允许会签"></label>
+                        <label><input name="feedback" type="radio" title="允许会签"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="禁止会签"></label>
+                        <label><input name="feedback" type="radio" title="禁止会签"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="强制会签"></label>
+                        <label><input name="feedback" type="radio" title="强制会签"></label>
                     </p>
                 </li>
                 <li>
@@ -315,13 +318,13 @@
                         会签意见可见性
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="总是可见"></label>
+                        <label><input name="signlook" type="radio" title="总是可见"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="本步骤经办人之间不可见"></label>
+                        <label><input name="signlook" type="radio" title="本步骤经办人之间不可见"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="针对其他步骤不可见"></label>
+                        <label><input name="signlook" type="radio" title="针对其他步骤不可见"></label>
                     </p>
                 </li>
                 <li>
@@ -592,7 +595,7 @@
         </div>
         <div class="btnstorage">
             <a href="javascript:;" class="closebtns" style="background: #5ab65a">关闭</a>
-            <a href="javascript:;"  style="background: #ff880a">保存</a>
+            <a href="javascript:;"  class="savetwo" style="background: #ff880a">保存</a>
         </div>
     </form>
 </body>

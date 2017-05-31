@@ -46,7 +46,7 @@ var workForm = {
                     if(v == checked){
                         checked="checked";
                     }
-                    eleStr+='<input name="'+name+'" title="'+title+'" value="'+v+'" type="radio" class="form_item"/>'+v+' ';
+                    eleStr+='<input name="'+name+'" data-type="radio" title="'+title+'" value="'+v+'" type="radio" class="form_item"/>'+v+' ';
                 }
             });
             _this.before(eleStr);
@@ -128,6 +128,7 @@ var workForm = {
             }
             var radioStr = ' <input name="'+_this.attr('name')+'" checked="checked" id="'+_this.attr('name')+'" title="'+_this.attr('title')+'" type="radio"  radio_field="'+_this.attr('radio_field')+'" orgchecked="'+_this.attr('radio_checked')+'" classname="radio" class="form_item" data-type="radio" />';
             _this.before(radioStr);
+            console.log(radioStr)
             _this.remove();
         });
     },
