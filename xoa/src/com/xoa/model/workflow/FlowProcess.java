@@ -744,7 +744,7 @@ public class FlowProcess implements Serializable {
     }
 
     public String getTopDefault() {
-        return topDefault == null ? "" : topDefault.trim();
+        return topDefault == null ? "0" : topDefault.trim();
     }
 
     public void setTopDefault(String topDefault) {
@@ -752,7 +752,7 @@ public class FlowProcess implements Serializable {
     }
 
     public String getUserLock() {
-        return userLock == null ? "" : userLock.trim();
+        return userLock == null ? "1" : userLock.trim();
     }
 
     public void setUserLock(String userLock) {
