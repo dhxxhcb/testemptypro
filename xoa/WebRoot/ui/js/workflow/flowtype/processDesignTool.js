@@ -3,18 +3,195 @@
  */
 var user_id=''
 var form,layer
+var flowDesign;
+var jsondata = {
+    "title": "",
+    "nodes": {},
+    "lines": {},
+    "areas": {},
+    "initNum": 0
+}
+var flowidurl=window.location.href;
+var flowstr=flowidurl.substring(flowidurl.indexOf('=')+1)
+var numId={};
+
+function saveOrUpdate() {
+    $.ajax({
+        type: 'POST',
+        url: '/flowProcess/insert',
+        dataType: 'json',
+        data: numId,
+        success: function (json) {
+            if (json.flag) {
+               ajaxSvg();
+            }else{
+                alert("新建流程节点失败");
+            }
+        },
+        error:function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("数据库连接异常，请联系管理员");
+        }
+    });
+}
 
 
+
+
+
+function ajaxSvg() {
+    $.ajax({
+        type: 'get',
+        url: '/flowProcess/flowview',
+        dataType: 'json',
+        data: {"flowId":flowstr},
+        success: function (json) {
+            // debugger;
+//                    获取数据并添加到流程设计器的插件中
+            if (json.flag) {
+                var designdata = json.object.designdata;
+                var connections = json.object.connections;
+                jsondata.title = json.object.designdata[0].flowName;
+                jsondata.initNum = designdata.length;
+                designdata.forEach(function (v, i) {
+                    jsondata.nodes['node_' + v.prcsId] = {
+                        designerId:v.id,
+                        name: v.prcsName,
+                        left: v.setLeft,
+                        type: "chat",
+                        top: v.setTop,
+                        data:{
+                            prcsId:v.prcsId,
+                            prcsType:v.prcsType,
+                            prcsName:v.prcsName,
+                            //下一步骤
+                            prcsUser:v.prcsUser,
+                            prcsDept:v.prcsDept,
+                            prcsPriv:v.prcsPriv,
+                            signType:v.signType,
+                            countersign:v.countersign,
+                            //流转设置
+                            //可写字段
+                            hiddenItem:v.hiddenItem,
+                            requiredItem:v.requiredItem,
+                            //条件设置
+                            timeOut:v.timeOut,
+                            timeOutModify:v.timeOutModify,
+                            timeOutType:v.timeOutType,
+                            workingdaysType:v.workingdaysType,
+                            timeOutAttend:v.timeOutAttend
+                            //触发器
+                            //提醒设置
+                            //呈批单设置
+                        }
+                    }
+                });
+                connections.forEach(function (v, i) {
+                    jsondata.lines['line_' + i] = {
+                        type: "sl",
+                        from: "node_" + v.from,
+                        to: "node_" + v.to,
+                        name: "",
+                        "M": 41.5,
+                        alt: true
+                    }
+                });
+            }
+            flowDesign.onItemDel = function (id, type) {
+                if (confirm("确定要删除该单元吗?")) {
+                    console.log(numId.prcsId)
+                    // this.blurItem();
+                    $.get('/flowProcess/delete',{'id':$('#ele_designerId').val()},function (json) {
+                        if(json.flag) {
+                            ajaxSvg();
+                        }
+                    },'json')
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+            flowDesign.loadData(jsondata);
+            flowDesign.onItemFocus = function (id, model) {
+                console.log(model)
+                $('#propertyForm').css('right','0px')
+                $('.btnstorage').css('right','0px')
+                var obj;
+                $("#ele_model").val(model);
+                $("#ele_id").val(id);
+                if (model == "line") {
+                    // obj = this.$lineData[id];
+                    // $("#ele_type").val(obj.M);
+                    // $("#ele_left").val("");
+                    // $("#ele_top").val("");
+                    // $("#ele_width").val("");
+                    // $("#ele_height").val("");
+                    // $("#ele_designerId").val("");
+                    // $("#ele_from").val(obj.from);
+                    // $("#ele_to").val(obj.to);
+                    // $("#ele_flow").val("");
+
+                } else if (model == "node") {
+                    obj = this.$nodeData[id];
+                    $("#ele_type").val(obj.type);
+                    $("#ele_designerId").val(obj.designerId);
+                    $("#ele_left").val(obj.left);
+                    $("#ele_top").val(obj.top);
+                    $("#ele_width").val(obj.width);
+                    $("#ele_height").val(obj.height);
+                    // $("#ele_from").val("");
+                    // $("#ele_to").val("");
+                    $("#ele_flow").val('${formId}');
+                    console.log(obj)
+                }
+                $("#ele_name").val(obj.name);
+                return true;
+            };
+        },
+    });
+}
 $(function () {
+
+        var $width=$('body').width();
+        var $height=$(document).height();
+
+        var property = {
+            width: $width,
+            height: $height,
+            toolBtns: ["chat"],
+//                "start round", "end round", "task round", "node","state", "plug", "join", "fork", "complex mix"
+            haveHead: true,
+            headBtns: [ ],//如果haveHead=true，则定义HEAD区的按钮
+            haveTool: true,
+            haveGroup: true,
+            useOperStack: true
+        };
+        var remark = {
+            cursor: "选择指针",
+            direct: "结点连线",
+            start: "入口结点",
+            end: "结束结点",
+            task: "任务结点",
+            node: "自动结点",
+            chat: "决策结点",
+            state: "状态结点",
+            plug: "附加插件",
+            fork: "分支结点",
+            join: "联合结点",
+            "complex mix": "复合结点",
+            group: "组织划分框编辑开关"
+        };
+        flowDesign = $.createGooFlow($("#flowDesignTable"), property);
+        flowDesign.setNodeRemarks(remark);
+
+ajaxSvg();
+
+
     $('#propertyForm').height($('body').height()-65);
     $('#propertyForm').css('max-height',$('body').height()+2000)
     $('#propertyForm').css('right',-$('#propertyForm').width())
     $('.btnstorage').css('right',-$('.btnstorage').width())
 
-    $(document).delegate('#flowDesignTable .GooFlow_work table','click',function () {
-        $('#propertyForm').css('right','0px')
-        $('.btnstorage').css('right','0px')
-    })
+
 
     $('.closebtns').click(function () {
         $('#propertyForm').css('right',-$('#propertyForm').width())
@@ -55,7 +232,6 @@ $(function () {
     layui.use(['layer', 'form'], function(){
         layer = layui.layer
             ,form = layui.form();
-        console.log(form)
         $('.bottomsteps').click(function () {
         layer.open({
             type:1,
@@ -146,11 +322,11 @@ $(function () {
                    </p>\
                    <p class="candidatesPone">转入条件公式(条件与逻辑运算符之间需空格，如[1] AND [2])</p> \
                     <p class="candidatesPTwo">\
-                            <input type="text">\
+                            <input type="text" name="prcsInSet">\
                      </p>\
                       <p class="candidatesPone">不符合条件公式时，给用户的文字描述：</p> \
                     <p class="candidatesPTwo">\
-                            <input type="text">\
+                            <input type="text" name="">\
                             <p style="color: red;font-size: 12px;margin-top: 5px;">合理设定转入条件，可形成流程的条件分支，但数据满足转入条件，才可转入本步骤</p>\
                      </p>\
                 </li>\
@@ -172,7 +348,7 @@ $(function () {
                      </p>\
                       <p class="candidatesPone">转入条件公式(条件与逻辑运算符之间需空格，如[1] AND [2])</p> \
                     <p class="candidatesPTwo">\
-                            <input type="text">\
+                            <input type="text" name="prcsOutSet">\
                      </p>\
                       <p class="candidatesPone">不符合条件公式时，给用户的文字描述：</p> \
                     <p class="candidatesPTwo">\
@@ -211,7 +387,7 @@ $(function () {
                     <ul class="candidatesUl" style="display: block;border: none;">\
                         <li>\
                             <p class="candidatesPone"><b style="color:red;margin-right: 8px;vertical-align: middle">*</b>触发节点</p> \
-                            <div class="dropDownDiv" style="z-index:99998">\
+                            <div class="dropDownDiv" style="z-index:99999">\
                                 <p class="candidatesPTwo">\
                                   <select name="city" lay-verify="">\
                                     <option value="">请选择一个城市</option>\
@@ -224,7 +400,7 @@ $(function () {
                         </li>\
                         <li>\
                             <p class="candidatesPone"><b style="color:red;margin-right: 8px;vertical-align: middle">*</b>排序号</p> \
-                            <div class="dropDownDiv" style="z-index:99997">\
+                            <div class="dropDownDiv" style="z-index:99998">\
                                 <p class="candidatesPTwo">\
                                    <select name="city" lay-verify="">\
                                         <option value="">请选择一个城市</option>\
@@ -432,6 +608,7 @@ $(function () {
                      <p class="candidatesPone">本步骤可写字段</p> \
                      <div class="candidatesPTwoall" style="margin-bottom: 20px;position:relative">\
                          <ul></ul>\
+                         <input type="hidden">\
                          <a href="javascript:;" class="bottomsteptwos" style="position:absolute;top:17px;right:105px;color:#2f8ae3">选择</a>\
                      </div>\
                 </li>\
@@ -511,7 +688,7 @@ $(function () {
                 </li>\
                 <li>\
                      <p class="candidatesPone activeall" style="margin-bottom:-15px">公共附件中的Office文档详细权限设置</p> \
-                     <div>\
+                     <div style="margin-top:15px">\
                        <input type="checkbox" title="新建权限">\
                        <input type="checkbox" title="编辑权限">\
                         <input type="checkbox" title="删除权限">\

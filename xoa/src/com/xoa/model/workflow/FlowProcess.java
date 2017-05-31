@@ -277,6 +277,12 @@ public class FlowProcess implements Serializable {
      **/
     private String workingdaysType;
 
+    /**
+     * 返回页面参数
+     */
+    private String setType;
+
+
     private List<Map<String, String>> connections;
 
     private Integer max;
@@ -894,5 +900,21 @@ public class FlowProcess implements Serializable {
 
     public void setWorkingdaysType(String workingdaysType) {
         this.workingdaysType = workingdaysType == null ? null : workingdaysType.trim();
+    }
+
+    /**
+     * 返回页面参数
+     * @return
+     */
+    public String getSetType() {
+        return setType==null?"":setType.trim();
+    }
+
+    /**
+     * 返回页面参数
+     * @param setType
+     */
+    public void setSetType(String setType) {
+        this.setType = setType;
     }
 }

@@ -89,6 +89,14 @@
     </div>
 </div>
 </body>
+<script>
+    if(window.external && typeof window.external.OA_SMS != 'undefined') //如果从OA精灵打开，则最大化窗口
+    {
+        var h = Math.min(800, screen.availHeight - 180),
+            w = Math.min(1280, screen.availWidth - 180);
+        window.external.OA_SMS(w, h, "SET_SIZE");
+    }
+</script>
 </html>
 
 

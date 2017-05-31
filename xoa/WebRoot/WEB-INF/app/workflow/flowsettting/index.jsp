@@ -116,8 +116,8 @@
     </ul>
 
     <div class="cont_r">
-        <div class="item "></div>
-        <div class="item"></div>
+        <div class="item item_s"></div>
+        <div class="item" item_s></div>
         <%--定义流程属性--%>
         <div class="item item1">
             <div class="con_flow clearfix">
@@ -255,7 +255,7 @@
             </div>
         </div>
         <%--设计流程步骤--%>
-        <div class="item">
+        <div class="item item_s">
             <table class="table" cellspacing="0" id="table_form">
                 <caption>
                     <a href="javascript:void (0)" class="newbuilt">新建</a>
@@ -303,10 +303,10 @@
                 </tr>--%>
             </table>
         </div>
-        <div class="item"></div>
-        <div class="item"></div>
+        <div class="item item_s"></div>
+        <div class="item item_s"></div>
         <%--管理权限表格--%>
-        <div class="item">
+        <div class="item item_s">
             <table class="table" cellspacing="0" id="table_power">
 
                 <%-- <thead>
@@ -344,45 +344,45 @@
             </table>
         </div>
         <%--新建弹窗--%>
-        <%-- <div class="pop_up" id="poo">
-             <div class="new_b">新建</div>
-             <div class="pop_con">
-                 <div class="con_t">
-                     <div class="con_l">
-                         <div class="con_title">
-                             <div class="title_1">
-                                 <div class="title_label"></div>
-                                 <span class="title_s">表单名称:</span>
-                                 <div class="title_put">
-                                     <input type="text">
-                                 </div>
-                             </div>
-                             <sapn class="title_s">表单父分类:</sapn>
-                             <div class="title_2">
-                                 <select name="" id="" class="select_t"></select>
-                                 <span class>(为空为一级分类)</span>
-                             </div>
-                             <div class="title_3">
-                                 <div class="title3_label">
-                                     <span class="title_s">所属部门:</span>
-                                 </div>
-                                 <div class="select_put">
-                                     <select name="" class="select_t">
-                                         <option value="1">所有部门</option>
-                                     </select>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="con_footer">
-                 <a href="javascript:void(0)" class="footer_btn1">保存</a>
-                 <a href="javascript:void(0)" class="footer_btn2">关闭</a>
-             </div>
-         </div>--%>
+        <%--  <div class="pop_up" id="poo">
+              <div class="new_b">新建</div>
+              <div class="pop_con">
+                  <div class="con_t">
+                      <div class="con_l">
+                          <div class="con_title">
+                              <div class="title_1">
+                                  <div class="title_label"></div>
+                                  <span class="title_s">表单名称:</span>
+                                  <div class="title_put">
+                                      <input type="text">
+                                  </div>
+                              </div>
+                              <sapn class="title_s">表单父分类:</sapn>
+                              <div class="title_2">
+                                  <select name="" id="" class="select_t"></select>
+                                  <span class>(为空为一级分类)</span>
+                              </div>
+                              <div class="title_3">
+                              <div class="title3_label">
+                                  <span class="title_s">所属部门:</span>
+                              </div>
+                              <div class="select_put">
+                                  <select name="" class="select_t">
+                                      <option value="1">所有部门</option>
+                                  </select>
+                              </div>
+                          </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="con_footer">
+                  <a href="javascript:void(0)" class="footer_btn1">保存</a>
+                  <a href="javascript:void(0)" class="footer_btn2">关闭</a>
+              </div>
+          </div>--%>
         <%--定时任务--%>
-        <div class="item">
+        <div class="item item_s">
             <table class="table" cellspacing="0" id="table_task">
                 <%--<caption>
                     <a href="javascript:void (0)" class="newbuilt">新建</a>
@@ -422,7 +422,7 @@
             </table>
         </div>
         <%--配置查询模板--%>
-        <div class="item">
+        <div class="item item_s">
             <table class="table table_temp" cellspacing="0">
                 <%--  <caption>
                       <a href="javascript:void (0)" class="newbuilt">新建</a>
@@ -461,7 +461,7 @@
             </table>
         </div>
         <%--应用版式文件--%>
-        <div class="item">
+        <div class="item item_s">
             <table class="table table_prc" cellspacing="0">
                 <%-- <caption>
                      <a href="javascript:void (0)" class="newbuilt">新建</a>
@@ -570,9 +570,7 @@
                     flowId: flowId
                 },
                 success: function (data) {
-                    console.log(data);
                     if (data.flag) {
-                        console.log(1)
                         $("#flowId").val(data.object.flowId);
                         $("#projectName").val(data.object.flowName);
                         $('#orderID').val(data.object.flowNo);
@@ -583,6 +581,7 @@
                 }
             });
         }
+        ;
         $('.keepmsg').on('click', function () {
             var flowId = '${flowId}';
             alert(flowId);
@@ -666,7 +665,7 @@
         function renderPriv() {
             var html = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
                 '<a href="javascript:void (0)" class="newbuilt" id="new">新建</a> ' +
-                '<a href="javascript:void (0)" class="delete_c delete_d" >删除</a> ' +
+                '<a href="javascript:void (0)" id="deleteAll" class="delete_c" >删除</a> ' +
                 '</caption>' +
                 "<tr><th><input type='checkbox' class='checkAll'>全选</th><th>权限类型</th><th>授权范围</th><th>管理范围</th><th>操作</th></tr>";
             $.ajax({
@@ -705,7 +704,37 @@
                 }
             })
         }
-        /*管理权限删除*/
+        /*管理权限多选删除*/
+        $('#table_power').on('click', '#deleteAll', function () {
+            alert('确定要删除吗!');
+            //获取选中项ID
+            var privId = [];
+            var checkBs = $(".one:checked");
+            if (checkBs) {
+                for (var i = 0; i < checkBs.length; i++) {
+                    privId.push($(checkBs[i]).attr("privId"));
+                }
+            }
+            $.ajax({
+                type: 'get',
+                url: '<%=basePath%>/flowSetDatas/deleteFlowPriv',
+                dataType: 'json',
+                data: {
+                    'privId[]': privId
+                },
+                success: function (ret) {
+                    if (ret.flag) {
+                        alert('删除成功')
+                        renderPriv();
+                    } else {
+                        alert('删除失败')
+                    }
+
+                }
+            })
+        })
+
+        /*管理权限单个删除*/
         $('#table_power').on('click', '.delete_d', function () {
             alert('确定要删除吗!');
             //获取选中项ID
@@ -720,9 +749,11 @@
                     'privId[]': privId
                 },
                 success: function (ret) {
-                    console.log(ret)
                     if (ret.flag) {
+                        alert('删除成功')
                         renderPriv();
+                    } else {
+                        alert('删除失败')
                     }
 
                 }
@@ -770,7 +801,6 @@
 
             timerId.push(pId);
             console.log(timerId)
-
             $.ajax({
                 type: 'get',
                 url: '<%=basePath%>/flowSetDatas/deleteFlowTimer',
@@ -789,11 +819,14 @@
         })
         /*配置查询模板*/
         $('.btn4').click(function () {
+            TempPriv();
+        });
+        function TempPriv() {
             var html = '<caption class="clearfix"> <span class="priv_t">配置查询模板</span> ' +
-                '<a href="javascript:void (0)" class="newbuilt temp_n">新建</a> ' +
+                '<a href="javascript:void (0)" class="newbuilt file_n">新建</a> ' +
                 '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
                 '</caption>' +
-                "<th><th><input type='checkbox' class='checkAll'>全选</th><th>模板名称</th><th>创建时间</th><th>操作</th></th>";
+                "<t><th><input type='checkbox' class='checkAll'>全选</th><th>模板名称</th><th>创建日期</th><th>操作</th></t>";
             $.ajax({
                 type: 'get',
                 url: '<%=basePath%>/flowSetDatas/getFlowQueryTplList',
@@ -801,16 +834,47 @@
                 data: {
                     flowId: flowIdFromPage
                 },
-                success: function () {
+                success: function (data) {
+                    var data = data.datas;
+                    for (var i = 0; i < data.length; i++) {
+                        html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'  seqId='" + data[i].seqId + "'>" + "</td>" + "<td>" + data[i].tplName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a class="del_temp" href="javascript:void(0)" seqId="' + data[i].seqId + '" >删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                    }
 
                     $('.table_temp').html(html);
                     checkAll();
 
                 }
             })
-        })
+        }
+
+        /*配置查询模板删除*/
+        /*  $('.table_temp').on('click', '.del_temp', function () {
+         alert('确定要删除吗!')
+         var seqId = [];
+         var tempId = $(this).attr('seqId');
+         console.log(tempId)
+         seqId.push(tempId);
+         $.ajax({
+         type: 'get',
+         url: '
+        <%=basePath%>flowSetDatas/deleteFlowQuertTpl',
+         dataType: "json",
+         data: {
+         'tplId[]': seqId
+         },
+         success: function (data) {
+         console.log(data);
+         TempPriv();
+         }
+         })
+
+         });*/
+
         /*应用版式文件*/
         $('.btn5').click(function () {
+            privFile();
+        });
+        function privFile() {
             var html = '<caption class="clearfix"> <span class="priv_t">应用版式文件</span> ' +
                 '<a href="javascript:void (0)" class="newbuilt file_n">新建</a> ' +
                 '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
@@ -828,7 +892,7 @@
                         var data = data.datas;
                         console.log(data);
                         for (var i = 0; i < data.length; i++) {
-                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data[i].content + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].flowPrcs + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)">删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'>" + "</td>" + "<td>" + data[i].content + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].flowPrcs + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a href="javascript:void(0)" class="del_priv">删除</a>' + "</td>" + "</tr>" + "</tbody>";
                         }
                         $('.table_prc').html(html);
                         checkAll();
@@ -836,12 +900,26 @@
                 }
 
             })
+        }
+
+        /*应用版式文件删除*/
+        $('.table_prc').on('click', '.del_priv', function () {
+            alert('确定要删除吗！');
+            $.ajax({
+                url: '<%=basePath%>/flowSetDatas/deleteFlowPrintTpl',
+                type: 'get',
+                dataType: 'json',
+                data: {},
+                success: function () {
+
+                }
+            })
         })
 
         /*管理权限新建弹窗*/
         $('.table').on('click', '#new', function () {
             layer.open({
-                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
+                title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 10px;color: #fff">新建</p>',
                 shade: 0,
                 content: '<div class="pop_con">' +
                 '<div class="con_t">' +
@@ -850,44 +928,61 @@
                 '<div class="title_1">' +
                 '<div class="title_label"></div>' +
                 '<span class="title_s">授权类型 *</span>' +
-                '<div class="title_put"><select name="" id="" class="select_t"></select></div></div>' +
+                '<div class="title_put"><select name="" id="select_t" class="select_t"><option value="1">管理</option><option value="2">监控</option><option value="3">查询</option><option value="4">编辑</option><option value="5">点评</option></select></div></div>' +
                 '<sapn class="title_s">管理范围 *</sapn>' +
                 '<div class="title_2">' +
-                '<select name="" id="" class="select_t"></select></div>' +
+                '<select name="" id="select_ment" class="select_t"><option value="-2">所有部门</option><option value="-3">本机构</option><option value="-1">本部门</option></select></div>' +
                 '<div class="title_3">' +
                 '<div class="title3_label">' +
                 '<span class="title_s">授权范围(人员)</span></div>' +
                 '<div class="select_put">' +
                 '<select name="" class="select_t">' +
-                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>删除</span></div></div></div></div></div>' +
+                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>清空</span></div></div>' + '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">授权范围(部门)</span></div>' +
+                '<div class="select_put">' +
+                '<select name="" class="select_t">' +
+                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>清空</span></div></div>' + '<div class="title_3">' +
+                '<div class="title3_label">' +
+                '<span class="title_s">授权范围(角色)</span></div>' +
+                '<div class="select_put">' +
+                '<select name="" class="select_t">' +
+                '<option value="1"></option></select><span style="margin-left: 10px">添加</span><span>清空</span></div></div>' +
+                '</div></div></div>' +
                 '</div>',
                 area: ['600px', '450px'],
                 btn: ['保存', '关闭'],
+                scrolling: 'no',
                 yes: function () {
+                    var scopeVal = [];
+                    scopeVal.push($('#select_ment').val());
                     var data = {
-                        'name': $('input[name="name"]').val(),
-                        'version': $('input[name="version"]').val(),
-                        'isOrg': $('.select option:checked').val()
-                    }
+                        privType: $('#select_t').val(),
+                        'scope[]': scopeVal,
+                        'user[]': [1, 2, 3],
+                        'role[]': [1, 2, 3],
+                        'dept[]': [1, 2, 3],
+                        'flowId': 1
+                    };
                     $.ajax({
-                        type: 'get',
-                        url: '/users/addOrgManage',
+                        type: 'GET',
+                        url: '/flowSetDatas/newFlowPriv',
                         dataType: 'json',
                         data: data,
-                        success: function (json) {
-                            if (json.msg == "ok") {
-                                alert('新建成功');
+                        success: function (data) {
+                            if (data.flag) {
+                                alert('新建成功')
                             } else {
-                                alert('新建失败');
+                                alert('新建失败')
                             }
                         }
                     })
-                    location.reload();
+
                 }
             })
 
         });
-        /*定时任务新建*/
+        /*定时任务新建弹窗*/
         $('.table').on('click', '.task_n', function () {
             layer.open({
                 title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
@@ -941,7 +1036,7 @@
                 }
             })
         });
-        /*配置模板查询新建*/
+        /*配置模板查询新建弹窗*/
         $('.table').on('click', '.temp_n', function () {
             layer.open({
                 title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
@@ -981,7 +1076,7 @@
                 }
             })
         });
-        /*应用版式文件*/
+        /*应用版式文件弹窗*/
         $('.table').on('click', '.file_n', function () {
             layer.open({
                 title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px">新建</p>',
@@ -1025,8 +1120,6 @@
                 }
             })
         });
-
-
         function checkAll() {
             $('.checkAll').on('click', function () {
                 $('.one').prop('checked', $(this).prop('checked'));

@@ -61,12 +61,16 @@ public class ImDataController {
 	 */
 	@RequestMapping("/putMessage")
 	@ResponseBody
-	public Object putMessageInfo(@RequestParam(required = false,name = "file[]") MultipartFile file[],HttpServletRequest request, Integer flag, String from_uid,
+	public Object putMessageInfo(@RequestParam(required = false,name = "file") MultipartFile file,HttpServletRequest request, Integer flag, String from_uid,
 								 String to_uid, String of_from, String of_to, String content,
 								 String type, String stime, String uuid, String msg_type, String voice_time) {
         System.out.println("-------putMessage----------");
        // MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        Object status = imDataService.putMessageInfo(file,request,flag,from_uid, to_uid, of_from,of_to, content, type, stime, uuid,msg_type,voice_time);
+		MultipartFile[] flies =new MultipartFile[1];
+		if(file!=null){
+			flies[0]=file;
+		}
+        Object status = imDataService.putMessageInfo(flies,request,flag,from_uid, to_uid, of_from,of_to, content, type, stime, uuid,msg_type,voice_time);
         return status;
 	}
 	/**

@@ -6,7 +6,7 @@
     z-index: 9999;
     background: #fff;
     box-shadow: -11px 1px 14px #ccc;
-    font-size: 18px;
+    font-size: 16px;
     font-family: "Microsoft YaHei" ! important;
     overflow-y: auto ;
     transition: all 0.2s ease 0s;
@@ -16,7 +16,7 @@ input{
     outline: none;
 }
 .setUpThe{
-    padding:0px 5% 0px 11%;
+    padding:0px 5% 0px 9%;
     line-height: 49px;
     border-bottom: 1px solid #ccc;
     background: #f7f7f7;
@@ -31,10 +31,11 @@ body{
     font-size: 12px;
 }
 .setUpThe span{
-    width: 24px;
+    width: 27px;
     height: 24px;
     display: inline-block;
     vertical-align: middle;
+    margin-right:10px;
 }
 .setUpThe label{
     vertical-align: middle;
@@ -95,7 +96,8 @@ body{
     color: #3994f7;
 }
 .candidatesUl li .candidatesPone{
-    padding:16px 0px;
+    padding:6px 0px;
+    font-size: 14px;
 }
 .candidatesUl li .candidatesPone.activeall{
     font-size: 14px;
@@ -109,10 +111,10 @@ body{
     -ms-border-radius: 4px;
     width:87%;
     position: relative;
-
+    font-size: 12px;
 }
 .candidatesUl>li input[type=text]{
-    font-size: 14px;
+    font-size: 12px;
     width:88%;
     height: 28px;
     line-height: 28px;
@@ -128,6 +130,10 @@ body{
     height: 28px;
     line-height: 28px;
     position: relative;
+}
+.layui-form-radio span{
+    font-size: 12px!important;
+    color: #111;
 }
 .candidatesUl li p span b{
     width: 0px;
@@ -146,19 +152,29 @@ body{
     color: #111;
 }
 .candidatesPothree{
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
+    height:31px;
+    line-height: 31px;
 }
 .candidatesPothree.activeall label{
-    font-size: 14px!important;
+    font-size: 12px!important;
     color: #3994f7;
     margin-bottom: 10px;
     display: inline-block;
+}
+.candidatesPothree.activeall{
+    line-height: 7px;
 }
 .layui-form-checked i, .layui-form-checked:hover i{
     color:#3994f7!important; ;
 }
 .layui-form-checked span, .layui-form-checked:hover span{
     background:#3994f7!important; ;
+}
+.layui-form-checkbox[lay-skin=primary] i{
+    width: 10px!important;
+    line-height: 10px!important;
+    top: 3px!important;
 }
 .candidatesPoform{
     width: 99%;
@@ -367,8 +383,13 @@ body{
     -ms-border-radius:4px;
     color: #fff!important;
     background: #2b7fe0;
-    font-size: 14px!important;
-    padding:5px 10px;
+    font-size: 12px!important;
+    padding:1px 10px;
+}
+.candidatesPone:after{
+    content: '';
+    display: block;
+    clear: both;
 }
 .candidatesPTwo table td{
     color: #111;
@@ -441,6 +462,9 @@ table .layui-form-checked[lay-skin=primary] i{
 }
 .layui-form-select .layui-edge{
     border-top-color: #3994f7!important;
+}
+.layui-form-radio i{
+    font-size: 8px!important;
 }
 ul,
 ol {

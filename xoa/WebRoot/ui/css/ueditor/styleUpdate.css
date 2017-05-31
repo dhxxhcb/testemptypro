@@ -90,6 +90,9 @@ body {
     position: relative;
     padding: 20px 0 0 20px;
 }
+.bgBack{
+    background: #add2f8;
+}
 
 #saveform .row {
     float: right;
@@ -146,7 +149,7 @@ body {
 }
 
 .row .nav-list > li > a:hover {
-    background: #add2f8;
+    background: #ccebff;
 }
 
 #saveform .span10 {

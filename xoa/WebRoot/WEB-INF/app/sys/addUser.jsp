@@ -137,8 +137,8 @@
             <tr>
                 <td width="15%">部门：</td>
                 <td width="70%">
-                    <select name="deptId" style="width: 200px;">
-                        <option value="01">总经理</option>
+                    <select id="department" name="deptId" style="width: 200px;">
+
                     </select>
                     <a href="jaavascript:;">指定其它所属部门</a>
                 </td>
@@ -541,7 +541,7 @@
 </div>
 <script>
     $(function(){
-
+        $('#department').deptSelect();
     })
 </script>
 </body>

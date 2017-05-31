@@ -46,7 +46,7 @@ public class CheckTableExist {
 	}
 	
 	
-	 public static boolean createTable(String sql) {  
+	 public static boolean createSql(String sql) {  
 	        Connection connection = null;  
 	        try {  
 	            String userName = "root";  

@@ -177,7 +177,6 @@ public class ImDataService {
 				       file1.setThumbnail_size(String.valueOf(thmsize/1024));
 				       file1.setThumbnail_width(String.valueOf(thmsourceImg.getHeight()));
 				       file1.setThumbnail_height(String.valueOf(thmsourceImg.getWidth()));
-				       
 				       //将附件信息保存起来
 				       record.setThumbnailUrl(tee.getAttUrl());
 				       lastThumbnailUrl=tee.getAttUrl();				      
@@ -189,8 +188,7 @@ public class ImDataService {
 //						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 						 //返回值file
 						 file1.setFile_url("http://"+ip+":"+port+tee.getAttachFile());
-					     file1.setVoice_time(voice_time);	
-					     
+					     file1.setVoice_time(voice_time);
 					     //将附件信息保存起来
 					     //将声音时间长度放入ThumbnailUrl 和 lastThumbnailUrl 用于记录时长  在app端处理  在获取时长返回时长时直接获取 可减缓服务器端压力  
 					     record.setThumbnailUrl(voice_time);
@@ -206,7 +204,6 @@ public class ImDataService {
 					       file1.setFile_name(tee.getYm());
 					       file1.setFile_type(tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1));
 					       file1.setFile_size(String.valueOf(tee.getAttachSign()));
-					       
 					       //将附件信息保存起来
 					}
 				   

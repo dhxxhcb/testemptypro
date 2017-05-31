@@ -142,12 +142,18 @@ html,body,.content{
 .cont_r .item{
     height: 100%;
     display: none;
+
+}
+.cont_r .item_s{
+    overflow-y: scroll;
 }
 .cont_r .table {
     width: 95%;
+    height: 100%;
     font-size: 16px;
     border: 1px solid #e5e5e5;
-    margin: 14px 0 0 26px;
+    margin: 14px 0 80px 26px;
+
 }
 .cont_r .table caption {
     text-align: right;
@@ -404,7 +410,7 @@ vertical-align: 10px;
     position: relative;
     z-index: 100;
     width: 600px;
-    height: 400px;
+    /*height: 400px;*/
     top: 80px;
     left: -6.5px;
     border-radius: 2px;
@@ -424,12 +430,12 @@ vertical-align: 10px;
     border-radius: 2px 2px 0 0;
 }
 .pop_con{
-    height: 299px;
+    /*height: 299px;*/
     position: relative;
     overflow: auto;
 }
 .con_t{
-    height: 299px;
+    /*height: 299px;*/
     overflow-y: hidden;
 }
 .con_l{
@@ -487,7 +493,7 @@ vertical-align: 10px;
 }
 .title_3{
     width: 100%;
-    height: 68px;
+    height: 40px;
     margin-top: 42px;
     margin-bottom: 4px;
     display: block;
