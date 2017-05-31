@@ -380,7 +380,7 @@ public class FlowTypeModel implements Serializable{
      * @return     Integer
      */
     public Integer getFlowNo() {
-        return flowNo  == 0 ? 1:flowNo;
+        return flowNo  == null ? 1:flowNo;
     }
 
     /**
@@ -528,7 +528,7 @@ public class FlowTypeModel implements Serializable{
      * @return     Integer
      */
     public Integer getDeptId() {
-        return deptId == 0 ? 1:deptId;
+        return deptId == null ? 1:deptId;
     }
 
     /**

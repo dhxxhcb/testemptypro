@@ -14,6 +14,7 @@ import com.xoa.model.email.EmailBoxModel;
 import com.xoa.model.unitmanagement.UnitManage;
 import com.xoa.model.users.Users;
 import com.xoa.model.workflow.FlowProcess;
+import com.xoa.model.workflow.FlowProcessList;
 import com.xoa.model.workflow.FlowRunPrcs;
 import com.xoa.model.workflow.FlowTypeModel;
 import com.xoa.service.unitmanagement.UnitManageService;
@@ -69,14 +70,20 @@ public class Ctest {
 //	@Resource
 //	private FlowTypeService flowTypeService;
 
+//	@Resource
+//	private FlowProcessService flowRunPrcsService;
+
 	@Resource
-	private FlowProcessService flowRunPrcsService;
+	private FlowProcessService processService;
 
 	@Test
 	public void test()throws  Exception{
 
-		ToJson<FlowProcess> toJson = flowRunPrcsService.delete(881);
-		System.out.println(toJson.getMsg());
+//		ToJson<FlowProcess> toJson = flowRunPrcsService.delete(881);
+//		System.out.println(toJson.getMsg());
+		FlowProcessList list=processService.flowView(9);
+		System.out.println(JSON.toJSONStringWithDateFormat(list,"yyyy-MM-dd HH:mm:ss"));
+
 
 //		4516
 

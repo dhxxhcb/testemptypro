@@ -69,6 +69,14 @@
         <result column="LIST_COLUMN_PRIV" javaType="string" property="listColumnPriv"/>
         <result column="FILEUPLOAD_PRIV" javaType="string" property="fileuploadPriv"/>
         <result column="IMGUPLOAD_PRIV" javaType="string" property="imguploadPriv"/>
+
+        <!-- 关联其他表 -->
+        <association property="flowTypeModel" column="FLOW_ID" javaType="com.xoa.model.workflow.FlowTypeModel" >
+            <id column="FLOW_ID" property="flowId" javaType="java.lang.Integer" />
+            <result column="FLOW_NAME" property="flowName" javaType="java.lang.String" />
+            <result column="FORM_ID" property="formId" javaType="java.lang.Integer" />
+        </association>
+
     </resultMap>
 
     <select id="findFlowId" resultMap="BaseResultMap">
@@ -83,8 +91,18 @@
   </select>
 
     <select id="findF" resultMap="BaseResultMap">
-        select a.* ,b.FlOW_NAME as flowName from flow_process a,flow_type b where a.FLOW_ID=b.FLOW_ID and b.FLOW_ID=#{flowId}
-    </select>
+           SELECT
+            a.*,
+            b.FORM_ID,
+            b.FLOW_NAME
+        FROM
+            flow_process a
+            INNER JOIN
+            flow_type b
+        ON a.FLOW_ID = b.FLOW_ID
+        WHERE
+            b.FLOW_ID =#{flowId}
+</select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from flow_process
