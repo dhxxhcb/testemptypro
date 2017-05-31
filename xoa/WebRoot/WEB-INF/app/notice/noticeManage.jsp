@@ -260,9 +260,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <fmt:message code="notice.th.somebody"/>：
             </td>
             <td>
-                <textarea readonly="readonly" id="add_selectUser" class="td_title1  release1"></textarea>
+                <textarea readonly="readonly" id="adds_selectUser" class="td_title1  release1"></textarea>
                 <img class="td_title2 release3" src="../img/mg2.png" alt=""/>
-                <div class="release3" id="add_selectUserbtn"><fmt:message code="global.lang.add"/></div>
+                <div class="release3" id="adds_selectUserbtn"><fmt:message code="global.lang.add"/></div>
                 <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
             </td>
         </tr>
@@ -481,7 +481,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <td>
                     <div class="td_title1">
                         <!-- 需引入时间插件 -->
-                        <input type="text" id="add_newDate"  name="publishTime" class="publishTime" style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
+                        <input type="text" id="adds_newDate"  name="publishTime" class="publishTime" style="height: 20px; width: 255px; margin-left: -4.2px; margin-top: -1px;">
                     </div>
                     <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
 
@@ -494,9 +494,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <td>
                     <div class="td_title1 start_end_time">
                         <!-- 引入时间控件 和 css 调整  -->
-                        <input type="text"  name="startTime" id="start_add" class="startTime" style="height: 20px; width: 130px; margin-left: -4.2px; margin-top: -1px;">
+                        <input type="text"  name="startTime" id="starts_add" class="startTime" style="height: 20px; width: 130px; margin-left: -4.2px; margin-top: -1px;">
                         <fmt:message code="global.lang.to"/>
-                        <input type="text"  name="endTime" id="end_add" class="endTime" style="height: 20px;width: 130px;  margin-top: -1px;">
+                        <input type="text"  name="endTime" id="ends_add" class="endTime" style="height: 20px;width: 130px;  margin-top: -1px;">
                         <fmt:message code="notice.th.null"/>
                     </div>
                 </td>
@@ -570,7 +570,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!--word编辑器-->
             <tr>
                 <td colspan="2">
-                    <div id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></div>
+                    <div id="containers" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></div>
                 </td>
             </tr>
             <tr>
@@ -680,15 +680,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
     user_id='';
 $(function () {
+    //修改
     $('#add_selectUserbtn').click(function(){
         user_id='add_selectUser';
+        $.popWindow("../common/selectUser");
+    });
+    //新增
+    $('#adds_selectUserbtn').click(function(){
+        user_id='adds_selectUser';
         $.popWindow("../common/selectUser");
     });
 
 
 
 			/* word文本编辑器 */
+			//修改---插件
 			 var ue = UE.getEditor('container');
+
+			 //新增ue插件
+            var ue = UE.getEditor('containers');
 		 
             var data = {
                 read : $('.index_head .one').parent().attr('data_id'),
@@ -843,7 +853,7 @@ $(function () {
                 toId:$('#add_texta').val(),//部门发布范围
                 format:$('#add_sel option:checked').attr('value'),//格式
                 typeId:$('#add_type_notice option:checked').attr('value'),//公告类型
-                userId:$('#add_selectUser').attr("dataid"),//按人员发布
+                userId:$('#adds_selectUser').attr("dataid"),//按人员发布
                 privId:'',//按角色发布
                 attachmentId:'',//附件ID串
                 attachmentName:'',//附件名称串
@@ -855,9 +865,9 @@ $(function () {
                 top:$("#add_textTop").is(':checked')==false?0:1,//是否置顶(0-否,1-是),
                 summary:$('#add_summny').val(),//内容简介
                 content:ue.getContent(),//内容
-                sendTimes:$('#add_newDate').val(),//发布时间
-                beginDates:$('#start_add').val(),//开始日期
-                endDates:$('#end_add').val()  //结束日期
+                sendTimes:$('#adds_newDate').val(),//发布时间
+                beginDates:$('#starts_add').val(),//开始日期
+                endDates:$('#ends_add').val()  //结束日期
             }
          if(action=="update"){
                 var noId=$(this).attr("noId");
@@ -1060,10 +1070,18 @@ $(function () {
 
 
 });
+    //修改
     laydate({
          elem: '#add_newDate', //目标元素。
          format: 'YYYY-MM-DD hh:mm:ss', //日期格式
          istime: true, //显示时、分、秒
+    });
+
+    //新增时间控件
+    laydate({
+        elem: '#adds_newDate', //目标元素。
+        format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+        istime: true, //显示时、分、秒
     });
    
    //查询公告时间控件调用
@@ -1092,7 +1110,7 @@ $(function () {
    };
 
     /*新建公告时间控件调用*/
-
+    //修改-----开始时间
     var starts = {
         elem: '#start_add',
         format: 'YYYY/MM/DD hh:mm:ss',
@@ -1105,8 +1123,34 @@ $(function () {
             end.start = datas; //将结束日的初始值设定为开始日
         }
     };
+    //新增-----开始时间
+    var starts_zeng = {
+        elem: '#starts_add',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas; //将结束日的初始值设定为开始日
+        }
+    };
+    //修改----结束时间
     var ends = {
         elem: '#end_add',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        min: laydate.now(),
+        max: '2099-06-16 23:59:59',
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            start.max = datas; //结束日选好后，重置开始日的最大日期
+        }
+    };
+    //新增----结束时间
+    var ends_zeng = {
+        elem: '#ends_add',
         format: 'YYYY/MM/DD hh:mm:ss',
         min: laydate.now(),
         max: '2099-06-16 23:59:59',
@@ -1120,6 +1164,8 @@ $(function () {
    laydate(start);
    laydate(end);
     laydate(starts);
+    laydate(starts_zeng);
+    laydate(ends_zeng);
     laydate(ends);
 
 </script>
