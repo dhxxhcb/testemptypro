@@ -72,12 +72,12 @@ public interface MenuService {
     void addFunctionMenu(SysFunction sysFunction);
 
     /**
-    *@创建作者:  韩成冰
-    *@创建日期:  2017/5/26 19:38
-    *@函数介绍:  编辑一级菜单
-    *@参数说明:  @param SysFunction
-    *@return:   void
-    **/
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/5/26 19:38
+     * @函数介绍: 编辑一级菜单
+     * @参数说明: @param SysFunction
+     * @return: void
+     **/
     void editSysFunction(SysFunction sysFunction);
 
     /**
@@ -85,16 +85,18 @@ public interface MenuService {
      * @创建日期: 2017/5/26 19:37
      * @函数介绍: 查询子菜单
      * @参数说明: @param id
+     * @参数说明: @param locale 国际化
      * @return: List<SysFunction></SysFunction>
      **/
-    List<SysFunction> findChildMenu(String id);
+    List<SysFunction> findChildMenu(String id, String locale);
 
     /**
      * @创建作者: 韩成冰
      * @创建日期: 2017/5/26 19:37
      * @函数介绍: 根据id查一级菜单
      * @参数说明: @param Stirng
+     * @参数说明: @param locale 国际化
      * @return: List<SysMenu></SysMenu>
      **/
-    List<SysMenu> getTheFirstMenu(String id);
+    List<SysMenu> getTheFirstMenu(String id, String locale);
 }

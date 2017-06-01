@@ -167,7 +167,7 @@ public class MenuServiceImpl implements MenuService {
      * @return: List<SysFunction></SysFunction>
      **/
     @Override
-    public List<SysFunction> findChildMenu(String id) {
+    public List<SysFunction> findChildMenu(String id, String locale) {
         List<SysFunction> list = null;
 
         //查出所以的2级3级菜单
@@ -186,6 +186,15 @@ public class MenuServiceImpl implements MenuService {
 
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
+                //国际化,处理方法是，判断如果是美国，就用英文名字覆盖name,即name1覆盖name
+                if ("zh_CN".equals(locale)) {
+                    list.get(i).setName(list.get(i).getName());
+                } else if ("en_US".equals(locale)) {
+                    list.get(i).setName(list.get(i).getName1());
+                } else if ("zh_TW".equals(locale)) {
+                    list.get(i).setName(list.get(i).getName2());
+                }
+
                 SysFunction sysFunction = list.get(i);
                 if (sysFunction.getId().length() == 4) {
                     //查询的是2级
@@ -211,6 +220,7 @@ public class MenuServiceImpl implements MenuService {
             }
         }
 
+
         if (isFindSecond) {
             return secondMenuList;
         } else {
@@ -218,6 +228,7 @@ public class MenuServiceImpl implements MenuService {
         }
 
     }
+
     /**
      * @创建作者: 韩成冰
      * @创建日期: 2017/5/26 19:37
@@ -226,10 +237,23 @@ public class MenuServiceImpl implements MenuService {
      * @return: List<SysMenu></SysMenu>
      **/
     @Override
-    public List<SysMenu> getTheFirstMenu(String id) {
+    public List<SysMenu> getTheFirstMenu(String id, String locale) {
 
         if (id != null) {
             List<SysMenu> list = sysMenuMapper.getTheFirstMenu(id);
+            if (list != null) {
+                for (int i = 0; i < list.size(); i++) {
+                    //国际化,处理方法是，判断如果是美国，就用英文名字覆盖name,即name1覆盖name
+                    if ("zh_CN".equals(locale)) {
+                        list.get(i).setName(list.get(i).getName());
+                    } else if ("en_US".equals(locale)) {
+                        list.get(i).setName(list.get(i).getName1());
+                    } else if ("zh_TW".equals(locale)) {
+                        list.get(i).setName(list.get(i).getName2());
+                    }
+                }
+            }
+
             return list;
         }
         return null;

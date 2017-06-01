@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.xoa.model.menu.MobileApp;
 import com.xoa.model.menu.SysFunction;
 import com.xoa.model.menu.SysMenu;
+import com.xoa.model.users.UserPriv;
 import com.xoa.service.menu.MenuService;
 import com.xoa.service.menu.MobileAppService;
+import com.xoa.service.users.UsersPrivService;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
 import org.springframework.context.annotation.Scope;
@@ -33,6 +35,9 @@ import java.util.Map;
 public class MenuController {
     @Resource
     private MenuService menuService;
+    @Resource
+    private UsersPrivService usersPrivService;
+
     @Resource
     private MobileAppService mobileAppService;
     private int flag;
@@ -341,10 +346,12 @@ public class MenuController {
     public ToJson<SysFunction> findChildMenu(String id, HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
+        String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
+        Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
         ToJson<SysFunction> json = new ToJson<SysFunction>(0, null);
 
 
-        List<SysFunction> menuList = menuService.findChildMenu(id);
+        List<SysFunction> menuList = menuService.findChildMenu(id, locale.toString());
         String msg;
         if (menuList.size() > 0) {
             flag = 0;
@@ -372,7 +379,10 @@ public class MenuController {
     public ToJson<SysMenu> getTheFirstMenu(String id, HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
-        List<SysMenu> list = menuService.getTheFirstMenu(id);
+        String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
+        Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
+
+        List<SysMenu> list = menuService.getTheFirstMenu(id, locale.toString());
         ToJson<SysMenu> json = new ToJson<SysMenu>(0, null);
 
 
@@ -382,4 +392,27 @@ public class MenuController {
         return json;
 
     }
+
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/1 13:39
+     * @函数介绍: 获取某个功能授权的角色和用户名;
+     * @参数说明: @param String fid(子类菜单ID)
+     * @参数说明: @param HttpServletRequest
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping("/getAuthRoleAndUser")
+    public ToJson<Object> getAuthRoleAndUser(String fid, HttpServletRequest request) {
+
+        List<UserPriv> userPrivList = usersPrivService.getUserPrivNameByFuncId(fid);
+
+        return null;
+
+
+    }
 }
+
+
+
