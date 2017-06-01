@@ -31,9 +31,9 @@
   select * from im_message where UUID=#{uuid};
   </select>
   
-   <select id="selectMessageByPage" parameterType="Map" resultMap="BaseResultMap" >
-      SELECT * FROM im_message WHERE ((FROM_UID=#{fromId} AND TO_UID =#{toId}) OR (FROM_UID=#{toId} AND TO_UID =#{fromId})) AND #{lastTime} >= ATIME  ORDER BY ATIME
-   </select>
+   <!--<select id="selectMessageByPage" parameterType="Map" resultMap="BaseResultMap" >-->
+      <!--SELECT * FROM im_message WHERE ((FROM_UID=#{fromId} AND TO_UID =#{toId}) OR (FROM_UID=#{toId} AND TO_UID =#{fromId})) AND #{lastTime} >= ATIME  ORDER BY ATIME-->
+   <!--</select>-->
   <insert id="save" parameterType="com.xoa.model.im.ImMessage">
   insert into im_message 
         (FROM_UID,TO_UID,OF_FROM,OF_TO,THUMBNAIL_URL,STIME,ATIME,TYPE,DFLAG,MSG_TYPE,UUID,CONTENT,FILE_ID,FILE_NAME)
@@ -489,8 +489,8 @@
    <select id="selectByUUID" parameterType="Map" resultMap="ResultMap">
        SELECT * FROM im_message WHERE FROM_UID=#{fromId} AND UUID=#{uuid}  ORDER BY ATIME DESC LIMIT 0,1
    </select> -->
- <!--   <select id="selectMessageByPage" parameterType="Map" resultMap="BaseResultMap" >
+  <select id="selectMessageByPage" parameterType="Map" resultMap="BaseResultMap" >
       SELECT * FROM im_message WHERE ((FROM_UID=#{fromId} AND TO_UID =#{toId}) OR (FROM_UID=#{toId} AND TO_UID =#{fromId})) AND #{lastTime} >= ATIME  ORDER BY ATIME
       limit #{pageNo},#{pageSize} 
-   </select> -->
+   </select>
 </mapper>
