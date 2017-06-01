@@ -264,6 +264,11 @@ public class WorkController {
     @ResponseBody
 	public ToJson<FlowRunPrcs> savework(HttpServletRequest request,
               @RequestParam(value="runId",required = false) int runId,
+              @RequestParam(value="runName",required = false) int runName,
+              @RequestParam(value="flowId",required = false) int flowId,
+              @RequestParam(value="prcsId",required = false) int prcsId,
+              @RequestParam(value="prcsflag",required = false) String prcsFlag,
+              @RequestParam(value="flowPrcs",required = false) int flowPrcs,
               @RequestParam(value="beginTime",required =false) String beginTime,
               @RequestParam(value="beginUser",required =false) String beginUser ) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
@@ -273,9 +278,10 @@ public class WorkController {
 		
 		  FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
           flowRunPrcs.setRunId(runId);
-          flowRunPrcs.setPrcsId(1);
-         // flowRunPrcs.setUserId(userId);
+          flowRunPrcs.setPrcsId(prcsId);
+          flowRunPrcs.setUserId(beginUser);
           //flowRunPrcs.setPrcsDept(deptId);
+          flowRunPrcs.setPrcsFlag(prcsFlag);
           flowRunPrcs.setPrcsTime(beginTime);
           SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
           flowRunPrcs.setDeliverTime(df.format(new Date()));
