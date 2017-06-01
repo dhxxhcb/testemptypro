@@ -14,6 +14,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -267,7 +268,12 @@ public class SysLogController {
      **/
     @ResponseBody
     @RequestMapping(value = "/logManage", produces = {"application/json;charset=UTF-8"})
-    public ToJson<Syslog> findLogManage(HttpServletRequest request, Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
+    public ToJson<Syslog> findLogManage(HttpServletRequest request,
+            @RequestParam(value = "type" ,required = false)Integer type,
+            @RequestParam(value = "uid" ,required = false) String uid,
+            @RequestParam(value = "startTime" ,required = false) Date startTime,
+            @RequestParam(value = "endTime" ,required = false) Date endTime,
+            @RequestParam(value = "syslog" ,required = false) Syslog syslog) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
 
