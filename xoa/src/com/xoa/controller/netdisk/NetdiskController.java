@@ -27,8 +27,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -146,16 +145,16 @@ public class NetdiskController {
 	                        json.setFlag(1);
 	                        json.setMsg("err");
 	                    }
-					
+
 				}
 			}
-            		
+
          // Iterator<String> iter = multiRequest.getFileNames();
          /*   while(iter.hasNext()){
                 //记录上传过程起始时的时间，用来计算上传时间
                 int pre = (int) System.currentTimeMillis();
                 //取得上传文件
-                
+
                 MultipartFile file = multiRequest.getFile(iter.next());
                 if(file != null){
                     //取得当前上传文件的文件名称
@@ -186,6 +185,40 @@ public class NetdiskController {
 
 
         return  json;
+    }
+
+    @RequestMapping(value="/download",method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
+    public String download(String fileName, HttpServletRequest request,
+                           HttpServletResponse response,String path) {
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("multipart/form-data");
+        response.setHeader("Content-Disposition", "attachment;fileName="
+                + fileName);
+        try {
+
+            InputStream inputStream = new FileInputStream(new File(path
+                    + File.separator + fileName));
+
+            OutputStream os = response.getOutputStream();
+            byte[] b = new byte[2048];
+            int length;
+            while ((length = inputStream.read(b)) > 0) {
+                os.write(b, 0, length);
+            }
+
+            // 这里主要关闭。
+            os.close();
+
+            inputStream.close();
+        } catch (FileNotFoundException
+                e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //  返回值要注意，要不然就出现下面这句错误！
+        //java+getOutputStream() has already been called for this response
+        return null;
     }
 
 
