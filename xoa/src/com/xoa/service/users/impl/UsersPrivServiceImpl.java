@@ -148,4 +148,18 @@ public class UsersPrivServiceImpl implements UsersPrivService {
         return userPrivMapper.getAlluserPriv(map);
     }
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/1 13:54
+     * @函数介绍: 根据funcIdStr查询角色名称
+     * @参数说明: @param fid, 某个功能的id,对应sys_function表中的FUNC_ID
+     * @return: XXType(value introduce)
+     */
+    @Override
+    public List<UserPriv> getUserPrivNameByFuncId(String fid) {
+
+        List<UserPriv> userPrivList = userPrivMapper.getUserPrivNameByFuncId(fid);
+        return userPrivList;
+    }
+
 }

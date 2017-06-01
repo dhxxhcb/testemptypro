@@ -23,7 +23,7 @@ public class UserPriv {
     /**
 	 *角色对应的功能ID串
 	 */
-    private String funcIdStr;
+        private String funcIdStr;
     /**
 	 *所属部门
 	 */

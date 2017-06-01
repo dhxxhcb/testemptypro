@@ -104,4 +104,5 @@ public interface UserPrivMapper {
     List<UserPriv> getPrivByMany(UserPriv userPriv);
 
 
+     List<UserPriv> getUserPrivNameByFuncId(String fid);
  }
