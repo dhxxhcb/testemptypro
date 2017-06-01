@@ -127,15 +127,18 @@ public class SysLogController {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         ToJson<Object> tojson = new ToJson<Object>(0, "");
-        ArrayList<Object> monthDayData = new ArrayList<Object>();
+        //ArrayList<Object> monthDayData = new ArrayList<Object>();
+
+        Map<String, Object> map = new HashMap<String, Object>();
         try {
             List<Object> monthDataList = sysLogService.getEachMouthLogData(year);
             List<Object> dayDataList = sysLogService.getEachDayLogData(year, month);
+            map.put("monthData", monthDataList);
+            map.put("dayData", dayDataList);
+           /* monthDayData.add(monthDataList);
+            monthDayData.add(dayDataList);*/
 
-            monthDayData.add(monthDataList);
-            monthDayData.add(dayDataList);
-
-            tojson.setObj(monthDayData);
+            tojson.setObject(map);
             tojson.setMsg("OK");
             tojson.setFlag(0);
         } catch (ClassCastException e) {
