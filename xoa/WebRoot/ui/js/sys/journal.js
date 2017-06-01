@@ -30,17 +30,35 @@ $(function(){
         $(this).siblings().find('span').removeClass('one');
         $('.journalQuery').show().siblings().hide();
         allJournalType();
-    })
-    //日志查询确定点击事件
-    $('.sureBtn').on('click','#Btn',function(){
-        $('.queryResult').show().siblings().hide();
-        queryShow();
+        $('.Query').prop('checked',true);
     })
     //查询结果页返回按钮点击事件
     $('#divBack').click(function(){
         $('.journalQuery').show().siblings().hide();
     })
-
+    //日志查询确定点击事件
+    $('.sureBtn').on('click','#Btn',function(){
+        //单选框选中事件
+        if($('input[name="TYPE"]:checked').val()==1){//选中查询
+            $('.queryResult').show().siblings().hide();
+            queryShow();
+        }else if($('input[name="TYPE"]:checked').val()==2){//选中导出
+            journalExport();
+        }else{                                          //选中删除
+            journalDelete();
+        }
+    })
+    //复选框全选点击事件
+    $('#checkedAll').click(function(){
+        var state =$(this).prop("checked");
+        if(state==true){
+            $(this).prop("checked",true);
+            $(".checkChild").prop("checked",true);
+        }else{
+            $(this).prop("checked",false);
+            $(".checkChild").prop("checked",false);;
+        }
+    })
     //日志概况显示数据
     function journalSurveyShow(){
         $.ajax({
@@ -171,6 +189,7 @@ $(function(){
     }
     //查询日志显示列表
     function queryShow(){
+        $('.AllData').remove();
         var id=$('#senduser').attr('dataid');
         if(!id){
             id='';
@@ -193,7 +212,7 @@ $(function(){
                 var str='';
                 for(var i=0;i<data1.length;i++){
                     var sendTime=new Date(data1[i].time).Format('yyyy-MM-dd hh:mm');
-                    str+='<tr><td><input class="checkChild" type="checkbox" name="checke" value=""></td><td>'+data1[i].userName+'</td><td>'+sendTime+'</td><td>'+data1[i].ip+'</td><td>'+data1[i].ipLocation+'</td><td>'+data1[i].typeName+'</td><td>'+data1[i].remark+'</td></tr>';
+                    str+='<tr class="AllData"><td><input class="checkChild" type="checkbox" name="checke" value=""></td><td>'+data1[i].userName+'</td><td>'+sendTime+'</td><td>'+data1[i].ip+'</td><td>'+data1[i].ipLocation+'</td><td>'+data1[i].typeName+'</td><td>'+data1[i].remark+'</td></tr>';
                 }
                 $('.queryJournalList').after(str);
                 $(".checkChild").click(function () {
@@ -216,15 +235,58 @@ $(function(){
             }
         })
     }
-    //全选点击事件
-    $('#checkedAll').click(function(){
-        var state =$(this).prop("checked");
-        if(state==true){
-            $(this).prop("checked",true);
-            $(".checkChild").prop("checked",true);
-        }else{
-            $(this).prop("checked",false);
-            $(".checkChild").prop("checked",false);;
+    //查询数据导出
+    function journalExport(){
+        var id=$('#senduser').attr('dataid');
+        if(!id){
+            id='';
         }
-    })
+        var data={
+            'type':$('#journalType option:checked').val(),
+            'uid':id,
+            'startTime':$('#start').val(),
+            'endTime':$('#end').val(),
+            'ip':$('#IP').val(),
+            'remark':$('#remarks').val()
+        }
+        $.ajax({
+            type:'post',
+            url:'../../sys/exportLogXls',
+            dataType:'json',
+            data:data,
+            success:function(){
+                alert('导出成功');
+            }
+        })
+    }
+    //查询数据删除
+    function journalDelete(){
+        var id=$('#senduser').attr('dataid');
+        if(!id){
+            id='';
+        }
+        var data={
+            'type':$('#journalType option:checked').val(),
+            'uid':id,
+            'startTime':$('#start').val(),
+            'endTime':$('#end').val(),
+            'ip':$('#IP').val(),
+            'remark':$('#remarks').val()
+        }
+        var msg='确定要删除吗？';
+        if (confirm(msg)==true){
+            $.ajax({
+                type:'post',
+                url:'../../sys/deleteSyslog',
+                dataType:'json',
+                data:data,
+                success:function(res){
+                    console.log(res.flag);
+                }
+            });
+            return true;
+        }else{
+            return false;
+        }
+    }
 })
