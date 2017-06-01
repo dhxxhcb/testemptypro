@@ -297,6 +297,9 @@ $(function () {
        $(this).prev().text($(this).val())
         $(this).prev().show();
     })
+    $(document).delegate('.deletes','click',function () {
+        $(this).parent().parent().remove();
+    })
 
 
 
@@ -392,7 +395,6 @@ ajaxSvg();
         layer.open({
             type:1,
             title:'下一步骤',
-            closeBtn:2,
             content:'<div class="bottomstepstwo layui-form" style="margin: 10px ;">'+str+ '<div style="margin-top: 15px;" id="checkAll"><span><input type="checkbox" class="checkedAll" title="全选"></span> <input type="checkbox" title="结束" value="0"></div>'+
             '</div>' ,
             area:['400px','300px'],
@@ -439,18 +441,18 @@ ajaxSvg();
             }
             var strprcsOut=conditionsDate.prcsOut.replace(/\n/g,'');
             var arrprcsOut=strprcsOut.split('\r');
-            console.log(arrprcsOut)
+
             var transferConditionsprcsOut='';
             for(var q=0;q<arrprcsOut.length;q++){
-                if(q<arrprcsOut.length-1) {
-                    transferConditionsprcsOut += '<tr><td width="20%">' + (q + 1) + '</td>' +
+                if(q<arrprcsOut.length) {
+                    transferConditionsprcsOut+= '<tr><td width="20%">' + (q + 1) + '</td>' +
                         '<td width="60%"><span>' + arrprcsOut[q] + '</span><input type="text" name="ConditionsInput" style="display: none">' +
                         '<input type="hidden" value="' + arrprcsOut[q] + '"></td>' +
                         '<td><a href="javascript:;" class="theEditor" style="margin-right: 10px;color: #2f8ae3">编辑</a>' +
                         '<a href="javascipt:;" class="deletes" style="color: #2f8ae3">删除</a></td></tr>'
                 }
             }
-
+            console.log(transferConditionsprcsOut)
             var str=''
            for(var i=0;i<alertData.length;i++){
                str+='<option value="'+alertData[i].name+'">'+alertData[i].title+'</option>'
@@ -535,11 +537,11 @@ ajaxSvg();
                      </p>\
                       <p class="candidatesPone">转出条件公式(条件与逻辑运算符之间需空格，如[1] AND [2])</p> \
                     <p class="candidatesPTwo">\
-                            <input type="text" name="prcsOutSet">\
+                            <input type="text" name="prcsOutSet" value="'+conditionsDate.prcsOutSet+'">\
                      </p>\
                       <p class="candidatesPone">不符合条件公式时，给用户的文字描述：</p> \
                     <p class="candidatesPTwo">\
-                            <input type="text" name="conditionDesc">\
+                            <input type="text" name="conditionDesc" value="'+conditionsDate.conditionDesc+'">\
                      </p>\
                 </li>\
             </ul>\
@@ -547,6 +549,13 @@ ajaxSvg();
                 area:['800px','600px'],
                 btn:['确定','关闭'],
                 yes:function (index) {
+                    $('#bottomstepstwoss').find('#intoTheCondition').find('input[type=text]').each(function () {
+                        $(this).blur();
+                    })
+                    $('#bottomstepstwoss').find('#transferConditions').find('input[type=text]').each(function () {
+                        $(this).blur();
+                    })
+
                     var obj={};
                     obj.intoTheCondition={}
                     obj.intoTheCondition.list=[]
@@ -859,7 +868,6 @@ ajaxSvg();
                 layer.open({
                     type:1,
                     title:'本步骤可写字段',
-                    closeBtn:2,
                     content:'<div class="bottomstepstwo layui-form" style="margin: 10px ;">' +
                     '<input type="checkbox" title="行政主管审批">' +
                     '<input type="checkbox" title="上级主管审批">' +
@@ -883,7 +891,6 @@ ajaxSvg();
             layer.open({
                 type:0,
                 title:'编辑可写字段',
-                closeBtn:2,
                 content:' <form class="layui-form"><div class="bottomstepstwoss " style="height: 460px">\
             <ul class="candidatesUl" style="display: block;border: none;">\
                 <li>\

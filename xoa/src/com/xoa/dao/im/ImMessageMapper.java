@@ -15,5 +15,7 @@ public interface ImMessageMapper {
 	int save(ImMessage record);
 
 	ImMessage getLastMessage(Map<String, Object> map);
+
+	List<ImMessage> selectMessageByPage(Map<String, Object> map);
 	
 }

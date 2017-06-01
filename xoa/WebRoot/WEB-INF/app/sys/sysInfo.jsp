@@ -45,6 +45,7 @@
 			border-right: 1px #cccccc solid;
 			padding: 3px;
 			height: 30px;
+			border-top:1px #cccccc solid;
 		}
 		.TableData {
 			BACKGROUND: #FFFFFF;
@@ -59,6 +60,16 @@
 			vertical-align: inherit;
 			border-color: inherit;
 		}
+		table {
+			width: 94%;
+			margin: 0 auto;
+			font-size: 14px;
+			margin-top: 10px;
+			margin-bottom: 15px;
+		}
+		table tr td {
+			border-right: 0px solid !important;
+		}
 	</style>
 </head>
 <body>
@@ -66,7 +77,7 @@
 	<tbody>
 	<tr>
 		<td class="Big">
-			<img src="/static/images/sys_config.gif" width="22" height="20" align="absmiddle"><span class="big3">  心通达OA系统信息</span>
+			<span class="big3">  心通达OA系统信息</span>
 			<input type="button" value="开发团队" class="BigButton" onclick="ShowDialog('developer');">
 		</td>
 	</tr>
@@ -85,38 +96,38 @@
                         '<td nowrap="" colspan="2" align="center"><b>+心通达OA - 系统信息</b></td></tr>'+
                         '<tr><td nowrap="" class="TableContent" width="150"><b>&nbsp;软件名称：</b></td>'+
                         '<td class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;版权所有：</b></td>'+
-                        '<td class="TableData"></td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;OA版本：</b></td>'+
-                        '<td class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;Web服务版本号：</b></td>'+
-                        '<td class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;数据库版本号：</b></td>'+
-                        '<td class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;iOS版本号：</b></td>'+
-                        '<td class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;Andriod版本号：</b></td>'+
-                        '<td class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;精灵版本：</b></td>'+
-                        '<td class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;HTTP服务器软件：</b></td>'+
-                        '<td nowrap="" class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;HTTP端口号：</b></td>'+
-                        '<td nowrap="" class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;数据库软件：</b></td>'+
-                        '<td nowrap="" class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;用户单位：</b></td>'+
-                        '<td nowrap="" class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;实际用户数：</b></td>'+
-                        '<td nowrap="" class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;软件注册：</b></td>'+
-                        '<td nowrap="" class="TableData">'+data.object.softName+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;系统版本：</b></td>'+
+                        '<td class="TableData">'+data.object.softVersion+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;版本号：</b></td>'+
+                        '<td class="TableData">'+data.object.softVersionNO+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;服务器路径：</b></td>'+
+                        '<td class="TableData">'+data.object.serverPath +'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;jdk版本：</b></td>'+
+                        '<td class="TableData">'+data.object.jdkVersion+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;组织机构名称：</b></td>'+
+                        '<td class="TableData">'+data.object.orgName+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;机器码：</b></td>'+
+                        '<td class="TableData">'+data.object.machineCode+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;软件序列号：</b></td>'+
+                        '<td class="TableData">'+data.object.softSerialNo+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;用户信息：</b></td>'+
+                        '<td nowrap="" class="TableData">'+data.object.userInfo+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;授权信息说明文字：</b></td>'+
+                        '<td nowrap="" class="TableData">'+data.object.reloadAuthorizationstr+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;授权单位：</b></td>'+
+                        '<td nowrap="" class="TableData">'+data.object.authorizationUnit+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;授权机器码：</b></td>'+
+                        '<td nowrap="" class="TableData">'+data.object.authorizationCode+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;授权开始日期：</b></td>'+
+                        '<td nowrap="" class="TableData">'+data.object.authorizationBeginDate+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;授权结束日期：</b></td>'+
+                        '<td nowrap="" class="TableData">'+data.object.authorizationEndDate +'</td></tr>'+
                         '<tr><td nowrap="" class="TableContent"><b>&nbsp;OA用户数限制：</b></td>'+
                         '<td nowrap="" class="TableData">'+data.object.oaUserLimit+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;IM用户数限制：</b></td>'+
-                        '<td nowrap="" class="TableData">'+data.object.softName+'</td></tr>'+
-                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;分支机构数限制：</b></td>'+
-                        '<td nowrap="" class="TableData">'+data.object.softName+'</td></tr></tbody>';
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;移动用户数限制：</b></td>'+
+                        '<td nowrap="" class="TableData">'+data.object.mobileTeriminalLimit+'</td></tr>'+
+                        '<tr><td nowrap="" class="TableContent"><b>&nbsp;pc用户数限制：</b></td>'+
+                        '<td nowrap="" class="TableData">'+data.object.pcTerminalLimit +'</td></tr></tbody>';
                     $("#TableBlock").html(str);
                 }
             })

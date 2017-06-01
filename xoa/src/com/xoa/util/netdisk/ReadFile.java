@@ -11,6 +11,24 @@ import java.util.List;
 
 public class ReadFile {
 
+	//添加文件夹
+	public static boolean mkDirectory(String path) {
+		File file = null;
+		try {
+			file = new File(path);
+			if (!file.exists()) {
+				return file.mkdirs();
+			}
+			else{
+				return false;
+			}
+		} catch (Exception e) {
+		} finally {
+			file = null;
+		}
+		return false;
+	}
+
 	public static Catalog getFiles(String dirPath) throws Exception{
 		File file=new File(dirPath);
 		Catalog catalog=null;
