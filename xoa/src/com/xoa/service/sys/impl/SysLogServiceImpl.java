@@ -609,6 +609,7 @@ public class SysLogServiceImpl implements SysLogService {
     }
 
     /**
+     * @param ids
      * @创建作者: 韩成冰
      * @创建日期: 2017/6/1 19:13
      * @函数介绍: 根据id, 删除log
@@ -616,12 +617,12 @@ public class SysLogServiceImpl implements SysLogService {
      * @return: void
      */
     @Override
-    public void deleteLogByIds(String ids) {
+    public void deleteLogByIds(String[] ids) {
 
-        if (ids != null && ids != "") {
-            String[] idArr = ids.split(",");
-            for (int i = 0; i < idArr.length; i++) {
-                sysLogMapper.deleteLogById(Integer.parseInt(idArr[i]));
+        if (ids != null) {
+
+            for (int i = 0; i < ids.length; i++) {
+                sysLogMapper.deleteLogById(Integer.parseInt(ids[i]));
             }
         }
     }

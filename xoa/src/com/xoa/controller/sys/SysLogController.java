@@ -427,7 +427,7 @@ public class SysLogController {
     **/
     @ResponseBody
     @RequestMapping(value = "/deleteLogByIds")
-    public ToJson<Object> deleteLogByIds(HttpServletRequest request, String ids) {
+    public ToJson<Object> deleteLogByIds(HttpServletRequest request, String[] ids) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
 
