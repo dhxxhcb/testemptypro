@@ -513,7 +513,8 @@ public class SysLogServiceImpl implements SysLogService {
     @Override
     public List<Syslog> logManage(Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
         String[] uidArr = null;
-        if (uid != null) {
+
+        if (uid != null && !"".equals(uid)) {
             uidArr = uid.split(",");
         }
 
@@ -577,7 +578,7 @@ public class SysLogServiceImpl implements SysLogService {
     public void deleteSyslog(Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
 
         String[] uidArr = null;
-        if (uid != null) {
+        if (uid != null && !"".equals(uid)) {
             uidArr = uid.split(",");
         }
 
