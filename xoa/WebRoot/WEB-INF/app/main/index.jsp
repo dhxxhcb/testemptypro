@@ -449,10 +449,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						//点击二级菜单
 						$('.two_menu li').on('click','.two_all',function(){
-						    /*console.log($(this).siblings('.sanji').length>0);
-						    if($(this).siblings('.sanji').length>0){
 
-							}*/
+                            //给我的工作标签添加click事件
+                            console.log($(this).parent().attr('menu_tid')=='1020');
+                            if($(this).parent().attr('menu_tid')=='1020'){
+                                $(this).parent().click();
+                            }
+
 						    $(this).find('.erji_circle').attr('src','img/main_img/lan.png');
 						    $(this).find('h1').attr('style','color:#2f8ae3');
 						    $(this).parent('.two').siblings().find('.erji_circle').attr('src','img/main_img/hei.png');
@@ -517,8 +520,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 						});		
 						
-						//给我的工作标签添加click事件
-						/*if($('.two'))*/
+
 							//点击三级菜单，跳转页面。
 							$('.sanji').on('click','li',function(){
                                 $(this).find('img').attr('src','img/main_img/lan.png');

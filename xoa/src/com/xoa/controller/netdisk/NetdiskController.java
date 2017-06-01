@@ -37,10 +37,7 @@ import java.util.Map;
 public class NetdiskController {
     @Resource
     private NetdiskService netdiskService;
-    @Resource
-    private UsersService usersService;
-    @Resource
-    private UsersPrivService usersPrivService;
+
 
     @ResponseBody
     @RequestMapping(value="/selectNetdisk",produces = {"application/json;charset=UTF-8"})
@@ -49,29 +46,31 @@ public class NetdiskController {
                 "loginDateSouse"));
         Users users = SessionUtils.getSessionInfo(request.getSession(), Users.class,new Users());
         Map<String,Object> map=new Hashtable<String, Object>();
+        ToJson<Catalog> toJson = new ToJson<Catalog>();
         map.put("userId", users.getUid());
         map.put("userPriv", users.getUserPriv());
         map.put("deptId", users.getDeptId());
         Catalog  catalog=null;
         List<Netdisk>  neList= netdiskService.selectNetdisk();
-   for (Netdisk netdisk:neList){
-       if (CheckAll.checkAll(netdisk.getUserId(),map)){
-      if (!StringUtils.checkNull(path)){
-               catalog=ReadFile.getFiles(path);
-           }
-       }
-   }
+        for (Netdisk netdisk:neList){
+            if (CheckAll.checkAll(netdisk.getUserId(),map)){
+                if (!StringUtils.checkNull(path)){
+                    catalog=ReadFile.getFiles(path);
+                }
+            }else {
+                toJson.setFlag(1);
+                toJson.setMsg("err");
+
+            }
+        }
 
 
-          ToJson<Catalog> toJson = new ToJson<Catalog>();
-       if (catalog!=null){
-           toJson.setFlag(0);
-           toJson.setMsg("ok");
-           toJson.setObject(catalog);
-       }else{
-           toJson.setFlag(1);
-           toJson.setMsg("err");
-       }
+
+        if (catalog!=null){
+            toJson.setFlag(0);
+            toJson.setMsg("ok");
+            toJson.setObject(catalog);
+        }
 
 
 
