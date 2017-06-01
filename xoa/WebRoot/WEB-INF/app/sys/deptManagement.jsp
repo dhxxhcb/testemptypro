@@ -127,7 +127,7 @@
 
         .head {
             border-bottom: 1px solid #dedede;
-            height: 43px;
+            height: 42px;
         }
         .new_excell_pic {
             border-radius: 0;
@@ -396,8 +396,6 @@
             padding-top: 10px;
             text-align: center;
         }
-
-
     </style>
 </head>
 <body style="overflow:scroll;overflow-y: hidden;overflow-x:hidden;">
@@ -414,7 +412,7 @@
         <div class="cont_left" id="cont_left">
             <ul>
                 <li class="liUp dept_li" id="dept_lis">部门列表</li>
-                <li class="pick" style="display: block;">
+                <li class="pick" style="display: none;">
                     <ul class="tab_ctwo a" id="deptOrg">
                         <!-- <li>
 
@@ -434,11 +432,6 @@
           <%--  <%@ include file="new_deptManagement.jsp" %>--%>
             <jsp:include page="new_deptManagement.jsp"/>
 
-
-
-
-
-
         </div>
     </div>
 </div>
@@ -448,16 +441,9 @@
     function newDept(){
 
 //        $("#telNo").val("ceshi");
-//
-//        alert(1);
 //        alert("ceshi");
         $(".step1").show();
         $(".step2").hide();
-
-
-
-
-
     };
 
     $(function () {
@@ -472,7 +458,6 @@
                 $(this).addClass("liUp").removeClass("liDown");
             }
         });
-
         //部门列表
         $('.cont_left .tab_ctwo').on('click', '.childdept', function () {
             var that = $(this);
@@ -484,7 +469,7 @@
             that.addClass('on')
             that.next().toggle();  //显示和隐藏左侧部门列表的切换效果
 
-            deptById(deptid);
+            deptById(deptid); //调编辑详情的接口
 
 
         });
@@ -502,16 +487,16 @@
                         var str = '';
                         data.obj.forEach(function (v, i) {
                             if (v.deptName) {
-                                str += '<li><span  deptid="' + v.deptId + '" class="childdept"><span></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;"></ul></li>';
+                                str += '<li><span  deptid="' + v.deptId + '" class="childdept"><span></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;display:none;"></ul></li>';
                             } else {
-                                str += '<li><span deptid="' + v.deptId + '" class="childdept"><span><img src="../img/main_img/man.png" alt=""></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
+                                str += '<li><span deptid="' + v.deptId + '" class="childdept"><span><img src="../img/main_img/man.png" alt=""></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;display:none;"></ul></li>';
                             }
                         });
                     } else {
                         var str = '';
                         data.obj.forEach(function (v, i) {
                             if (v.deptName) {
-                                str += '<li><span deptid="' + v.deptId + '" class="childdept"><span class=""></span><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;"></ul></li>';
+                                str += '<li><span deptid="' + v.deptId + '" class="childdept"><span class=""></span><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;display:none;"></ul></li>';
                             } else {
 //                                if (v.sex == 0) {
 //
@@ -526,9 +511,9 @@
                 }
             })
         }
-        getChDept($('#deptOrg'), 20); //根据地区，北京集团
+        getChDept($('#deptOrg'),20); //根据地区，北京集团
 
-        //编辑部门
+        //编辑部门 详情
         function deptById(id){
 
             $.ajax({
@@ -537,16 +522,71 @@
                 dataType:'json',
                 data:{'deptId':id},
                 success:function(data){
+                    $(".step1").hide();
+                    $(".step2").show();
+                    $("#deptNo_").val(data.object.deptNo); // 部门排序号
+                    $("#deptName_").val(data.object.deptName); // 部门名称
+                    $("#deptParent_").val(data.object.deptParent); // 上级部门ID
 
-                console.log(data);
-
-
-
+                    $("#manager_").val(data.object.manager); //部门主管
+                    $("#assistantId_").val(data.object.assistantId); // 部门助理
+                    $("#leader1_").val(data.object.leader1); // 上级主管领导
+                    $("#leader2_").val(data.object.leader2); // 上级分管领导
+                    $("#telNo_").val(data.object.telNo); // 电话
+                    $("#faxNo_").val(data.object.faxNo); // 传真
+                    $("#deptAddress_").val(data.object.deptAddress); // 地址
+                    $("#deptFunc_").val(data.object.deptFunc); // 部门职责
+                    $("#dapaId_").html(data.object.deptId);
                 }
             })
         }
-
-
+    // 编辑的保存修改按钮
+        $("#new_").on("click",function(){
+            alert($("#dapaId_").html());
+            var data = {
+                'deptId':$("#dapaId_").html(),
+                "deptName": $("#deptName_").val(),    // 部门名称
+                "telNo": $("#telNo_").val(),      //电话
+                "faxNo":$("#faxNo_").val(),  //传真
+                "deptAddress": $("#deptAddress_").val(),// 部门地址
+                "deptParent":  $('#deptParent_ option:checked').attr('value'),//上级部门ID
+                "isOrg": "", //是否是分支机构(0-否,1-是)
+                "orgAdmin":"",//机构管理员
+                "deptEmailAuditsIds":"", //保密邮件审核人
+                "weixinDeptId":"",  // null
+                "dingdingDeptId":"",//叮叮对应部门id
+                "gDept":'',// 是否全局部门(0-否,1-是)
+                "manager":' ',//部门主管
+                "assistantId":"",//部门助理
+                "leader1":"",//上级主管领导
+                "leader2":'',//上级分管领导
+                "deptFunc":$("#deptFunc_").val(),//部门职能
+                "avatar": "",    // 头像
+                " userName": "",      // 用户名字
+                "uid":"",  // 用户uid
+                "userPrivName": "",// 用户角色名字
+                "type":  "" ,//   返回类型
+            };
+            /*  console.log(data); */
+            if(data.deptParent==0){
+                alert("上级部门不能为空!");
+                return false;
+            }else{
+                $.ajax({
+                    url:"<%=basePath%>../department/editDept",
+                    type:'post',
+                    dataType:"JSON",
+                    data : data,
+                    success:function(data){
+                        location.reload();
+                        console.log(data);
+                    },
+                    error:function(e){
+                        console.log(e);
+                    }
+                });
+            }
+        });
 
 
 
