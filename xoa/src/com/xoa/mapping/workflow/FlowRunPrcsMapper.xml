@@ -673,7 +673,7 @@
             dp.DEPT_NAME
         FROM
             flow_run_prcs frp
-        LEFT JOIN department dp ON frp.PRCS_DEPT = dp.DEPT_ID
+         LEFT  JOIN FLOW_PROCESS frp ON fp.FLOW_ID = fr.FLOW_ID
         WHERE
             frp.RUN_ID = #{runId}
     </select>
