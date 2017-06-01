@@ -357,7 +357,8 @@ public class SysLogController {
                                @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "startTime", required = false) Date startTime,
                                @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "endTime", required = false) Date endTime,
                                @RequestParam(value = "syslog", required = false) Syslog syslog) throws IOException, ParseException {
-
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
 
 /*        syslog = new Syslog();
         syslog.setIp("192.168.0.204");
@@ -396,7 +397,7 @@ public class SysLogController {
             dataRow.createCell(1).setCellValue(timeString);
             dataRow.createCell(2).setCellValue(log.getIp());
             dataRow.createCell(3).setCellValue("");
-            dataRow.createCell(4).setCellValue(log.getType());
+            dataRow.createCell(4).setCellValue(log.getTypeName());
             dataRow.createCell(5).setCellValue(log.getRemark());
 
         }
@@ -413,6 +414,33 @@ public class SysLogController {
         workbook.write(out);
 
         return null;
+
+    }
+
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/6/1 19:23
+    *@函数介绍:  根据多个id,(id之间用逗号分隔,删除日志)
+    *@参数说明:  @param ids
+    *@return:   json
+    **/
+    @ResponseBody
+    @RequestMapping(value = "/deleteLogByIds")
+    public ToJson<Object> deleteLogByIds(HttpServletRequest request, String ids) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+
+        ToJson<Object> toJson = new ToJson<Object>(0, "");
+
+        try {
+            sysLogService.deleteLogByIds(ids);
+            toJson.setMsg("OK");
+            toJson.setFlag(0);
+        } catch (Exception e) {
+            toJson.setMsg(e.getMessage());
+        }
+        return toJson;
 
     }
 }

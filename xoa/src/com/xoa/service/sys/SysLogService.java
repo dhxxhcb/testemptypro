@@ -108,5 +108,12 @@ public interface SysLogService {
     void deleteSyslog(Integer type, String uid, Date startTime, Date endTime, Syslog syslog);
 
 
-
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/6/1 19:13
+    *@函数介绍:  根据id,删除log
+    *@参数说明:  @param String ids
+    *@return:   void
+    **/
+    void deleteLogByIds(String ids);
 }
