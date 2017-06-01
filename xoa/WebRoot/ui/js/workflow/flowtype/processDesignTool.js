@@ -4,6 +4,7 @@
 var user_id=''
 var form,layer
 var flowDesign;
+var dataToAll;//全部数据
 var jsondata = {
     "title": "",
     "nodes": {},
@@ -11,9 +12,11 @@ var jsondata = {
     "areas": {},
     "initNum": 0
 }
+var alertData;//条件设置字段
 var flowidurl=window.location.href;
 var flowstr=flowidurl.substring(flowidurl.indexOf('=')+1)
 var numId={};
+var conditionsDate;//条件数据
 
 
 function saveOrUpdate() {
@@ -36,6 +39,10 @@ function saveOrUpdate() {
 }
 
 function inputTheEcho(names,dataNames) {  //input回显
+    if(dataNames==''){
+        $('[name="'+names+'"]').val('')
+        return;
+    }
     $('[name="'+names+'"]').val(dataNames);
 }
 function seleTheEcho(names,dataNames) {  //下拉框回显
@@ -48,6 +55,7 @@ function seleTheEcho(names,dataNames) {  //下拉框回显
 
 function radioTheEcho(names,dataNames) {
     $('[name="'+names+'"]').each(function (i,n) {
+
         if($(this).val()==dataNames){
             $(this).prop('checked',true);
             $(this).next().click();
@@ -68,7 +76,7 @@ function ajaxSvg() {
             if (json.flag) {
                 var designdata = json.object.designdata;
                 var connections = json.object.connections;
-
+                console.log(designdata)
                 for(var inde=0;inde<designdata.length;inde++){
 
                 }
@@ -86,9 +94,10 @@ function ajaxSvg() {
                         designerId:v.id,
                         name: v.prcsName,
                         left: v.setLeft,
-                        type: "chat",
+                        type: v.setType,
                         top: v.setTop,
                         data:{
+
                             prcsId:v.prcsId,
                             prcsType:v.prcsType,
                             prcsName:v.prcsName,
@@ -98,12 +107,29 @@ function ajaxSvg() {
                             prcsPriv:v.prcsPriv,
                             signType:v.signType,
                             countersign:v.countersign,
-                            //流转设置
+                            userFilter:v.userFilter,
+                            autoType:v.autoType,
+                            topDefault:v.topDefault,//流转设置
+                            userLock:v.userLock,
+                            feedback:v.feedback,
+                            signlook:v.signlook,
+                            turnPriv:v.turnPriv,
+                            allowBack:v.allowBack,
+                            syncDeal:v.syncDeal,
+                            gatherNode:v.gatherNode,
+                            viewPriv:v.viewPriv,
+
                             //可写字段
                             hiddenItem:v.hiddenItem,
                             requiredItem:v.requiredItem,
                             conditionsSet:{
-                                conditionDesc:''//不符合条件公式时，给用户的文字描述
+                                conditionDesc:v.conditionDesc,//不符合条件公式时，给用户的文字描述
+                                typeJudgments:v.typeJudgments,
+                                prcsInSet:v.prcsInSet,
+                                conditionDesc:v.conditionDesc,
+                                prcsOutSet:v.prcsOutSet,
+                                prcsIn:v.prcsIn,
+                                prcsOut:v.prcsOut
                             },
                             timeOut:v.timeOut,
                             timeOutModify:v.timeOutModify,
@@ -184,14 +210,31 @@ function ajaxSvg() {
                     radioTheEcho('timeOutType',objtwo.timeOutType)
                     radioTheEcho('workingdaysType',objtwo.workingdaysType)
                     radioTheEcho('timeOutAttend',objtwo.timeOutAttend)
-
-
+                    radioTheEcho('topDefault',objtwo.topDefault)
+                    radioTheEcho('userLock',objtwo.userLock)
+                    radioTheEcho('feedback',objtwo.feedback)
+                    radioTheEcho('signlook',objtwo.signlook)
+                    radioTheEcho('turnPriv',objtwo.turnPriv)
+                    radioTheEcho('allowBack',objtwo.allowBack)
+                    radioTheEcho('syncDeal',objtwo.syncDeal)
+                    radioTheEcho('gatherNode',objtwo.gatherNode)
+                    radioTheEcho('viewPriv',objtwo.viewPriv)
+                    dataToAll=designdata;//所有数据
+                    conditionsDate=objtwo.conditionsSet;
                     //下一步骤
                     for(var inde=0;inde<designdata.length;inde++){
-                        if(designdata[inde]==$('[name="prcsName"]')){
-
+                        if(inde<designdata.length-1) {
+                            if (designdata[inde].prcsName == $('[name="prcsName"]').val()) {
+                                $('#candidatesPoneli').html('<li>' + designdata[inde + 1].prcsName + '</li>')
+                            }
+                        }else {
+                            if (designdata[inde].prcsName == $('[name="prcsName"]').val()) {
+                                $('#candidatesPoneli').html('')
+                            }
                         }
                     }
+
+
                 }
                 $("#ele_name").val(obj.name);
                 return true;
@@ -200,6 +243,22 @@ function ajaxSvg() {
     });
 }
 $(function () {
+    var fromIdtwo = 17;
+    workForm.init({
+            formhtmlurl:'../../form/formType',
+            resdata:{
+                fromId:fromIdtwo
+            },
+            flag:3
+        },
+        function(data){
+            alertData=data;
+            console.log(data);
+        });
+
+
+
+
 
 
     $('.savetwo').click(function () {
@@ -211,6 +270,34 @@ $(function () {
             }
         })
     })
+
+    $(document).delegate('#checkAll span .layui-form-checkbox','click',function () {
+        if($(this).prev().is(':checked')){
+            $('.bottomstepstwo input[type=checkbox]').each(function (i,n) {
+                $(this).prop('checked',true)
+                $(this).next().addClass('layui-form-checked')
+            })
+        }
+        else {
+            $('.bottomstepstwo input[type=checkbox]').each(function (i,n) {
+                $(this).removeProp('checked')
+                $(this).next().removeClass('layui-form-checked')
+            })
+        }
+    })
+    $(document).delegate('.theEditor','click',function () {
+        $(this).parent().parent().find('span').hide();
+        $(this).parent().parent().find('input').show();
+        $(this).parent().parent().find('input').val($(this).parent().parent().find('input[type=hidden]').val());
+    })
+
+    $(document).delegate('#bottomstepstwoss table tbody input[type=text]','blur',function () {
+       $(this).next().val($(this).val());
+       $(this).hide();
+       $(this).prev().text($(this).val())
+        $(this).prev().show();
+    })
+
 
 
 
@@ -296,41 +383,95 @@ ajaxSvg();
         layer = layui.layer
             ,form = layui.form();
         $('.bottomsteps').click(function () {
+            var str='';
+            for(var i=0;i<dataToAll.length;i++){
+                str+='<input type="checkbox" title="'+dataToAll[i].prcsName+'" value="'+dataToAll[i].prcsId+'">'
+            }
+            var me=this;
+
         layer.open({
             type:1,
             title:'下一步骤',
             closeBtn:2,
-            content:'<div class="bottomstepstwo layui-form" style="margin: 10px ;">' +
-            '<input type="checkbox" title="行政主管审批">' +
-            '<input type="checkbox" title="上级主管审批">' +
-            '<div style="margin-top: 15px;"><input type="checkbox" title="全选"></div>'+
+            content:'<div class="bottomstepstwo layui-form" style="margin: 10px ;">'+str+ '<div style="margin-top: 15px;" id="checkAll"><span><input type="checkbox" class="checkedAll" title="全选"></span> <input type="checkbox" title="结束" value="0"></div>'+
             '</div>' ,
             area:['400px','300px'],
             btn:['确定','关闭'],
             yes:function (index) {
-
+                var str='';
+                var strTwo='';
+                var obj=$('.bottomstepstwo input[type=checkbox]:checked');
+                obj.each(function (i,n) {
+                    if(i<obj.length-1){
+                        str+=$(this).val()+','
+                    }else {
+                        str+=$(this).val();
+                    }
+                    strTwo+='<li>('+(i+1)+')'+$(this).next().find('span').text()+'</li>'
+                })
+                $(me).next().val(str);
+                $(me).parent().prev().html(strTwo)
+                layer.close(index)
             },
             success:function () {
                 form.render();
             }
         })
     })
-        $('#conditions').click(function () {
+
+
+
+
+
+        $('#conditions').click(function () {//条件生成器
+
+            var strprcsIn=conditionsDate.prcsIn.replace(/\n/g,'');
+            var arrprcsIn=strprcsIn.split('\r')
+            var intoTheConditionPrcsIn='';
+            for(var m=0;m<arrprcsIn.length;m++){
+                if(m<arrprcsIn.length-1) {
+                    intoTheConditionPrcsIn += '<tr><td width="20%">' + (m + 1) + '</td>' +
+                        '<td width="60%"><span>' + arrprcsIn[m] + '</span><input type="text" name="ConditionsInput" style="display: none">' +
+                        '<input type="hidden" value="' + arrprcsIn[m] + '"></td>' +
+                        '<td><a href="javascript:;" class="theEditor" style="margin-right: 10px;color: #2f8ae3">编辑</a>' +
+                        '<a href="javascipt:;" class="deletes" style="color: #2f8ae3">删除</a></td></tr>'
+                }
+            }
+            var strprcsOut=conditionsDate.prcsOut.replace(/\n/g,'');
+            var arrprcsOut=strprcsOut.split('\r');
+            console.log(arrprcsOut)
+            var transferConditionsprcsOut='';
+            for(var q=0;q<arrprcsOut.length;q++){
+                if(q<arrprcsOut.length-1) {
+                    transferConditionsprcsOut += '<tr><td width="20%">' + (q + 1) + '</td>' +
+                        '<td width="60%"><span>' + arrprcsOut[q] + '</span><input type="text" name="ConditionsInput" style="display: none">' +
+                        '<input type="hidden" value="' + arrprcsOut[q] + '"></td>' +
+                        '<td><a href="javascript:;" class="theEditor" style="margin-right: 10px;color: #2f8ae3">编辑</a>' +
+                        '<a href="javascipt:;" class="deletes" style="color: #2f8ae3">删除</a></td></tr>'
+                }
+            }
+
+            var str=''
+           for(var i=0;i<alertData.length;i++){
+               str+='<option value="'+alertData[i].name+'">'+alertData[i].title+'</option>'
+           }
+           var arr=[{'name':'等于','val':'='},{'name':'不等于','val':'!='},{'name':'大于','val':'>'},{'name':'小于','val':'<'}
+           ,{'name':'小于等于','val':'<='},{'name':'大于等于','val':'>='},{'name':'包含','val':'include'},{'name':'不包含','val':'exclude'}]
+            var strone='';
+            for(var i=0;i<arr.length;i++){
+                strone+='<option value="'+arr[i].val+'">'+arr[i].name+'</option>'
+            }
             layer.open({
                 type:1,
                 title:'条件生成器',
-                content:'<div class="bottomstepstwoss layui-form">\
+                content:'<div class="bottomstepstwoss layui-form" id="bottomstepstwoss">\
             <ul class="candidatesUl" style="display: block;border: none;">\
                 <li>\
                    <p class="candidatesPone">字段</p> \
                     <div class="dropDownDiv">\
                         <p class="candidatesPTwo">\
-                            <select name="city" lay-verify="">\
-                                <option value="">请选择一个城市</option>\
-                                <option value="010">北京</option>\
-                                <option value="021">上海</option>\
-                                <option value="0571">杭州</option>\
-                            </select>\
+                        <input type="hidden">\
+                            <select name="fieldsele" lay-verify="">'+str+'</select>\
                         </p>\
                     </div>\
                 </li>\
@@ -338,38 +479,25 @@ ajaxSvg();
                    <p class="candidatesPone">条件</p> \
                     <div class="dropDownDiv" style="z-index:99998">\
                         <p class="candidatesPTwo">\
-                           <select name="city" lay-verify="">\
-                                <option value="">请选择一个城市</option>\
-                                <option value="010">北京</option>\
-                                <option value="021">上海</option>\
-                                <option value="0571">杭州</option>\
-                            </select>\
+                           <select name="conditionss" lay-filter="conditionstwo" lay-verify="">'+strone+'</select>\
                         </p>\
                     </div>\
                 </li>\
                 <li>\
-                   <p class="candidatesPone"><input type="checkbox" title="类型判断"/></p> \
-                        <p class="candidatesPTwo">\
-                            <input type="text"><span style="text-align: center;color: #fff;">值</span>\
+                   <p class="candidatesPone" id="typepanduan"><input type="checkbox" lay-filter="typeJudgment" title="类型判断"/></p> \
+                        <p class="candidatesPTwo" id="typevalue">\
+                            <select name="typeJudgments"  lay-verify="" style="display:none">\
+                            <option value="数值">数值</option><option value="日期">日期</option><option value="时间+日期">时间+日期</option></select>\
+                            <input type="text" name="typeJudgments" class="typeJudgmentTwo" style="    vertical-align: top;"><span style="text-align: center;font-size: 14px;margin-left: 50px;margin-top: 5px;display: inline-block;">值</span>\
                         </p>\
-                        <div class="dropDownDiv" style="display: none">\
-                        <p class="candidatesPTwo">\
-                            <input type="text" readonly="true"><span style="text-align: center;color: #fff;">类型</span><input type="hidden">\
-                        </p>\
-                        <ol class="dropDown">\
-                            <li>\
-                                <span></span>\
-                                <input type="hidden" value="0">\
-                            </li>\
-                        </ol>\
-                    </div>\
                 </li>\
                 <li class="btnzhuanru">\
-                    <a href="javascript:;" style="margin: 0 20px 0 -52px;">添加转入条件</a><a href="javascript:;">添加转出条件</a>\
+                    <a href="javascript:;" class="intoTheConditionBtn" style="margin: 0 20px 0 -52px;" data-add="0">添加转入条件</a>\
+                    <a href="javascript:;" class="intoTheConditionBtn" data-add="1">添加转出条件</a>\
                 </li>\
                 <li>\
                    <p class="candidatesPone">转入条件列表</p> \
-                   <p class="candidatesPTwo" style="border: none;margin-bottom: 20px;">\
+                   <p class="candidatesPTwo" id="intoTheCondition" style="border: none;margin-bottom: 20px;">\
                            <table>\
                                 <thead>\
                                     <tr>\
@@ -378,24 +506,22 @@ ajaxSvg();
                                         <th width="20%">操作</th>\
                                     </tr>\
                                 </thead>\
-                                <tbody>\
-                                    \
-                                </tbody>\
+                                <tbody>'+intoTheConditionPrcsIn+'</tbody>\
                            </table>\
                    </p>\
                    <p class="candidatesPone">转入条件公式(条件与逻辑运算符之间需空格，如[1] AND [2])</p> \
                     <p class="candidatesPTwo">\
-                            <input type="text" name="prcsInSet">\
+                            <input type="text" name="prcsInSet" value="'+conditionsDate.prcsInSet+'">\
                      </p>\
                       <p class="candidatesPone">不符合条件公式时，给用户的文字描述：</p> \
                     <p class="candidatesPTwo">\
-                            <input type="text" name="">\
+                            <input type="text" name="conditionDesc" value="'+conditionsDate.conditionDesc+'">\
                             <p style="color: red;font-size: 12px;margin-top: 5px;">合理设定转入条件，可形成流程的条件分支，但数据满足转入条件，才可转入本步骤</p>\
                      </p>\
                 </li>\
                 <li style="margin-top: 20px;">\
                      <p class="candidatesPone">转出条件列表</p> \
-                     <p class="candidatesPTwo" style="border: none;margin-bottom: 20px;">\
+                     <p class="candidatesPTwo" id="transferConditions" style="border: none;margin-bottom: 20px;">\
                          <table>\
                           <thead>\
                                     <tr>\
@@ -404,18 +530,16 @@ ajaxSvg();
                                         <th width="20%">操作</th>\
                                     </tr>\
                                 </thead>\
-                                <tbody>\
-                                    \
-                                </tbody>\
+                                <tbody>'+transferConditionsprcsOut+'</tbody>\
                          </table>\
                      </p>\
-                      <p class="candidatesPone">转入条件公式(条件与逻辑运算符之间需空格，如[1] AND [2])</p> \
+                      <p class="candidatesPone">转出条件公式(条件与逻辑运算符之间需空格，如[1] AND [2])</p> \
                     <p class="candidatesPTwo">\
                             <input type="text" name="prcsOutSet">\
                      </p>\
                       <p class="candidatesPone">不符合条件公式时，给用户的文字描述：</p> \
                     <p class="candidatesPTwo">\
-                            <input type="text">\
+                            <input type="text" name="conditionDesc">\
                      </p>\
                 </li>\
             </ul>\
@@ -423,15 +547,110 @@ ajaxSvg();
                 area:['800px','600px'],
                 btn:['确定','关闭'],
                 yes:function (index) {
-
+                    var obj={};
+                    obj.intoTheCondition={}
+                    obj.intoTheCondition.list=[]
+                    $('#intoTheCondition').find('[type=hidden]').each(function (i,n) {
+                        obj.intoTheCondition.list.push($(this).val())
+                    })
+                    obj.intoTheCondition.prcsInSet=$('#bottomstepstwoss').find('[name="prcsInSet"]').val()
+                    obj.intoTheCondition.conditionDesc=$('#bottomstepstwoss').find('[name="conditionDesc"]').val()
+                    obj.transferConditions={};
+                    obj.transferConditions.list=[];
+                    $('#transferConditions').find('[type=hidden]').each(function (i,n) {
+                        obj.transferConditions.list.push($(this).val())
+                    })
+                    obj.transferConditions.prcsOutSet=$('#bottomstepstwoss').find('[name="prcsOutSet"]').val()
+                    obj.transferConditions.conditionDesc=$('#bottomstepstwoss').find('[name="conditionDesc"]').val()
+                   var strobj=JSON.stringify(obj);
+                    $('[name="settlementOfCondition"]').val(strobj);
+                    $('.setUpThe').removeClass('active')
+                    layer.close(index)
                 },
                 btn2:function () {
                     $('.setUpThe').removeClass('active')
                 },
                 success:function () {
                     form.render();
+                    $('#typevalue').find('select').next().hide();
+                    $('.intoTheConditionBtn').click(function () {
+                        var strval;
+                          if($('#typevalue div').css('display')=='none'){
+                              strval=$('input[name="typeJudgments"]').val()
+                          }else{
+                              strval=$('select[name="typeJudgments"]').val()
+                          }
+                        var strIng='';
+                        var num;
+                        var strconditions="'"+$('[name="fieldsele"]').next().find('input').val()+"'" +
+                            ""+$('[name="conditionss"]').val()+"'"+strval+"'";
+                            if($(this).attr('data-add')=='0'){
+                                strIng='<tr><td width="20%">'+($('#intoTheCondition table tbody tr').length+1)+'</td>' +
+                                    '<td width="60%"><span>'+strconditions+'</span><input type="text" name="ConditionsInput" style="display: none">' +
+                                    '<input type="hidden" value="'+strconditions+'"></td>' +
+                                    '<td><a href="javascript:;" class="theEditor" style="margin-right: 10px;color: #2f8ae3">编辑</a>' +
+                                    '<a href="javascipt:;" class="deletes" style="color: #2f8ae3">删除</a></td></tr>'
+                                $('#intoTheCondition table tbody input[type=hidden]').each(function (i,n) {
+                                    if($(this).val()==strconditions){
+                                        alert('已有，请不要重复添加');
+                                        num=1;
+                                        return false;
+                                    }
+                                })
+                                if(num==1){
+                                    return;
+                                }
+                                $('#intoTheCondition table tbody').append(strIng)
+                            }else if($(this).attr('data-add')=='1'){
+                                strIng='<tr><td width="20%">'+($('#transferConditions table tbody tr').length+1)+'</td>' +
+                                    '<td width="60%"><span>'+strconditions+'</span><input type="text" name="ConditionsInput" style="display: none">' +
+                                    '<input type="hidden" value="'+strconditions+'"></td>' +
+                                    '<td><a href="javascript:;" class="theEditor" style="margin-right: 10px;color: #2f8ae3">编辑</a>' +
+                                    '<a href="javascipt:;" class="deletes" style="color: #2f8ae3">删除</a></td></tr>'
+                                $('#transferConditions table tbody input[type=hidden]').each(function (i,n) {
+                                    if($(this).val()==strconditions){
+                                        alert('已有，请不要重复添加');
+                                        num=1;
+                                        return false;
+                                    }
+                                })
+                                if(num==1){
+                                    return;
+                                }
+                                $('#transferConditions table tbody').append(strIng)
+                            }
+
+                    })
+
                 }
             })
+
+
+            //条件生成器里下拉
+            form.on('select(conditionstwo)', function(data){
+                console.log(data.elem); //得到select原始DOM对象
+                console.log(data.value); //得到被选中的值
+                console.log(data.othis); //得到美化后的DOM对象
+                if(data.value=='='||data.value=='!='){
+                    $('#typepanduan').find('div').show();
+
+                }else {
+                    $('#typepanduan').find('div').hide();
+                }
+            });
+            form.on('checkbox(typeJudgment)', function(data){
+                console.log(data.elem.checked); //是否被选中，true或者false
+                if(data.elem.checked){
+                    $('#typevalue').find('select').next().show();
+                    $('.typeJudgmentTwo').hide();
+                    $('.typeJudgmentTwo').next().hide();
+                }else {
+                    $('#typevalue').find('select').next().hide();
+                    $('.typeJudgmentTwo').show();
+                    $('.typeJudgmentTwo').next().show();
+                }
+            });
+
         })
 
         var newtheTrigger={//新增触发器公功能
@@ -796,12 +1015,5 @@ ajaxSvg();
             })
 
         })
-
-
-
-
-
-
-
     });
 })
