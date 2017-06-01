@@ -511,15 +511,17 @@ public class SysLogServiceImpl implements SysLogService {
      * @return: List<Syslog></Syslog>
      **/
     @Override
-    public List<Syslog> logManage(Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog) {
+    public List<Syslog> logManage(Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
+
+        String[] uidArr = uid.split(",");
 
 
         //查询
         List<Syslog> syslogList;
 
         Map<String, Object> hashMap = new HashMap<String, Object>();
-        if (uid != null) {
-            hashMap.put("ids", uid);
+        if (uidArr != null && uidArr.length > 0) {
+            hashMap.put("ids", uidArr);
         }
         if (startTime != null) {
 
@@ -530,10 +532,10 @@ public class SysLogServiceImpl implements SysLogService {
             hashMap.put("endTime", endTime);
         }
 
-        if ( syslog != null && syslog.getIp() != null) {
+        if (syslog != null && syslog.getIp() != null) {
             hashMap.put("ip", syslog.getIp());
         }
-        if ( syslog !=null && syslog.getRemark() != null) {
+        if (syslog != null && syslog.getRemark() != null) {
             hashMap.put("remark", syslog.getRemark());
         }
         if (type != null) {
@@ -542,6 +544,15 @@ public class SysLogServiceImpl implements SysLogService {
 
 
         syslogList = sysLogMapper.findLogOption(hashMap);
+        if (syslogList != null) {
+            for (Syslog syslog1 : syslogList) {
+                String username = usersService.getUserNameById(syslog1.getUserId());
+                syslog1.setUserName(username);
+            }
+
+        }
+
+
         return syslogList;
 
     }
@@ -559,11 +570,14 @@ public class SysLogServiceImpl implements SysLogService {
      * @return: 无
      */
     @Override
-    public void deleteSyslog(Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog) {
+    public void deleteSyslog(Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
+
+
+        String[] uidArr = uid.split(",");
 
         Map<String, Object> hashMap = new HashMap<String, Object>();
-        if (uid != null) {
-            hashMap.put("ids", uid);
+        if (uidArr != null && uidArr.length > 0) {
+            hashMap.put("ids", uidArr);
         }
         if (startTime != null) {
 

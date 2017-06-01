@@ -91,7 +91,7 @@ public interface SysLogService {
      * @return: List<Syslog></Syslog>
      **/
 
-    List<Syslog> logManage(Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog);
+    List<Syslog> logManage(Integer type, String uid, Date startTime, Date endTime, Syslog syslog);
 
     /**
      * @创建作者: 韩成冰
@@ -105,7 +105,7 @@ public interface SysLogService {
      * param request
      * @return: 无
      **/
-    void deleteSyslog(Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog);
+    void deleteSyslog(Integer type, String uid, Date startTime, Date endTime, Syslog syslog);
 
 
 

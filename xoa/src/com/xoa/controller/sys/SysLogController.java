@@ -267,7 +267,7 @@ public class SysLogController {
      **/
     @ResponseBody
     @RequestMapping(value = "/logManage", produces = {"application/json;charset=UTF-8"})
-    public ToJson<Syslog> findLogManage(HttpServletRequest request, Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog) {
+    public ToJson<Syslog> findLogManage(HttpServletRequest request, Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
 
@@ -300,7 +300,7 @@ public class SysLogController {
      **/
     @ResponseBody
     @RequestMapping(value = "/deleteSyslog", produces = {"application/json;charset=UTF-8"})
-    public ToJson<Syslog> deleteSyslog(HttpServletRequest request, Integer type, String[] uid, Date startTime, Date endTime, Syslog syslog) {
+    public ToJson<Syslog> deleteSyslog(HttpServletRequest request, Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
 
@@ -329,17 +329,17 @@ public class SysLogController {
      * @return: json
      **/
     @RequestMapping(value = "/exportLogXls", produces = {"application/json;charset=UTF-8"})
-    public String exportLogXls(HttpServletResponse response, HttpServletRequest request, Integer type, String[] uid1, Date startTime, Date endTime, Syslog syslog) throws IOException, ParseException {
+    public String exportLogXls(HttpServletResponse response, HttpServletRequest request, Integer type, String uid, Date startTime, Date endTime, Syslog syslog) throws IOException, ParseException {
 
 
-        syslog = new Syslog();
+/*        syslog = new Syslog();
         syslog.setIp("192.168.0.204");
         syslog.setRemark("");
-        String[] uid = {"admin"};
+        String uid = "admin,asdkafjdfasfsd";
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:SS");
         startTime = sdf.parse("2017-02-02 00:00:00");
-        endTime = sdf.parse("2017-05-30 00:00:00");
+        endTime = sdf.parse("2017-05-30 00:00:00");*/
 
 
         // 查询所有的分区数据
@@ -364,7 +364,7 @@ public class SysLogController {
             dataRow.createCell(0).setCellValue(userName);
 
             SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd hh:MM:ss");
-            String timeString = sdf.format(log.getTime());
+            String timeString = sdfTime.format(log.getTime());
 
             dataRow.createCell(1).setCellValue(timeString);
             dataRow.createCell(2).setCellValue(log.getIp());
