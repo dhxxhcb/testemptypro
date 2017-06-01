@@ -40,6 +40,20 @@ public class Syslog {
      * IP地址
      */
     private String ip;
+
+    /**
+     * IP所在地理位置
+     */
+    private String ipLocation;
+
+    public String getIpLocation() {
+        return ipLocation;
+    }
+
+    public void setIpLocation(String ipLocation) {
+        this.ipLocation = ipLocation;
+    }
+
     /**
      * 日志类型(详见系统代码)
      */

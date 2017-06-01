@@ -549,6 +549,9 @@ public class SysLogServiceImpl implements SysLogService {
             for (Syslog syslog1 : syslogList) {
                 String username = usersService.getUserNameById(syslog1.getUserId());
                 syslog1.setUserName(username);
+                String logTypeName = sysCodeService.getLogNameByNo("" + syslog1.getType());
+                syslog1.setTypeName(logTypeName);
+                syslog1.setIpLocation("--");
             }
 
         }
