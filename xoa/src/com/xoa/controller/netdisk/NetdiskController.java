@@ -128,11 +128,34 @@ public class NetdiskController {
             //转换成多部分request
             MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
             //取得request中的所有文件名
-            Iterator<String> iter = multiRequest.getFileNames();
-            while(iter.hasNext()){
+        	 List<MultipartFile> files =multiRequest.getFiles("file");
+        	 for (MultipartFile multipartFile : files) {
+				if (multipartFile!=null) {
+					 //取得当前上传文件的文件名称
+					String myFileName=multipartFile.getOriginalFilename();
+					//如果名称不为“”,说明该文件存在，否则说明该文件不存在
+					if (!StringUtils.checkNull(myFileName)) {
+						String fileName =  multipartFile.getOriginalFilename();
+						 String path1 = path +"/"+ fileName;
+	                        System.out.println(path1);
+	                        File localFile = new File(path1);
+	                        multipartFile.transferTo(localFile);
+	                        json.setFlag(0);
+	                        json.setMsg("ok");
+	                    }else {
+	                        json.setFlag(1);
+	                        json.setMsg("err");
+	                    }
+					
+				}
+			}
+            		
+         // Iterator<String> iter = multiRequest.getFileNames();
+         /*   while(iter.hasNext()){
                 //记录上传过程起始时的时间，用来计算上传时间
                 int pre = (int) System.currentTimeMillis();
                 //取得上传文件
+                
                 MultipartFile file = multiRequest.getFile(iter.next());
                 if(file != null){
                     //取得当前上传文件的文件名称
@@ -144,6 +167,7 @@ public class NetdiskController {
                         String fileName =  file.getOriginalFilename();
                         //定义上传路径
                         String path1 = path +"/"+ fileName;
+                        System.out.println(path1);
                         File localFile = new File(path1);
                         file.transferTo(localFile);
                         json.setFlag(0);
@@ -156,7 +180,7 @@ public class NetdiskController {
                 //记录上传该文件后的时间
                 int finaltime = (int) System.currentTimeMillis();
                 System.out.println(finaltime - pre);
-            }
+            }*/
 
         }
 
