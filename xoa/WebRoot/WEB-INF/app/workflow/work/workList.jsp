@@ -376,6 +376,9 @@
 		tr td{
 			font-size:10px;
 		}
+		.step{
+			margin-left: 15px;
+		}
 	</style>
 
 </head>

@@ -101,7 +101,6 @@ public class WorkController {
 		int runId = flowRunService.getMaxRunId();
 		String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
 		int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
-		
 		//FlowProcess flowProcess= flowProcessService.findbyprcsId(flowId, prcsId);
 		List<FlowProcess> fl=flowProcessService.findFlowId(flowId);
 		Map<String, Object> maps = new HashMap<String, Object>();
@@ -235,7 +234,7 @@ public class WorkController {
             CheckTableExist.createSql(sqlAll);
             //String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
            // int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
-            flowRunPrcs = new FlowRunPrcs();
+           /* flowRunPrcs = new FlowRunPrcs();
             flowRunPrcs.setRunId(runId);
             flowRunPrcs.setPrcsId(1);
            // flowRunPrcs.setUserId(userId);
@@ -247,7 +246,7 @@ public class WorkController {
             flowRunPrcs.setCreateTime(beginTime);
             flowRunPrcs.setDeliverTime(beginTime);
             flowRunPrcs.setActiveTime(beginTime);
-            flowRunPrcsService.save(flowRunPrcs);
+            flowRunPrcsService.save(flowRunPrcs);*/
         }
         try {
             f.setFlowRunPrcs(flowRunPrcs);
