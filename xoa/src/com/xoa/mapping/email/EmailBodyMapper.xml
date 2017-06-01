@@ -287,7 +287,7 @@
 			eb.SEND_TIME DESC
 	</select>
 	<!--收件箱查询 -->
-	<select id="selectInbox" parameterType="Map" resultMap="BaseResultMap">
+	<select id="selectInbox" parameterType="Map" resultMap="BaseResultMap" databaseId="mysql">
 		select
 		eb.FROM_ID,
 		eb.BODY_ID,eb.SUBJECT,e.EMAIL_ID,eb.SEND_TIME,eb.ATTACHMENT_ID,eb.ATTACHMENT_NAME,e.DELETE_FLAG,eb.TO_ID2,e.READ_FLAG,eb.COPY_TO_ID,eb.SECRET_TO_ID,eb.CONTENT,u.USER_ID,e.TO_ID,u.USER_NAME from email_body as eb

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.xoa.dao.workflow.FlowRunPrcsMapper;
 import com.xoa.model.workflow.FlowRunPrcs;
 import com.xoa.service.workflow.flowtype.FlowRunPrcsService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -222,6 +223,18 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		}
 		return toJson;
 	}
+
+	public List<FlowRunPrcs> findByRunId(Integer runId){
+        List<FlowRunPrcs> l=flowRunPrcsMapper.findByRunId(runId);
+	    return l;
+    }
+
+    @Override
+    @Transactional
+    public void update(FlowRunPrcs flowRunPrcs) {
+        flowRunPrcsMapper.updateByPrimaryKeySelective(flowRunPrcs);
+    }
+
 
 //	public  String returnNode (Integer runId){
 //		String returnNodes = "";

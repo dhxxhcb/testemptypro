@@ -189,11 +189,11 @@
                     <tr>
                         <td width="25%">操作类型：</td>
                         <td>
-                            <input type="radio" name="TYPE" checked>
+                            <input type="radio" name="TYPE" value="1" class="Query">
                             <span>查询</span>
-                            <input type="radio" name="TYPE">
+                            <input type="radio" name="TYPE" value="2" class="Export">
                             <span>导出</span>
-                            <input type="radio" name="TYPE">
+                            <input type="radio" name="TYPE" value="3" class="Delete">
                             <span>删除</span>
                         </td>
                     </tr>

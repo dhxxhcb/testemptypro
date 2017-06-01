@@ -13,7 +13,9 @@
 	default-lazy-init="true">
 	<context:component-scan base-package="com.xoa.*" />
 	<context:property-placeholder location="classpath:jdbc-sql.properties" />
-
+    <!--dmDburl=jdbc:dm://192.168.0.24:5236/xoa-->
+    <!--dmDbusername=SYSDBA-->
+    <!--dmDbpassword=gaosubo3000-->
 	<!-- mysql -->
 	<bean id="xoa1001" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
 		destroy-method="close">
@@ -21,26 +23,26 @@
 		<property name="jdbcUrl" value="${url1001}" />
 		<property name="user" value="${uname1001}" />
 		<property name="password" value="${password1001}" />
-		<!--连接池中保留的最大连接数。默认值: 15 -->
-		<property name="maxPoolSize" value="${maxPoolSize}" />
-		<!-- 连接池中保留的最小连接数，默认为：3 -->
-		<property name="minPoolSize" value="${minPoolSize}" />
-		<!-- 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3 -->
-		<property name="initialPoolSize" value="${initialPoolSize}" />
-		<!--最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->
-		<property name="maxIdleTime" value="${maxIdleTime}" />
-		<!-- 当连接池连接耗尽时，客户端调用getConnection()后等待获取新连接的时间，超时后将抛出SQLException，如设为0则无限期等待。单位毫秒。默认: 
-			0 -->
-		<property name="checkoutTimeout" value="${checkoutTimeout}" />
-		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 -->
-		<property name="acquireIncrement" value="${acquireIncrement}" />
-		<!--定义在从数据库获取新连接失败后重复尝试的次数。默认值: 30 ；小于等于0表示无限次 -->
-		<property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />
-		<!--重新尝试的时间间隔，默认为：1000毫秒 -->
-		<property name="acquireRetryDelay" value="${acquireRetryDelay}" />
-		<!--关闭连接时，是否提交未提交的事务，默认为false，即关闭连接，回滚未提交的事务 -->
-		<property name="autoCommitOnClose" value="${autoCommitOnClose}" />
-        <property name="maxStatements" value="${max_statements}" />
+		<!--&lt;!&ndash;连接池中保留的最大连接数。默认值: 15 &ndash;&gt;-->
+		<!--<property name="maxPoolSize" value="${maxPoolSize}" />-->
+		<!--&lt;!&ndash; 连接池中保留的最小连接数，默认为：3 &ndash;&gt;-->
+		<!--<property name="minPoolSize" value="${minPoolSize}" />-->
+		<!--&lt;!&ndash; 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3 &ndash;&gt;-->
+		<!--<property name="initialPoolSize" value="${initialPoolSize}" />-->
+		<!--&lt;!&ndash;最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 &ndash;&gt;-->
+		<!--<property name="maxIdleTime" value="${maxIdleTime}" />-->
+		<!--&lt;!&ndash; 当连接池连接耗尽时，客户端调用getConnection()后等待获取新连接的时间，超时后将抛出SQLException，如设为0则无限期等待。单位毫秒。默认: -->
+			<!--0 &ndash;&gt;-->
+		<!--<property name="checkoutTimeout" value="${checkoutTimeout}" />-->
+		<!--&lt;!&ndash;当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 &ndash;&gt;-->
+		<!--<property name="acquireIncrement" value="${acquireIncrement}" />-->
+		<!--&lt;!&ndash;定义在从数据库获取新连接失败后重复尝试的次数。默认值: 30 ；小于等于0表示无限次 &ndash;&gt;-->
+		<!--<property name="acquireRetryAttempts" value="${acquireRetryAttempts}" />-->
+		<!--&lt;!&ndash;重新尝试的时间间隔，默认为：1000毫秒 &ndash;&gt;-->
+		<!--<property name="acquireRetryDelay" value="${acquireRetryDelay}" />-->
+		<!--&lt;!&ndash;关闭连接时，是否提交未提交的事务，默认为false，即关闭连接，回滚未提交的事务 &ndash;&gt;-->
+		<!--<property name="autoCommitOnClose" value="${autoCommitOnClose}" />-->
+        <!--<property name="maxStatements" value="${max_statements}" />-->
 	</bean>
     <!-- mysql -->
     <bean id="xoa1002" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -148,10 +150,25 @@
         <!-- 默认为mysql -->
         <property name="defaultTargetDataSource" ref="xoa1001" />
     </bean>
-	
+    <bean id="vendorProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="properties">
+            <props>
+                <prop key="SQLServer">sqlserver</prop>
+                <prop key="DB2">db2</prop>
+                <prop key="Oracle">oracle</prop>
+                <prop key="MySQL">mysql</prop>
+                <prop key="DM">dm</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="databaseIdProvider" class="org.apache.ibatis.mapping.VendorDatabaseIdProvider">
+        <property name="properties" ref="vendorProperties"/>
+    </bean>
 		<!-- 配置sql会话工厂：SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dynDatasources" />
+        <property name="databaseIdProvider" ref="databaseIdProvider" />
 		<property name="mapperLocations" value="classpath:com/xoa/mapping/*/*.xml" />
 		<property name="configLocation" value="classpath:config/spring/mybatis-config.xml" /> 
 	</bean>

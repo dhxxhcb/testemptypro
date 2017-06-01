@@ -28,6 +28,12 @@ public class UnitManagementController {
 				"loginDateSouse"));
 		return "app/sys/companyInfo";
 	}
+	@RequestMapping("/unitInfor")
+	public String unitInfor(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/unitInfor";
+	}
 	/**
 	 * 信息展示 返回
 	 * 

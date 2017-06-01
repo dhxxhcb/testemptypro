@@ -44,6 +44,14 @@ public interface FlowRunPrcsMapper extends BaseMapper<FlowRunPrcs>{
      */
     public List<FlowRunPrcs> findAllNode(Integer runId);
 
+    /**
+     * 创建作者:   zlf
+     * 创建日期:   2017/6/1 17:03
+     * 方法介绍:   根据runId查询流程实例步骤信息
+     * 参数说明:
+     * @return
+     */
+    public List<FlowRunPrcs> findByRunId(Integer runId);
 
     int deleteByPrimaryKey(Integer id);
 
