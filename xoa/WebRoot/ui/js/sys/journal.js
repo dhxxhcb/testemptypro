@@ -66,7 +66,7 @@ $(function(){
             var conId=$(this).attr("logId");
             fileId.push(conId);
         })
-        //alert(fileId);
+        alert(fileId);
         deleteAllJournal(fileId);
     })
     //日志概况显示数据
@@ -310,6 +310,7 @@ $(function(){
                 data:{'ids':id},
                 success:function(res){
                     console.log(res.json);
+                    queryShow();
                 }
             })
             return true;
