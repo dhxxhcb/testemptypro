@@ -12,6 +12,7 @@ import com.xoa.util.dataSource.ContextHolder;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -269,11 +270,11 @@ public class SysLogController {
     @ResponseBody
     @RequestMapping(value = "/logManage", produces = {"application/json;charset=UTF-8"})
     public ToJson<Syslog> findLogManage(HttpServletRequest request,
-            @RequestParam(value = "type" ,required = false)Integer type,
-            @RequestParam(value = "uid" ,required = false) String uid,
-            @RequestParam(value = "startTime" ,required = false) Date startTime,
-            @RequestParam(value = "endTime" ,required = false) Date endTime,
-            @RequestParam(value = "syslog" ,required = false) Syslog syslog) {
+                                        @RequestParam(value = "type", required = false) Integer type,
+                                        @RequestParam(value = "uid", required = false) String uid,
+                                        @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "startTime", required = false) Date startTime,
+                                        @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "endTime", required = false) Date endTime,
+                                        @RequestParam(value = "syslog", required = false) Syslog syslog) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
 
