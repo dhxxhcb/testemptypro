@@ -1,5 +1,7 @@
 package com.xoa.model.workflow;
 
+import com.xoa.model.department.Department;
+
 import java.util.List;
 
 public class FlowRunPrcs {
@@ -88,6 +90,11 @@ public class FlowRunPrcs {
      * 流程设置
      */
 	private FlowTypeModel flowType;
+
+    /**
+     * 关联部门
+     */
+	private Department department;
 
 
     public FlowRun getFlowRun() {
@@ -376,5 +383,27 @@ public class FlowRunPrcs {
 
     public void setFlowType(FlowTypeModel flowType) {
         this.flowType = flowType;
+    }
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/6/1 10:33
+     * 方法介绍:   关联部门
+     * 参数说明:
+     * @return
+     */
+    public Department getDepartment() {
+        return department;
+    }
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/6/1 10:33
+     * 方法介绍:   关联部门
+     * 参数说明:
+     * @return
+     */
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

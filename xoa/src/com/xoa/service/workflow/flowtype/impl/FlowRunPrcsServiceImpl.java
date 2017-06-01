@@ -3,6 +3,7 @@ package com.xoa.service.workflow.flowtype.impl;
 import javax.annotation.Resource;
 
 import com.xoa.dao.workflow.FlowTypeModelMapper;
+import com.xoa.model.workflow.FlowProcess;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
 import com.xoa.util.page.PageParams;
@@ -182,6 +183,39 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 			toJson.setTotleNum(pages.getTotal());
 			toJson.setObj(returnList);
 		}else{
+			toJson.setFlag(1);
+			toJson.setMsg("error");
+		}
+		return toJson;
+	}
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/6/1 10:47
+	 * 方法介绍:   根据runId查询关联办理人的步骤和所在部门
+	 * 参数说明:
+	 * @return
+	 */
+	@Override
+	public  ToJson<FlowRunPrcs> findAllNode (Integer runId){
+		ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
+		try {
+			List<FlowRunPrcs> list = flowRunPrcsMapper.findAllNode(runId);
+			List<FlowRunPrcs> list1 = new ArrayList<FlowRunPrcs>();
+			int leng = list.size();
+			for (int i = 0; i < leng; i++) {
+				String flag = list.get(i).getPrcsFlag();
+				if ("3".equals(flag) || "4".equals(flag)) {
+					list1.add(list.get(i));
+				} else {
+					list1.add(list.get(i));
+					break;
+				}
+			}
+			toJson.setObj(list1);
+			toJson.setFlag(0);
+			toJson.setMsg("ok");
+		}catch (Exception e){
 			toJson.setFlag(1);
 			toJson.setMsg("error");
 		}

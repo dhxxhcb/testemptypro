@@ -1,4 +1,5 @@
 package com.xoa.service.workflow.flowtype;
+import com.xoa.model.workflow.FlowProcess;
 import com.xoa.model.workflow.FlowRunPrcs;
 import com.xoa.util.ToJson;
 
@@ -48,6 +49,15 @@ public interface FlowRunPrcsService {
 	 */
 	public ToJson<FlowRunPrcs> selectAll(Map<String,Object> maps,Integer page,
 										 Integer pageSize, boolean useFlag);
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/6/1 10:47
+	 * 方法介绍:   根据runId查询关联办理人的步骤和所在部门
+	 * 参数说明:
+	 * @return
+	 */
+	public  ToJson<FlowRunPrcs> findAllNode (Integer runId);
 
 
 

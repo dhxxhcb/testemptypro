@@ -60,6 +60,11 @@
             <result column="FORCE_OVER" javaType="string" property="forceOver" />
         </association>
 
+        <association property="department" column="PRCS_DEPT" javaType="com.xoa.model.department.Department">
+            <id column="DEPT_ID" property="deptId" javaType="int" />
+            <result column="DEPT_NAME" property="deptName" javaType="string" />
+        </association>
+
     </resultMap>
     <sql id="Base_Column_List">
     ID, RUN_ID, PRCS_ID, USER_ID, PRCS_TIME, DELIVER_TIME, PRCS_FLAG, FLOW_PRCS, OP_FLAG, 
@@ -636,5 +641,31 @@
         fr.WORK_LEVEL DESC
     </select>
 
+    <!-- 查询关联部门实际步骤 -->
+    <select id="findAllNode" resultMap = "com.xoa.model.workflow.FlowRunPrcs">
+            SELECT
+            frp.ID,
+            frp.USER_ID,
+            frp.PRCS_ID,
+            frp.FLOW_PRCS,
+            frp.COMMENT,
+            frp.OP_FLAG,
+            frp.TOP_FLAG,
+            frp.PRCS_FLAG,
+            frp.TIME_OUT_FLAG,
+            frp.PRCS_TIME,
+            frp.CREATE_TIME,
+            frp.DELIVER_TIME,
+            frp.TIME_OUT_TYPE,
+            frp.TIME_OUT_ATTEND,
+            frp.IS_REMIND,
+            frp.TIME_OUT,
+            dp.DEPT_NAME
+        FROM
+            flow_run_prcs fr
+        LEFT JOIN department dp ON fr.PRCS_DEPT = dp.DEPT_ID
+        WHERE
+            fr.RUN_ID = #{runId}
+    </select>
 
 </mapper>

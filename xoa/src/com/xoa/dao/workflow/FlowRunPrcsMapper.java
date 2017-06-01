@@ -35,6 +35,15 @@ public interface FlowRunPrcsMapper extends BaseMapper<FlowRunPrcs>{
      */
     public List<FlowRunPrcs> selectAll(Map<String,Object> maps);
 
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/6/1 10:45
+     * 方法介绍:   根据runId查询关联办理人的步骤和所在部门
+     * 参数说明:
+     * @return
+     */
+    public List<FlowRunPrcs> findAllNode(Integer runId);
+
 
     int deleteByPrimaryKey(Integer id);
 
