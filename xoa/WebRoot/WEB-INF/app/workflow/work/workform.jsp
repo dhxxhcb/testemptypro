@@ -641,7 +641,7 @@
                                             flowPrcs:ret2.flowPrcs
                                         }
                                         console.log(pId);
-                            /*            console.log(savedData);*/
+                                    console.log(savedData);
 
                                         //保存的接口
                                         $.ajax({
@@ -651,9 +651,14 @@
                                             data: savedData,
                                             success: function (obj) {
                                                 if(obj.flag==true){
-                                                    alert('正确')
+                                                    alert('正确');
                                                 }else{
                                                     alert('错误')
+                                                    window.close();
+                                                  /*  parent.opener.location.href='workList';*/
+                                                    /*function clicke(){
+                                                        alert("事件");
+                                                    }*/
                                                 }
                                             }
                                         });
@@ -665,6 +670,7 @@
                                 });
                             }else{
                                 alert('错误');
+
                             }
                         }
                     })

@@ -517,7 +517,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 						});		
 						
-						
+						//给我的工作标签添加click事件
+						/*if($('.two'))*/
 							//点击三级菜单，跳转页面。
 							$('.sanji').on('click','li',function(){
                                 $(this).find('img').attr('src','img/main_img/lan.png');
