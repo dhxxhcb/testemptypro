@@ -9,6 +9,8 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;  
 
 public class checkMysql {  
+   
+
 
      public static String url =  
      "jdbc:mysql://192.168.0.17:3306/*****_orders";  
