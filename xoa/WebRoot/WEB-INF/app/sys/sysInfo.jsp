@@ -67,6 +67,9 @@
 			margin-top: 10px;
 			margin-bottom: 15px;
 		}
+		table tr td {
+			border-right: 0px solid !important;
+		}
 	</style>
 </head>
 <body>
@@ -74,7 +77,7 @@
 	<tbody>
 	<tr>
 		<td class="Big">
-			<img src="/static/images/sys_config.gif" width="22" height="20" align="absmiddle"><span class="big3">  心通达OA系统信息</span>
+			<span class="big3">  心通达OA系统信息</span>
 			<input type="button" value="开发团队" class="BigButton" onclick="ShowDialog('developer');">
 		</td>
 	</tr>
