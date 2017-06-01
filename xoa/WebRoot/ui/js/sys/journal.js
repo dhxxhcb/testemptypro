@@ -193,7 +193,7 @@ $(function(){
                 var str='';
                 for(var i=0;i<data1.length;i++){
                     var sendTime=new Date(data1[i].time).Format('yyyy-MM-dd hh:mm');
-                    str+='<tr><td><input type="checkbox" name="checke" value=""></td><td>'+data1[i].userName+'</td><td>'+sendTime+'</td><td>'+data1[i].ip+'</td><td></td><td>'+data1[i].type+'</td><td>'+data1[i].remark+'</td></tr>';
+                    str+='<tr><td><input type="checkbox" name="checke" value=""></td><td>'+data1[i].userName+'</td><td>'+sendTime+'</td><td>'+data1[i].ip+'</td><td>'+data1[i].ipLocation+'</td><td>'+data1[i].typeName+'</td><td>'+data1[i].remark+'</td></tr>';
                 }
                 $('.queryJournalList').after(str);
             }
