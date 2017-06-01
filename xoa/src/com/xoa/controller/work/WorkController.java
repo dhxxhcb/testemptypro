@@ -184,10 +184,12 @@ public class WorkController {
                           @RequestParam(value="runName",required = false) String runName,
                           @RequestParam(value="beginTime",required =false) String beginTime,
                           @RequestParam(value="beginUser",required =false) String beginUser
-                         
                          ) throws JSONException {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
+        ToJson<FlowFast> tj = new ToJson<FlowFast>();
+        FlowFast f=new FlowFast();
+        FlowRunPrcs flowRunPrcs=null;
         String tableName = "flow_data_" + flowId;
         JSONArray json =new JSONArray();
         List<Map<String,Object>> l=json.parseObject(formdata,List.class);
@@ -211,10 +213,9 @@ public class WorkController {
         	String sqlprimary=" primary key(id),unique key(run_id) );";
         	sbcreate.append(sqlprimary);
         	CheckTableExist.createSql(sbcreate.toString());
-        	
         } else {
         	 String keys = "run_id,run_name,begin_time,begin_user";
-             String values = "" + runId + "," + runName + "," + beginTime + "," + beginUser;
+             String values = "" +runId + "," +"'"+ runName +"'"+ "," +"'"+ beginTime+"'" + "," +"'"+ beginUser+"'";
              StringBuffer sb = new StringBuffer();
              sb.append(keys);
              StringBuffer sb1 = new StringBuffer();
@@ -225,14 +226,15 @@ public class WorkController {
     		}*/
              for(Map<String,Object> map: l){
             	 sb.append(",").append(map.get("key"));
-                 sb1.append(",").append(map.get("value"));
+                 sb1.append(",").append("'").append(map.get("value")).append("'");
              }
+            System.out.println(sb1.toString());
             String sqlAll = "insert into " + tableName + "(" + sb.toString() + ") " + "values(" + sb1.toString() + ")";
+            System.out.println(sqlAll.toString());
             CheckTableExist.createSql(sqlAll);
-
             //String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
            // int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
-            FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
+            flowRunPrcs = new FlowRunPrcs();
             flowRunPrcs.setRunId(runId);
             flowRunPrcs.setPrcsId(1);
            // flowRunPrcs.setUserId(userId);
@@ -241,13 +243,22 @@ public class WorkController {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             flowRunPrcs.setDeliverTime(df.format(new Date()));
             flowRunPrcs.setPrcsTime(beginTime);
+            flowRunPrcs.setCreateTime(beginTime);
             flowRunPrcs.setDeliverTime(beginTime);
             flowRunPrcs.setActiveTime(beginTime);
             flowRunPrcsService.save(flowRunPrcs);
-
         }
-		return null;
+        try {
+            f.setFlowRunPrcs(flowRunPrcs);
+            tj.setObject(f);
+            tj.setMsg("OK");
+            tj.setFlag(0);
+        } catch (Exception e) {
+            tj.setMsg(e.getMessage());
+        }
+        return tj;
     }
+
     
     @RequestMapping("saveWork")
     @ResponseBody
