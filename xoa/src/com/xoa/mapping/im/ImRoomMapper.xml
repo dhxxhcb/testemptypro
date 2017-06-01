@@ -44,34 +44,6 @@
       RMEMBER_UID=#{rmemberUid} 
     where ROOM_OF = #{roomOf}
   </update>
-  
-  
-  <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from im_room
-    where RID = #{rid}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from im_room
-    where RID = #{rid}
-  </delete>
-  <delete id="deleteBy" parameterType="com.xoa.model.im.ImRoom" >
-    delete from im_room
-    <if test="_parameter != null" >
-      <include refid="_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insertIm_room" parameterType="com.xoa.model.im.ImRoom" >
-    insert into im_room (RID, RNAMR, RSET_UID, 
-      RSET_OFID, RTIME, RMEMBER_UID, 
-      RMEMBER_OFID, ROUT_UID, ROUT_OFID, 
-      RINVITE, RCHANGE)
-    values (#{rid}, #{rnamr}, #{rsetUid}, 
-      #{rsetOfid}, #{rtime}, #{rmemberUid}, 
-      #{rmemberOfid}, #{routUid}, #{routOfid}, 
-      #{rinvite}, #{rchange})
-  </insert>
   <insert id="saveRoom" parameterType="com.xoa.model.im.ImRoom" >
     insert into im_room
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -108,7 +80,7 @@
       <if test="rchange != null" >
         RCHANGE,
       </if>
-       <if test="roomOf != null" >
+      <if test="roomOf != null" >
         ROOM_OF,
       </if>
     </trim>
@@ -146,11 +118,39 @@
       <if test="rchange != null" >
         #{rchange},
       </if>
-        <if test="roomOf != null" >
+      <if test="roomOf != null" >
         #{roomOf},
       </if>
     </trim>
   </insert>
+  
+  <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from im_room
+    where RID = #{rid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from im_room
+    where RID = #{rid}
+  </delete>
+  <delete id="deleteBy" parameterType="com.xoa.model.im.ImRoom" >
+    delete from im_room
+    <if test="_parameter != null" >
+      <include refid="_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertIm_room" parameterType="com.xoa.model.im.ImRoom" >
+    insert into im_room (RID, RNAMR, RSET_UID, 
+      RSET_OFID, RTIME, RMEMBER_UID, 
+      RMEMBER_OFID, ROUT_UID, ROUT_OFID, 
+      RINVITE, RCHANGE)
+    values (#{rid}, #{rnamr}, #{rsetUid}, 
+      #{rsetOfid}, #{rtime}, #{rmemberUid}, 
+      #{rmemberOfid}, #{routUid}, #{routOfid}, 
+      #{rinvite}, #{rchange})
+  </insert>
+
   <select id="countBy" parameterType="com.xoa.model.im.ImRoom" resultType="java.lang.Integer" >
     select count(*) from im_room
     <if test="_parameter != null" >

@@ -193,10 +193,38 @@ $(function(){
                 var str='';
                 for(var i=0;i<data1.length;i++){
                     var sendTime=new Date(data1[i].time).Format('yyyy-MM-dd hh:mm');
-                    str+='<tr><td><input type="checkbox" name="checke" value=""></td><td>'+data1[i].userName+'</td><td>'+sendTime+'</td><td>'+data1[i].ip+'</td><td>'+data1[i].ipLocation+'</td><td>'+data1[i].typeName+'</td><td>'+data1[i].remark+'</td></tr>';
+                    str+='<tr><td><input class="checkChild" type="checkbox" name="checke" value=""></td><td>'+data1[i].userName+'</td><td>'+sendTime+'</td><td>'+data1[i].ip+'</td><td>'+data1[i].ipLocation+'</td><td>'+data1[i].typeName+'</td><td>'+data1[i].remark+'</td></tr>';
                 }
                 $('.queryJournalList').after(str);
+                $(".checkChild").click(function () {
+                    var state=$(this).prop("checked");
+                    if(state==true){
+                        $(this).prop("checked",true);
+                    }else{
+                        $('#checkedAll').prop("checked",false);
+                        $(this).prop("checked",false);
+                    }
+                    var child =   $(".checkChild");
+                    for(var i=0;i<child.length;i++){
+                        var childstate= $(child[i]).prop("checked");
+                        if(state!=childstate){
+                            return
+                        }
+                    }
+                    $('#checkedAll').prop("checked",state);
+                })
             }
         })
     }
+    //全选点击事件
+    $('#checkedAll').click(function(){
+        var state =$(this).prop("checked");
+        if(state==true){
+            $(this).prop("checked",true);
+            $(".checkChild").prop("checked",true);
+        }else{
+            $(this).prop("checked",false);
+            $(".checkChild").prop("checked",false);;
+        }
+    })
 })
