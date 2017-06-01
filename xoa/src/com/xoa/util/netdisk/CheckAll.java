@@ -93,8 +93,13 @@ public class CheckAll {
             String[]  checkDept=checkStrings[0].split(",");
             for(int i=0;i<checkDept.length;i++){
                 //调用校验部门方法  传值为部门id
-                if(checkDeptPriv(checkDept[i],map.get("deptId").toString())){
-                    return true;
+                String depId=map.get("deptId").toString();
+                if (depId!=null) {
+                    if(checkDeptPriv(checkDept[i],depId)){
+                        return true;
+                    }
+                }else{
+                    return false;
                 }
             }
         }
@@ -103,15 +108,25 @@ public class CheckAll {
             String[]  checkDept=checkStrings[0].split(",");
             for(int i=0;i<checkDept.length;i++){
                 //调用校验部门范围方法  传值为部门id
-                if(checkDeptPriv(checkDept[i],map.get("deptId").toString())){
-                    return true;
+                String depId=map.get("deptId").toString();
+                if (depId!=null) {
+                    if(checkDeptPriv(checkDept[i],depId)){
+                        return true;
+                    }
+                }else{
+                    return false;
                 }
             }
             String[]  checkUserPriv=checkStrings[1].split(",");
             for(int i=0;i<checkUserPriv.length;i++){
                 //调用校验角色范围方法  传值为角色id
-                if(checkUserPriv(checkUserPriv[i],map.get("userPriv").toString())){
-                    return true;
+                String userPrivId=map.get("userPriv").toString();
+                if (userPrivId!=null) {
+                    if(checkUserPriv(checkUserPriv[i],userPrivId)){
+                        return true;
+                    }
+                } else{
+                    return false;
                 }
             }
         }
@@ -119,26 +134,42 @@ public class CheckAll {
         if(checkStrings.length==4){
             String[]  checkDept=checkStrings[0].split(",");
             for(int i=0;i<checkDept.length;i++){
-                //调用校验部门范围方法  传值为部门id
-                if(checkDeptPriv(checkDept[i],map.get("deptId").toString())){
-                    return true;
+                String depId=map.get("deptId").toString();
+                if (depId!=null) {
+                    if(checkDeptPriv(checkDept[i],depId)){
+                        return true;
+                    }
+                }else{
+                    return false;
                 }
             }
             String[]  checkUserPriv=checkStrings[1].split(",");
             for(int i=0;i<checkUserPriv.length;i++){
                 //调用校验角色范围方法  传值为角色id
-                if(checkUserPriv(checkUserPriv[i],map.get("userPriv").toString())){
-                    return true;
-                }
-            }
-            String[]  checkUserId=checkStrings[2].split(",");
-            for(int i=0;i<checkUserId.length;i++){
-                //调用校验用户范围方法  传值为用户id
-                if(checkUserId(checkUserId[i],map.get("userId").toString())){
-                    return true;
+                String userPrivId=map.get("userPriv").toString();
+                if (userPrivId!=null) {
+                    if(checkUserPriv(checkUserPriv[i],userPrivId)){
+                        return true;
+                    }
+                } else{
+                    return false;
                 }
             }
         }
+        String[]  checkUserId=checkStrings[2].split(",");
+        for(int i=0;i<checkUserId.length;i++){
+            //调用校验用户范围方法  传值为用户id
+            String userId=map.get("userId").toString();
+            if (userId!=null) {
+                if(checkUserId(checkUserId[i],userId)){
+                    return true;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+
         //
         return false;
     }
