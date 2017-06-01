@@ -232,8 +232,8 @@
                     </tr>
                     <tr>
                         <td colspan="7" style="text-align: left">
-                            <input type="checkbox" name="check" value="">
-                            <span>全选</span>
+                            <input id="checkedAll" type="checkbox" name="check" value="" style="margin-left: 20px;" >
+                            <label for="checkedAll">全选</label>
                             <input type="button" name="delete" id="delete" class="numBtn" value="删除">
                         </td>
                     </tr>

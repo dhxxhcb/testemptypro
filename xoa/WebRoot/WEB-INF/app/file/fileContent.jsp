@@ -193,7 +193,6 @@ $(function(){
     <div class="checkALL">
         <input id="checkedAll" type="checkbox" name="" value="" >
         <label for="checkedAll"><fmt:message code="notice.th.allchose"/></label>
-
     </div>
     <div class="boto">
         <a class="ONE" href="javascript:;"><span>签阅</span></a>
