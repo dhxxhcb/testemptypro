@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -406,6 +407,23 @@ public class WorkController {
             maps.put("userId", flowRunPrcs.getUserId());
         }
         return flowRunPrcsService.selectAll(maps, page, pageSize, useFlag);
+    }
+
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/6/1 11:40
+     * 方法介绍:  根据runId查询关联办理人的步骤和所在部门
+     * 参数说明:
+     * @return
+     */
+    @RequestMapping(value = "findAllNode", produces = {"application/json;charset=UTF-8"},method = RequestMethod.GET)
+    public @ResponseBody
+    ToJson<FlowRunPrcs> findAllNode(HttpServletRequest request,
+                                  @RequestParam(value = "runId", required = false) Integer runId) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        return flowRunPrcsService.findAllNode(runId);
     }
 
 }

@@ -642,7 +642,7 @@
     </select>
 
     <!-- 查询关联部门实际步骤 -->
-    <select id="findAllNode" resultMap = "com.xoa.model.workflow.FlowRunPrcs">
+    <select id="findAllNode" resultMap="BaseResultMap">
             SELECT
             frp.ID,
             frp.USER_ID,
@@ -662,10 +662,10 @@
             frp.TIME_OUT,
             dp.DEPT_NAME
         FROM
-            flow_run_prcs fr
-        LEFT JOIN department dp ON fr.PRCS_DEPT = dp.DEPT_ID
+            flow_run_prcs frp
+        LEFT JOIN department dp ON frp.PRCS_DEPT = dp.DEPT_ID
         WHERE
-            fr.RUN_ID = #{runId}
+            frp.RUN_ID = #{runId}
     </select>
 
 </mapper>
