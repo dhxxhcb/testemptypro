@@ -370,6 +370,12 @@
 			color: #ffffff;
 			border-radius: 20px;
 		}
+		.font-green {
+			color: green;
+		}
+		tr td{
+			font-size:10px;
+		}
 	</style>
 
 </head>
@@ -378,7 +384,7 @@
 	<!--head开始-->
 	<div class="head w clearfix">
 		<ul class="index_head">
-			<li><span class="headli1_1">代办工作</span><img class="headli1_2" src="../../img/02.png" alt="">
+			<li><span class="headli1_1">待办工作</span><img class="headli1_2" src="../../img/02.png" alt="">
 			</li>
 
 			<li><span class="headli2_1 endWork"  id="endWork">办结工作</span><img src="../../img/02.png" alt="" class="headli2_2">
@@ -793,7 +799,7 @@
 					<img src="../../img/la2.png">
 					<div class="news">全部工作</div>
 					<input id="flow_search_value" class="inp" type="text" placeholder="&nbsp;请输名称搜索">
-					<div id="btn_search" class="search"><h1 style="cursor:pointer;">搜索</h1></div>
+					<div id="btn_search" class="search"><h1 style="cursor:pointer;" class="subsearch">搜索</h1></div>
 				</div>
 				<div class="right">
 					<!-- 分页按钮-->
@@ -859,7 +865,8 @@
     };
     $(function(){
         $(".index_head li").click(function(){
-            $(this).addClass("one").siblings().removeClass("one");
+            //$(this).find("span").addClass("one").siblings().removeClass("one");
+            $(this).find("span").addClass("one").parent('li').siblings().find("span").removeClass("one");
             var index=$(this).index();
             var head_title=$(this).text();
             $('.news').text(head_title);
@@ -891,11 +898,54 @@
             }
             return str;
         }
+        function getWorkLevle(num_workLevel){
+            var str_workLevel;
+            switch(num_workLevel){
+                case "0":
+                    str_workLevel='普通';
+                    break;
+                case "1":
+                    str_workLevel='重要';
+                    break;
+                case "2":
+                    str_workLevel='紧急';
+                    break;
+                default:
+                    str_workLevel='普通';
+            }
+            return str_workLevel;
+        }
+
+        function getFlowType(num_flowType){
+            var str_flowType;
+            switch (num_flowType){
+                case "1":
+                    str_flowType="固定流程";
+                    break;
+                case "2":
+                    str_flowType="自由流程";
+                    break;
+                default:
+                    str_flowType='普通';
+            }
+            return str_flowType;
+        }
+        function changeShadow(){
+            var td_cs=document.getElementById("tr_td");
+            var ts_cs=td_cs.getElementsByTagName("tr"),
+                length_cs=ts_cs.length;
+            for(var i=0;i<length_cs;i++){
+                if(i%2==0){
+                    ts_cs[i].style.backgroundcolor='#F6F7F9';
+                }
+            }
+        }
         $(document).ready(function(){
             initPageList_db(function (pageCount) {
                 console.log(pageCount);
                 initPagination_db(pageCount, datas.pageSize);
             },1);
+            changeShadow();
         });
 
         $('#allwork').click(function(){
@@ -903,7 +953,7 @@
                     console.log(pageCount);
                     initPagination_qb(pageCount,datas.pageSize);
                 },page);
-
+                changeShadow();
             }
         );
 
@@ -938,17 +988,18 @@
                     var str='';
                     for(var i=0;i<length;i++){
                         var status=handleData(data.obj[i].delFlag);
-                        var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
-                            '<td class="th">'+data.obj[i].flowType.flowType+'</td>'+
-                            '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
-                            '<td class="th">'+data.obj[i].userName+'</td>'+
-                            '<td class="th">我的步骤流程</td>'+
-                            '<td class="th">'+status+'</td>';
+                        var flowType=getFlowType(data.obj[i].flowType.flowType);
+                        var str= str+'<tr><td class="">'+data.obj[i].runId+'</td>'+
+                            '<td class="">'+flowType+'</td>'+
+                            '<td class="">'+data.obj[i].flowRun.runName+'</td>'+
+                            '<td class="">'+data.obj[i].userName+'</td>'+
+                            '<td class="">我的步骤流程</td>'+
+                            '<td class="">'+status+'</td>';
                         //$('#dbgz').html(str);
                     }
                     $('#qbgz').html(str);
                     if (cb) {
-                        alert(data.totleNum);
+                        //alert(data.totleNum);
                         cb(data.totleNum);
                     }
                 }
@@ -995,11 +1046,14 @@
                     var str='';
                     for(var i=0;i<length;i++){
                         var status=handleData(data.obj[i].prcsFlag);
-                        var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
-                            '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
-                            '<td class="th"></td><td class="th">'+data.obj[i].userName+'</td>'+
-                            '<td class="th">'+status+'</td><td class="th">'+data.obj[i].createTime+'</td>'+
-                            '<td class="th"></td>'+
+                        var workLeverl=getWorkLevle(data.obj[i].flowRun.workLevel);
+                        var str= str+'<tr><td class="">'+data.obj[i].runId+'</td>'+
+                            '<td class="">'+
+                            '<span class="font-green">'+
+                            '【'+workLeverl+'】</span>'+data.obj[i].flowRun.runName+'</td>'+
+                            '<td class=""></td><td class="">'+data.obj[i].userName+'</td>'+
+                            '<td class="">'+status+'</td><td class="">'+data.obj[i].createTime+'</td>'+
+                            '<td class=""></td>'+
                             '<td style="text-align:left;" title="主办导出删除">'+
                             '<a href="javascript:"><span class="host-span">主办</span></a>'+
                             '<a href=""><span class="operation_text_left">导出</span></a>'+
@@ -1009,7 +1063,7 @@
                     }
                     $('#dbgz').html(str);
                     if (cb) {
-                        alert(data.totleNum);
+                        //alert(data.totleNum);
                         cb(data.totleNum);
                     }
                 }
@@ -1057,10 +1111,10 @@
                     var str='';
                     for(var i=0;i<length;i++){
                         var status=handleData(data.obj[i].prcsFlag);
-                        var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
-                            '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
-                            '<td class="th">我经办的步骤</td><td class="th">'+data.obj[i].userName+'</td>'+
-                            '<td class="th">'+data.obj[i].deliverTime+'</td><td class="th">流程状态</td>'+
+                        var str= str+'<tr><td class="">'+data.obj[i].runId+'</td>'+
+                            '<td class="">'+data.obj[i].flowRun.runName+'</td>'+
+                            '<td class="">我经办的步骤</td><td class="">'+data.obj[i].userName+'</td>'+
+                            '<td class="">'+data.obj[i].deliverTime+'</td><td class="">流程状态</td>'+
                             '<td style="text-align:left;" title="主办导出删除">'+
                             '<a href="javascript:"><span class="host-span">主办</span></a>'+
                             '<a href=""><span class="operation_text_left">导出</span></a>'+
@@ -1070,7 +1124,7 @@
                     }
                     $('#bjwork').html(str);
                     if (cb) {
-                        alert(data.totleNum);
+                        //alert(data.totleNum);
                         cb(data.totleNum);
                     }
                 }
@@ -1119,10 +1173,10 @@
                     var str='';
                     for(var i=0;i<length;i++){
                         var status=handleData(data.obj[i].prcsFlag);
-                        var str= str+'<tr><td class="th">'+data.obj[i].runId+'</td>'+
-                            '<td class="th">'+data.obj[i].flowRun.runName+'</td>'+
-                            '<td class="th">我经办的步骤</td><td class="th">'+data.obj[i].userName+'</td>'+
-                            '<td class="th">'+data.obj[i].deliverTime+'</td><td class="th">流程状态</td>'+
+                        var str= str+'<tr><td class="">'+data.obj[i].runId+'</td>'+
+                            '<td class="">'+data.obj[i].flowRun.runName+'</td>'+
+                            '<td class="">我经办的步骤</td><td class="">'+data.obj[i].userName+'</td>'+
+                            '<td class="">'+data.obj[i].deliverTime+'</td><td class="th">流程状态</td>'+
                             '<td style="text-align:left;" title="主办导出删除">'+
                             '<a href="javascript:"><span class="host-span">主办</span></a>'+
                             '<a href=""><span class="operation_text_left">导出</span></a>'+
@@ -1132,7 +1186,7 @@
                     }
                     $('#gqwork').html(str);
                     if (cb) {
-                        alert(data.totleNum);
+                        //alert(data.totleNum);
                         cb(data.totleNum);
                     }
                 }
