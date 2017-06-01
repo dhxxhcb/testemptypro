@@ -61,9 +61,12 @@
             <if test="remark != null">
                 AND s.REMARK LIKE concat("%",#{remark}, "%")
             </if>
-            <foreach collection="ids" item="id" open=" AND  s.USER_ID  IN ( " close=" ) " separator=" , ">
-                #{id}
-            </foreach>
+            <if test="ids != null">
+                <foreach collection="ids" item="id" open=" AND  s.USER_ID  IN ( " close=" ) " separator=" , ">
+                    #{id}
+                </foreach>
+            </if>
+
         </where>
     </select>
 

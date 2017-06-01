@@ -529,10 +529,11 @@ public class SysLogServiceImpl implements SysLogService {
 
             hashMap.put("endTime", endTime);
         }
-        if (syslog.getIp() != null) {
+
+        if ( syslog != null && syslog.getIp() != null) {
             hashMap.put("ip", syslog.getIp());
         }
-        if (syslog.getRemark() != null) {
+        if ( syslog !=null && syslog.getRemark() != null) {
             hashMap.put("remark", syslog.getRemark());
         }
         if (type != null) {
