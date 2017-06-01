@@ -512,9 +512,10 @@ public class SysLogServiceImpl implements SysLogService {
      **/
     @Override
     public List<Syslog> logManage(Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
-
-        String[] uidArr = uid.split(",");
-
+        String[] uidArr = null;
+        if (uid != null) {
+            uidArr = uid.split(",");
+        }
 
         //查询
         List<Syslog> syslogList;
@@ -572,8 +573,10 @@ public class SysLogServiceImpl implements SysLogService {
     @Override
     public void deleteSyslog(Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
 
-
-        String[] uidArr = uid.split(",");
+        String[] uidArr = null;
+        if (uid != null) {
+            uidArr = uid.split(",");
+        }
 
         Map<String, Object> hashMap = new HashMap<String, Object>();
         if (uidArr != null && uidArr.length > 0) {
