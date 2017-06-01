@@ -104,13 +104,6 @@
             border-bottom: 1px solid #9E9E9E;
             height: 44px;
         }
-
-        .cont_rig {
-            overflow-y: scroll;
-            width: 84%;
-            height: 95%;
-        }
-
         .new_excell_pic {
             border-radius: 0;
             border: none;
@@ -362,15 +355,6 @@
             cursor: pointer;
         }
 
-        /*<img src="img/workflow/one.png">*/
-        /*.img{
-            width:20px;
-            height:20px;
-            background: red;
-        }
-            .img,.sort{
-                    float:left;
-                }*/
         .layui-layer-title {
             padding: 0 80px 0 20px;
             height: 42px;
@@ -388,24 +372,18 @@
             text-align: center;
         }
 
-        .cont_left {
-            width: 15%;
-            height: 95%;
-            border-right: 1px solid #000;
-            overflow-y: scroll;
-        }
     </style>
 </head>
 <body style="overflow:scroll;overflow-y: auto;overflow-x:hidden;">
-
-<div class="step2" style="display: block;margin-left: 10px;">
+<%--新建部门--%>
+<div class="step1" style="display: block;margin-left: 10px;">
     <!-- 中间部分 -->
     <table class="newNews">
         <div class="nav_box clearfix">
             <div class="nav_t1"><img src="../../img/sys/new_dept.png"></div>
-            <div class="nav_t2" class="news">新建部门/成员单位-当前节点：[北京高速波软件有限公司]</div>
+            <div class="nav_t2" class="news">新建部门/成员单位-当前节点：[北京公司]</div>
             <div class="head_rig" id="head_rig">
-                <h1 style='cursor:pointer;' class="new_dept" onclick="newData()" >新建部门/成员单位</h1>
+                <h1 style='cursor:pointer;' class="new_dept" onclick="newDept()" >新建部门/成员单位</h1>
                 <h1 style='cursor:pointer;' class="import">导入</h1>
                 <h1 style='cursor:pointer;' class="export">导出</h1>
             </div>
@@ -559,6 +537,173 @@
         </tbody>
     </table>
 </div>
+
+<%--编辑部门--%>
+<div class="step2" style="display: block;margin-left: 10px;">
+    <!-- 中间部分 -->
+    <table class="newNews">
+        <div class="nav_box clearfix">
+            <div class="nav_t1"><img src="../../img/sys/new_dept.png"></div>
+            <div class="nav_t2" class="news">编辑部门/成员单位-当前节点：[北京公司]</div>
+            <div class="head_rig" id="head_rig_">
+                <h1 style='cursor:pointer;' class="new_dept" onclick="newDept()" >新建部门/成员单位</h1>
+                <h1 style='cursor:pointer;' class="import">导入</h1>
+                <h1 style='cursor:pointer;' class="export">导出</h1>
+            </div>
+        </div>
+
+        <tbody>
+        <tr>
+            <td class="td_w blue_text">
+                部门排序号:
+            </td>
+            <td>
+                <input class="td_title1" type="text" placeholder="" id="deptNo_"/>
+                <div class="tit"> 3位数字，用于同一级次部门排序，不能重复</div>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="td_w blue_text">
+                部门名称:
+            </td>
+            <td>
+                <input class="td_title1" id="deptName_" type="text" placeholder=""/>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="td_w blue_text">
+                上级部门:
+            </td>
+            <td>
+                <select name="DEPT_PARENT" class="BigSelect" id="deptParent_">
+                    <option value="0">无</option>
+                    <option value="1">├中国兵器工业信息中心</option>
+                    <option value="3">│└北京通达信科科技有限公司</option>
+                    <option value="17">│　└总经理</option>
+                    <option value="4">│　　├综合管理部</option>
+                    <option value="18">│　　│├人力资源部</option>
+                    <option value="19">│　　│├财务部</option>
+                    <option value="20">│　　│└行政部</option>
+                    <option value="5">│　　├市场营销部</option>
+                    <option value="39">│　　│├市场部</option>
+                    <option value="33">│　　││├品牌部</option>
+                    <option value="31">│　　││├网络营销中心</option>
+                    <option value="32">│　　││└商务中心</option>
+                    <option value="40">│　　│└销售部</option>
+                    <option value="7">│　　│　├北京销售部</option>
+                    <option value="28">│　　│　│├销售一组</option>
+                    <option value="29">│　　│　│├销售二组</option>
+                    <option value="30">│　　│　│├销售三组</option>
+                    <option value="27">│　　│　│└销售协作组</option>
+                    <option value="8">│　　│　└上海销售部</option>
+                    <option value="6">│　　├研发部</option>
+                    <option value="34">│　　│├产品部</option>
+                    <option value="9">│　　│├开发一部</option>
+                    <option value="10">│　　│├开发二部</option>
+                    <option value="11">│　　│├质量保证部</option>
+                    <option value="15">│　　│└设计部</option>
+                    <option value="41">│　　├项目部</option>
+                    <option value="42">│　　│├项目一部</option>
+                    <option value="43">│　　│└项目二部</option>
+                    <option value="16">│　　└生产部</option>
+                    <option value="38">│　　　├采购部</option>
+                    <option value="35">│　　　├生产一部</option>
+                    <option value="37">│　　　├生产二部</option>
+                    <option value="36">│　　　└质检部</option>
+                    <option value="2">└北方测试研究公司</option>
+                    <option value="14">　└北一测试研究院</option>
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">部门主管（选填）:</td>
+            <td>
+                <input class="td_title1  release1" id="query_toId" type="text"/>
+                <%-- <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
+                <div class="release3">添加</div>
+                <div class="release4 empty">清空</div>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">部门助理（选填）:</td>
+            <td>
+                <input class="td_title1  release1" id="query_privId_" type="text"/>
+                <%-- <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
+                <div class="release3">添加</div>
+                <div class="release4 empty" onclick="empty('query_privId')">清空</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">上级主管领导（选填）:</td>
+            <td>
+                <input class="td_title1  release1" id="query_userId_" dataid="" type="text"/>
+                <%--  <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
+                <div class="release3" id="query_adduser_">添加</div>
+                <div class="release4 empty" onclick="empty('query_userId')">清空</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">上级分管领导（选填）:</td>
+            <td>
+                <input class="td_title1  release1" id="query_userId_" dataid="" type="text"/>
+                <%--  <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
+                <div class="release3" id="query_adduser_">添加</div>
+                <div class="release4 empty" onclick="empty('query_userId')">清空</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                电话 :
+            </td>
+            <td>
+                <input class="td_title1 time_coumon" id="telNo_" type="text" placeholder=""/>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                传真 :
+            </td>
+            <td>
+                <input class="td_title1 time_coumon" id="faxNo_" type="text" placeholder=""/>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                地址 :
+            </td>
+            <td>
+                <input class="td_title1 time_coumon" id="deptAddress_" type="text" placeholder=""/>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="blue_text">
+                部门职责 :
+            </td>
+            <td>
+                <textarea name="" cols="60" rows="5" id="deptFunc_"></textarea>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="button" class="new_but" id="new_">新建</button>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
 </body>
 
 <script>
