@@ -129,15 +129,6 @@
             border-bottom: 1px solid #dedede;
             height: 43px;
         }
-
-        .cont_rig {
-            /*overflow-y: scroll;*/
-            width: 81%;
-            height: 95%;
-            overflow-y:hidden;
-            overflow-x: hidden;
-        }
-
         .new_excell_pic {
             border-radius: 0;
             border: none;
@@ -380,9 +371,7 @@
             border-radius: 4px;
         }
 
-        /*	#layui-layer2{
-                border-radius:10px;
-            }*/
+
         .center {
             height: 400px !important;
         }
@@ -391,15 +380,6 @@
             cursor: pointer;
         }
 
-        /*<img src="img/workflow/one.png">*/
-        /*.img{
-            width:20px;
-            height:20px;
-            background: red;
-        }
-            .img,.sort{
-                    float:left;
-                }*/
         .layui-layer-title {
             padding: 0 80px 0 20px;
             height: 42px;
@@ -417,12 +397,7 @@
             text-align: center;
         }
 
-        .cont_left {
-            width: 18%;
-            height: 95%;
-            border-right: 1px solid #dedede;
-            overflow-y: scroll;
-        }
+
     </style>
 </head>
 <body style="overflow:scroll;overflow-y: hidden;overflow-x:hidden;">
@@ -433,18 +408,13 @@
             <img src="../img/sys/dept.png" alt="">
             <h1>部门/成员单位管理</h1>
         </div>
-       <%-- <div class="head_rig" id="head_rig">
-            <h1 style='cursor:pointer;' class="new_dept">新建部门/成员单位</h1>
-            <h1 style='cursor:pointer;' class="import">导入</h1>
-            <h1 style='cursor:pointer;' class="export">导出</h1>
-        </div>--%>
     </div>
 
     <div class="cont">
         <div class="cont_left" id="cont_left">
             <ul>
                 <li class="liUp dept_li" id="dept_lis">部门列表</li>
-                <li class="pick" style="display: none;">
+                <li class="pick" style="display: block;">
                     <ul class="tab_ctwo a" id="deptOrg">
                         <!-- <li>
 
@@ -456,28 +426,6 @@
                 <li class="liUp dept_li">修正部门级别</li>
 
             </ul>
-
-            <%--<div class="left_all">
-                <ul>
-                    <li class="lis">
-                        部门列表
-
-                        <ul class="tab_ctwo a" id="deptOrg" style="display:block;">
-                            <!-- <li>
-
-                            </li> -->
-                            123456
-
-                        </ul>
-                    </li>
-                    <li>部门批量设置</li>
-                    <li>公共自定义组</li>
-                    <li>修正部门级别</li>
-                </ul>
-
-
-            </div>--%>
-
         </div>
 
         <div class="cont_rig">
@@ -491,51 +439,58 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
     </div>
 </div>
 </body>
 <script type="text/javascript">
-    function newData(){
+    //新建部门/成员单位按钮
+    function newDept(){
 
-        $("#telNo").val("ceshi");
+//        $("#telNo").val("ceshi");
+//
+//        alert(1);
+//        alert("ceshi");
+        $(".step1").show();
+        $(".step2").hide();
 
-        alert(1);
-        alert("ceshi");
+
+
+
+
     };
 
     $(function () {
+        /*左侧点击事件显示隐藏*/
+        $("#dept_lis").on('click', function () {
+
+            if ($(this).siblings('.pick').css('display') == 'none') {
+                $(this).siblings('.pick').show();
+                $(this).addClass("liDown").removeClass("liUp");
+            } else {
+                $(this).siblings('.pick').hide();
+                $(this).addClass("liUp").removeClass("liDown");
+            }
+        });
+
         //部门列表
         $('.cont_left .tab_ctwo').on('click', '.childdept', function () {
             var that = $(this);
+            getChDept(that.next(), that.attr('deptid')); //调用左侧部门接口
 
-            getChDept(that.next(), that.attr('deptid'));
+
+            var deptid=that.attr('deptid');
+            $('.childdept').removeClass('on');
+            that.addClass('on')
+            that.next().toggle();  //显示和隐藏左侧部门列表的切换效果
+
+            deptById(deptid);
+
+
         });
         function getChDept(target, deptId) {
             $.ajax({
-                url: '../department/getChDept',
+                url: '../department/getChDeptfq',
                 type: 'get',
                 data: {
                     deptId: deptId
@@ -547,23 +502,23 @@
                         var str = '';
                         data.obj.forEach(function (v, i) {
                             if (v.deptName) {
-                                str += '<li><span  deptid="' + v.deptId + '" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;"></ul></li>';
+                                str += '<li><span  deptid="' + v.deptId + '" class="childdept"><span></span><img src="../img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;"></ul></li>';
                             } else {
-                                str += '<li><span deptid="' + v.deptId + '" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span><img src="../img/main_img/man.png" alt=""></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
+                                str += '<li><span deptid="' + v.deptId + '" class="childdept"><span><img src="../img/main_img/man.png" alt=""></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
                             }
                         });
                     } else {
                         var str = '';
                         data.obj.forEach(function (v, i) {
                             if (v.deptName) {
-                                str += '<li><span deptid="' + v.deptId + '" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class=""></span><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;"></ul></li>';
+                                str += '<li><span deptid="' + v.deptId + '" class="childdept"><span class=""></span><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;"></ul></li>';
                             } else {
-                                if (v.sex == 0) {
-
-                                    str += '<li><span deptid="' + v.deptId + '" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
-                                } else if (v.sex == 1) {
-                                    str += '<li><span deptid="' + v.deptId + '" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="../img/main_img/women.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
-                                }
+//                                if (v.sex == 0) {
+//
+//                                    str += '<li><span deptid="' + v.deptId + '" class="childdept"><span></span><img src="../img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
+//                                } else if (v.sex == 1) {
+//                                    str += '<li><span deptid="' + v.deptId + '" class="childdept"><span></span><img src="../img/main_img/women.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
+//                                }
                             }
                         });
                     }
@@ -571,19 +526,28 @@
                 }
             })
         }
-        getChDept($('#deptOrg'), 20);
+        getChDept($('#deptOrg'), 20); //根据地区，北京集团
 
-        /*左侧点击事件*/
-        $("#dept_lis").on('click', function () {
+        //编辑部门
+        function deptById(id){
 
-            if ($(this).siblings('.pick').css('display') == 'none') {
-                $(this).siblings('.pick').show();
-                $(this).addClass("liDown").removeClass("liUp");
-            } else {
-                $(this).siblings('.pick').hide();
-                $(this).addClass("liUp").removeClass("liDown");
-            }
-        });
+            $.ajax({
+                url:'../department/getDeptById',
+                type:'get',
+                dataType:'json',
+                data:{'deptId':id},
+                success:function(data){
+
+                console.log(data);
+
+
+
+                }
+            })
+        }
+
+
+
 
 
 

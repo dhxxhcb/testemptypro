@@ -459,7 +459,7 @@
                        var obj2=data.object.listFp[i];
                        /*console.log(obj2.prcsId==prcsTo);*/
                        if(obj2.prcsId== prcsTo[j]){
-                           prcsName+='<div class="prcsName" style=""><h1>'+obj2.prcsName+'</h1></div>';
+                           prcsName+='<div class="prcsName" style="" prcsId='+obj2.prcsId+'><h1>'+obj2.prcsName+'</h1></div>';
                        }
                    }
                }
@@ -524,14 +524,17 @@
                        beginUser:obj3.beginUser
                    }
 
+
                     $.ajax({
                         type: "post",
                         url: "../../workflow/work/nextwork",
                         dataType: 'JSON',
                         data: datas,
-                        success: function(ret){
-                            console.log(obj3.runId);
-                            if(ret.flag==true){
+                        success: function(obj){
+
+
+                            if(obj.flag==true){
+
                                 //传入的参数
                                 layer.open({
                                     type: 1,
@@ -612,19 +615,62 @@
                                         $('.workflow-procs-nodes-wrap').on('click','.prcsName',function(){
                                             $(this).siblings().removeClass('prcsName_chang');
                                             $(this).addClass('prcsName_chang');
+                                            $(this).siblings().attr('check','0');
+                                            $(this).attr('check','1');
                                         })
 
                                     },
                                     yes: function(index, layero){
                                         //按钮【按钮三】的回调
                                         /*alert($('.name_biaodan').val());*/
-                                        //选择人员
+                                        var ret=data.object.flowRun;
+                                        var ret2=data.object.flowRunPrcs
+                                      /*  console.log(ret);*/
+                                        if($('.prcsName').attr('check')=='1'){
+                                            var pId=$('.prcsName').attr('prcsId');
+                                        }
+
+                                        savedData={
+                                            flowId:ret.flowId,
+                                            runId:ret.runId,
+                                            runName:ret.runName,
+                                            beginTime:ret.beginTime,
+                                            beginUser:ret.beginUser,
+                                            prcsId:pId,
+                                            prcsflag:1,
+                                            flowPrcs:ret2.flowPrcs
+                                        }
+                                        console.log(pId);
+                                    console.log(savedData);
+
+                                        //保存的接口
+                                        $.ajax({
+                                            type: "post",
+                                            url: "../../workflow/work/saveWork",
+                                            dataType: 'JSON',
+                                            data: savedData,
+                                            success: function (obj) {
+                                                if(obj.flag==true){
+                                                    alert('正确');
+                                                }else{
+                                                    alert('错误')
+                                                    window.close();
+                                                  /*  parent.opener.location.href='workList';*/
+                                                    /*function clicke(){
+                                                        alert("事件");
+                                                    }*/
+                                                }
+                                            }
+                                        });
+
+
 
                                         layer.closeAll();
                                     }
                                 });
                             }else{
                                 alert('错误');
+
                             }
                         }
                     })

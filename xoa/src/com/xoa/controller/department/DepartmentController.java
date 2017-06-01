@@ -105,13 +105,13 @@ public class DepartmentController {
      * @return String 返回单个部门信息
      */
     @ResponseBody
-    @RequestMapping(value = "/getDeptByid", method = RequestMethod.POST)
-    public ToJson<Department> getDeptByid(int deptid, HttpServletRequest request) {
+    @RequestMapping(value = "/getDeptById", method = RequestMethod.GET)
+    public ToJson<Department> getDeptByid(int deptId, HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         ToJson<Department> json = new ToJson<Department>(0, null);
         try {
-            Department department = departmentService.getDeptById(deptid);
+            Department department = departmentService.getDeptById(deptId);
             json.setObject(department);
             json.setMsg("OK");
             json.setFlag(0);

@@ -70,19 +70,21 @@ public class Ctest {
 //	@Resource
 //	private FlowTypeService flowTypeService;
 
-//	@Resource
-//	private FlowProcessService flowRunPrcsService;
-
 	@Resource
-	private FlowProcessService processService;
+	private FlowRunPrcsService flowRunPrcsService;
+
+//	@Resource
+//	private FlowProcessService processService;
 
 	@Test
 	public void test()throws  Exception{
 
 //		ToJson<FlowProcess> toJson = flowRunPrcsService.delete(881);
 //		System.out.println(toJson.getMsg());
-		FlowProcessList list=processService.flowView(9);
-		System.out.println(JSON.toJSONStringWithDateFormat(list,"yyyy-MM-dd HH:mm:ss"));
+//		FlowProcessList list=processService.flowView(9);
+		ToJson<FlowRunPrcs> toJson =  flowRunPrcsService.findAllNode(154);
+		System.out.println(JSON.toJSONStringWithDateFormat(toJson,"yyyy-MM-dd HH:mm:ss"));
+
 
 
 //		4516

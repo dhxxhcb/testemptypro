@@ -430,7 +430,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 					
 						//二级菜单切换
-						$('.two_menu li').on('mouseover','.two_all',function(){
+						/*$('.two_menu li').on('mouseover','.two_all',function(){
 						
 								$(this).find('h1').css({
 									'color':'#2f8ae3',
@@ -444,11 +444,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$('.two_menu li .two_all').removeClass('xuan');
 								$(this).find('h1').css('color','#000');
 								 $(this).find('.erji_circle').attr('src','img/main_img/hei.png'); 
-						});
+						});*/
 						
 						
 						//点击二级菜单
 						$('.two_menu li').on('click','.two_all',function(){
+						    /*console.log($(this).siblings('.sanji').length>0);
+						    if($(this).siblings('.sanji').length>0){
+
+							}*/
+						    $(this).find('.erji_circle').attr('src','img/main_img/lan.png');
+						    $(this).find('h1').attr('style','color:#2f8ae3');
+						    $(this).parent('.two').siblings().find('.erji_circle').attr('src','img/main_img/hei.png');
+                            $(this).parent('.two').siblings().find('h1').attr('style','color:#000');
+                            $(this).parents('.one').siblings().find('h1').attr('style','color:#000');
+                            $(this).parents('.one').siblings().find('.erji_circle').attr('src','img/main_img/hei.png');
 							var url=$(this).attr('url'); 
 							var menu_tid=$(this).parent().attr('menu_tid'); 
 							//console.log(url);
@@ -480,6 +490,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								})
 							}else{
 								if($(this).siblings('.sanji').length>0){
+                                    $(this).find('.erji_circle').attr('src','img/main_img/hei.png');
+                                    $(this).find('h1').attr('style','color:#000');
 										/* return  false; */
 									//console.log($(this).siblings('.sanji').length>0);
 								}else{
@@ -505,9 +517,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 						});		
 						
-						
+						//给我的工作标签添加click事件
+						/*if($('.two'))*/
 							//点击三级菜单，跳转页面。
 							$('.sanji').on('click','li',function(){
+                                $(this).find('img').attr('src','img/main_img/lan.png');
+                                $(this).find('h1').attr('style','color:#2f8ae3');
+                                $(this).siblings().find('.erji_circle').attr('src','img/main_img/hei.png');
+                                $(this).siblings().find('h1').attr('style','color:#000');
+                                $(this).parents('.one .three').siblings().find('h1').attr('style','color:#000');
+                                $(this).parents('.one .three').siblings().find('.erji_circle').attr('src','img/main_img/hei.png');
 								var url=$(this).attr('url'); 
 								console.log(url);
 							 	var menu_tid=$(this).attr('menu_tid');  
@@ -562,25 +581,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						//三级菜单切换
 						 //三级菜单移入变样式
-						$('.sanji').on('mouseover','li',function(){
+						/*$('.sanji').on('mouseover','li',function(){
 							$(this).css({
-									/* 'background':'url(img/main_img/first_yes.png) 0px 1.4px no-repeat', */
+									/!* 'background':'url(img/main_img/first_yes.png) 0px 1.4px no-repeat', *!/
 									'color':'#006bb8',
 									'cursor':'pointer'
 								});
 							 $(this).find('img').attr('src','img/main_img/lan.png'); 
 							
-						});
+						});*/
 						//三级菜单移出
-						$('.sanji').on('mouseout','li',function(){
+						/*$('.sanji').on('mouseout','li',function(){
 							
-								/* $('.sanji li').removeClass('xuan'); */
+								/!* $('.sanji li').removeClass('xuan'); *!/
 								$(this).css({
-									/* 'background':'url(img/main_img/first_no.png) 0px 0px no-repeat', */
+									/!* 'background':'url(img/main_img/first_no.png) 0px 0px no-repeat', *!/
 									'color':'#000'
 								});
 								 $(this).find('img').attr('src','img/main_img/hei.png'); 
-						});
+						});*/
 						
 
 					//success的后括号
