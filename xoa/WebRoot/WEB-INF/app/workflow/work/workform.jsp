@@ -652,13 +652,17 @@
                                             success: function (obj) {
                                                 if(obj.flag==true){
                                                     alert('正确');
-                                                }else{
-                                                    alert('错误')
                                                     window.close();
+                                                    parent.opener.location.href='workList';
+                                                  /*  function clicke(){
+                                                     alert("事件");
+                                                     }*/
+
+                                                }else{
+                                                    alert('错误');
+                                                   /* window.close();*/
                                                   /*  parent.opener.location.href='workList';*/
-                                                    /*function clicke(){
-                                                        alert("事件");
-                                                    }*/
+
                                                 }
                                             }
                                         });

@@ -942,7 +942,7 @@
         }
         $(document).ready(function(){
             initPageList_db(function (pageCount) {
-                console.log(pageCount);
+               /* console.log(pageCount);*/
                 initPagination_db(pageCount, datas.pageSize);
             },1);
             changeShadow();
@@ -950,7 +950,7 @@
 
         $('#allwork').click(function(){
                 initPageList_qb(function (pageCount) {
-                    console.log(pageCount);
+                 /*   console.log(pageCount);*/
                     initPagination_qb(pageCount,datas.pageSize);
                 },page);
                 changeShadow();
@@ -959,7 +959,7 @@
 
         $('#endWork').click(function(){
                 initPageList_bj(function (pageCount) {
-                    console.log(pageCount);
+              /*      console.log(pageCount);*/
                     initPagination_bj(pageCount,datas.pageSize);
                 },1);
 
@@ -968,7 +968,7 @@
 
         $('#hungwork').click(function(){
                 initPageList_gq(function (pageCount) {
-                    console.log(pageCount);
+                  /*  console.log(pageCount);*/
                     initPagination_gq(pageCount,datas.pageSize);
                 },1);
 
@@ -983,7 +983,7 @@
                 dataType:'json',
                 //data:datas,
                 success:function(data){
-                    console.log(data);
+                    /*console.log(data);*/
                     var length=data.obj.length;
                     var str='';
                     for(var i=0;i<length;i++){
@@ -1019,9 +1019,9 @@
                 //jumpBtn: '',
                 callback: function (index) {
                     var page = index.getCurrent();
-                    console.log(index.getCurrent());
+                 /*   console.log(index.getCurrent());*/
                     initPageList_qb(function (pageCount) {
-                        console.log(pageCount);
+                     /*   console.log(pageCount);*/
                         initPagination_qb(pageCount, datas.pageSize);
                     } ,page);
                 }
@@ -1041,7 +1041,7 @@
                 dataType:'json',
                 data:datas,
                 success:function(data){
-                    console.log(data);
+                   console.log(data);
                     var length=data.obj.length;
                     var str='';
                     for(var i=0;i<length;i++){
@@ -1055,7 +1055,7 @@
                             '<td class="">'+status+'</td><td class="">'+data.obj[i].createTime+'</td>'+
                             '<td class=""></td>'+
                             '<td style="text-align:left;" title="主办导出删除">'+
-                            '<a href="javascript:"><span class="host-span">主办</span></a>'+
+                            '<a href="javascript:"><span class="host-span" id="zhuban" formId='+data.obj[i].flowType.formId+'>主办</span></a>'+
                             '<a href=""><span class="operation_text_left">导出</span></a>'+
                             '<a href="javascript:">'+
                             '<span class="operation_text_left">删除</span></a></td></tr>';
@@ -1083,9 +1083,9 @@
                 //jumpBtn: '',
                 callback: function (index) {
                     var page = index.getCurrent();
-                    console.log(index.getCurrent());
+                   /* console.log(index.getCurrent());*/
                     initPageList_db(function (pageCount) {
-                        console.log(pageCount);
+                        /*console.log(pageCount);*/
                         initPagination_db(pageCount, datas.pageSize);
                     } ,page);
                 }
@@ -1106,7 +1106,7 @@
                 dataType:'json',
                 data:datas,
                 success:function(data){
-                    console.log(data);
+                    /*console.log(data);*/
                     var length=data.obj.length;
                     var str='';
                     for(var i=0;i<length;i++){
@@ -1145,9 +1145,9 @@
                 //jumpBtn: '',
                 callback: function (index) {
                     var   page = index.getCurrent();
-                    console.log(index.getCurrent());
+                   /* console.log(index.getCurrent());*/
                     initPageList_bj(function (pageCount) {
-                        console.log(pageCount);
+                 /*       console.log(pageCount);*/
                         initPagination_bj(pageCount, datas.pageSize);
                     } ,page);
                 }
@@ -1168,7 +1168,7 @@
                 dataType:'json',
                 data:datas,
                 success:function(data){
-                    console.log(data);
+                   /* console.log(data);*/
                     var length=data.obj.length;
                     var str='';
                     for(var i=0;i<length;i++){
@@ -1207,14 +1207,22 @@
                 //jumpBtn: '',
                 callback: function (index) {
                     var   page = index.getCurrent();
-                    console.log(index.getCurrent());
+                    /*console.log(index.getCurrent());*/
                     initPageList_gq(function (pageCount) {
-                        console.log(pageCount);
+                       /* console.log(pageCount);*/
                         initPagination_gq(pageCount, datas.pageSize);
                     } ,page);
                 }
             });
         }
+
+        //点击主办按钮，出现主办页面
+        $('#dbgz').on('click','#zhuban',function(){
+            var formId= $(this).attr('formId');
+			/*      alert(formId);*/
+            user_id='quick';
+            $.popWindow("workform?flowId="+formId+'&flowStep=1','快速新建页面','0','0','1500px','800px');
+        });
 
 
     });
