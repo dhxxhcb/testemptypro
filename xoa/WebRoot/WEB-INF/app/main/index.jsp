@@ -25,6 +25,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="js/main_js/cont.js"></script> 
 		<!-- <script src="js/jquery.js"></script> -->
 		<script src="js/base/base.js"></script>
+		<style>
+			.two .two_all:hover{
+				color:#2f8ae3;
+				cursor: pointer;
+			}
+			.sanji .three:hover{
+				color:#2f8ae3;
+				cursor: pointer;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="wrap">
@@ -525,10 +535,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							$('.sanji').on('click','li',function(){
                                 $(this).find('img').attr('src','img/main_img/lan.png');
                                 $(this).find('h1').attr('style','color:#2f8ae3');
-                                $(this).siblings().find('.erji_circle').attr('src','img/main_img/hei.png');
+                                $(this).siblings().find('.sanji_circle').attr('src','img/main_img/hei.png');
                                 $(this).siblings().find('h1').attr('style','color:#000');
-                                $(this).parents('.one .three').siblings().find('h1').attr('style','color:#000');
-                                $(this).parents('.one .three').siblings().find('.erji_circle').attr('src','img/main_img/hei.png');
+                                $(this).parents('.one').siblings().find('h1').attr('style','color:#000');
+                                $(this).parents('.one').siblings().find('.sanji_circle').attr('src','img/main_img/hei.png');
 								var url=$(this).attr('url'); 
 								console.log(url);
 							 	var menu_tid=$(this).attr('menu_tid');  
