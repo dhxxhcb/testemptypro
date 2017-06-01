@@ -51,7 +51,7 @@
 		SELECT DEPT_NAME from department where DEPT_ID=#{deptId}
 	</select>
 	<select id="getDeptById" resultMap="DepResultMap">
-		SELECT DEPT_NAME,DEPT_NO,DEPT_ID,DEPT_ADDRESS from department where DEPT_ID=#{deptId}
+		SELECT * from department where DEPT_ID=#{deptId}
 	</select>
     <select id="getDeptByMany" parameterType="com.xoa.model.department.Department" resultType="map">  
         select * from department  
