@@ -131,7 +131,7 @@ public class WorkController {
 		flowRunPrcs.setPrcsId(1);
 		flowRunPrcs.setUserId(userId);
 		flowRunPrcs.setPrcsDept(deptId);
-		//flowRunPrcs.setPrcsFlag(prcsFlag);
+		flowRunPrcs.setPrcsFlag("4");
 		flowRunPrcs.setCreateTime(beginTime);
 		flowRunPrcs.setPrcsTime(beginTime);
 		flowRunPrcs.setDeliverTime(beginTime);
@@ -275,9 +275,8 @@ public class WorkController {
                 "loginDateSouse"));
 
         ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
-
-        FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
-        flowRunPrcs.setRunId(Integer.parseInt(runId));
+        List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(Integer.parseInt(runId));
+        FlowRunPrcs flowRunPrcs = l.get(0);
         flowRunPrcs.setPrcsId(Integer.parseInt(prcsId));
         flowRunPrcs.setUserId(beginUser);
         //flowRunPrcs.setPrcsDept(deptId);
