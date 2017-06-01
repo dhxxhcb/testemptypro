@@ -285,8 +285,20 @@ body{
     float: left;
     background: #eee;
     border:1px solid #ccc;
+    overflow-y: auto;
+    max-height: 500px;
 }
-.candidatesUl li .candidatesPTwoall input[type=text]{
+.candidatesPTwoall ul li{
+    float: left;
+    color: #111;
+    margin: 5px;
+    font-size: 12px;
+
+}
+.bottomstepstwo .layui-form-checkbox{
+    margin-top: 15px !important;
+}
+ .candidatesUl li .candidatesPTwoall input[type=text]{
     width: 76%;
     height: 57px;
     border:1px solid #ddd;
@@ -350,7 +362,7 @@ body{
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
     background: #2f8ae3;
-    color: #fff;
+    color: #fff!important;
     font-size: 14px;
 }
 .candidatesPTwo table{
@@ -476,4 +488,15 @@ a{
 }
 input{
     vertical-align: middle;
+}
+a:hover{
+    color: #2f8ae3;
+}
+
+table input[type=text]{
+    border: 1px solid #2f8ae3!important;
+    border-radius: 4px!important;
+    -webkit-border-radius: 4px!important;
+    -moz-border-radius: 4px!important;
+    -ms-border-radius: 4px!important;
 }

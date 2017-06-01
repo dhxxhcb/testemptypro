@@ -112,7 +112,6 @@
                             <%--<input type="text" readonly="true" value="不进行自动选择" style="cursor: pointer;"><span class="xiala"><b></b></span>--%>
                             <%--<input type="hidden">--%>
                                 <select name="prcsType" lay-verify="">
-                                    <option value="">不进行自动选择</option>
                                     <option value="0">步骤节点</option>
                                     <option value="1">自流程节点</option>
                                     <option value="2">外部流转节点</option>
@@ -139,7 +138,7 @@
                         步骤名称
                     </p>
                     <p class="candidatesPTwo" style="margin-bottom: 20px">
-                        <input type="text" name="prcsName"  value="提交出差申请">
+                        <input type="text" name="prcsName"  value="">
                     </p>
                 </li>
                 <li>
@@ -147,11 +146,12 @@
                         下一步骤
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
-                        <ul>
+                        <ul id="candidatesPoneli" style="height: 126px;">
 
                         </ul>
                         <div style="float:left;">
                             <a href="javascript:;" class="bottomsteps">选择</a>
+                            <input type="hidden" name="prcsTo">
                         </div>
                     </div>
 
@@ -279,13 +279,13 @@
                         主办人相关选项
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="topDefault" type="radio"title="明确指定主办人"></label>
+                        <label><input name="topDefault" type="radio" value="0"  title="明确指定主办人"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="topDefault" type="radio" title="无主办人会签">	</label>
+                        <label><input name="topDefault" type="radio" value="2" title="无主办人会签">	</label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="topDefault" type="radio" title="先接收者为主办人">	</label>
+                        <label><input name="topDefault" type="radio" value="1" title="先接收者为主办人">	</label>
                     </p>
                 </li>
                 <li>
@@ -293,10 +293,10 @@
                         是否允许修改主办人相关选项
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="userLock" type="radio" title="不允许"></label>
+                        <label><input name="userLock" type="radio" value="0" title="不允许"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="userLock" type="radio" title="允许">	</label>
+                        <label><input name="userLock" type="radio" value="1" title="允许">	</label>
                     </p>
                 </li>
                 <li>
@@ -304,13 +304,13 @@
                         是否允许会签
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="feedback" type="radio" title="允许会签"></label>
+                        <label><input name="feedback" type="radio" value="0" title="允许会签"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="feedback" type="radio" title="禁止会签"></label>
+                        <label><input name="feedback" type="radio" value="1" title="禁止会签"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="feedback" type="radio" title="强制会签"></label>
+                        <label><input name="feedback" type="radio" value="2" title="强制会签"></label>
                     </p>
                 </li>
                 <li>
@@ -318,13 +318,13 @@
                         会签意见可见性
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="signlook" type="radio" title="总是可见"></label>
+                        <label><input name="signlook" type="radio" value="0" title="总是可见"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="signlook" type="radio" title="本步骤经办人之间不可见"></label>
+                        <label><input name="signlook" type="radio" value="1" title="本步骤经办人之间不可见"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input name="signlook" type="radio" title="针对其他步骤不可见"></label>
+                        <label><input name="signlook" type="radio" value="2" title="针对其他步骤不可见"></label>
                     </p>
                 </li>
                 <li>
@@ -332,10 +332,10 @@
                         经办人未办理完毕时是否允许主办人强制转交
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="允许"></label>
+                        <label><input type="radio" value="1" name="turnPriv" title="允许"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="不允许"></label>
+                        <label><input type="radio" name="turnPriv" value="0" title="不允许"></label>
                     </p>
                 </li>
                 <li>
@@ -343,13 +343,13 @@
                         是否允许退回
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="不允许"></label>
+                        <label><input type="radio" name="allowBack" value="0" title="不允许"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="允许退回上一步骤"></label>
+                        <label><input type="radio" name="allowBack" value="1" title="允许退回上一步骤"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="允许退回之前步骤"></label>
+                        <label><input type="radio" name="allowBack" value="2" title="允许退回之前步骤"></label>
                     </p>
                 </li>
                 <li>
@@ -357,13 +357,13 @@
                         是否允许并发
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="禁止并发"></label>
+                        <label><input type="radio" name="syncDeal" value="0" title="禁止并发"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="允许并发"></label>
+                        <label><input type="radio" name="syncDeal" value="1" title="允许并发"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="强制并发"></label>
+                        <label><input type="radio" name="syncDeal" value="2" title="强制并发"></label>
                     </p>
                 </li>
                 <li>
@@ -371,10 +371,10 @@
                         并发合并选项
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="非强制合并"></label>
+                        <label><input type="radio" name="gatherNode" value="0" title="非强制合并"></label>
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="强制合并"></label>
+                        <label><input type="radio" name="gatherNode" value="1" title="强制合并"></label>
                     </p>
                 </li>
                 <li>
@@ -382,10 +382,10 @@
                         传阅设置
                     </p>
                     <p class="candidatesPothree">
-                        <label><input type="radio" title="允许"></label>
+                        <label><input type="radio" name="viewPriv" value="0" title="允许"></label>
                     </p>
                     <p class="candidatesPothree" style="margin-bottom: 10px">
-                        <label><input type="radio" title="不允许"></label>
+                        <label><input type="radio" name="viewPriv" value="1" title="不允许"></label>
                     </p>
                 </li>
             </ul>
@@ -436,6 +436,7 @@
             <div class="setUpThe" id="conditions">
                 <span class="conditionsSet"></span>
                 <label>条件设置</label>
+                <input type="hidden" name="settlementOfCondition">
                 <b class="notstart"></b>
             </div>
             <div class="setUpThe">
@@ -599,22 +600,5 @@
         </div>
     </form>
 </body>
-<script type="text/javascript">
-    $(function(){
-//        var formid = $.getQueryString("formId");
-        var fromId = 17;
-        workForm.init({
-                formhtmlurl:'../../form/formType',
-                resdata:{
-                    fromId:fromId
-                },
-            flag:3
-            },
-            function(data){
-                console.log(123321);
-                console.log(data);
-            });
-    })
-</script>
 
 </html>
