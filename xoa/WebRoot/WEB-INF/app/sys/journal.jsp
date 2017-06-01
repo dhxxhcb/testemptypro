@@ -87,21 +87,10 @@
                     <option value="2017">2017年</option>
                 </select>
                 <select name="month" class="selectMonth" id="seleMonth">
-                    <%--<option value="01">1月</option>
-                    <option value="02">2月</option>
-                    <option value="03">2月</option>
-                    <option value="04">4月</option>
-                    <option value="05">5月</option>
-                    <option value="06">6月</option>
-                    <option value="07">7月</option>
-                    <option value="08">8月</option>
-                    <option value="09">9月</option>
-                    <option value="10">10月</option>
-                    <option value="11">11月</option>
-                    <option value="12">12月</option>--%>
                 </select>
             </div>
-            <div class="yearEcharts">
+            <div class="yearEcharts" style="position: relative">
+                <div style="width: 100%;text-align: center;position: absolute;top: 15px;font-size: 14px;"><span>2017</span>年度按月访问数据</div>
                 <div id="monthData" style="width: 900px;height:300px;margin: 0 auto;"></div>
             </div>
             <div class="tabTwo">
@@ -109,35 +98,16 @@
                     <tr class="yearJournal">
                         <td colspan="4">2017年度按月访问数据</td>
                     </tr>
-                    <%--<tr>
-                        <td>1月</td>
-                        <td>0%</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>2月</td>
-                        <td>0%</td>
-                        <td>0</td>
-                    </tr>--%>
                 </table>
             </div>
-            <div class="dateEcharts">
+            <div class="dateEcharts" style="position: relative">
+                <div style="width: 100%;text-align: center;position: absolute;top: 15px;font-size: 14px;"><span class="monthSpan">1</span>月份按日访问数据</div>
                 <div id="todyData" style="width: 900px;height:300px;margin: 0 auto;"></div>
             </div>
             <div class="tabTwo">
                 <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
-                    <tr>
-                        <td colspan="4">05月份按日访问数据</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>0%</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>0%</td>
-                        <td>0</td>
+                    <tr class="monthJournal">
+                        <td colspan="4"><span class="monthSpan">1</span>月份按日访问数据</td>
                     </tr>
                 </table>
             </div>
@@ -151,18 +121,8 @@
             </div>
             <div class="tabTwo">
                 <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff">
-                    <tr>
+                    <tr class="period">
                         <td colspan="4">总访问量小时分布数据</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>0%</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>0%</td>
-                        <td>0</td>
                     </tr>
                 </table>
             </div>
@@ -176,7 +136,7 @@
                     <tr>
                         <td width="25%">日志表：</td>
                         <td>
-                            <input type="radio" name="radio">
+                            <input type="radio" name="radio" checked>
                             <span>当前日志 </span>
                         </td>
                     </tr>
@@ -184,7 +144,7 @@
                         <td width="25%">日志类型：</td>
                         <td>
                             <select id="journalType" style="width: 150px;height: 25px;">
-
+                                <option value="">所有日志</option>
                             </select>
                         </td>
                     </tr>
@@ -205,15 +165,13 @@
                     <tr>
                         <td width="25%">起始时间：</td>
                         <td>
-                            <%--<input type="text" name="timer" id="startTimer">--%>
                             <input type="text" class="laydate-icon" id="start">
                         </td>
                     </tr>
                     <tr>
                         <td width="25%">截止时间：</td>
                         <td>
-                            <%--<input type="text" name="timer" id="endTimer">--%>
-                                <input type="text" class="laydate-icon" id="end">
+                            <input type="text" class="laydate-icon" id="end">
                         </td>
                     </tr>
                     <tr>
@@ -231,7 +189,7 @@
                     <tr>
                         <td width="25%">操作类型：</td>
                         <td>
-                            <input type="radio" name="TYPE">
+                            <input type="radio" name="TYPE" checked>
                             <span>查询</span>
                             <input type="radio" name="TYPE">
                             <span>导出</span>
@@ -248,12 +206,41 @@
                     </tr>
                 </table>
             </div>
-            <hr style="width: 100%;border-color: #ddd;border: #eee 1px solid;margin-top: 15px;"/>
+            <hr style="width: 99.8%;border-color: #ddd;border: #eee 1px solid;margin-top: 15px;"/>
             <div class="title">
                 <span class="news">清空系统日志</span>
             </div>
             <div class="emptyBtn" id="emptyBtn">清空系统日志</div>
         </div><%--系统日志查询结束--%>
+        <div class="queryResult" style="display:none;">
+            <div class="title">
+                <span class="news">查询结果（最多显示300条记录）</span>
+                <span class="news">查询的条数：</span>
+                <input type="text" name="num" class="num" value="">
+                <input type="button" name="numBtn" id="numBtn" class="numBtn" value="查询">
+            </div>
+            <div class="tabTwo">
+                <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff;width: 90%;">
+                    <tr class="queryJournalList">
+                        <th>选择</th>
+                        <th>用户姓名</th>
+                        <th>时间</th>
+                        <th>IP地址</th>
+                        <th>IP所在地</th>
+                        <th>日志类型</th>
+                        <th>备注</th>
+                    </tr>
+                    <tr>
+                        <td colspan="7" style="text-align: left">
+                            <input type="checkbox" name="check" value="">
+                            <span>全选</span>
+                            <input type="button" name="delete" id="delete" class="numBtn" value="删除">
+                        </td>
+                    </tr>
+                </table>
+                <div class="divBack" id="divBack">返回</div>
+            </div>
+        </div><%--查询结果列表结束--%>
     </div>
 </div>
 <script type="text/javascript">
@@ -271,7 +258,7 @@
 
     // 指定图表的配置项和数据
     var option = {
-        title: {
+        /*title: {
             text: '2017年度按月访问统计',
             left:'45%',
             textStyle:{
@@ -279,7 +266,7 @@
             },
             textAlign:'center'
 
-        },
+        },*/
         tooltip: {},
         legend: {
         },
@@ -298,37 +285,38 @@
     myChart.setOption(option);
 </script>
 <script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('todyData'));
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('todyData'));
 
-    // 指定图表的配置项和数据
-    var option = {
-        title: {
-            text: '05月份按日访问统计',
-            left:'45%',
-            textStyle:{
-                fontSize:14
+        // 指定图表的配置项和数据
+        var option = {
+            /*title: {
+                text: '1月份按日访问统计',
+                left:'45%',
+                textStyle:{
+                    fontSize:14
+                },
+                textAlign:'center'
+
+            },*/
+            tooltip: {},
+            legend: {
             },
-            textAlign:'center'
+            xAxis: {
+                data: ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
+                /*data: ["1","4","7","10","13","16","19","22","25","28","31"]*/
+            },
+            yAxis: {},
+            series: [{
+                name: '访问量',
+                type: 'bar',
+                data: [0, 0, 5, 39, 72, 1, 0, 99, 67, 25, 29, 13, 0, 0, 27, 23, 14, 38, 72, 7, 0, 38, 100, 200, 157, 102, 82, 0, 0, 0, 128]
+            }]
+        };
 
-        },
-        tooltip: {},
-        legend: {
-        },
-        xAxis: {
-            data: ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
-            /*data: ["1","4","7","10","13","16","19","22","25","28","31"]*/
-        },
-        yAxis: {},
-        series: [{
-            name: '访问量',
-            type: 'bar',
-            data: [0, 0, 5, 39, 72, 1, 0, 99, 67, 25, 29, 13, 0, 0, 27, 23, 14, 38, 72, 7, 0, 38, 100, 200, 157, 102, 82, 0, 0, 0, 128]
-        }]
-    };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
 
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
 </script>
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
@@ -343,7 +331,6 @@
                 fontSize:14
             },
             textAlign:'center'
-
         },
         tooltip: {},
         legend: {
