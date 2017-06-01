@@ -91,6 +91,7 @@ public class ImDataService {
 		String attachName="";
 		String lastThumbnailUrl="";
 		//全局变量记录在一个聊天中的最后一条信息
+
 		try {
 			String checkResult = StringUtils.checkNullUtils(
 					new CheckCallBack() {
@@ -118,11 +119,27 @@ public class ImDataService {
 				return s;
 			}
 			ImMessage record = new ImMessage();
-			record.setFromUid(from_uid);
+			String uid,toId;
+			try{
+				uid=from_uid.split("pq")[1];
+			}catch (Exception e){
+				uid=from_uid;
+			}
+			if(!"1".equals(msg_type)){
+				try{
+					toId=to_uid.split("pq")[1];
+				}catch (Exception e){
+					toId=to_uid.split("pq")[1];
+				}
+			}else{
+				toId=to_uid;
+			}
+
+			record.setFromUid(uid);
 			record.setType(type);
 			record.setOfTo(of_to);
 			record.setOfFrom(of_from);
-			record.setToUid(to_uid);
+			record.setToUid(toId);
 			record.setUuid(uuid);
 			 //text   voice     img  file
 			switch (flag){
@@ -150,14 +167,13 @@ public class ImDataService {
 					 fileID=String.valueOf(tee.getAid());
                      //上传以后返回值交给ym
 				     attachName=tee.getYm();
-//
 //				    String severpath=request.getRealPath("");
 					String fileString=	tee.getUrl();
 					 //图片处理
+					String ip=request.getLocalAddr();
+					String port=String.valueOf(request.getServerPort());
 					 if("img".equals(type)){
-					 String ip=request.getLocalAddr();
 
-					 String port=String.valueOf(request.getServerPort());
 //					 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 					  File picture = new File(fileString);
 					  File thmpicture = new File(fileString);
@@ -183,11 +199,9 @@ public class ImDataService {
 					 }
 					 //voice   上传一条声音信息
 					 if("voice".equals(type)){
-						 String ip=request.getLocalAddr();
-						 String port=String.valueOf(request.getServerPort());
 //						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 						 //返回值file
-						 file1.setFile_url("http://"+ip+":"+port+tee.getAttachFile());
+						 file1.setFile_url("http://"+ip+":"+port+"/xoa/xs?"+tee.getAttUrl());
 					     file1.setVoice_time(voice_time);
 					     //将附件信息保存起来
 					     //将声音时间长度放入ThumbnailUrl 和 lastThumbnailUrl 用于记录时长  在app端处理  在获取时长返回时长时直接获取 可减缓服务器端压力  
@@ -196,11 +210,9 @@ public class ImDataService {
 					 }
 					//file 上传一个文档信息
 					 if("file".equals(type)){
-						 String ip=request.getLocalAddr();
-						 String port=String.valueOf(request.getServerPort());
 //						 String fileString="/"+"imAttach"+"/"+tee.getAttachFile().replace("\\", "/");
 						   //返回值file
-					       file1.setFile_url("http://"+ip+":"+port+fileString);
+					       file1.setFile_url("http://"+ip+":"+port+"/xoa/xs?"+tee.getAttUrl());
 					       file1.setFile_name(tee.getYm());
 					       file1.setFile_type(tee.getAttachName().substring(tee.getAttachName().lastIndexOf(".")+1));
 					       file1.setFile_size(String.valueOf(tee.getAttachSign()));
@@ -216,19 +228,17 @@ public class ImDataService {
 			Long atime = new Date().getTime();
 			record.setAtime(String.valueOf(atime));
 			
-			ImChatList chatModel=null; 
-			
+			ImChatList chatModel=null;
 			Map<String, Object> map=new HashMap<String, Object>();
 			map.put("fromUid", from_uid);
 			map.put("toUid", to_uid);
 			chatModel = chatlistDao.getSingleObject(map);
-			
 			int meResult = messageDao.save(record);
              if(chatModel==null){
             	 chatModel=new ImChatList();
              }
-			 chatModel.setFromUid(from_uid);
-			 chatModel.setToUid(to_uid);
+			 chatModel.setFromUid(uid);
+			 chatModel.setToUid(toId);
 			 chatModel.setOfFrom(of_from);
 			 chatModel.setOfTo(of_to);
 			 chatModel.setLastTime(time);
@@ -270,14 +280,15 @@ public class ImDataService {
 				chResult=chatlistDao.updateChatlist(chatModel);
 			}
 			s.setStatus("ok");
+			if(flag==3){
+				file1.setStatus("ok");
+				return file1;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			s.setStatus("error");
 		}
-		if(flag==3){
-			file1.setStatus("ok");
-		return file1;
-		}
+
 			return s;
 	}
      /**
@@ -297,7 +308,17 @@ public class ImDataService {
 	@Transactional(readOnly = false)
 	public List<ImMessageModel> getImChatList(HttpServletRequest request,String ofFrom) throws FileNotFoundException, IOException, LineUnavailableException, UnsupportedAudioFileException {
 		List<Object> datas = null;
-		
+//		String uid;
+//		try{
+//			uid=ofFrom.split("pq")[1];
+//		}catch (Exception e){
+//			uid=ofFrom;
+//		}
+//		try{
+//			toId=to_uid.split("pq")[1];
+//		}catch (Exception e){
+//			toId=to_uid.split("pq")[1];
+//		}
 		List<Object> list = new ArrayList<Object>();
 		list.add(ofFrom);
 		//findByObject("from ImChatList where ofFrom=?", list)
@@ -512,18 +533,31 @@ public class ImDataService {
 		if (checkResult != null) {
 			return null;
 		}
-		
+		String uid,toId;
+		try{
+			uid=from_uid.split("pq")[1];
+		}catch (Exception e){
+			uid=from_uid;
+		}
+		try{
+			toId=to_uid.split("pq")[1];
+		}catch (Exception e){
+			toId=to_uid.split("pq")[1];
+		}
 		List<ImMessage> datas=null;//((FROM_UID=#{fromId} AND TO_UID =#{toId}) OR (FROM_UID=#{toId} AND TO_UID =#{fromId})) AND #{lastTime} >= ATIME  ORDER BY ATIME
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("fromId", from_uid);
+		map.put("fromId", uid);
 		map.put("lastTime", last_time);
-		map.put("toId",to_uid);
-		 PageParams pageParams = new PageParams();  
-	        pageParams.setUseFlag(true);  
-	        pageParams.setPage(1);  
-	        pageParams.setPageSize(20);
-	     map.put("pageParams", pageParams);
-		datas=messageDao.getMessageList(map);
+		map.put("toId",toId);
+		map.put("pageNo",1);
+		map.put("pageSize",20);
+//		 PageParams pageParams = new PageParams();
+//	        pageParams.setUseFlag(true);
+//	        pageParams.setPage(1);
+//	        pageParams.setPageSize(20);
+//	     map.put("pageParams", pageParams);
+//		datas=messageDao.getMessageList(map);
+		datas=messageDao.selectMessageByPage(map);
 	String severpath=request.getRealPath("");
 		for(ImMessage im:datas){
 			//String from_uid, String to_uid, String of_from,String content, String of_to, String uuid, String type, String file,String time
@@ -706,6 +740,7 @@ public class ImDataService {
 			s.setStatus("ok");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			s.setStatus("error");
 		}
 		return s;
