@@ -260,44 +260,45 @@ public class WorkController {
         return tj;
     }
 
-    
+
     @RequestMapping("saveWork")
     @ResponseBody
-	public ToJson<FlowRunPrcs> savework(HttpServletRequest request,
-              @RequestParam(value="runId",required = false) int runId,
-              @RequestParam(value="runName",required = false) int runName,
-              @RequestParam(value="flowId",required = false) int flowId,
-              @RequestParam(value="prcsId",required = false) int prcsId,
-              @RequestParam(value="prcsflag",required = false) String prcsFlag,
-              @RequestParam(value="flowPrcs",required = false) int flowPrcs,
-              @RequestParam(value="beginTime",required =false) String beginTime,
-              @RequestParam(value="beginUser",required =false) String beginUser ) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-		"loginDateSouse"));
-		
-		ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
-		
-		  FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
-          flowRunPrcs.setRunId(runId);
-          flowRunPrcs.setPrcsId(prcsId);
-          flowRunPrcs.setUserId(beginUser);
-          //flowRunPrcs.setPrcsDept(deptId);
-          flowRunPrcs.setPrcsFlag(prcsFlag);
-          flowRunPrcs.setPrcsTime(beginTime);
-          SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-          flowRunPrcs.setDeliverTime(df.format(new Date()));
-          flowRunPrcs.setPrcsTime(beginTime);
-          flowRunPrcs.setDeliverTime(beginTime);
-          flowRunPrcs.setActiveTime(beginTime);
-          flowRunPrcsService.save(flowRunPrcs);
-      	try {
-    		toJson.setObject(flowRunPrcs);
-    		toJson.setMsg("OK");
-    		toJson.setFlag(0);
-    		} catch (Exception e) {
-    		toJson.setMsg(e.getMessage());
-    		}
-    		return toJson;
+    public ToJson<FlowRunPrcs> savework(HttpServletRequest request,
+                                        @RequestParam(value="runId",required = false) String runId,
+                                        @RequestParam(value="runName",required = false) String runName,
+                                        @RequestParam(value="flowId",required = false) String flowId,
+                                        @RequestParam(value="prcsId",required = false) String prcsId,
+                                        @RequestParam(value="prcsflag",required = false) String prcsFlag,
+                                        @RequestParam(value="flowPrcs",required = false) String flowPrcs,
+                                        @RequestParam(value="beginTime",required =false) String beginTime,
+                                        @RequestParam(value="beginUser",required =false) String beginUser ) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+
+        ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
+
+        FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
+        flowRunPrcs.setRunId(Integer.parseInt(runId));
+        flowRunPrcs.setPrcsId(Integer.parseInt(prcsId));
+        flowRunPrcs.setUserId(beginUser);
+        //flowRunPrcs.setPrcsDept(deptId);
+        flowRunPrcs.setPrcsFlag(prcsFlag);
+        flowRunPrcs.setPrcsTime(beginTime);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        flowRunPrcs.setDeliverTime(df.format(new Date()));
+        flowRunPrcs.setCreateTime(beginTime);
+        flowRunPrcs.setPrcsTime(beginTime);
+        flowRunPrcs.setDeliverTime(beginTime);
+        flowRunPrcs.setActiveTime(beginTime);
+        flowRunPrcsService.save(flowRunPrcs);
+        try {
+            toJson.setObject(flowRunPrcs);
+            toJson.setMsg("OK");
+            toJson.setFlag(0);
+        } catch (Exception e) {
+            toJson.setMsg(e.getMessage());
+        }
+        return toJson;
     }
     
     
