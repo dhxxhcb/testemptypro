@@ -72,7 +72,7 @@ UE.plugins['listing'] = function () {
         var leipiPlugins = el.getAttribute('data-type');
         if ( /input/ig.test( el.tagName )  && leipiPlugins==thePlugins) {
             var html = popup.formatHtml(
-                '<nobr>单行输入框: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
+                '<nobr>列表控件: <span onclick=$$._edittext() class="edui-clickable">编辑</span>&nbsp;&nbsp;<span onclick=$$._delete() class="edui-clickable">删除</span></nobr>' );
             if ( html ) {
                 popup.getDom( 'content' ).innerHTML = html;
                 popup.anchorEl = el;
