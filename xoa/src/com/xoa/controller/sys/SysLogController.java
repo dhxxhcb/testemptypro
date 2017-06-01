@@ -283,7 +283,16 @@ public class SysLogController {
         List<Syslog> syslogList;
         try {
             syslogList = sysLogService.logManage(type, uid, startTime, endTime, syslog);
-            toJson.setObj(syslogList);
+            List<Syslog> syslogList1 = new ArrayList<Syslog>();
+            if (syslogList.size() > 300) {
+                for (int i = 0; i < 300; i++) {
+                    syslogList1.add(syslogList.get(i));
+                }
+                toJson.setObj(syslogList1);
+
+            } else {
+                toJson.setObj(syslogList);
+            }
             toJson.setMsg("OK");
             toJson.setFlag(0);
 
