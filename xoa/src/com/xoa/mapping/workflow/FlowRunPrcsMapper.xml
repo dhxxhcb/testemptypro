@@ -60,9 +60,15 @@
             <result column="FORCE_OVER" javaType="string" property="forceOver" />
         </association>
 
-        <association property="department" column="PRCS_DEPT" javaType="com.xoa.model.department.Department">
-            <id column="DEPT_ID" property="deptId" javaType="int" />
-            <result column="DEPT_NAME" property="deptName" javaType="string" />
+        <!-- 关联设计流程 -->
+        <association property="flowProcess" column="FLOW_ID" javaType="com.xoa.model.workflow.FlowProcess">
+            <id column="ID" javaType="INTEGER" property="id"/>
+            <result column="FLOW_ID" property="flowId" javaType="int"/>
+            <result column="PRCS_ID" property="prcsId" javaType="int"/>
+            <result column="PRCS_TYPE" property="prcsType" javaType="byte"/>
+            <result column="PRCS_NAME" property="prcsName" javaType="string"/>
+            <result column="SET_LEFT" property="setLeft" javaType="int"/>
+            <result column="SET_TOP" property="setTop" javaType="int"/>
         </association>
 
     </resultMap>
@@ -485,7 +491,7 @@
     where ID = #{id,jdbcType=INTEGER}
   </update>
 
-    <!-- 查询代办工作 -->
+    <!-- 查询待办工作 -->
     <select id="selectObjcet" resultMap="BaseResultMap" parameterType="Map">
     SELECT
     fr.RUN_ID,
@@ -513,6 +519,7 @@
     FROM
     FLOW_RUN_PRCS frp
     INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
+    LEFT  JOIN FLOW_PROCESS fp ON fp.FLOW_ID = fr.FLOW_ID
     WHERE
     frp.PRCS_FLAG IN ('1', '2')
     AND frp.CHILD_RUN ='0'
@@ -552,6 +559,7 @@
     FROM
     FLOW_RUN_PRCS frp
     INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
+    LEFT  JOIN FLOW_PROCESS fp ON fp.FLOW_ID = fr.FLOW_ID
     where
       frp.PRCS_FLAG = '4'
     AND frp.CHILD_RUN = '0'
@@ -591,6 +599,7 @@
         FROM
         FLOW_RUN_PRCS frp
         INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
+        LEFT  JOIN FLOW_PROCESS fp ON fp.FLOW_ID = fr.FLOW_ID
         where
         frp.PRCS_FLAG = '6'
         AND frp.CHILD_RUN = '0'
@@ -631,6 +640,7 @@
         FROM
         FLOW_RUN_PRCS frp
         INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
+        LEFT  JOIN FLOW_PROCESS fp ON fp.FLOW_ID = fr.FLOW_ID
         where
          frp.CHILD_RUN = '0'
         AND frp.USER_ID=#{userId}

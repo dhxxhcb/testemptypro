@@ -92,9 +92,9 @@ public class FlowRunPrcs {
 	private FlowTypeModel flowType;
 
     /**
-     * 关联部门
+     * 关联设计流程
      */
-	private Department department;
+	private FlowProcess flowProcess;
 
 
     public FlowRun getFlowRun() {
@@ -387,23 +387,23 @@ public class FlowRunPrcs {
 
     /**
      * 创建作者:   张勇
-     * 创建日期:   2017/6/1 10:33
-     * 方法介绍:   关联部门
+     * 创建日期:   2017/6/1 14:02
+     * 方法介绍:   关联设计流程
      * 参数说明:
      * @return
      */
-    public Department getDepartment() {
-        return department;
+    public FlowProcess getFlowProcess() {
+        return flowProcess;
     }
 
     /**
      * 创建作者:   张勇
-     * 创建日期:   2017/6/1 10:33
-     * 方法介绍:   关联部门
+     * 创建日期:   2017/6/1 14:02
+     * 方法介绍:   关联设计流程
      * 参数说明:
      * @return
      */
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setFlowProcess(FlowProcess flowProcess) {
+        this.flowProcess = flowProcess;
     }
 }

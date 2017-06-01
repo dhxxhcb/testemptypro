@@ -6,6 +6,7 @@ import com.xoa.dao.workflow.FlowTypeModelMapper;
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.L;
 import com.xoa.util.page.PageParams;
 import org.springframework.stereotype.Service;
 
@@ -221,6 +222,24 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		}
 		return toJson;
 	}
+
+//	public  String returnNode (Integer runId){
+//		String returnNodes = "";
+//		try {
+//			List<FlowRunPrcs> list = flowRunPrcsMapper.findAllNode(runId);
+//			int leng = list.size();
+//			for (int i = 0; i < leng; i++) {
+//				String flag = list.get(i).getPrcsFlag();
+//				if (!"3".equals(flag) || !"4".equals(flag)) {
+//					list1.add(list.get(i));
+//					break;
+//				}
+//			}
+//		}catch (Exception e){
+//			L.e("ReturnNode Error:"+e);
+//		}
+//		return toJson;
+//	}
 
 
 }
