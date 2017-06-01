@@ -316,7 +316,12 @@ public class SysLogController {
      **/
     @ResponseBody
     @RequestMapping(value = "/deleteSyslog", produces = {"application/json;charset=UTF-8"})
-    public ToJson<Syslog> deleteSyslog(HttpServletRequest request, Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
+    public ToJson<Syslog> deleteSyslog(HttpServletRequest request,
+                                       @RequestParam(value = "type", required = false) Integer type,
+                                       @RequestParam(value = "uid", required = false) String uid,
+                                       @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "startTime", required = false) Date startTime,
+                                       @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "endTime", required = false) Date endTime,
+                                       @RequestParam(value = "syslog", required = false) Syslog syslog) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
 
@@ -344,8 +349,14 @@ public class SysLogController {
      * param request
      * @return: json
      **/
+    @ResponseBody
     @RequestMapping(value = "/exportLogXls", produces = {"application/json;charset=UTF-8"})
-    public String exportLogXls(HttpServletResponse response, HttpServletRequest request, Integer type, String uid, Date startTime, Date endTime, Syslog syslog) throws IOException, ParseException {
+    public String exportLogXls(HttpServletRequest request, HttpServletResponse response,
+                               @RequestParam(value = "type", required = false) Integer type,
+                               @RequestParam(value = "uid", required = false) String uid,
+                               @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "startTime", required = false) Date startTime,
+                               @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "endTime", required = false) Date endTime,
+                               @RequestParam(value = "syslog", required = false) Syslog syslog) throws IOException, ParseException {
 
 
 /*        syslog = new Syslog();
