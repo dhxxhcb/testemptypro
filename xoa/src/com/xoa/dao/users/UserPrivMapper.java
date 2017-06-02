@@ -105,4 +105,10 @@ public interface UserPrivMapper {
 
 
      List<UserPriv> getUserPrivNameByFuncId(String fid);
+
+
+     String getUserPrivfuncIdStr(String id);
+
+
+     void updateUserPrivFuncIdStr(Map<String, Object> hashMap);
  }

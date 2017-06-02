@@ -65,6 +65,13 @@ public class FlowFormTypeController {
 		return flowFormService.getFormBySortId(sortId);
 	}
 
+
+
+	@RequestMapping("/allformlist")
+	@ResponseBody
+	public FlowFormWrappers formByAll(){
+		return flowFormService.getFormByAll();
+	}
 	/**
 	 * Created by:   韩东堂
 	 * date:   2017/5/16 10:09

@@ -6,6 +6,7 @@ import com.xoa.util.FileUploadUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.dataSource.ContextHolder;
+
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -453,6 +455,45 @@ public class UsersController {
         }
         return json;
 
+    }
+
+    @ResponseBody
+    @RequestMapping("/getUserbyCondition")
+    public  ToJson<Users> getUserbyCondition(
+            @RequestParam(value = "userId", required = false) String userId,
+            @RequestParam(value = "userName", required = false) String userName,
+            @RequestParam(value = "sex", required = false) String sex,
+            @RequestParam(value = "deptId", required = false) String deptId,
+            @RequestParam(value = "userPrivNo", required = false) String userPrivNo,
+            @RequestParam("choice") String choice,
+            HttpServletRequest request, HttpServletResponse response){
+   String sqlType = "xoa"
+                    + (String) request.getSession().getAttribute("loginDateSouse");
+            ContextHolder.setConsumerType(sqlType);
+
+        Map<String, Object> maps = new HashMap<String, Object>();
+        maps.put("userId", userId);
+        maps.put("userName", userName);
+        maps.put("sex", sex);
+        maps.put("deptId", deptId);
+        maps.put("userPrivNo", userPrivNo);
+        ToJson<Users>  usersJson=new ToJson<Users>();
+      if ("1".equals(choice)){
+          List<Users> userToJson=usersService.getUserbyCondition(maps);
+          if (userToJson.size()>0){
+              usersJson.setFlag(0);
+              usersJson.setMsg("ok");
+              usersJson.setObj(userToJson);
+          }else {
+              usersJson.setFlag(1);
+              usersJson.setMsg("err");
+          }
+     }else {
+          usersJson.setFlag(1);
+          usersJson.setMsg("err");
+      }
+
+        return  usersJson;
     }
 
 

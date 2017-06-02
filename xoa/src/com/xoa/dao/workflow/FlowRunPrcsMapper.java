@@ -2,6 +2,7 @@ package com.xoa.dao.workflow;
 
 import com.xoa.dao.base.BaseMapper;
 import com.xoa.model.workflow.FlowRunPrcs;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -38,11 +39,11 @@ public interface FlowRunPrcsMapper extends BaseMapper<FlowRunPrcs>{
     /**
      * 创建作者:   张勇
      * 创建日期:   2017/6/1 10:45
-     * 方法介绍:   根据runId查询关联办理人的步骤和所在部门
+     * 方法介绍:   查询上一步办结时间
      * 参数说明:
      * @return
      */
-    public List<FlowRunPrcs> findAllNode(Integer runId);
+    public String findTime(@Param("prcsId") Integer prcsId, @Param("runId")Integer runId);
 
     /**
      * 创建作者:   zlf

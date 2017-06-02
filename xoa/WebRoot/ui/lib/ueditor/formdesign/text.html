@@ -165,7 +165,9 @@
 
                     if (gHeight != '') {
                         oNode.style.height = gHeight + 'px';
-
+                    }
+                    if (gWidth != '') {
+                        oNode.style.height = gWidth + 'px';
                     }
                     editor.execCommand('insertHtml', oNode.outerHTML);
                 } catch (e) {

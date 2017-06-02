@@ -31,4 +31,5 @@ public interface FlowFormTypeMapper extends BaseMapper<FlowFormType> {
 
 	 int deleteForm(@Param("formId")Integer formId);
 
+    List<FlowFormType> selectAllForm();
 }
