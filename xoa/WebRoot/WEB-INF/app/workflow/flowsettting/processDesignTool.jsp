@@ -100,7 +100,7 @@
                         序号
                     </p>
                     <p class="candidatesPTwo">
-                        <input type="text" name="prcsId" value="">
+                        <input type="text" name="prcsId" style="width: 100%">
                     </p>
                 </li>
                 <li>
@@ -138,7 +138,7 @@
                         步骤名称
                     </p>
                     <p class="candidatesPTwo" style="margin-bottom: 20px">
-                        <input type="text" name="prcsName"  value="">
+                        <input type="text" name="prcsName"  style="width: 100%">
                     </p>
                 </li>
                 <li>
@@ -150,7 +150,7 @@
 
                         </ul>
                         <div style="float:left;">
-                            <a href="javascript:;" class="bottomsteps">选择</a>
+                            <a href="javascript:;" class="bottomsteps" data-field="0">选择</a>
                             <input type="hidden" name="prcsTo">
                         </div>
                     </div>
@@ -168,7 +168,8 @@
                         授权范围（人员）
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 4px;">
-                        <input type="text" id="query_userId" readonly="true">
+                        <%--<input type="text" id="" readonly="true">--%>
+                        <textarea name="" id="query_userId" readonly="true"></textarea>
                         <input type="hidden" name="prcsUser">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="1" class="theCandidates">添加</a>
@@ -180,7 +181,8 @@
                         授权范围（部门）
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 4px;">
-                        <input type="text" id="department" readonly="true">
+                        <%--<input type="text" id="" readonly="true">--%>
+                        <textarea name="" id="department" readonly="true" ></textarea>
                         <input type="hidden" name="prcsDept">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="2" class="theCandidates">添加</a>
@@ -192,7 +194,8 @@
                         授权范围（角色）
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 4px;">
-                        <input type="text" id="theScopeOf" readonly="true">
+                        <%--<input type="text" id="" readonly="true">--%>
+                        <textarea name="" id="theScopeOf" readonly="true"></textarea>
                         <input type="hidden" name="prcsPriv">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="3" class="theCandidates">添加</a>
@@ -240,19 +243,65 @@
                 <label>智能选人</label>
                 <b class="notstart"></b>
             </div>
-            <ul class="candidatesUl" style="display: none">
+            <ul class="candidatesUl hiddenul" style="display: none">
                 <li>
                     <p class="candidatesPone">
                         选人过滤规则
                     </p>
                     <p class="candidatesPTwo">
                     <%--<input type="text" readonly="true" value="允许选择全部指定的经办人"><span class="xiala"><b></b></span>--%>
-                        <select name="userFilter" lay-verify="">
-                            <option value="010">北京</option>
-                            <option value="021" disabled>上海（禁用效果）</option>
-                            <option value="0571" selected>杭州</option>
+                        <select name="userFilter"  lay-filter="candidatesfilters"  lay-verify="">
+                            <option value="1">只允许选择本部门经办人</option>
+                            <option value="2">只允许选择本角色经办人</option>
+                            <option value="3">只允许选择上级部门经办人</option>
+                            <option value="4">只允许选择下级部门经办人</option>
+
                         </select>
                     </p>
+                    <div class="departmentAgent">
+                        <p class="candidatesPone">指定部门</p>
+                        <div class="candidatesPTwoall">
+                            <textarea name="" id="departmentAgent" readonly="true"></textarea>
+                            <input type="hidden" name="userFilterPrcsDept">
+                            <div style="float: left;line-height: 25px;">
+                                <a href="javascript:;" style="display: block" class="theCandidates" data-num="2">添加</a>
+                                <a href="javascript:;" style="display: block">清空</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="auxiliaryDepartmentAgent">
+                        <p class="candidatesPone">指定辅助部门</p>
+                        <div class="candidatesPTwoall">
+                            <textarea name="" id="auxiliaryDepartmentAgent" readonly="true"></textarea>
+                            <input type="hidden" name="userFilterPrcsDeptOther">
+                            <div style="float: left;line-height: 25px" >
+                                <a href="javascript:;" style="display: block" class="theCandidates" data-num="2">添加</a>
+                                <a href="javascript:;" style="display: block">清空</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="theSpecifiedRole">
+                        <p class="candidatesPone">指定角色</p>
+                        <div class="candidatesPTwoall">
+                            <textarea name="" id="theSpecifiedRole" readonly="true"></textarea>
+                            <input type="hidden" name="userFilterPrcsPriv">
+                            <div style="float: left;line-height: 25px">
+                                <a href="javascript:;" style="display: block" class="theCandidates" data-num="3">添加</a>
+                                <a href="javascript:;" style="display: block">清空</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="assignRole">
+                        <p class="candidatesPone">指定辅助角色</p>
+                        <div class="candidatesPTwoall">
+                            <textarea name="" id="assignRole" readonly="true"></textarea>
+                            <input type="hidden" name="userFilterPrcsPrivOther">
+                            <div style="float: left;line-height: 25px">
+                                <a href="javascript:;" style="display: block" class="theCandidates" data-num="3">添加</a>
+                                <a href="javascript:;" style="display: block">清空</a>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li>
                     <p class="candidatesPone">
@@ -260,12 +309,85 @@
                     </p>
                     <p class="candidatesPTwo" style="margin-bottom: 20px">
                         <%--<input type="text" readonly="true" value="不进行自动选择"><span class="xiala"><b></b></span>--%>
-                            <select name="autoType" lay-verify="">
+                            <select name="autoType" lay-filter="automaticCandidateTwo" lay-verify="">
+                                <option value="">不进行自动选择</option>
+                                <option value="1">自动选择流程发起人</option>
+                                <option value="2">自动选择本部门主管</option>
+                                <option value="3">指定自动选择默认人员</option>
+                                <option value="4">自动选择上级主管领导</option>
+                                <option value="5">自动选择一级部门主管</option>
+                                <option value="6">自动选择上级分管领导</option>
+                                <option value="7">按表单字段选择</option>
+                                <option value="8">自动选择指定步骤主办人</option>
+                                <option value="9">自动选择本部门助理</option>
+                                <option value="10">自动选择本部门内符合条件所有人员</option>
+                                <option value="11">自动选择本一级部门内符合条件所有人员</option>
+                                <option value="12">自动选择指定部门主管</option>
+                                <option value="13">自动选择指定部门助理</option>
+                                <option value="14">自动选择指定部门上级主管领导</option>
+                                <option value="15">自动选择指定部门上级分管领导</option>
+
+                            </select>
+                    </p>
+                    <div class="autoBaseUser">
+                        <p class="candidatesPone">
+                            部门针对对象
+                        </p>
+                        <p class="candidatesPTwo" style="margin-bottom: 20px">
+                            <%--<input type="text" readonly="true" value="不进行自动选择"><span class="xiala"><b></b></span>--%>
+                            <select name="autoBaseUser" lay-verify="">
                                 <option value="010">北京</option>
                                 <option value="021" disabled>上海（禁用效果）</option>
                                 <option value="0571" selected>杭州</option>
                             </select>
-                    </p>
+                        </p>
+                    </div>
+                    <div class="optionalDepartmentAgent" >
+                            <p class="candidatesPone">指定部门</p>
+                            <div class="candidatesPTwoall" style="margin-bottom: 20px">
+                                <textarea name="" id="optionalDepartmentAgent" readonly="true"></textarea>
+                                <input type="hidden" name="autoDept">
+                                <div style="float: left;line-height: 25px;">
+                                    <a href="javascript:;" style="display: block" class="theCandidates" data-num="2">选择</a>
+                                    <a href="javascript:;">清空</a>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="specifyTheHost">
+                        <p class="candidatesPone">主办人</p>
+                        <input type="text" readonly="true" name="autoUserOp" style="margin-bottom: 12px;background: #eee;border: 1px solid #ccc;border-radius: 4px">
+                        <div class="candidatesPTwoall">
+                            <textarea name="" id="specifyTheHost" readonly="true"></textarea>
+                            <input type="hidden" name="autoUser">
+                            <div style="float: left;line-height: 25px;">
+                                <a href="javascript:;"  style="margin-right: 24px;" class="theCandidates" data-num="2">指定经办/主办人</a>
+                                <a href="javascript:;">清空</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oneTheHost">
+                        <p class="candidatesPone">根据表单字段决定默认办理人(第一个作为主办人)</p>
+                        <div class="candidatesPTwoall">
+                            <ul style="height: 126px;margin-bottom: 20px"></ul>
+                            <div style="float: left">
+                                <a href="javascript:;">选择</a>
+                                <input type="hidden">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stepsTwos">
+                        <p class="candidatesPone">
+                            请指定步骤
+                        </p>
+                        <p class="candidatesPTwo" style="margin-bottom: 20px">
+                            <%--<input type="text" readonly="true" value="不进行自动选择"><span class="xiala"><b></b></span>--%>
+                            <select name="" lay-verify="">
+                                <option value="010">北京</option>
+                                <option value="021" disabled>上海（禁用效果）</option>
+                                <option value="0571" selected>杭州</option>
+                            </select>
+                        </p>
+                    </div>
                 </li>
             </ul>
             <div class="setUpThe">
@@ -393,6 +515,7 @@
             <div class="setUpThe" id="canWriteField">
                 <span class="canWriteField"></span>
                 <label>可写字段</label>
+                <input type="hidden" name="prcsItem">
                 <b class="notstart"></b>
             </div>
             <div class="setUpThe">
@@ -406,10 +529,10 @@
                         编辑保密字段
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
-                        <ul></ul>
-                        <input type="hidden" name="hiddenItem">
+                        <ul style="height: 126px" id="hiddenItem"></ul>
                         <div style="float: left">
-                            <a href="javascript:;" class="bottomsteps">选择</a>
+                            <a href="javascript:;" class="bottomsteps" data-field="1">选择</a>
+                            <input type="hidden" name="hiddenItem">
                         </div>
                     </div>
                 </li>
@@ -425,10 +548,11 @@
                         编辑必填字段
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
-                        <ul></ul>
-                        <input type="hidden" name="requiredItem">
+                        <ul style="height: 126px" id="requiredItem"></ul>
+
                         <div style="float: left">
-                            <a href="javascript:;" class="bottomsteps">选择</a>
+                            <a href="javascript:;" class="bottomsteps" data-field="1">选择</a>
+                            <input type="hidden" name="requiredItem">
                         </div>
                     </div>
                 </li>
@@ -446,7 +570,7 @@
             </div>
             <ul class="candidatesUl" style="display: none">
                 <li>
-                    <p class="candidatesPoform" style="margin-top: 20px;">
+                    <p class="candidatesPoform" style="padding-top: 20px;">
                         <input type="text" name="timeOut"><span>小时</span>
                     </p>
                     <p class="candidatesPone">
@@ -541,7 +665,8 @@
                         通知范围（人员）
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
-                        <input type="text" readonly="true" id="query_userIds">
+                        <%--<input type="text" readonly="true" id="">--%>
+                        <textarea name="" id="query_userIds" readonly="true"></textarea>
                         <div style="float: left;line-height: 25px">
                             <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">添加</a>
                             <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">清空</a>
@@ -551,9 +676,10 @@
                         通知范围（部门）
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
-                        <input type="text" readonly="true" id="">
+                        <%--<input type="text" readonly="true" id="">--%>
+                        <textarea name="" id="departments" readonly="true"></textarea>
                         <div style="float: left;line-height: 25px">
-                            <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">添加</a>
+                            <a href="javascript:;" style="display: block" data-num="2" class="theCandidates">添加</a>
                             <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">清空</a>
                         </div>
                     </div>
@@ -561,9 +687,10 @@
                         通知范围（角色）
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
-                        <input type="text" readonly="true" id="">
+                        <%--<input type="text" readonly="true" id="">--%>
+                        <textarea name="" id="theScopeOfs" readonly="true"></textarea>
                         <div style="float: left;line-height: 25px">
-                            <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">添加</a>
+                            <a href="javascript:;" style="display: block" data-num="3" class="theCandidates">添加</a>
                             <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">清空</a>
                         </div>
                     </div>
@@ -595,8 +722,8 @@
             </ul>
         </div>
         <div class="btnstorage">
-            <a href="javascript:;" class="closebtns" style="background: #5ab65a">关闭</a>
-            <a href="javascript:;"  class="savetwo" style="background: #ff880a">保存</a>
+            <a href="javascript:;" class="closebtns" style="background: #ff880a">关闭</a>
+            <a href="javascript:;"  class="savetwo" style="background: #5ab65a">保存</a>
         </div>
     </form>
 </body>
