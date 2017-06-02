@@ -23,8 +23,25 @@ var workForm = {
         this.MacrosRender();
         this.RadioRender();
         this.DateRender();
+        this.ListRender();
         this.filter();//表单流程权限控制
         return   this.option.eleObject;
+    },
+    ListRender:function () {
+        var that = this;
+        this.option.eleObject.find('.list').each(function () {
+            var _this = $(this);
+            var tableStr = '<table name="'+_this.attr('name')+'" id="'+_this.attr('name')+'" class="form_item list">';
+            var lv_title = $(this).attr('lv_title').split('`');
+            var titleTd = ''
+            for(var i=0;i<lv_title.length-1;i++){
+                titleTd+=('<td>'+lv_title[i] +'</td>');
+            }
+            tableStr+=('<tr>'+titleTd+'</tr>');
+            tableStr+='</table>';
+            console.log(tableStr);
+            _this.before(tableStr);
+        });
     },
     filter:function(){
         if(this.option.flowStep != -1){

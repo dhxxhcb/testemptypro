@@ -59,6 +59,15 @@ $(function(){
             $(".checkChild").prop("checked",false);;
         }
     })
+    //查询列表删除事件
+    $('#delete').click(function(){
+        var fileId=[];
+        $(".checkChild:checkbox:checked").each(function(){
+            var conId=$(this).attr("logId");
+            fileId.push(conId);
+        })
+        deleteAllJournal(fileId);
+    })
     //日志概况显示数据
     function journalSurveyShow(){
         $.ajax({
@@ -212,7 +221,7 @@ $(function(){
                 var str='';
                 for(var i=0;i<data1.length;i++){
                     var sendTime=new Date(data1[i].time).Format('yyyy-MM-dd hh:mm');
-                    str+='<tr class="AllData"><td><input class="checkChild" type="checkbox" name="checke" value=""></td><td>'+data1[i].userName+'</td><td>'+sendTime+'</td><td>'+data1[i].ip+'</td><td>'+data1[i].ipLocation+'</td><td>'+data1[i].typeName+'</td><td>'+data1[i].remark+'</td></tr>';
+                    str+='<tr class="AllData"><td><input logId="'+data1[i].logId+'" class="checkChild" type="checkbox" name="checke" value=""></td><td>'+data1[i].userName+'</td><td>'+sendTime+'</td><td>'+data1[i].ip+'</td><td>'+data1[i].ipLocation+'</td><td>'+data1[i].typeName+'</td><td>'+data1[i].remark+'</td></tr>';
                 }
                 $('.queryJournalList').after(str);
                 $(".checkChild").click(function () {
@@ -284,6 +293,25 @@ $(function(){
                     console.log(res.flag);
                 }
             });
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //列表删除（可多条）
+    function deleteAllJournal(id){
+        var msg='确定要删除吗？';
+        if (confirm(msg)==true){
+            $.ajax({
+                type:'post',
+                url:'../../sys/deleteLogByIds',
+                dataType:'json',
+                data:{'ids':id},
+                success:function(res){
+                    console.log(res.json);
+                    queryShow();
+                }
+            })
             return true;
         }else{
             return false;

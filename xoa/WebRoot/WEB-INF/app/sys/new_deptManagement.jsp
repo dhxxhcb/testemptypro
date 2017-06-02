@@ -102,7 +102,7 @@
 
         .head {
             border-bottom: 1px solid #9E9E9E;
-            height: 44px;
+            height: 42px;
         }
         .new_excell_pic {
             border-radius: 0;
@@ -539,7 +539,7 @@
 </div>
 
 <%--编辑部门--%>
-<div class="step2" style="display: block;margin-left: 10px;">
+<div class="step2" style="display: none;margin-left: 10px;">
     <!-- 中间部分 -->
     <table class="newNews">
         <div class="nav_box clearfix">
@@ -621,7 +621,7 @@
         <tr>
             <td class="blue_text">部门主管（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="query_toId" type="text"/>
+                <input class="td_title1  release1" id="manager_" type="text"/>
                 <%-- <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
                 <div class="release3">添加</div>
                 <div class="release4 empty">清空</div>
@@ -631,7 +631,7 @@
         <tr>
             <td class="blue_text">部门助理（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="query_privId_" type="text"/>
+                <input class="td_title1  release1" id="assistantId_" type="text"/>
                 <%-- <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
                 <div class="release3">添加</div>
                 <div class="release4 empty" onclick="empty('query_privId')">清空</div>
@@ -640,7 +640,7 @@
         <tr>
             <td class="blue_text">上级主管领导（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="query_userId_" dataid="" type="text"/>
+                <input class="td_title1  release1" id="leader1_" dataid="" type="text"/>
                 <%--  <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
                 <div class="release3" id="query_adduser_">添加</div>
                 <div class="release4 empty" onclick="empty('query_userId')">清空</div>
@@ -649,7 +649,7 @@
         <tr>
             <td class="blue_text">上级分管领导（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="query_userId_" dataid="" type="text"/>
+                <input class="td_title1  release1" id="leader2_" dataid="" type="text"/>
                 <%--  <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
                 <div class="release3" id="query_adduser_">添加</div>
                 <div class="release4 empty" onclick="empty('query_userId')">清空</div>
@@ -693,7 +693,8 @@
         </tr>
         <tr>
             <td colspan="2">
-                <button type="button" class="new_but" id="new_">新建</button>
+                <button type="button" class="new_but" id="new_">保存修改</button>
+                <span id="dapaId_" style="display: none"></span>
             </td>
         </tr>
 
@@ -702,17 +703,15 @@
 </div>
 
 
-
-
 </body>
 
 <script>
     $(function(){
-        //        添加部门的
+        // 添加部门的
         $("#new").on("click",function(){
             alert(1111);
             var data = {
-                "deptName": $("#deptName").val(),    // 部门名称
+                "deptName": $("#deptName").html(),    // 部门名称
                 "telNo": $("#telNo").val(),      //电话
                 "faxNo":$("#faxNo").val(),  //传真
                 "deptAddress": $("#deptAddress").val(),// 部门地址
@@ -754,10 +753,6 @@
                     }
                 });
             }
-
-
-
-
         });
 
 

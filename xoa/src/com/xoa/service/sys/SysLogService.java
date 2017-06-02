@@ -114,6 +114,7 @@ public interface SysLogService {
     *@函数介绍:  根据id,删除log
     *@参数说明:  @param String ids
     *@return:   void
-    **/
-    void deleteLogByIds(String ids);
+    *
+     * @param ids*/
+    void deleteLogByIds(String[] ids);
 }

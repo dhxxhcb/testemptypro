@@ -1,5 +1,9 @@
 package com.xoa.model.unitmanagement;
 
+import com.xoa.model.enclosure.Attachment;
+
+import java.util.List;
+
 public class UnitManage {
 	private String unitName;
 
@@ -24,6 +28,19 @@ public class UnitManage {
 	private String attachmentName;
 
 	private String content;
+
+	/**
+	 * 附件对象
+	 */
+	private List<Attachment> attachment;
+
+	public List<Attachment> getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(List<Attachment> attachment) {
+		this.attachment = attachment;
+	}
 
 	public String getAttachmentId() {
 		return attachmentId;

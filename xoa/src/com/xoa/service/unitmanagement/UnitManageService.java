@@ -13,7 +13,7 @@ public interface UnitManageService {
      * 单位管理查询，并返回对象
      * 
      */
-	public  UnitManage  showUnitManage();
+	public  UnitManage  showUnitManage(String sqlType);
    /**
     * 单位管理保存
     * 

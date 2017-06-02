@@ -287,6 +287,8 @@ public class FlowProcess implements Serializable {
      */
     private FlowTypeModel flowTypeModel;
 
+    private String settlementOfCondition;
+
 
     private List<Map<String, String>> connections;
 
@@ -934,5 +936,13 @@ public class FlowProcess implements Serializable {
 
     public void setCountersign(int countersign) {
         this.countersign = countersign;
+    }
+
+    public String getSettlementOfCondition() {
+        return settlementOfCondition;
+    }
+
+    public void setSettlementOfCondition(String settlementOfCondition) {
+        this.settlementOfCondition = settlementOfCondition;
     }
 }
