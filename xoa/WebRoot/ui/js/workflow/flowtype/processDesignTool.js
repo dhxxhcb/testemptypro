@@ -1,7 +1,9 @@
 /**
  * Created by ASUS on 2017/5/24.
  */
-var user_id=''
+var user_id='';
+var dept_id='';
+var priv_id='';
 var form,layer
 var flowDesign;
 var dataToAll;//全部数据
@@ -17,7 +19,7 @@ var flowidurl=window.location.href;
 var flowstr=flowidurl.substring(flowidurl.indexOf('=')+1)
 var numId={};
 var conditionsDate;//条件数据
-
+var canwritefieldtwo;//可写字段
 
 function saveOrUpdate() {
     $.ajax({
@@ -62,7 +64,28 @@ function radioTheEcho(names,dataNames) {
         }
     })
 }
+function ulTheEcho(names,dataNames) {
+    if(dataNames=='')return
+    var ularr=dataNames.split(',');
+    var ulStr='';
+        for (var is = 0; is < ularr.length; is++) {
+            ulStr += '<li>(' + (is+1) + ')' + ularr[is] + '</li>'
+        }
+        $('#' + names).html(ulStr)
 
+}
+function checkboxTheEcho(names,dataNames) {
+    if(dataNames=='')return;
+    var arrcheck=dataNames.split(',');
+    $('[name="'+names+'"]').each(function (i,n) {
+        for (var g=0;g<arrcheck.length;g++){
+            if($(this).val()==arrcheck[g]){
+                $(this).prop('checked',true);
+                $(this).next().addClass('layui-form-checked');
+            }
+        }
+    })
+}
 
 function ajaxSvg() {
     $.ajax({
@@ -76,10 +99,6 @@ function ajaxSvg() {
             if (json.flag) {
                 var designdata = json.object.designdata;
                 var connections = json.object.connections;
-                console.log(designdata)
-                for(var inde=0;inde<designdata.length;inde++){
-
-                }
                 jsondata={
                     "title": "",
                     "nodes": {},
@@ -90,6 +109,7 @@ function ajaxSvg() {
                 jsondata.title = json.object.designdata[0].flowName;
                 jsondata.initNum = designdata.length;
                 designdata.forEach(function (v, i) {
+                    console.log(v)
                     jsondata.nodes['node_' + v.prcsId] = {
                         designerId:v.id,
                         name: v.prcsName,
@@ -119,7 +139,16 @@ function ajaxSvg() {
                             gatherNode:v.gatherNode,
                             viewPriv:v.viewPriv,
 
-                            //可写字段
+                            canWriteField:{
+                                controlMode:v.controlMode,
+                                fileuploadPriv:v.fileuploadPriv,
+                                imguploadPriv:v.imguploadPriv,
+                                attachPriv:v.attachPriv,
+                                attachEditPriv:v.attachEditPriv,
+                                attachEditPrivOnline:v.attachEditPrivOnline,
+                                attachMacroMark:v.attachMacroMark,
+                                prcsItem:v.prcsItem
+                            },//可写字段
                             hiddenItem:v.hiddenItem,
                             requiredItem:v.requiredItem,
                             conditionsSet:{
@@ -135,7 +164,17 @@ function ajaxSvg() {
                             timeOutModify:v.timeOutModify,
                             timeOutType:v.timeOutType,
                             workingdaysType:v.workingdaysType,
-                            timeOutAttend:v.timeOutAttend
+                            timeOutAttend:v.timeOutAttend,
+                            userFilter:v.userFilter,
+                            userFilterPrcsDept:v.userFilterPrcsDept,
+                            userFilterPrcsDeptOther:v.userFilterPrcsDeptOther,
+                            userFilterPrcsPriv:v.userFilterPrcsPriv,
+                            userFilterPrcsPrivOther:v.userFilterPrcsPrivOther,
+                            autoType:v.autoType,
+                            autoBaseUser:v.autoBaseUser,
+                            autoDept:v.autoDept,
+                            autoUserOp:v.autoUserOp,
+                            autoUser:v.autoUser
                             //触发器
                             //提醒设置
                             //呈批单设置
@@ -163,7 +202,6 @@ function ajaxSvg() {
             };
 
             flowDesign.loadData(jsondata);
-          console.log(jsondata)
             flowDesign.onItemFocus = function (id, model) {
                 $('#propertyForm').css('right','0px')
                 $('.btnstorage').css('right','0px')
@@ -201,6 +239,10 @@ function ajaxSvg() {
                     inputTheEcho('prcsUser',objtwo.prcsUser)
                     inputTheEcho('prcsDept',objtwo.prcsDept)
                     inputTheEcho('prcsPriv',objtwo.prcsPriv)
+                    inputTheEcho('hiddenItem',objtwo.hiddenItem)
+                    inputTheEcho('requiredItem',objtwo.requiredItem)
+                    ulTheEcho('hiddenItem',objtwo.hiddenItem)
+                    ulTheEcho('requiredItem',objtwo.requiredItem)
                     radioTheEcho('signType',objtwo.signType)
                     radioTheEcho('countersign',objtwo.countersign)
                     seleTheEcho('userFilter',objtwo.userFilter)
@@ -219,8 +261,18 @@ function ajaxSvg() {
                     radioTheEcho('syncDeal',objtwo.syncDeal)
                     radioTheEcho('gatherNode',objtwo.gatherNode)
                     radioTheEcho('viewPriv',objtwo.viewPriv)
+                    seleTheEcho('autoBaseUser',objtwo.autoBaseUser)
+                    inputTheEcho('autoUserOp',objtwo.autoUserOp)
+                    inputTheEcho('autoUser',objtwo.autoUser)
+                    inputTheEcho('autoDept',objtwo.autoDept)
+                    inputTheEcho('userFilterPrcsDept',objtwo.userFilterPrcsDept)
+                    inputTheEcho('userFilterPrcsDeptOther',objtwo.userFilterPrcsDeptOther)
+                    inputTheEcho('userFilterPrcsPriv',objtwo.userFilterPrcsPriv)
+                    inputTheEcho('userFilterPrcsPrivOther',objtwo.userFilterPrcsPrivOther)
                     dataToAll=designdata;//所有数据
                     conditionsDate=objtwo.conditionsSet;
+                    canwritefieldtwo=objtwo.canWriteField;
+
                     //下一步骤
                     for(var inde=0;inde<designdata.length;inde++){
                         if(inde<designdata.length-1) {
@@ -253,7 +305,6 @@ $(function () {
         },
         function(data){
             alertData=data;
-            console.log(data);
         });
 
 
@@ -299,6 +350,11 @@ $(function () {
     })
     $(document).delegate('.deletes','click',function () {
         $(this).parent().parent().remove();
+    })
+
+    $(document).delegate('#draw_flowDesignTable','click',function () {
+       $('#propertyForm').css('right',-($('#propertyForm').width()))
+       $('.btnstorage').css('right',-($('.btnstorage').width()))
     })
 
 
@@ -374,10 +430,18 @@ ajaxSvg();
         event.stopPropagation();
     })
     $('.theCandidates').on('click',function () {
-        user_id = $(this).parent().siblings('input').prop('id');
+
         var num=$(this).attr('data-num')
         if(num==1) {
+            user_id = $(this).parent().siblings('textarea').prop('id');
             $.popWindow("../common/selectUser");
+        }else if(num==2){
+            dept_id=$(this).parent().siblings('textarea').prop('id');
+            console.log(dept_id)
+            $.popWindow("../common/selectDept");
+        }else if(num==3){
+            priv_id=$(this).parent().siblings('textarea').prop('id');
+            $.popWindow("../common/selectPriv");
         }
     })
 
@@ -385,24 +449,68 @@ ajaxSvg();
     layui.use(['layer', 'form'], function(){
         layer = layui.layer
             ,form = layui.form();
+
+        form.on('select(candidatesfilters)', function(data){
+            console.log(data.elem); //得到select原始DOM对象
+            console.log(data.value); //得到被选中的值
+            console.log(data.othis); //得到美化后的DOM对象
+
+        });
+        form.on('select(automaticCandidateTwo)', function(data){
+            console.log(data.elem); //得到select原始DOM对象
+            console.log(data.value); //得到被选中的值
+            console.log(data.othis); //得到美化后的DOM对象
+            if(data.value==2||data.value==9||data.value==4||data.value==6||data.value==5||data.value==10||data.value==11){
+                $(data.elem).parent().siblings('div').hide();
+                $('.autoBaseUser').show();
+            }else if(data.value==12||data.value==13||data.value==14||data.value==15){
+                $(data.elem).parent().siblings('div').hide();
+                $('.optionalDepartmentAgent').show()
+            }else if(data.value==3){
+                $(data.elem).parent().siblings('div').hide();
+                $('.specifyTheHost').show()
+            }else if(data.value==7){
+                $(data.elem).parent().siblings('div').hide();
+                $('.oneTheHost').show()
+            }else if(data.value==8){
+                $(data.elem).parent().siblings('div').hide();
+                $('.stepsTwos').show()
+            }else {
+                $(data.elem).parent().siblings('div').hide();
+            }
+        });
+
+
+
         $('.bottomsteps').click(function () {
             var str='';
-            for(var i=0;i<dataToAll.length;i++){
-                str+='<input type="checkbox" title="'+dataToAll[i].prcsName+'" value="'+dataToAll[i].prcsId+'">'
+            var laystr=''
+            if($(this).attr('data-field')==0) {
+                for (var i = 0; i < dataToAll.length; i++) {
+                    str += '<input type="checkbox" title="' + dataToAll[i].prcsName + '" value="' + dataToAll[i].prcsId + '">'
+                }
+                laystr='<div class="bottomstepstwo layui-form" style="margin: 10px ;"><div class="divAllData">'+str+ '<input type="checkbox" title="结束" value="0"></div><div style="margin-top: 15px;" id="checkAll"><span><input type="checkbox" class="checkedAll" title="全选"></span> </div>'+
+                    '</div>'
+            }else if($(this).attr('data-field')==1){
+                console.log(alertData)
+                for(var i=0;i<alertData.length;i++){
+                    str += '<input type="checkbox" title="' + alertData[i].title + '" value="' + alertData[i].title + '">'
+                }
+                laystr='<div class="bottomstepstwo layui-form" style="margin: 10px ;"><div class="divAllData">'+str+ '</div><div style="margin-top: 15px;" id="checkAll"><span><input type="checkbox" class="checkedAll" title="全选"></span> </div>'+
+                    '</div>'
             }
             var me=this;
 
         layer.open({
             type:1,
-            title:'下一步骤',
-            content:'<div class="bottomstepstwo layui-form" style="margin: 10px ;">'+str+ '<div style="margin-top: 15px;" id="checkAll"><span><input type="checkbox" class="checkedAll" title="全选"></span> <input type="checkbox" title="结束" value="0"></div>'+
-            '</div>' ,
+            title:$(me).parent().parent().prev().text(),
+            content: laystr,
             area:['400px','300px'],
             btn:['确定','关闭'],
             yes:function (index) {
                 var str='';
                 var strTwo='';
-                var obj=$('.bottomstepstwo input[type=checkbox]:checked');
+                var obj=$('.bottomstepstwo .divAllData input[type=checkbox]:checked');
                 obj.each(function (i,n) {
                     if(i<obj.length-1){
                         str+=$(this).val()+','
@@ -411,6 +519,7 @@ ajaxSvg();
                     }
                     strTwo+='<li>('+(i+1)+')'+$(this).next().find('span').text()+'</li>'
                 })
+                console.log(strTwo)
                 $(me).next().val(str);
                 $(me).parent().prev().html(strTwo)
                 layer.close(index)
@@ -429,22 +538,28 @@ ajaxSvg();
 
             var strprcsIn=conditionsDate.prcsIn.replace(/\n/g,'');
             var arrprcsIn=strprcsIn.split('\r')
+             // var arrprcsIn=conditionsDate.prcsIn.split('\r')
             var intoTheConditionPrcsIn='';
+            // console.log(strprcsIn)
+            console.log(arrprcsIn)
             for(var m=0;m<arrprcsIn.length;m++){
-                if(m<arrprcsIn.length-1) {
+                if(arrprcsIn[m]!='') {
                     intoTheConditionPrcsIn += '<tr><td width="20%">' + (m + 1) + '</td>' +
                         '<td width="60%"><span>' + arrprcsIn[m] + '</span><input type="text" name="ConditionsInput" style="display: none">' +
                         '<input type="hidden" value="' + arrprcsIn[m] + '"></td>' +
                         '<td><a href="javascript:;" class="theEditor" style="margin-right: 10px;color: #2f8ae3">编辑</a>' +
                         '<a href="javascipt:;" class="deletes" style="color: #2f8ae3">删除</a></td></tr>'
                 }
+
             }
             var strprcsOut=conditionsDate.prcsOut.replace(/\n/g,'');
             var arrprcsOut=strprcsOut.split('\r');
-
+            // var arrprcsOut=conditionsDate.prcsOut.split('\r');
+            // console.log(strprcsOut)
+            console.log(arrprcsOut)
             var transferConditionsprcsOut='';
             for(var q=0;q<arrprcsOut.length;q++){
-                if(q<arrprcsOut.length) {
+                if(arrprcsOut[q]!=''){
                     transferConditionsprcsOut+= '<tr><td width="20%">' + (q + 1) + '</td>' +
                         '<td width="60%"><span>' + arrprcsOut[q] + '</span><input type="text" name="ConditionsInput" style="display: none">' +
                         '<input type="hidden" value="' + arrprcsOut[q] + '"></td>' +
@@ -452,7 +567,6 @@ ajaxSvg();
                         '<a href="javascipt:;" class="deletes" style="color: #2f8ae3">删除</a></td></tr>'
                 }
             }
-            console.log(transferConditionsprcsOut)
             var str=''
            for(var i=0;i<alertData.length;i++){
                str+='<option value="'+alertData[i].name+'">'+alertData[i].title+'</option>'
@@ -467,7 +581,7 @@ ajaxSvg();
                 type:1,
                 title:'条件生成器',
                 content:'<div class="bottomstepstwoss layui-form" id="bottomstepstwoss">\
-            <ul class="candidatesUl" style="display: block;border: none;">\
+            <ul class="candidatesUl" style="display: block;border: none;background:#fff">\
                 <li>\
                    <p class="candidatesPone">字段</p> \
                     <div class="dropDownDiv">\
@@ -675,7 +789,7 @@ ajaxSvg();
                     type:1,
                     title:'新建触发器',
                     content:'<div class="bottomstepstwoss layui-form" style="height: 380px;">\
-                    <ul class="candidatesUl" style="display: block;border: none;">\
+                    <ul class="candidatesUl" style="display: block;border: none;background:#fff">\
                         <li>\
                             <p class="candidatesPone"><b style="color:red;margin-right: 8px;vertical-align: middle">*</b>触发节点</p> \
                             <div class="dropDownDiv" style="z-index:99999">\
@@ -773,7 +887,7 @@ ajaxSvg();
                 type:0,
                 title:'管理触发器',
                 content:'<div class="bottomstepstwoss" style="height: 460px">\
-            <ul class="candidatesUl" style="display: block;border: none;">\
+            <ul class="candidatesUl" style="display: block;border: none;background: #fff">\
                 <li>\
                      <p class="candidatesPone">管理触发器 <label  class="newtheTrigger">新建触发器</label></p> \
                      <p class="candidatesPTwo" style="border: none;margin-bottom: 20px;">\
@@ -819,7 +933,7 @@ ajaxSvg();
                     me.openAlert()
                 })
                 $(document).delegate('.bottomsteptwos','click',function () {
-                    me.bottomsteptwo();
+                    me.bottomsteptwo(this);
                 })
             },
             openAlert:function () {
@@ -845,7 +959,7 @@ ajaxSvg();
                     type:1,
                     title:'字段权限设置',
                     content:'<div class="bottomstepstwoss layui-form" style="height: 300px">\
-            <ul class="candidatesUl" style="display: block;border: none;padding-left: 7%;">\
+            <ul class="candidatesUl" style="display: block;border: none;padding-left: 7%;background: #fff">\
                 <li>\
                  <p class="candidatesPTwo" style="border: none;margin-bottom: 20px;width: 92%;margin-top: 36px;">\
                     <table>\
@@ -864,19 +978,37 @@ ajaxSvg();
                     }
                 })
             },
-            bottomsteptwo:function () {
+            bottomsteptwo:function (me) {
+                var str=''
+                for(var i=0;i<alertData.length;i++){
+                    str += '<input type="checkbox" title="' + alertData[i].title + '" value="' + alertData[i].title + '">'
+                }
+
                 layer.open({
                     type:1,
                     title:'本步骤可写字段',
-                    content:'<div class="bottomstepstwo layui-form" style="margin: 10px ;">' +
-                    '<input type="checkbox" title="行政主管审批">' +
-                    '<input type="checkbox" title="上级主管审批">' +
-                    '<div style="margin-top: 15px;"><input type="checkbox" title="全选"></div>'+
+                    content:'<div class="bottomstepstwo layui-form" style="margin: 10px ;"><div class="divAllData">' +
+                    '<input type="checkbox" title="流程公共附件" value="[A@]">'+str+'' +
+                    '<input type="checkbox" title="工作名称/文号" value="[B@]"></div>' +
+                    '<div id="checkAll" style="margin-top: 15px;"><span><input type="checkbox" title="全选"></span></div>'+
                     '</div>' ,
                     area:['400px','300px'],
                     btn:['确定','关闭'],
                     yes:function (index) {
-
+                        var strs='';
+                        var strTwo='';
+                        var obj=$('.bottomstepstwo .divAllData input[type=checkbox]:checked');
+                        obj.each(function (i,n) {
+                            if(i<obj.length-1){
+                                strs+=$(this).val()+','
+                            }else {
+                                strs+=$(this).val();
+                            }
+                            strTwo+='<li>('+(i+1)+')'+$(this).next().find('span').text()+'</li>'
+                        })
+                        $(me).next().val(strs);
+                        $(me).prev().html(strTwo)
+                        layer.close(index)
                     },
                     success:function () {
                         form.render();
@@ -888,17 +1020,18 @@ ajaxSvg();
         canWriteField.init()
 
         $('#canWriteField').click(function () {//可写字段
+
             layer.open({
                 type:0,
                 title:'编辑可写字段',
                 content:' <form class="layui-form"><div class="bottomstepstwoss " style="height: 460px">\
-            <ul class="candidatesUl" style="display: block;border: none;">\
+            <ul class="candidatesUl" style="display: block;border: none;background:#fff">\
                 <li>\
                      <p class="candidatesPone">本步骤可写字段</p> \
                      <div class="candidatesPTwoall" style="margin-bottom: 20px;position:relative">\
-                         <ul></ul>\
-                         <input type="hidden">\
+                         <ul id="prcsItem"></ul>\
                          <a href="javascript:;" class="bottomsteptwos" style="position:absolute;top:17px;right:105px;color:#2f8ae3">选择</a>\
+                          <input type="hidden" name="prcsItemTwo">\
                      </div>\
                 </li>\
                 <li>\
@@ -978,32 +1111,32 @@ ajaxSvg();
                 <li>\
                      <p class="candidatesPone activeall" style="margin-bottom:-15px">公共附件中的Office文档详细权限设置</p> \
                      <div style="margin-top:15px">\
-                       <input type="checkbox" title="新建权限">\
-                       <input type="checkbox" title="编辑权限">\
-                        <input type="checkbox" title="删除权限">\
-                       <input type="checkbox" title="下载权限">\
-                       <input type="checkbox" title="打印权限">\
+                       <input type="checkbox" title="新建权限" name="attachPriv" value="1">\
+                       <input type="checkbox" title="编辑权限" name="attachPriv" value="2">\
+                        <input type="checkbox" title="删除权限" name="attachPriv" value="3">\
+                       <input type="checkbox" title="下载权限" name="attachPriv" value="4">\
+                       <input type="checkbox" title="打印权限" name="attachPriv" value="5">\
                      </div>\
                 </li>\
                 <li>\
                      <p class="candidatesPone activeall" style="margin-bottom:-15px">是否允许本步骤经办人编辑附件</p> \
                      <div>\
-                        <label class="canWriteFie"><input type="radio" title="允许"></label>\
-                        <label class="canWriteFie"><input type="radio" title="不允许"></label>\
+                        <label class="canWriteFie"><input type="radio" title="允许" name="attachEditPriv" value="0"></label>\
+                        <label class="canWriteFie"><input type="radio" title="不允许" name="attachEditPriv" value="1"></label>\
                      </div>\
                 </li>\
                 <li>\
                      <p class="candidatesPone activeall" style="margin-bottom:-15px">是否允许本步骤办理人在线创建文档</p> \
                      <div>\
-                        <label class="canWriteFie"><input type="radio" title="允许"></label>\
-                        <label class="canWriteFie"><input type="radio" title="不允许"></label>\
-                     </div>\
-                </li>\
-               <li>\
+                        <label class="canWriteFie"><input type="radio" title="允许" name="attachEditPrivOnline" value="0"></label>\
+                         <label class="canWriteFie"><input type="radio" title="不允许" name="attachEditPrivOnline" value="1"></label>\
+                      </div>\
+                 </li>\
+                  <li>\
                      <p class="candidatesPone activeall" style="margin-bottom:-15px">宏标记附件上传为图片时展示效果</p> \
                      <div>\
-                        <label class="canWriteFie"><input type="radio" title="显示图片"></label>\
-                        <label class="canWriteFie"><input type="radio" title="显示图标和名称"></label>\
+                        <label class="canWriteFie"><input type="radio" title="显示图片" name="attachMacroMark" value="0"></label>\
+                        <label class="canWriteFie"><input type="radio" title="显示图标和名称" name="attachMacroMark" value="1"></label>\
                      </div>\
                 </li>\
             </ul>\
@@ -1011,13 +1144,32 @@ ajaxSvg();
                 area:['800px','600px'],
                 btn:['确定','关闭'],
                 yes:function (index) {
-
+                    var obj={};
+                    obj.prcsItemTwo=$('[name="prcsItemTwo"]').val();
+                    obj.attachPriv='';
+                    $('[name="attachPriv"]:checked').each(function (i,n) {
+                        obj.attachPriv+=$(this).val()+','
+                    })
+                    obj.attachEditPriv=$('[name="attachEditPriv"]:checked').val()
+                    obj.attachEditPrivOnline=$('[name="attachEditPrivOnline"]:checked').val()
+                    obj.attachMacroMark=$('[name="attachMacroMark"]:checked').val()
+                    var str=JSON.stringify(obj)
+                    $('.setUpThe').removeClass('active')
+                    $('[name="prcsItem"]').val(str)
+                layer.close(index)
                 },
                 btn2:function () {
                     $('.setUpThe').removeClass('active')
                 },
                 success:function () {
-                    form.render()
+                    form.render();
+                    console.log(canwritefieldtwo)
+                    inputTheEcho('prcsItem',canwritefieldtwo.prcsItem)
+                    ulTheEcho('prcsItem',canwritefieldtwo.prcsItem)
+                    radioTheEcho('attachEditPriv',canwritefieldtwo.attachEditPriv)
+                    radioTheEcho('attachEditPrivOnline',canwritefieldtwo.attachEditPrivOnline)
+                    radioTheEcho('attachMacroMark',canwritefieldtwo.attachMacroMark)
+                    checkboxTheEcho('attachPriv',canwritefieldtwo.attachPriv)
                 }
             })
 

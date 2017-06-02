@@ -10,10 +10,13 @@
     font-family: "Microsoft YaHei" ! important;
     overflow-y: auto ;
     transition: all 0.2s ease 0s;
-
+    background: #f7f7f7;
 }
 input{
     outline: none;
+}
+.btnstorage a:hover{
+    color: #fff!important;
 }
 .setUpThe{
     padding:0px 5% 0px 9%;
@@ -27,15 +30,22 @@ input{
 .setUpThe.active{
     background: #add2f8;
 }
+.setUpThe.active .notstart{
+    background: url("/img/workflow/flowsetting/notstartactive.png")no-repeat;
+    width: 11px;
+    height: 6px;
+    margin-top: -1px;
+}
 body{
     font-size: 12px;
 }
 .setUpThe span{
-    width: 27px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     display: inline-block;
     vertical-align: middle;
-    margin-right:10px;
+    margin-right:8px;
+    margin-top:2px;
 }
 .setUpThe label{
     vertical-align: middle;
@@ -90,6 +100,7 @@ body{
     padding-left: 11%;
     border-bottom: 1px solid #ccc;
     display: none;
+    background: #e8f4fc;
 }
 .candidatesUl li{
     font-size: 16px;
@@ -310,6 +321,22 @@ body{
     background: #eee;
     border:1px solid #ccc;
 }
+.candidatesUl li .candidatesPTwoall textarea{
+    width: 76%;
+    height: 57px;
+    border:1px solid #ddd;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -zom-border-radius: 4px;
+    -ms-border-radius: 4px;
+    float: left;
+    background: #eee;
+    border:1px solid #ccc;
+    padding: 5px;
+}
+textarea{
+    outline:none;resize:none;
+}
 .candidatesPTwoall div{
     height: 57px;
     line-height: 57px;
@@ -364,6 +391,9 @@ body{
     background: #2f8ae3;
     color: #fff!important;
     font-size: 14px;
+}
+.hiddenul li>div{
+    display: none;
 }
 .candidatesPTwo table{
     width: 100% ;
