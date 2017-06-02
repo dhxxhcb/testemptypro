@@ -12,6 +12,7 @@ import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
 import com.xoa.util.netdisk.CheckAll;
+import com.xoa.util.netdisk.CopyFile;
 import com.xoa.util.netdisk.ReadFile;
 import org.apache.http.HttpRequest;
 import org.apache.poi.util.SystemOutLogger;
@@ -220,6 +221,42 @@ public class NetdiskController {
         //java+getOutputStream() has already been called for this response
         return null;
     }
+
+    @RequestMapping(value="/copyFile",produces = {"application/json;charset=UTF-8"})
+    public  ToJson<String>  copyFiles(String path){
+        ToJson<String>  json=new ToJson<String>();
+           if (!StringUtils.checkNull(path)){
+               String  read= CopyFile.readByBufferedReader(path);
+               json.setFlag(0);
+               json.setMsg("ok");
+               json.setObject(read);
+           }else {
+               json.setFlag(1);
+               json.setMsg("err");
+
+           }
+
+        return json;
+    }
+    @RequestMapping(value="/writeFile",produces = {"application/json;charset=UTF-8"})
+   public ToJson<String>  writeFile(String content,String path ){
+        ToJson<String>  json=new ToJson<String>();
+         if(!StringUtils.checkNull(path)){
+             File file =new File(path);
+             CopyFile.writeFile(content,file);
+             json.setFlag(0);
+             json.setMsg("ok");
+         }else {
+             json.setFlag(1);
+             json.setMsg("err");
+         }
+
+
+        return  json;
+    }
+
+
+
 
 
     @RequestMapping("/up1")
