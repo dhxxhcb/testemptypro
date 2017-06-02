@@ -244,8 +244,8 @@
                     oNode.setAttribute('type','text');
                     oNode.setAttribute('class', "form_item list");
                     oNode.setAttribute('data-type', "listing");
-                    oNode.setAttribute('name', 'DATA_' + dataid);
-                    oNode.setAttribute('id', 'DATA_' + dataid);
+                    oNode.setAttribute('name', 'DATA_' + (dataid++));
+                    oNode.setAttribute('id', 'DATA_' + (dataid++));
                     oNode.setAttribute('datafrom', $('#dataFrom').val());
                     if(_lv_field.length  > 0){
                         var lv_field = '';

@@ -22,14 +22,35 @@ $(function(){
                 console.log(obj)
                 var data=obj.obj;
                 departmentData= digui(data,0);
-                var str = departmentChild(departmentData,'<option >请选择部门</option>',0,-1);
+                var str = departmentChild(departmentData,'<option value="0">请选择部门</option>',0,-1);
                 _this.html(str);
 			},
 			error:function(){
 
 			}
 		});
-	}
+	};
+	$.fn.privSelect = function (args) {
+        var _this = $(this);
+        $.ajax({
+            url:domain+"/userPriv/getAllPriv",
+            type:'get',
+            data:{},
+            dataType:'json',
+            success:function(res){
+                if(res.flag){
+                    var  optionStr = '<option value="0">请选择角色</option>'
+                    res.obj.forEach(function (v,i) {
+                        optionStr += '<option value="'+v.userPriv+'">'+v.privName+'</option>'
+                    });
+                }
+                 _this.html(optionStr);
+            },
+            error:function(){
+
+            }
+        });
+    };
 	$.extend({
 		getQueryString:function(name) {
 	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
