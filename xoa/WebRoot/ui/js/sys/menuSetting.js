@@ -336,9 +336,9 @@ function authorizationPriv(id,element){
         type:'get',
         url:'../../getAuthRoleName',
         dataTyle:'json',
-        data:{'fId':id},
+        data:{'fid':id},
         success:function(res){
-            var data=res.obj;
+            var data=res.object;
             element.text(data);
         }
     })
@@ -348,7 +348,7 @@ function authorizationUser(id,element){
         type:'get',
         url:'../../getAuthUserName',
         dataTyle:'json',
-        data:{'fId':id},
+        data:{'fid':id},
         success:function(res){
             var data=res.object;
             element.text(data);
