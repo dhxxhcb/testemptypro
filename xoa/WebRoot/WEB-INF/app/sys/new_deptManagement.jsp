@@ -751,7 +751,7 @@
         $("#new").on("click",function(){
             alert($('#deptParent option:checked').attr('value'));
             var data = {
-                "deptName": $("#deptName").html(),    // 部门名称
+                "deptName": $("#deptName").val(),    // 部门名称
                 "telNo": $("#telNo").val(),      //电话
                 "faxNo":$("#faxNo").val(),  //传真
                 "deptAddress": $("#deptAddress").val(),// 部门地址
