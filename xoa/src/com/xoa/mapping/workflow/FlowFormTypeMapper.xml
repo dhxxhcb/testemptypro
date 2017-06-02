@@ -168,5 +168,7 @@
     where FORM_ID = #{formId}
 
   </update>
-
+  <select id="selectAllForm" resultMap="FormWithDepAndSort">
+     SELECT flow_form_type.*,department.DEPT_NAME,form_sort.SORT_NAME from flow_form_type LEFT JOIN department ON department.DEPT_ID=flow_form_type.DEPT_ID LEFT JOIN form_sort ON form_sort.SORT_ID=flow_form_type.FORM_SORT
+  </select>
 </mapper>
