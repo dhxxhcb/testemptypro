@@ -265,10 +265,10 @@ select{
 }*/
 
 .liUp{
-	background: url(../img/icon_rightarrow_03.png) no-repeat 75% center;
+	background: url(../../img/sys/icon_rightarrow_03.png) no-repeat 75% center;
 }
 .liDown{
-	background: url(../img/icon_downarrow_03.png) no-repeat 75% center;
+	background: url(../../img/sys/icon_downarrow_03.png) no-repeat 75% center;
 }
 .on{background-color: #add2f8;}
 /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/

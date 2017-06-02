@@ -43,6 +43,12 @@ public class UsersController {
                 "loginDateSouse"));
         return "app/sys/addUser";
     }
+    @RequestMapping("/userInfor")
+    public String userInfor(HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        return "app/sys/userInfor";
+    }
 
     /**
      * 创建作者:   张龙飞
