@@ -1230,7 +1230,6 @@
         $('#dbgz').on('click','#zhuban',function(){
             var formId= $(this).attr('formId');
             var prcsId= $(this).attr('prcsId');
-			/*      alert(formId);*/
             user_id='zhuban';
             $.popWindow("workform?flowId="+formId+'&flowStep='+prcsId+'','快速新建页面','0','0','1500px','800px');
         });

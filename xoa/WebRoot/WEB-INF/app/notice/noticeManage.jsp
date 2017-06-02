@@ -783,10 +783,8 @@ $(function () {
            initPageList(function(pageCount){
            		 initPagination(pageCount,data.pageSize);
            });
-          
 		  
            $(".index_head li").click(function (){
-				console.log('qqq');
                 $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
                 $(".news").html($(this).find('span').text());
 				data.read = $(this).attr('data_id');
