@@ -6,106 +6,106 @@ import com.xoa.util.DateFormat;
 import java.util.List;
 
 public class FlowRunPrcs {
-	/** 主键ID **/
-	private int id;
-	/** 流程实例ID **/
-	private int runId;
-	/** 流程实例步骤ID **/
-	private int prcsId;
-	/** 用户ID **/
-	private String userId;
-	/** 工作接收时间 **/
-	private String prcsTime;
-	/** 工作转交/办结时间 **/
-	private String deliverTime;
-	/** 步骤状态(1-未接收,2-办理中,3-转交下一步，下一步经办人无人接收,4-已办结,5-自由流程预设步骤,6-已挂起,) **/
-	private String prcsFlag;
-	/** 步骤ID[设计流程中的步骤号] **/
-	private int flowPrcs;
-	/** 是否主办(0-经办,1-主办) **/
-	private String opFlag;
-	/** 主办人选项(0-指定主办人,1-先接收者主办,2-无主办人会签,) **/
-	private String topFlag;
-	/** 上一步流程FLOW_PRCS **/
-	private String parent;
-	/** 子流程的流程实例ID **/
-	private int childRun;
-	/** 待定 **/
-	private String timeOut;
-	/** 步骤可写字段[仅自由流程且只有主办人生效] **/
-	private String freeItem;
-	/** 待定 **/
-	private String timeOutTemp;
-	/** 工作委托用户ID串 **/
-	private String otherUser;
-	/** 是否超时(1-超时,其他-不超时) **/
-	private String timeOutFlag;
-	/** 工作创建时间 **/
-	private String createTime;
-	/** 工作移交用户ID **/
-	private String fromUser;
-	/** 取消挂起的时间 **/
-	private String activeTime;
-	/** 批注 **/
-	private String comment;
-	/** 超时统计查询增加部门 **/
-	private int prcsDept;
-	/** 上一步流程PRCS_ID **/
-	private String parentPrcsId;
-	/** 返回步骤PRCS_ID标志 **/
-	private int backPrcsId;
-	/** 返回步骤FLOW_PRCS标志 **/
-	private int backFlowPrcs;
-	/** 是否排除工作时段按排班类型(0-否,1-是) **/
-	private Object timeOutAttend;
-	/** 超时计算方法(0-本步骤接收后开始计时,1-上一步骤转交后开始计时 ) **/
-	private Integer timeOutType;
-	/**  **/
-	private String runPrcsName;
-	/**  **/
-	private String runPrcsId;
-	/** 是否是移动端操作(0-否,1-是) **/
-	private Integer mobileFlag;
-	/** 是否催办 **/
-	private int isRemind;
-	/** 区分自由流程回收的是预设步骤还是普通流转步骤，1-普通流转步骤，5-预设步骤 **/
-	private Integer tempPrcsFlag;
-	/** 工作天数换算方式(0-24小时为一天，1-按个人排班类型工作时长为一天) **/
-	private String workingdaysType;
+    /** 主键ID **/
+    private int id;
+    /** 流程实例ID **/
+    private int runId;
+    /** 流程实例步骤ID **/
+    private int prcsId;
+    /** 用户ID **/
+    private String userId;
+    /** 工作接收时间 **/
+    private String prcsTime;
+    /** 工作转交/办结时间 **/
+    private String deliverTime;
+    /** 步骤状态(1-未接收,2-办理中,3-转交下一步，下一步经办人无人接收,4-已办结,5-自由流程预设步骤,6-已挂起,) **/
+    private String prcsFlag;
+    /** 步骤ID[设计流程中的步骤号] **/
+    private int flowPrcs;
+    /** 是否主办(0-经办,1-主办) **/
+    private String opFlag;
+    /** 主办人选项(0-指定主办人,1-先接收者主办,2-无主办人会签,) **/
+    private String topFlag;
+    /** 上一步流程FLOW_PRCS **/
+    private String parent;
+    /** 子流程的流程实例ID **/
+    private int childRun;
+    /** 待定 **/
+    private String timeOut;
+    /** 步骤可写字段[仅自由流程且只有主办人生效] **/
+    private String freeItem;
+    /** 待定 **/
+    private String timeOutTemp;
+    /** 工作委托用户ID串 **/
+    private String otherUser;
+    /** 是否超时(1-超时,其他-不超时) **/
+    private String timeOutFlag;
+    /** 工作创建时间 **/
+    private String createTime;
+    /** 工作移交用户ID **/
+    private String fromUser;
+    /** 取消挂起的时间 **/
+    private String activeTime;
+    /** 批注 **/
+    private String comment;
+    /** 超时统计查询增加部门 **/
+    private int prcsDept;
+    /** 上一步流程PRCS_ID **/
+    private String parentPrcsId;
+    /** 返回步骤PRCS_ID标志 **/
+    private int backPrcsId;
+    /** 返回步骤FLOW_PRCS标志 **/
+    private int backFlowPrcs;
+    /** 是否排除工作时段按排班类型(0-否,1-是) **/
+    private Object timeOutAttend;
+    /** 超时计算方法(0-本步骤接收后开始计时,1-上一步骤转交后开始计时 ) **/
+    private Integer timeOutType;
+    /**  **/
+    private String runPrcsName;
+    /**  **/
+    private String runPrcsId;
+    /** 是否是移动端操作(0-否,1-是) **/
+    private Integer mobileFlag;
+    /** 是否催办 **/
+    private int isRemind;
+    /** 区分自由流程回收的是预设步骤还是普通流转步骤，1-普通流转步骤，5-预设步骤 **/
+    private Integer tempPrcsFlag;
+    /** 工作天数换算方式(0-24小时为一天，1-按个人排班类型工作时长为一天) **/
+    private String workingdaysType;
 
     /**
      * 发起人姓名
      */
-	private String userName;
+    private String userName;
 
-	/**
-	 * 创建作者:   张勇
-	 * 创建日期:   2017/5/25 14:04
-	 * 方法介绍:   一对一关联对象
-	 * 参数说明:   
-	 * @return     
-	 */
-	private FlowRun flowRun;
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/5/25 14:04
+     * 方法介绍:   一对一关联对象
+     * 参数说明:
+     * @return
+     */
+    private FlowRun flowRun;
 
     /**
      * 流程设置
      */
-	private FlowTypeModel flowType;
+    private FlowTypeModel flowType;
 
     /**
      * 关联设计流程
      */
-	private FlowProcess flowProcess;
+    private FlowProcess flowProcess;
 
     /**
      * 接收时间
      */
-	private String  receiptTime;
+    private String  receiptTime;
 
     /**
      * 到达停留时间
      */
-	private String arriveTime;
+    private String arriveTime;
 
 //    /**
 //     * 办理停留时间

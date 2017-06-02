@@ -241,8 +241,8 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 //		return toJson;
 //	}
 
-	public List<FlowRunPrcs> findByRunId(Integer runId){
-        List<FlowRunPrcs> l=flowRunPrcsMapper.findByRunId(runId);
+	public List<FlowRunPrcs> findByRunId(Map<String,Object> maps){
+        List<FlowRunPrcs> l=flowRunPrcsMapper.selectfrp(maps);
 	    return l;
     }
 

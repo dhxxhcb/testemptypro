@@ -10,4 +10,6 @@ import java.util.Map;
  */
 public interface WorkMapper {
     void createTable(Map<String,Object> map);
+
+    int insert(Map<String,Object> map);
 }

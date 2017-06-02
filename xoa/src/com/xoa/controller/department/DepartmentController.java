@@ -248,7 +248,6 @@ public class DepartmentController {
      * 方法介绍:   获得多部门名
      * 参数说明:   @param request 请求
      * 参数说明:   @return
-     *
      * @return String 返回长部门名
      */
     @ResponseBody

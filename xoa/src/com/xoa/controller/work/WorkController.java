@@ -65,7 +65,7 @@ public class WorkController {
     private FlowProcessService flowProcessService;
 
     @Autowired
-    WorkMapper workMapper;
+    private WorkMapper workMapper;
 
     @RequestMapping("addwork")
     public String work(HttpServletRequest request) {
@@ -178,17 +178,16 @@ public class WorkController {
      * 参数说明:   @throws JSONException
      * @return     String 
      */
-
     @RequestMapping("nextwork")
     @ResponseBody
     public ToJson<FlowFast> nextwork(HttpServletRequest request,
-                          @RequestParam(value="flowId",required = false) String flowId,
-                          @RequestParam(value="formdata",required = false) String formdata,
-                          @RequestParam(value="runId",required = false) int runId,
-                          @RequestParam(value="runName",required = false) String runName,
-                          @RequestParam(value="beginTime",required =false) String beginTime,
-                          @RequestParam(value="beginUser",required =false) String beginUser
-                         ) throws JSONException {
+                                     @RequestParam(value="flowId",required = false) String flowId,
+                                     @RequestParam(value="formdata",required = false) String formdata,
+                                     @RequestParam(value="runId",required = false) int runId,
+                                     @RequestParam(value="runName",required = false) String runName,
+                                     @RequestParam(value="beginTime",required =false) String beginTime,
+                                     @RequestParam(value="beginUser",required =false) String beginUser
+    ) throws JSONException {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         ToJson<FlowFast> tj = new ToJson<FlowFast>();
@@ -197,51 +196,55 @@ public class WorkController {
         String tableName = "flow_data_" + flowId;
         JSONArray json =new JSONArray();
         List<Map<String,Object>> l=json.parseObject(formdata,List.class);
-     // Map<String,Object> map =json.parseObject(formdata,Map.class);
+        // Map<String,Object> map =json.parseObject(formdata,Map.class);
         StringBuffer sbcreate=new StringBuffer();
         if (!CheckTableExist.haveTable(tableName)) {
-//        	String sql = " create table  "+tableName+ ""
-//        			+ "(`id` int(10) not null auto_increment,"
-//        			+ "`run_id` int(10) not null default '0', "
-//        			+ "`run_name` varchar(200) not null default '',"
-//        			+ "`begin_user` varchar(20) not null default '',"
-//        			+ "`begin_time` datetime null,"
-//        			+ "`flow_auto_num` int(11) not null default '0', "
-//        			+ "`flow_auto_num_year` int(11) not null default '0', "
-//        			+ "`flow_auto_num_month` int(11) not null default '0',";
-//        	sbcreate.append(sql.toString());
-//        	for(Map<String,Object> map: l){
-//        		String sql1= ""+ "`"+map.get("key")+"`"+ "text not null default '',";
-//        		sbcreate.append(sql1);
-//    		}
-//        	String sqlprimary=" primary key(id),unique key(run_id) );";
-//        	sbcreate.append(sqlprimary);
-//        	CheckTableExist.createSql(sbcreate.toString());
             List<String> key =new ArrayList<String>();
             for(Map<String,Object> map: l){
                 key.add((String)map.get("key"));
-    		}
+            }
             Map<String,Object> param =new HashedMap();
             param.put("tableName",tableName);
             param.put("keys",key);
             workMapper.createTable(param);
         } else {
-        	 String keys = "run_id,run_name,begin_time,begin_user";
-             String values = "" +runId + "," +"'"+ runName +"'"+ "," +"'"+ beginTime+"'" + "," +"'"+ beginUser+"'";
-             StringBuffer sb = new StringBuffer();
-             sb.append(keys);
-             StringBuffer sb1 = new StringBuffer();
-             sb1.append(values);
-             for(Map<String,Object> map: l){
-            	 sb.append(",").append(map.get("key"));
-                 sb1.append(",").append("'").append(map.get("value")).append("'");
-             }
+            List<String> key =new ArrayList<String>();
+            List<String> value =new ArrayList<String>();
+            key.add("run_id");
+            value.add(String.valueOf(runId));
+            key.add("run_name");
+            value.add(runName);
+            key.add("begin_time");
+            value.add(beginTime);
+            key.add("begin_user");
+            value.add(beginUser);
+
+            for(Map<String,Object> map: l){
+                key.add((String)map.get("key"));
+                value.add((String)map.get("value"));
+            }
+            Map<String,Object> param =new HashedMap();
+            param.put("tableName",tableName);
+            param.put("keys",key);
+            param.put("values",value);
+            workMapper.insert(param);
+
+          /*  String keys = "run_id,run_name,begin_time,begin_user";
+            String values = "" +runId + "," +"'"+ runName +"'"+ "," +"'"+ beginTime+"'" + "," +"'"+ beginUser+"'";
+            StringBuffer sb = new StringBuffer();
+            sb.append(keys);
+            StringBuffer sb1 = new StringBuffer();
+            sb1.append(values);
+            for(Map<String,Object> map: l){
+                sb.append(",").append(map.get("key"));
+                sb1.append(",").append("'").append(map.get("value")).append("'");
+            }
             System.out.println(sb1.toString());
             String sqlAll = "insert into " + tableName + "(" + sb.toString() + ") " + "values(" + sb1.toString() + ")";
             System.out.println(sqlAll.toString());
-            CheckTableExist.createSql(sqlAll);
+            CheckTableExist.createSql(sqlAll);*/
             //String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
-           // int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
+            // int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
            /* flowRunPrcs = new FlowRunPrcs();
             flowRunPrcs.setRunId(runId);
             flowRunPrcs.setPrcsId(1);
@@ -278,28 +281,34 @@ public class WorkController {
                                         @RequestParam(value="prcsflag",required = false) String prcsFlag,
                                         @RequestParam(value="flowPrcs",required = false) String flowPrcs,
                                         @RequestParam(value="beginTime",required =false) String beginTime,
-                                        @RequestParam(value="beginUser",required =false) String beginUser ) {
+                                        @RequestParam(value="beginUser",required =false) String beginUser,
+                                        @RequestParam(value="jingbanUser",required =false) String jingbanUser) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
-
+        Map<String,Object> maps=new HashMap<String,Object>();
+        maps.put("userId",beginUser);
+        maps.put("prcsId",prcsId);
+        maps.put("runId",runId);
         ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
-
-        FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
-        flowRunPrcs.setRunId(Integer.parseInt(runId));
-        flowRunPrcs.setPrcsId(Integer.parseInt(prcsId));
-        flowRunPrcs.setUserId(beginUser);
-        //flowRunPrcs.setPrcsDept(deptId);
-        flowRunPrcs.setPrcsFlag(prcsFlag);
-        flowRunPrcs.setPrcsTime(beginTime);
+        List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(maps);
+        FlowRunPrcs flowRunPrcs = l.get(0);
+        flowRunPrcs.setPrcsFlag("3");
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         flowRunPrcs.setDeliverTime(df.format(new Date()));
-        flowRunPrcs.setCreateTime(beginTime);
-        flowRunPrcs.setPrcsTime(beginTime);
-        flowRunPrcs.setDeliverTime(beginTime);
-        flowRunPrcs.setActiveTime(beginTime);
-        flowRunPrcsService.save(flowRunPrcs);
+        flowRunPrcsService.update(flowRunPrcs);
+
+        FlowRunPrcs fl=new FlowRunPrcs();
+        fl.setPrcsId(Integer.parseInt(prcsId));
+        fl.setPrcsFlag(prcsFlag);
+        fl.setFlowPrcs(Integer.parseInt(flowPrcs));
+        fl.setUserId(jingbanUser);
+        fl.setCreateTime(df.format(new Date()));
+        fl.setPrcsTime("0000-00-00 00:00:00");
+        fl.setDeliverTime("0000-00-00 00:00:00");
+        fl.setActiveTime("0000-00-00 00:00:00");
+        flowRunPrcsService.save(fl);
         try {
-            toJson.setObject(flowRunPrcs);
+            toJson.setObject(fl);
             toJson.setMsg("OK");
             toJson.setFlag(0);
         } catch (Exception e) {
@@ -307,8 +316,9 @@ public class WorkController {
         }
         return toJson;
     }
-    
-    
+
+
+
     /**
      * 创建作者:   张勇
      * 创建日期:   2017/5/24 20:29

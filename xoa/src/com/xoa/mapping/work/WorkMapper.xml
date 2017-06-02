@@ -40,6 +40,26 @@
         </if>
         primary key(id),unique key(run_id)
     </trim>
-
     </update>
+
+    <insert id="insert" parameterType="Map" databaseId="mysql">
+        INSERT  INTO  ${tableName}
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="keys!=null and keys.size()!=0">
+            <foreach item="key" collection="keys" separator=",">
+                ${key}
+            </foreach>
+
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="keys!=null and keys.size()!=0">
+            <foreach item="value" collection="values" separator=",">
+              '${value }'
+            </foreach>
+
+        </if>
+        </trim>
+
+    </insert>
 </mapper>

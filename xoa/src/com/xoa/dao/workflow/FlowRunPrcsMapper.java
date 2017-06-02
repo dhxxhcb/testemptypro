@@ -53,6 +53,14 @@ public interface FlowRunPrcsMapper extends BaseMapper<FlowRunPrcs>{
      * @return
      */
     public List<FlowRunPrcs> findByRunId(Integer runId);
+    /**
+     * 创建作者:   zlf
+     * 创建日期:   2017/6/2 11:44
+     * 方法介绍:   根据流程实例Id和流程实例步骤id查询
+     * 参数说明:
+     * @return
+     */
+    public List<FlowRunPrcs> selectfrp(Map<String,Object> maps);
 
     int deleteByPrimaryKey(Integer id);
 

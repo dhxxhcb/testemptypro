@@ -7,7 +7,7 @@
         <result column="PRCS_ID" javaType="int" property="prcsId"/>
         <result column="USER_ID" javaType="string" property="userId"/>
         <result column="PRCS_TIME" javaType="string" property="prcsTime"/>
-        <result column="DELIVER_TIME" javaType="string" property="deliverTime"/>
+        <result column="DELIVER_TIME" javaType="java.util.Date" property="deliverTime"/>
         <result column="PRCS_FLAG" javaType="string" property="prcsFlag"/>
         <result column="FLOW_PRCS" javaType="int" property="flowPrcs"/>
         <result column="OP_FLAG" javaType="string" property="opFlag"/>
@@ -490,6 +490,18 @@
       WORKINGDAYS_TYPE = #{workingdaysType,jdbcType=CHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+
+    <!-- 根据流程实例Id和流程实例步骤id查询 -->
+    <select id="selectfrp" resultMap="BaseResultMap" parameterType="Map">
+        SELECT
+       *
+        FROM
+        FLOW_RUN_PRCS frp
+        WHERE
+        frp.USER_ID=#{userId}
+        AND frp.PRCS_ID = #{prcsId}
+        AND frp.RUN_ID = #{runId}
+    </select>
 
     <!-- 查询待办工作 -->
     <select id="selectObjcet" resultMap="BaseResultMap" parameterType="Map">
