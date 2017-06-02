@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.zip.DataFormatException;
 
+import com.mysql.jdbc.Buffer;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.xoa.util.common.L;
 
@@ -207,4 +208,39 @@ public class DateFormat {
 		}
 		return ret;
 	}
+
+	/**
+	 *
+	 * 创建作者: 张勇 创建日期: 2017-6-2 下午16:57:34 类介绍 : 根据时间戳差获取停留时间
+	 * time 需转换时间
+	 *
+	 * @return: String 转换为字符串
+	 *
+	 */
+	public static String returnTime(Integer time){
+		long day=time/(24*60*60);
+		long hour=(time/(60*60)-day*24);
+		long min=((time/(60))-day*24*60-hour*60);
+		long s=(time-day*24*60*60-hour*60*60-min*60);
+		StringBuffer sb = new StringBuffer();
+		if(day-365>0){
+			sb.append(day);
+			sb.append("天");
+			sb.append(hour);
+			sb.append("小时");
+		}else if(hour>0 && day-365 == 0){
+			sb.append(hour);
+			sb.append("小时");
+			sb.append(min);
+			sb.append("分");
+		}else{
+			sb.append(min);
+			sb.append("分");
+			sb.append(s);
+			sb.append("秒");
+		}
+		return  sb.toString();
+	}
+
+
 }
