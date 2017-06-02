@@ -47,23 +47,30 @@ var workForm = {
         });
     },
     filter:function(){
-        if(this.option.flowStep != -1){
-            var steptOpt =  this.option.listFp[this.option.flowStep-1];
-           this.option.eleObject.find('.form_item').each(function(){
-                var _this = $(this);
-                if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
-                    if(_this.attr("data-type") == 'macros'){
-                        _this.val('');
-                    }
-                    _this.attr("disabled","disabled")
-                }else{
-                    if(_this.attr("data-type") == 'macros'){
-                        if(_this.is('input')){
-                            _this.attr("readonly","readonly");
+        var that = this;
+        if(that.option.flowStep && that.option.flowStep  != -1){
+            //var steptOpt =  this.option.listFp[this.option.flowStep-1];
+            that.option.listFp.forEach(function (v,i) {
+                if(v.prcsId == that.option.flowStep){
+                    var steptOpt = v;
+                    that.option.eleObject.find('.form_item').each(function(){
+                        var _this = $(this);
+                        if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
+                            if(_this.attr("data-type") == 'macros'){
+                                _this.val('');
+                            }
+                            _this.attr("disabled","disabled")
+                        }else{
+                            if(_this.attr("data-type") == 'macros'){
+                                if(_this.is('input')){
+                                    _this.attr("readonly","readonly");
+                                }
+                            }
                         }
-                    }
+                    });
                 }
             });
+
         }
     },
     RadioRender:function(){
