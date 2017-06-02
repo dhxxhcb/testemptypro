@@ -29,7 +29,26 @@ $(function(){
 
 			}
 		});
-	}
+	};
+	$.fn.privSelect = function (args) {
+        var _this = $(this);
+        $.ajax({
+            url:domain+"/department/getAlldept",
+            type:'get',
+            data:{},
+            dataType:'json',
+            success:function(obj){
+                console.log(obj)
+                var data=obj.obj;
+                departmentData= digui(data,0);
+                var str = departmentChild(departmentData,'<option >请选择部门</option>',0,-1);
+                _this.html(str);
+            },
+            error:function(){
+
+            }
+        });
+    };
 	$.extend({
 		getQueryString:function(name) {
 	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
