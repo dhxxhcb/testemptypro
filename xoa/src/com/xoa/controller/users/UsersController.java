@@ -6,7 +6,7 @@ import com.xoa.util.FileUploadUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.dataSource.ContextHolder;
-import org.apache.catalina.User;
+
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
