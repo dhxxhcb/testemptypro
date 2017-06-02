@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../css/sys/userInfor.css"/>
     <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/sys/userInfor.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div class="content">
@@ -33,13 +34,13 @@
 
                 </ul>
             </div>
-            <div><span class="spanUP liUp">外出人员</span></div>
-            <div><span class="spanUP liUp">全部人员</span></div>
-            <div><span class="spanUP liUp">人员查询</span></div>
+            <div><span class="spanUP liUp" id="OUTP">外出人员</span></div>
+            <div><span class="spanUP liUp" id="ALLP">全部人员</span></div>
+            <div><span class="spanUP liUp" id="QUERY">人员查询</span></div>
         </div>
     </div>
     <div class="right">
-        <div class="userQuery" style="display: none;">
+        <div class="queryUser" style="display: block;">
             <div class="title">
                 <span>查询用户</span>
             </div>
@@ -47,13 +48,13 @@
                 <tr>
                     <td class="blue_text">用户名：</td>
                     <td>
-                        <input type="text" name="telNo" class="inputTd" placeholder=""/>
+                        <input type="text" name="userId" class="inputTd"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="blue_text">真实姓名：</td>
                     <td>
-                        <input type="text" name="faxNo" class="inputTd" placeholder=""/>
+                        <input type="text" name="userName" class="inputTd"/>
                     </td>
                 </tr>
                 <tr>
@@ -69,16 +70,14 @@
                 <tr>
                     <td class="blue_text">部门：</td>
                     <td>
-                        <select name="unit" id="selectCom">
-                            <option value="">部门</option>
+                        <select name="unit" id="department">
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td class="blue_text">角色：</td>
                     <td>
-                        <select name="unit" id="selectUser">
-                            <option value="">系统管理员</option>
+                        <select name="user" id="selectUser">
                         </select>
                     </td>
                 </tr>
@@ -114,7 +113,7 @@
             <div class="noData" style="display: block;">
                 <div class="bgImg">
                     <div class="IMG">
-                        <img src="img/icon64_info.png"/>
+                        <img src="../img/sys/icon64_info.png"/>
                     </div>
                     <div class="TXT">无外出人员</div>
                 </div>
@@ -123,6 +122,25 @@
         <div class="allPerson" style="display: none;">
             <div class="title">
                 <span>全部人员</span>
+            </div>
+            <div class="tab">
+                <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+                    <tr class='trAllPerson'>
+                        <th width="">部门</th>
+                        <th width="">角色</th>
+                        <th width="">姓名</th>
+                        <th width="">在线时长</th>
+                        <th width="">性别</th>
+                        <th width="">工作电话</th>
+                        <th width="">手机</th>
+                        <th width="">电子邮件</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="userQuery" style="display: none;">
+            <div class="title">
+                <span>用户查询</span>
             </div>
             <div class="tab">
                 <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
@@ -139,8 +157,34 @@
                 </table>
             </div>
         </div>
+        <div class="conditionQuery" style="display: none;">
+            <div class="title">
+                <span>用户查询</span>
+            </div>
+            <div class="tab">
+                <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+                    <tr class='Condition'>
+                        <th width="">部门</th>
+                        <th width="">角色</th>
+                        <th width="">姓名</th>
+                        <th width="">在线时长</th>
+                        <th width="">性别</th>
+                        <th width="">工作电话</th>
+                        <th width="">手机</th>
+                        <th width="">电子邮件</th>
+                    </tr>
+                </table>
+                <div class="backBtn">返回</div>
+            </div>
+        </div>
     </div>
 </div>
+<script>
+    $(function(){
+        $('#department').deptSelect();
+        //$('#selectUser').privSelect();
+    })
+</script>
 </body>
 </html>
 
