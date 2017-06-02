@@ -42,7 +42,6 @@ var workForm = {
             console.log(tableStr);
             _this.before(tableStr);
         });
-
     },
     filter:function(){
         if(this.option.flowStep != -1){
