@@ -490,7 +490,7 @@
                    //找到表格上的内容
                    var form_item=$('.cont_form .form_item');
                    var realData=[];
-                    var radioArr = {}
+                    var radioArr = {};
                    for(var i=0;i<form_item.length;i++){
                        var baseData={};
                        var value="";
@@ -650,7 +650,8 @@
                                             beginUser:ret.beginUser,
                                             prcsId:pId,
                                             prcsflag:1,
-                                            flowPrcs:ret2.flowPrcs
+                                            flowPrcs:ret2.flowPrcs,
+                                            jingbanUser:$('#remind_name').attr('user_id')
                                         }
                                        /* console.log(pId);*/
                                         console.log(savedData);
