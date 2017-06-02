@@ -275,7 +275,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"system_menu":"sys/menuSetting",
 				"system_log":"sys/journal",
 				"system_code":"common/systemCode",
-				"info_unit":"sys/unitInfor"
+				"info_unit":"sys/unitInfor",
+				"info_dept":"department/deptQuery"
 			};
 			
 			$('.cont_nav').on('click','li',function(){
