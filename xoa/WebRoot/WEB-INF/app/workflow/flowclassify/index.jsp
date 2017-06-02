@@ -312,7 +312,7 @@
                 area: ['600px', '400px'], //宽高
                 title:$(this).find('h1').text(),
                 closeBtn: 0,
-                content: '<div class="conter"><div class="f_title"><span class="f_field_title">表单父分类</span><span class="f_field_required">*</span>'+
+                content: '<div class="conter"><div class="f_title"><span class="f_field_title"></span><span class="f_field_required">*</span>'+
                 '<div class="f_field_ctrl clear"><select name="SORT_PARENT" id="sort_parent"></select><span>（为空为一级分类）</span></div>'+
                 '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类排序号</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="number" name="SORT_NO" class="inp" value="0" id="sort_no"></div></div>'+
                 '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类名称</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp name_biaodan" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name"></div></div>'+
@@ -332,10 +332,12 @@
                     };
 
                     if($('.new_liucheng').find('h1').text()=='新建表单分类'){
+
                         url='formSave';
                         tabType=0;
                         data["formName"]= $('#sort_name').val();
                     }else{
+
                         tabType=1;
                         url='flowSave';
                         data["flowName"]= $('#sort_name').val();
@@ -367,6 +369,10 @@
             var opt_li='<option value="0"  class="levelleft0"></option>';
             opt_li=Child(formdata,opt_li,0,-1);
             $('#sort_parent').html(opt_li);
+
+                $('.f_field_title').html('表单父分类');
+
+
 
             //部门共用
 
@@ -474,11 +480,12 @@
             });
 
 			/*$(".selector").find("option[value='+parent_id+']").attr("selected",true);*/
-            //父表单
+
 
             var opt_li='<option value="0"  class="levelleft0 selector"></option>';
             opt_li=Child(formdata,opt_li,0,parent_id);
             $('#sort_parent').html(opt_li);
+
 
             //部门
 
@@ -523,23 +530,7 @@
                 btn: ['保存', '关闭'],
                 yes: function (index, layero) {
                     //按钮【按钮三】的回调
-					/*alert($('.name_biaodan').val());*/
-					/*      var url="";
-					 var data={
-					 sortNo:$('#sort_no').val(),
-					 parentId:$('#sort_parent  option:checked').attr('value'),
-					 departmentId:$('#dept_id  option:checked').attr('value')
 
-					 };*/
-					/*alert($('.edit_biaodan').attr('name'));*/
-					/*if($('.edit_biaodan').attr('name')=='编辑表单分类'){
-					 url='formUpdate';
-					 tabType=0;
-					 data={
-					 formName:$('#sort_name').val(),
-					 formId:id
-					 }
-					 }else{*/
                     tabType=1;
                     url='flowUpdate';
                     data={
@@ -562,9 +553,12 @@
                     }
                 }
             })
+
+            //父表单(流程)
             var opt_li='<option value="0"  class="levelleft0 selector"></option>';
             opt_li=Child(flowdata,opt_li,0,parent_id);
             $('#sort_parent').html(opt_li);
+            $('.f_field_title').html('流程父分类');
 
             //部门
 

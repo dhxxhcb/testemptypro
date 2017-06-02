@@ -379,7 +379,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!--word编辑器-->
         <tr>
             <td colspan="2">
-				<div id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></div>
+				<textarea id="container" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></textarea>
             </td>
         </tr>
         <tr>
@@ -582,7 +582,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!--word编辑器-->
             <tr>
                 <td colspan="2">
-                    <div id="containers" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></div>
+                    <textarea id="containers" name="content" type="text/plain" style="width: 100%;min-height: 200px;"></textarea>
                 </td>
             </tr>
             <tr>
@@ -599,7 +599,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </table>
         <div class="foot_mg">
             <div  id="adds_send" value="1" type="publish" class="fot_1 btn_ok"><fmt:message code="global.lang.publish"/></div>
-            <div  id="add_baocun" value="0" type="save" class="btn_ok"><fmt:message code="global.lang.save"/></div>
+            <div  id="adds_baocun" value="0" type="save" class="btn_ok"><fmt:message code="global.lang.save"/></div>
         </div>
     </div>
 </div>
@@ -762,14 +762,10 @@ $(function () {
         }
     });
 
-
+    console.log( $('#adds_send'));
 			/* word文本编辑器 */
-			//修改---插件
-			 var ue = UE.getEditor('container');
 
-			 //新增ue插件
-            var ue = UE.getEditor('containers');
-		 
+
             var data = {
                 read : $('.index_head .one').parent().attr('data_id'),
 				typeId : $('#select').val()==0?'':$('#select').val(),
@@ -797,7 +793,6 @@ $(function () {
 				data.typeId = $('#select').val()==0?'':$('#select').val();
 				data.nTime = $('#sendTime').val();
 				console.log(data);
-
 				if(data.read == ''){
 					$('.step1').show();
 					$('.step2').hide();
@@ -820,9 +815,8 @@ $(function () {
                     $('.step3').show();
 					$('#add_send').attr('ac','add');
 					$('.center').hide();
-				
 				}
-				
+
             });
             function initPageList(cb){
             	$.ajax({
@@ -859,6 +853,9 @@ $(function () {
                            
 							
 						$("#j_tb").html(news);
+                        changes();
+
+
 						if(cb){
 							cb(data.totleNum);
 						}
@@ -913,7 +910,12 @@ $(function () {
             $('.center').hide();
         });
         //全局data 参数
-
+//			修改---插件
+   console.log($('#container'))
+    var ue = UE.getEditor('container');
+    console.log($('#containers'))
+    //新增ue插件
+    var sue = UE.getEditor('containers');
     var data_notice={
         subject:$('#add_titileTime').val(),//标题
         toId:$('#add_texta').val(),//部门发布范围
@@ -935,13 +937,12 @@ $(function () {
         beginDates:$('#starts_add').val(),//开始日期
         endDates:$('#ends_add').val()  //结束日期
     }
-
-       //新建公告通知
+    console.log( "-------------");
+        console.log( $('#adds_send'));
         $('#adds_send').on('click',function(){
             alert('111');
-        /* var action=$(this).attr("ac");*/
-
-         /*alert(action);*/
+            /* var action=$(this).attr("ac");*/
+            /*alert(action);*/
             //新建保存的数据接口
             $.ajax({
                 type: "post",
@@ -957,7 +958,11 @@ $(function () {
                 },
 
             });
-         })
+        })
+
+       //新建公告通知
+
+
 
        /*  function add_notice(){
 
@@ -1000,64 +1005,67 @@ $(function () {
 
      /*add_notice();*/
             //修改公告通知管理
-           $('#j_tb').on('click','.notice_change',function(){
+        function changes(){
+            $('#j_tb').on('click','.notice_change',function(){
                 alert('111');
-               var tid=$(this).attr('notifyId');
-               $('.step1').hide();
-               $('.step2').show();
-               $('.step3').hide();
-               $('#add_send').attr('ac',"update");
-               $('#add_send').attr('noId',tid);
-               $('.center').hide();
-               ue.ready(function(){
-                   //公告详情
-                   $.ajax({
-                       url: "getOneById",
-                       type: "get",
-                       data:{
-                           notifyId:tid
-                       },
-                       dataType: 'json',
-                       success: function (obj) {
-                           console.log(obj.object);
-                           var data=obj.object;
-                           var sendTime=new Date((data.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-                           var sendTime=new Date((data.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-                           var beginDate=new Date((data.beginDate)*1000).Format('yyyy-MM-dd hh:mm');
-                           $('#add_titileTime').val(data.subject);
-                           $('#add_texta').val(data.toId);
-                           $('#add_selectUser').val(data.userrange);//选人
-                           $('#add_texta').val(data.toId);//选部门
-                           $('#add_texta').val(data.toId);//选角色
-                           $('#add_selectjuese').val(data.privId);//角色
-                           $('#add_newDate').val(data.notifyDateTime);//发布时间
-                           $('#start_add').val(data.beginDate);//起始时间
-                           $('#end_add').val(data.endDate);//结束时间
-                           /*$('#add_selectUser').val(data.userId);*/
-                           /*$('#add_type_notice').selected(data.typeName);*/
-                           $("#add_type_notice").find("option[value="+data.typeId+"]").attr("selected",true);//类型
-                           if(data.top==1){
-                               $('#textTop').prop('checked',true);//是否置顶
-                           };
+                var tid=$(this).attr('notifyId');
+                $('.step1').hide();
+                $('.step2').show();
+                $('.step3').hide();
+                $('#add_send').attr('ac',"update");
+                $('#add_send').attr('noId',tid);
+                $('.center').hide();
+                ue.ready(function(){
+                    //公告详情
+                    $.ajax({
+                        url: "getOneById",
+                        type: "get",
+                        data:{
+                            notifyId:tid
+                        },
+                        dataType: 'json',
+                        success: function (obj) {
+                            console.log(obj.object);
+                            var data=obj.object;
+                            var sendTime=new Date((data.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                            var sendTime=new Date((data.sendTime)*1000).Format('yyyy-MM-dd hh:mm');
+                            var beginDate=new Date((data.beginDate)*1000).Format('yyyy-MM-dd hh:mm');
+                            $('#add_titileTime').val(data.subject);
+                            $('#add_texta').val(data.toId);
+                            $('#add_selectUser').val(data.userrange);//选人
+                            $('#add_texta').val(data.toId);//选部门
+                            $('#add_texta').val(data.toId);//选角色
+                            $('#add_selectjuese').val(data.privId);//角色
+                            $('#add_newDate').val(data.notifyDateTime);//发布时间
+                            $('#start_add').val(data.beginDate);//起始时间
+                            $('#end_add').val(data.endDate);//结束时间
+                            /*$('#add_selectUser').val(data.userId);*/
+                            /*$('#add_type_notice').selected(data.typeName);*/
+                            $("#add_type_notice").find("option[value="+data.typeId+"]").attr("selected",true);//类型
+                            if(data.top==1){
+                                $('#textTop').prop('checked',true);//是否置顶
+                            };
 
-                           ue.setContent(data.content);//内容
-                           if(data.top==1){
-                               $('.print').prop('checked',true);//是否打印
-                           }
-                           if(data.top==1){
-                               $('.down').prop('checked',true);//是否下载
-                           }
+                            ue.setContent(data.content);//内容
+                            if(data.top==1){
+                                $('.print').prop('checked',true);//是否打印
+                            }
+                            if(data.top==1){
+                                $('.down').prop('checked',true);//是否下载
+                            }
                             $('#textDay').val(data.topDays)//置顶天数
 
-                           $("#add_sel").find("option[value="+data.format+"]").attr("selected",true);//格式
+                            $("#add_sel").find("option[value="+data.format+"]").attr("selected",true);//格式
                             $('#add_summny').val(data.summary);//内容
-                           $('.keyword_ip').val(data.keyword);//关键词
-                       }
+                            $('.keyword_ip').val(data.keyword);//关键词
+                        }
 
-                   })
-               })
+                    })
+                })
 
             });
+        }
+
 
 
 
@@ -1077,15 +1085,11 @@ $(function () {
                     }
                 })
             })
-
-
-
-});
-    //修改
+//修改
     laydate({
-         elem: '#add_newDate', //目标元素。
-         format: 'YYYY-MM-DD hh:mm:ss', //日期格式
-         istime: true, //显示时、分、秒
+        elem: '#add_newDate', //目标元素。
+        format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+        istime: true, //显示时、分、秒
     });
 
     //新增时间控件
@@ -1094,31 +1098,31 @@ $(function () {
         format: 'YYYY-MM-DD hh:mm:ss', //日期格式
         istime: true, //显示时、分、秒
     });
-   
-   //查询公告时间控件调用
-   var start = {
-     elem: '#beginTime',
-     format: 'YYYY/MM/DD hh:mm:ss',
-    min: laydate.now(), //设定最小日期为当前日期
-    max: '2099-06-16 23:59:59', //最大日期
-     istime: true,
-     istoday: false,
-     choose: function(datas){
-        end.min = datas; //开始日选好后，重置结束日的最小日期
-        end.start = datas; //将结束日的初始值设定为开始日
-     }
-   };
-   var end = {
-     elem: '#endTime',
-     format: 'YYYY/MM/DD hh:mm:ss',
-     min: laydate.now(),
-     max: '2099-06-16 23:59:59',
-     istime: true,
-     istoday: false,
-     choose: function(datas){
-       start.max = datas; //结束日选好后，重置开始日的最大日期
-     }
-   };
+
+    //查询公告时间控件调用
+    var start = {
+        elem: '#beginTime',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas; //将结束日的初始值设定为开始日
+        }
+    };
+    var end = {
+        elem: '#endTime',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        min: laydate.now(),
+        max: '2099-06-16 23:59:59',
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            start.max = datas; //结束日选好后，重置开始日的最大日期
+        }
+    };
 
     /*新建公告时间控件调用*/
     //修改-----开始时间
@@ -1172,12 +1176,16 @@ $(function () {
         }
     };
 
-   laydate(start);
-   laydate(end);
+    laydate(start);
+    laydate(end);
     laydate(starts);
     laydate(starts_zeng);
     laydate(ends_zeng);
     laydate(ends);
+
+
+});
+
 
 </script>
 

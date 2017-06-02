@@ -1057,11 +1057,11 @@
                             '<td class=""></td><td class="">'+data.obj[i].userName+'</td>'+
                             '<td class="">'+status+'</td><td class="">'+data.obj[i].createTime+'</td>'+
                             '<td class=""></td>'+
-                            '<td style="text-align:left;" title="主办导出删除">'+
-                            '<a href="javascript:"><span class="host-span" id="zhuban" formId='+data.obj[i].flowType.formId+'>主办</span></a>'+
-                            '<a href=""><span class="operation_text_left">导出</span></a>'+
+                            '<td style="text-align:left;">'+
+                            '<a href="javascript:"><span class="host-span" id="zhuban" title="主办" formId='+data.obj[i].flowType.formId+' prcsId='+data.obj[i].flowProcess.prcsId+'>主办</span></a>'+
+                            '<a href=""><span class="operation_text_left" title="导出">导出</span></a>'+
                             '<a href="javascript:">'+
-                            '<span class="operation_text_left">删除</span></a></td></tr>';
+                            '<span class="operation_text_left" title="删除">删除</span></a></td></tr>';
                         //$('#dbgz').html(str);
                     }
                     $('#dbgz').html(str);
@@ -1222,9 +1222,10 @@
         //点击主办按钮，出现主办页面
         $('#dbgz').on('click','#zhuban',function(){
             var formId= $(this).attr('formId');
+            var prcsId= $(this).attr('prcsId');
 			/*      alert(formId);*/
-            user_id='quick';
-            $.popWindow("workform?flowId="+formId+'&flowStep=1','快速新建页面','0','0','1500px','800px');
+            user_id='zhuban';
+            $.popWindow("workform?flowId="+formId+'&flowStep='+prcsId+'','快速新建页面','0','0','1500px','800px');
         });
 
 

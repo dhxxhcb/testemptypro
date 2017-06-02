@@ -275,8 +275,9 @@ public class WorkController {
                 "loginDateSouse"));
 
         ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
-        List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(Integer.parseInt(runId));
-        FlowRunPrcs flowRunPrcs = l.get(0);
+
+        FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
+        flowRunPrcs.setRunId(Integer.parseInt(runId));
         flowRunPrcs.setPrcsId(Integer.parseInt(prcsId));
         flowRunPrcs.setUserId(beginUser);
         //flowRunPrcs.setPrcsDept(deptId);

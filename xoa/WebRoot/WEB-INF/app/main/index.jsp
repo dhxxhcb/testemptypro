@@ -34,6 +34,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				color:#2f8ae3;
 				cursor: pointer;
 			}
+			.three h1{
+				margin-left:6%;
+			}
 		</style>
 	</head>
 	<body>
@@ -473,7 +476,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             $(this).parent('.two').siblings().find('h1').attr('style','color:#000');
                             $(this).parents('.one').siblings().find('h1').attr('style','color:#000');
                             $(this).parents('.one').siblings().find('.erji_circle').attr('src','img/main_img/hei.png');
-							var url=$(this).attr('url'); 
+                            $(this).parents('.one').siblings().find('.sanji_circle').attr('src','img/main_img/hei.png');
+                            var url=$(this).attr('url');
 							var menu_tid=$(this).parent().attr('menu_tid'); 
 							//console.log(url);
 							if(menu[url.replace('/','_')]){
