@@ -120,6 +120,9 @@
                             var url = '../workflow/work/workform1?formId='+formid;
                             $.popWindow(url,'表单预览',100,300,900,600)
                         });
+                        $('#close_btn').on('click', function() {
+                           window.close();
+                        });
                         $('#saveFrom_btn').on('click', function() {
                             if (formEditor.hasContents()) {
                                 $.ajax({
