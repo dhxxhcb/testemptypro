@@ -317,7 +317,7 @@ $(function () {
             type:'post',
             dataType:'json',
             success:function () {
-                ajaxSvg();
+                location.reload();
             }
         })
     })
