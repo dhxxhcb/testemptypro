@@ -1,0 +1,293 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body,html{
+	font-family: "微软雅黑";
+	position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+a{
+	text-decoration: none;
+	color: #2B7FE0;
+}
+ul{list-style: none;}
+.content{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: #f5f7f8;
+}
+.content .headDiv{
+	width: 100%;
+	height: 45px;
+	border-bottom: #999 1px solid;
+}
+.content .divP{
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	margin-left: 30px;
+}
+.content .left{
+	width: 19.9%;
+	float: left;
+	height: 100%;
+	overflow-y: auto;  
+    overflow-x: hidden;
+    border-right: #ccc 1px solid;
+}
+.content .left .collect{
+	width: 100%;
+	height: 750px;
+}
+
+
+.content .left .collect .divUP{
+	width: 100%;
+	overflow: hidden;
+}
+.content .left .collect .spanUP{
+	display: block;
+	width: 100%;
+	padding-left: 30px;
+	font-size: 14px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: #ddd 1px solid;
+	cursor: pointer;
+}
+.content .left .collect .liUp:first-of-type{
+	border-top: #ddd 1px solid;
+}
+.content .left .collect .liUp:hover{
+	background-color: #add2f8;
+}
+
+#ULDown span{
+	display: block;
+	width: 100%;
+	padding: 8px 0;
+}
+#ULDown span a{
+	font-size: 14px;
+}
+#ULDown span:hover{
+	background-color: #add2f8;
+}
+
+
+.content .right{
+	float: left;
+	width: 80%;
+	font-size: 14px;
+}
+.userQuery{
+	width: 100%;
+}
+.title{
+	width: 100%;
+	overflow: hidden;
+	height: 45px;
+}
+.title span{
+	display: inline-block;
+	height: 100%;
+	line-height: 45px;
+	font-size: 20px;
+	margin-left: 30px;
+}
+table.table{
+    width: 80%;
+    margin:20px auto;
+    font-size: 14px;
+
+}
+table.table tr{
+    border: 1px solid #c0c0c0;
+}
+table.table tr td{
+    padding: 5px;
+}
+table.table tr td{
+    border-right: 1px solid #c0c0c0;
+}
+table.table tr td input[type="text"]{
+    width: 200px;
+    height: 22px;
+    border: none;
+    outline: none;
+    border: #ccc 1px solid;
+    margin-right: 5px;
+    padding-left: 3px;
+}
+select{
+	width: 205px;
+	height: 25px;
+}
+.blue_text{width: 20%;}
+.btn{
+    width: 102px;
+    margin: 3px auto;
+}
+.btn input{
+    outline: none;
+    padding: 2px 10px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #eee;
+    cursor: pointer;
+}
+/*.content .right .header{
+	width: 100%;
+	height: 41px;
+	line-height: 41px;
+	border-bottom: #eee 1px solid;
+}
+.content .right .USER{
+	margin-left: 10px;
+	font-size: 16px;
+}
+.content .right .title{
+	margin-top: 5px;
+}
+.explain{
+	margin-left: 15px;
+	color: #999999;
+}*/
+/*#btn{
+	display: inline-block;
+	margin-left: 70%;
+	cursor: pointer;
+	width: 85px;
+	height:32px;
+	line-height: 32px;
+	font-size: 14px;
+	background-color: #2f80d1;
+	outline: none;
+	border: #ccc 1px solid;
+	color: #fff;
+	border-radius: 5px;
+}*/
+.tab{
+	width: 100%;
+	margin-top: 13px;
+}
+.tab table{
+	width: 99%;
+	font-size: 14px;
+	margin: 0 auto;
+}
+.tab table tr{
+	border: 1px solid #c0c0c0;
+	cursor: pointer;
+}
+
+.tab table tr th{
+	color: #2F5C8F;
+	/*font-weight: normal;*/
+}
+.tab table tr:nth-child(odd){
+	background-color: #fff;
+}
+.tab table tr:nth-child(even){
+	background-color: #F6F7F9;
+}
+.tab table tr.userData:hover{
+	background-color: #add2f8;
+}
+.tab table tr th,.tab table tr td{
+	padding:10px;
+}
+.tab table tr th,.tab table tr td{
+	text-align: center;
+}
+.tab table a{
+	text-decoration: none;
+	text-align: left;
+	display: inline-block;
+	color:#2B7FE0;
+}
+.noData{
+	width: 100%;
+}
+.noData .bgImg{
+	width: 360px;
+	height: 180px;
+	margin: 100px auto;
+	background-color: #357ece;
+	border-radius: 10px;
+	box-shadow: 3px 3px 3px #2F5C8F;
+	overflow: hidden;
+}
+.noData .bgImg .IMG{
+	float: left;
+	width: 75px;
+	height: 75px;
+	margin-top: 52px;
+	margin-left: 70px;
+}
+.noData .bgImg .IMG img{
+	width: 100%;
+}
+.noData .bgImg .TXT{
+	float: left;
+	color: #fff;
+	font-size: 20px;
+	margin-top: 75px;
+	margin-left: 20px;
+}
+/*.bottom {
+	width: 99%;
+	margin: 0 auto;
+    height:34px;
+    border: 1px solid #c0c0c0;
+    margin-top:10px;
+    background-color: #fff;
+}
+.bottom div {
+    display: inline-block;
+    float: left;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+.bottom .boto a{
+	font-size: 14px;
+	display: block;
+	border: #ccc 1px solid;
+	padding: 2px 4px;
+	border-radius: 3px;
+}*/
+
+.liUp{
+	background: url(../img/icon_rightarrow_03.png) no-repeat 75% center;
+}
+.liDown{
+	background: url(../img/icon_downarrow_03.png) no-repeat 75% center;
+}
+.on{background-color: #add2f8;}
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+.left::-webkit-scrollbar{
+	width: 2px;
+	height: 16px;
+	background-color: #f5f5f5;
+}
+/*定义滚动条的轨道，内阴影及圆角*/
+.left::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	border-radius: 10px;
+	background-color: #f5f5f5;
+}
+/*定义滑块，内阴影及圆角*/
+.left::-webkit-scrollbar-thumb{
+	/*width: 10px;*/
+	height: 20px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}

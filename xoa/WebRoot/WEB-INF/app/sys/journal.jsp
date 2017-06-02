@@ -253,58 +253,39 @@
             $.popWindow("../common/selectUser");
         });
     })
-    // 基于准备好的dom，初始化echarts实例
+   /* // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('monthData'));
 
     // 指定图表的配置项和数据
     var option = {
-        /*title: {
-            text: '2017年度按月访问统计',
-            left:'45%',
-            textStyle:{
-                fontSize:14
-            },
-            textAlign:'center'
-
-        },*/
         tooltip: {},
         legend: {
         },
         xAxis: {
-            data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+            data: ["1月","2月","3月","4月","5月","6月"]
         },
         yAxis: {},
         series: [{
             name: '访问量',
             type: 'bar',
-            data: [0, 0, 67, 140, 5, 0, 0, 0, 0, 0, 0, 0]
+            data: [0, 0, 67, 140, 5, 0]
         }]
     };
 
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    myChart.setOption(option);*/
 </script>
 <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
+       /* // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('todyData'));
 
         // 指定图表的配置项和数据
         var option = {
-            /*title: {
-                text: '1月份按日访问统计',
-                left:'45%',
-                textStyle:{
-                    fontSize:14
-                },
-                textAlign:'center'
-
-            },*/
             tooltip: {},
             legend: {
             },
             xAxis: {
                 data: ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
-                /*data: ["1","4","7","10","13","16","19","22","25","28","31"]*/
             },
             yAxis: {},
             series: [{
@@ -313,15 +294,13 @@
                 data: [0, 0, 5, 39, 72, 1, 0, 99, 67, 25, 29, 13, 0, 0, 27, 23, 14, 38, 72, 7, 0, 38, 100, 200, 157, 102, 82, 0, 0, 0, 128]
             }]
         };
-
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart.setOption(option);*/
 
 </script>
 <script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
+    /*// 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('hourData'));
-
     // 指定图表的配置项和数据
     var option = {
         title: {
@@ -347,7 +326,7 @@
     };
 
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    myChart.setOption(option);*/
 
     //时间控件调用
     var start = {

@@ -150,13 +150,53 @@ $(function(){
                     var str1='';
                     var i=0;
                     for(var j=0;j<data1[i].length;j++){
-                        str+='<tr class="monthData"><td>'+(j+1)+'月</td><td>'+data1[i+1][j]+'</td><td>'+data1[i][j]+'</td></tr>'
+                        str+='<tr class="monthData"><td>'+(j+1)+'月</td><td>'+data1[i+1][j]+'</td><td>'+data1[i][j]+'</td></tr>';
                     }
                     $('.yearJournal').after(str);
                     for(var n=0;n<data2[i].length;n++){
-                        str1+='<tr class="dayData"><td>'+(n+1)+'</td><td>'+data2[i+1][n]+'</td><td>'+data2[i][n]+'</td></tr>'
+                        str1+='<tr class="dayData"><td>'+(n+1)+'</td><td>'+data2[i+1][n]+'</td><td>'+data2[i][n]+'</td></tr>';
                     }
                     $('.monthJournal').after(str1);
+
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('monthData'));
+                    // 指定图表的配置项和数据
+                    var option = {
+                        tooltip: {},
+                        legend: {
+                        },
+                        xAxis: {
+                            data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+                        },
+                        yAxis: {},
+                        series: [{
+                            name: '访问量',
+                            type: 'bar',
+                            data: data1[0]
+                        }]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('todyData'));
+                    // 指定图表的配置项和数据
+                    var option = {
+                        tooltip: {},
+                        legend: {
+                        },
+                        xAxis: {
+                            data: ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
+                        },
+                        yAxis: {},
+                        series: [{
+                            name: '访问量',
+                            type: 'bar',
+                            data: data2[0]
+                        }]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
                 }
             }
         })
@@ -176,6 +216,34 @@ $(function(){
                         str+='<tr><td>'+j+'</td><td>'+data[i+1][j]+'</td><td>'+data[i][j]+'</td></tr>';
                     }
                     $('.period').after(str);
+
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('hourData'));
+                    // 指定图表的配置项和数据
+                    var option = {
+                        title: {
+                            text: '总访问量小时分布统计',
+                            left:'45%',
+                            textStyle:{
+                                fontSize:14
+                            },
+                            textAlign:'center'
+                        },
+                        tooltip: {},
+                        legend: {
+                        },
+                        xAxis: {
+                            data: ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+                        },
+                        yAxis: {},
+                        series: [{
+                            name: '访问量',
+                            type: 'bar',
+                            data: data[0]
+                        }]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
                 }
             }
         })
