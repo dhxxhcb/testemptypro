@@ -1,6 +1,7 @@
 package com.xoa.model.workflow;
 
 import com.xoa.model.department.Department;
+import com.xoa.util.DateFormat;
 
 import java.util.List;
 
@@ -96,6 +97,20 @@ public class FlowRunPrcs {
      */
 	private FlowProcess flowProcess;
 
+    /**
+     * 接收时间
+     */
+	private String  receiptTime;
+
+    /**
+     * 到达停留时间
+     */
+	private String arriveTime;
+
+//    /**
+//     * 办理停留时间
+//     */
+//	private String handleTime;
 
     public FlowRun getFlowRun() {
         return flowRun;
@@ -170,7 +185,7 @@ public class FlowRunPrcs {
     }
 
     public String getDeliverTime() {
-        return deliverTime==null?"":deliverTime.trim();
+        return deliverTime==null? DateFormat.getStrTime(-621701856):deliverTime.trim();
     }
 
     public void setDeliverTime(String deliverTime) {
@@ -406,4 +421,44 @@ public class FlowRunPrcs {
     public void setFlowProcess(FlowProcess flowProcess) {
         this.flowProcess = flowProcess;
     }
+
+    public String getReceiptTime() {
+        return receiptTime;
+    }
+
+    public void setReceiptTime(String receiptTime) {
+        this.receiptTime = receiptTime;
+    }
+
+    /**
+     * 到达停留时间
+     * @return
+     */
+    public String getArriveTime() {
+        return arriveTime;
+    }
+
+    /**
+     * 到达停留时间
+     * @param arriveTime
+     */
+    public void setArriveTime(String arriveTime) {
+        this.arriveTime = arriveTime;
+    }
+
+//    /**
+//     * 办理停留时间
+//     * @return
+//     */
+//    public String getHandleTime() {
+//        return handleTime;
+//    }
+//
+//    /**
+//     * 办理停留时间
+//     * @param handleTime
+//     */
+//    public void setHandleTime(String handleTime) {
+//        this.handleTime = handleTime;
+//    }
 }

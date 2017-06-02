@@ -575,7 +575,7 @@
     fr.WORK_LEVEL DESC
   </select>
 
-    <!-- 查询办结工作 -->
+    <!-- 查询挂起工作 -->
     <select id="selectHang" resultMap="BaseResultMap" parameterType="Map">
         SELECT
         fr.RUN_ID,
@@ -660,30 +660,15 @@
     </select>
 
     <!-- 查询关联部门实际步骤 -->
-    <select id="findAllNode" resultMap="BaseResultMap">
-            SELECT
-            frp.ID,
-            frp.USER_ID,
-            frp.PRCS_ID,
-            frp.FLOW_PRCS,
-            frp.COMMENT,
-            frp.OP_FLAG,
-            frp.TOP_FLAG,
-            frp.PRCS_FLAG,
-            frp.TIME_OUT_FLAG,
-            frp.PRCS_TIME,
-            frp.CREATE_TIME,
-            frp.DELIVER_TIME,
-            frp.TIME_OUT_TYPE,
-            frp.TIME_OUT_ATTEND,
-            frp.IS_REMIND,
-            frp.TIME_OUT,
-            dp.DEPT_NAME
+    <select id="findTime" resultType="String">
+        SELECT
+            fpr.DELIVER_TIME
         FROM
-            flow_run_prcs frp
-         LEFT  JOIN FLOW_PROCESS frp ON fp.FLOW_ID = fr.FLOW_ID
+            flow_run_prcs fpr
         WHERE
-            frp.RUN_ID = #{runId}
+           fpr.PRCS_ID = #{prcsId}
+        AND
+           fpr.RUN_ID = #{runId}
     </select>
 
 

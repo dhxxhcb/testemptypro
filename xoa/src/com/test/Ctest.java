@@ -77,7 +77,7 @@ public class Ctest {
 //	private FlowProcessService processService;
 
 	@Resource
-	private FlowRunPrcsService prcsService;
+	private FlowRunPrcsService flowRunPrcsService;
 
 	@Test
 	public void test()throws  Exception{
@@ -88,7 +88,7 @@ public class Ctest {
 //		ToJson<FlowRunPrcs> toJson =  flowRunPrcsService.findAllNode(154);
 		Map<String,Object> maps = new HashMap<String,Object>();
 		maps.put("userId","admin");
-		ToJson<FlowRunPrcs> toJson  = prcsService.selectObject(maps,1,10,true);
+		ToJson<FlowRunPrcs> toJson  =  flowRunPrcsService.selectObject(maps, 1, 5, true);
 		System.out.println(JSON.toJSONStringWithDateFormat(toJson,"yyyy-MM-dd HH:mm:ss"));
 
 
