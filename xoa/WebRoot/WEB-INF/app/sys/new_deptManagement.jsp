@@ -14,16 +14,13 @@
     <link rel="stylesheet" type="text/css" href="../../lib/ueditor/laydate.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/dept/deptManagement.css"/>
     <link rel="stylesheet" type="text/css" href="../../lib/easyui/themes/easyui.css"/>
-   <link rel="stylesheet" type="text/css" href="../../lib/easyui/themes/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/easyui/themes/icon.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/base.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/news/center.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/dept/new_news.css"/>
    <script type="text/javascript" src="../../js/jquery-1.9.1.js"></script>
-    <script src="../lib/laydate.js"></script>
-  <%-- <script type="text/javascript" src="../lib/easyui/jquery.easyui.min.js"></script>--%>
-   <%-- <script type="text/javascript" src="../lib/easyui/tree.js"></script>--%>
-   <%-- <script type="text/javascript" src="../js/index.js"></script>--%>
-  <%--  <script src="../lib/layer/layer.js"></script>--%>
+   <script type="text/javascript" src="../../js/base.js"></script>
+    <script src="../../js/base/base.js" type="text/javascript" charset="utf-8"></script>
     <title>s首页</title>
     <style>
         .noDatas {
@@ -415,42 +412,42 @@
             </td>
             <td>
                 <select name="DEPT_PARENT" class="BigSelect" id="deptParent">
-                    <option value="0">无</option>
-                    <option value="1">├中国兵器工业信息中心</option>
-                    <option value="3">│└北京通达信科科技有限公司</option>
-                    <option value="17">│　└总经理</option>
-                    <option value="4">│　　├综合管理部</option>
-                    <option value="18">│　　│├人力资源部</option>
-                    <option value="19">│　　│├财务部</option>
-                    <option value="20">│　　│└行政部</option>
-                    <option value="5">│　　├市场营销部</option>
-                    <option value="39">│　　│├市场部</option>
-                    <option value="33">│　　││├品牌部</option>
-                    <option value="31">│　　││├网络营销中心</option>
-                    <option value="32">│　　││└商务中心</option>
-                    <option value="40">│　　│└销售部</option>
-                    <option value="7">│　　│　├北京销售部</option>
-                    <option value="28">│　　│　│├销售一组</option>
-                    <option value="29">│　　│　│├销售二组</option>
-                    <option value="30">│　　│　│├销售三组</option>
-                    <option value="27">│　　│　│└销售协作组</option>
-                    <option value="8">│　　│　└上海销售部</option>
-                    <option value="6">│　　├研发部</option>
-                    <option value="34">│　　│├产品部</option>
-                    <option value="9">│　　│├开发一部</option>
-                    <option value="10">│　　│├开发二部</option>
-                    <option value="11">│　　│├质量保证部</option>
-                    <option value="15">│　　│└设计部</option>
-                    <option value="41">│　　├项目部</option>
-                    <option value="42">│　　│├项目一部</option>
-                    <option value="43">│　　│└项目二部</option>
-                    <option value="16">│　　└生产部</option>
-                    <option value="38">│　　　├采购部</option>
-                    <option value="35">│　　　├生产一部</option>
-                    <option value="37">│　　　├生产二部</option>
-                    <option value="36">│　　　└质检部</option>
-                    <option value="2">└北方测试研究公司</option>
-                    <option value="14">　└北一测试研究院</option>
+                    <%--<option value="0">无</option>--%>
+                    <%--<option value="1">├中国兵器工业信息中心</option>--%>
+                    <%--<option value="3">│└北京通达信科科技有限公司</option>--%>
+                    <%--<option value="17">│　└总经理</option>--%>
+                    <%--<option value="4">│　　├综合管理部</option>--%>
+                    <%--<option value="18">│　　│├人力资源部</option>--%>
+                    <%--<option value="19">│　　│├财务部</option>--%>
+                    <%--<option value="20">│　　│└行政部</option>--%>
+                    <%--<option value="5">│　　├市场营销部</option>--%>
+                    <%--<option value="39">│　　│├市场部</option>--%>
+                    <%--<option value="33">│　　││├品牌部</option>--%>
+                    <%--<option value="31">│　　││├网络营销中心</option>--%>
+                    <%--<option value="32">│　　││└商务中心</option>--%>
+                    <%--<option value="40">│　　│└销售部</option>--%>
+                    <%--<option value="7">│　　│　├北京销售部</option>--%>
+                    <%--<option value="28">│　　│　│├销售一组</option>--%>
+                    <%--<option value="29">│　　│　│├销售二组</option>--%>
+                    <%--<option value="30">│　　│　│├销售三组</option>--%>
+                    <%--<option value="27">│　　│　│└销售协作组</option>--%>
+                    <%--<option value="8">│　　│　└上海销售部</option>--%>
+                    <%--<option value="6">│　　├研发部</option>--%>
+                    <%--<option value="34">│　　│├产品部</option>--%>
+                    <%--<option value="9">│　　│├开发一部</option>--%>
+                    <%--<option value="10">│　　│├开发二部</option>--%>
+                    <%--<option value="11">│　　│├质量保证部</option>--%>
+                    <%--<option value="15">│　　│└设计部</option>--%>
+                    <%--<option value="41">│　　├项目部</option>--%>
+                    <%--<option value="42">│　　│├项目一部</option>--%>
+                    <%--<option value="43">│　　│└项目二部</option>--%>
+                    <%--<option value="16">│　　└生产部</option>--%>
+                    <%--<option value="38">│　　　├采购部</option>--%>
+                    <%--<option value="35">│　　　├生产一部</option>--%>
+                    <%--<option value="37">│　　　├生产二部</option>--%>
+                    <%--<option value="36">│　　　└质检部</option>--%>
+                    <%--<option value="2">└北方测试研究公司</option>--%>
+                    <%--<option value="14">　└北一测试研究院1111111111111</option>--%>
                 </select>
 
             </td>
@@ -460,36 +457,36 @@
             <td>
                 <input class="td_title1  release1" id="query_toId" type="text"/>
                 <%-- <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                <div class="release3">添加</div>
-                <div class="release4 empty">清空</div>
+                <div class="release3" id="adduserAssistant">添加</div>
+                <div class="release4 empty" onclick="empty('query_toId')">清空</div>
 
             </td>
         </tr>
         <tr>
             <td class="blue_text">部门助理（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="query_privId" type="text"/>
+                <input class="td_title1  release1" id="query_Satrap" type="text"/>
                 <%-- <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                <div class="release3">添加</div>
-                <div class="release4 empty" onclick="empty('query_privId')">清空</div>
+                <div class="release3" id="adduserSatrap">添加</div>
+                <div class="release4 empty" onclick="empty('query_Satrap')">清空</div>
             </td>
         </tr>
         <tr>
             <td class="blue_text">上级主管领导（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="query_userId" dataid="" type="text"/>
+                <input class="td_title1  release1" id="query_UpAssistant" dataid="" type="text"/>
                 <%--  <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                <div class="release3" id="query_adduser">添加</div>
-                <div class="release4 empty" onclick="empty('query_userId')">清空</div>
+                <div class="release3" id="UpAssistant">添加</div>
+                <div class="release4 empty" onclick="empty('query_UpAssistant')">清空</div>
             </td>
         </tr>
         <tr>
             <td class="blue_text">上级分管领导（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="query_userId" dataid="" type="text"/>
+                <input class="td_title1  release1" id="query_UpSatrap" dataid="" type="text"/>
                 <%--  <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                <div class="release3" id="query_adduser">添加</div>
-                <div class="release4 empty" onclick="empty('query_userId')">清空</div>
+                <div class="release3" id="UpSatrap">添加</div>
+                <div class="release4 empty" onclick="empty('query_UpSatrap')">清空</div>
             </td>
         </tr>
         <tr>
@@ -578,42 +575,42 @@
             </td>
             <td>
                 <select name="DEPT_PARENT" class="BigSelect" id="deptParent_">
-                    <option value="0">无</option>
-                    <option value="1">├中国兵器工业信息中心</option>
-                    <option value="3">│└北京通达信科科技有限公司</option>
-                    <option value="17">│　└总经理</option>
-                    <option value="4">│　　├综合管理部</option>
-                    <option value="18">│　　│├人力资源部</option>
-                    <option value="19">│　　│├财务部</option>
-                    <option value="20">│　　│└行政部</option>
-                    <option value="5">│　　├市场营销部</option>
-                    <option value="39">│　　│├市场部</option>
-                    <option value="33">│　　││├品牌部</option>
-                    <option value="31">│　　││├网络营销中心</option>
-                    <option value="32">│　　││└商务中心</option>
-                    <option value="40">│　　│└销售部</option>
-                    <option value="7">│　　│　├北京销售部</option>
-                    <option value="28">│　　│　│├销售一组</option>
-                    <option value="29">│　　│　│├销售二组</option>
-                    <option value="30">│　　│　│├销售三组</option>
-                    <option value="27">│　　│　│└销售协作组</option>
-                    <option value="8">│　　│　└上海销售部</option>
-                    <option value="6">│　　├研发部</option>
-                    <option value="34">│　　│├产品部</option>
-                    <option value="9">│　　│├开发一部</option>
-                    <option value="10">│　　│├开发二部</option>
-                    <option value="11">│　　│├质量保证部</option>
-                    <option value="15">│　　│└设计部</option>
-                    <option value="41">│　　├项目部</option>
-                    <option value="42">│　　│├项目一部</option>
-                    <option value="43">│　　│└项目二部</option>
-                    <option value="16">│　　└生产部</option>
-                    <option value="38">│　　　├采购部</option>
-                    <option value="35">│　　　├生产一部</option>
-                    <option value="37">│　　　├生产二部</option>
-                    <option value="36">│　　　└质检部</option>
-                    <option value="2">└北方测试研究公司</option>
-                    <option value="14">　└北一测试研究院</option>
+                    <%--<option value="0">无</option>--%>
+                    <%--<option value="1">├中国兵器工业信息中心</option>--%>
+                    <%--<option value="3">│└北京通达信科科技有限公司</option>--%>
+                    <%--<option value="17">│　└总经理</option>--%>
+                    <%--<option value="4">│　　├综合管理部</option>--%>
+                    <%--<option value="18">│　　│├人力资源部</option>--%>
+                    <%--<option value="19">│　　│├财务部</option>--%>
+                    <%--<option value="20">│　　│└行政部</option>--%>
+                    <%--<option value="5">│　　├市场营销部</option>--%>
+                    <%--<option value="39">│　　│├市场部</option>--%>
+                    <%--<option value="33">│　　││├品牌部</option>--%>
+                    <%--<option value="31">│　　││├网络营销中心</option>--%>
+                    <%--<option value="32">│　　││└商务中心</option>--%>
+                    <%--<option value="40">│　　│└销售部</option>--%>
+                    <%--<option value="7">│　　│　├北京销售部</option>--%>
+                    <%--<option value="28">│　　│　│├销售一组</option>--%>
+                    <%--<option value="29">│　　│　│├销售二组</option>--%>
+                    <%--<option value="30">│　　│　│├销售三组</option>--%>
+                    <%--<option value="27">│　　│　│└销售协作组</option>--%>
+                    <%--<option value="8">│　　│　└上海销售部</option>--%>
+                    <%--<option value="6">│　　├研发部</option>--%>
+                    <%--<option value="34">│　　│├产品部</option>--%>
+                    <%--<option value="9">│　　│├开发一部</option>--%>
+                    <%--<option value="10">│　　│├开发二部</option>--%>
+                    <%--<option value="11">│　　│├质量保证部</option>--%>
+                    <%--<option value="15">│　　│└设计部</option>--%>
+                    <%--<option value="41">│　　├项目部</option>--%>
+                    <%--<option value="42">│　　│├项目一部</option>--%>
+                    <%--<option value="43">│　　│└项目二部</option>--%>
+                    <%--<option value="16">│　　└生产部</option>--%>
+                    <%--<option value="38">│　　　├采购部</option>--%>
+                    <%--<option value="35">│　　　├生产一部</option>--%>
+                    <%--<option value="37">│　　　├生产二部</option>--%>
+                    <%--<option value="36">│　　　└质检部</option>--%>
+                    <%--<option value="2">└北方测试研究公司</option>--%>
+                    <%--<option value="14">　└北一测试研究院</option>--%>
                 </select>
 
             </td>
@@ -621,38 +618,38 @@
         <tr>
             <td class="blue_text">部门主管（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="manager_" type="text"/>
+                <input class="td_title1  release1" id="query_toId_" type="text"/>
                 <%-- <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                <div class="release3">添加</div>
-                <div class="release4 empty">清空</div>
+                <div class="release3" id="adduserAssistant_">添加</div>
+                <div class="release4 empty" onclick="empty('query_toId_')">清空</div>
 
             </td>
         </tr>
         <tr>
             <td class="blue_text">部门助理（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="assistantId_" type="text"/>
+                <input class="td_title1  release1" id="query_Satrap_" type="text"/>
                 <%-- <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                <div class="release3">添加</div>
-                <div class="release4 empty" onclick="empty('query_privId')">清空</div>
+                <div class="release3" id="adduserSatrap_">添加</div>
+                <div class="release4 empty" onclick="empty('query_Satrap_')">清空</div>
             </td>
         </tr>
         <tr>
             <td class="blue_text">上级主管领导（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="leader1_" dataid="" type="text"/>
+                <input class="td_title1  release1" id="query_UpAssistant_" dataid="" type="text"/>
                 <%--  <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                <div class="release3" id="query_adduser_">添加</div>
-                <div class="release4 empty" onclick="empty('query_userId')">清空</div>
+                <div class="release3" id="UpAssistant_">添加</div>
+                <div class="release4 empty" onclick="empty('query_UpAssistant_')">清空</div>
             </td>
         </tr>
         <tr>
             <td class="blue_text">上级分管领导（选填）:</td>
             <td>
-                <input class="td_title1  release1" id="leader2_" dataid="" type="text"/>
+                <input class="td_title1  release1" id="query_UpSatrap_" dataid="" type="text"/>
                 <%--  <img class="td_title2 release2" id="ip2" src="../img/mg2.png" alt=""/>--%>
-                <div class="release3" id="query_adduser_">添加</div>
-                <div class="release4 empty" onclick="empty('query_userId')">清空</div>
+                <div class="release3" id="UpSatrap_">添加</div>
+                <div class="release4 empty" onclick="empty('query_UpSatrap_')">清空</div>
             </td>
         </tr>
         <tr>
@@ -706,10 +703,53 @@
 </body>
 
 <script>
+//    user_id='query_toId';//选人控件
+    /* 人员控件清空 */
+    function empty(id){
+        $("#"+id).val("");
+    };
     $(function(){
+        $("#deptParent").deptSelect(); //新建中上级部门中部门控件
+        $("#deptParent_").deptSelect(); //编辑中上级部门中部门控件
+
+        /* 选人控件 */
+        $("#adduserAssistant").on("click",function(){
+            user_id = "query_toId";
+            $.popWindow("../common/selectUser");
+        });
+        $("#adduserSatrap").on("click",function(){
+            user_id = "query_Satrap";
+            $.popWindow("../common/selectUser");
+        });
+        $("#UpAssistant").on("click",function(){
+            user_id = "query_UpAssistant";
+            $.popWindow("../common/selectUser");
+        });
+        $("#UpSatrap").on("click",function(){
+            user_id = "query_UpSatrap";
+            $.popWindow("../common/selectUser");
+        });
+        $("#adduserAssistant_").on("click",function(){
+            user_id = "query_toId_";
+            $.popWindow("../common/selectUser");
+        });
+        $("#adduserSatrap_").on("click",function(){
+            user_id = "query_Satrap_";
+            $.popWindow("../common/selectUser");
+        });
+        $("#UpAssistant_").on("click",function(){
+            user_id = "query_UpAssistant_";
+            $.popWindow("../common/selectUser");
+        });
+        $("#UpSatrap_").on("click",function(){
+            user_id = "query_UpSatrap_";
+            $.popWindow("../common/selectUser");
+        });
+
+
         // 添加部门的
         $("#new").on("click",function(){
-            alert(1111);
+            alert($('#deptParent option:checked').attr('value'));
             var data = {
                 "deptName": $("#deptName").html(),    // 部门名称
                 "telNo": $("#telNo").val(),      //电话
@@ -723,10 +763,10 @@
                 "weixinDeptId":"",  // null
                 "dingdingDeptId":"",//叮叮对应部门id
                 "gDept":'',// 是否全局部门(0-否,1-是)
-                "manager":' ',//部门主管
-                "assistantId":"",//部门助理
-                "leader1":"",//上级主管领导
-                "leader2":'',//上级分管领导
+                "manager": $("#query_toId").attr("dataid"),//部门主管
+                "assistantId": $("#query_Satrap").attr("dataid"),//部门助理
+                "leader1": $("#query_UpAssistant").attr("dataid"),//上级主管领导
+                "leader2": $("#query_UpSatrap").attr("dataid"),//上级分管领导
                 "deptFunc":$("#deptFunc").val(),//部门职能
                 "avatar": "",    // 头像
                 " userName": "",      // 用户名字
@@ -735,7 +775,7 @@
                 "type":  "" ,//   返回类型
             };
             /*  console.log(data); */
-            if(data.deptParent==0){
+            if(data.deptParent==undefined){
                 alert("上级部门不能为空!");
                 return false;
             }else{
@@ -746,6 +786,8 @@
                     data : data,
                     success:function(data){
                         console.log(data);
+                        alert("新建成功！");
+                        location.reload();
 
                     },
                     error:function(e){
@@ -755,15 +797,8 @@
             }
         });
 
-
-
-
-
-
-
-
-
     })
+
 
 
 
