@@ -434,16 +434,30 @@ public class MenuController {
      **/
     @ResponseBody
     @RequestMapping("/getAuthRoleName")
-    public ToJson<UserPriv> getAuthRoleName(String fid, HttpServletRequest request) {
+    public ToJson<StringBuffer> getAuthRoleName(String fid, HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
 
-        ToJson<UserPriv> json = new ToJson<UserPriv>(0, null);
+        ToJson<StringBuffer> json = new ToJson<StringBuffer>(0, null);
 
 
         try {
             List<UserPriv> userPrivList = usersPrivService.getUserPrivNameByFuncId(fid);
-            json.setObj(userPrivList);
+
+            StringBuffer sb = new StringBuffer();
+
+            for (int i = 0; i < userPrivList.size(); i++) {
+                if (i ==( userPrivList.size() - 1)) {
+                    sb.append(userPrivList.get(i).getPrivName());
+                } else {
+                    sb.append(userPrivList.get(i).getPrivName()).append(",");
+                }
+
+            }
+
+
+
+            json.setObject(sb);
             json.setMsg("OK");
             json.setFlag(0);
 
@@ -466,15 +480,27 @@ public class MenuController {
      **/
     @ResponseBody
     @RequestMapping("/getAuthUserName")
-    public ToJson<String> getAuthUserName(String fid, HttpServletRequest request) {
+    public ToJson<StringBuffer> getAuthUserName(String fid, HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
 
-        ToJson<String> json = new ToJson<String>(0, null);
+        ToJson<StringBuffer> json = new ToJson<StringBuffer>(0, null);
 
         try {
             List<String> list = userFunctionService.getUserNameByFuncId(fid);
-            json.setObject(list);
+
+            StringBuffer sb = new StringBuffer();
+
+            for (int i = 0; i < list.size(); i++) {
+                if (i ==( list.size() - 1)) {
+                    sb.append(list.get(i));
+                } else {
+                    sb.append(list.get(i)).append(",");
+                }
+
+            }
+
+            json.setObject(sb);
             json.setMsg("OK");
             json.setFlag(0);
 

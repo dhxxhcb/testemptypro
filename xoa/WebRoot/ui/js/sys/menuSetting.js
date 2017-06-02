@@ -92,6 +92,13 @@ $(function(){
         //deleteChildMenu(Eid);
         deleteChildMenu(Eid,id,$('.childMenu'));
     })
+    //添加权限点击事件
+    $('.tab').on('click','.addJurisdition',function(){
+        $('.addJurisd').show().siblings().hide();
+        var id=$(this).parents('tr').attr('fid');
+        authorizationPriv(id,$('#PRIV'));
+        authorizationUser(id,$('#USER'));
+    })
 
 
 
@@ -300,7 +307,7 @@ function twoLevelMenu(id,element){
             var data1=rsp.obj;
             var str="";
             for(var i=0;i<data1.length;i++){
-                str+='<tr class="add_children" childernId="'+data1[i].id+'"><td width="40%"><span class="margspan" style="margin: 0 10px">'+data1[i].id+'</span><span>'+data1[i].name+'</span></td><td width="59.5%"><a href="javascript:;" class="editChilds">编辑</a><a href="javascript:;" class="deleteChild">删除</a><a href="javascript:;">添加权限</a><a href="javascript:;">删除权限</a></td></tr>'
+                str+='<tr class="add_children" fid="'+data1[i].fId+'" childernId="'+data1[i].id+'"><td width="40%"><span class="margspan" style="margin: 0 10px">'+data1[i].id+'</span><span>'+data1[i].name+'</span></td><td width="59.5%"><a href="javascript:;" class="editChilds">编辑</a><a href="javascript:;" class="deleteChild">删除</a><a href="javascript:;" class="addJurisdition">添加权限</a><a href="javascript:;" class="deleteJurisdition">删除权限</a></td></tr>'
             }
             element.after(str);
         }
@@ -322,6 +329,31 @@ function deleteMenu(id){
     }else{
         return false;
     }
+}
+//已授权范围（角色）
+function authorizationPriv(id,element){
+    $.ajax({
+        type:'get',
+        url:'../../getAuthRoleName',
+        dataTyle:'json',
+        data:{'fId':id},
+        success:function(res){
+            var data=res.obj;
+            element.text(data);
+        }
+    })
+}
+function authorizationUser(id,element){
+    $.ajax({
+        type:'get',
+        url:'../../getAuthUserName',
+        dataTyle:'json',
+        data:{'fId':id},
+        success:function(res){
+            var data=res.object;
+            element.text(data);
+        }
+    })
 }
 
 

@@ -14,6 +14,16 @@ $(function(){
             $('#ULDown').slideDown();
         }
     })
+    //部门点击事件
+    $('#ULDown').on('click','.childdept',function(){
+        $('.childQuery').show().siblings().hide();
+        var deptId=$(this).attr('deptid');
+        var data={
+            'choice':1,
+            'deptId':deptId
+        }
+        companyAllPerson(data,$('.allCondition'));
+    })
     //人员查询点击事件
     $('#QUERY').click(function(){
         $('.queryUser').show().siblings().hide();
@@ -95,6 +105,25 @@ function queryAllPerson(data,element){
             for(var i=0;i<data1.length;i++){
                 var txt=data1[i].sex==0?'男':'女';
                 str+='<tr class="loopData"><td>'+data1[i].dep.deptName+'</td><td>'+data1[i].userPrivName+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
+            }
+            element.after(str);
+        }
+    })
+}
+//通过部门查询人员
+function companyAllPerson(data,element){
+    $('.loopData').remove();
+    $.ajax({
+        type:'get',
+        url:'../getUserbyCondition',
+        dataType:'json',
+        data:data,
+        success:function(res){
+            var data1=res.obj;
+            var str='';
+            for(var i=0;i<data1.length;i++){
+                var txt=data1[i].sex==0?'男':'女';
+                str+='<tr class="loopData"><td>'+data1[i].dep.deptName+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].userPrivName+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
             }
             element.after(str);
         }

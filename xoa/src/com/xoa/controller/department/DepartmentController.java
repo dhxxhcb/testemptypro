@@ -34,6 +34,12 @@ public class DepartmentController {
     @Resource
     private DepartmentService departmentService;
 
+    @RequestMapping("/deptQuery")
+    public String  deptQuery(){
+//        D:\git\xoa\xoa\WebRoot\WEB-INF\app\department\deptQuery.jsp
+       return  "app/department/deptQuery";
+    }
+
     @RequestMapping("/newDeptManagement")
     public String companyInfo(HttpServletRequest request) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
