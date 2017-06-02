@@ -68,14 +68,14 @@ public class MenuController {
         List<SysMenu> munuList;
         try {
 
-            String language = "";
-            if (acceptLang != null && (acceptLang.contains("-tw") || acceptLang.contains("-TW") || (acceptLang.contains("-hk") || acceptLang.contains("-HK")))) {
+            String language = "zh_CN";
+/*            if (acceptLang != null && (acceptLang.contains("-tw") || acceptLang.contains("-TW") || (acceptLang.contains("-hk") || acceptLang.contains("-HK")))) {
                 language = "zh_TW";
             } else if (acceptLang != null && (acceptLang.contains("-us") || acceptLang.contains("-US"))) {
                 language = "en_US";
             } else {
                 language = "zh_CN";
-            }
+            }*/
 
 
             munuList = menuService.getAll(language);
@@ -365,14 +365,14 @@ public class MenuController {
         Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
         ToJson<SysFunction> json = new ToJson<SysFunction>(0, null);
 
-        String language = "";
-        if (acceptLang != null && (acceptLang.contains("-tw") || acceptLang.contains("-TW") || (acceptLang.contains("-hk") || acceptLang.contains("-HK")))) {
+        String language = "zh_CN";
+/*        if (acceptLang != null && (acceptLang.contains("-tw") || acceptLang.contains("-TW") || (acceptLang.contains("-hk") || acceptLang.contains("-HK")))) {
             language = "zh_TW";
         } else if (acceptLang != null && (acceptLang.contains("-us") || acceptLang.contains("-US"))) {
             language = "en_US";
         } else {
             language = "zh_CN";
-        }
+        }*/
         List<SysFunction> menuList = menuService.findChildMenu(id, language);
         String msg;
         if (menuList.size() > 0) {
@@ -405,13 +405,13 @@ public class MenuController {
         Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
 
         String language = null;
-        if (acceptLang != null && (acceptLang.contains("-tw") || acceptLang.contains("-TW") || (acceptLang.contains("-hk") || acceptLang.contains("-HK")))) {
+/*        if (acceptLang != null && (acceptLang.contains("-tw") || acceptLang.contains("-TW") || (acceptLang.contains("-hk") || acceptLang.contains("-HK")))) {
             language = "zh_TW";
         } else if (acceptLang != null && (acceptLang.contains("-us") || acceptLang.contains("-US"))) {
             language = "en_US";
         } else {
             language = "zh_CN";
-        }
+        }*/
         List<SysMenu> list = menuService.getTheFirstMenu(id, language);
         ToJson<SysMenu> json = new ToJson<SysMenu>(0, null);
 
