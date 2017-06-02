@@ -31,13 +31,16 @@ var workForm = {
         var that = this;
         this.option.eleObject.find('.list').each(function () {
             var _this = $(this);
-            var tableStr = '<table name="'+_this.attr('name')+'" id="'+_this.attr('name')+'" class="form_item list">';
+            var tableStr = '<table name="'+_this.attr('name')+'" id="'+_this.attr('name')+'" class="list_table form_item list">';
             var lv_title = $(this).attr('lv_title').split('`');
             var titleTd = ''
+            var tdStr = ''
             for(var i=0;i<lv_title.length-1;i++){
                 titleTd+=('<td>'+lv_title[i] +'</td>');
+                tdStr+='<td>1</td>';
             }
-            tableStr+=('<tr>'+titleTd+'</tr>');
+            tableStr+=('<tr class="head">'+titleTd+'</tr>');
+            tableStr+=('<tr>'+tdStr+'</tr>');
             tableStr+='</table>';
             console.log(tableStr);
             _this.before(tableStr);
@@ -114,6 +117,13 @@ var workForm = {
             }
             _this.addClass("form_item");
             _this.attr("id",$(this).attr("name"));
+        });
+        //list
+        target.find("img.LIST_VIEW").each(function () {
+             var _this = $(this);
+             var datafrom = _this.attr('datatype')=='1'?'inData':'outData';
+             var listStr = '<input name="'+_this.attr('name')+'"  id="'+_this.attr('name')+'" title="'+_this.attr('title')+'" type="text" class="form_item list" data-type="listing"  datafrom="'+datafrom+'" lv_field="'+_this.attr('lv_field')+'" lv_title="'+_this.attr('lv_title')+'" lv_size="'+_this.attr('lv_size')+'" lv_colvalue="'+_this.attr('lv_colvalue')+'" lv_sum="'+_this.attr('lv_sum')+'" width="'+_this.attr('width')+'" height="'+_this.attr('height')+'" lv_coltype="'+_this.attr('lv_coltype')+'" lv_cal="'+_this.attr('lv_cal')+'"/>';
+            _this.before(listStr)
         });
         //
         target.find('img.DATE').each(function(){

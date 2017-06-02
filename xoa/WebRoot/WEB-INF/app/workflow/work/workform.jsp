@@ -254,6 +254,31 @@
     #tab_c{
         transition: all 1s ease 0s;
     }
+    .list_table{
+        border-width: medium;
+        border-style: none;
+        border-color: initial;
+        border-collapse: collapse;
+        word-wrap: break-word;
+        table-layout: fixed;
+    }
+    .list_table .head {
+        font-weight: 600;
+    }
+    .list_table td{
+        border-bottom: #7F7F7F 1pt solid;
+        /* border-left: #000000 2.25pt solid; */
+        text-align: center;
+        width: 50px;
+        padding-bottom: 1px;
+        padding-left: 1px;
+        padding-right: 1px;
+        vertical-align: middle;
+        border-top: #7F7F7F 1pt solid;
+        border-right: black 1pt solid;
+        padding-top: 1px;
+        padding: 0;
+    }
 </style>
 <body>
 <div class="body">
