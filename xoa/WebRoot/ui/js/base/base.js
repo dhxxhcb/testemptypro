@@ -19,7 +19,6 @@ $(function(){
             data:{},
             dataType:'json',
 			success:function(obj){
-                console.log(obj)
                 var data=obj.obj;
                 departmentData= digui(data,0);
                 var str = departmentChild(departmentData,'<option value="0">请选择部门</option>',0,-1);
