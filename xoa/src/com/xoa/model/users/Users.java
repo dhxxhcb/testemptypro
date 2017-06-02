@@ -319,7 +319,17 @@ public class Users {
 	
 	private String name;
 
-	public String getName() {
+     private String funcIdStr;
+
+     public String getFuncIdStr() {
+         return funcIdStr;
+     }
+
+     public void setFuncIdStr(String funcIdStr) {
+         this.funcIdStr = funcIdStr;
+     }
+
+     public String getName() {
 		return name;
 	}
 

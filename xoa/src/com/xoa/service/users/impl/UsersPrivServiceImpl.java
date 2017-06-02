@@ -159,7 +159,104 @@ public class UsersPrivServiceImpl implements UsersPrivService {
     public List<UserPriv> getUserPrivNameByFuncId(String fid) {
 
         List<UserPriv> userPrivList = userPrivMapper.getUserPrivNameByFuncId(fid);
+
         return userPrivList;
     }
 
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/1 19:43
+     * @函数介绍: 修改角色权限（serPriv 的funcIdStr）,数据库原有字段基础上如果存在就不在拼接，否则
+     * @参数说明: String privids
+     * @参数说明: String funcId
+     * @return: XXType(value introduce)
+     */
+    @Override
+    public void updateUserPrivfuncIdStr(String privids, String funcId) {
+
+        String[] prividArr = null;
+        if (privids != null && privids != "") {
+            prividArr = privids.split(",");
+        }
+
+        if (prividArr != null && prividArr.length > 0) {
+
+            for (String id : prividArr) {
+                String funcIdStr = userPrivMapper.getUserPrivfuncIdStr(id);
+
+                if (funcIdStr != null && !"".equals(funcIdStr) && funcId != null) {
+
+                    //已结添加
+                    if (funcIdStr.contains("".concat(funcId).concat(",")) || funcIdStr.startsWith(funcId.concat(","))) {
+                        //do nothing
+                        //未添加添加
+                    } else {
+
+                        funcIdStr = funcIdStr.concat(funcId).concat(",");
+                        Map<String, Object> hashMap = new HashMap<String, Object>();
+                        hashMap.put("id", id);
+                        hashMap.put("funcIdStr", funcIdStr);
+                        userPrivMapper.updateUserPrivFuncIdStr(hashMap);
+                    }
+                } else {
+                    if (funcId != null && "".equals(funcIdStr)) {
+                        funcIdStr = ",";
+                        funcIdStr = funcIdStr.concat(funcId).concat(",");
+                        Map<String, Object> hashMap = new HashMap<String, Object>();
+                        hashMap.put("id", id);
+                        hashMap.put("funcIdStr", funcIdStr);
+                        userPrivMapper.updateUserPrivFuncIdStr(hashMap);
+                    }
+
+                }
+
+            }
+        }
+    }
+
+    /**
+     * @param privids
+     * @param funcIds
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/1 19:43
+     * @函数介绍: 修改角色权限（serPriv 的funcIdStr）
+     * @参数说明: String privids
+     * @参数说明: String funcId
+     * @return: void
+     */
+    @Override
+    public void deleteUserPriv(String privids, String funcIds) {
+
+        String[] prividArr = null;
+        if (privids != null && privids != "") {
+            prividArr = privids.split(",");
+        }
+
+        if (prividArr != null && prividArr.length > 0) {
+
+            for (String id : prividArr) {
+                String funcIdStr = userPrivMapper.getUserPrivfuncIdStr(id);
+
+                if (funcIdStr != null && !"".equals(funcIdStr) && funcIds != null) {
+
+                    //包含
+                    if (funcIdStr.contains("".concat(funcIds).concat(",")) || funcIdStr.startsWith(funcIds.concat(","))) {
+                        funcIdStr = funcIdStr.replace(funcIds.concat(","), "");
+                        Map<String, Object> hashMap = new HashMap<String, Object>();
+                        hashMap.put("id", id);
+                        hashMap.put("funcIdStr", funcIdStr);
+
+                        userPrivMapper.updateUserPrivFuncIdStr(hashMap);
+
+
+                    }
+                }
+            }
+
+        }
+    }
+
+
 }
+
+

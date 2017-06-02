@@ -172,4 +172,10 @@ public interface UsersMapper {
      List<Users> getUserByRoleId(Users user);
 
      List<Users> getUserOnline();
+
+     List<Users> getUserNameByFuncId(String fid);
+
+     List<String> getUserByFuncId(String fid);
+
+     List<String> findUsersByIds(Map<String, List> hashMap);
  }
