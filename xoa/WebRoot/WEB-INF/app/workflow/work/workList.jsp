@@ -945,7 +945,7 @@
         }
         $(document).ready(function(){
             initPageList_db(function (pageCount) {
-               /* console.log(pageCount);*/
+				/* console.log(pageCount);*/
                 initPagination_db(pageCount, datas.pageSize);
             },1);
             changeShadow();
@@ -953,7 +953,7 @@
 
         $('#allwork').click(function(){
                 initPageList_qb(function (pageCount) {
-                 /*   console.log(pageCount);*/
+					/*   console.log(pageCount);*/
                     initPagination_qb(pageCount,datas.pageSize);
                 },page);
                 changeShadow();
@@ -962,7 +962,7 @@
 
         $('#endWork').click(function(){
                 initPageList_bj(function (pageCount) {
-              /*      console.log(pageCount);*/
+					/*      console.log(pageCount);*/
                     initPagination_bj(pageCount,datas.pageSize);
                 },1);
 
@@ -971,7 +971,7 @@
 
         $('#hungwork').click(function(){
                 initPageList_gq(function (pageCount) {
-                  /*  console.log(pageCount);*/
+					/*  console.log(pageCount);*/
                     initPagination_gq(pageCount,datas.pageSize);
                 },1);
 
@@ -986,7 +986,7 @@
                 dataType:'json',
                 //data:datas,
                 success:function(data){
-                    /*console.log(data);*/
+					/*console.log(data);*/
                     var length=data.obj.length;
                     var str='';
                     for(var i=0;i<length;i++){
@@ -996,8 +996,9 @@
                             '<td class="">'+flowType+'</td>'+
                             '<td class="">'+data.obj[i].flowRun.runName+'</td>'+
                             '<td class="">'+data.obj[i].userName+'</td>'+
-                            '<td class="">我的步骤流程</td>'+
-                            '<td class="">'+status+'</td>';
+                            '<td class="">'+
+                            '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
+                        '<td class="">'+status+'</td>';
                         //$('#dbgz').html(str);
                     }
                     $('#qbgz').html(str);
@@ -1022,9 +1023,9 @@
                 //jumpBtn: '',
                 callback: function (index) {
                     var page = index.getCurrent();
-                 /*   console.log(index.getCurrent());*/
+					/*   console.log(index.getCurrent());*/
                     initPageList_qb(function (pageCount) {
-                     /*   console.log(pageCount);*/
+						/*   console.log(pageCount);*/
                         initPagination_qb(pageCount, datas.pageSize);
                     } ,page);
                 }
@@ -1044,7 +1045,7 @@
                 dataType:'json',
                 data:datas,
                 success:function(data){
-                   console.log(data);
+                    console.log(data);
                     var length=data.obj.length;
                     var str='';
                     for(var i=0;i<length;i++){
@@ -1054,14 +1055,16 @@
                             '<td class="">'+
                             '<span class="font-green">'+
                             '【'+workLeverl+'】</span>'+data.obj[i].flowRun.runName+'</td>'+
-                            '<td class=""></td><td class="">'+data.obj[i].userName+'</td>'+
-                            '<td class="">'+status+'</td><td class="">'+data.obj[i].createTime+'</td>'+
-                            '<td class=""></td>'+
-                            '<td style="text-align:left;">'+
-                            '<a href="javascript:"><span class="host-span" id="zhuban" title="主办" formId='+data.obj[i].flowType.formId+' prcsId='+data.obj[i].flowProcess.prcsId+'>主办</span></a>'+
-                            '<a href=""><span class="operation_text_left" title="导出">导出</span></a>'+
-                            '<a href="javascript:">'+
-                            '<span class="operation_text_left" title="删除">删除</span></a></td></tr>';
+                            '<td class="">'+
+                            '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
+                        '<td class="">'+data.obj[i].userName+'</td>'+
+                        '<td class="">'+status+'</td><td class="">'+data.obj[i].createTime+'</td>'+
+                        '<td class=""></td>'+
+                        '<td style="text-align:left;">'+
+                        '<a href="javascript:"><span class="host-span" id="zhuban" title="主办" formId='+data.obj[i].flowType.formId+' prcsId='+data.obj[i].flowProcess.prcsId+'>主办</span></a>'+
+                        '<a href=""><span class="operation_text_left" title="导出">导出</span></a>'+
+                        '<a href="javascript:">'+
+                        '<span class="operation_text_left" title="删除">删除</span></a></td></tr>';
                         //$('#dbgz').html(str);
                     }
                     $('#dbgz').html(str);
@@ -1086,9 +1089,9 @@
                 //jumpBtn: '',
                 callback: function (index) {
                     var page = index.getCurrent();
-                   /* console.log(index.getCurrent());*/
+					/* console.log(index.getCurrent());*/
                     initPageList_db(function (pageCount) {
-                        /*console.log(pageCount);*/
+						/*console.log(pageCount);*/
                         initPagination_db(pageCount, datas.pageSize);
                     } ,page);
                 }
@@ -1109,14 +1112,16 @@
                 dataType:'json',
                 data:datas,
                 success:function(data){
-                    /*console.log(data);*/
+					/*console.log(data);*/
                     var length=data.obj.length;
                     var str='';
                     for(var i=0;i<length;i++){
                         var status=handleData(data.obj[i].prcsFlag);
                         var str= str+'<tr><td class="">'+data.obj[i].runId+'</td>'+
                             '<td class="">'+data.obj[i].flowRun.runName+'</td>'+
-                            '<td class="">我经办的步骤</td><td class="">'+data.obj[i].userName+'</td>'+
+                            '<td class="">'+
+                            '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
+                            '<td class="">'+data.obj[i].userName+'</td>'+
                             '<td class="">'+data.obj[i].deliverTime+'</td><td class="">流程状态</td>'+
                             '<td style="text-align:left;" title="主办导出删除">'+
                             '<a href="javascript:"><span class="host-span">主办</span></a>'+
@@ -1148,9 +1153,9 @@
                 //jumpBtn: '',
                 callback: function (index) {
                     var   page = index.getCurrent();
-                   /* console.log(index.getCurrent());*/
+					/* console.log(index.getCurrent());*/
                     initPageList_bj(function (pageCount) {
-                 /*       console.log(pageCount);*/
+						/*       console.log(pageCount);*/
                         initPagination_bj(pageCount, datas.pageSize);
                     } ,page);
                 }
@@ -1171,14 +1176,16 @@
                 dataType:'json',
                 data:datas,
                 success:function(data){
-                   /* console.log(data);*/
+					/* console.log(data);*/
                     var length=data.obj.length;
                     var str='';
                     for(var i=0;i<length;i++){
                         var status=handleData(data.obj[i].prcsFlag);
                         var str= str+'<tr><td class="">'+data.obj[i].runId+'</td>'+
                             '<td class="">'+data.obj[i].flowRun.runName+'</td>'+
-                            '<td class="">我经办的步骤</td><td class="">'+data.obj[i].userName+'</td>'+
+                            '<td class="">'+
+                            '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
+                            '<td class="">'+data.obj[i].userName+'</td>'+
                             '<td class="">'+data.obj[i].deliverTime+'</td><td class="th">流程状态</td>'+
                             '<td style="text-align:left;" title="主办导出删除">'+
                             '<a href="javascript:"><span class="host-span">主办</span></a>'+
@@ -1210,9 +1217,9 @@
                 //jumpBtn: '',
                 callback: function (index) {
                     var   page = index.getCurrent();
-                    /*console.log(index.getCurrent());*/
+					/*console.log(index.getCurrent());*/
                     initPageList_gq(function (pageCount) {
-                       /* console.log(pageCount);*/
+						/* console.log(pageCount);*/
                         initPagination_gq(pageCount, datas.pageSize);
                     } ,page);
                 }
@@ -1223,7 +1230,6 @@
         $('#dbgz').on('click','#zhuban',function(){
             var formId= $(this).attr('formId');
             var prcsId= $(this).attr('prcsId');
-			/*      alert(formId);*/
             user_id='zhuban';
             $.popWindow("workform?flowId="+formId+'&flowStep='+prcsId+'','快速新建页面','0','0','1500px','800px');
         });

@@ -1,11 +1,9 @@
 package com.xoa.dao.users;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
-import com.xoa.model.menu.SysFunction;
 import com.xoa.model.users.UserFunction;
+
+import java.util.List;
+import java.util.Map;
 
 public interface UserFunctionMapper {
 	
@@ -13,4 +11,9 @@ public interface UserFunctionMapper {
 	
 	public UserFunction  getMenuByUserId(int uid);
 
+    List<UserFunction> getUserByFuncId(String fid);
+
+    String getUserFuncIdStr(String userId);
+
+    void updateUserFuncIdStr(Map<String, String> hashMap);
 }

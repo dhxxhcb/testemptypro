@@ -528,10 +528,10 @@
                     $("#deptName_").val(data.object.deptName); // 部门名称
                     $("#deptParent_").val(data.object.deptParent); // 上级部门ID
 
-                    $("#manager_").val(data.object.manager); //部门主管
-                    $("#assistantId_").val(data.object.assistantId); // 部门助理
-                    $("#leader1_").val(data.object.leader1); // 上级主管领导
-                    $("#leader2_").val(data.object.leader2); // 上级分管领导
+                    $("#query_toId_").val(data.object.manager); //部门主管
+                    $("#query_Satrap_").val(data.object.assistantId); // 部门助理
+                    $("#query_UpAssistant_").val(data.object.leader1); // 上级主管领导
+                    $("#query_UpSatrap_").val(data.object.leader2); // 上级分管领导
                     $("#telNo_").val(data.object.telNo); // 电话
                     $("#faxNo_").val(data.object.faxNo); // 传真
                     $("#deptAddress_").val(data.object.deptAddress); // 地址
@@ -542,24 +542,24 @@
         }
     // 编辑的保存修改按钮
         $("#new_").on("click",function(){
-            alert($("#dapaId_").html());
+//            alert($("#dapaId_").html());
             var data = {
                 'deptId':$("#dapaId_").html(),
                 "deptName": $("#deptName_").val(),    // 部门名称
                 "telNo": $("#telNo_").val(),      //电话
                 "faxNo":$("#faxNo_").val(),  //传真
                 "deptAddress": $("#deptAddress_").val(),// 部门地址
-                "deptParent":  $('#deptParent_ option:checked').attr('value'),//上级部门ID
+                // "deptParent":  $('#deptParent_ option:checked').attr('value'),上级部门ID
                 "isOrg": "", //是否是分支机构(0-否,1-是)
                 "orgAdmin":"",//机构管理员
                 "deptEmailAuditsIds":"", //保密邮件审核人
                 "weixinDeptId":"",  // null
                 "dingdingDeptId":"",//叮叮对应部门id
                 "gDept":'',// 是否全局部门(0-否,1-是)
-                "manager":' ',//部门主管
-                "assistantId":"",//部门助理
-                "leader1":"",//上级主管领导
-                "leader2":'',//上级分管领导
+                "manager": $("#query_toId_").attr("dataid"),//部门主管
+                "assistantId": $("#query_Satrap_").attr("dataid"),//部门助理
+                "leader1": $("#query_UpAssistant_").attr("dataid"),//上级主管领导
+                "leader2": $("#query_UpSatrap_").attr("dataid"),//上级分管领导
                 "deptFunc":$("#deptFunc_").val(),//部门职能
                 "avatar": "",    // 头像
                 " userName": "",      // 用户名字
@@ -568,10 +568,6 @@
                 "type":  "" ,//   返回类型
             };
             /*  console.log(data); */
-            if(data.deptParent==0){
-                alert("上级部门不能为空!");
-                return false;
-            }else{
                 $.ajax({
                     url:"<%=basePath%>../department/editDept",
                     type:'post',
@@ -580,12 +576,13 @@
                     success:function(data){
                         location.reload();
                         console.log(data);
+                        alert("修改成功！");
                     },
                     error:function(e){
                         console.log(e);
                     }
                 });
-            }
+
         });
 
 

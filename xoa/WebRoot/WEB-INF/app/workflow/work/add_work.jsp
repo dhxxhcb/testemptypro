@@ -667,6 +667,18 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
       /*      alert(formId);*/
             user_id='quick';
             $.popWindow("workform?flowId="+formId+'&flowStep=1','快速新建页面','0','0','1500px','800px');
+          /*  var form_datas={
+
+            }
+            $.ajax({
+                type: "post",
+                url: "../../workflow/work/workfastAdd",
+                dataType: 'JSON',
+                data: form_datas,
+                success: function(obj){
+
+                }
+            })*/
         });
 
     })

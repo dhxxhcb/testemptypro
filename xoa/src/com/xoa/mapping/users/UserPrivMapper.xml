@@ -112,7 +112,8 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.users.UserPriv">
-        update user_priv
+        UPDATE
+        user_priv
         <set>
             <if test="privName != null">
                 PRIV_NAME = #{privName,jdbcType=VARCHAR},
@@ -148,7 +149,15 @@
 
     <select id="getUserPrivNameByFuncId" parameterType="java.lang.String" resultMap="BaseResultMap">
         select u.PRIV_NAME  from  user_priv u WHERE u.FUNC_ID_STR LIKE concat('%,', #{fid}, ',%');
-
-
     </select>
+
+    <select id="getUserPrivfuncIdStr" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT u.FUNC_ID_STR  FROM  user_priv  u WHERE u.USER_PRIV = #{id};
+    </select>
+
+    <select id="updateUserPrivFuncIdStr" parameterType="hashMap">
+        UPDATE user_priv  u set  u.FUNC_ID_STR = #{funcIdStr} WHERE u.USER_PRIV = #{id}
+    </select>
+
+
 </mapper>

@@ -7,11 +7,13 @@ import com.xoa.model.menu.SysMenu;
 import com.xoa.model.users.UserPriv;
 import com.xoa.service.menu.MenuService;
 import com.xoa.service.menu.MobileAppService;
+import com.xoa.service.users.UserFunctionService;
 import com.xoa.service.users.UsersPrivService;
 import com.xoa.util.ToJson;
 import com.xoa.util.dataSource.ContextHolder;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +39,8 @@ public class MenuController {
     private MenuService menuService;
     @Resource
     private UsersPrivService usersPrivService;
+    @Resource
+    private UserFunctionService userFunctionService;
 
     @Resource
     private MobileAppService mobileAppService;
@@ -56,7 +60,7 @@ public class MenuController {
     @RequestMapping(value = "/showMenu", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     public
     @ResponseBody
-    ToJson<SysMenu> showNew(HttpServletRequest request, HttpServletResponse response) {
+    ToJson<SysMenu> showNew(HttpServletRequest request, HttpServletResponse response, @RequestHeader("Accept-Language") String acceptLang) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
@@ -64,7 +68,17 @@ public class MenuController {
         List<SysMenu> munuList;
         try {
 
-            munuList = menuService.getAll(locale.toString());
+            String language = "";
+            if (acceptLang != null && (acceptLang.contains("-tw") || acceptLang.contains("-TW") || (acceptLang.contains("-hk") || acceptLang.contains("-HK")))) {
+                language = "zh_TW";
+            } else if (acceptLang != null && (acceptLang.contains("-us") || acceptLang.contains("-US"))) {
+                language = "en_US";
+            } else {
+                language = "zh_CN";
+            }
+
+
+            munuList = menuService.getAll(language);
             String msg;
             if (munuList.size() > 0) {
                 flag = 0;
@@ -343,24 +357,32 @@ public class MenuController {
      **/
     @ResponseBody
     @RequestMapping(value = "/findChildMenu", produces = {"application/json;charset=UTF-8"})
-    public ToJson<SysFunction> findChildMenu(String id, HttpServletRequest request) {
+    public ToJson<SysFunction> findChildMenu(String id, HttpServletRequest request, @RequestHeader("Accept-Language") String acceptLang) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
+
         String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
         Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
         ToJson<SysFunction> json = new ToJson<SysFunction>(0, null);
 
-
-        List<SysFunction> menuList = menuService.findChildMenu(id, locale.toString());
+        String language = "";
+        if (acceptLang != null && (acceptLang.contains("-tw") || acceptLang.contains("-TW") || (acceptLang.contains("-hk") || acceptLang.contains("-HK")))) {
+            language = "zh_TW";
+        } else if (acceptLang != null && (acceptLang.contains("-us") || acceptLang.contains("-US"))) {
+            language = "en_US";
+        } else {
+            language = "zh_CN";
+        }
+        List<SysFunction> menuList = menuService.findChildMenu(id, language);
         String msg;
         if (menuList.size() > 0) {
+            json.setObj(menuList);
             flag = 0;
             msg = ok;
         } else {
             flag = 1;
             msg = err;
         }
-        json.setObj(menuList);
 
         return json;
 
@@ -376,13 +398,21 @@ public class MenuController {
      **/
     @ResponseBody
     @RequestMapping(value = "/getTheFirstMenu", produces = {"application/json;charset=UTF-8"})
-    public ToJson<SysMenu> getTheFirstMenu(String id, HttpServletRequest request) {
+    public ToJson<SysMenu> getTheFirstMenu(String id, HttpServletRequest request, @RequestHeader("Accept-Language") String acceptLang) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         String LOCALE_SESSION_ATTRIBUTE_NAME = SessionLocaleResolver.class.getName() + ".LOCALE";
         Object locale = request.getSession().getAttribute(LOCALE_SESSION_ATTRIBUTE_NAME);
 
-        List<SysMenu> list = menuService.getTheFirstMenu(id, locale.toString());
+        String language = null;
+        if (acceptLang != null && (acceptLang.contains("-tw") || acceptLang.contains("-TW") || (acceptLang.contains("-hk") || acceptLang.contains("-HK")))) {
+            language = "zh_TW";
+        } else if (acceptLang != null && (acceptLang.contains("-us") || acceptLang.contains("-US"))) {
+            language = "en_US";
+        } else {
+            language = "zh_CN";
+        }
+        List<SysMenu> list = menuService.getTheFirstMenu(id, language);
         ToJson<SysMenu> json = new ToJson<SysMenu>(0, null);
 
 
@@ -397,21 +427,187 @@ public class MenuController {
     /**
      * @创建作者: 韩成冰
      * @创建日期: 2017/6/1 13:39
-     * @函数介绍: 获取某个功能授权的角色和用户名;
+     * @函数介绍: 获取某个功能授权的角色;
      * @参数说明: @param String fid(子类菜单ID)
      * @参数说明: @param HttpServletRequest
      * @return: json
      **/
     @ResponseBody
-    @RequestMapping("/getAuthRoleAndUser")
-    public ToJson<Object> getAuthRoleAndUser(String fid, HttpServletRequest request) {
+    @RequestMapping("/getAuthRoleName")
+    public ToJson<UserPriv> getAuthRoleName(String fid, HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
 
-        List<UserPriv> userPrivList = usersPrivService.getUserPrivNameByFuncId(fid);
+        ToJson<UserPriv> json = new ToJson<UserPriv>(0, null);
 
-    return null;
 
+        try {
+            List<UserPriv> userPrivList = usersPrivService.getUserPrivNameByFuncId(fid);
+            json.setObj(userPrivList);
+            json.setMsg("OK");
+            json.setFlag(0);
+
+        } catch (Exception e) {
+            json.setMsg("false");
+            json.setFlag(1);
+            json.setMsg(e.getMessage());
+        }
+        return json;
+    }
+
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/1 13:39
+     * @函数介绍: 获取某个功能授权的用户名;
+     * @参数说明: @param String fid(子类菜单ID)
+     * @参数说明: @param HttpServletRequest
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping("/getAuthUserName")
+    public ToJson<String> getAuthUserName(String fid, HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+
+        ToJson<String> json = new ToJson<String>(0, null);
+
+        try {
+            List<String> list = userFunctionService.getUserNameByFuncId(fid);
+            json.setObject(list);
+            json.setMsg("OK");
+            json.setFlag(0);
+
+        } catch (NullPointerException e) {
+            json.setMsg("false");
+            json.setFlag(1);
+            json.setMsg(e.getMessage());
+        }
+        return json;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/1 19:41
+     * @函数介绍: 修改UserPriv(user_priv), 某个菜单增加角色权限
+     * @参数说明: @param String privids
+     * @参数说明: @param String funcId
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping("/updateUserPrivfuncIdStr")
+    public ToJson<Object> updateUserPrivfuncIdStr(HttpServletRequest request, String privids, String funcId) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+
+        ToJson<Object> json = new ToJson<Object>(0, null);
+
+        try {
+            usersPrivService.updateUserPrivfuncIdStr(privids, funcId);
+            json.setMsg("OK");
+            json.setFlag(0);
+
+        } catch (Exception e) {
+            json.setMsg("false");
+            json.setFlag(1);
+            json.setMsg(e.getMessage());
+        }
+        return json;
+    }
+
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/2 13:28
+     * @函数介绍: 修改该用户对某个菜单的权限，对应user_ext表，user_function表
+     * @参数说明: fid 某个某个功能的id, 对应sys_function的id
+     * @参数说明: uids 用户的userId多个用逗号分隔。
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping("/updateAuthUser")
+    public ToJson<Object> updateAuthUser(HttpServletRequest request, String fid, String uids) {
+
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<Object> json = new ToJson<Object>(0, null);
+
+        try {
+            userFunctionService.updateAuthUser(fid, uids);
+            json.setMsg("OK");
+            json.setFlag(0);
+
+        } catch (Exception e) {
+            json.setMsg("false");
+            json.setFlag(1);
+            json.setMsg(e.getMessage());
+        }
+
+        return json;
+    }
+
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/2 14:54
+     * @函数介绍: 删除角色权限
+     * @参数说明: @param String privids
+     * @参数说明: @param String funcId
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping(value = "deleteUserPriv", produces = {"application/json;charset=UTF-8"})
+    public ToJson<Object> deleteUserPriv(HttpServletRequest request, String privids, String funcIds) {
+
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<Object> json = new ToJson<Object>(0, null);
+
+        try {
+            usersPrivService.deleteUserPriv(privids, funcIds);
+            json.setMsg("OK");
+            json.setFlag(0);
+
+        } catch (Exception e) {
+            json.setMsg("false");
+            json.setFlag(1);
+            json.setMsg(e.getMessage());
+        }
+
+        return json;
 
     }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/2 15:24
+     * @函数介绍: 删除用户的某项菜单权限（对应user_ext和user_function表）
+     * @参数说明: fid 某个某个功能的id, 对应sys_function的id
+     * @参数说明: uids 用户的userId多个用逗号分隔。
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping("/deleteAuthUser")
+    public ToJson<Object> deleteAuthUser(HttpServletRequest request, String fid, String uIds) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<Object> json = new ToJson<Object>(0, null);
+
+        try {
+            userFunctionService.deleteAuthUser(fid, uIds);
+            json.setMsg("OK");
+            json.setFlag(0);
+
+        } catch (Exception e) {
+            json.setMsg("false");
+            json.setFlag(1);
+            json.setMsg(e.getMessage());
+        }
+
+        return json;
+    }
+
+
 }
 
 

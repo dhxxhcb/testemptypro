@@ -242,10 +242,8 @@
         text-decoration: none;
     }
     .top_one{
-
         position: absolute;
         top: 0px;
-
     }
     .top_two{
         position: absolute;
@@ -253,6 +251,31 @@
     }
     #tab_c{
         transition: all 1s ease 0s;
+    }
+    .list_table{
+        border-width: medium;
+        border-style: none;
+        border-color: initial;
+        border-collapse: collapse;
+        word-wrap: break-word;
+        table-layout: fixed;
+    }
+    .list_table .head {
+        font-weight: 600;
+    }
+    .list_table td{
+        border-bottom: #7F7F7F 1pt solid;
+        /* border-left: #000000 2.25pt solid; */
+        text-align: center;
+        width: 50px;
+        padding-bottom: 1px;
+        padding-left: 1px;
+        padding-right: 1px;
+        vertical-align: middle;
+        border-top: #7F7F7F 1pt solid;
+        border-right: black 1pt solid;
+        padding-top: 1px;
+        padding: 0;
     }
 </style>
 <body>
@@ -277,7 +300,7 @@
         </div>
     </div>
     <div class="content">
-        <form action="<%=basePath%>/workflow/work/nextwork"   id="ajaxform">
+       <%-- <form action="<%=basePath%>/workflow/work/nextwork"   id="ajaxform">--%>
         <div class="cont" id="client">
             <div class="cont_form" id="a2">
 
@@ -332,7 +355,7 @@
                 </ul>
             </div>
         </div>
-        </form>
+      <%--  </form>--%>
     </div>
 
 </div>
@@ -467,7 +490,7 @@
                    //找到表格上的内容
                    var form_item=$('.cont_form .form_item');
                    var realData=[];
-                    var radioArr = {}
+                    var radioArr = {};
                    for(var i=0;i<form_item.length;i++){
                        var baseData={};
                        var value="";
@@ -544,7 +567,7 @@
                                     prcsName+'<ol></ol> </li></ul></div><div class="workflow-procs-line"></div><div class="workflow-procs-nodes-result-wrap">'+
                                     '<ul id="work-next-prcs-block" class="workflow-procs-nodes-result" style="top: 0px;">'+
                                     '<li class="workflow-node-result clearfix " prcs_id_next="2">'+
-                                    '<div class="workflow-node-title"><div class="workflow-node-title-text">上级主管核定</div><div class="workflow-node-ops"><input id="chose_user2" type="button" prcs_type="" gather_node_have_flag="0" class="btn btn-info user-op op-first users-add" prcs_back="" prcs_next="2" is_child_node="0" value="选择人员"></div> </div>'+
+                                    '<div class="workflow-node-title"><div class="workflow-node-title-text">上级主管核定</div><div class="workflow-node-ops"><input id="chose_user2" type="button"  is_child_node="0" value="选择人员"></div> </div>'+
                                     '<div class="users-select-block"><div id="host_op_block_div2" class="clearfix">'+
                                     '  <input type="hidden" id="PRCS_OP_USER2" data_type="op_user_btn" name="PRCS_OP_USER2" value="admin">'+
                                     ' <input type="hidden" id="PRCS_BACK" name="PRCS_BACK" value=""><div class="sponsor">'+
@@ -627,7 +650,8 @@
                                             beginUser:ret.beginUser,
                                             prcsId:pId,
                                             prcsflag:1,
-                                            flowPrcs:ret2.flowPrcs
+                                            flowPrcs:ret2.flowPrcs,
+                                            jingbanUser:$('#remind_name').attr('user_id')
                                         }
                                        /* console.log(pId);*/
                                         console.log(savedData);

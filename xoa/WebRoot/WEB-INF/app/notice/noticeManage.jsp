@@ -609,7 +609,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--content部分结束-->
 
     
-    <!-- 新闻查询 -->
+    <!-- 公告查询 -->
     <div class="center" id="qt">
     <div class="login">
         <div class="header">
@@ -692,12 +692,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
     user_id='';
 $(function () {
-    //修改
+    //修改的选人控件
     $('#add_selectUserbtn').click(function(){
         user_id='add_selectUser';
         $.popWindow("../common/selectUser");
     });
-    //新增
+    //新增的选人控件
     $('#adds_selectUserbtn').click(function(){
         user_id='adds_selectUser';
         $.popWindow("../common/selectUser");
@@ -783,10 +783,8 @@ $(function () {
            initPageList(function(pageCount){
            		 initPagination(pageCount,data.pageSize);
            });
-          
 		  
            $(".index_head li").click(function (){
-				console.log('qqq');
                 $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
                 $(".news").html($(this).find('span').text());
 				data.read = $(this).attr('data_id');
