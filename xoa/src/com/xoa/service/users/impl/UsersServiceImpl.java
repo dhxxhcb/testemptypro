@@ -370,7 +370,7 @@ public class UsersServiceImpl implements UsersService {
         List<Users>  usersList=usersMapper.getUserbyCondition(maps);
         StringBuffer s2=new StringBuffer();
         for (Users  users:usersList){
-            if (users.getUserPrivOther()!=null){
+            if (users.getUserPrivOther()!=null&&!users.getUserPrivOther().equals("")){
                 String userOther=users.getUserPrivOther();
                 String[] strArray2 =userOther.split(",");
                 for (int i = 0; i < strArray2.length; i++) {

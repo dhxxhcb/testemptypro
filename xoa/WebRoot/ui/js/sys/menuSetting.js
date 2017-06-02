@@ -99,6 +99,30 @@ $(function(){
         authorizationPriv(id,$('#PRIV'));
         authorizationUser(id,$('#USER'));
     })
+    //添加权限确定点击事件
+    $('#addBtn_sure').click(function(){
+        var privid=$('#privDuser').attr('privid');
+        var userid=$('#senduser').attr('dataid');
+        var data1={'privids':privid};
+        var data2={'uids':userid};
+        if(!privid && !userid){
+            alert('请选择角色或人员');
+        }else if(!privid){
+            addAuthorizationUser(data2);
+            alert('操作成功')
+            $('#senduser').val('');
+        }else if(!userid){
+            addAuthorizationPriv(data1)
+            alert('操作成功')
+            $('#privDuser').val('');
+        }else{
+            addAuthorizationPriv(data1)
+            addAuthorizationUser(data2);
+            alert('操作成功')
+            $('#privDuser').val('');
+            $('#senduser').val('');
+        }
+    })
 
 
 
@@ -343,6 +367,7 @@ function authorizationPriv(id,element){
         }
     })
 }
+//已授权范围（人员）
 function authorizationUser(id,element){
     $.ajax({
         type:'get',
@@ -352,6 +377,30 @@ function authorizationUser(id,element){
         success:function(res){
             var data=res.object;
             element.text(data);
+        }
+    })
+}
+//添加角色
+function addAuthorizationPriv(data){
+    $.ajax({
+        type:'post',
+        url:'../../updateUserPrivfuncIdStr',
+        dataType:'json',
+        data:data,
+        success:function(res){
+            console.log(res.msg);
+        }
+    })
+}
+//添加人员
+function addAuthorizationUser(data){
+    $.ajax({
+        type:'post',
+        url:'../../updateAuthUser',
+        dataType:'json',
+        data:data,
+        success:function(res){
+            console.log(res.msg);
         }
     })
 }

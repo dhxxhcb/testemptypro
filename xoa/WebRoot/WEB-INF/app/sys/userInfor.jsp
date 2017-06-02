@@ -204,7 +204,7 @@
 <script>
     $(function(){
         $('#department').deptSelect();
-        //$('#selectUser').privSelect();
+        $('#selectUser').privSelect();
     })
 </script>
 </body>
