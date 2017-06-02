@@ -1,18 +1,18 @@
 package com.xoa.controller.work;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.xoa.dao.work.WorkMapper;
 import com.xoa.util.common.StringUtils;
+import org.apache.commons.collections.map.HashedMap;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +63,9 @@ public class WorkController {
 
     @Resource
     private FlowProcessService flowProcessService;
+
+    @Autowired
+    WorkMapper workMapper;
 
     @RequestMapping("addwork")
     public String work(HttpServletRequest request) {
@@ -175,6 +178,7 @@ public class WorkController {
      * 参数说明:   @throws JSONException
      * @return     String 
      */
+
     @RequestMapping("nextwork")
     @ResponseBody
     public ToJson<FlowFast> nextwork(HttpServletRequest request,
@@ -196,23 +200,31 @@ public class WorkController {
      // Map<String,Object> map =json.parseObject(formdata,Map.class);
         StringBuffer sbcreate=new StringBuffer();
         if (!CheckTableExist.haveTable(tableName)) {
-        	String sql = " create table  "+tableName+ ""
-        			+ "(`id` int(10) not null auto_increment,"
-        			+ "`run_id` int(10) not null default '0', "
-        			+ "`run_name` varchar(200) not null default '',"
-        			+ "`begin_user` varchar(20) not null default '',"
-        			+ "`begin_time` datetime null,"
-        			+ "`flow_auto_num` int(11) not null default '0', "
-        			+ "`flow_auto_num_year` int(11) not null default '0', "
-        			+ "`flow_auto_num_month` int(11) not null default '0',";
-        	sbcreate.append(sql.toString());
-        	for(Map<String,Object> map: l){        
-        		String sql1= ""+ "`"+map.get("key")+"`"+ "text not null default '',";
-        		sbcreate.append(sql1);
+//        	String sql = " create table  "+tableName+ ""
+//        			+ "(`id` int(10) not null auto_increment,"
+//        			+ "`run_id` int(10) not null default '0', "
+//        			+ "`run_name` varchar(200) not null default '',"
+//        			+ "`begin_user` varchar(20) not null default '',"
+//        			+ "`begin_time` datetime null,"
+//        			+ "`flow_auto_num` int(11) not null default '0', "
+//        			+ "`flow_auto_num_year` int(11) not null default '0', "
+//        			+ "`flow_auto_num_month` int(11) not null default '0',";
+//        	sbcreate.append(sql.toString());
+//        	for(Map<String,Object> map: l){
+//        		String sql1= ""+ "`"+map.get("key")+"`"+ "text not null default '',";
+//        		sbcreate.append(sql1);
+//    		}
+//        	String sqlprimary=" primary key(id),unique key(run_id) );";
+//        	sbcreate.append(sqlprimary);
+//        	CheckTableExist.createSql(sbcreate.toString());
+            List<String> key =new ArrayList<String>();
+            for(Map<String,Object> map: l){
+                key.add((String)map.get("key"));
     		}
-        	String sqlprimary=" primary key(id),unique key(run_id) );";
-        	sbcreate.append(sqlprimary);
-        	CheckTableExist.createSql(sbcreate.toString());
+            Map<String,Object> param =new HashedMap();
+            param.put("tableName",tableName);
+            param.put("keys",key);
+            workMapper.createTable(param);
         } else {
         	 String keys = "run_id,run_name,begin_time,begin_user";
              String values = "" +runId + "," +"'"+ runName +"'"+ "," +"'"+ beginTime+"'" + "," +"'"+ beginUser+"'";
@@ -220,10 +232,6 @@ public class WorkController {
              sb.append(keys);
              StringBuffer sb1 = new StringBuffer();
              sb1.append(values);
-        	/*for(Entry<String, Object> m:map.entrySet()){
-        		sb.append(",").append(m.getKey());
-                sb1.append(",").append(m.getValue());
-    		}*/
              for(Map<String,Object> map: l){
             	 sb.append(",").append(map.get("key"));
                  sb1.append(",").append("'").append(map.get("value")).append("'");
