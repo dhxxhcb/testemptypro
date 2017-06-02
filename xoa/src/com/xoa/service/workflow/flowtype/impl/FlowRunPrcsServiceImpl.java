@@ -174,6 +174,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		List<FlowRunPrcs> returnList = new ArrayList<FlowRunPrcs>();
 		int len = list.size();
 		if(len>0){
+			toJson.setTotleNum(pages.getTotal());
 			for (FlowRunPrcs flowRunPrcs : list) {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
 				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
@@ -182,7 +183,6 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 			}
 			toJson.setFlag(0);
 			toJson.setMsg("ok");
-			toJson.setTotleNum(pages.getTotal());
 			toJson.setObj(returnList);
 		}else{
 			toJson.setFlag(1);
