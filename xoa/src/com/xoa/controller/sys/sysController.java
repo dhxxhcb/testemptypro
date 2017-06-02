@@ -60,4 +60,12 @@ public class sysController {
 				"loginDateSouse"));
 		return "app/sys/menuSetting";
 	}
+
+	@RequestMapping("/userInfor")
+	public String userInfor(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/userInfor";
+	}
+
 }
