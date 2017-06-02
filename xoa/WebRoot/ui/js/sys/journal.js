@@ -66,7 +66,6 @@ $(function(){
             var conId=$(this).attr("logId");
             fileId.push(conId);
         })
-        alert(fileId);
         deleteAllJournal(fileId);
     })
     //日志概况显示数据
