@@ -123,7 +123,12 @@ function companyAllPerson(data,element){
             var str='';
             for(var i=0;i<data1.length;i++){
                 var txt=data1[i].sex==0?'男':'女';
-                str+='<tr class="loopData"><td>'+data1[i].dep.deptName+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].userPrivName+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
+                if(data1[i].RoleAuxiliaryName){
+                    str+='<tr class="loopData"><td>'+data1[i].dep.deptName+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].userPrivName+'</td><td>'+data1[i].RoleAuxiliaryName+'</td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].dep.telNo+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
+                }else{
+                    str+='<tr class="loopData"><td>'+data1[i].dep.deptName+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].userPrivName+'</td><td></td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].dep.telNo+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
+                }
+
             }
             element.after(str);
         }
