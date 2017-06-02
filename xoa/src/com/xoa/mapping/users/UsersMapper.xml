@@ -1173,6 +1173,7 @@
 	u.BYNAME,
 	u.USER_PRIV,
 	u.USER_PRIV_NO,
+    u.EMAIL,
 	u.USER_PRIV_NAME,
 	d.DEPT_NAME,
 	d.TEL_NO,
@@ -1188,19 +1189,19 @@ FROM
 WHERE
 	u.DEPT_ID = d.DEPT_ID
         <if test="userId != null and userId != ''">
-            AND USER_ID = #{userId}
+            AND u.USER_ID = #{userId}
         </if>
         <if test="userName != null and userName != ''">
-            AND USER_NAME = #{userName}
+            AND u.USER_NAME = #{userName}
         </if>
         <if test="sex != null and sex != ''">
-            AND SEX = #{sex}
+            AND u.SEX = #{sex}
         </if>
         <if test="deptId != null and deptId != ''">
-            AND DEPT_ID = #{deptId}
+            AND u.DEPT_ID = #{deptId}
         </if>
         <if test="userPrivNo != null and userPrivNo != ''">
-            AND USER_PRIV_NO = #{userPrivNo}
+            AND u.USER_PRIV_NO = #{userPrivNo}
         </if>
         ORDER BY UID DESC
 </select>
