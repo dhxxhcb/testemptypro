@@ -177,12 +177,34 @@
                 <div class="backBtn">返回</div>
             </div>
         </div>
+        <div class="childQuery" style="display: none;">
+            <div class="title">
+                <span>用户查询</span>
+            </div>
+            <div class="tab">
+                <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+                    <tr class='allCondition'>
+                        <th width="">部门</th>
+                        <th width="">姓名</th>
+                        <th width="">角色</th>
+                        <th width="">辅助角色</th>
+                        <th width="">在线时长</th>
+                        <th width="">性别</th>
+                        <th width="">单位电话</th>
+                        <th width="">部门电话</th>
+                        <th width="">手机</th>
+                        <th width="">电子邮件</th>
+                    </tr>
+                </table>
+               <%-- <div class="backBtn">返回</div>--%>
+            </div>
+        </div>
     </div>
 </div>
 <script>
     $(function(){
         $('#department').deptSelect();
-        //$('#selectUser').privSelect();
+        $('#selectUser').privSelect();
     })
 </script>
 </body>

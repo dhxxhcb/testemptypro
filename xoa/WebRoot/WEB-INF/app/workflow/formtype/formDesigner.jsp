@@ -11,7 +11,6 @@
     <![endif]-->
     <!--[if lte IE 7]>
     <link rel="stylesheet" type="text/css" href="${ctx }/styles/bootstrap/2.2.2/css/ie.css">
-
     <![endif]-->
     <link href="../css/ueditor/site.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../css/ueditor/styleUpdate.css">
@@ -76,8 +75,6 @@
             <div class="span10">
                 <script id="formEditor" type="text/plain" style="width:100%;">${form.originalHtml}</script>
 
-                <script type="text/javascript" charset="utf-8" src="../js/jquery-1.9.1.js"></script>
-                <script type="text/javascript" charset="utf-8" src="../js/base/base.js"> </script>
                 <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.config.js"></script>
                 <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.all.js"> </script>
                 <script type="text/javascript" charset="utf-8" src="../lib/ueditor/lang/zh-cn/zh-cn.js"></script>
@@ -90,7 +87,6 @@
                         var formid = $.getQueryString("formId")
                         var type = $.getQueryString("type")
                         $("#content .nav-list ").on("click", 'a', function() {
-
                             formDesign.exec($(this).attr('type'));
                         });
 
@@ -127,13 +123,22 @@
                             });
                             $('#saveFrom_btn').on('click', function() {
                                 if (formEditor.hasContents()) {
+                                    var itemMax = 0;
+                                    $(formEditor.getContent()).find('.form_item ').each(function () {
+                                        var max = parseInt($(this).attr('name').split('_')[1]);
+                                        if(!isNaN(max) && (max > itemMax)){
+                                            itemMax = max;
+                                        }
+                                    });
+                                    console.log(itemMax)
                                     $.ajax({
                                         type: 'POST',
                                         url: 'updateFormType',
                                         dataType : 'json',
                                         data: {
                                             'formId': formid,
-                                            'printModel': formEditor.getContent()
+                                            'printModel': formEditor.getContent(),
+                                            'itemMax':itemMax
                                         },
                                         success: function(data) {
                                             if (data.flag) {
@@ -161,6 +166,9 @@
                                         workForm.ReBuild(formObj);
                                         $('#formtitle').html(res.object.formName);
                                         formEditor.setContent(formObj.html(), true);
+                                        if(res.itemMax){
+                                            pluginId = res.itemMax;
+                                        }
                                     }
                                 });
                             }

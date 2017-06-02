@@ -197,7 +197,7 @@ public class FlowFormService {
          return wrapper;
      }
 
-    public BaseWrapper updateFormType(Integer formId,String formName,Integer deptId,Integer formSort,String printModel){
+    public BaseWrapper updateFormType(Integer formId,String formName,Integer deptId,Integer formSort,String printModel,Integer itemMax){
         BaseWrapper wrapper =new BaseWrapper();
 
         if(formId==null){
@@ -217,6 +217,7 @@ public class FlowFormService {
          flowFormType.setFormId(formId);
         flowFormType.setPrintModel(printModel);
         flowFormType.setPrintModelShort(printModel);
+        flowFormType.setItemMax(itemMax);
         int res =flowFormTypeMapper.updateSelectParam(flowFormType);
         if(res>0){
             wrapper.setFlag(true);

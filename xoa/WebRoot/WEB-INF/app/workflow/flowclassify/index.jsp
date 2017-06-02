@@ -823,11 +823,6 @@
 
             form_delete();
 
-			/*    url='flowDelete';
-			 data={
-			 flowId:tid
-			 }*/
-
 
         })
 		/*	流程删除*/

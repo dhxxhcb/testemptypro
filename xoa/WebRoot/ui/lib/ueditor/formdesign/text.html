@@ -147,8 +147,8 @@
                     oNode.setAttribute('type', gType);
                     oNode.setAttribute('title', gTitle);
                     oNode.setAttribute('value', gValue);
-                    oNode.setAttribute('name', 'DATA_' + dataid);
-                    oNode.setAttribute('id', 'DATA_' + dataid);
+                    oNode.setAttribute('name', 'DATA_' + (dataid++));
+                    oNode.setAttribute('id', 'DATA_' + (dataid++));
                     if ($G('orghide').checked) {
                         oNode.setAttribute('orghidden', 1);
                     } else {

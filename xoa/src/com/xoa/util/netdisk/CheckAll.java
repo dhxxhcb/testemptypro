@@ -84,7 +84,7 @@ public class CheckAll {
 
     public static  boolean checkAll(String checkString,Map<String,Object> map){
         //"|"转义字符串  所以必须用\\进行转义 因为 而且取出数组长度不确定
-        String[] checkStrings=checkString.split("/|\\|");
+        String[] checkStrings=checkString.split("/|");
         if(checkStrings.length==0){
             return false;
         }
@@ -104,7 +104,7 @@ public class CheckAll {
             }
         }
         //数组长度为2时 说明此时角色和用户Id权限为空
-        if(checkStrings.length==5){
+        if(checkStrings.length==2){
             String[]  checkDept=checkStrings[0].split(",");
             for(int i=0;i<checkDept.length;i++){
                 //调用校验部门范围方法  传值为部门id
@@ -131,7 +131,7 @@ public class CheckAll {
             }
         }
         //数组长度为3时 说明此时部门、角色和用户Id权限都不为空
-        if(checkStrings.length==4){
+        if(checkStrings.length==3){
             String[]  checkDept=checkStrings[0].split(",");
             for(int i=0;i<checkDept.length;i++){
                 String depId=map.get("deptId").toString();

@@ -72,8 +72,8 @@ function createElement(type, name)
                     oNode.setAttribute('type','checkbox');
                     oNode.setAttribute('class', "form_item");
                     oNode.setAttribute('data-type', "checkbox");
-                    oNode.setAttribute('name', 'DATA_' + dataid);
-                    oNode.setAttribute('id', 'DATA_' + dataid);
+                    oNode.setAttribute('name', 'DATA_' + (dataid++));
+                    oNode.setAttribute('id', 'DATA_' + (dataid++));
                     if ($G('orgchecked1').checked) {
                         oNode.setAttribute('checked','checked');
                     } else {

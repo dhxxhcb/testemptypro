@@ -4,6 +4,7 @@ import com.xoa.dao.common.SyslogMapper;
 import com.xoa.dao.users.UsersMapper;
 import com.xoa.model.common.Syslog;
 import com.xoa.model.users.Users;
+import com.xoa.service.users.UsersPrivService;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.CusAccessObjectUtil;
 import com.xoa.util.ToJson;
@@ -32,6 +33,8 @@ public class UsersServiceImpl implements UsersService {
     private UsersMapper usersMapper;
     @Resource
     private SyslogMapper syslogMapper;
+    @Resource
+    private UsersPrivService  usersPrivService;
 
     /**
      * 创建作者:   张龙飞
@@ -364,7 +367,24 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public List<Users> getUserbyCondition(Map<String, Object> maps) {
+        List<Users>  usersList=usersMapper.getUserbyCondition(maps);
+        StringBuffer s2=new StringBuffer();
+        for (Users  users:usersList){
+            if (users.getUserPrivOther()!=null&&!users.getUserPrivOther().equals("")){
+                String userOther=users.getUserPrivOther();
+                String[] strArray2 =userOther.split(",");
+                for (int i = 0; i < strArray2.length; i++) {
+                    String name3=usersPrivService.getPrivNameById(Integer.parseInt(strArray2[i]));
+                    if (name3!=null) {
+                        s2.append(name3);
+                        s2.append(",");
+                        users.setRoleAuxiliaryName(s2.toString());
+                    }
+                }
 
+            }
+
+        }
         return  usersMapper.getUserbyCondition(maps);
     }
 

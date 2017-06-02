@@ -62,9 +62,11 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 79%;
-    margin-bottom: 50px;
+    /*margin: 0 auto;*/
     margin-top:2%;
-    margin: 0 auto;
+    margin-bottom: 50px;
+    margin-left: 11%;
+
 }
 
 td {

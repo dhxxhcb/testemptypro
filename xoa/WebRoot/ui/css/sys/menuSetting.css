@@ -167,7 +167,21 @@ ul{
     margin-left: 5px;
     line-height: 23px;
 }
-
+#passwSure{
+	padding: 0 6px;
+	border-radius: 5px;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #eee;
+	cursor: pointer;
+	margin-left: 45%;
+	line-height: 23px;
+}
+.oneTd{
+	text-align: center;
+	color: #2F5C8F;
+	padding: 5px;
+}
 
 
 
