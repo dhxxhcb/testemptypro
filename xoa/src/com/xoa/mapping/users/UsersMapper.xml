@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.users.UsersMapper">
     <resultMap id="UserResultMap" type="com.xoa.model.users.Users">
+
         <id column="UID" property="uid" javaType="int"/>
+        <result column="U_FUNC_ID_STR" property="funcIdStr" javaType="string"/>
         <result column="USER_ID" property="userId" javaType="string"/>
         <result column="USER_NAME" property="userName" javaType="string"/>
         <result column="USER_NAME_INDEX" property="userNameIndex"
@@ -1162,8 +1164,49 @@
     </select>
     <select id="getUserOnline" resultMap="UserResultMap">
         select u.UID, u.USER_NAME from user u, user_online uo WHERE u.UID = uo.UID;
+    </select>
+
+    <select id="getUserNameByFuncId" parameterType="java.lang.String" resultMap="UserResultMap">
+        SELECT u.USER_NAME, u.UID from user u, user_function uf WHERE u.UID = uf.uid;
+    </select>
+
+    <select id="getUserByFuncId" parameterType="java.lang.String" resultType="java.lang.String">
+select DISTINCT (u.UID)  from
+  user_ext ue, user u, user_function uf
+where
+(
+        ue.USER_ID = u.USER_ID
+       AND
+       (
+          ue.U_FUNC_ID_STR LIKE concat('%,', #{fid}, ',%')
+         OR
+           ue.U_FUNC_ID_STR LIKE concat(#{fid}, ',%')
+        )
+
+  OR
+      (
+        u.USER_ID = uf.user_id
+        AND
+
+        (uf.user_func_id_str LIKE concat('%,', #{fid}, ',%')
+         OR uf.user_func_id_str LIKE concat( #{fid}, ',%')
+        )
+      )
+);
 
     </select>
- </mapper>
+
+    <select id="findUsersByIds" parameterType="hashMap" resultType="java.lang.String">
+
+        SELECT u.USER_NAME FROM user u
+        <where>
+            <foreach collection="ids" item="id" open=" AND  UID  IN ( " close=" ) " separator=" , ">
+                #{id}
+            </foreach>
+        </where>
+
+
+    </select>
+</mapper>
 
 

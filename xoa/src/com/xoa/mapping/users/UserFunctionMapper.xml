@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.users.UserFunctionMapper" >
-  <resultMap id="userResultMap" type="com.xoa.model.users.UserFunction" >
-    <id column="uid" property="uid" jdbcType="INTEGER" javaType="int" />
-    <result column="user_id" property="userId" jdbcType="VARCHAR" javaType="string" />
-    <result column="user_func_id_str" property="userFunCidStr" jdbcType="VARCHAR" javaType="string" />
-  </resultMap>
-  
-  
-   <select id="getMenuByUserId" resultMap="userResultMap" parameterType="int">
+<mapper namespace="com.xoa.dao.users.UserFunctionMapper">
+    <resultMap id="userResultMap" type="com.xoa.model.users.UserFunction">
+        <id column="uid" property="uid" jdbcType="INTEGER" javaType="int"/>
+        <result column="user_func_str" property="userFunCidStr" javaType="string"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR" javaType="string"/>
+
+        <result column="user_func_id_str" property="userFunCidStr" jdbcType="VARCHAR" javaType="string"/>
+    </resultMap>
+
+
+    <select id="getMenuByUserId" resultMap="userResultMap" parameterType="int">
 		SELECT user_func_id_str from user_function WHERE uid=#{uid}
 	</select>
+    <select id="getUserFuncIdStr" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT user_func_id_str from user_function WHERE user_id=#{uid}
+    </select>
+
+    <update id="updateUserFuncIdStr" parameterType="hashMap">
+               UPDATE user_function SET user_func_id_str = #{userFuncIdStr} WHERE user_id = #{userId}
+    </update>
+
+
 </mapper>
