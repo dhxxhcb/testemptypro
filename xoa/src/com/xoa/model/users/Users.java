@@ -320,8 +320,18 @@ public class Users {
 	private String name;
 
      private String funcIdStr;
+     //辅助角色名字
+     private  String  roleAuxiliaryName;
 
-     public String getFuncIdStr() {
+	 public String getRoleAuxiliaryName() {
+		 return roleAuxiliaryName;
+	 }
+
+	 public void setRoleAuxiliaryName(String roleAuxiliaryName) {
+		 this.roleAuxiliaryName = roleAuxiliaryName;
+	 }
+
+	 public String getFuncIdStr() {
          return funcIdStr;
      }
 
