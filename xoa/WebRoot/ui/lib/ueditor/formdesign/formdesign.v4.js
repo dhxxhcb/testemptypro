@@ -23,7 +23,7 @@ UE.plugins['listing'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/listing.html?dataid='+(pluginId++),
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/listing.html?dataid='+pluginId,
                 name:thePlugins,
                 editor:this,
                 title: '列表控件',
@@ -98,7 +98,7 @@ UE.plugins['text'] = function () {
 	me.commands[thePlugins] = {
 		execCommand:function () {
 			var dialog = new UE.ui.Dialog({
-				iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/text.html?dataid='+(pluginId++),
+				iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/text.html?dataid='+pluginId,
 				name:thePlugins,
 				editor:this,
 				title: '单行输入框',
@@ -173,7 +173,7 @@ UE.plugins['textarea'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/textarea.html?dataid='+(pluginId++),
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/textarea.html?dataid='+pluginId,
                 name:thePlugins,
                 editor:this,
                 title: '多行文本框',
@@ -247,7 +247,7 @@ UE.plugins['select'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/select.html?dataid='+(pluginId++),
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/select.html?dataid='+pluginId,
                 name:thePlugins,
                 editor:this,
                 title: '下拉菜单',
@@ -327,7 +327,7 @@ UE.plugins['radios'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/radios.html?dataid='+(pluginId++),
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/radios.html?dataid='+pluginId,
                 name:thePlugins,
                 editor:this,
                 title: '单选框组',
@@ -403,7 +403,7 @@ UE.plugins['checkboxs'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/checkboxs.html?dataid='+(pluginId++),
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/checkboxs.html?dataid='+pluginId,
                 name:thePlugins,
                 editor:this,
                 title: '复选框组',
@@ -479,7 +479,7 @@ UE.plugins['macros'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/macros.html?dataid='+(pluginId++),
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/macros.html?dataid='+pluginId,
                 name:thePlugins,
                 editor:this,
                 title: '宏控件',
@@ -554,7 +554,7 @@ UE.plugins['radio'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/radio.html?dataid='+(pluginId++),
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/radio.html?dataid='+pluginId,
                 name:thePlugins,
                 editor:this,
                 title: '单选框',
@@ -631,7 +631,7 @@ UE.plugins['checkbox'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/checkbox.html?dataid='+(pluginId++),
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/checkbox.html?dataid='+pluginId,
                 name:thePlugins,
                 editor:this,
                 title: '复选框',
@@ -706,7 +706,7 @@ UE.plugins['calendar'] = function () {
     me.commands[thePlugins] = {
         execCommand:function () {
             var dialog = new UE.ui.Dialog({
-                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/date.html?dataid='+(pluginId++),
+                iframeUrl:this.options.UEDITOR_HOME_URL + UE.formDesignUrl+'/date.html?dataid='+pluginId,
                 name:thePlugins,
                 editor:this,
                 title: '日历控件',
