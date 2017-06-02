@@ -6,6 +6,7 @@ var dept_id='';
 var priv_id='';
 var form,layer
 var flowDesign;
+var formTwo;
 var dataToAll;//全部数据
 var jsondata = {
     "title": "",
@@ -109,7 +110,6 @@ function ajaxSvg() {
                 jsondata.title = json.object.designdata[0].flowName;
                 jsondata.initNum = designdata.length;
                 designdata.forEach(function (v, i) {
-                    console.log(v)
                     jsondata.nodes['node_' + v.prcsId] = {
                         designerId:v.id,
                         name: v.prcsName,
@@ -233,6 +233,15 @@ function ajaxSvg() {
                     $("#ele_flow").val('${formId}');
                     var objtwo=obj.data;
                     console.log(objtwo);
+                    dataToAll=designdata;//所有数据
+                    var stringdata='<option value="0">当前步骤</option>';
+                    for(var il=0;il<dataToAll.length;il++){
+                        stringdata+='<option value="'+dataToAll[il].prcsId+'">'+dataToAll[il].prcsName+'</option>'
+                    }
+                    $('[name="autoBaseUser"]').html(stringdata)
+                    formTwo.render();
+
+
                     inputTheEcho('prcsId',objtwo.prcsId)
                     seleTheEcho('prcsType',objtwo.prcsType)
                     inputTheEcho('prcsName',objtwo.prcsName)
@@ -269,7 +278,7 @@ function ajaxSvg() {
                     inputTheEcho('userFilterPrcsDeptOther',objtwo.userFilterPrcsDeptOther)
                     inputTheEcho('userFilterPrcsPriv',objtwo.userFilterPrcsPriv)
                     inputTheEcho('userFilterPrcsPrivOther',objtwo.userFilterPrcsPrivOther)
-                    dataToAll=designdata;//所有数据
+
                     conditionsDate=objtwo.conditionsSet;
                     canwritefieldtwo=objtwo.canWriteField;
 
@@ -317,7 +326,7 @@ $(function () {
             type:'post',
             dataType:'json',
             success:function () {
-                location.reload();
+                // location.reload();
             }
         })
     })
@@ -392,7 +401,7 @@ $(function () {
         flowDesign = $.createGooFlow($("#flowDesignTable"), property);
         flowDesign.setNodeRemarks(remark);
 
-ajaxSvg();
+
 
 
     $('#propertyForm').height($('body').height()-65);
@@ -449,11 +458,27 @@ ajaxSvg();
     layui.use(['layer', 'form'], function(){
         layer = layui.layer
             ,form = layui.form();
-
+        formTwo=form;
+        ajaxSvg();
         form.on('select(candidatesfilters)', function(data){
             console.log(data.elem); //得到select原始DOM对象
             console.log(data.value); //得到被选中的值
             console.log(data.othis); //得到美化后的DOM对象
+            if(data.value==6){
+                $(data.elem).parent().siblings('div').hide();
+                $('.departmentAgent').show()
+            }else if(data.value==9){
+                $(data.elem).parent().siblings('div').hide();
+                $('.auxiliaryDepartmentAgent').show()
+            }else if(data.value==7){
+                $(data.elem).parent().siblings('div').hide();
+                $('.theSpecifiedRole').show()
+            }else if(data.value==11){
+                $(data.elem).parent().siblings('div').hide();
+                $('.assignRole').show()
+            }else {
+                $(data.elem).parent().siblings('div').hide();
+            }
 
         });
         form.on('select(automaticCandidateTwo)', function(data){
@@ -541,7 +566,6 @@ ajaxSvg();
              // var arrprcsIn=conditionsDate.prcsIn.split('\r')
             var intoTheConditionPrcsIn='';
             // console.log(strprcsIn)
-            console.log(arrprcsIn)
             for(var m=0;m<arrprcsIn.length;m++){
                 if(arrprcsIn[m]!='') {
                     intoTheConditionPrcsIn += '<tr><td width="20%">' + (m + 1) + '</td>' +
@@ -673,7 +697,9 @@ ajaxSvg();
                     var obj={};
                     obj.intoTheCondition={}
                     obj.intoTheCondition.list=[]
+                    console.log( $('#intoTheCondition table tbody').find('[type=hidden]').val())
                     $('#intoTheCondition').find('[type=hidden]').each(function (i,n) {
+
                         obj.intoTheCondition.list.push($(this).val())
                     })
                     obj.intoTheCondition.prcsInSet=$('#bottomstepstwoss').find('[name="prcsInSet"]').val()
@@ -685,6 +711,7 @@ ajaxSvg();
                     })
                     obj.transferConditions.prcsOutSet=$('#bottomstepstwoss').find('[name="prcsOutSet"]').val()
                     obj.transferConditions.conditionDesc=$('#bottomstepstwoss').find('[name="conditionDesc"]').val()
+                    console.log(obj)
                    var strobj=JSON.stringify(obj);
                     $('[name="settlementOfCondition"]').val(strobj);
                     $('.setUpThe').removeClass('active')
@@ -709,7 +736,7 @@ ajaxSvg();
                             ""+$('[name="conditionss"]').val()+"'"+strval+"'";
                             if($(this).attr('data-add')=='0'){
                                 strIng='<tr><td width="20%">'+($('#intoTheCondition table tbody tr').length+1)+'</td>' +
-                                    '<td width="60%"><span>'+strconditions+'</span><input type="text" name="ConditionsInput" style="display: none">' +
+                                    '<td width="60%"><span>'+strconditions+'</span><input type="text" value="'+strconditions+'" name="ConditionsInput" style="display: none">' +
                                     '<input type="hidden" value="'+strconditions+'"></td>' +
                                     '<td><a href="javascript:;" class="theEditor" style="margin-right: 10px;color: #2f8ae3">编辑</a>' +
                                     '<a href="javascipt:;" class="deletes" style="color: #2f8ae3">删除</a></td></tr>'
@@ -726,7 +753,7 @@ ajaxSvg();
                                 $('#intoTheCondition table tbody').append(strIng)
                             }else if($(this).attr('data-add')=='1'){
                                 strIng='<tr><td width="20%">'+($('#transferConditions table tbody tr').length+1)+'</td>' +
-                                    '<td width="60%"><span>'+strconditions+'</span><input type="text" name="ConditionsInput" style="display: none">' +
+                                    '<td width="60%"><span>'+strconditions+'</span><input type="text" name="ConditionsInput" value="'+strconditions+'" style="display: none">' +
                                     '<input type="hidden" value="'+strconditions+'"></td>' +
                                     '<td><a href="javascript:;" class="theEditor" style="margin-right: 10px;color: #2f8ae3">编辑</a>' +
                                     '<a href="javascipt:;" class="deletes" style="color: #2f8ae3">删除</a></td></tr>'

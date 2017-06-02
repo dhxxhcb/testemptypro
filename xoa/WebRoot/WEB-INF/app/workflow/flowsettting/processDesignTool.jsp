@@ -251,11 +251,19 @@
                     <p class="candidatesPTwo">
                     <%--<input type="text" readonly="true" value="允许选择全部指定的经办人"><span class="xiala"><b></b></span>--%>
                         <select name="userFilter"  lay-filter="candidatesfilters"  lay-verify="">
+                            <option value="">允许选择全部指定的经办人</option>
                             <option value="1">只允许选择本部门经办人</option>
-                            <option value="2">只允许选择本角色经办人</option>
+                            <option value="1">只允许选择本辅助部门经办人</option>
+                            <option value="5">只允许选择同级部门经办人</option>
                             <option value="3">只允许选择上级部门经办人</option>
                             <option value="4">只允许选择下级部门经办人</option>
-
+                            <option value="12">只允许选择本部门和下级部门经办人</option>
+                            <option value="6">只允许选择指定部门经办人</option>
+                            <option value="9">只允许选择指定辅助部门经办人</option>
+                            <option value="2">只允许选择本角色经办人</option>
+                            <option value="10">只允许选择本辅助角色经办人</option>
+                            <option value="7">只允许选择指定角色经办人</option>
+                            <option value="11">只允许选择指定辅助角色经办人</option>
                         </select>
                     </p>
                     <div class="departmentAgent">
@@ -336,9 +344,8 @@
                         <p class="candidatesPTwo" style="margin-bottom: 20px">
                             <%--<input type="text" readonly="true" value="不进行自动选择"><span class="xiala"><b></b></span>--%>
                             <select name="autoBaseUser" lay-verify="">
-                                <option value="010">北京</option>
-                                <option value="021" disabled>上海（禁用效果）</option>
-                                <option value="0571" selected>杭州</option>
+                                <option value="0">当前步骤</option>
+
                             </select>
                         </p>
                     </div>
