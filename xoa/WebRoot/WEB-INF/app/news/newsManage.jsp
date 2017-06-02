@@ -703,7 +703,7 @@ user_id='query_userId';//选人控件
 					$('.step1').show();
 					$('.step2').hide();
 					$('.center').hide();
-					$('.step3').s();
+					$('.step3').show();
 					initPageList();
 				}else if(data.read == 1){
 					$('.step1').hide();

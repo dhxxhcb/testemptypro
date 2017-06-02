@@ -173,6 +173,7 @@ public interface UsersMapper {
 
      List<Users> getUserOnline();
 
+	 List<Users> getUserbyCondition(Map<String,Object> maps);
      List<Users> getUserNameByFuncId(String fid);
 
      List<String> getUserByFuncId(String fid);

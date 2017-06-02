@@ -363,6 +363,12 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public List<Users> getUserbyCondition(Map<String, Object> maps) {
+
+        return  usersMapper.getUserbyCondition(maps);
+    }
+
+    @Override
     @Transactional
     public ToJson<Users> edit(Integer uid, String userName, String sex, String birthday, String email, String oicqNo,
                               String mobilNo, String telNoDept, String avatar) {

@@ -5,8 +5,10 @@ import javax.annotation.Resource;
 import com.xoa.dao.workflow.FlowTypeModelMapper;
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.service.users.UsersService;
+import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import com.xoa.service.workflow.flowtype.FlowRunPrcsService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +34,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 	@Resource
 	private FlowTypeModelMapper flowTypeModelMapper;
 
+
 	@Override
 	public void save(FlowRunPrcs flowRunPrcs) {
 		flowRunPrcsMapper.insertSelective(flowRunPrcs);
@@ -39,7 +43,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 	/**
 	 * 创建作者:   张勇
 	 * 创建日期:   2017/5/24 20:29
-	 * 方法介绍:   查询代办工作
+	 * 方法介绍:   查询待办工作
 	 * 参数说明:
 	 * @return
 	 */
@@ -58,11 +62,24 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		int len = list.size();
 		if(len>0){
 			toJson.setTotleNum(pageParams.getTotal());
+			Date newDate = new Date();
 			long start =  System.currentTimeMillis();
 			for (FlowRunPrcs flowRunPrcs : list) {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
 				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
 				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
+				if(!StringUtils.checkNull(flowRunPrcs.getDeliverTime())) {
+					flowRunPrcs.setDeliverTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getDeliverTime())));
+//					flowRunPrcs.setArriveTime();
+				}
+				if(!StringUtils.checkNull(flowRunPrcs.getPrcsTime())&&flowRunPrcs.getPrcsId()>1){
+//					String upTime =  flowRunPrcsMapper.findTime(flowRunPrcs.getRunId(),flowRunPrcs.getPrcsId()-1);
+					Integer prcsId= flowRunPrcs.getRunId();
+					Integer runId = flowRunPrcs.getPrcsId()-1;
+
+					String upTime = flowRunPrcsMapper.findTime(runId,prcsId);
+					flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(upTime)));
+				}
 				returnList.add(flowRunPrcs);
 			}
 			long end = System.currentTimeMillis();
@@ -174,6 +191,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		List<FlowRunPrcs> returnList = new ArrayList<FlowRunPrcs>();
 		int len = list.size();
 		if(len>0){
+			toJson.setTotleNum(pages.getTotal());
 			for (FlowRunPrcs flowRunPrcs : list) {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
 				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
@@ -182,7 +200,6 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 			}
 			toJson.setFlag(0);
 			toJson.setMsg("ok");
-			toJson.setTotleNum(pages.getTotal());
 			toJson.setObj(returnList);
 		}else{
 			toJson.setFlag(1);
@@ -191,38 +208,38 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 		return toJson;
 	}
 
-	/**
-	 * 创建作者:   张勇
-	 * 创建日期:   2017/6/1 10:47
-	 * 方法介绍:   根据runId查询关联办理人的步骤和所在部门
-	 * 参数说明:
-	 * @return
-	 */
-	@Override
-	public  ToJson<FlowRunPrcs> findAllNode (Integer runId){
-		ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
-		try {
-			List<FlowRunPrcs> list = flowRunPrcsMapper.findAllNode(runId);
-			List<FlowRunPrcs> list1 = new ArrayList<FlowRunPrcs>();
-			int leng = list.size();
-			for (int i = 0; i < leng; i++) {
-				String flag = list.get(i).getPrcsFlag();
-				if ("3".equals(flag) || "4".equals(flag)) {
-					list1.add(list.get(i));
-				} else {
-					list1.add(list.get(i));
-					break;
-				}
-			}
-			toJson.setObj(list1);
-			toJson.setFlag(0);
-			toJson.setMsg("ok");
-		}catch (Exception e){
-			toJson.setFlag(1);
-			toJson.setMsg("error");
-		}
-		return toJson;
-	}
+//	/**
+//	 * 创建作者:   张勇
+//	 * 创建日期:   2017/6/1 10:47
+//	 * 方法介绍:   根据runId查询关联办理人的步骤和所在部门
+//	 * 参数说明:
+//	 * @return
+//	 */
+//	@Override
+//	public  ToJson<FlowRunPrcs> findAllNode (Integer runId){
+//		ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
+//		try {
+//			List<FlowRunPrcs> list = flowRunPrcsMapper.findAllNode(runId);
+//			List<FlowRunPrcs> list1 = new ArrayList<FlowRunPrcs>();
+//			int leng = list.size();
+//			for (int i = 0; i < leng; i++) {
+//				String flag = list.get(i).getPrcsFlag();
+//				if ("3".equals(flag) || "4".equals(flag)) {
+//					list1.add(list.get(i));
+//				} else {
+//					list1.add(list.get(i));
+//					break;
+//				}
+//			}
+//			toJson.setObj(list1);
+//			toJson.setFlag(0);
+//			toJson.setMsg("ok");
+//		}catch (Exception e){
+//			toJson.setFlag(1);
+//			toJson.setMsg("error");
+//		}
+//		return toJson;
+//	}
 
 	public List<FlowRunPrcs> findByRunId(Integer runId){
         List<FlowRunPrcs> l=flowRunPrcsMapper.findByRunId(runId);

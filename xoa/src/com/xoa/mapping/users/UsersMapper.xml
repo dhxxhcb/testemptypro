@@ -2,9 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoa.dao.users.UsersMapper">
     <resultMap id="UserResultMap" type="com.xoa.model.users.Users">
-
         <id column="UID" property="uid" javaType="int"/>
-        <result column="U_FUNC_ID_STR" property="funcIdStr" javaType="string"/>
         <result column="USER_ID" property="userId" javaType="string"/>
         <result column="USER_NAME" property="userName" javaType="string"/>
         <result column="USER_NAME_INDEX" property="userNameIndex"
@@ -1165,12 +1163,50 @@
     <select id="getUserOnline" resultMap="UserResultMap">
         select u.UID, u.USER_NAME from user u, user_online uo WHERE u.UID = uo.UID;
     </select>
-
-    <select id="getUserNameByFuncId" parameterType="java.lang.String" resultMap="UserResultMap">
+    <select id="getUserbyCondition" resultMap="UserResultMap">
+      SELECT
+	u.UID,
+	u.USER_ID,
+	u.USER_NAME,
+	u.BYNAME,
+	u.USER_PRIV,
+	u.USER_PRIV_NO,
+    u.EMAIL,
+	u.USER_PRIV_NAME,
+	d.DEPT_NAME,
+	d.TEL_NO,
+	u.TEL_NO_DEPT,
+	u.MOBIL_NO,
+	u.`ONLINE`,
+	u.SEX,
+	u.POST_NO_HOME,
+	u.USER_PRIV_OTHER
+FROM
+	USER u,
+	department d
+WHERE
+	u.DEPT_ID = d.DEPT_ID
+        <if test="userId != null and userId != ''">
+            AND u.USER_ID = #{userId}
+        </if>
+        <if test="userName != null and userName != ''">
+            AND u.USER_NAME = #{userName}
+        </if>
+        <if test="sex != null and sex != ''">
+            AND u.SEX = #{sex}
+        </if>
+        <if test="deptId != null and deptId != ''">
+            AND u.DEPT_ID = #{deptId}
+        </if>
+        <if test="userPrivNo != null and userPrivNo != ''">
+            AND u.USER_PRIV_NO = #{userPrivNo}
+        </if>
+        ORDER BY UID DESC
+</select>
+<select id="getUserNameByFuncId" parameterType="java.lang.String" resultMap="UserResultMap">
         SELECT u.USER_NAME, u.UID from user u, user_function uf WHERE u.UID = uf.uid;
     </select>
-
-    <select id="getUserByFuncId" parameterType="java.lang.String" resultType="java.lang.String">
+ <select id="getUserByFuncId" parameterType="java.lang.String" resultType="java.lang.String">
 select DISTINCT (u.UID)  from
   user_ext ue, user u, user_function uf
 where
@@ -1207,6 +1243,6 @@ where
 
 
     </select>
-</mapper>
+ </mapper>
 
 

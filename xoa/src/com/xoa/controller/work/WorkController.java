@@ -275,8 +275,9 @@ public class WorkController {
                 "loginDateSouse"));
 
         ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
-        List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(Integer.parseInt(runId));
-        FlowRunPrcs flowRunPrcs = l.get(0);
+
+        FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
+        flowRunPrcs.setRunId(Integer.parseInt(runId));
         flowRunPrcs.setPrcsId(Integer.parseInt(prcsId));
         flowRunPrcs.setUserId(beginUser);
         //flowRunPrcs.setPrcsDept(deptId);
@@ -303,7 +304,7 @@ public class WorkController {
     /**
      * 创建作者:   张勇
      * 创建日期:   2017/5/24 20:29
-     * 方法介绍:   查询代办工作
+     * 方法介绍:   查询待办工作
      * 参数说明:
      *
      * @return
@@ -330,7 +331,7 @@ public class WorkController {
     /**
      * 创建作者:   张勇
      * 创建日期:   2017/5/24 20:29
-     * 方法介绍:   查询代办工作
+     * 方法介绍:   查询办结工作
      * 参数说明:
      *
      * @return
@@ -409,20 +410,20 @@ public class WorkController {
     }
 
 
-    /**
-     * 创建作者:   张勇
-     * 创建日期:   2017/6/1 11:40
-     * 方法介绍:  根据runId查询关联办理人的步骤和所在部门
-     * 参数说明:
-     * @return
-     */
-    @RequestMapping(value = "findAllNode", produces = {"application/json;charset=UTF-8"},method = RequestMethod.GET)
-    public @ResponseBody
-    ToJson<FlowRunPrcs> findAllNode(HttpServletRequest request,
-                                  @RequestParam(value = "runId", required = false) Integer runId) {
-        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-                "loginDateSouse"));
-        return flowRunPrcsService.findAllNode(runId);
-    }
+//    /**
+//     * 创建作者:   张勇
+//     * 创建日期:   2017/6/1 11:40
+//     * 方法介绍:  根据runId查询关联办理人的步骤和所在部门
+//     * 参数说明:
+//     * @return
+//     */
+//    @RequestMapping(value = "findAllNode", produces = {"application/json;charset=UTF-8"},method = RequestMethod.GET)
+//    public @ResponseBody
+//    ToJson<FlowRunPrcs> findAllNode(HttpServletRequest request,
+//                                  @RequestParam(value = "runId", required = false) Integer runId) {
+//        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+//                "loginDateSouse"));
+//        return flowRunPrcsService.findAllNode(runId);
+//    }
 
 }
