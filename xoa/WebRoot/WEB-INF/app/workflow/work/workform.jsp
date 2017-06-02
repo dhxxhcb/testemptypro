@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/handle.css"/>
     <script type="text/javascript" src="../../js/news/jquery-1.9.1.js"></script>
     <script src="../../js/base/base.js"></script>
-    <script src="../../js/workflow/work/workform.js"></script>
+   <%-- <script src="../../js/workflow/work/workform.js"></script>--%>
     <script src="../../lib/laydate.js"></script>
     <script src="../../lib/layer/layer.js"></script>
 </head>
