@@ -28,9 +28,7 @@
 </head>
 
 <style type="text/css">
-    /*.modal-body {
-     overflow: hidden !;
-    }*/
+
     .cont{
         position: relative;
     }
@@ -363,6 +361,7 @@
 </html>
 <script>
     $(function(){
+        domain;
         var flowId = $.getQueryString("flowId");
         var flowStep = $.getQueryString("flowStep");
         $('#tab_c').css('right',-($('#tab_c').width()))

@@ -91,14 +91,14 @@ $(function(){
 					if(data[i].emailList[j].readFlag==0){
 						
 						var sendTime=new Date((data[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-						li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><h2 class="e_title">'+data[i].content+'</h2><h3 class="e_time">'+sendTime+'</h3></li>'
+						li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><a href="/email/details?id='+data[i].emailList[j].emailId+'" style="color:#000;" class="public_title" target="_blank"><h2 emil-tid="'+data[i].emailList[j].emailId+'" class="e_title">'+data[i].content+'</h2></a><h3 class="e_time">'+sendTime+'</h3></li>'
 					}else if(data[i].emailList[j].readFlag==1){
 						var sendTime=new Date((data[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-						read_li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><h2 class="e_title">'+data[i].subject+'</h2><h3 class="e_time">'+sendTime+'</h3></li>'
+						read_li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><a href="/email/details?id='+data[i].emailList[j].emailId+'" style="color:#000;" class="public_title" target="_blank"><h2 emil-tid="'+data[i].emailList[j].emailId+'" class="e_title">'+data[i].subject+'</h2></a><h3 class="e_time">'+sendTime+'</h3></li>'
 					}
 					
 					var sendTime=new Date((data[i].sendTime)*1000).Format('yyyy-MM-dd hh:mm');
-					all_li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><h2 class="e_title">'+data[i].subject+'</h2><h3 class="e_time">'+sendTime+'</h3></li>'
+					all_li += '<li><div class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="e_name">'+data[i].emailList[j].toName+'</h1><a href="/email/details?id='+data[i].emailList[j].emailId+'" style="color:#000;" class="public_title" target="_blank"><h2 emil-tid="'+data[i].emailList[j].emailId+'" class="e_title">'+data[i].subject+'</h2></a><h3 class="e_time">'+sendTime+'</h3></li>'
 				}
 				
 				
@@ -229,7 +229,7 @@ $(function(){
 			for(var i=0;i<data.length;i++){
 				var time=data[i].notifyDateTime.slice(0,10);
 				console.log(time);
-				str_li += '<li><div class="n_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="n_name">'+data[i].name+'</h1><h2 class="n_title">'+data[i].content+'</h2><h3 class="n_time">'+time+'</h3></li>'
+				str_li += '<li><div class="n_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="n_name">'+data[i].name+'</h1><a href="/notice/detail?notifyId='+data[i].notifyId+'" style="color:#000;" class="public_title" target="_blank"><h2 class="n_title" data-tid="'+data[i].notifyId+'">'+data[i].content+'</h2></a><h3 class="n_time">'+time+'</h3></li>'
 				/*console.log(str_li);*/
 			}
 			
@@ -251,13 +251,15 @@ $(function(){
 		dataType:'json',
 		success:function(obj){
 			var data=obj.obj;
-		/*	console.log(data);*/
+			/*console.log(data[0].notifyId);*/
+			console.log(data);
+           /* console.log(data[1].notifyId)*/
 			var str_li='';
 			if(data.length>0){
 				for(var i=0;i<data.length;i++){
 					var time=data[i].notifyDateTime.slice(0,10);
 					/*console.log(time);*/
-					str_li += '<li><div class="n_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="n_name">'+data[i].name+'</h1><h2 class="n_title">'+data[i].subject+'</h2><h3 class="n_time">'+time+'</h3></li>'
+					str_li += '<li><div class="n_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="n_name">'+data[i].name+'</h1><a href="/notice/detail?notifyId='+data[i].notifyId+'" style="color:#000;" class="public_title" target="_blank"><h2 class="n_title" data-tid="'+data[i].notifyId+'">'+data[i].subject+'</h2></a><h3 class="n_time">'+time+'</h3></li>'
 				/*	console.log(str_li);*/
 				}
 				
