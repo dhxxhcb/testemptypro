@@ -242,10 +242,8 @@
         text-decoration: none;
     }
     .top_one{
-
         position: absolute;
         top: 0px;
-
     }
     .top_two{
         position: absolute;
