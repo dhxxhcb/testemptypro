@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @创建作者: 韩成冰
  * @创建日期: 2017/5/25 9:53
- * @类介绍: 系统配置信息，对应interface表
+ * @类介绍: 软件界面设置处理类  系统配置信息，对应interface表,这个interface和接口无关
  * @构造参数: 无
  **/
 
@@ -74,6 +74,53 @@ public class InterfaceController {
         }
         return null;
 
+    }
+
+    @ResponseBody
+    @RequestMapping("/getInterfaceInfo")
+    public ToJson<InterfaceModel> getInterfaceInfo(HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+
+        ToJson<InterfaceModel> tojson = new ToJson<InterfaceModel>(0, "");
+        try {
+
+            List<InterfaceModel> interfaceModelList = interfaceService.getInterfaceInfo();
+            tojson.setObject(interfaceModelList);
+            tojson.setMsg("ok");
+            tojson.setFlag(0);
+        } catch (Exception e) {
+            tojson.setMsg(e.getMessage());
+        }
+
+        return tojson;
+    }
+
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/2 19:03
+     * @函数介绍: 修改界面设置信息
+     * @参数说明: @param
+     * @return: XXType(value introduce)
+     **/
+    @ResponseBody
+    @RequestMapping("/updateInterfaceInfo")
+    public ToJson<Object> updateInterfaceInfo(HttpServletRequest request, InterfaceModel interfaceModel) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+
+        ToJson<Object> tojson = new ToJson<Object>(0, "");
+        try {
+
+            interfaceService.updateInterfaceInfo(interfaceModel);
+            tojson.setMsg("ok");
+            tojson.setFlag(0);
+        } catch (Exception e) {
+            tojson.setMsg(e.getMessage());
+        }
+
+        return tojson;
     }
 
 

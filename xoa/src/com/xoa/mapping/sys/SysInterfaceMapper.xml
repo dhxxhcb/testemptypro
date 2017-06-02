@@ -34,7 +34,82 @@
         update interface i set i.STATUS_TEXT = #{statusText}
     </select>
 
+    <select id="getInterfaceInfo" resultMap="BaseResultMap">
+        select * from interface;
+    </select>
+    <update id="updateInterfaceInfo" parameterType="com.xoa.model.sys.InterfaceModel">
+        update interface
+        <set>
+            <if test="ieTitle != null">
+                IE_TITLE = #{ieTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="bannerText != null">
+                BANNER_TEXT = #{bannerText,jdbcType=VARCHAR},
+            </if>
+            <if test="bannerFont != null">
+                BANNER_FONT = #{bannerFont,jdbcType=VARCHAR},
+            </if>
+            <if test="attachmentId != null">
+                ATTACHMENT_ID = #{attachmentId,jdbcType=VARCHAR},
+            </if>
+            <if test="attachmentName != null">
+                ATTACHMENT_NAME = #{attachmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="imgWidth != null">
+                IMG_WIDTH = #{imgWidth,jdbcType=INTEGER},
+            </if>
+            <if test="imgHeight != null">
+                IMG_HEIGHT = #{imgHeight,jdbcType=INTEGER},
+            </if>
+            <if test="attachmentId1 != null">
+                ATTACHMENT_ID1 = #{attachmentId1,jdbcType=VARCHAR},
+            </if>
+            <if test="attachmentName1 != null">
+                ATTACHMENT_NAME1 = #{attachmentName1,jdbcType=VARCHAR},
+            </if>
+            <if test="avatarUpload != null">
+                AVATAR_UPLOAD = #{avatarUpload,jdbcType=CHAR},
+            </if>
+            <if test="avatarWidth != null">
+                AVATAR_WIDTH = #{avatarWidth,jdbcType=INTEGER},
+            </if>
+            <if test="avatarHeight != null">
+                AVATAR_HEIGHT = #{avatarHeight,jdbcType=INTEGER},
+            </if>
+            <if test="loginInterface != null">
+                LOGIN_INTERFACE = #{loginInterface,jdbcType=VARCHAR},
+            </if>
+            <if test="ui != null">
+                UI = #{ui,jdbcType=VARCHAR},
+            </if>
+            <if test="themeSelect != null">
+                THEME_SELECT = #{themeSelect,jdbcType=VARCHAR},
+            </if>
+            <if test="theme != null">
+                THEME = #{theme,jdbcType=VARCHAR},
+            </if>
+            <if test="template != null">
+                TEMPLATE = #{template,jdbcType=VARCHAR},
+            </if>
+            <if test="weatherCity != null">
+                WEATHER_CITY = #{weatherCity,jdbcType=VARCHAR},
+            </if>
+            <if test="showRss != null">
+                SHOW_RSS = #{showRss,jdbcType=CHAR},
+            </if>
+            <if test="imgTos != null">
+                IMG_TOS = #{imgTos,jdbcType=BIT},
+            </if>
+            <if test="statusText != null">
+                STATUS_TEXT = #{statusText,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="notifyText != null">
+                NOTIFY_TEXT = #{record.notifyText,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
 
+
+    </update>
 
 
 </mapper>
