@@ -1164,6 +1164,46 @@
         select u.UID, u.USER_NAME from user u, user_online uo WHERE u.UID = uo.UID;
 
     </select>
+
+    <select id="getUserbyCondition" resultMap="UserResultMap">
+      SELECT
+	u.UID,
+	u.USER_ID,
+	u.USER_NAME,
+	u.BYNAME,
+	u.USER_PRIV,
+	u.USER_PRIV_NO,
+	u.USER_PRIV_NAME,
+	d.DEPT_NAME,
+	d.TEL_NO,
+	u.TEL_NO_DEPT,
+	u.MOBIL_NO,
+	u.`ONLINE`,
+	u.SEX,
+	u.POST_NO_HOME,
+	u.USER_PRIV_OTHER
+FROM
+	USER u,
+	department d
+WHERE
+	u.DEPT_ID = d.DEPT_ID
+        <if test="userId != null and userId != ''">
+            AND USER_ID = #{userId}
+        </if>
+        <if test="userName != null and userName != ''">
+            AND USER_NAME = #{userName}
+        </if>
+        <if test="sex != null and sex != ''">
+            AND SEX = #{sex}
+        </if>
+        <if test="deptId != null and deptId != ''">
+            AND DEPT_ID = #{deptId}
+        </if>
+        <if test="userPrivNo != null and userPrivNo != ''">
+            AND USER_PRIV_NO = #{userPrivNo}
+        </if>
+        ORDER BY UID DESC
+</select>
  </mapper>
 
 

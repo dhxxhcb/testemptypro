@@ -172,4 +172,6 @@ public interface UsersMapper {
      List<Users> getUserByRoleId(Users user);
 
      List<Users> getUserOnline();
+
+	 List<Users> getUserbyCondition(Map<String,Object> maps);
  }

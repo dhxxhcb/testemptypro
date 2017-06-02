@@ -190,4 +190,8 @@ public interface UsersService {
     *@return:   List<User></User>
     **/
     List<Users> getUsersOnline();
+
+    List<Users>  getUserbyCondition(Map<String,Object> maps);
 }
+
+
