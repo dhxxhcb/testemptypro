@@ -300,7 +300,7 @@
         </div>
     </div>
     <div class="content">
-        <form action="<%=basePath%>/workflow/work/nextwork"   id="ajaxform">
+       <%-- <form action="<%=basePath%>/workflow/work/nextwork"   id="ajaxform">--%>
         <div class="cont" id="client">
             <div class="cont_form" id="a2">
 
@@ -355,7 +355,7 @@
                 </ul>
             </div>
         </div>
-        </form>
+      <%--  </form>--%>
     </div>
 
 </div>
@@ -567,7 +567,7 @@
                                     prcsName+'<ol></ol> </li></ul></div><div class="workflow-procs-line"></div><div class="workflow-procs-nodes-result-wrap">'+
                                     '<ul id="work-next-prcs-block" class="workflow-procs-nodes-result" style="top: 0px;">'+
                                     '<li class="workflow-node-result clearfix " prcs_id_next="2">'+
-                                    '<div class="workflow-node-title"><div class="workflow-node-title-text">上级主管核定</div><div class="workflow-node-ops"><input id="chose_user2" type="button" prcs_type="" gather_node_have_flag="0" class="btn btn-info user-op op-first users-add" prcs_back="" prcs_next="2" is_child_node="0" value="选择人员"></div> </div>'+
+                                    '<div class="workflow-node-title"><div class="workflow-node-title-text">上级主管核定</div><div class="workflow-node-ops"><input id="chose_user2" type="button"  is_child_node="0" value="选择人员"></div> </div>'+
                                     '<div class="users-select-block"><div id="host_op_block_div2" class="clearfix">'+
                                     '  <input type="hidden" id="PRCS_OP_USER2" data_type="op_user_btn" name="PRCS_OP_USER2" value="admin">'+
                                     ' <input type="hidden" id="PRCS_BACK" name="PRCS_BACK" value=""><div class="sponsor">'+
