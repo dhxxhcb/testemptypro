@@ -525,6 +525,7 @@
     AND frp.CHILD_RUN ='0'
     AND frp.USER_ID=#{userId}
     AND fr.DEL_FLAG = '0'
+    GROUP BY fr.RUN_ID
     ORDER BY
     frp.IS_REMIND DESC,
     frp.RUN_ID DESC,
@@ -565,6 +566,7 @@
     AND frp.CHILD_RUN = '0'
     AND frp.USER_ID=#{userId}
     AND fr.DEL_FLAG = '0'
+    GROUP BY fr.RUN_ID
     ORDER BY
     frp.IS_REMIND DESC,
     frp.RUN_ID DESC,
@@ -605,6 +607,7 @@
         AND frp.CHILD_RUN = '0'
         AND frp.USER_ID=#{userId}
         AND fr.DEL_FLAG = '0'
+        GROUP BY fr.RUN_ID
         ORDER BY
         frp.IS_REMIND DESC,
         frp.RUN_ID DESC,
@@ -645,6 +648,7 @@
          frp.CHILD_RUN = '0'
         AND frp.USER_ID=#{userId}
         AND fr.DEL_FLAG = '0'
+        GROUP BY fr.RUN_ID
         ORDER BY
         frp.IS_REMIND DESC,
         frp.RUN_ID DESC,
