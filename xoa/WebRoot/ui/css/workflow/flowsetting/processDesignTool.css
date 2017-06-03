@@ -530,3 +530,12 @@ table input[type=text]{
     -moz-border-radius: 4px!important;
     -ms-border-radius: 4px!important;
 }
+.item_round{
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+}
+.item_round table{
+    margin-top: 4px!important;
+    margin-left: 5px!important;
+}
