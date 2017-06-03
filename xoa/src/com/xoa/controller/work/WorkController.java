@@ -153,7 +153,7 @@ public class WorkController {
             f.setFlowTypeModel(flowTypeModel);
             f.setFlowFormType(flowFormType);
             f.setFlowRun(flowRun);
-           // f.setFlowRunPrcs(flowRunPrcs);
+            f.setFlowRunPrcs(flowRunPrcs);
             f.setListFp(fl);
         }else{
             FlowRun flowRun = flowRunService.find(Integer.parseInt(id));
