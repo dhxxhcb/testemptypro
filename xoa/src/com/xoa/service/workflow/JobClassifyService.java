@@ -593,7 +593,7 @@ public class JobClassifyService {
                 return "所属部门不存在";
             }
         }
-        if(parentId!=0){
+        if(parentId==0){
             //查询父分类是否存在
             return null;
         }
