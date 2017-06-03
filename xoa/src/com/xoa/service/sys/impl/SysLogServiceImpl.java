@@ -656,7 +656,7 @@ public class SysLogServiceImpl implements SysLogService {
         //根据ip查ip地址
         String address = "";
         if (ip.startsWith("10.") || ip.startsWith("172.16.") || ip.startsWith("172.31.") || ip.startsWith("192.168.")) {
-            address = "局域网及其他";
+            address = "局域网及其它";
         } else {
             try {
                 address = AddressUtils.getAddress("ip=" + ip, "utf-8");

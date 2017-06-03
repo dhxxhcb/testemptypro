@@ -60,6 +60,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							str='<li><div style="display: inline-block; position: relative;top: -4px"><fmt:message code="news.th.postdept" />：</div><div class="spanbreak" title="'+toTypeName+'">'+toTypeName+'</div></li><li><span><fmt:message code="notice.th.publisher" />：</span><span>'+data1.name+'</span></li><li><span><fmt:message code="notice.th.PostedTime" />：</span><span>'+data1.notifyDateTime+'</span></li>';
 							$('ul').append(str);
 							$('.divTxt').append('<p>'+data1.content+'</p>');
+                            var str1 = "";
+                            var arr = new Array();
+                            arr = data1.attachment;
+                            if (data1.attachmentName != '') {
+                                for (var i = 0; i < (arr.length); i++) {
+                                    str1 += '<div class="font_">附件文件：<a href="<%=basePath %>download?' + arr[i].attUrl + '"><img class="img_" src="../img/enclosure.png"/>' + arr[i].attachName + '</a></div>';
+                                }
+//                        str1 += '<tr><td class="attachment">' + data1.attachmentName + '</td></tr>';
+                                $('.Table').append(str1);
+
+						}
 						}
 				}); 
 				
@@ -88,9 +99,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>5、善于利用碎片时间取得进展，牛顿在花园散步，看到苹果落地引发联想，就说明了长期伏案工作未必就有成果。有时换个环境换个脑筋可能就开窍了。</p>
 					<p>总结：工作是永远干不完的，追求健康与精神愉快比追求物质回报更有价值。找到合适的方法，减少无谓的时间消耗，或许就可以让你少加班，多些休息娱乐时间，心情好、身体好最重要！</p> -->
 				</div>
-				<!-- <div class="keyWord">
-					<b>本文关键词：</b><span>时间</span><span>团队</span><span>效率</span><span>浪费</span><span>方法</span>
-				</div> -->
+				<div class="divContent1" style="border-top:1px solid #dedede; padding-top:10px;">
+					<table class="Table" cellspacing="0" cellpadding="0">
+					</table>
+				</div>
 			</div>
 		</div>
 		<!-- <div class="btnImg">
