@@ -206,6 +206,13 @@ public class UsersPrivServiceImpl implements UsersPrivService {
                         hashMap.put("id", id);
                         hashMap.put("funcIdStr", funcIdStr);
                         userPrivMapper.updateUserPrivFuncIdStr(hashMap);
+                    }else if(funcId != null) {
+                        funcIdStr = "";
+                        Map<String, Object> hashMap = new HashMap<String, Object>();
+                        hashMap.put("id", id);
+                        funcIdStr = funcIdStr.concat(funcId).concat(",");
+                        hashMap.put("funcIdStr", funcIdStr);
+                        userPrivMapper.updateUserPrivFuncIdStr(hashMap);
                     }
 
                 }

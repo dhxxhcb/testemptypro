@@ -10,8 +10,6 @@ import com.xoa.model.users.UserFunction;
 import com.xoa.service.users.UserFunctionService;
 import com.xoa.util.ToJson;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -111,6 +109,8 @@ public class UserFunctionServiceImpl implements UserFunctionService {
                     if (!userFuncIdStr.contains(",".concat(fid).concat(",")) && !userFuncIdStr.contains("".concat(fid).concat(","))) {
                         userFuncIdStr = userFuncIdStr.concat(fid).concat(",");
                     }
+                } else {
+                    userFuncIdStr = "".concat(fid).concat(",");
                 }
 
 
@@ -129,25 +129,27 @@ public class UserFunctionServiceImpl implements UserFunctionService {
         if (uidArr != null && fid != null) {
             for (String userId : uidArr) {
                 String userFuncIdStr = userFunctionMapper.getUserFuncIdStr(userId);
-                if (userFuncIdStr != null && "".equals(userFuncIdStr)) {
+                if (userFuncIdStr != null || "".equals(userFuncIdStr)) {
                     userFuncIdStr = fid.concat(",");
 
                 } else if (userFuncIdStr != null) {
                     userFuncIdStr = userFuncIdStr.concat(fid).concat(",");
                 }
-                if (userFuncIdStr != null) {
-                    Map<String, String> map = new HashMap<String, String>();
-                    map.put("userId", userId);
-                    map.put("userFuncIdStr", userFuncIdStr);
-                    userFunctionMapper.updateUserFuncIdStr(map);
 
-                }
+
+
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("userId", userId);
+                map.put("userFuncIdStr", userFuncIdStr);
+                userFunctionMapper.updateUserFuncIdStr(map);
 
             }
+
         }
-
-
     }
+
+
+
 
     /**
      * @创建作者: 韩成冰
