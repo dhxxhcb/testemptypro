@@ -151,7 +151,7 @@ function GooFlow(bgDiv, property) {
 
             e.data.inthis.$max++;
 
-            saveOrUpdate(0);
+            saveOrUpdate();
 
 
         });
@@ -755,8 +755,8 @@ GooFlow.prototype = {
                 isMove = true;
             }
             document.onmouseup = function (e) {
-                var $name=id.replace(/node_/,'步骤_')
-                if (isMove) This.moveNode(id, X + This.$workArea[0].parentNode.scrollLeft - t.left, Y + This.$workArea[0].parentNode.scrollTop - t.top,$name);
+
+                if (isMove) This.moveNode(id, X + This.$workArea[0].parentNode.scrollLeft - t.left, Y + This.$workArea[0].parentNode.scrollTop - t.top);
                 This.$ghost.empty().hide();
                 document.onmousemove = null;
                 document.onmouseup = null;
@@ -1013,13 +1013,12 @@ GooFlow.prototype = {
         console.log(id)
         console.log(left)
         console.log(top)
-        numId.prcsId=id.substring(id.indexOf('_')+1);
-        numId.setTop=top;
-        numId.setLeft=left;
-        numId.flowId=flowstr;
-        numId.prcsName=name;
+        numIds.prcsId=id.substring(id.indexOf('_')+1);
+        numIds.setTop=top;
+        numIds.setLeft=left;
+        numIds.flowId=flowstr;
         console.log(numId)
-        saveOrUpdate(1);
+        savemobile();
     },
     //设置结点/连线/分组区域的文字信息
     setName: function (id, name, type) {

@@ -22,29 +22,16 @@ var numId={};
 var conditionsDate;//条件数据
 var canwritefieldtwo;//可写字段
 var forimId;
-
-function saveOrUpdate(isn) {
-    var savesring=''
-    if(isn==0){
-        numId.id=null;
-        savesring='/flowProcess/insert';
-    }else if(isn==1){
-        savesring='/flowProcess/updateTopAndLeft';
-        numId.id=$("#ele_designerId").val();
-    }
+var numIds={};
+function saveOrUpdate() {
     $.ajax({
         type: 'POST',
-        url: savesring,
+        url: '/flowProcess/insert',
         dataType: 'json',
         data: numId,
         success: function (json) {
             if (json.flag) {
-                if(isn==0) {
-
                     ajaxSvg();
-                }else {
-                    location.reload();
-                }
             }else{
                 alert("新建流程节点失败");
             }
@@ -54,6 +41,27 @@ function saveOrUpdate(isn) {
         }
     });
 }
+
+function savemobile() {
+    numIds.id=$("#ele_designerId").val();
+    $.ajax({
+        type: 'POST',
+        url: '/flowProcess/updateTopAndLeft',
+        dataType: 'json',
+        data: numIds,
+        success: function (json) {
+            if (json.flag) {
+                    location.reload();
+            }else{
+                alert("新建流程节点失败");
+            }
+        },
+        error:function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("数据库连接异常，请联系管理员");
+        }
+    });
+}
+
 
 function inputTheEcho(names,dataNames) {  //input回显
     if(dataNames==''){
@@ -122,7 +130,7 @@ function ajaxSvg() {
                     "initNum": 0
                 }
                 console.log(json.object)
-                jsondata.title = json.object.designdata[0].flowName;
+                jsondata.title = json.object.designdata[0].flowTypeModel.flowName;
                 jsondata.initNum = designdata.length;
                 designdata.forEach(function (v, i) {
                     jsondata.nodes['node_' + v.prcsId] = {
