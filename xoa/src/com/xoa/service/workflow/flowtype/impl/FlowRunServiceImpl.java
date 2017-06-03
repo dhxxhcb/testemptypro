@@ -23,4 +23,9 @@ public class FlowRunServiceImpl implements FlowRunService{
 		flowRunMapper.insert(flowRun);
 	}
 
+	@Override
+	public FlowRun find(Integer runId){
+		FlowRun f=flowRunMapper.find(runId);
+		return f;
+	}
 }
