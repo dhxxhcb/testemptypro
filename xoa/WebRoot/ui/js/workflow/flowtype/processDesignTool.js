@@ -129,7 +129,7 @@ function ajaxSvg() {
                     "areas": {},
                     "initNum": 0
                 }
-                console.log(json.object)
+                console.log(json)
                 jsondata.title = json.object.designdata[0].flowTypeModel.flowName;
                 jsondata.initNum = designdata.length;
                 designdata.forEach(function (v, i) {
@@ -405,7 +405,7 @@ $(function () {
             type:'post',
             dataType:'json',
             success:function (json) {
-                // location.reload();
+                location.reload();
             }
         })
     })
