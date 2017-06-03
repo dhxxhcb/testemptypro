@@ -17,12 +17,11 @@
     <script type="text/javascript" src="../js/news/jquery-1.9.1.js"></script>
     <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 
-
 </head>
 <body>
-<div class="head w clearfix">
+<div class="headDept clearfix">
     <img src="../img/la2.png">
-    <div class="news">
+    <div class="">
         部门/成员单位查询
     </div>
 </div>
@@ -43,20 +42,44 @@
     </tr>
     </thead>
     <tbody id="j_tb">
-    <tr class="trs" rid="119">
+    <tr class="">
         <td>1</td>
-        <td class="name" nid="119">系统管理员</td>
-        <td class="type" nid="119">公司动态</td>
-        <td class="cli" name="undefined">
-            <div id="break119" class="break_td" title="undefined">点击详情</div>
+        <td class="">系统管理员</td>
+        <td class="">公司动态</td>
+        <td>管理部</td>
+        <td>
+            <div>提供一个ebXML框架</div>
+       </td>
+        <td class="">2017-05-12 18:11:46</td>
+        <td class="">53</td>
+        <td class="">119</td>
+        <td>1</td>
+    </tr>
+    <tr class="">
+        <td>1</td>
+        <td class="">系统管理员</td>
+        <td class="">公司动态</td>
+        <td>管理部</td>
+        <td>
+            <div>提供一个ebXML框架</div>
         </td>
-        <td time="提供一个ebXML框架"><a style="color:#2B7FE0" href="#" newsid="119" class="windowOpen">
-            <div id="subject119">提供一个ebXML框架</div>
-        </a></td>
-        <td class="tim">2017-05-12 18:11:46</td>
-        <td class="data">53</td>
-        <td class="num">119</td>
-        <td class="state" id="publish119">1</td>
+        <td class="">2017-05-12 18:11:46</td>
+        <td class="">53</td>
+        <td class="">119</td>
+        <td>1</td>
+    </tr>
+    <tr class="">
+        <td>1</td>
+        <td class="">系统管理员</td>
+        <td class="">公司动态</td>
+        <td>管理部</td>
+        <td>
+            <div>提供一个ebXML框架</div>
+        </td>
+        <td class="">2017-05-12 18:11:46</td>
+        <td class="">53</td>
+        <td class="">119</td>
+        <td>1</td>
     </tr>
 
 

@@ -593,6 +593,7 @@
                 type:'get',
                 dataType:'json',
                 success:function(obj){
+
                     var data=obj.obj;
                     departmentData= digui(data,0);
                 }
