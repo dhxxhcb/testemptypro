@@ -38,15 +38,26 @@ $(function(){
     })
     //日志查询确定点击事件
     $('.sureBtn').on('click','#Btn',function(){
+        var id=$('#senduser').attr('dataid');
+        var type=$('#journalType option:checked').val();
+        var startTime=$('#start').val();
+        var endTime=$('#end').val();
+        var ip=$('#IP').val();
+        var remark=$('#remarks').val();
+        if(!id) {
+            id = '';
+        }
         //单选框选中事件
         if($('input[name="TYPE"]:checked').val()==1){//选中查询
             $('.queryResult').show().siblings().hide();
             queryShow();
         }else if($('input[name="TYPE"]:checked').val()==2){//选中导出
-            journalExport();
+            //journalExport();
+            window.location.href='http://localhost:8080/sys/exportLogXls?type='+type+'&uid='+id+'&startTime='+startTime+'&endTime='+endTime+'&ip='+ip+'&remark='+remark+'';
         }else{                                          //选中删除
             journalDelete();
         }
+
     })
     //复选框全选点击事件
     $('#checkedAll').click(function(){
@@ -67,6 +78,17 @@ $(function(){
             fileId.push(conId);
         })
         deleteAllJournal(fileId);
+    })
+    //清空系统日志
+    $('#emptyBtn').click(function(){
+        $.ajax({
+            type:'post',
+            url:'../../sys/deleteAllLog',
+            dataType:'json',
+            success:function(res){
+                console.log(res.msg);
+            }
+        })
     })
     //日志概况显示数据
     function journalSurveyShow(){
@@ -313,7 +335,7 @@ $(function(){
         })
     }
     //查询数据导出
-    function journalExport(){
+    /*function journalExport(){
         var id=$('#senduser').attr('dataid');
         if(!id){
             id='';
@@ -335,7 +357,7 @@ $(function(){
                 alert('导出成功');
             }
         })
-    }
+    }*/
     //查询数据删除
     function journalDelete(){
         var id=$('#senduser').attr('dataid');

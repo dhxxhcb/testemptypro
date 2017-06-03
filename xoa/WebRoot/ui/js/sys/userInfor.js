@@ -61,6 +61,9 @@ $(function(){
     })
     //导出按钮点击事件
     $('#export').click(function(){
+        var userId=$('input[name="userId"]').val();
+        var userName=$('input[name="userName"]').val();
+        var sex=$('select[name="sex"] option:checked').val();
         var deId=$('select[name="unit"] option:checked').val();
         var privNo=$('select[name="user"] option:checked').val();
         if(deId==0){
@@ -69,15 +72,12 @@ $(function(){
         if(privNo==0){
             privNo='';
         }
-        var data={
-            'userId':$('input[name="userId"]').val(),
-            'userName':$('input[name="userName"]').val(),
-            'sex':$('select[name="sex"] option:checked').val(),
-            'deptId':deId,
-            'userPrivNo':privNo,
-            'choice':2
-        }
-        exportData(data)
+        window.location.href='http://localhost:8080/getUserbyCondition?userId='+userId+'&userName='+userName+'&sex='+sex+'&deptId='+deId+'&userPrivNo='+privNo+'&choice=2';
+    })
+    //人员详情点击事件
+    $('.tab').on('click','.userDetail',function(){
+        var uid=$(this).parents('tr').attr('uid');
+        $.popWindow('userDetails?uid=' + uid +'','用户信息','100','200','1000px','600px');
     })
 })
 
@@ -159,18 +159,6 @@ function companyAllPerson(data,element){
 
             }
             element.after(str);
-        }
-    })
-}
-//查询导出
-function exportData(data){
-    $.ajax({
-        type: 'get',
-        url: '../getUserbyCondition',
-        dataType: 'json',
-        data:data,
-        success: function () {
-            console.log('成功')
         }
     })
 }
