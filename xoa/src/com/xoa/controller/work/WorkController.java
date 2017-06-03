@@ -287,6 +287,14 @@ public class WorkController {
         ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
         //List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(maps);
         FlowRunPrcsExcted flowRunPrcs = new FlowRunPrcsExcted();
+
+        if(flowPrcs==""||flowPrcs.equals("0")){
+            FlowRun fr=flowRunService.find(Integer.parseInt(runId));
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            fr.setEndTime(df.format(new Date()));
+            flowRunService.update(fr);
+        }
+
         flowRunPrcs.setPrcsId(Integer.parseInt(prcsId)-1);
         flowRunPrcs.setRunId(Integer.parseInt(runId));
         flowRunPrcs.setPrcsFlag("3");
