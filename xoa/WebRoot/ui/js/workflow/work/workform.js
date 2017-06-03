@@ -204,6 +204,9 @@ var workForm = {
             else{
                 _this.attr("data-type",$(this).attr("type"));
             }
+            if(_this.attr('data-type') == 'calendar'){
+                _this.addClass("laydate-icon");
+            }
             _this.addClass("form_item");
             _this.attr("id",$(this).attr("name"));
             _this.attr("style",'width:170px;');
@@ -224,12 +227,13 @@ var workForm = {
                 _this.attr("orghidden",_this.attr('hidden'));
                 _this.removeAttr("hidden");
             }
-
             var inputObj = '<input name="'+objprev.attr('name')+'" title="'+objprev.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+objprev.attr('name')+'" value="'+_this.attr('date_format')+'"  date_format="'+_this.attr('date_format')+'"/>';
             objprev.remove();
+            console.log(inputObj);
             _this.before(inputObj);
             _this.remove();
         });
+
         //
         target.find("textarea").each(function(){
             if( $(this).attr('hidden')){
@@ -261,6 +265,7 @@ var workForm = {
 
             _this.remove();
         });
+
         target.find("img.USER").each(function(){
             var _this = $(this);
             console.log(_this.prev().length);
@@ -276,10 +281,8 @@ var workForm = {
                 //     that.tool.popUserSelect($(this).attr('targetId'));
                 // });
             }
-
-
-
         });
+
     },
     MacrosRender:function(){
         var that = this;
@@ -310,13 +313,16 @@ var workForm = {
 
     },
     DateRender:function(){
+
         this.option.eleObject.find(".laydate-icon").each(function(){
             var _this = $(this);
             var divObj = '<input name="'+_this.attr('name')+'" title="'+_this.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+_this.attr('name')+'"   date_format="'+_this.attr('date_format')+'"/>';
             _this.before(divObj);
             _this.remove();
+            console.log(1);
         });
         this.option.eleObject.find(".laydate-icon").on("click",function(){
+            console.log(1);
             var format = $(this).attr("date_format");
             var formatArr = '';
             if(format.split(' ').length > 1){
