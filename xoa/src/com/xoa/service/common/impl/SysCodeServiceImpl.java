@@ -83,7 +83,7 @@ public class SysCodeServiceImpl implements SysCodeService {
      * @创建日期: 2017/5/31 16:49
      * @函数介绍: 根据日志的NO, 查询日志TYPENa
      * @参数说明: @param String
-     * param codeNo
+     * @参数说明:param codeNo
      * @return: String
      */
     @Override
@@ -91,6 +91,18 @@ public class SysCodeServiceImpl implements SysCodeService {
         String logTypeName = sysCodeMapper.getLogNameByNo(codeNo);
 
         return logTypeName;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 13:25
+     * @函数介绍: 删除日志
+     * @参数说明: @param SysCode sysCode
+     * @return: void
+     */
+    @Override
+    public void deleteSysCode(SysCode sysCode) {
+        sysCodeMapper.delete(sysCode);
     }
 
 
