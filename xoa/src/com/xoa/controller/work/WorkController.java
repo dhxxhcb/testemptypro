@@ -247,10 +247,12 @@ public class WorkController {
             }else{
                 for (Map<String, Object> map : l) {
                     key.add((String) map.get("key")+"="+(String) map.get("value"));
+
                 }
                 Map<String, Object> param = new HashedMap();
                 param.put("tableName", tableName);
                 param.put("keys", key);
+                param.put("runId",String.valueOf(runId));
                 //param.put("values", value);
                 workMapper.update(param);
             }

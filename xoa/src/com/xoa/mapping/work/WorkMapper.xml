@@ -55,9 +55,8 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
         <if test="keys!=null and keys.size()!=0">
             <foreach item="value" collection="values" separator=",">
-              ${value }
+              '${value }'
             </foreach>
-
         </if>
         </trim>
 
@@ -73,8 +72,8 @@
                     </foreach>
                 </if>
             </trim>
-
         </set>
+        WHERE run_Id=${runId}
     </update>
 
     <select id="select"  resultType="java.util.HashMap">
