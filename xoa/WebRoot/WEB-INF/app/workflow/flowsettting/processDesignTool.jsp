@@ -273,7 +273,7 @@
                             <input type="hidden" name="userFilterPrcsDept">
                             <div style="float: left;line-height: 25px;">
                                 <a href="javascript:;" style="display: block" class="theCandidates" data-num="2">添加</a>
-                                <a href="javascript:;" style="display: block">清空</a>
+                                <a href="javascript:;" style="display: block" class="emptyTwo">清空</a>
                             </div>
                         </div>
                     </div>
@@ -284,7 +284,7 @@
                             <input type="hidden" name="userFilterPrcsDeptOther">
                             <div style="float: left;line-height: 25px" >
                                 <a href="javascript:;" style="display: block" class="theCandidates" data-num="2">添加</a>
-                                <a href="javascript:;" style="display: block">清空</a>
+                                <a href="javascript:;" style="display: block" class="emptyTwo">清空</a>
                             </div>
                         </div>
                     </div>
@@ -295,7 +295,7 @@
                             <input type="hidden" name="userFilterPrcsPriv">
                             <div style="float: left;line-height: 25px">
                                 <a href="javascript:;" style="display: block" class="theCandidates" data-num="3">添加</a>
-                                <a href="javascript:;" style="display: block">清空</a>
+                                <a href="javascript:;" style="display: block" class="emptyTwo">清空</a>
                             </div>
                         </div>
                     </div>
@@ -306,7 +306,7 @@
                             <input type="hidden" name="userFilterPrcsPrivOther">
                             <div style="float: left;line-height: 25px">
                                 <a href="javascript:;" style="display: block" class="theCandidates" data-num="3">添加</a>
-                                <a href="javascript:;" style="display: block">清空</a>
+                                <a href="javascript:;" style="display: block" class="emptyTwo">清空</a>
                             </div>
                         </div>
                     </div>
@@ -356,7 +356,7 @@
                                 <input type="hidden" name="autoDept">
                                 <div style="float: left;line-height: 25px;">
                                     <a href="javascript:;" style="display: block" class="theCandidates" data-num="2">选择</a>
-                                    <a href="javascript:;">清空</a>
+                                    <a href="javascript:;" class="emptyTwo">清空</a>
                                 </div>
                             </div>
                     </div>
@@ -715,7 +715,7 @@
                     </p>
                     <div class="dropDownDiv">
                         <p class="candidatesPTwo">
-                            <select name="city" lay-verify="">
+                            <select name="" lay-verify="">
                                 <option value="">请选择一个城市</option>
                                 <option value="010">北京</option>
                                 <option value="021">上海</option>

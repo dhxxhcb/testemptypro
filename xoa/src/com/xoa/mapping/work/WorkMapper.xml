@@ -57,11 +57,24 @@
             <foreach item="value" collection="values" separator=",">
               '${value }'
             </foreach>
-
         </if>
         </trim>
 
     </insert>
+
+    <update id="update">
+        UPDATE  ${tableName}
+        <set>
+
+                <if test="keys!=null and keys.size()!=0">
+                    <foreach item="key" collection="keys" separator=",">
+                        ${key}
+                    </foreach>
+                </if>
+
+        </set>
+        WHERE run_Id=${runId}
+    </update>
 
     <select id="select"  resultType="java.util.HashMap">
         SELECT * FROM ${tableName} WHERE run_id=${runId}

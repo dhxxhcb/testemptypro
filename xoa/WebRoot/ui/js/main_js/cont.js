@@ -204,7 +204,7 @@ $(function(){
 
 
     $('.all_daily').on('click','li',function(){
-		/*alert('111');*/
+	/*	alert('111');*/
         $(this).find('h2').sibling().css('color','#000');
         $(this).find('h2').css('color',' #00a2d4');
 
@@ -386,7 +386,7 @@ $(function(){
 			if(obj.length>0){
 				for(var i=0;i<obj.length;i++){
 					
-					wenjian_li += '<li class="all_li"><div><img src="img/main_img/wenjian.png" style="    margin-left: 8%;"></div><h1 style="    height: 20px;    line-height: 20px; text-align: center;">'+obj[i].text+'</h1></li>'
+					wenjian_li += '<li class="all_li"><div class="total_wenjian"  tid="3001" url="file/home"><img src="img/main_img/wenjian.png" style="    margin-left: 8%;"></div><h1 style="    height: 20px;    line-height: 20px; text-align: center;">'+obj[i].text+'</h1></li>'
 					/*console.log(str_li);*/
 				}
 				
@@ -412,7 +412,7 @@ $(function(){
 			if(obj.length>0){
 				for(var i=0;i<obj.length;i++){
 					
-					wenjian_li += '<li class="all_li"><div><img src="img/main_img/wenjian.png" style="    margin-left: 8%;"></div><h1 style="    height: 20px;    line-height: 20px; text-align: center;">'+obj[i].text+'</h1></li>'
+					wenjian_li += '<li class="all_li"><div class="wenjian"  tid="3001" url="file/home"><img src="img/main_img/wenjian.png" style="    margin-left: 8%;"></div><h1 style="    height: 20px;    line-height: 20px; text-align: center;">'+obj[i].text+'</h1></li>'
 					/*console.log(str_li);*/
 				}
 				
@@ -430,8 +430,8 @@ $(function(){
     $('.more_wenjian').on('click',function(){
         var tid=$(this).attr('tid');
         var url=$(this).attr('url');
-        alert(tid);
-        alert(url);
+       /* alert(tid);
+        alert(url);*/
         if($('#f_'+tid).length>0){
             $('.all_content .iItem').hide();
             $('#f_'+tid).show();
@@ -460,6 +460,75 @@ $(function(){
         }
     })
 
+
+    //个人文件柜更多，显示文件柜页面
+    $('.people_wenjian').on('click','.wenjian',function(){
+    	/*alert('111')*/
+        var tid=$(this).attr('tid');
+        var url=$(this).attr('url');
+       /* alert(tid);
+        alert(url);*/
+        if($('#f_'+tid).length>0){
+            $('.all_content .iItem').hide();
+            $('#f_'+tid).show();
+
+            $('#t_'+tid).css({
+                'background':'url(img/main_img/title_yes.png) 0px 4px no-repeat',
+                'color':'#2a588c',
+                'position':'relative',
+                'z-index':99999
+            })
+            $('#t_'+tid).siblings().css({
+                'background':'url(img/main_img/title_no.png) 0px 4px no-repeat',
+                'color':'#fff',
+                'position':'relative',
+                'z-index':999
+            })
+        }else{
+            var titlestrs = '<li class="choose " index="0;" id="t_'+tid+'" title="文件柜"><h1>公共文件柜</h1><div class="img" style="display:none;"><img class="close" src="img/main_img/icon.png"></div></li>';
+            var iframestr = '<div id="f_'+tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
+            $('.main_title ul').append(titlestrs);
+            $('#t_'+tid).siblings().attr('style','background: url(img/main_img/title_no.png) 0px 4px no-repeat; ');
+            $('#t_'+tid).siblings().css('color','#fff');
+            $('.all_content').append(iframestr);
+            $('.all_content .iItem').hide();
+            $('#f_'+tid).show();
+        }
+    })
+    //公共文件柜更多，显示文件柜页面
+    $('.pets_wenjian').on('click','.total_wenjian',function(){
+      /*  alert('111')*/
+        var tid=$(this).attr('tid');
+        var url=$(this).attr('url');
+       /* alert(tid);
+        alert(url);*/
+        if($('#f_'+tid).length>0){
+            $('.all_content .iItem').hide();
+            $('#f_'+tid).show();
+
+            $('#t_'+tid).css({
+                'background':'url(img/main_img/title_yes.png) 0px 4px no-repeat',
+                'color':'#2a588c',
+                'position':'relative',
+                'z-index':99999
+            })
+            $('#t_'+tid).siblings().css({
+                'background':'url(img/main_img/title_no.png) 0px 4px no-repeat',
+                'color':'#fff',
+                'position':'relative',
+                'z-index':999
+            })
+        }else{
+            var titlestrs = '<li class="choose " index="0;" id="t_'+tid+'" title="文件柜"><h1>公共文件柜</h1><div class="img" style="display:none;"><img class="close" src="img/main_img/icon.png"></div></li>';
+            var iframestr = '<div id="f_'+tid+'" class="iItem"><iframe id="every_module" src="'+url+'" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize" tid="2"></iframe></div>';
+            $('.main_title ul').append(titlestrs);
+            $('#t_'+tid).siblings().attr('style','background: url(img/main_img/title_no.png) 0px 4px no-repeat; ');
+            $('#t_'+tid).siblings().css('color','#fff');
+            $('.all_content').append(iframestr);
+            $('.all_content .iItem').hide();
+            $('#f_'+tid).show();
+        }
+    })
 
 	//所有h2
 

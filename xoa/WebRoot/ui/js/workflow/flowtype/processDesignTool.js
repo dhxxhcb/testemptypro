@@ -21,29 +21,17 @@ var flowstr=flowidurl.substring(flowidurl.indexOf('=')+1)
 var numId={};
 var conditionsDate;//条件数据
 var canwritefieldtwo;//可写字段
-
-function saveOrUpdate(isn) {
-    var savesring=''
-    if(isn==0){
-        numId.id=null;
-        savesring='/flowProcess/insert';
-    }else if(isn==1){
-        savesring='/flowProcess/updateTopAndLeft';
-        numId.id=$("#ele_designerId").val();
-    }
+var forimId;
+var numIds={};
+function saveOrUpdate() {
     $.ajax({
         type: 'POST',
-        url: savesring,
+        url: '/flowProcess/insert',
         dataType: 'json',
         data: numId,
         success: function (json) {
             if (json.flag) {
-                if(isn==0) {
-
                     ajaxSvg();
-                }else {
-                    location.reload();
-                }
             }else{
                 alert("新建流程节点失败");
             }
@@ -53,6 +41,27 @@ function saveOrUpdate(isn) {
         }
     });
 }
+
+function savemobile() {
+    numIds.id=$("#ele_designerId").val();
+    $.ajax({
+        type: 'POST',
+        url: '/flowProcess/updateTopAndLeft',
+        dataType: 'json',
+        data: numIds,
+        success: function (json) {
+            if (json.flag) {
+                    location.reload();
+            }else{
+                alert("新建流程节点失败");
+            }
+        },
+        error:function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("数据库连接异常，请联系管理员");
+        }
+    });
+}
+
 
 function inputTheEcho(names,dataNames) {  //input回显
     if(dataNames==''){
@@ -120,7 +129,8 @@ function ajaxSvg() {
                     "areas": {},
                     "initNum": 0
                 }
-                jsondata.title = json.object.designdata[0].flowName;
+                console.log(json.object)
+                jsondata.title = json.object.designdata[0].flowTypeModel.flowName;
                 jsondata.initNum = designdata.length;
                 designdata.forEach(function (v, i) {
                     jsondata.nodes['node_' + v.prcsId] = {
@@ -187,7 +197,8 @@ function ajaxSvg() {
                             autoBaseUser:v.autoBaseUser,
                             autoDept:v.autoDept,
                             autoUserOp:v.autoUserOp,
-                            autoUser:v.autoUser
+                            autoUser:v.autoUser,
+                            formIds:v.flowTypeModel.formId
                             //触发器
                             //提醒设置
                             //呈批单设置
@@ -221,6 +232,7 @@ function ajaxSvg() {
                 var obj;
                 $("#ele_model").val(model);
                 $("#ele_id").val(id);
+
                 if (model == "line") {
                     // obj = this.$lineData[id];
                     // $("#ele_type").val(obj.M);
@@ -254,7 +266,31 @@ function ajaxSvg() {
                     $('[name="autoBaseUser"]').html(stringdata)
                     $('[name="AUTO_PRCS_USER"]').html(stringdata)
                     formTwo.render();
-
+                    seleTheEcho('userFilter',objtwo.userFilter)
+                    if($('[name="userFilter"]').val()==6){
+                        $('[name="departmentAgent"]').show();
+                    }else if($('[name="userFilter"]').val()==9){
+                        $('[name="auxiliaryDepartmentAgent"]').show()
+                    }else if($('[name="userFilter"]').val()==7){
+                        $('[name="theSpecifiedRole"]').show()
+                    }else if($('[name="userFilter"]').val()==11){
+                        $('[name="assignRole"]').show()
+                    }
+                    seleTheEcho('autoType',objtwo.autoType)
+                    if($('[name="autoType"]').val()==2||$('[name="autoType"]').val()==9||$('[name="autoType"]').val()==4
+                        ||$('[name="autoType"]').val()==6||$('[name="autoType"]').val()==5||
+                        $('[name="autoType"]').val()==10||$('[name="autoType"]').val()==11){
+                        $('.autoBaseUser').show();
+                    }else if($('[name="autoType"]').val()==12||$('[name="autoType"]').val()==13||
+                        $('[name="autoType"]').val()==14||$('[name="autoType"]').val()==15){
+                        $('.optionalDepartmentAgent').show()
+                    }else if($('[name="autoType"]').val()==3){
+                        $('.specifyTheHost').show()
+                    }else if($('[name="autoType"]').val()==7){
+                        $('.oneTheHost').show()
+                    }else if($('[name="autoType"]').val()==8){
+                        $('.stepsTwos').show()
+                    }
 
                     inputTheEcho('prcsId',objtwo.prcsId)
                     seleTheEcho('prcsType',objtwo.prcsType)
@@ -268,8 +304,7 @@ function ajaxSvg() {
                     ulTheEcho('requiredItem',objtwo.requiredItem)
                     radioTheEcho('signType',objtwo.signType)
                     radioTheEcho('countersign',objtwo.countersign)
-                    seleTheEcho('userFilter',objtwo.userFilter)
-                    seleTheEcho('autoType',objtwo.autoType)
+
                     inputTheEcho('timeOut',objtwo.timeOut)
                     radioTheEcho('timeOutModify',objtwo.timeOutModify)
                     radioTheEcho('timeOutType',objtwo.timeOutType)
@@ -292,9 +327,20 @@ function ajaxSvg() {
                     inputTheEcho('userFilterPrcsDeptOther',objtwo.userFilterPrcsDeptOther)
                     inputTheEcho('userFilterPrcsPriv',objtwo.userFilterPrcsPriv)
                     inputTheEcho('userFilterPrcsPrivOther',objtwo.userFilterPrcsPrivOther)
-
+                    forimId=objtwo.formIds;
                     conditionsDate=objtwo.conditionsSet;
                     canwritefieldtwo=objtwo.canWriteField;
+                    workForm.init({
+                            formhtmlurl:'../../form/formType',
+                            resdata:{
+                                fromId:forimId
+                            },
+                            flag:3
+                        },
+                        function(data){
+                            console.log(data)
+                            alertData=data;
+                        });
 
                     //下一步骤
                     for(var inde=0;inde<designdata.length;inde++){
@@ -318,32 +364,37 @@ function ajaxSvg() {
     });
 }
 $(function () {
-    var fromIdtwo = 17;
-    workForm.init({
-            formhtmlurl:'../../form/formType',
-            resdata:{
-                fromId:fromIdtwo
-            },
-            flag:3
-        },
-        function(data){
-            alertData=data;
-        });
+    // var fromIdtwo = 17;
 
 
+    $('.emptyTwo').click(function () {
+        $(this).parent().parent().find('textarea').val('')
+        $(this).parent().parent().find('textarea').attr('user_id','')
+        $(this).parent().parent().find('textarea').attr('deptid','')
+        $(this).parent().parent().find('textarea').attr('privid','')
+        $(this).parent().parent().find('input[type="hidden"]').val('')
+    })
 
 
 
 
     $('.savetwo').click(function () {
             $('.theControlData').each(function () {
-                $(this).next().val($(this).attr('user_id'))
+                if($(this).attr('user_id')!='') {
+                    $(this).next().val($(this).attr('user_id'))
+                }
+                if($(this).attr('privid')!=''){
+                    $(this).next().val($(this).attr('privid'))
+                }
+                if($(this).attr('deptid')!=''){
+                    $(this).next().val($(this).attr('deptid'))
+                }
             })
         $('#datasave').ajaxSubmit({
             type:'post',
             dataType:'json',
             success:function (json) {
-                // location.reload();
+                location.reload();
             }
         })
     })
@@ -392,7 +443,7 @@ $(function () {
         var property = {
             width: $width,
             height: $height,
-            toolBtns: ["chat"],
+            toolBtns: ["chat", "end round"],
 //                "start round", "end round", "task round", "node","state", "plug", "join", "fork", "complex mix"
             haveHead: true,
             headBtns: [ ],//如果haveHead=true，则定义HEAD区的按钮
@@ -713,18 +764,18 @@ $(function () {
 
                     var obj={};
                     obj.intoTheCondition={}
-                    obj.intoTheCondition.list=[]
+                    obj.intoTheCondition.list=''
                     console.log( $('#intoTheCondition table tbody').find('[type=hidden]').val())
                     $('#intoTheCondition').find('[type=hidden]').each(function (i,n) {
 
-                        obj.intoTheCondition.list.push($(this).val())
+                        obj.intoTheCondition.list+=$(this).val()+',';
                     })
                     obj.intoTheCondition.prcsInSet=$('#bottomstepstwoss').find('[name="prcsInSet"]').val()
                     obj.intoTheCondition.conditionDesc=$('#bottomstepstwoss').find('[name="conditionDesc"]').val()
                     obj.transferConditions={};
-                    obj.transferConditions.list=[];
+                    obj.transferConditions.list='';
                     $('#transferConditions').find('[type=hidden]').each(function (i,n) {
-                        obj.transferConditions.list.push($(this).val())
+                        obj.transferConditions.list+=$(this).val()+',';
                     })
                     obj.transferConditions.prcsOutSet=$('#bottomstepstwoss').find('[name="prcsOutSet"]').val()
                     obj.transferConditions.conditionDesc=$('#bottomstepstwoss').find('[name="conditionDesc"]').val()
@@ -1198,6 +1249,7 @@ $(function () {
                     obj.attachEditPrivOnline=$('[name="attachEditPrivOnline"]:checked').val()
                     obj.attachMacroMark=$('[name="attachMacroMark"]:checked').val()
                     var str=JSON.stringify(obj)
+                    console.log(str);
                     $('.setUpThe').removeClass('active')
                     $('[name="prcsItemTwo"]').val(str)
                 layer.close(index)

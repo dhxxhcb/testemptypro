@@ -13,5 +13,7 @@ public interface WorkMapper {
 
     int insert(Map<String,Object> map);
 
-   Map<String,Object> select(Map<String,Object> map);
+    Map<String,Object> select(Map<String,Object> map);
+
+    int update(Map<String,Object> map);
 }

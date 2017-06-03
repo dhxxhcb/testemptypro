@@ -494,12 +494,26 @@
     <!-- 根据流程实例Id和流程实例步骤id查询 -->
     <select id="selectfrp" resultMap="BaseResultMap" parameterType="Map">
         SELECT
-       *
+        frp.ID,
+        frp.USER_ID,
+        frp.PRCS_ID,
+        frp.FLOW_PRCS,
+        frp.COMMENT,
+        frp.OP_FLAG,
+        frp.TOP_FLAG,
+        frp.PRCS_FLAG,
+        frp.TIME_OUT_FLAG,
+        frp.PRCS_TIME,
+        frp.CREATE_TIME,
+        frp.DELIVER_TIME,
+        frp.TIME_OUT_TYPE,
+        frp.TIME_OUT_ATTEND,
+        frp.IS_REMIND,
+        frp.TIME_OUT
         FROM
         FLOW_RUN_PRCS frp
         WHERE
-        frp.USER_ID=#{userId}
-        AND frp.PRCS_ID = #{prcsId}
+         frp.PRCS_ID = #{prcsId}
         AND frp.RUN_ID = #{runId}
     </select>
 

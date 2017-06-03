@@ -939,7 +939,8 @@ public class FileController {
 	}
 
 
-	@RequestMapping("/setFileAuth")
+
+	@RequestMapping("/setFileSortAuth")
 	@ResponseBody
 	public BaseWrapper setFileAuth(@RequestParam(name = "auth") String auth
 //								   @RequestParam(name ="userId",required = false) Map<String,Object> userId,
@@ -952,9 +953,9 @@ public class FileController {
 //								   @RequestParam(name ="review",required = false) Map<String,Object> review,
 //								   @RequestParam(name ="description",required = false) Map<String,Object> description
 								   ){
-		BaseWrapper wrapper =new BaseWrapper();
 		Map<String,Object> mmp=JSONArray.parseObject(auth,Map.class);
 		L.w(mmp);
+		BaseWrapper	wrapper =fileSortService.setFileSortAuth(mmp);
 		return wrapper;
 	}
 

@@ -119,4 +119,15 @@ public interface UsersPrivService {
      *@return:   void
      **/
     void deleteUserPriv(String privids, String funcIds);
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2016年6月3日 下午4:02:05
+     * 方法介绍:   格局privid串获取privName
+     * 参数说明:   @param uids  用户uid串
+     * 参数说明:   @return
+     *
+     * @return List<String>  返回部门串
+     */
+    public String getPrivNameByPrivId(String privId,String flag);
 }
