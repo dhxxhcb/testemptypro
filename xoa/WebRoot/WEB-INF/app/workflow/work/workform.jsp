@@ -513,6 +513,7 @@
                        }
                        if(obj.attr("type")=="radio"){
                            var name = obj.attr('name');
+                           console.log(radioArr[obj.attr('name')]);
                             if(!radioArr[obj.attr('name')]){
                                 radioArr[obj.attr('name')] = true;
                                 if($("input[name='"+name+"']:checked")){
