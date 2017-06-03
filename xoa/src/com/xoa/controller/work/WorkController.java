@@ -219,26 +219,44 @@ public class WorkController {
             workMapper.createTable(param);
         }
         if (CheckTableExist.haveTable(tableName)){
-            List<String> key =new ArrayList<String>();
-            List<String> value =new ArrayList<String>();
-            key.add("run_id");
-            value.add(String.valueOf(runId));
-            key.add("run_name");
-            value.add(runName);
-            key.add("begin_time");
-            value.add(beginTime);
-            key.add("begin_user");
-            value.add(beginUser);
+            Map<String,Object> maps=new HashMap<String,Object>();
+            maps.put("tableName","flow_data_"+flowId);
+            maps.put("runId",runId);
+            Map<String, Object> m = workMapper.select(maps);
+            List<String> key = new ArrayList<String>();
+            List<String> value = new ArrayList<String>();
+            if(m==null) {
+                key.add("run_id");
+                value.add(String.valueOf(runId));
+                key.add("run_name");
+                value.add(runName);
+                key.add("begin_time");
+                value.add(beginTime);
+                key.add("begin_user");
+                value.add(beginUser);
 
-            for(Map<String,Object> map: l){
-                key.add((String)map.get("key"));
-                value.add((String)map.get("value"));
+                for (Map<String, Object> map : l) {
+                    key.add((String) map.get("key"));
+                    value.add((String) map.get("value"));
+                }
+                Map<String, Object> param = new HashedMap();
+                param.put("tableName", tableName);
+                param.put("keys", key);
+                param.put("values", value);
+                workMapper.insert(param);
+            }else{
+                for (Map<String, Object> map : l) {
+                    key.add((String) map.get("key")+"="+(String) map.get("value"));
+                }
+                Map<String, Object> param = new HashedMap();
+                param.put("tableName", tableName);
+                param.put("keys", key);
+                //param.put("values", value);
+                workMapper.update(param);
+
+
             }
-            Map<String,Object> param =new HashedMap();
-            param.put("tableName",tableName);
-            param.put("keys",key);
-            param.put("values",value);
-            workMapper.insert(param);
+
         }
         try {
             f.setFlowRunPrcs(flowRunPrcs);
@@ -267,7 +285,7 @@ public class WorkController {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         Map<String,Object> maps=new HashMap<String,Object>();
-        maps.put("userId",beginUser);
+       // maps.put("userId",beginUser);
         maps.put("prcsId",prcsId);
         maps.put("runId",runId);
         ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();

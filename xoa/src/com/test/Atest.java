@@ -100,16 +100,22 @@ public class Atest {
 
 //		String name = "2615@1310_598983059";
 //		String
-
 		Map<String,Object> maps=new HashMap<String,Object>();
-		maps.put("userId","admin");
+		maps.put("tableName","flow_data_24");
+		maps.put("runId",4444);
+		Map<String, Object> m = workMapper.select(maps);
+		System.out.println(m.size());
+
+
+		/*Map<String,Object> maps=new HashMap<String,Object>();
+		//maps.put("userId","admin");
 		maps.put("prcsId",1);
 		maps.put("runId",1060);
 
 		ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
 		List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(maps);
 
-		FlowRunPrcs f=l.get(0);
+		FlowRunPrcs f=l.get(0);*/
 
 
 	}

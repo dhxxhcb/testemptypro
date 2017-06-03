@@ -182,7 +182,6 @@ public class UsersController {
                 users.setBirthday("");
             }
             json.setObject(users);
-            ;
             json.setMsg("OK");
             json.setFlag(0);
         } catch (Exception e) {
