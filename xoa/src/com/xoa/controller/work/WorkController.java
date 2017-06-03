@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import com.xoa.dao.work.WorkMapper;
+import com.xoa.model.workflow.*;
 import com.xoa.util.common.StringUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.json.JSONException;
@@ -23,12 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
 import com.xoa.model.users.Users;
-import com.xoa.model.workflow.FlowFast;
-import com.xoa.model.workflow.FlowFormType;
-import com.xoa.model.workflow.FlowProcess;
-import com.xoa.model.workflow.FlowRun;
-import com.xoa.model.workflow.FlowRunPrcs;
-import com.xoa.model.workflow.FlowTypeModel;
 import com.xoa.service.workflow.flowtype.FlowFormTypeService;
 import com.xoa.service.workflow.flowtype.FlowProcessService;
 import com.xoa.service.workflow.flowtype.FlowRunPrcsService;
@@ -284,13 +279,16 @@ public class WorkController {
                                         @RequestParam(value="jingbanUser",required =false) String jingbanUser) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
-        Map<String,Object> maps=new HashMap<String,Object>();
+        //Map<String,Object> maps=new HashMap<String,Object>();
        // maps.put("userId",beginUser);
-        maps.put("prcsId",prcsId);
-        maps.put("runId",runId);
+        //int flowRunPrcsId=Integer.parseInt(prcsId)-1;
+       // maps.put("prcsId",Integer.parseInt(prcsId)-1);
+       // maps.put("runId",runId);
         ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
-        List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(maps);
-        FlowRunPrcs flowRunPrcs = l.get(0);
+        //List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(maps);
+        FlowRunPrcsExcted flowRunPrcs = new FlowRunPrcsExcted();
+        flowRunPrcs.setPrcsId(Integer.parseInt(prcsId)-1);
+        flowRunPrcs.setRunId(Integer.parseInt(runId));
         flowRunPrcs.setPrcsFlag("3");
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         flowRunPrcs.setDeliverTime(df.format(new Date()));

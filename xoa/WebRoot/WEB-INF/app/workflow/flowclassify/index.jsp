@@ -68,6 +68,12 @@
 		.levelleft2{
 			margin-left:60%;
 		}
+        .levelleft3{
+            margin-left:70%;
+        }
+        .levelleft4{
+            margin-left:80%;
+        }
 		.change{
 			width:85px;
 			background-color: #2F8AE3;
@@ -166,6 +172,7 @@
 		.delete_flow,.edit_liucheng{
 			cursor: pointer;
 		}
+
 		/*<img src="img/workflow/one.png">*/
 		/*.img{
 			width:20px;
@@ -358,7 +365,9 @@
                                 if(obj.flag==true){
                                     items();
                                     item();
-                                }
+                                }else{
+                                    alert(obj.msg);
+								}
                             }
                         });
                         layer.closeAll();
@@ -405,7 +414,10 @@
                         items();
                         item();
 						/*window.location.reload();*/
-                    }
+                    }else{
+                        alert(obj.msg)
+					}
+
                     console.log(obj)
                 }
             });
@@ -505,7 +517,7 @@
         //流程编辑
         $('#c_biaodan').on('click','.edit_liucheng',function() {
             var id = $(this).attr('tid');
-            alert(id);
+           /* alert(id);*/
             //获取序号
             var num = $(this).parent().siblings('.xuhao').find('a').text();
             //获取名称

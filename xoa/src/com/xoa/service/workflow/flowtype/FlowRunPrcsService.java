@@ -1,6 +1,7 @@
 package com.xoa.service.workflow.flowtype;
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.model.workflow.FlowRunPrcs;
+import com.xoa.model.workflow.FlowRunPrcsExcted;
 import com.xoa.util.ToJson;
 
 import java.util.List;
@@ -77,7 +78,7 @@ public interface FlowRunPrcsService {
 	 * 参数说明:
 	 * @return
 	 */
-	public void update(FlowRunPrcs flowRunPrcs);
+	public void update(FlowRunPrcsExcted flowRunPrcs);
 
 
 }

@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import com.xoa.dao.workflow.FlowTypeModelMapper;
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.model.workflow.FlowRun;
+import com.xoa.model.workflow.FlowRunPrcsExcted;
 import com.xoa.service.users.UsersService;
 import com.xoa.util.DateFormat;
 import com.xoa.util.ToJson;
@@ -254,7 +255,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 
     @Override
     @Transactional
-    public void update(FlowRunPrcs flowRunPrcs) {
+    public void update(FlowRunPrcsExcted flowRunPrcs) {
         flowRunPrcsMapper.updateByPrimaryKeySelective(flowRunPrcs);
     }
 
