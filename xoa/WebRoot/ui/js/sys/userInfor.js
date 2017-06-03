@@ -41,15 +41,43 @@ $(function(){
     //查询按钮点击事件
     $('#submit').click(function(){
         $('.conditionQuery').show().siblings().hide();
+        var deId=$('select[name="unit"] option:checked').val();
+        var privNo=$('select[name="user"] option:checked').val();
+        if(deId==0){
+            deId='';
+        }
+        if(privNo==0){
+            privNo='';
+        }
         var data={
             'userId':$('input[name="userId"]').val(),
             'userName':$('input[name="userName"]').val(),
-            'sex:':$('select[name="sex"] option:checked').val(),
-            'deptId':$('select[name="unit"] option:checked').val(),
-            'userPrivNo':$('select[name="user"] option:checked').val(),
+            'sex':$('select[name="sex"] option:checked').val(),
+            'deptId':deId,
+            'userPrivNo':privNo,
             'choice':1
         }
         queryAllPerson(data,$('.Condition'));
+    })
+    //导出按钮点击事件
+    $('#export').click(function(){
+        var deId=$('select[name="unit"] option:checked').val();
+        var privNo=$('select[name="user"] option:checked').val();
+        if(deId==0){
+            deId='';
+        }
+        if(privNo==0){
+            privNo='';
+        }
+        var data={
+            'userId':$('input[name="userId"]').val(),
+            'userName':$('input[name="userName"]').val(),
+            'sex':$('select[name="sex"] option:checked').val(),
+            'deptId':deId,
+            'userPrivNo':privNo,
+            'choice':2
+        }
+        exportData(data)
     })
 })
 
@@ -104,7 +132,7 @@ function queryAllPerson(data,element){
             var str='';
             for(var i=0;i<data1.length;i++){
                 var txt=data1[i].sex==0?'男':'女';
-                str+='<tr class="loopData"><td>'+data1[i].dep.deptName+'</td><td>'+data1[i].userPrivName+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
+                str+='<tr class="loopData" uid="'+data1[i].uid+'"><td>'+data1[i].dep.deptName+'</td><td>'+data1[i].userPrivName+'</td><td><a href="javascript:;" class="userDetail">'+data1[i].userName+'</a></td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
             }
             element.after(str);
         }
@@ -124,13 +152,25 @@ function companyAllPerson(data,element){
             for(var i=0;i<data1.length;i++){
                 var txt=data1[i].sex==0?'男':'女';
                 if(data1[i].RoleAuxiliaryName){
-                    str+='<tr class="loopData"><td>'+data1[i].dep.deptName+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].userPrivName+'</td><td>'+data1[i].RoleAuxiliaryName+'</td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].dep.telNo+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
+                    str+='<tr class="loopData" uid="'+data1[i].uid+'"><td>'+data1[i].dep.deptName+'</td><td><a href="javascript:;" class="userDetail">'+data1[i].userName+'</a></td><td>'+data1[i].userPrivName+'</td><td>'+data1[i].RoleAuxiliaryName+'</td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].dep.telNo+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
                 }else{
-                    str+='<tr class="loopData"><td>'+data1[i].dep.deptName+'</td><td>'+data1[i].userName+'</td><td>'+data1[i].userPrivName+'</td><td></td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].dep.telNo+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
+                    str+='<tr class="loopData" uid="'+data1[i].uid+'"><td>'+data1[i].dep.deptName+'</td><td><a href="javascript:;" class="userDetail">'+data1[i].userName+'</a></td><td>'+data1[i].userPrivName+'</td><td></td><td>'+data1[i].online+'</td><td>'+txt+'</td><td>'+data1[i].telNoDept+'</td><td>'+data1[i].dep.telNo+'</td><td>'+data1[i].mobilNo+'</td><td>'+data1[i].email+'</td></tr>'
                 }
 
             }
             element.after(str);
+        }
+    })
+}
+//查询导出
+function exportData(data){
+    $.ajax({
+        type: 'get',
+        url: '../getUserbyCondition',
+        dataType: 'json',
+        data:data,
+        success: function () {
+            console.log('成功')
         }
     })
 }

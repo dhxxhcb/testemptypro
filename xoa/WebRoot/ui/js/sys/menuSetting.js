@@ -92,11 +92,8 @@ $(function(){
     //添加权限点击事件
     $('.tab').on('click','.addJurisdition',function(){
         $('.addJurisd').show().siblings().hide();
-        //var id=$(this).parents('tr').attr('fid');
         authorizationPriv($('#PRIV'));
         authorizationUser($('#USER'));
-        //authorizationPriv(id,$('#PRIV'));
-        //authorizationUser(id,$('#USER'));
     })
     //删除权限点击事件
     $('.tab').on('click','.deleteJurisdition',function(){
@@ -106,8 +103,8 @@ $(function(){
     })
     //删除权限确定点击事件
     $('#deleteBtn_sure').click(function(){
-        var privid=$('#privDuser').attr('privid');
-        var userid=$('#senduser').attr('user_id');
+        var privid=$('#deletePrivDuser').attr('userpriv');
+        var userid=$('#deleteSenduser').attr('user_id');
         if(!privid && userid=='id'){
             alert('请选择角色或人员');
         }else if(!privid){
@@ -118,34 +115,38 @@ $(function(){
             deleteAuthorizationPriv();
             deleteAuthorizationUser();
         }
+
     })
     //添加权限确定点击事件
     $('#addBtn_sure').click(function(){
-        var privid=$('#privDuser').attr('privid');
+        var privid=$('#privDuser').attr('userpriv');
         var userid=$('#senduser').attr('user_id');
-        //var data1={'privids':privid};
-        //var data2={'uids':userid};
         if(!privid && userid=='id'){
             alert('请选择角色或人员');
         }else if(!privid){
             addAuthorizationUser();
-            /*alert('操作成功')
-            $('#senduser').val('');
-            authorizationUser($('#USER'));*/
         }else if(userid=='id'){
             addAuthorizationPriv()
-            /*alert('操作成功')
-            $('#privDuser').val('');
-            authorizationPriv($('#PRIV'));*/
         }else{
             addAuthorizationPriv()
             addAuthorizationUser();
-            /*alert('操作成功')
-            $('#privDuser').val('');
-            $('#senduser').val('');
-            authorizationPriv($('#PRIV'));
-            authorizationUser($('#USER'));*/
         }
+    })
+    //添加权限返回按钮点击事件
+    $('#addBtn_back').click(function(){
+        var id=$('.refresh').parents('tr').attr('childId');
+        $('#privDuser').val('');
+        $('#senduser').val('');
+        $('.monoidalSet').show().siblings().hide();
+        twoLevelMenu(id,$('.childMenu'));
+    })
+    //删除权限返回按钮点击事件
+    $('#deleteBtn_back').click(function(){
+        var id=$('.refresh').parents('tr').attr('childId');
+        $('#deletePrivDuser').val('');
+        $('#deleteSenduser').val('');
+        $('.monoidalSet').show().siblings().hide();
+        twoLevelMenu(id,$('.childMenu'));
     })
 
     function AddClassA(){
@@ -167,7 +168,6 @@ $(function(){
                 }else{
                     alert('新增失败');
                 }
-                //document.url=location.href;
                 location.reload();
             }
         })
@@ -336,7 +336,6 @@ $(function(){
             data:{'fid':id},
             success:function(res){
                 var data=res.object;
-                //$('#PRIV').text(data);
                 element.text(data);
             }
         })
@@ -351,14 +350,13 @@ $(function(){
             data:{'fid':id},
             success:function(res){
                 var data=res.object;
-                //$('#USER').text(data);
                 element.text(data);
             }
         })
     }
     //添加角色
     function addAuthorizationPriv(){
-        var privid=$('#privDuser').attr('privid');
+        var privid=$('#privDuser').attr('userpriv');
         var id=$('.tab .addJurisdition').parents('tr').attr('fid');
         $.ajax({
             type:'post',
@@ -390,7 +388,7 @@ $(function(){
     }
     //删除角色
     function deleteAuthorizationPriv(){
-        var privid=$('#privDuser').attr('privid');
+        var privid=$('#deletePrivDuser').attr('userpriv');
         var id=$('.tab .addJurisdition').parents('tr').attr('fid');
         $.ajax({
             type:'post',
@@ -399,18 +397,18 @@ $(function(){
             data:{'privids':privid,'funcIds':id},
             success:function(res){
                 console.log(res.msg);
-                $('#deleteSelectPriv').val('');
+                $('#deletePrivDuser').val('');
                 authorizationPriv($('#deletePRIV'));
             }
         })
     }
     //删除人员
     function deleteAuthorizationUser(){
-        var userid=$('#senduser').attr('user_id');
+        var userid=$('#deleteSenduser').attr('user_id');
         var id=$('.tab .addJurisdition').parents('tr').attr('fid');
         $.ajax({
             type:'post',
-            url:'../../deleteUserPriv',
+            url:'../../deleteAuthUser',
             dataType:'json',
             data:{'uIds':userid,'fid':id},
             success:function(res){

@@ -404,7 +404,7 @@
                                     <a href="javascript:;" id="deleteSelectPriv" class="Add ">添加</a>
                                 </span>
                                 <span class="add_img">
-                                    <a href="javascript:;" class="clearPriv">清除</a>
+                                    <a href="javascript:;" class="deClearPriv">清除</a>
                                 </span>
                             </div>
                         </td>
@@ -422,7 +422,7 @@
                                     <a href="javascript:;" id="deleteSelectUser" class="Add ">添加</a>
                                 </span>
                                 <span class="add_img">
-                                    <a href="javascript:;" class="clearUser">清除</a>
+                                    <a href="javascript:;" class="deClearUser">清除</a>
                                 </span>
                             </div>
                         </td>
@@ -467,10 +467,16 @@
         });
         $('.clearPriv').click(function(){
             $('#privDuser').val('');
-            $('#deleteSelectPriv').val('');
+
         })
         $('.clearUser').click(function(){
             $('#senduser').val('');
+
+        })
+        $('.deClearPriv').click(function(){
+            $('#deletePrivDuser').val('');
+        })
+        $('.deClearUser').click(function(){
             $('#deleteSenduser').val('');
         })
     })
