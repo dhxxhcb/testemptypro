@@ -234,7 +234,6 @@ public class WorkController {
                 value.add(beginTime);
                 key.add("begin_user");
                 value.add(beginUser);
-
                 for (Map<String, Object> map : l) {
                     key.add((String) map.get("key"));
                     value.add((String) map.get("value"));
@@ -246,8 +245,9 @@ public class WorkController {
                 workMapper.insert(param);
             }else{
                 for (Map<String, Object> map : l) {
-                    key.add((String) map.get("key")+"="+(String) map.get("value"));
-
+                    if(!StringUtils.checkNull((String)map.get("value"))){
+                        key.add((String) map.get("key")+"="+"'"+(String) map.get("value")+"'");
+                    }
                 }
                 Map<String, Object> param = new HashedMap();
                 param.put("tableName", tableName);

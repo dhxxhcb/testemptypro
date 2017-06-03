@@ -65,13 +65,13 @@
     <update id="update">
         UPDATE  ${tableName}
         <set>
-            <trim prefix="(" suffix="" suffixOverrides=",">
+
                 <if test="keys!=null and keys.size()!=0">
                     <foreach item="key" collection="keys" separator=",">
                         ${key}
                     </foreach>
                 </if>
-            </trim>
+
         </set>
         WHERE run_Id=${runId}
     </update>
