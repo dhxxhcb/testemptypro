@@ -98,7 +98,7 @@ public class FlowRunPrcs {
     private FlowProcess flowProcess;
 
     /**
-     * 接收时间
+     * 到达时间
      */
     private String  receiptTime;
 

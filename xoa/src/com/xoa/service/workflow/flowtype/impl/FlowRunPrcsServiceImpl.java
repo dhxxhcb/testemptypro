@@ -70,7 +70,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
 				if(!StringUtils.checkNull(flowRunPrcs.getDeliverTime())) {
 					flowRunPrcs.setDeliverTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getDeliverTime())));
-					flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getDeliverTime())));
+					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getDeliverTime())));
 				}
 				if(!StringUtils.checkNull(flowRunPrcs.getPrcsTime())&&flowRunPrcs.getPrcsId()>1){
 //					String upTime =  flowRunPrcsMapper.findTime(flowRunPrcs.getRunId(),flowRunPrcs.getPrcsId()-1);
@@ -78,7 +78,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 					Integer runId = flowRunPrcs.getPrcsId()-1;
 					String upTime = flowRunPrcsMapper.findTime(runId,prcsId);
 					flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(upTime)));
-					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getReceiptTime())));
+					flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getReceiptTime())));
 				}
 				returnList.add(flowRunPrcs);
 			}
