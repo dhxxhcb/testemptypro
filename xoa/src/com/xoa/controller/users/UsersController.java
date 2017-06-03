@@ -492,7 +492,7 @@ public class UsersController {
               usersJson.setFlag(1);
               usersJson.setMsg("err");
           }
-     }else if ("0".equals(choice)){
+     }else if ("2".equals(choice)){
           try {
               HSSFWorkbook workbook1 = ExcelUtil.makeExcelHead("用户信息导出", 9);
               String[] secondTitles = {"部门", "姓名", "角色", "辅助角色","在线时长","性别","在线时长","工作电话","部门电话","手机","电子邮件"};
