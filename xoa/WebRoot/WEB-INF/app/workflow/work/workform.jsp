@@ -511,17 +511,21 @@
                                 value= obj.val()==0?'':form_item.eq(i).val();
                             }
                        }
+
                        if(obj.attr("type")=="radio"){
                            var name = obj.attr('name');
-                           console.log(radioArr[obj.attr('name')]);
+
                             if(!radioArr[obj.attr('name')]){
                                 radioArr[obj.attr('name')] = true;
-                                if($("input[name='"+name+"']:checked")){
+
+                                if($("input[name='"+name+"']:checked").length>0){
 
                                     value= $("input[name='"+name+"']:checked").val();
                                 }else{
-                                    value = '';
+                                    value = "";
                                 }
+                            }else{
+                                continue;
                             }
                        }
                        if( value!=null){
