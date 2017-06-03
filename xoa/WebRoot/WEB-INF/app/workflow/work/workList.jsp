@@ -998,7 +998,7 @@
                             '<td class="">'+data.obj[i].userName+'</td>'+
                             '<td class="">'+
                             '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
-                        '<td class="">'+status+'</td>';
+                            '<td class="">'+status+'</td>';
                         //$('#dbgz').html(str);
                     }
                     $('#qbgz').html(str);
@@ -1057,14 +1057,15 @@
                             '【'+workLeverl+'】</span>'+data.obj[i].flowRun.runName+'</td>'+
                             '<td class="">'+
                             '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
-                        '<td class="">'+data.obj[i].userName+'</td>'+
-                        '<td class="">'+status+'</td><td class="">'+data.obj[i].createTime+'</td>'+
-                        '<td class=""></td>'+
-                        '<td style="text-align:left;">'+
-                        '<a href="javascript:"><span class="host-span" id="zhuban" title="主办" formId='+data.obj[i].flowType.formId+' prcsId='+data.obj[i].flowProcess.prcsId+'>主办</span></a>'+
-                        '<a href=""><span class="operation_text_left" title="导出">导出</span></a>'+
-                        '<a href="javascript:">'+
-                        '<span class="operation_text_left" title="删除">删除</span></a></td></tr>';
+                            '<td class="">'+data.obj[i].userName+'</td>'+
+                            '<td class="">'+status+'</td>'+
+                            '<td class="">到达:'+data.obj[i].receiptTime+'<br>接收:'+data.obj[i].prcsTime+'</td>'+
+                            '<td class="">到达:'+data.obj[i].arriveTime+'<br>办理:'+data.obj[i].handleTime+'</td>'+
+                            '<td style="text-align:left;">'+
+                            '<a href="javascript:"><span class="host-span" id="zhuban" title="主办" formId='+data.obj[i].flowType.formId+' prcsId='+data.obj[i].flowProcess.prcsId+'>主办</span></a>'+
+                            '<a href=""><span class="operation_text_left" title="导出">导出</span></a>'+
+                            '<a href="javascript:">'+
+                            '<span class="operation_text_left" title="删除">删除</span></a></td></tr>';
                         //$('#dbgz').html(str);
                     }
                     $('#dbgz').html(str);
