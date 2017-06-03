@@ -22,8 +22,6 @@ import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -349,14 +347,13 @@ public class SysLogController {
      * param request
      * @return: json
      **/
-    @ResponseBody
     @RequestMapping(value = "/exportLogXls", produces = {"application/json;charset=UTF-8"})
     public String exportLogXls(HttpServletRequest request, HttpServletResponse response,
                                @RequestParam(value = "type", required = false) Integer type,
                                @RequestParam(value = "uid", required = false) String uid,
                                @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "startTime", required = false) Date startTime,
                                @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "endTime", required = false) Date endTime,
-                               @RequestParam(value = "syslog", required = false) Syslog syslog) throws IOException, ParseException {
+                               @RequestParam(value = "syslog", required = false) Syslog syslog) throws Exception {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
 
@@ -395,8 +392,9 @@ public class SysLogController {
             String timeString = sdfTime.format(log.getTime());
 
             dataRow.createCell(1).setCellValue(timeString);
+
             dataRow.createCell(2).setCellValue(log.getIp());
-            dataRow.createCell(3).setCellValue("");
+            dataRow.createCell(3).setCellValue(log.getIpLocation());
             dataRow.createCell(4).setCellValue(log.getTypeName());
             dataRow.createCell(5).setCellValue(log.getRemark());
 
@@ -458,6 +456,13 @@ public class SysLogController {
             toJson.setMsg(e.getMessage());
         }
         return toJson;
+    }
+
+
+    @RequestMapping("/getIp")
+    public void getIp(HttpServletRequest request) {
+
+
     }
 }
 

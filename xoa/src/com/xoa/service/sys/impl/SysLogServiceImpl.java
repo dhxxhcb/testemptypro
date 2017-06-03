@@ -5,6 +5,7 @@ import com.xoa.model.common.Syslog;
 import com.xoa.service.common.SysCodeService;
 import com.xoa.service.sys.SysLogService;
 import com.xoa.service.users.UsersService;
+import com.xoa.util.ipUtil.AddressUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -511,7 +512,7 @@ public class SysLogServiceImpl implements SysLogService {
      * @return: List<Syslog></Syslog>
      **/
     @Override
-    public List<Syslog> logManage(Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
+    public List<Syslog> logManage(Integer type, String uid, Date startTime, Date endTime, Syslog syslog) throws Exception {
         String[] uidArr = null;
 
         if (uid != null && !"".equals(uid)) {
@@ -552,7 +553,8 @@ public class SysLogServiceImpl implements SysLogService {
                 syslog1.setUserName(username);
                 String logTypeName = sysCodeService.getLogNameByNo("" + syslog1.getType());
                 syslog1.setTypeName(logTypeName);
-                syslog1.setIpLocation("--");
+                String location = getLocationByIP(syslog1.getIp());
+                syslog1.setIpLocation(location);
             }
 
         }
@@ -620,7 +622,6 @@ public class SysLogServiceImpl implements SysLogService {
     public void deleteLogByIds(String ids) {
 
 
-
         if (ids != null) {
             String[] idsArr = ids.split(",");
 
@@ -640,6 +641,35 @@ public class SysLogServiceImpl implements SysLogService {
     @Override
     public void deleteAllLog() {
         sysLogMapper.deleteAllLog();
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 18:08
+     * @函数介绍: 根据ip查地址
+     * @参数说明: @param param ip
+     * @return: XXType(value introduce)
+     **/
+    @Override
+    public String getLocationByIP(String ip) throws Exception {
+
+        //根据ip查ip地址
+        String address = "";
+        if (ip.startsWith("10.") || ip.startsWith("172.16.") || ip.startsWith("172.31.") || ip.startsWith("192.168.")) {
+            address = "局域网及其他";
+        } else {
+            try {
+                address = AddressUtils.getAddress("ip=" + ip, "utf-8");
+
+            } catch (Exception e) {
+                System.out.println("根据ip查地址发生错误");
+                e.printStackTrace();
+            }
+
+        }
+
+
+        return address;
     }
 
 
