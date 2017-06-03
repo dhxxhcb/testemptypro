@@ -55,7 +55,7 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
         <if test="keys!=null and keys.size()!=0">
             <foreach item="value" collection="values" separator=",">
-              '${value }'
+              ${value }
             </foreach>
 
         </if>
@@ -66,7 +66,7 @@
     <update id="update">
         UPDATE  ${tableName}
         <set>
-            <trim prefix="(" suffix=")" suffixOverrides=",">
+            <trim prefix="(" suffix="" suffixOverrides=",">
                 <if test="keys!=null and keys.size()!=0">
                     <foreach item="key" collection="keys" separator=",">
                         ${key}

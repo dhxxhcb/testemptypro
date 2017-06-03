@@ -253,8 +253,6 @@ public class WorkController {
                 param.put("keys", key);
                 //param.put("values", value);
                 workMapper.update(param);
-
-
             }
 
         }
