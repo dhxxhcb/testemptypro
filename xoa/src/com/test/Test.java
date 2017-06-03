@@ -4,6 +4,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.xoa.util.DateFormat;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -153,10 +156,31 @@ public class Test {
 		return source;
 	}
 
+
+
 	public static void main(String[] args) {
-		Date date = new Date();
-			String time = "2016-6-2 16:00:00";
-			System.out.println(DateFormat.getTime("0000-00-00 00:00:00"));
+
+		String name = "{\"intoTheCondition\":{\"list\":[\"\",\"\"],\"prcsInSet\":\"fdsafsda\",\"conditionDesc\":\"fdasdfas\"},\"transferConditions\":{\"list\":[\"\"],\"prcsOutSet\":\"fdafdsa\",\"conditionDesc\":\"fdasdfas\"}}\n";
+		JSONObject obj = JSONArray.parseObject(name);
+		String obj1 = obj.getString("intoTheCondition");
+		String obj2 = obj.getString("transferConditions");
+		String  name1 = JSONArray.parseObject(obj1).getString("list");
+		String  name2 = JSONArray.parseObject(obj1).getString("prcsInSet");
+		String  name3 = JSONArray.parseObject(obj1).getString("conditionDesc");
+		String  name4 = JSONArray.parseObject(obj2).getString("list");
+		String  name5 = JSONArray.parseObject(obj2).getString("prcsOutSet");
+		String  name6 = JSONArray.parseObject(obj2).getString("conditionDesc");
+		System.out.println(name1+">>>>>"+name2+">>>>>"+">>>>>"+name3+">>>>>"+name4+">>>>>"+name5+">>>>>"+name6);
+
+
+//		Date date = new Date();
+//			String time = "0000-00-00 00:00:00";
+//			int  l =DateFormat.getTime(DateFormat.getStrDate(date))-DateFormat.getTime(time);
+//        long day=l/(24*60*60);
+//        long hour=(l/(60*60)-day*24);
+//        long min=((l/(60))-day*24*60-hour*60);
+//        long s=(l-day*24*60*60-hour*60*60-min*60);
+//			System.out.println(DateFormat.getTime(time));
 
 //	    	String b="<p>\n" +DateFormat.getTime(flowRunPrcs.getDeliverTime()))iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
 //					"    单行输入框：<input type=\"text\" name=\"DATA_1\" align=\"left\" hidden=\"0\" title=\"单行输入框\" style=\"text-align:left;\"/>\n" +

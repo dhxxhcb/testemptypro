@@ -23,6 +23,7 @@ import com.xoa.service.workflow.flowtype.FlowProcessService;
 import com.xoa.service.workflow.flowtype.FlowRunPrcsService;
 import com.xoa.service.workflow.flowtype.FlowRunService;
 import com.xoa.service.workflow.flowtype.FlowTypeService;
+import com.xoa.service.workflow.flowtype.impl.FlowRunPrcsServiceImpl;
 import com.xoa.util.dataSource.ContextHolder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,7 +57,7 @@ public class Ctest {
 
 
 
-//	@Resource
+//	@Resource  
 //	private NewService newService;
 
 //	邮箱测试
@@ -76,8 +77,8 @@ public class Ctest {
 //	@Resource
 //	private FlowProcessService processService;
 
-	/*@Resource
-	private FlowRunPrcsService flowRunPrcsService;*/
+	@Resource
+	private FlowRunPrcsService flowRunPrcsService;
 
 	@Test
 	public void test()throws  Exception{
@@ -87,10 +88,10 @@ public class Ctest {
 //		FlowProcessList list=processService.flowView(9);
 //		ToJson<FlowRunPrcs> toJson =  flowRunPrcsService.findAllNode(154);
 		Map<String,Object> maps = new HashMap<String,Object>();
-		/*maps.put("userId","admin");
+		maps.put("userId","admin");
 		ToJson<FlowRunPrcs> toJson  =  flowRunPrcsService.selectObject(maps, 1, 5, true);
 		System.out.println(JSON.toJSONStringWithDateFormat(toJson,"yyyy-MM-dd HH:mm:ss"));
-*/
+
 
 
 //		4516
@@ -114,7 +115,7 @@ public class Ctest {
 //
 //    @Resource
 //	private UnitManageService unitManageService;
-
+	
 //	@Test
 //	public void test() throws Exception {
 //		FlowProcess flowProcess = new FlowProcess();
@@ -160,7 +161,7 @@ public class Ctest {
 //			System.out.println(JSON.toJSONStringWithDateFormat(tojson,
 //					"yyyy-MM-dd HH:mm:ss"));
 //		}
-//
+//	
 	}
 
 
@@ -210,7 +211,7 @@ public class Ctest {
 //		ResourceBundle rb =  ResourceBundle.getBundle("jdbc-sql");
 //		String name = rb.getString("mysql.driverClassName");
 //		System.out.println("jieguo:"+name);
-
+		
 //        ContextHolder.setConsumerType("xoa");
 //        System.out.println("类型："+ContextHolder.getConsumerType());
 //                Users user=usersService.findUserByName("zhangyong");
@@ -226,11 +227,11 @@ public class Ctest {
 //            json.setMsg(e.getMessage());
 //
 //        }
-
-
-
-
-
+        
+        
+        
+        
+        
 //		Map<String,Object> maps = new HashMap<String, Object>();
 //		maps.put("bodyId", Integer.valueOf("11"));
 //		maps.put("fromId", "zhanglan");
@@ -245,16 +246,16 @@ public class Ctest {
 //
 //		System.out.println(JSON.toJSONStringWithDateFormat(tojson,
 //					"yyyy-MM-dd HH:mm:ss"));
-
-
-//
+		
+		
+//		
 //		 Map<String,Object> maps = new HashMap<String, Object>();
 //	     maps.put("typeId", null);
 //	     maps.put("newsTime", null);
 //	    List<News> page = newService.selectNews(maps, 1, 5, true);
 //		System.out.println(JSON.toJSONStringWithDateFormat(page, "yyyy-MM-dd HH:mm:ss"));
-
-
+		
+		
 //		EmailBodyModel emailBody = new EmailBodyModel();
 //		emailBody.setFromId("admin");
 //		emailBody.setToId2(
