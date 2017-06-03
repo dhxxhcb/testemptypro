@@ -694,9 +694,8 @@
         //新建公告通知
         $('#add_send').on('click',function(){
             var action=$(this).attr("ac");
-
-            alert(action);
-            alert('新增');
+           /* alert(action);
+            alert('新增');*/
             var data_notice={
                 subject:$('#add_titileTime').val(),//标题
                 toId:$('#add_texta').val(),//部门发布范围
