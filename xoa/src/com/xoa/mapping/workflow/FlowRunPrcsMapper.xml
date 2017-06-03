@@ -319,7 +319,7 @@
       </if>
     </trim>
   </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowRunPrcs">
+    <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowRunPrcsExcted">
         update flow_run_prcs
         <set>
             <if test="runId != null">
@@ -419,7 +419,7 @@
                 COMMENT = #{comment},
             </if>
         </set>
-        where RUN_ID = #{runId}
+        where RUN_ID = #{runId} AND  PRCS_ID = #{prcsId}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.workflow.FlowRunPrcs">
     update flow_run_prcs

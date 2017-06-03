@@ -201,7 +201,7 @@
 
 	<!-- 公告详情查询 -->
 	<select id="detailedNotify" resultMap="BaseResultMap">
-		SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,u.USER_NAME,s.CODE_NAME
+		SELECT n.NOTIFY_ID,n.SEND_TIME,n.TYPE_ID,n.`SUBJECT`,n.BEGIN_DATE,n.PUBLISH,n.ATTACHMENT_ID,n.ATTACHMENT_NAME,n.END_DATE,n.FROM_ID,n.FROM_DEPT,n.CONTENT,n.FORMAT,n.TO_ID,n.PRIV_ID,n.USER_ID, n.READERS,n.SUMMARY,u.USER_NAME,s.CODE_NAME
 		FROM    notify n,`user` u,sys_code s WHERE n.FROM_ID=u.USER_ID
 		and s.PARENT_NO='NOTIFY' and s.CODE_ORDER=n.TYPE_ID  and n.NOTIFY_ID=#{notifyId}
 	</select>
@@ -400,94 +400,94 @@
 		update notify
 		<set >
 			<trim suffixOverrides=",">
-				<if test="fromId != null">
+				<if test="fromId != null and fromId != ''">
 					FROM_ID = #{fromId},
 				</if>
-				<if test="fromDept != null">
+				<if test="fromDept != null and fromDept != ''">
 					FROM_DEPT = #{fromDept},
 				</if>
-				<if test="toId != null">
+				<if test="toId != null and toId != ''">
 					TO_ID = #{toId},
 				</if>
-				<if test="format != null">
+				<if test="format != null and format != ''">
 					FORMAT = #{format},
 				</if>
-				<if test="typeId != null">
+				<if test="typeId != null and typeId != ''">
 					TYPE_ID = #{typeId},
 				</if>
-				<if test="subject != null">
+				<if test="subject != null and subject != ''">
 					SUBJECT = #{subject},
 				</if>
-				<if test="sendTime != null">
+				<if test="sendTime != null and sendTime != ''">
 					SEND_TIME = #{sendTime},
 				</if>
-				<if test="content != null">
+				<if test="content != null and content != ''">
 					CONTENT = #{content},
 				</if>
-				<if test="beginDate != null">
+				<if test="beginDate != null and beginDate != ''">
 					BEGIN_DATE = #{beginDate},
 				</if>
-				<if test="attachmentId != null">
+				<if test="attachmentId != null and attachmentId != ''">
 					ATTACHMENT_ID = #{attachmentId},
 				</if>
-				<if test="readers != null">
+				<if test="readers != null and readers != ''">
 					READERS = #{readers},
 				</if>
-				<if test="privId != null">
+				<if test="privId != null and privId != ''">
 					PRIV_ID = #{privId},
 				</if>
-				<if test="top != null">
+				<if test="top != null and top != ''">
 					TOP = #{top},
 				</if>
-				<if test="topDays != null">
+				<if test="topDays != null and topDays != ''">
 					TOP_DAYS = #{topDays},
 				</if>
-				<if test="publish != null">
+				<if test="publish != null and publish != ''">
 					PUBLISH = #{publish},
 				</if>
-				<if test="reason != null">
+				<if test="reason != null and reason != '' ">
 					REASON = #{reason},
 				</if>
-				<if test="compressContent != null">
+				<if test="compressContent != null and compressContent != ''">
 					COMPRESS_CONTENT = #{compressContent},
 				</if>
-				<if test="lastEditor != null">
+				<if test="lastEditor != null and lastEditor != ''">
 					LAST_EDITOR = #{lastEditor},
 				</if>
-				<if test="subjectColor != null">
+				<if test="subjectColor != null and subjectColor != ''">
 					SUBJECT_COLOR = #{subjectColor},
 				</if>
-				<if test="keyword != null">
+				<if test="keyword != null and keyword != ''">
 					KEYWORD = #{keyword},
 				</if>
-				<if test="endDate != null">
+				<if test="endDate != null and endDate != ''">
 					END_DATE = #{endDate},
 				</if>
-				<if test="attachmentName != null">
+				<if test="attachmentName != null and attachmentName != ''">
 					ATTACHMENT_NAME = #{attachmentName},
 				</if>
-				<if test="print != null">
+				<if test="print != null and print != ''">
 					PRINT = #{print},
 				</if>
-				<if test="userId != null">
+				<if test="userId != null and userId != ''">
 					USER_ID = #{userId},
 				</if>
-				<if test="auditer != null">
+				<if test="auditer != null and auditer != ''">
 					AUDITER = #{auditer},
 				</if>
-				<if test="auditDate != null">
+				<if test="auditDate != null and auditDate != ''">
 					AUDIT_DATE = #{auditDate},
 				</if>
-				<if test="download != null">
+				<if test="download != null and download != ''">
 					DOWNLOAD = #{download},
 				</if>
-				<if test="lastEditTime != null">
+				<if test="lastEditTime != null and lastEditTime != ''">
 					LAST_EDIT_TIME = #{lastEditTime},
 				</if>
-				<if test="summary != null">
+				<if test="summary != null and summary != ''">
 					SUMMARY = #{summary},
 				</if>
-				<if test="isFw != null">
+				<if test="isFw != null and isFw != ''">
 					IS_FW = #{isFw},
 				</if>
 			</trim>

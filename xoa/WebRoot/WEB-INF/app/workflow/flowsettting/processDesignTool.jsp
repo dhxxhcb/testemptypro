@@ -169,7 +169,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 4px;">
                         <%--<input type="text" id="" readonly="true">--%>
-                        <textarea name="" class="theControlData" id="query_userId" readonly="true"></textarea>
+                        <textarea name="prcsUserName" class="theControlData" id="query_userId" readonly="true"></textarea>
                         <input type="hidden" name="prcsUser">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="1" class="theCandidates">添加</a>
@@ -182,7 +182,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 4px;">
                         <%--<input type="text" id="" readonly="true">--%>
-                        <textarea name="" class="theControlData" id="department" readonly="true" ></textarea>
+                        <textarea name="prcsDeptName" class="theControlData" id="department" readonly="true" ></textarea>
                         <input type="hidden" name="prcsDept">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="2" class="theCandidates">添加</a>
@@ -195,7 +195,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 4px;">
                         <%--<input type="text" id="" readonly="true">--%>
-                        <textarea name="" class="theControlData" id="theScopeOf" readonly="true"></textarea>
+                        <textarea name="prcsPrivName" class="theControlData" id="theScopeOf" readonly="true"></textarea>
                         <input type="hidden" name="prcsPriv">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="3" class="theCandidates">添加</a>
@@ -345,7 +345,6 @@
                             <%--<input type="text" readonly="true" value="不进行自动选择"><span class="xiala"><b></b></span>--%>
                             <select name="autoBaseUser" lay-verify="">
                                 <option value="0">当前步骤</option>
-
                             </select>
                         </p>
                     </div>

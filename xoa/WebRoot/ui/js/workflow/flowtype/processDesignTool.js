@@ -129,7 +129,7 @@ function ajaxSvg() {
                     "areas": {},
                     "initNum": 0
                 }
-                console.log(json.object)
+                console.log(json)
                 jsondata.title = json.object.designdata[0].flowTypeModel.flowName;
                 jsondata.initNum = designdata.length;
                 designdata.forEach(function (v, i) {
@@ -198,6 +198,9 @@ function ajaxSvg() {
                             autoDept:v.autoDept,
                             autoUserOp:v.autoUserOp,
                             autoUser:v.autoUser,
+                            prcsPrivName:v. prcsPrivName,
+                            prcsUserName:v.prcsUserName,
+                            prcsDeptName:v.prcsDeptName,
                             formIds:v.flowTypeModel.formId
                             //触发器
                             //提醒设置
@@ -259,7 +262,7 @@ function ajaxSvg() {
                     var objtwo=obj.data;
                     console.log(objtwo);
                     dataToAll=designdata;//所有数据
-                    var stringdata='<option value="">请选择</option>';
+                    var stringdata='<option value="0">请选择</option>';
                     for(var il=0;il<dataToAll.length;il++){
                         stringdata+='<option value="'+dataToAll[il].prcsId+'">'+dataToAll[il].prcsName+'</option>'
                     }
@@ -293,6 +296,12 @@ function ajaxSvg() {
                     }
 
                     inputTheEcho('prcsId',objtwo.prcsId)
+                    inputTheEcho('prcsDeptName',objtwo.prcsDeptName)
+                    inputTheEcho('prcsUserName',objtwo.prcsUserName)
+                    inputTheEcho('prcsPrivName',objtwo.prcsPrivName)
+
+
+
                     seleTheEcho('prcsType',objtwo.prcsType)
                     inputTheEcho('prcsName',objtwo.prcsName)
                     inputTheEcho('prcsUser',objtwo.prcsUser)
@@ -380,13 +389,15 @@ $(function () {
 
     $('.savetwo').click(function () {
             $('.theControlData').each(function () {
-                if($(this).attr('user_id')!='') {
+                if($(this).attr('user_id')!=undefined) {
                     $(this).next().val($(this).attr('user_id'))
+                    return true;
                 }
-                if($(this).attr('privid')!=''){
+                 if($(this).attr('privid')!=undefined){
                     $(this).next().val($(this).attr('privid'))
+                    return true
                 }
-                if($(this).attr('deptid')!=''){
+                if($(this).attr('deptid')!=undefined){
                     $(this).next().val($(this).attr('deptid'))
                 }
             })
@@ -659,7 +670,7 @@ $(function () {
                         '<a href="javascipt:;" class="deletes" style="color: #2f8ae3">删除</a></td></tr>'
                 }
             }
-            var str=''
+            var str='<option value="">请选择</option>'
            for(var i=0;i<alertData.length;i++){
                str+='<option value="'+alertData[i].name+'">'+alertData[i].title+'</option>'
            }
@@ -755,19 +766,19 @@ $(function () {
                 area:['800px','600px'],
                 btn:['确定','关闭'],
                 yes:function (index) {
-                    $('#bottomstepstwoss').find('#intoTheCondition').find('input[type=text]').each(function () {
-                        $(this).blur();
-                    })
-                    $('#bottomstepstwoss').find('#transferConditions').find('input[type=text]').each(function () {
-                        $(this).blur();
-                    })
+                    // $('#bottomstepstwoss').find('#intoTheCondition').find('input[type=text]').each(function () {
+                    //     $(this).blur();
+                    // })
+                    // $('#bottomstepstwoss').find('#transferConditions').find('input[type=text]').each(function () {
+                    //     $(this).blur();
+                    // })
 
                     var obj={};
                     obj.intoTheCondition={}
                     obj.intoTheCondition.list=''
                     console.log( $('#intoTheCondition table tbody').find('[type=hidden]').val())
                     $('#intoTheCondition').find('[type=hidden]').each(function (i,n) {
-
+                        console.log($(this).val())
                         obj.intoTheCondition.list+=$(this).val()+',';
                     })
                     obj.intoTheCondition.prcsInSet=$('#bottomstepstwoss').find('[name="prcsInSet"]').val()
@@ -775,12 +786,14 @@ $(function () {
                     obj.transferConditions={};
                     obj.transferConditions.list='';
                     $('#transferConditions').find('[type=hidden]').each(function (i,n) {
+                        console.log($(this).val())
                         obj.transferConditions.list+=$(this).val()+',';
                     })
                     obj.transferConditions.prcsOutSet=$('#bottomstepstwoss').find('[name="prcsOutSet"]').val()
                     obj.transferConditions.conditionDesc=$('#bottomstepstwoss').find('[name="conditionDesc"]').val()
-                    console.log(obj)
+
                    var strobj=JSON.stringify(obj);
+                    console.log(strobj)
                     $('[name="settlementOfCondition"]').val(strobj);
                     $('.setUpThe').removeClass('active')
                     layer.close(index)
