@@ -174,6 +174,7 @@ var workForm = {
 
     },
     ReBuild:function(ele){
+        var that = this;
         var target = {};
         if(ele){
             target = ele;
@@ -236,7 +237,6 @@ var workForm = {
             $(this).attr("id",$(this).attr("name"));
         });
         target.find("select").each(function () {
-
             var _this = $(this);
             $(this).addClass("form_item");
             if(_this.attr('hidden')){
@@ -256,6 +256,24 @@ var workForm = {
             _this.before(radioStr);
 
             _this.remove();
+        });
+        target.find("img.USER").each(function(){
+            var _this = $(this);
+            console.log(_this.prev().length);
+            if(_this.prev().length>0){
+                _this.prev().attr("data-type","userselect");
+                _this.prev().attr("readonly","readonly");
+                var selectImgStr = '<img align="absMiddle" src="'+domain+'/img/workflow/work/orgselectuser.png" targetId="'+_this.prev().attr('name')+'" title="'+_this.prev().attr('title')+'">';
+                _this.before(selectImgStr);
+                _this.remove();
+                // _this.prev().on('click',function () {
+                //     alert(2);
+                //     that.tool.popUserSelect($(this).attr('targetId'));
+                // });
+            }
+
+
+
         });
     },
     MacrosRender:function(){
@@ -493,6 +511,10 @@ var workForm = {
         },
         getMacrosDate:function(flag){
             return this.MacrosDate[flag];
+        },
+        popUserSelect:function(target){
+            user_id = target;
+            $.popWindow(domain+"/common/selectUser");
         },
         ajaxHtml:function (url,data,cb) {
             var that = this;
