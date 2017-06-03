@@ -131,7 +131,7 @@
     </trim>
   </insert>
 
-  <update id="updateSelectParam" parameterType="com.xoa.model.workflow.FlowFormType">
+  <update id="updateSelectParam" parameterType="com.xoa.model.workflow.FlowFormTypeExtends">
     update flow_form_type
     <set >
       <!--<if test="formId != null" >-->

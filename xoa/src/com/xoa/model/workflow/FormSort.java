@@ -87,7 +87,7 @@ public class FormSort {
     }
 
     public void setSortName(String sortName) {
-        this.sortName = sortName == null ? null : sortName.trim();
+        this.sortName = sortName;
     }
 
     public Integer getSortParent() {
@@ -103,7 +103,7 @@ public class FormSort {
     }
 
     public void setHaveChild(String haveChild) {
-        this.haveChild = haveChild == null ? null : haveChild.trim();
+        this.haveChild = haveChild ;
     }
 
     public Integer getDeptId() {

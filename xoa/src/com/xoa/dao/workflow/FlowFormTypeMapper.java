@@ -6,6 +6,7 @@ import com.xoa.model.workflow.FlowFormType;
 import java.util.List;
 import java.util.Map;
 
+import com.xoa.model.workflow.FlowFormTypeExtends;
 import com.xoa.model.workflow.FlowTypeModel;
 import org.apache.ibatis.annotations.Param;
 
@@ -25,7 +26,7 @@ public interface FlowFormTypeMapper extends BaseMapper<FlowFormType> {
 
 	 int insertSelectParam(FlowFormType flowFormType);
 
-	 int updateSelectParam(FlowFormType flowFormType);
+	 int updateSelectParam(FlowFormTypeExtends flowFormType);
 
 	 int checkFormUserNumber(@Param("formId")Integer formId);
 
