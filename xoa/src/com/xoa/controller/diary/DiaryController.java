@@ -35,8 +35,11 @@ public class DiaryController {
 	private Logger loger = Logger.getLogger(DiaryController.class);
 	@Resource
 	DiaryService diaryService;
-	
-	  
+
+	@RequestMapping("/details")
+	public String details() {
+		return "app/diary/details";
+	}
 	/**
 	 * 
 	 * 创建作者:   杨 胜
