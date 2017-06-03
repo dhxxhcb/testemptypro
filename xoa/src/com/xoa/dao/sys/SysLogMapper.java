@@ -32,5 +32,7 @@ public interface SysLogMapper {
     String getLogNameByNo(String codeNo);
 
     void deleteLogById(Integer id);
+
+    void deleteAllLog();
 }
 

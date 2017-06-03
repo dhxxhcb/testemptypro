@@ -419,15 +419,15 @@ public class SysLogController {
 
 
     /**
-    *@创建作者:  韩成冰
-    *@创建日期:  2017/6/1 19:23
-    *@函数介绍:  根据多个id,(id之间用逗号分隔,删除日志)
-    *@参数说明:  @param ids
-    *@return:   json
-    **/
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/1 19:23
+     * @函数介绍: 根据多个id, (id之间用逗号分隔, 删除日志)
+     * @参数说明: @param ids
+     * @return: json
+     **/
     @ResponseBody
     @RequestMapping(value = "/deleteLogByIds")
-    public ToJson<Object> deleteLogByIds(HttpServletRequest request, String[] ids) {
+    public ToJson<Object> deleteLogByIds(HttpServletRequest request, String ids) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
 
@@ -443,7 +443,25 @@ public class SysLogController {
         return toJson;
 
     }
+
+    @RequestMapping(value = "/deleteAllLog")
+    public ToJson<Object> deleteAllLog(HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+
+        ToJson<Object> toJson = new ToJson<Object>(0, "");
+        try {
+            sysLogService.deleteAllLog();
+            toJson.setMsg("OK");
+            toJson.setFlag(0);
+        } catch (Exception e) {
+            toJson.setMsg(e.getMessage());
+        }
+        return toJson;
+
+    }
 }
+
 
 
 

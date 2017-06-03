@@ -617,14 +617,29 @@ public class SysLogServiceImpl implements SysLogService {
      * @return: void
      */
     @Override
-    public void deleteLogByIds(String[] ids) {
+    public void deleteLogByIds(String ids) {
+
+
 
         if (ids != null) {
+            String[] idsArr = ids.split(",");
 
-            for (int i = 0; i < ids.length; i++) {
-                sysLogMapper.deleteLogById(Integer.parseInt(ids[i]));
+            for (int i = 0; i < idsArr.length; i++) {
+                sysLogMapper.deleteLogById(Integer.parseInt(idsArr[i]));
             }
         }
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/2 16:41
+     * @函数介绍: 清空日志
+     * @参数说明: @param 无
+     * @return: void
+     **/
+    @Override
+    public void deleteAllLog() {
+        sysLogMapper.deleteAllLog();
     }
 
 

@@ -98,6 +98,9 @@
     <delete id="deleteLogById" parameterType="java.lang.Integer">
         DELETE FROM sys_log  WHERE LOG_ID = #{id}
     </delete>
+    <delete id="deleteAllLog">
+        DELETE FROM sys_log;
+    </delete>
 
 
 </mapper>
