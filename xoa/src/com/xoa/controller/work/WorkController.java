@@ -99,10 +99,11 @@ public class WorkController {
     @RequestMapping("workfastAdd")
     @ResponseBody
 	public ToJson<FlowFast> fastAdd(HttpServletRequest request,
-		                        int flowId,int prcsId,
-                                    @RequestParam(value="runId",required = false) int Id) {
+		                        int flowId,int prcsId
+                                   ) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 		"loginDateSouse"));
+        String id=request.getParameter("runId");
         ToJson<FlowFast> tj = new ToJson<FlowFast>();
         FlowFast f = new FlowFast();
         List<FlowProcess> fl = flowProcessService.findFlowId(flowId);
@@ -155,7 +156,7 @@ public class WorkController {
            // f.setFlowRunPrcs(flowRunPrcs);
             f.setListFp(fl);
         }else{
-            FlowRun flowRun = flowRunService.find(Id);
+            FlowRun flowRun = flowRunService.find(Integer.parseInt(id));
             f.setFlowTypeModel(flowTypeModel);
             f.setFlowFormType(flowFormType);
             f.setFlowRun(flowRun);
