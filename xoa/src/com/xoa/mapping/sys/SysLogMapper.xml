@@ -68,6 +68,7 @@
             </if>
 
         </where>
+        limit 1,300;
     </select>
 
     <delete id="deleteLogOption" parameterType="hashMap">
