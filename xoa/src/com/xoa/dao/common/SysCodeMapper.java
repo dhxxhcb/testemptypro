@@ -45,4 +45,16 @@ public interface SysCodeMapper {
     String getLogNameByNo(String codeNo);
 
     void delete(SysCode sysCode);
+
+    void addSysMainCode(SysCode sysCode);
+
+    List<SysCode> isSysCodeOrderExits(SysCode sysCode);
+
+    List<SysCode> isChildCodeNoExits(SysCode sysCode);
+
+    void addSysChildCode(SysCode sysCode);
+
+    List<SysCode> isSysCodeNoExits(SysCode sysCode);
+
+    List<SysCode> isChildCodeOrderExits(SysCode sysCode);
 }

@@ -64,4 +64,49 @@ public interface SysCodeService {
      * @return: void
      **/
     void deleteSysCode(SysCode sysCode);
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 13:41
+     * @函数介绍: 增加代码主分类
+     * @参数说明: @param SysCode
+     * @return: void
+     **/
+    void addSysMainCode(SysCode sysCode);
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:16
+     * @函数介绍: 判断系统代码排序是否存在
+     * @参数说明: @param SysCOde
+     * @return: Boolean
+     **/
+    Boolean isCodeOrderExits(SysCode sysCode);
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:31
+     * @函数介绍: 判断系统代码CODE_NO是否存在
+     * @参数说明: @param SysCode
+     * @return: boolean
+     **/
+    Boolean isCodeNoExits(SysCode sysCode);
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:41
+     * @函数介绍: 增加子代码
+     * @参数说明: @param SysCode
+     * @return: void
+     **/
+    void addChildSysCode(SysCode sysCode);
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:45
+     * @函数介绍: 查询子代码
+     * @参数说明: @param SysCode
+     * @return: List<SysCode></SysCode>
+     **/
+    List<SysCode> getChildSysCode(SysCode sysCode);
 }
