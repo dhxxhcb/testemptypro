@@ -201,8 +201,8 @@
         <table class="newNews">
             <div class="nav_box clearfix">
                 <div class="nav_t1"><img src="../img/newsManages2_1.png"></div>
-                <div class="nav_t2" class="news"><fmt:message code="notice.th.newnotify"/> </div>
-
+                <div class="nav_t2" class="news"></div>
+               <%-- <fmt:message code="notice.th.newnotify"/>--%>
                 <!-- <div class="nav_t3">选择格式 -->
                 <div class="nav_t3" >
                     <select name="" class="sel" id="add_sel">
@@ -573,6 +573,7 @@
                 $('#select').val()==0?'':$('#select').val();
                 $('#content').val('');
             }else  if( data.read == 0){//新建页面清空数据
+                $('.nav_t2').html('新建公告通知');
                 $('.step1').hide();
                 $('.step2').show();
                 $('#add_send').attr('ac','add');
@@ -694,9 +695,8 @@
         //新建公告通知
         $('#add_send').on('click',function(){
             var action=$(this).attr("ac");
-
-            alert(action);
-            alert('新增');
+           /* alert(action);
+            alert('新增');*/
             var data_notice={
                 subject:$('#add_titileTime').val(),//标题
                 toId:$('#add_texta').val(),//部门发布范围
@@ -718,35 +718,33 @@
                 beginDates:$('#start_add').val(),//开始日期
                 endDates:$('#end_add').val()  //结束日期
             }
-            add_notice(data_notice);
+          /*  add_notice(data_notice);*/
             //清空
             if(action=="update"){
+               /* */
                 var noId=$(this).attr("noId");
                 data_notice['lastEditTimes']=$('#add_newDate').val();
                 data_notice['notifyId']=noId;
                 update(data_notice);
-            }else{
+            }else if(action=="add"){
+                add_notice(data_notice);
                 //空数据
-                $('#add_selectUser').val();//选人
+              /*  $('#add_selectUser').val();//选人
                 $('#add_texta').val();//选部门
                 $('#add_texta').val();//选角色
                 $('#add_selectjuese').val();//角色
                 $('#add_newDate').val();//发布时间
                 $('#start_add').val();//起始时间
                 $('#end_add').val();//结束时间
-                /*$('#add_selectUser').val(data.userId);*/
-                /*$('#add_type_notice').selected(data.typeName);*/
+                /!*$('#add_selectUser').val(data.userId);*!/
+                /!*$('#add_type_notice').selected(data.typeName);*!/
                 $("#add_type_notice").find("option[value=选择公告类型]").attr("selected",true);//类型
-                /* if(data.top==1){
+                /!* if(data.top==1){
                  $('#textTop').prop('checked',true);//是否置顶
-                 };*/
+                 };*!/
 
-                ue.setContent();//内容
+                ue.setContent();//内容*/
 
-                $("#add_sel").find("option[value=普通格式]").attr("selected",true);//格式
-                $('#add_summny').val();//内容
-                $('.keyword_ip').val();//关键词
-                /*add_notice(data_notice);*/
             }
 
         })
@@ -790,6 +788,7 @@
         /*add_notice();*/
         //修改公告通知管理
         $('#j_tb').on('click','.notice_change',function(){
+            $('.nav_t2').html('修改公告通知');
 
             var tid=$(this).attr('notifyId');
             $('.step1').hide();

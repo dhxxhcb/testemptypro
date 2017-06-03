@@ -19,5 +19,7 @@ public interface FlowRunMapper {
     
     int getMaxRunId();
 
+    FlowRun find(Integer runId);
+
 
 }

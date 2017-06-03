@@ -363,7 +363,8 @@
     $(function(){
         domain;
         var flowId = $.getQueryString("flowId");
-        var flowStep = $.getQueryString("flowStep");
+        var flowStep = $.getQueryString("flowStep") || '';
+        var runId = $.getQueryString("runId") || '';
         $('#tab_c').css('right',-($('#tab_c').width()))
         $('#tab_c').css('height',$('#tab_c').height()-$('.head').height()-$('.foot').height())
         $('#tab_c').css('top',$('.head').height())
@@ -371,14 +372,15 @@
         workForm.init({
                 formhtmlurl:'../../workflow/work/workfastAdd',//URL
                 resdata:{
-                    flowId:flowId
+                    flowId:flowId,
+                    runId:runId,
+                    prcsId:flowStep
                 },
                 flowStep:flowStep,//预览
                 target:'.cont_form'},
             
             function (data) {
                 zhuanjiao(data);
-
                 var obj=data.object.flowRun
                 var  titleName=obj.runName;
                 $('.num').html(titleName);
@@ -511,6 +513,7 @@
                        }
                        if(obj.attr("type")=="radio"){
                            var name = obj.attr('name');
+                           console.log(radioArr[obj.attr('name')]);
                             if(!radioArr[obj.attr('name')]){
                                 radioArr[obj.attr('name')] = true;
                                 if($("input[name='"+name+"']:checked")){

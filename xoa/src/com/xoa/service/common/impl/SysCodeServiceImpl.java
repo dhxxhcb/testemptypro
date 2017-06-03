@@ -37,9 +37,10 @@ public class SysCodeServiceImpl implements SysCodeService {
             codeJson.setObj(code);
             codeJson.setFlag(0);
             codeJson.setMsg("ok");
+        } else {
+            codeJson.setFlag(1);
+            codeJson.setMsg("err");
         }
-        codeJson.setFlag(1);
-        codeJson.setMsg("err");
         return codeJson;
     }
 
@@ -67,7 +68,14 @@ public class SysCodeServiceImpl implements SysCodeService {
      */
     @Override
     public void update(SysCode sysCode) {
-        sysCodeMapper.update(sysCode);
+
+
+        Boolean codeNoExits = isCodeNoExits(sysCode);
+        Boolean codeOrderExits = isCodeOrderExits(sysCode);
+        if (!codeNoExits && codeOrderExits) {
+            sysCodeMapper.update(sysCode);
+        }
+
 
     }
 
@@ -103,6 +111,120 @@ public class SysCodeServiceImpl implements SysCodeService {
     @Override
     public void deleteSysCode(SysCode sysCode) {
         sysCodeMapper.delete(sysCode);
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 13:41
+     * @函数介绍: 增加代码主分类
+     * @参数说明: @param SysCode
+     * @return: void
+     */
+    @Override
+    public void addSysMainCode(SysCode sysCode) {
+
+
+        Boolean codeNoExits = isCodeNoExits(sysCode);
+        Boolean codeOrderExits = isCodeOrderExits(sysCode);
+
+        //sysCode的ext属性不为空
+        if (sysCode != null && !codeNoExits && !codeOrderExits) {
+            //这个多语言字段不用，数据库不能为空，所以赋值为“”
+            sysCode.setCodeExt("");
+            sysCodeMapper.addSysMainCode(sysCode);
+        }
+    }
+
+    /**
+     * @param sysCode
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:16
+     * @函数介绍: 判断系统代码排序是否存在
+     * @参数说明: @param SysCOde
+     * @return: Boolean
+     */
+    @Override
+    public Boolean isCodeOrderExits(SysCode sysCode) {
+        List<SysCode> sysCodesList;
+        //一级二级分开考虑,因为二级的两个字段都重复才重复，一级有一个字段重复就重复
+        if (sysCode != null && ("".equals(sysCode.getParentNo()) || sysCode.getParentNo() == null)) {
+            sysCodesList = sysCodeMapper.isSysCodeOrderExits(sysCode);
+        } else {
+            sysCodesList = sysCodeMapper.isChildCodeOrderExits(sysCode);
+
+        }
+
+        //该排序号已经被用了
+        if (sysCodesList != null && sysCodesList.size() > 0) {
+            return true;
+
+        }
+        return false;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:31
+     * @函数介绍: 判断系统代码CODE_NO是否存在
+     * @参数说明: @param SysCode
+     * @return: boolean
+     */
+    @Override
+    public Boolean isCodeNoExits(SysCode sysCode) {
+        List<SysCode> sysCodesList;
+
+        //一级二级分开考虑,因为二级的两个字段都重复才重复，一级有一个字段重复就重复
+        if (sysCode != null && ("".equals(sysCode.getParentNo()) || sysCode.getParentNo() == null)) {
+            sysCodesList = sysCodeMapper.isSysCodeNoExits(sysCode);
+        } else {
+            sysCodesList = sysCodeMapper.isChildCodeNoExits(sysCode);
+
+        }
+        //该CODE_NO号已经被用了
+        if (sysCodesList != null && sysCodesList.size() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:41
+     * @函数介绍: 增加子代码
+     * @参数说明: @param SysCode
+     * @return: void
+     */
+    @Override
+    public void addChildSysCode(SysCode sysCode) {
+
+
+        Boolean codeNoExits = isCodeNoExits(sysCode);
+        Boolean codeOrderExits = isCodeOrderExits(sysCode);
+
+
+        //sysCode的ext属性不为空
+        if (sysCode != null && sysCode.getParentNo() != null && !codeNoExits && !codeOrderExits) {
+            //这个多语言字段不用，数据库不能为空，所以赋值为“”
+            sysCode.setCodeExt("");
+            sysCodeMapper.addSysChildCode(sysCode);
+        }
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:45
+     * @函数介绍: 查询子代码
+     * @参数说明: @param SysCode
+     * @return: List<SysCode></SysCode>
+     */
+    @Override
+    public List<SysCode> getChildSysCode(SysCode sysCode) {
+
+        if (sysCode != null && sysCode.getParentNo() != null) {
+            return sysCodeMapper.getSysCode(sysCode.getParentNo());
+        }
+
+        return null;
     }
 
 

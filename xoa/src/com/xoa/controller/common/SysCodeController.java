@@ -16,17 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@Controller
-@Scope(value = "prototype")
-@RequestMapping("/code")
 /**
- *
  * 创建作者:   王曰岐
  * 创建日期:   2017-5-2 下午4:59:25
  * 类介绍  :    系统代码表控制器
- * 构造参数:   
- *
+ * 构造参数:
  */
+@Controller
+@Scope(value = "prototype")
+@RequestMapping("/code")
+
 public class SysCodeController {
     private Logger loger = Logger.getLogger(SysCodeController.class);
 
@@ -111,9 +110,11 @@ public class SysCodeController {
      * 函数介绍:   删除日志
      * 参数说明:   @param request 请求
      * 参数说明:   @param Syscode 请求
+     *
      * @return: json
      **/
-
+    @ResponseBody
+    @RequestMapping("/deleteSysCode")
     public ToJson<SysCode> deleteSysCode(HttpServletRequest request, SysCode sysCode) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
@@ -130,4 +131,109 @@ public class SysCodeController {
         return json;
 
     }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 13:38
+     * @函数介绍: 增加代码主分类
+     * @参数说明: @param paramname paramintroduce
+     * @return: XXType(value introduce)
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/addSysMainCode", produces = {"application/json;charset=UTF-8"})
+    public ToJson<SysCode> addSysMainCode(HttpServletRequest request, SysCode sysCode) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<SysCode> json = new ToJson<SysCode>(0, null);
+        try {
+            sysCodeService.addSysMainCode(sysCode);
+            json.setObject(sysCode);
+            json.setMsg("OK");
+            json.setFlag(0);
+        } catch (Exception e) {
+            json.setMsg(e.getMessage());
+        }
+        return json;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:11
+     * @函数介绍: 判断系统代码排序是否存在
+     * @参数说明: @param paramname paramintroduce
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping(value = "isCodeOrderExits", produces = {"application/json;charset=UTF-8"})
+    public ToJson<Object> isCodeOrderExits(HttpServletRequest request, SysCode sysCode) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<Object> json = new ToJson<Object>(0, null);
+        try {
+            Boolean isExits = sysCodeService.isCodeOrderExits(sysCode);
+            json.setMsg("OK");
+            if (isExits) {
+                json.setFlag(0);
+            } else {
+                json.setFlag(1);
+            }
+        } catch (Exception e) {
+            json.setMsg(e.getMessage());
+        }
+        return json;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:11
+     * @函数介绍: 判断系统代码CODE_NO是否存在
+     * @参数说明: @param paramname paramintroduce
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping(value = "isCodeNoExits", produces = {"application/json;charset=UTF-8"})
+    public ToJson<Object> isCodeNoExits(HttpServletRequest request, SysCode sysCode) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<Object> json = new ToJson<Object>(0, null);
+        try {
+            Boolean isExits = sysCodeService.isCodeNoExits(sysCode);
+            json.setMsg("OK");
+            if (isExits) {
+                json.setFlag(0);
+            } else {
+                json.setFlag(1);
+            }
+        } catch (Exception e) {
+            json.setMsg(e.getMessage());
+        }
+        return json;
+    }
+
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/3 14:34
+     * @函数介绍: 添加子代码
+     * @参数说明: @param SysCode
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping(value = "addChildSysCode", produces = {"application/json;charset=UTF-8"})
+    public ToJson<SysCode> addChildSysCode(HttpServletRequest request, SysCode sysCode) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<SysCode> json = new ToJson<SysCode>(0, null);
+        try {
+            sysCodeService.addChildSysCode(sysCode);
+            List<SysCode> sysCodeList = sysCodeService.getChildSysCode(sysCode);
+            json.setObject(sysCode);
+            json.setMsg("OK");
+            json.setFlag(0);
+        } catch (Exception e) {
+            json.setMsg(e.getMessage());
+        }
+        return json;
+    }
+
 }

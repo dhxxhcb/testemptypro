@@ -7,7 +7,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.xoa.model.workflow.FlowRunPrcs;
+import com.xoa.util.common.L;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.xoa.dao.workflow.FlowProcessMapper;
@@ -31,11 +34,71 @@ public class FlowProcessServiceImpl implements FlowProcessService {
         return flowProcess;
     }
 
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:  2017年5月10日 上午11:18:20
+     * 方法介绍:   （修改后保存）在6/3修改补充json解析，并完善已知bug(张勇)
+     * 参数说明:
+     * @return
+     */
     @Override
     @Transactional
     public ToJson<FlowProcess> updateByPrimaryKeySelective(FlowProcess record) {
         ToJson<FlowProcess> tojson = new ToJson<FlowProcess>();
         try {
+            L.a("itemId："+record.getITEM_ID());
+            L.a("autoPrcsUser："+record.getAUTO_PRCS_USER());
+
+            // 解析页面json串
+            if(!StringUtils.checkNull(record.getSettlementOfCondition())){
+                String tlement = record.getSettlementOfCondition();
+                String intoTheCondition = JSONArray.parseObject(tlement).getString("intoTheCondition");
+                String transferConditions = JSONArray.parseObject(tlement).getString("transferConditions");
+                if(!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("list"))){
+                    record.setPrcsIn(JSONArray.parseObject(intoTheCondition).getString("list"));
+                }
+                if(!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("prcsInSet"))){
+                    record.setPrcsInSet(JSONArray.parseObject(intoTheCondition).getString("prcsInSet"));
+                }
+                if(!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("conditionDesc"))){
+                    record.setConditionDesc(JSONArray.parseObject(intoTheCondition).getString("conditionDesc"));
+                }
+                if(!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("list"))){
+                    record.setPrcsOut(JSONArray.parseObject(transferConditions).getString("list"));
+                }
+                if(!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("prcsOutSet"))){
+                    record.setPrcsOutSet(JSONArray.parseObject(transferConditions).getString("prcsOutSet"));
+                }
+
+                if(!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("conditionDesc"))){
+                    record.setConditionDesc(JSONArray.parseObject(transferConditions).getString("conditionDesc"));
+                }
+            }
+            // 解析页面json串
+            if(!StringUtils.checkNull(record.getPrcsItemTwo())){
+                String prcsItem = record.getPrcsItemTwo();
+                if(!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("prcsItem"))){
+                    record.setPrcsItem(JSONArray.parseObject(prcsItem).getString("prcsItem"));
+                }
+                if(!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachPriv"))){
+                    record.setAttachPriv(JSONArray.parseObject(prcsItem).getString("attachPriv"));
+                }
+                if(!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachEditPriv"))){
+                    record.setAttachEditPriv(JSONArray.parseObject(prcsItem).getString("attachEditPriv"));
+                }
+                if(!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachEditPrivOnline"))){
+                    record.setAttachEditPrivOnline(JSONArray.parseObject(prcsItem).getString("attachEditPrivOnline"));
+                }
+                if(!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachMacroMark"))){
+                    record.setAttachMacroMark(JSONArray.parseObject(prcsItem).getString("attachMacroMark"));
+                }
+            }
+            if(!StringUtils.checkNull(record.getITEM_ID())){
+                record.setAutoUser(record.getITEM_ID());
+            }
+            if(!StringUtils.checkNull(record.getITEM_ID())){
+                record.setAutoUser(record.getITEM_ID());
+            }
             flowProcessMapper.updateByPrimaryKeySelective(record);
             tojson.setFlag(0);
             tojson.setMsg("OK");

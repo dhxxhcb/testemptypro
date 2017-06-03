@@ -67,5 +67,11 @@ public class sysController {
 				"loginDateSouse"));
 		return "app/sys/userInfor";
 	}
+	@RequestMapping("/userDetails")
+	public String userDetails(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/userDetails";
+	}
 
 }

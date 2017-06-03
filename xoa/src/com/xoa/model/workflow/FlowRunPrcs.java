@@ -423,7 +423,7 @@ public class FlowRunPrcs {
     }
 
     public String getReceiptTime() {
-        return receiptTime;
+        return receiptTime == null ? "":receiptTime;
     }
 
     public void setReceiptTime(String receiptTime) {
@@ -435,7 +435,7 @@ public class FlowRunPrcs {
      * @return
      */
     public String getArriveTime() {
-        return arriveTime;
+        return arriveTime == null ?"":arriveTime;
     }
 
     /**
@@ -451,7 +451,7 @@ public class FlowRunPrcs {
      * @return
      */
     public String getHandleTime() {
-        return handleTime;
+        return handleTime == null ? "":handleTime;
     }
 
     /**

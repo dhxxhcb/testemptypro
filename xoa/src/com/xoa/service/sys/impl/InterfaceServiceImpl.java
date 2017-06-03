@@ -71,7 +71,7 @@ public class InterfaceServiceImpl implements InterFaceService {
 
         //如果interfaceModel的所有属性都是null,sysInterfaceMapper.updateInterfaceInfo
         //会报错，所有先判断其中一个属性，如果为null，就是不修改，就从数据库查下来，在添加回数据库，
-        //解决sql问题。
+        //解决sqlwent
         List<InterfaceModel> statusTextList = sysInterfaceMapper.getStatusText();
         if (statusTextList != null && statusTextList.size() == 1) {
             String statusText = statusTextList.get(0).getStatusText();

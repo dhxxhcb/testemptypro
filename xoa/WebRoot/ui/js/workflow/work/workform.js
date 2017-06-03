@@ -89,10 +89,9 @@ var workForm = {
             that.option.listFp.forEach(function (v,i) {
                 if(v.prcsId == that.option.flowStep){
                     var steptOpt = v;
-                    that.tool.ajaxHtml(domain+ '/workflow/work/selectFlowData',{flowId:that.option.flowRun.flowId,runId:1027},function (res) {
-                        //that.tool.ajaxHtml(domain+ '/workflow/work/selectFlowData',{flowId:that.option.flowRun.flowId,runId:that.option.flowRun.runId},function (res) {
+                    //that.tool.ajaxHtml(domain+ '/workflow/work/selectFlowData',{flowId:that.option.flowRun.flowId,runId:1027},function (res) {
+                    that.tool.ajaxHtml(domain+ '/workflow/work/selectFlowData',{flowId:that.option.flowRun.flowId,runId:that.option.flowRun.runId},function (res) {
 
-                        var dateName = res;
                         that.option.eleObject.find('.form_item').each(function(){
                             var _this = $(this);
                             //权限控制
@@ -109,38 +108,42 @@ var workForm = {
                                 }
                             };
                             //表单填充数据
-                            if(dateName[_this.attr('name')]){
-                                var dataNameVal = dateName[_this.attr('name')];
-                                switch (_this.attr('data-type')){
-                                    case 'text':
-                                        _this.val(dataNameVal);
-                                        break;
-                                    case 'textarea':
-                                        _this.val(dataNameVal);
-                                        break;
-                                    case 'select':
-                                        console.log('select not done');
-                                        break;
-                                    case 'radio':
-                                        console.log('radio not done');
-                                        break;
-                                    case 'checkbox':
-                                        console.log('checkbox not done');
-                                        break;
-                                    case 'macros':
-                                        if(_this.attr('type') == 'text'){
+                            if(res.flag){
+                                var dateName = res.obj;
+                                if(dateName[_this.attr('name')]){
+                                    var dataNameVal = dateName[_this.attr('name')];
+                                    switch (_this.attr('data-type')){
+                                        case 'text':
                                             _this.val(dataNameVal);
-                                        }else{
-                                            console.log('红控件 select');
-                                        }
-                                        break;
-                                    case '':
+                                            break;
+                                        case 'textarea':
+                                            _this.val(dataNameVal);
+                                            break;
+                                        case 'select':
+                                            console.log('select not done');
+                                            break;
+                                        case 'radio':
+                                            console.log('radio not done');
+                                            break;
+                                        case 'checkbox':
+                                            console.log('checkbox not done');
+                                            break;
+                                        case 'macros':
+                                            if(_this.attr('type') == 'text'){
+                                                _this.val(dataNameVal);
+                                            }else{
+                                                console.log('红控件 select');
+                                            }
+                                            break;
+                                        case '':
 
-                                        break;
-                                    default:
-                                        _this.val(dataNameVal);
+                                            break;
+                                        default:
+                                            _this.val(dataNameVal);
+                                    }
                                 }
                             }
+
 
 
                         });
@@ -174,6 +177,7 @@ var workForm = {
 
     },
     ReBuild:function(ele){
+        var that = this;
         var target = {};
         if(ele){
             target = ele;
@@ -202,6 +206,7 @@ var workForm = {
             }
             _this.addClass("form_item");
             _this.attr("id",$(this).attr("name"));
+            _this.attr("style",'width:170px;');
         });
         //list
         target.find("img.LIST_VIEW").each(function () {
@@ -236,7 +241,6 @@ var workForm = {
             $(this).attr("id",$(this).attr("name"));
         });
         target.find("select").each(function () {
-
             var _this = $(this);
             $(this).addClass("form_item");
             if(_this.attr('hidden')){
@@ -256,6 +260,25 @@ var workForm = {
             _this.before(radioStr);
 
             _this.remove();
+        });
+        target.find("img.USER").each(function(){
+            var _this = $(this);
+            console.log(_this.prev().length);
+            if(_this.prev().length>0){
+                _this.prev().attr("data-type","userselect");
+                _this.prev().attr("readonly","readonly");
+                _this.prev().attr("style",'width:150px;');
+                var selectImgStr = '<img align="absMiddle"  src="'+domain+'/img/workflow/work/orgselectuser.png" targetId="'+_this.prev().attr('name')+'" title="'+_this.prev().attr('title')+'">';
+                _this.before(selectImgStr);
+                _this.remove();
+                // _this.prev().on('click',function () {
+                //     alert(2);
+                //     that.tool.popUserSelect($(this).attr('targetId'));
+                // });
+            }
+
+
+
         });
     },
     MacrosRender:function(){
@@ -493,6 +516,10 @@ var workForm = {
         },
         getMacrosDate:function(flag){
             return this.MacrosDate[flag];
+        },
+        popUserSelect:function(target){
+            user_id = target;
+            $.popWindow(domain+"/common/selectUser");
         },
         ajaxHtml:function (url,data,cb) {
             var that = this;

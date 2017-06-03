@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.HTML;
 
+import com.alibaba.fastjson.JSONArray;
+import com.xoa.util.common.L;
 import com.xoa.util.common.wrapper.BaseWrapper;
 import org.apache.log4j.Logger;
 import org.apache.shiro.web.session.HttpServletSession;
@@ -934,6 +936,26 @@ public class FileController {
 	public BaseWrapper deleteByList(@RequestParam(name = "fileId[]") Integer fileId[]){
 
        return fileContentService.batchDeleteConId(fileId);
+	}
+
+
+	@RequestMapping("/setFileAuth")
+	@ResponseBody
+	public BaseWrapper setFileAuth(@RequestParam(name = "auth") String auth
+//								   @RequestParam(name ="userId",required = false) Map<String,Object> userId,
+//								   @RequestParam(name ="manageUser",required = false) Map<String,Object> manageUser,
+//								   @RequestParam(name ="delUser",required = false) Map<String,Object> delUser,
+//								   @RequestParam(name ="downUser",required = false) Map<String,Object> downUser,
+//								   @RequestParam(name ="shareUser",required = false) Map<String,Object> shareUser,
+//								   @RequestParam(name ="owner",required = false) Map<String,Object> owner,
+//								   @RequestParam(name ="signUser",required = false) Map<String,Object> signUser,
+//								   @RequestParam(name ="review",required = false) Map<String,Object> review,
+//								   @RequestParam(name ="description",required = false) Map<String,Object> description
+								   ){
+		BaseWrapper wrapper =new BaseWrapper();
+		Map<String,Object> mmp=JSONArray.parseObject(auth,Map.class);
+		L.w(mmp);
+		return wrapper;
 	}
 
 }

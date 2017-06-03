@@ -80,36 +80,10 @@ public class FlowProcessController {
 		@ResponseBody
 	  	@RequestMapping(value = "saveFlow",produces = {"application/json;charset=UTF-8"},method = RequestMethod.POST)
 	    public ToJson<FlowProcess> saveFlow(FlowProcess flowProcess,
-	    		@RequestParam(value = "ITEM_ID",required = false) String itemId,
-	    		@RequestParam(value = "AUTO_PRCS_USER",required = false) String autoPrcsUser,
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
-			L.a("itemId："+itemId);
-			L.a("autoPrcsUser："+autoPrcsUser);
-			System.out.println("settlementOfCondition:"+flowProcess.getSettlementOfCondition());
-
-			JSONArray.parse(flowProcess.getSettlementOfCondition());
-
-//			JSONArray json=JSON.parseArray(flowProcess.getSettlementOfCondition());
-//			J
-//			for (int i = 0 ; i <json.size();i++){
-//				jsonOne = json.getJSONObject(i);
-//			}
-//
-//			jsonArray.
-//			System.out.println("settlementOfCondition:"+ StringUtils.checkNullUtils(new CheckCallBack() {
-//				@Override
-//				public boolean isNull(Object obj) {
-//					if(obj instanceof  String ){
-//
-//					}
-//					return false;
-//
-//				}
-//			},1,"uidasdad"));
-
-//			@RequestParam(value = "settlementOfCondition ",required = false) JSON settlementOfCondition ,
+			
 			return flowProcessService.updateByPrimaryKeySelective(flowProcess);
 		}
 
@@ -245,9 +219,9 @@ public class FlowProcessController {
 	 * 参数说明:   @return
 	 * @return     ToJson<FlowProcess>
 	 */
-	@ResponseBody
+
 	@RequestMapping(value = "updateTopAndLeft",produces = {"application/json;charset=UTF-8"})
-	public ToJson<FlowProcess> updateTopAndLeft(
+	public 	@ResponseBody ToJson<FlowProcess> updateTopAndLeft(
 			FlowProcess flowProcess,
 			HttpServletRequest request){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(

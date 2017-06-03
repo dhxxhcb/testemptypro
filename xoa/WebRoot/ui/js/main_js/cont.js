@@ -184,7 +184,7 @@ $(function(){
 			var str_li='';
 			for(var i=0;i<data.length;i++){
 				/*console.log(data[0].userName);*/
-				str_li += '<li><div class="d_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="d_name">'+data[i].userName+'</h1><h2 class="d_title">'+data[i].content+'</h2><h3 class="d_time">'+data[i].diaDate+'</h3></li>'
+				str_li += '<li><div class="d_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></div><h1 class="d_name">'+data[i].userName+'</h1><a href="/diary/details?id='+data[i].diaId+'" style="color:#000;" class="public_title" target="_blank"><h2 class="d_title">'+data[i].content+'</h2></a><h3 class="d_time">'+data[i].diaDate+'</h3></li>'
 				/*console.log(str_li);*/
 			}
 			
@@ -204,7 +204,7 @@ $(function(){
 
 
     $('.all_daily').on('click','li',function(){
-		/*alert('111');*/
+	/*	alert('111');*/
         $(this).find('h2').sibling().css('color','#000');
         $(this).find('h2').css('color',' #00a2d4');
 

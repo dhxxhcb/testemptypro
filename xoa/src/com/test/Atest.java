@@ -3,6 +3,9 @@ package com.test;
 import javax.annotation.Resource;
 
 import com.xoa.dao.work.WorkMapper;
+import com.xoa.model.workflow.FlowRunPrcs;
+import com.xoa.service.workflow.flowtype.FlowRunPrcsService;
+import com.xoa.util.ToJson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -73,6 +76,9 @@ public class Atest {
 	@Resource
 	private WorkMapper workMapper;
 
+	@Resource
+	private FlowRunPrcsService flowRunPrcsService;
+
 	@Test
 	public void test()throws  Exception {
 		/*String fils = "2615@1310_598983059";
@@ -82,7 +88,7 @@ public class Atest {
 
 		System.out.println(names+"||||"+nmas1+"||||"+nma);*/
 
-		Map<String,Object> maps=new HashMap<String,Object>();
+		/*Map<String,Object> maps=new HashMap<String,Object>();
 		maps.put("tableName","flow_data_27");
 		maps.put("runId","1012");
 		Map<String,Object> map=workMapper.select(maps);
@@ -90,10 +96,21 @@ public class Atest {
 		List<String> value =new ArrayList<String>();
 
 		System.out.println(key.toString());
-		System.out.println(value.toString());
+		System.out.println(value.toString());*/
 
 //		String name = "2615@1310_598983059";
 //		String
+
+		Map<String,Object> maps=new HashMap<String,Object>();
+		maps.put("userId","admin");
+		maps.put("prcsId",1);
+		maps.put("runId",1060);
+
+		ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
+		List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(maps);
+
+		FlowRunPrcs f=l.get(0);
+
 
 	}
 
