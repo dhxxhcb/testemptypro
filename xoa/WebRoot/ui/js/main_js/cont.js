@@ -204,7 +204,7 @@ $(function(){
 
 
     $('.all_daily').on('click','li',function(){
-		/*alert('111');*/
+	/*	alert('111');*/
         $(this).find('h2').sibling().css('color','#000');
         $(this).find('h2').css('color',' #00a2d4');
 

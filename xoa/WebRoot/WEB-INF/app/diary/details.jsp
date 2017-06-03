@@ -16,7 +16,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../css/workflow/work/style.css" />
-
+    <script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" >
         var MYOA_JS_SERVER = "";
         var MYOA_STATIC_SERVER = "";
@@ -26,7 +27,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/workflow/work/diary.css">
 <link rel="stylesheet" type="text/css" href="../../css/workflow/work/bootstrap.tag.css">
 
-<script src="../../js/jquery-1.9.1.js"></script>
+<%--<script src="../../js/jquery-1.9.1.js"></script>--%>
 <script src="../../js/workflow/work/attach.js"></script>
 <script src="../../js/workflow/work/jquery.ux.attachmenu.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
@@ -74,8 +75,7 @@
 <div id="diary-detail-container" class="container" data-diary-id="216">
     <div id="diary-detail-header">
         <a target="_blank" href="../ipanel/user/user_info.php?USER_ID=admin&WINDOW=1" class="diary-detail-title">
-            <h1 class="shoutest">
-                系统管理员                </h1>
+            <h1 class="shoutest"></h1>
         </a>
         <div class="diary-detail-ext-header">
             <span class="diary-detail-dept"> 北方测试研究公司 </span>
@@ -87,22 +87,18 @@
     <div id="diary-detail-content" class="feed">
         <div class="pop-content clearfix">
             <div class="feed-hd">
-                <div class="feed-time" title="2017-05-12 10:33:41">
-                    5月12日 10:33                    </div>
+                <div class="feed-time" title=""></div>
                 <div class="feed-basic">
                         <span class="feed-type">
                             工作日志                        </span>
                 </div>
             </div>
             <div class="feed-bd">
-                <h4 class="feed-title">
-                    2017-05-12 星期五 工作日志                    </h4>
+                <h4 class="feed-title"></h4>
                 <div class="feed-ct">
                     <div class="feed-txt-full rich-content">
                         <div class="feed-txt-summary">
-                            <div class="jjl_body">
-                                锤子手机发布会
-                            </div>
+                            <div class="jjl_body"></div>
                         </div>
                     </div>
                 </div>
@@ -173,7 +169,7 @@
     window.HTML_MODEL_TYPE='';
    </script>
     <script type="text/javascript" src="../../js/workflow/work/ueditor.config.min.js"></script>
-    <script type="text/javascript" src="../../js/workflow/work/ueditor.all.min.js"></script>
+    <%--<script type="text/javascript" src="../../js/workflow/work/ueditor.all.min.js"></script>--%>
     <script type="text/javascript">
     UE.dom.domUtils.on(window, 'load', function(){var ue = UE.getEditor('TD_HTML_EDITOR_', {"initialFrameWidth":"100%","initialFrameHeight":"200","attachmentId":"ATTACHMENT_ID_OLD","attachmentName":"ATTACHMENT_NAME_OLD","lang":"zh-cn"});ue.ready(function(){typeof(editorLoaded) == 'function' && editorLoaded({editor:ue});ue.dirty = false;ue.on('contentChange',function(){ue.dirty = true;});});});
    ></script>
@@ -210,18 +206,28 @@
 
         $.ajax({
             type:'get',
-            url:'diary/getIndex',
+            url:'../../diary/getConByDiaId',
             dataType:'json',
             data:{'diaId':nid},
             success:function(rsp){
                console.log(rsp);
+               var name=rsp.object.userName;//用户
+               var feed_time=rsp.object.diaTime;//顶部时间
+                var feed_title=rsp.object.subject;//标题
+                var jjl_body=rsp.object.content;//内容
+               $('.shoutest').html(name);
+               $('.feed-time').html(feed_time);
+                $('.feed-title').html(feed_title);
+                $('.jjl_body').html(jjl_body);
+
+
             }
         });
 
     }) ;
 </script>
 <script>
-    (function(win, $){
+    /*(function(win, $){
         var tDiaryDetail = {
             init: function(){
                 this.bindEvent();
@@ -325,10 +331,10 @@
             },
 
 
-            /*replyFeed: function(id){
+            /!*replyFeed: function(id){
                 var $list = $('#diary-detail-container .feed-ext-list');
                 this.getReply(id, $list);
-            },*/
+            },*!/
             getReply: function(id, $list){
                 var self = this;
                 $.get(this.Router.GetReply, { DIA_ID: id }, function(d){
@@ -561,7 +567,7 @@
 
         });
 
-    })(window, jQuery)
+    })(window, jQuery)*/
 </script>
 </html>
 
