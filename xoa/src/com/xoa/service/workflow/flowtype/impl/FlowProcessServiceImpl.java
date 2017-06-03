@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.xoa.model.workflow.FlowRunPrcs;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.xoa.dao.workflow.FlowProcessMapper;
@@ -139,6 +140,30 @@ public class FlowProcessServiceImpl implements FlowProcessService {
           maps.put("prcsId", prcsId);
           FlowProcess flowProcess = flowProcessMapper.find(maps);
           return flowProcess;
+    }
+
+
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/6/3 11:24
+     * 方法介绍:   修改流程节点坐标
+     * 参数说明:
+     * @return
+     */
+    @Override
+    @Transactional
+    public ToJson<FlowProcess> updateTopAndLeft(FlowProcess flowProcess){
+        ToJson<FlowProcess> toJson = new ToJson<FlowProcess>();
+        try {
+            flowProcessMapper.updateTopAndLeft(flowProcess);
+            toJson.setFlag(0);
+            toJson.setMsg("ok");
+        }catch (Exception e){
+            toJson.setTotleNum(1);
+            toJson.setMsg("error");
+        }
+        return toJson;
     }
 
 }

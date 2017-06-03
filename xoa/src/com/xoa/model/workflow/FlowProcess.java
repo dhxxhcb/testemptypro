@@ -287,7 +287,15 @@ public class FlowProcess implements Serializable {
      */
     private FlowTypeModel flowTypeModel;
 
+    /**
+     * 条件设置Json串
+     */
     private String settlementOfCondition;
+
+    /**
+     * 可写字段Json串
+     */
+    private String prcsItemTwo;
 
 
     private List<Map<String, String>> connections;
