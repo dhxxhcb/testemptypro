@@ -207,7 +207,8 @@ public class WorkController {
             param.put("tableName",tableName);
             param.put("keys",key);
             workMapper.createTable(param);
-        } else {
+        }
+        if (CheckTableExist.haveTable(tableName)){
             List<String> key =new ArrayList<String>();
             List<String> value =new ArrayList<String>();
             key.add("run_id");

@@ -44,7 +44,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 	 * 创建作者:   张勇
 	 * 创建日期:   2017/5/24 20:29
 	 * 方法介绍:   查询待办工作
-	 * 参数说明:
+	 * 参数说明:  修整时间计算
 	 * @return
 	 */
 	@SuppressWarnings("all")
@@ -70,15 +70,15 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
 				if(!StringUtils.checkNull(flowRunPrcs.getDeliverTime())) {
 					flowRunPrcs.setDeliverTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getDeliverTime())));
-//					flowRunPrcs.setArriveTime();
+					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getDeliverTime())));
 				}
 				if(!StringUtils.checkNull(flowRunPrcs.getPrcsTime())&&flowRunPrcs.getPrcsId()>1){
 //					String upTime =  flowRunPrcsMapper.findTime(flowRunPrcs.getRunId(),flowRunPrcs.getPrcsId()-1);
 					Integer prcsId= flowRunPrcs.getRunId();
 					Integer runId = flowRunPrcs.getPrcsId()-1;
-
 					String upTime = flowRunPrcsMapper.findTime(runId,prcsId);
 					flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(upTime)));
+					flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getReceiptTime())));
 				}
 				returnList.add(flowRunPrcs);
 			}

@@ -98,7 +98,7 @@ public class FlowRunPrcs {
     private FlowProcess flowProcess;
 
     /**
-     * 接收时间
+     * 到达时间
      */
     private String  receiptTime;
 
@@ -107,10 +107,10 @@ public class FlowRunPrcs {
      */
     private String arriveTime;
 
-//    /**
-//     * 办理停留时间
-//     */
-//	private String handleTime;
+    /**
+     * 办理停留时间
+     */
+	private String handleTime;
 
     public FlowRun getFlowRun() {
         return flowRun;
@@ -446,19 +446,19 @@ public class FlowRunPrcs {
         this.arriveTime = arriveTime;
     }
 
-//    /**
-//     * 办理停留时间
-//     * @return
-//     */
-//    public String getHandleTime() {
-//        return handleTime;
-//    }
-//
-//    /**
-//     * 办理停留时间
-//     * @param handleTime
-//     */
-//    public void setHandleTime(String handleTime) {
-//        this.handleTime = handleTime;
-//    }
+    /**
+     * 办理停留时间
+     * @return
+     */
+    public String getHandleTime() {
+        return handleTime;
+    }
+
+    /**
+     * 办理停留时间
+     * @param handleTime
+     */
+    public void setHandleTime(String handleTime) {
+        this.handleTime = handleTime;
+    }
 }

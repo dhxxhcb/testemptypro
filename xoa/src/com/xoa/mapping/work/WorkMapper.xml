@@ -62,4 +62,8 @@
         </trim>
 
     </insert>
+
+    <select id="select"  resultType="java.util.HashMap">
+        SELECT FROM ${tableName} WHERE run_id=${runId}
+    </select>
 </mapper>

@@ -320,11 +320,22 @@ public class Users {
 	private String name;
 
      private String funcIdStr;
-     //辅助角色名字
+
+     private String  departmentPhone;
+
+	 public String getDepartmentPhone() {
+		 return departmentPhone==null?"":departmentPhone;
+	 }
+
+	 public void setDepartmentPhone(String departmentPhone) {
+		 this.departmentPhone = departmentPhone;
+	 }
+
+	 //辅助角色名字
      private  String  roleAuxiliaryName;
 
 	 public String getRoleAuxiliaryName() {
-		 return roleAuxiliaryName;
+		 return roleAuxiliaryName==null?"":roleAuxiliaryName;
 	 }
 
 	 public void setRoleAuxiliaryName(String roleAuxiliaryName) {

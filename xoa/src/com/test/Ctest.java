@@ -23,6 +23,7 @@ import com.xoa.service.workflow.flowtype.FlowProcessService;
 import com.xoa.service.workflow.flowtype.FlowRunPrcsService;
 import com.xoa.service.workflow.flowtype.FlowRunService;
 import com.xoa.service.workflow.flowtype.FlowTypeService;
+import com.xoa.service.workflow.flowtype.impl.FlowRunPrcsServiceImpl;
 import com.xoa.util.dataSource.ContextHolder;
 import org.junit.Test;
 import org.junit.runner.RunWith;

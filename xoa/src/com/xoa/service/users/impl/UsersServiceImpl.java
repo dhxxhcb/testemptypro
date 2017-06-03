@@ -370,6 +370,7 @@ public class UsersServiceImpl implements UsersService {
         List<Users>  usersList=usersMapper.getUserbyCondition(maps);
         StringBuffer s2=new StringBuffer();
         for (Users  users:usersList){
+            users.setDepartmentPhone(users.getDep().getTelNo());
             if (users.getUserPrivOther()!=null&&!users.getUserPrivOther().equals("")){
                 String userOther=users.getUserPrivOther();
                 String[] strArray2 =userOther.split(",");
@@ -385,7 +386,7 @@ public class UsersServiceImpl implements UsersService {
             }
 
         }
-        return  usersMapper.getUserbyCondition(maps);
+        return  usersList;
     }
 
     @Override

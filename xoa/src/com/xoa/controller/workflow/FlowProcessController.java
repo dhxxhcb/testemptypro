@@ -85,6 +85,8 @@ public class FlowProcessController {
 					"loginDateSouse"));
 			System.out.println("settlementOfCondition:"+flowProcess.getSettlementOfCondition());
 
+			JSONArray.parse(flowProcess.getSettlementOfCondition());
+
 //			JSONArray json=JSON.parseArray(flowProcess.getSettlementOfCondition());
 //			J
 //			for (int i = 0 ; i <json.size();i++){

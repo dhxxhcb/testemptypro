@@ -2,12 +2,15 @@ package com.xoa.controller.users;
 
 import com.xoa.model.users.Users;
 import com.xoa.service.users.UsersService;
+import com.xoa.util.ExcelUtil;
 import com.xoa.util.FileUploadUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
+import com.xoa.util.common.log.FileUtils;
 import com.xoa.util.dataSource.ContextHolder;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -466,7 +470,7 @@ public class UsersController {
             @RequestParam(value = "deptId", required = false) String deptId,
             @RequestParam(value = "userPrivNo", required = false) String userPrivNo,
             @RequestParam("choice") String choice,
-            HttpServletRequest request, HttpServletResponse response){
+            HttpServletRequest request, HttpServletResponse response) throws Exception{
    String sqlType = "xoa"
                     + (String) request.getSession().getAttribute("loginDateSouse");
             ContextHolder.setConsumerType(sqlType);
@@ -478,8 +482,8 @@ public class UsersController {
         maps.put("deptId", deptId);
         maps.put("userPrivNo", userPrivNo);
         ToJson<Users>  usersJson=new ToJson<Users>();
+        List<Users> userToJson=usersService.getUserbyCondition(maps);
       if ("1".equals(choice)){
-          List<Users> userToJson=usersService.getUserbyCondition(maps);
           if (userToJson.size()>0){
               usersJson.setFlag(0);
               usersJson.setMsg("ok");
@@ -488,7 +492,28 @@ public class UsersController {
               usersJson.setFlag(1);
               usersJson.setMsg("err");
           }
-     }else {
+     }else if ("0".equals(choice)){
+          try {
+              HSSFWorkbook workbook1 = ExcelUtil.makeExcelHead("用户信息导出", 9);
+              String[] secondTitles = {"部门", "姓名", "角色", "辅助角色","在线时长","性别","在线时长","工作电话","部门电话","手机","电子邮件"};
+              HSSFWorkbook workbook2 = ExcelUtil.makeSecondHead(workbook1, secondTitles);
+
+              String[] beanProperty = {"deptName","userName","userPrivName", "roleAuxiliaryName","online","sex","online","telNoDept","telNoDept","departmentPhone","email"};
+
+              HSSFWorkbook workbook = ExcelUtil.exportExcelData(workbook2, userToJson, beanProperty);
+              ServletOutputStream out = response.getOutputStream();
+
+              String filename = "用户信息导出.xls";
+              filename = FileUtils.encodeDownloadFilename(filename,
+                      request.getHeader("user-agent"));
+              response.setContentType("application/vnd.ms-excel");
+              response.setHeader("content-disposition",
+                      "attachment;filename=" + filename);
+              workbook.write(out);
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }else {
           usersJson.setFlag(1);
           usersJson.setMsg("err");
       }
