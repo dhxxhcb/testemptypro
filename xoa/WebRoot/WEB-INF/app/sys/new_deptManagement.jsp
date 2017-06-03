@@ -412,42 +412,7 @@
             </td>
             <td>
                 <select name="DEPT_PARENT" class="BigSelect" id="deptParent">
-                    <%--<option value="0">无</option>--%>
-                    <%--<option value="1">├中国兵器工业信息中心</option>--%>
-                    <%--<option value="3">│└北京通达信科科技有限公司</option>--%>
-                    <%--<option value="17">│　└总经理</option>--%>
-                    <%--<option value="4">│　　├综合管理部</option>--%>
-                    <%--<option value="18">│　　│├人力资源部</option>--%>
-                    <%--<option value="19">│　　│├财务部</option>--%>
-                    <%--<option value="20">│　　│└行政部</option>--%>
-                    <%--<option value="5">│　　├市场营销部</option>--%>
-                    <%--<option value="39">│　　│├市场部</option>--%>
-                    <%--<option value="33">│　　││├品牌部</option>--%>
-                    <%--<option value="31">│　　││├网络营销中心</option>--%>
-                    <%--<option value="32">│　　││└商务中心</option>--%>
-                    <%--<option value="40">│　　│└销售部</option>--%>
-                    <%--<option value="7">│　　│　├北京销售部</option>--%>
-                    <%--<option value="28">│　　│　│├销售一组</option>--%>
-                    <%--<option value="29">│　　│　│├销售二组</option>--%>
-                    <%--<option value="30">│　　│　│├销售三组</option>--%>
-                    <%--<option value="27">│　　│　│└销售协作组</option>--%>
-                    <%--<option value="8">│　　│　└上海销售部</option>--%>
-                    <%--<option value="6">│　　├研发部</option>--%>
-                    <%--<option value="34">│　　│├产品部</option>--%>
-                    <%--<option value="9">│　　│├开发一部</option>--%>
-                    <%--<option value="10">│　　│├开发二部</option>--%>
-                    <%--<option value="11">│　　│├质量保证部</option>--%>
-                    <%--<option value="15">│　　│└设计部</option>--%>
-                    <%--<option value="41">│　　├项目部</option>--%>
-                    <%--<option value="42">│　　│├项目一部</option>--%>
-                    <%--<option value="43">│　　│└项目二部</option>--%>
-                    <%--<option value="16">│　　└生产部</option>--%>
-                    <%--<option value="38">│　　　├采购部</option>--%>
-                    <%--<option value="35">│　　　├生产一部</option>--%>
-                    <%--<option value="37">│　　　├生产二部</option>--%>
-                    <%--<option value="36">│　　　└质检部</option>--%>
-                    <%--<option value="2">└北方测试研究公司</option>--%>
-                    <%--<option value="14">　└北一测试研究院1111111111111</option>--%>
+
                 </select>
 
             </td>
@@ -575,42 +540,7 @@
             </td>
             <td>
                 <select name="DEPT_PARENT" class="BigSelect" id="deptParent_">
-                    <%--<option value="0">无</option>--%>
-                    <%--<option value="1">├中国兵器工业信息中心</option>--%>
-                    <%--<option value="3">│└北京通达信科科技有限公司</option>--%>
-                    <%--<option value="17">│　└总经理</option>--%>
-                    <%--<option value="4">│　　├综合管理部</option>--%>
-                    <%--<option value="18">│　　│├人力资源部</option>--%>
-                    <%--<option value="19">│　　│├财务部</option>--%>
-                    <%--<option value="20">│　　│└行政部</option>--%>
-                    <%--<option value="5">│　　├市场营销部</option>--%>
-                    <%--<option value="39">│　　│├市场部</option>--%>
-                    <%--<option value="33">│　　││├品牌部</option>--%>
-                    <%--<option value="31">│　　││├网络营销中心</option>--%>
-                    <%--<option value="32">│　　││└商务中心</option>--%>
-                    <%--<option value="40">│　　│└销售部</option>--%>
-                    <%--<option value="7">│　　│　├北京销售部</option>--%>
-                    <%--<option value="28">│　　│　│├销售一组</option>--%>
-                    <%--<option value="29">│　　│　│├销售二组</option>--%>
-                    <%--<option value="30">│　　│　│├销售三组</option>--%>
-                    <%--<option value="27">│　　│　│└销售协作组</option>--%>
-                    <%--<option value="8">│　　│　└上海销售部</option>--%>
-                    <%--<option value="6">│　　├研发部</option>--%>
-                    <%--<option value="34">│　　│├产品部</option>--%>
-                    <%--<option value="9">│　　│├开发一部</option>--%>
-                    <%--<option value="10">│　　│├开发二部</option>--%>
-                    <%--<option value="11">│　　│├质量保证部</option>--%>
-                    <%--<option value="15">│　　│└设计部</option>--%>
-                    <%--<option value="41">│　　├项目部</option>--%>
-                    <%--<option value="42">│　　│├项目一部</option>--%>
-                    <%--<option value="43">│　　│└项目二部</option>--%>
-                    <%--<option value="16">│　　└生产部</option>--%>
-                    <%--<option value="38">│　　　├采购部</option>--%>
-                    <%--<option value="35">│　　　├生产一部</option>--%>
-                    <%--<option value="37">│　　　├生产二部</option>--%>
-                    <%--<option value="36">│　　　└质检部</option>--%>
-                    <%--<option value="2">└北方测试研究公司</option>--%>
-                    <%--<option value="14">　└北一测试研究院</option>--%>
+
                 </select>
 
             </td>

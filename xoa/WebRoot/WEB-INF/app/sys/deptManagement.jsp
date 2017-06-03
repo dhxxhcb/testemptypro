@@ -439,9 +439,6 @@
 <script type="text/javascript">
     //新建部门/成员单位按钮
     function newDept(){
-
-//        $("#telNo").val("ceshi");
-//        alert("ceshi");
         $(".step1").show();
         $(".step2").hide();
     };
@@ -470,8 +467,6 @@
             that.next().toggle();  //显示和隐藏左侧部门列表的切换效果
 
             deptById(deptid); //调编辑详情的接口
-
-
         });
         function getChDept(target, deptId) {
             $.ajax({
@@ -492,22 +487,27 @@
                                 str += '<li><span deptid="' + v.deptId + '" class="childdept"><span><img src="../img/main_img/man.png" alt=""></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;display:none;"></ul></li>';
                             }
                         });
-                    } else {
+                        target.html(str);
+                    } else if(deptId == 20){
+                        var str = '';
+                        data.obj.forEach(function (v, i) {
+                            if (v.deptName) {
+                                str += '<li><span deptid="' + v.deptId + '" class="childdept"><span class=""></span><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;display:block;" id="dpetWhole"></ul></li>';
+                            }
+                        });
+                        target.html(str);
+                        getChDept($("#dpetWhole"), 30);
+//                        alert(1);
+                    }else{
                         var str = '';
                         data.obj.forEach(function (v, i) {
                             if (v.deptName) {
                                 str += '<li><span deptid="' + v.deptId + '" class="childdept"><span class=""></span><a href="#" class="dynatree-title" title="' + v.deptName + '">' + v.deptName + '</a></span><ul style="margin-left:10%;display:none;"></ul></li>';
-                            } else {
-//                                if (v.sex == 0) {
-//
-//                                    str += '<li><span deptid="' + v.deptId + '" class="childdept"><span></span><img src="../img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
-//                                } else if (v.sex == 1) {
-//                                    str += '<li><span deptid="' + v.deptId + '" class="childdept"><span></span><img src="../img/main_img/women.png" alt=""><a href="#" class="dynatree-title" title="' + v.userName + '">' + v.userName + '</a></span><ul style="margin-left:10%;"></ul></li>';
-//                                }
                             }
                         });
+                        target.html(str);
                     }
-                    target.html(str);
+
                 }
             })
         }
