@@ -15,21 +15,21 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/workflow/work/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/workflow/work/style.css" />
 
     <script type="text/javascript" >
         var MYOA_JS_SERVER = "";
         var MYOA_STATIC_SERVER = "";
     </script>
 </head>
-<link rel="stylesheet" type="text/css" href="css/workflow/work/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/workflow/work/diary.css">
-<link rel="stylesheet" type="text/css" href="css/workflow/work/bootstrap.tag.css">
+<link rel="stylesheet" type="text/css" href="../../css/workflow/work/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../css/workflow/work/diary.css">
+<link rel="stylesheet" type="text/css" href="../../css/workflow/work/bootstrap.tag.css">
 
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/workflow/work/attach.js"></script>
-<script src="js/workflow/work/jquery.ux.attachmenu.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="../../js/jquery-1.9.1.js"></script>
+<script src="../../js/workflow/work/attach.js"></script>
+<script src="../../js/workflow/work/jquery.ux.attachmenu.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 <style>
     .feed-cmt-list-item{
         border-top: none;
@@ -81,7 +81,7 @@
             <span class="diary-detail-dept"> 北方测试研究公司 </span>
             <span class="diary-detail-priv"> OA 管理员 </span>
         </div>
-        <!-- <span class="diary-detail-viewchange" hidefocus="hidefocus">切换到宽版</span> -->
+
     </div>
 
     <div id="diary-detail-content" class="feed">
@@ -172,48 +172,42 @@
     <script type="text/javascript">
     window.HTML_MODEL_TYPE='';
    </script>
-    <script type="text/javascript" src="js/workflow/work/ueditor.config.min.js"></script>
-    <script type="text/javascript" src="js/workflow/work/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="../../js/workflow/work/ueditor.config.min.js"></script>
+    <script type="text/javascript" src="../../js/workflow/work/ueditor.all.min.js"></script>
     <script type="text/javascript">
     UE.dom.domUtils.on(window, 'load', function(){var ue = UE.getEditor('TD_HTML_EDITOR_', {"initialFrameWidth":"100%","initialFrameHeight":"200","attachmentId":"ATTACHMENT_ID_OLD","attachmentName":"ATTACHMENT_NAME_OLD","lang":"zh-cn"});ue.ready(function(){typeof(editorLoaded) == 'function' && editorLoaded({editor:ue});ue.dirty = false;ue.on('contentChange',function(){ue.dirty = true;});});});
    ></script>
 </div>
 </body>
 
-<script src="js/workflow/work/jquery.tmpl.min.js"></script>
-<script src="js/bootstrap.tag.js"></script>
-<script src="js/workflow/work/module.js"></script>
+<script src="../../js/workflow/work/jquery.tmpl.min.js"></script>
+<script src="../../js/bootstrap.tag.js"></script>
+<script src="../../js/workflow/work/module.js"></script>
 <script id="cmtTmpl" type="text/x-jquery-tmpl">
 <li class="feed-cmt-list-item  >
-    <a class="feed-cmt-list-user"></a>
+    <a href="javascript:void(0); class="feed-cmt-list-user"></a>
 
-        回复<a href="javascript:void(0);"  hidefocus="hidefocus" class="feed-cmt-list-user">${to}</a>
+        回复<a href="javascript:void(0);"  hidefocus="hidefocus" class="feed-cmt-list-user"></a>
 
     <div class="feed-cmt-list-ext">
-        {{if del_flag == "1"}}
-        <a class="feed-cmt-del-handle" data-cmd="delReply"
-            data-cmt-id="${id}" data-to-id="${from_id}"
-            data-cmt-type="${type}" data-to-text="${from}"
-            href="javascript:void(0);" hidefocus="hidefocus">
-             删除        </a>
-        {{/if}}
-        {{if reply_flag == "1"}}
-        <a class="feed-cmt-reply-handle" data-cmd="replyComment"
-            data-cmt-id="${type ? comment_id : id}" data-to-id="${from_id}"
-            data-cmt-type="${type}" data-to-text="${from}"
-            href="javascript:void(0);" hidefocus="hidefocus">
-            回复        </a>
-        {{/if}}
-        <span class="feed-cmt-list-time" title="${send_time}" data-timestamp="${send_timestamp}">${formatTime(send_timestamp)} </span>
+
+        <a class="feed-cmt-del-handle" href="javascript:void(0);" hidefocus="hidefocus">删除</a>
+
+        <a class="feed-cmt-reply-handle"  href="javascript:void(0);" hidefocus="hidefocus">回复</a>
+
+        <span class="feed-cmt-list-time"  ></span>
     </div>
-    <div class="feed-cmt-content">{{html content}}</div>
-    <div class="feed-cmt-attachments">
-        ${attachments}
-    </div>
+    <div class="feed-cmt-content"></div>
+    <div class="feed-cmt-attachments"></div>
 </li>
 </script>
 
-<script src="js/workflow/work/GM.js"></script>
+<script src="../../js/workflow/work/GM.js"></script>
+<script>
+    $(function(){
+
+    })
+</script>
 <script>
     (function(win, $){
         var tDiaryDetail = {
@@ -319,10 +313,10 @@
             },
 
 
-            replyFeed: function(id){
+            /*replyFeed: function(id){
                 var $list = $('#diary-detail-container .feed-ext-list');
                 this.getReply(id, $list);
-            },
+            },*/
             getReply: function(id, $list){
                 var self = this;
                 $.get(this.Router.GetReply, { DIA_ID: id }, function(d){
