@@ -128,23 +128,9 @@
                             "<td>"+data.obj[i].telNo +"</td>"+// 电话
                             "<td>"+data.obj[i].faxNo+"</td>"+// 传真
                             "<td>"+data.obj[i].deptAddress+"</td>"+// 地址
-                            "<td style='width:10%;'>"+data.obj[i].deptFunc+"</td></tr>";//部门职能
+                            "<td>"+data.obj[i].deptFunc+"</td></tr>";//部门职能
                     }
-
-
                     $("#tableDapt").html(news);
-
-
-
-
-
-
-
-
-
-
-
-
                 }
             });
 
