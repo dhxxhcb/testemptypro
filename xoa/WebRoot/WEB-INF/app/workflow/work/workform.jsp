@@ -638,7 +638,9 @@
 
                                         //新建工作之后的保存接口，跳转到我的工作页面
                                         var ret=data.object.flowRun;
-                                        var ret2=data.object.flowRunPrcs
+                                       /* var ret2=data.object.flowRunPrcs;*/
+                                       var ret2=$('.prcsName').attr('prcsid');
+                                       alert(ret2);
                                       /*  console.log(ret);*/
                                         if($('.prcsName').attr('check')=='1'){
                                             var pId=$('.prcsName').attr('prcsId');
@@ -652,7 +654,7 @@
                                             beginUser:ret.beginUser,
                                             prcsId:pId,
                                             prcsflag:1,
-                                            flowPrcs:ret2.flowPrcs,
+                                            flowPrcs:ret2,
                                             jingbanUser:$('#remind_name').attr('user_id')
                                         }
                                        /* console.log(pId);*/
