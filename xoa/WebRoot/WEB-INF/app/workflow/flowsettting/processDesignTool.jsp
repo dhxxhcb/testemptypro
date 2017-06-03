@@ -84,7 +84,7 @@
 
 
     <div id="flowDesignTable" ></div>
-    <form action="/flowProcess/saveFlow" class="layui-form" id="datasave">
+    <form action="/flowProcess/saveFlow" class="layui-form" id="datasave" method="post">
         <input type="hidden" id="ele_id">
         <input type="hidden" id="ele_model">
         <input type="hidden" id="ele_designerId" name="id">
@@ -169,7 +169,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 4px;">
                         <%--<input type="text" id="" readonly="true">--%>
-                        <textarea name="" id="query_userId" readonly="true"></textarea>
+                        <textarea name="" class="theControlData" id="query_userId" readonly="true"></textarea>
                         <input type="hidden" name="prcsUser">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="1" class="theCandidates">添加</a>
@@ -182,7 +182,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 4px;">
                         <%--<input type="text" id="" readonly="true">--%>
-                        <textarea name="" id="department" readonly="true" ></textarea>
+                        <textarea name="" class="theControlData" id="department" readonly="true" ></textarea>
                         <input type="hidden" name="prcsDept">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="2" class="theCandidates">添加</a>
@@ -195,7 +195,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 4px;">
                         <%--<input type="text" id="" readonly="true">--%>
-                        <textarea name="" id="theScopeOf" readonly="true"></textarea>
+                        <textarea name="" class="theControlData" id="theScopeOf" readonly="true"></textarea>
                         <input type="hidden" name="prcsPriv">
                         <div style="float:left;">
                             <a href="javascript:;" data-num="3" class="theCandidates">添加</a>
@@ -269,7 +269,7 @@
                     <div class="departmentAgent">
                         <p class="candidatesPone">指定部门</p>
                         <div class="candidatesPTwoall">
-                            <textarea name="" id="departmentAgent" readonly="true"></textarea>
+                            <textarea name="" class="theControlData" id="departmentAgent" readonly="true"></textarea>
                             <input type="hidden" name="userFilterPrcsDept">
                             <div style="float: left;line-height: 25px;">
                                 <a href="javascript:;" style="display: block" class="theCandidates" data-num="2">添加</a>
@@ -280,7 +280,7 @@
                     <div class="auxiliaryDepartmentAgent">
                         <p class="candidatesPone">指定辅助部门</p>
                         <div class="candidatesPTwoall">
-                            <textarea name="" id="auxiliaryDepartmentAgent" readonly="true"></textarea>
+                            <textarea name="" class="theControlData" id="auxiliaryDepartmentAgent" readonly="true"></textarea>
                             <input type="hidden" name="userFilterPrcsDeptOther">
                             <div style="float: left;line-height: 25px" >
                                 <a href="javascript:;" style="display: block" class="theCandidates" data-num="2">添加</a>
@@ -291,7 +291,7 @@
                     <div class="theSpecifiedRole">
                         <p class="candidatesPone">指定角色</p>
                         <div class="candidatesPTwoall">
-                            <textarea name="" id="theSpecifiedRole" readonly="true"></textarea>
+                            <textarea name="" class="theControlData" id="theSpecifiedRole" readonly="true"></textarea>
                             <input type="hidden" name="userFilterPrcsPriv">
                             <div style="float: left;line-height: 25px">
                                 <a href="javascript:;" style="display: block" class="theCandidates" data-num="3">添加</a>
@@ -302,7 +302,7 @@
                     <div class="assignRole">
                         <p class="candidatesPone">指定辅助角色</p>
                         <div class="candidatesPTwoall">
-                            <textarea name="" id="assignRole" readonly="true"></textarea>
+                            <textarea name="" class="theControlData" id="assignRole" readonly="true"></textarea>
                             <input type="hidden" name="userFilterPrcsPrivOther">
                             <div style="float: left;line-height: 25px">
                                 <a href="javascript:;" style="display: block" class="theCandidates" data-num="3">添加</a>
@@ -352,7 +352,7 @@
                     <div class="optionalDepartmentAgent" >
                             <p class="candidatesPone">指定部门</p>
                             <div class="candidatesPTwoall" style="margin-bottom: 20px">
-                                <textarea name="" id="optionalDepartmentAgent" readonly="true"></textarea>
+                                <textarea name="" class="theControlData" id="optionalDepartmentAgent" readonly="true"></textarea>
                                 <input type="hidden" name="autoDept">
                                 <div style="float: left;line-height: 25px;">
                                     <a href="javascript:;" style="display: block" class="theCandidates" data-num="2">选择</a>
@@ -364,7 +364,7 @@
                         <p class="candidatesPone">主办人</p>
                         <input type="text" readonly="true" name="autoUserOp" style="margin-bottom: 12px;background: #eee;border: 1px solid #ccc;border-radius: 4px">
                         <div class="candidatesPTwoall">
-                            <textarea name="" id="specifyTheHost" readonly="true"></textarea>
+                            <textarea name="" class="theControlData" id="specifyTheHost" readonly="true"></textarea>
                             <input type="hidden" name="autoUser">
                             <div style="float: left;line-height: 25px;">
                                 <a href="javascript:;"  style="margin-right: 24px;" class="theCandidates" data-num="2">指定经办/主办人</a>
@@ -377,8 +377,8 @@
                         <div class="candidatesPTwoall">
                             <ul style="height: 126px;margin-bottom: 20px"></ul>
                             <div style="float: left">
-                                <a href="javascript:;">选择</a>
-                                <input type="hidden">
+                                <a href="javascript:;" class="bottomsteps" data-field="1">选择</a>
+                                <input type="hidden" name="ITEM_ID">
                             </div>
                         </div>
                     </div>
@@ -388,10 +388,9 @@
                         </p>
                         <p class="candidatesPTwo" style="margin-bottom: 20px">
                             <%--<input type="text" readonly="true" value="不进行自动选择"><span class="xiala"><b></b></span>--%>
-                            <select name="" lay-verify="">
-                                <option value="010">北京</option>
-                                <option value="021" disabled>上海（禁用效果）</option>
-                                <option value="0571" selected>杭州</option>
+                            <select name="AUTO_PRCS_USER" lay-verify="">
+                                <option value="">请选择</option>
+
                             </select>
                         </p>
                     </div>
@@ -522,7 +521,7 @@
             <div class="setUpThe" id="canWriteField">
                 <span class="canWriteField"></span>
                 <label>可写字段</label>
-                <input type="hidden" name="prcsItem">
+                <input type="hidden" name="prcsItemTwo">
                 <b class="notstart"></b>
             </div>
             <div class="setUpThe">
@@ -673,7 +672,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
                         <%--<input type="text" readonly="true" id="">--%>
-                        <textarea name="" id="query_userIds" readonly="true"></textarea>
+                        <textarea name="" class="theControlData" id="query_userIds" readonly="true"></textarea>
                         <div style="float: left;line-height: 25px">
                             <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">添加</a>
                             <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">清空</a>
@@ -684,7 +683,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
                         <%--<input type="text" readonly="true" id="">--%>
-                        <textarea name="" id="departments" readonly="true"></textarea>
+                        <textarea name="" class="theControlData" id="departments" readonly="true"></textarea>
                         <div style="float: left;line-height: 25px">
                             <a href="javascript:;" style="display: block" data-num="2" class="theCandidates">添加</a>
                             <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">清空</a>
@@ -695,7 +694,7 @@
                     </p>
                     <div class="candidatesPTwoall" style="margin-bottom: 20px;">
                         <%--<input type="text" readonly="true" id="">--%>
-                        <textarea name="" id="theScopeOfs" readonly="true"></textarea>
+                        <textarea name="" class="theControlData" id="theScopeOfs" readonly="true"></textarea>
                         <div style="float: left;line-height: 25px">
                             <a href="javascript:;" style="display: block" data-num="3" class="theCandidates">添加</a>
                             <a href="javascript:;" style="display: block" data-num="1" class="theCandidates">清空</a>
