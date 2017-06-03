@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.model.workflow.FlowProcessList;
+import com.xoa.model.workflow.FlowRunPrcs;
 import com.xoa.util.ToJson;
 
 /**
@@ -78,6 +79,16 @@ public interface FlowProcessService {
 	 * @return     FlowProcess
 	 */
 	public  FlowProcess findbyprcsId(int flowId,int prcsId);
-	
+
+
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/6/3 11:24
+	 * 方法介绍:   修改流程节点坐标
+	 * 参数说明:
+	 * @return
+	 */
+	public ToJson<FlowProcess> updateTopAndLeft(FlowProcess flowProcess);
 
 }

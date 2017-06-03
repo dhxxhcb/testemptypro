@@ -238,6 +238,23 @@ public class FlowProcessController {
 		}
 
 
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/6/3 11:24
+	 * 方法介绍:   修改流程节点坐标
+	 * 参数说明:   @return
+	 * @return     ToJson<FlowProcess>
+	 */
+	@ResponseBody
+	@RequestMapping(value = "updateTopAndLeft",produces = {"application/json;charset=UTF-8"})
+	public ToJson<FlowProcess> updateTopAndLeft(
+			FlowProcess flowProcess,
+			HttpServletRequest request){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return flowProcessService.updateTopAndLeft(flowProcess);
+	}
+
 
 
 	  	@RequestMapping(value = "xs",produces = {"application/json;charset=UTF-8"})

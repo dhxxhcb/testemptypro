@@ -26,4 +26,11 @@ public interface FlowProcessMapper {
     List<FlowProcess> findF(int flowId);
     
     FlowProcess findbyprcsId(Map<String, Object> maps);
+
+    /**
+     * 修改流程节点坐标
+     * @param flowProcess
+     */
+    public  void updateTopAndLeft(FlowProcess flowProcess);
+
 }
