@@ -275,8 +275,8 @@
                             <div class="form_group">
                                 <label for="class_f" class="flowName">流程类型 <span class="save">*</span></label>
                                 <select name="" id="class_f" class="depName">
-                                    <%-- <option value="1">固定流程</option>
-                                     <option value="2">自由流程</option>--%>
+                                     <option value="1">固定流程</option>
+                                     <option value="2">自由流程</option>
                                 </select>
                             </div>
                             <div class="form_group">
@@ -331,14 +331,14 @@
 
                             <div class="form_group sex_r">
                                 <label class="flowName">是否允许上传附件<span class="save">*</span></label>
-                                <input type="radio" name="sex_1" value="是" checked><label class="sex_n">是</label>
-                                <input type="radio" name="sex_1" value="否"><label class="sex_save">否</label>
+                                <input type="radio" name="sex_1" value="1" checked><label class="sex_n">是</label>
+                                <input type="radio" name="sex_1" value="0"><label class="sex_save">否</label>
 
                             </div>
                             <div class="form_group sex_r">
                                 <label class="flowName">是否启用版本控制<span class="save">*</span></label>
-                                <input type="radio" name="sex_2" value="是" checked><label class="sex_n">是</label>
-                                <input type="radio" name="sex_2" value="否"><label class="sex_save">否</label>
+                                <input type="radio" name="sex_2" value="1" checked><label class="sex_n">是</label>
+                                <input type="radio" name="sex_2" value="0"><label class="sex_save">否</label>
 
                             </div>
                             <div class="form_group sex_r sex_r_f">
@@ -838,7 +838,6 @@
             var flowId = '${flowId}';
             if (flowId == null || flowId == "") {
                 //保存
-
                 var data = {
                     flowName: $('#projectName').val(),
                     flowNo: $('#orderID').val(),
@@ -847,7 +846,7 @@
                     flowType: $('#class_f option:selected').val(),
                     formId: $('#leave option:selected').val(),
                     freeOther: $('#delegate-type option:selected').val(),
-                    flowDoc: $('input[name="sex_r"]:checked').val(),
+                    flowDoc: $('input[name="sex_1"]:checked').val(),
                     autoNum: $('#counteer').val(),
                     autoLen: $('#figure').val()
                 };
