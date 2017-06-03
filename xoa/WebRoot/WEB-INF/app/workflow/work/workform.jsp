@@ -482,6 +482,9 @@
                        if(obj2.prcsId== prcsTo[j]){
                            prcsName+='<div class="prcsName" style="" prcsId='+obj2.prcsId+'><h1>'+obj2.prcsName+'</h1></div>';
                        }
+                       if(obj2.prcsTo=='0'||obj2.prcsTo==''){
+                           prcsName='结束流程';
+                       }
                    }
                }
            }

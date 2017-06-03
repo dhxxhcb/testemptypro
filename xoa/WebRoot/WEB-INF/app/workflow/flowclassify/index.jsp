@@ -166,6 +166,9 @@
 		.delete_flow,.edit_liucheng{
 			cursor: pointer;
 		}
+		.levelleft3{
+			margin-left:18%;
+		}
 		/*<img src="img/workflow/one.png">*/
 		/*.img{
 			width:20px;
@@ -358,7 +361,9 @@
                                 if(obj.flag==true){
                                     items();
                                     item();
-                                }
+                                }else{
+                                    alert(obj.msg);
+								}
                             }
                         });
                         layer.closeAll();
@@ -405,7 +410,10 @@
                         items();
                         item();
 						/*window.location.reload();*/
-                    }
+                    }else{
+                        alert(obj.msg)
+					}
+
                     console.log(obj)
                 }
             });
