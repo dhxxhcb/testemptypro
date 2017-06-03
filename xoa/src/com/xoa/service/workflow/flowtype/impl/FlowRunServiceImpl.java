@@ -2,6 +2,8 @@ package com.xoa.service.workflow.flowtype.impl;
 
 import javax.annotation.Resource;
 
+import com.xoa.util.DateFormat;
+import com.xoa.util.common.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.workflow.FlowRunMapper;
@@ -26,6 +28,9 @@ public class FlowRunServiceImpl implements FlowRunService{
 	@Override
 	public FlowRun find(Integer runId){
 		FlowRun f=flowRunMapper.find(runId);
+		if(!StringUtils.checkNull(f.getBeginTime())) {
+			f.setBeginTime(DateFormat.getStrTime(DateFormat.getTime(f.getBeginTime())));
+		}
 		return f;
 	}
 }

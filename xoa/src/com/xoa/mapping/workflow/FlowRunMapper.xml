@@ -8,14 +8,14 @@
     <result column="FLOW_ID" javaType="int" property="flowId" />
     <result column="BEGIN_USER" javaType="string" property="beginUser" />
     <result column="BEGIN_DEPT" javaType="int" property="beginDept" />
-    <result column="BEGIN_TIME" javaType="java.sql.Timestamp" property="beginTime" />
-    <result column="END_TIME" javaType="java.sql.Timestamp" property="endTime" />
+    <result column="BEGIN_TIME" javaType="string" property="beginTime" />
+    <result column="END_TIME" javaType="string" property="endTime" />
     <result column="DEL_FLAG" javaType="string" property="delFlag" />
     <result column="PARENT_RUN" javaType="int" property="parentRun" />
     <result column="FROM_USER" javaType="string" property="fromUser" />
     <result column="ARCHIVE" javaType="int" property="archive" />
     <result column="work_level" javaType="int" property="workLevel" />
-    <result column="DEL_TIME" javaType="java.sql.Timestamp" property="delTime" />
+    <result column="DEL_TIME" javaType="string" property="delTime" />
     <result column="ATTACHMENT_ID" javaType="string" property="attachmentId" />
     <result column="ATTACHMENT_NAME" javaType="string" property="attachmentName" />
     <result column="FOCUS_USER" javaType="string" property="focusUser" />
