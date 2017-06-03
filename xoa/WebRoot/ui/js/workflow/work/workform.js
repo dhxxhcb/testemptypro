@@ -6,6 +6,7 @@ var workForm = {
         flowStep:1,//-1预览
         listFp:'',
         pageModel:'',
+        flowRun:'',
         eleObject:{}
     },
     init:function(options,cb){
@@ -71,7 +72,6 @@ var workForm = {
             tableStr+=('<tr>'+tdStr+'</tr>');
             tableStr+='</table>';
             _this.before(tableStr);
-
             _this.prev().on("click",'.delete_row',function () {
                 $(this).parent().parent().remove();
             });
@@ -89,20 +89,64 @@ var workForm = {
             that.option.listFp.forEach(function (v,i) {
                 if(v.prcsId == that.option.flowStep){
                     var steptOpt = v;
-                    that.option.eleObject.find('.form_item').each(function(){
-                        var _this = $(this);
-                        if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
-                            if(_this.attr("data-type") == 'macros'){
-                                _this.val('');
-                            }
-                            _this.attr("disabled","disabled")
-                        }else{
-                            if(_this.attr("data-type") == 'macros'){
-                                if(_this.is('input')){
-                                    _this.attr("readonly","readonly");
+                    //that.tool.ajaxHtml(domain+ '/workflow/work/selectFlowData',{flowId:that.option.flowRun.flowId,runId:1027},function (res) {
+                    that.tool.ajaxHtml(domain+ '/workflow/work/selectFlowData',{flowId:that.option.flowRun.flowId,runId:that.option.flowRun.runId},function (res) {
+
+                        that.option.eleObject.find('.form_item').each(function(){
+                            var _this = $(this);
+                            //权限控制
+                            if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
+                                if(_this.attr("data-type") == 'macros'){
+                                    _this.val('');
+                                }
+                                _this.attr("disabled","disabled")
+                            }else{
+                                if(_this.attr("data-type") == 'macros'){
+                                    if(_this.is('input')){
+                                        _this.attr("readonly","readonly");
+                                    }
+                                }
+                            };
+                            //表单填充数据
+                            if(res.flag){
+                                var dateName = res.obj;
+                                if(dateName[_this.attr('name')]){
+                                    var dataNameVal = dateName[_this.attr('name')];
+                                    switch (_this.attr('data-type')){
+                                        case 'text':
+                                            _this.val(dataNameVal);
+                                            break;
+                                        case 'textarea':
+                                            _this.val(dataNameVal);
+                                            break;
+                                        case 'select':
+                                            console.log('select not done');
+                                            break;
+                                        case 'radio':
+                                            console.log('radio not done');
+                                            break;
+                                        case 'checkbox':
+                                            console.log('checkbox not done');
+                                            break;
+                                        case 'macros':
+                                            if(_this.attr('type') == 'text'){
+                                                _this.val(dataNameVal);
+                                            }else{
+                                                console.log('红控件 select');
+                                            }
+                                            break;
+                                        case '':
+
+                                            break;
+                                        default:
+                                            _this.val(dataNameVal);
+                                    }
                                 }
                             }
-                        }
+
+
+
+                        });
                     });
                 }
             });
@@ -133,6 +177,7 @@ var workForm = {
 
     },
     ReBuild:function(ele){
+        var that = this;
         var target = {};
         if(ele){
             target = ele;
@@ -161,6 +206,7 @@ var workForm = {
             }
             _this.addClass("form_item");
             _this.attr("id",$(this).attr("name"));
+            _this.attr("style",'width:170px;');
         });
         //list
         target.find("img.LIST_VIEW").each(function () {
@@ -195,7 +241,6 @@ var workForm = {
             $(this).attr("id",$(this).attr("name"));
         });
         target.find("select").each(function () {
-
             var _this = $(this);
             $(this).addClass("form_item");
             if(_this.attr('hidden')){
@@ -215,6 +260,25 @@ var workForm = {
             _this.before(radioStr);
 
             _this.remove();
+        });
+        target.find("img.USER").each(function(){
+            var _this = $(this);
+            console.log(_this.prev().length);
+            if(_this.prev().length>0){
+                _this.prev().attr("data-type","userselect");
+                _this.prev().attr("readonly","readonly");
+                _this.prev().attr("style",'width:150px;');
+                var selectImgStr = '<img align="absMiddle"  src="'+domain+'/img/workflow/work/orgselectuser.png" targetId="'+_this.prev().attr('name')+'" title="'+_this.prev().attr('title')+'">';
+                _this.before(selectImgStr);
+                _this.remove();
+                // _this.prev().on('click',function () {
+                //     alert(2);
+                //     that.tool.popUserSelect($(this).attr('targetId'));
+                // });
+            }
+
+
+
         });
     },
     MacrosRender:function(){
@@ -266,13 +330,14 @@ var workForm = {
     buildHTML:function(cb){
         var that = this;
         layer.load();
-        that.tool.ajaxHtml(that.option.resdata,function (res) {
+        that.tool.ajaxHtml(that.option.formhtmlurl,that.option.resdata,function (res) {
             if(res.flag){
                 var formObj = res.object.flowFormType || res.object;
                 if(formObj.printModel != ''){
                     //$(that.option.target).html(formObj.printModel);
                     if(that.option.flowStep != -1){
-                        that.option.listFp = res.object.listFp
+                        that.option.listFp = res.object.listFp;
+                        that.option.flowRun = res.object.flowRun;
                     }
                     that.option.eleObject = $('<div>'+formObj.printModel+'</div>');
                     $(that.option.target).html(that.render());
@@ -294,7 +359,7 @@ var workForm = {
     },
     getSearchData:function (cb) {
         var that = this;
-        this.tool.ajaxHtml(this.option.resdata,function (data) {
+        this.tool.ajaxHtml(that.option.formhtmlurl,this.option.resdata,function (data) {
             var formObj = data.object;
             that.option.eleObject = $('<div>'+formObj.printModel+'</div>');
             that.ReBuild();
@@ -452,11 +517,15 @@ var workForm = {
         getMacrosDate:function(flag){
             return this.MacrosDate[flag];
         },
-        ajaxHtml:function (data,cb) {
+        popUserSelect:function(target){
+            user_id = target;
+            $.popWindow(domain+"/common/selectUser");
+        },
+        ajaxHtml:function (url,data,cb) {
             var that = this;
             $.ajax({
                 type: "get",
-                url: workForm.option.formhtmlurl,
+                url: url,
                 dataType: 'JSON',
                 data:  data,
                 success: function (res) {

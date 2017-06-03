@@ -22,15 +22,28 @@ var numId={};
 var conditionsDate;//条件数据
 var canwritefieldtwo;//可写字段
 
-function saveOrUpdate() {
+function saveOrUpdate(isn) {
+    var savesring=''
+    if(isn==0){
+        numId.id=null;
+        savesring='/flowProcess/insert';
+    }else if(isn==1){
+        savesring='/flowProcess/updateTopAndLeft';
+        numId.id=$("#ele_designerId").val();
+    }
     $.ajax({
         type: 'POST',
-        url: '/flowProcess/insert',
+        url: savesring,
         dataType: 'json',
         data: numId,
         success: function (json) {
             if (json.flag) {
-               ajaxSvg();
+                if(isn==0) {
+
+                    ajaxSvg();
+                }else {
+                    location.reload();
+                }
             }else{
                 alert("新建流程节点失败");
             }
@@ -234,11 +247,12 @@ function ajaxSvg() {
                     var objtwo=obj.data;
                     console.log(objtwo);
                     dataToAll=designdata;//所有数据
-                    var stringdata='<option value="0">当前步骤</option>';
+                    var stringdata='<option value="">请选择</option>';
                     for(var il=0;il<dataToAll.length;il++){
                         stringdata+='<option value="'+dataToAll[il].prcsId+'">'+dataToAll[il].prcsName+'</option>'
                     }
                     $('[name="autoBaseUser"]').html(stringdata)
+                    $('[name="AUTO_PRCS_USER"]').html(stringdata)
                     formTwo.render();
 
 
@@ -322,10 +336,13 @@ $(function () {
 
 
     $('.savetwo').click(function () {
+            $('.theControlData').each(function () {
+                $(this).next().val($(this).attr('user_id'))
+            })
         $('#datasave').ajaxSubmit({
             type:'post',
             dataType:'json',
-            success:function () {
+            success:function (json) {
                 // location.reload();
             }
         })
@@ -482,9 +499,9 @@ $(function () {
 
         });
         form.on('select(automaticCandidateTwo)', function(data){
-            console.log(data.elem); //得到select原始DOM对象
-            console.log(data.value); //得到被选中的值
-            console.log(data.othis); //得到美化后的DOM对象
+            // console.log(data.elem); //得到select原始DOM对象
+            // console.log(data.value); //得到被选中的值
+            // console.log(data.othis); //得到美化后的DOM对象
             if(data.value==2||data.value==9||data.value==4||data.value==6||data.value==5||data.value==10||data.value==11){
                 $(data.elem).parent().siblings('div').hide();
                 $('.autoBaseUser').show();
@@ -1058,7 +1075,7 @@ $(function () {
                      <div class="candidatesPTwoall" style="margin-bottom: 20px;position:relative">\
                          <ul id="prcsItem"></ul>\
                          <a href="javascript:;" class="bottomsteptwos" style="position:absolute;top:17px;right:105px;color:#2f8ae3">选择</a>\
-                          <input type="hidden" name="prcsItemTwo">\
+                          <input type="hidden" name="prcsItem">\
                      </div>\
                 </li>\
                 <li>\
@@ -1172,7 +1189,7 @@ $(function () {
                 btn:['确定','关闭'],
                 yes:function (index) {
                     var obj={};
-                    obj.prcsItemTwo=$('[name="prcsItemTwo"]').val();
+                    obj.prcsItem=$('[name="prcsItem"]').val();
                     obj.attachPriv='';
                     $('[name="attachPriv"]:checked').each(function (i,n) {
                         obj.attachPriv+=$(this).val()+','
@@ -1182,7 +1199,7 @@ $(function () {
                     obj.attachMacroMark=$('[name="attachMacroMark"]:checked').val()
                     var str=JSON.stringify(obj)
                     $('.setUpThe').removeClass('active')
-                    $('[name="prcsItem"]').val(str)
+                    $('[name="prcsItemTwo"]').val(str)
                 layer.close(index)
                 },
                 btn2:function () {

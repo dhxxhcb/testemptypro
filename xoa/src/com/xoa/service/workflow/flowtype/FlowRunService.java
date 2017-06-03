@@ -8,4 +8,6 @@ public interface FlowRunService {
 	
 	public void save(FlowRun flowRun);
 
+	public FlowRun find(Integer runId);
+
 }

@@ -41,52 +41,117 @@
         <td class="th">职能</td>
     </tr>
     </thead>
-    <tbody id="j_tb">
-    <tr class="">
-        <td>1</td>
-        <td class="">系统管理员</td>
-        <td class="">公司动态</td>
-        <td>管理部</td>
-        <td>
-            <div>提供一个ebXML框架</div>
-       </td>
-        <td class="">2017-05-12 18:11:46</td>
-        <td class="">53</td>
-        <td class="">119</td>
-        <td>1</td>
-    </tr>
-    <tr class="">
-        <td>1</td>
-        <td class="">系统管理员</td>
-        <td class="">公司动态</td>
-        <td>管理部</td>
-        <td>
-            <div>提供一个ebXML框架</div>
-        </td>
-        <td class="">2017-05-12 18:11:46</td>
-        <td class="">53</td>
-        <td class="">119</td>
-        <td>1</td>
-    </tr>
-    <tr class="">
-        <td>1</td>
-        <td class="">系统管理员</td>
-        <td class="">公司动态</td>
-        <td>管理部</td>
-        <td>
-            <div>提供一个ebXML框架</div>
-        </td>
-        <td class="">2017-05-12 18:11:46</td>
-        <td class="">53</td>
-        <td class="">119</td>
-        <td>1</td>
-    </tr>
-
+    <tbody id="tableDapt">
 
     </tbody>
 </table>
 <!--content部分结束-->
-
-
 </body>
+<script>
+//    $(function () {
+//        var opt_li_dep = '<option value="0"  class="levelleft0">所有部门</option>';
+//        departmentAjax(function (departmentData) {
+//            opt_li_dep = departmentChild(departmentData, opt_li_dep, 0, deptId);
+//            $('#dept_id').html(opt_li_dep);
+//        });
+//        //部门遍历方法
+//
+//        function departmentChild(datas, opt_li, level, dept) {
+//            for (var i = 0; i < datas.length; i++) {
+//                var String = "";
+//                var space = ""
+//                for (var j = 0; j < level; j++) {
+//                    space += "├&nbsp;&nbsp;&nbsp;";
+//                }
+//                /* console.log("kongge"+space+"kongge")*/
+//                if (i == 0) {
+//                    String = space + "┌";
+//                } else if (i != 0) {
+//                    String = space + "├";
+//                } else if (i == datas.length - 1) {
+//                    String = space + "└";
+//                }
+//                if (dept == datas[i].deptId) {
+//                    opt_li += String + datas[i].deptName;
+//                } else {
+//                    opt_li +=String + datas[i].deptName;
+//                }
+//                /* 	console.log(datas[i].childs);*/
+//                if (datas[i].childs != null) {
+//                    opt_li = departmentChild(datas[i].childs, opt_li, level + 1, dept);
+//                }
+//            }
+//            return opt_li;
+//        }
+//
+//        //部门接口
+//        function departmentAjax(callback) {
+//            $.ajax({
+//                url: '../../department/getAlldept',
+//                type: 'get',
+//                dataType: 'json',
+//                success: function (obj) {
+//                    var data = obj.obj;
+//                    var departmentData = digui(data, 0);
+//                    callback(departmentData);
+//                }
+//            });
+//        }
+//
+//        function digui(datas, departId) {
+//            var data = new Array();
+//            for (var i = 0; i < datas.length; i++) {
+//                if (datas[i].deptParent == departId) {
+//                    datas[i]["childs"] = digui(datas, datas[i].deptId);
+//                    data.push(datas[i]);
+//                }
+//            }
+//            return data;
+//        }
+//
+//
+//    })
+
+    $(function(){
+        $.ajax({
+                url: '../../department/getAlldept',
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    var news = "";
+                    for (var i = 0; i < data.obj.length; i++) {
+                        news += "<tr><td>"+data.obj[i].deptName+"</td>"+//部门名称
+                            "<td>"+data.obj[i].manager +"</td>"+// 部门主管
+                            "<td>"+data.obj[i].assistantId+"</td>"+// 部门助理
+                            "<td>"+data.obj[i].leader1+"</td>"+// 主管领导
+                            "<td>"+data.obj[i].leader2 +"</td>"+// 分管领导
+                            "<td>"+data.obj[i].telNo +"</td>"+// 电话
+                            "<td>"+data.obj[i].faxNo+"</td>"+// 传真
+                            "<td>"+data.obj[i].deptAddress+"</td>"+// 地址
+                            "<td style='width:10%;'>"+data.obj[i].deptFunc+"</td></tr>";//部门职能
+                    }
+
+
+                    $("#tableDapt").html(news);
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+            });
+
+
+    })
+
+</script>
+
+
 </html>

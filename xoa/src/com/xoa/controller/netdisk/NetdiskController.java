@@ -11,11 +11,10 @@ import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.session.SessionUtils;
 import com.xoa.util.dataSource.ContextHolder;
-import com.xoa.util.netdisk.CheckAll;
-import com.xoa.util.netdisk.CopyFile;
-import com.xoa.util.netdisk.ReadFile;
+import com.xoa.util.netdisk.*;
 import org.apache.http.HttpRequest;
 import org.apache.poi.util.SystemOutLogger;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -101,7 +100,7 @@ public class NetdiskController {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         String mkDirectoryPath =path+"/"+directoryName;
-        System.out.print("sasasa"+mkDirectoryPath);
+
         ToJson<String> json=new ToJson<String>();
         if (ReadFile.mkDirectory(mkDirectoryPath)) {
             json.setFlag(0);
@@ -117,6 +116,46 @@ public class NetdiskController {
         return  json;
     }
 
+    /**
+     * 修改文件夹和文件名字
+     * @param request
+     * @param path
+     * @param newsName
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/changeName ",produces = {"application/json;charset=UTF-8"})
+    public String  changeName(HttpServletRequest request,String path,String newsName ){
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        File   file=new   File(path);   //指定文件名及路径
+        String name=newsName;
+        String   filename=file.getAbsolutePath();
+        String  filename1 = null;
+        String prefix=filename.substring(filename.lastIndexOf(".")+1,filename.length());
+        if(filename.indexOf(".")>=0)
+        {
+            filename   =   filename.substring(0,filename.lastIndexOf("."));
+            filename1= filename.substring(0,filename.lastIndexOf("\\"));
+            File newfile=new File(filename1+"/"+name+prefix);
+           file.renameTo(newfile);   //改名
+
+        }else {
+            filename1= filename.substring(0,filename.lastIndexOf("\\"));
+            File newfile=new File(filename1+"/"+name);
+            file.renameTo(newfile);
+        }
+        return  null;
+    }
+
+    /**
+     * 上传
+     * @param request
+     * @param response
+     * @param path
+     * @return
+     * @throws IOException
+     */
     @ResponseBody
     @RequestMapping(value="/uploadFile",method={RequestMethod.POST},produces = {"application/json;charset=UTF-8"})
     public ToJson<String>  uploadFile(HttpServletRequest request, HttpServletResponse response,String path) throws IOException {
@@ -188,6 +227,14 @@ public class NetdiskController {
         return  json;
     }
 
+    /**
+     * 下载
+     * @param fileName
+     * @param request
+     * @param response
+     * @param path
+     * @return
+     */
     @RequestMapping(value="/download",method={RequestMethod.GET},produces = {"application/json;charset=UTF-8"})
     public String download(String fileName, HttpServletRequest request,
                            HttpServletResponse response,String path) {
@@ -222,6 +269,11 @@ public class NetdiskController {
         return null;
     }
 
+    /**
+     * 复制文件
+     * @param path
+     * @return
+     */
     @RequestMapping(value="/copyFile",produces = {"application/json;charset=UTF-8"})
     public  ToJson<String>  copyFiles(String path){
         ToJson<String>  json=new ToJson<String>();
@@ -238,6 +290,13 @@ public class NetdiskController {
 
         return json;
     }
+
+    /**
+     * 写文件
+     * @param content
+     * @param path
+     * @return
+     */
     @RequestMapping(value="/writeFile",produces = {"application/json;charset=UTF-8"})
    public ToJson<String>  writeFile(String content,String path ){
         ToJson<String>  json=new ToJson<String>();
@@ -255,6 +314,133 @@ public class NetdiskController {
         return  json;
     }
 
+    /**
+     * 文件内容搜索
+     * @param content
+     * @param path
+     * @return
+     */
+    @RequestMapping(value="/globalFile",produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public ToJson<String>  globalFile(String content,String path ){
+        ToJson<String>  json=new ToJson<String>();
+        if(!StringUtils.checkNull(path)){
+            String filename = path;
+            //创建一个 File 实例，表示路径名是指定路径参数的文件
+            File file = new File(filename);
+            String[]    args=new String[]{content};//
+            for (int i = 0; i < args.length; i++) {
+                GlobalSearch.findFile(file, args[i]);
+
+                for (String string : GlobalSearch.path) {
+                    System.out.println(string
+                    );
+
+                }
+            }
+            json.setFlag(0);
+            json.setMsg("ok");
+            json.setObj(GlobalSearch.path);
+        }else {
+            json.setFlag(1);
+            json.setMsg("err");
+        }
+
+
+        return  json;
+    }
+    /**
+     * 文件内容搜索
+     * @param content
+     * @param path
+     * @return
+     */
+    @RequestMapping(value="/searchFile",produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public ToJson<String>  searchFile(String content,String path ) {
+        ToJson<String> json = new ToJson<String>();
+        if (!StringUtils.checkNull(path)) {
+            path = path.replaceAll("\\\\", "\\\\\\\\");
+          String fileName = content;
+            List<String> destpath = SearchFile.searchFile(path, fileName);
+            if (destpath != null && destpath.size() > 0) {
+                System.out.println("你要找的文件的目录如下：");
+                for (String s : destpath) {
+                    System.out.println(s);
+                }
+                json.setFlag(0);
+                json.setMsg("ok");
+                json.setObj(destpath);
+            } else {
+                System.out.println("没有找到或您输入有误");
+
+                json.setFlag(1);
+                json.setMsg("err");
+
+            }
+
+
+
+        }
+        return json;
+    }
+    @RequestMapping(value="/deleteFile",produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public  ToJson<String>  deleteFile(String path,String filename){
+        ToJson<String> json = new ToJson<String>();
+        File file=new File(path+"/"+filename);
+        if(file.exists()&&file.isFile()){
+            file.delete();
+            json.setMsg("ok");
+            json.setFlag(0);
+        }else {
+            json.setMsg("err");
+            json.setFlag(1);
+
+        }
+        return  json;
+    }
+
+    @RequestMapping(value="/deleteFolder",produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public  ToJson<String>  deleteFolder(String path){
+        ToJson<String> json = new ToJson<String>();
+  if(!StringUtils.checkNull(path)){
+            DeleteFile.refreshFileList(path);
+            json.setMsg("ok");
+            json.setFlag(0);
+        }else {
+            json.setMsg("err");
+            json.setFlag(1);
+
+        }
+        return  json;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -265,9 +451,6 @@ public class NetdiskController {
                 "loginDateSouse"));
         return "app/upload/updwj1";
     }
-
-
-
 
 
 

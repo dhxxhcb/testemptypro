@@ -297,6 +297,15 @@ public class FlowProcess implements Serializable {
      */
     private String prcsItemTwo;
 
+    /**
+     * 可写字段如果有值转为autoUser
+     */
+    private  String ITEM_ID;
+
+    /**
+     * 可写字段如果有值转为autoUser
+     */
+    private String AUTO_PRCS_USER;
 
     private List<Map<String, String>> connections;
 
@@ -952,5 +961,53 @@ public class FlowProcess implements Serializable {
 
     public void setSettlementOfCondition(String settlementOfCondition) {
         this.settlementOfCondition = settlementOfCondition;
+    }
+
+    /**
+     * 可写字段如果有值转为autoUser
+     * @return
+     */
+    public String getITEM_ID() {
+        return ITEM_ID;
+    }
+
+    /**
+     * 可写字段如果有值转为autoUser
+     * @param ITEM_ID
+     */
+    public void setITEM_ID(String ITEM_ID) {
+        this.ITEM_ID = ITEM_ID;
+    }
+
+    /**
+     * 可写字段如果有值转为autoUser
+     * @return
+     */
+    public String getAUTO_PRCS_USER() {
+        return AUTO_PRCS_USER;
+    }
+
+    /**
+     * 可写字段如果有值转为autoUser
+     * @param AUTO_PRCS_USER
+     */
+    public void setAUTO_PRCS_USER(String AUTO_PRCS_USER) {
+        this.AUTO_PRCS_USER = AUTO_PRCS_USER;
+    }
+
+    /**
+     * 可写字段Json串
+     * @return
+     */
+    public String getPrcsItemTwo() {
+        return prcsItemTwo;
+    }
+
+    /**
+     * 可写字段Json串
+     * @param prcsItemTwo
+     */
+    public void setPrcsItemTwo(String prcsItemTwo) {
+        this.prcsItemTwo = prcsItemTwo;
     }
 }

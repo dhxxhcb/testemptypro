@@ -99,60 +99,69 @@ public class WorkController {
     @RequestMapping("workfastAdd")
     @ResponseBody
 	public ToJson<FlowFast> fastAdd(HttpServletRequest request,
-		            int flowId) {
+		                        int flowId,int prcsId
+                                   ) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 		"loginDateSouse"));
-		int runId = flowRunService.getMaxRunId();
-		String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
-		int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
-		//FlowProcess flowProcess= flowProcessService.findbyprcsId(flowId, prcsId);
-		List<FlowProcess> fl=flowProcessService.findFlowId(flowId);
-		Map<String, Object> maps = new HashMap<String, Object>();
-		ToJson<FlowFast> tj = new ToJson<FlowFast>();
-		ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
-		maps.put("flowId", flowId);
-		toJson = flowTypeService.selectAllFlow(maps);
-		FlowTypeModel flowTypeModel = (FlowTypeModel) toJson.getObject();
-		String flowName = flowTypeModel.getFlowName();
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-		String beginTime = df.format(new Date());
-		String runName = flowName + " " + beginTime;
-		
-		FlowRun flowRun = new FlowRun();
-		flowRun.setRunId(runId);
-		flowRun.setRunName(runName);
-		flowRun.setFlowId(flowId);
-		flowRun.setBeginUser(userId);
-		flowRun.setBeginTime(beginTime);
-		flowRun.setBeginDept(deptId);
-		flowRun.setDelFlag("0");
-		//flowRun.setDelTime(beginTime);
-		flowRunService.save(flowRun);
-		
-		FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
-		flowRunPrcs.setRunId(runId);
-		//flowRunPrcs.setPrcsId(flowProcess.getPrcsId());
-		flowRunPrcs.setPrcsId(1);
-		flowRunPrcs.setUserId(userId);
-		flowRunPrcs.setPrcsDept(deptId);
-		flowRunPrcs.setPrcsFlag("4");
-		flowRunPrcs.setCreateTime(beginTime);
-		flowRunPrcs.setPrcsTime(beginTime);
-		flowRunPrcs.setDeliverTime(beginTime);
-		flowRunPrcs.setActiveTime(beginTime);
-		flowRunPrcsService.save(flowRunPrcs);
-		
-		ToJson<FlowFormType> json = new ToJson<FlowFormType>();
-		json = flowFormTypeService.qureyItemMax(flowTypeModel.getFormId());
-		FlowFormType flowFormType = (FlowFormType) json.getObject();
-		FlowFast f = new FlowFast();
-		f.setFlowTypeModel(flowTypeModel);
-		f.setFlowFormType(flowFormType);
-		f.setFlowRun(flowRun);
-		f.setFlowRunPrcs(flowRunPrcs);
-		f.setListFp(fl);
-		//f.setFlowProcesses(flowProcess);
-		
+        String id=request.getParameter("runId");
+        ToJson<FlowFast> tj = new ToJson<FlowFast>();
+        FlowFast f = new FlowFast();
+        List<FlowProcess> fl = flowProcessService.findFlowId(flowId);
+        Map<String, Object> maps = new HashMap<String, Object>();
+        ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
+        maps.put("flowId", flowId);
+        toJson = flowTypeService.selectAllFlow(maps);
+        FlowTypeModel flowTypeModel = (FlowTypeModel) toJson.getObject();
+
+        ToJson<FlowFormType> json = new ToJson<FlowFormType>();
+        json = flowFormTypeService.qureyItemMax(flowTypeModel.getFormId());
+        FlowFormType flowFormType = (FlowFormType) json.getObject();
+		if(prcsId==1) {
+            int runId = flowRunService.getMaxRunId();
+            String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
+            int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
+            //FlowProcess flowProcess= flowProcessService.findbyprcsId(flowId, prcsId);
+            String flowName = flowTypeModel.getFlowName();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            String beginTime = df.format(new Date());
+            String runName = flowName + " " + beginTime;
+
+            FlowRun flowRun = new FlowRun();
+            flowRun.setRunId(runId);
+            flowRun.setRunName(runName);
+            flowRun.setFlowId(flowId);
+            flowRun.setBeginUser(userId);
+            flowRun.setBeginTime(beginTime);
+            flowRun.setBeginDept(deptId);
+            flowRun.setDelFlag("0");
+            //flowRun.setDelTime(beginTime);
+            flowRunService.save(flowRun);
+
+            FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
+            flowRunPrcs.setRunId(runId);
+            //flowRunPrcs.setPrcsId(flowProcess.getPrcsId());
+            flowRunPrcs.setPrcsId(1);
+            flowRunPrcs.setUserId(userId);
+            flowRunPrcs.setPrcsDept(deptId);
+            flowRunPrcs.setPrcsFlag("4");
+            flowRunPrcs.setCreateTime(beginTime);
+            flowRunPrcs.setPrcsTime(beginTime);
+            flowRunPrcs.setDeliverTime(beginTime);
+            flowRunPrcs.setActiveTime(beginTime);
+            flowRunPrcsService.save(flowRunPrcs);
+
+            f.setFlowTypeModel(flowTypeModel);
+            f.setFlowFormType(flowFormType);
+            f.setFlowRun(flowRun);
+           // f.setFlowRunPrcs(flowRunPrcs);
+            f.setListFp(fl);
+        }else{
+            FlowRun flowRun = flowRunService.find(Integer.parseInt(id));
+            f.setFlowTypeModel(flowTypeModel);
+            f.setFlowFormType(flowFormType);
+            f.setFlowRun(flowRun);
+            f.setListFp(fl);
+        }
 		try {
 		tj.setObject(f);
 		tj.setMsg("OK");
@@ -303,13 +312,22 @@ public class WorkController {
     @ResponseBody
     public Map<String,Object> fastAdd(HttpServletRequest request,
                                     @RequestParam(value="runId",required = false) String runId,
-                                    @RequestParam(value="flowId",required = false) String flowId){
-
+                                    @RequestParam(value="flowId",required = false) String flowId
+                                     ){
         Map<String,Object> maps=new HashMap<String,Object>();
         maps.put("tableName","flow_data_"+flowId);
         maps.put("runId",runId);
-        Map<String,Object> map=workMapper.select(maps);
-        return map;
+        Map<String, Object> m = new HashMap<String, Object>();
+        try {
+            Map<String, Object> map = workMapper.select(maps);
+            m.put("obj", map);
+            m.put("flag", true);
+            m.put("msg", "OK");
+        }catch (Exception e){
+            m.put("flag", false);
+            m.put("msg", false);
+        }
+        return m;
     }
 
 

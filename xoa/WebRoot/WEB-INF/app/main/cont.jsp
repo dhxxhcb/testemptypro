@@ -25,6 +25,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<style>
 		@import url(m_reset.css);
+		.emli_choose{
+			background: #00a2d4;
+		}
 	</style>
 </head>
 
