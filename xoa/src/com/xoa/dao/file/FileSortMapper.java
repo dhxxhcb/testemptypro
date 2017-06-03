@@ -23,5 +23,5 @@ public interface FileSortMapper {
 
 	int saveFileSortChr(FileSortModel file);
 
-
+    int  updateSortAuth(Map<String,String> mmp);
 }

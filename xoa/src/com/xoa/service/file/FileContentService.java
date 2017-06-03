@@ -60,4 +60,5 @@ public interface FileContentService {
 	int updateFileCon(FileContentModel fcm);
 
 	BaseWrapper batchDeleteConId(Integer conId[]);
+
 }

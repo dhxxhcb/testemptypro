@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.xoa.model.file.FileSortModel;
 import com.xoa.util.ToJson;
+import com.xoa.util.common.wrapper.BaseWrapper;
 
 /**
  * 
@@ -126,6 +127,5 @@ public interface FileSortService {
      int saveFileSortChr(FileSortModel file);
 
 
-
-
+	BaseWrapper setFileSortAuth(Map<String, Object> mmp);
 }

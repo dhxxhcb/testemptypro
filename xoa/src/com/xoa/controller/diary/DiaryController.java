@@ -36,6 +36,11 @@ public class DiaryController {
 	@Resource
 	DiaryService diaryService;
 
+	@RequestMapping("/workLog")
+	public String workLog(){
+		return "app/diary/workLog";
+	}
+
 	@RequestMapping("/details")
 	public String details() {
 		return "app/diary/details";
