@@ -160,7 +160,7 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		String name = "{\"intoTheCondition\":{\"list\":[\"\",\"\"],\"prcsInSet\":\"fdsafsda\",\"conditionDesc\":\"fdasdfas\"},\"transferConditions\":{\"list\":[\"\"],\"prcsOutSet\":\"fdafdsa\",\"conditionDesc\":\"fdasdfas\"}}\n";
+		String name = "{\"intoTheCondition\":{\"list\":[],\"prcsInSet\":\"\",\"conditionDesc\":\"\"},\"transferConditions\":{\"list\":[],\"prcsOutSet\":\"\",\"conditionDesc\":\"\"}}";
 		JSONObject obj = JSONArray.parseObject(name);
 		String obj1 = obj.getString("intoTheCondition");
 		String obj2 = obj.getString("transferConditions");
