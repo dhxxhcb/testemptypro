@@ -51,7 +51,7 @@ function savemobile() {
         data: numIds,
         success: function (json) {
             if (json.flag) {
-                    location.reload();
+                   console.log('成功')
             }else{
                 alert("新建流程节点失败");
             }
@@ -228,6 +228,8 @@ function ajaxSvg() {
                 }
             };
 
+
+
             flowDesign.loadData(jsondata);
             flowDesign.onItemFocus = function (id, model) {
                 $('#propertyForm').css('right','0px')
@@ -237,16 +239,20 @@ function ajaxSvg() {
                 $("#ele_id").val(id);
 
                 if (model == "line") {
-                    // obj = this.$lineData[id];
-                    // $("#ele_type").val(obj.M);
-                    // $("#ele_left").val("");
-                    // $("#ele_top").val("");
-                    // $("#ele_width").val("");
-                    // $("#ele_height").val("");
-                    // $("#ele_designerId").val("");
-                    // $("#ele_from").val(obj.from);
-                    // $("#ele_to").val(obj.to);
-                    // $("#ele_flow").val("");
+                    obj = this.$lineData[id];
+                    $("#ele_type").val(obj.M);
+                    $("#ele_left").val("");
+                    $("#ele_top").val("");
+                    $("#ele_width").val("");
+                    $("#ele_height").val("");
+                    $("#ele_designerId").val("");
+                    $("#ele_from").val(obj.from);
+                    $("#ele_to").val(obj.to);
+                    $("#ele_flow").val("");
+
+
+
+
 
                 } else if (model == "node") {
                     obj = this.$nodeData[id];
@@ -366,6 +372,10 @@ function ajaxSvg() {
 
 
                 }
+
+
+
+
                 $("#ele_name").val(obj.name);
                 return true;
             };
