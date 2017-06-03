@@ -726,29 +726,25 @@
                 data_notice['lastEditTimes']=$('#add_newDate').val();
                 data_notice['notifyId']=noId;
                 update(data_notice);
-            }else{
-                /*$('.nav_t2').html('新建公告通知');*/
+            }else if(action=="add"){
+                add_notice(data_notice);
                 //空数据
-                $('#add_selectUser').val();//选人
+              /*  $('#add_selectUser').val();//选人
                 $('#add_texta').val();//选部门
                 $('#add_texta').val();//选角色
                 $('#add_selectjuese').val();//角色
                 $('#add_newDate').val();//发布时间
                 $('#start_add').val();//起始时间
                 $('#end_add').val();//结束时间
-                /*$('#add_selectUser').val(data.userId);*/
-                /*$('#add_type_notice').selected(data.typeName);*/
+                /!*$('#add_selectUser').val(data.userId);*!/
+                /!*$('#add_type_notice').selected(data.typeName);*!/
                 $("#add_type_notice").find("option[value=选择公告类型]").attr("selected",true);//类型
-                /* if(data.top==1){
+                /!* if(data.top==1){
                  $('#textTop').prop('checked',true);//是否置顶
-                 };*/
+                 };*!/
 
-                ue.setContent();//内容
+                ue.setContent();//内容*/
 
-                $("#add_sel").find("option[value=普通格式]").attr("selected",true);//格式
-                $('#add_summny').val();//内容
-                $('.keyword_ip').val();//关键词
-                add_notice(data_notice);
             }
 
         })
