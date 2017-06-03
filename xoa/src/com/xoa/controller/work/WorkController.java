@@ -303,13 +303,22 @@ public class WorkController {
     @ResponseBody
     public Map<String,Object> fastAdd(HttpServletRequest request,
                                     @RequestParam(value="runId",required = false) String runId,
-                                    @RequestParam(value="flowId",required = false) String flowId){
-
+                                    @RequestParam(value="flowId",required = false) String flowId
+                                     ){
         Map<String,Object> maps=new HashMap<String,Object>();
         maps.put("tableName","flow_data_"+flowId);
         maps.put("runId",runId);
-        Map<String,Object> map=workMapper.select(maps);
-        return map;
+        Map<String, Object> m = new HashMap<String, Object>();
+        try {
+            Map<String, Object> map = workMapper.select(maps);
+            m.put("obj", map);
+            m.put("flag", true);
+            m.put("msg", "OK");
+        }catch (Exception e){
+            m.put("flag", false);
+            m.put("msg", false);
+        }
+        return m;
     }
 
 
