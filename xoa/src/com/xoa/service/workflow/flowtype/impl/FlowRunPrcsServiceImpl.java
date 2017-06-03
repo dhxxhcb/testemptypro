@@ -44,7 +44,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 	 * 创建作者:   张勇
 	 * 创建日期:   2017/5/24 20:29
 	 * 方法介绍:   查询待办工作
-	 * 参数说明:
+	 * 参数说明:  修整时间计算
 	 * @return
 	 */
 	@SuppressWarnings("all")
@@ -68,7 +68,6 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
 				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
 				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
-				System.out.println("flowRunPrcs.getDeliverTime()："+flowRunPrcs.getDeliverTime());
 				if(!StringUtils.checkNull(flowRunPrcs.getDeliverTime())) {
 					flowRunPrcs.setDeliverTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getDeliverTime())));
 					flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getDeliverTime())));
