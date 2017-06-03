@@ -80,6 +80,10 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 					flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(upTime)));
 					flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getReceiptTime())));
 				}
+				if(!StringUtils.checkNull(flowRunPrcs.getPrcsTime())){
+                    flowRunPrcs.setPrcsTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
+                }
+
 				returnList.add(flowRunPrcs);
 			}
 			long end = System.currentTimeMillis();

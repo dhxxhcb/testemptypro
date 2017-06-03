@@ -74,7 +74,7 @@ public class Atest {
 	private WorkMapper workMapper;
 
 	@Test
-	public  void main(String[] args) {
+	public void test()throws  Exception {
 		/*String fils = "2615@1310_598983059";
 		String names = fils.substring(0,fils.lastIndexOf("@"));
 		String nmas1 = fils.substring(fils.indexOf("@")+1,fils.lastIndexOf("_"));
@@ -85,13 +85,10 @@ public class Atest {
 		Map<String,Object> maps=new HashMap<String,Object>();
 		maps.put("tableName","flow_data_27");
 		maps.put("runId","1012");
-		List<Map<String,Object>> list=workMapper.select(maps);
+		Map<String,Object> map=workMapper.select(maps);
 		List<String> key =new ArrayList<String>();
 		List<String> value =new ArrayList<String>();
-		for(Map<String,Object> m:list){
-			key.add((String)m.get("key"));
-			value.add((String)m.get("value"));
-		}
+
 		System.out.println(key.toString());
 		System.out.println(value.toString());
 
