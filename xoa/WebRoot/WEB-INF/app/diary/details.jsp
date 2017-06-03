@@ -204,9 +204,21 @@
 
 <script src="../../js/workflow/work/GM.js"></script>
 <script>
-    $(function(){
+    $(function () {
 
-    })
+        var nid=$.getQueryString('id');
+
+        $.ajax({
+            type:'get',
+            url:'diary/getIndex',
+            dataType:'json',
+            data:{'diaId':nid},
+            success:function(rsp){
+               console.log(rsp);
+            }
+        });
+
+    }) ;
 </script>
 <script>
     (function(win, $){
