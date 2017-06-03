@@ -86,7 +86,10 @@ public class InterfaceController {
         try {
 
             List<InterfaceModel> interfaceModelList = interfaceService.getInterfaceInfo();
-            tojson.setObject(interfaceModelList);
+            if (interfaceModelList != null && interfaceModelList.size() == 1) {
+
+                tojson.setObject(interfaceModelList.get(0));
+            }
             tojson.setMsg("ok");
             tojson.setFlag(0);
         } catch (Exception e) {
@@ -116,7 +119,7 @@ public class InterfaceController {
             interfaceService.updateInterfaceInfo(interfaceModel);
             tojson.setMsg("ok");
             tojson.setFlag(0);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             tojson.setMsg(e.getMessage());
         }
 

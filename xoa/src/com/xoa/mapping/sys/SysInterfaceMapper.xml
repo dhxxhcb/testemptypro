@@ -103,9 +103,9 @@
             <if test="statusText != null">
                 STATUS_TEXT = #{statusText,jdbcType=LONGVARCHAR},
             </if>
-            <if test="notifyText != null">
-                NOTIFY_TEXT = #{record.notifyText,jdbcType=LONGVARCHAR},
-            </if>
+<!--            <if test="notifyText != null">
+                NOTIFY_TEXT = #{notifyText,jdbcType=LONGVARCHAR},
+            </if>-->
         </set>
 
 
