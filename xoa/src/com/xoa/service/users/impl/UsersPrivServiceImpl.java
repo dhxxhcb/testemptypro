@@ -3,6 +3,7 @@ package com.xoa.service.users.impl;
 import com.xoa.dao.users.UserPrivMapper;
 import com.xoa.model.users.UserPriv;
 import com.xoa.service.users.UsersPrivService;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,39 @@ public class UsersPrivServiceImpl implements UsersPrivService {
                     sb.append(privName).append(",");
                 } else {
                     sb.append(privName);
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2016年6月3日 下午4:02:05
+     * 方法介绍:   根据privid串获取privName
+     * 参数说明:   @param privId  privId
+     * 参数说明:   @return
+     *
+     * @return List<String>  返回部门串
+     */
+    @SuppressWarnings("all")
+    @Override
+    public String getPrivNameByPrivId(String privId,String flag) {
+        if (StringUtils.checkNull(privId)) {
+            return null;
+        }
+        //定义用于角色
+        StringBuffer sb = new StringBuffer();
+        String[] temp = privId.split(flag);
+        for (int i = 0; i < temp.length; i++) {
+            if (!StringUtils.checkNull(temp[i])) {
+                String userName = userPrivMapper.getPrivNameByPrivId(Integer.parseInt(temp[i]));
+                if (userName != "") {
+                    if (i < temp.length - 1) {
+                        sb.append(userName).append(",");
+                    } else {
+                        sb.append(userName);
+                    }
                 }
             }
         }
@@ -206,7 +240,7 @@ public class UsersPrivServiceImpl implements UsersPrivService {
                         hashMap.put("id", id);
                         hashMap.put("funcIdStr", funcIdStr);
                         userPrivMapper.updateUserPrivFuncIdStr(hashMap);
-                    }else if(funcId != null) {
+                    } else if (funcId != null) {
                         funcIdStr = "";
                         Map<String, Object> hashMap = new HashMap<String, Object>();
                         hashMap.put("id", id);

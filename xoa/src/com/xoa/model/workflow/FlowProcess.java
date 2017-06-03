@@ -307,6 +307,22 @@ public class FlowProcess implements Serializable {
      */
     private String AUTO_PRCS_USER;
 
+    /**
+     * 部门汉字
+     */
+    private String prcsDeptName;
+
+    /**
+     * 用户汉字
+     */
+    private String prcsUserName;
+
+    /**
+     * 角色汉字
+     */
+    private String prcsPrivName;
+
+
     private List<Map<String, String>> connections;
 
     private Integer max;
@@ -1009,5 +1025,53 @@ public class FlowProcess implements Serializable {
      */
     public void setPrcsItemTwo(String prcsItemTwo) {
         this.prcsItemTwo = prcsItemTwo;
+    }
+
+    /**
+     * 部门汉字
+     * @return
+     */
+    public String getPrcsDeptName() {
+        return prcsDeptName;
+    }
+
+    /**
+     * 部门汉字
+     * @param prcsDeptName
+     */
+    public void setPrcsDeptName(String prcsDeptName) {
+        this.prcsDeptName = prcsDeptName;
+    }
+
+    /**
+     *  用户汉字
+     * @return
+     */
+    public String getPrcsUserName() {
+        return prcsUserName;
+    }
+
+    /**
+     * 用户汉字
+     * @param prcsUserName
+     */
+    public void setPrcsUserName(String prcsUserName) {
+        this.prcsUserName = prcsUserName;
+    }
+
+    /**
+     * 角色汉字
+     * @return
+     */
+    public String getPrcsPrivName() {
+        return prcsPrivName;
+    }
+
+    /**
+     * 角色汉字
+     * @param prcsPrivName
+     */
+    public void setPrcsPrivName(String prcsPrivName) {
+        this.prcsPrivName = prcsPrivName;
     }
 }

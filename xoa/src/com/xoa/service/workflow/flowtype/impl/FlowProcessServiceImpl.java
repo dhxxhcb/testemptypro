@@ -9,7 +9,11 @@ import javax.annotation.Resource;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.xoa.model.department.Department;
 import com.xoa.model.workflow.FlowRunPrcs;
+import com.xoa.service.department.DepartmentService;
+import com.xoa.service.users.UsersPrivService;
+import com.xoa.service.users.UsersService;
 import com.xoa.util.common.L;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +29,16 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 
     @Resource
     private FlowProcessMapper flowProcessMapper;
+
+    @Resource
+    private DepartmentService departmentService;
+
+    @Resource
+    private UsersPrivService usersPrivService;
+
+    @Resource
+    private UsersService usersService;
+
 
     @Override
     public FlowProcess find(int id) {
@@ -138,6 +152,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
         return toJson;
     }
 
+    //添加汉字转换方法
     @Override
     public FlowProcessList flowView(int flowId) {
         //定义用于返回的流程信息
@@ -175,9 +190,22 @@ public class FlowProcessServiceImpl implements FlowProcessService {
                 }
             }
         }
+        List<FlowProcess> listp = new ArrayList<>();
+        for(FlowProcess flowProcess : list){
+            if(!StringUtils.checkNull(flowProcess.getPrcsDept())){
+                flowProcess.setPrcsDeptName(departmentService.getDeptNameByDeptId(flowProcess.getPrcsDept(),","));
+            }
+            if(!StringUtils.checkNull(flowProcess.getPrcsPriv())){
+                flowProcess.setPrcsPrivName(usersPrivService.getPrivNameByPrivId(flowProcess.getPrcsPriv(),","));
+            }
+            if(!StringUtils.checkNull(flowProcess.getPrcsUser())){
+                flowProcess.setPrcsUserName(usersService.getUserNameById(flowProcess.getPrcsUser()));
+            }
+            listp.add(flowProcess);
+        }
         f.setConnections(lm);
-        f.setDesigndata(list);
-        f.setMax(list.size());
+        f.setDesigndata(listp);
+        f.setMax(listp.size());
         return f;
     }
 
@@ -228,5 +256,17 @@ public class FlowProcessServiceImpl implements FlowProcessService {
         }
         return toJson;
     }
+
+    /**
+     * 部门id转换为部门名字
+     * @param name
+     * @return
+     */
+    public String deptName(String name){
+        String deptName = null;
+//        getDeptNameById
+        return deptName;
+    }
+
 
 }
