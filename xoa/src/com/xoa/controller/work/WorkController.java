@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import com.xoa.dao.work.WorkMapper;
 import com.xoa.util.common.StringUtils;
 import org.apache.commons.collections.map.HashedMap;
@@ -229,36 +230,6 @@ public class WorkController {
             param.put("keys",key);
             param.put("values",value);
             workMapper.insert(param);
-
-          /*  String keys = "run_id,run_name,begin_time,begin_user";
-            String values = "" +runId + "," +"'"+ runName +"'"+ "," +"'"+ beginTime+"'" + "," +"'"+ beginUser+"'";
-            StringBuffer sb = new StringBuffer();
-            sb.append(keys);
-            StringBuffer sb1 = new StringBuffer();
-            sb1.append(values);
-            for(Map<String,Object> map: l){
-                sb.append(",").append(map.get("key"));
-                sb1.append(",").append("'").append(map.get("value")).append("'");
-            }
-            System.out.println(sb1.toString());
-            String sqlAll = "insert into " + tableName + "(" + sb.toString() + ") " + "values(" + sb1.toString() + ")";
-            System.out.println(sqlAll.toString());
-            CheckTableExist.createSql(sqlAll);*/
-            //String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
-            // int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
-           /* flowRunPrcs = new FlowRunPrcs();
-            flowRunPrcs.setRunId(runId);
-            flowRunPrcs.setPrcsId(1);
-           // flowRunPrcs.setUserId(userId);
-            //flowRunPrcs.setPrcsDept(deptId);
-            flowRunPrcs.setPrcsTime(beginTime);
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-            flowRunPrcs.setDeliverTime(df.format(new Date()));
-            flowRunPrcs.setPrcsTime(beginTime);
-            flowRunPrcs.setCreateTime(beginTime);
-            flowRunPrcs.setDeliverTime(beginTime);
-            flowRunPrcs.setActiveTime(beginTime);
-            flowRunPrcsService.save(flowRunPrcs);*/
         }
         try {
             f.setFlowRunPrcs(flowRunPrcs);
@@ -317,6 +288,30 @@ public class WorkController {
         }
         return toJson;
     }
+    /**
+     * 创建作者:   zlf
+     * 创建日期:   2017年6月3日 上午9:54:09
+     * 方法介绍:   查询表单数据
+     * 参数说明:   @param request 请求
+     * 参数说明:   @param flowId 流程id
+     * 参数说明:   @param runId  flowRun的流程实例Id
+     * 参数说明:   @return
+     * 参数说明:   @throws JSONException
+     * @return     String
+     */
+    @RequestMapping("selectFlowData")
+    @ResponseBody
+    public Map<String,Object> fastAdd(HttpServletRequest request,
+                                    @RequestParam(value="runId",required = false) String runId,
+                                    @RequestParam(value="flowId",required = false) String flowId){
+
+        Map<String,Object> maps=new HashMap<String,Object>();
+        maps.put("tableName","flow_data_"+flowId);
+        maps.put("runId",runId);
+        Map<String,Object> map=workMapper.select(maps);
+        return map;
+    }
+
 
 
 
