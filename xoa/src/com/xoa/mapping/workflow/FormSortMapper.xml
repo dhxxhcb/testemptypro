@@ -237,7 +237,7 @@ LEFT JOIN (
  SELECT COUNT(flow_form_type.FORM_ID) AS FORM_COUNTS,flow_form_type.FORM_SORT FROM flow_form_type  GROUP BY flow_form_type.FORM_SORT
 ) AS countform ON countform.FORM_SORT=form_sort.SORT_ID
 LEFT JOIN department ON department.DEPT_ID=form_sort.DEPT_ID
-ORDER BY SORT_ID,SORT_NO ASC
+ORDER BY SORT_NO,SORT_ID ASC
   </select>
   <select id="selectNoformSort" resultType="Integer">
     SELECT COUNT(flow_form_type.FORM_ID) AS FORM_COUNTS FROM flow_form_type WHERE flow_form_type.FORM_SORT=0 or flow_form_type.FORM_SORT IS NULL
