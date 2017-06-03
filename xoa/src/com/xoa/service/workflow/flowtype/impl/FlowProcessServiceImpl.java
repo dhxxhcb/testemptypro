@@ -53,6 +53,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
      * 创建日期:  2017年5月10日 上午11:18:20
      * 方法介绍:   （修改后保存）在6/3修改补充json解析，并完善已知bug(张勇)
      * 参数说明:
+     *
      * @return
      */
     @Override
@@ -60,57 +61,60 @@ public class FlowProcessServiceImpl implements FlowProcessService {
     public ToJson<FlowProcess> updateByPrimaryKeySelective(FlowProcess record) {
         ToJson<FlowProcess> tojson = new ToJson<FlowProcess>();
         try {
-            L.a("itemId："+record.getITEM_ID());
-            L.a("autoPrcsUser："+record.getAUTO_PRCS_USER());
+            L.a("itemId：" + record.getITEM_ID());
+            L.a("autoPrcsUser：" + record.getAUTO_PRCS_USER());
 
             // 解析页面json串
-            if(!StringUtils.checkNull(record.getSettlementOfCondition())){
+            if (!StringUtils.checkNull(record.getSettlementOfCondition())) {
                 String tlement = record.getSettlementOfCondition();
                 String intoTheCondition = JSONArray.parseObject(tlement).getString("intoTheCondition");
                 String transferConditions = JSONArray.parseObject(tlement).getString("transferConditions");
-                if(!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("list"))){
+                if (!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("list")) && !StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("list"))) {
+                    record.setPrcsIn(JSONArray.parseObject(intoTheCondition).getString("list") + "\n" + JSONArray.parseObject(transferConditions).getString("list"));
+                } else if (!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("list"))) {
                     record.setPrcsIn(JSONArray.parseObject(intoTheCondition).getString("list"));
-                }
-                if(!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("prcsInSet"))){
-                    record.setPrcsInSet(JSONArray.parseObject(intoTheCondition).getString("prcsInSet"));
-                }
-                if(!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("conditionDesc"))){
-                    record.setConditionDesc(JSONArray.parseObject(intoTheCondition).getString("conditionDesc"));
-                }
-                if(!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("list"))){
+                } else if (!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("list"))) {
                     record.setPrcsOut(JSONArray.parseObject(transferConditions).getString("list"));
                 }
-                if(!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("prcsOutSet"))){
+
+                if (!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("prcsInSet"))) {
+                    record.setPrcsInSet(JSONArray.parseObject(intoTheCondition).getString("prcsInSet"));
+                }
+                if (!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("conditionDesc"))) {
+                    record.setConditionDesc(JSONArray.parseObject(intoTheCondition).getString("conditionDesc"));
+                }
+
+                if (!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("prcsOutSet"))) {
                     record.setPrcsOutSet(JSONArray.parseObject(transferConditions).getString("prcsOutSet"));
                 }
 
-                if(!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("conditionDesc"))){
+                if (!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("conditionDesc"))) {
                     record.setConditionDesc(JSONArray.parseObject(transferConditions).getString("conditionDesc"));
                 }
             }
             // 解析页面json串
-            if(!StringUtils.checkNull(record.getPrcsItemTwo())){
+            if (!StringUtils.checkNull(record.getPrcsItemTwo())) {
                 String prcsItem = record.getPrcsItemTwo();
-                if(!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("prcsItem"))){
+                if (!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("prcsItem"))) {
                     record.setPrcsItem(JSONArray.parseObject(prcsItem).getString("prcsItem"));
                 }
-                if(!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachPriv"))){
+                if (!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachPriv"))) {
                     record.setAttachPriv(JSONArray.parseObject(prcsItem).getString("attachPriv"));
                 }
-                if(!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachEditPriv"))){
+                if (!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachEditPriv"))) {
                     record.setAttachEditPriv(JSONArray.parseObject(prcsItem).getString("attachEditPriv"));
                 }
-                if(!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachEditPrivOnline"))){
+                if (!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachEditPrivOnline"))) {
                     record.setAttachEditPrivOnline(JSONArray.parseObject(prcsItem).getString("attachEditPrivOnline"));
                 }
-                if(!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachMacroMark"))){
+                if (!StringUtils.checkNull(JSONArray.parseObject(prcsItem).getString("attachMacroMark"))) {
                     record.setAttachMacroMark(JSONArray.parseObject(prcsItem).getString("attachMacroMark"));
                 }
             }
-            if(!StringUtils.checkNull(record.getITEM_ID())){
+            if (!StringUtils.checkNull(record.getITEM_ID())) {
                 record.setAutoUser(record.getITEM_ID());
             }
-            if(!StringUtils.checkNull(record.getITEM_ID())){
+            if (!StringUtils.checkNull(record.getITEM_ID())) {
                 record.setAutoUser(record.getITEM_ID());
             }
             flowProcessMapper.updateByPrimaryKeySelective(record);
@@ -135,17 +139,18 @@ public class FlowProcessServiceImpl implements FlowProcessService {
      * 创建日期:   2017年5月22日 上午9:44:40
      * 方法介绍:   删除流程
      * 参数说明:   @param id
-     * @return     void
+     *
+     * @return void
      */
     @Override
     @Transactional
     public ToJson<FlowProcess> delete(int id) {
         ToJson<FlowProcess> toJson = new ToJson<FlowProcess>();
-        try{
+        try {
             flowProcessMapper.deleteByPrimaryKey(id);
             toJson.setFlag(0);
             toJson.setMsg("ok");
-        }catch (Exception e){
+        } catch (Exception e) {
             toJson.setFlag(1);
             toJson.setMsg("error");
         }
@@ -165,7 +170,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
         int len = list.size();
         //f.setFlowName(list.get(0).getFlowName());
         list.get(0).setSetType("start");
-        list.get(len-1).setSetType("end");
+        list.get(len - 1).setSetType("end");
         for (int i = 0; i < len; i++) {
             Integer prId = list.get(i).getPrcsId();
             String prceTo = list.get(i).getPrcsTo();
@@ -191,14 +196,14 @@ public class FlowProcessServiceImpl implements FlowProcessService {
             }
         }
         List<FlowProcess> listp = new ArrayList<>();
-        for(FlowProcess flowProcess : list){
-            if(!StringUtils.checkNull(flowProcess.getPrcsDept())){
-                flowProcess.setPrcsDeptName(departmentService.getDeptNameByDeptId(flowProcess.getPrcsDept(),","));
+        for (FlowProcess flowProcess : list) {
+            if (!StringUtils.checkNull(flowProcess.getPrcsDept())) {
+                flowProcess.setPrcsDeptName(departmentService.getDeptNameByDeptId(flowProcess.getPrcsDept(), ","));
             }
-            if(!StringUtils.checkNull(flowProcess.getPrcsPriv())){
-                flowProcess.setPrcsPrivName(usersPrivService.getPrivNameByPrivId(flowProcess.getPrcsPriv(),","));
+            if (!StringUtils.checkNull(flowProcess.getPrcsPriv())) {
+                flowProcess.setPrcsPrivName(usersPrivService.getPrivNameByPrivId(flowProcess.getPrcsPriv(), ","));
             }
-            if(!StringUtils.checkNull(flowProcess.getPrcsUser())){
+            if (!StringUtils.checkNull(flowProcess.getPrcsUser())) {
                 flowProcess.setPrcsUserName(usersService.getUserNameById(flowProcess.getPrcsUser()));
             }
             listp.add(flowProcess);
@@ -225,14 +230,13 @@ public class FlowProcessServiceImpl implements FlowProcessService {
     }
 
     @Override
-    public  FlowProcess findbyprcsId(int flowId,int prcsId){
-    	  Map<String, Object> maps = new HashMap<String, Object>();
-          maps.put("folwId", flowId);
-          maps.put("prcsId", prcsId);
-          FlowProcess flowProcess = flowProcessMapper.find(maps);
-          return flowProcess;
+    public FlowProcess findbyprcsId(int flowId, int prcsId) {
+        Map<String, Object> maps = new HashMap<String, Object>();
+        maps.put("folwId", flowId);
+        maps.put("prcsId", prcsId);
+        FlowProcess flowProcess = flowProcessMapper.find(maps);
+        return flowProcess;
     }
-
 
 
     /**
@@ -240,17 +244,18 @@ public class FlowProcessServiceImpl implements FlowProcessService {
      * 创建日期:   2017/6/3 11:24
      * 方法介绍:   修改流程节点坐标
      * 参数说明:
+     *
      * @return
      */
     @Override
     @Transactional
-    public ToJson<FlowProcess> updateTopAndLeft(FlowProcess flowProcess){
+    public ToJson<FlowProcess> updateTopAndLeft(FlowProcess flowProcess) {
         ToJson<FlowProcess> toJson = new ToJson<FlowProcess>();
         try {
             flowProcessMapper.updateTopAndLeft(flowProcess);
             toJson.setFlag(0);
             toJson.setMsg("ok");
-        }catch (Exception e){
+        } catch (Exception e) {
             toJson.setTotleNum(1);
             toJson.setMsg("error");
         }
@@ -259,10 +264,11 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 
     /**
      * 部门id转换为部门名字
+     *
      * @param name
      * @return
      */
-    public String deptName(String name){
+    public String deptName(String name) {
         String deptName = null;
 //        getDeptNameById
         return deptName;
