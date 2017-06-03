@@ -2,6 +2,7 @@ package com.xoa.dao.workflow;
 
 import com.xoa.dao.base.BaseMapper;
 import com.xoa.model.workflow.FlowRunPrcs;
+import com.xoa.model.workflow.FlowRunPrcsExcted;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -70,7 +71,7 @@ public interface FlowRunPrcsMapper extends BaseMapper<FlowRunPrcs>{
 
     FlowRunPrcs selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(FlowRunPrcs record);
+    int updateByPrimaryKeySelective(FlowRunPrcsExcted record);
 
     int updateByPrimaryKey(FlowRunPrcs record);
 }
