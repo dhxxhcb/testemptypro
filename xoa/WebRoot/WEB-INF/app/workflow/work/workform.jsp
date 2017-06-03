@@ -521,7 +521,7 @@
                                 }
                             }
                        }
-                       if(value != '' && value){
+                       if( value!=null){
                            baseData["key"]=key;
                            baseData["value"]=value;
                            realData.push(baseData);
