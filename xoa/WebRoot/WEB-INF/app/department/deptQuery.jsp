@@ -41,66 +41,11 @@
         <td class="th">职能</td>
     </tr>
     </thead>
-    <tbody id="j_tb">
-    <tr class="">
-        <td>1</td>
-        <td class="">系统管理员</td>
-        <td class="">公司动态</td>
-        <td>管理部</td>
-        <td>
-            <div>提供一个ebXML框架</div>
-        </td>
-        <td class="">2017-05-12 18:11:46</td>
-        <td class="">53</td>
-        <td class="">119</td>
-        <td>1</td>
-    </tr>
-    <tr class="">
-        <td>1</td>
-        <td class="">系统管理员</td>
-        <td class="">公司动态</td>
-        <td>管理部</td>
-        <td>
-            <div>提供一个ebXML框架</div>
-        </td>
-        <td class="">2017-05-12 18:11:46</td>
-        <td class="">53</td>
-        <td class="">119</td>
-        <td>1</td>
-    </tr>
-    <tr class="">
-        <td>1</td>
-        <td class="">系统管理员</td>
-        <td class="">公司动态</td>
-        <td>管理部</td>
-        <td>
-            <div>提供一个ebXML框架</div>
-        </td>
-        <td class="">2017-05-12 18:11:46</td>
-        <td class="">53</td>
-        <td class="">119</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>中国兵器工业信息中心</td>
-        <td>系统管理员</td>
-        <td>公司动态</td>
-        <td>管理部</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>北京市海淀区车道沟10号</td>
-        <td style="padding:5px;width:10%;">
-            中国兵器工业信息中心隶属于中国兵器工业集团公司，从事高新技术研究开发的事业单位。中心经过十几年的建设和开拓发展，在信息技术领域中拥有一支实力雄厚的专业技术队伍。拥有近100个地面站构成的卫星通信系统、由16个子系统组成的集团公司计算机网络管理信息系统和集团公司Internet网站以及计算机、通信设施等近千万元的固定资产。中心愿以先进的技术手段在IT技术开发、卫星通信及其它通信工程、网络技术、信息系统的集成、软件开发和Internet技术等领域为社会各界提供服务。愿与同行及广大用户广泛合作，满怀信心在新世纪共创新的辉煌。
-        </td>
-    </tr>
-    <div id="dept_id">5555555555555</div>
+    <tbody id="tableDapt">
 
     </tbody>
 </table>
 <!--content部分结束-->
-
-
 </body>
 <script>
 //    $(function () {
@@ -172,7 +117,22 @@
                 url: '../../department/getAlldept',
                 type: 'get',
                 dataType: 'json',
-                success: function (obj) {
+                success: function (data) {
+                    var news = "";
+                    for (var i = 0; i < data.obj.length; i++) {
+                        news += "<tr><td>"+data.obj[i].deptName+"</td>"+//部门名称
+                            "<td>"+data.obj[i].manager +"</td>"+// 部门主管
+                            "<td>"+data.obj[i].assistantId+"</td>"+// 部门助理
+                            "<td>"+data.obj[i].leader1+"</td>"+// 主管领导
+                            "<td>"+data.obj[i].leader2 +"</td>"+// 分管领导
+                            "<td>"+data.obj[i].telNo +"</td>"+// 电话
+                            "<td>"+data.obj[i].faxNo+"</td>"+// 传真
+                            "<td>"+data.obj[i].deptAddress+"</td>"+// 地址
+                            "<td style='width:10%;'>"+data.obj[i].deptFunc+"</td></tr>";//部门职能
+                    }
+
+
+                    $("#tableDapt").html(news);
 
 
 
