@@ -345,7 +345,7 @@
                         <td>添加授权范围（角色）：</td>
                         <td>
                             <div class="inPole">
-                                <textarea name="txt" id="privDuser" user_id='admin' value="admin" disabled style="min-width: 300px;min-height:50px;"></textarea>
+                                <textarea name="txt" id="privDuser" user_id='id' value="admin" disabled style="min-width: 300px;min-height:50px;"></textarea>
                                 <span class="add_img" style="margin-left: 10px">
                                     <a href="javascript:;" id="selectPriv" class="Add ">添加</a>
                                 </span>
@@ -363,7 +363,7 @@
                         <td>添加授权范围（人员）：</td>
                         <td>
                             <div class="inPole">
-                                <textarea name="txt" id="senduser" user_id='admin' value="admin" disabled style="min-width: 300px;min-height:50px;"></textarea>
+                                <textarea name="txt" id="senduser" user_id='id' value="admin" disabled style="min-width: 300px;min-height:50px;"></textarea>
                                 <span class="add_img" style="margin-left: 10px">
                                     <a href="javascript:;" id="selectUser" class="Add ">添加</a>
                                 </span>
@@ -383,12 +383,68 @@
                     </tr>
                 </table>
             </div>
-        </div>    <%--添加权限--%>
+        </div>    <%--添加权限结束--%>
+        <div class="deleteJurisd" style="display: none">
+            <div class="tab">
+                <table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff;width:80%;">
+                    <tr>
+                        <th colspan="2" class="oneTd">删除菜单权限</th>
+                    </tr>
+                    <tr>
+                        <td>已授权范围（角色）：</td>
+                        <td id="deletePRIV"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            删除授权范围（角色）：</td>
+                        <td>
+                            <div class="inPole">
+                                <textarea name="txt" id="deletePrivDuser" user_id='id' value="admin" disabled style="min-width: 300px;min-height:50px;"></textarea>
+                                <span class="add_img" style="margin-left: 10px">
+                                    <a href="javascript:;" id="deleteSelectPriv" class="Add ">添加</a>
+                                </span>
+                                <span class="add_img">
+                                    <a href="javascript:;" class="clearPriv">清除</a>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>已授权范围（人员）：</td>
+                        <td id="deleteUSER"></td>
+                    </tr>
+                    <tr>
+                        <td>删除授权范围（人员）：</td>
+                        <td>
+                            <div class="inPole">
+                                <textarea name="txt" id="deleteSenduser" user_id='id' value="admin" disabled style="min-width: 300px;min-height:50px;"></textarea>
+                                <span class="add_img" style="margin-left: 10px">
+                                    <a href="javascript:;" id="deleteSelectUser" class="Add ">添加</a>
+                                </span>
+                                <span class="add_img">
+                                    <a href="javascript:;" class="clearUser">清除</a>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="div_btn">
+                                <input type="button" class="inpuBtn" id="deleteBtn_sure" value="确定" />
+                                <input type="button" class="inpuBtn" id="deleteBtn_back" value="返回" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div><%--删除权限结束--%>
     </div>
 </div>
 <script type="text/javascript">
     var user_id='senduser';
     var priv_id='privDuser';
+    var user_id='deleteSenduser';
+    var priv_id='deletePrivDuser';
     $(function(){
         //$('#menuTree').deptSelect();
         selectMenu($('#menuTrees'));
@@ -401,11 +457,21 @@
             priv_id='privDuser';
             $.popWindow("../common/selectPriv");
         });
+        $("#deleteSelectUser").on("click",function(){
+            user_id='deleteSenduser';
+            $.popWindow("../common/selectUser");
+        });
+        $("#deleteSelectPriv").on("click",function(){
+            priv_id='deletePrivDuser';
+            $.popWindow("../common/selectPriv");
+        });
         $('.clearPriv').click(function(){
             $('#privDuser').val('');
+            $('#deleteSelectPriv').val('');
         })
         $('.clearUser').click(function(){
             $('#senduser').val('');
+            $('#deleteSenduser').val('');
         })
     })
     function selectMenu(element){
