@@ -877,7 +877,7 @@
                     flowType: $('#class_f option:selected').val(),
                     formId: $('#leave option:selected').val(),
                     freeOther: $('#delegate-type option:selected').val(),
-                    flowDoc: $('input[name="sex_r"]:checked').val(),
+                    flowDoc: $('input[name="sex_1"]:checked').val(),
                     autoNum: $('#counteer').val(),
                     autoLen: $('#figure').val()
                 };
