@@ -711,7 +711,7 @@
         update flow_run_prcs
         set
          PRCS_FLAG = #{prcsFlag},
-         DELIVER_TIME = #{deliverTime},
+         DELIVER_TIME = #{deliverTime}
        where RUN_ID = #{runId} AND  PRCS_ID = #{prcsId}
 
     </update>

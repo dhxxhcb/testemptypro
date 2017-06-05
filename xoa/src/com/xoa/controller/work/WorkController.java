@@ -385,9 +385,14 @@ public class WorkController {
         Map<String, Object> m = new HashMap<String, Object>();
         try {
             Map<String, Object> map = workMapper.select(maps);
-            m.put("obj", map);
-            m.put("flag", true);
-            m.put("msg", "OK");
+            if(map.size()!=0) {
+                m.put("obj", map);
+                m.put("flag", true);
+                m.put("msg", "OK");
+            }else{
+                m.put("flag", false);
+                m.put("msg", false);
+            }
         }catch (Exception e){
             m.put("flag", false);
             m.put("msg", false);
