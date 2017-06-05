@@ -35,6 +35,11 @@ public class FlowTypeServiceImpl implements FlowTypeService {
     JobClassifyService classifyService;
 
 
+    /**
+     *
+     * @param flowTypeModel
+     * @return
+     */
     @Override
     @Transactional
     public ToJson<FlowTypeModel> saveFlow(FlowTypeModel flowTypeModel) {

@@ -220,10 +220,10 @@ public class FlowProcessServiceImpl implements FlowProcessService {
             if (!StringUtils.checkNull(flowProcess.getPrcsUser())) {
                 flowProcess.setPrcsUserName(usersService.getUserNameById(flowProcess.getPrcsUser()));
             }
-//            FlowTiggerModel flowTiggerModel = flowTiggerMapper.selectFlowTigger(flowProcess.getFlowId(),flowProcess.getPrcsId());
-
-
-
+            FlowTiggerModel flowTiggerModel = flowTiggerMapper.selectFlowTigger(flowProcess.getFlowId(),flowProcess.getPrcsId());
+            if(flowTiggerModel != null ){
+                flowProcess.setFlowTiggerModel(flowTiggerModel);
+            }
             listp.add(flowProcess);
         }
         f.setConnections(lm);
