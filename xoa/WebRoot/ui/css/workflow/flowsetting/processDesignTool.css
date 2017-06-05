@@ -211,6 +211,20 @@ body{
     -ms-border-radius: 4px;
 
 }
+.GooFlow_item {
+    position: absolute;
+    background: #A1DCEB !important;
+    border: #A1DCEB solid 1px !important;
+    border-radius: 3px !important;
+    border-color: rgb(161, 220, 235)!important;
+    box-shadow: 1px 1px 2px rgba(99, 99, 99, 1) !important;
+}
+.GooFlow_work .GooFlow_work_inner{
+    background-image:url(/lib/GooFlow/img/gooflow_blank2.gif) ;
+}
+.GooFlow table{
+    border:none!important;
+}
 .candidatesUl li .candidatesPoform span{
     width: 20%;
     display: inline-block;

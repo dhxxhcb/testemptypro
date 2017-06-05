@@ -137,11 +137,12 @@ $(function(){
     })
 
     $('.w').on('click','.editBtn',function(){
-        var TYPE=$('.w .trBtn').attr('TYPE');
-        var id=$('.w .trBtn').attr('sortId');
-        var idT=$('.w .trBtn').attr('contentId');
+        //var TYPE=$('.w .trBtn').attr('TYPE');
+        //var id=$('.w .trBtn').attr('sortId');
+        //var idT=$('.w .trBtn').attr('contentId');
+        var idT=$(this).parents('tr').attr('contentId');
         //alert(idT);
-        $.popWindow('/file/contentAdd?contentId='+idT,'编辑','0','0','1500px','800px');
+        $.popWindow('<%=basePath%>file/contentAdd?contentId='+idT,'编辑','0','0','1500px','800px');
     })
 
 
