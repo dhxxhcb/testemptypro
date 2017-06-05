@@ -512,7 +512,7 @@ public class SysLogServiceImpl implements SysLogService {
      * @return: List<Syslog></Syslog>
      **/
     @Override
-    public List<Syslog> logManage(Integer type, String uid, Date startTime, Date endTime, Syslog syslog) throws Exception {
+    public List<Syslog> logManage(Integer type, String uid, Date startTime, Date endTime, Syslog syslog) {
         String[] uidArr = null;
 
         if (uid != null && !"".equals(uid)) {
@@ -549,11 +549,14 @@ public class SysLogServiceImpl implements SysLogService {
         syslogList = sysLogMapper.findLogOption(hashMap);
         if (syslogList != null) {
             for (Syslog syslog1 : syslogList) {
-                String username = usersService.getUserNameById(syslog1.getUserId());
-                syslog1.setUserName(username);
-                String logTypeName = sysCodeService.getLogNameByNo("" + syslog1.getType());
-                syslog1.setTypeName(logTypeName);
-                String location = getLocationByIP(syslog1.getIp());
+                String location = "--";
+                try {
+
+                    //取消该行注释即可根据ip查地理位置，但是调用第三方接口比较慢。
+                    //location = getLocationByIP(syslog1.getIp());
+                } catch (Exception e) {
+                    location = "未知";
+                }
                 syslog1.setIpLocation(location);
             }
 
@@ -651,7 +654,7 @@ public class SysLogServiceImpl implements SysLogService {
      * @return: XXType(value introduce)
      **/
     @Override
-    public String getLocationByIP(String ip) throws Exception {
+    public String getLocationByIP(String ip)  {
 
         //根据ip查ip地址
         String address = "";
@@ -662,8 +665,7 @@ public class SysLogServiceImpl implements SysLogService {
                 address = AddressUtils.getAddress("ip=" + ip, "utf-8");
 
             } catch (Exception e) {
-                System.out.println("根据ip查地址发生错误");
-                e.printStackTrace();
+                address = "未知";
             }
 
         }
