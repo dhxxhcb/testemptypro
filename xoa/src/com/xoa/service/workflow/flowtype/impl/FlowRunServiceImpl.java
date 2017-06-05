@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.xoa.dao.workflow.FlowRunMapper;
 import com.xoa.model.workflow.FlowRun;
 import com.xoa.service.workflow.flowtype.FlowRunService;
+
+import java.util.Map;
+
 @Service
 public class FlowRunServiceImpl implements FlowRunService{
 	@Resource
@@ -38,6 +41,12 @@ public class FlowRunServiceImpl implements FlowRunService{
 	public int update(FlowRun flowRun) {
 		int a=flowRunMapper.updateByPrimaryKey(flowRun);
 		return  a;
+	}
+
+
+	public int updateTime(Map<String,Object> map){
+		int a=flowRunMapper.updateTime(map);
+		return a;
 	}
 
 

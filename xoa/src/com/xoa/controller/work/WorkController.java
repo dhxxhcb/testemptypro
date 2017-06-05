@@ -102,7 +102,15 @@ public class WorkController {
         String id=request.getParameter("runId");
         ToJson<FlowFast> tj = new ToJson<FlowFast>();
         FlowFast f = new FlowFast();
-        List<FlowProcess> fl = flowProcessService.findFlowId(flowId);
+        List<FlowProcess> fy = flowProcessService.findFlowId(flowId);
+        List<FlowProcess> fl = new ArrayList<FlowProcess>();
+        for(int i=0;i<fy.size();i++){
+            FlowProcess flowProcess=fy.get(i);
+            if(i==fy.size()-1){
+                flowProcess.setPrcsTo("0,");
+            }
+            fl.add(flowProcess);
+        }
         Map<String, Object> maps = new HashMap<String, Object>();
         ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
         maps.put("flowId", flowId);
@@ -158,7 +166,7 @@ public class WorkController {
             FlowRunPrcsExcted flowRunPrcs = new FlowRunPrcsExcted();
             flowRunPrcs.setPrcsId(prcsId);
             flowRunPrcs.setRunId(Integer.parseInt(id));
-            flowRunPrcs.setPrcsFlag("2");
+            flowRunPrcs.setPrcsFlag("4");
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             flowRunPrcs.setPrcsTime(df.format(new Date()));
             //flowRunPrcs.setPrcsFlag(df.format(new Date()));
@@ -309,7 +317,7 @@ public class WorkController {
             flowRunService.update(fr);
         }*/
 
-        flowRunPrcs.setPrcsId(Integer.parseInt(prcsId)-1);
+        flowRunPrcs.setPrcsId(Integer.parseInt(prcsId));
         flowRunPrcs.setRunId(Integer.parseInt(runId));
         flowRunPrcs.setPrcsFlag("4");
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -319,10 +327,16 @@ public class WorkController {
         FlowRunPrcs fl=new FlowRunPrcs();
         String[] strArray = null;
         strArray =jingbanUser.split(",");
+        if(flowPrcs.equals("0")){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("endTime", df.format(new Date()));
+            map.put("runId", runId);
+            flowRunService.updateTime(map);
+        }
         for(int i=0;i<strArray.length;i++){
             fl=new FlowRunPrcs();
             fl.setRunId(Integer.parseInt(runId));
-            fl.setPrcsId(Integer.parseInt(prcsId));
+            fl.setPrcsId(Integer.parseInt(prcsId)+1);
             fl.setPrcsFlag("1");
             fl.setFlowPrcs(Integer.parseInt(flowPrcs));
             fl.setUserId(strArray[i]);

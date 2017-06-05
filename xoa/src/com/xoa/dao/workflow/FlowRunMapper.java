@@ -2,6 +2,8 @@ package com.xoa.dao.workflow;
 
 import com.xoa.model.workflow.FlowRun;
 
+import java.util.Map;
+
 public interface FlowRunMapper {
     int deleteByPrimaryKey(Integer rid);
 
@@ -20,6 +22,8 @@ public interface FlowRunMapper {
     int getMaxRunId();
 
     FlowRun find(Integer runId);
+
+    int updateTime(Map<String,Object> map);
 
 
 }

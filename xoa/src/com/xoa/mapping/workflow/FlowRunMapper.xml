@@ -302,4 +302,12 @@
       FORCE_OVER = #{forceOver}
     where RID = #{rid}
   </update>
+
+  <update id="updateTime" parameterType="Map">
+        update flow_run
+    set
+      END_TIME = #{endTime},
+    where RUN_ID = #{runId}
+
+  </update>
 </mapper>
