@@ -164,7 +164,7 @@ public class SysCodeController {
      * @return: json
      **/
     @ResponseBody
-    @RequestMapping(value = "isCodeOrderExits", produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/isCodeOrderExits", produces = {"application/json;charset=UTF-8"})
     public ToJson<Object> isCodeOrderExits(HttpServletRequest request, SysCode sysCode) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
