@@ -78,14 +78,14 @@ public class Ctest {
 //	@Resource
 //	private FlowProcessService processService;
 
-//	@Resource
-//	private FlowRunPrcsService flowRunPrcsService;
+	@Resource
+	private FlowRunPrcsService flowRunPrcsService;
 
 //	@Resource
 //	private FlowProcessService flowProcessService;
 
-	@Resource
-	private EmailService emailService;
+//	@Resource
+//	private EmailService emailService;
 
 	@Test
 	public void test()throws  Exception{
@@ -133,28 +133,30 @@ public class Ctest {
 //		flowProcess.setTimeOutAttend("0");
 //		FlowProcessList toJson =  flowProcessService.flowView(9);
 //		System.out.println(JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
-		EmailBodyModel emailBodyModel = new EmailBodyModel();
-		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("emailId", 1279);
-		String fwRwEmail = emailService.queryByIdCss(maps, 1, 5, false, "xoa1001");
-		emailBodyModel.setContent("<p dir=\"ltr\">&#27979;&#35797;</p>\n" +
-				"                <p dir=\"ltr\">--&#21457;&#33258;&#25105;&#30340;&#24515;&#36890;&#36798;OA&#29256;--</p>");
-		emailBodyModel.setContent(emailBodyModel.getContent()+fwRwEmail);
-		String name =  emailBodyModel.getBodyId()+"";
-		System.out.println(name.equals("null"));
+//		EmailBodyModel emailBodyModel = new EmailBodyModel();
+//		Map<String, Object> maps = new HashMap<String, Object>();
+//		maps.put("emailId", 1279);
+//		String fwRwEmail = emailService.queryByIdCss(maps, 1, 5, false, "xoa1001");
+//		emailBodyModel.setContent("<p dir=\"ltr\">&#27979;&#35797;</p>\n" +
+//				"                <p dir=\"ltr\">--&#21457;&#33258;&#25105;&#30340;&#24515;&#36890;&#36798;OA&#29256;--</p>");
+//		emailBodyModel.setContent(emailBodyModel.getContent()+fwRwEmail);
+//		String name =  emailBodyModel.getBodyId()+"";
+//		System.out.println(name.equals("null"));
+//
+//		if("null".equals(name)) {
+//			emailBodyModel.setSubject("Fw:草稿箱测试");
+//			emailBodyModel.setAttachmentId("3638@1706_1653006878,3636@1706_1652995229,3637@1706_1652995238");
+//			emailBodyModel.setAttachmentName("1496301636377.jpg*1496301624995.jpg*1496301625087.jpg*");
+//			System.out.println(JSON.toJSONStringWithDateFormat(emailService.saveEmail(emailBodyModel), "yyyy-MM-dd HH:mm:ss"));
+//		}else{
+//			emailBodyModel.setSendFlag("0");
+//			System.out.println(JSON.toJSONStringWithDateFormat(emailService.draftsSendEmail(emailBodyModel,new EmailModel()), "yyyy-MM-dd HH:mm:ss"));
+//		}
 
-		if("null".equals(name)) {
-			emailBodyModel.setSubject("Fw:草稿箱测试");
-			emailBodyModel.setAttachmentId("3638@1706_1653006878,3636@1706_1652995229,3637@1706_1652995238");
-			emailBodyModel.setAttachmentName("1496301636377.jpg*1496301624995.jpg*1496301625087.jpg*");
-			System.out.println(JSON.toJSONStringWithDateFormat(emailService.saveEmail(emailBodyModel), "yyyy-MM-dd HH:mm:ss"));
-		}else{
-			emailBodyModel.setSendFlag("0");
-			System.out.println(JSON.toJSONStringWithDateFormat(emailService.draftsSendEmail(emailBodyModel,new EmailModel()), "yyyy-MM-dd HH:mm:ss"));
-		}
-
-
-
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("userId","admin");
+		ToJson<FlowRunPrcs> toJson= flowRunPrcsService.selectObject(maps,1,10, true);
+		System.out.println(JSON.toJSONStringWithDateFormat(toJson, "yyyy-MM-dd HH:mm:ss"));
 	}
 
 

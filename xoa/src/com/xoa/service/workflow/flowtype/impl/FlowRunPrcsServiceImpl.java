@@ -70,8 +70,8 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
 				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
 				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
-				boolean flasg = flowRunPrcs.getDeliverTime().equals("1950-04-20 17:02:24");
-				String deliverTimes = flowRunPrcs.getDeliverTime();
+
+				String names = flowRunPrcs.getPrcsTime();
 				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) == -621701856 && flowRunPrcs.getPrcsId()>1){
 //					String upTime =  flowRunPrcsMapper.findTime(flowRunPrcs.getRunId(),flowRunPrcs.getPrcsId()-1);
 					Integer prcsId= flowRunPrcs.getRunId();
@@ -80,6 +80,20 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 					flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(upTime)));
 					flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getReceiptTime())));
 				}
+				String names1 = flowRunPrcs.getPrcsTime();
+				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856 && flowRunPrcs.getPrcsId()>1){
+//					String upTime =  flowRunPrcsMapper.findTime(flowRunPrcs.getRunId(),flowRunPrcs.getPrcsId()-1);
+					Integer prcsId= flowRunPrcs.getRunId();
+					Integer runId = flowRunPrcs.getPrcsId()-1;
+					String upTime = flowRunPrcsMapper.findTime(runId,prcsId);
+					if(!StringUtils.checkNull(upTime)) {
+						flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(upTime)));
+					}
+					if(!StringUtils.checkNull(flowRunPrcs.getReceiptTime())) {
+						flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate))) - DateFormat.getTime(flowRunPrcs.getReceiptTime())));
+					}
+				}
+
 				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856) {
 					flowRunPrcs.setDeliverTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getDeliverTime())));
 					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getPrcsTime())));

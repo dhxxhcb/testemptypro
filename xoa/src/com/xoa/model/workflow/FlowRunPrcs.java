@@ -177,7 +177,7 @@ public class FlowRunPrcs {
     }
 
     public String getPrcsTime() {
-        return prcsTime==null?"":prcsTime;
+        return prcsTime==null?DateFormat.getStrTime(-621701856):prcsTime;
     }
 
     public void setPrcsTime(String prcsTime) {
