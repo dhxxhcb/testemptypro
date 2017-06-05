@@ -1,10 +1,12 @@
 package com.xoa.service.netdisk.impl;
 
 import java.util.List;
+import java.util.Map;
 
 
 import javax.annotation.Resource;
 
+import com.xoa.service.file.FileSortResetAuth;
 import org.springframework.stereotype.Service;
 
 
@@ -71,12 +73,27 @@ public class NetdiskServiceImpl  implements NetdiskService{
 	 * <p>Description: 编辑</p>
 	 * @param netdisk
 	 * @author(作者):  张丽军
-	 * @see com.xoa.service.netdisk.NetdiskService#editNetdisk(com.xoa.model.netdisk.Netdisk)
+	 * @see
 	 */
 	@Override
 	public int editNetdisk(Netdisk netdisk){
 		
 		int a=netdiskMapper.editNetdisk(netdisk);
+		return a;
+	}
+
+	@Override
+	public int editNetdiskJurisdiction(Map<String,Object> maps) {
+
+		Integer diskId=(Integer) maps.get("diskId");
+		FileSortResetAuth resetAuth =new FileSortResetAuth();
+		Map<String,String> param=resetAuth.reset("diskPath", (Map<String, String>)maps.get("diskPath"))
+				.reset("newUser",(Map<String, String>)maps.get("newUser"))
+				.reset("manageUser",(Map<String, String>)maps.get("manageUser"))
+				.reset("downUser",(Map<String, String>)maps.get("downUser"))
+				.getParam();
+		param.put("diskId",diskId.toString());
+		int a=netdiskMapper.editNetdiskJurisdiction(param);
 		return a;
 	}
 }

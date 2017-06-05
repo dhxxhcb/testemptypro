@@ -3,6 +3,7 @@ package com.xoa.service.netdisk;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.List;
+import java.util.Map;
 
 import com.xoa.model.netdisk.Netdisk;
 /**
@@ -62,5 +63,8 @@ public interface NetdiskService {
 	 * @throws
 	 */
 	public int editNetdisk(Netdisk netdisk);
+
+
+	 int  editNetdiskJurisdiction(Map<String,Object> maps);
 
 }
