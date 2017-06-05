@@ -155,8 +155,8 @@ function createElement(type, name)
                     oNode.setAttribute('class', "AUTO  form_item ");
                     oNode.setAttribute('data-type', "macros");
                     oNode.setAttribute('title',gTitle);
-                    oNode.setAttribute('name','DATA_'+(dataid++));
-                    oNode.setAttribute('id','DATA_'+(dataid++));
+                    oNode.setAttribute('name','DATA_'+dataid);
+                    oNode.setAttribute('id','DATA_'+dataid);
                     oNode.setAttribute('datafld',gType);
                     if( $G('orghide').checked ) {
                         oNode.setAttribute('orghide', '1' ) ;
