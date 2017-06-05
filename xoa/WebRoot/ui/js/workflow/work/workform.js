@@ -110,7 +110,8 @@ var workForm = {
                             //表单填充数据
                             if(res.flag){
                                 var dateName = res.obj;
-                                if(dateName[_this.attr('name')]){
+                                console.log(_this.attr('name'))
+                                if(dateName && dateName[_this.attr('name')]){
                                     var dataNameVal = dateName[_this.attr('name')];
                                     switch (_this.attr('data-type')){
                                         case 'text':

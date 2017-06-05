@@ -462,20 +462,28 @@
            var titleName=obj.runName;
            console.log(titleName);
            var prcsTo;
+           var prcsName='';
+           var turnObj = {};
            for(var i=0;i<data.object.listFp.length;i++){
                var obj2=data.object.listFp[i];
-               if(obj2.prcsTo=='0'){
-                   prcsName='<div class="prcsName" style="" prcsId=0><h1>结束流程</h1></div>';
-               }
-               /*console.log(obj2.prcsTo);*/
-               if(obj2.prcsTo!=""){
-                   prcsTo= subPric(obj2.prcsTo,",");
-                  /* console.log(prcsTo)*/
+               if(flowStep == obj2.prcsId){
+                   turnObj = obj2;
+                   if(obj2.prcsTo=='0,'){
+                       prcsName='<div class="prcsName" style="" prcsId=0><h1>结束流程</h1></div>';
+                   }
+                   /*console.log(obj2.prcsTo);*/
+                   if(obj2.prcsTo!=""){
+                       prcsTo= subPric(obj2.prcsTo,",");
+                       /* console.log(prcsTo)*/
+                       break;
+                   }
                    break;
                }
+               console.log(obj2.prcsTo);
+
            }
 
-           var prcsName='';
+
 
            if(prcsTo){
                for (var j=0;j<prcsTo.length;j++){
