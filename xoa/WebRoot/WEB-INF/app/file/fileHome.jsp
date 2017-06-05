@@ -18,19 +18,40 @@ pageEncoding="UTF-8"%>
 	.cabinet_left { 
 		    width: 20%; 
 		    float: left;  
-		    overflow: auto ;
+		    /*overflow: auto ;*/
+            overflow-x: hidden;
+            overflow-y: auto;
 		    height: 100%;
 		    background-color: #F0F4F7;
 		    border:1px solid #d9d9d9;
 	}
 	.cabinet_right {
-		 width:79%;
+		 width:79.8%;
 		 height:100%;
 		 border-left-width: 0px;
 		 border-right-width: 0px;
 		 border-top-width: 0px;
 	}
-
+    /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+    .cabinet_left ::-webkit-scrollbar{
+        width: 4px;
+        height: 16px;
+        background-color: #f5f5f5;
+    }
+    /*定义滚动条的轨道，内阴影及圆角*/
+    .cabinet_left ::-webkit-scrollbar-track{
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        border-radius: 10px;
+        background-color: #f5f5f5;
+    }
+    /*定义滑块，内阴影及圆角*/
+    .cabinet_left ::-webkit-scrollbar-thumb{
+        /*width: 10px;*/
+        height: 20px;
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #555;
+    }
 
 </style>
 <link rel="stylesheet" type="text/css" href="../css/easyui/easyui.css">
