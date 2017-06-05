@@ -159,7 +159,7 @@ $(function(){
         }
         $.ajax({
             type:'get',
-            url:'../../addSysMenu',
+            url:'../addSysMenu',
             dataType:'json',
             data:data,
             success:function(rsp){
@@ -204,7 +204,7 @@ $(function(){
         }
         $.ajax({
             type:'get',
-            url:'../../updateFirstMenu',
+            url:'../updateFirstMenu',
             dataType:'json',
             data:data,
             success:function(rsp){
@@ -227,7 +227,7 @@ $(function(){
         }
         $.ajax({
             type:'post',
-            url:'../../editSysFunction',
+            url:'../editSysFunction',
             dataType:'json',
             data:data,
             success:function(rsp){
@@ -253,7 +253,7 @@ $(function(){
         }
         $.ajax({
             type:'post',
-            url:'../../addFunction',
+            url:'../addFunction',
             dataType:'json',
             data:data,
             success:function(rsp){
@@ -270,7 +270,7 @@ $(function(){
     function editChildMenu(id){
         $.ajax({
             type:'get',
-            url:'../../findChildMenu',
+            url:'../findChildMenu',
             dataType:'json',
             data:{'id':id},
             success:function(rsp){
@@ -296,7 +296,7 @@ $(function(){
     function editParentId(pId){
         $.ajax({
             type:'get',
-            url:'../../getTheFirstMenu',
+            url:'../getTheFirstMenu',
             dataType:'json',
             data:{'id':pId},
             success:function(rsp){
@@ -312,7 +312,7 @@ $(function(){
         if (confirm(msg)==true){
             $.ajax({
                 type:'get',
-                url:'../../deleteSysMenu',
+                url:'../deleteSysMenu',
                 dataType:'json',
                 data:{'id':Eid},
                 success:function(){
@@ -331,7 +331,7 @@ $(function(){
         var id=$('.tab .addJurisdition').parents('tr').attr('fid');
         $.ajax({
             type:'get',
-            url:'../../getAuthRoleName',
+            url:'../getAuthRoleName',
             dataTyle:'json',
             data:{'fid':id},
             success:function(res){
@@ -345,7 +345,7 @@ $(function(){
         var id=$('.tab .addJurisdition').parents('tr').attr('fid');
         $.ajax({
             type:'get',
-            url:'../../getAuthUserName',
+            url:'../getAuthUserName',
             dataTyle:'json',
             data:{'fid':id},
             success:function(res){
@@ -360,7 +360,7 @@ $(function(){
         var id=$('.tab .addJurisdition').parents('tr').attr('fid');
         $.ajax({
             type:'post',
-            url:'../../updateUserPrivfuncIdStr',
+            url:'../updateUserPrivfuncIdStr',
             dataType:'json',
             data:{'privids':privid,'funcId':id},
             success:function(res){
@@ -376,7 +376,7 @@ $(function(){
         var id=$('.tab .addJurisdition').parents('tr').attr('fid');
         $.ajax({
             type:'post',
-            url:'../../updateAuthUser',
+            url:'../updateAuthUser',
             dataType:'json',
             data:{'uids':userid,'fid':id},
             success:function(res){
@@ -392,7 +392,7 @@ $(function(){
         var id=$('.tab .addJurisdition').parents('tr').attr('fid');
         $.ajax({
             type:'post',
-            url:'../../deleteUserPriv',
+            url:'../deleteUserPriv',
             dataType:'json',
             data:{'privids':privid,'funcIds':id},
             success:function(res){
@@ -408,7 +408,7 @@ $(function(){
         var id=$('.tab .addJurisdition').parents('tr').attr('fid');
         $.ajax({
             type:'post',
-            url:'../../deleteAuthUser',
+            url:'../deleteAuthUser',
             dataType:'json',
             data:{'uIds':userid,'fid':id},
             success:function(res){
@@ -423,13 +423,13 @@ $(function(){
 function showMenus(element){
     $.ajax({
         type:'get',
-        url:'../../showMenu',
+        url:'../showMenu',
         dataType:'json',
         success:function(rsp){
             var data=rsp.obj;
             var str='';
             for(var i=0;i<data.length;i++){
-                str+='<tr childId="'+data[i].id+'"><td width="45%"><span><img class="one_logo" src="../../img/main_img/'+data[i].img+'.png"></span><span class="margspan">'+data[i].id+'</span><span>'+data[i].name+'</span></td><td width="54.5%"><a href="javascript:;" class="editOne">编辑</a><a href="javascript:;" class="nextRank">下一级</a><a href="javascript:;" class="deleteMenu">删除</a></td></tr>'
+                str+='<tr childId="'+data[i].id+'"><td width="45%"><span><img class="one_logo" src="../img/main_img/'+data[i].img+'.png"></span><span class="margspan">'+data[i].id+'</span><span>'+data[i].name+'</span></td><td width="54.5%"><a href="javascript:;" class="editOne">编辑</a><a href="javascript:;" class="nextRank">下一级</a><a href="javascript:;" class="deleteMenu">删除</a></td></tr>'
             }
             element.append(str);
         }
@@ -439,7 +439,7 @@ function twoLevelMenu(id,element){
     $('.add_children').remove();
     $.ajax({
         type:'get',
-        url:'../../findChildMenu',
+        url:'../findChildMenu',
         dataType:'json',
         data:{'id':id},
         success:function(rsp){
@@ -457,7 +457,7 @@ function deleteMenu(id){
     if (confirm(msg)==true){
         $.ajax({
             type:'get',
-            url:'../../deleteSysMenu',
+            url:'../deleteSysMenu',
             dataType:'json',
             data:{'id':id},
             success:function(){

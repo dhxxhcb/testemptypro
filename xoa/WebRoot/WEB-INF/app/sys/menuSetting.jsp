@@ -483,7 +483,7 @@
     function selectMenu(element){
         $.ajax({
             type:'get',
-            url:'../../showMenu',
+            url:'../showMenu',
             dataType:'json',
             success:function(rsp){
                 var data=rsp.obj;

@@ -83,7 +83,7 @@ $(function(){
     $('#emptyBtn').click(function(){
         $.ajax({
             type:'post',
-            url:'../../sys/deleteAllLog',
+            url:'../sys/deleteAllLog',
             dataType:'json',
             success:function(res){
                 console.log(res.msg);
@@ -94,7 +94,7 @@ $(function(){
     function journalSurveyShow(){
         $.ajax({
             type:'get',
-            url:'../../sys/getLogMessage',
+            url:'../sys/getLogMessage',
             dataType:'json',
             success:function(rsp){
                 var data=rsp.object;
@@ -111,7 +111,7 @@ $(function(){
     function journalListShow(){
         $.ajax({
             type:'get',
-            url:'../../sys/getTenLog',
+            url:'../sys/getTenLog',
             dataType:'json',
             success:function(rsp){
                 var data=rsp.object;
@@ -132,7 +132,7 @@ $(function(){
         }
         $.ajax({
             type:'get',
-            url:'../../sys/getMonth',
+            url:'../sys/getMonth',
             dataType:'json',
             data:data,
             success:function(rsp){
@@ -161,7 +161,7 @@ $(function(){
         }
         $.ajax({
             type:'get',
-            url:'../../sys/getEachMouthLogData',
+            url:'../sys/getEachMouthLogData',
             dataType:'json',
             data:data,
             success:function(rsp){
@@ -227,7 +227,7 @@ $(function(){
     function periodStatistics(){
         $.ajax({
             type:'get',
-            url:'../../sys/getHourLog',
+            url:'../sys/getHourLog',
             dataType:'json',
             success:function(rsp){
                 if(rsp.flag){
@@ -274,7 +274,7 @@ $(function(){
     function allJournalType(){
         $.ajax({
             type:'get',
-            url:'../../sys/getLogType',
+            url:'../sys/getLogType',
             dataType:'json',
             success:function(rsp){
                 var data=rsp.obj;
@@ -303,7 +303,7 @@ $(function(){
         }
         $.ajax({
             type:'get',
-            url:'../../sys/logManage',
+            url:'../sys/logManage',
             dataType:'json',
             data:data,
             success:function(res){
@@ -376,7 +376,7 @@ $(function(){
         if (confirm(msg)==true){
             $.ajax({
                 type:'post',
-                url:'../../sys/deleteSyslog',
+                url:'../sys/deleteSyslog',
                 dataType:'json',
                 data:data,
                 success:function(res){
@@ -394,7 +394,7 @@ $(function(){
         if (confirm(msg)==true){
             $.ajax({
                 type:'post',
-                url:'../../sys/deleteLogByIds',
+                url:'../sys/deleteLogByIds',
                 dataType:'json',
                 data:{'ids':id},
                 success:function(res){
