@@ -8,6 +8,7 @@ var form,layer
 var flowDesign;
 var formTwo;
 var dataToAll;//全部数据
+var theTrigger;//触发器
 var jsondata = {
     "title": "",
     "nodes": {},
@@ -74,6 +75,7 @@ function seleTheEcho(names,dataNames) {  //下拉框回显
     $('[name="'+names+'"]').next().find('dd').each(function (i,n) {
         if($(this).attr('lay-value')==dataNames){
             $(this).parent().prev().find('input').val($(this).text())
+            $(this).parent().parent().prev().val(dataNames)
         }
     })
 }
@@ -129,11 +131,11 @@ function ajaxSvg() {
                     "areas": {},
                     "initNum": 0
                 }
-                console.log(json)
+                console.log(designdata)
                 jsondata.title = json.object.designdata[0].flowTypeModel.flowName;
                 jsondata.initNum = designdata.length;
                 designdata.forEach(function (v, i) {
-                    console.log(v)
+
                     jsondata.nodes['node_' + v.prcsId] = {
                         designerId:v.id,
                         name: v.prcsName,
@@ -184,6 +186,7 @@ function ajaxSvg() {
                                 prcsIn:v.prcsIn,
                                 prcsOut:v.prcsOut
                             },
+                            flowTiggerModel:v.flowTiggerModel,
                             timeOut:v.timeOut,
                             timeOutModify:v.timeOutModify,
                             timeOutType:v.timeOutType,
@@ -233,8 +236,18 @@ function ajaxSvg() {
 
             flowDesign.loadData(jsondata);
             flowDesign.onItemFocus = function (id, model) {
-                $('#propertyForm').css('right','0px')
-                $('.btnstorage').css('right','0px')
+                if(parseInt($('#propertyForm').css('right'))<0){
+                    $('#propertyForm').css('right','0px')
+                    $('.btnstorage').css('right','0px')
+                }else {
+                    $('#propertyForm').css('right', -$('#propertyForm').width())
+                    $('.btnstorage').css('right', -$('.btnstorage').width())
+                    setTimeout(function () {
+                        $('#propertyForm').css('right', '0px')
+                        $('.btnstorage').css('right', '0px')
+                    }, 250)
+                }
+
                 var obj;
                 $("#ele_model").val(model);
                 $("#ele_id").val(id);
@@ -278,13 +291,13 @@ function ajaxSvg() {
                     formTwo.render();
                     seleTheEcho('userFilter',objtwo.userFilter)
                     if($('[name="userFilter"]').val()==6){
-                        $('[name="departmentAgent"]').show();
+                        $('.departmentAgent').show();
                     }else if($('[name="userFilter"]').val()==9){
-                        $('[name="auxiliaryDepartmentAgent"]').show()
+                        $('.auxiliaryDepartmentAgent').show()
                     }else if($('[name="userFilter"]').val()==7){
-                        $('[name="theSpecifiedRole"]').show()
+                        $('.theSpecifiedRole').show()
                     }else if($('[name="userFilter"]').val()==11){
-                        $('[name="assignRole"]').show()
+                        $('.assignRole').show()
                     }
                     seleTheEcho('autoType',objtwo.autoType)
                     if($('[name="autoType"]').val()==2||$('[name="autoType"]').val()==9||$('[name="autoType"]').val()==4
@@ -342,7 +355,8 @@ function ajaxSvg() {
                     inputTheEcho('userFilterPrcsDept',objtwo.userFilterPrcsDept)
                     inputTheEcho('userFilterPrcsDeptOther',objtwo.userFilterPrcsDeptOther)
                     inputTheEcho('userFilterPrcsPriv',objtwo.userFilterPrcsPriv)
-                    inputTheEcho('userFilterPrcsPrivOther',objtwo.userFilterPrcsPrivOther)
+                    inputTheEcho('userFilterPrcsPrivOther',objtwo.userFilterPrcsPrivOther);
+                    theTrigger=objtwo.flowTiggerModel;
                     forimId=objtwo.formIds;
                     conditionsDate=objtwo.conditionsSet;
                     canwritefieldtwo=objtwo.canWriteField;
@@ -358,17 +372,32 @@ function ajaxSvg() {
                         });
 
                     //下一步骤
-                    for(var inde=0;inde<designdata.length;inde++){
-                        if(inde<designdata.length-1) {
-                            if (designdata[inde].prcsName == $('[name="prcsName"]').val()) {
-                                $('#candidatesPoneli').html('<li>' + designdata[inde + 1].prcsName + '</li>')
+                    if($('[name="prcsTo"]').val()=='') {
+                        for (var inde = 0; inde < designdata.length; inde++) {
+                            if (inde < designdata.length - 1) {
+                                if (designdata[inde].prcsName == $('[name="prcsName"]').val()) {
+                                    $('#candidatesPoneli').html('<li>' + designdata[inde + 1].prcsName + '</li>')
+                                }
+                            } else {
+                                if (designdata[inde].prcsName == $('[name="prcsName"]').val()) {
+                                    $('#candidatesPoneli').html('')
+                                }
                             }
-                        }else {
-                            if (designdata[inde].prcsName == $('[name="prcsName"]').val()) {
-                                $('#candidatesPoneli').html('')
+                        }
+                    }else {
+                        console.log(designdata)
+                        var prcsTos=$('[name="prcsTo"]').val().split(',');
+                        console.log(prcsTos)
+                        var prcsToStr=''
+                        for(var mx=0;mx<prcsTos.length;mx++) {
+                            for (var ix = 0; ix < designdata.length; ix++) {
+                                if(prcsTos[mx]==designdata[ix].prcsId){
+                                    prcsToStr+='<li>'+designdata[ix].prcsName+',</li>'
+                                }
                             }
                         }
                     }
+                    $('#candidatesPoneli').html(prcsToStr)
 
 
                 }
@@ -415,7 +444,9 @@ $(function () {
             type:'post',
             dataType:'json',
             success:function (json) {
-                location.reload();
+                layer.alert('保存成功',function () {
+                    location.reload();
+                })
             }
         })
     })
@@ -506,8 +537,8 @@ $(function () {
     })
     $('.setUpThe').click(function (event) {
         var me=this;
-        $(this).next('.candidatesUl').siblings('.candidatesUl').stop().slideUp('slow');
-        $(this).next('.candidatesUl').slideToggle("slow");
+        $(this).next('.candidatesUl').siblings('.candidatesUl').stop().slideUp(350);
+        $(this).next('.candidatesUl').slideToggle(350);
         if($(this).hasClass('active')){
             $(this).removeClass('active')
         }else {
@@ -518,11 +549,11 @@ $(function () {
     })
 
     $('.dropDownDiv .candidatesPTwo').on('click',function (event) {
-        $(this).next().stop().slideToggle("slow")
+        $(this).next().stop().slideToggle(350)
         event.stopPropagation();
     })
     $('.dropDownDiv .dropDown li').on('click',function (event) {
-        $(this).parent().stop().slideUp("slow");
+        $(this).parent().stop().slideUp(350);
         $(this).parent().parent().find('input[type=text]').val($(this).find('span').text())
         $(this).parent().parent().find('input[type=hidden]').val($(this).find('input').val())
         event.stopPropagation();
@@ -1001,6 +1032,11 @@ $(function () {
 
 
         $('#theTrigger').click(function () {
+            console.log(theTrigger)
+            if(theTrigger!=undefined){
+
+            }
+
             layer.open({
                 type:0,
                 title:'管理触发器',

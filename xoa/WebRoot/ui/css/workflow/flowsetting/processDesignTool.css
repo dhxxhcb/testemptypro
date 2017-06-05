@@ -142,9 +142,19 @@ body{
     line-height: 28px;
     position: relative;
 }
+.GooFlow_item{
+    padding: 10px !important;
+}
 .layui-form-radio span{
     font-size: 12px!important;
     color: #111;
+}
+.layui-layer-ico{
+    background: url("/img/guanbiBtn.png")no-repeat!important;
+}
+.GooFlow .item_round .span{
+    top: 50px !important;
+    left: -14px!important;
 }
 .candidatesUl li p span b{
     width: 0px;
@@ -245,7 +255,7 @@ body{
     z-index:999999;
     background: #f7f7f7;
     transition: all 0.2s ease 0s;
-
+    box-shadow: -11px 1px 14px #ccc;
 }
 .btnstorage a{
     float: right;

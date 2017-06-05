@@ -229,7 +229,6 @@ var workForm = {
             }
             var inputObj = '<input name="'+objprev.attr('name')+'" title="'+objprev.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+objprev.attr('name')+'" value="'+_this.attr('date_format')+'"  date_format="'+_this.attr('date_format')+'"/>';
             objprev.remove();
-            console.log(inputObj);
             _this.before(inputObj);
             _this.remove();
         });
