@@ -21,7 +21,7 @@
 </head>
 <body>
 <script type="text/javascript">
-    var pluginId = 0;
+    var pluginId = 1;
 </script>
 <div class="container" style="padding-top: 5px; padding-left: 5px;overflow: auto;">
     <span id="formtitle" class="title">请假申请单</span>
