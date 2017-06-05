@@ -233,7 +233,6 @@ var workForm = {
             _this.before(inputObj);
             _this.remove();
         });
-
         //
         target.find("textarea").each(function(){
             if( $(this).attr('hidden')){

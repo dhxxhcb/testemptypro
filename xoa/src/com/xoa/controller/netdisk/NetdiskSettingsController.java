@@ -2,10 +2,12 @@ package com.xoa.controller.netdisk;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.alibaba.fastjson.JSONArray;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -123,10 +125,11 @@ public class NetdiskSettingsController {
 	@RequestMapping(value="/editNetdiskSettings",produces = {"application/json;charset=UTF-8"})
 	public ToJson<Netdisk> editNetdisk(
 			Netdisk netdisk,
-			HttpServletRequest request){
+		HttpServletRequest request){
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		ToJson<Netdisk> json=new ToJson<Netdisk>();
+
 		try {
 			int a=netdiskService.editNetdisk(netdisk);
 			if (a>0){
@@ -144,7 +147,31 @@ public class NetdiskSettingsController {
 		return json;
 		
 	}
-	
+
+	@ResponseBody
+	@RequestMapping(value="/editNetdiskJurisdictionSettings",produces = {"application/json;charset=UTF-8"})
+	public ToJson<Netdisk> editNetdiskJurisdiction(
+			@RequestParam(name = "auth") String auth,
+			HttpServletRequest request){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		ToJson<Netdisk> json=new ToJson<Netdisk>();
+		Map<String,Object> mmp=JSONArray.parseObject(auth,Map.class);
+		try {
+			int a=netdiskService.editNetdiskJurisdiction(mmp);
+			if (a>0){
+				json.setFlag(0);
+				json.setMsg("ok");
+			}else {
+				json.setFlag(1);
+				json.setMsg("err");
+			}
+	} catch (Exception e) {
+			json.setMsg(e.getMessage());
+		}
+		return json;
+
+	}
 	
 	
 	

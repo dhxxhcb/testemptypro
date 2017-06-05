@@ -875,14 +875,13 @@
             type:'get',
             dataType:'json',
             success:function(obj){
-            var data=obj.obj;
+                var data=obj.obj;
                 var  departmentData= digui(data,0);
                 callback(departmentData);
             }
         });
     }
 	function digui(datas,departId) {
-        debugger;
         var data=new Array();
         for(var i=0;i<datas.length;i++){
             if(datas[i].deptParent==departId){

@@ -33,4 +33,12 @@ public class FlowRunServiceImpl implements FlowRunService{
 		}
 		return f;
 	}
+
+	@Override
+	public int update(FlowRun flowRun) {
+		int a=flowRunMapper.updateByPrimaryKey(flowRun);
+		return  a;
+	}
+
+
 }

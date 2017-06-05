@@ -2,6 +2,7 @@ package com.xoa.service.workflow.flowformtype;
 
 import com.xoa.dao.workflow.FlowFormTypeMapper;
 import com.xoa.model.workflow.FlowFormType;
+import com.xoa.model.workflow.FlowFormTypeExtends;
 import com.xoa.model.workflow.FlowFormTypeParentModel;
 import com.xoa.service.workflow.wrapper.FlowFormWrappers;
 import com.xoa.util.common.CheckCallBack;
@@ -139,7 +140,7 @@ public class FlowFormService {
             wrapper.setMsg("表单Id不能为空");
             return wrapper;
         }
-        FlowFormType flowFormType =new FlowFormType();
+        FlowFormTypeExtends flowFormType =new FlowFormTypeExtends();
         flowFormType.setFormName(formName);
         flowFormType.setDeptId(deptId);
         flowFormType.setFormSort(formSort);
@@ -213,7 +214,7 @@ public class FlowFormService {
             return wrapper;
         }
 
-        FlowFormType flowFormType =new FlowFormType();
+        FlowFormTypeExtends flowFormType =new FlowFormTypeExtends();
          flowFormType.setFormId(formId);
         flowFormType.setPrintModel(printModel);
         flowFormType.setPrintModelShort(printModel);

@@ -11,57 +11,57 @@ import java.io.Serializable;
     */
 public class FlowFormType implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+	protected static final long serialVersionUID = 1L;
     /**
      * 表单ID
      */
-	private Integer formId;
+	protected Integer formId;
 	/**
      * 表单名称
      */
-    private String formName;
+    protected String formName;  
     /**
      * 表单所属部门
      */
-    private Integer deptId;
+    protected Integer deptId;
     /**
      * 最大的项目编号
      */
-    private Integer itemMax;
+    protected Integer itemMax;
     /**
      * 表单所属分类
      */
-    private Integer formSort;
+    protected Integer formSort;
     /**
      * 表单类型 1 - 新表单 0 - 老表单
      */
-    private Integer isNew;
+    protected Integer isNew;
     /**
      * 表单设计信息
      */
-    private String printModel;
+    protected String printModel;
     /**
      * 精简后的表单设计信息
      */
-    private String printModelShort;
+    protected String printModelShort;
     /**
      * 表单拓展脚本
      */
-    private String script;
+    protected String script;
     /**
      * 表单扩展样式
      */
-    private String css;
+    protected String css;
 
        /**
         *  部门名称
         */
-    private String depName;
+    protected String depName;
 
        /**
         * 分类名称
         */
-    private String sortName;
+    protected String sortName;
        public String getSortName() {
            return sortName==null?"未分类":sortName;
        }

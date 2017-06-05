@@ -164,11 +164,11 @@ public class SysLogController {
         ToJson<Integer> tojson = new ToJson<Integer>(0, "");
         try {
             List<Integer> yearList = sysLogService.getYear();
-            if (yearList != null && yearList.size() == 2) {
-                tojson.setObj(yearList);
-                tojson.setMsg("ok");
-                tojson.setFlag(0);
-            }
+
+            tojson.setObj(yearList);
+            tojson.setMsg("ok");
+            tojson.setFlag(0);
+
         } catch (Exception e) {
             tojson.setMsg(e.getMessage());
         }

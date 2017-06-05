@@ -71,7 +71,7 @@ public class FlowSort {
     }
 
     public void setSortName(String sortName) {
-        this.sortName = sortName == null ? null : sortName.trim();
+        this.sortName = sortName;
     }
 
     public Integer getDeptId() {
@@ -95,6 +95,6 @@ public class FlowSort {
     }
 
     public void setHaveChild(String haveChild) {
-        this.haveChild = haveChild == null ? null : haveChild.trim();
+        this.haveChild = haveChild ;
     }
 }

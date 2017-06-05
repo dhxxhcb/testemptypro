@@ -252,6 +252,9 @@
             user_id='senduser';
             $.popWindow("../common/selectUser");
         });
+        $('.clear').click(function(){
+            $('#senduser').val('');
+        })
     })
 
 </script>

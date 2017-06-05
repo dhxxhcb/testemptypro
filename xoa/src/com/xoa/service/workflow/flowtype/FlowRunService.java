@@ -10,4 +10,6 @@ public interface FlowRunService {
 
 	public FlowRun find(Integer runId);
 
+	public int update(FlowRun flowRun);
+
 }

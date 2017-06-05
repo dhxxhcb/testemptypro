@@ -157,7 +157,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
         return toJson;
     }
 
-    //添加汉字转换方法
+
     @Override
     public FlowProcessList flowView(int flowId) {
         //定义用于返回的流程信息
@@ -170,7 +170,7 @@ public class FlowProcessServiceImpl implements FlowProcessService {
         int len = list.size();
         //f.setFlowName(list.get(0).getFlowName());
         list.get(0).setSetType("start");
-        list.get(len - 1).setSetType("end");
+        list.get(len - 1).setSetType("end round");
         for (int i = 0; i < len; i++) {
             Integer prId = list.get(i).getPrcsId();
             String prceTo = list.get(i).getPrcsTo();
@@ -188,14 +188,23 @@ public class FlowProcessServiceImpl implements FlowProcessService {
             } else {
                 String[] p = prceTo.split(",");
                 for (String a : p) {
-                    map = new HashMap<String, String>();
-                    map.put("from", Integer.toString(prId));
-                    map.put("to", a.toString());
-                    lm.add(map);
+                    if(!"0".equals(a)) {
+                        map = new HashMap<String, String>();
+                        map.put("from", Integer.toString(prId));
+                        map.put("to", a.toString());
+                        lm.add(map);
+                    }else {
+                        map = new HashMap<String, String>();
+                        map.put("from", Integer.toString(prId));
+                        map.put("to", "end");
+                        list.get(i).setSetType("end round");
+                        lm.add(map);
+                    }
                 }
             }
         }
         List<FlowProcess> listp = new ArrayList<>();
+        //添加汉字转换方法
         for (FlowProcess flowProcess : list) {
             if (!StringUtils.checkNull(flowProcess.getPrcsDept())) {
                 flowProcess.setPrcsDeptName(departmentService.getDeptNameByDeptId(flowProcess.getPrcsDept(), ","));
