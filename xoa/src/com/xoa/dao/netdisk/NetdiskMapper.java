@@ -1,6 +1,7 @@
 package com.xoa.dao.netdisk;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xoa.model.netdisk.Netdisk;
 
@@ -55,4 +56,6 @@ public interface NetdiskMapper {
       * @throws
       */
 	 int editNetdisk(Netdisk netdisk);
+
+	int editNetdiskJurisdiction(Map<String,String> maps);
 }
