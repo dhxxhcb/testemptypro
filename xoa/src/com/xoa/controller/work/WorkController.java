@@ -317,12 +317,18 @@ public class WorkController {
             flowRunService.update(fr);
         }*/
 
-        flowRunPrcs.setPrcsId(Integer.parseInt(prcsId));
+        /*flowRunPrcs.setPrcsId(Integer.parseInt(prcsId));
         flowRunPrcs.setRunId(Integer.parseInt(runId));
         flowRunPrcs.setPrcsFlag("4");
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        flowRunPrcs.setDeliverTime(df.format(new Date()));
-        flowRunPrcsService.update(flowRunPrcs);
+        flowRunPrcs.setDeliverTime(df.format(new Date()));*/
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        Map<String, Object> maps = new HashMap<String, Object>();
+        maps.put("prcsId", Integer.parseInt(prcsId));
+        maps.put("runId", Integer.parseInt(runId));
+        maps.put("prcsFlag", "4");
+        maps.put("deliverTime", df.format(new Date()));
+        flowRunPrcsService.updateSql(maps);
 
         FlowRunPrcs fl=new FlowRunPrcs();
         String[] strArray = null;

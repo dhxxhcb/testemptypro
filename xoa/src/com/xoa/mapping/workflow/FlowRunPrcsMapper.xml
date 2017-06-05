@@ -707,4 +707,13 @@
         RUN_ID = #{runId}
     </select>
 
+    <update id="updateSql" parameterType="Map">
+        update flow_run
+        set
+         PRCS_FLAG = #{prcsFlag},
+         DELIVER_TIME = #{deliverTime},
+       where RUN_ID = #{runId} AND  PRCS_ID = #{prcsId}
+
+    </update>
+
 </mapper>

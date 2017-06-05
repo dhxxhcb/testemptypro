@@ -80,5 +80,7 @@ public interface FlowRunPrcsService {
 	 */
 	public void update(FlowRunPrcsExcted flowRunPrcs);
 
+	public int updateSql(Map<String,Object> map);
+
 
 }

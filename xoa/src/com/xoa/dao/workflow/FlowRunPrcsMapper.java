@@ -74,4 +74,6 @@ public interface FlowRunPrcsMapper extends BaseMapper<FlowRunPrcs>{
     int updateByPrimaryKeySelective(FlowRunPrcsExcted record);
 
     int updateByPrimaryKey(FlowRunPrcs record);
+
+    int updateSql(Map<String,Object> map);
 }

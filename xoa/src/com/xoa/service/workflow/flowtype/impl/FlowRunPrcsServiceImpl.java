@@ -275,6 +275,12 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 //		}
 //		return toJson;
 //	}
+	@Transactional
+    @Override
+	public int updateSql(Map<String,Object> map){
+		int a=flowRunPrcsMapper.updateSql(map);
+		return a;
+	}
 
 
 }
