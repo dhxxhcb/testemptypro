@@ -322,6 +322,11 @@ public class FlowProcess implements Serializable {
      */
     private String prcsPrivName;
 
+    /**
+     * 关联触发器
+     */
+    private FlowTiggerModel flowTiggerModel;
+
 
     private List<Map<String, String>> connections;
 
@@ -1073,5 +1078,21 @@ public class FlowProcess implements Serializable {
      */
     public void setPrcsPrivName(String prcsPrivName) {
         this.prcsPrivName = prcsPrivName;
+    }
+
+    /**
+     * 关联触发器
+     * @return
+     */
+    public FlowTiggerModel getFlowTiggerModel() {
+        return flowTiggerModel;
+    }
+
+    /**
+     * 关联触发器
+     * @param flowTiggerModel
+     */
+    public void setFlowTiggerModel(FlowTiggerModel flowTiggerModel) {
+        this.flowTiggerModel = flowTiggerModel;
     }
 }
