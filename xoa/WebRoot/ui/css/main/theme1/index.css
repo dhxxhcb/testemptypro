@@ -98,45 +98,39 @@ body,
     height: 31%;
 }
 /* 右侧的logo */
+.head_rig a{
+	width: 15%;
+	height: 53%;
+	margin-top: 31px;
+}
  #taskbar_right #task_center {
     display: inline-block;
-    width: 10%;
-    height: 45%;
-    margin-top: 8%;
-   
-    background: url(../../../img/main_img/right_one.png) 0px 0px no-repeat;
+   /* margin-top: 8%;*/
+    background: url(../../../img/main_img/right_one.png) 0px -5px no-repeat;
 }
  #taskbar_right #sns {
     display: inline-block;
-    width: 10%;
-    height: 45%;
-    margin-top: 8%;
+    /*margin-top: 8%;*/
    margin-left:7%;
-    background: url(../../../img/main_img/right_one.png) -60px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) -77px -5px no-repeat;
 }
  #taskbar_right #help {
     display: inline-block;
-    width: 10%;
-    height: 45%;
-    margin-top: 8%;
+/*    margin-top: 8%;*/
     margin-left:7%;
-    background: url(../../../img/main_img/right_one.png) -115px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) -148px -5px no-repeat;
 }
- #taskbar_right #person_info {
+/* #taskbar_right #person_info {
     display: inline-block;
-    width: 11%;
-    height: 45%;
     margin-top: 8%;
     margin-left:7%;
-    background: url(../../../img/main_img/right_one.png) -174px 0px no-repeat;
-}
+    background: url(../../../img/main_img/right_one.png) -225px 0px no-repeat;
+}*/
  #taskbar_right #theme {
     display: inline-block;
-    width: 12%;
-    height: 45%;
-    margin-top: 8%;
+  /*  margin-top: 8%;*/
     margin-left:7%;
-    background: url(../../../img/main_img/right_one.png) -233px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) -225px -5px no-repeat;
 }
 .head_left,.head_mid,#taskbar_right{
 	float:left;
