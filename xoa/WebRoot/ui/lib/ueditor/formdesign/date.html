@@ -46,6 +46,7 @@ function createElement(type, name)
 <script type="text/javascript">
     $(function () {
         var dataid = $.getQueryString('dataid');
+        var dataNumber=parent.pluginId;
         var oNode = null,thePlugins = 'calendar';
 
             if( UE.plugins[thePlugins].editdom ){
@@ -72,11 +73,11 @@ function createElement(type, name)
             var dataformat =$G('dataformat').value;
             if( !oNode ) {
                 try {
-                    oNode = createElement('input','DATA_' + dataid);
+                    oNode = createElement('input','DATA_' + dataNumber);
                     oNode.setAttribute('title',gTitle);
                     oNode.setAttribute('class', "form_item");
                     oNode.setAttribute('data-type', "calendar");
-                    oNode.setAttribute('id', 'DATA_' + dataid);
+                    oNode.setAttribute('id', 'DATA_' + dataNumber);
                     oNode.setAttribute('value', dataformat);
                     oNode.setAttribute('date_format', dataformat);
                     console.log(oNode.outerHTML);

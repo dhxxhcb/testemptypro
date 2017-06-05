@@ -44,6 +44,7 @@ function createElement(type, name)
 <script type="text/javascript">
     $(function () {
         var dataid = $.getQueryString('dataid');
+        var dataNumber=parent.pluginId;
         var oNode = null,thePlugins = 'checkbox';
 
             if( UE.plugins[thePlugins].editdom ){
@@ -72,8 +73,8 @@ function createElement(type, name)
                     oNode.setAttribute('type','checkbox');
                     oNode.setAttribute('class', "form_item");
                     oNode.setAttribute('data-type', "checkbox");
-                    oNode.setAttribute('name', 'DATA_' + dataid);
-                    oNode.setAttribute('id', 'DATA_' + dataid);
+                    oNode.setAttribute('name', 'DATA_' + dataNumber);
+                    oNode.setAttribute('id', 'DATA_' + dataNumber);
                     if ($G('orgchecked1').checked) {
                         oNode.setAttribute('checked','checked');
                     } else {

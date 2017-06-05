@@ -218,6 +218,7 @@
  $(function () {
 
        var dataid = $.getQueryString('dataid');
+     var dataNumber=parent.pluginId;
          oListText = $G('orglist');
          if( UE.plugins[thePlugins].editdom ){
              debugger;
@@ -275,8 +276,8 @@
                  oNode = createElement('select','NEWFIELD');
                  oNode.setAttribute('class', "form_item");
                  oNode.setAttribute('data-type', "select");
-                 oNode.setAttribute('name','DATA_'+dataid);
-                 oNode.setAttribute('id','DATA_'+dataid);
+                 oNode.setAttribute('name','DATA_'+dataNumber);
+                 oNode.setAttribute('id','DATA_'+dataNumber);
                  oNode.setAttribute('title',$G('orgname').value);
                  oNode.setAttribute('plugins',thePlugins );
                  oNode.setAttribute('size',gSize);

@@ -179,6 +179,7 @@
 <script type="text/javascript">
     $(function () {
         var dataid = $.getQueryString('dataid');
+        var dataNumber=parent.pluginId;
         var oNode = null,thePlugins = 'listing';
         if( UE.plugins[thePlugins].editdom ){//加载默认数据
             oNode = UE.plugins[thePlugins].editdom;
@@ -244,8 +245,8 @@
                     oNode.setAttribute('type','text');
                     oNode.setAttribute('class', "form_item list");
                     oNode.setAttribute('data-type', "listing");
-                    oNode.setAttribute('name', 'DATA_' + dataid);
-                    oNode.setAttribute('id', 'DATA_' + dataid);
+                    oNode.setAttribute('name', 'DATA_' + dataNumber);
+                    oNode.setAttribute('id', 'DATA_' + dataNumber);
                     oNode.setAttribute('datafrom', $('#dataFrom').val());
                     if(_lv_field.length  > 0){
                         var lv_field = '';

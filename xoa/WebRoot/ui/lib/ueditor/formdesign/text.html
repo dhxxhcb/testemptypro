@@ -94,7 +94,7 @@
     $(function () {
 
         var dataid = $.getQueryString('dataid');
-
+        var dataNumber=parent.pluginId;
         var oNode = null, thePlugins = 'text';
         if (UE.plugins[thePlugins].editdom) {
             oNode = UE.plugins[thePlugins].editdom;
@@ -142,14 +142,15 @@
 
             if (!oNode) {
                 try {
+                    alert(dataNumber)
                     oNode = createElement('input', 'NEWFIELD');
                     oNode.setAttribute('class', "form_item");
                     oNode.setAttribute('data-type', "text");
                     oNode.setAttribute('type', gType);
                     oNode.setAttribute('title', gTitle);
                     oNode.setAttribute('value', gValue);
-                    oNode.setAttribute('name', 'DATA_' + dataid);
-                    oNode.setAttribute('id', 'DATA_' + dataid);
+                    oNode.setAttribute('name', 'DATA_' + dataNumber);
+                    oNode.setAttribute('id', 'DATA_' + dataNumber);
                    if ($G('orghide').checked) {
                         oNode.setAttribute('orghidden', 1);
                     } else {
