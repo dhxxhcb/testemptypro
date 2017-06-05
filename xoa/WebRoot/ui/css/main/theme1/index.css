@@ -142,6 +142,65 @@ body,
     margin: auto;
     overflow: hidden;
 }
+/*搜索*/
+.huiqian_inp {
+    width: 68%;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    text-align: left;
+    border: 1px solid #cccccc;
+    margin-left: 0px;
+}
+.huiqian_inp, .huiqian_send {
+    float: left;
+}
+.huiqian_send {
+    width: 24%;
+    height: 30px;
+    background: #ff9b30;
+    color: #fff;
+    margin-left: 8px;
+    outline: none;
+    border-radius: 3px;
+    border: none;
+}
+/*换肤*/
+.skin{
+    width:100%;
+    height:45px;
+    background: #fff;
+}
+.skin img,.skin h2{
+    float: left;
+}
+/*提醒*/
+#tixing_tab_t{
+    height: 100%;
+}
+#tixing_tab_t ul{
+    width:76px;
+    height: 26px;
+    border: 1px solid #00b7ee;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-left:29px;
+}
+#tixing_tab_t ul li{
+    width: 75px;
+    height: 26px;
+    border-right: 1px solid #00b7ee;
+/*    background: #00a2d4;*/
+    float: left;
+
+    text-align: center;
+    line-height: 26px;
+}
+#tixing_tab_t ul li:nth-child{
+    border:none !important;
+}
+
 .cont{
 	width:100%;
 	/* height:100%; */

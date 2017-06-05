@@ -465,7 +465,7 @@
            for(var i=0;i<data.object.listFp.length;i++){
                var obj2=data.object.listFp[i];
                if(obj2.prcsTo=='0'){
-                   prcsName='结束流程';
+                   prcsName='<div class="prcsName" style="" prcsId=0><h1>结束流程</h1></div>';
                }
                /*console.log(obj2.prcsTo);*/
                if(obj2.prcsTo!=""){
@@ -655,20 +655,36 @@
                                         if($('.prcsName').attr('check')=='1'){
                                             var pId=$('.prcsName').attr('prcsId');
                                         }
-
-                                        savedData={
-                                            flowId:ret.flowId,
-                                            runId:ret.runId,
-                                            runName:ret.runName,
-                                            beginTime:ret.beginTime,
-                                            beginUser:ret.beginUser,
-                                           /* prcsId:pId,*/
-                                            prcsId:ret3.prcsId,
-                                            flowPrcs:pId,
-                                            prcsflag:1,
-                                            flowPrcs:ret2,
-                                            jingbanUser:$('#remind_name').attr('user_id')
+                                        if($('.prcsName').find('h1').text()=='结束流程'){
+                                            savedData={
+                                                flowId:ret.flowId,
+                                                runId:ret.runId,
+                                                runName:ret.runName,
+                                                beginTime:ret.beginTime,
+                                                beginUser:ret.beginUser,
+                                                /* prcsId:pId,*/
+                                                prcsId:ret3.prcsId,
+                                                flowPrcs:0,
+                                                prcsflag:1,
+                                                flowPrcs:ret2,
+                                                jingbanUser:$('#remind_name').attr('user_id')
+                                            }
+                                        }else{
+                                            savedData={
+                                                flowId:ret.flowId,
+                                                runId:ret.runId,
+                                                runName:ret.runName,
+                                                beginTime:ret.beginTime,
+                                                beginUser:ret.beginUser,
+                                                /* prcsId:pId,*/
+                                                prcsId:ret3.prcsId,
+                                                flowPrcs:pId,
+                                                prcsflag:1,
+                                                flowPrcs:ret2,
+                                                jingbanUser:$('#remind_name').attr('user_id')
+                                            }
                                         }
+
                                        /* console.log(pId);*/
                                         console.log(savedData);
 
