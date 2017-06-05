@@ -708,7 +708,7 @@
     </select>
 
     <update id="updateSql" parameterType="Map">
-        update flow_run
+        update flow_run_prcs
         set
          PRCS_FLAG = #{prcsFlag},
          DELIVER_TIME = #{deliverTime},
