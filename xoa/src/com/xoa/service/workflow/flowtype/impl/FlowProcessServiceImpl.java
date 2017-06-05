@@ -74,28 +74,30 @@ public class FlowProcessServiceImpl implements FlowProcessService {
                 String tlement = record.getSettlementOfCondition();
                 String intoTheCondition = JSONArray.parseObject(tlement).getString("intoTheCondition");
                 String transferConditions = JSONArray.parseObject(tlement).getString("transferConditions");
-                if (!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("list")) && !StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("list"))) {
-                    record.setPrcsIn(JSONArray.parseObject(intoTheCondition).getString("list") + "\n" + JSONArray.parseObject(transferConditions).getString("list"));
-                } else if (!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("list"))) {
+                if (!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("list"))) {
                     record.setPrcsIn(JSONArray.parseObject(intoTheCondition).getString("list"));
-                } else if (!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("list"))) {
+                }
+                if (!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("list"))) {
                     record.setPrcsOut(JSONArray.parseObject(transferConditions).getString("list"));
                 }
 
                 if (!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("prcsInSet"))) {
                     record.setPrcsInSet(JSONArray.parseObject(intoTheCondition).getString("prcsInSet"));
                 }
-                if (!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("conditionDesc"))) {
+
+                if(!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("conditionDesc")) && !StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("conditionDesc"))){
+                    record.setConditionDesc(JSONArray.parseObject(intoTheCondition).getString("conditionDesc")+"\n"+JSONArray.parseObject(transferConditions).getString("conditionDesc"));
+                }else if (!StringUtils.checkNull(JSONArray.parseObject(intoTheCondition).getString("conditionDesc"))) {
                     record.setConditionDesc(JSONArray.parseObject(intoTheCondition).getString("conditionDesc"));
+                }else  if (!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("conditionDesc"))) {
+                    record.setConditionDesc(JSONArray.parseObject(transferConditions).getString("conditionDesc"));
                 }
 
                 if (!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("prcsOutSet"))) {
                     record.setPrcsOutSet(JSONArray.parseObject(transferConditions).getString("prcsOutSet"));
                 }
 
-                if (!StringUtils.checkNull(JSONArray.parseObject(transferConditions).getString("conditionDesc"))) {
-                    record.setConditionDesc(JSONArray.parseObject(transferConditions).getString("conditionDesc"));
-                }
+
             }
             // 解析页面json串
             if (!StringUtils.checkNull(record.getPrcsItemTwo())) {
