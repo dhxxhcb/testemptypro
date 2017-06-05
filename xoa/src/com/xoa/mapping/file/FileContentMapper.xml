@@ -188,4 +188,8 @@
             #{conId}
         </foreach>
     </delete>
+
+    <select id="queryBySearchValue" parameterType="Map">
+
+    </select>
 </mapper>

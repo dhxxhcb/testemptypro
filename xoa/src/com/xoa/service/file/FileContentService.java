@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.xoa.model.file.FileContentModel;
 import com.xoa.util.common.wrapper.BaseWrapper;
+import com.xoa.util.common.wrapper.BaseWrappers;
 
 public interface FileContentService {
 	/**
@@ -61,4 +62,5 @@ public interface FileContentService {
 
 	BaseWrapper batchDeleteConId(Integer conId[]);
 
+    BaseWrappers queryBySearchValue(Integer sortId, String subjectName, String[] creater, Integer contentNo, String contentValue1, String contentValue2, String contentValue3, String atiachmentDesc, String atiachmentName, String atiachmentCont, String crStartDate, String crEndDate);
 }

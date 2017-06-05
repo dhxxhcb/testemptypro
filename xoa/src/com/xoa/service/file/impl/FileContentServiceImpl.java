@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.xoa.util.common.wrapper.BaseWrapper;
+import com.xoa.util.common.wrapper.BaseWrappers;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.file.FileContentMapper;
@@ -82,6 +83,15 @@ public class FileContentServiceImpl implements FileContentService{
 		wrapper.setFlag(false);
 	}
 		return wrapper;
+	}
+
+	@Override
+	public BaseWrappers queryBySearchValue(Integer sortId, String subjectName, String[] creater, Integer contentNo, String contentValue1, String contentValue2, String contentValue3, String atiachmentDesc, String atiachmentName, String atiachmentCont, String crStartDate, String crEndDate) {
+		BaseWrappers wrappers =new BaseWrappers();
+		wrappers.setFlag(false);
+		wrappers.setStatus(true);
+		List<FileContentModel> datas =file_ContentMapper.queryBySearchValue(sortId,subjectName,creater,contentNo,contentValue1,contentValue2,contentValue3,atiachmentDesc,atiachmentName,atiachmentCont,crStartDate,crEndDate);
+		return null;
 	}
 
 
