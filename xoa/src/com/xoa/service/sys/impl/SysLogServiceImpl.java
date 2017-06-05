@@ -224,6 +224,11 @@ public class SysLogServiceImpl implements SysLogService {
     @Override
     public List<Object> getEachDayLogData(String year, String month) {
 
+        if (month != null && month.startsWith("0")) {
+            month = month.substring(1, 2);
+        }
+
+
         //记录每天的信息
         List<Object> dayLogDataList = new ArrayList<Object>();
         //记录每天的访问量
@@ -290,7 +295,7 @@ public class SysLogServiceImpl implements SysLogService {
                     monthTotalDay = endDay;
                 }
 
-                for (int i = 1; i <= endDay; i++) {
+                for (int i = 1; i <= monthTotalDay; i++) {
 
                     if (i < 10) {
                         if (Integer.parseInt(month) < 10) {
@@ -320,7 +325,7 @@ public class SysLogServiceImpl implements SysLogService {
                 if (flag) {
                     monthTotalDay = endDay;
                 }
-                for (int i = 1; i <= endDay; i++) {
+                for (int i = 1; i <= monthTotalDay; i++) {
 
                     if (i < 10) {
                         if (Integer.parseInt(month) < 10) {
@@ -354,7 +359,7 @@ public class SysLogServiceImpl implements SysLogService {
                 if (flag) {
                     monthTotalDay = endDay;
                 }
-                for (int i = 1; i <= endDay; i++) {
+                for (int i = 1; i <= monthTotalDay; i++) {
 
                     if (i < 10) {
                         if (Integer.parseInt(month) < 10) {
@@ -654,7 +659,7 @@ public class SysLogServiceImpl implements SysLogService {
      * @return: XXType(value introduce)
      **/
     @Override
-    public String getLocationByIP(String ip)  {
+    public String getLocationByIP(String ip) {
 
         //根据ip查ip地址
         String address = "";
