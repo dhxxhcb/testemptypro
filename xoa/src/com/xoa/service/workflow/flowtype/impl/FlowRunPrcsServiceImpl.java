@@ -70,11 +70,9 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
 				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
 				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
-				if(!StringUtils.checkNull(flowRunPrcs.getDeliverTime())) {
-					flowRunPrcs.setDeliverTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getDeliverTime())));
-					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getDeliverTime())));
-				}
-				if(!StringUtils.checkNull(flowRunPrcs.getPrcsTime())&&flowRunPrcs.getPrcsId()>1){
+				boolean flasg = flowRunPrcs.getDeliverTime().equals("1950-04-20 17:02:24");
+				String deliverTimes = flowRunPrcs.getDeliverTime();
+				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) == -621701856 && flowRunPrcs.getPrcsId()>1){
 //					String upTime =  flowRunPrcsMapper.findTime(flowRunPrcs.getRunId(),flowRunPrcs.getPrcsId()-1);
 					Integer prcsId= flowRunPrcs.getRunId();
 					Integer runId = flowRunPrcs.getPrcsId()-1;
@@ -82,10 +80,11 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 					flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(upTime)));
 					flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getReceiptTime())));
 				}
-				if(!StringUtils.checkNull(flowRunPrcs.getPrcsTime())){
-                    flowRunPrcs.setPrcsTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
-                }
-
+				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856) {
+					flowRunPrcs.setDeliverTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getDeliverTime())));
+					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getPrcsTime())));
+					flowRunPrcs.setPrcsTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
+				}
 				returnList.add(flowRunPrcs);
 			}
 			long end = System.currentTimeMillis();

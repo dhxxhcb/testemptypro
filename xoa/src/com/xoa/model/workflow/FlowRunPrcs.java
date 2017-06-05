@@ -188,6 +188,10 @@ public class FlowRunPrcs {
         return deliverTime==null? DateFormat.getStrTime(-621701856):deliverTime.trim();
     }
 
+    /**
+     * 工作转交/办结时间
+     * @param deliverTime
+     */
     public void setDeliverTime(String deliverTime) {
         this.deliverTime = deliverTime;
     }
@@ -426,6 +430,10 @@ public class FlowRunPrcs {
         return receiptTime == null ? "":receiptTime;
     }
 
+    /**
+     *  到达时间
+     * @param receiptTime
+     */
     public void setReceiptTime(String receiptTime) {
         this.receiptTime = receiptTime;
     }

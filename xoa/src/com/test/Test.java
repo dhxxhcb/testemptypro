@@ -160,17 +160,19 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		String name = "{\"intoTheCondition\":{\"list\":[],\"prcsInSet\":\"\",\"conditionDesc\":\"\"},\"transferConditions\":{\"list\":[],\"prcsOutSet\":\"\",\"conditionDesc\":\"\"}}";
-		JSONObject obj = JSONArray.parseObject(name);
-		String obj1 = obj.getString("intoTheCondition");
-		String obj2 = obj.getString("transferConditions");
-		String  name1 = JSONArray.parseObject(obj1).getString("list");
-		String  name2 = JSONArray.parseObject(obj1).getString("prcsInSet");
-		String  name3 = JSONArray.parseObject(obj1).getString("conditionDesc");
-		String  name4 = JSONArray.parseObject(obj2).getString("list");
-		String  name5 = JSONArray.parseObject(obj2).getString("prcsOutSet");
-		String  name6 = JSONArray.parseObject(obj2).getString("conditionDesc");
-		System.out.println(name1+">>>>>"+name2+">>>>>"+">>>>>"+name3+">>>>>"+name4+">>>>>"+name5+">>>>>"+name6);
+		System.out.println(DateFormat.getTime("0000-00-00 00:00:00") != -621701856);
+
+//		String name = "{\"intoTheCondition\":{\"list\":[],\"prcsInSet\":\"\",\"conditionDesc\":\"\"},\"transferConditions\":{\"list\":[],\"prcsOutSet\":\"\",\"conditionDesc\":\"\"}}";
+//		JSONObject obj = JSONArray.parseObject(name);
+//		String obj1 = obj.getString("intoTheCondition");
+//		String obj2 = obj.getString("transferConditions");
+//		String  name1 = JSONArray.parseObject(obj1).getString("list");
+//		String  name2 = JSONArray.parseObject(obj1).getString("prcsInSet");
+//		String  name3 = JSONArray.parseObject(obj1).getString("conditionDesc");
+//		String  name4 = JSONArray.parseObject(obj2).getString("list");
+//		String  name5 = JSONArray.parseObject(obj2).getString("prcsOutSet");
+//		String  name6 = JSONArray.parseObject(obj2).getString("conditionDesc");
+//		System.out.println(name1+">>>>>"+name2+">>>>>"+">>>>>"+name3+">>>>>"+name4+">>>>>"+name5+">>>>>"+name6);
 
 
 //		Date date = new Date();
