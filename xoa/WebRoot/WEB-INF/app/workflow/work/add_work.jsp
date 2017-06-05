@@ -243,13 +243,16 @@ font-weight:bold;
     #sort_cont li:hover{
         background: #e8f4fc;
     }
-    .rig_mid h1:hover{
+    .quick:hover{
+        cursor: pointer;
+    }
+    .quick:hover .xinjian_h1{
         color:#2b7fe0;
     }
-    .quick h1:hover{
-        color:#2b7fe0;
+    .xiangdao:hover{
+        cursor: pointer;
     }
-    .xiangdao h1:hover{
+    .xiangdao:hover h1{
         color:#2b7fe0;
     }
     #form_select{
