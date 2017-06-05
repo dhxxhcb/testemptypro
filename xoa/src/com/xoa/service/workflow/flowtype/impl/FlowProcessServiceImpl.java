@@ -9,8 +9,10 @@ import javax.annotation.Resource;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.xoa.dao.workflow.FlowTiggerMapper;
 import com.xoa.model.department.Department;
 import com.xoa.model.workflow.FlowRunPrcs;
+import com.xoa.model.workflow.FlowTiggerModel;
 import com.xoa.service.department.DepartmentService;
 import com.xoa.service.users.UsersPrivService;
 import com.xoa.service.users.UsersService;
@@ -38,6 +40,9 @@ public class FlowProcessServiceImpl implements FlowProcessService {
 
     @Resource
     private UsersService usersService;
+
+    @Resource
+    private FlowTiggerMapper flowTiggerMapper;
 
 
     @Override
@@ -169,8 +174,8 @@ public class FlowProcessServiceImpl implements FlowProcessService {
         List<FlowProcess> list = flowProcessMapper.findF(flowId);
         int len = list.size();
         //f.setFlowName(list.get(0).getFlowName());
-        list.get(0).setSetType("start");
         list.get(len - 1).setSetType("end round");
+        list.get(0).setSetType("start");
         for (int i = 0; i < len; i++) {
             Integer prId = list.get(i).getPrcsId();
             String prceTo = list.get(i).getPrcsTo();
@@ -215,6 +220,10 @@ public class FlowProcessServiceImpl implements FlowProcessService {
             if (!StringUtils.checkNull(flowProcess.getPrcsUser())) {
                 flowProcess.setPrcsUserName(usersService.getUserNameById(flowProcess.getPrcsUser()));
             }
+//            FlowTiggerModel flowTiggerModel = flowTiggerMapper.selectFlowTigger(flowProcess.getFlowId(),flowProcess.getPrcsId());
+
+
+
             listp.add(flowProcess);
         }
         f.setConnections(lm);

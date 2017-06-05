@@ -57,7 +57,19 @@
         WHERE ID = #{id}
     </update>
 
+    <!-- 查询数据接口 -->
+    <select id="selectFlowTigger" resultType="com.xoa.model.workflow.FlowTiggerModel">
+        SELECT
+        ID,
+        NAME,FLOW_ID,FLOW_PRCS,PLUGIN_TYPE,PLUGIN_WAY,PLUGIN,ACTIVED,SORT_ID,DESCRIPTION
+        FROM flow_trigger
+        WHERE
+        FLOW_ID=#{flowId}
+        AND
+        FLOW_PRCS = #{flowPrcs}
 
+    </select>
+    
 
 
 </mapper>
