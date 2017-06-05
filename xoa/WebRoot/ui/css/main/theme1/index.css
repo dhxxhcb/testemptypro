@@ -176,31 +176,52 @@ body,
     float: left;
 }
 /*提醒*/
-#tixing_tab_t{
-    height: 100%;
+.tixing_check{
+	background:#00b7ee ;
+	color: #fff;
 }
-#tixing_tab_t ul{
-    width:76px;
+.tixing_tab_t{
+	height: 100%;
+	overflow: hidden;
+	color:#00b7ee;
+	background: #fff;
+}
+
+.tixing_tab_t ul{
+    width:74.8%;
     height: 26px;
     border: 1px solid #00b7ee;
     border-radius: 3px;
     margin-top: 10px;
     margin-left:29px;
 }
-#tixing_tab_t ul li{
-    width: 75px;
+
+.tixing_tab_t ul ol{
+    width: 69px;
     height: 26px;
     border-right: 1px solid #00b7ee;
 /*    background: #00a2d4;*/
     float: left;
-
     text-align: center;
     line-height: 26px;
 }
-#tixing_tab_t ul li:nth-child{
+.tixing_tab_t ul ol:nth-child(3){
     border:none !important;
 }
-
+/*用户*/
+.skin ul{
+	width: 111px;
+	height: 100%;
+	margin-left: 178px;
+}
+.skin ul ol{
+	float: left;
+	width: 52px;
+	height: 40px;
+}
+.skin ul ol img,.skin ul ol h1{
+	float:left;
+}
 .cont{
 	width:100%;
 	/* height:100%; */

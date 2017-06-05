@@ -101,23 +101,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li class="position" id="admin-side1" style="background: yellow;">
 						<div class="skin">
 							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
-							<div id="tixing_tab_t">
+							<div class="tixing_tab_t">
 								<ul>
-									<li class="tixing_check">待办</li>
-									<li>邮件</li>
-									<li>公告</li>
+									<ol class="tixing_check">待办</ol>
+									<ol>邮件</ol>
+									<ol>公告</ol>
 								</ul>
 							</div>
 						</div>
 						<div style="margin-top:5px"  id="tixing_tab_c">
 							<ul class="tixing_one">
-								<li>1111</li>
+								<ol>1111</ol>
 							</ul>
 							<ul class="tixing_one" style="display: none;">
-								<li>222</li>
+								<ol>222</ol>
 							</ul>
 							<ul class="tixing_one" style="display: none;">
-								<li>333</li>
+								<ol>333</ol>
 							</ul>
 						</div>
 					</li>
@@ -128,7 +128,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<img src="img/main_img/skin.png" alt="" style="margin-top: 20px;margin-left: 17px;">
 					</li>
-					<li class="position" id="admin-side3" style="background: cyan;"></li>
+					<li class="position" id="admin-side3" style="background: cyan;">
+						<div class="skin">
+							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
+							<ul>
+								<ol><img src="img/img/main_img/per_zhuxiao" alt=""><h1>注销</h1></ol>
+								<ol><img src="img/img/main_img/per_shezhi" alt=""><h1>设置</h1></ol>
+							</ul>
+						</div>
+					</li>
 				</ul>
 
 				<div class="cont_left">
@@ -349,15 +357,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             });
 
             //内容右侧 提醒下的tab切换
-            var currentIndex=4;
+            var currentIndex=9;
             var index;
-            $('#tixing_tab_t').on('click','li',function(){
+            $('.tixing_tab_t').on('click','ol',function(){
                 index=$(this).index();
                 console.log(index);
                 if(currentIndex!=index){
                     currentIndex=index;
-                    $("#taskbar_right a").removeClass("checks");
-                    $(this).addClass('checks');
+                    $(".tixing_tab_t ol").removeClass("tixing_check");
+                    $(this).addClass("tixing_check");
                     //内容
                     var contents=$("#tixing_tab_c").find("ul");
                     $(contents[index]).show();
