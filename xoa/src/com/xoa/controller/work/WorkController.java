@@ -301,9 +301,9 @@ public class WorkController {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         flowRunPrcs.setDeliverTime(df.format(new Date()));
         flowRunPrcsService.update(flowRunPrcs);
-
         FlowRunPrcs fl=new FlowRunPrcs();
         fl.setPrcsId(Integer.parseInt(prcsId));
+        fl.setRunId(Integer.parseInt(runId));
         fl.setPrcsFlag(prcsFlag);
         fl.setFlowPrcs(Integer.parseInt(flowPrcs));
         fl.setUserId(jingbanUser);

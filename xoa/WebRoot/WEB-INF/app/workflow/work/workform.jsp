@@ -647,6 +647,7 @@
 
                                         //新建工作之后的保存接口，跳转到我的工作页面
                                         var ret=data.object.flowRun;
+                                        var ret3=data.object.flowRunPrcs;
                                        /* var ret2=data.object.flowRunPrcs;*/
                                        var ret2=$('.prcsName').attr('prcsid');
                                        alert(ret2);
@@ -661,7 +662,9 @@
                                             runName:ret.runName,
                                             beginTime:ret.beginTime,
                                             beginUser:ret.beginUser,
-                                            prcsId:pId,
+                                           /* prcsId:pId,*/
+                                            prcsId:ret3.prcsId,
+                                            flowPrcs:pId,
                                             prcsflag:1,
                                             flowPrcs:ret2,
                                             jingbanUser:$('#remind_name').attr('user_id')
@@ -686,9 +689,6 @@
 
                                                 }else{
                                                     alert('错误');
-                                                   /* window.close();*/
-                                                  /*  parent.opener.location.href='workList';*/
-
                                                 }
                                             }
                                         });
