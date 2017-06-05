@@ -225,6 +225,8 @@ public class FlowProcessServiceImpl implements FlowProcessService {
             FlowTiggerModel flowTiggerModel = flowTiggerMapper.selectFlowTigger(flowProcess.getFlowId(),flowProcess.getPrcsId());
             if(flowTiggerModel != null ){
                 flowProcess.setFlowTiggerModel(flowTiggerModel);
+            }else {
+                flowProcess.setFlowTiggerModel(new FlowTiggerModel());
             }
             listp.add(flowProcess);
         }

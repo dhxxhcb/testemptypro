@@ -55,6 +55,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				position: absolute;
 				right:0px;
 				top:0px;
+				background: #fafafa;
+				box-shadow: -2px 0 20px 0px #c4c4c4;
 			}
 		</style>
 	</head>
@@ -84,12 +86,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 
 			<div class="cont" id="client" style="position: relative;">
-				<div class="side_all">
-					<div class="position" id="admin-side0" style="background: orange;"></div>
-					<div class="position" id="admin-side1" style="background: yellow;"></div>
-					<div class="position" id="admin-side2" style="background: green;"></div>
-					<div class="position" id="admin-side3" style="background: cyan;"></div>
-				</div>
+				<ul class="side_all">
+					<li class="position" id="admin-side0">
+						<div class="skin">
+							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
+							<h2 style="width: 93%;height:100%;line-height: 45px;text-align: center;font-size: 10pt;font-weight: bold;">搜索</h2>
+						</div>
+						<div style="margin-top: 20px">
+							<input type="text" class="huiqian_inp">
+							<button class="huiqian_send">搜索</button>
+						</div>
+
+					</li>
+					<li class="position" id="admin-side1" style="background: yellow;">
+						<div class="skin">
+							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
+							<div id="tixing_tab_t">
+								<ul>
+									<li class="tixing_check">待办</li>
+									<li>邮件</li>
+									<li>公告</li>
+								</ul>
+							</div>
+						</div>
+						<div style="margin-top:5px"  id="tixing_tab_c">
+							<ul class="tixing_one">
+								<li>1111</li>
+							</ul>
+							<ul class="tixing_one" style="display: none;">
+								<li>222</li>
+							</ul>
+							<ul class="tixing_one" style="display: none;">
+								<li>333</li>
+							</ul>
+						</div>
+					</li>
+					<li class="position" id="admin-side2">
+						<div class="skin">
+							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
+							<h2 style="width:93%;height:100%;line-height: 45px;text-align: center;font-size: 10pt;font-weight: bold;">换肤</h2>
+						</div>
+						<img src="img/main_img/skin.png" alt="" style="margin-top: 20px;margin-left: 17px;">
+					</li>
+					<li class="position" id="admin-side3" style="background: cyan;"></li>
+				</ul>
 
 				<div class="cont_left">
 					<ul class="all_ul">
@@ -301,9 +341,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $("#taskbar_right a").removeClass("checks");
                     $(this).addClass('checks');
                     //内容
-                    var contents=$(".side_all").find("div");
-                   $(contents[index]).animate({width:"275px"});
+                    var contents=$(".side_all").find("li");
+                   $(contents[index]).animate({width:"300px"});
                     $(contents[index]).siblings().css('width','0px');
+                }
+
+            });
+
+            //内容右侧 提醒下的tab切换
+            var currentIndex=4;
+            var index;
+            $('#tixing_tab_t').on('click','li',function(){
+                index=$(this).index();
+                console.log(index);
+                if(currentIndex!=index){
+                    currentIndex=index;
+                    $("#taskbar_right a").removeClass("checks");
+                    $(this).addClass('checks');
+                    //内容
+                    var contents=$("#tixing_tab_c").find("ul");
+                    $(contents[index]).show();
+                    $(contents[index]).siblings().hide();
                 }
 
             });
@@ -330,10 +388,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//鼠标移入，右边logo变颜色，移出变回。
 			//one
 			$('#task_center').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_two.png) 0px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png) 0px -5px no-repeat')
 			});
 			$('#task_center').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_one.png) 0px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png) 0px -5px no-repeat')
 			});
 			//two
 			$('#sns').on('mouseover',function(){

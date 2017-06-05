@@ -93,15 +93,24 @@ public class WorkController {
 
     @RequestMapping("workfastAdd")
     @ResponseBody
-	public ToJson<FlowFast> fastAdd(HttpServletRequest request,
-		                        int flowId,int prcsId
-                                   ) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-		"loginDateSouse"));
+    public ToJson<FlowFast> fastAdd(HttpServletRequest request,
+                                    int flowId,
+                                    int prcsId
+    ) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
         String id=request.getParameter("runId");
         ToJson<FlowFast> tj = new ToJson<FlowFast>();
         FlowFast f = new FlowFast();
-        List<FlowProcess> fl = flowProcessService.findFlowId(flowId);
+        List<FlowProcess> fy = flowProcessService.findFlowId(flowId);
+        List<FlowProcess> fl = new ArrayList<FlowProcess>();
+        for(int i=0;i<fy.size();i++){
+            FlowProcess flowProcess=fy.get(i);
+            if(i==fy.size()-1){
+                flowProcess.setPrcsTo("0,");
+            }
+            fl.add(flowProcess);
+        }
         Map<String, Object> maps = new HashMap<String, Object>();
         ToJson<FlowTypeModel> toJson = new ToJson<FlowTypeModel>();
         maps.put("flowId", flowId);
@@ -111,7 +120,7 @@ public class WorkController {
         ToJson<FlowFormType> json = new ToJson<FlowFormType>();
         json = flowFormTypeService.qureyItemMax(flowTypeModel.getFormId());
         FlowFormType flowFormType = (FlowFormType) json.getObject();
-		if(prcsId==1) {
+        if(prcsId==1) {
             int runId = flowRunService.getMaxRunId();
             String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
             int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
@@ -135,14 +144,15 @@ public class WorkController {
             FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
             flowRunPrcs.setRunId(runId);
             //flowRunPrcs.setPrcsId(flowProcess.getPrcsId());
-            flowRunPrcs.setPrcsId(1);
+            flowRunPrcs.setPrcsId(prcsId);
             flowRunPrcs.setUserId(userId);
             flowRunPrcs.setPrcsDept(deptId);
-            flowRunPrcs.setPrcsFlag("4");
+            flowRunPrcs.setPrcsFlag("2");
+            flowRunPrcs.setFlowPrcs(1);
             flowRunPrcs.setCreateTime(beginTime);
             flowRunPrcs.setPrcsTime(beginTime);
-            flowRunPrcs.setDeliverTime(beginTime);
-            flowRunPrcs.setActiveTime(beginTime);
+            flowRunPrcs.setDeliverTime("0000-00-00 00:00:00");
+            flowRunPrcs.setActiveTime("0000-00-00 00:00:00");
             flowRunPrcsService.save(flowRunPrcs);
 
             f.setFlowTypeModel(flowTypeModel);
@@ -152,20 +162,32 @@ public class WorkController {
             f.setListFp(fl);
         }else{
             FlowRun flowRun = flowRunService.find(Integer.parseInt(id));
+
+            FlowRunPrcsExcted flowRunPrcs = new FlowRunPrcsExcted();
+            flowRunPrcs.setPrcsId(prcsId);
+            flowRunPrcs.setRunId(Integer.parseInt(id));
+            flowRunPrcs.setPrcsFlag("4");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            flowRunPrcs.setPrcsTime(df.format(new Date()));
+            //flowRunPrcs.setPrcsFlag(df.format(new Date()));
+            flowRunPrcsService.update(flowRunPrcs);
+
             f.setFlowTypeModel(flowTypeModel);
             f.setFlowFormType(flowFormType);
             f.setFlowRun(flowRun);
+            f.setFlowRunPrcs(flowRunPrcs);
             f.setListFp(fl);
         }
-		try {
-		tj.setObject(f);
-		tj.setMsg("OK");
-		tj.setFlag(0);
-		} catch (Exception e) {
-		tj.setMsg(e.getMessage());
-		}
-		return tj;
-		}
+        try {
+            tj.setObject(f);
+            tj.setMsg("OK");
+            tj.setFlag(0);
+        } catch (Exception e) {
+            tj.setMsg(e.getMessage());
+        }
+        return tj;
+    }
+
 
 
     /**
@@ -288,30 +310,43 @@ public class WorkController {
         //List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(maps);
         FlowRunPrcsExcted flowRunPrcs = new FlowRunPrcsExcted();
 
-        if(flowPrcs==""||flowPrcs.equals("0")){
+        /*if(flowPrcs==""||flowPrcs.equals("0")){
             FlowRun fr=flowRunService.find(Integer.parseInt(runId));
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             fr.setEndTime(df.format(new Date()));
             flowRunService.update(fr);
-        }
+        }*/
 
-        flowRunPrcs.setPrcsId(Integer.parseInt(prcsId)-1);
+        flowRunPrcs.setPrcsId(Integer.parseInt(prcsId));
         flowRunPrcs.setRunId(Integer.parseInt(runId));
-        flowRunPrcs.setPrcsFlag("3");
+        flowRunPrcs.setPrcsFlag("4");
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         flowRunPrcs.setDeliverTime(df.format(new Date()));
         flowRunPrcsService.update(flowRunPrcs);
+
         FlowRunPrcs fl=new FlowRunPrcs();
-        fl.setPrcsId(Integer.parseInt(prcsId));
-        fl.setRunId(Integer.parseInt(runId));
-        fl.setPrcsFlag(prcsFlag);
-        fl.setFlowPrcs(Integer.parseInt(flowPrcs));
-        fl.setUserId(jingbanUser);
-        fl.setCreateTime(df.format(new Date()));
-        fl.setPrcsTime("0000-00-00 00:00:00");
-        fl.setDeliverTime("0000-00-00 00:00:00");
-        fl.setActiveTime("0000-00-00 00:00:00");
-        flowRunPrcsService.save(fl);
+        String[] strArray = null;
+        strArray =jingbanUser.split(",");
+        if(flowPrcs.equals("0")){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("endTime", df.format(new Date()));
+            map.put("runId", runId);
+            flowRunService.updateTime(map);
+        }
+        for(int i=0;i<strArray.length;i++){
+            fl=new FlowRunPrcs();
+            fl.setRunId(Integer.parseInt(runId));
+            fl.setPrcsId(Integer.parseInt(prcsId)+1);
+            fl.setPrcsFlag("1");
+            fl.setFlowPrcs(Integer.parseInt(flowPrcs));
+            fl.setUserId(strArray[i]);
+            fl.setCreateTime(df.format(new Date()));
+            fl.setPrcsTime("0000-00-00 00:00:00");
+            fl.setDeliverTime("0000-00-00 00:00:00");
+            fl.setActiveTime("0000-00-00 00:00:00");
+            flowRunPrcsService.save(fl);
+        }
+
         try {
             toJson.setObject(fl);
             toJson.setMsg("OK");
