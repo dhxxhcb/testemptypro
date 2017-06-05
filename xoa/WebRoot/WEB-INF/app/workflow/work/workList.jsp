@@ -1229,21 +1229,21 @@
 
         //点击主办按钮，出现主办页面
         $('#dbgz').on('click','#zhuban',function(){
-            var formId= $(this).attr('formId');
+            var flowId= $(this).attr('flowId');
             var prcsId= $(this).attr('prcsId');
             var runId= $(this).attr('runId');
             user_id='zhuban';
-            $.popWindow("workform?flowId="+formId+'&flowStep='+prcsId+'&runId='+runId+'','快速新建页面','0','0','1500px','800px');
+            $.popWindow("workform?flowId="+flowId+'&flowStep='+prcsId+'&runId='+runId+'','快速新建页面','0','0','1500px','800px');
         });
 
         //点击催办按钮，出现主办页面
         $('#bjwork').on('click','#cuiban',function(){
-            var formId= $(this).attr('formId');
+            var flowId= $(this).attr('flowId');
             var prcsId= $(this).attr('prcsId');
             alert(prcsId);
             var runId= $(this).attr('runId');
             user_id='cuiban';
-            $.popWindow("workform?flowId="+formId+'&flowStep='+prcsId+'&runId='+runId+'','快速新建页面','0','0','1500px','800px');
+            $.popWindow("workform?flowId="+flowId+'&flowStep='+prcsId+'&runId='+runId+'','快速新建页面','0','0','1500px','800px');
         });
 
 
