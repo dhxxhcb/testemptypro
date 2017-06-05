@@ -133,6 +133,7 @@ function ajaxSvg() {
                 jsondata.title = json.object.designdata[0].flowTypeModel.flowName;
                 jsondata.initNum = designdata.length;
                 designdata.forEach(function (v, i) {
+                    console.log(v)
                     jsondata.nodes['node_' + v.prcsId] = {
                         designerId:v.id,
                         name: v.prcsName,
@@ -161,7 +162,7 @@ function ajaxSvg() {
                             syncDeal:v.syncDeal,
                             gatherNode:v.gatherNode,
                             viewPriv:v.viewPriv,
-
+                            prcsTo:v.prcsTo,
                             canWriteField:{
                                 controlMode:v.controlMode,
                                 fileuploadPriv:v.fileuploadPriv,
@@ -310,6 +311,7 @@ function ajaxSvg() {
 
                     seleTheEcho('prcsType',objtwo.prcsType)
                     inputTheEcho('prcsName',objtwo.prcsName)
+                    inputTheEcho('prcsTo',objtwo.prcsTo)
                     inputTheEcho('prcsUser',objtwo.prcsUser)
                     inputTheEcho('prcsDept',objtwo.prcsDept)
                     inputTheEcho('prcsPriv',objtwo.prcsPriv)
@@ -319,7 +321,6 @@ function ajaxSvg() {
                     ulTheEcho('requiredItem',objtwo.requiredItem)
                     radioTheEcho('signType',objtwo.signType)
                     radioTheEcho('countersign',objtwo.countersign)
-
                     inputTheEcho('timeOut',objtwo.timeOut)
                     radioTheEcho('timeOutModify',objtwo.timeOutModify)
                     radioTheEcho('timeOutType',objtwo.timeOutType)
@@ -353,7 +354,6 @@ function ajaxSvg() {
                             flag:3
                         },
                         function(data){
-                            console.log(data)
                             alertData=data;
                         });
 
