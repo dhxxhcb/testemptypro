@@ -171,6 +171,8 @@ font-weight:bold;
         margin-left: 39%;
     }
     .xinjian_h1{
+        width: 146px;
+        height: 20px;
         text-align: center;
     }
     .rig_left h1{

@@ -464,6 +464,9 @@
            var prcsTo;
            for(var i=0;i<data.object.listFp.length;i++){
                var obj2=data.object.listFp[i];
+               if(obj2.prcsTo=='0'){
+                   prcsName='结束流程';
+               }
                /*console.log(obj2.prcsTo);*/
                if(obj2.prcsTo!=""){
                    prcsTo= subPric(obj2.prcsTo,",");
@@ -482,12 +485,11 @@
                        if(obj2.prcsId== prcsTo[j]){
                            prcsName+='<div class="prcsName" style="" prcsId='+obj2.prcsId+'><h1>'+obj2.prcsName+'</h1></div>';
                        }
-                       if(obj2.prcsTo=='0'||obj2.prcsTo==''){
-                           prcsName='结束流程';
-                       }
+
                    }
                }
            }
+
 
                $('.zhuanjiao').on('click',function(){
                    console.log($('.opt').val()==0?'':$('.opt').val());

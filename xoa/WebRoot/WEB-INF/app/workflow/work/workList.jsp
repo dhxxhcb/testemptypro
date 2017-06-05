@@ -1125,7 +1125,7 @@
                             '<td class="">'+data.obj[i].userName+'</td>'+
                             '<td class="">'+data.obj[i].deliverTime+'</td><td class="">流程状态</td>'+
                             '<td style="text-align:left;" title="主办导出删除">'+
-                            '<a href="javascript:"><span class="host-span" id="cuiban" title="催办" runId='+data.obj[i].runId+' formId='+data.obj[i].flowType.formId+' prcsId='+data.obj[i].flowProcess.prcsId+'>主办</span></a>'+
+                            '<a href="javascript:"><span class="host-span" id="cuiban" title="催办" runId='+data.obj[i].runId+' formId='+data.obj[i].flowType.formId+' prcsId='+data.obj[i].flowProcess.prcsId+'>催办</span></a>'+
                             '<a href=""><span class="operation_text_left">导出</span></a>'+
                             '<a href="javascript:">'+
                             '<span class="operation_text_left">删除</span></a></td></tr>';
@@ -1235,6 +1235,16 @@
             user_id='zhuban';
             $.popWindow("workform?flowId="+formId+'&flowStep='+prcsId+'&runId='+runId+'','快速新建页面','0','0','1500px','800px');
         });
+
+        //点击催办按钮，出现主办页面
+        $('#bjwork').on('click','#cuiban',function(){
+            var formId= $(this).attr('formId');
+            var prcsId= $(this).attr('prcsId');
+            var runId= $(this).attr('runId');
+            user_id='cuiban';
+            $.popWindow("workform?flowId="+formId+'&flowStep='+prcsId+'&runId='+runId+'','快速新建页面','0','0','1500px','800px');
+        });
+
 
 
     });

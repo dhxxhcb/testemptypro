@@ -37,6 +37,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.three h1{
 				margin-left:6%;
 			}
+			.side_all{
+				width:275px;
+				height:100%;
+				/*background: red;*/
+				position: absolute;
+				right:0px;
+				top:0px;
+				z-index:20;
+			}
+			.checks{
+				background: #fff;
+			}
+			.position{
+				width:0px;
+				height:100%;
+				position: absolute;
+				right:0px;
+				top:0px;
+			}
 		</style>
 	</head>
 	<body>
@@ -63,7 +82,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			         
 		      	</div>
 			</div>
-			<div class="cont" id="client">
+
+			<div class="cont" id="client" style="position: relative;">
+				<div class="side_all">
+					<div class="position" id="admin-side0" style="background: orange;"></div>
+					<div class="position" id="admin-side1" style="background: yellow;"></div>
+					<div class="position" id="admin-side2" style="background: green;"></div>
+					<div class="position" id="admin-side3" style="background: cyan;"></div>
+				</div>
+
 				<div class="cont_left">
 					<ul class="all_ul">
 						<div class="tab_t">
@@ -79,10 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</ul>
 						
 							<ul class="tab_ctwo a" id="deptOrg" style="display:none;">
-								<!-- <li>
-									
-								</li> -->
-							
+
 							</ul>
 							
 						</div>
@@ -90,13 +114,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</ul>
 				</div>
 				<div class="cont_rig">
-					<!-- <div class="cont_nav">
-						<ul class="three_title">
-							<li class="three infame" url_three="asset/config">参数设置</li>
-							<li class="three" url_three="asset/manage">固定资产管理</li>
-							<li class="three" url_three="asset/query">固定资产查询</li>
-						</ul>
-					</div> -->
 					<div class="all_content" style="width:100%;height:100%;">
 							<!-- 我的桌面 -->
 							<div id='f_0' class="iItem">
@@ -138,17 +155,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													</div>
 													<div class="e_mail">
 														<ul class="all_mail">
-													<!-- 		<li><span class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></span><span class="e_name">张兰</span><span class="e_title">本人季度薪资申请<i style="background:url(https://app.gsubo.com/ui/img/mail/fileflag.png)"></i></span><span class="e_time">4月28日</span></li>
-															<li><span class="e_img"><img src="http://app.gsubo.com/file0/E101000001/avatar/1008181431.357608441.png"></span><span class="e_name">王丽</span><span  class="e_title">ReAll:王曰岐04-23工作日报<i></i></span><span class="e_time">4月23日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1107331905.1411049547.png"></span><span class="e_name">刘云</span><span  class="e_title">软通反馈的无法登录问题报告<i></i></span><span class="e_time">1月12日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1971178126.1475652706.png"></span><span class="e_name">潘芝芝</span><span  class="e_title">本次升级测试bug分析<i></i></span><span class="e_time">2016年7月21日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1772713180.972046570.jpg"></span><span class="e_name">周小北</span><span  class="e_title">关于小卓通知的汇报<i></i></span><span class="e_time">2016年4月30日</span></li> -->
-														</ul>
-														<ul class="no_read" style="display:none;">
-															<!-- <li>未读</li> -->
+
 														</ul>
 														<ul class="read" style="display:none;">
-															<!-- <li>已读</li> -->
 														</ul>
 													</div>
 												</li>
@@ -158,11 +167,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													</div>
 													<div class="daily">
 														<ul class="all_daily">
-															<!-- <li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/990557262.180238795.png"></span><span class="e_name">朱红</span><span class="e_title">人力资源变更备忘<i style="background:url(http://devapp.gsubo.com/ui/img/mail/fileflag.png)"></i></span><span class="e_time">3月20日</span></li>
-															<li><span class="e_img"><img src="http://app.gsubo.com/file0/E101000001/photo/115438796.997410756.jpg"></span><span class="e_name">王媛</span><span  class="e_title">修改开发规范<i></i></span><span class="e_time">2月04日</span></li>
-															<li><span class="e_img"><img src="http://app.gsubo.com/file0/E101000001/photo/1367380632.1000119131.jpg"></span><span class="e_name">张咪</span><span  class="e_title">市场调查结果分析<i></i></span><span class="e_time">1月11日</span></li>
-															<li><span class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></span><span class="e_name">刘芳妮</span><span  class="e_title">售后服务问题反馈<i></i></span><span class="e_time">2016年10月21日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1721260475.1180844205.png"></span><span class="e_name">鲁平平</span><span  class="e_title">项目开发进度演示<i></i></span><span class="e_time">2016年10月07日</span></li> -->
+
 														</ul>
 													</div>
 												</li>
@@ -217,8 +222,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</li>
 											</ul>
 										</div>
-								  <!--   </div> -->
-							
+
+
 							</div>
 
 							<div id='' class="iItem"><iframe  id="every_module" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
@@ -285,6 +290,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$(this).addClass('infame');
 				
 			});
+            //内容右侧tab切换
+            var currentIndex=4;
+            var index;
+            $('#taskbar_right').on('click','a',function(){
+                index=$(this).index();
+                console.log(index);
+                if(currentIndex!=index){
+                    currentIndex=index;
+                    $("#taskbar_right a").removeClass("checks");
+                    $(this).addClass('checks');
+                    //内容
+                    var contents=$(".side_all").find("div");
+                   $(contents[index]).animate({width:"275px"});
+                    $(contents[index]).siblings().css('width','0px');
+                }
+
+            });
 			
 			//鼠标移入左三角，变色
 			$('.left_scroll').on('mouseover',function(){
