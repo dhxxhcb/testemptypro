@@ -246,7 +246,7 @@
                 <td>
                     <textarea readonly="readonly" class=" td_title1  release1" id="add_texta"  dataid=""   resize="auto" ></textarea>
                     <img class="td_title2 release2" src="../img/mg2.png" alt=""/>
-                    <div class="release3" ><fmt:message code="global.lang.add"/></div>
+                    <div class="release3" id="dept_add"><fmt:message code="global.lang.add"/></div>
                     <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
                 </td>
             </tr>
@@ -273,7 +273,7 @@
                 <td>
                     <textarea readonly="readonly" id="add_selectjuese" class="td_title1  release1"></textarea>
                     <img class="td_title2 release4" src="../img/mg2.png" alt=""/>
-                    <div class="release3"><fmt:message code="global.lang.add"/></div>
+                    <div class="release3" id="priv_add"><fmt:message code="global.lang.add"/></div>
                     <div class="release4 empty"><fmt:message code="global.lang.empty"/></div>
                 </td>
             </tr>
@@ -492,10 +492,24 @@
 <script>
     user_id='';
     $(function () {
+        //选人员
         $('#add_selectUserbtn').click(function(){
             user_id='add_selectUser';
             $.popWindow("../common/selectUser");
         });
+        //选部门
+        $('#dept_add').click(function(){
+            user_id='add_texta';
+            $.popWindow("../common/selectDept");
+        });
+        //选部门
+        $('#priv_add').click(function(){
+            user_id='add_selectjuese';
+            $.popWindow("../common/selectPriv");
+        });
+
+
+
 
         //添加附件
         /* 修改页面的附件插件 */
@@ -728,23 +742,6 @@
                 update(data_notice);
             }else if(action=="add"){
                 add_notice(data_notice);
-                //空数据
-              /*  $('#add_selectUser').val();//选人
-                $('#add_texta').val();//选部门
-                $('#add_texta').val();//选角色
-                $('#add_selectjuese').val();//角色
-                $('#add_newDate').val();//发布时间
-                $('#start_add').val();//起始时间
-                $('#end_add').val();//结束时间
-                /!*$('#add_selectUser').val(data.userId);*!/
-                /!*$('#add_type_notice').selected(data.typeName);*!/
-                $("#add_type_notice").find("option[value=选择公告类型]").attr("selected",true);//类型
-                /!* if(data.top==1){
-                 $('#textTop').prop('checked',true);//是否置顶
-                 };*!/
-
-                ue.setContent();//内容*/
-
             }
 
         })

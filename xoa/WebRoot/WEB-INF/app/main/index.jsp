@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				margin-left:6%;
 			}
 			.side_all{
-				width:275px;
+				/*width:0px;*/
 				height:100%;
 				/*background: red;*/
 				position: absolute;
