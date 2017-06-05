@@ -38,7 +38,8 @@
                 </li>
                 <li><a href="javascript:void(0)" class="btn_h btn_h_2"><i class="icon"></i>设计流程步骤</a>
                 </li>
-                <li><a href="<%=basePath %>workflow/work/workform1?formId=122" class="btn_h btn_h_3"><i class="icon"></i>预览表单</a>
+                <li><a href="<%=basePath %>workflow/work/workform1?formId=122" class="btn_h btn_h_3"><i
+                        class="icon"></i>预览表单</a>
                 </li>
                 <li><a href="javascript:void(0)" class="btn_h btn_h_4"><i class="icon"></i>导入</a></li>
             </ul>
@@ -122,7 +123,8 @@
             <div class="homePage">
                 <div class="define_r define_flow clearfix">
                     <h3>流程主页</h3>
-                    <span><a href="<%=basePath %>flowSetting/processDesignTool?flowId=${flowId}" class="flowJpdl flow_des">流程设计器</a></span>
+                    <span><a href="<%=basePath %>flowSetting/processDesignTool?flowId=${flowId}"
+                             class="flowJpdl flow_des">流程设计器</a></span>
                 </div>
                 <div class="home_mid">
                     <ul class="mid_f clearfix">
@@ -275,8 +277,8 @@
                             <div class="form_group">
                                 <label for="class_f" class="flowName">流程类型 <span class="save">*</span></label>
                                 <select name="" id="class_f" class="depName">
-                                     <option value="1">固定流程</option>
-                                     <option value="2">自由流程</option>
+                                    <option value="1">固定流程</option>
+                                    <option value="2">自由流程</option>
                                 </select>
                             </div>
                             <div class="form_group">
@@ -672,10 +674,10 @@
     var ue = UE.getEditor('container');
 
     $(function () {
-    /*预览表单*/
-  $('.btn_h_3').click(function () {
+        /*预览表单*/
+        $('.btn_h_3').click(function () {
 
-  })
+        })
 
 
         /*所属部门控件*/
@@ -1669,29 +1671,29 @@
 
                     }
                     var dataConditions = $('#fileDate').attr('fileds');
-                    var groupadeStr ;
+                    var groupadeStr;
                     var groupadeAdd = $('#group_s').find("option:selected").attr('fields');
                     var groupadeASC = $('#groupSort').find("option:selected").val();
                     groupadeStr = groupadeAdd + groupadeASC;
 
                     var nameAtr = $('#FLOW_STATUS').attr('name');//工作流状态
                     var nameVal = $('#FLOW_STATUS').find("option:selected").val();//ALL
-                    var atrVal = nameAtr+"\r\n"+nameVal;
+                    var atrVal = nameAtr + "\r\n" + nameVal;
                     var query_scope = $('#FLOW_QUERY_TYPE').attr('name');//查询范围
                     var query_s_a = $('#FLOW_QUERY_TYPE').find("option:selected").val();//ALL
-                    var scope_ALL = query_scope+"\r\n"+query_s_a;
+                    var scope_ALL = query_scope + "\r\n" + query_s_a;
                     var date1 = $('#start_date').attr('name')//开始时间
                     var date_num1 = $('#start_date').val();
-                    var dateVal =  date1+"\r\n"+date_num1;
+                    var dateVal = date1 + "\r\n" + date_num1;
                     var date2 = $('#end_date').attr('name');//结束时间
                     var date_num2 = $('#end_date').val();
-                    var endVal = date2+"\r\n"+date_num2;
+                    var endVal = date2 + "\r\n" + date_num2;
                     var num_r = $('#runName').attr('name');//名称文号
-                    var num_a=  $('#runName').find("option:selected").val();//ALL
-                    var numVal = num_r+"\r\n"+num_a;
+                    var num_a = $('#runName').find("option:selected").val();//ALL
+                    var numVal = num_r + "\r\n" + num_a;
                     var attment = $('#attment').attr('name');//公共附件名称
 
-                    var work_f = atrVal+scope_ALL+dateVal+endVal+numVal;
+                    var work_f = atrVal + scope_ALL + dateVal + endVal + numVal;
 
 
                     var data = {
@@ -1701,8 +1703,8 @@
                         'dataConditions': dataConditions,
                         'groupFields': groupadeStr,
                         'condFormula': $('#query_d').val(),
-                        'flowConditions':work_f,
-                        'dataXml':''
+                        'flowConditions': work_f,
+                        'dataXml': ''
                     };
                     $.ajax({
                         type: 'GET',
@@ -1721,9 +1723,7 @@
             })
 
 
-            workInit(select)
-
-
+            workInit(0,[],[],[])
 
             $('.addbtn').click(function () {
                 var fields = $('#file_p').find("option:selected").attr('fields');
@@ -1763,8 +1763,55 @@
             });
 
         }
+        var termFh=["=",">","<","<>",">=","<=","begin","include","end","null"];
         var fromIdtwo = 17;
-        function workInit(select) {
+        //type 0 新建 1修改
+        function workInit(type,select,equals,groupBF) {
+            //存放处理后的数据
+            var equalsCons=[];
+            var equalsCon={};
+            //先按，分割
+          var arrayCon =  equals.split(',');
+          //没有，号 证明是数据
+          if(arrayCon.length==0){
+              arrayCon.push(equals);
+          }
+          //遍历每一项
+          for(var i=0;i<arrayCon.length;i++){
+             var constr= arrayCon[i];
+             //获取分割符号
+             var splitStr;
+             for(var j=0;j<termFh.length;j++){
+                 if(constr.indexOf(termFh[j]) > 0 ){
+                     splitStr=termFh[j];
+                     break;
+                 }
+             }
+             if(splitStr){
+              var key_value = constr.split(splitStr);
+              if(key_value.length!=2){
+                  //数据有问题，自己处理下
+                  console.log("数据问题");
+              }else{
+                  equalsCon["key"]=key_value[0];
+                  equalsCon["value"]=key_value[1];
+                  equalsCon["splitStr"]=splitStr;
+                  equalsCons.push(equalsCon);
+              }
+             }
+          }
+            /*分组字段*/
+            var reg = /(flow_data_1.DATA_19)(ASC|DESC)/;
+            var regAry = groupBF.match(reg)
+            var groupAry = [];
+            var obj = {};
+            obj["key"]=regAry[1];
+            obj["value"]=regAry[2];
+            groupAry.push(obj);
+            console.log(groupAry)
+
+
+
             workForm.init({
                     formhtmlurl: '../../form/formType',
                     resdata: {
@@ -1778,35 +1825,65 @@
                     var htmll = '';
                     var htmlr = '';
                     var groupStr = '';
+                    var htmltd='';
                     for (var i = 0; i < data.length; i++) {
-                        select.forEach(function (item,index) {
-                            if(('flow_data_${flowId}.' + data[i].name)==item){
-                                htmlr += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
+                        if(type==1){
+                            if(groupAry.length!==0){
+                                groupAry.forEach(function (item, index) {
+                                    if(('flow_data_${flowId}.'+data[i].name)==item.key){
+                                        groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
+                                        $('#groupsort option:selected').val(item.value)
+                                    }
 
-                                <%--str += '<option fields="flow_data_${flowId}.' + data[i].name + '" selected="selected" value="' + data[i].title + '">' + data[i].title + '</option>';--%>
-                                <%--groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" selected="selected" value="' + data[i].title + '">' + data[i].title + '</option>'--%>
-                            }else{
-                                htmll += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
-                                str += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
-                                groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
+                                })
+
+
+
                             }
+                            if(equalsCons.length!==0){
+                                equalsCons.forEach(function (item, index) {
+                                    if(('flow_data_${flowId}.'+data[i].name)==item.key){
+                                            htmltd += '<tbody><tr><td style="text-align: center"></td style="text-align: center"><td id="fileDate" fileds="' + item.key + item.splitStr + item.value + '">\'' + data[i].title + '\'' + item.splitStr + '\'' +  item.value + '\'</td><td style="text-align: center">删除</td></tr></tbody>'
+                                    }
+                                })
 
-                        })
+                            }
+                            if(select.length!=0){
+                                    select.forEach(function (item, index) {
+                                        if (('flow_data_${flowId}.' + data[i].name) == item) {
+                                            htmlr += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
+                                        } else {
+                                            htmll += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
+                                            str += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
+                                            groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
+                                        }
+
+                                    })
+
+                                }else{
+                                    htmll += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
+                                    str += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
+                                    groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
+                                }
+                        }else{
+                            htmll += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
+                            str += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
+                            groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
+                        }
+
 
                     }
                     $('#data_th').html(htmll);
                     $('#file_p').html(str);
                     $('#group_s').html(groupStr);
                     $('#data_th_1').html(htmlr);
+                    $('#table_t').append(htmltd);
                     $('.td_d').each(function (index, item) {
                         $(item).click(function () {
                             $(this).addClass('bg_d');
                             $(this).attr('able', true);
                         })
                     })
-//                    var str = '';
-//                    str += '<tr id="tr_td"><td></td></tr>'
-//                    $('#data_th_1').html(str);
                     $('#btn_b1').on('click', function () {
                         var td = $(".td_d");
                         for (var i = 0; i < td.length; i++) {
@@ -1830,26 +1907,24 @@
             layerWin();
         });
         /*配置查询模板修改*/
-        $('.table').on('click','.updata_c',function () {
+        $('.table').on('click', '.updata_c', function () {
             var tplId = $('.one').attr('seqId');
             $.ajax({
-                type:'GET',
-                url:'<%=basePath%>/flowSetDatas/queryFlowQuertTplById',
-                dataType:'json',
-                data:{
-                    'tplId':tplId
+                type: 'GET',
+                url: '<%=basePath%>/flowSetDatas/queryFlowQuertTplById',
+                dataType: 'json',
+                data: {
+                    'tplId': tplId
                 },
-                success:function (data) {
+                success: function (data) {
                     console.log(data)
-                    if(data.flag){
+                    if (data.flag) {
                         var data = data.data;
-                         var dataview = data.viewExtFields;
-                         dataview=dataview.split(',')
-                         var viewAttr = dataview;
-                         var dataCon = data.dataConditions;
-                          dataCon=dataCon.split('=');
-                          var dataConAttr = dataCon[0];
-                          console.log(dataConAttr);
+                        var dataview = data.viewExtFields;
+                        dataview = dataview.split(',')
+                        var viewAttr = dataview;
+                        var dataCon = data.dataConditions;
+                        var groupBF = data.groupByFields;
                         layer.open({
                             title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 15px;color: #fff">新建</p>',
                             shade: 0,
@@ -1916,29 +1991,29 @@
 
                                 }
                                 var dataConditions = $('#fileDate').attr('fileds');
-                                var groupadeStr ;
+                                var groupadeStr;
                                 var groupadeAdd = $('#group_s').find("option:selected").attr('fields');
                                 var groupadeASC = $('#groupSort').find("option:selected").val();
                                 groupadeStr = groupadeAdd + groupadeASC;
 
                                 var nameAtr = $('#FLOW_STATUS').attr('name');//工作流状态
                                 var nameVal = $('#FLOW_STATUS').find("option:selected").val();//ALL
-                                var atrVal = nameAtr+"\r\n"+nameVal;
+                                var atrVal = nameAtr + "\r\n" + nameVal;
                                 var query_scope = $('#FLOW_QUERY_TYPE').attr('name');//查询范围
                                 var query_s_a = $('#FLOW_QUERY_TYPE').find("option:selected").val();//ALL
-                                var scope_ALL = query_scope+"\r\n"+query_s_a;
+                                var scope_ALL = query_scope + "\r\n" + query_s_a;
                                 var date1 = $('#start_date').attr('name')//开始时间
                                 var date_num1 = $('#start_date').val();
-                                var dateVal =  date1+"\r\n"+date_num1;
+                                var dateVal = date1 + "\r\n" + date_num1;
                                 var date2 = $('#end_date').attr('name');//结束时间
                                 var date_num2 = $('#end_date').val();
-                                var endVal = date2+"\r\n"+date_num2;
+                                var endVal = date2 + "\r\n" + date_num2;
                                 var num_r = $('#runName').attr('name');//名称文号
-                                var num_a=  $('#runName').find("option:selected").val();//ALL
-                                var numVal = num_r+"\r\n"+num_a;
+                                var num_a = $('#runName').find("option:selected").val();//ALL
+                                var numVal = num_r + "\r\n" + num_a;
                                 var attment = $('#attment').attr('name');//公共附件名称
 
-                                var work_f = atrVal+scope_ALL+dateVal+endVal+numVal;
+                                var work_f = atrVal + scope_ALL + dateVal + endVal + numVal;
 
 
                                 var data = {
@@ -1948,8 +2023,8 @@
                                     'dataConditions': dataConditions,
                                     'groupFields': groupadeStr,
                                     'condFormula': $('#query_d').val(),
-                                    'flowConditions':work_f,
-                                    'dataXml':''
+                                    'flowConditions': work_f,
+                                    'dataXml': ''
 
                                 };
                                 $.ajax({
@@ -1967,8 +2042,9 @@
                                 })
                             },
                         })
-                          workInit(viewAttr);
+                        workInit(1,viewAttr,dataCon,groupBF);
                         $('#tempName').val(data.tplName);
+                        $('#query_d').val(data.condFormula);
 
                     }
                 }
