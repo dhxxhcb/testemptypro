@@ -13,18 +13,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta charset="UTF-8">
 		<title><fmt:message code="global.lang.doing"/></title>
 		<style type="text/css">
-			*{margin: 0;padding: 0;}
-			html,body{width: 100%;height: 100%;font-family: "微软雅黑";}
-			.developo{width: 100%;height: 100%;}
-			.developo .text{width: 100%;position: relative;height: 100%;}
-			.developo .text img{display: block;position: absolute;left: 50%;top: 50%;margin-left: -169px;margin-top: -82px;}
-			
+
 		</style>
 	</head>
 	<body>
-		<div class="developo">
-			<div class="text">
-				<img src="../img/common/development.png"/>
+		<div class="content">
+			<div  class="cabinet_left">
+
+			</div>
+			<div  class="cabinet_right">
+
 			</div>
 		</div>
 	</body>
