@@ -29,35 +29,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="nav">
 				<ul class="index_head">
 					<li id="visitJurisd" style="margin-left: 10px;">
-						<span class="one headli">访问权限</span>
+						<span id="visit" class="headli one">访问权限</span>
 						<img src="../img/02.png" alt=""/>
 					</li>
 					<li id="addJurisd">
-						<span class="headli">新建权限</span>
+						<span id="add" class="headli">新建权限</span>
 						<img src="../img/02.png" alt=""/>
 					</li>
 					<li id="editJurisd">
-						<span class="headli">编辑权限</span>
+						<span id="edit" class="headli">编辑权限</span>
 						<img src="../img/02.png" alt=""/>
 					</li>
 					<li id="deleteJurisd">
-						<span class="headli">删除权限</span>
+						<span id="delete" class="headli">删除权限</span>
 						<img src="../img/02.png" alt=""/>
 					</li>
 					<li id="commentJurisd">
-						<span class="headli">评论权限</span>
+						<span id="comment" class="headli">评论权限</span>
 						<img src="../img/02.png" alt=""/>
 					</li>
 					<li id="downloadJurisd">
-						<span class="headli">下载/打印权限</span>
+						<span id="download" class="headli">下载/打印权限</span>
 						<img src="../img/02.png" alt=""/>
 					</li>
 					<li id="signJurisd">
-						<span class="headli">签阅权限</span>
+						<span id="sign" class="headli">签阅权限</span>
 						<img src="../img/02.png" alt=""/>
 					</li>
 					<li id="owner">
-						<span class="headli">所有者</span>
+						<span id="all" class="headli">所有者</span>
 						<img src="../img/02.png" alt=""/>
 					</li>
 					<li id="batchSettings">
@@ -268,5 +268,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
+	<script>
+		var dept_id='SendCompany';
+		var priv_id='SendPriv';
+		var user_id='Senduser';
+		$(function(){
+            $("#SelectCompany").on("click",function(){//选部门控件
+                dept_id='SendCompany';
+                $.popWindow("../common/selectDept");
+            });
+            $("#SelectPriv").on("click",function(){//选角色控件
+                priv_id='SendPriv';
+                $.popWindow("../common/selectPriv");
+            });
+            $("#SelectUser").on("click",function(){//选人员控件
+                user_id='Senduser';
+                $.popWindow("../common/selectUser");
+            });
+
+            $("#batchSelectCompany").on("click",function(){//选部门控件
+                dept_id='batchSendCompany';
+                $.popWindow("../common/selectDept");
+            });
+            $("#batchSelectPriv").on("click",function(){//选角色控件
+                priv_id='batchSendPriv';
+                $.popWindow("../common/selectPriv");
+            });
+            $("#batchSelectUser").on("click",function(){//选人员控件
+                user_id='batchSenduser';
+                $.popWindow("../common/selectUser");
+            });
+		})
+	</script>
 	</body>
 </html>
