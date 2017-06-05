@@ -6,8 +6,8 @@
         <result column="RUN_ID" javaType="int" property="runId"/>
         <result column="PRCS_ID" javaType="int" property="prcsId"/>
         <result column="USER_ID" javaType="string" property="userId"/>
-        <result column="PRCS_TIME" javaType="string" property="prcsTime"/>
-        <result column="DELIVER_TIME" javaType="string" property="deliverTime"/>
+        <result column="PRCS_TIME" javaType="String" property="prcsTime"/>
+        <result column="DELIVER_TIME" javaType="String" property="deliverTime"/>
         <result column="PRCS_FLAG" javaType="string" property="prcsFlag"/>
         <result column="FLOW_PRCS" javaType="int" property="flowPrcs"/>
         <result column="OP_FLAG" javaType="string" property="opFlag"/>
