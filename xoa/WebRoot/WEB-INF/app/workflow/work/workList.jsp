@@ -978,13 +978,19 @@
             }
         );
 
-        function initPageList_qb(cb) {
+        function initPageList_qb(cb,page) {
             //var layerIndex = layer.load(0, {shade: false}); /* 0代表加载的风格，支持0-2 */
+            var datas_qb ={
+                page:page,
+                pageSize:10,
+                useFlag:true,
+                userId:'admin',
+            };
             $.ajax({
-                url:'../../workflow/work/selectAll?page=1&pageSize=5&useFlag=true&userId=admin',
+                url:'../../workflow/work/selectAll',
                 type:'get',
                 dataType:'json',
-                //data:datas,
+                data:datas_qb,
                 success:function(data){
 					/*console.log(data);*/
                     var length=data.obj.length;
@@ -1123,7 +1129,7 @@
                             '<td class="">'+
                             '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
                             '<td class="">'+data.obj[i].userName+'</td>'+
-                            '<td class="">'+data.obj[i].deliverTime+'</td><td class="">流程状态</td>'+
+                            '<td class="">'+data.obj[i].deliverTime+'</td><td class="">'+status+'</td>'+
                             '<td style="text-align:left;" title="主办导出删除">'+
                             '<a href="javascript:"><span class="host-span" id="cuiban" title="催办" runId='+data.obj[i].runId+' flowId='+data.obj[i].flowType.flowId+' prcsId='+data.obj[i].flowProcess.prcsId+'>催办</span></a>'+
                             '<a href=""><span class="operation_text_left">导出</span></a>'+
