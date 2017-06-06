@@ -50,5 +50,9 @@
      #{isOut}, #{locationOn}, #{wifiOn}, #{wifiAddr},
      #{wifiName}, #{workdate})
    </insert>
+  <update id="updateAttendSet" >
+
+
+  </update>
 
 </mapper>

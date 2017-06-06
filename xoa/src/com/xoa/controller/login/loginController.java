@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.annotation.Resource;
@@ -192,10 +193,11 @@ public class loginController {
 
 	}
 	@RequestMapping(value = "/logOut", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
-   public String logOut(HttpServletRequest request){
+   public ModelAndView logOut(HttpServletRequest request){
 	   request.getSession().invalidate();
 	   request.getSession().removeAttribute("user");
-	    return "login/index";
+		return new ModelAndView("redirect:login/index");
+
 	   
    }
 }
