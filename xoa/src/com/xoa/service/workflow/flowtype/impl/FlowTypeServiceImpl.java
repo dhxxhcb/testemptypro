@@ -48,6 +48,7 @@ public class FlowTypeServiceImpl implements FlowTypeService {
             flowTypeModelMapper.save(flowTypeModel);
             toJson.setMsg("ok");
             toJson.setFlag(0);
+            toJson.setObject(flowTypeModel);
         } catch (Exception e) {
             L.e("保存异常："+e);
             toJson.setMsg("error");
