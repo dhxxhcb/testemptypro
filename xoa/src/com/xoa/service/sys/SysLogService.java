@@ -127,6 +127,6 @@ public interface SysLogService {
      **/
     void deleteAllLog();
 
-    String getLocationByIP(String param) throws Exception;
+
 
 }

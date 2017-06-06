@@ -5,7 +5,7 @@ import com.xoa.model.common.Syslog;
 import com.xoa.service.common.SysCodeService;
 import com.xoa.service.sys.SysLogService;
 import com.xoa.service.users.UsersService;
-import com.xoa.util.ipUtil.AddressUtils;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -557,7 +557,7 @@ public class SysLogServiceImpl implements SysLogService {
                 String location = "--";
                 try {
 
-                    //取消该行注释即可根据ip查地理位置，但是调用第三方接口比较慢。
+                    //取消该行注释即可根据ip查地理位置，但是调用第三方接口比较慢，且不可以调外网。
                     //location = getLocationByIP(syslog1.getIp());
                 } catch (Exception e) {
                     location = "未知";
@@ -651,33 +651,6 @@ public class SysLogServiceImpl implements SysLogService {
         sysLogMapper.deleteAllLog();
     }
 
-    /**
-     * @创建作者: 韩成冰
-     * @创建日期: 2017/6/3 18:08
-     * @函数介绍: 根据ip查地址
-     * @参数说明: @param param ip
-     * @return: XXType(value introduce)
-     **/
-    @Override
-    public String getLocationByIP(String ip) {
-
-        //根据ip查ip地址
-        String address = "";
-        if (ip.startsWith("10.") || ip.startsWith("172.16.") || ip.startsWith("172.31.") || ip.startsWith("192.168.")) {
-            address = "局域网及其它";
-        } else {
-            try {
-                address = AddressUtils.getAddress("ip=" + ip, "utf-8");
-
-            } catch (Exception e) {
-                address = "未知";
-            }
-
-        }
-
-
-        return address;
-    }
 
 
     /**
