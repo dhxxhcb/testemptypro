@@ -325,7 +325,7 @@ public class FlowProcess implements Serializable {
     /**
      * 关联触发器
      */
-    private FlowTiggerModel flowTiggerModel;
+    private List<FlowTiggerModel> flowTiggerModel;
 
 
     private List<Map<String, String>> connections;
@@ -1084,7 +1084,7 @@ public class FlowProcess implements Serializable {
      * 关联触发器
      * @return
      */
-    public FlowTiggerModel getFlowTiggerModel() {
+    public List<FlowTiggerModel> getFlowTiggerModel() {
         return flowTiggerModel;
     }
 
@@ -1092,7 +1092,7 @@ public class FlowProcess implements Serializable {
      * 关联触发器
      * @param flowTiggerModel
      */
-    public void setFlowTiggerModel(FlowTiggerModel flowTiggerModel) {
+    public void setFlowTiggerModel(List<FlowTiggerModel> flowTiggerModel) {
         this.flowTiggerModel = flowTiggerModel;
     }
 }

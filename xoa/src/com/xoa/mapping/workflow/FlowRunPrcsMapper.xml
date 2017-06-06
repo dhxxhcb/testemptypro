@@ -594,6 +594,7 @@
     AND frp.CHILD_RUN = '0'
     AND frp.USER_ID=#{userId}
     AND fr.DEL_FLAG = '0'
+    AND frp.ID in (SELECT MAX(id) from FLOW_RUN_PRCS GROUP BY RUN_ID)
     GROUP BY fr.RUN_ID
     ORDER BY
     frp.IS_REMIND DESC,
