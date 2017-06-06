@@ -590,7 +590,7 @@
     INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
     LEFT  JOIN FLOW_PROCESS fp ON fp.FLOW_ID = fr.FLOW_ID
     where
-      frp.PRCS_FLAG = '4'
+      frp.PRCS_FLAG IN ('3','4')
     AND frp.CHILD_RUN = '0'
     AND frp.USER_ID=#{userId}
     AND fr.DEL_FLAG = '0'
