@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.attend.AttendSetMapper" >
+  <resultMap id="BaseResultMap" type="com.xoa.model.attend.AttendSet" >
+    <id column="SID" property="sid" jdbcType="INTEGER" />
+    <result column="UID" property="uid" jdbcType="INTEGER" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="ATIME1_SET" property="atime1Set" jdbcType="VARCHAR" />
+    <result column="ATIME1" property="atime1" jdbcType="VARCHAR" />
+    <result column="ATIME2_SET" property="atime2Set" jdbcType="VARCHAR" />
+    <result column="ATIME2" property="atime2" jdbcType="VARCHAR" />
+    <result column="ATIME3_SET" property="atime3Set" jdbcType="VARCHAR" />
+    <result column="ATIME3" property="atime3" jdbcType="VARCHAR" />
+    <result column="ATIME4_SET" property="atime4Set" jdbcType="VARCHAR" />
+    <result column="ATIME4" property="atime4" jdbcType="VARCHAR" />
+    <result column="ATIME5_SET" property="atime5Set" jdbcType="VARCHAR" />
+    <result column="ATIME5" property="atime5" jdbcType="VARCHAR" />
+    <result column="ATIME6_SET" property="atime6Set" jdbcType="VARCHAR" />
+    <result column="ATIME6" property="atime6" jdbcType="VARCHAR" />
+    <result column="WORKTIME_F" property="worktimeF" jdbcType="VARCHAR" />
+    <result column="WORKTIME_B" property="worktimeB" jdbcType="VARCHAR" />
+    <result column="WORKAFTER_F" property="workafterF" jdbcType="VARCHAR" />
+    <result column="WORKAFTER_B" property="workafterB" jdbcType="VARCHAR" />
+    <result column="LOCATION" property="location" jdbcType="VARCHAR" />
+    <result column="RANGES" property="ranges" jdbcType="VARCHAR" />
+    <result column="IS_OUT" property="isOut" jdbcType="CHAR" />
+    <result column="LOCATION_ON" property="locationOn" jdbcType="CHAR" />
+    <result column="WIFI_ON" property="wifiOn" jdbcType="CHAR" />
+    <result column="WIFI_ADDR" property="wifiAddr" jdbcType="VARCHAR" />
+    <result column="WIFI_NAME" property="wifiName" jdbcType="VARCHAR" />
+    <result column="WORKDATE" property="workdate" jdbcType="VARCHAR" />
+  </resultMap>
+   <insert id="addAttendSet" parameterType="com.xoa.model.attend.AttendSet">
+     insert into attend_set (SID, UID, TITLE,
+     ATIME1_SET, ATIME1, ATIME2_SET,
+     ATIME2, ATIME3_SET, ATIME3,
+     ATIME4_SET, ATIME4, ATIME5_SET,
+     ATIME5, ATIME6_SET, ATIME6,
+     WORKTIME_F, WORKTIME_B, WORKAFTER_F,
+     WORKAFTER_B, LOCATION, RANGES,
+     IS_OUT, LOCATION_ON, WIFI_ON, WIFI_ADDR,
+     WIFI_NAME, WORKDATE)
+     values (#{sid}, #{uid}, #{title},
+     #{atime1Set}, #{atime1}, #{atime2Set},
+     #{atime2}, #{atime3Set}, #{atime3},
+     #{atime4Set}, #{atime4}, #{atime5Set},
+     #{atime5}, #{atime6Set}, #{atime6},
+     #{worktimeF}, #{worktimeB}, #{workafterF},
+     #{workafterB}, #{location}, #{ranges},
+     #{isOut}, #{locationOn}, #{wifiOn}, #{wifiAddr},
+     #{wifiName}, #{workdate})
+   </insert>
+
+</mapper>
