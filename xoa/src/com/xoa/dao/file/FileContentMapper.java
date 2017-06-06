@@ -20,5 +20,19 @@ public interface FileContentMapper {
 	int updateFileCon(FileContentModel fcm);
 	int batchDeleteConId(Integer conId[]);
 
-    List<FileContentModel> queryBySearchValue(@Param("sortId") Integer sortId, String subjectName, String[] creater, Integer contentNo, String contentValue1, String contentValue2, String contentValue3, String atiachmentDesc, String atiachmentName, String atiachmentCont, String crStartDate, String crEndDate);
+    List<FileContentModel> queryBySearchValue(@Param("sortId") Integer sortId,
+											  @Param("subjectName")String subjectName,
+											  @Param("creater")String creater,
+											  @Param("contentNo")Integer contentNo,
+											  @Param("contentValue1")String contentValue1,
+											  @Param("contentValue2")String contentValue2,
+											  @Param("contentValue3")String contentValue3,
+											  @Param("atiachmentDesc")String atiachmentDesc,
+											  @Param("atiachmentName")String atiachmentName,
+											  @Param("atiachmentCont")String atiachmentCont,
+											  @Param("crStartDate")String crStartDate,
+											  @Param("crEndDate")String crEndDate,
+											  @Param("pageNo")Integer pageNo,
+											  @Param("pageSize")Integer pageSize);
+			;
 }

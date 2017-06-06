@@ -62,5 +62,5 @@ public interface FileContentService {
 
 	BaseWrapper batchDeleteConId(Integer conId[]);
 
-    BaseWrappers queryBySearchValue(Integer sortId, String subjectName, String[] creater, Integer contentNo, String contentValue1, String contentValue2, String contentValue3, String atiachmentDesc, String atiachmentName, String atiachmentCont, String crStartDate, String crEndDate);
+    BaseWrappers queryBySearchValue(Integer sortId, String subjectName, String[] creater, Integer contentNo, String contentValue1, String contentValue2, String contentValue3, String atiachmentDesc, String atiachmentName, String atiachmentCont, String crStartDate, String crEndDate,Integer pageNo,Integer pageSize);
 }

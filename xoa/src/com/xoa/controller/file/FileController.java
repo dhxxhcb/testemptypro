@@ -1049,12 +1049,16 @@ public class FileController {
 	 * @param atiachmentCont 附件内容
 	 * @param crStartDate 创建时间范围 开始 格式 “yyyy-MM-dd HH:mm:ss”
 	 * @param crEndDate 创建时间范围 结束 格式 “yyyy-MM-dd HH:mm:ss”
+	 * @param pageNo 翻页==当前页
+	 * @param pageSize 翻页==每页个数
 	 * @return
 	 */
+	@RequestMapping("/queryBySearchValue")
+	@ResponseBody
 	public BaseWrappers queryBySearchValue(Integer sortId,String subjectName,@RequestParam(name = "creater",required = false) String creater[],
 										   Integer contentNo,String contentValue1,String contentValue2,String contentValue3,
-										  String atiachmentDesc,String atiachmentName,String atiachmentCont,String crStartDate,String crEndDate){
-		BaseWrappers wrappers=fileContentService.queryBySearchValue(sortId,subjectName,creater,contentNo,contentValue1,contentValue2,contentValue3,atiachmentDesc,atiachmentName,atiachmentCont,crStartDate,crEndDate);
+										  String atiachmentDesc,String atiachmentName,String atiachmentCont,String crStartDate,String crEndDate,Integer pageNo,@RequestParam(name = "pageSize",defaultValue = "10",required = false) Integer pageSize){
+		BaseWrappers wrappers=fileContentService.queryBySearchValue(sortId,subjectName,creater,contentNo,contentValue1,contentValue2,contentValue3,atiachmentDesc,atiachmentName,atiachmentCont,crStartDate,crEndDate,pageNo,pageSize);
 		return wrappers;
 	}
 

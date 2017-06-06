@@ -86,12 +86,34 @@ public class FileContentServiceImpl implements FileContentService{
 	}
 
 	@Override
-	public BaseWrappers queryBySearchValue(Integer sortId, String subjectName, String[] creater, Integer contentNo, String contentValue1, String contentValue2, String contentValue3, String atiachmentDesc, String atiachmentName, String atiachmentCont, String crStartDate, String crEndDate) {
+	public BaseWrappers queryBySearchValue(Integer sortId, String subjectName, String[] creater, Integer contentNo, String contentValue1, String contentValue2, String contentValue3, String atiachmentDesc, String atiachmentName, String atiachmentCont, String crStartDate, String crEndDate,Integer pageNo,Integer pageSize) {
 		BaseWrappers wrappers =new BaseWrappers();
 		wrappers.setFlag(false);
 		wrappers.setStatus(true);
-		List<FileContentModel> datas =file_ContentMapper.queryBySearchValue(sortId,subjectName,creater,contentNo,contentValue1,contentValue2,contentValue3,atiachmentDesc,atiachmentName,atiachmentCont,crStartDate,crEndDate);
-		return null;
+		if(pageNo==null){
+			pageNo=0;
+		}
+		StringBuffer createrArray=null;
+		String createrArrayStr=null;
+		if(creater!=null){
+			createrArray =new StringBuffer();
+			for(String value:creater){
+				createrArray.append(value);
+				createrArray.append(",");
+			}
+			createrArrayStr=createrArray.toString();
+
+		}
+		List<FileContentModel> datas =file_ContentMapper.queryBySearchValue(sortId,subjectName,createrArrayStr,contentNo,contentValue1,contentValue2,contentValue3,atiachmentDesc,atiachmentName,atiachmentCont,crStartDate,crEndDate,pageNo,pageSize);
+		if(datas.size()>0){
+			wrappers.setDatas(datas);
+			wrappers.setFlag(true);
+			wrappers.setMsg("获取数据成功");
+		}else{
+			wrappers.setFlag(false);
+			wrappers.setMsg("查询无结果");
+		}
+		return wrappers;
 	}
 
 
