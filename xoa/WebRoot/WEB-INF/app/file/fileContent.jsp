@@ -47,7 +47,7 @@ input:hover {background: #eaf2ff;padding: 5px;}
 .boto a.ONE{background: url("img/file/cabinet07.png") no-repeat;}
 .boto a.TWO{background: url("img/file/cabinet09.png") no-repeat;}
 .boto a.THREE{background: url("img/file/cabinet10.png") no-repeat;}
-.boto a.FOUR{background: url("img/file/cabinet12.png") no-repeat;}
+.boto a.FOURs{background: url("img/file/cabinet12.png") no-repeat;}
 .boto a.FIVE{background: url("img/file/cabinet11.png") no-repeat;}
 .TITLE{margin-left: 10px;color: #2B7FE0;}
 .trBtn{background-color:#D3E7FA !important;}
@@ -107,7 +107,7 @@ $(function(){
     })
 
 
-    $('.FOUR').click(function(){
+    $('.FOURs').click(function(){
         var TYPE=$('.w .trBtn').attr('TYPE');
         var id=$('.w .trBtn').attr('sortId');
         var fileId=[];
@@ -141,25 +141,21 @@ $(function(){
         //var id=$('.w .trBtn').attr('sortId');
         //var idT=$('.w .trBtn').attr('contentId');
         var idT=$(this).parents('tr').attr('contentId');
-        //alert(idT);
         $.popWindow('<%=basePath%>file/contentAdd?contentId='+idT,'编辑','0','0','1500px','800px');
     })
 
 
+
 });
-
-
-
-
 	</script>
 </head>
 
 <body style="background-color: #EBEBEB">
 <div class="head w clearfix">
     <div class="ss one"> <a id="contentAdd" href="${pageContext.request.contextPath }/file/contentAdd?sortId=${sortId}&text=${text}">新建文件</a></div>
-    <div class="ss two"> <a href="${pageContext.request.contextPath }/file/temp">批量上传</a></div>
-    <div class="ss three"> <a  class="SEARCH" href="${pageContext.request.contextPath }/file/temp">查询</a></div>
-    <div class="ss four"> <a href="${pageContext.request.contextPath }/file/temp">全局搜索</a></div>
+    <div id="batch" class="ss two"> <a href="javascript:;">批量上传</a></div>
+    <div id="SEARCH" class="ss three"> <a  class="SEARCH" href="javascript:;">查询</a></div>
+    <div id="overall" class="ss four"> <a href="javascript:;">全局搜索</a></div>
 </div>
 <!--middle部分开始-->
 <div class="w">
@@ -205,14 +201,14 @@ $(function(){
         <a class="THREE" href="javascript:;"><span>剪切</span></a>
     </div>
     <div class="boto">
-        <a class="FOUR" href="javascript:;"><span>删除</span></a>
+        <a class="FOURs" href="javascript:;"><span>删除</span></a>
     </div>
     <div class="boto">
         <a class="FIVE" href="javascript:;"><span>下载</span></a>
     </div>
 
 </div>
-
+<%--${pageContext.request.contextPath }/file/temp--%>
 <!--bottom 部分结束-->
 </body>
 </html>

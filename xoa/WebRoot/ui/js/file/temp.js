@@ -254,12 +254,12 @@ function renderDate(id) {
                 renderDate($(span[i]).attr("id"));
             };
         }
-        data['sortId']=sortId
+        data['sortId']=sortId*1;
 		console.log(data);
-       /* $.post("<%=basePath%>file/setFileAuth",{auth:JSON.stringify(data)},function (ret) {
-            alert(ret);
-        });*/
-        saveJurisd(data);
+       var realData ={
+           auth:JSON.stringify(data)
+       }
+        saveJurisd(realData);
         // if($('#visit').attr('class')=='headli one'){
 			// alert('1');
         // }else if($('#add').attr('class')=='headli one'){
@@ -283,13 +283,19 @@ function renderDate(id) {
 })
 //保存接口
 function saveJurisd(data){
+    console.log('测试接口');
     $.ajax({
         type:'post',
-        url:domain+'file/setFileAuth',
+        url:'../file/setFileSortAuth',
         dataType:'json',
         data:data,
         success:function(res){
-            console.log('res.flag');
+            if(res.flag==true){
+                alert('操作成功')
+            }else{
+                console.log(res.msg);
+            }
+
         }
     })
 }
