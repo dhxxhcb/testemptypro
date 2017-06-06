@@ -873,7 +873,7 @@
                 })
             } else {
                 //修改|编辑
-                alert($('#orderID').val());
+//                alert($('#orderID').val());
                 var data = {
                     flowId : flowId,
                     flowName: $('#projectName').val(),
@@ -887,7 +887,7 @@
                     autoNum: $('#counteer').val(),
                     autoLen: $('#figure').val()
                 };
-
+//                    alert(data.flowNo);
                 $.ajax({
                     type: "post",
                     url: "<%=basePath%>flow/updateFlow",
