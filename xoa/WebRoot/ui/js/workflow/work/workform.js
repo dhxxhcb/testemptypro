@@ -110,7 +110,7 @@ var workForm = {
                             //表单填充数据
                             if(res.flag){
                                 var dateName = res.obj;
-                                console.log(_this.attr('name'))
+
                                 if(dateName && dateName[_this.attr('name')]){
                                     var dataNameVal = dateName[_this.attr('name')];
                                     switch (_this.attr('data-type')){
@@ -121,7 +121,7 @@ var workForm = {
                                             _this.val(dataNameVal);
                                             break;
                                         case 'select':
-                                            console.log('select not done');
+                                            _this.find("option[value='"+dataNameVal+"']").attr("selected",true);
                                             break;
                                         case 'radio':
                                             console.log('radio not done');
