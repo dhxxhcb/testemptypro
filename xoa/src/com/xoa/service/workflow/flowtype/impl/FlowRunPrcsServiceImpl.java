@@ -2,6 +2,7 @@ package com.xoa.service.workflow.flowtype.impl;
 
 import javax.annotation.Resource;
 
+import com.xoa.dao.workflow.FlowProcessMapper;
 import com.xoa.dao.workflow.FlowTypeModelMapper;
 import com.xoa.model.workflow.FlowProcess;
 import com.xoa.model.workflow.FlowRun;
@@ -35,6 +36,9 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 
 	@Resource
 	private FlowTypeModelMapper flowTypeModelMapper;
+
+	@Resource
+	private FlowProcessMapper flowProcessMapper;
 
 
 	@Override
@@ -70,10 +74,14 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
 				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
 				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
+				//查询流程并设置流程
+				FlowProcess flowProcess = flowProcessMapper.findProcess(flowRunPrcs.getFlowRun().getFlowId(),flowRunPrcs.getPrcsId());
+				if(flowProcess != null) {
+					flowRunPrcs.setFlowProcess(flowProcess);
+				}
 
 				String names = flowRunPrcs.getPrcsTime();
 				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) == -621701856 && flowRunPrcs.getPrcsId()>1){
-//					String upTime =  flowRunPrcsMapper.findTime(flowRunPrcs.getRunId(),flowRunPrcs.getPrcsId()-1);
 					Integer prcsId= flowRunPrcs.getRunId();
 					Integer runId = flowRunPrcs.getPrcsId()-1;
 					String upTime = flowRunPrcsMapper.findTime(runId,prcsId);
@@ -82,7 +90,6 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				}
 				String names1 = flowRunPrcs.getPrcsTime();
 				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856 && flowRunPrcs.getPrcsId()>1){
-//					String upTime =  flowRunPrcsMapper.findTime(flowRunPrcs.getRunId(),flowRunPrcs.getPrcsId()-1);
 					Integer prcsId= flowRunPrcs.getRunId();
 					Integer runId = flowRunPrcs.getPrcsId()-1;
 					String upTime = flowRunPrcsMapper.findTime(runId,prcsId);
@@ -140,6 +147,11 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				flowRunPrcs.setUserName(usersService.getUserNameById(flowRunPrcs.getUserId()));
 				maps.put("flowId",flowRunPrcs.getFlowRun().getFlowId());
 				flowRunPrcs.setFlowType(flowTypeModelMapper.queryOne(maps));
+				//查询流程并设置流程
+				FlowProcess flowProcess = flowProcessMapper.findProcess(flowRunPrcs.getFlowRun().getFlowId(),flowRunPrcs.getPrcsId());
+				if(flowProcess != null) {
+					flowRunPrcs.setFlowProcess(flowProcess);
+				}
 				returnList.add(flowRunPrcs);
 			}
 			toJson.setFlag(0);

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.xoa.model.workflow.FlowProcess;
+import org.jboss.logging.Param;
+
 public interface FlowProcessMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -32,5 +34,14 @@ public interface FlowProcessMapper {
      * @param flowProcess
      */
     public  void updateTopAndLeft(FlowProcess flowProcess);
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2017/6/6 19:42
+     * 方法介绍:   我的工作中查询流程
+     * 参数说明:  
+     * @return
+     */
+    public FlowProcess findProcess(@org.apache.ibatis.annotations.Param("flowId") Integer flowId, @org.apache.ibatis.annotations.Param("prcsId") Integer prcsId);
 
 }

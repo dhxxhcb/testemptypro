@@ -61,15 +61,15 @@
         </association>
 
         <!-- 关联设计流程 -->
-        <association property="flowProcess" column="FLOW_ID" javaType="com.xoa.model.workflow.FlowProcess">
-            <id column="ID" javaType="INTEGER" property="id"/>
-            <result column="FLOW_ID" property="flowId" javaType="int"/>
-            <result column="PRCS_ID" property="prcsId" javaType="int"/>
-            <result column="PRCS_TYPE" property="prcsType" javaType="byte"/>
-            <result column="PRCS_NAME" property="prcsName" javaType="string"/>
-            <result column="SET_LEFT" property="setLeft" javaType="int"/>
-            <result column="SET_TOP" property="setTop" javaType="int"/>
-        </association>
+        <!--<association property="flowProcess" column="FLOW_ID" javaType="com.xoa.model.workflow.FlowProcess">-->
+            <!--<id column="ID" javaType="INTEGER" property="id"/>-->
+            <!--<result column="FLOW_ID" property="flowId" javaType="int"/>-->
+            <!--<result column="PRCS_ID" property="prcsId" javaType="int"/>-->
+            <!--<result column="PRCS_TYPE" property="prcsType" javaType="byte"/>-->
+            <!--<result column="PRCS_NAME" property="prcsName" javaType="string"/>-->
+            <!--<result column="SET_LEFT" property="setLeft" javaType="int"/>-->
+            <!--<result column="SET_TOP" property="setTop" javaType="int"/>-->
+        <!--</association>-->
 
     </resultMap>
     <sql id="Base_Column_List">
@@ -526,7 +526,6 @@
     fr.RUN_NAME,
     fr.BEGIN_USER,
     fr.BEGIN_DEPT,
-    fp.PRCS_NAME,
     frp.ID,
     frp.USER_ID,
     frp.PRCS_ID,
@@ -546,7 +545,6 @@
     FROM
     FLOW_RUN_PRCS frp
     INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
-    LEFT  JOIN FLOW_PROCESS fp ON fp.FLOW_ID = fr.FLOW_ID
     WHERE
     frp.PRCS_FLAG IN ('1', '2')
     AND frp.CHILD_RUN ='0'
@@ -568,7 +566,6 @@
     fr.RUN_NAME,
     fr.BEGIN_USER,
     fr.BEGIN_DEPT,
-     fp.PRCS_NAME,
     frp.ID,
     frp.USER_ID,
     frp.PRCS_ID,
@@ -588,9 +585,8 @@
     FROM
     FLOW_RUN_PRCS frp
     INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
-    LEFT  JOIN FLOW_PROCESS fp ON fp.FLOW_ID = fr.FLOW_ID
     where
-      frp.PRCS_FLAG = '4'
+      frp.PRCS_FLAG in('3','4')
     AND frp.CHILD_RUN = '0'
     AND frp.USER_ID=#{userId}
     AND fr.DEL_FLAG = '0'
