@@ -826,6 +826,11 @@
                             $("#flowId").val(data.object.flowId);
                             $("#projectName").val(data.object.flowName);
                             $('#orderID').val(data.object.flowNo);
+                            $("#deptName").val(data.object.deptId),
+                            $("#classfiy ").val(data.object.flowSort),
+                            $("#class_f option:selected").val(data.object.flowType),
+                             $("#leave option:selected").val(data.object.formId),
+                             $("#delegate-type option:selected").val(data.object.freeOther),
                             $('#class_f').html('<option value="1">固定流程<option/><option value="2">自由流程<option/>');
 
                         }
