@@ -27,6 +27,31 @@
 		}
 		.small {
 			font-size: 9pt;
+			width: 100%;
+			margin-top: 14px;
+		}
+		.head {
+			text-align: center;
+			font-size: 22px;
+			margin-top: 16px;
+			border-bottom: #999 1px solid;
+		}
+		.menuList {
+			display: block;
+			width: 100%;
+			padding-left: 30px;
+			font-size: 14px;
+			height: 40px;
+			line-height: 40px;
+			border-bottom: #ddd 1px solid;
+			cursor: pointer;
+		}
+		.menuList span {
+			color:black;
+		}
+		#bodycolor{
+			margin-top: 10px;
+			border-bottom: #ddd 1px solid;
 		}
 		.TableBlock {
 			border: 1px #dddddd solid;
@@ -34,16 +59,8 @@
 			font-size: 9pt;
 			border-collapse: collapse;
 		}
-		table {
-			width: 0 !important;
-			margin: 0 auto;
-			font-size: 14px;
-			margin-top: 10px;
-			border-collapse: collapse;
-			border-spacing: 0;
-		}
-		table .TableBlock_sub{
-			width: -1%;
+		.TableBlock_sub {
+			width: 32%;
 			margin: 0 auto;
 			font-size: 14px;
 			margin-top: 10px;
@@ -146,43 +163,89 @@
 			vertical-align: middle;
 			border-color: inherit;
 		}
+		/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+		.west::-webkit-scrollbar{
+			width: 2px;
+			height: 2px;
+			background-color: #f5f5f5;
+		}
+		/*定义滚动条的轨道，内阴影及圆角*/
+		.west::-webkit-scrollbar-track{
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			border-radius: 10px;
+			background-color: #f5f5f5;
+		}
+		/*定义滑块，内阴影及圆角*/
+		.west::-webkit-scrollbar-thumb{
+			/*width: 10px;*/
+			height: 20px;
+			border-radius: 10px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			background-color: #555;
+		}
+		.west table{
+			width: 99%;
+			margin: 0 auto;
+			font-size: 12px;
+		}
+		.Big {
+			border-bottom: 1px solid #c0c0c0;
+		}
+		.big3{
+			font-size: 16px;
+		}
 	</style>
 </head>
-<body marginwidth="0" marginheight="0">
-<div id="west">
-	<div class="head"><img src="/static/images/menu/system.gif" align="absMiddle">代码主分类设置</div>
+<body marginwidth="0" marginheight="0" class="bodycolor">
+<div id="west" class="west">
+	<div class="head">代码主分类设置</div>
 	<ul>
-		<li>
-			<a href="new.php" onclick="" target="code_edit" title="增加代码主分类" id="link_1"><span>增加代码主分类</span></a>
+		<li class="menuList">
+			<a  onclick="showMain();" target="code_edit" title="增加代码主分类" id="link_1"><span>增加代码主分类</span></a>
 		</li>
 		<div id="module_1" class="moduleContainer" style="">
 			<table class="TableBlock" width="100%" id="TableBlock">
 			</table>
 		</div>
-		<li>
-			<a href="func/no_link.php" onclick="" target="code_edit" title="错误代码列表" id="link_2"><span>错误代码列表</span></a>
-		</li>
-		<li>
-			<a href="imp_exp/" onclick="" target="code_edit" title="代码备份/恢复" id="link_3"><span>代码备份/恢复</span></a>
-		</li>
 	</ul>
 </div>
-<div id="center" class="bodycolor">
+<div id="center">
 	<!--<iframe src="new.php" id="code_edit" name="code_edit" frameborder="0"></iframe>-->
-	<div  id="bodycolor">
-		<table border="0" width="100%" cellspacing="0" cellpadding="3" class="small">
+	<div  id="bodycolor" style="display:block;">
+		<div class="small">
+			<span class="big3"> 增加代码主分类</span>
+		</div>
+		<br>
+		<table class="TableBlock" width="450" align="center" id="TableBlock_center" style="display:block">
 			<tbody>
 			<tr>
-				<td class="Big"><img src="/static/images/menu/system.gif" width="22" height="20" align="absmiddle"><span class="big3"> 代码项设置</span>
+				<td nowrap="" class="TableData" width="120">代码编号：</td>
+				<td nowrap="" class="TableData">
+					<input type="text" id="BigInput_codeNo" class="BigInput" size="20" maxlength="100" value="">&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td nowrap="" class="TableData" width="120">排序号：</td>
+				<td nowrap="" class="TableData">
+					<input type="text" id="BigInput_codeOrder" class="BigInput" size="20" maxlength="100" value="">
+				</td>
+			</tr>
+			<tr>
+				<td nowrap="" class="TableData">代码名称：(简体中文)</td>
+				<td nowrap="" class="TableData">
+					<input type="text" id="BigInput_codeName" class="BigInput" size="20" maxlength="100" value="">&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td nowrap="" class="TableControl" colspan="2" align="center">
+					<input type="button" value="确定" class="BigButton" onclick="addMainClassify();"/>
+					<!--<input type="button" value="返回" class="BigButton" onclick="location='blank.php'">-->
 				</td>
 			</tr>
 			</tbody>
 		</table>
 	</div>
 	<table class="TableBlock_sub" align="center" id="TableBlock_sub"></table>
-	<div align="center">
-		<input type="button" value="返回" class="BigButton" onclick="location='../blank.php'">
-	</div>
 </div>
 <script type="text/javascript">
     <!--
@@ -197,14 +260,26 @@
             var str_classify ='<tbody>';
             for(var i=0;i<length;i++){
                 var status=data.obj[i].codeNo;
-                var str_classify= str_classify+'<tr class="TableData" title="'+data.obj[i].codeName+'">'+
-                    '<td><b>'+data.obj[i].codeName+'</b></td>'+
-                    '<td nowrap="">'+
-                    '<a onclick="mainMenuedit()" target="user_main"'+
-                    'codeId='+data.obj[i].codeId+' codeorder='+data.obj[i].codeOrder+' codeName='+data.obj[i].codeName+'>'+
-                    '编辑</a>&nbsp;'+
-                    '<a onclick=\'getLevelData("'+status+'");\' target="code_edit"> 下一级</a>&nbsp;'+
-                    '</td></tr>';
+                if(data.obj[i].codeFlag==0){
+                    var str_classify= str_classify+'<tr class="TableData" title="'+data.obj[i].codeName+'">'+
+                        '<td><b>'+data.obj[i].codeName+'</b></td>'+
+                        '<td nowrap="">'+
+                        '<a onclick="mainMenuedit()" target="user_main"'+
+                        'codeId='+data.obj[i].codeId+' codeorder='+data.obj[i].codeOrder+' codeName='+data.obj[i].codeName+'>'+
+                        '编辑</a>&nbsp;'+
+                        '<a onclick=\'getLevelData("'+status+'");\' target="code_edit"> 下一级</a>&nbsp;'+
+                        '</td></tr>';
+                }else if(data.obj[i].codeFlag==1){
+                    var str_classify= str_classify+'<tr class="TableData" title="'+data.obj[i].codeName+'">'+
+                        '<td><b>'+data.obj[i].codeName+'</b></td>'+
+                        '<td nowrap="">'+
+                        '<a onclick="mainMenuedit()" target="user_main"'+
+                        'codeId='+data.obj[i].codeId+' codeorder='+data.obj[i].codeOrder+' codeName='+data.obj[i].codeName+'>'+
+                        '编辑</a>&nbsp;'+
+                        '<a onclick=\'getLevelData("'+status+'");\' target="code_edit"> 下一级</a>&nbsp;'+
+                        '</td></tr>'+
+                        '<a onclick=""> 删除</a>';
+                }
                 //$('#dbgz').html(str);
             }
             var str_classify=str_classify+'</tbody>'
@@ -226,6 +301,8 @@
             //data:datas,
             success:function(data){
                 //console.log(data);
+                $("#TableBlock_center").css("display","none");
+                $(".big3").text('代码设置项');
                 var str_sublevel='<tbody><tr class="TableHeader" align="center">'+
                     '<td nowrap="" title="外部信息类型" colspan="2">&nbsp;&nbsp;<b>外部信息类型</b>&nbsp;&nbsp;'+
                     '</td></tr>'+
@@ -240,7 +317,7 @@
                         '<a href="edit.php?CODE_ID=532&amp;IS_MAIN="> 编辑</a>&nbsp;&nbsp;</td></tr>';
                 }
                 str_sublevel=str_sublevel+'</tbody>';
-                $("#TableBlock_sub").html(str_sublevel);
+                $("#TableBlock_sub").show().html(str_sublevel);
             }
         });
     }
@@ -248,13 +325,13 @@
         var codeId=$(this).attr('codeId'),
             codeorder=$(this).attr('codeorder'),
             codeName=$(this).attr('codeName');
+        $(".big3").text('编辑代码主分类');
         var str_edit='<div class="bodycolor">'+
             '<table border="0" width="100%" cellspacing="0" cellpadding="3" class="small"><tbody><tr>'+
             '<td class="Big"><img src="/static/images/edit.gif" width="22" height="20" align="absmiddle">'+
             '<span class="big3"> 编辑代码主分类</span>'+
             '</td></tr></tbody></table><br>'+
             '<table class="TableBlock" width="450" align="center">'+
-            '<form action="../../code/syscode/update" method="post" name="form1" onsubmit=""></form>'+
             '<tbody><tr><td nowrap="" class="TableData" width="120">代码编号：</td>'+
             '<td nowrap="" class="TableData">'+
             '<input type="text" name="CODE_NO" class="BigInput" size="20" id="BigInput_num" value="">&nbsp;'+
@@ -266,8 +343,8 @@
             '<input type="text"name="" class="BigInput" size="20" id="BigInput" value="">&nbsp;'+
             '</td></tr><tr>'+
             '<td nowrap="" class="TableControl" colspan="2" align="center"><input type="hidden" name="CODE_ID" value="180">'+
-            '<input type="submit" value="确定" class="BigButton" onclick="submit_form();" codeId="'+codeId+'">&nbsp;&nbsp;'+
-            '<input type="button" value="返回" class="BigButton" onclick=""></td>'+
+            '<input type="button" value="确定" class="BigButton" onclick="submit_form();" codeId="'+codeId+'">&nbsp;&nbsp;'+
+            '</td>'+
             '</tr></tbody></table>'+
             '</div>';
         $('#TableBlock_sub').empty().html(str_edit);
@@ -297,6 +374,94 @@
 
             }
         })
+    }
+
+    function addMainClassify(){
+        var	codeNo=$("#BigInput_codeNo").val(),
+            codeOrder=$("#BigInput_codeOrder").val(),
+            codeName=$("#BigInput_codeName").val();
+        var codeNoData={codeNo:codeNo};
+        var codeOrderData={codeOrder:codeOrder};
+        var addData={
+            codeNo:codeNo,
+            codeOrder:codeOrder,
+            codeName:codeName,
+            codeFlag:1,
+        };
+        $.ajax({
+            url:'../../code/isCodeNoExits',
+            type:'get',
+            dataType:'json',
+            data:codeNoData,
+            success:function (data){
+                if(data.flag==true){
+                    alert('代码编号已存在请重新输入');
+                }else{
+                    $.ajax({
+                        url:'../../code/isCodeOrderExits',
+                        type:'get',
+                        dataType:'json',
+                        data:codeOrderData,
+                        success: function (data){
+                            if(data.flag==true){
+                                alert('排序号已存在请重新输入');
+                            }else{
+                                $.ajax({
+                                    url:'../../code/addSysMainCode',
+                                    type:'get',
+                                    data:addData,
+                                    dataType:'json',
+                                    success: function(){
+                                        $.ajax({
+                                            url:'../../code/syscode/getAllSysCode',
+                                            type:'get',
+                                            dataType:'json',
+                                            //data:datas,
+                                            success:function(data){
+                                                //console.log(data);
+                                                var length=data.obj.length;
+                                                var str_classify ='<tbody>';
+                                                for(var i=0;i<length;i++){
+                                                    var status=data.obj[i].codeNo;
+                                                    if(data.obj[i].codeFlag==0){
+                                                        var str_classify= str_classify+'<tr class="TableData" title="'+data.obj[i].codeName+'">'+
+                                                            '<td><b>'+data.obj[i].codeName+'</b></td>'+
+                                                            '<td nowrap="">'+
+                                                            '<a onclick="mainMenuedit()" target="user_main"'+
+                                                            'codeId='+data.obj[i].codeId+' codeorder='+data.obj[i].codeOrder+' codeName='+data.obj[i].codeName+'>'+
+                                                            '编辑</a>&nbsp;'+
+                                                            '<a onclick=\'getLevelData("'+status+'");\' target="code_edit"> 下一级</a>&nbsp;'+
+                                                            '</td></tr>';
+                                                    }else if(data.obj[i].codeFlag==1){
+                                                        var str_classify= str_classify+'<tr class="TableData" title="'+data.obj[i].codeName+'">'+
+                                                            '<td><b>'+data.obj[i].codeName+'</b></td>'+
+                                                            '<td nowrap="">'+
+                                                            '<a onclick="mainMenuedit()" target="user_main"'+
+                                                            'codeId='+data.obj[i].codeId+' codeorder='+data.obj[i].codeOrder+' codeName='+data.obj[i].codeName+'>'+
+                                                            '编辑</a>&nbsp;'+
+                                                            '<a onclick=\'getLevelData("'+status+'");\' target="code_edit"> 下一级</a>&nbsp;'+
+                                                            '</td></tr>'+
+                                                            '<a onclick="">删除</a>';
+                                                    }
+                                                    //$('#dbgz').html(str);
+                                                }
+                                                var str_classify=str_classify+'</tbody>'
+                                                $('#TableBlock').html(str_classify);
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    }
+    function showMain(){
+        $(".big3").text("增加代码主分类");
+        $("#TableBlock_sub").hide();
+        $("#TableBlock_center").show();
     }
 </script>
 </body>
