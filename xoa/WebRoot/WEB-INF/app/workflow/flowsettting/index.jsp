@@ -769,8 +769,10 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
+
                     if (data.flag) {
                         var data = data.datas;
+                        console.log(data)
                         var html = '';
                         for (var i = 0; i < data.length; i++) {
                             html += '<option value="" disabled>' + data[i].sortName + '</option>'
@@ -837,7 +839,7 @@
             formAjax();
         }
         $('.keepmsg').on('click', function () {
-            var flowId = '${flowId}';
+            <%--var flowId = '${flowId}';--%>
             if (flowId == null || flowId == "") {
                 //保存
                 var data = {
@@ -860,6 +862,7 @@
                     success: function (data) {
                         if (data.flag) {
                             alert("保存成功");
+                            window.location.href='<%=basePath%>flowSetting/index?type=add&flowId='+data.object.flowId;
                         } else {
                             alert("保存失败");
                         }
@@ -870,8 +873,9 @@
                 })
             } else {
                 //修改|编辑
-
+                alert($('#orderID').val());
                 var data = {
+                    flowId : flowId,
                     flowName: $('#projectName').val(),
                     flowNo: $('#orderID').val(),
                     deptId: $("#deptName option:selected").val(),
@@ -883,13 +887,20 @@
                     autoNum: $('#counteer').val(),
                     autoLen: $('#figure').val()
                 };
+
                 $.ajax({
                     type: "post",
                     url: "<%=basePath%>flow/updateFlow",
                     dataType: 'json',
                     data: data,
                     success: function (data) {
-                        alert(data.flag);
+                        if(data.flag){
+                            alert("修改成功");
+                            window.location.href='<%=basePath%>flowSetting/index?type=add&flowId='+flowId;
+                        }else{
+                            alert("修改失败");
+                        }
+//                        alert(data.flag);
                     }
                 })
             }
@@ -1149,11 +1160,12 @@
                     flowId: flowIdFromPage
                 },
                 success: function (data) {
-                    var data = data.datas;
-                    for (var i = 0; i < data.length; i++) {
-                        html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'  seqId='" + data[i].seqId + "'>" + "</td>" + "<td>" + data[i].tplName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)" class="updata_c">修改</a>' + '<a class="del_temp" href="javascript:void(0)" seqId="' + data[i].seqId + '" >删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                    if(data.flag){
+                        var data = data.datas;
+                        for (var i = 0; i < data.length; i++) {
+                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'  seqId='" + data[i].seqId + "'>" + "</td>" + "<td>" + data[i].tplName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)" class="updata_c"  seqId="' + data[i].seqId + '">修改</a>' + '<a class="del_temp" href="javascript:void(0)" seqId="' + data[i].seqId + '" >删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                        }
                     }
-
                     $('.table_temp').html(html);
                     checkAll();
 
@@ -1646,7 +1658,7 @@
                 '<div class="jobName flowtitle">统计报表选项</div>' +
                 '<form class="pro_flow flow_r"><div class="con_form"><div class="form_group"><label for="deptName" class="flowName">分组字段</label><select name="" id="group_s" class="depName">' +
                 '</select>' + '<select name="" id="groupSort" class="depName">' +
-                '<option value="ASC">升序</option><option value="DESC">降序</option></select></div><div class="plug_body form_group">' +
+                '<option value="ASC" selected="selected">升序</option><option value="DESC">降序</option></select></div><div class="plug_body form_group">' +
                 '<div class="plug_body_left"><div class="list_title">显示在待办列表上的字段</div><div class="list_infomation" id="next_step_div">' +
                 '<table cellspacing="0px" cellpadding="0px" width="100%" id="next_step_tab" class="next_step_tab"><tbody id="data_th"></tbody>' +
                 '</table></div><div style="margin-top:10px;"><button class="btn" id="left_btn" type="button" style="margin-left:100px;">全选</button></div></div>' + '<div class="plug_body_center"><div class="change_right"><button type="button" style="width: 20px;height: 20px" id="btn_b1"></button></div><div class="change_left"><button type="button" style="width: 20px;height: 20px" id="btn_b2"></button></div></div>' +
@@ -1693,7 +1705,7 @@
                     var numVal = num_r + "\r\n" + num_a;
                     var attment = $('#attment').attr('name');//公共附件名称
 
-                    var work_f = atrVal + scope_ALL + dateVal + endVal + numVal;
+                    var work_f = atrVal + "\r\n"  + scope_ALL + "\r\n"  + dateVal + "\r\n"  + endVal + "\r\n"  + numVal;
 
 
                     var data = {
@@ -1714,6 +1726,7 @@
                         success: function (data) {
                             if (data.flag) {
                                 alert('新建成功');
+                                TempPriv();
                             } else {
                                 alert('新建失败');
                             }
@@ -1723,7 +1736,7 @@
             })
 
 
-            workInit(0,[],[],[])
+            workInit(0,[],"","","")
 
             $('.addbtn').click(function () {
                 var fields = $('#file_p').find("option:selected").attr('fields');
@@ -1766,7 +1779,7 @@
         var termFh=["=",">","<","<>",">=","<=","begin","include","end","null"];
         var fromIdtwo = 17;
         //type 0 新建 1修改
-        function workInit(type,select,equals,groupBF) {
+        function workInit(type,select,equals,groupBF,dataCon) {
             //存放处理后的数据
             var equalsCons=[];
             var equalsCon={};
@@ -1801,16 +1814,41 @@
              }
           }
             /*分组字段*/
-            var reg = /(flow_data_1.DATA_19)(ASC|DESC)/;
+            var reg = /flow_data_([0-9]+)\.DATA_([0-9]+)(ASC|DESC)/;
             var regAry = groupBF.match(reg)
             var groupAry = [];
             var obj = {};
-            obj["key"]=regAry[1];
-            obj["value"]=regAry[2];
-            groupAry.push(obj);
-            console.log(groupAry)
+            if(regAry!==null){
+                obj["key"]= 'flow_data_'+regAry[1]+".DATA_"+regAry[2];
+                obj["value"]=regAry[3];
+                groupAry.push(obj);
+            }
+            /*流程过滤条件*/
+            var arry=dataCon.split("\n");
+            console.log(arry);
+            var objData={};
+            for(var i=0;i<arry.length;i++){
 
+                if($(arry).eq($(arry[i]))%2==0){
+                    alert(11)
+                    objData["key"] =arry[i] ;
+                    console.log(objData)
+                }else{
+//                    objData["value"] = ;
+                }
+            }
 
+;//            var searchStr = 'FLOW_STATUS'; //要查询的关键字
+//
+////            var str = window.location.search;
+//            var indexA = dataCon.indexOf(searchStr);
+//            var indexB = dataCon.indexOf(' ');
+//            if(indexB === -1){
+//                dataCon = dataCon.substring(indexA+searchStr.length+1);
+//            } else {
+//                dataCon = dataCon.substring(indexA,indexB);
+//            }
+//            console.log(dataCon);
 
             workForm.init({
                     formhtmlurl: '../../form/formType',
@@ -1826,35 +1864,38 @@
                     var htmlr = '';
                     var groupStr = '';
                     var htmltd='';
+                    var group_s='';
                     for (var i = 0; i < data.length; i++) {
                         if(type==1){
                             if(groupAry.length!==0){
                                 groupAry.forEach(function (item, index) {
                                     if(('flow_data_${flowId}.'+data[i].name)==item.key){
-                                        groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
-                                        $('#groupsort option:selected').val(item.value)
+
+                                        group_s += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
+                                        $('#groupSort option[value='+item.value+']').attr("selected",true);
                                     }
 
                                 })
-
-
-
                             }
                             if(equalsCons.length!==0){
                                 equalsCons.forEach(function (item, index) {
                                     if(('flow_data_${flowId}.'+data[i].name)==item.key){
+
                                             htmltd += '<tbody><tr><td style="text-align: center"></td style="text-align: center"><td id="fileDate" fileds="' + item.key + item.splitStr + item.value + '">\'' + data[i].title + '\'' + item.splitStr + '\'' +  item.value + '\'</td><td style="text-align: center">删除</td></tr></tbody>'
+                                        $('#file_p option[value='+data[i].title+']').attr("selected",true);
+//                                       $('#term option[value='+item.splitStr +']').attr("selected",true);
+//                                        $('#numval option[value='+ item.value +']').attr("selected",true);
                                     }
                                 })
 
                             }
-                            if(select.length!=0){
+                            if(select.length!==0){
                                     select.forEach(function (item, index) {
                                         if (('flow_data_${flowId}.' + data[i].name) == item) {
-                                            htmlr += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
+                                            htmlr += '<tr><td id="tr_td" name="' + data[i].name + '" class="td_d tr_td" style="cursor: pointer">' + data[i].title + '</td></tr>';
                                         } else {
                                             htmll += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
-                                            str += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
+                                            str += '<option  fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
                                             groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
                                         }
 
@@ -1865,12 +1906,12 @@
                                     str += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
                                     groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
                                 }
+
                         }else{
                             htmll += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
                             str += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
                             groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
                         }
-
 
                     }
                     $('#data_th').html(htmll);
@@ -1878,6 +1919,8 @@
                     $('#group_s').html(groupStr);
                     $('#data_th_1').html(htmlr);
                     $('#table_t').append(htmltd);
+                    $('.group_s').html(group_s);
+
                     $('.td_d').each(function (index, item) {
                         $(item).click(function () {
                             $(this).addClass('bg_d');
@@ -1885,13 +1928,21 @@
                         })
                     })
                     $('#btn_b1').on('click', function () {
+                        var htmls="";
                         var td = $(".td_d");
                         for (var i = 0; i < td.length; i++) {
                             var able = $(td[i]).attr("able");
                             if (able) {
-                                $(td[i]).appendTo("#tr_td").removeClass();
+                                var tdstr =$(td[i]).get(0).outerHTML+"";
+                                $(td[i]).remove();
+                                htmls+=  "<tr>"+tdstr+"</tr>";
+                                $(this).removeAttr('able').removeClass('bg_d');
+//                                $(td[i]).removeClass('bg_d');
                             }
                         }
+                        $('#data_th_1').html(
+                            htmls
+                        )
 //                $('.bg_d').each(function (index, item) {
 //                    $(item).click(function () {
 //                        $('#btn_b2').on('click', function () {
@@ -1900,6 +1951,7 @@
 //                    })
 //                })
                     })
+
                 });
         }
 
@@ -1908,7 +1960,7 @@
         });
         /*配置查询模板修改*/
         $('.table').on('click', '.updata_c', function () {
-            var tplId = $('.one').attr('seqId');
+            var tplId = $(this).attr('seqId');
             $.ajax({
                 type: 'GET',
                 url: '<%=basePath%>/flowSetDatas/queryFlowQuertTplById',
@@ -1917,7 +1969,7 @@
                     'tplId': tplId
                 },
                 success: function (data) {
-                    console.log(data)
+                    console.log(data);
                     if (data.flag) {
                         var data = data.data;
                         var dataview = data.viewExtFields;
@@ -1925,6 +1977,7 @@
                         var viewAttr = dataview;
                         var dataCon = data.dataConditions;
                         var groupBF = data.groupByFields;
+                        var flowCon = data.flowConditions;
                         layer.open({
                             title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 15px;color: #fff">新建</p>',
                             shade: 0,
@@ -1963,7 +2016,7 @@
                             '<th style="text-align: center">编号</th><th style="text-align: center">表单条件描述</th><th style="text-align: center">操作</th></tr></thead>' + '</table>' +
                             '<label for="deptName" class="flowName">表单条件公式</label><input type="text" id="query_d"></div></div></form>' +
                             '<div class="jobName flowtitle">统计报表选项</div>' +
-                            '<form class="pro_flow flow_r"><div class="con_form"><div class="form_group"><label for="deptName" class="flowName">分组字段</label><select name="" id="group_s" class="depName">' +
+                            '<form class="pro_flow flow_r"><div class="con_form"><div class="form_group"><label for="deptName" class="flowName">分组字段</label><select name="" id="group_s" class="depName group_s">' +
                             '</select>' + '<select name="" id="groupSort" class="depName">' +
                             '<option value="ASC">升序</option><option value="DESC">降序</option></select></div><div class="plug_body form_group">' +
                             '<div class="plug_body_left"><div class="list_title">显示在待办列表上的字段</div><div class="list_infomation" id="next_step_div">' +
@@ -1979,8 +2032,6 @@
                             area: ['800px', '500px'],
                             btn: ['保存', '关闭'],
                             yes: function () {
-
-
                                 var td = $("#data_th_1 td");
                                 var viewStr = "";
                                 for (var i = 0; i < td.length; i++) {
@@ -2024,8 +2075,8 @@
                                     'groupFields': groupadeStr,
                                     'condFormula': $('#query_d').val(),
                                     'flowConditions': work_f,
-                                    'dataXml': ''
-
+                                    'dataXml': '',
+                                    'tplId': tplId
                                 };
                                 $.ajax({
                                     type: 'GET',
@@ -2035,6 +2086,7 @@
                                     success: function (data) {
                                         if (data.flag) {
                                             alert('修改成功');
+                                            TempPriv();
                                         } else {
                                             alert('修改失败');
                                         }
@@ -2042,7 +2094,7 @@
                                 })
                             },
                         })
-                        workInit(1,viewAttr,dataCon,groupBF);
+                        workInit(1,viewAttr,dataCon,groupBF,flowCon);
                         $('#tempName').val(data.tplName);
                         $('#query_d').val(data.condFormula);
 
