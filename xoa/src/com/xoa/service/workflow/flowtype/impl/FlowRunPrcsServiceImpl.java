@@ -80,31 +80,24 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 					flowRunPrcs.setFlowProcess(flowProcess);
 				}
 
-				String names = flowRunPrcs.getPrcsTime();
-				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) == -621701856 && flowRunPrcs.getPrcsId()>1){
-					Integer prcsId= flowRunPrcs.getRunId();
-					Integer runId = flowRunPrcs.getPrcsId()-1;
-					String upTime = flowRunPrcsMapper.findTime(runId,prcsId);
-					flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(upTime)));
-					flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getReceiptTime())));
-				}
-				String names1 = flowRunPrcs.getPrcsTime();
-				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856 && flowRunPrcs.getPrcsId()>1){
+				//计算时间转换
+				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) == -621701856 && flowRunPrcs.getPrcsId()>1 ||
+						DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856 && flowRunPrcs.getPrcsId()>1){
 					Integer prcsId= flowRunPrcs.getRunId();
 					Integer runId = flowRunPrcs.getPrcsId()-1;
 					String upTime = flowRunPrcsMapper.findTime(runId,prcsId);
 					if(!StringUtils.checkNull(upTime)) {
+						// 到达时间
 						flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(upTime)));
-					}
-					if(!StringUtils.checkNull(flowRunPrcs.getReceiptTime())) {
+						// 到达停留时间
 						flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate))) - DateFormat.getTime(flowRunPrcs.getReceiptTime())));
 					}
 				}
-
 				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856) {
-					flowRunPrcs.setDeliverTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getDeliverTime())));
-					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getPrcsTime())));
+					// 工作接收时间
 					flowRunPrcs.setPrcsTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
+					// 办理停留时间
+					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getPrcsTime())));
 				}
 				returnList.add(flowRunPrcs);
 			}
@@ -151,6 +144,9 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				FlowProcess flowProcess = flowProcessMapper.findProcess(flowRunPrcs.getFlowRun().getFlowId(),flowRunPrcs.getPrcsId());
 				if(flowProcess != null) {
 					flowRunPrcs.setFlowProcess(flowProcess);
+				}
+				if(DateFormat.getTime(flowRunPrcs.getDeliverTime()) != -621701856){
+					flowRunPrcs.setDeliverTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getDeliverTime())));
 				}
 				returnList.add(flowRunPrcs);
 			}

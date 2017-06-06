@@ -180,6 +180,10 @@ public class FlowRunPrcs {
         return prcsTime==null?DateFormat.getStrTime(-621701856):prcsTime;
     }
 
+    /**
+     * 工作接收时间
+     * @param prcsTime
+     */
     public void setPrcsTime(String prcsTime) {
         this.prcsTime = prcsTime;
     }
