@@ -195,7 +195,7 @@ public class loginController {
    public String logOut(HttpServletRequest request){
 	   request.getSession().invalidate();
 	   request.getSession().removeAttribute("user");
-	    return null;
+	    return "login/index";
 	   
    }
 }
