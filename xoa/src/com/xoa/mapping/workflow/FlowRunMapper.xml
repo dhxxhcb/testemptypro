@@ -306,7 +306,7 @@
   <update id="updateTime" parameterType="Map">
         update flow_run
     set
-      END_TIME = #{endTime},
+      END_TIME = #{endTime}
     where RUN_ID = #{runId}
 
   </update>

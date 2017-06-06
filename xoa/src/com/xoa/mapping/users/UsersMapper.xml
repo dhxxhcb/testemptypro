@@ -174,16 +174,10 @@
         u.USER_NAME as name ,u.USER_PRIV_NAME as userPrivName,
         d.DEPT_NAME as deptName ,u.UID ,u.AVATAR ,u.USER_ID as userId
         from user u
-        ,department d where u.DEPT_ID= d.DEPT_ID
-        <if test="userName != null and userName !=''">
-            and u.USER_NAME like CONCAT(CONCAT('%', #{userName}), '%')
-        </if>
-        <if test="userPrivName != null and userPrivName !=''">
+        ,department d where u.DEPT_ID= d.DEPT_ID AND (
+             u.USER_NAME like CONCAT(CONCAT('%', #{userName}), '%')
             or u.USER_PRIV_NAME like CONCAT(CONCAT('%', #{userPrivName}), '%')
-        </if>
-        <if test="deptName != null and deptName !=''">
-            or d.DEPT_NAME like CONCAT(CONCAT('%', #{deptName}), '%')
-        </if>
+            or d.DEPT_NAME like CONCAT(CONCAT('%', #{deptName}), '%'))
     </select>
     <select id="getUserAndDept" parameterType="java.lang.Integer"
             resultType="com.xoa.model.users.Users">

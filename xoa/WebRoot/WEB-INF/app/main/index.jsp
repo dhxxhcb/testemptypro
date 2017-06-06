@@ -132,13 +132,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="skin">
 							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
 							<ul>
-								<ol><img src="img/img/main_img/per_zhuxiao" alt=""><h1>注销</h1></ol>
-								<ol><img src="img/img/main_img/per_shezhi" alt=""><h1>设置</h1></ol>
+								<ol><h1>注销</h1></ol>
+								<%--<img src="img/main_img/per_zhuxiao" alt="">--%>
+								<ol><h1>设置</h1></ol>
 							</ul>
 						</div>
 					</li>
 				</ul>
-
 				<div class="cont_left">
 					<ul class="all_ul">
 						<div class="tab_t">
