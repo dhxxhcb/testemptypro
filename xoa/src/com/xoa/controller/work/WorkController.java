@@ -310,18 +310,6 @@ public class WorkController {
         //List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(maps);
         FlowRunPrcsExcted flowRunPrcs = new FlowRunPrcsExcted();
 
-        /*if(flowPrcs==""||flowPrcs.equals("0")){
-            FlowRun fr=flowRunService.find(Integer.parseInt(runId));
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-            fr.setEndTime(df.format(new Date()));
-            flowRunService.update(fr);
-        }*/
-
-        /*flowRunPrcs.setPrcsId(Integer.parseInt(prcsId));
-        flowRunPrcs.setRunId(Integer.parseInt(runId));
-        flowRunPrcs.setPrcsFlag("4");
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        flowRunPrcs.setDeliverTime(df.format(new Date()));*/
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         Map<String, Object> maps = new HashMap<String, Object>();
         maps.put("prcsId", Integer.parseInt(prcsId));
@@ -338,6 +326,15 @@ public class WorkController {
             map.put("endTime", df.format(new Date()));
             map.put("runId", runId);
             flowRunService.updateTime(map);
+
+            try {
+                toJson.setObject(fl);
+                toJson.setMsg("OK");
+                toJson.setFlag(0);
+            } catch (Exception e) {
+                toJson.setMsg(e.getMessage());
+            }
+            return toJson;
         }
         for(int i=0;i<strArray.length;i++){
             fl=new FlowRunPrcs();
