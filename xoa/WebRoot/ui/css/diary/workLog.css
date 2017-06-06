@@ -213,7 +213,7 @@ select {
     display: inline-block;
     float: left;
     /*border:1px solid red;*/
-    width:50%;
+    width:57%;
     margin-left:2.5%;
 }
 .content_right  .button_news {
@@ -241,12 +241,99 @@ select {
     color:#fff;
 }
 .content_right  .details {
+    padding:20px 30px;
     border: 1px solid #ddd;
     height: 800px;
     margin-top: 8%;
 }
 
+.details_modular {
+    height:200px;
+    border-bottom:1px solid #ddd;
+}
+.modular_user {
+    display: inline-block;
+    float: left;
+    /* border: 1px solid blue; */
+    width: 80px;
+    height: 80px;
+    margin-top: 8%;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px #b0b3b6;
+    background: url(../../img/workLog/portrait3.jpg) no-repeat;
+    background-size:100% 100%;
+}
+.modular_info {
+    display: inline-block;
+    float: right;
+    width: 80%;
+    height: 100%;
+    /*border: 1px solid blue;*/
+    position: relative;
+}
+.modular_info h3{
+    color:#2B7FE0;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "微软雅黑";
+}
+.modular_info p {
+    hieght:30px;
+    line-height:30px;
+    font-size: 13px;
+    color: #000;
+    font-family: "微软雅黑";
+}
+.modular_title {
+    hieght:30px;
+    line-height:30px;
+}
+.modular_info .modular_name {
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    color: #b4b4b4;
+}
 
+.modular_info .modular_name li{
+    display: inline-block;
+    float: left;
+    padding-right: 10px;
+}
+.modular_info .modular_name li a{
+    color:#000;
+    text-decoration: none;
+}
+.modular_info .modular_name li a:hover{
+    text-decoration: underline;
+}
+.modular_info .modular_time {
+    display: inline-block;
+    float: right;
+}
+.modular_footer {
+    display: inline-block;
+    float: right;
+    position: absolute;
+    right: 13px;
+    bottom: 18px;
+}
+.modular_footer li {
+    display: inline-block;
+    float: left;
+    padding-right: 10px;
+}
+.modular_footer li a{
+    color: #b4b4b4;
+    text-decoration: none;
+}
+.modular_footer li a:hover{
+    color: #1687cb;
+    text-decoration: underline;
+
+}
 
 
 

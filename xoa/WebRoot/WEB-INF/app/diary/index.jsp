@@ -179,8 +179,43 @@
     </div>
 
     <div class="details clearfix">
-        你好
+        <%--第一板块--%>
+        <div class="tianErNiu1">
+            <div class="details_modular">
+                <%--头像--%>
+                <div class="modular_user"></div>
+                <%--内容部分--%>
+                <div class="modular_info">
+                    <div class="modular_title clearfix">
+                        <div class="modular_name clearfix">
+                            <ul>
+                                <li><a href="javascript:;">系统管理员</a></li>
+                                <li>北京测试研究公司</li>
+                                <li>管理员</li>
+                                <li>工作日志</li>
+                            </ul>
+                        </div>
+                        <div class="modular_time">6月5日&nbsp;20:17</div>
+                    </div>
+                    <h3>田二妞：2016-06-14工作日报</h3>
+                    <p>今天主要完成xxx效果图，今天主要完成xxx效果图，今天主要完成xxx效果图，今天主要完成xxx效果图，</p>
+                    <div class="modular_footer">
+                        <ul>
+                            <li><a href="javascript:;">评论</a></li>
+                            <li><a href="javascript:;">共享</a></li>
+                            <li><a href="javascript:;">编辑</a></li>
+                            <li><a href="javascript:;">删除</a></li>
+                            <li><a href="javascript:;">置顶</a></li>
+                            <li><a href="javascript:;">浏览</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <%--评论--%>
 
+
+
+        </div>
     </div>
 
 
