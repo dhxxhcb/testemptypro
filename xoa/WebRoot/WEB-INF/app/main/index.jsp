@@ -98,26 +98,101 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 
 					</li>
-					<li class="position" id="admin-side1" style="background: yellow;">
+					<li class="position" id="admin-side1">
 						<div class="skin">
 							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
 							<div class="tixing_tab_t">
-								<ul>
-									<ol class="tixing_check">待办</ol>
-									<ol>邮件</ol>
-									<ol>公告</ol>
+								<ul class="tixing_title">
+									<li class="tixing_check">待办</li>
+									<li>邮件</li>
+									<li>公告</li>
 								</ul>
 							</div>
 						</div>
 						<div style="margin-top:5px"  id="tixing_tab_c">
 							<ul class="tixing_one">
-								<ol>1111</ol>
+								<li class="tixing_one_all" style="background: red;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
+								<li class="tixing_one_all" style="background: cyan;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
+								<li class="tixing_one_all" style="background: cyan;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
 							</ul>
 							<ul class="tixing_one" style="display: none;">
-								<ol>222</ol>
+								<li class="tixing_one_all" style="background: red;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
+								<li class="tixing_one_all" style="background: cyan;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
 							</ul>
 							<ul class="tixing_one" style="display: none;">
-								<ol>333</ol>
+								<li class="tixing_one_all" style="background: red;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
 							</ul>
 						</div>
 					</li>
@@ -131,10 +206,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li class="position" id="admin-side3" style="background: cyan;">
 						<div class="skin">
 							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
-							<ul>
-								<ol><h1>注销</h1></ol>
+							<ul class="per_title">
+								<div><h1>注销</h1></div>
 								<%--<img src="img/main_img/per_zhuxiao" alt="">--%>
-								<ol><h1>设置</h1></ol>
+								<div><h1>设置</h1></div>
 							</ul>
 						</div>
 					</li>
@@ -148,15 +223,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</div>
 						<div class="tab_c list">
-						
 								<ul class="tab_cone a yiji" >
-								
 								</ul>
-						
 							<ul class="tab_ctwo a" id="deptOrg" style="display:none;">
-
 							</ul>
-							
 						</div>
 						
 					</ul>
@@ -346,10 +416,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 console.log(index);
                 if(currentIndex!=index){
                     currentIndex=index;
-                    $("#taskbar_right a").removeClass("checks");
-                    $(this).addClass('checks');
+                    $("#taskbar_right a").removeClass('logo_checks');
+                    $(this).addClass('logo_checks');
                     //内容
-                    var contents=$(".side_all").find("li");
+                    var contents=$(".side_all").find(".position");
                    $(contents[index]).animate({width:"300px"});
                     $(contents[index]).siblings().css('width','0px');
                 }
@@ -357,14 +427,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             });
 
             //内容右侧 提醒下的tab切换
-            var currentIndex=9;
+            var currentIndexTwo=9;
             var index;
-            $('.tixing_tab_t').on('click','ol',function(){
+            $('.tixing_tab_t').delegate('li','click',function(){
                 index=$(this).index();
                 console.log(index);
-                if(currentIndex!=index){
-                    currentIndex=index;
-                    $(".tixing_tab_t ol").removeClass("tixing_check");
+                if(currentIndexTwo!=index){
+                    currentIndexTwo=index;
+                    $(".tixing_tab_t li").removeClass("tixing_check");
                     $(this).addClass("tixing_check");
                     //内容
                     var contents=$("#tixing_tab_c").find("ul");

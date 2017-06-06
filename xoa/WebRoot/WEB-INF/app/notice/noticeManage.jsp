@@ -719,7 +719,7 @@
                 userId:$('#add_selectUser').attr("dataid"),//按人员发布
                 privId:'',//按角色发布
                 attachmentId:'',//附件ID串
-                attachmentName:'',//附件名称串
+                attachmentName:$('#query_uploadArr').text(),//附件名称串
                 download:$(".down").is(':checked')==false?0:1,//是否允许下载office附件(0-不允许,1-允许)
                 subjectColor:'',//标题颜色
                 keyword:$('.keyword_ip').val(),//内容关键词
@@ -817,6 +817,7 @@
                         $('#add_newDate').val(data.notifyDateTime);//发布时间
                         $('#start_add').val(data.beginDate);//起始时间
                         $('#end_add').val(data.endDate);//结束时间
+                        $('#query_uploadArr').text(data.attachmentId);//附件
                         /*$('#add_selectUser').val(data.userId);*/
                         /*$('#add_type_notice').selected(data.typeName);*/
                         $("#add_type_notice").find("option[value="+data.typeId+"]").attr("selected",true);//类型

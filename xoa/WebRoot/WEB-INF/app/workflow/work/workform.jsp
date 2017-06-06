@@ -656,7 +656,7 @@
                                         var ret3=data.object.flowRunPrcs;
                                        /* var ret2=data.object.flowRunPrcs;*/
                                        var ret2=$('.prcsName').attr('prcsid');
-                                       alert(ret2);
+                                       /*alert(ret2);*/
                                       /*  console.log(ret);*/
                                         if($('.prcsName').attr('check')=='1'){
                                             var pId=$('.prcsName').attr('prcsId');
