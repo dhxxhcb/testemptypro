@@ -174,16 +174,10 @@
         u.USER_NAME as name ,u.USER_PRIV_NAME as userPrivName,
         d.DEPT_NAME as deptName ,u.UID ,u.AVATAR ,u.USER_ID as userId
         from user u
-        ,department d where u.DEPT_ID= d.DEPT_ID
-        <if test="userName != null and userName !=''">
-            and u.USER_NAME like CONCAT(CONCAT('%', #{userName}), '%')
-        </if>
-        <if test="userPrivName != null and userPrivName !=''">
+        ,department d where u.DEPT_ID= d.DEPT_ID AND (
+             u.USER_NAME like CONCAT(CONCAT('%', #{userName}), '%')
             or u.USER_PRIV_NAME like CONCAT(CONCAT('%', #{userPrivName}), '%')
-        </if>
-        <if test="deptName != null and deptName !=''">
-            or d.DEPT_NAME like CONCAT(CONCAT('%', #{deptName}), '%')
-        </if>
+            or d.DEPT_NAME like CONCAT(CONCAT('%', #{deptName}), '%'))
     </select>
     <select id="getUserAndDept" parameterType="java.lang.Integer"
             resultType="com.xoa.model.users.Users">
@@ -1162,8 +1156,88 @@
     </select>
     <select id="getUserOnline" resultMap="UserResultMap">
         select u.UID, u.USER_NAME from user u, user_online uo WHERE u.UID = uo.UID;
+    </select>
+    <select id="getUserbyCondition" resultMap="UserResultMap">
+      SELECT
+	u.UID,
+	u.USER_ID,
+	u.USER_NAME,
+	u.BYNAME,
+	u.USER_PRIV,
+	u.USER_PRIV_NO,
+    u.EMAIL,
+	u.USER_PRIV_NAME,
+	d.DEPT_NAME,
+	d.TEL_NO,
+	u.TEL_NO_DEPT,
+	u.MOBIL_NO,
+	u.`ONLINE`,
+	u.SEX,
+	u.POST_NO_HOME,
+	u.USER_PRIV_OTHER
+FROM
+	USER u,
+	department d
+WHERE
+	u.DEPT_ID = d.DEPT_ID
+        <if test="userId != null and userId != ''">
+            AND u.USER_ID = #{userId}
+        </if>
+        <if test="userName != null and userName != ''">
+            AND u.USER_NAME = #{userName}
+        </if>
+        <if test="sex != null and sex != ''">
+            AND u.SEX = #{sex}
+        </if>
+        <if test="deptId != null and deptId != ''">
+            AND u.DEPT_ID = #{deptId}
+        </if>
+        <if test="userPrivNo != null and userPrivNo != ''">
+            AND u.USER_PRIV_NO = #{userPrivNo}
+        </if>
+        ORDER BY UID DESC
+</select>
+<select id="getUserNameByFuncId" parameterType="java.lang.String" resultMap="UserResultMap">
+        SELECT u.USER_NAME, u.UID from user u, user_function uf WHERE u.UID = uf.uid;
+    </select>
+ <select id="getUserByFuncId" parameterType="java.lang.String" resultType="java.lang.String">
+select DISTINCT (u.UID)  from
+  user_ext ue, user u, user_function uf
+where
+(
+        ue.USER_ID = u.USER_ID
+       AND
+       (
+          ue.U_FUNC_ID_STR LIKE concat('%,', #{fid}, ',%')
+         OR
+           ue.U_FUNC_ID_STR LIKE concat(#{fid}, ',%')
+        )
+
+  OR
+      (
+        u.USER_ID = uf.user_id
+        AND
+
+        (uf.user_func_id_str LIKE concat('%,', #{fid}, ',%')
+         OR uf.user_func_id_str LIKE concat( #{fid}, ',%')
+        )
+      )
+);
 
     </select>
+
+    <select id="findUsersByIds" parameterType="hashMap" resultType="java.lang.String">
+
+        SELECT u.USER_NAME FROM user u
+        <where>
+            <foreach collection="ids" item="id" open=" AND  UID  IN ( " close=" ) " separator=" , ">
+                #{id}
+            </foreach>
+        </where>
+
+
+    </select>
+
  </mapper>
 
 

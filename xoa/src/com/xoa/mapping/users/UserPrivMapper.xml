@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xoa.dao.users.UserPrivMapper">
     <resultMap id="BaseResultMap" type="com.xoa.model.users.UserPriv">
-        <id column="USER_PRIV" jdbcType="INTEGER" property="userPriv"/>
-        <result column="PRIV_NAME" jdbcType="VARCHAR" property="privName"/>
-        <result column="PRIV_NO" jdbcType="SMALLINT" property="privNo"/>
-        <result column="FUNC_ID_STR" jdbcType="VARCHAR" property="funcIdStr"/>
-        <result column="PRIV_DEPT_ID" jdbcType="INTEGER" property="privDeptId"/>
-        <result column="PRIV_TYPE" jdbcType="TINYINT" property="privType"/>
-        <result column="IS_GLOBAL" jdbcType="TINYINT" property="isGlobal"/>
+        <id column="USER_PRIV" javaType="Integer" property="userPriv"/>
+        <result column="PRIV_NAME" javaType="String" property="privName"/>
+        <result column="PRIV_NO" javaType="Short" property="privNo"/>
+        <result column="FUNC_ID_STR" javaType="String" property="funcIdStr"/>
+        <result column="PRIV_DEPT_ID" javaType="Integer" property="privDeptId"/>
+        <result column="PRIV_TYPE" javaType="Byte" property="privType"/>
+        <result column="IS_GLOBAL" javaType="Byte" property="isGlobal"/>
     </resultMap>
     <sql id="Base_Column_List">
     USER_PRIV, PRIV_NAME, PRIV_NO, FUNC_ID_STR, PRIV_DEPT_ID, PRIV_TYPE, IS_GLOBAL
@@ -112,7 +112,8 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.users.UserPriv">
-        update user_priv
+        UPDATE
+        user_priv
         <set>
             <if test="privName != null">
                 PRIV_NAME = #{privName,jdbcType=VARCHAR},
@@ -148,7 +149,20 @@
 
     <select id="getUserPrivNameByFuncId" parameterType="java.lang.String" resultMap="BaseResultMap">
         select u.PRIV_NAME  from  user_priv u WHERE u.FUNC_ID_STR LIKE concat('%,', #{fid}, ',%');
-
-
     </select>
+
+    <select id="getUserPrivfuncIdStr" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT u.FUNC_ID_STR  FROM  user_priv  u WHERE u.USER_PRIV = #{id};
+    </select>
+
+    <select id="updateUserPrivFuncIdStr" parameterType="hashMap">
+        UPDATE user_priv  u set  u.FUNC_ID_STR = #{funcIdStr} WHERE u.USER_PRIV = #{id}
+    </select>
+
+    <!-- 根据角色ID获取角色名字 -->
+    <select id="getPrivNameByPrivId" resultType="String">
+        SELECT PRIV_NAME FROM user_priv WHERE
+        USER_PRIV = #{userPriv}
+    </select>
+
 </mapper>

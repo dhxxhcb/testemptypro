@@ -130,8 +130,8 @@ function openWindow(sHref,strWidth,strHeight) {
 						href="${pageContext.request.contextPath}/file/deleteAll?sortId=${parent.sortId}">
 							<input style="font-size:12px;height=20;width=80" id="BT_Add"
 							type="button" value="删除" name="BT_find" /> </a>&nbsp;&nbsp; 
-							<input style="font-size:12px;height=20;width=80" id="BT_Add" type="button" value="权限设置" name="BT_find"
-						      onclick="openWindow('${pageContext.request.contextPath }/file/temp','700','500')" />&nbsp;&nbsp;
+							<input style="font-size:12px;height=20;width=80" id="BT_Add" type="button"  value="权限设置" name="BT_find"
+						      onclick="openWindow('${pageContext.request.contextPath }/file/temp?sortId=${parent.sortId}','1200','700')" />&nbsp;&nbsp;
 						
 					</td>
 				</tr>

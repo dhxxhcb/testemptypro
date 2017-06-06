@@ -43,8 +43,173 @@ import com.xoa.util.common.L;
     @Signature(type = StatementHandler.class,  
             method = "prepare",  
             args = {Connection.class})})  
-public class PagingPlugin implements Interceptor {  
-  
+public class PagingPlugin implements Interceptor {
+
+    public static final String[] TABLE_NAME_STR = {"ADDRESS",
+            "ADDRESS_GROUP",
+            "AFFAIR",
+            "ATTACHMENT",
+            "ATTACHMENT_EDIT",
+            "ATTACHMENT_MODULE",
+            "ATTACHMENT_POSITION",
+            "ATTEND_ASK_DUTY",
+            "ATTEND_CONFIG",
+            "ATTEND_DUTY",
+            "ATTEND_DUTY_SHIFT",
+            "ATTEND_EVECTION",
+            "ATTEND_HOLIDAY",
+            "ATTEND_LEAVE",
+            "ATTEND_LEAVE_MANAGER",
+            "ATTEND_MACHINE",
+            "ATTEND_MANAGER",
+            "ATTEND_MOBILE",
+            "ATTEND_OUT",
+            "ATTENDANCE_OVERTIME",
+            "CALENDAR",
+            "DATA_SRC",
+            "DEPARTMENT",
+            "DEPT_MAP",
+            "DIARY",
+            "DIARY_COMMENT",
+            "DIARY_COMMENT_REPLY",
+            "DIARY_SHARE",
+            "DIARY_TOP",
+            "EMAIL",
+            "EMAIL_BODY",
+            "EMAIL_BOX",
+            "EMAIL_BOXGROUP",
+            "EMAIL_KEYWORD",
+            "EMAIL_NAME",
+            "EMAIL_TAG",
+            "EXT_DEPT",
+            "EXT_USER",
+            "FIELD_DATE",
+            "FIELDSETTING",
+            "FILE_COMMENT",
+            "FILE_CONTENT",
+            "FILE_SCORE",
+            "FILE_SORT",
+            "FLOW_CONTROLS",
+            "FLOW_DATA_1",
+            "FLOW_DATA_27",
+            "FLOW_FEEDBACK_COMMON",
+            "FLOW_FORM_TYPE",
+            "FLOW_FORM_VERSION",
+            "FLOW_HOOK",
+            "FLOW_MANAGE_LOG",
+            "FLOW_PRINT_TPL",
+            "FLOW_PRIV",
+            "FLOW_PROCESS",
+            "FLOW_QUERY_TPL",
+            "FLOW_REPORT",
+            "FLOW_REPORT_PRIV",
+            "FLOW_RULE",
+            "FLOW_RUN",
+            "FLOW_RUN_ATTACH",
+            "FLOW_RUN_DATA",
+            "FLOW_RUN_FEEDBACK",
+            "FLOW_RUN_HOOK",
+            "FLOW_RUN_LOG",
+            "FLOW_RUN_PRCS",
+            "FLOW_SORT",
+            "FLOW_TIMER",
+            "FLOW_TRIGGER",
+            "FLOW_TYPE",
+            "FLOW_VERSION",
+            "FORM_SORT",
+            "GBT_CONF",
+            "HELP_QUESTION",
+            "HELP_SORT",
+            "IM_CHAT_LIST",
+            "IM_MESSAGE",
+            "IM_ROOM",
+            "INTERFACE",
+            "IP_RULE",
+            "LOGIN_APP",
+            "MEETING",
+            "MEETING_COMMENT",
+            "MEETING_EQUIPMENT",
+            "MEETING_ROOM",
+            "MEETING_RULE",
+            "MOBILE_APP",
+            "MODULE_MANAGE",
+            "MODULE_PRIV",
+            "MYTABLE",
+            "NETCHAT",
+            "NETDISK",
+            "NEWS",
+            "NEWS_COMMENT",
+            "NOTES",
+            "NOTIFY",
+            "OA_CYCLESOURCE_USED",
+            "OA_SOURCE",
+            "OA_SOURCE_USED",
+            "OFFICE_DEPOSITORY",
+            "OFFICE_LOG",
+            "OFFICE_PRODUCTS",
+            "OFFICE_TASK",
+            "OFFICE_TRANSHISTORY",
+            "OFFICE_TYPE",
+            "ORG_MANAGE",
+            "PICTURE",
+            "PLAN_TYPE",
+            "PORTAL_TEMPLATES",
+            "PORTALS",
+            "REMINDERS",
+            "SAL_DATA",
+            "SAL_FLOW",
+            "SAL_ITEM",
+            "SD_FILE",
+            "SD_SORT",
+            "SEAL",
+            "SEAL_LOG",
+            "SESSION",
+            "SMS",
+            "SMS2",
+            "SMS2_PRIV",
+            "SMS_BODY",
+            "SYS_CODE",
+            "SYS_FUNCTION",
+            "SYS_LOG",
+            "SYS_MENU",
+            "SYS_PARA",
+            "TASK",
+            "TASKCENTER",
+            "TERP_SERVER",
+            "TRAFFIC_RESTRICTION",
+            "UNIT",
+            "URL",
+            "USER_",
+            "USER_EXT",
+            "USER_FUNCTION",
+            "USER_GROUP",
+            "USER_JPUSH",
+            "USER_MAP",
+            "USER_MOBILE_DEVICES",
+            "USER_ONLINE",
+            "USER_PRIV",
+            "USER_WEIXINQY",
+            "VEHICLE",
+            "VEHICLE_MAINTENANCE",
+            "VEHICLE_OIL_CARD",
+            "VEHICLE_OIL_USE",
+            "VEHICLE_OPERATOR",
+            "VEHICLE_USAGE",
+            "VERSION",
+            "VI_FLOW_RUN",
+            "VOTE_DATA",
+            "VOTE_ITEM",
+            "VOTE_TITLE",
+            "WEBMAIL",
+            "WEBMAIL_BODY",
+            "WEIXUN_SHARE",
+            "WEIXUN_SHARE_FOLLOW",
+            "WEIXUN_SHARE_TOPIC",
+            "WINEXE",
+            "WORK_DETAIL",
+            "WORK_PERSON",
+            "WORK_PLAN"}; //全部字段
+
 	/**
 	 * 默认页码  
 	 */
@@ -72,6 +237,7 @@ public class PagingPlugin implements Interceptor {
     private static final String DB_TYPE_MYSQL = "mysql";
     private static final String DB_TYPE_ORACLE = "oralce";
     private static final String DB_TYPE_SQLSERVER = "sqlserver";
+    private static final String DB_TYPE_DMSQL="dmsql";
 
     /**
      * 
@@ -88,7 +254,8 @@ public class PagingPlugin implements Interceptor {
         MetaObject metaStatementHandler = SystemMetaObject.forObject(stmtHandler);  
         String sql = (String) metaStatementHandler.getValue("delegate.boundSql.sql");  
          
-        MappedStatement mappedStatement =  (MappedStatement) metaStatementHandler.getValue("delegate.mappedStatement");  
+        MappedStatement mappedStatement =  (MappedStatement) metaStatementHandler.getValue("delegate.mappedStatement");
+
         //获取数据源连接类型
 
 //        String dbType = dyTypeDate.determineCurrentLookupKey().toString();  
@@ -98,16 +265,26 @@ public class PagingPlugin implements Interceptor {
 //        String dbType = dyTypeDate.determineCurrentLookupKey().toString();  
         BoundSql boundSql = (BoundSql) metaStatementHandler.getValue("delegate.boundSql");  
         L.w("sqlcheck you sql is:",sql,"\r\n Params is",JSONArray.toJSONString(boundSql));
-        //不是select语句.  
-        if (!this.checkSelect(sql)) {  
-        	L.w("you sql is not select ,pleasecheck");
-            return invocation.proceed();  
-        }  
+
+
+
+
+        //不是select语句.
+        if (!this.checkSelect(sql)) {
+            L.w("you sql is not select ,pleasecheck");
+            if(DB_TYPE_DMSQL.equals(dbType)){
+                return   this.preDmSQL(invocation, metaStatementHandler, boundSql);
+            }
+            return invocation.proceed();
+        }
         
         Object parameterObject = boundSql.getParameterObject();  
         PageParams pageParams = getPageParamsForParamObj(parameterObject);  
         if (pageParams == null) { //无法获取分页参数，不进行分页。  
         	L.w("pageParams is null");
+            if(DB_TYPE_DMSQL.equals(dbType)){
+                return   this.preDmSQL(invocation, metaStatementHandler, boundSql);
+            }
         	return invocation.proceed();  
         }  
   
@@ -115,6 +292,9 @@ public class PagingPlugin implements Interceptor {
         Boolean useFlag = pageParams.getUseFlag() == null? this.defaultUseFlag : pageParams.getUseFlag();  
         if (!useFlag) {  //不使用分页插件. 
         	L.w("useFlag"+useFlag);
+            if(DB_TYPE_DMSQL.equals(dbType)){
+                return   this.preDmSQL(invocation, metaStatementHandler, boundSql);
+            }
             return invocation.proceed();  
         }  
         //获取相关配置的参数.  
@@ -131,8 +311,10 @@ public class PagingPlugin implements Interceptor {
         //回填总页数到分页参数.  
         pageParams.setTotalPage(totalPage);  
         //检查当前页码的有效性.  
-        this.checkPage(checkFlag, pageNum, totalPage);  
-        //修改sql  
+        this.checkPage(checkFlag, pageNum, totalPage);
+
+
+        //修改sql
         return this.preparedSQL(invocation, metaStatementHandler, boundSql, pageNum, pageSize, dbType);  
     }  
   
@@ -248,7 +430,41 @@ public class PagingPlugin implements Interceptor {
         this.preparePageDataParams((PreparedStatement)statementObj, pageNum, pageSize, dbType);  
         return statementObj;  
     }  
-  
+
+    private String preDmStrSql(String sql){
+        String currSql = sql;
+        currSql  =  currSql.toUpperCase();
+        currSql =currSql.replaceAll("`","");
+        currSql =currSql.replaceAll("USER ","USER_ ");
+        for(String a:TABLE_NAME_STR){
+            currSql=currSql.replaceAll(" "+a ," XOA1004."+a);
+        }
+        for(String a:TABLE_NAME_STR){
+            currSql=currSql.replaceAll(","+a+" " ,",XOA1004."+a+" ");
+        }
+        return currSql;
+    }
+    private Object preDmSQL(Invocation invocation, MetaObject metaStatementHandler, BoundSql boundSql)throws Exception {
+        String sql = boundSql.getSql();
+//        String currSql = sql;
+//        currSql  =  currSql.toUpperCase();
+//        currSql =currSql.replaceAll("`","");
+//        currSql =currSql.replaceAll("USER ","USER_ ");
+//        for(String a:TABLE_NAME_STR){
+//            currSql=currSql.replaceAll(" "+a ," XOA1004."+a);
+//        }
+//        for(String a:TABLE_NAME_STR){
+//
+//            currSql=currSql.replaceAll(","+a+" " ,",XOA1004."+a+" ");
+//        }
+        //修改当前需要执行的SQL
+        metaStatementHandler.setValue("delegate.boundSql.sql", preDmStrSql(sql));
+
+        Object statementObj = invocation.proceed();
+        return statementObj;
+    }
+
+
     /**
      * 
      * 创建作者:   张勇
@@ -263,7 +479,10 @@ public class PagingPlugin implements Interceptor {
      * 参数说明:   @throws Throwable
      * @return     int
      */
-    private int getTotal(Invocation ivt, MetaObject metaStatementHandler, BoundSql boundSql, Boolean cleanOrderBy, String dbType) throws Throwable {  
+    private int getTotal(Invocation ivt, MetaObject metaStatementHandler, BoundSql boundSql, Boolean cleanOrderBy, String dbType) throws Throwable {
+
+
+
         //获取当前的mappedStatement  
         MappedStatement mappedStatement = (MappedStatement) metaStatementHandler.getValue("delegate.mappedStatement");  
         //配置对象  
@@ -381,7 +600,10 @@ public class PagingPlugin implements Interceptor {
             return  "select count(*) as total from (" + currSql + ") $_paging";  
         } else if (DB_TYPE_ORACLE.equals(dbType)) {  
             return "select count(*) as total from (" + currSql +")";  
-        } else {  
+        } else if(DB_TYPE_DMSQL.equals(dbType)){
+            currSql= this.preDmStrSql(currSql);
+            return ("select count(*) as total from (" + currSql +")").toUpperCase();
+        } else {
             throw new NotSupportedException("当前插件未支持此类型数据库");  
         }  
     }  
@@ -403,7 +625,10 @@ public class PagingPlugin implements Interceptor {
             return "select * from (" + currSql + ") $_paging_table limit ?, ?";  
         } else if (DB_TYPE_ORACLE.equals(dbType)) {  
             return " select * from (select cur_sql_result.*, rownum rn from (" + currSql + ") cur_sql_result  where rownum <= ?) where rn > ?";  
-        } else {  
+        }else if(DB_TYPE_DMSQL.equals(dbType)) {
+            currSql=    preDmStrSql(currSql);
+            return (" select * from (select cur_sql_result.*, rownum rn from (" + currSql + ") cur_sql_result  where rownum <= ?) where rn > ?").toUpperCase();
+        }else {
             throw new NotSupportedException("当前插件未支持此类型数据库");  
         }  
     }  
@@ -432,9 +657,12 @@ public class PagingPlugin implements Interceptor {
             } else if (DB_TYPE_ORACLE.equals(dbType)) {  
                 ps.setInt(idx -1, pageNum * pageSize);//结束行  
                 ps.setInt(idx, (pageNum - 1) * pageSize); //开始行  
-            } else {  
-                throw new NotSupportedException("当前插件未支持此类型数据库");  
-            }  
+            } else if(DB_TYPE_DMSQL.equals(dbType)){
+                ps.setInt(idx -1, pageNum * pageSize);//结束行
+                ps.setInt(idx, (pageNum - 1) * pageSize); //开始行
+            }  else{
+                throw new NotSupportedException("当前插件未支持此类型数据库");
+            }
   
     }
   
@@ -488,6 +716,8 @@ public class PagingPlugin implements Interceptor {
             retrunSql = "oralce";
         }else if("com.microsoft.sqlserver.jdbc.SQLServerDriver".equals(name.trim())){
             retrunSql = "sqlserver";
+        }else if("dm.jdbc.driver.DmDriver".equals(name.trim())){
+            retrunSql ="dmsql";
         }
         return retrunSql;
     }

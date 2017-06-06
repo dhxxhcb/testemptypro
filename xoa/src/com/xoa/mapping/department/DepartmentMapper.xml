@@ -283,5 +283,11 @@
       </if>
     </trim>
   </insert>
+
+  <!-- 根据部门ID获取部门名字 -->
+  <select id="getDeptNameByDeptId" resultType="String">
+    SELECT DEPT_NAME FROM department WHERE
+    DEPT_ID = #{deptId}
+  </select>
   
 </mapper>

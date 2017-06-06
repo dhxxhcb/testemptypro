@@ -22,8 +22,6 @@ import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -166,11 +164,11 @@ public class SysLogController {
         ToJson<Integer> tojson = new ToJson<Integer>(0, "");
         try {
             List<Integer> yearList = sysLogService.getYear();
-            if (yearList != null && yearList.size() == 2) {
-                tojson.setObj(yearList);
-                tojson.setMsg("ok");
-                tojson.setFlag(0);
-            }
+
+            tojson.setObj(yearList);
+            tojson.setMsg("ok");
+            tojson.setFlag(0);
+
         } catch (Exception e) {
             tojson.setMsg(e.getMessage());
         }
@@ -349,15 +347,15 @@ public class SysLogController {
      * param request
      * @return: json
      **/
-    @ResponseBody
     @RequestMapping(value = "/exportLogXls", produces = {"application/json;charset=UTF-8"})
     public String exportLogXls(HttpServletRequest request, HttpServletResponse response,
                                @RequestParam(value = "type", required = false) Integer type,
                                @RequestParam(value = "uid", required = false) String uid,
                                @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "startTime", required = false) Date startTime,
                                @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss") @RequestParam(value = "endTime", required = false) Date endTime,
-                               @RequestParam(value = "syslog", required = false) Syslog syslog) throws IOException, ParseException {
-
+                               @RequestParam(value = "syslog", required = false) Syslog syslog) throws Exception {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
 
 /*        syslog = new Syslog();
         syslog.setIp("192.168.0.204");
@@ -394,9 +392,10 @@ public class SysLogController {
             String timeString = sdfTime.format(log.getTime());
 
             dataRow.createCell(1).setCellValue(timeString);
+
             dataRow.createCell(2).setCellValue(log.getIp());
-            dataRow.createCell(3).setCellValue("");
-            dataRow.createCell(4).setCellValue(log.getType());
+            dataRow.createCell(3).setCellValue(log.getIpLocation());
+            dataRow.createCell(4).setCellValue(log.getTypeName());
             dataRow.createCell(5).setCellValue(log.getRemark());
 
         }
@@ -415,7 +414,58 @@ public class SysLogController {
         return null;
 
     }
+
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/1 19:23
+     * @函数介绍: 根据多个id, (id之间用逗号分隔, 删除日志)
+     * @参数说明: @param ids
+     * @return: json
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/deleteLogByIds")
+    public ToJson<Object> deleteLogByIds(HttpServletRequest request, String ids) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+
+        ToJson<Object> toJson = new ToJson<Object>(0, "");
+
+        try {
+            sysLogService.deleteLogByIds(ids);
+            toJson.setMsg("OK");
+            toJson.setFlag(0);
+        } catch (Exception e) {
+            toJson.setMsg(e.getMessage());
+        }
+        return toJson;
+
+    }
+
+    @RequestMapping(value = "/deleteAllLog")
+    public ToJson<Object> deleteAllLog(HttpServletRequest request) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+
+        ToJson<Object> toJson = new ToJson<Object>(0, "");
+        try {
+            sysLogService.deleteAllLog();
+            toJson.setMsg("OK");
+            toJson.setFlag(0);
+        } catch (Exception e) {
+            toJson.setMsg(e.getMessage());
+        }
+        return toJson;
+    }
+
+
+    @RequestMapping("/getIp")
+    public void getIp(HttpServletRequest request) {
+
+
+    }
 }
+
 
 
 

@@ -65,6 +65,13 @@ public class FlowFormTypeController {
 		return flowFormService.getFormBySortId(sortId);
 	}
 
+
+
+	@RequestMapping("/allformlist")
+	@ResponseBody
+	public FlowFormWrappers formByAll(){
+		return flowFormService.getFormByAll();
+	}
 	/**
 	 * Created by:   韩东堂
 	 * date:   2017/5/16 10:09
@@ -113,8 +120,8 @@ public class FlowFormTypeController {
 
 	@RequestMapping("/updateFormType")
 	@ResponseBody
-	public BaseWrapper updateFormType(Integer formId,String formName,Integer deptId,Integer formSort,String printModel){
-		return flowFormService.updateFormType(formId,formName,deptId,formSort,printModel);
+	public BaseWrapper updateFormType(Integer formId,String formName,Integer deptId,Integer formSort,String printModel,Integer itemMax){
+		return flowFormService.updateFormType(formId,formName,deptId,formSort,printModel,itemMax);
 	}
 
 	/**

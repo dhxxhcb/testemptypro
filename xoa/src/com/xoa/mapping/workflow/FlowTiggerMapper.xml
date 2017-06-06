@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.workflow.FlowTiggerMapper">
+    <resultMap id="BaseResultMap" type="com.xoa.model.workflow.FlowTiggerModel">
+        <id column="ID" property="id" javaType="Integer"/>
+        <result column="NAME" property="name" javaType="String"/>
+        <result column="FLOW_ID" property="flowId" javaType="Integer"/>
+        <result column="FLOW_PRCS" property="flowPrcs" javaType="Integer"/>
+        <result column="PLUGIN_TYPE" property="pluginType" javaType="String"/>
+        <result column="PLUGIN_WAY" property="pluginWay" javaType="String"/>
+        <result column="PLUGIN" property="plugin" javaType="String"/>
+        <result column="ACTIVED" property="actived" javaType="Integer"/>
+        <result column="SORT_ID" property="sortId" javaType="Integer"/>
+        <result column="DESCRIPTION" property="description" javaType="String"/>
+    </resultMap>
+
+    <!-- 触发器保存 -->
+    <insert id="save" parameterType="com.xoa.model.workflow.FlowTiggerModel" useGeneratedKeys="true" keyProperty="id">
+        INSERT  INTO
+        flow_trigger (
+        NAME,FLOW_ID,FLOW_PRCS,PLUGIN_TYPE,PLUGIN_WAY,PLUGIN,ACTIVED,SORT_ID,DESCRIPTION)
+        VALUES
+         (#{name},#{flowId},#{flowPrcs},#{pluginType},#{pluginWay},#{plugin},#{actived},#{sortId},#{description})
+    </insert>
+    <!-- 触发器信息修改 -->
+    <update id="update" parameterType="com.xoa.model.workflow.FlowTiggerModel">
+    UPDATE flow_trigger
+        <set>
+            <if test="name != null and name != ''">
+                NAME = #{name},
+            </if>
+            <if test="flowId !=null and flowId != ''">
+                FLOW_ID = #{flowId},
+            </if>
+            <if test="flowPrcs != null and flowPrcs != ''">
+                FLOW_PRCS = #{flowPrcs},
+            </if>
+            <if test="pluginType != null and pluginType != ''">
+                PLUGIN_TYPE = #{pluginType},
+            </if>
+            <if test="pluginWay != null and pluginWay != ''">
+                PLUGIN_WAY = #{pluginWay},
+            </if>
+            <if test="description != null and description != ''">
+                DESCRIPTION = #{description},
+            </if>
+            <if test="plugin != null and plugin != ''">
+                PLUGIN = #{plugin},
+            </if>
+            <if test="sortId != null and sortId != ''">
+                SORT_ID = #{sortId}
+            </if>
+            <if test="actived != null and actived != ''">
+                SORT_ID = #{actived}
+            </if>
+        </set>
+        WHERE ID = #{id}
+    </update>
+
+    <!-- 查询数据接口 -->
+    <select id="selectFlowTigger" resultType="com.xoa.model.workflow.FlowTiggerModel">
+        SELECT
+        ID,
+        NAME,FLOW_ID,FLOW_PRCS,PLUGIN_TYPE,PLUGIN_WAY,PLUGIN,ACTIVED,SORT_ID,DESCRIPTION
+        FROM flow_trigger
+        WHERE
+        FLOW_ID=#{flowId}
+        AND
+        FLOW_PRCS = #{flowPrcs}
+
+    </select>
+    
+
+
+</mapper>

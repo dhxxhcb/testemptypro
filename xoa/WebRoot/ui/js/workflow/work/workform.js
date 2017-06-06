@@ -6,6 +6,7 @@ var workForm = {
         flowStep:1,//-1预览
         listFp:'',
         pageModel:'',
+        flowRun:'',
         eleObject:{}
     },
     init:function(options,cb){
@@ -23,27 +24,134 @@ var workForm = {
         this.MacrosRender();
         this.RadioRender();
         this.DateRender();
+        this.ListRender();
         this.filter();//表单流程权限控制
         return   this.option.eleObject;
     },
-    filter:function(){
-        if(this.option.flowStep != -1){
-            var steptOpt =  this.option.listFp[this.option.flowStep-1];
-           this.option.eleObject.find('.form_item').each(function(){
-                var _this = $(this);
-                if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
-                    if(_this.attr("data-type") == 'macros'){
-                        _this.val('');
-                    }
-                    _this.attr("disabled","disabled")
-                }else{
-                    if(_this.attr("data-type") == 'macros'){
-                        if(_this.is('input')){
-                            _this.attr("readonly","readonly");
-                        }
-                    }
+    ListRender:function () {
+        var that = this;
+        this.option.eleObject.find('.list').each(function () {
+            var _this = $(this);
+            var tableStr = '<table name="'+_this.attr('name')+'" id="'+_this.attr('name')+'" class="list_table form_item list">';
+            var lv_title = $(this).attr('lv_title').split('`');
+            var lv_size = $(this).attr('lv_size').split('`');
+            var lv_coltype = $(this).attr('lv_coltype').split('`');
+            var titleTd = '<td>操作</td>'
+            var tdStr = '<td><button class="add_btn">新增</button></td>';
+            var addtr ='<td><a style="" title="删除" class="delete_row" href="javascript:void(0)"><img src="/img/workflow/delete.png"></a></td>';
+            for(var i=0;i<lv_title.length-1;i++){
+                titleTd+=('<td>'+lv_title[i] +'</td>');
+                tdStr+='<td></td>';
+
+                switch (lv_coltype[i]){
+                    case 'text':
+                        addtr+='<td><input type="text" style="width: '+lv_size[i]+'px"></td>';
+                        break;
+                    case 'textarea':
+                        addtr+='<td><textarea style="width: '+lv_size[i]+'px"></textarea></td>';
+                        break;
+                    case 'select':
+                        addtr+='<td><select style="width: '+lv_size[i]+'px"></select></td>';
+                        break;
+                    case 'radio':
+                        addtr+='<td><input style="width: '+lv_size[i]+'px" type="radio"></td>';
+                        break;
+                    case 'checkbox':
+                        addtr+='<td><input style="width: '+lv_size[i]+'px" type="checkbox"></td>';
+                        break;
+                    case 'datetime':
+                        addtr+='<td>'+new Date().Format('yyyy-MM-dd')+'</td>';
+                        break;
+                    case 'dateAndTime':
+                        break;
+                    default:
+                        addtr+='<td><input type="text"></td>';
+                }
+            }
+            tableStr+=('<tr class="head">'+titleTd+'</tr>');
+            tableStr+=('<tr>'+tdStr+'</tr>');
+            tableStr+='</table>';
+            _this.before(tableStr);
+            _this.prev().on("click",'.delete_row',function () {
+                $(this).parent().parent().remove();
+            });
+            _this.prev().find('.add_btn').on('click',function () {
+
+                $(this).parent().parent().before('<tr>'+addtr+'</tr>');
+            });
+            _this.remove();
+        });
+    },
+    filter:function() {
+        var that = this;
+        if(that.option.flowStep && that.option.flowStep  != -1){
+            //var steptOpt =  this.option.listFp[this.option.flowStep-1];
+            that.option.listFp.forEach(function (v,i) {
+                if(v.prcsId == that.option.flowStep){
+                    var steptOpt = v;
+                    //that.tool.ajaxHtml(domain+ '/workflow/work/selectFlowData',{flowId:that.option.flowRun.flowId,runId:1027},function (res) {
+                    that.tool.ajaxHtml(domain+ '/workflow/work/selectFlowData',{flowId:that.option.flowRun.flowId,runId:that.option.flowRun.runId},function (res) {
+
+                        that.option.eleObject.find('.form_item').each(function(){
+                            var _this = $(this);
+                            //权限控制
+                            if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
+                                if(_this.attr("data-type") == 'macros'){
+                                    _this.val('');
+                                }
+                                _this.attr("disabled","disabled")
+                            }else{
+                                if(_this.attr("data-type") == 'macros'){
+                                    if(_this.is('input')){
+                                        _this.attr("readonly","readonly");
+                                    }
+                                }
+                            };
+                            //表单填充数据
+                            if(res.flag){
+                                var dateName = res.obj;
+
+                                if(dateName && dateName[_this.attr('name')]){
+                                    var dataNameVal = dateName[_this.attr('name')];
+                                    switch (_this.attr('data-type')){
+                                        case 'text':
+                                            _this.val(dataNameVal);
+                                            break;
+                                        case 'textarea':
+                                            _this.val(dataNameVal);
+                                            break;
+                                        case 'select':
+                                            _this.find("option[value='"+dataNameVal+"']").attr("selected",true);
+                                            break;
+                                        case 'radio':
+                                            console.log('radio not done');
+                                            break;
+                                        case 'checkbox':
+                                            console.log('checkbox not done');
+                                            break;
+                                        case 'macros':
+                                            if(_this.attr('type') == 'text'){
+                                                _this.val(dataNameVal);
+                                            }else{
+                                                console.log('红控件 select');
+                                            }
+                                            break;
+                                        case '':
+
+                                            break;
+                                        default:
+                                            _this.val(dataNameVal);
+                                    }
+                                }
+                            }
+
+
+
+                        });
+                    });
                 }
             });
+
         }
     },
     RadioRender:function(){
@@ -70,6 +178,7 @@ var workForm = {
 
     },
     ReBuild:function(ele){
+        var that = this;
         var target = {};
         if(ele){
             target = ele;
@@ -84,19 +193,32 @@ var workForm = {
         target.find("input").each(function(){
             var _this = $(this);
             var cssLink = '';
-
             if(_this.attr('hidden')){
-
                 _this.attr("orghidden",_this.attr('hidden'));
                 _this.removeAttr("hidden");
             }
             if(_this.attr("class") &&  _this.attr("class").indexOf('AUTO') > -1){
                 _this.attr("data-type","macros");
-            }else{
+            }else if(_this.attr("class") &&  _this.attr("class").indexOf('list') > -1){
+                _this.attr("data-type","listing");
+            }
+            else{
                 _this.attr("data-type",$(this).attr("type"));
+            }
+            if(_this.attr('data-type') == 'calendar'){
+                _this.addClass("laydate-icon");
             }
             _this.addClass("form_item");
             _this.attr("id",$(this).attr("name"));
+            _this.attr("style",'width:170px;');
+        });
+        //list
+        target.find("img.LIST_VIEW").each(function () {
+             var _this = $(this);
+             var datafrom = _this.attr('datatype')=='1'?'inData':'outData';
+             var listStr = '<input name="'+_this.attr('name')+'" style="'+_this.attr('style')+'"  id="'+_this.attr('name')+'" title="'+_this.attr('title')+'" type="text" class="form_item list" data-type="listing"  datafrom="'+datafrom+'" lv_field="'+_this.attr('lv_field')+'" lv_title="'+_this.attr('lv_title')+'" lv_size="'+_this.attr('lv_size')+'" lv_colvalue="'+_this.attr('lv_colvalue')+'" lv_sum="'+_this.attr('lv_sum')+'" width="'+_this.attr('width')+'" height="'+_this.attr('height')+'" lv_coltype="'+_this.attr('lv_coltype')+'" lv_cal="'+_this.attr('lv_cal')+'"/>';
+            _this.before(listStr);
+            _this.remove();
         });
         //
         target.find('img.DATE').each(function(){
@@ -106,7 +228,6 @@ var workForm = {
                 _this.attr("orghidden",_this.attr('hidden'));
                 _this.removeAttr("hidden");
             }
-
             var inputObj = '<input name="'+objprev.attr('name')+'" title="'+objprev.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+objprev.attr('name')+'" value="'+_this.attr('date_format')+'"  date_format="'+_this.attr('date_format')+'"/>';
             objprev.remove();
             _this.before(inputObj);
@@ -123,7 +244,6 @@ var workForm = {
             $(this).attr("id",$(this).attr("name"));
         });
         target.find("select").each(function () {
-
             var _this = $(this);
             $(this).addClass("form_item");
             if(_this.attr('hidden')){
@@ -144,6 +264,24 @@ var workForm = {
 
             _this.remove();
         });
+
+        target.find("img.USER").each(function(){
+            var _this = $(this);
+            console.log(_this.prev().length);
+            if(_this.prev().length>0){
+                _this.prev().attr("data-type","userselect");
+                _this.prev().attr("readonly","readonly");
+                _this.prev().attr("style",'width:150px;');
+                var selectImgStr = '<img align="absMiddle"  src="'+domain+'/img/workflow/work/orgselectuser.png" targetId="'+_this.prev().attr('name')+'" title="'+_this.prev().attr('title')+'">';
+                _this.before(selectImgStr);
+                _this.remove();
+                // _this.prev().on('click',function () {
+                //     alert(2);
+                //     that.tool.popUserSelect($(this).attr('targetId'));
+                // });
+            }
+        });
+
     },
     MacrosRender:function(){
         var that = this;
@@ -174,13 +312,16 @@ var workForm = {
 
     },
     DateRender:function(){
+
         this.option.eleObject.find(".laydate-icon").each(function(){
             var _this = $(this);
             var divObj = '<input name="'+_this.attr('name')+'" title="'+_this.attr('title')+'" class="form_item laydate-icon" data-type="calendar" id="'+_this.attr('name')+'"   date_format="'+_this.attr('date_format')+'"/>';
             _this.before(divObj);
             _this.remove();
+            console.log(1);
         });
         this.option.eleObject.find(".laydate-icon").on("click",function(){
+            console.log(1);
             var format = $(this).attr("date_format");
             var formatArr = '';
             if(format.split(' ').length > 1){
@@ -194,13 +335,14 @@ var workForm = {
     buildHTML:function(cb){
         var that = this;
         layer.load();
-        that.tool.ajaxHtml(that.option.resdata,function (res) {
+        that.tool.ajaxHtml(that.option.formhtmlurl,that.option.resdata,function (res) {
             if(res.flag){
                 var formObj = res.object.flowFormType || res.object;
                 if(formObj.printModel != ''){
                     //$(that.option.target).html(formObj.printModel);
                     if(that.option.flowStep != -1){
-                        that.option.listFp = res.object.listFp
+                        that.option.listFp = res.object.listFp;
+                        that.option.flowRun = res.object.flowRun;
                     }
                     that.option.eleObject = $('<div>'+formObj.printModel+'</div>');
                     $(that.option.target).html(that.render());
@@ -222,7 +364,7 @@ var workForm = {
     },
     getSearchData:function (cb) {
         var that = this;
-        this.tool.ajaxHtml(this.option.resdata,function (data) {
+        this.tool.ajaxHtml(that.option.formhtmlurl,this.option.resdata,function (data) {
             var formObj = data.object;
             that.option.eleObject = $('<div>'+formObj.printModel+'</div>');
             that.ReBuild();
@@ -380,11 +522,15 @@ var workForm = {
         getMacrosDate:function(flag){
             return this.MacrosDate[flag];
         },
-        ajaxHtml:function (data,cb) {
+        popUserSelect:function(target){
+            user_id = target;
+            $.popWindow(domain+"/common/selectUser");
+        },
+        ajaxHtml:function (url,data,cb) {
             var that = this;
             $.ajax({
                 type: "get",
-                url: workForm.option.formhtmlurl,
+                url: url,
                 dataType: 'JSON',
                 data:  data,
                 success: function (res) {

@@ -30,4 +30,9 @@ public interface SysLogMapper {
     void deleteLogOption(Map<String, Object> hashMap);
 
     String getLogNameByNo(String codeNo);
+
+    void deleteLogById(Integer id);
+
+    void deleteAllLog();
 }
+

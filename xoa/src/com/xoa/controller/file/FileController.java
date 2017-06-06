@@ -16,10 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.HTML;
 
+import com.alibaba.fastjson.JSONArray;
+import com.xoa.util.common.L;
 import com.xoa.util.common.wrapper.BaseWrapper;
+import com.xoa.util.common.wrapper.BaseWrappers;
 import org.apache.log4j.Logger;
 import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,10 +92,11 @@ public class FileController {
 	 * @return     String
 	 */
 	@RequestMapping(value = "/temp")
-	public String temp(HttpServletRequest request) {
+	public String temp(HttpServletRequest request, Integer sortId, Model model) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 				"loginDateSouse"));
 		loger.info("--------home-------");
+		model.addAttribute("sortId",sortId);
 		return "app/file/temp";
 	}
 
@@ -539,7 +544,8 @@ public class FileController {
 		}
 		// 乱码处理-----开始
 		System.out.println("--before--------------" + file.getSortName());
-		String sname = new String(file.getSortName().getBytes("ISO-8859-1"),"utf-8");
+		//FIXME by pfl 修改乱码问题
+		String sname = new String(file.getSortName());
 		System.out.println("--into--------------" + sname);
 		file.setSortName(sname);
 		System.out.println("--behand--------------" + file.getSortName());
@@ -929,11 +935,133 @@ public class FileController {
 		//如果部门字符串为其他类型 证明其无权限访问return false;
 		return false;
 	}
+
+	/**
+	 * 创建作者:   韩东堂
+	 * 创建日期:   2017-5-16 上午9:57:41
+	 * 方法介绍:   批量删除
+	 * @param fileId 批量删除Id串
+	 * @return
+	 */
 	@RequestMapping("/batchDeleteConId")
 	@ResponseBody
 	public BaseWrapper deleteByList(@RequestParam(name = "fileId[]") Integer fileId[]){
 
        return fileContentService.batchDeleteConId(fileId);
 	}
+
+
+	/**
+	 * 创建作者:   韩东堂
+	 * 创建日期:   2017-6-02 上午10:57:31
+	 * 方法介绍:   文件柜权限修改
+	 * @param auth 批量删除Id串
+	 *  数据格式：转化成json            var  data={
+	userId:
+	{
+	dept:'1,2,4,5,7,',
+	user:'admin,lilie',
+	role:"12,3,4,5,6",
+	},
+	manageUser:
+	{
+	dept:'1,2,4,5,8,',
+	user:'admin,lilie',
+	role:"12,3,4,5,6",
+	},
+	delUser:
+	{
+	dept:'1,2,4,5,8,',
+	user:'admin,lilie',
+	role:"12,3,4,5,6",
+	},
+	downUser:{
+	dept:'1,2,4,5,8,',
+	user:'admin,lilie',
+	role:"12,3,4,5,6",
+	},
+	shareUser:{
+	dept:'1,2,4,5,8,',
+	user:'admin,lilie',
+	role:"12,3,4,5,6",
+	},
+	owner:{
+	dept:'1,2,4,5,8,',
+	user:'admin,lilie',
+	role:"12,3,4,5,6",
+	},
+	signUser:{
+	dept:'1,2,4,5,8,',
+	user:'admin,lilie',
+	role:"12,3,4,5,6",
+	},
+	review:{
+	dept:'1,2,4,5,8,',
+	user:'admin,lilie',
+	role:"12,3,4,5,6",
+	},
+	description:{
+	dept:'1,2,4,5,8,',
+	user:'admin,lilie',
+	role:"12,3,4,5,6",
+	},
+	newUser{
+	dept:'1,2,4,5,8,',
+	user:'admin,lilie',
+	role:"12,3,4,5,6",
+	},
+	sortId:49,
+	}
+	 * @return
+	 */
+	@RequestMapping("/setFileSortAuth")
+	@ResponseBody
+	public BaseWrapper setFileAuth(@RequestParam(name = "auth") String auth
+//								   @RequestParam(name ="userId",required = false) Map<String,Object> userId,
+//								   @RequestParam(name ="manageUser",required = false) Map<String,Object> manageUser,
+//								   @RequestParam(name ="delUser",required = false) Map<String,Object> delUser,
+//								   @RequestParam(name ="downUser",required = false) Map<String,Object> downUser,
+//								   @RequestParam(name ="shareUser",required = false) Map<String,Object> shareUser,
+//								   @RequestParam(name ="owner",required = false) Map<String,Object> owner,
+//								   @RequestParam(name ="signUser",required = false) Map<String,Object> signUser,
+//								   @RequestParam(name ="review",required = false) Map<String,Object> review,
+//								   @RequestParam(name ="description",required = false) Map<String,Object> description
+								   ){
+		Map<String,Object> mmp=JSONArray.parseObject(auth,Map.class);
+		L.w(mmp);
+		BaseWrapper	wrapper =fileSortService.setFileSortAuth(mmp);
+		return wrapper;
+	}
+
+	/**
+	 * 创建作者:   韩东堂
+	 * 创建日期:   2017-6-05 上午15:27:41
+	 * 方法介绍:   公共文件柜查询接口
+	 * @param sortId   所属分类
+	 * @param subjectName 文件名称
+	 * @param creater 创建者名字串
+	 * @param contentNo 排序Id
+	 * @param contentValue1 关键字1
+	 * @param contentValue2 关键字2
+	 * @param contentValue3 关键字3
+	 * @param atiachmentDesc 附件描述
+	 * @param atiachmentName 附件名称
+	 * @param atiachmentCont 附件内容
+	 * @param crStartDate 创建时间范围 开始 格式 “yyyy-MM-dd HH:mm:ss”
+	 * @param crEndDate 创建时间范围 结束 格式 “yyyy-MM-dd HH:mm:ss”
+	 * @param pageNo 翻页==当前页
+	 * @param pageSize 翻页==每页个数
+	 * @return
+	 */
+	@RequestMapping("/queryBySearchValue")
+	@ResponseBody
+	public BaseWrappers queryBySearchValue(Integer sortId,String subjectName,@RequestParam(name = "creater",required = false) String creater[],
+										   Integer contentNo,String contentValue1,String contentValue2,String contentValue3,
+										  String atiachmentDesc,String atiachmentName,String atiachmentCont,String crStartDate,String crEndDate,Integer pageNo,@RequestParam(name = "pageSize",defaultValue = "10",required = false) Integer pageSize){
+		BaseWrappers wrappers=fileContentService.queryBySearchValue(sortId,subjectName,creater,contentNo,contentValue1,contentValue2,contentValue3,atiachmentDesc,atiachmentName,atiachmentCont,crStartDate,crEndDate,pageNo,pageSize);
+		return wrappers;
+	}
+
+
 
 }

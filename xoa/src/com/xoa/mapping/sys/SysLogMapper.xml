@@ -7,6 +7,8 @@
         <result column="TIME" property="time" jdbcType="TIMESTAMP"/>
         <result column="IP" property="ip" jdbcType="VARCHAR"/>
         <result column="TYPE" property="type" jdbcType="TINYINT"/>
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR"/>
+        <result column="CODE_NAME" property="typeName" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getTenLog" resultMap="BaseResultMap">
@@ -44,10 +46,14 @@
     </select>
 
     <select id="findLogOption" parameterType="hashMap" resultMap="BaseResultMap">
-        select * from sys_log s
+        select
+        s.IP, s.TIME, s.LOG_ID, s.USER_ID, s.IP, s.TYPE,s.REMARK,
+        u.USER_NAME,
+        sc.CODE_NAME
+        from sys_log s, user u, sys_code sc
         <where>
             <if test="type != null">
-                and s.TYPE = #{type}
+                and s.TYPE = #{type} AND sc.CODE_NO=#{type} AND sc.PARENT_NO='SYS_LOG'
             </if>
             <if test="startTime != null">
                 AND date(TIME) >= #{startTime}
@@ -64,10 +70,24 @@
             <if test="ids != null">
                 <foreach collection="ids" item="id" open=" AND  s.USER_ID  IN ( " close=" ) " separator=" , ">
                     #{id}
+
+
                 </foreach>
             </if>
 
+            AND s.USER_ID=u.USER_ID AND s.TYPE = sc.CODE_NO AND sc.PARENT_NO='SYS_LOG'
+<!--
+            <if test="ids != null">
+                <foreach collection="ids" item="id" open=" AND s.USER_ID=u.USER_ID AND  u.USER_ID  =" close=" "
+                         separator="">
+                    #{id}
+                </foreach>
+            </if>
+-->
+
+
         </where>
+        limit 1,300;
     </select>
 
     <delete id="deleteLogOption" parameterType="hashMap">
@@ -93,6 +113,13 @@
             </foreach>
         </where>
 
+    </delete>
+
+    <delete id="deleteLogById" parameterType="java.lang.Integer">
+        DELETE FROM sys_log  WHERE LOG_ID = #{id}
+    </delete>
+    <delete id="deleteAllLog">
+        DELETE FROM sys_log;
     </delete>
 
 

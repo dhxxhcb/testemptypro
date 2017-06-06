@@ -552,8 +552,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
 		<script type="text/javascript">
-             user = 'senduser';
-             user_id='senduser';
+             var user = 'senduser';
+             var user_id='senduser';
 			 var ue = UE.getEditor('container');
 			 var res
 			$(function () {
@@ -657,7 +657,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $(this).addClass('for_on').find('img').attr('src','../img/icon_zuoyou_sel_03.png');
 
                     $(this).siblings().removeClass('for_on');
-                    $(this).parent().find('li').eq(1).find('img').attr('src','../img/icon_list_03.png');
+                    $(this).parent().find('li').eq(1).find('img').attr('src','../img/iCon_list_003.png');
                     $('.main').show();
                     $('.UP_INBOX').hide();
 
@@ -666,7 +666,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $('.up_format ul li:first-of-type').addClass('for_on').find('img').attr('src','../img/icon_zuoyou_sel_03.png');
 
                     $('.up_format ul li:first-of-type').siblings().removeClass('for_on');
-                    $('.up_format ul li:first-of-type').parent().find('li').eq(1).find('img').attr('src','../img/icon_list_03.png');
+                    $('.up_format ul li:first-of-type').parent().find('li').eq(1).find('img').attr('src','../img/iCon_list_003.png');
 				}
 
 				

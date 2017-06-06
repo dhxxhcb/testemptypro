@@ -10,10 +10,13 @@
     font-family: "Microsoft YaHei" ! important;
     overflow-y: auto ;
     transition: all 0.2s ease 0s;
-
+    background: #f7f7f7;
 }
 input{
     outline: none;
+}
+.btnstorage a:hover{
+    color: #fff!important;
 }
 .setUpThe{
     padding:0px 5% 0px 9%;
@@ -27,15 +30,22 @@ input{
 .setUpThe.active{
     background: #add2f8;
 }
+.setUpThe.active .notstart{
+    background: url("/img/workflow/flowsetting/notstartactive.png")no-repeat;
+    width: 11px;
+    height: 6px;
+    margin-top: -1px;
+}
 body{
     font-size: 12px;
 }
 .setUpThe span{
-    width: 27px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     display: inline-block;
     vertical-align: middle;
-    margin-right:10px;
+    margin-right:8px;
+    margin-top:2px;
 }
 .setUpThe label{
     vertical-align: middle;
@@ -90,6 +100,7 @@ body{
     padding-left: 11%;
     border-bottom: 1px solid #ccc;
     display: none;
+    background: #e8f4fc;
 }
 .candidatesUl li{
     font-size: 16px;
@@ -131,9 +142,19 @@ body{
     line-height: 28px;
     position: relative;
 }
+.GooFlow_item{
+    padding: 10px !important;
+}
 .layui-form-radio span{
     font-size: 12px!important;
     color: #111;
+}
+.layui-layer-ico{
+    background: url("/img/guanbiBtn.png")no-repeat!important;
+}
+.GooFlow .item_round .span{
+    top: 50px !important;
+    left: -14px!important;
 }
 .candidatesUl li p span b{
     width: 0px;
@@ -200,6 +221,20 @@ body{
     -ms-border-radius: 4px;
 
 }
+.GooFlow_item {
+    position: absolute;
+    background: #A1DCEB !important;
+    border: #A1DCEB solid 1px !important;
+    border-radius: 3px !important;
+    border-color: rgb(161, 220, 235)!important;
+    box-shadow: 1px 1px 2px rgba(99, 99, 99, 1) !important;
+}
+.GooFlow_work .GooFlow_work_inner{
+    background-image:url(/lib/GooFlow/img/gooflow_blank2.gif) ;
+}
+.GooFlow table{
+    border:none!important;
+}
 .candidatesUl li .candidatesPoform span{
     width: 20%;
     display: inline-block;
@@ -220,7 +255,7 @@ body{
     z-index:999999;
     background: #f7f7f7;
     transition: all 0.2s ease 0s;
-
+    box-shadow: -11px 1px 14px #ccc;
 }
 .btnstorage a{
     float: right;
@@ -310,6 +345,22 @@ body{
     background: #eee;
     border:1px solid #ccc;
 }
+.candidatesUl li .candidatesPTwoall textarea{
+    width: 76%;
+    height: 57px;
+    border:1px solid #ddd;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -zom-border-radius: 4px;
+    -ms-border-radius: 4px;
+    float: left;
+    background: #eee;
+    border:1px solid #ccc;
+    padding: 5px;
+}
+textarea{
+    outline:none;resize:none;
+}
 .candidatesPTwoall div{
     height: 57px;
     line-height: 57px;
@@ -364,6 +415,9 @@ body{
     background: #2f8ae3;
     color: #fff!important;
     font-size: 14px;
+}
+.hiddenul li>div{
+    display: none;
 }
 .candidatesPTwo table{
     width: 100% ;
@@ -499,4 +553,13 @@ table input[type=text]{
     -webkit-border-radius: 4px!important;
     -moz-border-radius: 4px!important;
     -ms-border-radius: 4px!important;
+}
+.item_round{
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+}
+.item_round table{
+    margin-top: 4px!important;
+    margin-left: 5px!important;
 }

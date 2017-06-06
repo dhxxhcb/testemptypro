@@ -67,14 +67,14 @@ public class SystemInfoServiceImpl implements SystemInfoService {
         Map<String, String> map = new HashMap<String, String>();
         map.put("softName", softName);
         map.put("softVersion", softVersion);
-        map.put("softVersionNo", softVersionNO);
+        map.put("softVersionNO", softVersionNO);
 
         operationSystem = getOperationSystem();
         map.put("operationSystem", operationSystem);
 
         map.put("serverPath", serverPath);
         jdkVersion = getJdkVersion();
-        map.put("JDK_VERSION", jdkVersion);
+        map.put("jdkVersion", jdkVersion);
         map.put("machineCode", machineCode);
         map.put("orgName", orgName);
         map.put("softSerialNo", softSerialNo);

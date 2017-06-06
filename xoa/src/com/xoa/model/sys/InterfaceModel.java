@@ -114,6 +114,21 @@ public class InterfaceModel implements Serializable {
      */
     private Boolean imgTos;
 
+
+    public String getLogOutText() {
+        return logOutText;
+    }
+
+    public void setLogOutText(String logOutText) {
+        this.logOutText = logOutText;
+    }
+
+    /**
+     * 添加一个字段interface表没有，用于封装数据,这个字段对应的数据在sys_para表
+     */
+
+    private String logOutText;
+
     private static final long serialVersionUID = 1L;
 
     public String getIeTitle() {

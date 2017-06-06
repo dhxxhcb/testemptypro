@@ -6,8 +6,8 @@
         <result column="RUN_ID" javaType="int" property="runId"/>
         <result column="PRCS_ID" javaType="int" property="prcsId"/>
         <result column="USER_ID" javaType="string" property="userId"/>
-        <result column="PRCS_TIME" javaType="string" property="prcsTime"/>
-        <result column="DELIVER_TIME" javaType="string" property="deliverTime"/>
+        <result column="PRCS_TIME" javaType="String" property="prcsTime"/>
+        <result column="DELIVER_TIME" javaType="String" property="deliverTime"/>
         <result column="PRCS_FLAG" javaType="string" property="prcsFlag"/>
         <result column="FLOW_PRCS" javaType="int" property="flowPrcs"/>
         <result column="OP_FLAG" javaType="string" property="opFlag"/>
@@ -319,107 +319,107 @@
       </if>
     </trim>
   </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowRunPrcs">
+    <update id="updateByPrimaryKeySelective" parameterType="com.xoa.model.workflow.FlowRunPrcsExcted">
         update flow_run_prcs
         <set>
             <if test="runId != null">
-                RUN_ID = #{runId,jdbcType=INTEGER},
+                RUN_ID = #{runId},
             </if>
             <if test="prcsId != null">
-                PRCS_ID = #{prcsId,jdbcType=INTEGER},
+                PRCS_ID = #{prcsId},
             </if>
             <if test="userId != null">
-                USER_ID = #{userId,jdbcType=VARCHAR},
+                USER_ID = #{userId},
             </if>
             <if test="prcsTime != null">
-                PRCS_TIME = #{prcsTime,jdbcType=TIMESTAMP},
+                PRCS_TIME = #{prcsTime},
             </if>
             <if test="deliverTime != null">
-                DELIVER_TIME = #{deliverTime,jdbcType=TIMESTAMP},
+                DELIVER_TIME = #{deliverTime},
             </if>
             <if test="prcsFlag != null">
-                PRCS_FLAG = #{prcsFlag,jdbcType=CHAR},
+                PRCS_FLAG = #{prcsFlag},
             </if>
             <if test="flowPrcs != null">
-                FLOW_PRCS = #{flowPrcs,jdbcType=INTEGER},
+                FLOW_PRCS = #{flowPrcs},
             </if>
             <if test="opFlag != null">
-                OP_FLAG = #{opFlag,jdbcType=VARCHAR},
+                OP_FLAG = #{opFlag},
             </if>
             <if test="topFlag != null">
-                TOP_FLAG = #{topFlag,jdbcType=VARCHAR},
+                TOP_FLAG = #{topFlag},
             </if>
             <if test="parent != null">
-                PARENT = #{parent,jdbcType=VARCHAR},
+                PARENT = #{parent},
             </if>
             <if test="childRun != null">
-                CHILD_RUN = #{childRun,jdbcType=INTEGER},
+                CHILD_RUN = #{childRun},
             </if>
             <if test="timeOut != null">
-                TIME_OUT = #{timeOut,jdbcType=VARCHAR},
+                TIME_OUT = #{timeOut},
             </if>
             <if test="timeOutTemp != null">
-                TIME_OUT_TEMP = #{timeOutTemp,jdbcType=VARCHAR},
+                TIME_OUT_TEMP = #{timeOutTemp},
             </if>
             <if test="timeOutFlag != null">
-                TIME_OUT_FLAG = #{timeOutFlag,jdbcType=CHAR},
+                TIME_OUT_FLAG = #{timeOutFlag},
             </if>
             <if test="createTime != null">
-                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+                CREATE_TIME = #{createTime},
             </if>
             <if test="fromUser != null">
-                FROM_USER = #{fromUser,jdbcType=VARCHAR},
+                FROM_USER = #{fromUser},
             </if>
             <if test="activeTime != null">
-                ACTIVE_TIME = #{activeTime,jdbcType=TIMESTAMP},
+                ACTIVE_TIME = #{activeTime},
             </if>
             <if test="prcsDept != null">
-                PRCS_DEPT = #{prcsDept,jdbcType=INTEGER},
+                PRCS_DEPT = #{prcsDept},
             </if>
             <if test="parentPrcsId != null">
-                PARENT_PRCS_ID = #{parentPrcsId,jdbcType=VARCHAR},
+                PARENT_PRCS_ID = #{parentPrcsId},
             </if>
             <if test="backPrcsId != null">
-                BACK_PRCS_ID = #{backPrcsId,jdbcType=INTEGER},
+                BACK_PRCS_ID = #{backPrcsId},
             </if>
             <if test="backFlowPrcs != null">
-                BACK_FLOW_PRCS = #{backFlowPrcs,jdbcType=INTEGER},
+                BACK_FLOW_PRCS = #{backFlowPrcs},
             </if>
             <if test="timeOutAttend != null">
-                TIME_OUT_ATTEND = #{timeOutAttend,jdbcType=TINYINT},
+                TIME_OUT_ATTEND = #{timeOutAttend},
             </if>
             <if test="timeOutType != null">
-                TIME_OUT_TYPE = #{timeOutType,jdbcType=TINYINT},
+                TIME_OUT_TYPE = #{timeOutType},
             </if>
             <if test="runPrcsName != null">
-                RUN_PRCS_NAME = #{runPrcsName,jdbcType=VARCHAR},
+                RUN_PRCS_NAME = #{runPrcsName},
             </if>
             <if test="runPrcsId != null">
-                RUN_PRCS_ID = #{runPrcsId,jdbcType=VARCHAR},
+                RUN_PRCS_ID = #{runPrcsId},
             </if>
             <if test="mobileFlag != null">
-                MOBILE_FLAG = #{mobileFlag,jdbcType=BIT},
+                MOBILE_FLAG = #{mobileFlag},
             </if>
             <if test="isRemind != null">
-                IS_REMIND = #{isRemind,jdbcType=INTEGER},
+                IS_REMIND = #{isRemind},
             </if>
             <if test="tempPrcsFlag != null">
-                TEMP_PRCS_FLAG = #{tempPrcsFlag,jdbcType=BIT},
+                TEMP_PRCS_FLAG = #{tempPrcsFlag},
             </if>
             <if test="workingdaysType != null">
-                WORKINGDAYS_TYPE = #{workingdaysType,jdbcType=CHAR},
+                WORKINGDAYS_TYPE = #{workingdaysType},
             </if>
             <if test="freeItem != null">
-                FREE_ITEM = #{freeItem,jdbcType=LONGVARCHAR},
+                FREE_ITEM = #{freeItem},
             </if>
             <if test="otherUser != null">
-                OTHER_USER = #{otherUser,jdbcType=LONGVARCHAR},
+                OTHER_USER = #{otherUser},
             </if>
             <if test="comment != null">
-                COMMENT = #{comment,jdbcType=LONGVARCHAR},
+                COMMENT = #{comment},
             </if>
         </set>
-        where ID = #{id,jdbcType=INTEGER}
+        where RUN_ID = #{runId} AND  PRCS_ID = #{prcsId}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xoa.model.workflow.FlowRunPrcs">
     update flow_run_prcs
@@ -491,6 +491,32 @@
     where ID = #{id,jdbcType=INTEGER}
   </update>
 
+    <!-- 根据流程实例Id和流程实例步骤id查询 -->
+    <select id="selectfrp" resultMap="BaseResultMap" parameterType="Map">
+        SELECT
+        frp.ID,
+        frp.USER_ID,
+        frp.PRCS_ID,
+        frp.FLOW_PRCS,
+        frp.COMMENT,
+        frp.OP_FLAG,
+        frp.TOP_FLAG,
+        frp.PRCS_FLAG,
+        frp.TIME_OUT_FLAG,
+        frp.PRCS_TIME,
+        frp.CREATE_TIME,
+        frp.DELIVER_TIME,
+        frp.TIME_OUT_TYPE,
+        frp.TIME_OUT_ATTEND,
+        frp.IS_REMIND,
+        frp.TIME_OUT
+        FROM
+        FLOW_RUN_PRCS frp
+        WHERE
+         frp.PRCS_ID = #{prcsId}
+        AND frp.RUN_ID = #{runId}
+    </select>
+
     <!-- 查询待办工作 -->
     <select id="selectObjcet" resultMap="BaseResultMap" parameterType="Map">
     SELECT
@@ -500,6 +526,7 @@
     fr.RUN_NAME,
     fr.BEGIN_USER,
     fr.BEGIN_DEPT,
+    fp.PRCS_NAME,
     frp.ID,
     frp.USER_ID,
     frp.PRCS_ID,
@@ -525,6 +552,7 @@
     AND frp.CHILD_RUN ='0'
     AND frp.USER_ID=#{userId}
     AND fr.DEL_FLAG = '0'
+    GROUP BY fr.RUN_ID
     ORDER BY
     frp.IS_REMIND DESC,
     frp.RUN_ID DESC,
@@ -540,6 +568,7 @@
     fr.RUN_NAME,
     fr.BEGIN_USER,
     fr.BEGIN_DEPT,
+     fp.PRCS_NAME,
     frp.ID,
     frp.USER_ID,
     frp.PRCS_ID,
@@ -565,13 +594,15 @@
     AND frp.CHILD_RUN = '0'
     AND frp.USER_ID=#{userId}
     AND fr.DEL_FLAG = '0'
+    AND frp.ID in (SELECT MAX(id) from FLOW_RUN_PRCS GROUP BY RUN_ID)
+    GROUP BY fr.RUN_ID
     ORDER BY
     frp.IS_REMIND DESC,
     frp.RUN_ID DESC,
     fr.WORK_LEVEL DESC
   </select>
 
-    <!-- 查询办结工作 -->
+    <!-- 查询挂起工作 -->
     <select id="selectHang" resultMap="BaseResultMap" parameterType="Map">
         SELECT
         fr.RUN_ID,
@@ -580,6 +611,7 @@
         fr.RUN_NAME,
         fr.BEGIN_USER,
         fr.BEGIN_DEPT,
+         fp.PRCS_NAME,
         frp.ID,
         frp.USER_ID,
         frp.PRCS_ID,
@@ -605,6 +637,7 @@
         AND frp.CHILD_RUN = '0'
         AND frp.USER_ID=#{userId}
         AND fr.DEL_FLAG = '0'
+        GROUP BY fr.RUN_ID
         ORDER BY
         frp.IS_REMIND DESC,
         frp.RUN_ID DESC,
@@ -621,6 +654,7 @@
         fr.RUN_NAME,
         fr.BEGIN_USER,
         fr.BEGIN_DEPT,
+         fp.PRCS_NAME,
         frp.ID,
         frp.USER_ID,
         frp.PRCS_ID,
@@ -645,6 +679,7 @@
          frp.CHILD_RUN = '0'
         AND frp.USER_ID=#{userId}
         AND fr.DEL_FLAG = '0'
+        GROUP BY fr.RUN_ID
         ORDER BY
         frp.IS_REMIND DESC,
         frp.RUN_ID DESC,
@@ -652,30 +687,34 @@
     </select>
 
     <!-- 查询关联部门实际步骤 -->
-    <select id="findAllNode" resultMap="BaseResultMap">
-            SELECT
-            frp.ID,
-            frp.USER_ID,
-            frp.PRCS_ID,
-            frp.FLOW_PRCS,
-            frp.COMMENT,
-            frp.OP_FLAG,
-            frp.TOP_FLAG,
-            frp.PRCS_FLAG,
-            frp.TIME_OUT_FLAG,
-            frp.PRCS_TIME,
-            frp.CREATE_TIME,
-            frp.DELIVER_TIME,
-            frp.TIME_OUT_TYPE,
-            frp.TIME_OUT_ATTEND,
-            frp.IS_REMIND,
-            frp.TIME_OUT,
-            dp.DEPT_NAME
+    <select id="findTime" resultType="String">
+        SELECT
+            fpr.DELIVER_TIME
         FROM
-            flow_run_prcs frp
-        LEFT JOIN department dp ON frp.PRCS_DEPT = dp.DEPT_ID
+            flow_run_prcs fpr
         WHERE
-            frp.RUN_ID = #{runId}
+           fpr.PRCS_ID = #{prcsId}
+        AND
+           fpr.RUN_ID = #{runId}
     </select>
+
+
+    <select id="findByRunId" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM
+        flow_run_prcs
+        WHERE
+        RUN_ID = #{runId}
+    </select>
+
+    <update id="updateSql" parameterType="Map">
+        update flow_run_prcs
+        set
+         PRCS_FLAG = #{prcsFlag},
+         DELIVER_TIME = #{deliverTime}
+       where RUN_ID = #{runId} AND  PRCS_ID = #{prcsId}
+
+    </update>
 
 </mapper>

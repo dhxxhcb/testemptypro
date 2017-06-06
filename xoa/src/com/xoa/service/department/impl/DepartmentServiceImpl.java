@@ -3,6 +3,7 @@ package com.xoa.service.department.impl;
 import com.xoa.dao.department.DepartmentMapper;
 import com.xoa.model.department.Department;
 import com.xoa.service.department.DepartmentService;
+import com.xoa.util.common.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -56,6 +57,44 @@ public class DepartmentServiceImpl implements DepartmentService {
         list.add(sb.toString());
         return list;
     }
+
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2016年6月3日 下午4:02:05
+     * 方法介绍:   根据dept串获取用户姓名
+     * 参数说明:   @param uids  用户uid串
+     * 参数说明:   @return
+     *
+     * @return List<String>  返回部门串
+     */
+    @Override
+    public String getDeptNameByDeptId(String deptId,String flag) {
+        if (StringUtils.checkNull(deptId)) {
+            return null;
+        }
+        //定义用于拼接部门
+        StringBuffer sb = new StringBuffer();
+        if("ALL_DEPT".trim().equals(deptId)){
+            sb.append("全部部门");
+        }else {
+        String[] temp = deptId.split(flag);
+        for (int i = 0; i < temp.length; i++) {
+            if (!StringUtils.checkNull(temp[i])) {
+                String userName = departmentMapper.getDeptNameByDeptId(Integer.parseInt(temp[i]));
+                if (userName != "") {
+                    if (i < temp.length - 1) {
+                        sb.append(userName).append(",");
+                    } else {
+                        sb.append(userName);
+                    }
+                }
+            }
+        }
+        }
+        return sb.toString();
+    }
+
 
     /**
      * 创建作者:   张龙飞

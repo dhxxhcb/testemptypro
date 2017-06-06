@@ -237,7 +237,7 @@ LEFT JOIN (
  SELECT COUNT(flow_type.FLOW_ID) AS FLOW_COUNTS,flow_type.FLOW_SORT FROM flow_type  GROUP BY flow_type.FLOW_SORT
 ) AS countflow ON countflow.FLOW_SORT=flow_sort.SORT_ID
 LEFT JOIN department ON department.DEPT_ID=flow_sort.DEPT_ID
-ORDER BY SORT_ID,SORT_NO ASC
+ORDER BY SORT_NO,SORT_ID ASC
   </select>
   <select id="selectNoflowSort" resultType="Integer" >
    SELECT COUNT(flow_type.FLOW_ID) AS FLOW_COUNTS,flow_type.FLOW_SORT FROM flow_type  WHERE  flow_type.FLOW_SORT=0 or flow_type.FLOW_SORT IS NULL

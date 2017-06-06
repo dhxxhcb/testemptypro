@@ -36,11 +36,11 @@
 }
 
 .nav_box .nav_t1 img {
-    width:23px;
-    height:23px;
+    width: 20px;
+    height: 21px;
 }
 .nav_box .nav_t2 {
-    font-size: 22px;
+    font-size: 20px;
     color:#494d59;
     margin-left:10px;
     margin-right:20px;
@@ -62,9 +62,11 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 79%;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
+    margin-top:2%;
     margin-bottom: 50px;
-    margin-top: 50px;
+    margin-left: 11%;
+
 }
 
 td {

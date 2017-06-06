@@ -319,7 +319,38 @@ public class Users {
 	
 	private String name;
 
-	public String getName() {
+     private String funcIdStr;
+
+     private String  departmentPhone;
+
+	 public String getDepartmentPhone() {
+		 return departmentPhone==null?"":departmentPhone;
+	 }
+
+	 public void setDepartmentPhone(String departmentPhone) {
+		 this.departmentPhone = departmentPhone;
+	 }
+
+	 //辅助角色名字
+     private  String  roleAuxiliaryName;
+
+	 public String getRoleAuxiliaryName() {
+		 return roleAuxiliaryName==null?"":roleAuxiliaryName;
+	 }
+
+	 public void setRoleAuxiliaryName(String roleAuxiliaryName) {
+		 this.roleAuxiliaryName = roleAuxiliaryName;
+	 }
+
+	 public String getFuncIdStr() {
+         return funcIdStr;
+     }
+
+     public void setFuncIdStr(String funcIdStr) {
+         this.funcIdStr = funcIdStr;
+     }
+
+     public String getName() {
 		return name;
 	}
 

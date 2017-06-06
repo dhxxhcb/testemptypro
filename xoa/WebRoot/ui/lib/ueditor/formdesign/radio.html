@@ -201,6 +201,7 @@ function fnSetAttribute( element, attName, attValue ) {
     oListText    = $G( 'orglist' ) ;
     $(function () {
         var dataid = $.getQueryString('dataid');
+        var dataNumber=parent.pluginId;
      if( UE.plugins[thePlugins].editdom ){
             oNode = UE.plugins[thePlugins].editdom;
             var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gRadios=oNode.getAttribute('radio_field'),gChecked=oNode.getAttribute("orgchecked");
@@ -263,8 +264,8 @@ function fnSetAttribute( element, attName, attValue ) {
                 oNode.setAttribute('classname',thePlugins);
                  oNode.setAttribute('class', "form_item");
                 oNode.setAttribute('data-type', "radio");
-                oNode.setAttribute('name', 'DATA_' + dataid);
-                oNode.setAttribute('id', 'DATA_' + dataid);
+                oNode.setAttribute('name', 'DATA_' + dataNumber);
+                oNode.setAttribute('id', 'DATA_' + dataNumber);
                 editor.execCommand('insertHtml',oNode.outerHTML);
                 return true ;
             } catch ( e ) {

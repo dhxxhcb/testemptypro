@@ -188,4 +188,44 @@
             #{conId}
         </foreach>
     </delete>
+
+    <select id="queryBySearchValue" parameterType="Map" resultMap="file_ContentResultMap">
+        SELECT * FROM FILE_CONTENT
+       <where>
+           <trim suffixOverrides="and">
+               <if test="sortId!=null">
+                   SORT_ID=#{sortId}  and
+               </if>
+               <if test="subjectName!=null">
+                   SUBJECT like CONCAT("%",#{subjectName},"%") and
+               </if>
+               <if test="contentNo!=null">
+                   CONTENT_NO = #{contentNo} and
+               </if>
+               <if test="creater!=null">
+                   FIND_IN_SET(CREATER,#{creater}) and
+               </if>
+               <if test="atiachmentDesc!=null">
+                   ATTACHMENT_DESC like CONCAT("%",#{atiachmentDesc},"%") and
+               </if>
+               <if test="contentValue1!=null">
+                   CONTENT like CONCAT("%",#{contentValue1},"%") and
+               </if>
+               <if test="contentValue2!=null">
+                   CONTENT like CONCAT("%",#{contentValue2},"%") and
+               </if>
+               <if test="contentValue3!=null">
+                   CONTENT like CONCAT("%",#{contentValue3},"%") and
+               </if>
+               <if test="atiachmentName!=null">
+                   ATTACHMENT_NAME like CONCAT("%",#{atiachmentName},"%") and
+               </if>
+               <if test="crStartDate!=null and crEndDate!=null">
+                   SEND_TIME BETWEEN #{crStartDate} AND #{crEndDate}
+               </if>
+           </trim>
+       </where>
+        order by CONTENT_NO,SEND_TIME desc
+        limit #{pageNo},#{pageSize}
+    </select>
 </mapper>

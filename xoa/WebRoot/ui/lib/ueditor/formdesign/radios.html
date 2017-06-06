@@ -128,6 +128,7 @@ function fnAdd() {
 function fnParseOptions(gName,gChecked)
 {
     var dataid = $.getQueryString('dataid');
+    var dataNumber=parent.pluginId;
     var oTable = document.getElementById('options_table');
     var nTr = oTable.getElementsByTagName('tr'),trLength = nTr.length,html="";
     for(var i=0;i<trLength;i++)
@@ -139,7 +140,7 @@ function fnParseOptions(gName,gChecked)
             if(!inputs[1].value) continue;
             var sChecked = '';
             if(inputs[0].checked) sChecked = 'checked="checked"';
-            html += '<input name="'+'DATA_'+dataid+'" id="'+'DATA_'+dataid+'" class="form_item" data-type="radios" title="'+inputs[1].value+'" '+sChecked+' value="'+inputs[1].value+'" '+sChecked+' type="radio"/>'+inputs[1].value+'&nbsp;';
+            html += '<input name="'+'DATA_'+dataNumber+'" id="'+'DATA_'+dataNumber+'" class="form_item" data-type="radios" title="'+inputs[1].value+'" '+sChecked+' value="'+inputs[1].value+'" '+sChecked+' type="radio"/>'+inputs[1].value+'&nbsp;';
             if(gChecked=='orgchecked1')//竖排
                 html+='<br/>';
         }

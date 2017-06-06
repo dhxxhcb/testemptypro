@@ -28,4 +28,9 @@ public class FlowSettingPageController {
         return "app/workflow/flowsettting/processDesignTool";
     }
 
+    @RequestMapping("/processDesignToolTwo")
+    public String processDesignToolTwopage(){
+        return "app/workflow/flowsettting/processDesignToolTwo";
+    }
+
 }

@@ -287,6 +287,46 @@ public class FlowProcess implements Serializable {
      */
     private FlowTypeModel flowTypeModel;
 
+    /**
+     * 条件设置Json串
+     */
+    private String settlementOfCondition;
+
+    /**
+     * 可写字段Json串
+     */
+    private String prcsItemTwo;
+
+    /**
+     * 可写字段如果有值转为autoUser
+     */
+    private  String ITEM_ID;
+
+    /**
+     * 可写字段如果有值转为autoUser
+     */
+    private String AUTO_PRCS_USER;
+
+    /**
+     * 部门汉字
+     */
+    private String prcsDeptName;
+
+    /**
+     * 用户汉字
+     */
+    private String prcsUserName;
+
+    /**
+     * 角色汉字
+     */
+    private String prcsPrivName;
+
+    /**
+     * 关联触发器
+     */
+    private List<FlowTiggerModel> flowTiggerModel;
+
 
     private List<Map<String, String>> connections;
 
@@ -934,5 +974,125 @@ public class FlowProcess implements Serializable {
 
     public void setCountersign(int countersign) {
         this.countersign = countersign;
+    }
+
+    public String getSettlementOfCondition() {
+        return settlementOfCondition;
+    }
+
+    public void setSettlementOfCondition(String settlementOfCondition) {
+        this.settlementOfCondition = settlementOfCondition;
+    }
+
+    /**
+     * 可写字段如果有值转为autoUser
+     * @return
+     */
+    public String getITEM_ID() {
+        return ITEM_ID;
+    }
+
+    /**
+     * 可写字段如果有值转为autoUser
+     * @param ITEM_ID
+     */
+    public void setITEM_ID(String ITEM_ID) {
+        this.ITEM_ID = ITEM_ID;
+    }
+
+    /**
+     * 可写字段如果有值转为autoUser
+     * @return
+     */
+    public String getAUTO_PRCS_USER() {
+        return AUTO_PRCS_USER;
+    }
+
+    /**
+     * 可写字段如果有值转为autoUser
+     * @param AUTO_PRCS_USER
+     */
+    public void setAUTO_PRCS_USER(String AUTO_PRCS_USER) {
+        this.AUTO_PRCS_USER = AUTO_PRCS_USER;
+    }
+
+    /**
+     * 可写字段Json串
+     * @return
+     */
+    public String getPrcsItemTwo() {
+        return prcsItemTwo;
+    }
+
+    /**
+     * 可写字段Json串
+     * @param prcsItemTwo
+     */
+    public void setPrcsItemTwo(String prcsItemTwo) {
+        this.prcsItemTwo = prcsItemTwo;
+    }
+
+    /**
+     * 部门汉字
+     * @return
+     */
+    public String getPrcsDeptName() {
+        return prcsDeptName;
+    }
+
+    /**
+     * 部门汉字
+     * @param prcsDeptName
+     */
+    public void setPrcsDeptName(String prcsDeptName) {
+        this.prcsDeptName = prcsDeptName;
+    }
+
+    /**
+     *  用户汉字
+     * @return
+     */
+    public String getPrcsUserName() {
+        return prcsUserName;
+    }
+
+    /**
+     * 用户汉字
+     * @param prcsUserName
+     */
+    public void setPrcsUserName(String prcsUserName) {
+        this.prcsUserName = prcsUserName;
+    }
+
+    /**
+     * 角色汉字
+     * @return
+     */
+    public String getPrcsPrivName() {
+        return prcsPrivName;
+    }
+
+    /**
+     * 角色汉字
+     * @param prcsPrivName
+     */
+    public void setPrcsPrivName(String prcsPrivName) {
+        this.prcsPrivName = prcsPrivName;
+    }
+
+    /**
+     * 关联触发器
+     * @return
+     */
+    public List<FlowTiggerModel> getFlowTiggerModel() {
+        return flowTiggerModel;
+    }
+
+    /**
+     * 关联触发器
+     * @param flowTiggerModel
+     */
+    public void setFlowTiggerModel(List<FlowTiggerModel> flowTiggerModel) {
+        this.flowTiggerModel = flowTiggerModel;
     }
 }

@@ -694,7 +694,7 @@ user_id='query_userId';//选人控件
            });
            $(".index_head li").click(function (){
                 $(this).find('span').addClass('one').parent().siblings('').find('span').removeClass('one');  // 删除其他兄弟元素的样式
-                $(".news").html($(this).find('span').text());
+             // $(".news").html($(this).find('span').text());
 				data.read = $(this).attr('data_id');
 				data.typeId = $('#select').val()==0?'':$('#select').val();
 				data.nTime = $('#sendTime').val();
@@ -703,7 +703,7 @@ user_id='query_userId';//选人控件
 					$('.step1').show();
 					$('.step2').hide();
 					$('.center').hide();
-					$('.step3').s();
+					$('.step3').hide();
 					initPageList();
 				}else if(data.read == 1){
 					$('.step1').hide();

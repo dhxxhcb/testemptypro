@@ -5,6 +5,7 @@ import com.xoa.model.common.Syslog;
 import com.xoa.service.common.SysCodeService;
 import com.xoa.service.sys.SysLogService;
 import com.xoa.service.users.UsersService;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -223,6 +224,11 @@ public class SysLogServiceImpl implements SysLogService {
     @Override
     public List<Object> getEachDayLogData(String year, String month) {
 
+        if (month != null && month.startsWith("0")) {
+            month = month.substring(1, 2);
+        }
+
+
         //记录每天的信息
         List<Object> dayLogDataList = new ArrayList<Object>();
         //记录每天的访问量
@@ -289,7 +295,7 @@ public class SysLogServiceImpl implements SysLogService {
                     monthTotalDay = endDay;
                 }
 
-                for (int i = 1; i <= endDay; i++) {
+                for (int i = 1; i <= monthTotalDay; i++) {
 
                     if (i < 10) {
                         if (Integer.parseInt(month) < 10) {
@@ -319,7 +325,7 @@ public class SysLogServiceImpl implements SysLogService {
                 if (flag) {
                     monthTotalDay = endDay;
                 }
-                for (int i = 1; i <= endDay; i++) {
+                for (int i = 1; i <= monthTotalDay; i++) {
 
                     if (i < 10) {
                         if (Integer.parseInt(month) < 10) {
@@ -353,7 +359,7 @@ public class SysLogServiceImpl implements SysLogService {
                 if (flag) {
                     monthTotalDay = endDay;
                 }
-                for (int i = 1; i <= endDay; i++) {
+                for (int i = 1; i <= monthTotalDay; i++) {
 
                     if (i < 10) {
                         if (Integer.parseInt(month) < 10) {
@@ -548,11 +554,15 @@ public class SysLogServiceImpl implements SysLogService {
         syslogList = sysLogMapper.findLogOption(hashMap);
         if (syslogList != null) {
             for (Syslog syslog1 : syslogList) {
-                String username = usersService.getUserNameById(syslog1.getUserId());
-                syslog1.setUserName(username);
-                String logTypeName = sysCodeService.getLogNameByNo("" + syslog1.getType());
-                syslog1.setTypeName(logTypeName);
-                syslog1.setIpLocation("--");
+                String location = "--";
+                try {
+
+                    //取消该行注释即可根据ip查地理位置，但是调用第三方接口比较慢，且不可以调外网。
+                    //location = getLocationByIP(syslog1.getIp());
+                } catch (Exception e) {
+                    location = "未知";
+                }
+                syslog1.setIpLocation(location);
             }
 
         }
@@ -607,6 +617,40 @@ public class SysLogServiceImpl implements SysLogService {
         sysLogMapper.deleteLogOption(hashMap);
 
     }
+
+    /**
+     * @param ids
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/1 19:13
+     * @函数介绍: 根据id, 删除log
+     * @参数说明: @param String ids
+     * @return: void
+     */
+    @Override
+    public void deleteLogByIds(String ids) {
+
+
+        if (ids != null) {
+            String[] idsArr = ids.split(",");
+
+            for (int i = 0; i < idsArr.length; i++) {
+                sysLogMapper.deleteLogById(Integer.parseInt(idsArr[i]));
+            }
+        }
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/2 16:41
+     * @函数介绍: 清空日志
+     * @参数说明: @param 无
+     * @return: void
+     **/
+    @Override
+    public void deleteAllLog() {
+        sysLogMapper.deleteAllLog();
+    }
+
 
 
     /**

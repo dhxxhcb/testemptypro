@@ -34,6 +34,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				color:#2f8ae3;
 				cursor: pointer;
 			}
+			.three h1{
+				margin-left:6%;
+			}
+			.side_all{
+				/*width:0px;*/
+				height:100%;
+				/*background: red;*/
+				position: absolute;
+				right:0px;
+				top:0px;
+				z-index:20;
+			}
+			.checks{
+				background: #fff;
+			}
+			.position{
+				width:0px;
+				height:100%;
+				position: absolute;
+				right:0px;
+				top:0px;
+				background: #fafafa;
+				box-shadow: -2px 0 20px 0px #c4c4c4;
+			}
 		</style>
 	</head>
 	<body>
@@ -55,12 +79,141 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			         <a id="task_center" hidefocus="hidefocus" title="搜索" data-step="5" data-intro="<b style='display:block'>搜索</b>点击进入“任务中心”，可以看到按时间和紧急程度排序的待办任务，并可快速建立任务" data-position="left"></a>
 			         <a id="sns"  hidefocus="hidefocus" title="提醒" data-step="6" data-intro="<b style='display:block'>提醒 </b>点击进入“企业社区”，促进企业信息交流与知识共享" data-position="left"></a>
 			         <a id="help"  hidefocus="hidefocus" title="主题 " data-step="7" data-intro="<b style='display:block'>主题 </b>“通达OA在线帮助”汇集了常见的用户问题，帮助用户快速掌握软件各项功能的使用" data-position="left" target="_blank"></a>
-			         <a id="person_info"  hidefocus="hidefocus" title="设置" data-step="8" data-intro="<b style='display:block'>设置</b>点击进入“控制面板”，可以进行界面设置、个人信息设置、账号与安全设置" data-position="left"></a>
+			   <%--      <a id="person_info"  hidefocus="hidefocus" title="设置" data-step="8" data-intro="<b style='display:block'>设置</b>点击进入“控制面板”，可以进行界面设置、个人信息设置、账号与安全设置" data-position="left"></a>--%>
 			         <a id="theme"  hidefocus="hidefocus" title="注销" data-step="9" data-intro="<b style='display:block'>更换皮肤</b>通达OA为您提供了完备的界面换肤功能，通过“更换皮肤”按钮，一触即换" data-position="left"></a>
 			         
 		      	</div>
 			</div>
-			<div class="cont" id="client">
+
+			<div class="cont" id="client" style="position: relative;">
+				<ul class="side_all">
+					<li class="position" id="admin-side0">
+						<div class="skin">
+							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
+							<h2 style="width: 93%;height:100%;line-height: 45px;text-align: center;font-size: 10pt;font-weight: bold;">搜索</h2>
+						</div>
+						<div style="margin-top: 20px">
+							<input type="text" class="huiqian_inp">
+							<button class="huiqian_send">搜索</button>
+						</div>
+
+					</li>
+					<li class="position" id="admin-side1">
+						<div class="skin">
+							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
+							<div class="tixing_tab_t">
+								<ul class="tixing_title">
+									<li class="tixing_check">待办</li>
+									<li>邮件</li>
+									<li>公告</li>
+								</ul>
+							</div>
+						</div>
+						<div style="margin-top:5px"  id="tixing_tab_c">
+							<ul class="tixing_one">
+								<li class="tixing_one_all" style="background: red;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
+								<li class="tixing_one_all" style="background: cyan;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
+								<li class="tixing_one_all" style="background: cyan;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
+							</ul>
+							<ul class="tixing_one" style="display: none;">
+								<li class="tixing_one_all" style="background: red;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
+								<li class="tixing_one_all" style="background: cyan;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
+							</ul>
+							<ul class="tixing_one" style="display: none;">
+								<li class="tixing_one_all" style="background: red;">
+									<div class="tixing_every">
+										<div class="company">
+											<h1>同事小C</h1>
+											<div class="jinji">紧急</div>
+											<h2 class="company_time">30分钟前</h2>
+										</div>
+										<h1 class="thing">您有新的工作需要办理</h1>
+										<div class="liushuihao"><h1>流水号：<span>926</span></h1></div>
+										<div class="work_name"><h1>工作名称/文号：<span>内部事项报销(2016-06-06 12:19)</span></h1></div>
+									</div>
+
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="position" id="admin-side2">
+						<div class="skin">
+							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
+							<h2 style="width:93%;height:100%;line-height: 45px;text-align: center;font-size: 10pt;font-weight: bold;">换肤</h2>
+						</div>
+						<img src="img/main_img/skin.png" alt="" style="margin-top: 20px;margin-left: 17px;">
+					</li>
+					<li class="position" id="admin-side3" style="background: cyan;">
+						<div class="skin">
+							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
+							<ul class="per_title">
+								<div><h1>注销</h1></div>
+								<%--<img src="img/main_img/per_zhuxiao" alt="">--%>
+								<div><h1>设置</h1></div>
+							</ul>
+						</div>
+					</li>
+				</ul>
 				<div class="cont_left">
 					<ul class="all_ul">
 						<div class="tab_t">
@@ -70,30 +223,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</div>
 						<div class="tab_c list">
-						
 								<ul class="tab_cone a yiji" >
-								
 								</ul>
-						
 							<ul class="tab_ctwo a" id="deptOrg" style="display:none;">
-								<!-- <li>
-									
-								</li> -->
-							
 							</ul>
-							
 						</div>
 						
 					</ul>
 				</div>
 				<div class="cont_rig">
-					<!-- <div class="cont_nav">
-						<ul class="three_title">
-							<li class="three infame" url_three="asset/config">参数设置</li>
-							<li class="three" url_three="asset/manage">固定资产管理</li>
-							<li class="three" url_three="asset/query">固定资产查询</li>
-						</ul>
-					</div> -->
 					<div class="all_content" style="width:100%;height:100%;">
 							<!-- 我的桌面 -->
 							<div id='f_0' class="iItem">
@@ -135,17 +273,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													</div>
 													<div class="e_mail">
 														<ul class="all_mail">
-													<!-- 		<li><span class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></span><span class="e_name">张兰</span><span class="e_title">本人季度薪资申请<i style="background:url(https://app.gsubo.com/ui/img/mail/fileflag.png)"></i></span><span class="e_time">4月28日</span></li>
-															<li><span class="e_img"><img src="http://app.gsubo.com/file0/E101000001/avatar/1008181431.357608441.png"></span><span class="e_name">王丽</span><span  class="e_title">ReAll:王曰岐04-23工作日报<i></i></span><span class="e_time">4月23日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1107331905.1411049547.png"></span><span class="e_name">刘云</span><span  class="e_title">软通反馈的无法登录问题报告<i></i></span><span class="e_time">1月12日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1971178126.1475652706.png"></span><span class="e_name">潘芝芝</span><span  class="e_title">本次升级测试bug分析<i></i></span><span class="e_time">2016年7月21日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1772713180.972046570.jpg"></span><span class="e_name">周小北</span><span  class="e_title">关于小卓通知的汇报<i></i></span><span class="e_time">2016年4月30日</span></li> -->
-														</ul>
-														<ul class="no_read" style="display:none;">
-															<!-- <li>未读</li> -->
+
 														</ul>
 														<ul class="read" style="display:none;">
-															<!-- <li>已读</li> -->
 														</ul>
 													</div>
 												</li>
@@ -155,11 +285,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													</div>
 													<div class="daily">
 														<ul class="all_daily">
-															<!-- <li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/990557262.180238795.png"></span><span class="e_name">朱红</span><span class="e_title">人力资源变更备忘<i style="background:url(http://devapp.gsubo.com/ui/img/mail/fileflag.png)"></i></span><span class="e_time">3月20日</span></li>
-															<li><span class="e_img"><img src="http://app.gsubo.com/file0/E101000001/photo/115438796.997410756.jpg"></span><span class="e_name">王媛</span><span  class="e_title">修改开发规范<i></i></span><span class="e_time">2月04日</span></li>
-															<li><span class="e_img"><img src="http://app.gsubo.com/file0/E101000001/photo/1367380632.1000119131.jpg"></span><span class="e_name">张咪</span><span  class="e_title">市场调查结果分析<i></i></span><span class="e_time">1月11日</span></li>
-															<li><span class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></span><span class="e_name">刘芳妮</span><span  class="e_title">售后服务问题反馈<i></i></span><span class="e_time">2016年10月21日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1721260475.1180844205.png"></span><span class="e_name">鲁平平</span><span  class="e_title">项目开发进度演示<i></i></span><span class="e_time">2016年10月07日</span></li> -->
+
 														</ul>
 													</div>
 												</li>
@@ -214,8 +340,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</li>
 											</ul>
 										</div>
-								  <!--   </div> -->
-							
+
+
 							</div>
 
 							<div id='' class="iItem"><iframe  id="every_module" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe></div>
@@ -271,7 +397,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"system_reg_view":"sys/sysInfo",
 				"system_menu":"sys/menuSetting",
 				"system_log":"sys/journal",
-				"system_code":"common/systemCode"
+				"system_code":"common/systemCode",
+				"info_unit":"sys/unitInfor",
+				"info_dept":"department/deptQuery",
+				"info_user":"sys/userInfor"
 			};
 			
 			$('.cont_nav').on('click','li',function(){
@@ -279,6 +408,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$(this).addClass('infame');
 				
 			});
+            //内容右侧tab切换
+            var currentIndex=4;
+            var index;
+            $('#taskbar_right').on('click','a',function(){
+                index=$(this).index();
+                console.log(index);
+                if(currentIndex!=index){
+                    currentIndex=index;
+                    $("#taskbar_right a").removeClass('logo_checks');
+                    $(this).addClass('logo_checks');
+                    //内容
+                    var contents=$(".side_all").find(".position");
+                   $(contents[index]).animate({width:"300px"});
+                    $(contents[index]).siblings().css('width','0px');
+                }
+
+            });
+
+            //内容右侧 提醒下的tab切换
+            var currentIndexTwo=9;
+            var index;
+            $('.tixing_tab_t').delegate('li','click',function(){
+                index=$(this).index();
+                console.log(index);
+                if(currentIndexTwo!=index){
+                    currentIndexTwo=index;
+                    $(".tixing_tab_t li").removeClass("tixing_check");
+                    $(this).addClass("tixing_check");
+                    //内容
+                    var contents=$("#tixing_tab_c").find("ul");
+                    $(contents[index]).show();
+                    $(contents[index]).siblings().hide();
+                }
+
+            });
 			
 			//鼠标移入左三角，变色
 			$('.left_scroll').on('mouseover',function(){
@@ -302,42 +466,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//鼠标移入，右边logo变颜色，移出变回。
 			//one
 			$('#task_center').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_two.png) 0px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png) 0px -5px no-repeat')
 			});
 			$('#task_center').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_one.png) 0px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png) 0px -5px no-repeat')
 			});
 			//two
 			$('#sns').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_two.png) -60px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png) -77px -5px no-repeat')
 			});
 			$('#sns').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_one.png) -60px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png) -77px -5px no-repeat')
 			});
 			//three
 			$('#help').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_two.png) -115px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png) -148px -5px no-repeat')
 			});
 			$('#help').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_one.png) -115px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png) -148px -5px no-repeat')
 			});
 			//four
-			$('#person_info').on('mouseover',function(){
+		/*	$('#person_info').on('mouseover',function(){
 				$(this).css('background','url(img/main_img/right_two.png) -174px -1px no-repeat')
 			});
 			$('#person_info').on('mouseout',function(){
 				$(this).css('background','url(img/main_img/right_one.png) -174px -1px no-repeat')
-			});
-			//five
+			});*/
+
 			$('#theme').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_two.png)  -233px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_two.png)  -225px -5px no-repeat')
 			});
 			$('#theme').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_one.png)  -233px 0px no-repeat')
+				$(this).css('background','url(img/main_img/right_one.png)  -225px -5px no-repeat')
 			});
-			
-			
-			
+
+
+
 		//底部文字滚动
 	/* 	var lunbo='';
 		  function lunbo(id,height){
@@ -472,7 +636,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             $(this).parent('.two').siblings().find('h1').attr('style','color:#000');
                             $(this).parents('.one').siblings().find('h1').attr('style','color:#000');
                             $(this).parents('.one').siblings().find('.erji_circle').attr('src','img/main_img/hei.png');
-							var url=$(this).attr('url'); 
+                            $(this).parents('.one').siblings().find('.sanji_circle').attr('src','img/main_img/hei.png');
+                            var url=$(this).attr('url');
 							var menu_tid=$(this).parent().attr('menu_tid'); 
 							//console.log(url);
 							if(menu[url.replace('/','_')]){
@@ -763,12 +928,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								var str = '';
 								data.obj.forEach(function(v,i){
 									if(v.deptName){
-										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="img/main_img/company_logo.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib"><span></span><img src="img/spirit/icon_department.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 									}else{
-										
-										
-											str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span><img src="img/main_img/man.png" alt=""></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
-										
+
+											str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children "><span><img src="img/main_img/man.png" alt=""></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 										
 									}
 									
@@ -777,13 +940,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								var str = '';
 								data.obj.forEach(function(v,i){
 									if(v.deptName){
-										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class=""></span><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+										str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children f"><span class=""></span><img src="img/spirit/icon_company.png" alt=""><a href="#" class="dynatree-title" title="'+v.deptName+'">'+v.deptName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 									}else{
 										if(v.sex==0){
 										
-											str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+											str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children"><span></span><img src="img/main_img/man.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 										}else if(v.sex==1){
-											str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span></span><img src="img/main_img/women.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
+											str+='<li><span deptid="'+v.deptId+'" class="childdept dynatree-node dynatree-folder dynatree-expanded dynatree-has-children"><span></span><img src="img/main_img/women.png" alt=""><a href="#" class="dynatree-title" title="'+v.userName+'">'+v.userName+'</a></span><ul style="margin-left:10%;"></ul></li>';
 										}
 										
 										

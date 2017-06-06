@@ -242,4 +242,40 @@
       </if>
     </trim>
 	</insert>
+
+    <update id="updateSortAuth" parameterType="Map">
+        update file_sort
+        <set>
+            <if test="userId!=null">
+                USER_ID=#{userId},
+            </if>
+            <if test="newUser!=null">
+                NEW_USER=#{newUser},
+            </if>
+            <if test="manageUser!=null">
+                MANAGE_USER=#{manageUser},
+            </if>
+            <if test="delUser!=null">
+                DEL_USER=#{delUser},
+            </if>
+            <if test="downUser!=null">
+                DOWN_USER=#{downUser},
+            </if>
+            <if test="shareUser!=null">
+                SHARE_USER=#{shareUser},
+            </if>
+            <if test="owner!=null">
+                OWNER=#{owner},
+            </if>
+            <if test="signUser!=null">
+                SIGN_USER=#{signUser},
+            </if>
+            <if test="review!=null">
+                REVIEW=#{review},
+            </if>
+        </set>
+        where SORT_ID=#{sortId};
+
+    </update>
+
 </mapper>

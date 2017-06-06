@@ -5,6 +5,12 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.xoa.util.common.CheckCallBack;
+import com.xoa.util.common.L;
+import com.xoa.util.common.StringUtils;
+import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,10 +79,11 @@ public class FlowProcessController {
 		 */
 		@ResponseBody
 	  	@RequestMapping(value = "saveFlow",produces = {"application/json;charset=UTF-8"},method = RequestMethod.POST)
-	    public ToJson<FlowProcess> saveFlow(FlowProcess flowProcess,	   
+	    public ToJson<FlowProcess> saveFlow(FlowProcess flowProcess,
 	    		HttpServletRequest request){
 			ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
 					"loginDateSouse"));
+			
 			return flowProcessService.updateByPrimaryKeySelective(flowProcess);
 		}
 
@@ -204,6 +211,23 @@ public class FlowProcessController {
 		    return json;
 		}
 
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2017/6/3 11:24
+	 * 方法介绍:   修改流程节点坐标
+	 * 参数说明:   @return
+	 * @return     ToJson<FlowProcess>
+	 */
+
+	@RequestMapping(value = "updateTopAndLeft",produces = {"application/json;charset=UTF-8"})
+	public 	@ResponseBody ToJson<FlowProcess> updateTopAndLeft(
+			FlowProcess flowProcess,
+			HttpServletRequest request){
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return flowProcessService.updateTopAndLeft(flowProcess);
+	}
 
 
 

@@ -95,7 +95,39 @@ public interface UsersPrivService {
      * @创建日期: 2017/6/1 13:54
      * @函数介绍: 根据funcIdStr查询角色名称
      * @参数说明: @param fid, 某个功能的id,对应sys_function表中的FUNC_ID
-     * @return: XXType(value introduce)
+     * @return: List<UserPriv></UserPriv>
      **/
     List<UserPriv> getUserPrivNameByFuncId(String fid);
+
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/6/1 19:43
+    *@函数介绍:  修改角色权限（serPriv 的funcIdStr）
+    *@参数说明:  String privids
+    *@参数说明:  String funcId
+    *@return:   void
+    **/
+    void updateUserPrivfuncIdStr(String privids, String funcId);
+
+    /**
+     *@创建作者:  韩成冰
+     *@创建日期:  2017/6/1 19:43
+     *@函数介绍:  修改角色权限（serPriv 的funcIdStr）
+     *@参数说明:  String privids
+     *@参数说明:  String funcId
+     *@return:   void
+     **/
+    void deleteUserPriv(String privids, String funcIds);
+
+    /**
+     * 创建作者:   张勇
+     * 创建日期:   2016年6月3日 下午4:02:05
+     * 方法介绍:   格局privid串获取privName
+     * 参数说明:   @param uids  用户uid串
+     * 参数说明:   @return
+     *
+     * @return List<String>  返回部门串
+     */
+    public String getPrivNameByPrivId(String privId,String flag);
 }

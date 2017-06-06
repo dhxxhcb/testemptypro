@@ -156,7 +156,7 @@ public class Department {
 	}
 
 	public String getAvatar() {
-		return avatar;
+		return avatar==null?"":avatar;
 	}
 
 	public void setAvatar(String avatar) {

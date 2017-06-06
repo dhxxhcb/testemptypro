@@ -38,15 +38,26 @@ $(function(){
     })
     //日志查询确定点击事件
     $('.sureBtn').on('click','#Btn',function(){
+        var id=$('#senduser').attr('dataid');
+        var type=$('#journalType option:checked').val();
+        var startTime=$('#start').val();
+        var endTime=$('#end').val();
+        var ip=$('#IP').val();
+        var remark=$('#remarks').val();
+        if(!id) {
+            id = '';
+        }
         //单选框选中事件
         if($('input[name="TYPE"]:checked').val()==1){//选中查询
             $('.queryResult').show().siblings().hide();
             queryShow();
         }else if($('input[name="TYPE"]:checked').val()==2){//选中导出
-            journalExport();
+            //journalExport();
+            window.location.href='../sys/exportLogXls?type='+type+'&uid='+id+'&startTime='+startTime+'&endTime='+endTime+'&ip='+ip+'&remark='+remark+'';
         }else{                                          //选中删除
             journalDelete();
         }
+
     })
     //复选框全选点击事件
     $('#checkedAll').click(function(){
@@ -59,11 +70,31 @@ $(function(){
             $(".checkChild").prop("checked",false);;
         }
     })
+    //查询列表删除事件
+    $('#delete').click(function(){
+        var fileId=[];
+        $(".checkChild:checkbox:checked").each(function(){
+            var conId=$(this).attr("logId");
+            fileId.push(conId);
+        })
+        deleteAllJournal(fileId);
+    })
+    //清空系统日志
+    $('#emptyBtn').click(function(){
+        $.ajax({
+            type:'post',
+            url:'../sys/deleteAllLog',
+            dataType:'json',
+            success:function(res){
+                console.log(res.msg);
+            }
+        })
+    })
     //日志概况显示数据
     function journalSurveyShow(){
         $.ajax({
             type:'get',
-            url:'../../sys/getLogMessage',
+            url:'../sys/getLogMessage',
             dataType:'json',
             success:function(rsp){
                 var data=rsp.object;
@@ -80,7 +111,7 @@ $(function(){
     function journalListShow(){
         $.ajax({
             type:'get',
-            url:'../../sys/getTenLog',
+            url:'../sys/getTenLog',
             dataType:'json',
             success:function(rsp){
                 var data=rsp.object;
@@ -101,7 +132,7 @@ $(function(){
         }
         $.ajax({
             type:'get',
-            url:'../../sys/getMonth',
+            url:'../sys/getMonth',
             dataType:'json',
             data:data,
             success:function(rsp){
@@ -130,7 +161,7 @@ $(function(){
         }
         $.ajax({
             type:'get',
-            url:'../../sys/getEachMouthLogData',
+            url:'../sys/getEachMouthLogData',
             dataType:'json',
             data:data,
             success:function(rsp){
@@ -141,13 +172,53 @@ $(function(){
                     var str1='';
                     var i=0;
                     for(var j=0;j<data1[i].length;j++){
-                        str+='<tr class="monthData"><td>'+(j+1)+'月</td><td>'+data1[i+1][j]+'</td><td>'+data1[i][j]+'</td></tr>'
+                        str+='<tr class="monthData"><td>'+(j+1)+'月</td><td>'+data1[i+1][j]+'</td><td>'+data1[i][j]+'</td></tr>';
                     }
                     $('.yearJournal').after(str);
                     for(var n=0;n<data2[i].length;n++){
-                        str1+='<tr class="dayData"><td>'+(n+1)+'</td><td>'+data2[i+1][n]+'</td><td>'+data2[i][n]+'</td></tr>'
+                        str1+='<tr class="dayData"><td>'+(n+1)+'</td><td>'+data2[i+1][n]+'</td><td>'+data2[i][n]+'</td></tr>';
                     }
                     $('.monthJournal').after(str1);
+
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('monthData'));
+                    // 指定图表的配置项和数据
+                    var option = {
+                        tooltip: {},
+                        legend: {
+                        },
+                        xAxis: {
+                            data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+                        },
+                        yAxis: {},
+                        series: [{
+                            name: '访问量',
+                            type: 'bar',
+                            data: data1[0]
+                        }]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('todyData'));
+                    // 指定图表的配置项和数据
+                    var option = {
+                        tooltip: {},
+                        legend: {
+                        },
+                        xAxis: {
+                            data: ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
+                        },
+                        yAxis: {},
+                        series: [{
+                            name: '访问量',
+                            type: 'bar',
+                            data: data2[0]
+                        }]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
                 }
             }
         })
@@ -156,7 +227,7 @@ $(function(){
     function periodStatistics(){
         $.ajax({
             type:'get',
-            url:'../../sys/getHourLog',
+            url:'../sys/getHourLog',
             dataType:'json',
             success:function(rsp){
                 if(rsp.flag){
@@ -167,6 +238,34 @@ $(function(){
                         str+='<tr><td>'+j+'</td><td>'+data[i+1][j]+'</td><td>'+data[i][j]+'</td></tr>';
                     }
                     $('.period').after(str);
+
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('hourData'));
+                    // 指定图表的配置项和数据
+                    var option = {
+                        title: {
+                            text: '总访问量小时分布统计',
+                            left:'45%',
+                            textStyle:{
+                                fontSize:14
+                            },
+                            textAlign:'center'
+                        },
+                        tooltip: {},
+                        legend: {
+                        },
+                        xAxis: {
+                            data: ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+                        },
+                        yAxis: {},
+                        series: [{
+                            name: '访问量',
+                            type: 'bar',
+                            data: data[0]
+                        }]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
                 }
             }
         })
@@ -175,7 +274,7 @@ $(function(){
     function allJournalType(){
         $.ajax({
             type:'get',
-            url:'../../sys/getLogType',
+            url:'../sys/getLogType',
             dataType:'json',
             success:function(rsp){
                 var data=rsp.obj;
@@ -204,7 +303,7 @@ $(function(){
         }
         $.ajax({
             type:'get',
-            url:'../../sys/logManage',
+            url:'../sys/logManage',
             dataType:'json',
             data:data,
             success:function(res){
@@ -212,7 +311,7 @@ $(function(){
                 var str='';
                 for(var i=0;i<data1.length;i++){
                     var sendTime=new Date(data1[i].time).Format('yyyy-MM-dd hh:mm');
-                    str+='<tr class="AllData"><td><input class="checkChild" type="checkbox" name="checke" value=""></td><td>'+data1[i].userName+'</td><td>'+sendTime+'</td><td>'+data1[i].ip+'</td><td>'+data1[i].ipLocation+'</td><td>'+data1[i].typeName+'</td><td>'+data1[i].remark+'</td></tr>';
+                    str+='<tr class="AllData"><td><input logId="'+data1[i].logId+'" class="checkChild" type="checkbox" name="checke" value=""></td><td>'+data1[i].userName+'</td><td>'+sendTime+'</td><td>'+data1[i].ip+'</td><td>'+data1[i].ipLocation+'</td><td>'+data1[i].typeName+'</td><td>'+data1[i].remark+'</td></tr>';
                 }
                 $('.queryJournalList').after(str);
                 $(".checkChild").click(function () {
@@ -236,7 +335,7 @@ $(function(){
         })
     }
     //查询数据导出
-    function journalExport(){
+    /*function journalExport(){
         var id=$('#senduser').attr('dataid');
         if(!id){
             id='';
@@ -258,7 +357,7 @@ $(function(){
                 alert('导出成功');
             }
         })
-    }
+    }*/
     //查询数据删除
     function journalDelete(){
         var id=$('#senduser').attr('dataid');
@@ -277,13 +376,32 @@ $(function(){
         if (confirm(msg)==true){
             $.ajax({
                 type:'post',
-                url:'../../sys/deleteSyslog',
+                url:'../sys/deleteSyslog',
                 dataType:'json',
                 data:data,
                 success:function(res){
                     console.log(res.flag);
                 }
             });
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //列表删除（可多条）
+    function deleteAllJournal(id){
+        var msg='确定要删除吗？';
+        if (confirm(msg)==true){
+            $.ajax({
+                type:'post',
+                url:'../sys/deleteLogByIds',
+                dataType:'json',
+                data:{'ids':id},
+                success:function(res){
+                    console.log(res.json);
+                    queryShow();
+                }
+            })
             return true;
         }else{
             return false;

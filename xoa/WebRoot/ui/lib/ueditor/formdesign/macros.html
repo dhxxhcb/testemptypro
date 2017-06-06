@@ -112,6 +112,7 @@ function createElement(type, name)
 
           var oNode = null,thePlugins = 'macros';
           var dataid = $.getQueryString('dataid');
+        var dataNumber=parent.pluginId;
             if( UE.plugins[thePlugins].editdom ) {
                 oNode = UE.plugins[thePlugins].editdom;
                 var gTitle=oNode.getAttribute('title').replace(/&quot;/g,"\""),gHidden=oNode.getAttribute('orghide'),gFontSize=oNode.getAttribute('orgfontsize'),gWidth=oNode.getAttribute('orgwidth'),gType=oNode.getAttribute('datafld');
@@ -155,8 +156,8 @@ function createElement(type, name)
                     oNode.setAttribute('class', "AUTO  form_item ");
                     oNode.setAttribute('data-type', "macros");
                     oNode.setAttribute('title',gTitle);
-                    oNode.setAttribute('name','DATA_'+dataid);
-                    oNode.setAttribute('id','DATA_'+dataid);
+                    oNode.setAttribute('name','DATA_'+dataNumber);
+                    oNode.setAttribute('id','DATA_'+dataNumber);
                     oNode.setAttribute('datafld',gType);
                     if( $G('orghide').checked ) {
                         oNode.setAttribute('orghide', '1' ) ;

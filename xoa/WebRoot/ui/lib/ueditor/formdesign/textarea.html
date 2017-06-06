@@ -52,6 +52,7 @@
 <script type="text/javascript">
 	$(function () {
         var dataid = $.getQueryString('dataid');
+        var dataNumber=parent.pluginId;
         var oNode = null,thePlugins = 'textarea';;
             if( UE.plugins[thePlugins].editdom ){
                 oNode = UE.plugins[thePlugins].editdom;
@@ -101,8 +102,8 @@
             if( !oNode ) {
                 try {
                     var html = '<textarea ';
-                    html += ' name =  "' + 'DATA_'+dataid + '"';
-                    html += ' id =  "' + 'DATA_'+dataid + '"';
+                    html += ' name =  "' + 'DATA_'+dataNumber + '"';
+                    html += ' id =  "' + 'DATA_'+dataNumber + '"';
                     html += ' class = "' + 'form_item' + '"';
                     html += ' data-type = "' + 'textarea' + '"';
                     html += ' title = "' + gTitle + '"';

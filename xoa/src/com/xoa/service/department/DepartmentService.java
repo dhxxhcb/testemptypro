@@ -151,4 +151,15 @@ public interface DepartmentService {
 	public List<Department> listDept();
 
     List<Department> getFatherChildDept();
+
+	/**
+	 * 创建作者:   张勇
+	 * 创建日期:   2016年6月3日 下午4:02:05
+	 * 方法介绍:   根据dept串获取用户姓名
+	 * 参数说明:   @param uids  用户uid串
+	 * 参数说明:   @return
+	 *
+	 * @return List<String>  返回用户姓名串
+	 */
+	public String getDeptNameByDeptId(String deptId,String flag);
 }

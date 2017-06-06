@@ -28,17 +28,16 @@
 </head>
 
 <style type="text/css">
-    /*.modal-body {
-     overflow: hidden !;
-    }*/
+
     .cont{
         position: relative;
     }
     #tab_c{
         width:316px;
         height:100%;
-        position: absolute;
-        right: -316px;
+        top:0;
+        bottom:0;
+        position: fixed;
        /* background: red;*/
         overflow-y: scroll;
         box-shadow: -2px 0 20px 0px #c4c4c4;
@@ -74,9 +73,7 @@
         border-radius: 3px;
 
     }
- /*   #tab_ctwo{
-        display:none;
-    }*/
+
     .one_all,.two_all{
         width:100%;
         height:50%;
@@ -243,15 +240,40 @@
         text-decoration: none;
     }
     .top_one{
-
         position: absolute;
         top: 0px;
-
     }
     .top_two{
-
         position: absolute;
         top: 696px;
+    }
+    #tab_c{
+        transition: all 1s ease 0s;
+    }
+    .list_table{
+        border-width: medium;
+        border-style: none;
+        border-color: initial;
+        border-collapse: collapse;
+        word-wrap: break-word;
+        table-layout: fixed;
+    }
+    .list_table .head {
+        font-weight: 600;
+    }
+    .list_table td{
+        border-bottom: #7F7F7F 1pt solid;
+        /* border-left: #000000 2.25pt solid; */
+        text-align: center;
+        width: 50px;
+        padding-bottom: 1px;
+        padding-left: 1px;
+        padding-right: 1px;
+        vertical-align: middle;
+        border-top: #7F7F7F 1pt solid;
+        border-right: black 1pt solid;
+        padding-top: 1px;
+        padding: 0;
     }
 </style>
 <body>
@@ -276,7 +298,7 @@
         </div>
     </div>
     <div class="content">
-        <form action="<%=basePath%>/workflow/work/nextwork"   id="ajaxform">
+       <%-- <form action="<%=basePath%>/workflow/work/nextwork"   id="ajaxform">--%>
         <div class="cont" id="client">
             <div class="cont_form" id="a2">
 
@@ -331,7 +353,7 @@
                 </ul>
             </div>
         </div>
-        </form>
+      <%--  </form>--%>
     </div>
 
 </div>
@@ -339,18 +361,26 @@
 </html>
 <script>
     $(function(){
+        domain;
         var flowId = $.getQueryString("flowId");
-        var flowStep = $.getQueryString("flowStep");
+        var flowStep = $.getQueryString("flowStep") || '';
+        var runId = $.getQueryString("runId") || '';
+        $('#tab_c').css('right',-($('#tab_c').width()))
+        $('#tab_c').css('height',$('#tab_c').height()-$('.head').height()-$('.foot').height())
+        $('#tab_c').css('top',$('.head').height())
+        //引入方法
         workForm.init({
                 formhtmlurl:'../../workflow/work/workfastAdd',//URL
                 resdata:{
-                    flowId:flowId
+                    flowId:flowId,
+                    runId:runId,
+                    prcsId:flowStep
                 },
                 flowStep:flowStep,//预览
                 target:'.cont_form'},
+            
             function (data) {
                 zhuanjiao(data);
-
                 var obj=data.object.flowRun
                 var  titleName=obj.runName;
                 $('.num').html(titleName);
@@ -366,25 +396,16 @@
 
             /* })*/
 
-
-
-
        //第一个
        $('.fujian').on('click',function(){
              $('.fujian').find('a').css('color','#fff');
               $('.huiqian').find('a').css('color','#4889f0');
               $(this).siblings().removeClass("check");
               $(this).addClass('check');
-              $('#tab_c').animate({right:'0px'},"slow");
+              $('#tab_c').css('right','0px')
               $('#tab_ctwo').hide();
               $('.tab_one').show();
 
-
-          /* $('.one_all').addClass('top_one');
-           $('.two_all').addClass('top_two');*/
-            /*$('.tab_one').show();*/
-            /*$('.tab_one').show();*/
-            /*$('.one_all').show();*/
        })
         //第二个
         $('.huiqian').on('click',function(){
@@ -395,7 +416,6 @@
             $('#tab_ctwo').hide();
             $('.tab_one').show();
             /*$('.one_all').hide();
-
             $('.tab_one').show();
             $('.cont_ctwo').show();*/
 
@@ -423,7 +443,7 @@
             $('.cont_cfour').show();
         })
         $('.position').on('click',function () {
-            $('#tab_c').animate({right:'-316px'},"slow");
+            $('#tab_c').css('right',-$('#tab_c').width())
         })
         //点击左下角的附件
         $('#attach_name').on('click',function(){
@@ -442,17 +462,27 @@
            var titleName=obj.runName;
            console.log(titleName);
            var prcsTo;
+           var prcsName='';
+           var turnObj = {};
            for(var i=0;i<data.object.listFp.length;i++){
                var obj2=data.object.listFp[i];
-               /*console.log(obj2.prcsTo);*/
-               if(obj2.prcsTo!=""){
-                   prcsTo= subPric(obj2.prcsTo,",");
-                  /* console.log(prcsTo)*/
+               if(flowStep == obj2.prcsId){
+                   turnObj = obj2;
+                   if(obj2.prcsTo=='0,'){
+                       prcsName='<div class="prcsName" style="" prcsId=0><h1>结束流程</h1></div>';
+                   }
+                   /*console.log(obj2.prcsTo);*/
+                   if(obj2.prcsTo!=""){
+                       prcsTo= subPric(obj2.prcsTo,",");
+                       /* console.log(prcsTo)*/
+                       break;
+                   }
                    break;
                }
+               console.log(obj2.prcsTo);
+
            }
 
-           var prcsName='';
            if(prcsTo){
                for (var j=0;j<prcsTo.length;j++){
                    for(var i=0;i<data.object.listFp.length;i++){
@@ -461,18 +491,18 @@
                        if(obj2.prcsId== prcsTo[j]){
                            prcsName+='<div class="prcsName" style="" prcsId='+obj2.prcsId+'><h1>'+obj2.prcsName+'</h1></div>';
                        }
+
                    }
                }
            }
 
+
                $('.zhuanjiao').on('click',function(){
-
-
                    console.log($('.opt').val()==0?'':$('.opt').val());
                    //找到表格上的内容
                    var form_item=$('.cont_form .form_item');
                    var realData=[];
-                    var radioArr = {}
+                    var radioArr = {};
                    for(var i=0;i<form_item.length;i++){
                        var baseData={};
                        var value="";
@@ -492,27 +522,31 @@
                                 value= obj.val()==0?'':form_item.eq(i).val();
                             }
                        }
+
                        if(obj.attr("type")=="radio"){
                            var name = obj.attr('name');
+
                             if(!radioArr[obj.attr('name')]){
                                 radioArr[obj.attr('name')] = true;
-                                if($("input[name='"+name+"']:checked")){
+
+                                if($("input[name='"+name+"']:checked").length>0){
 
                                     value= $("input[name='"+name+"']:checked").val();
                                 }else{
-                                    value = '';
+                                    value = "";
                                 }
+                            }else{
+                                continue;
                             }
                        }
-                       if(value != '' && value){
+                       if( value!=null){
                            baseData["key"]=key;
                            baseData["value"]=value;
                            realData.push(baseData);
                        }
 
                    }
-                   console.log(realData);
-                   console.log(JSON.stringify(realData));
+
                    var obj3=data.object.flowRun;
                    console.log(obj3);
                    datas={
@@ -524,15 +558,13 @@
                        beginUser:obj3.beginUser
                    }
 
-
+                    //保存表格数据的接口
                     $.ajax({
                         type: "post",
                         url: "../../workflow/work/nextwork",
                         dataType: 'JSON',
                         data: datas,
                         success: function(obj){
-
-
                             if(obj.flag==true){
 
                                 //传入的参数
@@ -552,7 +584,7 @@
                                     prcsName+'<ol></ol> </li></ul></div><div class="workflow-procs-line"></div><div class="workflow-procs-nodes-result-wrap">'+
                                     '<ul id="work-next-prcs-block" class="workflow-procs-nodes-result" style="top: 0px;">'+
                                     '<li class="workflow-node-result clearfix " prcs_id_next="2">'+
-                                    '<div class="workflow-node-title"><div class="workflow-node-title-text">上级主管核定</div><div class="workflow-node-ops"><input id="chose_user2" type="button" prcs_type="" gather_node_have_flag="0" class="btn btn-info user-op op-first users-add" prcs_back="" prcs_next="2" is_child_node="0" value="选择人员"></div> </div>'+
+                                    '<div class="workflow-node-title"><div class="workflow-node-title-text">上级主管核定</div><div class="workflow-node-ops"><input id="chose_user2" type="button"  is_child_node="0" value="选择人员"></div> </div>'+
                                     '<div class="users-select-block"><div id="host_op_block_div2" class="clearfix">'+
                                     '  <input type="hidden" id="PRCS_OP_USER2" data_type="op_user_btn" name="PRCS_OP_USER2" value="admin">'+
                                     ' <input type="hidden" id="PRCS_BACK" name="PRCS_BACK" value=""><div class="sponsor">'+
@@ -587,15 +619,11 @@
 
                                     btn:['确认', '取消'],
                                     success: function(layero,index){
-
+                                        //调取选人控件
                                         $('#chose_user2').on('click',function(){
                                             user_id='remind_name';
                                             $.popWindow("../../common/selectUser");
                                         })
-
-                                        /* if('#remind_name'.val()==''){
-                                         $('#remind_name').hide();
-                                         }*/
 
                                         //底部选择人员
                                         $('#others-add').on('click',function(){
@@ -611,7 +639,7 @@
                                             }
                                             $('.work-msg-content').slideToggle();
                                         });
-                                        //点击下一步骤
+                                        //点击下一步骤，样式的改变
                                         $('.workflow-procs-nodes-wrap').on('click','.prcsName',function(){
                                             $(this).siblings().removeClass('prcsName_chang');
                                             $(this).addClass('prcsName_chang');
@@ -622,26 +650,49 @@
                                     },
                                     yes: function(index, layero){
                                         //按钮【按钮三】的回调
-                                        /*alert($('.name_biaodan').val());*/
+
+                                        //新建工作之后的保存接口，跳转到我的工作页面
                                         var ret=data.object.flowRun;
-                                        var ret2=data.object.flowRunPrcs
+                                        var ret3=data.object.flowRunPrcs;
+                                       /* var ret2=data.object.flowRunPrcs;*/
+                                       var ret2=$('.prcsName').attr('prcsid');
+                                       /*alert(ret2);*/
                                       /*  console.log(ret);*/
                                         if($('.prcsName').attr('check')=='1'){
                                             var pId=$('.prcsName').attr('prcsId');
                                         }
-
-                                        savedData={
-                                            flowId:ret.flowId,
-                                            runId:ret.runId,
-                                            runName:ret.runName,
-                                            beginTime:ret.beginTime,
-                                            beginUser:ret.beginUser,
-                                            prcsId:pId,
-                                            prcsflag:1,
-                                            flowPrcs:ret2.flowPrcs
+                                        if($('.prcsName').find('h1').text()=='结束流程'){
+                                            savedData={
+                                                flowId:ret.flowId,
+                                                runId:ret.runId,
+                                                runName:ret.runName,
+                                                beginTime:ret.beginTime,
+                                                beginUser:ret.beginUser,
+                                                /* prcsId:pId,*/
+                                                prcsId:ret3.prcsId,
+                                                flowPrcs:0,
+                                                prcsflag:1,
+                                                flowPrcs:ret2,
+                                                jingbanUser:$('#remind_name').attr('user_id')
+                                            }
+                                        }else{
+                                            savedData={
+                                                flowId:ret.flowId,
+                                                runId:ret.runId,
+                                                runName:ret.runName,
+                                                beginTime:ret.beginTime,
+                                                beginUser:ret.beginUser,
+                                                /* prcsId:pId,*/
+                                                prcsId:ret3.prcsId,
+                                                flowPrcs:pId,
+                                                prcsflag:1,
+                                                flowPrcs:ret2,
+                                                jingbanUser:$('#remind_name').attr('user_id')
+                                            }
                                         }
-                                        console.log(pId);
-                                    console.log(savedData);
+
+                                       /* console.log(pId);*/
+                                        console.log(savedData);
 
                                         //保存的接口
                                         $.ajax({
@@ -660,14 +711,9 @@
 
                                                 }else{
                                                     alert('错误');
-                                                   /* window.close();*/
-                                                  /*  parent.opener.location.href='workList';*/
-
                                                 }
                                             }
                                         });
-
-
 
                                         layer.closeAll();
                                     }
@@ -678,13 +724,7 @@
                             }
                         }
                     })
-
-
-
                });
-
-
-
 
        }
 
@@ -692,6 +732,7 @@
     });
 </script>
 <script>
+    //控制高度
     autodivheight();
     function autodivheight(){
         var winHeight=0;

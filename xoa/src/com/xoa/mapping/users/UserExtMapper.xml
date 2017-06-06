@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoa.dao.users.UserExtMapper">
+    <resultMap id="BaseResultMap" type="com.xoa.model.users.UserExt">
+        <id column="UID" property="uid" jdbcType="INTEGER"/>
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+        <result column="TABLE_ICON" property="tableIcon" jdbcType="VARCHAR"/>
+        <result column="EMAIL_RECENT_LINKMAN" property="emailRecentLinkman" jdbcType="VARCHAR"/>
+        <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR"/>
+        <result column="BBS_COUNTER" property="bbsCounter" jdbcType="INTEGER"/>
+        <result column="EMAIL_CAPACITY" property="emailCapacity" jdbcType="SMALLINT"/>
+        <result column="FOLDER_CAPACITY" property="folderCapacity" jdbcType="SMALLINT"/>
+        <result column="WEBMAIL_CAPACITY" property="webmailCapacity" jdbcType="SMALLINT"/>
+        <result column="WEBMAIL_NUM" property="webmailNum" jdbcType="TINYINT"/>
+        <result column="SCORE" property="score" jdbcType="INTEGER"/>
+        <result column="TDER_FLAG" property="tderFlag" jdbcType="CHAR"/>
+        <result column="DUTY_TYPE" property="dutyType" jdbcType="SMALLINT"/>
+        <result column="USE_POP3" property="usePop3" jdbcType="BIT"/>
+        <result column="IS_USE_POP3" property="isUsePop3" jdbcType="BIT"/>
+        <result column="POP3_PASS_STYLE" property="pop3PassStyle" jdbcType="BIT"/>
+        <result column="POP3_PASS" property="pop3Pass" jdbcType="VARCHAR"/>
+        <result column="CC_USERNAME" property="ccUsername" jdbcType="VARCHAR"/>
+        <result column="CC_PWD" property="ccPwd" jdbcType="VARCHAR"/>
+        <result column="IS_USE_EMAILSEND" property="isUseEmailsend" jdbcType="BIT"/>
+        <result column="TASKCENTER_OPEN_START" property="taskcenterOpenStart" jdbcType="BIT"/>
+        <result column="EMAIL_GETBOX" property="emailGetbox" jdbcType="VARCHAR"/>
+        <result column="FOLDER_VIEW_MODEL" property="folderViewModel" jdbcType="BIT"/>
+        <result column="USE_EMAIL" property="useEmail" jdbcType="BIT"/>
+    </resultMap>
+
+    <select id="getUserFuncIdStr" parameterType="java.lang.String" resultType="java.lang.String">
+        select u.U_FUNC_ID_STR  from  user_ext u WHERE u.USER_ID = #{userId};
+    </select>
+    <update id="updateUserFuncIdStr" parameterType="hashMap">
+       UPDATE user_ext SET U_FUNC_ID_STR = #{userFuncIdStr} WHERE USER_ID = #{userId}
+    </update>
+
+
+</mapper>

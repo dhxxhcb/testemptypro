@@ -128,23 +128,31 @@
       <if test="diskName != null and diskName != ''" >
         DISK_NAME = #{diskName},
       </if>
-      <if test="diskPath != null and diskPath != ''" >
-        DISK_PATH = #{diskPath},
-    </if>
-      <if test="newUser != null and newUser != ''" >
-        NEW_USER = #{newUser},
-    </if>
-      <if test="manageUser != null and manageUser != ''" >
-        MANAGE_USER = #{manageUser},
-    </if>
+
       <if test="userId != null and userId != ''" >
         USER_ID = #{userId},
       </if>
-      <if test="downUser != null and downUser != ''" >
-        DOWN_USER = #{downUser},
-      </if>
+
       <if test="remark != null and remark != ''" >
-        REMARK = #{remark},
+        REMARK = #{remark}
+      </if>
+    </set>
+    where DISK_ID = #{diskId}
+  </update>
+  <update id="editNetdiskJurisdiction" parameterType="Map" >
+    update netdisk
+    <set >
+      <if test="diskPath != null and diskPath != ''" >
+        DISK_PATH = #{diskPath},
+      </if>
+      <if test="newUser != null and newUser != ''" >
+        NEW_USER = #{newUser},
+      </if>
+      <if test="manageUser != null and manageUser != ''" >
+        MANAGE_USER = #{manageUser},
+      </if>
+      <if test="downUser != null and downUser != ''" >
+        DOWN_USER = #{downUser}
       </if>
     </set>
     where DISK_ID = #{diskId}

@@ -2,6 +2,7 @@ package com.xoa.service.unitmanagement.impl;
 
 import javax.annotation.Resource;
 
+import com.xoa.util.GetAttachmentListUtil;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.unitmanagement.UnitManageMapper;
@@ -15,8 +16,13 @@ public class UnitManageServiceImpl implements UnitManageService{
 	private UnitManageMapper unitManageMapper;
 	
 	@Override
-	public UnitManage showUnitManage() {
-		return unitManageMapper.showUnitManage();
+	public UnitManage showUnitManage(String sqlType) {
+		UnitManage UnitManage=unitManageMapper.showUnitManage();
+		if (UnitManage.getAttachmentName()!=null&&UnitManage.getAttachmentId()!=null) {
+			UnitManage.setAttachment(GetAttachmentListUtil.returnAttachment(UnitManage.getAttachmentName(), UnitManage.getAttachmentId(), sqlType,GetAttachmentListUtil.MODULE_NEWS));
+		}
+
+		return UnitManage;
 	}
 
 

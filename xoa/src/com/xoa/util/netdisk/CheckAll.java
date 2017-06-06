@@ -1,5 +1,8 @@
 package com.xoa.util.netdisk;
 
+import com.xoa.util.common.StringUtils;
+import org.apache.poi.util.StringUtil;
+
 import java.util.Map;
 
 /**
@@ -84,7 +87,10 @@ public class CheckAll {
 
     public static  boolean checkAll(String checkString,Map<String,Object> map){
         //"|"转义字符串  所以必须用\\进行转义 因为 而且取出数组长度不确定
-        String[] checkStrings=checkString.split("/|\\|");
+        if (StringUtils.checkNull(checkString)){
+            return false;
+        }
+        String[] checkStrings=checkString.split("/|");
         if(checkStrings.length==0){
             return false;
         }
@@ -93,9 +99,9 @@ public class CheckAll {
             String[]  checkDept=checkStrings[0].split(",");
             for(int i=0;i<checkDept.length;i++){
                 //调用校验部门方法  传值为部门id
+                if(map.get("deptId")!=null){
                 String depId=map.get("deptId").toString();
-                if (depId!=null) {
-                    if(checkDeptPriv(checkDept[i],depId)){
+               if(checkDeptPriv(checkDept[i],depId)){
                         return true;
                     }
                 }else{
@@ -104,13 +110,13 @@ public class CheckAll {
             }
         }
         //数组长度为2时 说明此时角色和用户Id权限为空
-        if(checkStrings.length==5){
+        if(checkStrings.length==2){
             String[]  checkDept=checkStrings[0].split(",");
             for(int i=0;i<checkDept.length;i++){
                 //调用校验部门范围方法  传值为部门id
-                String depId=map.get("deptId").toString();
-                if (depId!=null) {
-                    if(checkDeptPriv(checkDept[i],depId)){
+                if (map.get("deptId")!=null){
+                     String depId=map.get("deptId").toString();
+                if(checkDeptPriv(checkDept[i],depId)){
                         return true;
                     }
                 }else{
@@ -120,9 +126,9 @@ public class CheckAll {
             String[]  checkUserPriv=checkStrings[1].split(",");
             for(int i=0;i<checkUserPriv.length;i++){
                 //调用校验角色范围方法  传值为角色id
-                String userPrivId=map.get("userPriv").toString();
-                if (userPrivId!=null) {
-                    if(checkUserPriv(checkUserPriv[i],userPrivId)){
+                if (map.get("userPriv")!=null){
+                 String userPrivId=map.get("userPriv").toString();
+                if(checkUserPriv(checkUserPriv[i],userPrivId)){
                         return true;
                     }
                 } else{
@@ -131,12 +137,12 @@ public class CheckAll {
             }
         }
         //数组长度为3时 说明此时部门、角色和用户Id权限都不为空
-        if(checkStrings.length==4){
+        if(checkStrings.length==3){
             String[]  checkDept=checkStrings[0].split(",");
             for(int i=0;i<checkDept.length;i++){
-                String depId=map.get("deptId").toString();
-                if (depId!=null) {
-                    if(checkDeptPriv(checkDept[i],depId)){
+                if (map.get("deptId")!=null){
+                 String depId=map.get("deptId").toString();
+               if(checkDeptPriv(checkDept[i],depId)){
                         return true;
                     }
                 }else{
@@ -146,9 +152,9 @@ public class CheckAll {
             String[]  checkUserPriv=checkStrings[1].split(",");
             for(int i=0;i<checkUserPriv.length;i++){
                 //调用校验角色范围方法  传值为角色id
-                String userPrivId=map.get("userPriv").toString();
-                if (userPrivId!=null) {
-                    if(checkUserPriv(checkUserPriv[i],userPrivId)){
+                if(map.get("userPriv")!=null){
+              String userPrivId=map.get("userPriv").toString();
+               if(checkUserPriv(checkUserPriv[i],userPrivId)){
                         return true;
                     }
                 } else{
@@ -159,9 +165,9 @@ public class CheckAll {
         String[]  checkUserId=checkStrings[2].split(",");
         for(int i=0;i<checkUserId.length;i++){
             //调用校验用户范围方法  传值为用户id
-            String userId=map.get("userId").toString();
-            if (userId!=null) {
-                if(checkUserId(checkUserId[i],userId)){
+            if(map.get("userId")!=null){
+                 String userId=map.get("userId").toString();
+        if(checkUserId(checkUserId[i],userId)){
                     return true;
                 }
             }

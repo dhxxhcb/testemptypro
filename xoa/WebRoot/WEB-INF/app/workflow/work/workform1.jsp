@@ -59,32 +59,21 @@
         })
         return arr;
     }
-    $(function(){
-var formid = $.getQueryString("formId");
-workForm.init({
-        formhtmlurl:'../../form/formType',
-        resdata:{
-            fromId:formid
-        },
-        flowStep:-1,//预览
-        target:$('.formDesign')},
-    function(data){
-        console.log(data);
-    });
-
-
-
-    workForm.init({
-            formhtmlurl:'../../form/formType',
-            resdata:{
-                fromId:formid
+    $(function() {
+        var formid = $.getQueryString("formId");
+        workForm.init({
+                formhtmlurl: '../../form/formType',
+                resdata: {
+                    fromId: formid
+                },
+                flowStep: -1,//预览
+                target: $('.formDesign')
             },
-            flag:3
-        },
-        function(data){
-            console.log(data);
-        });
+            function (data) {
+                console.log(data);
+            });
     });
+
 
 </script>
 </body>

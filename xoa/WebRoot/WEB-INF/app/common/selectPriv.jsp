@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 	<script>
 				function close_window(){
-					var itemsArr = $('#pri_item .priItem .block-right-item');
+					var itemsArr = $('#pri_item .priItem .active');
 					console.log(itemsArr.length);
 					var selectItemsId = '';
 					var selectItemsName = '';

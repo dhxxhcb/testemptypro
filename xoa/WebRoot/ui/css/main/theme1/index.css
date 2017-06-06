@@ -98,45 +98,39 @@ body,
     height: 31%;
 }
 /* 右侧的logo */
+.head_rig a{
+	width: 15%;
+	height: 53%;
+	margin-top: 31px;
+}
  #taskbar_right #task_center {
     display: inline-block;
-    width: 10%;
-    height: 45%;
-    margin-top: 8%;
-   
-    background: url(../../../img/main_img/right_one.png) 0px 0px no-repeat;
+   /* margin-top: 8%;*/
+    background: url(../../../img/main_img/right_one.png) 0px -5px no-repeat;
 }
  #taskbar_right #sns {
     display: inline-block;
-    width: 10%;
-    height: 45%;
-    margin-top: 8%;
+    /*margin-top: 8%;*/
    margin-left:7%;
-    background: url(../../../img/main_img/right_one.png) -60px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) -77px -5px no-repeat;
 }
  #taskbar_right #help {
     display: inline-block;
-    width: 10%;
-    height: 45%;
-    margin-top: 8%;
+/*    margin-top: 8%;*/
     margin-left:7%;
-    background: url(../../../img/main_img/right_one.png) -115px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) -148px -5px no-repeat;
 }
- #taskbar_right #person_info {
+/* #taskbar_right #person_info {
     display: inline-block;
-    width: 11%;
-    height: 45%;
     margin-top: 8%;
     margin-left:7%;
-    background: url(../../../img/main_img/right_one.png) -174px 0px no-repeat;
-}
+    background: url(../../../img/main_img/right_one.png) -225px 0px no-repeat;
+}*/
  #taskbar_right #theme {
     display: inline-block;
-    width: 12%;
-    height: 45%;
-    margin-top: 8%;
+  /*  margin-top: 8%;*/
     margin-left:7%;
-    background: url(../../../img/main_img/right_one.png) -233px 0px no-repeat;
+    background: url(../../../img/main_img/right_one.png) -225px -5px no-repeat;
 }
 .head_left,.head_mid,#taskbar_right{
 	float:left;
@@ -148,6 +142,148 @@ body,
     margin: auto;
     overflow: hidden;
 }
+/*搜索*/
+.huiqian_inp {
+    width: 68%;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    text-align: left;
+    border: 1px solid #cccccc;
+    margin-left: 0px;
+}
+.huiqian_inp, .huiqian_send {
+    float: left;
+}
+.huiqian_send {
+    width: 24%;
+    height: 30px;
+    background: #ff9b30;
+    color: #fff;
+    margin-left: 8px;
+    outline: none;
+    border-radius: 3px;
+    border: none;
+}
+/*换肤*/
+.skin{
+    width:100%;
+    height:45px;
+    background: #fff;
+	overflow: hidden;
+}
+.skin img,.skin h2{
+    float: left;
+}
+/*提醒*/
+.tixing_check{
+	background:#00b7ee ;
+	color: #fff;
+}
+.tixing_tab_t{
+	height: 100%;
+	overflow: hidden;
+	color:#00b7ee;
+	background: #fff;
+}
+
+.tixing_tab_t ul{
+    width:74.8%;
+    height: 26px;
+    border: 1px solid #00b7ee;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-left:29px;
+}
+
+.tixing_tab_t ul li{
+    width: 69px;
+    height: 26px;
+    border-right: 1px solid #00b7ee;
+	cursor: pointer;
+    float: left;
+    text-align: center;
+    line-height: 26px;
+}
+.tixing_tab_t ul li:nth-child(3){
+    border:none !important;
+}
+.tixing_title{
+	width: 56.6%;
+	height: 63%;
+	margin-left: 58px;
+}
+.tixing_title li {
+	float: left;
+	width: 52px;
+	height: 28px;
+}
+/*用户*/
+.per_title{
+	margin-left: 178px;
+	margin-top: 4px;
+}
+.per_title div {
+	width: 40px;
+	float: left;
+	height: 100%;
+}
+.skin ul ol img,.skin ul ol h1{
+	float:left;
+}
+/*右侧logo选中状态*/
+.logo_checks{
+	background: #fff;
+	z-index: 1;
+}
+/*提醒下的内容*/
+.company h1,.company div,.company h2{
+	float: left;
+}
+.tixing_one_all{
+    width: 90%;
+    height: 161px;
+    border-radius: 6px;
+    margin:10px  auto;
+    overflow: hidden;
+    z-index: 1;
+}
+.tixing_every{
+    width: 99.2%;
+    height: 95.4%;
+    border: 1px solid #b3b3b3;
+    z-index: 2;
+    margin-top: 5px;
+    background: #fff;
+}
+.company{
+    width: 96%;
+    height: 36px;
+    border-bottom: 1px solid #999;
+    margin: auto;
+}
+.jinji{
+    width: 33px;
+    height: 18px;
+    border-radius: 23px;
+    color: orange;
+    font-size: 8px;
+    border: 1px solid orange;
+    margin-top: 8px;
+    margin-left: 12px;
+}
+.company_time{
+    margin-left: 112px;
+}
+.thing,.liushuihao h1,.work_name h1{
+    width: 95%;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 7px;
+}
+
+/*内容*/
 .cont{
 	width:100%;
 	/* height:100%; */

@@ -17,6 +17,7 @@
     <title></title>
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/workflow/flowsetting/style.css">
+    <link rel="stylesheet" href="../../lib/laydate.css">
 
 </head>
 <body>
@@ -37,7 +38,8 @@
                 </li>
                 <li><a href="javascript:void(0)" class="btn_h btn_h_2"><i class="icon"></i>设计流程步骤</a>
                 </li>
-                <li><a href="javascript:void(0)" class="btn_h btn_h_3"><i class="icon"></i>预览表单</a>
+                <li><a href="<%=basePath %>workflow/work/workform1?formId=122" class="btn_h btn_h_3"><i
+                        class="icon"></i>预览表单</a>
                 </li>
                 <li><a href="javascript:void(0)" class="btn_h btn_h_4"><i class="icon"></i>导入</a></li>
             </ul>
@@ -117,15 +119,17 @@
 
     <div class="cont_r">
         <%--流程主页--%>
-        <div class="item item_s">
+        <div class="item item_s item_con">
             <div class="homePage">
                 <div class="define_r define_flow clearfix">
                     <h3>流程主页</h3>
-                    <span><a href="javascript:void(0)" class="flow_des">流程设计器</a></span>
+                    <span><a href="<%=basePath %>flowSetting/processDesignTool?flowId=${flowId}"
+                             class="flowJpdl flow_des">流程设计器</a></span>
                 </div>
                 <div class="home_mid">
                     <ul class="mid_f clearfix">
                         <li><a class="expont_num" href="javascript:void(0)">
+                            <img src="../../img/workflow/flowsetting/icon_processing_03.png" alt="">
                             <p class="expont_r">
                                 <span class="num">10</span>
                                 <span class="exponent">全部流程数</span>
@@ -133,6 +137,7 @@
                         </a>
                         </li>
                         <li><a class="expont_num" href="javascript:void(0)">
+                            <img src="../../img/workflow/flowsetting/icon_allprocess_03.png" alt="">
                             <p class="expont_r">
                                 <span class="num" style="color: #d68b2f24">10</span>
                                 <span class="exponent" style="color: #d68b2f24">正在执行流程数</span>
@@ -140,6 +145,7 @@
                         </a>
                         </li>
                         <li><a class="expont_num" href="javascript:void(0)">
+                            <img src="../../img/workflow/flowsetting/icon_finish_03.png" alt="">
                             <p class="expont_r">
                                 <span class="num" style="color: #287a55">10</span>
                                 <span class="exponent" style="color: #287a55">已经结束流程数</span>
@@ -147,6 +153,7 @@
                         </a>
                         </li>
                         <li><a class="expont_num" href="javascript:void(0)">
+                            <img src="../../img/workflow/flowsetting/icon_orige_04.png" alt="">
                             <p class="expont_r">
                                 <span class="num" style="color: #966f31">10</span>
                                 <span class="exponent" style="color: #966f31">已归档流程数</span>
@@ -156,64 +163,79 @@
 
                     </ul>
                 </div>
-                <div class="home_con">
+                <div class="home_con clearfix">
                     <div class="conLeft">
                         <h3 class="con_t">流程基本信息</h3>
                         <ul class="con_c">
-                            <li class="conLeft_list">
-                                <i class="bg"></i>
+                            <li class="conLeft_list clearfix">
+                                <i class="bg bg1"></i>
                                 <a href="javascript:;" class="list_click">
                                     <span class="flow_ID" style="color: #8f000000">流程名称/ID号</span>
                                     <p class="flow_p">请假申请</p>
                                 </a>
                             </li>
-                            <li class="conLeft_list">
-                                <i class="bg"></i>
+                            <li class="conLeft_list clearfix">
+                                <i class="bg bg2"></i>
                                 <a href="javascript:;" class="list_click">
-                                    <span class="flow_ID">流程名称/ID号</span>
-                                    <p class="flow_p">请假申请</p>
+                                    <span class="flow_ID">流程所属分类</span>
+                                    <p class="flow_p">考勤管理</p>
                                 </a>
                             </li>
-                            <li class="conLeft_list">
-                                <i class="bg"></i>
+                            <li class="conLeft_list clearfix">
+                                <i class="bg bg3"></i>
                                 <a href="javascript:;" class="list_click">
-                                    <span class="flow_ID">流程名称/ID号</span>
-                                    <p class="flow_p">请假申请</p>
+                                    <span class="flow_ID">流程所有表单</span>
+                                    <p class="flow_p">请假登记单</p>
                                 </a>
                             </li>
-                            <li class="conLeft_list">
-                                <i class="bg"></i>
+                            <li class="conLeft_list clearfix">
+                                <i class="bg bg4"></i>
                                 <a href="javascript:;" class="list_click">
-                                    <span class="flow_ID">流程名称/ID号</span>
-                                    <p class="flow_p">请假申请</p>
+                                    <span class="flow_ID">流程类型</span>
+                                    <p class="flow_p">固定类型</p>
                                 </a>
                             </li>
-                            <li class="conLeft_list">
-                                <i class="bg"></i>
+                            <li class="conLeft_list clearfix">
+                                <i class="bg bg1"></i>
                                 <a href="javascript:;" class="list_click">
-                                    <span class="flow_ID">流程名称/ID号</span>
-                                    <p class="flow_p">请假申请</p>
+                                    <span class="flow_ID">流程所属部门</span>
+                                    <p class="flow_p">人力资源部</p>
                                 </a>
                             </li>
-                            <li class="conLeft_list">
-                                <i class="bg"></i>
+                            <li class="conLeft_list clearfix">
+                                <i class="bg bg2"></i>
                                 <a href="javascript:;" class="list_click">
                                     <span class="flow_ID">流程名称/ID号</span>
-                                    <p class="flow_p">请假申请</p>
+                                    <p class="flow_p">张三</p>
+                                    <%-- <p class="flow_z">张三</p><span class="flow_q">请假流程</span>
+                                     <p class="flow_date">2017年6月1号 10:30</p>--%>
                                 </a>
                             </li>
-                            <li class="conLeft_list">
-                                <i class="bg"></i>
+                            <li class="conLeft_list clearfix">
+                                <i class="bg bg3"></i>
+                                <a href="javascript:;" class="list_click">
+                                    <span class="flow_ID">工作名称/文号</span>
+                                    <p class="flow_p">4</p>
+                                </a>
+                            </li>
+                            <li class="conLeft_list clearfix">
+                                <i class="bg bg4"></i>
                                 <a href="javascript:;" class="list_click">
                                     <span class="flow_ID">流程名称/ID号</span>
-                                    <p class="flow_p">请假申请</p>
+                                    <p class="flow_p">0</p>
                                 </a>
                             </li>
-
-
                         </ul>
-
-
+                    </div>
+                    <div class="conRight">
+                        <h3 class="con_t">流程支持的功能</h3>
+                        <ul style="background: #f5f7f8;">
+                            <li><a href="javascript:;" class="btn_c">是否支持回退</a><span class="save">是</span></li>
+                            <li><a href="javascript:;" class="btn_c">是否支持会签</a><span class="save save_r">否</span></li>
+                            <li><a href="javascript:;" class="btn_c">是否允许并发</a><span class="save">是</span></li>
+                            <li><a href="javascript:;" class="btn_c">是否可以传阅</a><span class="save">是</span></li>
+                            <li><a href="javascript:;" class="btn_c">是否有附件</a><span class="save save_s">是</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -226,7 +248,6 @@
                     <h3>定义流程属性</h3>
                     <span><a href="javascript:void(0)" class="keepmsg">保存</a></span>
                 </div>
-
                 <div class="over_f">
                     <p class="define_p">基本属性</p>
                     <form class="pro_flow ">
@@ -245,14 +266,12 @@
                             <div class="form_group">
                                 <label for="deptName" class="flowName">所属部门 <span class="save">*</span></label>
                                 <select name="" id="deptName" class="depName">
-                                    <option value="1">系统(仅有系统管理员管理)</option>
+                                    <%--<option value="1">系统(仅有系统管理员管理)</option>--%>
                                 </select>
                             </div>
                             <div class="form_group">
                                 <label for="classfiy" class="flowName">流程分类 <span class="save">*</span></label>
                                 <select name="" id="classfiy" class="depName">
-                                    <option value="1">考勤管理</option>
-
                                 </select>
                             </div>
                             <div class="form_group">
@@ -265,31 +284,63 @@
                             <div class="form_group">
                                 <label for="leave" class="flowName">表单 <span class="save">*</span></label>
                                 <select name="" id="leave" class="depName">
-                                    <option value="">请假登记</option>
+                                    <%--<option value="">请假登记</option>--%>
                                 </select>
                             </div>
                             <div class="form_group">
                                 <label for="delegate-type" class="flowName">委托类型<span class="save">*</span></label>
-                                <select name="" id="delegate-type" class="depName">
-                                    <option value="">自由委托</option>
+                                <select name="FREE_OTHER" id="delegate-type" class="depName">
+                                    <option value="2" selected="selected">自由委托</option>
+                                    <option value="1">仅允许委托当前步骤经办人</option>
+                                    <option value="3">按步骤设置的经办权限委托</option>
+                                    <option value="0">禁止委托</option>
                                 </select>
                             </div>
                             <div class="form_group sex_r">
                                 <label class="flowName">是否允许传阅<span class="save">*</span></label>
-                                <input type="radio" name="sex" value="是" checked><label class="sex_n">是</label>
-                                <input type="radio" name="sex" value="否"><label class="sex_save">否</label>
-
+                                <input type="radio" name="sex" value="是" class="radio_s"><label class="sex_n ">是</label>
+                                <input type="radio" name="sex" value="否" class="radio_f" checked><label
+                                    class="sex_save">否</label>
                             </div>
+                            <%--控件--%>
+                            <div class="form_group block_n"
+                                 style="padding-left: 210px;margin: -38px 0 38px 0;display: none">
+                                <div class="title_3">
+                                    <div class="title3_label">
+                                        <span class="title_s">传阅人</span></div>
+                                    <div class="select_put">
+                                        <textarea name="txt" id="text_1" user_id="admin" value="admin"
+                                                  disabled></textarea><a style="margin-left: 10px;cursor: pointer"
+                                                                         id="add_f_1">添加</a><a>清空</a></div>
+                                </div>
+                                <div class="title_3">
+                                    <div class="title3_label">
+                                        <span class="title_s">传阅部门</span></div>
+                                    <div class="select_put">
+                                        <textarea name="txt" id="text_2" user_id="admin" value="admin"
+                                                  disabled></textarea><a style="margin-left: 10px;cursor: pointer"
+                                                                         id="add_f_2">添加</a><a>清空</a></div>
+                                </div>
+                                <div class="title_3">
+                                    <div class="title3_label">
+                                        <span class="title_s">传阅角色</span></div>
+                                    <div class="select_put">
+                                        <textarea name="txt" id="text_3" user_id="admin" value="admin"
+                                                  disabled></textarea><a style="margin-left: 10px;cursor: pointer"
+                                                                         id="add_f_3">添加</a><a>清空</a></div>
+                                </div>
+                            </div>
+
                             <div class="form_group sex_r">
                                 <label class="flowName">是否允许上传附件<span class="save">*</span></label>
-                                <input type="radio" name="sex" value="是" checked><label class="sex_n">是</label>
-                                <input type="radio" name="sex" value="否"><label class="sex_save">否</label>
+                                <input type="radio" name="sex_1" value="1" checked><label class="sex_n">是</label>
+                                <input type="radio" name="sex_1" value="0"><label class="sex_save">否</label>
 
                             </div>
                             <div class="form_group sex_r">
                                 <label class="flowName">是否启用版本控制<span class="save">*</span></label>
-                                <input type="radio" name="sex" value="是" checked><label class="sex_n">是</label>
-                                <input type="radio" name="sex" value="否"><label class="sex_save">否</label>
+                                <input type="radio" name="sex_2" value="1" checked><label class="sex_n">是</label>
+                                <input type="radio" name="sex_2" value="0"><label class="sex_save">否</label>
 
                             </div>
                             <div class="form_group sex_r sex_r_f">
@@ -342,10 +393,23 @@
                                 <label for="reference" class="flowName">说明文档<span class="save">*</span></label><span
                                     class="notable">暂无</span>
                             </div>
-                            <div class="form_group form_icon">
-                                <label for="counteer" class="flowName">上传附件<span class="save">*</span></label>
-                                <i class="icon_plus"></i><input type="text" value="上传附件" class="addfile">
-                                <i class="icon_plus"></i><input type="text" value="从文件柜选择附件" class="appendfile">
+                            <div class="form_group Attachment">
+                                <form action="" class="files"></form>
+                            </div>
+                            <div class="form_group form_icon files">
+                                <form id="uploadimgform" target="uploadiframe" action="../upload?module=email"
+                                      enctype="multipart/form-data" method="post">
+                                    <label for="counteer" class="flowName">上传附件<span class="save">*</span></label>
+                                    <input type="file" name="file" id="uploadinputimg" class="w-icon5"
+                                           style="display:none;">
+                                    <i class="icon_plus"></i><input type="text" value="上传附件" class="addfile"
+                                                                    id="addfile" style="cursor: pointer">
+                                    <i class="icon_plus"></i><input type="text" value="从文件柜选择附件" class="appendfile"
+                                                                    id="appendfile" style="cursor: pointer">
+                                    <%--<a href="#" id="uploadimg">上传</a>--%>
+                                </form>
+
+
                             </div>
                         </div>
                         <div id="container" style="width: 96%;min-height: 300px;margin: 30px 20px 100px 20px"
@@ -575,77 +639,223 @@
 <script src="../../lib/ueditor/ueditor.all.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../lib/layer/layer.js"></script>
 <script src="../../js/base/base.js"></script>
+<script src="../../lib/laydate/laydate.js"></script>
+<script src="../../js/workflow/work/workform.js"></script>
 
 <script type="text/javascript">
 
+    //时间控件调用
+    /* var start = {
+     elem: '#start_date',
+     format: 'YYYY/MM/DD hh:mm:ss',
+     /!* min: laydate.now(), //设定最小日期为当前日期*!/
+     /!* max: '2099-06-16 23:59:59', //最大日期*!/
+     istime: true,
+     istoday: false,
+     choose: function(datas){
+     end.min = datas; //开始日选好后，重置结束日的最小日期
+     end.start = datas //将结束日的初始值设定为开始日
+     }
+     };
+     var end = {
+     elem: '#end_date',
+     format: 'YYYY/MM/DD hh:mm:ss',
+     /!*min: laydate.now(),*!/
+     /!*max: '2099-06-16 23:59:59',*!/
+     istime: true,
+     istoday: false,
+     choose: function(datas){
+     start.max = datas; //结束日选好后，重置开始日的最大日期
+     }
+     };
+     laydate(start);
+     laydate(end);
+     */
     var ue = UE.getEditor('container');
 
     $(function () {
-        var flowIdFromPage = '${flowId}';
-        /*设计步骤流程*/
-        $('.btn_h_2').click(function () {
-            $.ajax({
-                type: "get",
-                url: "<%=basePath%>flowProcess/findFlowId",
-                dataType: "json",
-                data: {
-                    flowId: 120
-                },
-                success: function (data) {
-                    if (data.flag) {
-                        var data = data.obj;
-                        var html = '<caption class="clearfix"> <span class="priv_t">设计流程步骤</span> ' +
-                            '<a href="<%=basePath %>flowSetting/processDesignTool?flowId=${flowId}" class="flowJpdl">流程设计器</a> ' +
-                            '</caption>' +
-                            "<tr><th>序号</th><th>名称</th><th>下一步骤</th><th>编辑该步骤的各项属性</th><th>操作</th></tr>";
-                        for (var i = 0; i < data.length; i++) {
-                            html = html + "<tr>" + "<td>" + data[i].prcsId + "</td>" + "<td>" + data[i].prcsName + "</td>" +
-                                "<td></td>" + "<td style='text-align: center'>基本属性 经办权限 可写字段 保密字段 必填字段 条件设置</td>" + "<td>" + "<a href='javascript:void(0)'>修改</a><a href='javascript:void(0)'>删除</a>" + "</td>" + "</tr>";
+        /*预览表单*/
+        $('.btn_h_3').click(function () {
 
-                        }
-                    }
-                    $('#table_form').html(html);
-                }
-            });
         })
 
-        /*定义流程属性查询*/
-        var flowId = '${flowId}';
-        if (flowId != "") {
-            $.ajax({
-                type: "GET",
-                url: "<%=basePath%>flow/selectAllFlow",
-                dataType: "JSON",
-                data: {
-                    flowId: flowId
-                },
-                success: function (data) {
-                    if (data.flag) {
-                        $("#flowId").val(data.object.flowId);
-                        $("#projectName").val(data.object.flowName);
-                        $('#orderID').val(data.object.flowNo);
-                        $('#class_f').html('<option value="1">固定流程<option/>' + '<option value="2">自由流程<option/>');
 
+        /*所属部门控件*/
+        $('#deptName').deptSelect();
+        /*流程分类控件*/
+        items();
+        function items() {
+            $.ajax({
+                url: '<%=basePath%>workflow/flowclassify/flow',
+                type: 'get',
+                dataType: 'json',
+                success: function (obj) {
+                    if (obj.flag) {
+                        var data = obj.datas;
+                        var opt_li = '<option value="0"  class="levelleft0 selector"></option>';
+                        opt_li = Child(data, opt_li, 0, -1);
+                        $('#classfiy').html(opt_li);
                     }
                 }
             });
         }
 
-        $('.keepmsg').on('click', function () {
-            var flowId = '${flowId}';
-            alert(flowId);
+        function Child(datas, opt_li, level, parentId) {
+            for (var i = 0; i < datas.length; i++) {
+                if (level == 0 && i == 0) continue;
+                var String = "";
+                var space = ""
+                for (var j = 0; j < level; j++) {
+                    space += "├&nbsp;&nbsp;&nbsp;";
+                }
+                /* console.log("kongge"+space+"kongge")*/
+                if (i == 0) {
+                    String = space + "┌";
+                }
+                if (i != 0) {
+                    String = space + "├";
+                }
+                if (i == datas.length - 1) {
+                    String = space + "└";
+                }
+                if (parentId == datas[i].sortId) {
+                    opt_li += '<option value="' + datas[i].sortId + '" selected="selected">' + String + datas[i].sortName + '</option>';
+                } else {
+                    opt_li += '<option value="' + datas[i].sortId + '">' + String + datas[i].sortName + '</option>';
+                }
 
+                /* console.log(datas[i].childs); */
+                if (datas[i].childs != null) {
+                    opt_li = Child(datas[i].childs, opt_li, level + 1, parentId);
+                }
+            }
+
+            return opt_li;
+        }
+
+
+        //附件上传
+        $('#addfile').on('click', function (ele) {
+            $('#uploadinputimg').click();
+        })
+        $('#uploadinputimg').change(function (e) {
+            var target = $(e.target);
+            var file;
+            if (target[0].files && target[0].files[0]) {
+                file = target[0].files[0];
+            }
+            //console.log(file);
+            if (file) {
+                $.upload($('#uploadimgform'), function (res) {
+                    console.log(res);
+                    var data = res.obj;
+                    var str = '';
+                    var str1 = '';
+                    for (var i = 0; i < data.length; i++) {
+                        str += '<a href="<%=basePath %>download?' + data[i].attUrl + '" NAME="' + data[i].attachName + '*">' + data[i].attachName + '</a>';
+                        str1 += '<input type="hidden" class="inHidden" value="' + data[i].aid + '@' + data[i].ym + '_' + data[i].attachId + ',">';
+                    }
+                    $('.Attachment').append(str + str1);
+                });
+            }
+        });
+
+        var flowIdFromPage = '${flowId}';
+        /*定义流程属性查询*/
+        /*表单控件*/
+        function formAjax() {
+            $.ajax({
+                url: '<%=basePath%>form/allformlist',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+
+                    if (data.flag) {
+                        var data = data.datas;
+                        console.log(data)
+                        var html = '';
+                        for (var i = 0; i < data.length; i++) {
+                            html += '<option value="" disabled>' + data[i].sortName + '</option>'
+                            var form = data[i].form;
+                            for (var j = 0; j < form.length; j++) {
+                                html += '<option value="' + form[j].formId + '" >&nbsp;&nbsp;&nbsp;' + form[j].formName + '</option>'
+
+                            }
+                        }
+                    }
+                    $('#leave').html(html)
+
+
+                }
+            })
+        }
+
+        $('.radio_s').click(function () {
+            $(".block_n").show();
+        });
+        $('.radio_f').click(function () {
+            $(".block_n").hide();
+        });
+        $("#add_f_1").click(function () {
+            user_id = 'text_1';
+            $.popWindow("../common/selectUser");
+        });
+        $("#add_f_2").click(function () {
+            dept_id = 'text_2';
+            $.popWindow("../common/selectDept");
+        })
+        $("#add_f_3").click(function () {
+            priv_id = 'text_3';
+            $.popWindow("../common/selectPriv");
+        })
+
+
+        var flowId = '${flowId}';
+        if (flowId != "") {
+            $('.item_con').show();
+            $('.btn_h_1').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "<%=basePath%>flow/selectAllFlow",
+                    dataType: "JSON",
+                    data: {
+                        flowId: flowId
+                    },
+                    success: function (data) {
+                        if (data.flag) {
+                            $("#flowId").val(data.object.flowId);
+                            $("#projectName").val(data.object.flowName);
+                            $('#orderID').val(data.object.flowNo);
+                            $("#deptName").val(data.object.deptId),
+                            $("#classfiy ").val(data.object.flowSort),
+                            $("#class_f option:selected").val(data.object.flowType),
+                             $("#leave option:selected").val(data.object.formId),
+                             $("#delegate-type option:selected").val(data.object.freeOther),
+                            $('#class_f').html('<option value="1">固定流程<option/><option value="2">自由流程<option/>');
+
+                        }
+                    }
+                });
+                formAjax();
+
+            })
+        } else {
+            $('.item1').show();
+            formAjax();
+        }
+        $('.keepmsg').on('click', function () {
+            <%--var flowId = '${flowId}';--%>
             if (flowId == null || flowId == "") {
                 //保存
                 var data = {
                     flowName: $('#projectName').val(),
                     flowNo: $('#orderID').val(),
-                    deptId: 1,
-                    flowSort: 1,
-                    flowType: '1',
-                    formId: 117,
-                    freeOther: '2',
-                    flowDoc: 0,
+                    deptId: $("#deptName option:selected").val(),
+                    flowSort: $('#classfiy option:selected').val(),
+                    flowType: $('#class_f option:selected').val(),
+                    formId: $('#leave option:selected').val(),
+                    freeOther: $('#delegate-type option:selected').val(),
+                    flowDoc: $('input[name="sex_1"]:checked').val(),
                     autoNum: $('#counteer').val(),
                     autoLen: $('#figure').val()
                 };
@@ -657,6 +867,7 @@
                     success: function (data) {
                         if (data.flag) {
                             alert("保存成功");
+                            window.location.href='<%=basePath%>flowSetting/index?type=add&flowId='+data.object.flowId;
                         } else {
                             alert("保存失败");
                         }
@@ -667,27 +878,72 @@
                 })
             } else {
                 //修改|编辑
+//                alert($('#orderID').val());
                 var data = {
-                    flowId: flowId,
+                    flowId : flowId,
                     flowName: $('#projectName').val(),
                     flowNo: $('#orderID').val(),
-                    deptId: 1,
-                    flowSort: 1,
-                    flowType: '1',
-                    formId: 117,
-                    freeOther: '2'
+                    deptId: $("#deptName option:selected").val(),
+                    flowSort: $('#classfiy option:selected').val(),
+                    flowType: $('#class_f option:selected').val(),
+                    formId: $('#leave option:selected').val(),
+                    freeOther: $('#delegate-type option:selected').val(),
+                    flowDoc: $('input[name="sex_1"]:checked').val(),
+                    autoNum: $('#counteer').val(),
+                    autoLen: $('#figure').val()
                 };
+//                    alert(data.flowNo);
                 $.ajax({
                     type: "post",
                     url: "<%=basePath%>flow/updateFlow",
                     dataType: 'json',
                     data: data,
                     success: function (data) {
-                        alert(data.flag);
+                        if(data.flag){
+                            alert("修改成功");
+                            window.location.href='<%=basePath%>flowSetting/index?type=add&flowId='+flowId;
+                        }else{
+                            alert("修改失败");
+                        }
+//                        alert(data.flag);
                     }
                 })
             }
         });
+        /*设计步骤流程*/
+        $('.btn_h_2').click(function () {
+            $.ajax({
+                type: "get",
+                url: "<%=basePath%>flowProcess/findFlowId",
+                dataType: "json",
+                data: {
+                    flowId: flowId
+                },
+                success: function (data) {
+                    if (data.flag) {
+                        var data = data.obj;
+                        var html = '<caption class="clearfix"> <span class="priv_t">设计流程步骤</span> ' +
+                            '<a href="<%=basePath %>flowSetting/processDesignTool?flowId=${flowId}" class="flowJpdl">流程设计器</a> ' +
+                            '</caption>' +
+                            '<tr><th>序号</th><th>名称</th><th>下一步骤</th><th>编辑该步骤的各项属性</th><th>操作</th></tr>';
+
+                        for (var i = 0; i < data.length; i++) {
+                            var prcsTo = data[i].prcsTo;
+                            if (prcsTo == "") {
+                                prcsTo = [data[i].prcsId] * 1 + 1
+                            } else {
+                                prcsTo = data[i].prcsTo
+                            }
+                            html += "<tr>" + "<td>" + data[i].prcsId + "</td>" + "<td>" + data[i].prcsName + "</td>" +
+                                "<td>" + data[i].prcsTo + "</td>" + "<td style='text-align: center'></td>" + "<td>" + "<a href='javascript:void(0)'></a><a href='javascript:void(0)'></a>" + "</td>" + "</tr>";
+
+                        }
+                    }
+                    $('#table_form').html(html);
+                    checkAll();
+                }
+            });
+        })
 
         var $list = $('.cont_list li a');
         $list.each(function (index, item) {
@@ -710,7 +966,6 @@
         $(".btn2").click(function () {
             renderPriv();
         });
-
         function renderPriv() {
             var html = '<caption class="clearfix"> <span class="priv_t">管理权限</span> ' +
                 '<a href="javascript:void (0)" class="newbuilt" id="new">新建</a> ' +
@@ -747,7 +1002,6 @@
                         }
                     }
                     $('#table_power').html(html);
-                    /*全选非全选*/
                     checkAll();
                 }
             })
@@ -832,7 +1086,7 @@
                     var data_d = data.datas;
                     if (data.flag) {
                         for (var i = 0; i < data_d.length; i++) {
-                            strData += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'  timerId='" + data_d[i].tid + "'>" + "</td>" + "<td>" + data_d[i].typeName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].userName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].remindDate + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].lastTime + "</td>" + "<td>" + '<a href="javascript:void(0)" timerId="' + data_d[i].tid + '" class="privUp">修改</a>' + '<a class="del" href="javascript:void(0)" timerId="' + data_d[i].tid + '" >删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                            strData += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'  timerId='" + data_d[i].tid + "'>" + "</td>" + "<td>" + data_d[i].typeName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].userName + "</br>" + data_d[i].deptName + "</br>" + data_d[i].roleName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].remindDate + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data_d[i].lastTime + "</td>" + "<td>" + '<a href="javascript:void(0)" timerId="' + data_d[i].tid + '" class="privUp">修改</a>' + '<a class="del" href="javascript:void(0)" timerId="' + data_d[i].tid + '" >删除</a>' + "</td>" + "</tr>" + "</tbody>";
                         }
                     }
                     $('#table_task').html(strData);
@@ -899,7 +1153,7 @@
         });
         function TempPriv() {
             var html = '<caption class="clearfix"> <span class="priv_t">配置查询模板</span> ' +
-                '<a href="javascript:void (0)" class="newbuilt file_n">新建</a> ' +
+                '<a href="javascript:void (0)" class="newbuilt temp_n">新建</a> ' +
                 '<a href="javascript:void (0)" class="delete_c">删除</a> ' +
                 '</caption>' +
                 "<t><th><input type='checkbox' class='checkAll'>全选</th><th>模板名称</th><th>创建日期</th><th>操作</th></t>";
@@ -911,12 +1165,12 @@
                     flowId: flowIdFromPage
                 },
                 success: function (data) {
-                    var data = data.datas;
-                    console.log(data);
-                    for (var i = 0; i < data.length; i++) {
-                        html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'  seqId='" + data[i].seqId + "'>" + "</td>" + "<td>" + data[i].tplName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)">修改</a>' + '<a class="del_temp" href="javascript:void(0)" seqId="' + data[i].seqId + '" >删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                    if(data.flag){
+                        var data = data.datas;
+                        for (var i = 0; i < data.length; i++) {
+                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one'  seqId='" + data[i].seqId + "'>" + "</td>" + "<td>" + data[i].tplName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)" class="updata_c"  seqId="' + data[i].seqId + '">修改</a>' + '<a class="del_temp" href="javascript:void(0)" seqId="' + data[i].seqId + '" >删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                        }
                     }
-
                     $('.table_temp').html(html);
                     checkAll();
 
@@ -966,7 +1220,13 @@
                     if (data.flag) {
                         var data = data.datas;
                         for (var i = 0; i < data.length; i++) {
-                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one' tId='" + data[i].tId + "'>" + "</td>" + "<td>" + data[i].content + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].flowPrcs + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)"  tId="' + data[i].tId + '" class="fileUpdate">修改</a>' + '<a href="javascript:void(0)" class="del_priv"  tId="' + data[i].tId + '">删除</a>' + "</td>" + "</tr>" + "</tbody>";
+                            var tTypeStr = '';
+                            if (data[i].tType == '1') {
+                                tTypeStr = '打印模板'
+                            } else {
+                                tTypeStr = '首页呈批单'
+                            }
+                            html += "<tbody>" + "<tr>" + "<td>" + "<input type='checkbox' class='one' tId='" + data[i].tId + "'>" + "</td>" + "<td>" + data[i].tName + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + tTypeStr + "</td>" + "<td style='text-align: left;padding-left: 10px'>" + data[i].createTime + "</td>" + "<td>" + '<a href="javascript:void(0)"  tId="' + data[i].tId + '" class="fileUpdate">修改</a>' + '<a href="javascript:void(0)" class="del_priv"  tId="' + data[i].tId + '">删除</a>' + "</td>" + "</tr>" + "</tbody>";
                         }
                     }
                     $('.table_prc').html(html);
@@ -1065,7 +1325,7 @@
                 scrolling: 'no',
                 yes: function () {
                     var userId = $("#senduser").attr("dataid");
-                    userId=userId.split(',');
+                    userId = userId.split(',');
                     var deptId = $('#sendept').attr('deptid');
                     var deptIdAry = [];
                     deptIdAry.push(deptId);
@@ -1151,7 +1411,7 @@
                 scrolling: 'no',
                 yes: function () {
                     var userId = $("#senduser").attr("dataid");
-                    userId=userId.split(',');
+                    userId = userId.split(',');
                     var deptId = $('#sendept').attr('deptid');
                     var deptIdAry = [];
                     deptIdAry.push(deptId);
@@ -1237,7 +1497,7 @@
                 btn: ['保存', '关闭'],
                 yes: function () {
                     var userId = $("#addUser").attr("dataid");
-                    userId=userId.split(',');
+                    userId = userId.split(',');
                     var deptId = $('#addDep').attr('deptid');
                     var deptIdAry = [];
                     deptIdAry.push(deptId);
@@ -1362,46 +1622,492 @@
         });
 
         /*配置模板查询新建弹窗*/
-        $('.table').on('click', '.temp_n', function () {
+        function layerWin() {
             layer.open({
                 title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 15px;color: #fff">新建</p>',
                 shade: 0,
-                content: '<div class="pop_con">' +
-                '<div class="con_t">' +
-                '<div class="con_l">' +
-                '<div class="con_title">' +
-                '<div class="title_1">' +
-                '<div class="title_label"></div>' +
-                '<span class="title_s">模板名称 *</span>' +
-                '<div class="title_put"><select name="" id="" class="select_t"></select></div></div>' +
-                '</div></div></div>' +
+                content: '<div class="cont_pop">' +
+                '<div class="con_flow clearfix">' +
+                '<div class="over_f">' +
+                '<p class="define_p flowtitle">模板基本信息</p>' +
+                '<form class="pro_flow "><div class="con_form">' + '<div class="form_group">' +
+                '<label for="projectName" class="flowName">模板名称</label>' +
+                '<input type="text" id="tempName">' + '</div></div></form>' +
+                '<p class="define_p flowtitle">流程过滤条件</p>' +
+                '<form class="pro_flow "><div class="con_form con_form_c">' +
+                '<div class="form_group">' + '<label for="deptName" class="flowName">工作流状态</label>' +
+                '<select name=" FLOW_STATUS" id="FLOW_STATUS" class="depName"><option value="ALL">所有</option><option value="1">已结束</option><option value="0">执行中</option>' +
+                '</select></div>' +
+                '<div class="form_group">' + '<label for="deptName" class="flowName">查询范围</label>' +
+                '<select name="FLOW_QUERY_TYPE" id="FLOW_QUERY_TYPE" class="depName"><option value="ALL">所有</option><option value="1">我发起的</option><option value="2">我经办的</option><option value="3">我管理的</option></select></div>' +
+                '<div class="form_group"><label for="deptName" class="flowName">流程开始日期范围 </label>' +
+                '<span>从</span><input type="text" class="put" id="start_date" name="PRCS_DATE1"><span>至</span><input type="text"class="put" id="end_date"><span>清空</span></div>' +
+                '<div class="form_group">' +
+                '<label for="deptName" class="flowName">名称/文号 </label><select name="PRCS_DATE1PRCS_DATE2PRCS_DATE3PRCS_DATE4BEGIN_USERBEGIN_NAMERUN_NAME" id="runName" class="depName"><option value="1">等于</option><option value="2">大于</option><option value="3">小于</option><option value="4">大于等于</option><option value="5">小于等于</option><option value="6">不等于</option><option value="7">开始为</option><option value="8" selected>包含</option><option value="9">结束为</option></select><input type="text"></div>' +
+                '<div class="form_group">' +
+                '<label for="deptName" class="flowName">公共附件名称 </label>' + '<select name="ATTACHMENT_NAME" id="attment" class="depName"><option value="1">等于</option><option value="2">小于</option><option value="2">大于</option><option value="2">不等于</option><option value="2">大于等于</option><option value="2">小于等于</option><option value="2">不等于</option><option value="2">开始为</option><option value="2">包含</option><option value="2">结束为</option></select><input type="text"></div>' +
+                '<div class="form_group">' +
+                '<label for="deptName" class="flowName">流程发起人</label>' +
+                '<textarea name="txt" id="textPut" user_id="admin" value="admin" disabled></textarea>' +
+                '<a style="margin-left: 10px;cursor: pointer" id="select_User">添加</a>' +
+                '<a style="margin-left: 10px;cursor: pointer">清空</a>' + '</div></div></form>' +
+                '<div class="jobName flowtitle">表单数据过滤条件</div>' +
+                '<form class="pro_flow flow_r"><div class="con_form"><div class="form_group"><label for="deptName" class="flowName">字段</label>' +
+                '<select name="" id="file_p" class="depName"></select></div>' +
+                '<div class="form_group"><label for="deptName" class="flowName">条件</label><select name="" id="term" class="depName"><option value="1">等于</option><option value="2">小于</option><option value="2">大于</option><option value="2">不等于</option><option value="2">大于等于</option><option value="2">小于等于</option><option value="2">不等于</option><option value="2">开始为</option><option value="2">包含</option><option value="2">结束为</option><option value="2">为空</option></select></br>' +
+                '<label for="deptName" class="flowName">值</label>' + '<input type="text" id="numval">' +
+                '<div><a href="javascript:;" class="addbtn">添加字段条件</a></div>' +
+                '<table class="table table_h" cellspacing="0" id="table_t">' + '<thead><tr>' +
+                '<th style="text-align: center">编号</th><th style="text-align: center">表单条件描述</th><th style="text-align: center">操作</th></tr></thead>' + '</table>' +
+                '<label for="deptName" class="flowName">表单条件公式</label><input type="text" id="query_d"></div></div></form>' +
+                '<div class="jobName flowtitle">统计报表选项</div>' +
+                '<form class="pro_flow flow_r"><div class="con_form"><div class="form_group"><label for="deptName" class="flowName">分组字段</label><select name="" id="group_s" class="depName">' +
+                '</select>' + '<select name="" id="groupSort" class="depName">' +
+                '<option value="ASC" selected="selected">升序</option><option value="DESC">降序</option></select></div><div class="plug_body form_group">' +
+                '<div class="plug_body_left"><div class="list_title">显示在待办列表上的字段</div><div class="list_infomation" id="next_step_div">' +
+                '<table cellspacing="0px" cellpadding="0px" width="100%" id="next_step_tab" class="next_step_tab"><tbody id="data_th"></tbody>' +
+                '</table></div><div style="margin-top:10px;"><button class="btn" id="left_btn" type="button" style="margin-left:100px;">全选</button></div></div>' + '<div class="plug_body_center"><div class="change_right"><button type="button" style="width: 20px;height: 20px" id="btn_b1"></button></div><div class="change_left"><button type="button" style="width: 20px;height: 20px" id="btn_b2"></button></div></div>' +
+
+                '<div class="plug_body_right"><div class="list_title">备选字段</div><div class="list_infomation" id="alternative_div">' +
+                '<table cellspacing="0px" cellpadding="0px" width="100%" id="alternative_tab">' + '<tbody id="data_th_1"></tbody></table>' + '</div>' +
+                '<div style="margin-top:10px;">' +
+                '<button class="btn" id="right_btn" type="button"  style="margin-left:100px;">全选</button></div></div></div>' +
+                '</div></form></div></div>' +
                 '</div>',
-                area: ['600px', '500px'],
+                area: ['800px', '500px'],
                 btn: ['保存', '关闭'],
-                /*  yes: function () {
-                 var data = {
-                 'tplName':
-                 'viewFields':
-                 'groupFields':
-                 'flowId': 1
-                 };
-                 $.ajax({
-                 type: 'GET',
-                 url: '<%=basePath%>/flowSetDatas//newFlowQuertTpl',
-                 dataType: 'json',
-                 data: data,
-                 success: function (data) {
-                 if (data.flag) {
-                 alert('新建成功');
-                 } else {
-                 alert('新建失败');
-                 }
-                 }
-                 });
-                 }*/
+                yes: function () {
+
+                    var td = $("#data_th_1 td");
+                    var viewStr = "";
+                    for (var i = 0; i < td.length; i++) {
+                        var name = $(td[i]).attr("name");
+                        if (name) {
+                            viewStr += "flow_data_${flowId}." + name + ","
+                        }
+
+                    }
+                    var dataConditions = $('#fileDate').attr('fileds');
+                    var groupadeStr;
+                    var groupadeAdd = $('#group_s').find("option:selected").attr('fields');
+                    var groupadeASC = $('#groupSort').find("option:selected").val();
+                    groupadeStr = groupadeAdd + groupadeASC;
+
+                    var nameAtr = $('#FLOW_STATUS').attr('name');//工作流状态
+                    var nameVal = $('#FLOW_STATUS').find("option:selected").val();//ALL
+                    var atrVal = nameAtr + "\r\n" + nameVal;
+                    var query_scope = $('#FLOW_QUERY_TYPE').attr('name');//查询范围
+                    var query_s_a = $('#FLOW_QUERY_TYPE').find("option:selected").val();//ALL
+                    var scope_ALL = query_scope + "\r\n" + query_s_a;
+                    var date1 = $('#start_date').attr('name')//开始时间
+                    var date_num1 = $('#start_date').val();
+                    var dateVal = date1 + "\r\n" + date_num1;
+                    var date2 = $('#end_date').attr('name');//结束时间
+                    var date_num2 = $('#end_date').val();
+                    var endVal = date2 + "\r\n" + date_num2;
+                    var num_r = $('#runName').attr('name');//名称文号
+                    var num_a = $('#runName').find("option:selected").val();//ALL
+                    var numVal = num_r + "\r\n" + num_a;
+                    var attment = $('#attment').attr('name');//公共附件名称
+
+                    var work_f = atrVal + "\r\n"  + scope_ALL + "\r\n"  + dateVal + "\r\n"  + endVal + "\r\n"  + numVal;
+
+
+                    var data = {
+                        'viewFields': viewStr,
+                        'tplName': $('#tempName').val(),
+                        'flowId': flowIdFromPage,
+                        'dataConditions': dataConditions,
+                        'groupFields': groupadeStr,
+                        'condFormula': $('#query_d').val(),
+                        'flowConditions': work_f,
+                        'dataXml': ''
+                    };
+                    $.ajax({
+                        type: 'GET',
+                        url: '<%=basePath%> / flowSetDatas//newFlowQuertTpl',
+                        dataType: 'json',
+                        data: data,
+                        success: function (data) {
+                            if (data.flag) {
+                                alert('新建成功');
+                                TempPriv();
+                            } else {
+                                alert('新建失败');
+                            }
+                        }
+                    });
+                },
+            })
+
+
+            workInit(0,[],"","","")
+
+            $('.addbtn').click(function () {
+                var fields = $('#file_p').find("option:selected").attr('fields');
+                var text_d = $('#file_p').find("option:selected").text();
+                var term = $('#term').find("option:selected").text();
+                var numval = $('#numval').val();
+                if (term == "等于") {
+                    term = "=";
+                } else if (term == "大于") {
+                    term = ">";
+                } else if (term == "小于") {
+                    term = "<";
+                } else if (term == "不等于") {
+                    term = "<>";
+                } else if (term == "大于等于") {
+                    term = ">=";
+                } else if (term == "小于等于") {
+                    term = "<=";
+                } else if (term == "开始为") {
+                    term = "begin";
+                } else if (term == "包含") {
+                    term = "include";
+                } else if (term == "结束为") {
+                    term = "end";
+                } else if (term == "为空") {
+                    term = "null";
+                }
+                var html = '<tbody><tr><td style="text-align: center"></td style="text-align: center"><td id="fileDate" fileds="' + fields + term + numval + '">\'' + text_d + '\'' + term + '\'' + numval + '\'</td><td style="text-align: center">删除</td></tr></tbody>'
+
+                $('#table_t').append(html)
 
             })
+            /*弹窗控件*/
+            $("#select_User").click(function () {
+                user_id = 'textPut';
+                $.popWindow("../common/selectUser");
+            });
+
+        }
+        var termFh=["=",">","<","<>",">=","<=","begin","include","end","null"];
+        var fromIdtwo = 17;
+        //type 0 新建 1修改
+        function workInit(type,select,equals,groupBF,dataCon) {
+            //存放处理后的数据
+            var equalsCons=[];
+            var equalsCon={};
+            //先按，分割
+          var arrayCon =  equals.split(',');
+          //没有，号 证明是数据
+          if(arrayCon.length==0){
+              arrayCon.push(equals);
+          }
+          //遍历每一项
+          for(var i=0;i<arrayCon.length;i++){
+             var constr= arrayCon[i];
+             //获取分割符号
+             var splitStr;
+             for(var j=0;j<termFh.length;j++){
+                 if(constr.indexOf(termFh[j]) > 0 ){
+                     splitStr=termFh[j];
+                     break;
+                 }
+             }
+             if(splitStr){
+              var key_value = constr.split(splitStr);
+              if(key_value.length!=2){
+                  //数据有问题，自己处理下
+                  console.log("数据问题");
+              }else{
+                  equalsCon["key"]=key_value[0];
+                  equalsCon["value"]=key_value[1];
+                  equalsCon["splitStr"]=splitStr;
+                  equalsCons.push(equalsCon);
+              }
+             }
+          }
+            /*分组字段*/
+            var reg = /flow_data_([0-9]+)\.DATA_([0-9]+)(ASC|DESC)/;
+            var regAry = groupBF.match(reg)
+            var groupAry = [];
+            var obj = {};
+            if(regAry!==null){
+                obj["key"]= 'flow_data_'+regAry[1]+".DATA_"+regAry[2];
+                obj["value"]=regAry[3];
+                groupAry.push(obj);
+            }
+            /*流程过滤条件*/
+            var arry=dataCon.split("\n");
+            console.log(arry);
+            var objData={};
+            for(var i=0;i<arry.length;i++){
+
+                if($(arry).eq($(arry[i]))%2==0){
+                    alert(11)
+                    objData["key"] =arry[i] ;
+                    console.log(objData)
+                }else{
+//                    objData["value"] = ;
+                }
+            }
+
+;//            var searchStr = 'FLOW_STATUS'; //要查询的关键字
+//
+////            var str = window.location.search;
+//            var indexA = dataCon.indexOf(searchStr);
+//            var indexB = dataCon.indexOf(' ');
+//            if(indexB === -1){
+//                dataCon = dataCon.substring(indexA+searchStr.length+1);
+//            } else {
+//                dataCon = dataCon.substring(indexA,indexB);
+//            }
+//            console.log(dataCon);
+
+            workForm.init({
+                    formhtmlurl: '../../form/formType',
+                    resdata: {
+                        fromId: fromIdtwo
+                    },
+                    flag: 3
+                },
+                function (data) {
+                    console.log(data);
+                    var str = '';
+                    var htmll = '';
+                    var htmlr = '';
+                    var groupStr = '';
+                    var htmltd='';
+                    var group_s='';
+                    for (var i = 0; i < data.length; i++) {
+                        if(type==1){
+                            if(groupAry.length!==0){
+                                groupAry.forEach(function (item, index) {
+                                    if(('flow_data_${flowId}.'+data[i].name)==item.key){
+
+                                        group_s += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
+                                        $('#groupSort option[value='+item.value+']').attr("selected",true);
+                                    }
+
+                                })
+                            }
+                            if(equalsCons.length!==0){
+                                equalsCons.forEach(function (item, index) {
+                                    if(('flow_data_${flowId}.'+data[i].name)==item.key){
+
+                                            htmltd += '<tbody><tr><td style="text-align: center"></td style="text-align: center"><td id="fileDate" fileds="' + item.key + item.splitStr + item.value + '">\'' + data[i].title + '\'' + item.splitStr + '\'' +  item.value + '\'</td><td style="text-align: center">删除</td></tr></tbody>'
+                                        $('#file_p option[value='+data[i].title+']').attr("selected",true);
+//                                       $('#term option[value='+item.splitStr +']').attr("selected",true);
+//                                        $('#numval option[value='+ item.value +']').attr("selected",true);
+                                    }
+                                })
+
+                            }
+                            if(select.length!==0){
+                                    select.forEach(function (item, index) {
+                                        if (('flow_data_${flowId}.' + data[i].name) == item) {
+                                            htmlr += '<tr><td id="tr_td" name="' + data[i].name + '" class="td_d tr_td" style="cursor: pointer">' + data[i].title + '</td></tr>';
+                                        } else {
+                                            htmll += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
+                                            str += '<option  fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
+                                            groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
+                                        }
+
+                                    })
+
+                                }else{
+                                    htmll += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
+                                    str += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
+                                    groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
+                                }
+
+                        }else{
+                            htmll += '<tr><td name="' + data[i].name + '" class="td_d" style="cursor: pointer">' + data[i].title + '</td></tr>';
+                            str += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>';
+                            groupStr += '<option fields="flow_data_${flowId}.' + data[i].name + '" value="' + data[i].title + '">' + data[i].title + '</option>'
+                        }
+
+                    }
+                    $('#data_th').html(htmll);
+                    $('#file_p').html(str);
+                    $('#group_s').html(groupStr);
+                    $('#data_th_1').html(htmlr);
+                    $('#table_t').append(htmltd);
+                    $('.group_s').html(group_s);
+
+                    $('.td_d').each(function (index, item) {
+                        $(item).click(function () {
+                            $(this).addClass('bg_d');
+                            $(this).attr('able', true);
+                        })
+                    })
+                    $('#btn_b1').on('click', function () {
+                        var htmls="";
+                        var td = $(".td_d");
+                        for (var i = 0; i < td.length; i++) {
+                            var able = $(td[i]).attr("able");
+                            if (able) {
+                                var tdstr =$(td[i]).get(0).outerHTML+"";
+                                $(td[i]).remove();
+                                htmls+=  "<tr>"+tdstr+"</tr>";
+                                $(this).removeAttr('able').removeClass('bg_d');
+//                                $(td[i]).removeClass('bg_d');
+                            }
+                        }
+                        $('#data_th_1').html(
+                            htmls
+                        )
+//                $('.bg_d').each(function (index, item) {
+//                    $(item).click(function () {
+//                        $('#btn_b2').on('click', function () {
+//                            $(item).appendTo('#data_th').removeClass().addClass('bg_d')
+//                        })
+//                    })
+//                })
+                    })
+
+                });
+        }
+
+        $('.table').on('click', '.temp_n', function () {
+            layerWin();
         });
+        /*配置查询模板修改*/
+        $('.table').on('click', '.updata_c', function () {
+            var tplId = $(this).attr('seqId');
+            $.ajax({
+                type: 'GET',
+                url: '<%=basePath%>/flowSetDatas/queryFlowQuertTplById',
+                dataType: 'json',
+                data: {
+                    'tplId': tplId
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.flag) {
+                        var data = data.data;
+                        var dataview = data.viewExtFields;
+                        dataview = dataview.split(',')
+                        var viewAttr = dataview;
+                        var dataCon = data.dataConditions;
+                        var groupBF = data.groupByFields;
+                        var flowCon = data.flowConditions;
+                        layer.open({
+                            title: '<p style="background: #2b7fe0;height: 43px;width: 100%;font-size: 16px;padding-left: 15px;color: #fff">新建</p>',
+                            shade: 0,
+                            content: '<div class="cont_pop">' +
+                            '<div class="con_flow clearfix">' +
+                            '<div class="over_f">' +
+                            '<p class="define_p flowtitle">模板基本信息</p>' +
+                            '<form class="pro_flow "><div class="con_form">' + '<div class="form_group">' +
+                            '<label for="projectName" class="flowName">模板名称</label>' +
+                            '<input type="text" id="tempName">' + '</div></div></form>' +
+                            '<p class="define_p flowtitle">流程过滤条件</p>' +
+                            '<form class="pro_flow "><div class="con_form con_form_c">' +
+                            '<div class="form_group">' + '<label for="deptName" class="flowName">工作流状态</label>' +
+                            '<select name=" FLOW_STATUS" id="FLOW_STATUS" class="depName"><option value="ALL">所有</option><option value="1">已结束</option><option value="0">执行中</option>' +
+                            '</select></div>' +
+                            '<div class="form_group">' + '<label for="deptName" class="flowName">查询范围</label>' +
+                            '<select name="FLOW_QUERY_TYPE" id="FLOW_QUERY_TYPE" class="depName"><option value="ALL">所有</option><option value="1">我发起的</option><option value="2">我经办的</option><option value="3">我管理的</option></select></div>' +
+                            '<div class="form_group"><label for="deptName" class="flowName">流程开始日期范围 </label>' +
+                            '<span>从</span><input type="text" class="put" id="start_date" name="PRCS_DATE1"><span>至</span><input type="text"class="put" id="end_date"><span>清空</span></div>' +
+                            '<div class="form_group">' +
+                            '<label for="deptName" class="flowName">名称/文号 </label><select name="PRCS_DATE1PRCS_DATE2PRCS_DATE3PRCS_DATE4BEGIN_USERBEGIN_NAMERUN_NAME" id="runName" class="depName"><option value="1">等于</option><option value="2">大于</option><option value="3">小于</option><option value="4">大于等于</option><option value="5">小于等于</option><option value="6">不等于</option><option value="7">开始为</option><option value="8" selected>包含</option><option value="9">结束为</option></select><input type="text"></div>' +
+                            '<div class="form_group">' +
+                            '<label for="deptName" class="flowName">公共附件名称 </label>' + '<select name="ATTACHMENT_NAME" id="attment" class="depName"><option value="1">等于</option><option value="2">小于</option><option value="2">大于</option><option value="2">不等于</option><option value="2">大于等于</option><option value="2">小于等于</option><option value="2">不等于</option><option value="2">开始为</option><option value="2">包含</option><option value="2">结束为</option></select><input type="text"></div>' +
+                            '<div class="form_group">' +
+                            '<label for="deptName" class="flowName">流程发起人</label>' +
+                            '<textarea name="txt" id="textPut" user_id="admin" value="admin" disabled></textarea>' +
+                            '<a style="margin-left: 10px;cursor: pointer" id="select_User">添加</a>' +
+                            '<a style="margin-left: 10px;cursor: pointer">清空</a>' + '</div></div></form>' +
+                            '<div class="jobName flowtitle">表单数据过滤条件</div>' +
+                            '<form class="pro_flow flow_r"><div class="con_form"><div class="form_group"><label for="deptName" class="flowName">字段</label>' +
+                            '<select name="" id="file_p" class="depName"></select></div>' +
+                            '<div class="form_group"><label for="deptName" class="flowName">条件</label><select name="" id="term" class="depName"><option value="1">等于</option><option value="2">小于</option><option value="2">大于</option><option value="2">不等于</option><option value="2">大于等于</option><option value="2">小于等于</option><option value="2">不等于</option><option value="2">开始为</option><option value="2">包含</option><option value="2">结束为</option><option value="2">为空</option></select></br>' +
+                            '<label for="deptName" class="flowName">值</label>' + '<input type="text" id="numval">' +
+                            '<div><a href="javascript:;" class="addbtn">添加字段条件</a></div>' +
+                            '<table class="table table_h" cellspacing="0" id="table_t">' + '<thead><tr>' +
+                            '<th style="text-align: center">编号</th><th style="text-align: center">表单条件描述</th><th style="text-align: center">操作</th></tr></thead>' + '</table>' +
+                            '<label for="deptName" class="flowName">表单条件公式</label><input type="text" id="query_d"></div></div></form>' +
+                            '<div class="jobName flowtitle">统计报表选项</div>' +
+                            '<form class="pro_flow flow_r"><div class="con_form"><div class="form_group"><label for="deptName" class="flowName">分组字段</label><select name="" id="group_s" class="depName group_s">' +
+                            '</select>' + '<select name="" id="groupSort" class="depName">' +
+                            '<option value="ASC">升序</option><option value="DESC">降序</option></select></div><div class="plug_body form_group">' +
+                            '<div class="plug_body_left"><div class="list_title">显示在待办列表上的字段</div><div class="list_infomation" id="next_step_div">' +
+                            '<table cellspacing="0px" cellpadding="0px" width="100%" id="next_step_tab" class="next_step_tab"><tbody id="data_th"></tbody>' +
+                            '</table></div><div style="margin-top:10px;"><button class="btn" id="left_btn" type="button" style="margin-left:100px;">全选</button></div></div>' + '<div class="plug_body_center"><div class="change_right"><button type="button" style="width: 20px;height: 20px" id="btn_b1"></button></div><div class="change_left"><button type="button" style="width: 20px;height: 20px" id="btn_b2"></button></div></div>' +
+
+                            '<div class="plug_body_right"><div class="list_title">备选字段</div><div class="list_infomation" id="alternative_div">' +
+                            '<table cellspacing="0px" cellpadding="0px" width="100%" id="alternative_tab">' + '<tbody id="data_th_1"></tbody></table>' + '</div>' +
+                            '<div style="margin-top:10px;">' +
+                            '<button class="btn" id="right_btn" type="button"  style="margin-left:100px;">全选</button></div></div></div>' +
+                            '</div></form></div></div>' +
+                            '</div>',
+                            area: ['800px', '500px'],
+                            btn: ['保存', '关闭'],
+                            yes: function () {
+                                var td = $("#data_th_1 td");
+                                var viewStr = "";
+                                for (var i = 0; i < td.length; i++) {
+                                    var name = $(td[i]).attr("name");
+                                    if (name) {
+                                        viewStr += "flow_data_${flowId}." + name + ","
+                                    }
+
+                                }
+                                var dataConditions = $('#fileDate').attr('fileds');
+                                var groupadeStr;
+                                var groupadeAdd = $('#group_s').find("option:selected").attr('fields');
+                                var groupadeASC = $('#groupSort').find("option:selected").val();
+                                groupadeStr = groupadeAdd + groupadeASC;
+
+                                var nameAtr = $('#FLOW_STATUS').attr('name');//工作流状态
+                                var nameVal = $('#FLOW_STATUS').find("option:selected").val();//ALL
+                                var atrVal = nameAtr + "\r\n" + nameVal;
+                                var query_scope = $('#FLOW_QUERY_TYPE').attr('name');//查询范围
+                                var query_s_a = $('#FLOW_QUERY_TYPE').find("option:selected").val();//ALL
+                                var scope_ALL = query_scope + "\r\n" + query_s_a;
+                                var date1 = $('#start_date').attr('name')//开始时间
+                                var date_num1 = $('#start_date').val();
+                                var dateVal = date1 + "\r\n" + date_num1;
+                                var date2 = $('#end_date').attr('name');//结束时间
+                                var date_num2 = $('#end_date').val();
+                                var endVal = date2 + "\r\n" + date_num2;
+                                var num_r = $('#runName').attr('name');//名称文号
+                                var num_a = $('#runName').find("option:selected").val();//ALL
+                                var numVal = num_r + "\r\n" + num_a;
+                                var attment = $('#attment').attr('name');//公共附件名称
+
+                                var work_f = atrVal + scope_ALL + dateVal + endVal + numVal;
+
+
+                                var data = {
+                                    'viewFields': viewStr,
+                                    'tplName': $('#tempName').val(),
+                                    'flowId': flowIdFromPage,
+                                    'dataConditions': dataConditions,
+                                    'groupFields': groupadeStr,
+                                    'condFormula': $('#query_d').val(),
+                                    'flowConditions': work_f,
+                                    'dataXml': '',
+                                    'tplId': tplId
+                                };
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '<%=basePath%>/flowSetDatas/updateFlowQuertTpl',
+                                    dataType: 'json',
+                                    data: data,
+                                    success: function (data) {
+                                        if (data.flag) {
+                                            alert('修改成功');
+                                            TempPriv();
+                                        } else {
+                                            alert('修改失败');
+                                        }
+                                    }
+                                })
+                            },
+                        })
+                        workInit(1,viewAttr,dataCon,groupBF,flowCon);
+                        $('#tempName').val(data.tplName);
+                        $('#query_d').val(data.condFormula);
+
+                    }
+                }
+            })
+
+        })
         /*应用版式文件弹窗*/
         $('.table').on('click', '.file_n', function () {
             layer.open({
@@ -1518,6 +2224,7 @@
 
         checkAll();
     });
+
 
 </script>
 

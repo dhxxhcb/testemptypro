@@ -392,4 +392,29 @@
         where ID = #{id}
     </update>
 
+
+    <!-- 修改流程节点坐标 -->
+    <update id="updateTopAndLeft" parameterType="com.xoa.model.workflow.FlowProcess">
+        update flow_process
+        <set>
+            <if test="flowId != null and flowId!=''">
+                FLOW_ID = #{flowId},
+            </if>
+            <if test="prcsId != null and prcsId!=''">
+                PRCS_ID = #{prcsId},
+            </if>
+            <if test="prcsName != null and prcsName!=''">
+                PRCS_NAME = #{prcsName},
+            </if>
+            <if test="setLeft != null and setLeft!=''">
+                SET_LEFT = #{setLeft},
+            </if>
+            <if test="setTop != null and setTop!=''">
+                SET_TOP = #{setTop},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+
 </mapper>

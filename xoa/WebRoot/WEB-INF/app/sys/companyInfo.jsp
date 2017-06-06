@@ -191,7 +191,3 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         })
     </script>
 </html>
-
-<%--
-<div><img class="left_img" src="../img/mg12.png" alt=""/></div>
-<div class="enclosure_t"><a href="#">从文件柜和网络硬盘选择附件</a></div>--%>

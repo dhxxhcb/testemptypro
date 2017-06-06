@@ -366,7 +366,8 @@ public class EmailController {
                 emailBodyModel.setFromId(userId);
             }
             emailBodyModel.setContent(emailBodyModel.getContent()+fwRwEmail);
-            if(StringUtils.checkNull(emailBodyModel.getBodyId().toString())) {
+            String flagName = emailBodyModel.getBodyId()+"";
+            if("null".equals(flagName)) {
                 return emailService.saveEmail(emailBodyModel);
             }else{
                 emailBodyModel.setSendFlag("0");

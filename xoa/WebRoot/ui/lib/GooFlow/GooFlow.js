@@ -755,6 +755,7 @@ GooFlow.prototype = {
                 isMove = true;
             }
             document.onmouseup = function (e) {
+
                 if (isMove) This.moveNode(id, X + This.$workArea[0].parentNode.scrollLeft - t.left, Y + This.$workArea[0].parentNode.scrollTop - t.top);
                 This.$ghost.empty().hide();
                 document.onmousemove = null;
@@ -993,7 +994,8 @@ GooFlow.prototype = {
         this.switchToolBtn("cursor");
     },
     //移动结点到一个新的位置
-    moveNode: function (id, left, top) {
+    moveNode: function (id, left, top,name) {
+
         if (!this.$nodeData[id])    return;
         if (this.onItemMove != null && !this.onItemMove(id, "node"))    return;
         if (this.$undoStack) {
@@ -1007,6 +1009,16 @@ GooFlow.prototype = {
         this.$nodeData[id].top = top;
         //重画转换线
         this.resetLines(id, this.$nodeData[id]);
+        console.log(name)
+        console.log(id)
+        console.log(left)
+        console.log(top)
+        numIds.prcsId=id.substring(id.indexOf('_')+1);
+        numIds.setTop=top;
+        numIds.setLeft=left;
+        numIds.flowId=flowstr;
+        console.log(numId)
+        savemobile();
     },
     //设置结点/连线/分组区域的文字信息
     setName: function (id, name, type) {

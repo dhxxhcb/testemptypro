@@ -2,6 +2,8 @@ package com.xoa.service.workflow.flowformtype;
 
 import com.xoa.dao.workflow.FlowFormTypeMapper;
 import com.xoa.model.workflow.FlowFormType;
+import com.xoa.model.workflow.FlowFormTypeExtends;
+import com.xoa.model.workflow.FlowFormTypeParentModel;
 import com.xoa.service.workflow.wrapper.FlowFormWrappers;
 import com.xoa.util.common.CheckCallBack;
 import com.xoa.util.common.StringUtils;
@@ -10,7 +12,7 @@ import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by 韩东堂 on 2017/5/10.
@@ -138,7 +140,7 @@ public class FlowFormService {
             wrapper.setMsg("表单Id不能为空");
             return wrapper;
         }
-        FlowFormType flowFormType =new FlowFormType();
+        FlowFormTypeExtends flowFormType =new FlowFormTypeExtends();
         flowFormType.setFormName(formName);
         flowFormType.setDeptId(deptId);
         flowFormType.setFormSort(formSort);
@@ -196,7 +198,7 @@ public class FlowFormService {
          return wrapper;
      }
 
-    public BaseWrapper updateFormType(Integer formId,String formName,Integer deptId,Integer formSort,String printModel){
+    public BaseWrapper updateFormType(Integer formId,String formName,Integer deptId,Integer formSort,String printModel,Integer itemMax){
         BaseWrapper wrapper =new BaseWrapper();
 
         if(formId==null){
@@ -212,10 +214,11 @@ public class FlowFormService {
             return wrapper;
         }
 
-        FlowFormType flowFormType =new FlowFormType();
+        FlowFormTypeExtends flowFormType =new FlowFormTypeExtends();
          flowFormType.setFormId(formId);
         flowFormType.setPrintModel(printModel);
         flowFormType.setPrintModelShort(printModel);
+        flowFormType.setItemMax(itemMax);
         int res =flowFormTypeMapper.updateSelectParam(flowFormType);
         if(res>0){
             wrapper.setFlag(true);
@@ -231,4 +234,63 @@ public class FlowFormService {
     }
 
 
+    public FlowFormWrappers getFormByAll() {
+        FlowFormWrappers wrappers =new FlowFormWrappers();
+        List<FlowFormType> redatas =  flowFormTypeMapper.selectAllForm();
+
+        List<FlowFormTypeParentModel> datas = formatForm(redatas);
+        if(datas!=null&&datas.size()>0){
+            wrappers.setDatas(datas);
+            wrappers.setStatus(true);
+            wrappers.setFlag(true);
+            wrappers.setMsg("数据请求成功");
+        }else{
+            wrappers.setStatus(true);
+            wrappers.setFlag(false);
+            wrappers.setMsg("没有数据了，请新建...");
+        }
+        return wrappers;
+    }
+
+    private List<FlowFormTypeParentModel> formatForm(List<FlowFormType> redatas) {
+        List<FlowFormTypeParentModel>  ret =new ArrayList<FlowFormTypeParentModel>();
+        Map<String,List<FlowFormType>> map= new TreeMap<String,List<FlowFormType>>(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        List<FlowFormType> flist =new ArrayList<FlowFormType>();
+        for(FlowFormType form:redatas){
+            Integer sortId = form.getFormSort();
+            if(sortId==null||sortId==0){
+                sortId=-1;
+            }
+            String keyId=String.valueOf(sortId);
+            flist =  map.get(keyId);
+            if(flist==null){
+                flist=new ArrayList<FlowFormType>();
+            }
+            flist.add(form);
+            map.put(keyId,flist);
+        }
+        for(Map.Entry<String,List<FlowFormType>> entry:map.entrySet()){
+            FlowFormTypeParentModel model =new FlowFormTypeParentModel();
+            if("-1".equals(entry.getKey())){
+                model.setSortName("未分类");
+                model.setForm( entry.getValue());
+                ret.add(model);
+            }else {
+                List<FlowFormType> child =    entry.getValue();
+                String name ="未知类型";
+                if(child!=null&&child.size()>0){
+                    name =  child.get(0).getSortName();
+                }
+                model.setSortName(name);
+                model.setForm( entry.getValue());
+                ret.add(model);
+            }
+        }
+        return  ret;
+    }
 }

@@ -21,6 +21,40 @@ public class SysCode {
      */
     private String codeName;
     /**
+     *代码名称1
+     */
+    private String codeName1;
+
+    public String getCodeName2() {
+        return codeName2;
+    }
+
+    public void setCodeName2(String codeName2) {
+        this.codeName2 = codeName2;
+    }
+
+    /**
+
+     *代码名称2
+     */
+    private String codeName2;
+    /**
+     *代码名称3
+     */
+    private String codeName3;
+    /**
+     *代码名称4
+     */
+    private String codeName4;
+    /**
+     *代码名称5
+     */
+    private String codeName5;
+    /**
+     *代码名称6
+     */
+    private String codeName6;
+    /**
      * 排序号
      */
     private String codeOrder;

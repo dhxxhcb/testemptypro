@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.xoa.service.file.FileSortResetAuth;
+import com.xoa.util.common.wrapper.BaseWrapper;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.file.FileSortMapper;
@@ -168,6 +170,46 @@ public class FileSortServiceImpl  implements FileSortService{
 	@Override
 	public int saveFileSortChr(FileSortModel file) {
 		return file_SortMapper.saveFileSortChr(file);
+	}
+
+	@Override
+	public BaseWrapper setFileSortAuth(Map<String, Object> mmp) {
+		BaseWrapper wrapper =new BaseWrapper();
+		wrapper.setStatus(true);
+		wrapper.setFlag(false);
+		wrapper.setMsg("操作失败");
+		if(mmp==null){
+
+			return wrapper;
+		}
+		Integer sortId=(Integer) mmp.get("sortId");
+        if(sortId==null){
+        	return wrapper;
+		}
+		FileSortResetAuth resetAuth =new FileSortResetAuth();
+	    Map<String,String> param=resetAuth.reset("userId", (Map<String, String>)mmp.get("userId"))
+				.reset("manageUser",(Map<String, String>)mmp.get("manageUser"))
+				.reset("delUser",(Map<String, String>)mmp.get("delUser"))
+				.reset("downUser",(Map<String, String>)mmp.get("downUser"))
+				.reset("shareUser",(Map<String, String>)mmp.get("shareUser"))
+				.reset("owner",(Map<String, String>)mmp.get("owner"))
+				.reset("signUser",(Map<String, String>)mmp.get("signUser"))
+				.reset("review",(Map<String, String>)mmp.get("review"))
+				.reset("description",(Map<String, String>)mmp.get("description"))
+				.reset("newUser",(Map<String, String>)mmp.get("newUser"))
+				.getParam();
+		param.put("sortId",sortId.toString());
+		int res =file_SortMapper.updateSortAuth(param);
+		if(res>0){
+			wrapper.setStatus(true);
+			wrapper.setFlag(true);
+			wrapper.setMsg("操作成功");
+		}else{
+			wrapper.setStatus(true);
+			wrapper.setFlag(false);
+			wrapper.setMsg("操作失败");
+		}
+		return wrapper;
 	}
 
 

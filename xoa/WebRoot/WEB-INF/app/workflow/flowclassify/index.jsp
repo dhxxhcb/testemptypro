@@ -68,6 +68,12 @@
 		.levelleft2{
 			margin-left:60%;
 		}
+        .levelleft3{
+            margin-left:70%;
+        }
+        .levelleft4{
+            margin-left:80%;
+        }
 		.change{
 			width:85px;
 			background-color: #2F8AE3;
@@ -166,6 +172,7 @@
 		.delete_flow,.edit_liucheng{
 			cursor: pointer;
 		}
+
 		/*<img src="img/workflow/one.png">*/
 		/*.img{
 			width:20px;
@@ -312,10 +319,10 @@
                 area: ['600px', '400px'], //宽高
                 title:$(this).find('h1').text(),
                 closeBtn: 0,
-                content: '<div class="conter"><div class="f_title"><span class="f_field_title">表单父分类</span><span class="f_field_required">*</span>'+
+                content: '<div class="conter"><div class="f_title"><span class="f_field_title" id="father_form"></span><span class="f_field_required">*</span>'+
                 '<div class="f_field_ctrl clear"><select name="SORT_PARENT" id="sort_parent"></select><span>（为空为一级分类）</span></div>'+
-                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类排序号</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="number" name="SORT_NO" class="inp" value="0" id="sort_no"></div></div>'+
-                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类名称</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp name_biaodan" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name"></div></div>'+
+                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title" id="sort_form"></span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="number" name="SORT_NO" class="inp" value="0" id="sort_no"></div></div>'+
+                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title" id="name_form"></span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp name_biaodan" name="SORT_NAME" size="30" maxlength="100" value="" id="sort_name"></div></div>'+
                 '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">所属部门</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id"><option>所有部门</option></select></div></div>'+
                 '</div></div>',
 
@@ -332,10 +339,12 @@
                     };
 
                     if($('.new_liucheng').find('h1').text()=='新建表单分类'){
+
                         url='formSave';
                         tabType=0;
                         data["formName"]= $('#sort_name').val();
                     }else{
+
                         tabType=1;
                         url='flowSave';
                         data["flowName"]= $('#sort_name').val();
@@ -356,7 +365,9 @@
                                 if(obj.flag==true){
                                     items();
                                     item();
-                                }
+                                }else{
+                                    alert(obj.msg);
+								}
                             }
                         });
                         layer.closeAll();
@@ -367,6 +378,17 @@
             var opt_li='<option value="0"  class="levelleft0"></option>';
             opt_li=Child(formdata,opt_li,0,-1);
             $('#sort_parent').html(opt_li);
+			//判断是表单还是流程，确定标题
+			if($('.new_liucheng').find('h1').text()=='新建表单分类'){
+                $('#father_form').html('表单父分类');
+                $('#sort_form').html('表单分类排序号');
+                              $('#name_form').html('表单分类名称');
+            }else{
+                $('#father_form').html('流程父分类');
+                $('#sort_form').html('流程分类排序号');
+                $('#name_form').html('流程分类名称');
+
+			}
 
             //部门共用
 
@@ -380,13 +402,6 @@
 
         //编辑的接口
         function edit(){
-			/*  var url="";
-			 var data={
-			 sortNo:$('#sort_no').val(),
-			 parentId:$('#sort_parent  option:checked').attr('value'),
-			 departmentId:$('#dept_id  option:checked').attr('value')
-
-			 };*/
 
             $.ajax({
                 url:url,
@@ -399,7 +414,10 @@
                         items();
                         item();
 						/*window.location.reload();*/
-                    }
+                    }else{
+                        alert(obj.msg)
+					}
+
                     console.log(obj)
                 }
             });
@@ -431,11 +449,11 @@
 				/* skin: 'layui-layer-rim', //加上边框 */
                 area: ['600px', '400px'], //宽高
                 title:$(this).attr('name'),
-                content:  '<div class="conter"><div class="f_title"><span class="f_field_title">表单父分类</span><span class="f_field_required">*</span>'+
+                content:  '<div class="conter"><div class="f_title"><span class="f_field_title" id="father_form"></span><span class="f_field_required">*</span>'+
                 '<div class="f_field_ctrl clear"><select name="SORT_PARENT" id="sort_parent"></select><span>（为空为一级分类）</span></div>'+
-                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类排序号</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" name="SORT_NO" class="inp" value="'+num+'" id="sort_no"></div></div>'+
-                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类名称</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp" name="SORT_NAME" size="30" maxlength="100" value="'+form_name+'" id="sort_name"></div></div>'+
-                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">所属部门</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id"></select></div></div>'+
+                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title" id="sort_form"></span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" name="SORT_NO" class="inp" value="'+num+'" id="sort_no"></div></div>'+
+                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title" id="name_form"></span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp" name="SORT_NAME" size="30" maxlength="100" value="'+form_name+'" id="sort_name"></div></div>'+
+                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title" >所属部门</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id"></select></div></div>'+
                 '</div></div>',
                 btn:['保存', '关闭'],
                 yes: function(index, layero){
@@ -452,15 +470,6 @@
                         formId:id
                     }
 
-                    //流程编辑
-					/*          tabType=1;
-					 url='flowUpdate';
-					 data={
-					 flowName:$('#sort_name').val(),
-					 flowId:id
-					 }*/
-
-
                     if($('.name_biaodan').val()==''){
                         alert('表单名称不能为空');
                     }else{
@@ -474,11 +483,24 @@
             });
 
 			/*$(".selector").find("option[value='+parent_id+']").attr("selected",true);*/
-            //父表单
+
 
             var opt_li='<option value="0"  class="levelleft0 selector"></option>';
             opt_li=Child(formdata,opt_li,0,parent_id);
             $('#sort_parent').html(opt_li);
+
+            //判断是表单还是流程，确定标题
+            if($('.sort_liucheng').find('h1').text()=='新建表单分类'){
+                $('#father_form').html('表单父分类');
+                $('#sort_form').html('表单分类排序号');
+                $('#name_form').html('表单分类名称');
+            }else{
+                $('#father_form').html('流程父分类');
+                $('#sort_form').html('流程分类排序号');
+                $('#name_form').html('流程分类名称');
+
+            }
+
 
             //部门
 
@@ -495,7 +517,7 @@
         //流程编辑
         $('#c_biaodan').on('click','.edit_liucheng',function() {
             var id = $(this).attr('tid');
-            alert(id);
+           /* alert(id);*/
             //获取序号
             var num = $(this).parent().siblings('.xuhao').find('a').text();
             //获取名称
@@ -514,32 +536,16 @@
 				/* skin: 'layui-layer-rim', //加上边框 */
                 area: ['600px', '400px'], //宽高
                 title: $(this).attr('name'),
-                content: '<div class="conter"><div class="f_title"><span class="f_field_title">表单父分类</span><span class="f_field_required">*</span>' +
+                content: '<div class="conter"><div class="f_title"><span class="f_field_title" id="father_form"></span><span class="f_field_required">*</span>' +
                 '<div class="f_field_ctrl clear"><select name="SORT_PARENT" id="sort_parent"></select><span>（为空为一级分类）</span></div>' +
-                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类排序号</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" name="SORT_NO" class="inp" value="' + num + '" id="sort_no"></div></div>' +
-                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">表单分类名称</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp" name="SORT_NAME" size="30" maxlength="100" value="' + form_name + '" id="sort_name"></div></div>' +
+                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title" id="sort_form"></span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" name="SORT_NO" class="inp" value="' + num + '" id="sort_no"></div></div>' +
+                '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title" id="name_form"></span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><input type="text" class="inp" name="SORT_NAME" size="30" maxlength="100" value="' + form_name + '" id="sort_name"></div></div>' +
                 '<div class="f_field_block"><div class="f_field_label"><span class="f_field_title">所属部门</span><span class="f_field_required">*</span></div><div class="f_field_ctrl clear"><select class="select_duplicate_sort" name="DEPT_ID" id="dept_id"></select></div></div>' +
                 '</div></div>',
                 btn: ['保存', '关闭'],
                 yes: function (index, layero) {
                     //按钮【按钮三】的回调
-					/*alert($('.name_biaodan').val());*/
-					/*      var url="";
-					 var data={
-					 sortNo:$('#sort_no').val(),
-					 parentId:$('#sort_parent  option:checked').attr('value'),
-					 departmentId:$('#dept_id  option:checked').attr('value')
 
-					 };*/
-					/*alert($('.edit_biaodan').attr('name'));*/
-					/*if($('.edit_biaodan').attr('name')=='编辑表单分类'){
-					 url='formUpdate';
-					 tabType=0;
-					 data={
-					 formName:$('#sort_name').val(),
-					 formId:id
-					 }
-					 }else{*/
                     tabType=1;
                     url='flowUpdate';
                     data={
@@ -562,9 +568,24 @@
                     }
                 }
             })
+
+            //父表单(流程)
             var opt_li='<option value="0"  class="levelleft0 selector"></option>';
             opt_li=Child(flowdata,opt_li,0,parent_id);
             $('#sort_parent').html(opt_li);
+           /* $('.f_field_title').html('流程父分类');*/
+
+            //判断是表单还是流程，确定标题
+            if($('.sort_liucheng').find('h1').text()=='新建表单分类'){
+                $('#father_form').html('表单父分类');
+                $('#sort_form').html('表单分类排序号');
+                $('#name_form').html('表单分类名称');
+            }else{
+                $('#father_form').html('流程父分类');
+                $('#sort_form').html('流程分类排序号');
+                $('#name_form').html('流程分类名称');
+
+            }
 
             //部门
 
@@ -584,6 +605,7 @@
                 type:'get',
                 dataType:'json',
                 success:function(obj){
+
                     var data=obj.obj;
                     departmentData= digui(data,0);
                 }
@@ -813,11 +835,6 @@
             }
 
             form_delete();
-
-			/*    url='flowDelete';
-			 data={
-			 flowId:tid
-			 }*/
 
 
         })

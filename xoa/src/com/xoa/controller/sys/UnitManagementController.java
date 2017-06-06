@@ -28,6 +28,12 @@ public class UnitManagementController {
 				"loginDateSouse"));
 		return "app/sys/companyInfo";
 	}
+	@RequestMapping("/unitInfor")
+	public String unitInfor(HttpServletRequest request) {
+		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+				"loginDateSouse"));
+		return "app/sys/unitInfor";
+	}
 	/**
 	 * 信息展示 返回
 	 * 
@@ -35,12 +41,13 @@ public class UnitManagementController {
 	 */
 	@RequestMapping(value = "/showUnitManage", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody ToJson<UnitManage>showUnitManage(HttpServletRequest request) {
-		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
-				"loginDateSouse"));
+		String sqlType = "xoa"
+				+ (String) request.getSession().getAttribute("loginDateSouse");
+		ContextHolder.setConsumerType(sqlType);
 		ToJson<UnitManage> json=new ToJson<UnitManage>(0, null);
 		
 		try{
-			UnitManage um = unitManageService.showUnitManage();
+			UnitManage um = unitManageService.showUnitManage(sqlType);
 			json.setObject(um);
 			json.setMsg("OK");
 			json.setFlag(0);
