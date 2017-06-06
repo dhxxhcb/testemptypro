@@ -80,6 +80,12 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 					flowRunPrcs.setFlowProcess(flowProcess);
 				}
 
+				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856) {
+					// 工作接收时间
+					flowRunPrcs.setPrcsTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
+					// 办理停留时间
+					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getPrcsTime())));
+				}
 				//计算时间转换
 				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) == -621701856 && flowRunPrcs.getPrcsId()>1 ||
 						DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856 && flowRunPrcs.getPrcsId()>1){
@@ -92,13 +98,13 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 						// 到达停留时间
 						flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate))) - DateFormat.getTime(flowRunPrcs.getReceiptTime())));
 					}
+				}else {
+					flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
+					flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate))) - DateFormat.getTime(flowRunPrcs.getPrcsTime())));
+					flowRunPrcs.setPrcsTime("");
+					flowRunPrcs.setHandleTime("");
 				}
-				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856) {
-					// 工作接收时间
-					flowRunPrcs.setPrcsTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
-					// 办理停留时间
-					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getPrcsTime())));
-				}
+
 				returnList.add(flowRunPrcs);
 			}
 			long end = System.currentTimeMillis();

@@ -189,7 +189,7 @@ public class FlowRunPrcs {
     }
 
     public String getDeliverTime() {
-        return deliverTime==null? DateFormat.getStrTime(-621701856):deliverTime.trim();
+        return deliverTime==null? "":deliverTime.trim();
     }
 
     /**
