@@ -53,7 +53,7 @@ $(function(){
             queryShow();
         }else if($('input[name="TYPE"]:checked').val()==2){//选中导出
             //journalExport();
-            window.location.href='http://localhost:8080/sys/exportLogXls?type='+type+'&uid='+id+'&startTime='+startTime+'&endTime='+endTime+'&ip='+ip+'&remark='+remark+'';
+            window.location.href='../sys/exportLogXls?type='+type+'&uid='+id+'&startTime='+startTime+'&endTime='+endTime+'&ip='+ip+'&remark='+remark+'';
         }else{                                          //选中删除
             journalDelete();
         }

@@ -72,7 +72,7 @@ $(function(){
         if(privNo==0){
             privNo='';
         }
-        window.location.href='http://localhost:8080/getUserbyCondition?userId='+userId+'&userName='+userName+'&sex='+sex+'&deptId='+deId+'&userPrivNo='+privNo+'&choice=2';
+        window.location.href='../getUserbyCondition?userId='+userId+'&userName='+userName+'&sex='+sex+'&deptId='+deId+'&userPrivNo='+privNo+'&choice=2';
     })
     //人员详情点击事件
     $('.tab').on('click','.userDetail',function(){
@@ -85,7 +85,7 @@ $(function(){
 function getChDept(element,deptId){
 
     $.ajax({
-        url:'/department/getChDept',
+        url:'../department/getChDept',
         type:'get',
         data:{'deptId':deptId },
         dataType:'json',
