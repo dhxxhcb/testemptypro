@@ -48,13 +48,13 @@
             </div>
         </div>
     </div>
-    <div class="footer">
+    <div class="footer" style="margin-bottom: 10px;">
         <div class="userData">
             <div style="margin-left: 2%;">资料</div>
             <div class="excelLeft">
                 <table class="table1" border="" cellspacing="1" cellpadding="1" style="border-collapse:collapse;background-color: #fff">
                     <tr>
-                        <td width="30%">姓名：</td>
+                        <td width="35%">姓名：</td>
                         <td class="userName"></td>
                     </tr>
                     <tr>
@@ -80,12 +80,12 @@
                 </table>
                 <table class="table2" border="" cellspacing="0" cellpadding="0" style="border-collapse:collapse;background-color: #fff">
                     <tr>
-                        <td width="30%">手机：</td>
-                        <td></td>
+                        <td width="35%">手机：</td>
+                        <td class="mobilNo "></td>
                     </tr>
                     <tr>
                         <td>电话：</td>
-                        <td></td>
+                        <td class="telNoDept"></td>
                     </tr>
                     <tr>
                         <td>传真：</td>
@@ -93,11 +93,11 @@
                     </tr>
                     <tr>
                         <td>Email：</td>
-                        <td></td>
+                        <td class="email"></td>
                     </tr>
                     <tr>
                         <td>QQ：</td>
-                        <td></td>
+                        <td class="oicqNo"></td>
                     </tr>
                     <tr>
                         <td>MSN：</td>
@@ -108,7 +108,7 @@
             <div class="excelright">
                 <table class="table2" border="" cellspacing="0" cellpadding="0" style="border-collapse:collapse;background-color: #fff">
                     <tr>
-                        <td width="30%">性别：</td>
+                        <td width="35%">性别：</td>
                         <td class="sex"></td>
                     </tr>
                     <tr>
@@ -130,7 +130,7 @@
                 </table>
                 <table class="table2" border="" cellspacing="0" cellpadding="0" style="border-collapse:collapse;background-color: #fff">
                     <tr>
-                        <td width="30%">岗位名称：</td>
+                        <td width="35%">岗位名称：</td>
                         <td></td>
                     </tr>
                     <tr>
@@ -159,7 +159,7 @@
         var uid=$.getQueryString('uid');
         $.ajax({
             type:'get',
-            url:'/user/findUserByuid',
+            url:'../user/findUserByuid',
             dataType:'json',
             data:{'uid':uid},
             success:function(res){
@@ -175,6 +175,10 @@
                 $('.userPrivName').text(data.userPrivName);
                 $('.sex').text(SEX);
                 $('.birthday').text(data.birthday);
+                $('.mobilNo').text(data.mobilNo);
+                $('.telNoDept').text(data.telNoDept);
+                $('.email').text(data.email)
+                $('.oicqNo').text(data.oicqNo);
             }
         })
     })

@@ -202,6 +202,52 @@ function renderDate(id) {
     };
 }
 
+function batchSettingData(){
+    var comdata={
+        user:$('#batchSenduser').attr('user_id'),
+        dept:$('#batchSendCompany').attr('deptid'),
+        role:$('#batchSendPriv').attr('userpriv'),
+        data:{
+            userStr:$('#batchSenduser').val(),
+            deptStr:$('#batchSendCompany').val(),
+            roleStr:$('#batchSendPriv').val(),
+        }
+    }
+    if($('input[name="userId"]').prop('checked')){
+        data["userId"]=comdata;
+        console.log('访问')
+    }
+    if($('input[name="newUser"]').prop('checked')){
+        data["newUser"]=comdata;
+        console.log('新建')
+    }
+    if($('input[name="manageUser"]').prop('checked')){
+        data["manageUser"]=comdata;
+        console.log('编辑')
+    }
+    if($('input[name="delUser"]').prop('checked')){
+        data["delUser"]=comdata;
+        console.log('删除')
+    }
+    if($('input[name="review"]').prop('checked')){
+        data["review"]=comdata;
+        console.log('评论')
+    }
+    if($('input[name="downUser"]').prop('checked')){
+        data["downUser"]=comdata;
+        console.log('下载')
+    }
+    if($('input[name="signUser"]').prop('checked')){
+        data["signUser"]=comdata;
+        console.log('签阅')
+    }
+    if($('input[name="owner"]').prop('checked')){
+        data["owner"]=comdata;
+        console.log('所有者')
+    }
+    console.log(data);
+}
+
     //批量设置点击事件
 	$('#batchSettings').click(function () {
 		$('.tabTypeTwo').show();
@@ -245,9 +291,7 @@ function renderDate(id) {
     var sortId=$.getQueryString('sortId');
 
 	$('#btnSure').click(function(){
-
         var span = $('.nav ul li span');
-        console.log(span);
         for(var i=0;i<span.length;i++){
         	console.log('for');
             if($(span[i]).attr('class')=='headli one'){
@@ -260,25 +304,35 @@ function renderDate(id) {
            auth:JSON.stringify(data)
        }
         saveJurisd(realData);
-        // if($('#visit').attr('class')=='headli one'){
-			// alert('1');
-        // }else if($('#add').attr('class')=='headli one'){
-			// alert('2');
-        // }else if($('#edit').attr('class')=='headli one'){
-        //     alert('3');
-        // }else if($('#delete').attr('class')=='headli one'){
-        //     alert('4');
-        // }else if($('#comment').attr('class')=='headli one'){
-        //     alert('5');
-        // }else if($('#download').attr('class')=='headli one'){
-        //     alert('6');
-        // }else if($('#sign').attr('class')=='headli one'){
-        //     alert('7');
-        // }else if($('#all').attr('class')=='headli one'){
-        //     alert('8');
-        // }
 	})
+    $('#btnBack').click(function(){
+        window.close();
+        $('#Senduser').val('');
+        $('#SendCompany').val('');
+        $('#SendPriv').val('');
+    })
 
+    //批量设置确定点击事件
+    $('#Btn_sure').click(function(){
+        batchSettingData();
+        data['sortId']=sortId*1;
+        var realData ={
+            auth:JSON.stringify(data)
+        }
+        saveJurisd(realData);
+        $('#batchSenduser').val('');
+        $('#batchSendCompany').val('');
+        $('#batchSendPriv').val('');
+        $('.settingOption td input').prop('checked',false);
+    })
+    //批量设置返回点击事件
+    $('#Btn_back').click(function(){
+        window.close();
+        $('#batchSenduser').val('');
+        $('#batchSendCompany').val('');
+        $('#batchSendPriv').val('');
+        $('.settingOption td input').prop('checked',false);
+    })
 
 })
 //保存接口

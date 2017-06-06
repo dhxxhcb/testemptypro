@@ -25,8 +25,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="css/cabinet.css">
 
 <script type="text/javascript" src="js/easyui/jquery.min.js"></script>
-<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="js/base/base.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+<script src="lib/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 <style>
 input {border: none;outline: none;display: inline-block;background: #fff;}
 input:hover {background: #eaf2ff;padding: 5px;}
@@ -51,6 +52,7 @@ input:hover {background: #eaf2ff;padding: 5px;}
 .boto a.FIVE{background: url("img/file/cabinet11.png") no-repeat;}
 .TITLE{margin-left: 10px;color: #2B7FE0;}
 .trBtn{background-color:#D3E7FA !important;}
+
 </style>
 <script type="text/javascript">
 $(function(){
@@ -144,10 +146,54 @@ $(function(){
         $.popWindow('<%=basePath%>file/contentAdd?contentId='+idT,'编辑','0','0','1500px','800px');
     })
 
+    //弹出一个页面层
+    $('.SEARCH').on('click', function(){
+        var sortId=$('.contentTr').attr('sortId');
 
+        layer.open({
+            type: 1,
+            title:'查询',
+            area: ['600px', '360px'],
+            shadeClose: true, //点击遮罩关闭
+            btn: ['查询', '关闭'],
+            content: '<table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff;width: 100%;">' +
+                '<tr><td>标题包含文字：</td><td><input type="text" style="width: 180px;" name="subjectName" class="inputTd" value="" /></td></tr>'+
+                '<tr><td>排序号：</td><td><input type="text" style="width: 180px;" name="contentNo" class="inputTd" value="" /></td></tr>'+
+                '<tr><td>创建人：</td><td><div class="inPole"><textarea name="txt" id="privDuser" user_id="id" value="admin" disabled style="min-width: 300px;min-height:50px;"></textarea><span class="add_img" style="margin-left: 10px"><a href="javascript:;" id="selectPriv" class="Add ">添加</a></span></div></td></tr>'+
+                '<tr><td>内容[关键词1]：</td><td><input type="text" style="width: 180px;" name="contentValue1" class="inputTd" value="" /></td></tr>'+
+                '<tr><td>内容[关键词2]：</td><td><input type="text" style="width: 180px;" name="contentValue2" class="inputTd" value="" /></td></tr>'+
+                '<tr><td>内容[关键词3]：</td><td><input type="text" style="width: 180px;" name="contentValue3" class="inputTd" value="" /></td></tr>'+
+                '<tr><td>附件说明包含文字：</td><td><input type="text" style="width: 180px;" name="atiachmentDesc" class="inputTd" value="" /></td></tr>'+
+                '<tr><td>附件文件名包含文字：</td><td><input type="text" style="width: 180px;" name="atiachmentName" class="inputTd" value="" /></td></tr>'+
+                '<tr><td>附件内容包含文字：</td><td><input type="text" style="width: 180px;" name="atiachmentCont" class="inputTd" value="" /><span>仅限txt和html文件</span></td></tr>'+
+                '<tr><td>日期：</td><td><input type="text" style="width: 180px;" name="crStartDate" class="inputTd" value="" />至<input type="text" style="width: 180px;" name="crEndDate" class="inputTd" value="" /></td></tr>'+
+            '</table>',
+            yes:function(){
+                var data={
+                    'sortId':sortId,
+                    'pageNo':1,
+                    'pageSize':10,
+                    'subjectName':$('input[name="subjectName"]').val(),
+                }
+                alert(data.subjectName);
+                /*$.ajax({
+                    type:'post',
+                    url:'../file/queryBySearchValue',
+                    dataType:'json',
+                    data:data,
+                    success:function(){
+
+                    }
+                })*/
+            }
+        });
+    });
 
 });
 	</script>
+    <style>
+
+    </style>
 </head>
 
 <body style="background-color: #EBEBEB">

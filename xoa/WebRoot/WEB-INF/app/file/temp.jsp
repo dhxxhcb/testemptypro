@@ -205,41 +205,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 							</td>
 						</tr>
-						<tr>
+						<tr class="settingOption">
 							<td width="20%" style="text-align: center;">
 								设置选项：
 							</td>
 							<td>
 								<div>
-									<input type="checkbox" name="check" value="" />
+									<input type="checkbox" name="userId" value="1" />
 									<span>访问权限</span>
 								</div>
 								<div>
-									<input type="checkbox" name="check" id="" value="" />
+									<input type="checkbox" name="newUser" value="2" />
 									<span>新建权限</span>
 								</div>
 								<div>
-									<input type="checkbox" name="check" id="" value="" />
+									<input type="checkbox" name="manageUser" value="3" />
 									<span>编辑权限</span>
 								</div>
 								<div>
-									<input type="checkbox" name="check" id="" value="" />
+									<input type="checkbox" name="delUser" value="4" />
 									<span>删除权限</span>
 								</div>
 								<div>
-									<input type="checkbox" name="check" id="" value="" />
+									<input type="checkbox" name="review" value="5" />
 									<span>评论权限</span>
 								</div>
 								<div>
-									<input type="checkbox" name="check" id="" value="" />
+									<input type="checkbox" name="downUser" value="6" />
 									<span>下载/打印权限</span>
 								</div>
 								<div>
-									<input type="checkbox" name="check" id="" value="" />
+									<input type="checkbox" name="signUser" value="7" />
 									<span>签阅权限</span>
 								</div>
 								<div>
-									<input type="checkbox" name="check" value="" />
+									<input type="checkbox" name="owner" value="8" />
 									<span>所有者</span>
 								</div>
 							</td>
