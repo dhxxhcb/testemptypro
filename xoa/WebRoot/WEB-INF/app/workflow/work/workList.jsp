@@ -362,7 +362,7 @@
 			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff5bc0de', GradientType=0);
 			filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 			height: 30px;
-			width: 70px;
+			width: 82px;
 		}
 		.head .one {
 			background-color: #2F8AE3;
@@ -374,7 +374,7 @@
 			color: green;
 		}
 		tr td{
-			font-size:10px;
+			font-size:13px;
 		}
 		.step{
 			margin-left: 15px;
@@ -430,7 +430,7 @@
 					<input type="hidden" name="THE_ID_STR" id="THE_ID_STR" value="">
 					<button type="submit" id="selected_export" class="btn btn-info">导出</button>
 				</form>
-				<button type="button" id="export" action="export" class="btn btn-info">导出工作列</button>
+				<button type="button" id="export" action="export" class="btn btn-info">导出工作列表</button>
 				<button type="button" action="refresh" class="btn btn-info">刷新</button>
 			</div>
 
@@ -442,6 +442,7 @@
 					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
+							<td style="text-align:center;width: 30px;"><input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>
 							<td class="th">
 								流水号
 							</td>
@@ -492,6 +493,15 @@
 					<div class="M-box3" id="bjgz_page"></div>
 				</div>
 			</div>
+			<div class="button-operation">
+				<button type="button" action="new_work" class="btn btn-success">新建工作</button>
+				<form name="selected_export_form" id="selected_export_form" style="display: none;" method="post" action="data/work_to_export.php?ispirit_export=1">
+					<input type="hidden" name="THE_ID_STR" id="THE_ID_STR" value="">
+					<button type="submit" id="selected_export" class="btn btn-info">导出</button>
+				</form>
+				<button type="button" id="export" action="export" class="btn btn-info">导出工作列表</button>
+				<button type="button" action="refresh" class="btn btn-info">刷新</button>
+			</div>
 			<!--navigation结束-->
 
 			<!--content部分开始-->
@@ -500,6 +510,7 @@
 					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
+							<td style="text-align:center;width: 30px;"><input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>
 							<td class="th">
 								流水号
 							</td>
@@ -554,6 +565,7 @@
 					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
+							<td style="text-align:center;width: 30px;"><input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>
 							<td class="th">
 								流水号
 							</td>
@@ -580,6 +592,7 @@
 						</thead>
 						<tbody id="j_tb" class="tr_td">
 						<tr>
+							<td style="text-align:center;width: 30px;"><input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>
 							<td class="th">
 								111
 							</td>
@@ -604,6 +617,7 @@
 							</td>
 						</tr>
 						<tr>
+							<td style="text-align:center;width: 30px;"><input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>
 							<td class="th">
 								22
 							</td>
@@ -658,6 +672,7 @@
 					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
+							<td style="text-align:center;width: 30px;"><input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>
 							<td class="th">
 								流水号
 							</td>
@@ -705,7 +720,15 @@
 					<div class="M-box3" id="wtgz_page"></div>
 				</div>
 			</div>
-
+			<div class="button-operation">
+				<button type="button" action="new_work" class="btn btn-success">新建工作</button>
+				<form name="selected_export_form" id="selected_export_form" style="display: none;" method="post" action="data/work_to_export.php?ispirit_export=1">
+					<input type="hidden" name="THE_ID_STR" id="THE_ID_STR" value="">
+					<button type="submit" id="selected_export" class="btn btn-info">导出</button>
+				</form>
+				<button type="button" id="export" action="export" class="btn btn-info">导出工作列表</button>
+				<button type="button" action="refresh" class="btn btn-info">刷新</button>
+			</div>
 			<!--navigation结束-->
 
 			<!--content部分开始-->
@@ -714,6 +737,7 @@
 					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
+							<td style="text-align:center;width: 30px;"><input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>
 							<td class="th">
 								流水号
 							</td>
@@ -815,6 +839,7 @@
 					<input type="hidden" name="THE_ID_STR" id="THE_ID_STR" value="">
 					<button type="submit" id="selected_export" class="btn btn-info">导出</button>
 				</form>
+				<button type="button" id="export" action="export" class="btn btn-info">导出工作列表</button>
 				<button type="button" action="refresh" class="btn btn-info">刷新</button>
 			</div>
 			<!--navigation结束-->
@@ -825,6 +850,7 @@
 					<table id="tr_td"  style="margin-top:10px">
 						<thead>
 						<tr>
+							<td style="text-align:center;width: 30px;"><input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>
 							<td class="th">
 								流水号
 							</td>
@@ -896,8 +922,8 @@
                 case "6":
                     str='已挂起';
                     break;
-                default:
-                    str='办理中';
+                //default:
+                //str='办理中';
             }
             return str;
         }
@@ -998,7 +1024,9 @@
                     for(var i=0;i<length;i++){
                         var status=handleData(data.obj[i].delFlag);
                         var flowType=getFlowType(data.obj[i].flowType.flowType);
-                        var str= str+'<tr><td class="">'+data.obj[i].runId+'</td>'+
+                        var str= str+'<tr><td style="text-align:center;width: 30px;">'+
+                            '<input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>'+
+                            '<td class="">'+data.obj[i].runId+'</td>'+
                             '<td class="">'+flowType+'</td>'+
                             '<td class="">'+data.obj[i].flowRun.runName+'</td>'+
                             '<td class="">'+data.obj[i].userName+'</td>'+
@@ -1057,7 +1085,9 @@
                     for(var i=0;i<length;i++){
                         var status=handleData(data.obj[i].prcsFlag);
                         var workLeverl=getWorkLevle(data.obj[i].flowRun.workLevel);
-                        var str= str+'<tr><td class="">'+data.obj[i].runId+'</td>'+
+                        var str= str+'<tr><td style="text-align:center;width: 30px;">'+
+                            '<input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>'+
+                            '<td class="">'+data.obj[i].runId+'</td>'+
                             '<td class="">'+
                             '<span class="font-green">'+
                             '【'+workLeverl+'】</span>'+data.obj[i].flowRun.runName+'</td>'+
@@ -1065,8 +1095,8 @@
                             '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
                             '<td class="">'+data.obj[i].userName+'</td>'+
                             '<td class="">'+status+'</td>'+
-                            '<td class="">到达:'+data.obj[i].prcsTime+'<br>接收:'+data.obj[i].receiptTime+'</td>'+
-                            '<td class="">到达:'+data.obj[i].handleTime+'<br>办理:'+data.obj[i].arriveTime+'</td>'+
+                            '<td class="">到达:'+data.obj[i].receiptTime+'<br>接收:'+data.obj[i].prcsTime+'</td>'+
+                            '<td class="">到达:'+data.obj[i].arriveTime+'<br>办理:'+data.obj[i].handleTime+'</td>'+
                             '<td style="text-align:left;">'+
                             '<a href="javascript:"><span class="host-span" id="zhuban" title="主办" runId='+data.obj[i].runId+' flowId='+data.obj[i].flowType.flowId+' prcsId='+data.obj[i].flowProcess.prcsId+'>主办</span></a>'+
                             '<a href=""><span class="operation_text_left" title="导出">导出</span></a>'+
@@ -1124,7 +1154,9 @@
                     var str='';
                     for(var i=0;i<length;i++){
                         var status=handleData(data.obj[i].prcsFlag);
-                        var str= str+'<tr><td class="">'+data.obj[i].runId+'</td>'+
+                        var str= str+'<tr><td style="text-align:center;width: 30px;">'+
+                            '<input type="checkbox" id="jqg_gridTable_1871" class="cbox" ></td>'+
+                            '<td class="">'+data.obj[i].runId+'</td>'+
                             '<td class="">'+data.obj[i].flowRun.runName+'</td>'+
                             '<td class="">'+
                             '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
