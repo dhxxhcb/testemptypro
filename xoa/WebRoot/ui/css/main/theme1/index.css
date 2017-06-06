@@ -189,14 +189,22 @@ body,
 }
 
 .tixing_tab_t ul{
-    width:74.8%;
+    width:209px;
     height: 26px;
     border: 1px solid #00b7ee;
     border-radius: 3px;
     margin-top: 10px;
     margin-left:29px;
 }
-
+.tixing_tab_t,.tixing_img{
+    float:left;
+}
+.yonghu_img{
+    margin-left: 261px;
+}
+.per_back{
+    background:url(../../../img/main_img/per_back.png) 0px 0px no-repeat;
+}
 .tixing_tab_t ul li{
     width: 69px;
     height: 26px;

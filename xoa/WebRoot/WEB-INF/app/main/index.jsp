@@ -89,8 +89,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<ul class="side_all">
 					<li class="position" id="admin-side0">
 						<div class="skin">
-							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
-							<h2 style="width: 93%;height:100%;line-height: 45px;text-align: center;font-size: 10pt;font-weight: bold;">搜索</h2>
+
+							<h2 style="width: 90%;height:100%;line-height: 45px;text-align: center;font-size: 10pt;font-weight: bold;">搜索</h2>
+							<img id="go_back" src="img/main_img/close.png" alt="" style="margin-top: 16px;">
 						</div>
 						<div style="margin-top: 20px">
 							<input type="text" class="huiqian_inp">
@@ -100,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</li>
 					<li class="position" id="admin-side1">
 						<div class="skin">
-							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
+
 							<div class="tixing_tab_t">
 								<ul class="tixing_title">
 									<li class="tixing_check">待办</li>
@@ -108,6 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<li>公告</li>
 								</ul>
 							</div>
+							<img id="go_back" class="tixing_img" src="img/main_img/close.png" alt="" style="margin-left: 24px;margin-top: 16px;">
 						</div>
 						<div style="margin-top:5px"  id="tixing_tab_c">
 							<ul class="tixing_one">
@@ -198,20 +200,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</li>
 					<li class="position" id="admin-side2">
 						<div class="skin">
-							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
-							<h2 style="width:93%;height:100%;line-height: 45px;text-align: center;font-size: 10pt;font-weight: bold;">换肤</h2>
+							<h2 style="width:88%;height:100%;line-height: 45px;text-align: center;font-size: 10pt;font-weight: bold;">换肤</h2>
+							<img id="go_back" src="img/main_img/close.png" alt="" style="margin-top: 16px;">
 						</div>
 						<img src="img/main_img/skin.png" alt="" style="margin-top: 20px;margin-left: 17px;">
 					</li>
 					<li class="position" id="admin-side3" style="background: cyan;">
-						<div class="skin">
-							<img src="img/main_img/close.png" alt="" style="margin-left: 0px;margin-top: 16px;">
-							<ul class="per_title">
-								<div><h1>注销</h1></div>
-								<%--<img src="img/main_img/per_zhuxiao" alt="">--%>
-								<div><h1>设置</h1></div>
-							</ul>
-						</div>
+
+							<img id="go_back" class="yonghu_img" src="img/main_img/close.png" alt="" style="margin-top: 16px;">
+							<div class="per_back">
+								<div class="per_all">
+									<div style="width: 40px;height:40px;background: pink;"><img src="" alt=""></div>
+									<h1>陈家旭</h1>
+									<h2>视觉设计师</h2>
+									<h3>产品研发部</h3>
+								</div>
+							</div>
+							<button class="per_shezhi"><img src="img/main_img/per_shezhi.png" alt="">设置</button>
+							<button class="per_suoding"><img src="img/main_img/per_suoding.png" alt="">锁定</button>
+							<button class="per_zhuxiao"><img src="img/main_img/per_zhuxiao.png" alt="">注销</button>
 					</li>
 				</ul>
 				<div class="cont_left">

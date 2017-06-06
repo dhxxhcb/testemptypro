@@ -446,29 +446,13 @@
                 <div class="color" style="width:105px;"><fmt:message code="news.title.new"/> ：</div>
                 <div>
                     <!-- <select name="TYPE"  class="button1 input_text5" id="select_query"> -->
-                    <select name="TYPE"  class="button1 input_text5" id="select">
-
-                        <option value="0" selected="">
-                            <fmt:message code="news.th.type"/>
-                        </option>
-                        <option value="01">
-                            <fmt:message code="news.th.company"/>
-                        </option>
-                        <option value="02">
-                            <fmt:message code="news.th.media"/>
-                        </option>
-                        <option value="03">
-                            <fmt:message code="news.th.industry"/>
-                        </option>
-                        <option value="04">
-                            <fmt:message code="news.th.partner"/>
-                        </option>
-                        <option value="05">
-                            <fmt:message code="news.th.client"/>
-                        </option>
-                        <option value="">
-                            <fmt:message code="news.th.none"/>
-                        </option>
+                    <select name="TYPE" class="button1 input_text5" id="select">
+                        <option value="0" selected=""> 所有类型</option>
+                        <option tid="01">决定</option>
+                        <option tid="02"> 通知</option>
+                        <option tid="03">通报</option>
+                        <option tid="04"> 其它</option>
+                        <option tid=""> 无类型</option>
                     </select>
                 </div>
 
@@ -607,9 +591,7 @@
                 /* if(data.top==1){
                  $('#textTop').prop('checked',true);//是否置顶
                  };*/
-
                 ue.setContent('');//内容
-
                 $("#add_sel").find("option[value=普通格式]").attr("selected",true);//格式
                 $('#add_summny').val('');//内容
                 $('.keyword_ip').val('');//关键词
@@ -679,12 +661,18 @@
         }
         /*公告详情页 */
         $("#j_tb").on('click','.title',function(){
-
             var nid=$(this).attr('notifyId');
-
             $.popWindow('detail?notifyId='+nid);
         });
         /* 公告查询按钮 */
+      /*  $('#btn_query').click(function (){
+            data.read = $('.index_head .one').parent().attr('data_id');
+            data.typeId = $('#select option:checked').attr("tid");
+            data.nTime = $('#sendTime').val();
+            //console.log(read,typeId,nTime);
+            initPageList();
+        });*/
+        //公告查询页面
         $('.submit').click(function (){
             data.read = $('.index_head .one').parent().attr('data_id');
             data.typeId = $('#select option:checked').attr("tid");
@@ -692,6 +680,7 @@
             //console.log(read,typeId,nTime);
             initPageList();
         });
+
         //时间控件调用
 
         $('#btn_query').click(function (){
