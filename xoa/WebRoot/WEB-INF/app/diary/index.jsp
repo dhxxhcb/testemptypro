@@ -172,14 +172,14 @@
 </div>
 <%--内容部分右侧--%>
 <div class="content_right clearfix">
-    <div class="button_news">
+    <div class="button_news clearfix">
         <button class="btn active" type="button">看所有人的</button>
         <button class="btn" type="button">看自己的</button>
         <button class="btn" type="button">看其他人的</button>
     </div>
 
     <div class="details clearfix">
-
+        你好
 
     </div>
 
