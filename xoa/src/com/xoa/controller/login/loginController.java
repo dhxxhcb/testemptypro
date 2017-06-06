@@ -192,11 +192,11 @@ public class loginController {
 		return json;
 
 	}
-	@RequestMapping(value = "/logOut", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/logOut", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
    public ModelAndView logOut(HttpServletRequest request){
 	   request.getSession().invalidate();
 	   request.getSession().removeAttribute("user");
-		return new ModelAndView("redirect:login/index");
+		return new ModelAndView("redirect:index");
 
 	   
    }
