@@ -49,7 +49,7 @@ public class FlowSettingService {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/20 15:47
      * description:   获取所选流程的权限设置（根据流程id）
      * @param flowId  流程Id
@@ -76,7 +76,7 @@ public class FlowSettingService {
     }
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/20 17:47
      * description:   新建权限管理（
      * @param privType 授权类型(1-管理,2-监控,3-查询,4-编辑,5-点评)
@@ -169,7 +169,7 @@ public class FlowSettingService {
     }
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/22 18:58
      * description:   编辑权限管理（
      * @param privType 授权类型(1-管理,2-监控,3-查询,4-编辑,5-点评)
@@ -276,7 +276,7 @@ public class FlowSettingService {
     }
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/22 17:28
      * description:   删除权限
      * @param privId  权限Id
@@ -305,7 +305,7 @@ public class FlowSettingService {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/22 17:27
      * description:   获取所选流程的定时任务（根据流程id）
      * @param flowId  流程Id
@@ -333,7 +333,7 @@ public class FlowSettingService {
     }
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/23 17:27
      * description:   添加定时任务（根据流程id）
      * @param flowId 流程类型
@@ -560,7 +560,7 @@ public class FlowSettingService {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/24 16:27
      * description:   配置查询模板接口查询（根据流程id）
      * @param flowId  流程Id
@@ -589,7 +589,7 @@ public class FlowSettingService {
     }
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/24 19:27
      * description:   配置查询模板接口 添加（根据流程id）
      * @param request  从session 中获取 用户ID
@@ -654,7 +654,7 @@ public class FlowSettingService {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/24 19:27
      * description:   配置查询模板接口 更新（根据流程id）
      * @param tplId
@@ -721,7 +721,7 @@ public class FlowSettingService {
     }
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/24 20:27
      * description:   根据Id获取对应的模板信息
      * @param tplId
@@ -769,7 +769,7 @@ public class FlowSettingService {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/24 19:27
      * description:   应用板式文件查询（根据流程id）
      * @param flowId
@@ -794,7 +794,7 @@ public class FlowSettingService {
     }
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/25 19:27
      * description:   应用板式文件添加（根据流程id）
      * @param flowId
@@ -847,7 +847,7 @@ public class FlowSettingService {
     }
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/25 19:12
      * description:   应用板式文件更新（根据流程id）
      * @param tId

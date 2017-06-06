@@ -54,7 +54,7 @@ public class FlowFormTypeController {
 
 	/**
 	 *
-	 * @Createby pfl
+	 * @Createby 韩东堂
 	 * @description 根据分类获取此分类下的所有表单
 	 * @param sortId 所属分类Id
 	 * @return
@@ -87,7 +87,7 @@ public class FlowFormTypeController {
 
 
 	/**
-	 * Created by:   pfl
+	 * Created by:   韩东堂
 	 * date:   2017/5/16 10:47
 	 * description:   新建表单（根据表单名称）
 	 * @param formName 表单名称
@@ -102,7 +102,7 @@ public class FlowFormTypeController {
 		return flowFormService.newForm(formName,deptId,formSort,otherinfo);
 	}
 	/**
-	 * Created by:   pfl
+	 * Created by:   韩东堂
 	 * date:   2017/5/16 15:47
 	 * description:   更新表单（根据表单id）
 	 * @param formId  表单Id
@@ -125,7 +125,7 @@ public class FlowFormTypeController {
 	}
 
 	/**
-	 * Created by:   pfl
+	 * Created by:   韩东堂
 	 * date:   2017/5/17 15:58
 	 * description:   更新表单（根据表单id）
 	 * @param formId  表单Id

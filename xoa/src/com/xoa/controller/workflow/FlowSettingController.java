@@ -21,7 +21,7 @@ public class FlowSettingController {
     FlowSettingService privService;
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/20 15:47
      * description:   获取所选流程的权限设置（根据流程id）
      * @param flowId  流程Id
@@ -35,7 +35,7 @@ public class FlowSettingController {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/22 14:47
      * description:   新建权限管理（
      * @param privType 授权类型(1-管理,2-监控,3-查询,4-编辑,5-点评)
@@ -55,7 +55,7 @@ public class FlowSettingController {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/22 19:10
      * description:   编辑权限管理（
      * @param privType 授权类型(1-管理,2-监控,3-查询,4-编辑,5-点评)
@@ -74,7 +74,7 @@ public class FlowSettingController {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/22 17:28
      * description:   删除权限
      * @param privId  权限Id
@@ -88,7 +88,7 @@ public class FlowSettingController {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/22 17:44
      * description:   获取所选流程的定时任务（根据流程id）
      * @param flowId  流程Id
@@ -123,7 +123,7 @@ public class FlowSettingController {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/24 19:27
      * description:   配置查询模板接口 添加（根据流程id）
      * @param request  从session 中获取 用户ID
@@ -146,7 +146,7 @@ public class FlowSettingController {
 
 
     /**
-     * Created by:   pfl
+     * Created by:   韩东堂
      * date:   2017/5/24 19:27
      * description:   配置查询模板接口 更新
      * @param tplId 要修改的模板Id
