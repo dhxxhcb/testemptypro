@@ -75,5 +75,5 @@ public interface FlowRunPrcsMapper extends BaseMapper<FlowRunPrcs>{
 
     int updateByPrimaryKey(FlowRunPrcs record);
 
-    int updateSql(Map<String,Object> map);
+    int updateSome(Map<String,Object> map);
 }

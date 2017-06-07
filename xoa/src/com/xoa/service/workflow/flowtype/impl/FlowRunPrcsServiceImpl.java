@@ -306,7 +306,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 	@Transactional
     @Override
 	public int updateSql(Map<String,Object> map){
-		int a=flowRunPrcsMapper.updateSql(map);
+		int a=flowRunPrcsMapper.updateSome(map);
 		return a;
 	}
 
