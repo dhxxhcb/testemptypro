@@ -140,7 +140,7 @@ public class WorkController {
             int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
             //FlowProcess flowProcess= flowProcessService.findbyprcsId(flowId, prcsId);
             String flowName = flowTypeModel.getFlowName();
-            
+
             String beginTime = df.format(new Date());
             String runName = flowName + " " + beginTime;
 
@@ -169,12 +169,12 @@ public class WorkController {
             flowRunPrcs.setActiveTime("0000-00-00 00:00:00");
             flowRunPrcsService.save(flowRunPrcs);
 
-           
+
             f.setFlowRun(flowRun);
             f.setFlowRunPrcs(flowRunPrcs);
-           
+
         }else{
-        	FlowRun flowRun = flowRunService.find(Integer.parseInt(id));
+            FlowRun flowRun = flowRunService.find(Integer.parseInt(id));
             Map<String, Object> m = new HashMap<String, Object>();
             m.put("prcsId", prcsId);
             m.put("runId", id);
@@ -188,10 +188,10 @@ public class WorkController {
             flowRunPrcs.setPrcsFlag("4");
             flowRunPrcs.setPrcsTime(df.format(new Date()));
 
-         
+
             f.setFlowRun(flowRun);
             f.setFlowRunPrcs(flowRunPrcs);
-            
+
         }
         try {
             tj.setObject(f);
@@ -220,7 +220,7 @@ public class WorkController {
      * 参数说明:   @param beginUser  flowRun流程发起人Id
      * 参数说明:   @return
      * 参数说明:   @throws JSONException
-     * @return     String 
+     * @return     String
      */
     @RequestMapping("nextwork")
     @ResponseBody
@@ -254,62 +254,62 @@ public class WorkController {
             workMapper.createTable(param);
         }
         if (CheckTableExist.haveTable(tableName)){
-        	  Map<String, Object> param1 = new HashedMap();
-              param1.put("tableName", tableName);
-              param1.put("runId",String.valueOf(runId));
-        	String flowAutoNum=workMapper.findAutoNum(param1);
-        	if(Integer.parseInt(flowAutoNum)<Integer.parseInt(formlength)){
-        		List<String> key = new ArrayList<String>();
-        		int add=Integer.parseInt(formlength)-Integer.parseInt(flowAutoNum);
-        		for(int i=1;i<=add;i++){
-        			key.add("DATA_"+(Integer.parseInt(flowAutoNum)+i));
-        		}
-        		 Map<String, Object> param = new HashedMap();
-                 param.put("tableName", tableName);
-                 param.put("keys", key);
-                 //param.put("runId",String.valueOf(runId));
-                 //param.put("values", value);
-                 workMapper.addcolumn(param);
-        		}
-        		 Map<String,Object> maps=new HashMap<String,Object>();
-                 maps.put("tableName","flow_data_"+flowId);
-                 maps.put("runId",runId);
-                 Map<String, Object> m = workMapper.select(maps);
-                 List<String> key = new ArrayList<String>();
-                 List<String> value = new ArrayList<String>();
-                 if(m==null) {
-                     key.add("run_id");
-                     value.add(String.valueOf(runId));
-                     key.add("run_name");
-                     value.add(runName);
-                     key.add("begin_time");
-                     value.add(beginTime);
-                     key.add("begin_user");
-                     value.add(beginUser);
-                     key.add("flow_auto_num");
-                     value.add(formlength);
-                     for (Map<String, Object> map : l) {
-                         key.add((String) map.get("key"));
-                         value.add((String) map.get("value"));
-                     }
-                     Map<String, Object> param = new HashedMap();
-                     param.put("tableName", tableName);
-                     param.put("keys", key);
-                     param.put("values", value);
-                     workMapper.insert(param);
-                 }else{
-                     for (Map<String, Object> map : l) {
-                         if(!StringUtils.checkNull((String)map.get("value"))){
-                             key.add((String) map.get("key")+"="+"'"+(String) map.get("value")+"'");
-                         }
-                     }
-                     Map<String, Object> param = new HashedMap();
-                     param.put("tableName", tableName);
-                     param.put("keys", key);
-                     param.put("runId",String.valueOf(runId));
-                     //param.put("values", value);
-                     workMapper.update(param);
-                 }
+            Map<String, Object> param1 = new HashedMap();
+            param1.put("tableName", tableName);
+            param1.put("runId",String.valueOf(runId));
+            String flowAutoNum=workMapper.findAutoNum(param1);
+            if(Integer.parseInt(flowAutoNum)<Integer.parseInt(formlength)){
+                List<String> key = new ArrayList<String>();
+                int add=Integer.parseInt(formlength)-Integer.parseInt(flowAutoNum);
+                for(int i=1;i<=add;i++){
+                    key.add("DATA_"+(Integer.parseInt(flowAutoNum)+i));
+                }
+                Map<String, Object> param = new HashedMap();
+                param.put("tableName", tableName);
+                param.put("keys", key);
+                //param.put("runId",String.valueOf(runId));
+                //param.put("values", value);
+                workMapper.addcolumn(param);
+            }
+            Map<String,Object> maps=new HashMap<String,Object>();
+            maps.put("tableName","flow_data_"+flowId);
+            maps.put("runId",runId);
+            Map<String, Object> m = workMapper.select(maps);
+            List<String> key = new ArrayList<String>();
+            List<String> value = new ArrayList<String>();
+            if(m==null) {
+                key.add("run_id");
+                value.add(String.valueOf(runId));
+                key.add("run_name");
+                value.add(runName);
+                key.add("begin_time");
+                value.add(beginTime);
+                key.add("begin_user");
+                value.add(beginUser);
+                key.add("flow_auto_num");
+                value.add(formlength);
+                for (Map<String, Object> map : l) {
+                    key.add((String) map.get("key"));
+                    value.add((String) map.get("value"));
+                }
+                Map<String, Object> param = new HashedMap();
+                param.put("tableName", tableName);
+                param.put("keys", key);
+                param.put("values", value);
+                workMapper.insert(param);
+            }else{
+                for (Map<String, Object> map : l) {
+                    if(!StringUtils.checkNull((String)map.get("value"))){
+                        key.add((String) map.get("key")+"="+"'"+(String) map.get("value")+"'");
+                    }
+                }
+                Map<String, Object> param = new HashedMap();
+                param.put("tableName", tableName);
+                param.put("keys", key);
+                param.put("runId",String.valueOf(runId));
+                //param.put("values", value);
+                workMapper.update(param);
+            }
         }
         try {
             f.setFlowRunPrcs(flowRunPrcs);
@@ -355,10 +355,10 @@ public class WorkController {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         //Map<String,Object> maps=new HashMap<String,Object>();
-       // maps.put("userId",beginUser);
+        // maps.put("userId",beginUser);
         //int flowRunPrcsId=Integer.parseInt(prcsId)-1;
-       // maps.put("prcsId",Integer.parseInt(prcsId)-1);
-       // maps.put("runId",runId);
+        // maps.put("prcsId",Integer.parseInt(prcsId)-1);
+        // maps.put("runId",runId);
         ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
         //List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(maps);
         FlowRunPrcsExcted flowRunPrcs = new FlowRunPrcsExcted();
@@ -425,9 +425,9 @@ public class WorkController {
     @RequestMapping("selectFlowData")
     @ResponseBody
     public Map<String,Object> fastAdd(HttpServletRequest request,
-                                    @RequestParam(value="runId",required = false) String runId,
-                                    @RequestParam(value="flowId",required = false) String flowId
-                                     ){
+                                      @RequestParam(value="runId",required = false) String runId,
+                                      @RequestParam(value="flowId",required = false) String flowId
+    ){
         Map<String,Object> maps=new HashMap<String,Object>();
         maps.put("tableName","flow_data_"+flowId);
         maps.put("runId",runId);
@@ -517,9 +517,9 @@ public class WorkController {
     @RequestMapping(value = "selectHang", produces = {"application/json;charset=UTF-8"})
     public @ResponseBody
     ToJson<FlowRunPrcs> selectEndHang(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
-      @RequestParam(value = "page", required = false) Integer page,
-      @RequestParam(value = "pageSize", required = false) Integer pageSize,
-      @RequestParam(value = "useFlag", required = false) boolean useFlag) {
+                                      @RequestParam(value = "page", required = false) Integer page,
+                                      @RequestParam(value = "pageSize", required = false) Integer pageSize,
+                                      @RequestParam(value = "useFlag", required = false) boolean useFlag) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         Map<String, Object> maps = new HashMap<String, Object>();
