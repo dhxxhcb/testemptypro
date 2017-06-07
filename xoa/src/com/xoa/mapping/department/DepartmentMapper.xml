@@ -36,7 +36,7 @@
 		SELECT * from department where DEPT_ID=#{deptParent}
 	</select>
 	
-	<select id="getChDeptUser" 
+	<select id="getChDeptUser"
 	resultType="com.xoa.model.department.Department">
 		SELECT "people" as type, u.AVATAR as avatar,u.USER_NAME as userName, u.USER_ID as userId,
 		u.UID as uid,u.USER_PRIV_NAME as userPrivName,u.SEX as sex from department d,user u

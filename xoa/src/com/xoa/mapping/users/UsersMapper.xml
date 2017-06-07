@@ -152,7 +152,7 @@
 		select u.* ,d.*,d.DEPT_NAME as deptName
 		 from user u , department d where u.DEPT_ID= #{deptId} and u.DEPT_ID=d.DEPT_ID
 	</select>
-    <select id="findUserByuid" parameterType="Map"
+   <select id="findUserByuid" parameterType="Map"
             resultType="com.xoa.model.users.Users">
 		select u.UID,u.USER_ID as userId,u.USER_NAME as
 		userName,u.BYNAME,u.USER_PRIV,u.USER_PRIV_NAME as userPrivName,u.BIRTHDAY as birthday,
