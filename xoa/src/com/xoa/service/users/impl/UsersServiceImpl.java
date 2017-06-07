@@ -9,6 +9,7 @@ import com.xoa.service.users.UsersService;
 import com.xoa.util.CusAccessObjectUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
+import com.xoa.util.encrypt.EncryptSalt;
 import com.xoa.util.page.PageParams;
 import org.apache.commons.codec.digest.Md5Crypt;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class UsersServiceImpl implements UsersService {
     @Resource
     private SyslogMapper syslogMapper;
     @Resource
-    private UsersPrivService  usersPrivService;
+    private UsersPrivService usersPrivService;
 
     /**
      * 创建作者:   张龙飞
@@ -368,16 +369,16 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public List<Users> getUserbyCondition(Map<String, Object> maps) {
-        List<Users>  usersList=usersMapper.getUserbyCondition(maps);
-        StringBuffer s2=new StringBuffer();
-        for (Users  users:usersList){
+        List<Users> usersList = usersMapper.getUserbyCondition(maps);
+        StringBuffer s2 = new StringBuffer();
+        for (Users users : usersList) {
             users.setDepartmentPhone(users.getDep().getTelNo());
-            if (users.getUserPrivOther()!=null&&!users.getUserPrivOther().equals("")){
-                String userOther=users.getUserPrivOther();
-                String[] strArray2 =userOther.split(",");
+            if (users.getUserPrivOther() != null && !users.getUserPrivOther().equals("")) {
+                String userOther = users.getUserPrivOther();
+                String[] strArray2 = userOther.split(",");
                 for (int i = 0; i < strArray2.length; i++) {
-                    String name3=usersPrivService.getPrivNameById(Integer.parseInt(strArray2[i]));
-                    if (name3!=null) {
+                    String name3 = usersPrivService.getPrivNameById(Integer.parseInt(strArray2[i]));
+                    if (name3 != null) {
                         s2.append(name3);
                         s2.append(",");
                         users.setRoleAuxiliaryName(s2.toString());
@@ -387,7 +388,7 @@ public class UsersServiceImpl implements UsersService {
             }
 
         }
-        return  usersList;
+        return usersList;
     }
 
     @Override
@@ -416,10 +417,12 @@ public class UsersServiceImpl implements UsersService {
         }
         return tojson;
     }
+
     /**
      * @创建作者: 韩成冰
      * @创建日期: 2017/6/6 21:15
-     * @函数介绍: 验证密码是否正确
+     * @函数介绍: 验证密码是否正确, 为了保证兼容php的加密，发现php项目的MD5加密,加的盐是密文。
+     * 比如，密码123，在数据库里的加密是XX,那么加的盐就是XX
      * @参数说明: @param userName 用户名
      * @参数说明: @param password 密码
      * @return: Boolean 密码是否正确
@@ -444,6 +447,23 @@ public class UsersServiceImpl implements UsersService {
             }
         }
         return false;
+    }
+
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/7 10:47
+     * @函数介绍: 加密一个字符串，MD5加密，EncryptSalt类产生一个字符串作为加盐加密。
+     * @参数说明: @param String 要加密的字符串
+     * @return: String 加密过后的字符串
+     */
+    @Override
+    public String getEncryptString(String password) {
+
+        String md5WithSalt = null;
+        if (password != null) {
+            md5WithSalt = Md5Crypt.md5Crypt(password.trim().getBytes(), "$1$".concat(EncryptSalt.getRandomSalt(12)));
+        }
+        return md5WithSalt;
     }
 
 }

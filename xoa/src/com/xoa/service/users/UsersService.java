@@ -201,6 +201,15 @@ public interface UsersService {
      *@return:   Boolean 密码是否正确
      **/
     Boolean checkPassWord(String userName, String password);
+
+    /**
+    *@创建作者:  韩成冰
+    *@创建日期:  2017/6/7 10:47
+    *@函数介绍:  加密一个字符串，MD5加密，EncryptSalt类产生一个字符串作为加盐加密。
+    *@参数说明:  @param String 要加密的字符串
+    *@return:   String 加密过后的字符串
+    **/
+    String getEncryptString(String pwssword);
 }
 
 
