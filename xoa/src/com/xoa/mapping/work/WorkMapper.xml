@@ -65,18 +65,32 @@
     <update id="update">
         UPDATE  ${tableName}
         <set>
-
                 <if test="keys!=null and keys.size()!=0">
                     <foreach item="key" collection="keys" separator=",">
                         ${key}
                     </foreach>
                 </if>
-
         </set>
         WHERE run_Id=${runId}
     </update>
 
-    <select id="select"  resultType="java.util.HashMap">
+    <select id="select"  resultType="java.util.Map">
         SELECT * FROM ${tableName} WHERE run_id=${runId}
     </select>
+    
+     <select id="findAutoNum"  resultType="java.util.Map">
+        SELECT flow_auto_num FROM ${tableName} WHERE run_id=${runId}
+    </select>
+    
+      <update id="addcolumn" parameterType="java.util.Map">  
+        alter table ${tableName} 
+         <if test="keys!=null and keys.size()!=0">
+            <foreach item="key" collection="keys" separator=",">
+              add column ${key} text not null
+            </foreach>
+            ,
+        </if>  
+    </update>  
+    
+  
 </mapper>

@@ -227,6 +227,7 @@ public class WorkController {
     public ToJson<FlowFast> nextwork(HttpServletRequest request,
                                      @RequestParam(value="flowId",required = false) String flowId,
                                      @RequestParam(value="formdata",required = false) String formdata,
+                                     @RequestParam(value="formlength",required = false) String formlength,
                                      @RequestParam(value="runId",required = false) int runId,
                                      @RequestParam(value="runName",required = false) String runName,
                                      @RequestParam(value="beginTime",required =false) String beginTime,
@@ -244,8 +245,8 @@ public class WorkController {
         StringBuffer sbcreate=new StringBuffer();
         if (!CheckTableExist.haveTable(tableName)) {
             List<String> key =new ArrayList<String>();
-            for(Map<String,Object> map: l){
-                key.add((String)map.get("key"));
+            for(int i=0;i<=Integer.parseInt(formlength);i++){
+                key.add("DATA_"+i);
             }
             Map<String,Object> param =new HashedMap();
             param.put("tableName",tableName);
@@ -253,44 +254,62 @@ public class WorkController {
             workMapper.createTable(param);
         }
         if (CheckTableExist.haveTable(tableName)){
-            Map<String,Object> maps=new HashMap<String,Object>();
-            maps.put("tableName","flow_data_"+flowId);
-            maps.put("runId",runId);
-            Map<String, Object> m = workMapper.select(maps);
-            List<String> key = new ArrayList<String>();
-            List<String> value = new ArrayList<String>();
-            if(m==null) {
-                key.add("run_id");
-                value.add(String.valueOf(runId));
-                key.add("run_name");
-                value.add(runName);
-                key.add("begin_time");
-                value.add(beginTime);
-                key.add("begin_user");
-                value.add(beginUser);
-                for (Map<String, Object> map : l) {
-                    key.add((String) map.get("key"));
-                    value.add((String) map.get("value"));
-                }
-                Map<String, Object> param = new HashedMap();
-                param.put("tableName", tableName);
-                param.put("keys", key);
-                param.put("values", value);
-                workMapper.insert(param);
-            }else{
-                for (Map<String, Object> map : l) {
-                    if(!StringUtils.checkNull((String)map.get("value"))){
-                        key.add((String) map.get("key")+"="+"'"+(String) map.get("value")+"'");
-                    }
-                }
-                Map<String, Object> param = new HashedMap();
-                param.put("tableName", tableName);
-                param.put("keys", key);
-                param.put("runId",String.valueOf(runId));
-                //param.put("values", value);
-                workMapper.update(param);
-            }
-
+        	  Map<String, Object> param1 = new HashedMap();
+              param1.put("tableName", tableName);
+              param1.put("runId",String.valueOf(runId));
+        	String flowAutoNum=workMapper.findAutoNum(param1);
+        	if(Integer.parseInt(flowAutoNum)<Integer.parseInt(formlength)){
+        		List<String> key = new ArrayList<String>();
+        		int add=Integer.parseInt(formlength)-Integer.parseInt(flowAutoNum);
+        		for(int i=1;i<=add;i++){
+        			key.add("DATA_"+(Integer.parseInt(flowAutoNum)+i));
+        		}
+        		 Map<String, Object> param = new HashedMap();
+                 param.put("tableName", tableName);
+                 param.put("keys", key);
+                 //param.put("runId",String.valueOf(runId));
+                 //param.put("values", value);
+                 workMapper.addcolumn(param);
+        		}
+        		 Map<String,Object> maps=new HashMap<String,Object>();
+                 maps.put("tableName","flow_data_"+flowId);
+                 maps.put("runId",runId);
+                 Map<String, Object> m = workMapper.select(maps);
+                 List<String> key = new ArrayList<String>();
+                 List<String> value = new ArrayList<String>();
+                 if(m==null) {
+                     key.add("run_id");
+                     value.add(String.valueOf(runId));
+                     key.add("run_name");
+                     value.add(runName);
+                     key.add("begin_time");
+                     value.add(beginTime);
+                     key.add("begin_user");
+                     value.add(beginUser);
+                     key.add("flow_auto_num");
+                     value.add(formlength);
+                     for (Map<String, Object> map : l) {
+                         key.add((String) map.get("key"));
+                         value.add((String) map.get("value"));
+                     }
+                     Map<String, Object> param = new HashedMap();
+                     param.put("tableName", tableName);
+                     param.put("keys", key);
+                     param.put("values", value);
+                     workMapper.insert(param);
+                 }else{
+                     for (Map<String, Object> map : l) {
+                         if(!StringUtils.checkNull((String)map.get("value"))){
+                             key.add((String) map.get("key")+"="+"'"+(String) map.get("value")+"'");
+                         }
+                     }
+                     Map<String, Object> param = new HashedMap();
+                     param.put("tableName", tableName);
+                     param.put("keys", key);
+                     param.put("runId",String.valueOf(runId));
+                     //param.put("values", value);
+                     workMapper.update(param);
+                 }
         }
         try {
             f.setFlowRunPrcs(flowRunPrcs);
