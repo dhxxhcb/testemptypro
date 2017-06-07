@@ -24,7 +24,7 @@
     </insert>
     <!-- 触发器信息修改 -->
     <update id="update" parameterType="com.xoa.model.workflow.FlowTiggerModel">
-    UPDATE flow_trigger
+        UPDATE flow_trigger
         <set>
             <if test="name != null and name != ''">
                 NAME = #{name},
@@ -58,18 +58,25 @@
     </update>
 
     <!-- 查询数据接口 -->
-    <select id="selectFlowTigger" resultType="com.xoa.model.workflow.FlowTiggerModel">
+    <select id="selectFlowTigger" resultMap="BaseResultMap" >
         SELECT
-        ID,
-        NAME,FLOW_ID,FLOW_PRCS,PLUGIN_TYPE,PLUGIN_WAY,PLUGIN,ACTIVED,SORT_ID,DESCRIPTION
-        FROM flow_trigger
+           ID,
+           NAME,
+           FLOW_ID,
+           FLOW_PRCS,
+           PLUGIN_TYPE,
+           PLUGIN_WAY,
+           PLUGIN,
+           ACTIVED,
+           SORT_ID,
+           DESCRIPTION
+        FROM FLOW_TRIGGER
         WHERE
         FLOW_ID=#{flowId}
         AND
         FLOW_PRCS = #{flowPrcs}
 
     </select>
-    
 
 
 </mapper>
