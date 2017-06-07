@@ -22,12 +22,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+    <link rel="stylesheet" type="text/css" href="lib/laydate.css"/>
 	<link rel="stylesheet" type="text/css" href="css/cabinet.css">
 
-<script type="text/javascript" src="js/easyui/jquery.min.js"></script>
-<script src="js/base/base.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/easyui/jquery.min.js"></script>
     <script src="js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
-<script src="lib/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/base/base.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/laydate.js" type="text/javascript" charset="utf-8"></script>
 <style>
 input {border: none;outline: none;display: inline-block;background: #fff;}
 input:hover {background: #eaf2ff;padding: 5px;}
@@ -55,6 +57,7 @@ input:hover {background: #eaf2ff;padding: 5px;}
 
 </style>
 <script type="text/javascript">
+    var user_id='userDuser';
 $(function(){
     /* $("#contentAdd").attr("href","${pageContext.request.contextPath }/file/contentAdd?sortId="+${sortId}); */
 	$.ajax({
@@ -146,8 +149,11 @@ $(function(){
         $.popWindow('<%=basePath%>file/contentAdd?contentId='+idT,'编辑','0','0','1500px','800px');
     })
 
+
+
     //弹出一个页面层
-    $('.SEARCH').on('click', function(){
+    $('.SEARCH').on('click', function(event){
+        event.stopPropagation();
         var sortId=$('.contentTr').attr('sortId');
 
         layer.open({
@@ -156,26 +162,41 @@ $(function(){
             area: ['600px', '360px'],
             shadeClose: true, //点击遮罩关闭
             btn: ['查询', '关闭'],
+            zIndex:19891014,
             content: '<table cellspacing="0" cellpadding="0" class="tab" style="border-collapse:collapse;background-color: #fff;width: 100%;">' +
                 '<tr><td>标题包含文字：</td><td><input type="text" style="width: 180px;" name="subjectName" class="inputTd" value="" /></td></tr>'+
                 '<tr><td>排序号：</td><td><input type="text" style="width: 180px;" name="contentNo" class="inputTd" value="" /></td></tr>'+
-                '<tr><td>创建人：</td><td><div class="inPole"><textarea name="txt" id="privDuser" user_id="id" value="admin" disabled style="min-width: 300px;min-height:50px;"></textarea><span class="add_img" style="margin-left: 10px"><a href="javascript:;" id="selectPriv" class="Add ">添加</a></span></div></td></tr>'+
+                '<tr><td>创建人：</td><td><div class="inPole"><textarea name="txt" id="userDuser" user_id="id" value="admin" disabled style="min-width: 300px;min-height:50px;"></textarea><span class="add_img" style="margin-left: 10px"><a href="javascript:;" id="selectUser" class="Add ">添加</a></span></div></td></tr>'+
                 '<tr><td>内容[关键词1]：</td><td><input type="text" style="width: 180px;" name="contentValue1" class="inputTd" value="" /></td></tr>'+
                 '<tr><td>内容[关键词2]：</td><td><input type="text" style="width: 180px;" name="contentValue2" class="inputTd" value="" /></td></tr>'+
                 '<tr><td>内容[关键词3]：</td><td><input type="text" style="width: 180px;" name="contentValue3" class="inputTd" value="" /></td></tr>'+
                 '<tr><td>附件说明包含文字：</td><td><input type="text" style="width: 180px;" name="atiachmentDesc" class="inputTd" value="" /></td></tr>'+
                 '<tr><td>附件文件名包含文字：</td><td><input type="text" style="width: 180px;" name="atiachmentName" class="inputTd" value="" /></td></tr>'+
-                '<tr><td>附件内容包含文字：</td><td><input type="text" style="width: 180px;" name="atiachmentCont" class="inputTd" value="" /><span>仅限txt和html文件</span></td></tr>'+
-                '<tr><td>日期：</td><td><input type="text" style="width: 180px;" name="crStartDate" class="inputTd" value="" />至<input type="text" style="width: 180px;" name="crEndDate" class="inputTd" value="" /></td></tr>'+
+                '<tr><td>附件内容包含文字：</td><td><input type="text" style="width: 180px;" name="atiachmentCont" class="inputTd" value="" /><span style="margin-left: 10px;">仅限txt和html文件</span></td></tr>'+
+                '<tr><td>日期：</td><td><input type="text" style="width: 180px;" name="crStartDate" id="start" class="inputTd" value="" onclick="laydate(start)" />至<input type="text" style="width: 180px;" name="crEndDate" id="end" class="inputTd" value="" onclick="laydate(end)" /></td></tr>'+
             '</table>',
             yes:function(){
+                var userId=$('#userDuser').attr('user_id');
+                if(userId=='id'){
+                    userId='';
+                }
                 var data={
                     'sortId':sortId,
                     'pageNo':1,
                     'pageSize':10,
                     'subjectName':$('input[name="subjectName"]').val(),
+                    'contentNo':$('input[name="contentNo"]').val(),
+                    'creater':userId,
+                    'contentValue1':$('input[name="contentValue1"]').val(),
+                    'contentValue2':$('input[name="contentValue2"]').val(),
+                    'contentValue3':$('input[name="contentValue3"]').val(),
+                    'atiachmentDesc':$('input[name="atiachmentDesc"]').val(),
+                    'atiachmentName':$('input[name="atiachmentName"]').val(),
+                    'atiachmentCont':$('input[name="atiachmentCont"]').val(),
+                    'crStartDate':$('input[name="crStartDate"]').val(),
+                    'crEndDate':$('input[name="crEndDate"]').val(),
                 }
-                alert(data.subjectName);
+                alert(data.crEndDate);
                 /*$.ajax({
                     type:'post',
                     url:'../file/queryBySearchValue',
@@ -185,11 +206,40 @@ $(function(){
 
                     }
                 })*/
-            }
+            },
         });
+
+        $('#selectUser').click(function(){
+            user_id='userDuser';
+            $.popWindow("../common/selectUser");
+        })
+
     });
 
 });
+    //时间控件调用
+    var start = {
+        format: 'YYYY/MM/DD hh:mm:ss',
+        /* min: laydate.now(), //设定最小日期为当前日期*/
+        /* max: '2099-06-16 23:59:59', //最大日期*/
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    var end = {
+        format: 'YYYY/MM/DD hh:mm:ss',
+        /*min: laydate.now(),*/
+        /*max: '2099-06-16 23:59:59',*/
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            start.max = datas; //结束日选好后，重置开始日的最大日期
+        }
+    };
+
 	</script>
     <style>
 
