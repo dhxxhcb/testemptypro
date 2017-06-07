@@ -536,8 +536,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			//点击注销按钮
 			$('#admin-side3').on('click','#per_zhuxiao',function(){
-			    window.close();
-			    window.open('logOut');
+			    /*window.close();
+			    window.open('logOut');*/
+                $.ajax({
+                    url: 'logOut',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (obj) {
+                        if(obj.flag==true){
+                            location.href='index.do';
+						}
+                    }
+                });
+			});
+			//点击button ，边样式
+            $('#admin-side3').on('click','button',function(){
+                $(this).css('background','yellow');
+                $(this).siblings().css('background','#fff');
 			})
 
 		//底部文字滚动
