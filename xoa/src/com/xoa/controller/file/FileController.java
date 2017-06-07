@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import javax.swing.text.html.HTML;
 
 import com.alibaba.fastjson.JSONArray;
+import com.xoa.model.file.FileAuthWrapper;
 import com.xoa.util.common.L;
 import com.xoa.util.common.wrapper.BaseWrapper;
 import com.xoa.util.common.wrapper.BaseWrappers;
@@ -1060,6 +1061,12 @@ public class FileController {
 										  String atiachmentDesc,String atiachmentName,String atiachmentCont,String crStartDate,String crEndDate,Integer pageNo,@RequestParam(name = "pageSize",defaultValue = "10",required = false) Integer pageSize){
 		BaseWrappers wrappers=fileContentService.queryBySearchValue(sortId,subjectName,creater,contentNo,contentValue1,contentValue2,contentValue3,atiachmentDesc,atiachmentName,atiachmentCont,crStartDate,crEndDate,pageNo,pageSize);
 		return wrappers;
+	}
+
+	@RequestMapping("/getAuthBySortId")
+	@ResponseBody
+	public FileAuthWrapper getAuthBySortId(Integer sortId){
+		return fileSortService.getAuthBySortId(sortId);
 	}
 
 

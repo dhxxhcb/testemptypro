@@ -3,6 +3,7 @@ package com.xoa.service.file;
 import java.util.List;
 import java.util.Map;
 
+import com.xoa.model.file.FileAuthWrapper;
 import com.xoa.model.file.FileSortModel;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.wrapper.BaseWrapper;
@@ -128,4 +129,6 @@ public interface FileSortService {
 
 
 	BaseWrapper setFileSortAuth(Map<String, Object> mmp);
+
+    FileAuthWrapper getAuthBySortId(Integer sortId);
 }

@@ -277,5 +277,10 @@
         where SORT_ID=#{sortId};
 
     </update>
-
+     <select id="queryFileSortAndChildBySortId" resultMap="file_SortResultMap" parameterType="Integer">
+       select * FROM file_sort AS f where f.SORT_ID=#{sortId} OR f.SORT_PARENT=#{sortId}
+     </select>
+    <select id="getNowFileSortAuth" resultMap="file_SortResultMap" parameterType="Integer">
+        SELECT * FROM file_sort WHERE SORT_ID =#{sortId}
+    </select>
 </mapper>
