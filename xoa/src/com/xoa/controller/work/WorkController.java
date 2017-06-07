@@ -91,6 +91,16 @@ public class WorkController {
         return "app/workflow/work/workform1";
     }
 
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年6月7日 上午10:31:07
+     * 方法介绍:   快速新建
+     * 参数说明:   @param request 请求
+     * 参数说明:   @param flowId  流程id
+     * 参数说明:   @param prcsId  步骤id
+     * 参数说明:   @return
+     * @return     ToJson<FlowFast>
+     */
     @RequestMapping("workfastAdd")
     @ResponseBody
     public ToJson<FlowFast> fastAdd(HttpServletRequest request,
@@ -287,6 +297,23 @@ public class WorkController {
     }
 
 
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年6月7日 上午10:32:03
+     * 方法介绍:   转交后保存
+     * 参数说明:   @param request 请求
+     * 参数说明:   @param runId  流程实例Id
+     * 参数说明:   @param runName 流程实例名称
+     * 参数说明:   @param flowId  流程id
+     * 参数说明:   @param prcsId  流程实例步骤id
+     * 参数说明:   @param prcsFlag  步骤状态
+     * 参数说明:   @param flowPrcs  步骤id
+     * 参数说明:   @param beginTime  流程实力创建时间
+     * 参数说明:   @param beginUser 流程发起人id
+     * 参数说明:   @param jingbanUser  经办人
+     * 参数说明:   @return
+     * @return     ToJson<FlowRunPrcs>
+     */
     @RequestMapping("saveWork")
     @ResponseBody
     public ToJson<FlowRunPrcs> savework(HttpServletRequest request,
@@ -360,7 +387,7 @@ public class WorkController {
         return toJson;
     }
     /**
-     * 创建作者:   zlf
+     * 创建作者:   张龙飞
      * 创建日期:   2017年6月3日 上午9:54:09
      * 方法介绍:   查询表单数据
      * 参数说明:   @param request 请求

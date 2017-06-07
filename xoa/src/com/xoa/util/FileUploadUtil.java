@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
  /**
- * 创建作者:   zlf
+ * 创建作者:   张龙飞
  * 创建日期:   2017年5月22日 上午11:08:15
  * 类介绍  :   	 文件上传工具类
  * 构造参数:   

@@ -3,7 +3,7 @@ package com.xoa.model.users;
  /**
  * @ClassName (类名):  UserPriv
  * @Description(简述): TODO
- * @author(作者):      zlf
+ * @author(作者):      张龙飞
  * @date(日期):        2017年4月17日 下午5:36:41
  *
  */
