@@ -1,3 +1,4 @@
+/*
 package com.xoa.global.exception;
 
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import com.xoa.service.im.ImDataException;
 import com.xoa.util.common.wrapper.BaseWrapper;
+*/
 /**
  * 
  * @作者 韩东堂
@@ -20,7 +22,8 @@ import com.xoa.util.common.wrapper.BaseWrapper;
  * @类介绍  全局异常处理类
  * @构造参数 无
  *
- */
+ *//*
+
 public class GlobalException implements HandlerExceptionResolver {
    
 	
@@ -60,3 +63,4 @@ public class GlobalException implements HandlerExceptionResolver {
 	}
 
 }
+*/

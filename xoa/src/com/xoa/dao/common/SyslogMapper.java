@@ -2,6 +2,7 @@ package com.xoa.dao.common;
 
 import com.xoa.dao.base.BaseMapper;
 import com.xoa.model.common.Syslog;
+
 /**
  * 
  * 创建作者:   王曰岐

@@ -1,26 +1,21 @@
 package com.xoa.service.enclosure.impl;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.xoa.dao.enclosure.AttachmentMapper;
 import com.xoa.model.enclosure.Attachment;
 import com.xoa.service.enclosure.EnclosureService;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 @Service
 public class EnclosureServiceImpl implements EnclosureService {
 	@Resource
-	AttachmentMapper attachmentMapper;
+    AttachmentMapper attachmentMapper;
 
 	@Override
 	public void saveAttachment(Attachment attachment) {
@@ -59,7 +54,7 @@ public class EnclosureServiceImpl implements EnclosureService {
 	 * @throws UnsupportedEncodingException 
 	 */
 	@Override
-	public List<Attachment> upload(MultipartFile[] files,String company,String module) throws UnsupportedEncodingException {
+	public List<Attachment> upload(MultipartFile[] files, String company, String module) throws UnsupportedEncodingException {
 		if(files.length==0){
 			return null;
 		}
@@ -145,7 +140,7 @@ public class EnclosureServiceImpl implements EnclosureService {
   }
 	
 	
-	public String attachmenturl(Attachment att,String company,String module){
+	public String attachmenturl(Attachment att, String company, String module){
 		String attUrl="AID="+att.getAid()+"&"+"MODULE="+module+"&"+"YM="+att.getYm()+"&"+"ATTACHMENT_ID="+att.getAttachId()+"&"+"ATTACHMENT_NAME="+att.getAttachName();
 		return attUrl;
 	}
