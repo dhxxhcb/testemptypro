@@ -82,7 +82,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 
 				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856) {
 					// 工作接收时间
-					flowRunPrcs.setPrcsTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
+					flowRunPrcs.setReceive(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
 					// 办理停留时间
 					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getPrcsTime())));
 				}
@@ -101,7 +101,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				}else {
 					flowRunPrcs.setReceiptTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
 					flowRunPrcs.setArriveTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate))) - DateFormat.getTime(flowRunPrcs.getPrcsTime())));
-					flowRunPrcs.setPrcsTime("");
+					flowRunPrcs.setReceive("");
 					flowRunPrcs.setHandleTime("");
 				}
 
