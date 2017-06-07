@@ -1010,7 +1010,6 @@
                 page:page,
                 pageSize:15,
                 useFlag:true,
-                userId:'admin',
             };
             $.ajax({
                 url:'../../workflow/work/selectAll',
@@ -1071,7 +1070,6 @@
                 page:page,
                 pageSize:15,
                 useFlag:true,
-                userId:'admin',
             };
             $.ajax({
                 url:'../../workflow/work/selectWork',
@@ -1140,7 +1138,6 @@
                 page:page,
                 pageSize:15,
                 useFlag:true,
-                userId:'admin',
             };
             $.ajax({
                 url:'../../workflow/work/selectEndWord',
@@ -1206,7 +1203,6 @@
                 page:page,
                 pageSize:15,
                 useFlag:true,
-                userId:'admin',
             };
             $.ajax({
                 url:'../../workflow/work/selectHang',
