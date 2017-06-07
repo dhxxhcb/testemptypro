@@ -80,7 +80,7 @@ public class FlowTiggerModel implements Serializable {
      * @return
      */
     public String getName() {
-        return name;
+        return name == null ? "" : name.trim();
     }
 
     /**
@@ -128,7 +128,7 @@ public class FlowTiggerModel implements Serializable {
      * @return
      */
     public String getPluginType() {
-        return pluginType;
+        return pluginType == null ? "":pluginType.trim();
     }
 
     /**
@@ -144,7 +144,7 @@ public class FlowTiggerModel implements Serializable {
      * @return
      */
     public String getPluginWay() {
-        return pluginWay;
+        return pluginWay == null ?"":pluginWay.trim();
     }
 
     /**
@@ -160,7 +160,7 @@ public class FlowTiggerModel implements Serializable {
      * @return
      */
     public String getPlugin() {
-        return plugin;
+        return plugin == null ? "" : plugin.trim();
     }
 
     /**
@@ -208,7 +208,7 @@ public class FlowTiggerModel implements Serializable {
      * @return
      */
     public String getDescription() {
-        return description;
+        return description == null ? "" : description.trim();
     }
 
     /**
