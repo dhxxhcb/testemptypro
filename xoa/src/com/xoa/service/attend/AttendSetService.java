@@ -39,4 +39,19 @@ public class AttendSetService {
          return  wrappers;
      }
 
+     public  BaseWrapper updateAttendSet(AttendSet attendSet){
+         AttendSetWrappers  wrappers=new AttendSetWrappers();
+         int res=attendSetMapper.updateAttendSet(attendSet);
+         if(res>0){
+             wrappers.setFlag(true);
+             wrappers.setStatus(true);
+             wrappers.setMsg("更新成功");
+         }else{
+             wrappers.setFlag(false);
+             wrappers.setStatus(true);
+             wrappers.setMsg("更新失败");
+         }
+         return  wrappers;
+     }
+
 }
