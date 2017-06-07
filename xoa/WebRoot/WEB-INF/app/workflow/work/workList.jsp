@@ -1008,7 +1008,7 @@
             //var layerIndex = layer.load(0, {shade: false}); /* 0代表加载的风格，支持0-2 */
             var datas_qb ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
                 userId:'admin',
             };
@@ -1069,7 +1069,7 @@
         function initPageList_db(cb,page){
             var datas ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
                 userId:'admin',
             };
@@ -1138,7 +1138,7 @@
         function initPageList_bj(cb,page){
             var datas ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
                 userId:'admin',
             };
@@ -1204,7 +1204,7 @@
         function initPageList_gq(cb,page){
             var datas ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
                 userId:'admin',
             };
