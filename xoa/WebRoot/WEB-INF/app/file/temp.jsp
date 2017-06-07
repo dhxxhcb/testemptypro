@@ -16,14 +16,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<title>权限设置</title>
 		<link rel="stylesheet" type="text/css" href="../css/file/temp.css"/>
+		<link rel="stylesheet" type="text/css" href="../lib/easyui/themes/easyui.css"/>
+		<link rel="stylesheet" type="text/css" href="../lib/easyui/themes/icon.css"/>
 		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/base/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/file/temp.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../lib/easyui/jquery.easyui.min.js" ></script>
+		<script type="text/javascript" src="../lib/easyui/tree.js" ></script>
 	</head>
 	<body>
 	<div class="content">
 		<div  class="cabinet_left">
+			<div class="ul_all" id="li_parent">
 
+			</div>
 		</div>
 		<div  class="cabinet_right">
 			<div class="nav">

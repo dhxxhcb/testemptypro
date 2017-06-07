@@ -1,17 +1,210 @@
 $(function () {
+    //获取地址栏参数
+    var sortId=$.getQueryString('sortId');
     var used=[];
 	var data={};
-    var userId={};
-    var newUser={};
-    var manageUser={};
-    var delUser={};
-    var downUser={};
-    var shareUser={};
-    var owner={};
-    var signUser={};
-    var review={};
+    var userId={
+          user:"",
+          dept:"",
+          role:"",
+          data:{
+            userStr:"",
+            deptStr:"",
+            roleStr:"",
+          }
+    };
+    var newUser={
+        user:"",
+        dept:"",
+        role:"",
+        data:{
+            userStr:"",
+            deptStr:"",
+            roleStr:"",
+        }
+    };
+    var manageUser={
+        user:"",
+        dept:"",
+        role:"",
+        data:{
+            userStr:"",
+            deptStr:"",
+            roleStr:"",
+        }
+    };
+    var delUser={
+        user:"",
+        dept:"",
+        role:"",
+        data:{
+            userStr:"",
+            deptStr:"",
+            roleStr:"",
+        }
+    };
+    var downUser={user:"",
+        dept:"",
+        role:"",
+        data:{
+            userStr:"",
+            deptStr:"",
+            roleStr:"",
+        }};
+    var shareUser={
+        user:"",
+        dept:"",
+        role:"",
+        data:{
+            userStr:"",
+            deptStr:"",
+            roleStr:"",
+        }
+    };
+    var owner={
+        user:"",
+        dept:"",
+        role:"",
+        data:{
+            userStr:"",
+            deptStr:"",
+            roleStr:"",
+        }
+    };
+    var signUser={
+        user:"",
+        dept:"",
+        role:"",
+        data:{
+            userStr:"",
+            deptStr:"",
+            roleStr:"",
+        }
+    };
+    var review={
+        user:"",
+        dept:"",
+        role:"",
+        data:{
+            userStr:"",
+            deptStr:"",
+            roleStr:"",
+        }
+    };
     var description={};
+   //渲染树
+    //获取左侧分类
+    $('#li_parent').tree({
+        url: '../file/getAuthBySortId?sortId='+sortId,
+        animate:true,
+        lines:false,
+        loadFilter: function(rows){
+            console.log(rows);
+            userId=rows.data.userId;
+            newUser=rows.data.newUser;
+            manageUser=rows.data.manageUser;
+            delUser=rows.data.delUser;
+            downUser=rows.data.downUser;
+            shareUser=rows.data.shareUser;
+            owner=rows.data.owner;
+            signUser=rows.data.signUser;
+            review=rows.data.review;
+            used=rows.used;
+            //处理名字
+            rows.sortName;
+            renderShow("visit");
+            return convert(rows.fileSorts);
+        },
+        onClick:function(node){
+            //这里处理点击事件  获取id 重新加载页面即可
+            freshData(node.id);
 
+            // getFlowList(node.id);
+        },
+        onLoadSuccess:function(node,data) {
+            $("#li_parent li").find("div[node-id='-1']").addClass("tree-node-selected");   //设置第一个节点高亮
+            var n = $("#li_parent").tree("getSelected");
+            if(n!=null){
+                $("#li_parent").tree("select",n.target);    //相当于默认点击了一下第一个节点，执行onSelect方法
+            }
+        },
+    });
+    //处理树结构
+    function convert(rows){
+        function exists(rows, parentId){
+            for(var i=0; i<rows.length; i++){
+                if (rows[i].sortId == parentId) return true;
+            }
+            return false;
+        }
+        var nodes = [];
+        // get the top level nodes
+        for(var i=0; i<rows.length; i++){
+            var row = rows[i];
+
+            if (!exists(rows, row.sortParent)){
+                nodes.push({
+                    id:row.sortId,
+                    text:row.sortName,
+                });
+            }
+        }
+        var toDo = [];
+        for(var i=0; i<nodes.length; i++){
+            toDo.push(nodes[i]);
+        }
+        while(toDo.length){
+            var node = toDo.shift();	// the parent node
+            // get the children nodes
+            for(var i=0; i<rows.length; i++){
+                var row = rows[i];
+                if (row.sortParent == node.id){
+                    var child = {id:row.sortId,text:row.sortName};
+                    if (node.children){
+                        if(node.id!=0){
+                            node.state="closed"
+                        }
+                        node.children.push(child);
+                    } else {
+
+                        node.children = [child];
+                    }
+                    toDo.push(child);
+                }
+            }
+        }
+        return nodes;
+    }
+   //刷新数据
+    function freshData(sortId) {
+        $.ajax({
+            type:'post',
+            url:'../file/getAuthBySortId',
+            dataType:'json',
+            data:{sortId:sortId},
+            success:function(res){
+                //重新赋值
+                if(res.flag==true){
+                    userId=res.data.userId;
+                    newUser=res.data.newUser;
+                    manageUser=res.data.manageUser;
+                    delUser=res.data.delUser;
+                    downUser=res.data.downUser;
+                    shareUser=res.data.shareUser;
+                    owner=res.data.owner;
+                    signUser=res.data.signUser;
+                    review=res.data.review;
+                    used=res.used;
+                    //处理名字
+                    res.sortName;
+                    renderShow("visit");
+                }else{
+                    console.log(res.msg);
+                }
+
+            }
+        })
+    }
 
 	$('.nav ul li').click(function () {
 
@@ -28,11 +221,16 @@ $(function () {
 	})
 function renderShow(id) {
     if(id=='visit'){
-    	if(userId['data']){
+        console.log(userId.data);
+    	if(userId.data){
             $('#Senduser').val(userId['data'].userStr);
             $('#SendCompany').val(userId['data'].deptStr);
             $('#SendPriv').val(userId['data'].roleStr);
-		}
+		}else{
+            $('#Senduser').val("");
+            $('#SendCompany').val("");
+            $('#SendPriv').val("");
+        }
 
     };
     if(id=='add'){
@@ -40,7 +238,11 @@ function renderShow(id) {
             $('#Senduser').val(newUser['data'].userStr);
             $('#SendCompany').val(newUser['data'].deptStr);
             $('#SendPriv').val(newUser['data'].roleStr);
-		}
+		}else{
+            $('#Senduser').val("");
+            $('#SendCompany').val("");
+            $('#SendPriv').val("");
+        }
 
     };
     if(id=='edit'){
@@ -48,6 +250,10 @@ function renderShow(id) {
             $('#Senduser').val(manageUser['data'].userStr);
             $('#SendCompany').val(manageUser['data'].deptStr);
             $('#SendPriv').val(manageUser['data'].roleStr);
+        }else{
+            $('#Senduser').val("");
+            $('#SendCompany').val("");
+            $('#SendPriv').val("");
         }
 
     };
@@ -56,6 +262,10 @@ function renderShow(id) {
             $('#Senduser').val(review['data'].userStr);
             $('#SendCompany').val(review['data'].deptStr);
             $('#SendPriv').val(review['data'].roleStr);
+        }else{
+            $('#Senduser').val("");
+            $('#SendCompany').val("");
+            $('#SendPriv').val("");
         }
 
     };
@@ -64,6 +274,10 @@ function renderShow(id) {
             $('#Senduser').val(downUser['data'].userStr);
             $('#SendCompany').val(downUser['data'].deptStr);
             $('#SendPriv').val(downUser['data'].roleStr);
+        }else{
+            $('#Senduser').val("");
+            $('#SendCompany').val("");
+            $('#SendPriv').val("");
         }
 
     };
@@ -72,6 +286,10 @@ function renderShow(id) {
             $('#Senduser').val(signUser['data'].userStr);
             $('#SendCompany').val(signUser['data'].deptStr);
             $('#SendPriv').val(signUser['data'].roleStr);
+        }else{
+            $('#Senduser').val("");
+            $('#SendCompany').val("");
+            $('#SendPriv').val("");
         }
 
     };
@@ -80,6 +298,10 @@ function renderShow(id) {
             $('#Senduser').val(owner['data'].userStr);
             $('#SendCompany').val(owner['data'].deptStr);
             $('#SendPriv').val(owner['data'].roleStr);
+        }else{
+            $('#Senduser').val("");
+            $('#SendCompany').val("");
+            $('#SendPriv').val("");
         }
 
     };
@@ -88,6 +310,10 @@ function renderShow(id) {
             $('#Senduser').val(delUser['data'].userStr);
             $('#SendCompany').val(delUser['data'].deptStr);
             $('#SendPriv').val(delUser['data'].roleStr);
+        }else{
+            $('#Senduser').val("");
+            $('#SendCompany').val("");
+            $('#SendPriv').val("");
         }
 
     };
@@ -287,8 +513,7 @@ function batchSettingData(){
         $('.tabTypeTwo').hide();
     })
 
-	//获取地址栏参数
-    var sortId=$.getQueryString('sortId');
+
 
 	$('#btnSure').click(function(){
         var span = $('.nav ul li span');
