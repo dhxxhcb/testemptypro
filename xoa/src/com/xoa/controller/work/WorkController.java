@@ -91,6 +91,16 @@ public class WorkController {
         return "app/workflow/work/workform1";
     }
 
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年6月7日 上午10:31:07
+     * 方法介绍:   快速新建
+     * 参数说明:   @param request 请求
+     * 参数说明:   @param flowId  流程id
+     * 参数说明:   @param prcsId  步骤id
+     * 参数说明:   @return
+     * @return     ToJson<FlowFast>
+     */
     @RequestMapping("workfastAdd")
     @ResponseBody
     public ToJson<FlowFast> fastAdd(HttpServletRequest request,
@@ -120,13 +130,17 @@ public class WorkController {
         ToJson<FlowFormType> json = new ToJson<FlowFormType>();
         json = flowFormTypeService.qureyItemMax(flowTypeModel.getFormId());
         FlowFormType flowFormType = (FlowFormType) json.getObject();
+        f.setFlowTypeModel(flowTypeModel);
+        f.setFlowFormType(flowFormType);
+        f.setListFp(fl);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         if(prcsId==1) {
             int runId = flowRunService.getMaxRunId();
             String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
             int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
             //FlowProcess flowProcess= flowProcessService.findbyprcsId(flowId, prcsId);
             String flowName = flowTypeModel.getFlowName();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+
             String beginTime = df.format(new Date());
             String runName = flowName + " " + beginTime;
 
@@ -155,28 +169,29 @@ public class WorkController {
             flowRunPrcs.setActiveTime("0000-00-00 00:00:00");
             flowRunPrcsService.save(flowRunPrcs);
 
-            f.setFlowTypeModel(flowTypeModel);
-            f.setFlowFormType(flowFormType);
+
             f.setFlowRun(flowRun);
             f.setFlowRunPrcs(flowRunPrcs);
-            f.setListFp(fl);
+
         }else{
             FlowRun flowRun = flowRunService.find(Integer.parseInt(id));
+            Map<String, Object> m = new HashMap<String, Object>();
+            m.put("prcsId", prcsId);
+            m.put("runId", id);
+            m.put("prcsFlag", "4");
+            m.put("prcsTime", df.format(new Date()));
+            flowRunPrcsService.updateSql(m);
 
-            FlowRunPrcsExcted flowRunPrcs = new FlowRunPrcsExcted();
+            FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
             flowRunPrcs.setPrcsId(prcsId);
             flowRunPrcs.setRunId(Integer.parseInt(id));
             flowRunPrcs.setPrcsFlag("4");
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             flowRunPrcs.setPrcsTime(df.format(new Date()));
-            //flowRunPrcs.setPrcsFlag(df.format(new Date()));
-            flowRunPrcsService.update(flowRunPrcs);
 
-            f.setFlowTypeModel(flowTypeModel);
-            f.setFlowFormType(flowFormType);
+
             f.setFlowRun(flowRun);
             f.setFlowRunPrcs(flowRunPrcs);
-            f.setListFp(fl);
+
         }
         try {
             tj.setObject(f);
@@ -187,6 +202,8 @@ public class WorkController {
         }
         return tj;
     }
+
+
 
 
 
@@ -203,18 +220,19 @@ public class WorkController {
      * 参数说明:   @param beginUser  flowRun流程发起人Id
      * 参数说明:   @return
      * 参数说明:   @throws JSONException
-     * @return     String 
+     * @return     String
      */
     @RequestMapping("nextwork")
     @ResponseBody
     public ToJson<FlowFast> nextwork(HttpServletRequest request,
                                      @RequestParam(value="flowId",required = false) String flowId,
                                      @RequestParam(value="formdata",required = false) String formdata,
+                                     @RequestParam(value="formlength",required = false) String formlength,
                                      @RequestParam(value="runId",required = false) int runId,
                                      @RequestParam(value="runName",required = false) String runName,
                                      @RequestParam(value="beginTime",required =false) String beginTime,
                                      @RequestParam(value="beginUser",required =false) String beginUser
-    ) throws JSONException {
+    			) throws JSONException {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         ToJson<FlowFast> tj = new ToJson<FlowFast>();
@@ -227,8 +245,8 @@ public class WorkController {
         StringBuffer sbcreate=new StringBuffer();
         if (!CheckTableExist.haveTable(tableName)) {
             List<String> key =new ArrayList<String>();
-            for(Map<String,Object> map: l){
-                key.add((String)map.get("key"));
+            for(int i=0;i<=Integer.parseInt(formlength);i++){
+                key.add("DATA_"+i);
             }
             Map<String,Object> param =new HashedMap();
             param.put("tableName",tableName);
@@ -236,6 +254,23 @@ public class WorkController {
             workMapper.createTable(param);
         }
         if (CheckTableExist.haveTable(tableName)){
+            Map<String, Object> param1 = new HashedMap();
+            param1.put("tableName", tableName);
+            param1.put("runId",String.valueOf(runId));
+            String flowAutoNum=workMapper.findAutoNum(param1);
+            if(Integer.parseInt(flowAutoNum)<Integer.parseInt(formlength)){
+                List<String> key = new ArrayList<String>();
+                int add=Integer.parseInt(formlength)-Integer.parseInt(flowAutoNum);
+                for(int i=1;i<=add;i++){
+                    key.add("DATA_"+(Integer.parseInt(flowAutoNum)+i));
+                }
+                Map<String, Object> param = new HashedMap();
+                param.put("tableName", tableName);
+                param.put("keys", key);
+                //param.put("runId",String.valueOf(runId));
+                //param.put("values", value);
+                workMapper.addcolumn(param);
+            }
             Map<String,Object> maps=new HashMap<String,Object>();
             maps.put("tableName","flow_data_"+flowId);
             maps.put("runId",runId);
@@ -251,6 +286,8 @@ public class WorkController {
                 value.add(beginTime);
                 key.add("begin_user");
                 value.add(beginUser);
+                key.add("flow_auto_num");
+                value.add(formlength);
                 for (Map<String, Object> map : l) {
                     key.add((String) map.get("key"));
                     value.add((String) map.get("value"));
@@ -273,7 +310,6 @@ public class WorkController {
                 //param.put("values", value);
                 workMapper.update(param);
             }
-
         }
         try {
             f.setFlowRunPrcs(flowRunPrcs);
@@ -287,6 +323,23 @@ public class WorkController {
     }
 
 
+    /**
+     * 创建作者:   张龙飞
+     * 创建日期:   2017年6月7日 上午10:32:03
+     * 方法介绍:   转交后保存
+     * 参数说明:   @param request 请求
+     * 参数说明:   @param runId  流程实例Id
+     * 参数说明:   @param runName 流程实例名称
+     * 参数说明:   @param flowId  流程id
+     * 参数说明:   @param prcsId  流程实例步骤id
+     * 参数说明:   @param prcsFlag  步骤状态
+     * 参数说明:   @param flowPrcs  步骤id
+     * 参数说明:   @param beginTime  流程实力创建时间
+     * 参数说明:   @param beginUser 流程发起人id
+     * 参数说明:   @param jingbanUser  经办人
+     * 参数说明:   @return
+     * @return     ToJson<FlowRunPrcs>
+     */
     @RequestMapping("saveWork")
     @ResponseBody
     public ToJson<FlowRunPrcs> savework(HttpServletRequest request,
@@ -302,10 +355,10 @@ public class WorkController {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         //Map<String,Object> maps=new HashMap<String,Object>();
-       // maps.put("userId",beginUser);
+        // maps.put("userId",beginUser);
         //int flowRunPrcsId=Integer.parseInt(prcsId)-1;
-       // maps.put("prcsId",Integer.parseInt(prcsId)-1);
-       // maps.put("runId",runId);
+        // maps.put("prcsId",Integer.parseInt(prcsId)-1);
+        // maps.put("runId",runId);
         ToJson<FlowRunPrcs> toJson = new ToJson<FlowRunPrcs>();
         //List<FlowRunPrcs> l=flowRunPrcsService.findByRunId(maps);
         FlowRunPrcsExcted flowRunPrcs = new FlowRunPrcsExcted();
@@ -349,7 +402,6 @@ public class WorkController {
             fl.setActiveTime("0000-00-00 00:00:00");
             flowRunPrcsService.save(fl);
         }
-
         try {
             toJson.setObject(fl);
             toJson.setMsg("OK");
@@ -360,7 +412,7 @@ public class WorkController {
         return toJson;
     }
     /**
-     * 创建作者:   zlf
+     * 创建作者:   张龙飞
      * 创建日期:   2017年6月3日 上午9:54:09
      * 方法介绍:   查询表单数据
      * 参数说明:   @param request 请求
@@ -373,9 +425,9 @@ public class WorkController {
     @RequestMapping("selectFlowData")
     @ResponseBody
     public Map<String,Object> fastAdd(HttpServletRequest request,
-                                    @RequestParam(value="runId",required = false) String runId,
-                                    @RequestParam(value="flowId",required = false) String flowId
-                                     ){
+                                      @RequestParam(value="runId",required = false) String runId,
+                                      @RequestParam(value="flowId",required = false) String flowId
+    ){
         Map<String,Object> maps=new HashMap<String,Object>();
         maps.put("tableName","flow_data_"+flowId);
         maps.put("runId",runId);
@@ -465,9 +517,9 @@ public class WorkController {
     @RequestMapping(value = "selectHang", produces = {"application/json;charset=UTF-8"})
     public @ResponseBody
     ToJson<FlowRunPrcs> selectEndHang(FlowRunPrcs flowRunPrcs, HttpServletRequest request,
-      @RequestParam(value = "page", required = false) Integer page,
-      @RequestParam(value = "pageSize", required = false) Integer pageSize,
-      @RequestParam(value = "useFlag", required = false) boolean useFlag) {
+                                      @RequestParam(value = "page", required = false) Integer page,
+                                      @RequestParam(value = "pageSize", required = false) Integer pageSize,
+                                      @RequestParam(value = "useFlag", required = false) boolean useFlag) {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         Map<String, Object> maps = new HashMap<String, Object>();

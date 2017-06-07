@@ -563,7 +563,7 @@ public class Users {
 		this.mobilNo = mobilNo;
 	}
 	public String getBpNo() {
-		return bpNo;
+		return bpNo==null?"":bpNo;
 	}
 	public void setBpNo(String bpNo) {
 		this.bpNo = bpNo;
@@ -587,7 +587,7 @@ public class Users {
 		this.icqNo = icqNo;
 	}
 	public String getMsn() {
-		return msn;
+		return msn==null?"":msn;
 	}
 	public void setMsn(String msn) {
 		this.msn = msn;

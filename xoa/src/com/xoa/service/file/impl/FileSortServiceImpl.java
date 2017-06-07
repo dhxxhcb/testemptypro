@@ -1,13 +1,19 @@
 package com.xoa.service.file.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.xoa.dao.auth.AuthMapper;
+import com.xoa.model.file.FileAuthBaseModel;
+import com.xoa.model.file.FileAuthWrapper;
 import com.xoa.service.file.FileSortResetAuth;
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.wrapper.BaseWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.xoa.dao.file.FileSortMapper;
@@ -27,6 +33,8 @@ import com.xoa.util.ToJson;
 public class FileSortServiceImpl  implements FileSortService{
 	@Resource
 	FileSortMapper file_SortMapper;
+	@Autowired
+	AuthMapper authMapper;
 	/**
 	 * 
 	 * 创建作者:   杨 胜
@@ -212,6 +220,139 @@ public class FileSortServiceImpl  implements FileSortService{
 		return wrapper;
 	}
 
+	@Override
+	public FileAuthWrapper getAuthBySortId(Integer sortId) {
+		FileAuthWrapper wrapper =new FileAuthWrapper();
 
+		//获取左侧树结构
+		List<FileSortModel> list =file_SortMapper.queryFileSortAndChildBySortId(sortId);
+		wrapper.setFileSorts(list);
+		//当前页权限
+		FileSortModel model =file_SortMapper.getNowFileSortAuth(sortId);
+		FileAuthBaseModel auth =new FileAuthBaseModel();
+		List<String> useds=new ArrayList<String>();
+		if(model!=null){
+			String[] userIds =FileSortResetAuth.getAuthBase(model.getUserId());
+			String[] newUsers =FileSortResetAuth.getAuthBase(model.getNewUser());
+			String[]  managerUsers =FileSortResetAuth.getAuthBase(model.getManagerUser());
+			String[] delUsers =FileSortResetAuth.getAuthBase(model.getDelUser());
+			String[]  downUsers=FileSortResetAuth.getAuthBase(model.getDownUser());
+			String[] owners =FileSortResetAuth.getAuthBase(model.getOwner());
+			String[] sharUsers =FileSortResetAuth.getAuthBase(model.getSharUser());
+			String[] signUsers =FileSortResetAuth.getAuthBase(model.getSignUser());
+			String[] review =FileSortResetAuth.getAuthBase(model.getReview());
+			//查询对应的字段
+			auth.setUserId(getName(userIds));
+			auth.setReview(getName(review));
+			auth.setDelUser(getName(delUsers));
+			auth.setNewUser(getName(newUsers));
+			auth.setManageUser(getName(managerUsers));
+			auth.setDownUser(getName(downUsers));
+			auth.setOwner(getName(owners));
+			auth.setShareUser(getName(sharUsers));
+			auth.setSignUser(getName(signUsers));
+			wrapper.setData(auth);
+			wrapper.setNowFileSortName(model.getSortName());
+			//那些有数据需要标记
+			if(userIds!=null){
+				useds.add("visit");
+			}
+			if(newUsers!=null){
+				useds.add("add");
+			}
+			if(managerUsers!=null){
+				useds.add("edit");
+			}if(delUsers!=null){
+				useds.add("delete");
+			}
+			if(downUsers!=null){
+				useds.add("download");
+			}
+			if(owners!=null){
+				useds.add("all");
+			}
+			if(review!=null){
+				useds.add("comment");
+			}
+			if(signUsers!=null){
+				useds.add("sign");
+			}
+            wrapper.setUsed(useds);
+			wrapper.setFlag(true);
+		}else{
+			wrapper.setFlag(false);
+			wrapper.setMsg("还未设置权限");
+		}
+
+
+		return wrapper;
+	}
+	public FileAuthBaseModel.FileAuthChildModel getName(String[] ids){
+		FileAuthBaseModel.FileAuthChildModel child=new FileAuthBaseModel().new FileAuthChildModel();
+		FileAuthBaseModel.FileAuthGrandChildModel grandChild=new FileAuthBaseModel().new FileAuthGrandChildModel();
+//		String[] ret =new String[3];
+		if(ids==null){
+			child.setDept("");
+			grandChild.setDeptStr("");
+			child.setUser("");
+			grandChild.setUserStr("");
+			child.setRole("");
+			grandChild.setRoleStr("");
+			child.setData(grandChild);
+			return child;
+		}
+		String dept=ids[0];
+		String role=ids[1];
+		String user =ids[2];
+		if(!StringUtils.checkNull(dept)){
+			String ret="";
+			if("ALL_DEPT".equals(dept)){
+				ret="全部部门";
+			}else{
+                    List<String> depts = authMapper.getDeptName(dept);
+                    StringBuffer sb =new StringBuffer();
+                    for(String dep:depts){
+						sb.append(dep);
+						sb.append(",");
+					}
+				  ret=sb.toString();
+			}
+			child.setDept(dept);
+			grandChild.setDeptStr(ret);
+		}else{
+			child.setDept("");
+			grandChild.setDeptStr("");
+		}
+		if(!StringUtils.checkNull(role)){
+			List<String> roles = authMapper.getRoleName(role);
+			StringBuffer sb =new StringBuffer();
+			for(String rol:roles){
+				sb.append(rol);
+				sb.append(",");
+			}
+			child.setRole(role);
+			grandChild.setRoleStr(sb.toString());
+		}
+		else{
+			child.setRole("");
+			grandChild.setRoleStr("");
+		}
+		if(!StringUtils.checkNull(user)){
+			List<String> users = authMapper.getUserName(user);
+			StringBuffer sb =new StringBuffer();
+			for(String us:users){
+				sb.append(us);
+				sb.append(",");
+			}
+			child.setUser(user);
+			grandChild.setUserStr(sb.toString());
+		}
+		else{
+			child.setUser("");
+			grandChild.setUserStr("");
+		}
+		child.setData(grandChild);
+		return child;
+	}
 
 }

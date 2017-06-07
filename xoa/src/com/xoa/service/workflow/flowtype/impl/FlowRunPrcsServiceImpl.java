@@ -80,15 +80,16 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 					flowRunPrcs.setFlowProcess(flowProcess);
 				}
 
-				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856) {
+//				if(StringUtils.checkNull(flowRunPrcs.getPrcsTime()) != -621701856) {
+				if(!StringUtils.checkNull(flowRunPrcs.getPrcsTime())) {
 					// 工作接收时间
 					flowRunPrcs.setReceive(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
 					// 办理停留时间
 					flowRunPrcs.setHandleTime(DateFormat.returnTime((DateFormat.getTime(DateFormat.getStrDate(newDate)))-DateFormat.getTime(flowRunPrcs.getPrcsTime())));
 				}
 				//计算时间转换
-				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) == -621701856 && flowRunPrcs.getPrcsId()>1 ||
-						DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856 && flowRunPrcs.getPrcsId()>1){
+				if(StringUtils.checkNull(flowRunPrcs.getPrcsTime()) && flowRunPrcs.getPrcsId()>1 ||
+						!StringUtils.checkNull(flowRunPrcs.getPrcsTime()) && flowRunPrcs.getPrcsId()>1){
 					Integer prcsId= flowRunPrcs.getRunId();
 					Integer runId = flowRunPrcs.getPrcsId()-1;
 					String upTime = flowRunPrcsMapper.findTime(runId,prcsId);
@@ -151,7 +152,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				if(flowProcess != null) {
 					flowRunPrcs.setFlowProcess(flowProcess);
 				}
-				if(DateFormat.getTime(flowRunPrcs.getDeliverTime()) != -621701856){
+				if(!StringUtils.checkNull(flowRunPrcs.getDeliverTime())){
 					flowRunPrcs.setDeliverTime(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getDeliverTime())));
 				}
 				returnList.add(flowRunPrcs);
@@ -306,7 +307,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 	@Transactional
     @Override
 	public int updateSql(Map<String,Object> map){
-		int a=flowRunPrcsMapper.updateSql(map);
+		int a=flowRunPrcsMapper.updateSome(map);
 		return a;
 	}
 

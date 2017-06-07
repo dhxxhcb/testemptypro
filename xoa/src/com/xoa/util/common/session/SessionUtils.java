@@ -2,11 +2,8 @@ package com.xoa.util.common.session;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -174,7 +171,21 @@ public class SessionUtils {
 		}
 		return ret;
 	}
-	
+
+	public  static  void cleanUserSession(HttpSession session){
+		if(session==null){
+			throw new SessionException("session is null");
+		}
+		//List<String>  stringList= (List<String>) session.getAttributeNames();
+		Enumeration<String> enumeration=session.getAttributeNames();
+		// 遍历enumeration中的
+		while (enumeration.hasMoreElements()) {
+             // 获取session键值
+			session.removeAttribute(enumeration.nextElement().toString());
+		}
+
+
+	}
 
 	// 把一个字符串的第一个字母大写
 	private static String getMethodName(String fildeName) {

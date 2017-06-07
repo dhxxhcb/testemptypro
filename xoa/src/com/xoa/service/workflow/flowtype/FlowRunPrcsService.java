@@ -63,7 +63,7 @@ public interface FlowRunPrcsService {
 
 
 	/**
-	 * 创建作者:   zlf
+	 * 创建作者:   张龙飞
 	 * 创建日期:   2017/6/1 16:59
 	 * 方法介绍:   根据部分条件查询流程实例步骤信息
 	 * 参数说明:
@@ -72,7 +72,7 @@ public interface FlowRunPrcsService {
 	public List<FlowRunPrcs> findByRunId(Map<String,Object> maps);
 
 	/**
-	 * 创建作者:   zlf
+	 * 创建作者:   张龙飞
 	 * 创建日期:   2017/6/1 16:59
 	 * 方法介绍:   修改流程实例步骤信息
 	 * 参数说明:

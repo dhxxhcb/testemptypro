@@ -7,7 +7,8 @@ var workForm = {
         listFp:'',
         pageModel:'',
         flowRun:'',
-        eleObject:{}
+        eleObject:{},
+        formLength:0
     },
     init:function(options,cb){
         var _this = this;
@@ -92,8 +93,15 @@ var workForm = {
                     //that.tool.ajaxHtml(domain+ '/workflow/work/selectFlowData',{flowId:that.option.flowRun.flowId,runId:1027},function (res) {
                     that.tool.ajaxHtml(domain+ '/workflow/work/selectFlowData',{flowId:that.option.flowRun.flowId,runId:that.option.flowRun.runId},function (res) {
 
-                        that.option.eleObject.find('.form_item').each(function(){
+                        that.option.eleObject.find('.form_item').each(function(i,v){
                             var _this = $(this);
+                            //console.log(_this.attr('name'))
+                            if(_this.attr('name') && _this.attr('name').split('_')){
+                                var formlenth = _this.attr("name").split('_')[1];
+                                if(parseInt(formlenth) > that.option.formLength){
+                                    that.option.formLength = formlenth;
+                                }
+                            }
                             //权限控制
                             if(steptOpt.prcsItem.indexOf(_this.attr("title")) == -1){
                                 if(_this.attr("data-type") == 'macros'){
@@ -110,9 +118,9 @@ var workForm = {
                             //表单填充数据
                             if(res.flag){
                                 var dateName = res.obj;
-
                                 if(dateName && dateName[_this.attr('name')]){
                                     var dataNameVal = dateName[_this.attr('name')];
+
                                     switch (_this.attr('data-type')){
                                         case 'text':
                                             _this.val(dataNameVal);
@@ -124,6 +132,7 @@ var workForm = {
                                             _this.find("option[value='"+dataNameVal+"']").attr("selected",true);
                                             break;
                                         case 'radio':
+                                            $("input[name='"+_this.attr('name')+"']").find("radio[value='"+dataNameVal+"']").attr('checked','true');
                                             console.log('radio not done');
                                             break;
                                         case 'checkbox':
@@ -140,19 +149,18 @@ var workForm = {
 
                                             break;
                                         default:
-                                            _this.val(dataNameVal);
+
                                     }
                                 }
                             }
-
-
-
                         });
+                        console.log(that.option.formLength);
                     });
                 }
             });
 
         }
+
     },
     RadioRender:function(){
         this.option.eleObject.find('input[data-type="radio"]').each(function(){
@@ -168,7 +176,7 @@ var workForm = {
                     if(v == checked){
                         checked="checked";
                     }
-                    eleStr+='<input name="'+name+'" data-type="radio" title="'+title+'" value="'+v+'" type="radio" class="form_item"/>'+v+' ';
+                    eleStr+='<input name="'+name+'" data-type="radio" title="'+title+'" checked="'+checked+'" value="'+v+'" type="radio" class="form_item"/>'+v+' ';
                 }
             });
             _this.before(eleStr);
@@ -357,7 +365,7 @@ var workForm = {
                 layer.closeAll();
             }
             if(cb){
-                return cb(res);
+                return cb(res,that.option);
             }
             return cb;
         });

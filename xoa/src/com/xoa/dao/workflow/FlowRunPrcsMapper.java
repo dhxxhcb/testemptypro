@@ -47,7 +47,7 @@ public interface FlowRunPrcsMapper extends BaseMapper<FlowRunPrcs>{
     public String findTime(@Param("prcsId") Integer prcsId, @Param("runId")Integer runId);
 
     /**
-     * 创建作者:   zlf
+     * 创建作者:   张龙飞
      * 创建日期:   2017/6/1 17:03
      * 方法介绍:   根据runId查询流程实例步骤信息
      * 参数说明:
@@ -55,7 +55,7 @@ public interface FlowRunPrcsMapper extends BaseMapper<FlowRunPrcs>{
      */
     public List<FlowRunPrcs> findByRunId(Integer runId);
     /**
-     * 创建作者:   zlf
+     * 创建作者:   张龙飞
      * 创建日期:   2017/6/2 11:44
      * 方法介绍:   根据流程实例Id和流程实例步骤id查询
      * 参数说明:
@@ -75,5 +75,5 @@ public interface FlowRunPrcsMapper extends BaseMapper<FlowRunPrcs>{
 
     int updateByPrimaryKey(FlowRunPrcs record);
 
-    int updateSql(Map<String,Object> map);
+    int updateSome(Map<String,Object> map);
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.wrapper.BaseWrapper;
 import com.xoa.util.common.wrapper.BaseWrappers;
 import org.springframework.stereotype.Service;
@@ -95,15 +96,40 @@ public class FileContentServiceImpl implements FileContentService{
 		}
 		StringBuffer createrArray=null;
 		String createrArrayStr=null;
-		if(creater!=null){
+		if(creater!=null&&creater.length>0){
 			createrArray =new StringBuffer();
 			for(String value:creater){
 				createrArray.append(value);
 				createrArray.append(",");
 			}
 			createrArrayStr=createrArray.toString();
-
 		}
+		if(StringUtils.checkNull(subjectName)){
+			subjectName=null;
+		}
+		if(StringUtils.checkNull(contentValue1)){
+			contentValue1=null;
+		}
+		if(StringUtils.checkNull(contentValue2)){
+			contentValue2=null;
+		}
+		if(StringUtils.checkNull(contentValue3)){
+			contentValue3=null;
+		}
+		if(StringUtils.checkNull(atiachmentDesc)){
+			atiachmentDesc=null;
+		}if(StringUtils.checkNull(atiachmentName)){
+			atiachmentName=null;
+		}if(StringUtils.checkNull(atiachmentCont)){
+			atiachmentCont=null;
+		}
+		if(StringUtils.checkNull(crStartDate)){
+			crStartDate=null;
+		}
+		if(StringUtils.checkNull(crEndDate)){
+			crEndDate=null;
+		}
+
 		List<FileContentModel> datas =file_ContentMapper.queryBySearchValue(sortId,subjectName,createrArrayStr,contentNo,contentValue1,contentValue2,contentValue3,atiachmentDesc,atiachmentName,atiachmentCont,crStartDate,crEndDate,pageNo,pageSize);
 		if(datas.size()>0){
 			wrappers.setDatas(datas);

@@ -700,13 +700,20 @@
         RUN_ID = #{runId}
     </select>
 
-    <update id="updateSql" parameterType="Map">
+    <update id="updateSome" parameterType="Map">
         update flow_run_prcs
-        set
-         PRCS_FLAG = #{prcsFlag},
-         DELIVER_TIME = #{deliverTime}
+        <set>
+        <if test="prcsFlag != null">
+            PRCS_FLAG = #{prcsFlag},
+        </if>
+        <if test="deliverTime != null">
+            DELIVER_TIME = #{deliverTime},
+        </if>
+        <if test="prcsTime != null">
+            PRCS_TIME = #{prcsTime},
+        </if>
+        </set>
        where RUN_ID = #{runId} AND  PRCS_ID = #{prcsId}
-
     </update>
 
 </mapper>

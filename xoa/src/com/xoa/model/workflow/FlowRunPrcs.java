@@ -485,7 +485,7 @@ public class FlowRunPrcs {
      * @return
      */
     public String getReceive() {
-        return receive;
+        return receive == null ? "" : receive;
     }
 
     /**

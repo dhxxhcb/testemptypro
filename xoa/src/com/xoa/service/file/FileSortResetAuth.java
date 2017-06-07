@@ -1,5 +1,8 @@
 package com.xoa.service.file;
 
+import com.xoa.model.file.FileAuthBaseModel;
+import com.xoa.model.file.FileSortModel;
+import com.xoa.util.common.StringUtils;
 import org.apache.commons.collections.map.HashedMap;
 
 import java.util.Map;
@@ -51,5 +54,12 @@ public class FileSortResetAuth {
         }
         param.put(key,stringBuffer.toString());
         return this;
+    }
+    public static  String[]  getAuthBase(String resource){
+       if(StringUtils.checkNull(resource)){
+           return null;
+       }else{
+           return resource.split("\\|");
+       }
     }
 }

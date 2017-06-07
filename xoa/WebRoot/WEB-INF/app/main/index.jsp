@@ -205,12 +205,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<img src="img/main_img/skin.png" alt="" style="margin-top: 20px;margin-left: 17px;">
 					</li>
-					<li class="position" id="admin-side3" style="background: cyan;">
+					<li class="position" id="admin-side3">
 
-							<img id="go_back" class="yonghu_img" src="img/main_img/close.png" alt="" style="margin-top: 16px;">
+
 							<div class="per_back">
+								<img id="go_back" class="yonghu_img" src="img/main_img/close.png" alt="" style="margin-top: 10px;">
 								<div class="per_all">
-									<div style="width: 40px;height:40px;background: pink;"><img src="" alt=""></div>
+									<div style="width: 50px;height:50px;margin:auto;background: pink;"><img src="" alt=""></div>
 									<h1>陈家旭</h1>
 									<h2>视觉设计师</h2>
 									<h3>产品研发部</h3>
@@ -218,7 +219,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 							<button class="per_shezhi"><img src="img/main_img/per_shezhi.png" alt="">设置</button>
 							<button class="per_suoding"><img src="img/main_img/per_suoding.png" alt="">锁定</button>
-							<button class="per_zhuxiao"><img src="img/main_img/per_zhuxiao.png" alt="">注销</button>
+							<button class="per_zhuxiao" id="per_zhuxiao"><img src="img/main_img/per_zhuxiao.png" alt="">注销</button>
 					</li>
 				</ul>
 				<div class="cont_left">
@@ -245,8 +246,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<!-- <div class="wrapper"> -->
 										<div class="header">
 											<ul>
-												<li><span class="head_title active">个人门户</span></li>
-												<li><span class="head_title">企业门户</span></li>
+												<li><span class="head_title active">首页门户</span></li>
+												<li><span class="head_title">应用门户</span></li>
 												<li><span class="head_title">管理门户</span></li>
 											</ul>
 										
@@ -316,11 +317,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													</div>
 													<div class="tainer">
 														<ul class="notify">
-															<!-- <li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1898498514.1379470215.png"></span><span class="e_name">于青</span><span class="e_title">2017年公司五一放假通知<i style="background:url(http://devapp.gsubo.com/ui/img/mail/fileflag.png)"></i></span><span class="e_time">4月27日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1988893313.2124360565.png"></span><span class="e_name">刘敏</span><span  class="e_title">通知：关于加班申请，大家仔细阅读<i></i></span><span class="e_time">4月24日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/1476383706.601542059.png"></span><span class="e_name">王伟</span><span  class="e_title">关于差旅制度完善的通知<i></i></span><span class="e_time">2016年5月27日</span></li>
-															<li><span class="e_img"><img src="https://www.gsubo.com/file0/E101000001/avatar/912559279.204126377.jpg"></span><span class="e_name">陈彤</span><span  class="e_title">月度部门奖励公告<i></i></span><span class="e_time">2016年4月21日</span></li>
-															<li><span class="e_img"><img src="http://devapp.gsubo.com/file0/E101000001/avatar/332841055.1325694304.jpg"></span><span class="e_name">张兰</span><span  class="e_title">全员测试要求<i></i></span><span class="e_time">2016年1月20日</span></li> -->
 														</ul>
 														<ul class="no_read_notice" style="display:none;">
 														
@@ -450,7 +446,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
 
             });
-			
+			//点击返回按钮，右边内容收回
+            $('.position').on('click','#go_back',function () {
+
+				$('.position').animate({width:"0px"});
+            });
 			//鼠标移入左三角，变色
 			$('.left_scroll').on('mouseover',function(){
 				$(this).css('background','url(img/main_img/tabs_arrow.png) -71px 0px no-repeat'); 
@@ -468,46 +468,92 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$('.right_scroll').on('mouseout',function(){
 				$(this).css('background','url(img/main_img/tabs_arrow.png) -37px 0px no-repeat'); 
 			})
-			
+
 			
 			//鼠标移入，右边logo变颜色，移出变回。
 			//one
-			$('#task_center').on('mouseover',function(){
+
+			/*$('#task_center').on('mouseover',function(){
 				$(this).css('background','url(img/main_img/right_two.png) 0px -5px no-repeat')
 			});
 			$('#task_center').on('mouseout',function(){
 				$(this).css('background','url(img/main_img/right_one.png) 0px -5px no-repeat')
 			});
+
 			//two
+
 			$('#sns').on('mouseover',function(){
 				$(this).css('background','url(img/main_img/right_two.png) -77px -5px no-repeat')
 			});
 			$('#sns').on('mouseout',function(){
 				$(this).css('background','url(img/main_img/right_one.png) -77px -5px no-repeat')
 			});
+
 			//three
+
 			$('#help').on('mouseover',function(){
 				$(this).css('background','url(img/main_img/right_two.png) -148px -5px no-repeat')
 			});
 			$('#help').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_one.png) -148px -5px no-repeat')
-			});
+                $(this).css('background','url(img/main_img/right_one.png) -148px -5px no-repeat')
+            });
+
 			//four
-		/*	$('#person_info').on('mouseover',function(){
-				$(this).css('background','url(img/main_img/right_two.png) -174px -1px no-repeat')
-			});
-			$('#person_info').on('mouseout',function(){
-				$(this).css('background','url(img/main_img/right_one.png) -174px -1px no-repeat')
-			});*/
 
 			$('#theme').on('mouseover',function(){
 				$(this).css('background','url(img/main_img/right_two.png)  -225px -5px no-repeat')
 			});
 			$('#theme').on('mouseout',function(){
 				$(this).css('background','url(img/main_img/right_one.png)  -225px -5px no-repeat')
+			});*/
+
+            //鼠标点击，右边logo变颜色
+            $('#task_center').on('click',function(){
+                $(this).css('background','url(img/main_img/right_three.png) 0px -5px no-repeat')
+                $(this).siblings('#sns').css('background','url(img/main_img/right_one.png) -77px -5px no-repeat');
+                $(this).siblings('#help').css('background','url(img/main_img/right_one.png) -148px -5px no-repeat');
+                $(this).siblings('#theme').css('background','url(img/main_img/right_one.png) -225px -5px no-repeat');
+            });
+            $('#sns').on('click',function(){
+                $(this).css('background','url(img/main_img/right_three.png) -77px -5px no-repeat')
+                $(this).siblings('#task_center').css('background','url(img/main_img/right_one.png) 0px -5px no-repeat');
+                $(this).siblings('#help').css('background','url(img/main_img/right_one.png) -148px -5px no-repeat');
+                $(this).siblings('#theme').css('background','url(img/main_img/right_one.png) -225px -5px no-repeat');
+            });
+            $('#help').on('click',function(){
+                $(this).css('background','url(img/main_img/right_three.png) -148px -5px no-repeat')
+                $(this).siblings('#task_center').css('background','url(img/main_img/right_one.png) 0px -5px no-repeat');
+                $(this).siblings('#sns').css('background','url(img/main_img/right_one.png) -77px -5px no-repeat');
+                $(this).siblings('#theme').css('background','url(img/main_img/right_one.png) -225px -5px no-repeat');
+            });
+            $('#theme').on('click',function(){
+                $(this).css('background','url(img/main_img/right_three.png)  -225px -5px no-repeat')
+                $(this).siblings('#task_center').css('background','url(img/main_img/right_one.png) 0px -5px no-repeat');
+                $(this).siblings('#sns').css('background','url(img/main_img/right_one.png) -77px -5px no-repeat');
+                $(this).siblings('#help').css('background','url(img/main_img/right_one.png) -148px -5px no-repeat');
+            });
+
+
+			//点击注销按钮
+			$('#admin-side3').on('click','#per_zhuxiao',function(){
+			    /*window.close();
+			    window.open('logOut');*/
+                $.ajax({
+                    url: 'logOut',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (obj) {
+                        if(obj.flag==true){
+                            location.href='index.do';
+						}
+                    }
+                });
 			});
-
-
+			//点击button ，边样式
+            $('#admin-side3').on('click','button',function(){
+                $(this).css('background','yellow');
+                $(this).siblings().css('background','#fff');
+			})
 
 		//底部文字滚动
 	/* 	var lunbo='';
@@ -627,7 +673,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								 $(this).find('.erji_circle').attr('src','img/main_img/hei.png'); 
 						});*/
 						
-						
+
 						//点击二级菜单
 						$('.two_menu li').on('click','.two_all',function(){
 
@@ -891,10 +937,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							} 
 							
 					})
+			var bl=false;
+					var numthree;
+            var numTwo;
 				//向左移动
 				$('.right_scroll').on('click',function(){
 					/* console.log($('.main_title li').length>=6); */
-					 if($('.main_title li').length>=6 && $('.main_title li').next() ){
+					if(!bl){
+					 if(numTwo<=6 ){
+                         bl=true;
+					     return;
+					 }
+                    	numTwo--;
 					     	$('.left_scroll').show();
 							$('.main_title li').animate({left:"-=100px"});
 							$('.main_title ul').animate({width:"+=110px"});
@@ -903,6 +957,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				})
 				//向右移动
 					$('.left_scroll').on('click',function(){
+					    if(bl){
+                            numTwo++;
+                            if(numTwo==numthree){
+                                bl=false;
+							}
+
+						}
 					console.log($('.main_title li').length>=8);
 					if($('.main_title li').length>=6){
                         $('.right_scroll').show();

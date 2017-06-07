@@ -1,7 +1,9 @@
 @import url(m_reset.css);
 html,
 body,
-
+body h1,h2,h3,div,span{
+    font-family: '微软雅黑';
+}
 .wrap{
 	width:100%;
 	height:100%;
@@ -13,7 +15,7 @@ body,
 	 background: url(../../../img/main_img/bg.png) -6px 0px no-repeat;
 }
 .head_left{
-	width:14%;
+	width:15%;
 	height:100%;
 }
 
@@ -80,12 +82,9 @@ body,
 .head_mid ul li img{
 	    margin-top: 35%;
     margin-right: 33%;
-   /*  width: 53%;
-    height: 28%; */
-
 }
 .head_rig{
-	width:21%;
+	width:20%;
 	height:100%;
 }
 .head_rig li{
@@ -203,7 +202,34 @@ body,
     margin-left: 261px;
 }
 .per_back{
-    background:url(../../../img/main_img/per_back.png) 0px 0px no-repeat;
+    width: 100%;
+    height: 225px;
+    background: url(../../../img/main_img/per_back.png) 0px 0px no-repeat;
+}
+.per_all{
+    width: 95px;
+    height: 74%;
+    margin: auto;
+}
+.per_shezhi,.per_suoding,.per_zhuxiao{
+    width: 70%;
+    display: block;
+    height: 28px;
+    background: #fff;
+    outline: none;
+    border-radius: 6px;
+    margin:10px auto;
+    border: none;
+    border: 1px solid #138eee;
+}
+.per_shezhi img,.per_suoding img,.per_zhuxiao img{
+    margin-top: -2px;
+}
+
+.per_all h1,.per_all h2,.per_all h3{
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
 }
 .tixing_tab_t ul li{
     width: 69px;
@@ -239,6 +265,10 @@ body,
 }
 .skin ul ol img,.skin ul ol h1{
 	float:left;
+}
+/*点击button按钮，变颜色*/
+#admin-side3 button:hover{
+    background: pink;
 }
 /*右侧logo选中状态*/
 .logo_checks{
@@ -298,13 +328,13 @@ body,
 	background:#e3edf8;
 	overflow:hidden;
 }
-.cont_left{
-	width:14%;
-	height:100%;
-	background: url(../../../img/main_img/cont_left.png) 0px 0px no-repeat;
+.cont_left {
+    width: 15%;
+    background: #fff;
+    height: 100%;
 }
 .all_ul{
-	width:96%;
+	width:97%;
 	height:102%;
 	margin-left: 4%;
 	overflow:hidden;
@@ -478,7 +508,6 @@ body,
 }
 
 .dynatree-expander{
-
 	width: 16px;
     height: 16px;
     display: -moz-inline-box;
@@ -537,7 +566,7 @@ body,
     overflow-y: auto;
 } */
 .cont_rig{
-	width:86%;
+	width:85%;
 	height:100%;
 	background:#fff;
 }
@@ -674,7 +703,7 @@ font-family:'微软雅黑';
 }
 /*定义滑块，内阴影及圆角*/
 .tab_cone::-webkit-scrollbar-thumb{
-    /*width: 10px;*/
+   width: 0px;
     height: 20px;
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
@@ -683,7 +712,7 @@ font-family:'微软雅黑';
 
 /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
 .tab_ctwo::-webkit-scrollbar{
-    width: 4px;
+    width: 0px;
     height: 16px;
     background-color: #f5f5f5;
 }
@@ -695,7 +724,7 @@ font-family:'微软雅黑';
 }
 /*定义滑块，内阴影及圆角*/
 .tab_ctwo::-webkit-scrollbar-thumb{
-    /*width: 10px;*/
+    width: 0px;
     height: 20px;
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);

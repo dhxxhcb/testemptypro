@@ -1008,9 +1008,8 @@
             //var layerIndex = layer.load(0, {shade: false}); /* 0代表加载的风格，支持0-2 */
             var datas_qb ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
-                userId:'admin',
             };
             $.ajax({
                 url:'../../workflow/work/selectAll',
@@ -1069,9 +1068,8 @@
         function initPageList_db(cb,page){
             var datas ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
-                userId:'admin',
             };
             $.ajax({
                 url:'../../workflow/work/selectWork',
@@ -1095,7 +1093,7 @@
                             '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
                             '<td class="">'+data.obj[i].userName+'</td>'+
                             '<td class="">'+status+'</td>'+
-                            '<td class="">到达:'+data.obj[i].receiptTime+'<br>接收:'+data.obj[i].prcsTime+'</td>'+
+                            '<td class="">到达:'+data.obj[i].receiptTime+'<br>接收:'+data.obj[i].receive+'</td>'+
                             '<td class="">到达:'+data.obj[i].arriveTime+'<br>办理:'+data.obj[i].handleTime+'</td>'+
                             '<td style="text-align:left;">'+
                             '<a href="javascript:"><span class="host-span" id="zhuban" title="主办" runId='+data.obj[i].runId+' flowId='+data.obj[i].flowType.flowId+' prcsId='+data.obj[i].flowProcess.prcsId+'>主办</span></a>'+
@@ -1138,9 +1136,8 @@
         function initPageList_bj(cb,page){
             var datas ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
-                userId:'admin',
             };
             $.ajax({
                 url:'../../workflow/work/selectEndWord',
@@ -1163,7 +1160,7 @@
                             '<td class="">'+data.obj[i].userName+'</td>'+
                             '<td class="">'+data.obj[i].deliverTime+'</td><td class="">'+status+'</td>'+
                             '<td style="text-align:left;" title="主办导出删除">'+
-                            '<a href="javascript:"><span class="host-span" id="cuiban" title="催办" runId='+data.obj[i].runId+' flowId='+data.obj[i].flowType.flowId+' prcsId='+data.obj[i].flowProcess.prcsId+'>催办</span></a>'+
+                            '<a href="javascript:"><span class="host-span" id="cuiban" title="催办" runId='+data.obj[i].runId+' flowId='+data.obj[i].flowRun.flowId+' prcsId='+data.obj[i].flowProcess.prcsId+'>催办</span></a>'+
                             '<a href=""><span class="operation_text_left">导出</span></a>'+
                             '<a href="javascript:">'+
                             '<span class="operation_text_left">删除</span></a></td></tr>';
@@ -1204,9 +1201,8 @@
         function initPageList_gq(cb,page){
             var datas ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
-                userId:'admin',
             };
             $.ajax({
                 url:'../../workflow/work/selectHang',

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoa.dao.attend.AttendSetMapper" >
+  <mapper namespace="com.xoa.dao.attend.AttendSetMapper" >
   <resultMap id="BaseResultMap" type="com.xoa.model.attend.AttendSet" >
     <id column="SID" property="sid" jdbcType="INTEGER" />
     <result column="UID" property="uid" jdbcType="INTEGER" />
@@ -50,9 +50,91 @@
      #{isOut}, #{locationOn}, #{wifiOn}, #{wifiAddr},
      #{wifiName}, #{workdate})
    </insert>
-  <update id="updateAttendSet" >
-
-
+  <update id="updateAttendSet" parameterType="com.xoa.model.attend.AttendSet" >
+    update attend_set
+    <set >
+      <if test="uid != null" >
+        UID = #{uid},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title},
+      </if>
+      <if test="atime1Set != null" >
+        ATIME1_SET = #{atime1Set},
+      </if>
+      <if test="atime1 != null" >
+        ATIME1 = #{atime1},
+      </if>
+      <if test="atime2Set != null" >
+        ATIME2_SET = #{atime2Set},
+      </if>
+      <if test="atime2 != null" >
+        ATIME2 = #{atime2},
+      </if>
+      <if test="atime3Set != null" >
+        ATIME3_SET = #{atime3Set},
+      </if>
+      <if test="atime3 != null" >
+        ATIME3 = #{atime3},
+      </if>
+      <if test="atime4Set != null" >
+        ATIME4_SET = #{atime4Set},
+      </if>
+      <if test="atime4 != null" >
+        ATIME4 = #{atime4},
+      </if>
+      <if test="atime5Set != null" >
+        ATIME5_SET = #{atime5Set},
+      </if>
+      <if test="atime5 != null" >
+        ATIME5 = #{atime5},
+      </if>
+      <if test="atime6Set != null" >
+        ATIME6_SET = #{atime6Set},
+      </if>
+      <if test="atime6 != null" >
+        ATIME6 = #{atime6},
+      </if>
+      <if test="worktimeF != null" >
+        WORKTIME_F = #{worktimeF},
+      </if>
+      <if test="worktimeB != null" >
+        WORKTIME_B = #{worktimeB},
+      </if>
+      <if test="workafterF != null" >
+        WORKAFTER_F = #{workafterF},
+      </if>
+      <if test="workafterB != null" >
+        WORKAFTER_B = #{workafterB},
+      </if>
+      <if test="location != null" >
+        LOCATION = #{location},
+      </if>
+      <if test="ranges != null" >
+        RANGES = #{ranges},
+      </if>
+      <if test="isOut != null" >
+        IS_OUT = #{isOut},
+      </if>
+      <if test="locationOn != null" >
+        LOCATION_ON = #{locationOn},
+      </if>
+      <if test="wifiOn != null" >
+        WIFI_ON = #{wifiOn},
+      </if>
+      <if test="wifiAddr != null" >
+        WIFI_ADDR = #{wifiAddr},
+      </if>
+      <if test="wifiName != null" >
+        WIFI_NAME = #{wifiName},
+      </if>
+      <if test="workdate != null" >
+        WORKDATE = #{workdate},
+      </if>
+    </set>
+    where SID = #{sid}
   </update>
+
+
 
 </mapper>

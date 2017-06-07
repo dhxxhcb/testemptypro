@@ -540,9 +540,13 @@
             lastEditTime:'',
             content:'',
             subject:'',
-            typeId:0
+            typeId:0,
+            beginTime:'',
+            endTime:'',
+            content:''
 
         };
+
         initPageList(function(pageCount){
             initPagination(pageCount,data.pageSize);
         });
@@ -557,11 +561,16 @@
             data.nTime = $('#sendTime').val();
             console.log(data);
             if(data.read == ''){
+                data.subject = '';
+                data.beginTime = '';
+                data.endTime = '';
+                data.typeId =  0;
+                data.content = '';
                 $('.step1').show();
                 $('.step2').hide();
                 $('.center').hide();
                 initPageList();
-            }else if(data.read == 1){
+            }else if(data.read == 1){//查询页面
                 $('.step1').hide();
                 $('.step2').hide();
                 $('.center').show('');
@@ -595,7 +604,6 @@
                 $("#add_sel").find("option[value=普通格式]").attr("selected",true);//格式
                 $('#add_summny').val('');//内容
                 $('.keyword_ip').val('');//关键词
-
             }
 
         });
@@ -681,15 +689,14 @@
             initPageList();
         });
 
-        //时间控件调用
-
         $('#btn_query').click(function (){
-
-            data.subject = $('#subject').val();
+            alert('111')
+            data.subject = $('#subject_query ').val();
             data.beginTime = $('#beginTime').val();
             data.endTime = $('#endTime').val();
             data.typeId =  $('#select').val()==0?'':$('#select').val();
             data.content = $('#content').val();
+            console.log(data)
             initPageList();
             $('.step1').show();
             $('.center').hide();

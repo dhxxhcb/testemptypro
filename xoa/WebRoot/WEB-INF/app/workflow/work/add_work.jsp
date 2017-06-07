@@ -258,6 +258,22 @@ font-weight:bold;
     #form_select{
         height: 28.4px !important;
     }
+    /*一级菜单移入移出样式的改变*/
+    .one_all li:hover{
+        background:#ccebff;
+        cursor:pointer;
+    }
+    .one_all li:hover h1{
+        color:#2f8ae3;
+    }
+    /*二级菜单移入移出样式的改变*/
+    .two_menu li:hover{
+        background:#ccebff;
+        cursor:pointer;
+    }
+    .two_menu li:hover h1{
+        color:#2f8ae3;
+    }
 </style>
 <script type="text/javascript">
 var loading='<div class="loading">正在加载，请稍候...</div>';
@@ -364,24 +380,20 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
 
 
                     //鼠标移动到一级菜单变样式，移出变回
-                  $('.one_all').on('mouseover',function () {
+                 /* $('.one_all').on('mouseover',function () {
                       $(this).css({
-
                           'color':'#006bb8',
-
                          'cursor':'pointer'
                       });
                   });
                   //移出
                   $('.one_all').on('mouseout',function () {
                      $(this).css({
-
                        'color':'#000'
                       });
-                   });
+                   });*/
 
                     //点击一级菜单。显示二级
-
                     $('.one_all').on('click',function () {
                         var top_one=$(this).parent().next('li').find('.one_all');
                         if ($(this).siblings().find('.erji').css('display')=='none') {
@@ -394,6 +406,17 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
                           $(this).find('.down_jiao').attr('src','../../img/workflow/work/add_work/right.png');
                             $(this).siblings().find('.erji').hide();
                            /* top_one.css('border-top','none');*/
+                        }
+                        if($(this).siblings('.two_menu')){
+                            $(this).find('h1').css({
+                                'color':'#000',
+                            });
+                        }else{
+                            $(this).find('h1').css({
+                                'color':'#2f8ae3',
+                               /* 'cursor':'pointer'*/
+                            });
+                            $(this).css('background','#ccebff');
                         }
 
                     });
@@ -414,28 +437,21 @@ var quick_flow_tips = '此工作要求强制输入%s，确定进入新建向导�
 
 
                     //二级菜单切换
-                    $('.two_menu li').on('mouseover','.two_all',function(){
+                /*    $('.two_menu li').on('mouseover','.two_all',function(){
 
                         $(this).find('h1').css({
                             'color':'#2f8ae3',
-
                             'cursor':'pointer'
                         });
                         $(this).css('background','#ccebff');
-                      /*  $(this).find('.erji_circle').attr('src','img/main_img/lan.png');*/
-
                     });
                     $('.two_menu li').on('mouseout','.two_all',function(){
-
                         $('.two_menu li .two_all').removeClass('xuan');
                         $(this).find('h1').css({
                             'color':'#000',
-                           /* 'background':'#e8f4fc',*/
                         });
                         $(this).css('background','#e8f4fc');
-                     /*   $(this).find('.erji_circle').attr('src','img/main_img/hei.png');*/
-                    });
-
+                    });*/
 
                     //点击二级菜单
                     $('.two_menu li').on('click','.two_all',function(){

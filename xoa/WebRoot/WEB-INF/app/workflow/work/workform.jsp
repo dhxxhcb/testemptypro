@@ -275,6 +275,9 @@
         padding-top: 1px;
         padding: 0;
     }
+    .modal-body{
+        max-height: 341px !important;
+    }
 </style>
 <body>
 <div class="body">
@@ -572,19 +575,18 @@
                                     type: 1,
                                     /* skin: 'layui-layer-rim', //加上边框 */
                                     offset: '80px',
-                                    area: ['800px', '400px'],
+                                    area: ['800px', '500px'],
                                     closeBtn: 0,
                                     title:titleName,
                                     content: '<div class="modal-body" style="max-height: 274px;">'+
                                     '<div class="work-prcs-title" id="op_user_show_info" style="margin-bottom: 10px;font-weight: normal;border-radius: 4px;-webkit-border-radius: 4px;">'+
                                     '当前步骤为第<font color="red">1</font>步[人力资源部拟定]<font color="red"><div self_type="self" style="display:inline;">系统管理员</div>'+
-                                    '<div style="display:inline;">(办理中)</div></font></div><div class="work-prcs-block"><div class="work-prcs-title" id="prcs_title">'+
-                                    '请选择下一步骤<div class="workflow-procs-nodes-op-wrap"><span id="all_check" style="display:none;"><i></i>全选</span></div></div>'+
-                                    '<div class="work-prcs-content clearfix"><div class="workflow-procs-nodes-wrap"><ul id="workPrcsData" class="workflow-procs-nodes"><li class="workflow-node" id="next_prcs_2">'+
+                                    '<div style="margin-top: -21px;margin-left: 274px;">(办理中)</div></font></div><div class="work-prcs-block">'+
+                                    '<div class="work-prcs-content clearfix" style="border: 1px solid #f3f3f3;"><div style="width:231px;height:30px;background:#138eee;"><h1 style="margin: 0px 57px;line-height: 30px;color: #f3f3f3;">请选择下一步骤</h1></div><div class="workflow-procs-nodes-wrap"><ul id="workPrcsData" class="workflow-procs-nodes"><li class="workflow-node" id="next_prcs_2">'+
                                     prcsName+'<ol></ol> </li></ul></div><div class="workflow-procs-line"></div><div class="workflow-procs-nodes-result-wrap">'+
                                     '<ul id="work-next-prcs-block" class="workflow-procs-nodes-result" style="top: 0px;">'+
                                     '<li class="workflow-node-result clearfix " prcs_id_next="2">'+
-                                    '<div class="workflow-node-title"><div class="workflow-node-title-text">上级主管核定</div><div class="workflow-node-ops"><input id="chose_user2" type="button"  is_child_node="0" value="选择人员"></div> </div>'+
+                                    '<div class="workflow-node-title"><div class="workflow-node-ops"><input id="chose_user2" type="button"  is_child_node="0" value="选择人员"></div> </div>'+
                                     '<div class="users-select-block"><div id="host_op_block_div2" class="clearfix">'+
                                     '  <input type="hidden" id="PRCS_OP_USER2" data_type="op_user_btn" name="PRCS_OP_USER2" value="admin">'+
                                     ' <input type="hidden" id="PRCS_BACK" name="PRCS_BACK" value=""><div class="sponsor">'+
