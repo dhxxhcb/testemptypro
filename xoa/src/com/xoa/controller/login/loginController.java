@@ -8,6 +8,7 @@ import com.xoa.util.ToJson;
 import com.xoa.util.common.L;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.common.session.SessionUtils;
+import com.xoa.util.common.wrapper.BaseWrapper;
 import com.xoa.util.dataSource.ContextHolder;
 import com.xoa.util.http.HttpClientUtil;
 import org.apache.log4j.Logger;
@@ -24,7 +25,9 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -193,19 +196,19 @@ public class loginController {
 
 	}
 	@RequestMapping(value = "/logOut", produces = { "application/json;charset=UTF-8" })
-   public String  logOut(HttpServletRequest request){
-	    request.getSession().invalidate();
-	    request.getSession().removeAttribute("user");
-		String  flag;
-	  Users users= (Users) request.getSession().getAttribute("user");
-	   if (users==null){
-		   flag="true";
-	   }else {
+	@ResponseBody
+   public BaseWrapper logOut(HttpServletRequest request){
+		BaseWrapper wrapper =new BaseWrapper();
+	    request.getSession().invalidate();//让SESSION失效
 
-		   flag="false";
-	   }
-       return  flag;
-   }
+       SessionUtils.cleanUserSession(request.getSession());
+		wrapper.setFlag(true);
+		wrapper.setStatus(true);
+		wrapper.setMsg("注销成功");
+		return wrapper;
+
+
+	}
 
     /**
      *@创建作者:  韩成冰
