@@ -176,10 +176,14 @@ public class SessionUtils {
 		if(session==null){
 			throw new SessionException("session is null");
 		}
-		List<String>  stringList= (List<String>) session.getAttributeNames();
-		for (String str:stringList){
-			session.removeAttribute(str);
-              }
+		//List<String>  stringList= (List<String>) session.getAttributeNames();
+		Enumeration<String> enumeration=session.getAttributeNames();
+		// 遍历enumeration中的
+		while (enumeration.hasMoreElements()) {
+             // 获取session键值
+			session.removeAttribute(enumeration.nextElement().toString());
+		}
+
 
 	}
 
