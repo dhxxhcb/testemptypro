@@ -381,19 +381,15 @@
                 },
                 flowStep:flowStep,//预览
                 target:'.cont_form'},
-            
-            function (data) {
-                zhuanjiao(data);
-                var obj=data.object.flowRun
-                var  titleName=obj.runName;
-                $('.num').html(titleName);
-
-                var obj2=data.object.listFp[0];
-                /*console.log(obj2);*/
-                $('.step').html('主办：(第一步：'+obj2.prcsName+')');
-
-                /*console.log($('.form_item'));*/
-
+                function (data,option) {
+                    zhuanjiao(data);
+                    var obj=data.object.flowRun
+                    var  titleName=obj.runName;
+                    $('.num').html(titleName);
+                   /* option*/
+                    var obj2=data.object.listFp[0];
+                    /*console.log(obj2);*/
+                    $('.step').html('主办：(第一步：'+obj2.prcsName+')');
 
              });
 
