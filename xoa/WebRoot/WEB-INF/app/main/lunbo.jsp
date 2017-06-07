@@ -10,8 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
- <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script src="js/base/base.js"></script>
  <title>Document</title>
  <style>
  *{
@@ -53,16 +54,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </div>
    
 <script>
- function lunbo(id,height){
-  var ul=$(id);
-  var liFirst=ul.find('li:first');
-  $(id).animate({top:height}).animate({"top":0},0,function(){
-  var clone=liFirst.clone();
-  $(id).append(clone);
-  liFirst.remove();
-  })
- }
- setInterval("lunbo('ul','-30px')",3000);
+    $(function(){
+        //轮播的文字和秒数的接口
+        $.ajax({
+            type: "get",
+            url: "<%=basePath%>/sys/getStatusText",
+            dataType: 'JSON',
+            success: function (obj) {
+
+            }
+        })
+        //轮播功能
+        function lunbo(id,height){
+            var ul=$(id);
+            var liFirst=ul.find('li:first');
+            $(id).animate({top:height}).animate({"top":0},0,function(){
+                var clone=liFirst.clone();
+                $(id).append(clone);
+                liFirst.remove();
+            })
+        }
+        setInterval("lunbo('ul','-30px')",3000);
+    })
+
 </script>
 </body>
 </html>
