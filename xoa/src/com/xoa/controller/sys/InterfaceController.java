@@ -47,7 +47,20 @@ public class InterfaceController {
             List<InterfaceModel> interfaceModelList = interfaceService.getStaTusText();
             System.out.println(interfaceModelList);
             //list=sysParaService.getIeTitle1();
-            tojson.setObject(interfaceModelList);
+
+            if (interfaceModelList != null && interfaceModelList.size() == 1) {
+                InterfaceModel interfaceModel = interfaceModelList.get(0);
+                String statusText = interfaceModel.getStatusText();
+                String[] statusTextArr = null;
+                if (statusText != null) {
+                    statusTextArr = statusText.split("\\n");
+                } else {
+                    statusTextArr = new String[1];
+                    statusTextArr[0] = "欢迎使用新通达oa";
+                }
+
+                tojson.setObject(statusTextArr);
+            }
             tojson.setMsg("ok");
             tojson.setFlag(0);
         } catch (Exception e) {
