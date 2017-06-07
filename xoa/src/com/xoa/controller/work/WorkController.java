@@ -232,7 +232,7 @@ public class WorkController {
                                      @RequestParam(value="runName",required = false) String runName,
                                      @RequestParam(value="beginTime",required =false) String beginTime,
                                      @RequestParam(value="beginUser",required =false) String beginUser
-    ) throws JSONException {
+    			) throws JSONException {
         ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
                 "loginDateSouse"));
         ToJson<FlowFast> tj = new ToJson<FlowFast>();
@@ -402,7 +402,6 @@ public class WorkController {
             fl.setActiveTime("0000-00-00 00:00:00");
             flowRunPrcsService.save(fl);
         }
-
         try {
             toJson.setObject(fl);
             toJson.setMsg("OK");
