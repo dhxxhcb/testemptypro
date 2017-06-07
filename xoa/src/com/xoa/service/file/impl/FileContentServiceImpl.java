@@ -96,14 +96,13 @@ public class FileContentServiceImpl implements FileContentService{
 		}
 		StringBuffer createrArray=null;
 		String createrArrayStr=null;
-		if(creater!=null){
+		if(creater!=null&&creater.length>0){
 			createrArray =new StringBuffer();
 			for(String value:creater){
 				createrArray.append(value);
 				createrArray.append(",");
 			}
 			createrArrayStr=createrArray.toString();
-
 		}
 		if(StringUtils.checkNull(subjectName)){
 			subjectName=null;
