@@ -399,7 +399,7 @@
 			<li><span class="headli2_1">委托</span><img src="../../img/02.png" alt="" class="headli2_2">
 			</li>
 
-			<li id="allwork" class="allwork"><span class="headli3 allwork"  id="allwork">全部工作</span></li>
+			<li id="allwork" class="allwork"><span class="headli3 allwork"  >全部工作</span></li>
 
 		</ul>
 	</div>
@@ -434,9 +434,7 @@
 				<button type="button" action="refresh" class="btn btn-info">刷新</button>
 			</div>
 
-			<!--navigation结束-->
-
-			<!--content部分开始-->
+			<!-- 待办工作 -->
 			<div>
 				<div>
 					<table id="tr_td"  style="margin-top:10px">
@@ -477,9 +475,9 @@
 					</table>
 				</div>
 			</div>
-			<!--content部分结束-->
-
 		</div>
+
+		<!-- 办结工作 -->
 		<div class="step" style='display:none;'>
 			<div class="navigation  clearfix">
 				<div class="left">
@@ -650,6 +648,7 @@
 
 		</div>
 
+		<!-- 挂起工作 -->
 		<div class="step" style='display:none;'>
 			<div class="navigation  clearfix">
 				<div class="left">
@@ -707,6 +706,7 @@
 
 		</div>
 
+		<!-- 委托工作 -->
 		<div class="step" style='display:none;'>
 			<div class="navigation  clearfix">
 				<div class="left">
@@ -820,6 +820,7 @@
 
 		</div>
 
+		<!-- 全部工作 -->
 		<div class="step" style='display:none;'>
 			<div class="navigation  clearfix">
 				<div class="left">
@@ -901,7 +902,7 @@
             $('.news').text(head_title);
             $(".step").eq(index).show().siblings().hide();
         });
-//处理数据状态字段
+		<!-- 工作状态转换 -->
         function handleData(data){
             switch(data){
                 case "1":
@@ -927,6 +928,8 @@
             }
             return str;
         }
+
+        <!-- 工作流程紧急程度 -->
         function getWorkLevle(num_workLevel){
             var str_workLevel;
             switch(num_workLevel){
@@ -945,6 +948,7 @@
             return str_workLevel;
         }
 
+        <!-- 流程类型 -->
         function getFlowType(num_flowType){
             var str_flowType;
             switch (num_flowType){
@@ -959,6 +963,7 @@
             }
             return str_flowType;
         }
+
         function changeShadow(){
             var td_cs=document.getElementById("tr_td");
             var ts_cs=td_cs.getElementsByTagName("tr"),
@@ -969,6 +974,7 @@
                 }
             }
         }
+
         $(document).ready(function(){
             initPageList_db(function (pageCount) {
 				/* console.log(pageCount);*/
@@ -1004,11 +1010,12 @@
             }
         );
 
+        <!-- 查询全部工作 -->
         function initPageList_qb(cb,page) {
             //var layerIndex = layer.load(0, {shade: false}); /* 0代表加载的风格，支持0-2 */
             var datas_qb ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
                 userId:'admin',
             };
@@ -1066,12 +1073,12 @@
             });
         }
 
+        <!-- 查询待办工作 -->
         function initPageList_db(cb,page){
             var datas ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
-                userId:'admin',
             };
             $.ajax({
                 url:'../../workflow/work/selectWork',
@@ -1095,7 +1102,7 @@
                             '第'+data.obj[i].flowProcess.prcsId+'步:'+data.obj[i].flowProcess.prcsName+'</td>'+
                             '<td class="">'+data.obj[i].userName+'</td>'+
                             '<td class="">'+status+'</td>'+
-                            '<td class="">到达:'+data.obj[i].receiptTime+'<br>接收:'+data.obj[i].prcsTime+'</td>'+
+                            '<td class="">到达:'+data.obj[i].receiptTime+'<br>接收:'+data.obj[i].receive+'</td>'+
                             '<td class="">到达:'+data.obj[i].arriveTime+'<br>办理:'+data.obj[i].handleTime+'</td>'+
                             '<td style="text-align:left;">'+
                             '<a href="javascript:"><span class="host-span" id="zhuban" title="主办" runId='+data.obj[i].runId+' flowId='+data.obj[i].flowType.flowId+' prcsId='+data.obj[i].flowProcess.prcsId+'>主办</span></a>'+
@@ -1106,7 +1113,6 @@
                     }
                     $('#dbgz').html(str);
                     if (cb) {
-                        //alert(data.totleNum);
                         cb(data.totleNum);
                     }
                 }
@@ -1135,6 +1141,7 @@
             });
         }
 
+        <!-- 查询办结工作 -->
         function initPageList_bj(cb,page){
             var datas ={
                 page:page,
@@ -1201,10 +1208,11 @@
             });
         }
 
+        <!-- 查询挂起工作 -->
         function initPageList_gq(cb,page){
             var datas ={
                 page:page,
-                pageSize:10,
+                pageSize:15,
                 useFlag:true,
                 userId:'admin',
             };

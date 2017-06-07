@@ -81,6 +81,7 @@ public class FlowRunPrcsServiceImpl implements FlowRunPrcsService {
 				}
 
 				if(DateFormat.getTime(flowRunPrcs.getPrcsTime()) != -621701856) {
+//				if(!StringUtils.checkNull(flowRunPrcs.getPrcsTime())) {
 					// 工作接收时间
 					flowRunPrcs.setReceive(DateFormat.getStrTime(DateFormat.getTime(flowRunPrcs.getPrcsTime())));
 					// 办理停留时间
