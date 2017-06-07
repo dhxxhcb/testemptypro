@@ -196,9 +196,15 @@ public class loginController {
    public String  logOut(HttpServletRequest request){
 	    request.getSession().invalidate();
 	    request.getSession().removeAttribute("user");
-        String  flag="true";
+		String  flag;
+	  Users users= (Users) request.getSession().getAttribute("user");
+	   if (users==null){
+		   flag="true";
+	   }else {
 
-	    return  flag;
+		   flag="false";
+	   }
+       return  flag;
    }
 
     /**
