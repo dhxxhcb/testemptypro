@@ -1,7 +1,9 @@
 @import url(m_reset.css);
 html,
 body,
-
+body h1,h2,h3,div,span{
+    font-family: '微软雅黑';
+}
 .wrap{
 	width:100%;
 	height:100%;
@@ -203,7 +205,34 @@ body,
     margin-left: 261px;
 }
 .per_back{
-    background:url(../../../img/main_img/per_back.png) 0px 0px no-repeat;
+    width: 100%;
+    height: 225px;
+    background: url(../../../img/main_img/per_back.png) 0px 0px no-repeat;
+}
+.per_all{
+    width: 95px;
+    height: 74%;
+    margin: auto;
+}
+.per_shezhi,.per_suoding,.per_zhuxiao{
+    width: 70%;
+    display: block;
+    height: 28px;
+    background: #fff;
+    outline: none;
+    border-radius: 6px;
+    margin:10px auto;
+    border: none;
+    border: 1px solid #138eee;
+}
+.per_shezhi img,.per_suoding img,.per_zhuxiao img{
+    margin-top: -2px;
+}
+
+.per_all h1,.per_all h2,.per_all h3{
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
 }
 .tixing_tab_t ul li{
     width: 69px;
