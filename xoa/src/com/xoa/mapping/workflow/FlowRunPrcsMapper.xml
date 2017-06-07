@@ -607,7 +607,6 @@
         fr.RUN_NAME,
         fr.BEGIN_USER,
         fr.BEGIN_DEPT,
-         fp.PRCS_NAME,
         frp.ID,
         frp.USER_ID,
         frp.PRCS_ID,
@@ -627,7 +626,6 @@
         FROM
         FLOW_RUN_PRCS frp
         INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
-        LEFT  JOIN FLOW_PROCESS fp ON fp.FLOW_ID = fr.FLOW_ID
         where
         frp.PRCS_FLAG = '6'
         AND frp.CHILD_RUN = '0'
@@ -650,7 +648,6 @@
         fr.RUN_NAME,
         fr.BEGIN_USER,
         fr.BEGIN_DEPT,
-         fp.PRCS_NAME,
         frp.ID,
         frp.USER_ID,
         frp.PRCS_ID,
@@ -670,7 +667,6 @@
         FROM
         FLOW_RUN_PRCS frp
         INNER JOIN FLOW_RUN  fr ON fr.RUN_ID = frp.RUN_ID
-        LEFT  JOIN FLOW_PROCESS fp ON fp.FLOW_ID = fr.FLOW_ID
         where
          frp.CHILD_RUN = '0'
         AND frp.USER_ID=#{userId}
