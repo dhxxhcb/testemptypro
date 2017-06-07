@@ -99,7 +99,7 @@ public class FlowProcessController {
 	 * @return ToJson<FlowProcess>
 	 */
 	@ResponseBody
-	@RequestMapping(value = "insert", produces = {"application/json;charset=UTF-8"})
+	@RequestMapping(value = "insert", produces = {"application/json;charset=UTF-8"},method = RequestMethod.POST)
 	public ToJson<FlowProcess> insert(FlowProcess flowProcess,
 									  HttpServletRequest request) {
 		ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
