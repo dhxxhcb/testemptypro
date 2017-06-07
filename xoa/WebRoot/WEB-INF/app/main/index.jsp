@@ -536,7 +536,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			//点击注销按钮
 			$('#admin-side3').on('click','#per_zhuxiao',function(){
-			    window.open('logOut')
+			    window.close();
+			    window.open('logOut');
 			})
 
 		//底部文字滚动
