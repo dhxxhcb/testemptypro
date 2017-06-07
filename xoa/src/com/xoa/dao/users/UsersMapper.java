@@ -179,5 +179,6 @@ public interface UsersMapper {
      List<String> getUserByFuncId(String fid);
 
      List<String> findUsersByIds(Map<String, List> hashMap);
+     List<Users> checkPassWord(String userName);
 
  }

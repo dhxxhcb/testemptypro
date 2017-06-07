@@ -200,4 +200,34 @@ public class loginController {
 
 	   
    }
+
+    /**
+     *@创建作者:  韩成冰
+     *@创建日期:  2017/6/6 23:08
+     *@函数介绍:  判断密码是否正确
+     *@参数说明:  @param user
+     *@return:   jaon
+     **/
+    @ResponseBody
+    @RequestMapping("/checkPassword")
+    public ToJson<Object> checkPassword(HttpServletRequest request, String userName, String password) {
+        ContextHolder.setConsumerType("xoa" + (String) request.getSession().getAttribute(
+                "loginDateSouse"));
+        ToJson<Object> json = new ToJson<Object>(0, null);
+        try {
+            Boolean isPassWordRight = usersService.checkPassWord(userName, password);
+
+            if (isPassWordRight != null && isPassWordRight) {
+                json.setFlag(0);
+                json.setMsg("OK");
+            } else {
+                json.setFlag(1);
+            }
+        } catch (Exception e) {
+
+            json.setMsg(e.getMessage());
+        }
+        return json;
+
+    }
 }

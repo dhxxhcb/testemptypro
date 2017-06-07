@@ -10,6 +10,7 @@ import com.xoa.util.CusAccessObjectUtil;
 import com.xoa.util.ToJson;
 import com.xoa.util.common.StringUtils;
 import com.xoa.util.page.PageParams;
+import org.apache.commons.codec.digest.Md5Crypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -414,6 +415,35 @@ public class UsersServiceImpl implements UsersService {
             tojson.setMsg("false");
         }
         return tojson;
+    }
+    /**
+     * @创建作者: 韩成冰
+     * @创建日期: 2017/6/6 21:15
+     * @函数介绍: 验证密码是否正确
+     * @参数说明: @param userName 用户名
+     * @参数说明: @param password 密码
+     * @return: Boolean 密码是否正确
+     */
+    @Override
+    public Boolean checkPassWord(String userName, String password) {
+
+        if (userName != null && password != null) {
+
+            List<Users> usersList = usersMapper.checkPassWord(userName);
+
+            if (usersList != null && usersList.size() > 0) {
+
+                for (Users users : usersList) {
+                    String truePassword1 = users.getPassword();
+
+                    String md5Password = Md5Crypt.md5Crypt(password.getBytes(), truePassword1);
+                    if (md5Password != null && md5Password.equals(truePassword1)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }

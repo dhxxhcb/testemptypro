@@ -192,6 +192,15 @@ public interface UsersService {
     List<Users> getUsersOnline();
 
     List<Users>  getUserbyCondition(Map<String,Object> maps);
+    /**
+     *@创建作者:  韩成冰
+     *@创建日期:  2017/6/6 21:15
+     *@函数介绍:  验证密码是否正确
+     *@参数说明:  @param userName 用户名
+     *@参数说明:  @param password 密码
+     *@return:   Boolean 密码是否正确
+     **/
+    Boolean checkPassWord(String userName, String password);
 }
 
 

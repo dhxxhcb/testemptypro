@@ -1237,7 +1237,11 @@ where
 
 
     </select>
+    <select id="checkPassWord" parameterType="java.lang.String" resultType="com.xoa.model.users.Users">
+        select u.PASSWORD FROM user u WHERE  u.USER_ID = #{userName};
+    </select>
 
- </mapper>
+
+</mapper>
 
 
