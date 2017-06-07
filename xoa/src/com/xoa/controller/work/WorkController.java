@@ -130,13 +130,17 @@ public class WorkController {
         ToJson<FlowFormType> json = new ToJson<FlowFormType>();
         json = flowFormTypeService.qureyItemMax(flowTypeModel.getFormId());
         FlowFormType flowFormType = (FlowFormType) json.getObject();
+        f.setFlowTypeModel(flowTypeModel);
+        f.setFlowFormType(flowFormType);
+        f.setListFp(fl);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         if(prcsId==1) {
             int runId = flowRunService.getMaxRunId();
             String userId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getUserId();
             int deptId = SessionUtils.getSessionInfo(request.getSession(), Users.class, new Users()).getDeptId();
             //FlowProcess flowProcess= flowProcessService.findbyprcsId(flowId, prcsId);
             String flowName = flowTypeModel.getFlowName();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            
             String beginTime = df.format(new Date());
             String runName = flowName + " " + beginTime;
 
@@ -165,28 +169,29 @@ public class WorkController {
             flowRunPrcs.setActiveTime("0000-00-00 00:00:00");
             flowRunPrcsService.save(flowRunPrcs);
 
-            f.setFlowTypeModel(flowTypeModel);
-            f.setFlowFormType(flowFormType);
+           
             f.setFlowRun(flowRun);
             f.setFlowRunPrcs(flowRunPrcs);
-            f.setListFp(fl);
+           
         }else{
-            FlowRun flowRun = flowRunService.find(Integer.parseInt(id));
+        	FlowRun flowRun = flowRunService.find(Integer.parseInt(id));
+            Map<String, Object> m = new HashMap<String, Object>();
+            m.put("prcsId", prcsId);
+            m.put("runId", id);
+            m.put("prcsFlag", "4");
+            m.put("prcsTime", df.format(new Date()));
+            flowRunPrcsService.updateSql(m);
 
-            FlowRunPrcsExcted flowRunPrcs = new FlowRunPrcsExcted();
+            FlowRunPrcs flowRunPrcs = new FlowRunPrcs();
             flowRunPrcs.setPrcsId(prcsId);
             flowRunPrcs.setRunId(Integer.parseInt(id));
             flowRunPrcs.setPrcsFlag("4");
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             flowRunPrcs.setPrcsTime(df.format(new Date()));
-            //flowRunPrcs.setPrcsFlag(df.format(new Date()));
-            flowRunPrcsService.update(flowRunPrcs);
 
-            f.setFlowTypeModel(flowTypeModel);
-            f.setFlowFormType(flowFormType);
+         
             f.setFlowRun(flowRun);
             f.setFlowRunPrcs(flowRunPrcs);
-            f.setListFp(fl);
+            
         }
         try {
             tj.setObject(f);
@@ -197,6 +202,8 @@ public class WorkController {
         }
         return tj;
     }
+
+
 
 
 
