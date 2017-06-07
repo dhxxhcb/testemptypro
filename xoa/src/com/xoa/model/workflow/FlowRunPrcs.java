@@ -112,6 +112,12 @@ public class FlowRunPrcs {
      */
 	protected String handleTime;
 
+    /**
+     * 工作接收时间自定义参数
+     */
+	private String receive;
+
+
     public FlowRun getFlowRun() {
         return flowRun;
     }
@@ -472,5 +478,21 @@ public class FlowRunPrcs {
      */
     public void setHandleTime(String handleTime) {
         this.handleTime = handleTime;
+    }
+
+    /**
+     * 工作接收时间自定义参数(传递到页面)
+     * @return
+     */
+    public String getReceive() {
+        return receive;
+    }
+
+    /**
+     * 工作接收时间自定义参数(传递到页面)
+     * @param receive
+     */
+    public void setReceive(String receive) {
+        this.receive = receive;
     }
 }
